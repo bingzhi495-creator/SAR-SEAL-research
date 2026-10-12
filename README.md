@@ -59,7 +59,7 @@
 
 
 
-**2026-10-13 / N10：** 新 PR-FL-91 点头已通过实际 CPU 数值资格；已启动 C/PR 各两个相同下游种子的公平固定8轮训练，每模型13,288次更新，冻结同一教师和缓存、保持原生候选/评分。训练尚未核验结束，没有 PR AP 或创新结论。见 [本轮固定协议](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[实际状态](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)及 [研发代码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/)。
+**2026-10-13 / N10：** C/PR各两个相同下游种子的公平固定8轮训练及独立CPU核验均实际退出0并完成ROOT核验（约748.91秒/58.97秒），四模型各13,288次更新。尚无PR AP、验证集提升或创新结论。见 [训练状态与边界](research_round_20260925_global/N10_TRAINING_STATUS_20261013.md)、[本轮固定协议](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[实际状态](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)及 [研发代码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/)。
 
 ## 持续同步
 
