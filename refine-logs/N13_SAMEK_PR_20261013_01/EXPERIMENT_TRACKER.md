@@ -10,3 +10,7 @@
 |全DEV评价/CPU资格|未执行|全100 queries、实际AP/固定误差与成本|
 
 冻结计划见 [EXPERIMENT_PLAN_20261013.md](EXPERIMENT_PLAN_20261013.md)。当前 [执行状态](../../docs/N13_sameK_region_execution_status_20261013.md)持续更新，创建时的跟踪快照另存为日期版本。没有声明创新、充分收敛或 TGRS 依据。
+
+## Canonical M→L / CPU v2 protocol amendment (2026-10-13)
+
+Original CPU v01 exit1 and index3 diagnostic exit1 are preserved. New full741/1661 canonical100 GPU exact-byte relationship replay is prepared, not yet executed; independent CPU v2 and fixed48 training remain pending. No tolerance relaxation, method efficacy or innovation claim. Original prelocked scientific training recipe is unchanged.
