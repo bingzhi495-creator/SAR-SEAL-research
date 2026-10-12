@@ -62,3 +62,7 @@ ROOT已确认CPU原leaf实际exit0（834.391秒），全部741图/1661实例的�
 ## 独立CPU恢复协议已登记，未执行
 
 [恢复采用协议](../research_round_20260925_global/N13_COMPLETED_EPOCH_CPU_RECOVERY_ADOPTION_PROTOCOL_20261013.md)锁定新任务40正常/7失败/47身份pins、原9项产物与原数值判据，不补造原GPU报告、退出0或临时运行测量，不额外训练。新的纯CPU入口正在实现；只有实际新CPU0并由ROOT闭合才可采用端点。后续保持702、703首段后再进入701第9轮的交错顺序。
+
+## 恢复SOURCE停写与静态审阅通过
+
+[新v03纯CPU恢复入口及ABI](../research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)已停写，通过AST3.8/编译与一次独立静态审阅；资源记录精确关联的两处收紧已核对。原v02六文件与九项产物不变。新SOURCE将由ROOT单次绑定执行；当前尚未执行，不能宣布采用端点或训练提升。
