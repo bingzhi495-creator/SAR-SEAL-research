@@ -27,7 +27,7 @@
 
 当前 N09 检验简单全局 logit 偏移能解释多少 C 收益。只在 FIT 缓存点上拟合、只在原生 |L|≤2 内应用、保持 query 和原生分数。FIT CPU 已正常结束，δ = −0.169106405372359；首个 DEV 评价在原生精确一致性检查处退出 1，没有产生 AP。失败及待查原因见 [N09 实际执行状态](docs/N09_global_offset_runtime_state_20261012.md)。它是已知替代控制，不是创新点，也不能由 FIT BCE 下降推断 AP 提高。
 
-2026-10-13 已修复原始 all100 评分路径；完整 DEV 的 GPU 评价和独立 CPU 核验均真实退出 0，原生 18,700 候选输出精确复现。全局偏移 AP 为 **67.1466401**，比原生仅高 **0.0755834** 个百分点、比 C 均值低 **1.0194955**；未达到预登记近似替代规则。这只限定本次全局偏移，不证明新颖性或 F/e 因果作用。[完整核验结果](research_round_20260925_global/N09_FIXED_GLOBAL_OFFSET_RESULT_20261013.md)。下一步准备 [PointRend 式公平结构对照](research_round_20260925_global/FAIR_POINT_HEAD_CONTROL_DESIGN_20261013.md)，新对照尚未执行。
+2026-10-13 已修复原始 all100 评分路径；完整 DEV 的 GPU 评价和独立 CPU 核验均真实退出 0，原生 18,700 候选输出精确复现。全局偏移 AP 为 **67.1466401**，比原生仅高 **0.0755834** 个百分点、比 C 均值低 **1.0194955**；未达到预登记近似替代规则。这只限定本次全局偏移，不证明新颖性或 F/e 因果作用。[完整核验结果](research_round_20260925_global/N09_FIXED_GLOBAL_OFFSET_RESULT_20261013.md)。已进入 [PointRend 式公平结构对照](research_round_20260925_global/FAIR_POINT_HEAD_CONTROL_DESIGN_20261013.md)，实际执行状态见下文 N10 更新。
 
 当前核心创新、正式 TEST、跨集收益和 TGRS 投稿依据仍未成立。失败结果和停止原因保留，不将局部提升包装为最终成功。
 
@@ -59,7 +59,9 @@
 
 
 
-**2026-10-13 / N10：** C/PR各两个相同下游种子的公平固定8轮训练及独立CPU核验均实际退出0并完成ROOT核验（约748.91秒/58.97秒），四模型各13,288次更新。尚无PR AP、验证集提升或创新结论。见 [训练状态与边界](research_round_20260925_global/N10_TRAINING_STATUS_20261013.md)、[本轮固定协议](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[实际状态](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)及 [研发代码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/)。
+**2026-10-13 / N10：** C/PR各两个相同下游种子的公平固定8轮训练及独立CPU核验均实际退出0并完成ROOT核验（约748.91秒/58.97秒），四模型各13,288次更新。完整DEV五组固定候选GPU评价实际退出0，独立CPU评价核验已启动，尚无已核验PR AP、验证集提升或创新结论。见 [全DEV执行状态](research_round_20260925_global/N10_FULLDEV_STATUS_20261013.md)、[训练状态与边界](research_round_20260925_global/N10_TRAINING_STATUS_20261013.md)、[本轮固定协议](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[实际状态](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)及 [研发代码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/)。
+
+当前C实例条件偏置属于已知原语，不能单独宣称创新；定向先例与最小反证方案见 [查新备忘录](research_round_20260925_global/C_CONDITIONED_POINT_HEAD_NOVELTY_MEMO_20261013.md)。
 
 ## 持续同步
 
