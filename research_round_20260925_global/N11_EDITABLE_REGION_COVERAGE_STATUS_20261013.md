@@ -7,3 +7,5 @@
 据此优先调查可编辑区域及强几何边界对照，不再把仅增加原带内目标/头容量当作对主要排除误差的解法。带外错误到几何边界的距离、可推理的新选择规则和实际收益仍未验证；区域并集和经典形态学已有先例。核心创新、充分收敛、正式TEST及跨集仍未成立。
 
 [run.py、qualify.py、common.py与ABI](multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N11_native_editable_region_coverage_source_20261013_01/SOURCE_ABI.md)均已通过一次独立静态审阅，源码使用启动前保存的独立副本；ABI里的UNBOUND/UNEXECUTED是编写时历史状态，当前状态以本文为准。实际所有者限时1800秒、CPU0/1两线程、GPUallocator4096MiB/整卡观测8192MiB；无自动重试。原资格链、数据、完整标注、band RLE、权重和缓存不随仓库提供，不声称下载后即可一键重跑。
+
+下一方案的强先例、同预算几何/不确定性选择对照、至少三个配对种子的完整训练与反证规则已整理为 [区域选择备忘录](N11_REGION_CHOICE_NEXT_HYPOTHESIS_20261013.md)。仅完成设计，未新登记或启动科学任务。
