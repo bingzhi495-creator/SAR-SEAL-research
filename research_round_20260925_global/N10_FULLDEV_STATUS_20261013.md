@@ -10,6 +10,6 @@ GPU复用原N07 F/e/M/classes来源，natural all100渲染/排序/quality/S0以�
 
 ROOT先确认原CPU进程held exit0、父回收及原身份消失，闭合33正常祖先与3个保留实际失败，再核对Q、来源、真实五导出指标和配对汇总，最后执行预锁决定。CPU Q为206,415B / SHA256 343e8137be64f09eded2f7c1822e77538a471f832a45b63c205cdb0d193e73b2；ROOT决定记录12,718B / dfbd54dca53648306d02284f36fa9d5b672bde865ea2537a6511b65b2dd42937。原资格链和科学载荷不加入公开范围。
 
-四臂在原生IoU≥.90固定配对上的平均IoU均小幅下降，整体AP增益不能代表全部轮廓改善。下一问题是可编辑区域的实际误差覆盖与修复上限；其诊断源码正在编写，尚未执行。见 [误差依据](../docs/N01_N06_N07_N09_ERROR_EVIDENCE_FOR_NEXT_DECISION_20261013.md)、[定向查新](FIXED_BAND_SAMPLING_RISK_PRECEDENT_MEMO_20261013.md)、[协议](../refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[跟踪](../refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)及 [评价ABI](multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/EVALUATION_SOURCE_ABI.md)。
+四臂在原生IoU≥.90固定配对上的平均IoU均小幅下降，整体AP增益不能代表全部轮廓改善。下一问题是可编辑区域的实际误差覆盖与修复上限；[N11诊断](N11_EDITABLE_REGION_COVERAGE_STATUS_20261013.md)已通过独立静态审阅并启动GPU，CPU尚未执行，无新合格数值。见 [误差依据](../docs/N01_N06_N07_N09_ERROR_EVIDENCE_FOR_NEXT_DECISION_20261013.md)、[定向查新](FIXED_BAND_SAMPLING_RISK_PRECEDENT_MEMO_20261013.md)、[协议](../refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[跟踪](../refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)及 [评价ABI](multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/EVALUATION_SOURCE_ABI.md)。
 
 当前C条件偏置已有直接先例，PR是同载体结构适配而非完整PointRend作者复现；参数接近不等于有效容量严格相同。核心创新、外部SOTA优势、充分收敛、正式TEST及跨数据集验证仍未成立。
