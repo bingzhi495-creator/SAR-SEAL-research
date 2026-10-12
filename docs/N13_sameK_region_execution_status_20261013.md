@@ -35,3 +35,7 @@ N12 在固定原生匹配群体中显示弱的、依阈值变化的同预算覆�
 原 CPU v01 与 index3 诊断的实际退出 1 均保留。新协议先对全部741图、1661匹配query做原两段GPU渲染的FP32逐字节核验，再由新CPU v2独立核验冻结GPU L上的区域、点索引和监督。原full-L CPU allclose记为诊断，不能写成通过。当前关系SOURCE独立静态审阅通过，ROOT准备绑定；关系尚未执行，缓存未获CPU资格，训练未开始。
 
 新协议见 [资格修订](../research_round_20260925_global/N13_CANONICAL_GPU_RELATION_AND_CPU_QUALIFICATION_AMENDMENT_20261013.md)。canonical100未匹配通道是dummy零，不是原all100 M恢复；静态kernel分析不能替代全部实际字节检查。
+
+## GPU 关系叶已实际启动；v02 训练源码待资格
+
+ROOT 已启动单次有限关系叶，等待实际终止。六份新 v02 源码完成独立静态审阅 PASS 并保存；修复了关系 SPEC/report 的来源键映射错误。审阅不代表数值通过。CPU 资格与训练尚未开始；原失败和固定48轮配方保留。

@@ -14,3 +14,5 @@
 ## Canonical M→L / CPU v2 protocol amendment (2026-10-13)
 
 Original CPU v01 exit1 and index3 diagnostic exit1 are preserved. New full741/1661 canonical100 GPU exact-byte relationship replay is prepared, not yet executed; independent CPU v2 and fixed48 training remain pending. No tolerance relaxation, method efficacy or innovation claim. Original prelocked scientific training recipe is unchanged.
+
+GPU relationship original owned driver session80380 launched; no terminal or cache qualification yet. Six v02 sources STOP/static review PASS; one deterministic metadata key mapping fixed before binding. Training remains pending.
