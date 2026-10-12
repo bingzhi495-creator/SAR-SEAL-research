@@ -1,0 +1,3 @@
+# N13 实验登记产物
+
+2026-10-13创建EXPERIMENT_PLAN_20261013.md并复制稳定EXPERIMENT_PLAN.md；EXPERIMENT_TRACKER_20261013.md为创建快照，稳定EXPERIMENT_TRACKER.md随真实执行更新。新缓存计算前锁预算/seed/区域/评价/停止规则。
