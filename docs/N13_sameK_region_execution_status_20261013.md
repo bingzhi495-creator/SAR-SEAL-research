@@ -58,3 +58,7 @@ ROOT已确认CPU原leaf实际exit0（834.391秒），全部741图/1661实例的�
 ## 首段8轮保存后REPORT失败，待独立恢复资格
 
 原38050 CLOSED actual1，收尾变量NameError；两臂13288更新记录和E08权重均保留。完整40正常/7失败RAW及8719来源已ROOT核验。失败不属于模型效用结果，原目录不补造REPORT；新CPU恢复任务尚未执行。见[故障与恢复登记](../research_round_20260925_global/N13_SEED701_E08_REPORT_FAILURE_AND_RECOVERY_PLAN_20261013.md)。
+
+## 独立CPU恢复协议已登记，未执行
+
+[恢复采用协议](../research_round_20260925_global/N13_COMPLETED_EPOCH_CPU_RECOVERY_ADOPTION_PROTOCOL_20261013.md)锁定新任务40正常/7失败/47身份pins、原9项产物与原数值判据，不补造原GPU报告、退出0或临时运行测量，不额外训练。新的纯CPU入口正在实现；只有实际新CPU0并由ROOT闭合才可采用端点。后续保持702、703首段后再进入701第9轮的交错顺序。
