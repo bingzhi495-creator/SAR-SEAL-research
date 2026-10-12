@@ -1,0 +1,132 @@
+% figm_soup.pdf — same-basin weight soup (Sec. III-B).
+%
+% v3 CHANGE, the important one.  The previous version drew a 1-D loss slice
+% L(theta) vs theta from SEVENTEEN HAND-TYPED COORDINATES under a labelled
+% axis, with a callout asserting that "the elementwise average lands on the
+% flat basin floor, not a barrier".  Nothing in that curve was measured.  It
+% is replaced by a panel in which every drawn position and every printed
+% number IS a measurement, produced by figs/measure_soup_geometry.py and
+% stored in assets/soup_geometry.json:
+%   * pairwise L2 in weight space over all 565 floating-point tensors
+%     (44 223 619 parameters) of the three seed checkpoints:
+%       ||s0-s2|| = 30.1642, ||s0-s3|| = 29.8072, ||s2-s3|| = 30.1835
+%   * ||seed - theta*|| = 17.2744 / 17.4909 / 17.2857
+%   * identical parameter key sets; all non-floating buffers bit-equal
+%   * max |stored soup - recomputed uniform mean| = 1.59e-07 (float32 epsilon),
+%     i.e. the released checkpoint IS the uniform elementwise average.
+% Three points span a plane, so the 2-D embedding of the three pairwise
+% distances is EXACT, and the elementwise mean is the centroid of that
+% triangle.  The triangle is therefore a faithful drawing, not a sketch.
+% No loss axis is drawn, because we measured the geometry and not the surface.
+%
+% Lower panel : the SHAPE story.  This operator lives in weight space, so the
+%   three inputs and the single output are drawn as the SAME glyph at the SAME
+%   size: three checkpoints in, one checkpoint out, nothing reshaped anywhere.
+% Facts: sec_method.tex III-B and ALL_TABLES.md T1 rows 1-2.
+% Authored at exactly 8.89 cm = 252 pt = \columnwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+% S2 (FIGURE_REDESIGN_SPEC H6): \frac's rule is 0.279 pt at 7 pt, below the
+% 0.5 pt stroke floor.  \safefrac is defined by tikz_style_v5.tex; this figure
+% still inputs tikz_style, so provide the same definition as a fallback.
+\providecommand{\safefrac}[2]{\genfrac{}{}{0.5pt}{}{#1}{#2}}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasc{8.66}
+
+% =========================================================================
+%  (a)  WEIGHT SPACE, MEASURED
+%  Exact 2-D embedding, scaled by k = 0.082 cm per unit of L2 distance.
+% =========================================================================
+\draw[grp] (0.06,5.16) rectangle (8.83,8.28);
+\node[panl, anchor=south west] at (0.06,8.32) {(a)};
+\node[grptitle, anchor=south west] at (0.52,8.32)
+  {Weight space, measured --- not a sketch};
+
+\coordinate (sA) at (1.60,5.68);          % theta_{s0}
+\coordinate (sB) at (4.073,5.68);         % theta_{s2}
+\coordinate (sC) at (2.806,7.806);        % theta_{s3}
+\coordinate (sS) at (2.826,6.389);        % theta^*  = centroid
+\draw[datablue!70, line width=0.65pt] (sA) -- (sB) -- (sC) -- cycle;
+\draw[aux, draw=opsred!70] (sS) -- (sA);
+\draw[aux, draw=opsred!70] (sS) -- (sB);
+\draw[aux, draw=opsred!70] (sS) -- (sC);
+\foreach \p in {sA, sB, sC} {
+  \fill[datablue] (\p) circle[radius=1.55pt];
+  \draw[white, line width=0.5pt] (\p) circle[radius=1.55pt];
+}
+\node[star, star points=5, star point ratio=2.25, fill=opsred, draw=opsred,
+      line width=0.5pt, inner sep=1.7pt] at (sS) {};
+\node[sub, anchor=north east, inner sep=1.5pt] at (sA) {$\theta_{s_0}$};
+\node[sub, anchor=north west, inner sep=1.5pt] at (sB) {$\theta_{s_2}$};
+\node[sub, anchor=south, inner sep=1.5pt] at (sC) {$\theta_{s_3}$};
+\node[sub, text=opsred, anchor=west, inner sep=2.5pt] at (sS) {$\theta^{\star}$};
+\node[qty, anchor=north, inner sep=1.5pt] at (2.84,5.60) {30.16};
+\node[qty, anchor=east, inner sep=1.5pt]  at (2.10,6.76) {29.81};
+\node[qty, anchor=west, inner sep=1.5pt]  at (3.52,6.76) {30.18};
+
+\node[plain, anchor=north east, align=left, text width=40mm, inner sep=3.5pt]
+  at (8.78,8.16)
+  {{\footnotesize\bfseries every position measured}\\[1pt]
+   {\scriptsize edges: exact $\|\theta_{s_i}-\theta_{s_j}\|_2$
+    (565 tensors, 44.2\,M params)}\\[1.5pt]
+   {\scriptsize spokes: $\|\theta_s-\theta^{\star}\|_2=17.27/17.49/17.29$}\\[1.5pt]
+   {\scriptsize keys identical, buffers bit-equal, stored
+    $\theta^{\star}=$ recomputed mean to $1.6{\times}10^{-7}$}};
+
+% =========================================================================
+%  (b)  WHAT THE OPERATOR DOES TO SHAPE:  nothing.
+% =========================================================================
+\draw[grp] (0.06,2.88) rectangle (8.83,4.72);
+\node[panl, anchor=south west] at (0.06,4.76) {(b)};
+\node[grptitle, anchor=south west] at (0.52,4.76)
+  {Shape: three checkpoints in, one out};
+
+% v4 CONNECTOR CLEANUP (C8).  Three oblique lines converging on one point
+% read as three separate transports; the same merge is now drawn as three
+% level stubs onto a shared vertical trunk with ONE arrow leaving it -- the
+% same shared-trunk figure as figm_fusion panel (a), so the reader meets one
+% merge idiom in both places instead of two.
+\foreach \yy/\lb in {4.08/{$\theta_{s_0}$}, 3.63/{$\theta_{s_2}$},
+                     3.18/{$\theta_{s_3}$}} {
+  \pic[scale=1.0] at (1.20,\yy) {ckpt};
+  \node[sub, anchor=east] at (0.80,\yy) {\lb};
+  \draw[draw=flowink, line width=0.5pt] (1.54,\yy) -- (1.94,\yy);
+}
+\draw[draw=flowink, line width=0.65pt] (1.94,3.18) -- (1.94,4.08);
+\draw[flow] (1.94,3.63) -- (2.31,3.63);
+\node[ops, circle, inner sep=0.6pt, minimum size=6.2mm] (avg) at (2.62,3.63)
+  {$\safefrac{1}{3}\sum$};
+\draw[flow] (avg.east) -- (3.52,3.63);
+\pic[scale=1.0] at (3.86,3.63) {ckpt};
+\node[sub, anchor=west, text=opsred] at (4.24,3.63) {$\theta^{\star}$};
+
+% v4: 24 words of prose reduced to 11.  "The output is the same object as
+% each input" is what the panel already DRAWS -- the same glyph at the same
+% size on both sides of the sum -- so the label now carries only the three
+% facts the drawing cannot: keys, buffers, and the inference cost.
+\node[sub, anchor=north west, text width=38mm, align=left]
+  at (4.90,4.08)
+  {\textbf{shape-preserving}: identical keys and buffers, one file,
+   inference stays $1\times$.};
+
+% ===== the operator =======================================================
+\node[ops, minimum width=53mm, minimum height=8mm] (soup) at (4.445,2.16)
+  {\textbf{uniform weight soup}\\[-1pt]
+   $\theta^{\star}=\safefrac{1}{3}\bigl(\theta_{s_0}+\theta_{s_2}+\theta_{s_3}\bigr)$};
+\node[badgeops] at ($(soup.north west)+(0.26,0)$) {1};
+
+% ===== measured effect ====================================================
+\node[subk, anchor=north] at (4.445,1.42)
+  {mask AP under the soup alone (three-seed mean):\\[1pt]
+   27.7\,$\to$\,\textbf{29.6} inshore \quad
+   45.6\,$\to$\,\textbf{47.4} official \quad
+   59.6\,$\to$\,\textbf{61.1} offshore};
+
+\end{tikzpicture}
+\end{document}

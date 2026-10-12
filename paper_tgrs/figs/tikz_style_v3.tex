@@ -1,0 +1,353 @@
+% =========================================================================
+% tikz_style.tex — shared visual system for the Section III method figures.
+% Usage: \input{tikz_style} in the preamble of a standalone figure.
+%
+% -------------------------------------------------------------------------
+% DESIGN NOTES — conventions extracted from an accepted TGRS manuscript
+% (Gao et al., "BBox-free ... SAR ship instance segmentation", TGRS 2024;
+%  local copy: scratchpad/gao_bboxfree_tgrs24.pdf).  Observations taken from
+%  its Fig. 2 (overall architecture, p. 5), Fig. 5 (FD module, p. 8) and
+%  Fig. 6 (conceptual mask panel, p. 8):
+%
+%  O1  REGION PARTITION.  The architecture figure is carved into 3-4 named
+%      regions by DOTTED rectangles with no fill; the region name is set in
+%      bold OUTSIDE the rectangle ("Feature Extractor", "Classification
+%      Branch", "Localization Branch", "Center Point Extractor").  Nothing
+%      is nested more than two levels deep.
+%  O2  COLOR CARRIES MEANING, NOT DECORATION.  Only ~5 hues appear, all as
+%      pale fills with black text: light gray = ordinary/standard module,
+%      salmon-orange = the module the paper contributes (Feature Decoupling
+%      Module, Center Point Extractor), yellow = a distinguished operation
+%      (Feature Fusion), light blue / light pink = tensors.  Saturated color
+%      is reserved for the few glyphs that must be found first.
+%  O3  LEGEND PANEL.  Both Fig. 2 and Fig. 5 carry an explicit legend inside
+%      the figure (dotted box top-left in Fig. 2, dashed box right in Fig. 5)
+%      that decodes arrow colors and single-letter glyph nodes.  The body of
+%      the diagram is kept uncluttered by pushing vocabulary into the legend.
+%  O4  TENSOR ICONOGRAPHY.  Feature maps are drawn as thin vertical plates,
+%      multi-scale features as 3 offset stacked planes, channel vectors as
+%      segmented 3-D bars, the backbone as an isometric slab.  Real SAR
+%      chips / heat maps / GT overlays are pasted directly into the flow.
+%  O5  TENSOR NAMES SIT BESIDE THE GLYPH, NEVER INSIDE IT, in math italic
+%      (F_out, F_mask, F_param, F_H_zip ...), placed above-right of the plate.
+%  O6  ARROW DISCIPLINE.  Data flow is a thin gray/black line with a small
+%      solid triangular head; routing is orthogonal (Manhattan) with a shared
+%      trunk when one source fans out to several targets, so lines never
+%      cross.  Semantically special transitions get a THICK COLORED BLOCK
+%      arrow instead (2x upsample / 2x downsample / connect), i.e. arrow
+%      style is itself a semantic channel.  Long skip paths are routed as
+%      rails around the outside of the diagram (Fig. 5 top and bottom).
+%  O7  TYPOGRAPHY.  One size for block labels, one smaller size for
+%      sub-labels, math only in math mode; no stretched or rotated text
+%      except a rare 90-degree axis label.
+%  O8  ASPECT RATIO.  Double-column method figures are wide and short:
+%      Fig. 2 is 530 x 200 pt (2.65:1), Fig. 5 is 530 x 215 pt (2.5:1).
+%      They are laid on a grid with equal gutters between parallel branches.
+%  O9  CAPTION DIVISION OF LABOR.  The caption names the parts and decodes
+%      abbreviations/colors; it does not re-derive the mechanism, which is
+%      left to the body text.  The figure is readable without the caption.
+%  O10 CONCEPTUAL PANELS (Fig. 6) use dashed sub-panels with a centered
+%      label underneath, a pale blue blob for the true object and a pale red
+%      overlay for the error region -- schematic, not photorealistic.
+%
+% -------------------------------------------------------------------------
+% WHAT WE ADOPT / WHERE WE DEVIATE
+%  + adopt O1 (dotted named regions), O3 (in-figure legend), O4/O5 (tensor
+%    glyphs with the symbol outside), O6 (one flow style + Manhattan
+%    routing), O8 (wide-short double-column ratios), O10 (schematic panels).
+%  ~ deviate on O2: instead of hue-as-identity we bind hue to ROLE in the
+%    contribution -- frozen / training-free operator / trained corrector /
+%    data -- because the entire argument of this article is which parts are
+%    touched and which are not.
+%  ~ deviate on the sans-serif block labels of Fig. 2: we set every figure in
+%    the body Times face (as the same paper's Fig. 6 does), so figure text
+%    and caption text share one face.
+%  + every figure is authored at its EXACT printed width (18.2 cm double
+%    column = 516 pt, 8.89 cm single column = 252 pt) and included at
+%    scale 1, so \footnotesize is a true 8 pt and \scriptsize a true 7 pt on
+%    the page in ALL figures.  Use \figcanvasd / \figcanvasc below.
+%
+% -------------------------------------------------------------------------
+% SEMANTIC PALETTE (Okabe-Ito colorblind-safe base; redundant encoding by
+% border weight, dash pattern and badge glyph so it survives grayscale):
+%   froz  gray   + lock glyph        frozen, not modified by us  (Stage A)
+%   ops   vermil + solid heavy rule  our TRAINING-FREE operator  (rung 1)
+%   trn   green  + dashed rule       our OPTIONAL TRAINED corrector (2-3)
+%   data  blue   + thin rule         data, tensors, I/O
+%   warn  red    + dotted rule, small  failure mode / negative control
+% =========================================================================
+
+\usetikzlibrary{positioning,arrows.meta,fit,backgrounds,calc,shapes.geometric,
+                decorations.pathreplacing,decorations.markings,patterns,
+                shadows.blur}
+
+% ---------------- palette ----------------
+\definecolor{opsred}{HTML}{D55E00}   % Okabe-Ito vermillion  -- training-free ops
+\definecolor{trngreen}{HTML}{009E73} % Okabe-Ito bluish green-- trained correctors
+\definecolor{datablue}{HTML}{0072B2} % Okabe-Ito blue        -- data / tensors
+\definecolor{frozgray}{HTML}{6E6E6E} % neutral               -- frozen base
+\definecolor{flowink}{HTML}{262626}  % near black            -- data-flow arrows
+\definecolor{warnred}{HTML}{9E2B2B}  % muted brick           -- failure modes
+\definecolor{sarink}{HTML}{2B2B33}   % SAR chip background
+
+% ---------------- exact-width canvases ----------------
+% \figcanvasd{H} : double column, 18.2 cm = 516 pt = \textwidth  (scale 1.0)
+% \figcanvasc{H} : single column,  8.89 cm = 252 pt = \columnwidth
+\newcommand{\figcanvasd}[1]{\useasboundingbox (0,0) rectangle (18.2,#1);}
+\newcommand{\figcanvasc}[1]{\useasboundingbox (0,0) rectangle (8.89,#1);}
+
+\tikzset{
+  % ---- picture-level defaults: ONE font size system for all five figures ----
+  fig/.style={font=\footnotesize, line width=0.65pt,
+              >={Stealth[length=1.7mm,width=1.35mm]},
+              every node/.append style={align=center, inner sep=2.4pt}},
+  % ---- blocks: role -> color + redundant border encoding ----
+  ops/.style   ={draw=opsred,   fill=opsred!8,    line width=0.9pt,
+                 rounded corners=1.6pt, inner sep=3pt, align=center},
+  trn/.style   ={draw=trngreen, fill=trngreen!8,  line width=0.9pt,
+                 dash pattern=on 1.7pt off 1.1pt,
+                 rounded corners=1.6pt, inner sep=3pt, align=center},
+  froz/.style  ={draw=frozgray, fill=black!4,     line width=0.7pt,
+                 rounded corners=1.6pt, inner sep=3pt, align=center},
+  data/.style  ={draw=datablue, fill=datablue!7,  line width=0.55pt,
+                 rounded corners=1.6pt, inner sep=3pt, align=center},
+  plain/.style ={draw=black!45, fill=white,       line width=0.55pt,
+                 rounded corners=1.6pt, inner sep=3pt, align=center},
+  warn/.style  ={draw=warnred,  fill=warnred!4,   line width=0.5pt,
+                 dash pattern=on 1.1pt off 1.1pt,
+                 rounded corners=1.4pt, inner sep=3pt, align=center},
+  gate/.style  ={draw=opsred,   fill=opsred!8,    line width=0.9pt,
+                 diamond, aspect=2.15, inner sep=1pt, align=center},
+  % ---- named region (O1): dotted, unfilled, label set outside ----
+  grp/.style   ={draw=black!45, densely dotted, line width=0.7pt,
+                 rounded corners=2pt, inner sep=0pt},
+  grptitle/.style={font=\footnotesize\bfseries, text=black!80, inner sep=1.5pt},
+  % ---- step badges (redundant, grayscale-safe stage identity) ----
+  badge/.style ={circle, inner sep=0pt, minimum size=3.3mm, text=white,
+                 font=\scriptsize\bfseries},
+  badgeops/.style={badge, fill=opsred},
+  badgetrn/.style={badge, fill=trngreen},
+  % ---- typography (O7): exactly three text sizes in the whole figure set ----
+  ttl/.style   ={font=\footnotesize\bfseries},
+  lbl/.style   ={font=\footnotesize},
+  sub/.style   ={font=\scriptsize, text=black!55},
+  subk/.style  ={font=\scriptsize, text=black!80},
+  tsr/.style ={font=\scriptsize\ttfamily, text=black!55},% B x C x H x W (O5)
+  tag/.style   ={font=\scriptsize, inner sep=1.6pt, rounded corners=1pt},
+  % ---- arrows (O6): one data-flow style, one auxiliary/optional style ----
+  flow/.style  ={-{Stealth[length=1.7mm,width=1.35mm]}, draw=flowink,
+                 line width=0.65pt},
+  flowt/.style ={-{Stealth[length=1.7mm,width=1.35mm]}, draw=flowink,
+                 line width=0.65pt, rounded corners=1.6pt},
+  aux/.style   ={-{Stealth[length=1.5mm,width=1.2mm]}, draw=black!45,
+                 line width=0.5pt, densely dashed},
+  auxw/.style  ={-{Stealth[length=1.5mm,width=1.2mm]}, draw=warnred!75,
+                 line width=0.5pt, densely dashed},
+  rail/.style  ={draw=black!30, line width=0.5pt},
+  brace/.style ={decorate, decoration={brace, amplitude=3.2pt, raise=1pt},
+                 draw=black!50, line width=0.5pt},
+}
+
+% =========================================================================
+% GEOMETRIC ISOMORPHISM (v3).  Tensor shape is DRAWN, never only written.
+%
+%  G1 SPATIAL EXTENT -> DRAWN SIZE, one scale for the whole figure set:
+%       1 mm of drawn edge per 40 pixels of tensor extent,
+%       i.e. drawn side [cm] = side [px] / 400   ->  \pxc{800} = 2.00 cm.
+%       800 -> 20.0 mm | 200 -> 5.00 mm | 100 -> 2.50 mm |  50 -> 1.25 mm
+%        25 ->  0.63 mm | 640 -> 16.0 mm | 960 -> 24.0 mm |1088 -> 27.2 mm
+%        64 ->  1.60 mm | 128 ->  3.20 mm
+%       A stride-4 map is therefore exactly 8x the linear size of a
+%       stride-32 map, as it must be.
+%  G2 CHANNEL COUNT -> SLAB DEPTH (isometric extrusion, 30 degrees):
+%       depth [cm] = 0.04 + 0.055 * log2(C/256)
+%       256 -> 0.40 mm | 512 -> 0.95 mm | 1024 -> 1.50 mm | 2048 -> 2.05 mm
+%       i.e. +0.55 mm of depth per channel doubling.
+%  G3 CATEGORY -> GLYPH SHAPE (readable in grayscale, no label needed):
+%       spatial feature map (B,C,H,W) ......... extruded slab   \fmslab
+%       token set (N x C, no spatial extent) .. column of bars  \tokencol
+%       mask stack (N x H x W) ................ offset planes   \maskstack
+%       scalar score .......................... short bar       \scorebar
+%       feature vector (d cells) .............. strip of cells  (drawn inline)
+%  G4 A LABELLED ZOOM INSET may magnify a sub-scene by an explicit factor z;
+%       inside it G1/G2 hold multiplied by z.  Every macro takes z as its
+%       last argument (z=1 for the global scale).
+% =========================================================================
+\newcommand{\pxc}[1]{(#1)/400}     % tensor side in px -> drawn side in cm
+
+% --- \fmslab{x}{y}{sidepx}{C}{colour}{zoom} : a spatial feature map -------
+\newcommand{\fmslab}[6]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \pgfmathsetmacro{\sbH}{0.5*#6*\pxc{#3}}
+    \pgfmathsetmacro{\sbD}{#6*(0.04+0.055*ln((#4)/256)/ln(2))}
+    \pgfmathsetmacro{\sbX}{0.866*\sbD}
+    \pgfmathsetmacro{\sbY}{0.500*\sbD}
+    \fill[#5!30] (-\sbH,\sbH) -- (-\sbH+\sbX,\sbH+\sbY)
+                 -- (\sbH+\sbX,\sbH+\sbY) -- (\sbH,\sbH) -- cycle;
+    \fill[#5!20] (\sbH,\sbH) -- (\sbH+\sbX,\sbH+\sbY)
+                 -- (\sbH+\sbX,-\sbH+\sbY) -- (\sbH,-\sbH) -- cycle;
+    \fill[#5!11] (-\sbH,-\sbH) rectangle (\sbH,\sbH);
+    \draw[#5!75, line width=0.4pt]
+      (-\sbH,-\sbH) rectangle (\sbH,\sbH)
+      (-\sbH,\sbH) -- (-\sbH+\sbX,\sbH+\sbY) -- (\sbH+\sbX,\sbH+\sbY) -- (\sbH,\sbH)
+      (\sbH+\sbX,\sbH+\sbY) -- (\sbH+\sbX,-\sbH+\sbY) -- (\sbH,-\sbH);
+  \end{scope}}
+
+% --- \tokencol{x}{y}{nbars}{width}{colour} : an N x C token set -----------
+%     Deliberately NOT a slab: flat bars, visible gaps, no extrusion, so a
+%     query set can never be mistaken for a feature map.
+\newcommand{\tokencol}[5]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \pgfmathsetmacro{\tkP}{0.098}
+    \pgfmathsetmacro{\tkT}{0.056}
+    \pgfmathsetmacro{\tkW}{0.5*#4}
+    \pgfmathtruncatemacro{\tkN}{#3-1}
+    \pgfmathsetmacro{\tkY}{0.5*(\tkN*\tkP+\tkT)}
+    \foreach \tki in {0,...,\tkN} {
+      \pgfmathsetmacro{\tkc}{\tkY-\tki*\tkP}
+      \fill[#5!13] (-\tkW,\tkc-\tkT) rectangle (\tkW,\tkc);
+      \draw[#5!75, line width=0.4pt] (-\tkW,\tkc-\tkT) rectangle (\tkW,\tkc);
+    }
+  \end{scope}}
+
+% --- \maskstack{x}{y}{sidepx}{k}{colour}{zoom} : k planes of H x W --------
+\newcommand{\maskstack}[6]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \pgfmathsetmacro{\msH}{0.5*#6*\pxc{#3}}
+    \pgfmathsetmacro{\msO}{0.30*\msH/2.5}
+    \pgfmathtruncatemacro{\msN}{#4-1}
+    \pgfmathsetmacro{\msS}{\msH/0.92}
+    \foreach \msi in {\msN,...,0} {
+      \pgfmathsetmacro{\msd}{\msi*\msO}
+      \begin{scope}[shift={(\msd,\msd)}]
+        \fill[white] (-\msH,-\msH) rectangle (\msH,\msH);
+        \fill[#5!8]  (-\msH,-\msH) rectangle (\msH,\msH);
+        \draw[#5!60, line width=0.35pt] (-\msH,-\msH) rectangle (\msH,\msH);
+        \begin{scope}[scale=\msS]
+          \fill[#5!35] \hull;
+          \draw[#5!90, line width=0.3pt] \hull;
+        \end{scope}
+      \end{scope}}
+  \end{scope}}
+
+% --- \scorebar{x}{y}{h}{colour} : one scalar, as a short upright bar ------
+\newcommand{\scorebar}[4]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \draw[black!35, line width=0.35pt] (-0.10,0) rectangle (0.10,0.62);
+    \fill[#4!55] (-0.10,0) rectangle (0.10,#3);
+    \draw[#4!90, line width=0.4pt] (-0.10,0) rectangle (0.10,#3);
+  \end{scope}}
+
+% =========================================================================
+% Reusable glyphs.  All are TikZ pics: \pic[scale=s] at (x,y) {name};
+% =========================================================================
+
+% --- lock: marks any component whose weights we never update -------------
+\tikzset{lock/.pic={
+  \fill[frozgray] (-0.105,-0.105) rectangle (0.105,0.055);
+  \draw[frozgray, line width=0.65pt]
+    (-0.060,0.055) -- (-0.060,0.105)
+    arc[start angle=180, end angle=0, radius=0.060] -- (0.060,0.055);
+  \fill[white] (0,-0.022) circle[radius=0.020];
+}}
+
+% --- planes: 3 offset stacked planes = a multi-scale feature pyramid -----
+\tikzset{planes/.pic={
+  \foreach \i/\o in {2/0.20, 1/0.10, 0/0.00} {
+    \fill[datablue!\the\numexpr 10+8*\i\relax]
+      (\o-0.24,\o-0.30) rectangle (\o+0.24,\o+0.30);
+    \draw[datablue!70, line width=0.45pt]
+      (\o-0.24,\o-0.30) rectangle (\o+0.24,\o+0.30);
+  }
+}}
+
+% --- plate: a single feature plane (thin vertical plate, O4) -------------
+\tikzset{plate/.pic={
+  \fill[datablue!14] (-0.10,-0.34) rectangle (0.10,0.34);
+  \draw[datablue!70, line width=0.45pt] (-0.10,-0.34) rectangle (0.10,0.34);
+  \draw[datablue!45, line width=0.35pt] (-0.10,0.20) -- (0.10,0.20);
+  \draw[datablue!45, line width=0.35pt] (-0.10,-0.20) -- (0.10,-0.20);
+}}
+
+% --- ckpt: an isometric slab = one stored checkpoint / weight vector -----
+\tikzset{ckpt/.pic={
+  \fill[frozgray!18] (-0.30,-0.13) rectangle (0.24,0.13);
+  \fill[frozgray!32] (-0.30,0.13) -- (-0.24,0.21) -- (0.30,0.21) -- (0.24,0.13) -- cycle;
+  \fill[frozgray!26] (0.24,-0.13) -- (0.30,-0.05) -- (0.30,0.21) -- (0.24,0.13) -- cycle;
+  \draw[frozgray, line width=0.45pt]
+    (-0.30,-0.13) rectangle (0.24,0.13);
+  \draw[frozgray, line width=0.45pt]
+    (-0.30,0.13) -- (-0.24,0.21) -- (0.30,0.21) -- (0.24,0.13)
+    (0.30,0.21) -- (0.30,-0.05) -- (0.24,-0.13);
+}}
+
+% --- masked: pictogram of an output instance mask (hull on light field) --
+\tikzset{maskicon/.pic={
+  \fill[datablue!5] (-0.30,-0.30) rectangle (0.30,0.30);
+  \draw[datablue!60, line width=0.5pt] (-0.30,-0.30) rectangle (0.30,0.30);
+  \begin{scope}[rotate=28]
+    \fill[datablue!45] (0,0.05) ellipse[x radius=0.235, y radius=0.062];
+    \draw[datablue, line width=0.4pt] (0,0.05) ellipse[x radius=0.235, y radius=0.062];
+  \end{scope}
+  \begin{scope}[rotate=-12]
+    \fill[datablue!45] (0.02,-0.19) ellipse[x radius=0.145, y radius=0.045];
+    \draw[datablue, line width=0.4pt] (0.02,-0.19) ellipse[x radius=0.145, y radius=0.045];
+  \end{scope}
+}}
+
+% =========================================================================
+% \sarchip{x}{y}{side}{flip}  -- schematic SAR amplitude chip: dark speckled
+% field with two bright elongated hulls.  flip = 0 identity, 1 horizontal
+% mirror (so the TTA figure can show the geometry of the view, not a texture).
+% =========================================================================
+\newcommand{\sarchip}[4]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \pgfmathsetmacro{\chSz}{#3}
+    \pgfmathsetmacro{\chHw}{#3/2}
+    \pgfmathsetmacro{\chSg}{1-2*(#4)}
+    \pgfmathsetmacro{\chRa}{0.012*#3}
+    \fill[sarink] (-\chHw,-\chHw) rectangle (\chHw,\chHw);
+    \begin{scope}
+      \clip (-\chHw,-\chHw) rectangle (\chHw,\chHw);
+      % speckle
+      \foreach \chK in {1,...,30} {
+        \pgfmathsetmacro{\chX}{(rnd-0.5)*1.94*\chHw}
+        \pgfmathsetmacro{\chY}{(rnd-0.5)*1.94*\chHw}
+        \pgfmathsetmacro{\chO}{0.13+rnd*0.34}
+        \fill[white, opacity=\chO] (\chX,\chY) circle[radius=\chRa];
+      }
+      % coastline / dock structure (bright straight clutter)
+      \pgfmathsetmacro{\chDa}{\chSg*0.36*\chSz}
+      \pgfmathsetmacro{\chDb}{\chSg*0.46*\chSz}
+      \pgfmathsetmacro{\chDc}{\chSg*0.30*\chSz}
+      \pgfmathsetmacro{\chDd}{\chSg*0.20*\chSz}
+      \pgfmathsetmacro{\chDy}{0.5*\chSz}
+      \fill[white, opacity=0.40]
+        (\chDa,-\chDy) -- (\chDb,-\chDy) -- (\chDc,\chDy) -- (\chDd,\chDy) -- cycle;
+      % two hulls
+      \pgfmathsetmacro{\chAx}{\chSg*(-0.14)*\chSz}
+      \pgfmathsetmacro{\chAy}{0.13*\chSz}
+      \pgfmathsetmacro{\chAr}{\chSg*32}
+      \pgfmathsetmacro{\chArx}{0.17*\chSz}
+      \pgfmathsetmacro{\chAry}{0.048*\chSz}
+      \fill[white, opacity=0.92, rotate around={\chAr:(\chAx,\chAy)}]
+        (\chAx,\chAy) ellipse [x radius=\chArx, y radius=\chAry];
+      \pgfmathsetmacro{\chBx}{\chSg*0.04*\chSz}
+      \pgfmathsetmacro{\chBy}{-0.22*\chSz}
+      \pgfmathsetmacro{\chBr}{\chSg*(-14)}
+      \pgfmathsetmacro{\chBrx}{0.11*\chSz}
+      \pgfmathsetmacro{\chBry}{0.036*\chSz}
+      \fill[white, opacity=0.80, rotate around={\chBr:(\chBx,\chBy)}]
+        (\chBx,\chBy) ellipse [x radius=\chBrx, y radius=\chBry];
+    \end{scope}
+    \draw[black!55, line width=0.4pt] (-\chHw,-\chHw) rectangle (\chHw,\chHw);
+  \end{scope}}
+
+% =========================================================================
+% \hull{}  -- schematic ship-mask contour, ~1.3 cm wide, centred at origin.
+% Used by the BPR and fusion figures so every ship outline in the paper is
+% literally the same curve.
+% =========================================================================
+\newcommand{\hull}{plot[smooth cycle, tension=0.72] coordinates
+  {(0.72,0.00) (0.34,0.26) (-0.22,0.33) (-0.64,0.17) (-0.62,-0.12)
+   (-0.10,-0.30) (0.42,-0.22)}}

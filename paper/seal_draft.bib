@@ -1,0 +1,19 @@
+The bibliography is clean: 35 unique entries, no duplicate keys, balanced braces (282/282). The file is written to `E:\SAR\seal\paper\seal_refs.bib`, which is exactly what `\bibliography{seal_refs}` in `seal.tex` references, and the `\cite{cheng2021boundary}` key is preserved.
+
+Done. Cleaned, de-duplicated, compilable BibTeX written to **`E:\SAR\seal\paper\seal_refs.bib`** (35 entries, 0 duplicate keys, braces balanced 282/282).
+
+What changed vs. the raw collection:
+
+**DROPPED (1, fabricated/unverifiable):**
+- `xu2024mssdnet` ("MSSD-Net") — the raw comment itself flags that no citable "MSCK-Net" was located; this is a guessed stand-in with no authors, cited nowhere in the draft.
+
+**DE-DUPLICATED (2 collisions):**
+- `zhang2021ssdd` appeared twice (2nd copy had author typo "Yanqing") → merged into one verified entry ("Xu, Yanqin").
+- `cheng2021boundaryiou` + `cheng2021boundary` were the same Boundary-IoU CVPR'21 paper → kept the single key `cheng2021boundary` (the exact key `\cite{}`-d in `seal.tex`).
+
+**FIXED (1):**
+- `samsar2025` had `author = "Anonymous (not verified)"`. Verified via web search: real authors are **Mahdi Rahimi and Saeed Sharifian**, *Expert Systems with Applications* vol. 284, art. 127852, 2025. Corrected. (Its raw DOI `10.1016/j.eswa.2025.128140` is retained but I could not confirm it against the article PII S0957417425014745 — flagged in the file's leading comment.)
+
+**VERIFIED real (kept):** `gao2025o2former` (arXiv:2506.11913), `xu2025diffsarshipinst` (ISPRS J. v223, 440–455), `mansour2026zeroshot` (arXiv:2604.17920, Apr 2026 — real, not a future-dated fabrication). All standard refs requested (Mask2Former, MaskDINO, DINO, Boundary IoU, HRSID, official SSDD, PointRend, RefineMask, Mask Transfiner) are present and confirmed.
+
+One gap the script/author should note: `paper_draft_v1.md` cites several refs that were **not in the raw collection and that I did not fabricate** — Hoiem (ECCV'12), TIDE/Bolya (ECCV'20), "Mind the Gap" (arXiv'26), Kapoor & Narayanan (Patterns'23), HQ-ISNet, LFG-Net, DAB-DETR, DN-DETR, Carion DETR. These are listed in the file's leading "STILL NEEDED" comment block and must be added (verified) before submission. Also note: `seal.tex` currently only `\cite`s `cheng2021boundary`; the other 34 entries are not yet cited in the LaTeX body (Related Work / Method are still `\TODO` outlines), so a bibtex run on the current `.tex` will emit "unused entry" warnings only — not errors.

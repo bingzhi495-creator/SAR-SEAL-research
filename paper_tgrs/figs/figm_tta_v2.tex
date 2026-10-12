@@ -1,0 +1,120 @@
+% figm_tta.pdf — wide multi-scale flip TTA (Sec. III-C).
+% One SAR chip fans into the eight views of Eq. (views), {640,800,960,1088}
+% x {id,hflip}; every view passes the SAME frozen soup model; flips are
+% inverted and all masks are returned at the native H x W; the results pool
+% into K <= 8 x 100 = 800 scored candidates.  Inset: the upsampled views put
+% more pixels on a pixel-starved hull.
+% Facts: sec_method.tex III-C; ALL_TABLES.md T1 rows 2'-3, T11.
+% Authored at exactly 18.2 cm = 516 pt = \textwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+% --- \gridchip{x}{y}{side}{step} : the SAME hull sampled on a coarse or a
+%     fine pixel lattice (figure-local illustration for the inset).
+\newcommand{\gridchip}[4]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \pgfmathsetmacro{\gw}{#3/2}
+    \pgfmathsetmacro{\ga}{0.30*#3}
+    \pgfmathsetmacro{\gb}{0.075*#3}
+    \fill[sarink] (-\gw,-\gw) rectangle (\gw,\gw);
+    \begin{scope}
+      \clip (-\gw,-\gw) rectangle (\gw,\gw);
+      \fill[white, opacity=0.90, rotate=24] (0,0) ellipse[x radius=\ga, y radius=\gb];
+      \draw[white, opacity=0.32, line width=0.3pt, step=#4] (-\gw,-\gw) grid (\gw,\gw);
+    \end{scope}
+    \draw[black!55, line width=0.4pt] (-\gw,-\gw) rectangle (\gw,\gw);
+  \end{scope}}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{6.60}
+
+\def\yF{4.60}   % main data-flow line
+
+% =====================  input chip  ======================================
+\sarchip{0.72}{\yF}{1.15}{0}
+\node[sub, anchor=north] at (0.72,3.95)
+  {SAR chip\\ native $H\times W$\\ \texttt{Bx3x800x800}};
+\draw[flow] (1.34,\yF) -- (1.80,\yF);
+
+% =====================  the eight views  =================================
+\draw[grp] (1.85,3.06) rectangle (7.91,6.14);
+\node[grptitle, anchor=south] at (4.88,6.20)
+  {$\mathcal{V}=\{640,800,960,1088\}\times\{\mathrm{id},\mathrm{hflip}\}$,\
+   $V=8$ views};
+\def\yId{5.38}
+\def\yFl{3.83}
+\foreach \cx/\w/\s in {2.35/0.80/640, 3.75/1.00/800, 5.35/1.20/960, 7.13/1.36/1088} {
+  \sarchip{\cx}{\yId}{\w}{0}
+  \sarchip{\cx}{\yFl}{\w}{1}
+  \node[sub, anchor=north] at (\cx,3.00) {\s};
+}
+\node[sub, rotate=90] at (1.70,\yId) {id};
+\node[sub, rotate=90] at (1.70,\yFl) {hflip};
+\draw[flow] (7.98,\yF) -- (8.45,\yF);
+
+% =====================  one frozen model, eight passes  ==================
+\node[froz, anchor=west, minimum width=27mm, minimum height=13mm]
+  (model) at (8.45,\yF)
+  {\textbf{soup model} $\Phi_{\theta^{\star}}$\\[0.5pt]
+   {\scriptsize \emph{one} checkpoint, \emph{eight} passes}\\[-1pt]
+   {\scriptsize no weight updated}\\[-1pt]
+   {\scriptsize $100$ queries per view}};
+\fill[white] ([shift={(-0.13,-0.13)}]model.north east)
+             rectangle ([shift={(0.13,0.13)}]model.north east);
+\pic[scale=1.1] at (model.north east) {lock};
+\draw[flow] (model.east) -- (11.85,\yF);
+
+\node[ops, anchor=west, minimum width=27mm, minimum height=13mm]
+  (resc) at (11.85,\yF)
+  {\textbf{invert \& rescale}\\[0.5pt]
+   {\scriptsize $f^{-1}$ undoes each flip}\\[-1pt]
+   {\scriptsize \texttt{rescale=True}: masks}\\[-1pt]
+   {\scriptsize returned at native $H\times W$}};
+\node[badgeops] at ($(resc.north west)+(0.26,0)$) {2};
+\draw[flow] (resc.east) -- (15.25,\yF);
+
+\node[data, anchor=west, minimum width=27mm, minimum height=13mm]
+  (pool) at (15.25,\yF)
+  {\textbf{candidate pool}\\[0.5pt]
+   {\scriptsize $K\le V\!\times\!100=800$}\\[-1pt]
+   {\scriptsize scored masks per image}\\[-1pt]
+   {\scriptsize input to the fusion stage}};
+
+% =====================  tensor-shape rail  ===============================
+\def\yS{6.24}
+\node[tsr] at (10.15,\yS) {8x3xRxR};
+\node[tsr] at (13.55,\yS) {8x100xRxR};
+\node[tsr] at (16.95,\yS) {Kx800x800};
+\node[sub, anchor=west] at (8.45,5.80) {$R\in\{640,800,960,1088\}$};
+
+% =====================  inset: why the upsampled views help  =============
+\draw[grp] (1.85,0.34) rectangle (7.91,2.58);
+\node[grptitle, anchor=north] at (4.88,2.50)
+  {why the upsampled views help};
+\gridchip{3.20}{1.32}{1.05}{0.175cm}
+\gridchip{5.60}{1.32}{1.05}{0.0875cm}
+\node[sub, anchor=north] at (3.20,0.72) {$640$ view};
+\node[sub, anchor=north] at (5.60,0.72) {$1088$ view};
+\draw[flow] (3.76,1.32) -- (5.04,1.32);
+\node[sub, text=black!70] at (4.40,1.98)
+  {same hull, $2.9\times$ the mask pixels};
+
+% =====================  measured effect  =================================
+\node[plain, anchor=north west, align=left, inner sep=4pt,
+      minimum height=22.4mm, minimum width=96mm] (eff) at (8.45,2.58)
+  {{\footnotesize\bfseries measured effect\ \ (inshore\,/\,official\,/\,offshore mask AP)}\\[1.5pt]
+   {\scriptsize six-view core $\{736,800,864\}\times\{\mathrm{id},\mathrm{hflip}\}$:
+      $+7.0$ inshore, three-seed mean, $\sigma\approx0.3$;}\\[-1pt]
+   {\scriptsize regime gradient $+7.0\,/\,+5.5\,/\,+3.4$, largest where speckle and dock clutter are hardest;}\\[-1pt]
+   {\scriptsize widening to the eight views above: $+2.0$ inshore on seed $s_0$
+      ($34.6\!\to\!36.6$),}\\[-1pt]
+   {\scriptsize flat on the official split, $-0.6$ offshore.}\\[1.5pt]
+   {\scriptsize Cost: $V=8$ forward passes of one checkpoint; no weight updated, no parameter added.}};
+
+\end{tikzpicture}
+\end{document}

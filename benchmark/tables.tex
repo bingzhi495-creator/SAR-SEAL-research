@@ -1,0 +1,68 @@
+\begin{table*}[t]
+\centering
+\caption{Horizontal-box detection benchmark on four SAR datasets (COCO protocol). All models are nano/lightweight, trained \emph{from scratch} (no pretrained weights) on one RTX~3090\,Ti. $P$/$R$ are taken at the max-$F_1$ confidence; recall $R$ is the detection probability $P_d$; false-alarm rate $\mathrm{FA}=1-P$. Comparisons are \emph{confounded} and must not be read as a clean ranking: MSCK-Net trains 160 epochs (vs.\ 100), its evaluator reports only COCO AP (so $P$/$R$/FA are N/A) and its native domain is infrared (domain shift to SAR); Mamba-YOLO-T uses SGD rather than AdamW. Each dataset's rows are ordered by mAP$_{50}$.}
+\label{tab:det}
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Dataset & Model & mAP$_{50}$ & mAP$_{50:95}$ & $P$ & $R$\,($P_d$) & FA \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{SSDD}\ \footnotesize (ship, 1 cls, train/val 928/232)} \\
+\quad YOLOv8n & & 0.9724 & 0.6967 & 0.9714 & 0.9029 & 0.0286 \\
+\quad Mamba-YOLO-T & & 0.9769 & 0.6865 & 0.9419 & 0.9267 & 0.0581 \\
+\quad YOLOv12n & & 0.9579 & 0.6703 & 0.9277 & 0.8718 & 0.0723 \\
+\quad YOLO26n & & 0.9497 & 0.6455 & 0.9039 & 0.8790 & 0.0961 \\
+\quad MSCK-Net & & 0.936 & 0.7146 & N/A & N/A & N/A \\
+\addlinespace
+\multicolumn{7}{@{}l}{\textit{HRSID}\ \footnotesize (ship, 1 cls, train/val 3642/1962)} \\
+\quad YOLOv8n & & 0.8947 & 0.6314 & 0.9180 & 0.8015 & 0.0820 \\
+\quad YOLO26n & & 0.8750 & 0.6045 & 0.8925 & 0.7909 & 0.1075 \\
+\quad Mamba-YOLO-T & & 0.8713 & 0.6227 & 0.8969 & 0.7916 & 0.1031 \\
+\quad YOLOv12n & & 0.8519 & 0.5929 & 0.8799 & 0.7567 & 0.1201 \\
+\quad MSCK-Net & & 0.812 & 0.635 & N/A & N/A & N/A \\
+\addlinespace
+\multicolumn{7}{@{}l}{\textit{SADD}\ \footnotesize (aircraft (many negatives), 1 cls, train/val 2373/593)} \\
+\quad YOLOv8n & & 0.9854 & 0.5956 & 0.9669 & 0.9568 & 0.0331 \\
+\quad Mamba-YOLO-T & & 0.9821 & 0.6297 & 0.9535 & 0.9654 & 0.0465 \\
+\quad YOLOv12n & & 0.9796 & 0.5926 & 0.9554 & 0.9375 & 0.0446 \\
+\quad MSCK-Net & & 0.971 & 0.683 & N/A & N/A & N/A \\
+\quad YOLO26n & & 0.9679 & 0.5630 & 0.9192 & 0.9258 & 0.0808 \\
+\addlinespace
+\multicolumn{7}{@{}l}{\textit{SAR-AIRcraft-1.0}\ \footnotesize (aircraft (7-class), 7 cls, train/val 3489/879)} \\
+\quad Mamba-YOLO-T & & 0.8623 & 0.6048 & 0.8515 & 0.8167 & 0.1485 \\
+\quad YOLOv8n & & 0.8482 & 0.5509 & 0.8564 & 0.7742 & 0.1436 \\
+\quad MSCK-Net & & 0.826 & 0.610 & N/A & N/A & N/A \\
+\quad YOLO26n & & 0.8041 & 0.5038 & 0.8125 & 0.7127 & 0.1875 \\
+\quad YOLOv12n & & 0.7843 & 0.4753 & 0.7273 & 0.7361 & 0.2727 \\
+\addlinespace
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table}[t]
+\centering
+\caption{Oriented-box (OBB) detection on RSAR (6 classes, DOTA$\to$YOLO-OBB, official test set as val). Only YOLO26n provides an OBB head; the remaining four detectors are \textsc{task-incompatible} (no rotated-box head) and are excluded from this task, not scored as zero.}
+\label{tab:obb}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Model & mAP$_{50}$ & mAP$_{50:95}$ & $P$ & $R$\,($P_d$) & FA \\
+\midrule
+YOLO26n-OBB & 0.6681 & 0.4049 & 0.7619 & 0.6123 & 0.2381 \\
+\midrule
+\multicolumn{6}{@{}p{0.92\columnwidth}@{}}{\footnotesize YOLOv8n, YOLOv12n, Mamba-YOLO-T, MSCK-Net: \textsc{task-incompatible} (no OBB head).} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Chip classification (Top-1/Top-5 accuracy). MSTAR uses the official SOC protocol (17$^\circ$ train / 15$^\circ$ test); FUSAR-Ship uses a stratified fixed-seed-0 split over the 8 classes with $\ge\!50$ samples. Only YOLO26n provides a classification head; all detection/OBB models are \textsc{task-incompatible} here.}
+\label{tab:cls}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Dataset & Model & Top-1 & Top-5 \\
+\midrule
+MSTAR (SOC, 10-class) \footnotesize(2747/2425) & YOLO26n-cls & 0.9542 & 0.9988 \\
+FUSAR-Ship (8-class) \footnotesize(4106/1020) & YOLO26n-cls & 0.7412 & 0.9833 \\
+\bottomrule
+\end{tabular}
+\end{table}

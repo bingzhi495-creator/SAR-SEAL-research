@@ -1,0 +1,111 @@
+%% TGRS SPINE DRAFT (WIP, 2026-06-19) -- the restated thesis + 2-dataset diagnosis.
+%% Evolves seal.tex per docs/TGRS_blueprint.md. The OLD thesis ("mask quality is THE
+%% larger inshore half / binding constraint") is FALSIFIED by our own 2-dataset oracle
+%% log and replaced by the regime-dependent two-way constraint. CI numbers pending the
+%% running oracle_bootstrap.py (\CItodo). Box-level detector weld (#2) pending a GPU dump.
+%% Point estimates are all machine-verified (oracle_decomp_log.txt + _hrsid_log.txt).
+\newcommand{\CItodo}[1]{\textcolor{red}{[CI: #1]}}
+\newcommand{\WELDtodo}[1]{\textcolor{orange}{[weld: #1]}}
+
+%====================================================================
+% ABSTRACT (regime-dependent, measurement-first; verbs assert measurements)
+%====================================================================
+% We study where SAR ship perception fails at the high-IoU operating point, and we
+% measure it correctly before attributing any fix. (1) We show the de-facto HRSID
+% chip split leaks 92.76% of test chips into training (10.75% by >=50% area) and
+% release a leakage-free scene-level re-split (3659/1945). (2) We introduce a
+% capacity-independent, AP-additive oracle that, holding detection fixed, substitutes
+% ground-truth masks and re-runs COCO evaluation to decompose the high-IoU deficit
+% into a mask-quality axis and a detection-coverage axis on one additive scale. The
+% decomposition reveals a REGIME-DEPENDENT TWO-WAY constraint, NOT a single universal
+% bottleneck: on PSeg-SSDD the inshore split is co-equal (51% mask / 49% coverage,
+% the 95% CI straddling 50%), shifting to 69/31 overall and 87/13 offshore, i.e. the
+% mask share grows with base accuracy; on the denser HRSID it inverts to 43% mask /
+% 57% COVERAGE-dominated. (3) This measurement PREDICTS the behaviour of a fix: a
+% capacity-controlled learned mask refinement recovers part of the mask axis on
+% PSeg-SSDD (+3.0 AP75, 3-seed; an equal-parameter control attributes the gain to
+% capacity, not resolution), and -- as the oracle predicts from HRSID's
+% coverage-dominance -- does NOT transfer to HRSID. (4) We show Boundary-IoU collapses
+% to Mask-IoU for >91% of SAR ship instances. We make no aggregate-AP state-of-the-art
+% claim; the contribution is the instruments to measure the high-IoU deficit correctly
+% and an honestly-attributed account of where each axis binds.
+
+%====================================================================
+% THE ONE LOAD-BEARING THESIS (stated in intro, restated atop each evidence section)
+%====================================================================
+% Once SAR ship perception is measured correctly -- leakage-free, oracle-decomposed,
+% and degeneracy-aware -- the high-IoU deficit resolves into TWO co-equal,
+% REGIME-DEPENDENT constraints (mask quality and coverage), and any honest method gain
+% must be attributed against that measurement, not a leaderboard.
+
+%====================================================================
+% CONTRIBUTIONS (ranked by defensibility -- protocol promoted to C1)
+%====================================================================
+% C1 (spine, measurement protocol): leakage audit 92.76%/10.75% + released disjoint
+%    scene re-split 3659/1945; Boundary-IoU->Mask-IoU degeneration 91.5%/67%; and the
+%    AP-additive oracle as a capacity-independent instrument. All model-independent facts.
+% C2 (diagnosis): the regime-dependent two-way decomposition across TWO datasets
+%    (PSeg 51/49->69/31->87/13 by regime; HRSID 43/57). Finding: the balance is a
+%    function of regime/dataset, not universal; coverage is co-equal-or-larger in the
+%    operationally hard/dense regimes. Coverage half is query-level (GT-seed recall
+%    0.474->0.994), not feature-level.
+% C3 (attribution-disciplined method): capacity-controlled refinement (+3.0 AP75 PSeg,
+%    3-seed; caps=refine=0.643 >> bilinear 0.628 -> capacity not resolution), with its
+%    HRSID non-transfer PREDICTED by C2 (HRSID coverage-dominated -> small mask headroom).
+% C4 (breadth, the weld): a from-scratch 7-dataset / 3-task-family benchmark run through
+%    the SAME instrument at the box level \WELDtodo{box-level high-IoU oracle on detectors};
+%    the high-IoU signature recurs across task families (mAP50>>mAP50:95; RSAR OBB
+%    0.668->0.405). [classification cut from the thesis; landscape context only.]
+% C5 (negatives sharpening the thesis): Deformable-DETR from-scratch non-convergence;
+%    refine non-transfer (now EXPLAINED); AMR falsification; scene-split distribution
+%    confound; MNE-not-best-discriminator.
+
+%====================================================================
+% DIAGNOSIS SUBSECTION (rewrite of seal.tex 123-133): the 2-dataset oracle
+%====================================================================
+\subsection*{The high-IoU deficit is a regime-dependent two-way constraint}
+
+% Mask-quality oracle (detection fixed; detected-instance masks -> GT) and
+% detection-coverage oracle (add missed GT as perfect preds) partition the AP75
+% deficit additively. Table below: every number is a substitution-and-re-evaluation
+% CEILING (machine log oracle_decomp_log.txt / _hrsid_log.txt), capacity-independent
+% (GT masks injected), not a score our system claims.
+
+\begin{table}[t]\centering
+\caption{AP-additive oracle decomposition across two datasets and regime. Base $\to$
+mask-oracle $\to$ full-oracle AP$_{75}$; the deficit splits additively into mask-quality
+and coverage shares. The balance is \emph{regime/dataset-dependent}: mask share rises
+with base accuracy within PSeg-SSDD, yet the denser HRSID is coverage-dominated.
+CIs from an image-level bootstrap with relabelled ids (Sec.~ref).}
+\label{tab:oracle2}
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+Dataset & Regime & base & mask-orc. & full-orc. & mask\% & cov\% \\
+\midrule
+PSeg-SSDD & inshore  & 0.341 & 0.637 & 0.921 & 51 \CItodo{[38,62]} & 49 \\
+PSeg-SSDD & all      & 0.615 & 0.855 & 0.962 & 69 \CItodo{} & 31 \\
+PSeg-SSDD & offshore & 0.735 & 0.945 & 0.975 & 87 \CItodo{} & 13 \\
+HRSID\textsuperscript{$\dagger$} & all & 0.378 & 0.624 & 0.950 & 43 \CItodo{} & 57 \\
+\bottomrule
+\end{tabular}
+\\[2pt]\raggedright\footnotesize
+\textsuperscript{$\dagger$}\,HRSID on the official (leakage-heavy) split; the
+leakage-free scene-split version is pending scene-A0 convergence and is expected to
+shift further toward coverage as base accuracy drops.
+\end{table}
+
+% NARRATIVE BEATS (prose to write):
+% 1. The naive "mask quality is the binding constraint" reading is FALSE: inshore is a
+%    statistical coin-flip (51/49, CI straddles 50%), and mask-dominance only emerges in
+%    EASY regimes (offshore 87/13) -- it tracks base accuracy, the inverse of a
+%    difficulty-driven bottleneck.
+% 2. The balance is not a single function of base accuracy across datasets: HRSID
+%    (base 0.378 ~ PSeg-inshore) is MORE coverage-dominated (43/57 vs 51/49), consistent
+%    with dense small-ship imagery where finding every instance is the harder problem.
+% 3. THE LOOP: this measurement predicts the fix. A mask-quality remedy (Sec. refine)
+%    should help where the mask axis is large (PSeg, esp. easy regimes: +3.0 AP75) and
+%    should NOT help where coverage dominates (HRSID 43% mask headroom) -- and the
+%    refinement's honest HRSID non-transfer is exactly that prediction confirmed. The
+%    negative result is evidence the diagnostic is sharp, not a failure of the method.
+% 4. Coverage is query-level not feature-level (GT-seed recall 0.474->0.994), so the
+%    coverage half is addressable by better proposals, not blocked by inseparability.

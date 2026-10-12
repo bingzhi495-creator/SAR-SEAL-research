@@ -1,0 +1,135 @@
+% figm_fusion.pdf — consensus-gated mask-IoU vote fusion (Sec. III-D, Alg. 1).
+% Top band : pool -> pairwise mask-IoU matrix J -> class-wise greedy clustering
+%            (seeds in score order, tau=0.5) -> agreement gate 2<=|C|<=6 ->
+%            majority vote (denoise) | keep seed verbatim (sharpness) ->
+%            seed-inherited score, box regenerated from the fused mask.
+% Bottom   : the three cases the gate separates, the two failure modes that
+%            motivate it (visually subordinate), and the measured result.
+% Facts: sec_method.tex III-D; ALL_TABLES.md T5 + the band-sweep line.
+% Authored at exactly 18.2 cm = 516 pt = \textwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{6.75}
+
+\def\yM{5.05}   % main data-flow line
+
+% =====================  candidate pool  ==================================
+\node[data, anchor=west, minimum width=22mm, minimum height=12mm]
+  (pool) at (0.10,\yM)
+  {\textbf{candidate pool}\\[0.5pt]
+   {\scriptsize $K\le800$ scored masks}\\[-1pt]
+   {\scriptsize from $V=8$ views}};
+\draw[flow] (pool.east) -- (2.80,\yM);
+
+% =====================  pairwise mask-IoU matrix  ========================
+\begin{scope}[shift={(2.94,5.80)}]
+  \foreach \row [count=\i] in {{100,78,10,6,4,2},{78,100,14,8,5,2},
+                               {10,14,100,66,58,6},{6,8,66,100,62,8},
+                               {4,5,58,62,100,10},{2,2,6,8,10,100}}
+    \foreach \v [count=\j] in \row
+      \fill[datablue!\v] ({0.25*(\j-1)},{-0.25*(\i-1)}) rectangle ++(0.25,-0.25);
+  \draw[white, line width=0.35pt, step=0.25cm] (0,-1.50) grid (1.50,0);
+  \draw[black!50, line width=0.5pt] (0,-1.50) rectangle (1.50,0);
+  \draw[opsred, line width=0.8pt] (0,0) rectangle (0.50,-0.50);
+  \draw[opsred, line width=0.8pt] (0.50,-0.50) rectangle (1.25,-1.25);
+  \draw[opsred, line width=0.8pt] (1.25,-1.25) rectangle (1.50,-1.50);
+\end{scope}
+\node[sub, anchor=north] at (3.69,4.20)
+  {pairwise mask-IoU $J_{jk}$};
+\node[sub, text=opsred, anchor=south] at (3.69,5.88) {same-class clusters};
+\draw[flow] (4.44,\yM) -- (4.90,\yM);
+
+% =====================  greedy clustering  ===============================
+\node[ops, anchor=west, minimum width=26mm, minimum height=12mm]
+  (clus) at (4.90,\yM)
+  {\textbf{greedy clustering}\\[0.5pt]
+   {\scriptsize seeds in score order}\\[-1pt]
+   {\scriptsize absorb same class, $J_{rj}\ge\tau$}\\[-1pt]
+   {\scriptsize $\tau=0.5$; duplicates deleted}};
+\node[badgeops] at ($(clus.north west)+(0.26,0)$) {3};
+\draw[flow] (clus.east) -- (8.15,\yM);
+
+% =====================  the agreement gate  ==============================
+\node[gate, inner sep=0pt] (gate) at (9.50,\yM) {$2\le|\mathcal{C}|\le6$?};
+
+\node[ops, anchor=west, minimum width=30mm, minimum height=9.5mm]
+  (maj) at (11.20,6.15)
+  {\textbf{pixelwise majority vote}\\[-1pt]
+   {\scriptsize denoise where views disagree}};
+\node[plain, anchor=west, minimum width=30mm, minimum height=9.5mm]
+  (keep) at (11.20,3.95)
+  {\textbf{keep the seed mask $\mathbf{m}_r$}\\[-1pt]
+   {\scriptsize preserve sharpness, no erosion}};
+\draw[flow] (gate.north) -- (9.50,6.15) -- (maj.west);
+\draw[flow] (gate.south) -- (9.50,3.95) -- (keep.west);
+\node[sub, anchor=west] at (9.62,5.74) {yes};
+\node[sub, anchor=west, align=left] at (9.62,4.34)
+  {no: $|\mathcal{C}|{=}1$\\ or $|\mathcal{C}|{>}6$};
+
+% =====================  read-out  ========================================
+\node[data, anchor=west, minimum width=30mm, minimum height=12mm]
+  (score) at (15.10,\yM)
+  {\textbf{fused instance}\\[0.5pt]
+   {\scriptsize $s^{\mathrm{out}}=s_r(|\mathcal{C}|/V)^{\gamma}$, $\gamma{=}0$}\\[-1pt]
+   {\scriptsize box regenerated from mask}};
+\draw[flow] (maj.east) -- (14.65,6.15) -- (14.65,\yM) -- (score.west);
+\draw[draw=flowink, line width=0.65pt] (keep.east) -- (14.65,3.95) -- (14.65,\yM);
+
+% =====================  what the gate decides  ===========================
+\draw[grp] (0.10,0.42) rectangle (9.30,3.05);
+\node[grptitle, anchor=north] at (4.70,2.99) {what the agreement gate decides};
+\node[sub, anchor=north] at (1.85,2.60) {$|\mathcal{C}|=1$};
+\node[sub, anchor=north] at (4.70,2.60) {$2\le|\mathcal{C}|\le6$};
+\node[sub, anchor=north] at (7.55,2.60) {$|\mathcal{C}|=8$};
+% case 1: a lone candidate
+\begin{scope}[shift={(1.85,1.78)}, scale=0.62]
+  \draw[datablue, line width=0.7pt] \hull;
+\end{scope}
+% case 2: four disagreeing candidates + the voted result
+\begin{scope}[shift={(4.70,1.78)}, scale=0.62]
+  \foreach \dx/\dy in {-0.16/0.06, -0.04/-0.09, 0.10/0.08, 0.18/-0.05}
+    \draw[datablue!55, line width=0.5pt, shift={(\dx,\dy)}] \hull;
+  \fill[opsred!20] \hull;
+  \draw[opsred, line width=0.8pt] \hull;
+\end{scope}
+% case 3: eight near-coincident candidates
+\begin{scope}[shift={(7.55,1.78)}, scale=0.62]
+  \foreach \dx/\dy in {-0.05/0.03, -0.02/-0.03, 0.02/0.03, 0.05/-0.02,
+                       -0.03/-0.01, 0.03/0.01, 0/0.05, 0/-0.05}
+    \draw[datablue!55, line width=0.5pt, shift={(\dx,\dy)}] \hull;
+  \draw[datablue, line width=0.7pt] \hull;
+\end{scope}
+\node[sub, anchor=north] at (1.85,1.28) {singleton\\ $\Rightarrow$ keep seed verbatim};
+\node[sub, anchor=north] at (4.70,1.28) {views disagree\\ $\Rightarrow$ majority-denoise};
+\node[sub, anchor=north] at (7.55,1.28) {near-unanimous\\ $\Rightarrow$ keep seed verbatim};
+
+% =====================  failure modes (visually subordinate)  ============
+\node[warn, anchor=north west, align=left, inner sep=3.5pt,
+      minimum width=84mm, minimum height=12.5mm] (fail) at (9.60,3.05)
+  {{\scriptsize\bfseries\color{warnred} why a gate, and not a plain fuser}\\[1pt]
+   {\scriptsize $\times$\ \ matrix-NMS (score decay only) floods the ranking:
+      inshore AP falls to \textbf{4.1}}\\[-1pt]
+   {\scriptsize $\times$\ \ unconditional majority voting erodes offshore contours
+      to \textbf{55.9}, below the}\\[-1pt]
+   {\scriptsize \phantom{$\times$\ \ }59.6 no-TTA base, on candidates worth
+      64.2 under box-NMS}};
+
+% =====================  measured result  =================================
+\node[plain, anchor=north west, align=left, inner sep=3.5pt,
+      minimum width=84mm, minimum height=12mm] (res) at (9.60,1.62)
+  {{\footnotesize\bfseries result}
+   {\scriptsize (inshore\,/\,official\,/\,offshore mask AP)}\\[1pt]
+   {\scriptsize consensus gate \textbf{38.8\,/\,53.8\,/\,64.8};
+      seed-only readout 38.2\,/\,53.5\,/\,64.8}\\[-1pt]
+   {\scriptsize band-ceiling sweep, inshore 38.4\,/\,38.6\,/\,38.8 for
+      $S_{\max}{=}4/5/6$; offshore fixed at 64.8}};
+
+\end{tikzpicture}
+\end{document}

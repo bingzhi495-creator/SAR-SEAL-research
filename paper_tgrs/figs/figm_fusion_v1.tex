@@ -1,0 +1,76 @@
+% figm_fusion.pdf — consensus-gated fusion flowchart: candidate pool ->
+% pairwise mask-IoU matrix (heatmap) -> class-wise greedy clustering (seeds in
+% score order) -> gate 2<=|C|<=6 -> majority vote (denoise, orange) / keep seed
+% mask (sharpness, blue) -> support-weighted score -> output. Bottom-left
+% contrast box: matrix-NMS collapse 4.1 / unconditional majority erodes
+% offshore to 55.9. Facts: ALL_TABLES.md T5; sec_method.tex III-D, Alg. 1.
+% Compile: pdflatex (standalone).
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+
+% ---------------- main flow ----------------
+\node[blk, minimum width=24mm] (pool) at (0.6,0)
+  {candidate pool\\ $K\le 800$, 8 views};
+
+% pairwise mask-IoU heatmap (cluster-structured, symmetric)
+\begin{scope}[shift={(2.75,0.66)}]
+  \foreach \row [count=\i] in {{100,78,10,6,4,2},{78,100,14,8,5,2},
+                               {10,14,100,66,58,6},{6,8,66,100,62,8},
+                               {4,5,58,62,100,10},{2,2,6,8,10,100}} {
+    \foreach \v [count=\j] in \row {
+      \fill[modblue!\v] ({0.22*(\j-1)},{-0.22*(\i-1)}) rectangle ++(0.22,-0.22);
+    }
+  }
+  \draw[white, line width=0.3pt, step=0.22cm] (0,-1.32) grid (1.32,0);
+  \draw[black!50, line width=0.5pt] (0,-1.32) rectangle (1.32,0);
+  % greedy clusters = diagonal blocks (orange)
+  \draw[oursorange, line width=0.7pt] (0,0) rectangle (0.44,-0.44);
+  \draw[oursorange, line width=0.7pt] (0.44,-0.44) rectangle (1.10,-1.10);
+  \draw[oursorange, line width=0.7pt] (1.10,-1.10) rectangle (1.32,-1.32);
+\end{scope}
+\node[note] at (3.41,-1.02) {pairwise mask-IoU\\ matrix $J_{ij}$};
+\node[sub, text=oursorange] at (3.41,0.88) {same-class clusters};
+\draw[arr] (pool.east) -- (2.70,0);
+
+\node[blk] (clus) at (6.35,0)
+  {class-wise greedy clustering\\ {\scriptsize seeds in score order $\cdot$ mask-IoU $\tau=0.5$}};
+\draw[arr] (4.12,0) -- (clus.west);
+
+\node[dec] (gate) at (10.35,0) {$2\le|\mathcal{C}|\le 6$?};
+\draw[arr] (clus.east) -- (gate.west);
+
+% branch: consensus band -> majority vote (denoise); outside -> keep seed
+\node[ours, minimum width=36mm] (maj) at (13.95,1.30)
+  {pixelwise majority vote\\ {\scriptsize denoising path (in-band disagreement)}};
+\node[blk, minimum width=36mm] (keep) at (13.95,-1.30)
+  {keep seed mask verbatim\\ {\scriptsize sharpness-preserving path}};
+\draw[arr] (gate.north) |- node[pos=0.28, left=1pt, lbl] {yes} (maj.west);
+\draw[arr] (gate.south) |- node[pos=0.22, right=2pt, lbl]
+  {no: $|\mathcal{C}|{=}1$ or ${>}6$} (keep.west);
+
+\node[blk, minimum width=34mm] (score) at (17.75,0)
+  {support-weighted score\\ $s_r\,(|\mathcal{C}|/V)^{\gamma}$, $\gamma{=}0$};
+\draw[arr] (maj.east) -| (score.north);
+\draw[arr] (keep.east) -| (score.south);
+
+\node[blk, minimum width=20mm] (out) at (20.70,0)
+  {fused output\\ {\scriptsize box from fused mask}};
+\draw[arr] (score.east) -- (out.west);
+
+% ---------------- failure modes motivating the gate ----------------
+\node[fail, anchor=west] (failbox) at (3.35,-2.80)
+  {{\footnotesize\bfseries\color{failred} failure modes motivating the gate}\\[1pt]
+   {\footnotesize matrix-NMS (score decay only): inshore AP collapses to 4.1}\\
+   {\footnotesize unconditional majority vote: offshore AP eroded to 55.9 ($<$ 59.6 no-TTA base)}};
+\draw[->, failred, dashed, line width=0.6pt]
+  ($(failbox.north)+(1.2,0)$) to[out=75,in=245] ($(gate.south)+(-0.55,-0.12)$);
+
+\end{tikzpicture}
+\end{document}

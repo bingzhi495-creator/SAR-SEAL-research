@@ -1,0 +1,113 @@
+% figm_rerank.pdf — learned consensus re-ranking (Sec. III-G).
+% A separate figure rather than a panel of figm_bpr: the two optional rungs
+% write to DISJOINT fields (refiner -> mask pixels, re-ranker -> scores), so
+% folding them into one diagram would blur exactly the property the section
+% is built to establish.  This one is single-column and vertical, which is
+% also what the 14-dimensional feature block wants.
+% Shape story, drawn rather than stated: 14 cells -> a tree ensemble -> ONE
+% scalar; the bottom panel shows the same 800x800 mask plane entering and
+% leaving the operator as the identical glyph, while only the height of the
+% score bar changes.
+% Facts: sec_method.tex III-G (Eqs. rrfeat/rrblocks/rrblend), sec_exp.tex
+%   Table on re-ranking.  Nothing invented.
+% Authored at exactly 8.89 cm = 252 pt = \columnwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasc{9.55}
+
+% ===== input ==============================================================
+\node[data, anchor=north west, minimum width=86.9mm, minimum height=8mm]
+  (inst) at (0.10,9.40)
+  {\textbf{fused instances}
+   $\bigl\{(\mathbf{m}_i,s^{\mathrm{out}}_i)\bigr\}$\\[-1pt]
+   {\scriptsize each bound to the cluster $\mathcal{C}$ that produced it,
+    by a one-to-one mask-IoU match}};
+\draw[flow] (4.445,8.60) -- (4.445,8.36);
+
+% ===== the 14-dimensional feature vector: 14 cells, not a map ============
+\node[sub, text=black!70] at (4.445,8.22)
+  {$\boldsymbol{\phi}\in\mathbb{R}^{14}$: 14 cells, no spatial extent,
+   no image pixel read};
+\def\bx{0.805}
+\foreach \i/\sym/\col in {%
+  0/{$|\mathcal{C}|$}/opsred, 1/{$n_v$}/opsred, 2/{$\bar{J}$}/opsred,
+  3/{$J_{\min}$}/opsred, 4/{$s_r$}/opsred, 5/{$\Delta s$}/opsred,
+  6/{$s^{\mathrm{out}}$}/frozgray,
+  7/{$a$}/datablue, 8/{$w$}/datablue, 9/{$h$}/datablue,
+  10/{$w/h$}/datablue, 11/{fill}/datablue, 12/{$c_x$}/datablue,
+  13/{$c_y$}/datablue} {
+  \pgfmathsetmacro{\cxl}{\bx+0.52*\i}
+  \fill[\col!13] (\cxl,7.55) rectangle ({\cxl+0.52},7.99);
+  \draw[\col!70, line width=0.4pt] (\cxl,7.55) rectangle ({\cxl+0.52},7.99);
+  \node[sub, text=black!80] at ({\cxl+0.26},7.77) {\sym};
+}
+\draw[brace] (3.925,7.43) -- (0.805,7.43);
+\draw[brace] (4.445,7.43) -- (3.925,7.43);
+\draw[brace] (8.085,7.43) -- (4.445,7.43);
+\node[sub, anchor=north, text=opsred] at (2.365,7.24)
+  {consensus evidence\\ (operator~3)};
+\node[sub, anchor=north, text=black!70] at (4.185,7.24)
+  {score\\ emitted};
+\node[sub, anchor=north, text=datablue] at (6.265,7.24)
+  {mask geometry\\ ($a,w,h$ log-scaled)};
+\draw[flow] (4.445,6.60) -- (4.445,6.36);
+
+% ===== the fitted map =====================================================
+\node[trn, anchor=north west, minimum width=86.9mm, minimum height=11.5mm]
+  (gbt) at (0.10,6.36)
+  {\textbf{gradient-boosted regression tree} $g$\\[-1pt]
+   {\scriptsize 300 boosting iterations, learning rate 0.08, least-squares loss}\\[-2pt]
+   {\scriptsize target: mask IoU against the best-matching \emph{training} annotation}\\[-2pt]
+   {\scriptsize 51\,781 rows from 3\,642 HRSID train images; 4\,s harvest $+$ 19\,s fit, CPU only}};
+\node[badgetrn] at ($(gbt.north west)+(0.26,0)$) {5};
+\draw[flow] (4.445,5.21) -- (4.445,4.97);
+
+% ===== the blend ==========================================================
+\node[ops, anchor=north west, minimum width=86.9mm, minimum height=8.5mm]
+  (bl) at (0.10,4.97)
+  {$s^{\mathrm{final}}=\alpha\,\mathrm{clip}\bigl(g(\boldsymbol{\phi}),0,1\bigr)
+     +(1-\alpha)\,s^{\mathrm{out}}$\\[-1pt]
+   {\scriptsize $\alpha$ swept over $\{0.3,0.5,1.0\}$ on \emph{held-out train}
+    images; HRSID selects $\alpha=0.5$}};
+
+% ===== what may and may not change, DRAWN ================================
+\draw[grp] (0.10,0.78) rectangle (8.79,3.98);
+\node[grptitle, anchor=north west] at (0.20,3.92)
+  {What the operator writes, and what it may not};
+\draw[black!45, densely dotted, line width=0.7pt] (5.45,0.88) -- (5.45,3.50);
+
+% --- the mask goes in and comes out as the identical glyph ---------------
+\maskstack{1.45}{2.10}{800}{1}{datablue}{1}
+\maskstack{4.10}{2.10}{800}{1}{datablue}{1}
+\draw[flow] (2.55,2.10) -- (3.05,2.10);
+\fill[white] (2.68,1.97) rectangle (2.93,2.23);
+\pic[scale=0.85] at (2.805,2.10) {lock};
+\node[sub, anchor=south, align=center, text=black!75] at (2.78,3.14)
+  {\textbf{bit-identical}: the same $800\times800$ plane in and out};
+\node[sub, anchor=north] at (1.45,1.12) {$\mathbf{m}_i$};
+\node[sub, anchor=north] at (4.10,1.12) {$\mathbf{m}_i$, identical};
+
+% --- only the scalar score moves -----------------------------------------
+\scorebar{6.15}{1.45}{0.22}{datablue}
+\scorebar{7.75}{1.45}{0.52}{trngreen}
+\draw[flow] (6.35,1.77) -- (7.55,1.77);
+\node[sub, anchor=north] at (6.15,1.37) {$s^{\mathrm{out}}$};
+\node[sub, anchor=north] at (7.75,1.37) {$s^{\mathrm{final}}$};
+\node[sub, anchor=south, align=center, text=trngreen] at (6.95,2.50)
+  {\textbf{rewritten}: one scalar\\ per instance, hence the rank};
+
+% ===== measured effect ====================================================
+\node[subk, anchor=north] at (4.445,0.66)
+  {43.6\,/\,58.6\,/\,69.1 $\to$ \textbf{44.5\,/\,59.4\,/\,70.1} mask AP,
+   inshore AP$_{75}$ $47.0\to\mathbf{48.3}$;\\[1pt]
+   Spearman $0.68$ between $g$ and the realized mask IoU on held-out train images};
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,130 @@
+% Section III: implementation-aligned revision, 2026-09-05.
+% Existing labels are retained. The overview image is conceptual, not measured data.
+\section{Method}\label{sec:method}
+
+\subsection{Carrier and Inference Pipeline}\label{sec:overview}
+
+Given a grayscale SAR chip $\mathbf{x}\in\mathbb{R}^{H\times W}$, replicated to three input channels, the pipeline returns scored instance masks $\mathcal{Y}=\{(\mathbf{m}_i,s_i)\}_{i=1}^{N}$, with $\mathbf{m}_i\in\{0,1\}^{H\times W}$ and $N\le100$. We separate offline model fitting from inference (Fig.~\ref{fig:framework}). A trained carrier supplies candidates; mask-space fusion merges them; a boundary-patch refiner edits their masks; and a quality regressor adjusts their scores. The latter two models use existing training annotations to supervise errors in carrier predictions.
+
+The carriers use the Mask2Former-R50 segmentation architecture~\cite{mask2former2022}, initialized from COCO instance-segmentation weights. For HRSID, the training objective is $\mathcal{L}_{\mathrm{M2F}}+\beta\mathcal{L}_{\mathrm{quality}}$, with $\beta=0.5$. The auxiliary quality head reads the final query embedding and mask statistics and predicts the IoU of a matched mask with its training annotation, using a binary-cross-entropy objective. Its inputs are not detached, so this loss also updates shared representations. In the final inference recipe, auxiliary-head score mixing is disabled ($\lambda=0$); this does not remove the auxiliary supervision used during training. The PSeg-SSDD carrier instead uses the standard Mask2Former head without this auxiliary objective. Both carriers are frozen after fitting, and neither postprocessor updates their parameters. Thus, ``training-free'' below refers to candidate generation and fusion from already trained checkpoints, not to the complete system. Training and selection protocols are specified in Section~\ref{sec:exp:eval}.
+
+
+\subsection{Cluster-Support-Gated Mask Fusion}\label{sec:fusion}
+
+\subsubsection{Candidate generation}
+We adopt weight averaging~\cite{modelsoups2022} and multi-scale flip TTA to generate complementary predictions. Three checkpoints trained from the same initialization and parameterization are averaged offline,
+\begin{equation}\label{eq:soup}
+\theta^{\star}=\frac{1}{3}\sum_{s\in\{s_0,s_2,s_3\}}\theta_s.
+\end{equation}
+Here, $\theta_s$ denotes a member's parameter vector. Floating-point parameters and buffers are averaged; equal integer buffers are copied. The resulting checkpoint has the inference model count of one member, although obtaining the members incurs three training runs. Structural compatibility does not ensure beneficial weight averaging; Section~\ref{sec:exp:main} reports the member-count study.
+
+For HRSID, the eight views are
+\begin{equation}\label{eq:views}
+\mathcal{V}=\{640,800,960,1088\}\times\{\mathrm{id},\mathrm{hflip}\},
+\quad V=8.
+\end{equation}
+Each view resizes the input and optionally flips it horizontally. Predicted masks are resampled to the native chip grid and unflipped before pooling. With at most 100 candidates per view, $K\le800$. PSeg-SSDD uses $\{416,512,608,704\}$ with the same flip choices. A candidate retains its binary mask $\mathbf{m}_k$, score $s_k$, class $c_k$, and originating view $v_k$.
+
+\subsubsection{Mask-space clustering and readout}
+Nearby ships can have strongly overlapping boxes while occupying distinct pixels. We therefore associate candidates in mask space. Flattening the masks into the rows of $\mathbf{M}\in\{0,1\}^{K\times HW}$ gives
+\begin{equation}\label{eq:iou}
+J_{jk}=\frac{\mathbf{m}_j^{\top}\mathbf{m}_k}
+{\mathbf{1}^{\top}\mathbf{m}_j+\mathbf{1}^{\top}\mathbf{m}_k-\mathbf{m}_j^{\top}\mathbf{m}_k},
+\end{equation}
+with $J_{jk}=0$ for zero union. Intersections are computed by $\mathbf{M}\mathbf{M}^{\top}$. For the unused candidate indices $\mathcal{U}$, the highest-scoring seed defines
+\begin{equation}\label{eq:cluster}
+\begin{split}
+r&=\arg\max_{k\in\mathcal{U}}s_k,\\
+\mathcal{C}&=\{r\}\cup\{j\in\mathcal{U}:c_j=c_r,\ J_{rj}\ge\tau\},
+\end{split}
+\end{equation}
+where $\tau=0.5$. Members are then removed from $\mathcal{U}$. Association is greedy and seed-relative: members need not satisfy the threshold with one another. Multiple members may originate from one view. Consequently, the support $|\mathcal{C}|$ is candidate cardinality, distinct from the view count $n_v=|\{v_j:j\in\mathcal{C}\}|$.
+
+For each cluster, a cardinality gate chooses pixel voting or seed retention:
+\begin{equation}\label{eq:fuse}
+\mathbf{m}^{\mathrm{out}}(p)=
+\begin{cases}
+\mathbf{1}\!\left[\sum_{j\in\mathcal{C}}\mathbf{m}_j(p)\ge|\mathcal{C}|/2\right],
+&2\le|\mathcal{C}|\le S_{\max},\\[5pt]
+\mathbf{m}_r(p),&\text{otherwise},
+\end{cases}
+\end{equation}
+with $S_{\max}=6$. A foreground tie is retained, so a two-member vote is the union. Singletons and clusters above the ceiling retain their seed. This rule limits averaging to a selected support range; support is a heuristic decision variable, not an estimate of statistical variance or a guarantee of mask quality. The deployed score is
+\begin{equation}\label{eq:score}
+s^{\mathrm{out}}=s_r.
+\end{equation}
+The implemented generalized rule $s_r(|\mathcal{C}|/V)^\gamma$ reduces to Eq.~(\ref{eq:score}) at the deployed $\gamma=0$; its ratio need not lie in $[0,1]$. Boxes are recomputed from output masks, and the 100 highest-scoring clusters are retained. Algorithm~\ref{alg:fusion} summarizes the procedure. The dense IoU computation has $O(K^2HW)$ arithmetic cost; overall runtime also depends on the view resolutions and subsequent refinement workload.
+
+\begin{algorithm}[!t]
+\caption{Cluster-Support-Gated Mask Fusion}
+\label{alg:fusion}
+\begin{algorithmic}[1]
+\REQUIRE native-grid candidates $\{(\mathbf{m}_k,s_k,c_k,v_k)\}_{k=1}^{K}$; $\tau=0.5$; $S_{\max}=6$
+\ENSURE scored fused masks $\mathcal{Y}$
+\STATE compute $\mathbf{J}$ by Eq.~(\ref{eq:iou}); $\mathcal{U}\leftarrow\{1,\ldots,K\}$; $\mathcal{Y}\leftarrow\emptyset$
+\WHILE{$\mathcal{U}\ne\emptyset$}
+  \STATE select seed $r$ and cluster $\mathcal{C}$ by Eq.~(\ref{eq:cluster})
+  \STATE $\mathcal{U}\leftarrow\mathcal{U}\setminus\mathcal{C}$
+  \STATE read out $\mathbf{m}^{\mathrm{out}}$ by Eq.~(\ref{eq:fuse}); inherit $s_r$
+  \STATE recompute box; retain cluster statistics and view count
+  \STATE append $(\mathbf{m}^{\mathrm{out}},s_r)$ to $\mathcal{Y}$
+\ENDWHILE
+\RETURN top-100 of $\mathcal{Y}$ by score
+\end{algorithmic}
+\end{algorithm}
+
+Figure~\ref{fig:m-fusion} visualizes the two readout branches. Supplementary Fig.~S1 provides a restricted replay from stored masks; truncating that pool changes cluster support and may change the selected branch. Quantitative comparisons in Section~\ref{sec:exp:fusion} use the complete candidate pool and the reported selection protocol.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=153.5mm]{figs/figm_fusion_cvpr.png}
+\caption{Conceptual mask-space fusion. Score-ordered seed clustering uses mask IoU, then candidate cardinality selects pixel voting for $2\le|\mathcal{C}|\le6$ or seed retention otherwise. A foreground tie is retained and each output inherits its seed score. Candidate count differs from distinct-view count. Mask glyphs illustrate the operator and do not represent measured candidates or improvement against ground truth; a stored-candidate replay is provided in Supplementary Fig.~S1.}
+\label{fig:m-fusion}
+\end{figure*}
+
+\subsection{Boundary-Patch Refinement}\label{sec:bpr}
+
+Fusion addresses candidate association but does not explicitly learn high-resolution boundaries. We adopt the boundary-patch refinement framework~\cite{bpr2021} with a local write constraint. The frozen souped carrier first predicts the training images in a single view. Predictions with score at least 0.2 are matched to training masks at IoU at least 0.5. Along matched contours, $64\times64$ image, prediction, and annotation patches are sampled with one center per $32\times32$ grid cell. Boundary pixels are scanned in row-major order; the first pixel in each grid cell is retained, with at most 32 patches harvested per instance. The resulting supervision uses existing annotations; it is not self-supervision or additional manual labeling.
+
+A 2.35M-parameter UNet reads normalized grayscale and coarse-mask channels. Its four-down/four-up structure uses encoder widths 32/64/128/192/192, double convolution--batch normalization--ReLU blocks, and bilinear decoder upsampling with skip concatenation. Each patch is enlarged to $128\times128$, using bicubic image interpolation and bilinear mask interpolation, and the network is trained for 20 epochs with binary-cross-entropy and Dice losses. The HRSID harvest contains 37\,009 patches from 10\,297 matched instances on 3641 training images; 1850 patches form the checkpoint-selection holdout. This is a random 5\% patch split, rather than an image-disjoint validation set. Remaining fitting details and selection limitations are given in Section~\ref{sec:exp:setup} and Section~\ref{sec:exp:eval}.
+
+At deployment, instances with score below 0.05 pass through unchanged. For the remaining fused masks, the same deterministic sampling rule extracts at most 64 patches per instance; Eq.~(\ref{eq:guard}) applies to these processed instances. Refiner logits are passed through a sigmoid, area-resampled to $64\times64$, and averaged where patches overlap. Let $\bar{q}(p)$ denote this averaged probability and $\Omega$ the pixels covered by at least one patch. The writable band is the discrete morphological set
+$B_r=\operatorname{dilate}_r(\mathbf{m}^{\mathrm{out}})\mathbin{\oplus}\operatorname{erode}_r(\mathbf{m}^{\mathrm{out}})$, where $\oplus$ is exclusive-or and both operations use $r=4$ iterations of a $3\times3$ square kernel. The output is
+\begin{equation}\label{eq:guard}
+\mathbf{m}^{\mathrm{final}}(p)=
+\begin{cases}
+\mathbf{1}[\bar{q}(p)\ge0.5],&p\in B_4\cap\Omega,\\
+\mathbf{m}^{\mathrm{out}}(p),&\text{otherwise}.
+\end{cases}
+\end{equation}
+An empty refined result falls back to the input mask. This operation preserves scores, detection count and identities, and all pixels outside the writable covered band; it does not guarantee topology preservation or improved IoU for every instance. Single-view training and post-fusion deployment use different coarse-mask distributions, whose empirical transfer is evaluated in Section~\ref{sec:exp:bpr}.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=142.5mm]{figs/figm_bpr_cvpr.png}
+\caption{Conceptual boundary-patch refinement. Native $64\times64$ grayscale and coarse-mask patches are resized to $128\times128$ for the UNet. Sigmoid probabilities return to the native grid and are averaged across overlapping patches. Only covered pixels in the discrete morphological band may change; other pixels, scores, and detection records are retained. The band uses four iterations of square-kernel dilation and erosion. This schematic is complemented by a recorded single-view example in Supplementary Fig.~S2.}
+\label{fig:m-bpr}
+\end{figure*}
+
+\subsection{Learned Mask-Quality Re-Ranking}\label{sec:rerank}
+
+Mask-quality scoring complements classification confidence~\cite{msrcnn2019}. Here, a separate regressor estimates quality from the fused prediction and its cluster statistics, without changing the carrier. For every stored pre-refinement fused candidate, we form
+\begin{equation}\label{eq:rrfeat}
+\begin{split}
+\boldsymbol{\phi}&=[\boldsymbol{\phi}_{\mathrm{c}}^{\top},s^{\mathrm{out}},
+\boldsymbol{\phi}_{\mathrm{g}}^{\top}]^{\top}\in\mathbb{R}^{14},\\
+\boldsymbol{\phi}_{\mathrm{c}}&=[|\mathcal{C}|,n_v,\bar{J},J_{\min},s_r,\Delta s]^{\top},\\
+\boldsymbol{\phi}_{\mathrm{g}}&=[\log(1+a),\log(1+w),\log(1+h),\\
+&\qquad w/h,a/(wh),c_x,c_y]^{\top}.
+\end{split}
+\end{equation}
+Here, $\bar{J}$ and $J_{\min}$ exclude diagonal self-IoUs and are zero for singletons; $\Delta s$ is the member-score range. Geometry comprises mask area $a$, box width and height $w,h$, and normalized box center $c_x,c_y$, measured before BPR. Small denominators use numerical regularization. The repeated score entries agree under Eq.~(\ref{eq:score}). No image intensity is read by this feature extractor.
+
+Candidates with score at least 0.01 contribute training rows, including unmatched candidates. The target is maximum mask IoU with a training annotation, or zero if none overlaps. A histogram-based gradient-boosted regressor $g$ is fitted on these rows. Its blend coefficient $\alpha\in\{0.3,0.5,1.0\}$ is selected using an image-disjoint 4:1 partition within the carrier's training split. Selection maximizes COCO mask AP on the held-out pre-BPR fused masks; original scores are evaluated as a reference but $\alpha=0$ is not included in the selection loop. The regressor $g$ is then refitted on all rows. The target measures individual mask overlap rather than the evaluator's one-to-one assignment of detections to annotations.
+
+At application, BPR masks are associated with the stored pre-refinement candidates by score-ordered, greedy one-to-one matching at mask IoU at least 0.5. For a BPR record $b$, let $c(b)$ denote its matched pre-refinement candidate. This candidate supplies the original cluster and geometry features, and the record's score becomes
+\begin{equation}\label{eq:rrblend}
+s_b^{\mathrm{final}}=\alpha\,\operatorname{clip}(g(\boldsymbol{\phi}_{c(b)}),0,1)
+ +(1-\alpha)s_b^{\mathrm{in}}.
+\end{equation}
+Here, $s_b^{\mathrm{in}}$ is the score already attached to the BPR record, which BPR leaves unchanged; its feature vector comes from the matched pre-refinement candidate. The selected blend is $\alpha=0.5$ for HRSID and $\alpha=1.0$ for PSeg-SSDD. Unmatched records retain their scores. All masks, detection count, and image/class identities are preserved; only scores change. The re-ranker therefore changes only scores, whereas BPR changes only masks; nevertheless, refined geometry affects candidate association, and AP depends jointly on masks and ranking. We evaluate their sequential combination without assuming commutativity or guaranteed gains. Each deployed carrier--dataset pair requires its own fitted correctors; the full three-stage cascade and the subset transferred to other carriers are distinguished in Section~\ref{sec:exp:univ}.

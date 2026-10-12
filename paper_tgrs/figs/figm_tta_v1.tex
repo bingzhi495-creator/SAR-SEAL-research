@@ -1,0 +1,94 @@
+% figm_tta.pdf — wide multi-scale flip TTA geometry: one SAR chip fans out into
+% 8 views ({640,800,960,1088} x {id,hflip}), each passes the frozen soup model,
+% rescale=True maps all masks back to the original H x W, pooled into K<=800
+% candidates. Inset: upsampled 960/1088 views put more pixels on small hulls.
+% Facts: ALL_TABLES.md T1 rows 2'-3; sec_method.tex III-C. Compile: pdflatex.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+% \chipview{x}{y}{width in cm}{flip: 0=id, 1=hflip} — dark SAR chip, bright ships
+\newcommand{\chipview}[4]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \pgfmathsetmacro{\hw}{#3/2}
+    \fill[black!75] (-\hw,-\hw) rectangle (\hw,\hw);
+    \draw[black!40, line width=0.4pt] (-\hw,-\hw) rectangle (\hw,\hw);
+    \pgfmathsetmacro{\ax}{#4*0.36*#3-0.18*#3}
+    \pgfmathsetmacro{\aay}{0.12*#3}
+    \pgfmathsetmacro{\rot}{35-#4*70}
+    \fill[white, rotate around={\rot:(\ax,\aay)}]
+      (\ax,\aay) ellipse [x radius=0.17*#3, y radius=0.05*#3];
+    \pgfmathsetmacro{\bx}{0.22*#3-#4*0.44*#3}
+    \fill[white] (\bx,-0.20*#3) ellipse [x radius=0.09*#3, y radius=0.035*#3];
+  \end{scope}}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+
+% ---------------- input chip ----------------
+\chipview{-2.6}{0}{1.0}{0}
+\node[note] at (-2.6,-0.92) {SAR chip\\ ori $H\times W$};
+\draw[arr] (-2.02,0) -- (-0.88,0);
+\node[sub, align=center] at (-1.45,0.42) {$\times4$ scales\\ $\times2$ flips};
+
+% ---------------- 8 views: 4 scales x {id, hflip} ----------------
+\foreach \cx/\w/\s in {0.40/0.80/640, 1.65/1.00/800, 3.10/1.20/960, 4.73/1.36/1088} {
+  \chipview{\cx}{0.85}{\w}{0}
+  \chipview{\cx}{-0.85}{\w}{1}
+  \node[sub] at (\cx,-1.78) {\s};
+}
+\node[sub, rotate=90] at (-0.50,0.85) {id};
+\node[sub, rotate=90] at (-0.50,-0.85) {hflip};
+\draw[black!35, line width=0.5pt, rounded corners=2pt] (-0.78,-2.02) rectangle (5.58,1.72);
+\node[lbl] at (2.40,1.95)
+  {8 views: $\{640,800,960,1088\}\times\{\mathrm{id},\mathrm{hflip}\}$};
+
+% ---------------- frozen model -> rescale -> candidate pool ----------------
+\node[froz, minimum width=27mm, minimum height=12mm] (model) at (7.9,0)
+  {soup model $\theta^{\star}$\\ {\scriptsize frozen -- no weight updated}};
+\pic[scale=1.15] at ([yshift=0.6mm]model.north) {lock};
+\draw[arr] (5.62,0) -- (model.west);
+\node[sub] at (6.10,0.28) {$\times 8$};
+
+\node[blk] (resc) at (11.6,0)
+  {rescale to original size\\ {\scriptsize \texttt{rescale=True}: masks at ori $H\times W$}};
+\draw[arr] (model.east) -- (resc.west);
+
+\node[blk, minimum width=24mm] (pool) at (15.3,0)
+  {candidate pool\\ $K\le 800$};
+\draw[arr] (resc.east) -- (pool.west);
+
+% ---------------- inset: why upsampled views help small targets ----------------
+\draw[black!45, dashed, line width=0.5pt, rounded corners=2pt]
+  (6.70,-3.55) rectangle (13.10,-1.55);
+\node[lbl] at (9.90,-1.82) {upsampled 960/1088 views: more pixels on small hulls};
+
+% coarse sampling at 640
+\begin{scope}[shift={(8.05,-2.62)}]
+  \fill[black!75] (-0.45,-0.45) rectangle (0.45,0.45);
+  \draw[white, opacity=0.25, line width=0.3pt, step=0.18cm] (-0.45,-0.45) grid (0.45,0.45);
+  \fill[white] (-0.09,-0.09) rectangle (0.27,0.09);
+  \draw[black!40, line width=0.4pt] (-0.45,-0.45) rectangle (0.45,0.45);
+\end{scope}
+\node[sub] at (8.05,-3.30) {640 view};
+
+% fine sampling at 1088 (same hull, finer pixel grid)
+\begin{scope}[shift={(10.15,-2.62)}]
+  \fill[black!75] (-0.45,-0.45) rectangle (0.45,0.45);
+  \draw[white, opacity=0.25, line width=0.3pt, step=0.10cm] (-0.45,-0.45) grid (0.45,0.45);
+  \fill[white] (-0.25,-0.05) rectangle (0.25,0.05);
+  \fill[white] (-0.05,0.05) rectangle (0.05,0.15);
+  \draw[black!40, line width=0.4pt] (-0.45,-0.45) rectangle (0.45,0.45);
+\end{scope}
+\node[sub] at (10.15,-3.30) {1088 view (upsampled)};
+
+\node[note, anchor=west] at (11.05,-2.62) {same hull,\\ finer sampling};
+
+% link from the large-scale columns to the inset
+\draw[black!45, dashed, line width=0.5pt] (4.95,-1.95) to[out=-65,in=180] (6.70,-2.55);
+
+\end{tikzpicture}
+\end{document}

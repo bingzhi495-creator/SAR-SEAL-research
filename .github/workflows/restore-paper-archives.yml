@@ -1,0 +1,29 @@
+name: Restore historical paper PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.publication_parts/**'
+      - '.github/workflows/restore-paper-archives.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: restore-paper-archives-main
+  cancel-in-progress: false
+
+jobs:
+  restore:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out archive inputs
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 1
+      - name: Verify and restore PDFs, then commit listed PDFs
+        run: python3 tools/restore_paper_archives.py --commit-and-push

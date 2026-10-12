@@ -1,0 +1,51 @@
+% ============================================================
+% tikz_style.tex — unified TGRS palette & styles for method figures
+% Usage (preamble of a standalone fig):  \input{tikz_style}
+% Conventions (TGRS-style):
+%   blk  = generic module block   soft blue border RGB(68,114,196), fill RGB(222,235,247)
+%   ours = our new operator       orange emphasis RGB(237,125,49)
+%   froz = frozen / untouched     gray + lock icon:  \pic at (..) {lock};
+%   opt  = optional component     add to any style: dashed border
+%   fail = failure / neg control  light red
+%   arr  = data-flow arrow        dark gray, 0.8 pt, Stealth head
+% Fonts: \small default (fig style) / \footnotesize (lbl) / \scriptsize (sub)
+% ============================================================
+\usetikzlibrary{positioning,arrows.meta,fit,backgrounds,calc,shapes.geometric,decorations.pathreplacing}
+
+% ---- palette ----
+\definecolor{modblue}{RGB}{68,114,196}
+\definecolor{modfill}{RGB}{222,235,247}
+\definecolor{oursorange}{RGB}{237,125,49}
+\definecolor{flowgray}{RGB}{64,64,64}
+\definecolor{frozgray}{RGB}{127,127,127}
+\definecolor{frozfill}{RGB}{240,240,240}
+\definecolor{failred}{RGB}{192,80,77}
+\definecolor{failfill}{RGB}{250,232,230}
+
+\tikzset{
+  fig/.style={font=\small, >={Stealth[length=2.4mm]}, line width=0.8pt},
+  blk/.style={draw=modblue, fill=modfill, line width=0.8pt, rounded corners=2pt,
+              align=center, inner sep=3.5pt, minimum height=8mm},
+  ours/.style={draw=oursorange, fill=oursorange!12, line width=0.9pt, rounded corners=2pt,
+               align=center, inner sep=3.5pt, minimum height=8mm},
+  froz/.style={draw=frozgray, fill=frozfill, line width=0.8pt, rounded corners=2pt,
+               align=center, inner sep=3.5pt, minimum height=8mm},
+  opt/.style={dashed},
+  fail/.style={draw=failred, fill=failfill, line width=0.8pt, rounded corners=2pt,
+               align=center, inner sep=3.5pt},
+  dec/.style={draw=modblue, fill=modfill, line width=0.8pt, diamond, aspect=2.4,
+              align=center, inner sep=1.5pt},
+  arr/.style={->, draw=flowgray, line width=0.8pt},
+  arro/.style={->, draw=oursorange, line width=0.9pt},
+  lbl/.style={font=\footnotesize},
+  sub/.style={font=\scriptsize, text=black!60},
+  note/.style={font=\scriptsize, align=center},
+}
+
+% ---- lock icon (frozen components):  \pic[scale=..] at (x,y) {lock};
+\tikzset{lock/.pic={
+  \fill[frozgray, rounded corners=0.2mm] (-0.10,-0.10) rectangle (0.10,0.05);
+  \draw[frozgray, line width=0.7pt]
+    (-0.058,0.05) -- (-0.058,0.10) arc[start angle=180, end angle=0, radius=0.058] -- (0.058,0.05);
+  \fill[white] (0,-0.025) circle[radius=0.021];
+}}

@@ -1,0 +1,72 @@
+{
+  "checked_date": "2026-10-12",
+  "scope": "Official metadata and access links only; no local scientific data read or payload validation",
+  "raw_images_included": false,
+  "complete_annotation_payloads_included": false,
+  "datasets": [
+    {
+      "name": "PSeg-SSDD",
+      "repository": "https://github.com/TianwenZhang0825/Official-SSDD",
+      "repository_license": "Apache-2.0",
+      "license_url": "https://github.com/TianwenZhang0825/Official-SSDD/blob/main/LICENSE",
+      "paper": "https://www.mdpi.com/2072-4292/13/18/3690",
+      "annotation_requirement": "True ship polygon segmentation; do not substitute BBox-SSDD or RBox-SSDD",
+      "official_training_images": 928,
+      "official_test_images": 232,
+      "access": [
+        {
+          "url": "https://drive.google.com/file/d/1glNJUGotrbEyk43twwB9556AdngJsynZ/view?usp=sharing",
+          "source": "author README"
+        },
+        {
+          "url": "https://pan.baidu.com/s/1Lpg28ZvMSgNXq00abHMZ5Q",
+          "extraction_code": "2021",
+          "source": "author README"
+        }
+      ],
+      "external_archive_license_scope": "Not expressly mapped in reviewed repository README/LICENSE; archive notices not inspected"
+    },
+    {
+      "name": "HRSID",
+      "repository": "https://github.com/chaozhong2010/HRSID",
+      "repository_license": "GPL-3.0",
+      "license_url": "https://github.com/chaozhong2010/HRSID/blob/master/LICENSE",
+      "paper": "https://ieeexplore.ieee.org/document/9127939",
+      "repository_annotation_metadata": [
+        {
+          "path": "annotations/train2017.json",
+          "bytes_reported_by_upstream_api": 11592317,
+          "file_url": "https://github.com/chaozhong2010/HRSID/blob/master/annotations/train2017.json",
+          "download_url": "https://raw.githubusercontent.com/chaozhong2010/HRSID/master/annotations/train2017.json",
+          "payload_read": false
+        }
+      ],
+      "annotation_directory_metadata_url": "https://api.github.com/repos/chaozhong2010/HRSID/contents/annotations?ref=master",
+      "test_annotation_note": "test2017.json was not listed in the upstream repository annotation directory; obtain from the selected author download package",
+      "access": [
+        {
+          "version": "JPG",
+          "url": "https://drive.google.com/open?id=1BZTU8Gyg20wqHXtBPFzRazn_lEdvhsbE"
+        },
+        {
+          "version": "JPG",
+          "url": "https://pan.baidu.com/s/1z0-E3Lwdkg14feu1FwRf3g",
+          "extraction_code": "bs64"
+        },
+        {
+          "version": "additional inshore/offshore annotations",
+          "url": "https://drive.google.com/file/d/1NY3ovgc-woDlNoQdyqzRB3t9McOBH5Ms/view?usp=sharing"
+        },
+        {
+          "version": "PNG",
+          "url": "https://drive.google.com/file/d/1xgXi8KC3MDWuu7Yp4n2J-LOPYLRszHAc/view?usp=sharing"
+        },
+        {
+          "version": "400 background-only supplemental images",
+          "url": "https://drive.google.com/file/d/1U0Sj1SHoq-2VjXXUKwpXae6rBI3YjyDP/view?usp=sharing"
+        }
+      ],
+      "external_archive_license_scope": "Not expressly mapped in reviewed repository README/LICENSE; archive notices not inspected"
+    }
+  ]
+}

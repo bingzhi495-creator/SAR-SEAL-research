@@ -1,0 +1,70 @@
+\documentclass[journal,onecolumn]{IEEEtran}
+\usepackage{graphicx,amsmath,booktabs,url,float}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\begin{document}
+\title{Supplementary Evidence: Cluster-Support-Gated Mask Fusion and Boundary Refinement for SAR Ship Instance Segmentation}
+\author{HOU~BINGZHI and ZHAO~PANZI}
+\markboth{Supplementary Evidence --- Working Revision, September 2026}{Hou and Zhao: Supplementary Evidence}
+\maketitle
+
+\section*{Scope and Provenance}
+The main manuscript uses AI-assisted conceptual figures to explain the architecture and operators. This supplement presents the corresponding existing scientific assets. Their source rasters and plotted values have not been replaced by generated imagery. These records illustrate selected operations; they do not add a new held-out experiment or establish submission readiness.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figs/figm_fusion.pdf}
+\caption{Fusion replayed on the 16 highest-scoring stored candidates of one HRSID inshore chip. The measured mask-IoU matrix and lower panels use the same 16 masks. Solid orange blocks mark cluster sizes in the voting band; dotted gray marks other sizes. (a) The six-member subset cluster is voted. (b) The seven-member subset cluster keeps its seed; the crossed alternative illustrates pixels that voting would remove relative to the seed. Both close-ups show $110\times86$ native pixels at the same scale; the left edge of (a) is the image boundary. This top-16 replay is not the complete 800-candidate deployment: in that pool the two seeds collect 10 and 9 members and both retain their seed.}
+\label{fig:s1}
+\end{figure}
+
+\subsection*{S1. Restricted Candidate Replay}
+Figure~\ref{fig:s1} reconstructs the pairwise matrix from the same stored binary masks used in its close-ups. Replayed areas, boxes, membership, vote counts, and fused masks were checked against those assets. Only the subset replay is illustrated. The full-pool membership explains why the example must not be described as a deployed six-versus-seven-member decision. Removing pixels relative to a seed does not itself demonstrate lower accuracy against ground truth.
+
+The fusion asset provenance is recorded in the preceding figure package's \texttt{assets\_fig2/provenance.json}; the revised source includes the full matrix and replay metadata. No detector inference was run to produce this illustration. Exact source and delivered-file hashes are listed in this revision's local provenance manifest.
+
+\clearpage
+\section*{S2. Recorded Boundary Refinement}
+Figure~\ref{fig:s2} uses an existing single-view prediction of the souped carrier. The displayed patch was selected by the amount of changed foreground, so it is a mechanism example rather than a representative accuracy sample. It is not a before/after pair from the complete TTA-fusion cascade.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figs/figm_bpr.pdf}
+\caption{Boundary-patch refinement using a recorded single-view frozen-soup prediction. (a) A native $64\times64$ window at $20\times$ the overview scale: coarse and refined contours on the same SAR crop. The separately trained UNet reads grayscale and mask channels enlarged to $128\times128$; sigmoid probabilities are reduced to the native grid and averaged across overlapping windows. (b) The four-iteration morphological band at the same scale. Only covered band pixels may change. All other pixels, detection count and identities, and scores remain unchanged. The patch was selected for its number of changed pixels.}
+\label{fig:s2}
+\end{figure}
+
+The preserved scientific source rasters were copied without image-generation edits. Their provenance and geometry checks are recorded in \texttt{assets\_fig3} of the preceding figure package. The diagram documents the local write constraint. It does not prove topology preservation, improvement for every instance, or the causal contribution of the band radius to AP.
+
+\clearpage
+\section*{S3. Carrier Segmentation Readout}
+Figure~\ref{fig:s3} explains the segmentation branch with existing single-view tensor visualizations. It complements the abstract carrier icon in the main figure. The HRSID carrier received auxiliary mask-quality supervision during training, with auxiliary score mixing disabled in the final inference recipe. The PSeg-SSDD carrier instead uses the standard head.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figs/fig1b_readout.pdf}
+\caption{Segmentation readout of the HRSID Mask2Former-R50 carrier. The ResNet pyramid feeds a pixel decoder that supplies multi-scale memory to the transformer decoder and a stride-four mask feature $F$. Decoded queries pass through a mask embedding MLP; the filled dot denotes the channel-wise inner product with $F$. The $100\times200\times200$ logits are bilinearly upsampled to the $800\times800$ grid. The SAR image, channel-norm features, and query-logit example are existing exports from a single-view souped-carrier pass on HRSID image 1528. Only query 36 is shown as the low-resolution front plane; the full-resolution stack is symbolic. Feature glyphs are not to geometric scale, and colors are independently normalized. Classification, the auxiliary training branch, iterative attention updates, and final instance selection are omitted.}
+\label{fig:s3}
+\end{figure}
+
+\begin{table}[H]
+\caption{Recorded tensor dimensions for the carrier example.}
+\centering
+\begin{tabular}{ll}
+\toprule
+Quantity & Channels or queries $\times$ spatial grid\\
+\midrule
+$C_2$ & $256\times200\times200$\\
+$C_3$ & $512\times100\times100$\\
+$C_4$ & $1024\times50\times50$\\
+$C_5$ & $2048\times25\times25$\\
+Mask feature $F$ & $256\times200\times200$\\
+Mask logits & $100\times200\times200$\\
+Upsampled logits & $100\times800\times800$\\
+\bottomrule
+\end{tabular}
+\label{tab:shapes}
+\end{table}
+
+Table~\ref{tab:shapes} records shape metadata for the exported example. Channel norms were independently normalized for display. The visible images are neither complete raw tensor dumps nor calibrated radiometric measurements. An existing thresholded instance-overlay image was deliberately not used to represent the full logit tensor. No new numerical model evaluation is introduced by the readout visualization.
+\end{document}

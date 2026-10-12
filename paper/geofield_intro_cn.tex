@@ -1,0 +1,241 @@
+\documentclass[UTF8,11pt,a4paper]{ctexart}
+\usepackage{geometry}
+\geometry{margin=2.3cm}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{caption}
+
+\definecolor{seal}{RGB}{20,90,160}
+\definecolor{good}{RGB}{28,128,64}
+\definecolor{bad}{RGB}{178,40,40}
+\definecolor{boxb}{RGB}{233,241,250}
+\definecolor{boxg}{RGB}{232,245,236}
+\definecolor{boxy}{RGB}{252,246,228}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=seal,urlcolor=seal}
+
+\newcommand{\good}[1]{\textcolor{good}{#1}}
+\newcommand{\bad}[1]{\textcolor{bad}{#1}}
+
+% 紧凑的"技术框"：给专业读者的精度，不打断白话主线
+\newtcolorbox{tech}{colback=boxb!55,colframe=seal!70,boxrule=0.4pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt,arc=2pt,
+  fonttitle=\bfseries\small,title={技术要点},coltitle=seal}
+\newtcolorbox{eviw}{colback=boxg!60,colframe=good!65,boxrule=0.4pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt,arc=2pt,
+  fonttitle=\bfseries\small,title={实测证据},coltitle=good}
+
+% 章节标题用"问题式"，问题驱动而非论文式；去掉编号（标题自带"第N步"）
+\ctexset{section/format=\Large\bfseries\color{seal}}
+\setcounter{secnumdepth}{0}
+\setlength{\parskip}{3pt}
+
+\title{\textbf{GeoField：我们怎么把"船尾画不准"一步步想清楚\\并设计出解决它的算子}}
+\author{SEAL 项目 \;|\; 通俗技术说明（中文）}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\noindent\textit{这份说明不写成论文。它按"遇到什么问题 $\to$ 因此只能这样做"的顺序，把
+我们的思路一步步讲清楚——让懂技术的人看到严谨，也让不做这行的人能跟下来。核心想说明一件事：
+\textbf{GeoField 不是"挑了几个好零件拼起来"，而是从一个具体问题出发、每一步只有一个出口、被逼出来的结果。}}
+
+\vspace{4pt}
+\section{我们要解决的实际问题}
+在 SAR（雷达卫星）图像里分割舰船，\textbf{近岸的船最难}：它们紧挨着码头、起重机这些同样"发亮"的金属
+杂物。更具体的痛点是——\textbf{船头、船尾这些回波弱、发暗的部位，模型常常把它们切掉一截}，掩码画不全。
+对实际应用（量船的真实大小、形状）来说，这一截就是误差。
+
+我们的载体（基线模型）是 \textbf{Mask2Former}（ResNet-50 骨干）——这也正是当前两个最强的 SAR 舰船分割
+方法（O$^2$Former、DiffSARShipInst）共同站的基线。所以问题不是"换个更强的模型"，而是\textbf{在公认基线上，
+把这个具体缺陷弄明白、再对症设计}。
+
+\section{第一步：先别急着改——到底坏在哪？}
+多数论文一上来就加东西（更强骨干、更多模块）。我们先做一件事：\textbf{诊断}。
+办法是一个"作弊实验"——把标准答案（真值掩码）直接喂给模型，看它\emph{最多}能好到哪，从而判断
+缺陷到底卡在哪一环。结论很关键：
+
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item 近岸的缺陷\textbf{大约一半是"掩码画不准"、一半是"船没找全"}——不是单一问题。
+\item 再按船的大小细分：\textbf{中等大小的船、它们的"形状"，是最有救的一块}（可恢复空间最大）；
+\item 而且这块\textbf{不是"分辨率不够"那么简单}——我们后来专门加分辨率的办法对它\emph{毫无作用}。
+\end{itemize}
+
+\begin{eviw}
+按尺寸的可恢复空间（越大越值得攻）：小目标 $+0.253$、\textbf{中目标 $+0.394$（最大）}、大目标 $+0.000$（已饱和）。
+专门加分辨率的"细化头"只救回了小目标，对中目标完全惰性——说明中目标缺的是\emph{形状/边界}，不是分辨率。
+\end{eviw}
+
+\noindent\textbf{这一步的价值}：把模糊的"精度低"收敛成一个\textbf{明确的靶子——中等船的形状}。后面所有设计都瞄它。
+
+\section{第二步：模型为什么画不出形状？——找病根}
+要对症，先得知道病根。Mask2Former 画掩码的方式可以这样理解：它手里有\textbf{一张全图共享的"底图"}（记作 $E$），
+每个候选目标拿一把"挑选尺"在底图上\textbf{挑}出属于自己的像素。问题就出在这里：
+
+\begin{quote}
+\textbf{船尾是暗的，底图 $E$ 在那一块几乎是空白——再怎么挑也挑不出东西。}
+而且这把"挑选尺"\textbf{只会挑、不会无中生有地补画}（用术语说：它没有逐目标的空间自由度）。
+\end{quote}
+
+\begin{tech}
+Mask2Former 的掩码是一个 \emph{rank-1} 读出 $M_q=\sigma(e_q\!\cdot\!E)$：每个目标的向量 $e_q$ 与
+\emph{共享}逐像素特征 $E$ 做点积。$E\!\approx\!0$ 处（暗尾）无论 $e_q$ 取何值都点不亮 $\Rightarrow$ 读出
+\textbf{只能选、不能合成}。缺陷因此在\emph{底图 $E$}（暗处无料）+ \emph{读出无法添加空间延展}。
+\end{tech}
+
+\noindent\textbf{病根定了}：不是模型不努力，是\textbf{它工作的底图在暗处本来就没料，而它的画法只能选不能补}。
+这条病根决定了之后每一步。
+
+\section{第三步：只有两条路，我们试错后被逼到对的那条}
+既然病根是"底图暗处没料"，注入形状只有两种可能：
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=1pt,label=(\alph*)]
+\item \textbf{硬塞一个"形状模板"} 进最后下笔那一步（直接往结果上加一块"船应该长这样"）；
+\item \textbf{把底图 $E$ 本身补好}，让模型用\emph{原来}的挑法就能挑对。
+\end{enumerate}
+
+我们\textbf{真的试了 (a)}——做了一个会自己调整的椭圆形状先验。结果\bad{全面变差}：这个硬模板和模型
+\emph{本来已经学好}的东西\textbf{抢方向盘、打架}，越改越糟，甚至训练一开始就数值崩溃。
+
+\begin{eviw}
+形状先验（写进最后一步）三次实验全部\textbf{低于基线}（几何 $0.597 <$ 自由对照 $0.609 <$ 基线 $0.638$），
+且"带几何"并不比"不带几何"好——证明问题出在"硬塞、competing"这个做法本身。
+\end{eviw}
+
+\noindent\textbf{失败把我们逼到 (b)}：\textbf{只补底图、喂给模型，绝不去抢它最后下笔的方向盘}。这不是我们"选"的，
+是 (a) 被否决后\emph{唯一}剩下的路。
+
+\section{第四步：底图怎么补？——算子的核心直觉}
+暗船尾旁边是什么？\textbf{亮船身}。所以最自然的补法是：\textbf{顺着船的长轴方向，把亮船身的"证据"推一点进暗船尾}，
+那块底图就有料了。这件事要求三点能力：(1) 每个像素都知道"这儿的船朝哪个方向"；(2) 顺着那个方向去聚拢邻居信息；
+(3) 逐像素地做（每处朝向不同）。
+
+\begin{center}
+\begin{tikzpicture}[node distance=3mm,font=\small,
+  b/.style={draw,rounded corners=2pt,fill=boxy,inner sep=4pt,align=center,minimum height=0.9cm}]
+\node[b,fill=boxg] (a) {亮船身\\(有证据)};
+\node[b,right=8mm of a] (k) {沿船轴方向\\的聚合};
+\node[b,right=8mm of k,fill=boxb] (c) {暗船尾\\(补上证据)};
+\draw[-{Latex[length=2mm]},seal,thick] (a)--(k); \draw[-{Latex[length=2mm]},seal,thick] (k)--(c);
+\end{tikzpicture}
+\end{center}
+
+\noindent这就是 \textbf{设计(1) 一个"定向聚合核"}：逐像素地、按当地船体朝向去聚拢邻居——把亮处的料顺着船延伸到暗处。
+
+\section{第五步：方向从哪来，又不重蹈覆辙？}
+第三步的失败教训是：\textbf{不能再硬规定形状}（上次硬规定"船是椭圆"就翻车了）。所以这个方向核\textbf{不用任何
+固定公式}（不用椭圆、不用高斯），而是给模型\textbf{一套可学习的"形状积木"}，让它\emph{自己}为每个像素拼出该用的方向。
+——\textbf{学形状，不强加形状}。这是\textbf{设计(2)}。
+
+\section{第六步：不能见暗就补，否则杂波处补出一堆"假船"}
+如果到处乱补，码头的金属杂波也会被补成"船的一部分"——\textbf{假阳暴涨}（这正是我们早先一次实验踩过的坑）。
+所以只能\textbf{在"确实摸到船体纹理"的地方补，杂波处不补}。怎么判断有没有摸到？——\textbf{就看刚才那个方向核
+聚到的信号强不强}：强，说明真有连贯船体，补；弱（杂波是各向同性的、聚不出方向），不补。这是\textbf{设计(3)：一个
+"补不补"的开关，直接由方向核的输出强度决定}。
+
+\begin{tcolorbox}[colback=boxy!50,colframe=orange!60,boxrule=0.4pt,left=5pt,right=5pt,top=3pt,bottom=3pt,arc=2pt]
+\textbf{一石二鸟（这步最妙）}：这个"补不补"的开关\textbf{没有自己的独立旋钮}，它\emph{直接挂在}方向核的输出上——
+所以\textbf{想去掉这个开关，就必须连方向核一起去掉}，两者拆不开。这顺带堵死了审稿人必问的一句："你这点提升，
+是不是只是单纯多堆了参数？"——\emph{既然拆不开、就不可能是单纯堆参数}。一个设计同时解决了"杂波假阳"和"如何自证清白"。
+\end{tcolorbox}
+
+\section{第七步：这一切都得知道"在画面的哪个位置"}
+船的朝向、往哪个方向补，都和它在画面里的绝对位置有关（靠边的船、船头还是船尾）。所以我们把\textbf{坐标信息一开始
+就喂进去}，让方向核和开关都"知道自己在哪"。这是\textbf{设计(4)}。
+
+\section{第八步：拧成一个，而不是拼三个模块}
+现在每个像素要算三样东西：方向核、补不补的开关、位置。\textbf{如果做成三个独立小模块叠在一起，那就是"堆积木"}
+——这恰恰是审稿人最不待见的（"A+B+C"式拼装直接拒），也违背我们的初衷。何况第六步已经发现：\textbf{开关本就是
+方向核的一部分}。所以我们的做法是：\textbf{每个像素只算\emph{一个}"几何小档案"，方向、开关、位置全是从这一个档案里
+读出来的}——它们天生纠缠，是\emph{一个东西}，不是三个。
+
+\begin{quote}
+\textbf{到这里，"算子"这个词才名副其实}：它是\textbf{一个自洽的计算单元}（和"一个卷积"同级别），
+不是模块拼盘。也正因为它是个干净的算子，后面才能\textbf{原封不动地搬到网络的其他位置}去用。
+\end{quote}
+
+% 整体框架图
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+  node distance=4.5mm,
+  blk/.style={draw,rounded corners=2pt,fill=boxb,inner sep=3pt,align=center,font=\small,minimum height=0.9cm,text width=1.7cm},
+  gf/.style={draw,rounded corners=2pt,fill=boxg,very thick,inner sep=3pt,align=center,font=\small,minimum height=0.9cm,text width=1.9cm},
+  arr/.style={-{Latex[length=2mm]},seal,thick}]
+\node[blk] (img) {SAR 图像};
+\node[blk,right=of img] (bb) {骨干网络};
+\node[blk,right=of bb] (pd) {特征解码器};
+\node[blk,right=of pd] (E) {底图 $E$};
+\node[gf,right=of E] (gf) {\textbf{GeoField}\\补底图};
+\node[blk,right=of gf] (rd) {挑像素\\画掩码};
+\node[blk,below=7mm of rd] (q) {候选目标};
+\draw[arr] (img)--(bb); \draw[arr] (bb)--(pd); \draw[arr] (pd)--(E);
+\draw[arr] (E)--(gf); \draw[arr] (gf)--(rd);
+\draw[arr] (q)--(rd);
+\draw[arr,dashed,bad] ($(gf.north)+(0,2mm)$) to[out=140,in=40]
+  node[above,font=\scriptsize,bad]{下一步：同一个算子搬到更上游} ($(pd.north)+(0,2mm)$);
+\end{tikzpicture}
+\caption{GeoField 在管线里只做一件事：在"底图 $E$"喂给"挑像素"之前把它补好。它\emph{不碰}最后画掩码那一步
+（所以不会和模型打架）。虚线是下一步计划——把同一个算子搬到更靠上游、病根所在的位置。}
+\label{fig:pipe}
+\end{figure}
+
+\begin{tech}
+内部一句话：$z_p=$ 瓶颈$([E;\text{坐标}])$ 是\emph{唯一}共享码；方向核 $k_p=\mathrm{softmax}(\sum_m\alpha_m B^m)$，
+$\alpha=W_kz_p$，$\{B^m\}$ 是自由学习基；$E_{\text{mix}}=$ 用 $k_p$ 做的逐像素深度卷积；开关
+$s_p=\sigma(a\lVert E_{\text{mix}}-E\rVert+\rho_p)$，$\rho_p=\tanh(W_{\text{pos}}z_p)$；输出
+$E'=E+\gamma\,s_p\odot E_{\text{mix}}$。$\gamma$ 初始为 $0$ $\Rightarrow$ 起步等于"什么都没做"。
+\end{tech}
+
+\section{第九步：怎么证明是"机制"在起作用，而不是"参数变多"？}
+任何新东西都会增加参数，于是必有一问："你涨的那点，是你说的机制、还是单纯参数多了？"我们的回答是一把
+\textbf{"等参数对照阶梯"}：\textbf{参数一模一样}，只用一个开关切换"几何到底开不开"。然后在\textbf{"加参数也没用"的中等船
+那条轴上比}——如果几何开了就涨、关了就不涨，那就\textbf{铁证是几何机制、不是参数}。
+
+\begin{eviw}
+先导实验里"纯加参数"那一档在中等船上 $0.441\approx$ 基线 $0.444$——\textbf{加参数对中等船确实没用}。
+所以这条轴上任何提升都只能记在几何机制头上。（完整阶梯 R3/R5 正在训练，结果即将出。）
+\end{eviw}
+
+\section{第十步：想让同类船互相参照，但不能拖慢上线}
+同一张图里的船，形状/尺度本应彼此校准。但"让船互相参照"的常见做法在\textbf{上线时会依赖"和谁分在一批"}，
+这对部署是灾难。我们的处理：\textbf{只在训练时让它们互相校准，上线时这套东西整个拿掉}——\textbf{不增加上线计算、
+不依赖批次}。这是\textbf{设计(7)}。
+
+\section{第十一步：保证不再重蹈覆辙}
+针对第三步两个死法（变差、训练崩），我们上了两道保险：(1) \textbf{开机时算子等于"什么都没做"}（恒等起步），
+要靠训练自己一点点挣表现；(2) 它\textbf{永远只补底图、绝不碰最后画掩码那一步}，所以\emph{结构上}不可能和模型打架。
+这是\textbf{设计(8)}。
+
+\section{第十二步：装在哪最值}
+病根在\textbf{上游}（底图暗，是骨干/解码器更早就丢了信息）。所以：先把算子装在\textbf{最末端}、用最便宜的代价验证
+想法对不对（当前在做）；一旦验证有效，再把\textbf{同一个算子}装到\textbf{更靠上游、病根所在}的位置——这也正是顶刊方法
+"改网络"的标准深度，不是只在末端贴补丁。
+
+\section{所以，GeoField 到底是什么}
+\begin{tcolorbox}[colback=boxg!45,colframe=good!65,boxrule=0.6pt,left=6pt,right=6pt,top=4pt,bottom=4pt,arc=2pt]
+一句话：GeoField 是从"\textbf{中等船的船尾画不准}"这个具体问题、加上"\textbf{底图暗 + 模型只能挑不能补}"这个病根
+出发，\textbf{每一步只有一个出口}、被逐步逼出来的\textbf{一个单一计算单元}——它让每个像素只算一个"几何小档案"，
+由它同时定出\emph{往哪个方向补、补不补、在画面哪儿}，把这三件事\textbf{拧成一体}地去补好底图，再交还给模型原来的画法。
+\textbf{它的每一个零件，都对应着一个被逼出来的问题，没有一个是"顺手加的好东西"。}
+\end{tcolorbox}
+
+\section{现在做到哪了}
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item \good{代码与数值}：算子的各项自检全过（参数严格对齐、起步恒等、数值稳定、与批次无关）。
+\item \good{能部署}：可导出为标准格式、并在 TensorRT 上数值一致、结果不依赖批次——\emph{真能上线}（速度上动态卷积偏慢，
+已诚实记录，留作工程优化）。
+\item \textcolor{orange!80!black}{正在做}：4 路等参对照（验"几何机制是否真有效"）正在训练，结果马上出；出来后我会把判决补进本文。
+\end{itemize}
+
+\vspace{2pt}
+\noindent\rule{\linewidth}{0.4pt}\\[2pt]
+{\footnotesize 本文所有数字均为已核验的实测/诊断值；先导对照（R3/R5）尚在训练，结论待补。}
+
+\end{document}

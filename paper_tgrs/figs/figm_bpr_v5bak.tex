@@ -1,0 +1,187 @@
+% figm_bpr.pdf — optional boundary-patch refinement (Sec. III-E).
+%
+% Every panel of this figure is now real data from ONE instance of ONE chip,
+% and the annotation boxes are drawn at the coordinates the dump actually
+% recorded, so a reader can verify the chain by eye:
+%   * the two $800^2$ overviews are assets/pred_masks.png, the fused instance
+%     masks of chip P0101_1200_2000_3000_3800.jpg (image_id 1528), 800 px over
+%     20 mm = 1016 dpi;
+%   * (a) the black box on it is the REAL patch window of
+%     carrier.bpr_patches.extract_instance_patches(K=64, stride=32) at
+%     patch_origin_yx = (536, 0) -- 64 px = 1.6 mm at the article scale -- and
+%     the x8 zoom shows that window before and after refinement
+%     (assets/patch_before.png / patch_after.png, 512 px over 12.8 mm =
+%     1016 dpi, red = coarse contour, green = refined contour).  106 of the
+%     4096 patch pixels actually flipped.
+%   * (b) the black box is the REAL band crop crop_yx = (524, 0, 597, 57) and
+%     the x12 zoom is the REAL annulus dilate(m,4) XOR erode(m,4):
+%     assets/band_annulus_x2.png, 1157 band pixels around a 738-pixel hull,
+%     amber over the real chip with the real red hull contour.  Native crop
+%     57x73 px -> 17.1 x 21.9 mm at z=12; 684 px over 17.1 mm = 1016 dpi
+%     (nearest-neighbour x2 of the 342x438 dump, no smoothing).
+% All provenance in assets/manifest.json.
+%
+% Facts: sec_method.tex III-E, Eqs. (bprloss)/(guard); ALL_TABLES.md T1 row 4,
+%   T2 (+BPR rows), T10 (inshore AP50 +0.7 against AP75 +10.9).
+% v3: the two 82 mm prose banners are reduced to one line each, the hand-drawn
+%   coarse/refined curves and the schematic annulus are replaced by the real
+%   rasters, panel letters added, every stroke at or above the 0.5 pt floor.
+% Authored at exactly 18.2 cm = 516 pt = \textwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{8.25}
+
+\pgfmathsetmacro{\sM}{\pxc{800}}    % a full mask plane: 20 mm
+
+% ===== panel frames and titles ===========================================
+\draw[grp] (0.08,2.20) rectangle (8.86,7.62);
+\draw[grp] (9.34,2.20) rectangle (18.12,7.62);
+\node[panl, anchor=south west] at (0.08,7.66) {(a)};
+\node[panl, anchor=south west] at (9.34,7.66) {(b)};
+\node[grptitle, anchor=south] at (4.47,7.66)
+  {Training the refiner --- once, $\approx$19 min, on the train split};
+\node[grptitle, anchor=south] at (13.73,7.66)
+  {Inference --- band-guarded write-back};
+
+% =========================================================================
+%  (a) TRAINING SIDE
+% =========================================================================
+\node[sub, anchor=north west, text width=82mm] (t1) at (0.18,7.52)
+  {harvest the model's own errors: train-split predictions matched to GT at
+   mask IoU $\ge0.5$, no new annotation};
+\draw[flow] (1.55,6.86) -- (1.55,6.64);
+
+% --- the real 800x800 fused masks, with the REAL patch window boxed -------
+\realpanel{1.55}{5.54}{800}{1}{pred_masks.png}{datablue!70, line width=0.5pt}
+% patch_origin_yx = (536,0), 64 px -> box in chip coordinates
+\draw[zoombox] (0.55,4.86) rectangle (0.71,5.02);
+\node[sub, anchor=north, align=center, text width=30mm] at (1.55,4.20)
+  {fused $800^2$ masks; box $=$ real $64^2$ patch window};
+
+% v4 CONNECTOR CLEANUP (C8).  The two sight lines used to run from the
+% locator box to the corners of the enclosing PANEL FRAME, which sent the
+% lower one diagonally down across the caption underneath -- _overlap.py
+% measured the twin of this line striking the (b) caption for 21 px of
+% glyph ink.  They now run corner-to-corner from the locator box to the
+% MAGNIFIED RASTER itself, which is both the true correspondence and a much
+% flatter cone, and they carry the locator's own hue (\zoomray) so the box,
+% the two rays and the crop read as one object.  The caption drops to 4.20,
+% clear of the cone by construction.
+\draw[zoomray] (0.71,5.02) -- (3.46,5.96);
+\draw[zoomray] (0.71,4.86) -- (3.46,4.68);
+
+% --- the x8 zoom: REAL patch before -> UNet -> REAL patch after -----------
+\draw[grp] (3.20,3.90) rectangle (8.78,6.70);
+\node[grptitle, anchor=north west] at (3.28,6.64) {$\times8$ zoom, real patch};
+
+\node[inner sep=0pt, outer sep=0pt] at (4.10,5.32)
+  {\includegraphics[width=1.28cm,height=1.28cm]{\assetdir/patch_before.png}};
+\draw[zoombox] (3.46,4.68) rectangle (4.74,5.96);
+\node[sub, anchor=north, align=center, text width=24mm] at (4.10,4.58)
+  {coarse mask (red)};
+
+\begin{scope}[shift={(5.60,5.32)}]
+  \foreach \i/\res in {0/128, 1/64, 2/32, 3/16, 4/8, 5/16, 6/32, 7/64, 8/128} {
+    \pgfmathsetmacro{\bx}{-0.76+0.19*\i}
+    \pgfmathsetmacro{\bh}{0.5*2*\pxc{\res}}
+    \fill[trngreen!14] (\bx,-\bh) rectangle (\bx+0.15,\bh);
+    \draw[trngreen, line width=0.5pt] (\bx,-\bh) rectangle (\bx+0.15,\bh);
+  }
+\end{scope}
+% v4 COLLISION FIX.  This label was anchored south at y=6.02, so its box ran
+% up to 6.35 while the panel title anchored north at 6.64 ran down to 6.28:
+% _overlap.py measured a 139.6 pt^2 intersection with a 14 px ink bridge --
+% the descender of "patch" printed into "UNet".  The label now sits directly
+% on top of the UNet bar stack (whose tallest bar reaches 5.64), which is
+% also where it belongs: it names the glyph beneath it, not the panel.
+% "4 down / 4 up" is deleted because the glyph beneath already DRAWS it:
+% nine bars at 128-64-32-16-8-16-32-64-128, each at the article scale.  The
+% label now carries only what the drawing cannot -- the parameter count --
+% and is short enough to sit in the 1.8 cm gap between the two crops.
+\node[sub, anchor=south, align=center] at (5.60,5.72) {2.35M UNet};
+\node[badgetrn] at (8.56,6.46) {4};
+\draw[flow] (4.78,5.32) -- (4.90,5.32);
+\draw[flow] (6.33,5.32) -- (6.46,5.32);
+
+\node[inner sep=0pt, outer sep=0pt] at (7.14,5.32)
+  {\includegraphics[width=1.28cm,height=1.28cm]{\assetdir/patch_after.png}};
+% the refiner's OUTPUT carries the corrector hue, so the pair reads
+% locator-red in / corrector-green out without a word being spent on it
+\draw[trngreen, line width=0.7pt] (6.50,4.68) rectangle (7.78,5.96);
+\node[sub, anchor=north, align=center, text width=30mm] at (7.14,4.58)
+  {refined (green): \textbf{106} of $4096$\,px flipped};
+
+\node[trn, anchor=north west, text width=82mm, inner sep=3pt]
+  (loss) at (0.18,3.30)
+  {$\mathcal{L}_{\mathrm{ref}}$: cross-entropy $+$ Dice, patch pixels only};
+
+% =========================================================================
+%  (b) INFERENCE SIDE
+% =========================================================================
+\node[sub, anchor=north west, text width=82mm] (i1) at (9.44,7.52)
+  {$\pm4$-px band guard around the fused contour:
+   $b(p)=\mathbf{1}[\,d(p,\partial\mathbf{m}^{\mathrm{out}})\le4\,]$,
+   obtained as dilation $\ominus$ erosion};
+\draw[flow] (10.75,6.86) -- (10.75,6.64);
+
+\realpanel{10.75}{5.54}{800}{1}{pred_masks.png}{datablue!70, line width=0.5pt}
+% crop_yx = (524, 0, 597, 57)
+\draw[zoombox] (9.75,4.85) rectangle (9.8925,5.03);
+\node[sub, anchor=north, align=center, text width=30mm] at (10.75,4.20)
+  {the same masks; box $=$ real $57\times73$ band crop};
+
+\draw[zoomray] (9.8925,5.03) -- (12.745,6.245);
+\draw[zoomray] (9.8925,4.85) -- (12.745,4.055);
+
+% --- the x12 zoom: the REAL band annulus ---------------------------------
+\draw[grp] (12.30,3.66) rectangle (18.02,6.70);
+\node[grptitle, anchor=north west] at (12.38,6.64) {$\times12$ zoom, real band};
+\node[inner sep=0pt, outer sep=0pt] at (13.60,5.15)
+  {\includegraphics[width=1.71cm,height=2.19cm]{\assetdir/band_annulus_x2.png}};
+\draw[zoombox] (12.745,4.055) rectangle (14.455,6.245);
+% v4 COLLISION FIX: centred at 13.60 with a 38 mm box this label reached
+% x=11.70, i.e. 0.6 cm left of the panel's own dotted border at x=12.30,
+% which printed straight through "1157" (_overlap.py: 21 px of glyph-on-
+% stroke ink).  Left-aligning it to the magnified raster's left edge fixes
+% the strike and puts the label on the same vertical as the thing it names.
+\node[sub, anchor=north west, align=left, text width=38mm] at (12.745,3.99)
+  {1157 band px, 738-px hull};
+\pic[scale=1.0] at (15.10,6.00) {lock};
+\node[sub, anchor=west] at (15.27,6.00) {interior locked};
+\pic[scale=1.0] at (15.10,5.52) {lock};
+\node[sub, anchor=west] at (15.27,5.52) {exterior locked};
+\node[sub, anchor=north west, text=opsred, align=left, text width=30mm]
+  at (14.90,5.18)
+  {amber $=$ the only writable pixels; red $=$ the fused hull};
+
+\node[trn, anchor=north west, text width=82mm, inner sep=3pt]
+  (r1) at (9.44,3.30)
+  {UNet re-segments the band, threshold $0.5$;
+   $\mathbf{m}^{\mathrm{final}}=b\,\hat{\mathbf{m}}+(1{-}b)\,\mathbf{m}^{\mathrm{out}}$,
+   still $800\times800$};
+
+% ===== invariance banner =================================================
+\node[froz, anchor=south west, minimum width=180mm, minimum height=7.0mm,
+      text width=166mm, align=center] (ban) at (0.10,1.32)
+  {\textbf{what the refiner may not do:}\ \
+   {\scriptsize outside the $\pm4$-px band every pixel is
+    bit-identical\ \ $\cdot$\ \ scores and ranks untouched\ \ $\cdot$\ \ the
+    main model unmodified}};
+\pic[scale=1.0] at ([shift={(0.40,0)}]ban.west) {lock};
+\pic[scale=1.0] at ([shift={(-0.40,0)}]ban.east) {lock};
+
+% ===== measured effect ===================================================
+\node[subk, anchor=north] at (9.10,1.16)
+  {mask AP \textbf{43.6\,/\,58.6\,/\,69.1} and AP$_{75}$
+   \textbf{47.0\,/\,70.7\,/\,87.4} (inshore\,/\,official\,/\,offshore);
+   inshore AP$_{50}$ moves $+0.7$ while AP$_{75}$ moves $+10.9$};
+
+\end{tikzpicture}
+\end{document}

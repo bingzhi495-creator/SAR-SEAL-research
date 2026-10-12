@@ -1,0 +1,120 @@
+% figm_soup.pdf — same-basin weight soup (Sec. III-B).
+% Upper panel : schematic 1-D slice of the loss landscape, one shared basin,
+%   three seeded minima on its floor, the uniform elementwise average landing
+%   on the flat floor BETWEEN them (not on a barrier).
+% Lower panel : the SHAPE story.  This operator lives in weight space, so the
+%   three inputs and the single output are drawn as the SAME glyph at the SAME
+%   size: three checkpoints in, one checkpoint out, nothing reshaped anywhere.
+%   That is why no tensor in this figure is drawn to the pixel scale of Fig. 1
+%   -- there is no spatial extent in weight space to draw.
+% Facts: sec_method.tex III-B (same COCO init, identical parameter keys,
+%   byte-equal BN buffers, single deterministic checkpoint at 1x cost) and
+%   ALL_TABLES.md T1 rows 1-2.
+% Authored at exactly 8.89 cm = 252 pt = \columnwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasc{8.60}
+
+% ===== the shared basin (light band behind the curve) =====================
+\fill[opsred!5] (2.45,5.55) rectangle (7.15,8.20);
+\node[sub, text=black!60] at (4.80,8.00) {one shared basin};
+
+% ===== axes ===============================================================
+\draw[-{Stealth[length=1.6mm,width=1.3mm]}, draw=black!65, line width=0.6pt]
+  (0.72,5.52) -- (8.74,5.52);
+\draw[-{Stealth[length=1.6mm,width=1.3mm]}, draw=black!65, line width=0.6pt]
+  (0.72,5.52) -- (0.72,8.47);
+\node[sub, anchor=north east] at (8.74,5.47)
+  {$\theta$ \ (1-D slice of weight space)};
+\node[sub, rotate=90] at (0.44,7.07) {$\mathcal{L}(\theta)$};
+
+% ===== loss curve =========================================================
+\draw[line width=1.0pt, datablue] plot[smooth, tension=0.72] coordinates {
+  (0.95,8.33) (1.35,7.55) (1.80,6.85) (2.25,6.37) (2.70,6.08)
+  (3.25,5.96) (3.70,6.04) (4.15,5.97)
+  (4.65,5.93) (5.15,5.95) (5.60,5.97) (6.15,5.95)
+  (6.65,6.12) (7.10,6.47) (7.60,7.25) (8.05,8.07) (8.24,8.45) };
+
+% ===== three seeded minima + the soup ====================================
+\foreach \x/\y in {3.25/5.96, 4.15/5.97, 6.15/5.95} {
+  \fill[datablue] (\x,\y) circle[radius=1.55pt];
+  \draw[white, line width=0.35pt] (\x,\y) circle[radius=1.55pt];
+}
+\node[sub, text=datablue, anchor=south] at (3.11,6.13) {$\theta_{s_0}$};
+\node[sub, text=datablue, anchor=south] at (4.15,6.14) {$\theta_{s_2}$};
+\node[sub, text=datablue, anchor=south] at (6.28,6.12) {$\theta_{s_3}$};
+
+\node[star, star points=5, star point ratio=2.25, fill=opsred, draw=opsred,
+      line width=0.3pt, inner sep=1.7pt] (soupstar) at (4.85,5.94) {};
+\node[sub, text=opsred, anchor=west] at (5.03,6.21) {$\theta^{\star}$};
+
+\node[sub, text=opsred, align=center] (callout) at (5.30,7.14)
+  {the elementwise average lands on\\ the flat basin floor, not a barrier};
+\draw[aux, draw=opsred!70] (4.98,6.86) -- (4.90,6.14);
+
+% =========================================================================
+%  WHAT THE OPERATOR DOES TO SHAPE:  nothing.
+%  Three identical glyphs in, one identical glyph out.
+% =========================================================================
+\draw[grp] (0.06,3.22) rectangle (8.83,5.06);
+\node[grptitle, anchor=north west] at (0.16,5.00)
+  {Shape: three checkpoints in, one out};
+
+\foreach \yy/\lb in {4.42/{$\theta_{s_0}$}, 3.97/{$\theta_{s_2}$},
+                     3.52/{$\theta_{s_3}$}} {
+  \pic[scale=1.0] at (1.20,\yy) {ckpt};
+  \node[sub, anchor=east] at (0.80,\yy) {\lb};
+  \draw[flow] (1.54,\yy) -- (2.22,3.97);
+}
+\node[ops, circle, inner sep=0.6pt, minimum size=6.2mm] (avg) at (2.62,3.97)
+  {$\frac{1}{3}\sum$};
+\draw[flow] (avg.east) -- (3.52,3.97);
+\pic[scale=1.0] at (3.86,3.97) {ckpt};
+\node[sub, anchor=west, text=opsred] at (4.24,3.97) {$\theta^{\star}$};
+
+\node[sub, anchor=north west, text width=38mm, align=left, text=black!75]
+  at (4.90,4.62)
+  {\textbf{shape-preserving.} The output is the \emph{same object} as each
+   input: identical keys and buffers, one file. Nothing is reshaped, so
+   inference stays $1\times$.};
+
+% ===== the operator =======================================================
+\node[ops, minimum width=53mm, minimum height=8mm] (soup) at (4.445,2.62)
+  {\textbf{uniform weight soup}\\[-1pt]
+   $\theta^{\star}=\frac{1}{3}\bigl(\theta_{s_0}+\theta_{s_2}+\theta_{s_3}\bigr)$};
+\node[badgeops] at ($(soup.north west)+(0.26,0)$) {1};
+
+% ===== enabling conditions and cost ======================================
+\node[plain, anchor=north west, text width=38mm, minimum height=10mm]
+  (cond) at (0.06,1.98)
+  {{\footnotesize\bfseries same-basin conditions}\\[-1pt]
+   {\scriptsize same COCO initialization}\\[-2pt]
+   {\scriptsize identical parameter keys}\\[-2pt]
+   {\scriptsize byte-equal BN buffers}};
+\node[plain, anchor=north east, text width=38mm, minimum height=10mm]
+  (cost) at (8.83,1.98)
+  {{\footnotesize\bfseries $1\times$ inference cost}\\[-1pt]
+   {\scriptsize one deterministic checkpoint}\\[-2pt]
+   {\scriptsize computed once, offline}\\[-2pt]
+   {\scriptsize no weight is re-trained}};
+\draw[flow] (2.35,1.98) -- (2.35,2.28);
+\draw[flow] (6.55,2.28) -- (6.55,1.98);
+\node[sub, anchor=west] at (2.46,2.14) {enables};
+\node[sub, anchor=east] at (6.44,2.14) {yields};
+
+% ===== measured effect ====================================================
+\node[subk, anchor=north] at (4.445,0.72)
+  {mask AP under the soup alone (three-seed mean):\\[1pt]
+   27.7\,$\to$\,\textbf{29.6} inshore \quad
+   45.6\,$\to$\,\textbf{47.4} official \quad
+   59.6\,$\to$\,\textbf{61.1} offshore};
+
+\end{tikzpicture}
+\end{document}

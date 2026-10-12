@@ -1,0 +1,207 @@
+% figm_fusion.pdf — consensus-gated mask-IoU vote fusion (Sec. III-D, Alg. 1).
+% Row 1 : the candidate pool drawn as K overlapping 800x800 planes -> the REAL
+%         pairwise mask-IoU matrix with its real clusters boxed -> class-wise
+%         greedy clustering (seeds in score order, tau=0.5) -> the agreement
+%         gate -> the fused instance read-out.
+% Panels: what the gate does TO THE PLANES, drawn rather than named.  On the
+%         yes side |C| planes collapse into a single plane of exactly the same
+%         size (pixel majority); on the no side one plane -- the seed --
+%         survives and the rest are deleted.  Nothing changes shape either
+%         way: 800x800 in, 800x800 out.
+%
+% v3 CHANGE.  The matrix used to be a hand-picked 6x6 of INVENTED values
+% ({100,78,10,6,4,2},...).  It is now the real thing, produced by
+% figs/dump_iou_matrix.py and stored as assets/iou_matrix.png with full
+% provenance in assets/manifest.json and assets/iou_matrix_meta.json:
+%   * the real 8-view wide msTTA path on chip P0101_1200_2000_3000_3800.jpg
+%     (image_id 1528) driven through the actual CocoDataset + cfg.tta_pipeline
+%     + model.test_step + MaskTTAModel._flip_mask_back; pool = 8x100 = 800;
+%   * K = 16, the 16 highest-scoring pooled candidates of the single ship
+%     class (score 0.6896 down to 0.6742), no extra threshold;
+%   * IoU by pycocotools maskUtils.iou on RLEs, cross-checked against exact
+%     dense numpy intersection/union, max |diff| = 0.0;
+%   * tau = 0.50 read from tta_cfg.vote_iou of
+%     carrier/configs/c0_v2_mstta_wide_voteconsensus_hrsid.py;
+%   * greedy clustering gives sizes 6 / 7 / 1 / 2, i.e. index ranges
+%     [0,5] [6,12] [13,13] [14,15] after permuting into cluster order, and
+%     off-block IoU is EXACTLY 0 -- the four objects are disjoint.
+%   * The real data exercises BOTH gate branches: 6 and 2 fall inside
+%     2 <= |C| <= 6 (majority vote), 7 and 1 fall outside (keep the seed).
+%     The cluster boxes below are therefore drawn in two styles, and that
+%     distinction is a measurement, not a decoration.
+% The 176 mm "why a gate" prose banner is reduced to two failure chips; the
+% reasoning is in the caption.
+% Facts: sec_method.tex III-D; ALL_TABLES.md T5 + the band-sweep line.
+% Authored at exactly 18.2 cm = 516 pt = \textwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+% \mplane{x}{y}{side}{frame spec}{hull fill spec}{hull stroke spec}
+\newcommand{\mplane}[6]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \pgfmathsetmacro{\phH}{0.5*#3}
+    \pgfmathsetmacro{\phS}{\phH/0.92}
+    \fill[white] (-\phH,-\phH) rectangle (\phH,\phH);
+    \draw[#4] (-\phH,-\phH) rectangle (\phH,\phH);
+    \begin{scope}[scale=\phS]
+      \fill[#5] \hull;
+      \draw[#6] \hull;
+    \end{scope}
+  \end{scope}}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{8.17}
+
+\def\yM{6.72}                      % main data-flow line
+\pgfmathsetmacro{\sP}{\pxc{800}}   % every mask plane in this figure: 20 mm
+
+% =====================  candidate pool: K planes  ========================
+\maskstack{1.45}{\yM}{800}{4}{datablue}{1}
+\node[sub, anchor=north, align=center] at (1.63,5.42)
+  {candidate pool\\ $K\le800$ planes at $800^2$};
+\draw[flow] (2.95,\yM) -- (3.20,\yM);
+
+% =====================  the REAL pairwise mask-IoU matrix  ===============
+% 16x16 native, embedded from the 608 px nearest-neighbour upscale:
+% 608 px over 16 mm = 965 dpi.  Cell side = 1.6/16 = 0.1 cm.
+\node[inner sep=0pt, outer sep=0pt] at (4.12,\yM)
+  {\includegraphics[width=1.6cm,height=1.6cm]{\assetdir/iou_matrix.png}};
+\draw[black!50, line width=0.5pt] (3.32,5.92) rectangle (4.92,7.52);
+% clusters that PASS the gate (|C| = 6 and 2): solid vermillion
+\draw[opsred, line width=0.9pt] (3.32,7.52) rectangle (3.92,6.92);
+\draw[opsred, line width=0.9pt] (4.72,6.12) rectangle (4.92,5.92);
+% clusters that FAIL the gate (|C| = 7 and 1): dotted gray, thinner
+\draw[black!60, line width=0.6pt, dash pattern=on 1.1pt off 1.0pt]
+  (3.92,6.92) rectangle (4.62,6.22);
+\draw[black!60, line width=0.6pt, dash pattern=on 1.1pt off 1.0pt]
+  (4.62,6.22) rectangle (4.72,6.12);
+\node[sub, text=opsred, anchor=south] at (4.12,7.60)
+  {clusters: \textbf{6} \textbar\ 7 \textbar\ 1 \textbar\ \textbf{2}};
+\node[sub, anchor=north, align=center] at (4.12,5.82)
+  {real mask-IoU $\mathbf{J}$, $K{=}16$ of the\\ 800 pooled candidates};
+\draw[flow] (4.98,\yM) -- (5.30,\yM);
+
+% =====================  greedy clustering  ===============================
+\node[ops, anchor=west, text width=27mm, minimum height=14mm]
+  (clus) at (5.30,\yM)
+  {\textbf{greedy clustering}\\[0.5pt]
+   {\scriptsize seeds in score order}\\[-2pt]
+   {\scriptsize absorb same class, $J_{rj}\ge\tau$}\\[-2pt]
+   {\scriptsize $\tau=0.5$; duplicates deleted}};
+\node[badgeops] at ($(clus.north west)+(0.26,0)$) {3};
+\draw[flow] (8.21,\yM) -- (8.40,\yM);
+
+% =====================  the agreement gate  ==============================
+\node[gate, inner sep=0pt] (gate) at (9.60,\yM) {$2\le|\mathcal{C}|\le6$?};
+\draw[flow] (gate.east) -- (11.00,\yM);
+
+% =====================  read-out  ========================================
+\node[data, anchor=west, text width=24mm, minimum height=14mm]
+  (score) at (11.00,\yM)
+  {\textbf{fused instance}\\[0.5pt]
+   {\scriptsize one plane, still $800^2$}\\[-2pt]
+   {\scriptsize $s^{\mathrm{out}}=s_r(|\mathcal{C}|/V)^{\gamma}$, $\gamma{=}0$}\\[-2pt]
+   {\scriptsize box regenerated from mask}};
+
+% =====================  measured result  =================================
+% v4: the gate-vs-seed comparison used to run on as prose, so the reader had
+% to pick two number triples out of one sentence and align them mentally.
+% They are now set as two rows of one aligned pair of columns, which is the
+% whole comparison in one downward glance.
+% NOT drawn as bars, deliberately: the differences are +0.6 / +0.3 / +0.0 AP,
+% i.e. under 1% of the 0-75 track every other bar in this paper uses, so a
+% bar would be invisible -- and a broken or rescaled axis to make 0.6 points
+% look large is exactly the distortion the style brief forbids.
+\node[plain, anchor=north east, align=left, inner sep=3.5pt, text width=41mm]
+  (res) at (18.10,7.68)
+  {{\footnotesize\bfseries result}\\[0.5pt]
+   {\scriptsize mask AP: inshore/official/offshore}\\[1.5pt]
+   {\scriptsize
+    \begin{tabular}{@{}l@{\hspace{1.6mm}}l@{}}
+      consensus gate & \bfseries 38.8\,/\,53.8\,/\,64.8\\
+      seed-only readout & 38.2\,/\,53.5\,/\,64.8
+    \end{tabular}}\\[1.5pt]
+   {\scriptsize band ceiling $S_{\max}{=}4/5/6$: inshore
+      38.4\,/\,38.6\,/\,38.8; offshore fixed at 64.8}};
+
+% =====================  what the gate does to the planes  ================
+\draw[flowt] (gate.south) -- (9.60,5.15) -- (4.60,5.15) -- (4.60,4.82);
+\draw[flowt] (9.60,5.15) -- (13.60,5.15) -- (13.60,4.82);
+\node[sub, anchor=west, text=opsred] at (4.72,4.99) {yes};
+\node[sub, anchor=west] at (13.72,4.99) {no: $|\mathcal{C}|{=}1$ or $|\mathcal{C}|{>}6$};
+
+\draw[grp] (0.10,0.55) rectangle (18.10,4.82);
+\draw[black!45, densely dotted, line width=0.7pt] (9.10,0.65) -- (9.10,4.72);
+\node[panl, anchor=north west] at (0.20,4.76) {(a)};
+\node[panl, anchor=north west] at (9.20,4.76) {(b)};
+\node[grptitle, anchor=north, align=center, text width=84mm] at (4.60,4.72)
+  {$2\le|\mathcal{C}|\le6$: pixelwise majority vote};
+\node[grptitle, anchor=north, align=center, text width=84mm] at (13.60,4.72)
+  {$|\mathcal{C}|=1$ or $|\mathcal{C}|>6$: keep the seed};
+
+% --- the collapse ---------------------------------------------------------
+\foreach \k in {3,2,1,0} {
+  \pgfmathsetmacro{\ox}{2.02+0.12*\k}
+  \pgfmathsetmacro{\oy}{2.32+0.12*\k}
+  \mplane{\ox}{\oy}{\sP}{datablue!55, line width=0.5pt}
+         {datablue!22}{datablue!80, line width=0.5pt}}
+% v4 CONNECTOR CLEANUP (C8, the item left undone).  The four planes used to
+% send four full-length lines converging on a single point, which read as a
+% fan of independent transports rather than as one merge, and put four
+% different line angles into a figure whose every other connector is
+% orthogonal.  They now leave each plane as a short horizontal stub onto a
+% shared vertical trunk, and ONE arrow leaves the trunk -- the shared-trunk
+% pattern O6 records from the reference TGRS figure.  Bends: 4 obliques -> 4
+% stubs + 1 trunk + 1 arrow, all on the orthogonal grid, zero crossings.
+\foreach \k in {0,1,2,3} {
+  \pgfmathsetmacro{\ox}{3.02+0.12*\k}
+  \pgfmathsetmacro{\oy}{2.32+0.12*\k}
+  \draw[draw=flowink, line width=0.5pt] (\ox,\oy) -- (3.85,\oy);}
+\draw[draw=flowink, line width=0.65pt] (3.85,2.32) -- (3.85,2.68);
+\draw[flow] (3.85,2.50) -- (5.30,2.50);
+% "pixel majority" deleted: the panel title two lines above already reads
+% "2 <= |C| <= 6: pixelwise majority vote".
+\mplane{6.30}{2.50}{\sP}{opsred!70, line width=0.6pt}
+       {opsred!22}{opsred, line width=0.5pt}
+\node[sub, anchor=north, align=center] at (2.30,1.10)
+  {$|\mathcal{C}|$ planes, $800\times800$};
+\node[sub, anchor=north, align=center] at (6.30,1.40)
+  {one fused plane\\ still $800\times800$};
+
+% --- the seed survives ----------------------------------------------------
+\foreach \k in {2,1} {
+  \pgfmathsetmacro{\ox}{11.10+0.12*\k}
+  \pgfmathsetmacro{\oy}{2.50+0.12*\k}
+  \mplane{\ox}{\oy}{\sP}{black!25, line width=0.5pt, densely dotted}
+         {black!6}{black!28, line width=0.5pt}}
+\mplane{11.10}{2.50}{\sP}{datablue!70, line width=0.6pt}
+       {datablue!30}{datablue, line width=0.5pt}
+\node[sub, anchor=west, text=black!45] at (12.48,3.35) {deleted};
+% straightened: the arrow used to rise 0.14 cm across its 2.3 cm run, the
+% only non-level transport in the figure.  "seed m_r kept" is deleted -- the
+% panel title says "keep the seed" and the surviving plane is drawn solid
+% against two dotted ghosts, so the word was the third statement of it.
+\draw[flow] (12.10,2.50) -- (14.40,2.50);
+\mplane{15.40}{2.50}{\sP}{opsred!70, line width=0.6pt}
+       {opsred!22}{opsred, line width=0.5pt}
+\node[sub, anchor=north, align=center] at (11.22,1.10)
+  {seed (solid) $+$ absorbed duplicates};
+\node[sub, anchor=north, align=center] at (15.40,1.40)
+  {one output plane\\ still $800\times800$};
+
+% =====================  the two fusers the gate replaces  ================
+% Reduced from a 176 mm prose banner to two chips; the reasoning is in the
+% caption.  Numbers: ALL_TABLES.md T5.
+\node[warn, anchor=west, inner sep=3pt] at (2.60,0.24)
+  {$\times$ matrix-NMS: inshore \textbf{4.1}};
+\node[warn, anchor=west, inner sep=3pt] at (8.60,0.24)
+  {$\times$ unconditional vote: offshore \textbf{55.9}};
+\node[sub, anchor=east] at (2.50,0.24) {gate replaces:};
+
+\end{tikzpicture}
+\end{document}

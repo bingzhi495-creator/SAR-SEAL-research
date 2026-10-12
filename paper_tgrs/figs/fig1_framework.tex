@@ -1,0 +1,151 @@
+% fig1_framework.pdf -- Fig. 1, Section III overview.
+%
+% v6 (FIGURE_REDESIGN_SPEC 3.1, step S6).  The figure is now ONE message and
+% ONE picture grammar: a single left-to-right pipeline from a real SAR chip to
+% a real output mask stack, cut into three dotted regions (Stage A / Stage B
+% rung 1 / Stage B rungs 2-3).  Squint focus = the consensus-vote block, the
+% only heavy SOLID vermillion frame with a filled vermillion ground in the
+% whole figure (H10 / SPEC 2.3).
+%
+% DELETED in v6, each with its rule (SPEC 3.1 "要删除的元素"):
+%   1. \apgroup x6 (18 AP numbers), the 0-75 \baxis and the dagger footnote  H1
+%   2. the three \draw[brace] and the four error-axis notes                  H4
+%   3. the whole "Inside the frozen base" expansion band  -> fig1b_readout   A1
+%   4. the five \legendswatch rows at the foot (colour key -> caption)       H4
+%   5. the five numbered badges (\badgecar/\badgeops/\badgetrn)              P3
+%   6. the second lock glyph and the three \ckpt slabs                       P3
+%   7. every 3rd/4th line of every block (hyper-parameters, timings,
+%      parameter counts, the \safefrac formula)                          H2/H3
+% The only numbers left are counts and one tensor shape: "3 seeds",
+% "800x800", the rung indices 1 and 2--3.  No AP, no epoch, no runtime.
+%
+% REAL DATA (SPEC 2.5).  Both rasters are the actual tensors of one forward
+% pass of runs/c0_maskiou_v2/soup_s023/iter_100872.pth on HRSID inshore chip
+% P0101_1200_2000_3000_3800.jpg (image_id 1528), dumped by
+% carrier/dump_figure_assets.py; provenance in assets/manifest.json.  Both are
+% 800 px drawn at 20.0 mm = 1016 dpi, embedded through \assetdir.
+%
+% Authored at exactly 18.2 x 4.00 cm = 516 x 113.4 pt = \textwidth, 4.55:1
+% -> \includegraphics[width=\textwidth] inside figure*[!t], scale 1.0, so
+% \footnotesize is a true 8 pt and \scriptsize a true 7 pt on the page.
+%
+% THREE DOCUMENTED DEVIATIONS from the letter of SPEC 3.1 (all forced by a
+% measured collision or by a SPEC 4.2 gate; see the S6 report):
+%   D1  dash budget.  SPEC 2.2 allows exactly two dash patterns per figure
+%       (trn's 2/1.2 pt and grp's densely dotted); tikz_style_v5's carrier
+%       style adds a third (2.6/1.2 pt).  The carrier is folded onto the trn
+%       pattern and stays separable by weight (0.5 vs 0.8 pt) and hue
+%       (vermillion vs green); its fill goes white so the consensus operator
+%       is the only FILLED vermillion block on the rung-1 strip.
+%   D2  colour budget (<= 10 distinct vector colours).  The chip frame moves
+%       from black!55 to datablue!60, the colour the output tensor pile
+%       already uses, so input and output raster share one "data" hue; and
+%       the grp frame moves from black!40 to frozgray, which SPEC 2.3 already
+%       assigns to chrome.  Net: 13 colours -> 10.
+%   D3  two labels do not fit the SPEC 3.1 box widths in 8/7 pt Times
+%       (measured, not estimated).  "Boundary refiner" is 59.19 pt = 2.08 cm
+%       against a 2.00 cm box, so that block grows to 22.5 mm and the two
+%       blocks to its right shift 0.25 cm right (all gaps stay at the spec
+%       0.25/0.30 cm and the canvas is unchanged).  "input space, 8 views" is
+%       56.59 pt = 1.99 cm against an 18 mm box, so the count is dropped and
+%       the sub-label reads "input space", keeping the weight/input/output
+%       space parallel that carries the message; "eight-view" is already in
+%       the caption.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style_v5}
+
+% ---- the three local overrides of D1/D2 above, and one stroke-budget fix --
+% tikz_style.tex draws the lock shackle at 0.65 pt, a third line weight;
+% SPEC 2.2 allows 0.5 / 0.8 only, so the glyph is restated at 0.5 pt.
+\tikzset{
+  carrier/.append style={fill=white, dash pattern=on 2pt off 1.2pt},
+  grp/.append style     ={draw=frozgray},
+  lock/.pic={
+    \fill[frozgray] (-0.105,-0.105) rectangle (0.105,0.055);
+    \draw[frozgray, line width=0.5pt]
+      (-0.060,0.055) -- (-0.060,0.105)
+      arc[start angle=180, end angle=0, radius=0.060] -- (0.060,0.055);
+    \fill[white] (0,-0.022) circle[radius=0.020];
+  },
+}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{4.00}
+
+\def\yS{2.30}      % the one strip height: every block and both rasters
+\def\yG{2.90}      % baseline of the three region names
+
+% =========================================================================
+%  REGIONS (H9): three dotted containers, names set outside, nesting = 1
+% =========================================================================
+\draw[grp] (2.35,1.75) rectangle (4.95,2.85);
+\draw[grp] (5.05,1.75) rectangle (11.35,2.85);
+\draw[grp] (11.40,1.75) rectangle (15.65,2.85);
+\node[grptitle, anchor=south] at (3.65,\yG) {Stage A: frozen base};
+\node[grptitle, anchor=south] at (8.20,\yG) {Stage B, rung 1: training-free};
+\node[grptitle, anchor=south] at (13.40,\yG)
+  {Stage B, rungs 2--3: trained correctors};
+
+% =========================================================================
+%  INPUT -- the real 800 x 800 model input (assets/chip.png, 1016 dpi)
+% =========================================================================
+\realpanel{1.15}{\yS}{800}{1}{chip.png}{datablue!60, line width=0.5pt}
+\node[sub, anchor=north] at (1.15,1.22) {SAR chip\\ $800\times800$};
+
+% =========================================================================
+%  STAGE A -- the frozen base.  One lock in the whole figure (SPEC 2.3).
+% =========================================================================
+\node[froz, minimum width=24mm, minimum height=9mm, inner xsep=1.5pt]
+  (base) at (3.65,\yS)
+  {\textbf{Mask2Former--R50}\\[0.5pt]
+   {\scriptsize frozen, 3 seeds}};
+\fill[white] ([shift={(-0.20,-0.10)}]base.north east)
+             rectangle ([shift={(0,0.08)}]base.north east);
+\pic[scale=0.85] at ([shift={(-0.10,-0.01)}]base.north east) {lock};
+
+% =========================================================================
+%  STAGE B, RUNG 1 -- two carriers (established practice) feeding the one
+%  operator this article contributes.
+% =========================================================================
+\node[carrier, minimum width=18mm, minimum height=9mm] (soup) at (6.05,\yS)
+  {\textbf{Weight soup}\\[0.5pt] {\scriptsize weight space}};
+\node[carrier, minimum width=18mm, minimum height=9mm] (tta) at (8.10,\yS)
+  {\textbf{Wide TTA}\\[0.5pt] {\scriptsize input space}};
+\node[ops, minimum width=20mm, minimum height=9mm, inner xsep=2pt]
+  (vote) at (10.25,\yS)
+  {\textbf{Consensus vote}\\[0.5pt] {\scriptsize output space}};
+
+% =========================================================================
+%  STAGE B, RUNGS 2-3 -- trained correctors on disjoint write fields
+% =========================================================================
+\node[trn, minimum width=22.5mm, minimum height=9mm, inner xsep=2pt]
+  (ref) at (12.625,\yS)
+  {\textbf{Boundary refiner}\\[0.5pt] {\scriptsize writes mask pixels}};
+\node[trn, minimum width=15.5mm, minimum height=9mm] (rr) at (14.775,\yS)
+  {\textbf{Re-ranker}\\[0.5pt] {\scriptsize writes scores}};
+
+% =========================================================================
+%  OUTPUT -- the real fused instance masks (assets/pred_masks.png, 1016 dpi)
+% =========================================================================
+\pic (out) at (16.85,\yS)
+  {tensorpile={px=800, ch=3, color=datablue, img=pred_masks.png}};
+\node[sub, anchor=north] at (16.85,1.22) {instances\\ $\{(\mathbf{m},s)\}$};
+
+% =========================================================================
+%  ONE connection idiom: 0.5 pt Stealth flow arrows, all on one baseline
+% =========================================================================
+\draw[flow] (2.15,\yS)   -- (base.west);
+\draw[flow] (base.east)  -- (soup.west);
+\draw[flow] (soup.east)  -- (tta.west);
+\draw[flow] (tta.east)   -- (vote.west);
+\draw[flow] (vote.east)  -- (ref.west);
+\draw[flow] (ref.east)   -- (rr.west);
+\draw[flow] (rr.east)    -- (out-west);
+
+\end{tikzpicture}
+\end{document}

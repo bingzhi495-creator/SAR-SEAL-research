@@ -1,0 +1,279 @@
+% =========================================================================
+% Section IV: EXPERIMENTS — restructured 2026-08-07 per REVIEW_LIUQK.md
+% (#20-#27) and _RESTRUCTURE_MAP.md. Order: A Dataset / B Implementation
+% Details / C Evaluation Setting / D Comparison with SOTA (quantitative +
+% qualitative) / E Ablation Study / F Transfer and Universality / G What
+% Did Not Help.
+% Every number is taken verbatim from E:/SAR/seal/docs/ALL_TABLES.md
+% (T1-T11), tab_univ.tex, or the audited v27 text (_v27_backup/sec_exp.tex,
+% _v27_backup/sec_method.tex); no number is new.
+% Removed floats are parked verbatim in _figures_park.tex (not compiled).
+% Labels kept for cross-file stability: sec:exp:setup (now Implementation
+% Details), sec:exp:sota, sec:exp:main, sec:exp:fusion, sec:exp:arch
+% (referenced by tab_univ.tex), sec:exp:bpr + sec:exp:rerank (both on the
+% merged correctors subsection), sec:exp:qual, sec:exp:ssdd, sec:exp:univ,
+% tab:main (referenced by tab_univ.tex).
+% Revised 2026-09-03 per docs/TGRS_SUBMISSION_REVIEW.md: fig:qual removed (P0-15),
+% tab_fafn + tab_soupn \input here, new label sec:exp:carriers.
+% =========================================================================
+
+\section{Experiments}\label{sec:exp}
+
+Sections~\ref{sec:exp:dataset}--\ref{sec:exp:eval} fix the experimental protocol, and Section~\ref{sec:exp:sota} compares with the state of the art. Section~\ref{sec:exp:ablation} ablates the contributions in order. Section~\ref{sec:exp:univ} transfers the recipe to PSeg-SSDD and six further carrier--dataset pairs, and Section~\ref{sec:exp:whatnot} records the directions that did not help.
+
+\subsection{Dataset}\label{sec:exp:dataset}
+
+HRSID \cite{hrsid2020} comprises 5604 SAR chips of $800\times800$ pixels with instance-level mask annotations, split into 3642 training and 1962 test images. Following the inshore/offshore protocol of prior work \cite{o2former2025}, the official test set is additionally partitioned into 369 inshore and 1593 offshore images. We report all three splits throughout; the inshore split is where the open problem lives. Cross-dataset experiments use PSeg-SSDD, with 928 training and 232 test images at $512\times512$; its test set divides into 46 inshore and 186 offshore scenes under the same protocol \cite{o2former2025}.
+
+\subsection{Implementation Details}\label{sec:exp:setup}
+
+The base model, denoted c0, is a standard Mask2Former (M2F) \cite{mask2former2022} with a ResNet-50 backbone and 100 queries, initialized from COCO instance-segmentation weights; an auxiliary mask-IoU rescoring head is disabled ($\lambda=0$), its gain being subsumed by the soup (Section~\ref{sec:exp:arch}). On HRSID the base is fine-tuned at $800\times800$ with AdamW at an initial learning rate of $2.5\times10^{-5}$ with step decay, batch size 2 with 2-step gradient accumulation (effective batch 4), for 100\,872 iterations, i.e., 55 epochs over the 3642-image training split; on PSeg-SSDD the same protocol, at batch 4 without accumulation (the same effective batch), runs for 8352 iterations, i.e., 36 epochs over the 928-image split, all on a single NVIDIA RTX 3090\,Ti. The wide-TTA view set on HRSID is $\{640,800,960,1088\}\times\{\mathrm{identity},\mathrm{flip}\}$; on PSeg-SSDD the scales rescale to $\{416,512,608,704\}$ in proportion to the smaller chips, and the consensus band $2\le|\mathcal{C}|\le S_{\max}=6$ is carried over unchanged.
+
+The boundary-patch refiner of Section~\ref{sec:bpr} is trained on square boundary patches of side 64, upscaled $2\times$; its 20 epochs take about 19 minutes on HRSID. The re-ranker is a histogram-based gradient-boosted regression tree (300 boosting iterations, learning rate 0.08, least-squares loss) fitted on 51\,781 candidate rows from the 3642 HRSID training images (5122 rows from 928 on PSeg-SSDD) in 19\,s (9\,s) on CPU. Its blend weight $\alpha$ is swept over $\{0.3,0.5,1.0\}$ on a 4:1 image-identifier partition of the training split, landing at $\alpha=0.5$ on HRSID and $\alpha=1.0$ on PSeg-SSDD, after which the regressor is refitted on all rows; on the held-out training images its prediction tracks the realized mask IoU at a Spearman rank correlation of 0.68 on HRSID and 0.86 on PSeg-SSDD. The measured end-to-end cost of the full method is approximately $8\times$ a single-view pass. Within it, fusion adds one Gram product over $K\le800$ binary masks, the refiner a per-instance boundary-patch pass, and the re-ranker one tree evaluation per instance. Flip TTA on the Cascade R-CNN carrier of Section~\ref{sec:exp:univ} required a parameter-free repair of an mmdetection mask-head merge routine, output-identical to the stock head on non-flipped pipelines.
+
+\subsection{Evaluation Setting}\label{sec:exp:eval}
+
+Every number in this section is COCO mask AP $\times$100, reported to one decimal, on the official, inshore, and offshore splits. The base was trained with three independent seeds (s0/s2/s3). Across them the single-model base scores 27.7$\pm$0.0 inshore, 45.7$\pm$0.2 official, and 59.8$\pm$0.3 offshore (mean$\pm$sample s.d.). Single-seed differences within this 0.3-AP band are treated as noise. The ladders print the seed-$s_0$ checkpoint, 27.7/45.6/59.6, as their base row and quote increments over it. Inference is deterministic: the refiner re-run reproduces all reported figures to four decimals and the re-ranker regenerates its outputs byte-identically, so the cascade adds no stochastic stage of its own. The refiner's training seed is the one remaining source of variation, worth at most 0.5 point (Section~\ref{sec:exp:bpr}). Every Mask2Former configuration of ours is evaluated at its final training iteration; the validation hook monitors the official test split for logging only and selects no checkpoint. The exceptions are marked where they occur: the 200-epoch control of Section~\ref{sec:exp:arch}, and the competitor rows of Section~\ref{sec:exp:ssddcmp}, which also serve as the PSeg-SSDD carriers of Section~\ref{sec:exp:carriers}. Where a confidence interval is quoted, it comes from a paired percentile bootstrap over test images. Each of 1000 resamples draws images with replacement and both configurations are re-scored on the same resample; the 2.5th and 97.5th percentiles of the paired AP difference form the interval. The provenance of every competitor row is stated in the caption and footnote of its table.
+
+\emph{Hyperparameter selection.} The settings of the training-free rung, namely the mask-IoU threshold $\tau=0.5$, the band ceiling $S_{\max}=6$, the exponent $\gamma=0$, the eight-view scale set, and the choice of fusion operator (Section~\ref{sec:exp:fusion}), were fixed by sensitivity sweeps on the three HRSID test splits; no held-out split was used. Two facts bound the optimism this introduces. First, the sweep surface is flat: $S_{\max}=4/5/6$ gives inshore 38.4/38.6/38.8 with offshore unchanged at 64.8, a 0.4-point spread. Second, the settings were then frozen and carried to PSeg-SSDD with only the view scales rescaled to the chip size, and to six further carriers with no retuning, and every one of those endpoints improved (Sections~\ref{sec:exp:ssdd} and \ref{sec:exp:carriers}). The re-ranker's blend weight, the one swept setting of the learned tiers, is chosen on a held-out partition of the training split (Section~\ref{sec:exp:setup}), not on test images. A training-side re-sweep could not have improved the choice. On a fixed random 20\% of the HRSID training images (728 chips the model had seen), the souped eight-view stack scores 57.6 for every $S_{\max}\in\{4,5,6,7\}$, and $\tau=0.4/0.5/0.6$ gives 57.7/57.6/57.4. On images it was fitted to, the model seldom disagrees with itself across views, so the band ceiling never engages there; only the test splits expose the small differences.
+
+\subsection{Comparison With State-of-the-Art Methods}\label{sec:exp:sota}
+
+% Merged inshore+offshore SOTA table (review notes #24/#26); replaces the
+% former tab:sota_in / tab:sota_off pair (parked in _figures_park.tex).
+\begin{table*}[!t]
+\caption{Comparison With State-of-the-Art Methods on the HRSID Inshore and Offshore Splits (Mask AP $\times$100). Competitor Rows as Reported; ``Scratch'' Denotes an ImageNet Backbone With a From-Scratch Segmentation Head; ``n/r'' Denotes Not Reported}
+\label{tab:sota}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccccccccc}
+\toprule
+& & & & \multicolumn{4}{c}{Inshore} & \multicolumn{4}{c}{Offshore} \\
+\cmidrule(lr){5-8}\cmidrule(lr){9-12}
+Method & Init & Epochs & Infer. & AP & AP$_{50}$ & AP$_{75}$ & AP$_s$ & AP & AP$_{50}$ & AP$_{75}$ & AP$_s$ \\
+\midrule
+Full method $+$ BPR $+$ re-ranking (ours) & COCO & $3\times55$ & $\sim$8$\times$ & \textbf{44.5} & 76.7 & \textbf{48.3} & \textbf{42.0} & 70.1 & \textbf{98.6} & 88.0 & 69.4 \\
+Full method $+$ BPR (ours) & COCO & $3\times55$ & $\sim$8$\times$ & 43.6 & 76.3 & 47.0 & 41.4 & 69.1 & \textbf{98.6} & 87.4 & 68.7 \\
+O2Former$^{\dagger}$ \cite{o2former2025} & scratch & 500 & 1$\times$ & 43.1 & 69.5 & 45.9 & 39.9 & \textbf{71.7} & 97.5 & \textbf{91.0} & \textbf{71.1} \\
+DiffSARShipInst$^{\ddagger}$ \cite{diffsar2025} & n/r & n/r & 1$\times$ & 42.6 & 76.1 & 44.1 & 40.3 & 70.9 & 97.8 & 90.0 & 70.3 \\
+Gaussian-Heatmap$^{\S}$ \cite{gaussheatmap2024} & n/r & n/r & 1$\times$ & 42.5 & \textbf{79.1} & 39.9 & 41.0 & 68.0 & 97.7 & 85.1 & 67.4 \\
+RTMDet$^{\dagger}$ \cite{rtmdet2022} & scratch & 500 & 1$\times$ & 40.4 & 75.9 & 38.7 & 39.3 & 67.4 & 97.7 & 83.7 & 66.8 \\
+HQ-ISNet$^{\dagger}$ \cite{hqisnet2020} & scratch & 500 & 1$\times$ & 39.6 & 72.5 & 41.0 & 39.0 & 67.9 & 97.5 & 87.1 & 66.5 \\
+Full method, training-free (ours) & COCO & $3\times55$ & $\sim$8$\times$ & 38.8 & 75.6 & 36.1 & 35.8 & 64.8 & 98.5 & 81.7 & 64.1 \\
+Cascade Mask R-CNN$^{\dagger}$ \cite{cascadercnn2021} & scratch & 500 & 1$\times$ & 35.6 & 59.1 & 40.1 & 32.6 & 67.4 & 96.8 & 85.7 & 66.7 \\
+Mask R-CNN$^{\dagger}$ \cite{maskrcnn2017} & scratch & 500 & 1$\times$ & 34.0 & 56.5 & 38.3 & 31.0 & 65.3 & 95.8 & 83.4 & 64.5 \\
+c0 base, seed $s_0$ (ours) & COCO & 55 & 1$\times$ & 27.7 & 61.8 & 22.1 & 24.3 & 59.6 & 97.2 & 71.2 & 58.6 \\
+Mask2Former$^{\dagger}$ \cite{mask2former2022} (their baseline) & scratch & 500 & 1$\times$ & 17.9 & 36.9 & 16.2 & 14.7 & 60.6 & 95.2 & 74.9 & 59.5 \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}
+\parbox{\textwidth}{\footnotesize Bold denotes the best value in each column; ties at one decimal are both marked. All methods use a ResNet-50 backbone where reported. Epochs: training budget, $3\times55$ denoting three 55-epoch seeds averaged into one weight soup. Infer.: inference cost relative to one single-view pass; competitor rows report single-view inference or no test-time augmentation and are entered as $1\times$. $^{\dagger}$As tabulated by O2Former \cite{o2former2025}, Table~3; not re-evaluated by us. $^{\ddagger}$Primary source paywalled; figures relayed via O2Former's table, cross-checked against the article abstract. $^{\S}$From \cite{gaussheatmap2024}, Table~II; protocol not reported.}
+\end{table*}
+
+\subsubsection{Comparison With Published Methods on HRSID}
+
+Table~\ref{tab:sota} compares against the reported HRSID inshore and offshore results under the same split protocol; competitor rows are as reported, sources in the footnote. The offshore AP$_{50}$ of 97.8 and AP$_{75}$ of 90.0 relayed for DiffSARShipInst \cite{diffsar2025} have, to our knowledge, not been independently reproduced.
+
+With both correctors, inshore reaches 44.5 AP, 48.3 AP$_{75}$, and 42.0 AP$_s$, +1.4, +2.4, and +2.1 over O2Former, the strongest reported method; the refiner tier alone already leads these columns. The training-free stack posts 75.6 inshore AP$_{50}$ against O2Former's 69.5, but its inshore AP of 38.8 and AP$_{75}$ of 36.1 trail their 43.1 and 45.9: it recovers detections, not boundaries. Offshore, the cascade trails the two strongest specialized methods (70.1 against 71.7 and 70.9), although its AP$_{50}$ of 98.6 is the highest in the table. No competitor reports the official split; Section~\ref{sec:exp:main} gives our figures there.
+
+One caveat dominates: the two row groups are not at the same operating point. The competitor protocol trains segmentation heads from scratch for 500 epochs on an ImageNet backbone; we fine-tune a COCO-initialized model for 55 epochs. The same Mask2Former scores 17.9 inshore under their protocol and 27.7 under ours, a 9.8-point separation before any contribution of this article (Section~\ref{sec:exp:arch}). The defensible claims are the same-base recovery of Section~\ref{sec:exp:main} and the two audited correctors stacked on it.
+
+% SSDD self-trained comparison table (double-column float declared ahead of
+% its prose so it lands on or next to the citing page).
+\begin{table*}[!t]
+\caption{Comparison With Six Independently Trained Methods on PSeg-SSDD (Mask AP $\times$100). Every Row, Competitors Included, Was Trained and Scored by Us Under One Evaluator. Rows Are Ordered by Inshore AP}
+\label{tab:ssdd_cmp}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llccccc}
+\toprule
+Method & Family & Init & Epochs & Inshore & Official & Offshore \\
+\midrule
+YOLACT \cite{yolact2019} & single-stage prototype & ImageNet & 55 (best@31) & 38.9 & 55.7 & 63.4 \\
+Mask R-CNN \cite{maskrcnn2017} & two-stage region-based & ImageNet & 50 (best@41) & 40.8 & 57.8 & 65.1 \\
+Mask R-CNN $+$ DCN \cite{dcnv22018} & two-stage $+$ deformable conv.\ (DCN) & ImageNet & 50 (best@19) & 41.0 & 57.8 & 64.6 \\
+CondInst \cite{condinst2020} & single-stage dynamic kernel & COCO & 36 (best@36) & 41.2 & 54.3 & 60.1 \\
+M2F $+$ DenoDet-style NDM (our reimpl.)$^{\ast}$ \cite{denodetv22026} & query-based $+$ SAR module & COCO & 36 (best@27) & 52.9 & 60.5 & 63.7 \\
+M2F $+$ OAEM (our reimpl.)$^{\ast}$ \cite{o2former2025} & query-based $+$ SAR module & COCO & 36 (best@36) & 53.2 & 60.8 & 64.0 \\
+\quad $+$ stack (1 seed) & $+$ training-free stack & COCO & 36 (best@36) & 54.3 & 60.6 & 63.3 \\
+\quad $+$ stack $+$ BPR (1 seed) & $+$ boundary refiner & COCO & 36 (best@36) $+$20 BPR & 59.9 & 64.2 & 66.1 \\
+\midrule
+Soup base (ours) & query-based, unmodified & COCO & $3\times36$ & 51.9 & 60.9 & 64.8 \\
+Full method (ours) & $+$ training-free stack & COCO & $3\times36$ & 54.0 & 63.3 & 66.9 \\
+Full method $+$ BPR (ours) & $+$ boundary refiner & COCO & $3\times36$ $+$20 BPR & 60.0 & 66.3 & 68.8 \\
+Full method $+$ BPR $+$ re-ranking (ours) & $+$ learned re-ranking & COCO & $3\times36$ $+$20 BPR & \textbf{62.1} & \textbf{67.5} & \textbf{69.8} \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}
+\parbox{\textwidth}{\footnotesize Bold denotes the best value in each column. All rows were fine-tuned on the identical 928-image training split and scored with the identical COCO evaluator at $512\times512$; the ImageNet-initialized group received the larger epoch budget. Checkpoints: all competitor rows use their best-on-test checkpoint, the epoch in parentheses, and the two reimplemented rows were selected on the inshore split they lead; our rows are the final iteration, which favors the competitors. $^{\ast}$No public code exists for either module, so these two rows are our own reimplementation of the described modules on our Mask2Former carrier; they measure that reimplementation, not the original systems. The two rows beneath the OAEM row apply our recipe to that same OAEM checkpoint: the training-free stack, then a refiner fitted on its own training-split predictions (8013 patches, 20 epochs); single seed, no soup. For reference, O2Former reports on this dataset, under its own 500-epoch from-scratch protocol, a Mask2Former baseline of 52.5 inshore and 67.2 offshore, and 55.2 and 71.0 with OAEM added \cite{o2former2025}. Three further methods were run and excluded: SOLO diverged, PointRend and InstaBoost were trained at $1333\times800$ but tested at $512\times512$ (a resolution artifact), and FreqFusion collapsed in its own training log.}
+\end{table*}
+
+% False-alarm / missed-detection accounting (auto-generated tab_fafn.tex,
+% label tab:fafn); cited in Section IV-D2 (P0-15).
+\input{tab_fafn}
+
+\subsubsection{Comparison Under One Protocol on PSeg-SSDD}\label{sec:exp:ssddcmp}
+
+PSeg-SSDD is small enough to retrain competitors on our own hardware, so every row of Table~\ref{tab:ssdd_cmp} is ours: six methods spanning four families under one protocol. The four generic architectures cluster between 38.9 and 41.2 inshore, whereas the two SAR-specific modules jump to 52.9 and 53.2, so on this dataset the near-shore regime, not the choice of segmentation head, sets the level. One selection detail is disclosed, not corrected: every competitor row is its best-on-test checkpoint (Epochs column), whereas our rows are the final iteration. The two reimplemented rows were selected on the inshore split they lead, so their inshore entries are upper bounds. Our unmodified soup base already reaches 51.9 inshore with no SAR-specific component, the training-free stack passes both specialized rows on all three splits at 54.0/63.3/66.9, and with both correctors the margins are +8.9 inshore over the strongest competitor, +6.7 official, and +4.7 offshore over Mask R-CNN. The recipe also lifts the OAEM carrier itself: the stack takes it from 53.2/60.8/64.0 to 54.3/60.6/63.3 and the refiner to 59.9/64.2/66.1. That is a composed +6.7 inshore, with inshore AP$_{75}$ rising from 55.9 to 74.9. The SAR-specific module thus neither blocks the recipe nor is needed by it: the unmodified soup base with the same two rungs stays ahead at 60.0/66.3/68.8. The stack's small official and offshore losses on this carrier ($-$0.2 and $-$0.7) are the erosion of already stable predictions that Section~\ref{sec:exp:fusion} describes.
+
+A detection-level re-reading with greedy score-descending matching at mask IoU $\ge0.5$ (Table~\ref{tab:fafn}) confirms that the margin is not an artifact of the AP integral. At a fixed 0.30 score threshold the refined method detects 169 of the 172 inshore ships ($P_d=0.983$) against 159 ($P_d=0.924$) for the better specialized row, and it reads $F_1^{*}=0.902$ against 0.882 at each method's own optimal threshold. Offshore is saturated, all three detecting 369 of the 374 ships. In the precision-recall curves of Fig.~\ref{fig:pr}, the refined pipeline is the only method of the eight that reaches full recall at nonzero precision at IoU $=0.50$, where it reads 95.7 against a competitor best of 92.2, and at IoU $=0.75$ it leads at 72.5 against a competitor best of 58.8: the training-free operators recover detections, and the boundary refiner converts them into strict-overlap accuracy.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figs/fig_pr_ssdd}
+\caption{Precision-recall curves on the PSeg-SSDD inshore split, recomputed from the Table~\ref{tab:ssdd_cmp} dumps before the learned re-ranking, at (a) IoU $=0.50$ and (b) IoU $=0.75$. Our three variants are labelled at the curve ends; the five competitors form generic (light gray) and SAR-specific (dark gray) tiers, named in (a)'s legend. The shaded band in (b) is the refiner's gap. Per-method AP: Table~\ref{tab:ssdd_cmp}. Offshore curves are omitted (saturated).}
+\label{fig:pr}
+\end{figure}
+
+% Qualitative floats (two double-column figures) declared ahead of the
+% subsubsection that cites them, in citation order: fig8, fig7b. The former
+% one-row ladder figure (fig6_qual_hrsid_1row, label fig:qual) was removed on
+% 2026-09-03 (P0-15): same 88-ship scene as row (b) of fig:univ-qual.
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.63\textwidth]{figs/fig8_qual_hrsid_multi}
+\caption{Qualitative comparison on three HRSID test scenes (0.3 score display threshold, mask IoU $\geq 0.5$ matching). Green solid contours are true positives, orange dash-dot contours with a centroid dot false alarms, and yellow dashed contours missed targets. Columns: SAR image with ground truth, Mask R-CNN, Cascade Mask R-CNN, the training-free stack, $+$ boundary-patch refiner, $+$ learned re-ranker. Rows (a) and (b) are inshore harbors; row (c) is offshore, with an inset on the most disputed hull.}
+\label{fig:qual-hrsid-multi}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.86\textwidth]{figs/fig7b_qual_ssdd8}
+\caption{Qualitative comparison of the eight PSeg-SSDD methods of Table~\ref{tab:ssdd_cmp} on three test scenes (0.3 score display threshold, mask IoU $\geq 0.5$ matching; color coding as in Fig.~\ref{fig:qual-hrsid-multi}; column names printed in the figure). Rows (a) and (b) are inshore scenes; row (c) is offshore, where every method detects every ship and the inset magnifies the hull with the largest inter-method mask-IoU spread.}
+\label{fig:qual-ssdd8}
+\end{figure*}
+
+\subsubsection{Qualitative Comparison}\label{sec:exp:qual}
+
+Figure~\ref{fig:qual-hrsid-multi} puts the cascade and two detectors trained under our own protocol, Mask R-CNN and Cascade Mask R-CNN, on the same HRSID scenes. SOLOv2 \cite{solov22020}, the weakest at 19.0 inshore (Section~\ref{sec:exp:carriers}), is omitted for width. Scene selection is programmatic and favors us by construction. Per inshore test image the stronger competitor is the one with fewer visible errors, counted as missed targets plus half its false alarms. Images are ranked by the reduction of that count to our final column, ties broken by the false-alarm difference, and the two top-ranked scenes are shown. The offshore scene is the error-free one with the largest inter-method mask-IoU spread. On the 95-ship chip of row (a) the training-free stack finds 66 ships against 23 and 28 for the competitors at comparable false-alarm counts. Across the two inshore rows it finds 1.9 to 2.9 times as many targets, the signature of recall recovery, not of a lowered threshold. In the offshore row (c), solved by every method, mask quality alone separates the competitors (0.782 and 0.777 mean matched IoU) from the stack at 0.828 and both correctors at 0.873. The competitor columns are trained at our budget, so this says nothing about the reported systems of Table~\ref{tab:sota}.
+
+Figure~\ref{fig:qual-ssdd8} extends the comparison to the eight PSeg-SSDD methods of Table~\ref{tab:ssdd_cmp}, with scenes selected by the same rule, and the honest reading of it is narrower than the table margins. Exactly one of the 46 inshore test scenes yields a strictly positive count gain for our columns over the best competitor: the 13-ship quay of row (a), which both of our columns sweep at 13 of 13. Row (b) is a count tie that separates on matched IoU. Row (c) is a tie for all eight methods, with the refined column leading on mean matched IoU at 0.898 against a competitor best of 0.888. On the easier dataset the specialized baselines sit close to detection saturation, so the margin the recipe carries there lives at the mask level and in the ranking, exactly where Sections~\ref{sec:exp:bpr} and \ref{sec:exp:ssdd} put it.
+
+\subsection{Ablation Study}\label{sec:exp:ablation}
+
+% Main progressive-ladder table (moved here from the former "Main Results"
+% per review note #23; label tab:main kept, it is referenced by tab_univ.tex).
+\begin{table*}[!t]
+\caption{Progressive Recovery Ladder on HRSID (Mask AP $\times$100). Each Row Adds One Operator to the Previous Row; No Row Retrains or Modifies the Base. Full COCO Metrics Are Reported for the Three Audited Endpoints}
+\label{tab:main}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccccccccc}
+\toprule
+& & & \multicolumn{3}{c}{Inshore} & \multicolumn{3}{c}{Official (full)} & \multicolumn{3}{c}{Offshore} \\
+\cmidrule(lr){4-6}\cmidrule(lr){7-9}\cmidrule(lr){10-12}
+Configuration & Train.\ cost & Infer.\ cost & AP & AP$_{50}$ & AP$_{75}$ & AP & AP$_{50}$ & AP$_{75}$ & AP & AP$_{50}$ & AP$_{75}$ \\
+\midrule
+c0 base, COCO-init M2F-R50 (seed $s_0$) & 55 ep & $1\times$ & 27.7 & 61.8 & 22.1 & 45.6 & 81.9 & 49.4 & 59.6 & 97.2 & 71.2 \\
+$+$ weight soup (avg.\ of s0/s2/s3) & 0 & $1\times$ & 29.6 & -- & -- & 47.4 & -- & -- & 61.1 & -- & -- \\
+$+$ 6-view multi-scale TTA $\{736,800,864\}\times$flip & 0 & $\sim6\times$ & 36.1 & -- & -- & 52.5 & -- & -- & 64.4 & -- & -- \\
+$+$ wide 8-view TTA $\{640,800,960,1088\}\times$flip, box-NMS & 0 & $\sim8\times$ & 37.1 & -- & -- & 52.6 & -- & -- & 64.2 & -- & -- \\
+$+$ consensus-vote fusion (full method: carriers $+$ operator) & 0 & $\sim8\times$ & 38.8 & 75.6 & 36.1 & 53.8 & 89.4 & 62.2 & 64.8 & 98.5 & 81.7 \\
+\midrule
+$+$ BPR refiner (trained corrector, Sec.~\ref{sec:exp:bpr}) & 19 min & $\sim8\times+\varepsilon$ & 43.6 & 76.3 & 47.0 & 58.6 & 89.9 & 70.7 & 69.1 & \textbf{98.6} & 87.4 \\
+$+$ learned re-ranking (trained corrector, Sec.~\ref{sec:exp:rerank}) & 19 s & $\sim8\times+\varepsilon$ & \textbf{44.5} & \textbf{76.7} & \textbf{48.3} & \textbf{59.4} & \textbf{90.1} & \textbf{71.4} & \textbf{70.1} & \textbf{98.6} & \textbf{88.0} \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}
+\parbox{\textwidth}{\footnotesize Bold denotes the best value in each column; ties at one decimal are both marked. ``--'': full metrics are logged only for the three audited endpoints. The upper block is the training-free full method; the two lower rows are the optional trained correctors.}
+\end{table*}
+
+\subsubsection{Progressive Recovery Ladder}\label{sec:exp:main}
+
+Table~\ref{tab:main} takes the cascade apart one operator per row: soup, six-view TTA, widened eight-view TTA, and consensus-vote fusion compose a lift of +11.1/+8.2/+5.2 inshore/official/offshore over the 27.7/45.6/59.6 $s_0$ base at zero additional training and roughly $8\times$ inference. The six-view TTA gain holds at +6.9/+7.4/+6.7 across the three seeds (mean +7.0, s.d. 0.3), so the recovery is not a single-seed artifact. The first two operators compose near-additively: soup alone contributes +1.9 inshore and six-view TTA alone +6.9, predicting 36.5 where the measured combination is 36.1, and we claim no synergy. The member count is not a monotone knob either. Table~\ref{tab:soupn} sweeps $N$ from 1 to 6 on the PSeg-SSDD base, adding seeds in a fixed order. The $N=2$ and $N=5$ soups fall below every one of their members on all three splits. The $N=3$ and $N=4$ soups exceed every member offshore (64.8 and 65.5 against a member maximum of 64.3) and the six-seed official mean of 60.7 (60.9 and 61.6). Inshore they sit below the six-seed mean of 52.9$\pm$0.7 (51.9 and 52.3). The three members used throughout were fixed by the seed budget before this sweep, not selected from it. Pairwise soups of the same six checkpoints explain the pattern: the seeds fall into two groups, $\{s_0,s_3,s_4,s_6\}$ and $\{s_2,s_5\}$. All seven within-group pairs beat the mean of their two members on every split (inshore +0.3 to +0.8, official +0.8 to +1.4, offshore +0.8 to +1.8). All eight cross-group pairs lose on the inshore and official splits, by 5.0 to 12.7 inshore points. Parameter space does not separate the groups: every pair sits at an $L_2$ distance of 10.0 to 10.8 (against $\|\theta_{s_0}\|=300.3$), and the cosine between fine-tuning increments is 0.46 to 0.52. The three-member PSeg-SSDD soup straddles the groups, which is why it sits below the single-seed mean, and the rise and fall of Table~\ref{tab:soupn} tracks the share of cross-group members. The two conditions of Section~\ref{sec:fusion} are therefore necessary, not sufficient. On the 55-epoch HRSID schedule the same three seeds are compatible (soup +1.9 inshore, matching the ensemble control below), and a training-split compatibility test is left to future work. The fusion operator contributes +1.7/+1.2/+0.6 over box-NMS on the identical candidate set; Section~\ref{sec:exp:fusion} shows this term is an enabler, not a third additive gain. As a control, a three-model prediction ensemble over the same eight views reaches 39.3/53.6/64.0 at $3\times$ model cost against 38.8/53.8/64.8 for the soup-based method at $1\times$, so the soup captures the seed diversity of a prediction ensemble at one third of its model cost \cite{modelsoups2022}.
+
+% Soup member-count sweep (auto-generated tab_soupn.tex, label tab:soupn).
+\input{tab_soupn}
+
+\subsubsection{Fusion Operator}\label{sec:exp:fusion}
+
+Every operator in Table~\ref{tab:fusion} consumes the identical soup $\times$ eight-view candidate set; only the merge rule changes, and the fuser decides whether aggressive TTA helps or harms. Box-NMS suppresses in box-IoU space, where berthed parallel hulls share high box IoU while their masks barely overlap, so hard deletion removes true inshore neighbors and caps the reference at 37.1. Matrix-NMS \cite{solov22020} deletes nothing, so each object arrives roughly eight times, the decayed near-duplicates flood the top-100 ranking, and AP collapses to 4.1/8.9/14.4. Majority pixel voting is the strongest inshore reading at 39.1 but erodes offshore to 55.9, below the 59.6 no-TTA base, because multi-scale views misalign by one to two pixels along long hull boundaries and unconditional voting trims every disputed pixel; the probability-mean control reproduces it bitwise, so the correct degree of freedom is which mask to keep, not how to average pixels. The seed vote, which keeps each cluster's highest-scoring mask verbatim, never erodes but concedes inshore at 38.2. The consensus vote resolves the trade-off by gating on cross-view agreement: it matches or exceeds the seed vote on every split (38.8/53.8/64.8; inshore AP$_{75}$ 36.1 against 35.3) and is monotone in the band ceiling, $S_{\max}=4/5/6$ yielding inshore 38.4/38.6/38.8 with offshore pinned at 64.8 throughout. The view count matters less than the fuser. Under the same consensus fusion, two views ($\{800\}\times$flip) give 33.6/50.5/63.4, four views ($\{800,960\}\times$flip) 38.3/53.8/64.9, and eight views 38.8/53.8/64.8; four views already land within 0.5 inshore point of eight.
+
+\begin{table}[!t]
+\caption{Fusion Operators on Identical Soup $\times$ 8-View Candidates (Mask AP $\times$100)}
+\label{tab:fusion}
+\centering
+\begin{tabular}{lccc}
+\toprule
+Fusion operator & Inshore & Official & Offshore \\
+\midrule
+box-NMS (reference) & 37.1 & 52.6 & 64.2 \\
+matrix-NMS & 4.1 & 8.9 & 14.4 \\
+majority pixel vote & \textbf{39.1} & 48.7 & 55.9 \\
+probability mean & \textbf{39.1} & 48.7 & 55.9 \\
+seed vote & 38.2 & 53.5 & \textbf{64.8} \\
+\textbf{consensus vote} ($S_{\max}=6$) & 38.8 & \textbf{53.8} & \textbf{64.8} \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize Bold denotes the best value in each column.} \\
+\multicolumn{4}{l}{\footnotesize Band-ceiling sweep on the same candidates:} \\
+\multicolumn{4}{l}{\footnotesize $S_{\max}=4/5/6$ gives inshore 38.4/38.6/38.8,} \\
+\multicolumn{4}{l}{\footnotesize offshore pinned at 64.8 throughout.}
+\end{tabular}
+\end{table}
+
+\subsubsection{The Two Trained Correctors}\label{sec:exp:bpr}\label{sec:exp:rerank}
+
+The lower block of Table~\ref{tab:main} isolates the two correctors. The refiner adds +4.8/+4.7/+4.4 AP inshore/official/offshore; these are differences before rounding, and the rounded table entries differ by at most 0.1. The paired bootstrap of Section~\ref{sec:exp:eval} puts this gain at $[+4.05,+5.55]$ inshore (+4.76, 369 images), $[+4.25,+5.22]$ official (+4.72, 1962 images), and $[+3.81,+4.89]$ offshore (+4.39, 1593 images), positive in all 1000 resamples. Its metric fingerprint is exactly that of a boundary correction: inshore AP$_{50}$ moves by only +0.7 while AP$_{75}$ moves by +10.9 (+8.4 official, +5.7 offshore). AP$_s$ rises from 35.8 to 41.4 inshore, 52.8 to 57.8 official, and 64.1 to 68.7 offshore. The gain therefore concentrates at strict overlap on the small near-shore hulls that the stride-4 halo diagnosis of Section~\ref{sec:bpr} targeted. Because a corrector trained on (prediction, ground-truth) pairs invites a leakage suspicion, the application path was audited along seven attack vectors, all clean: the apply path receives no annotation and its output regenerates MD5-identically from predictions, refiner weights, and images alone; zero edited pixels fall outside the $\pm$4-pixel band in 90 of 90 sampled instances, 0 of the roughly 237\,000 detection scores (three splits combined) change, and the filename overlap between refiner training patches and test images is zero. The band is a formal guarantee, not a tuning knob. The same refiner applied with $r\in\{2,4,8\}$ pixels, or with no band at all, returns 43.6/58.6/69.1 in all four cases (differences below 0.01 AP): it writes only near the boundary anyway. Two further refiner training seeds give 43.1/58.1/68.7 and 43.2/58.3/68.8, a three-seed mean of 43.3$\pm$0.2/58.3$\pm$0.2/68.9$\pm$0.2. The seed-0 refiner reported throughout is the best of the three by 0.3 to 0.5 point, and the re-ranking figures below build on it.
+
+Re-ranking is worth a further +0.9/+0.8/+1.0 AP as tabulated (+0.97/+0.82/+0.95 before rounding): small and positive at every threshold, as a pure re-ordering of a fixed detection set must be. AP$_s$ reaches 42.0/58.3/69.4. One column moves the other way and we report it plainly: large-object AP falls by 1.4, 1.3, and 1.3 points, because the regressor is fitted on training candidates that are overwhelmingly small vessels, and on a large-vessel-dominated corpus the blend would need re-examination. Its audit mirrors the refiner's: the regressor is fitted only on training-split predictions and annotations, every feature is computable from the prediction alone, and not one mask byte changes. A paired percentile bootstrap over test images (Section~\ref{sec:exp:eval}) gives a 95\% confidence interval of $[+0.61,+1.23]$ for the inshore AP gain (point estimate +0.97, 369 images). On the official split the interval is $[+0.61,+1.00]$ (+0.82, 1962 images) and offshore $[+0.63,+1.18]$ (+0.95, 1593 images). The gain is positive in every one of the 1000 resamples on all three splits.
+
+\subsubsection{Architecture- and Training-Side Controls}\label{sec:exp:arch}
+
+Table~\ref{tab:arch} records the regime experiment: seven architecture- and training-side directions attempted on the same strong COCO-initialized base under matched protocol, none of which survives as a contribution. OffsetAdj constrains the deformable-attention sampling offsets that COCO pretraining has already tuned and costs 1.0 inshore. CHART, a one-to-many auxiliary supervision, collapsed at auxiliary weight 1.0 and was flat at 0.1. CAST hard-sample pasting and the four training-side families (capacity, feature enrichment, data augmentation, supervision) were absorbed by the strong baseline. The mask-IoU rescoring head is worth +1.5 inshore standalone at its $\lambda=0.2$ operating point yet leaves a +0.1 residual under the stack, subsumed by the soup. The SGA strip adapter \cite{striprcnn2026}, which preserves the COCO initialization behind a zero-initialized residual gate \cite{cait2021}, lost 0.9 inshore while gaining 0.6 offshore. Swin-S \cite{swin2021} carries a +3.2 COCO mask-AP advantage over ResNet-50 that shrinks to +0.9 inshore on SAR, the only positive base-level delta in the sweep. Under the recovery stack (single seed, no soup) it ends below the ResNet-50 method on all three splits. The 200-epoch equal-budget control saturated near epoch 45. Its best official base of 46.4, reached with an early-decayed warm restart, is +0.8 concentrated in AP$_{75}$, with the checkpoint selected on the official test split, which favors the control. Under the stack it ends 0.9/1.3/1.3 below the ResNet-50 method, so longer training neither closes the inshore gap nor compensates for the missing soup.
+
+\begin{table}[!t]
+\caption{Architecture- and Training-Side Controls (Mask AP $\times$100). Upper Block: Versus the c0 Base; Lower Block: Versus the Full Method}
+\label{tab:arch}
+\centering
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccc}
+\toprule
+Configuration & Inshore & Official & Offshore \\
+\midrule
+c0 base (3-seed reference)$^{\ast}$ & 27.7 & 45.7 & 59.8 \\
+OffsetAdj (constrained offsets, 1 seed) & 26.7 & 45.3 & 59.7 \\
+CHART (aux.\ supervision, $w{=}0.1$, 1 seed) & $\approx$27.7 & 45.7 & 59.8 \\
+CAST (hard-sample paste augm., 1 seed) & 27.7 & -- & -- \\
+Training-side families (4) & \multicolumn{3}{c}{flat (subsumed by base)} \\
+Mask-IoU head ($\lambda{=}0.2$, seed $s_0$) & 29.2 & 47.3 & 62.0 \\
+SGA (zero-gated strip adapter, 1 seed) & 26.8 & 45.5 & 60.4 \\
+Swin-S backbone swap (1 seed) & 28.6 & 46.1 & 59.9 \\
+\midrule
+Swin-S $+$ recovery stack (1 seed) & 37.3 & 52.5 & 63.5 \\
+200 ep $+$ recovery stack (1 seed) & 37.9 & 52.5 & 63.5 \\
+R-50 full method (reference) & \textbf{38.8} & \textbf{53.8} & \textbf{64.8} \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}
+\parbox{\columnwidth}{\footnotesize Bold denotes the best value in each column. The seven directions are OffsetAdj, CHART, CAST, the four training-side families, the mask-IoU head, SGA, and the Swin-S swap; the 200-epoch row is a training-budget control. $^{\ast}$Official/offshore means of the 3-seed control axis, within the $\pm$0.3 noise band of the seed-$s_0$ figures 45.6/59.6 of Table~\ref{tab:main}.}
+\end{table}
+
+\subsection{Cross-Dataset Transfer and Universality}\label{sec:exp:univ}
+
+\subsubsection{Transfer to PSeg-SSDD}\label{sec:exp:ssdd}
+
+The recipe transfers to PSeg-SSDD with one proportional change, the TTA scale set of Section~\ref{sec:exp:setup}; the consensus band is carried over unchanged, and the two correctors are refitted on SSDD training-split predictions with no operator retuned. The lower block of Table~\ref{tab:ssdd_cmp} gives the ladder: from the 51.9/60.9/64.8 soup base to 62.1/67.5/69.8 on the inshore/official/offshore splits, a composed lift of +10.2/+6.6/+5.0. The tiers trade places as the regime changes. SSDD single-view predictions are more stable than their HRSID counterparts (base inshore 51.9 against 27.7), so the variance-driven stack has less to remove, +2.1 inshore against +11.1. The boundary tier instead dominates, contributing +6.0 of the +10.2 and raising inshore AP$_{75}$ from 54.9 to 72.5, which re-ranking carries to 74.6; official-split AP$_{75}$ moves from 82.9 to 84.9. The paired bootstrap is wider here. On the 46 inshore images, base to stack gives +2.02, $[-0.78,+4.36]$ (positive in 93\% of resamples), stack to refiner +6.09, $[+2.06,+9.30]$, and refiner to re-ranker +2.09, $[-0.09,+3.87]$ (97\%). On the 186 offshore images all three steps are positive: $[+0.93,+3.23]$, $[+0.74,+2.81]$, and $[+0.21,+1.68]$. Two comparisons with O2Former \cite{o2former2025} bound the result. Its from-scratch Mask2Former baseline on this dataset is reported at 52.5 inshore, above our 51.9 soup base at 36 epochs. That soup itself sits below its members, whose six single seeds average 52.9$\pm$0.7 inshore (Table~\ref{tab:soupn}). The regime gap of Section~\ref{sec:exp:sota} therefore does not reappear on PSeg-SSDD, and the lead here comes from the inference-side cascade. Under the same split protocol, the complete cascade closes to 1.1 inshore and 2.1 offshore points below the 500-epoch specialized architecture itself (63.2/71.9).
+
+% The two universality floats (double-column) are declared here, ahead of
+% their prose, so they do not drift past the end of the section.
+\input{tab_univ}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.68\textwidth]{figs/fig_univ_qual_2row}
+\caption{The identical inference-side recipe applied to two frozen carriers on the HRSID inshore split (Table~\ref{tab:univ}). Columns: SAR image with ground truth, carrier alone, carrier with the recipe applied (0.3 score display threshold; color coding as in Fig.~\ref{fig:qual-hrsid-multi}; detection counts printed in each panel). Rows: (a) Mask R-CNN with the boundary-refined stack; (b) our Mask2Former carrier, which also applies the learned re-ranker.}
+\label{fig:univ-qual}
+\end{figure*}
+
+\subsubsection{Universality Across Frozen Carriers}\label{sec:exp:carriers}
+
+Everything so far rides on one carrier. Table~\ref{tab:univ} therefore hands the identical recipe to six further carrier--dataset pairs across five distinct architectures, with no per-carrier tuning; each carrier is a single frozen training run without soup. All 66 cells come from re-evaluation, and every one of the 21 endpoints improves over its own carrier: on HRSID, +11.9 inshore apiece for Mask R-CNN and Cascade R-CNN and +14.3 for SOLOv2; on PSeg-SSDD, +6.9, +16.3, and +6.1. Two intermediate readings are negative and we print them: the training-free rung costs Mask R-CNN 0.6 and YOLACT 0.5 offshore AP on PSeg-SSDD, the erosion Section~\ref{sec:exp:fusion} identified for predictions that are already stable, and the boundary tier converts both to +1.4 and +2.7. The most useful number in the table is 42.3: Cascade R-CNN, a 2018 architecture with no SAR-specific component, lands within 0.8 point of the 43.1 that a specialized 500-epoch design reports on the same inshore split, purely by looking eight times and correcting itself. These carriers are our own trainings under our own budget, so what transfers to Table~\ref{tab:sota} is the delta, not the level.
+
+The variation of the gain tests the diagnosis. Across the seven carriers, the Spearman rank correlation between carrier-alone inshore AP and inshore gain is $-0.77$ without CondInst ($n=6$) and $-0.11$ with it ($n=7$). Neither is significant at these sample sizes. The exception has a mechanism: CondInst's per-instance kernels are the most view-sensitive readout of the seven. Its excess gain sits in the variance tier (+8.9 inshore from the stack against +3.3 and +2.2 for the other PSeg-SSDD carriers). On the three HRSID carriers the two error axes scale in opposite directions: the stack returns +8.8 and +8.7 inshore on the two region-based carriers against +6.5 on SOLOv2, whereas the refiner returns +3.1 and +3.2 against +7.8, because SOLOv2's grid-predicted kernels yield the loosest silhouettes of the three (carrier-alone inshore AP$_{75}$ 15.7 against 24.8 and 27.0). The two dependences carry opposite signs, which no single-axis account of the near-shore residual can produce. Figure~\ref{fig:univ-qual} shows the deltas on the image, with the counts printed in each panel: in the 47-ship HRSID harbor of row (a), the recipe takes Mask R-CNN from 23 to 38 found targets. In the 88-ship harbor of row (b) it takes our own carrier from 31 to 71 true positives while the false alarms fall from 37 to 29. Recall and precision improve together, which a lowered threshold cannot do.
+
+\subsection{What Did Not Help}\label{sec:exp:whatnot}
+
+Four further directions came back null or negative, and each duplicates a remedy already in place. First, speckle marginalization: a despeckle-and-redraw variant reached 37.1 inshore and a direct mild-Gamma variant 37.3, against 38.8 for the geometric stack. The decisions a speckle re-draw can flip lie inside the set the 640-to-1088-pixel views already flip. In both variants, fusion that keeps the base prediction as arbiter beat pure draw-majority voting (37.1 against 27.0, 37.3 against 30.0). Second, a miss-rescue verifier that re-scores the rejected candidate tail (scores in $[0.01,0.35)$) moved the three splits to 43.5/58.5/69.1 against 43.6/58.6/69.1. The dumps already run down to score zero at 100 detections per image, so nothing is missing; a badly placed detection can only be promoted, which the re-ranker does. Third, extending the re-ranker's 14 features with two decoder-depth-consistency descriptors ties at 44.5/59.3/70.0 against 44.5/59.4/70.1, a post-hoc comparison, not a selection step. Stability across decoder depth and agreement across views carry the same information here. Fourth, a minimal-footprint variant of the base improved every split of both datasets (28.2/46.3/60.5 on HRSID against 27.7/45.6/59.6) and then surrendered all of it under the stack, 36.4/51.6/63.0 against 38.8/53.8/64.8. A training-side gain and an inference-side gain on the same variance axis substitute for one another.

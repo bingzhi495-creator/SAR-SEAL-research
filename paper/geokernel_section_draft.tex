@@ -1,0 +1,82 @@
+%% GeoKernel / ShapePrior section draft for tgrs.tex (WIP 2026-06-20).
+%% Structure holds for BOTH outcomes; only the closing verdict sentence flips.
+%% \FULLtodo = fill from the 3-seed 36ep run (results/full_metrics.json + by-size AP75).
+\newcommand{\FULLtodo}[1]{\textcolor{red}{[3-seed: #1]}}
+
+\subsection{ShapePrior: a geometry-conditioned mask prior for the shape axis}
+\label{ssec:shapeprior}
+The oracle (Sec.~\ref{ssec:oracle}) localizes a \emph{shape} half of the inshore deficit: the
+medium-object mask head-room ($+0.394$ AP$_{75}$) is the larger recoverable pool and is
+\emph{not} resolution-limited---the resolution-style refine head is inert on it
+(AP$_m$ $-0.2$). Mask2Former produces each mask by a \emph{rank-1} readout,
+$M_q=\sigma(\mathbf{e}_q\!\cdot\!E)$, one per-query $256$-vector dotted with a \emph{shared}
+feature $E$; it has no per-instance spatial extent, so it cannot synthesize the elongated,
+oriented silhouette of a ship and systematically under-segments the low-backscatter
+stern/bow where $E\!\approx\!0$. ShapePrior adds, in logit space, a per-instance
+\emph{geometry-generated oriented-ellipse prior}, gated:
+\begin{equation}
+M_q=\sigma\!\big(\underbrace{\mathbf{e}_q\!\cdot\!E}_{\text{rank-1 (kept)}}+\;g_q\,P_q\big),\qquad
+P_q=k\,(1-r^2),\;\; r^2=\tfrac{x'^2}{a^2}+\tfrac{y'^2}{b^2},
+\label{eq:shapeprior}
+\end{equation}
+where a tiny head predicts the instance geometry $(\theta,a,b,c_x,c_y)$ and gate $g_q$, and
+$(x',y')$ are coordinates rotated by $\theta$ about $(c_x,c_y)$. The prior is a geometry-addressed
+\emph{write} into pixel space, so it can fill the hull even where $E$ carries no signal. The gate
+is initialised \emph{closed} ($\sigma(-4)\!\approx\!0.018$): the head starts identical to the
+rank-1 baseline and must \emph{earn} the prior. We add no resolution and keep the parameter
+count fixed (the geometry/gate heads add $0.2\%$ vs.\ the deleted/kept \texttt{mask\_embed}).
+
+\noindent\textbf{Novelty boundary (stated honestly).} Per-instance dynamic mask kernels are
+mature (CondInst, SOLOv2, K-Net~\cite{condinst,solov2,knet}); Mask2Former's readout is itself a
+rank-1 dynamic kernel; oriented kernels exist for \emph{optical detection}
+(ARC~\cite{arc}, on the backbone, not the mask); and ellipse/Gaussian shape priors for SAR ships
+exist on the \emph{detection/heatmap} side~\cite{gao2025o2former,sarellipse,mldet,bboxfreesar}.
+Our contribution is the conjunction these leave open: a geometry-conditioned prior placed on the
+\emph{query-based mask readout}, targeted by a quantitative diagnosis at the medium-shape axis,
+and---crucially---\emph{validated by an equal-parameter control}, which no dynamic-kernel or
+SAR-shape work runs.
+
+\subsection{Equal-parameter control: geometry vs.\ capacity}
+\label{ssec:geocontrol}
+The recurring failure mode of dynamic-kernel claims is conflating \emph{conditioning} with added
+\emph{capacity}. We isolate them with a four-arm, \emph{parameter-matched, eval-graph-identical}
+ladder (all $45{,}171{,}889$ trainable parameters), realised as \texttt{gen\_mode} switches of one
+head: \textsc{a0} (gate off $\equiv$ stock Mask2Former), \textsc{static} (one \emph{shared} ellipse,
+no per-instance geometry $=$ pure spatial capacity), \textsc{blind} (per-instance free basis masks
+with geometry zeroed $=$ content routing), and \textsc{geo} (the full per-query geometry prior).
+The decisive quantity is the \emph{delta-of-deltas}: $(\textsc{geo}-\textsc{blind})$ isolates the
+geometry effect, while $(\textsc{blind}-\textsc{static})$ measures raw capacity/content.
+
+\begin{table}[t]\centering
+\caption{Equal-parameter control on PSeg-SSDD (3 seeds, $36$ epochs; all arms
+$45{,}171{,}889$ params, identical eval graph). \textsc{geo}$-$\textsc{blind} isolates geometry
+conditioning from the \textsc{blind}$-$\textsc{static} capacity/content effect. Medium AP$_{75}$
+is the diagnosed shape-axis target.}
+\label{tab:geocontrol}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\texttt{gen\_mode} & AP$_{75}$ & AP$_{75}$ (medium) & isolates \\
+\midrule
+\textsc{a0} (stock)     & \FULLtodo{} & \FULLtodo{} & --- \\
+\textsc{static}         & \FULLtodo{} & \FULLtodo{} & capacity \\
+\textsc{blind}          & \FULLtodo{} & \FULLtodo{} & + content \\
+\textsc{geo}            & \FULLtodo{} & \FULLtodo{} & + \textbf{geometry} \\
+\bottomrule
+\end{tabular}
+\\[2pt]\raggedright\footnotesize
+Single-seed $8$-epoch pilot (mechanism check): medium mAP \textsc{static} $0.407\to$
+\textsc{blind} $0.417\to$\textsc{geo} $0.437$, i.e.\ geometry ($+2.0$) exceeds $0.7\times$ the
+capacity step ($+0.7$); \textsc{geo} also gave the best overall AP$_{75}$ ($0.281$). An
+intensity-weighted SAR mask loss \emph{hurt} at this budget and is not used here. Full 3-seed
+numbers above.
+\end{table}
+
+% CLOSING VERDICT -- pick ONE at integration time:
+% [GO]  Across three seeds, geo exceeds blind on medium AP75 by \FULLtodo{}, well above the
+%       blind-static capacity step, so the gain is attributable to geometry conditioning, not
+%       capacity -- to our knowledge the first such param-matched attribution for a dynamic mask
+%       kernel, on SAR.
+% [NO-GO] Across three seeds, geo and blind are statistically indistinguishable on medium AP75,
+%       so the apparent benefit of the dynamic mask prior is capacity/content, not geometry --
+%       a negative result we report because the dynamic-kernel and SAR-shape literature has never
+%       run this parameter-matched control.

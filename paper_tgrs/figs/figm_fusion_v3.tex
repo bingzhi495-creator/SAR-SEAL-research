@@ -1,0 +1,161 @@
+% figm_fusion.pdf — consensus-gated mask-IoU vote fusion (Sec. III-D, Alg. 1).
+% Row 1 : the candidate pool drawn as K overlapping 800x800 planes -> the
+%         pairwise mask-IoU matrix as a K x K grid with its clusters boxed ->
+%         class-wise greedy clustering (seeds in score order, tau=0.5) ->
+%         the agreement gate -> the fused instance read-out.
+% Panel : what the gate does TO THE PLANES, drawn rather than named.  On the
+%         yes side |C| planes collapse into a single plane of exactly the same
+%         size (pixel majority); on the no side one plane -- the seed --
+%         survives and the rest are deleted.  Nothing changes shape either
+%         way: 800x800 in, 800x800 out.
+% Facts: sec_method.tex III-D; ALL_TABLES.md T5 + the band-sweep line.
+% Authored at exactly 18.2 cm = 516 pt = \textwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+% \mplane{x}{y}{side}{frame spec}{hull fill spec}{hull stroke spec}
+\newcommand{\mplane}[6]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \pgfmathsetmacro{\phH}{0.5*#3}
+    \pgfmathsetmacro{\phS}{\phH/0.92}
+    \fill[white] (-\phH,-\phH) rectangle (\phH,\phH);
+    \draw[#4] (-\phH,-\phH) rectangle (\phH,\phH);
+    \begin{scope}[scale=\phS]
+      \fill[#5] \hull;
+      \draw[#6] \hull;
+    \end{scope}
+  \end{scope}}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{9.40}
+
+\def\yM{7.90}                      % main data-flow line
+\pgfmathsetmacro{\sP}{\pxc{800}}   % every mask plane in this figure: 20 mm
+
+% =====================  candidate pool: K planes  ========================
+\maskstack{1.45}{\yM}{800}{4}{datablue}{1}
+\node[sub, anchor=north, align=center] at (1.63,6.60)
+  {candidate pool\\ $K\le800$ planes at $800^2$};
+\draw[flow] (2.95,\yM) -- (3.20,\yM);
+
+% =====================  pairwise mask-IoU matrix  ========================
+\begin{scope}[shift={(3.32,8.68)}]
+  \foreach \row [count=\i] in {{100,78,10,6,4,2},{78,100,14,8,5,2},
+                               {10,14,100,66,58,6},{6,8,66,100,62,8},
+                               {4,5,58,62,100,10},{2,2,6,8,10,100}}
+    \foreach \v [count=\j] in \row
+      \fill[datablue!\v] ({0.26*(\j-1)},{-0.26*(\i-1)}) rectangle ++(0.26,-0.26);
+  \draw[white, line width=0.35pt, step=0.26cm] (0,-1.56) grid (1.56,0);
+  \draw[black!50, line width=0.5pt] (0,-1.56) rectangle (1.56,0);
+  \draw[opsred, line width=0.8pt] (0,0) rectangle (0.52,-0.52);
+  \draw[opsred, line width=0.8pt] (0.52,-0.52) rectangle (1.30,-1.30);
+  \draw[opsred, line width=0.8pt] (1.30,-1.30) rectangle (1.56,-1.56);
+\end{scope}
+\node[sub, text=opsred, anchor=south] at (4.10,8.76) {same-class clusters};
+\node[sub, anchor=north, align=center] at (4.10,6.98)
+  {mask-IoU $\mathbf{J}$: a $K\times K$ grid,\\ not a spatial map};
+\draw[flow] (4.98,\yM) -- (5.30,\yM);
+
+% =====================  greedy clustering  ===============================
+\node[ops, anchor=west, text width=27mm, minimum height=14mm]
+  (clus) at (5.30,\yM)
+  {\textbf{greedy clustering}\\[0.5pt]
+   {\scriptsize seeds in score order}\\[-2pt]
+   {\scriptsize absorb same class, $J_{rj}\ge\tau$}\\[-2pt]
+   {\scriptsize $\tau=0.5$; duplicates deleted}};
+\node[badgeops] at ($(clus.north west)+(0.26,0)$) {3};
+\draw[flow] (8.21,\yM) -- (8.40,\yM);
+
+% =====================  the agreement gate  ==============================
+\node[gate, inner sep=0pt] (gate) at (9.60,\yM) {$2\le|\mathcal{C}|\le6$?};
+\draw[flow] (gate.east) -- (11.00,\yM);
+
+% =====================  read-out  ========================================
+\node[data, anchor=west, text width=24mm, minimum height=14mm]
+  (score) at (11.00,\yM)
+  {\textbf{fused instance}\\[0.5pt]
+   {\scriptsize one plane, still $800^2$}\\[-2pt]
+   {\scriptsize $s^{\mathrm{out}}=s_r(|\mathcal{C}|/V)^{\gamma}$, $\gamma{=}0$}\\[-2pt]
+   {\scriptsize box regenerated from mask}};
+
+% =====================  measured result  =================================
+\node[plain, anchor=north east, align=left, inner sep=3.5pt, text width=41mm]
+  (res) at (18.10,8.86)
+  {{\footnotesize\bfseries result}
+   {\scriptsize (inshore\,/\,official\,/\,offshore)}\\[1pt]
+   {\scriptsize consensus gate \textbf{38.8\,/\,53.8\,/\,64.8};
+      seed-only readout 38.2\,/\,53.5\,/\,64.8}\\[-1pt]
+   {\scriptsize band-ceiling sweep, inshore 38.4\,/\,38.6\,/\,38.8 for
+      $S_{\max}{=}4/5/6$; offshore fixed at 64.8}};
+
+% =====================  what the gate does to the planes  ================
+\draw[flowt] (gate.south) -- (9.60,6.25) -- (4.60,6.25) -- (4.60,5.92);
+\draw[flowt] (9.60,6.25) -- (13.60,6.25) -- (13.60,5.92);
+\node[sub, anchor=west, text=opsred] at (4.72,6.09) {yes};
+\node[sub, anchor=west] at (13.72,6.09) {no: $|\mathcal{C}|{=}1$ or $|\mathcal{C}|{>}6$};
+
+\draw[grp] (0.10,1.35) rectangle (18.10,5.92);
+\draw[black!45, densely dotted, line width=0.7pt] (9.10,1.45) -- (9.10,5.82);
+\node[grptitle, anchor=north, align=center, text width=84mm] at (4.60,5.82)
+  {$2\le|\mathcal{C}|\le6$: pixelwise majority vote\\
+   {\scriptsize\mdseries\color{black!55}the cluster collapses into one plane
+    of exactly the same size}};
+\node[grptitle, anchor=north, align=center, text width=84mm] at (13.60,5.82)
+  {$|\mathcal{C}|=1$ or $|\mathcal{C}|>6$: keep the seed\\
+   {\scriptsize\mdseries\color{black!55}one plane survives verbatim, the rest
+    are deleted --- no erosion}};
+
+% --- the collapse ---------------------------------------------------------
+\foreach \k in {3,2,1,0} {
+  \pgfmathsetmacro{\ox}{2.02+0.12*\k}
+  \pgfmathsetmacro{\oy}{3.30+0.12*\k}
+  \mplane{\ox}{\oy}{\sP}{datablue!55, line width=0.4pt}
+         {datablue!22}{datablue!80, line width=0.35pt}}
+\foreach \k in {0,1,2,3} {
+  \pgfmathsetmacro{\ox}{3.02+0.12*\k}
+  \pgfmathsetmacro{\oy}{3.30+0.12*\k}
+  \draw[draw=flowink, line width=0.5pt] (\ox,\oy) -- (4.86,3.60);}
+\draw[flow] (4.86,3.60) -- (5.30,3.60);
+\node[sub, anchor=south, text=opsred] at (4.62,4.42) {pixel majority};
+\mplane{6.30}{3.60}{\sP}{opsred!70, line width=0.6pt}
+       {opsred!22}{opsred, line width=0.5pt}
+\node[sub, anchor=north, align=center] at (2.30,2.15)
+  {$|\mathcal{C}|$ planes, $800\times800$};
+\node[sub, anchor=north, align=center] at (6.30,2.45)
+  {one fused plane\\ still $800\times800$};
+
+% --- the seed survives ----------------------------------------------------
+\foreach \k in {2,1} {
+  \pgfmathsetmacro{\ox}{11.10+0.12*\k}
+  \pgfmathsetmacro{\oy}{3.46+0.12*\k}
+  \mplane{\ox}{\oy}{\sP}{black!25, line width=0.4pt, densely dotted}
+         {black!6}{black!28, line width=0.35pt}}
+\mplane{11.10}{3.46}{\sP}{datablue!70, line width=0.6pt}
+       {datablue!30}{datablue, line width=0.5pt}
+\node[sub, anchor=west, text=black!45] at (12.48,4.45) {deleted};
+\draw[flow] (12.10,3.46) -- (14.40,3.60);
+\node[sub, anchor=south] at (13.25,3.68) {seed $\mathbf{m}_r$ kept};
+\mplane{15.40}{3.60}{\sP}{opsred!70, line width=0.6pt}
+       {opsred!22}{opsred, line width=0.5pt}
+\node[sub, anchor=north, align=center] at (11.22,2.15)
+  {seed (solid) $+$ absorbed duplicates};
+\node[sub, anchor=north, align=center] at (15.40,2.45)
+  {one output plane\\ still $800\times800$};
+
+% =====================  failure modes (visually subordinate)  ============
+\node[warn, anchor=south west, align=left, inner sep=3.5pt, text width=176mm]
+  (fail) at (0.10,0.18)
+  {{\scriptsize\bfseries\color{warnred} why a gate, and not a plain fuser.}
+   {\scriptsize $\times$\ matrix-NMS (score decay only) floods the ranking:
+      inshore AP falls to \textbf{4.1}.\quad
+      $\times$\ unconditional majority voting erodes offshore contours to
+      \textbf{55.9}, below the 59.6 no-TTA base, on candidates worth 64.2
+      under box-NMS.}};
+
+\end{tikzpicture}
+\end{document}

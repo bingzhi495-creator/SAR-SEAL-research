@@ -1,0 +1,96 @@
+% figm_rerank.pdf — learned consensus re-ranking (Sec. III-G).
+% A separate figure rather than a panel of figm_bpr: the two optional rungs
+% write to DISJOINT fields (refiner -> mask pixels, re-ranker -> scores), so
+% folding them into one diagram would blur exactly the property the section
+% is built to establish.  This one is single-column and vertical, which is
+% also what the 14-dimensional feature block wants.
+% Facts: sec_method.tex III-G (Eqs. rrfeat/rrblocks/rrblend), sec_exp.tex
+%   Table on re-ranking.  Nothing invented.
+% Authored at exactly 8.89 cm = 252 pt = \columnwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasc{7.25}
+
+% ===== input ==============================================================
+\node[data, anchor=north west, minimum width=86.9mm, minimum height=8mm]
+  (inst) at (0.10,7.10)
+  {\textbf{fused instances}
+   $\bigl\{(\mathbf{m}_i,s^{\mathrm{out}}_i)\bigr\}$\\[-1pt]
+   {\scriptsize each bound to the cluster $\mathcal{C}$ that produced it,
+    by a one-to-one mask-IoU match}};
+\draw[flow] (4.445,6.30) -- (4.445,6.06);
+
+% ===== the 14-dimensional feature vector =================================
+\node[sub, text=black!70] at (4.445,5.92)
+  {$\boldsymbol{\phi}\in\mathbb{R}^{14}$: no image pixel is read};
+\def\bx{0.805}
+\foreach \i/\sym/\col in {%
+  0/{$|\mathcal{C}|$}/opsred, 1/{$n_v$}/opsred, 2/{$\bar{J}$}/opsred,
+  3/{$J_{\min}$}/opsred, 4/{$s_r$}/opsred, 5/{$\Delta s$}/opsred,
+  6/{$s^{\mathrm{out}}$}/frozgray,
+  7/{$a$}/datablue, 8/{$w$}/datablue, 9/{$h$}/datablue,
+  10/{$w/h$}/datablue, 11/{fill}/datablue, 12/{$c_x$}/datablue,
+  13/{$c_y$}/datablue} {
+  \pgfmathsetmacro{\cxl}{\bx+0.52*\i}
+  \fill[\col!13] (\cxl,5.25) rectangle ({\cxl+0.52},5.69);
+  \draw[\col!70, line width=0.4pt] (\cxl,5.25) rectangle ({\cxl+0.52},5.69);
+  \node[sub, text=black!80] at ({\cxl+0.26},5.47) {\sym};
+}
+\draw[brace] (3.925,5.13) -- (0.805,5.13);
+\draw[brace] (4.445,5.13) -- (3.925,5.13);
+\draw[brace] (8.085,5.13) -- (4.445,5.13);
+\node[sub, anchor=north, text=opsred] at (2.365,4.94)
+  {consensus evidence\\ (operator~3)};
+\node[sub, anchor=north, text=black!70] at (4.185,4.94)
+  {score\\ emitted};
+\node[sub, anchor=north, text=datablue] at (6.265,4.94)
+  {mask geometry\\ ($a,w,h$ log-scaled)};
+\draw[flow] (4.445,4.30) -- (4.445,4.06);
+
+% ===== the fitted map =====================================================
+\node[trn, anchor=north west, minimum width=86.9mm, minimum height=11.5mm]
+  (gbt) at (0.10,4.06)
+  {\textbf{gradient-boosted regression tree} $g$\\[-1pt]
+   {\scriptsize 300 boosting iterations, learning rate 0.08, least-squares loss}\\[-2pt]
+   {\scriptsize target: mask IoU against the best-matching \emph{training} annotation}\\[-2pt]
+   {\scriptsize 51\,781 rows from 3\,642 HRSID train images; 4\,s harvest $+$ 19\,s fit, CPU only}};
+\node[badgetrn] at ($(gbt.north west)+(0.26,0)$) {5};
+\draw[flow] (4.445,2.91) -- (4.445,2.67);
+
+% ===== the blend ==========================================================
+\node[ops, anchor=north west, minimum width=86.9mm, minimum height=8.5mm]
+  (bl) at (0.10,2.67)
+  {$s^{\mathrm{final}}=\alpha\,\mathrm{clip}\bigl(g(\boldsymbol{\phi}),0,1\bigr)
+     +(1-\alpha)\,s^{\mathrm{out}}$\\[-1pt]
+   {\scriptsize $\alpha$ swept over $\{0.3,0.5,1.0\}$ on \emph{held-out train}
+    images; HRSID selects $\alpha=0.5$}};
+\draw[flow] (4.445,1.82) -- (4.445,1.58);
+
+% ===== what may and may not change =======================================
+\node[froz, anchor=north west, text width=36mm, minimum height=7.5mm]
+  (keepf) at (0.10,1.58)
+  {\textbf{bit-identical}\\[-1pt]
+   {\scriptsize masks $\cdot$ identities $\cdot$ set size}};
+\fill[white] ([shift={(-0.12,-0.12)}]keepf.north east)
+             rectangle ([shift={(0.12,0.12)}]keepf.north east);
+\pic[scale=1.0] at (keepf.north east) {lock};
+\node[trn, anchor=north east, text width=40mm, minimum height=7.5mm]
+  (chg) at (8.79,1.58)
+  {\textbf{rewritten}\\[-1pt]
+   {\scriptsize the score field, hence the rank}};
+
+% ===== measured effect ===================================================
+\node[subk, anchor=north] at (4.445,0.62)
+  {43.6\,/\,58.6\,/\,69.1 $\to$ \textbf{44.5\,/\,59.4\,/\,70.1} mask AP,
+   inshore AP$_{75}$ $47.0\to\mathbf{48.3}$;\\[1pt]
+   Spearman $0.68$ between $g$ and the realized mask IoU on held-out train images};
+
+\end{tikzpicture}
+\end{document}

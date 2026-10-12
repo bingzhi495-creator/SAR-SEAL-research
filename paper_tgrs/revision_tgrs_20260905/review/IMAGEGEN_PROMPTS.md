@@ -1,0 +1,14 @@
+# Image-generation record
+
+Engine: built-in image_gen tool (no CLI, no external API credentials). Generated conceptual artwork only; recorded SAR images, masks, matrices and PR curves remain empirical assets.
+
+## Overview v1 — requires topology repair
+
+Create a polished publication-quality conceptual system diagram for an IEEE TGRS research paper. This is a scientific schematic, NOT an empirical visualization. Wide landscape canvas approximately 2.7:1, white background, crisp flat vector-like illustration, restrained palette (blue #0072B2 for data, dark gray #555555 for carrier, vermilion #D55E00 for deterministic processing, green #009E73 for learned correction), clean sans-serif large legible English text, thin dark outlines, generous spacing, NO gradients, NO 3D, NO shadows, NO decorative ocean/ships, NO numerical performance claims, NO invented SAR images or heatmaps. No external overall title.
+The diagram must have exactly two horizontal bands.
+Top narrow band headed "TRAINING". From left to right three rounded boxes: "COCO initialization"; arrow to "SAR fine-tuning" with smaller line "Segmentation + mask-quality losses"; arrow to "Three seed checkpoints"; arrow to "Weight averaging". A single downward arrow from Weight averaging reaches a gray box labeled "Frozen carrier" near the left of the lower band. A small closed-padlock icon by Frozen carrier indicates weights frozen AFTER training.
+Bottom larger band headed "INFERENCE". Leftmost blue card "SAR image" points into "Frozen carrier" (the carrier is the exact box reached by the vertical Weight averaging arrow). Then flow strictly left to right: orange box "Multi-scale + flip views" with smaller line "4 scales × 2 flips"; orange box "Cluster-support-gated fusion" with smaller line "Vote or keep seed"; green box "Boundary refinement" with smaller line "Update mask pixels"; green box "Score recalibration" with smaller line "Update confidence"; blue output card "Scored instances".
+Draw only this topology, no bypasses, no arrows back into training. Put a small note below the diagram in readable dark gray: "Conceptual illustration; empirical results are reported separately."
+Make all labels exact, every word spelled correctly. Green means separately trained correction modules; add small green legend text "Learned correction" and small orange legend text "Deterministic processing" at bottom left above the note. Do not include neural-network tensor dimensions, measured pixel masks, curves, graphs, probabilities, equations, or benchmark scores. Use typography and structured layout suitable for the main architecture figure in a serious remote sensing journal.
+
+Visual review: labels are legible, but the downward parameter arrow leaves the training frame near the initialization box rather than Weight averaging. The separate carrier-before-views layout can imply output augmentation. Revision required before manuscript integration.

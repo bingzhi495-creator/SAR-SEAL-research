@@ -1,0 +1,148 @@
+% figm_tta.pdf — wide multi-scale flip TTA (Sec. III-C).
+% The geometric point of this figure is an ASYMMETRY:
+%   different size in  ->  ONE frozen model  ->  the SAME size out.
+% Upper band (a): one 800x800 chip is resized to R in {640,800,960,1088}; the
+%   four views are the REAL resized rasters (assets/view_R.png, the same
+%   bilinear keep_ratio resize the msTTA pipeline performs, see
+%   carrier/configs/c0_v2_mstta_wide_hrsid.py) drawn at TRUE relative size
+%   (16.0 / 20.0 / 24.0 / 27.2 mm under the article-wide scale of 1 mm per
+%   40 px), each behind its horizontally flipped twin -- and the twin is a
+%   real \reflectbox of the same raster, not a redrawn mirror.  V = 8 views
+%   enter one frozen checkpoint.  Effective resolution: 640 px at 16.0 mm and
+%   1088 px at 27.2 mm are both 1016 dpi.
+% Lower band (b): the eight raw outputs live on four different rasters (drawn
+%   as a corner-aligned size ladder); rescale=True and f^{-1} map every one of
+%   them back to the native 800x800, drawn as eight planes of IDENTICAL size,
+%   which is what makes the pool of K <= 800 candidates commensurable.
+% Facts: sec_method.tex III-C, Eq. (views) and the regime-gradient sentence
+%   (inshore +7.0, official +5.5, offshore +3.4); ALL_TABLES.md T1, T11.
+% v3: schematic \sarchip replaced by real rasters; the 46 mm prose box is
+%   replaced by the three-bar regime gradient it was describing; panel letters
+%   added; every stroke at or above the 0.5 pt print floor.
+% Authored at exactly 18.2 cm = 516 pt = \textwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{8.25}
+
+\def\yV{6.20}   % centre line of the eight views
+\def\yR{2.35}   % centre line of the return path
+
+% =====================  input chip, 800 x 800  ===========================
+\realpanel{1.20}{\yV}{800}{1}{chip.png}{black!55, line width=0.5pt}
+\node[sub, anchor=north] at (1.20,5.09)
+  {SAR chip\\ native $800\times800$};
+\draw[flow] (2.32,\yV) -- (2.62,\yV);
+
+% =====================  the eight views, at true relative size  ==========
+\draw[grp] (2.66,4.42) rectangle (14.20,7.82);
+\node[panl, anchor=south west] at (2.70,7.86) {(a)};
+\node[grptitle, anchor=south, align=center] at (8.43,7.86)
+  {$\mathcal{V}=\{640,800,960,1088\}\times\{\mathrm{id},\mathrm{hflip}\}$:
+   $V=8$ real views, drawn at true relative size};
+
+\foreach \L/\R in {2.81/640, 5.13/800, 7.85/960, 11.03/1088} {
+  \pgfmathsetmacro{\sV}{\pxc{\R}}
+  \pgfmathsetmacro{\cV}{\L+0.5*\sV}
+  \realpanelh{\cV+0.26}{\yV+0.26}{\R}{1}{view_\R.png}{black!45, line width=0.5pt}
+  \realpanel{\cV}{\yV}{\R}{1}{view_\R.png}{black!55, line width=0.5pt}
+  \node[sub, anchor=north] at (\cV,4.74) {$\R$};
+}
+\draw[flow] (14.20,\yV) -- (14.66,\yV);
+
+% =====================  one frozen model, eight passes  ==================
+\node[froz, anchor=east, text width=32mm, minimum height=15mm]
+  (model) at (18.10,\yV)
+  {\textbf{soup model} $\Phi_{\theta^{\star}}$\\[0.5pt]
+   {\scriptsize \emph{one} checkpoint,}\\[-2pt]
+   {\scriptsize \emph{eight} forward passes}\\[-2pt]
+   {\scriptsize no weight updated}\\[-2pt]
+   {\scriptsize $100$ queries per view}};
+\fill[white] ([shift={(-0.13,-0.13)}]model.north east)
+             rectangle ([shift={(0.13,0.13)}]model.north east);
+\pic[scale=1.1] at (model.north east) {lock};
+
+% =====================  the return path  =================================
+% v4: raised from y=4.20 to 4.32.  The old rail ran 0.01 cm above the top
+% plane of the 8-plane stack below it, so a data rail and a tensor glyph were
+% effectively touching; 0.13 cm of clearance separates the two objects.
+\draw[flowt] (16.40,5.45) -- (16.40,4.32) -- (1.70,4.32) -- (1.70,3.79);
+\node[sub, anchor=north] at (12.55,4.26)
+  {$8\times100$ raw masks};
+\node[panl, anchor=north west] at (0.10,3.98) {(b)};
+
+% --- the eight raw outputs: four different rasters (corner-aligned ladder)
+\foreach \R in {1088, 960, 800, 640} {
+  \pgfmathsetmacro{\sL}{\pxc{\R}}
+  \fill[white] (0.34,0.99) rectangle (0.34+\sL,0.99+\sL);
+  \fill[datablue!5] (0.34,0.99) rectangle (0.34+\sL,0.99+\sL);
+  \draw[datablue!65, line width=0.5pt]
+    (0.34,0.99) rectangle (0.34+\sL,0.99+\sL);
+  \node[sub, anchor=south east, inner sep=1pt] at (0.34+\sL,0.99+\sL) {$\R$};
+}
+\begin{scope}[shift={(1.14,1.79)}, scale=0.55]
+  \fill[datablue!35] \hull;
+  \draw[datablue!90, line width=0.5pt] \hull;
+\end{scope}
+\node[sub, anchor=north, align=center] at (1.72,0.87)
+  {eight raw outputs, \emph{four} rasters\\
+   $8\times100\times R\times R$};
+\draw[flow] (3.16,\yR) -- (3.58,\yR);
+
+% =====================  invert and rescale  ==============================
+\node[ops, anchor=west, text width=27mm, minimum height=14mm]
+  (resc) at (3.58,\yR)
+  {\textbf{invert \& rescale}\\[0.5pt]
+   {\scriptsize $f^{-1}$ undoes each flip}\\[-2pt]
+   {\scriptsize \texttt{rescale=True} maps}\\[-2pt]
+   {\scriptsize every view back to $800^2$}};
+\node[badgeops] at ($(resc.north west)+(0.26,0)$) {2};
+\draw[flow] (6.51,\yR) -- (6.70,\yR);
+
+% --- ... and out they come at ONE common size -----------------------------
+% v4 COLLISION FIX.  The brace used to sit at y=3.72 -- inside the stack,
+% crossing its rear planes -- with its label above at 3.78, where the brace
+% tip (4.2 pt past the path) printed through the glyphs: _overlap.py measured
+% 134 px of text-on-stroke ink.  Brace and label now sit UNDER the stack,
+% where the caption already was, and the two merge into one block: the brace
+% spans exactly the stack's width, so it reads as "these eight, together".
+\maskstack{7.72}{\yR}{800}{8}{datablue}{1}
+\draw[brace] (9.56,1.28) -- (6.72,1.28);
+\node[sub, anchor=north, align=center] at (8.14,1.10)
+  {\textcolor{opsred}{all eight now the same size}\\
+   eight sets, \emph{one} raster: $8\times100\times800\times800$};
+\draw[flow] (9.72,\yR) -- (10.14,\yR);
+
+% =====================  candidate pool  ==================================
+\node[data, anchor=west, text width=27mm, minimum height=14mm]
+  (pool) at (10.14,\yR)
+  {\textbf{candidate pool}\\[0.5pt]
+   {\scriptsize $K\le V\!\times\!100=800$}\\[-2pt]
+   {\scriptsize scored masks per image}\\[-2pt]
+   {\scriptsize input to the fusion stage}};
+
+% =====================  measured effect, DRAWN  ==========================
+% Six-view core {736,800,864} x {id,hflip}: the regime gradient of
+% sec_method.tex III-C.  Bars share a 0-8 AP-gain axis; the reasoning is in
+% the caption, not in the figure.
+\draw[grp] (13.60,1.28) rectangle (18.10,3.94);
+\node[panl, anchor=north west] at (13.68,3.88) {(c)};
+\node[grptitle, anchor=north, align=center, text width=40mm]
+  at (16.00,3.90) {six-view core: regime gradient};
+\foreach \yb/\vv/\nm in {3.10/7.0/inshore, 2.75/5.5/official,
+                         2.40/3.4/offshore} {
+  \node[sub, anchor=east] at (15.10,\yb) {\nm};
+  \hbarrow{15.18}{\yb}{2.0}{(\vv)/8}{opsred}{1.8pt}{$+\vv$}
+}
+\baxis{15.18}{2.24}{2.0}{0}{8}{}
+\node[sub, anchor=north, align=center, text width=42mm] at (15.85,2.00)
+  {mask AP gained over the single checkpoint (three-seed mean)};
+
+\end{tikzpicture}
+\end{document}

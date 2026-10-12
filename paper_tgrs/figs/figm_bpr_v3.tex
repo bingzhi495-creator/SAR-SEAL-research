@@ -1,0 +1,203 @@
+% figm_bpr.pdf — optional boundary-patch refinement (Sec. III-E).
+% Left  (training, once, ~19 min): full-stack predictions on the TRAIN split
+%   matched to GT at mask IoU >= 0.5; 64x64 patches are cut FROM the contour of
+%   the 800x800 mask -- drawn at true scale, 1.6 mm against the mask's 20 mm --
+%   then upscaled 2x (drawn as a growth, 64^2 -> 128^2) and fed to a 2.35M UNet
+%   whose hourglass taper IS its patch resolution 128->64->32->16->8->...->128.
+%   The patch pipeline sits in an explicitly labelled x4 zoom, inside which the
+%   article-wide scale of 1 mm per 40 px holds multiplied by 4.
+% Right (inference): the +-4 px band is 1% of an 800 px side, so it is shown in
+%   an explicit x8 zoom on the contour: the annulus is the only writable region
+%   and both the interior and the exterior carry lock glyphs.
+% Facts: sec_method.tex III-E, Eqs. (bprloss)/(guard); ALL_TABLES.md T1 row 4,
+%   T2 (+BPR rows), T10 (inshore AP50 +0.7 against AP75 +10.9).
+% Authored at exactly 18.2 cm = 516 pt = \textwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{9.20}
+
+\pgfmathsetmacro{\sM}{\pxc{800}}    % a full mask plane: 20 mm
+\pgfmathsetmacro{\sPa}{4*\pxc{64}}  % a 64x64 patch inside the x4 zoom
+\pgfmathsetmacro{\sPb}{4*\pxc{128}} % the 2x-upscaled patch, same zoom
+\pgfmathsetmacro{\sPt}{\pxc{64}}    % the same patch at TRUE scale: 1.6 mm
+
+% ===== panel frames and titles ===========================================
+\draw[grp] (0.08,3.05) rectangle (8.86,8.56);
+\draw[grp] (9.34,3.05) rectangle (18.12,8.56);
+\node[grptitle, anchor=south] at (4.47,8.62)
+  {Training the refiner --- once, $\approx$19 min, on the train split};
+\node[grptitle, anchor=south] at (13.73,8.62)
+  {Inference --- band-guarded write-back};
+
+% =========================================================================
+%  TRAINING SIDE
+% =========================================================================
+\node[plain, anchor=north west, text width=82mm] (t1) at (0.18,8.42)
+  {\textbf{harvest the model's own errors on the train split}\\[-1pt]
+   {\scriptsize full-stack predictions paired with GT at mask IoU $\ge0.5$;
+    no new annotation}};
+\draw[flow] (1.55,7.82) -- (1.55,7.53);
+
+% --- the 800 x 800 mask with 64 x 64 patches cut from its contour ---------
+\begin{scope}[shift={(1.55,6.45)}]
+  \pgfmathsetmacro{\mH}{0.5*\sM}
+  \pgfmathsetmacro{\mS}{\mH/0.92}
+  \fill[white] (-\mH,-\mH) rectangle (\mH,\mH);
+  \draw[datablue!60, line width=0.5pt] (-\mH,-\mH) rectangle (\mH,\mH);
+  \begin{scope}[scale=\mS]
+    \fill[datablue!16] \hull;
+    \draw[datablue, line width=0.7pt] \hull;
+    \draw[opsred, dash pattern=on 1.3pt off 1.0pt, line width=0.6pt,
+          shift={(0.04,0.04)}, scale=0.93] \hull;
+  \end{scope}
+\end{scope}
+\pgfmathsetmacro{\pHalf}{0.5*\sPt}
+\foreach \px/\py in {2.333/6.450, 1.311/6.809, 0.876/6.320, 2.007/6.211}
+  \draw[black!75, line width=0.5pt]
+    ({\px-\pHalf},{\py-\pHalf}) rectangle ({\px+\pHalf},{\py+\pHalf});
+\node[sub, anchor=north, align=center, text width=27mm] at (1.55,5.28)
+  {$800^2$ mask: GT solid, prediction dashed; four $64^2$ patches cut from
+   the contour ($1.6$\,mm here)};
+
+% --- the magnifier funnel into the x4 zoom -------------------------------
+\draw[aux] (2.413,6.530) -- (3.43,6.470);
+\draw[aux] (2.413,6.370) -- (3.43,5.830);
+
+% --- the x4 zoom: patch -> 2x growth -> UNet -----------------------------
+\draw[grp] (3.05,4.55) rectangle (8.80,7.55);
+\node[grptitle, anchor=north] at (5.92,7.47) {$\times4$ zoom on one patch};
+
+\begin{scope}[shift={(3.75,6.15)}]
+  \pgfmathsetmacro{\qH}{0.5*\sPa}
+  \fill[datablue!8] (-\qH,-\qH) rectangle (\qH,\qH);
+  \draw[datablue!70, line width=0.45pt] (-\qH,-\qH) rectangle (\qH,\qH);
+  \draw[datablue, line width=0.5pt]
+    (-\qH,0.09) .. controls (-0.10,0.20) and (0.10,-0.14) .. (\qH,-0.05);
+  \draw[opsred, dash pattern=on 1.2pt off 0.9pt, line width=0.45pt]
+    (-\qH,0.02) .. controls (-0.10,0.13) and (0.10,-0.21) .. (\qH,-0.12);
+\end{scope}
+\node[sub, anchor=south] at (3.75,6.55) {$64^2$ crop};
+
+\fill[black!5] (4.20,5.83) -- (5.00,5.51) -- (5.00,6.79) -- (4.20,6.47) -- cycle;
+\draw[black!45, line width=0.5pt]
+  (4.20,5.83) -- (5.00,5.51) (4.20,6.47) -- (5.00,6.79);
+\node[sub, anchor=south] at (4.55,6.86) {$2\times$};
+
+\begin{scope}[shift={(5.70,6.15)}]
+  \pgfmathsetmacro{\rH}{0.5*\sPb}
+  \fill[datablue!8] (-\rH,-\rH) rectangle (\rH,\rH);
+  \draw[datablue!70, line width=0.45pt] (-\rH,-\rH) rectangle (\rH,\rH);
+  \draw[datablue, line width=0.6pt]
+    (-\rH,0.18) .. controls (-0.20,0.40) and (0.20,-0.28) .. (\rH,-0.10);
+  \draw[opsred, dash pattern=on 1.3pt off 1.0pt, line width=0.5pt]
+    (-\rH,0.04) .. controls (-0.20,0.26) and (0.20,-0.42) .. (\rH,-0.24);
+\end{scope}
+\node[sub, anchor=south] at (5.70,6.86) {$128^2$};
+\draw[flow] (6.40,6.15) -- (6.56,6.15);
+
+% --- the UNet hourglass: its taper IS the patch resolution ---------------
+\foreach \i/\res in {0/128, 1/64, 2/32, 3/16, 4/8, 5/16, 6/32, 7/64, 8/128} {
+  \pgfmathsetmacro{\bx}{6.60+0.20*\i}
+  \pgfmathsetmacro{\bh}{0.5*4*\pxc{\res}}
+  \fill[trngreen!14] (\bx,6.15-\bh) rectangle (\bx+0.16,6.15+\bh);
+  \draw[trngreen, line width=0.45pt] (\bx,6.15-\bh) rectangle (\bx+0.16,6.15+\bh);
+}
+\foreach \xa/\xb/\yy in {6.76/8.36/0.72, 6.96/8.16/0.40, 7.16/7.96/0.24}
+  \draw[aux, draw=black!40] (\xa,6.15+\yy) to[bend left=28] (\xb,6.15+\yy);
+\node[sub, anchor=north, align=center, text width=25mm] at (7.50,5.44)
+  {2.35M UNet, 4 down / 4 up; taper $128\!\to\!8\!\to\!128$};
+
+\draw[flow] (7.65,4.55) -- (7.65,4.32);
+\node[trn, anchor=north east, text width=40mm] (loss) at (8.80,4.32)
+  {$\mathcal{L}_{\mathrm{ref}}$: binary cross-entropy $+$ Dice\\[-1pt]
+   {\scriptsize on patch pixels only; the main model is never touched}};
+
+% =========================================================================
+%  INFERENCE SIDE
+% =========================================================================
+\node[plain, anchor=north west, text width=82mm] (i1) at (9.44,8.42)
+  {\textbf{$\pm4$-px band guard around the fused contour}\\[-1pt]
+   {\scriptsize $b(p)=\mathbf{1}\bigl[\,d(p,\partial\mathbf{m}^{\mathrm{out}})\le4\,\bigr]$,
+    obtained as dilation $\ominus$ erosion}};
+\draw[flow] (10.55,7.82) -- (10.55,7.53);
+
+\begin{scope}[shift={(10.55,6.45)}]
+  \pgfmathsetmacro{\mH}{0.5*\sM}
+  \pgfmathsetmacro{\mS}{\mH/0.92}
+  \fill[white] (-\mH,-\mH) rectangle (\mH,\mH);
+  \draw[datablue!60, line width=0.5pt] (-\mH,-\mH) rectangle (\mH,\mH);
+  \begin{scope}[scale=\mS]
+    \fill[datablue!16] \hull;
+    \draw[datablue, line width=0.7pt] \hull;
+  \end{scope}
+\end{scope}
+\draw[black!75, line width=0.5pt] (11.16,6.27) rectangle (11.51,6.62);
+\node[sub, anchor=north, align=center, text width=26mm] at (10.55,5.28)
+  {$\mathbf{m}^{\mathrm{out}}$, $800^2$: a $\pm4$-px band is $1\%$ of the
+   side, so it is shown magnified};
+
+\draw[aux] (11.51,6.62) -- (12.20,7.70);
+\draw[aux] (11.51,6.27) -- (12.20,4.90);
+
+% --- the x8 zoom: the band annulus, interior and exterior locked ---------
+\draw[black!50, line width=0.6pt] (12.20,4.90) rectangle (15.00,7.70);
+\begin{scope}
+  \clip (12.20,4.90) rectangle (15.00,7.70);
+  \begin{scope}[shift={(13.60,6.30)}, scale=1.72]
+    \draw[opsred!32, line width=1.6mm] \hull;
+    \draw[black!55, dash pattern=on 1.1pt off 1.0pt, line width=0.4pt,
+          scale=1.10] \hull;
+    \draw[black!55, dash pattern=on 1.1pt off 1.0pt, line width=0.4pt,
+          scale=0.90] \hull;
+    \fill[datablue!10] \hull;
+    \draw[datablue, line width=0.7pt] \hull;
+  \end{scope}
+\end{scope}
+\node[sub, anchor=north west, text=black!70] at (12.26,7.64) {$\times8$ zoom};
+\node[sub, anchor=north east, text=opsred] at (14.94,7.64) {writable band};
+\pic[scale=1.0] at (13.70,6.36) {lock};
+\node[sub, anchor=north, text=black!70] at (13.70,6.22) {interior locked};
+\pic[scale=1.0] at (12.42,5.16) {lock};
+\node[sub, anchor=west, text=black!70] at (12.58,5.16) {exterior locked};
+\node[sub, anchor=north, align=center, text width=34mm] at (13.60,4.78)
+  {$\pm4$\,px $=$ dilate $\ominus$ erode: the only writable pixels};
+
+\draw[flow] (15.00,6.85) -- (15.28,6.85);
+\node[trn, anchor=north west, text width=25mm] (r1) at (15.30,7.55)
+  {\textbf{UNet re-segments}\\[-1pt]
+   {\scriptsize overlapping logits averaged in the band, threshold
+    $0.5$}};
+\node[badgetrn] at ($(r1.north west)+(0.26,0)$) {4};
+\draw[flow] (16.65,6.28) -- (16.65,6.05);
+\node[data, anchor=north west, text width=25mm] (r2) at (15.30,6.05)
+  {\textbf{refined mask} $\mathbf{m}^{\mathrm{final}}$\\[-1pt]
+   {\scriptsize $=b\,\hat{\mathbf{m}}+(1{-}b)\,\mathbf{m}^{\mathrm{out}}$,
+    still $800\times800$}};
+
+% ===== invariance banner =================================================
+\node[froz, anchor=south west, minimum width=180mm, minimum height=8.4mm]
+  (ban) at (0.10,1.80)
+  {\textbf{\ \ what the refiner may not do}\\[-1pt]
+   {\scriptsize every pixel outside the $\pm4$-px band is bit-identical to the
+    stack's output\ \ $\cdot$\ \ detection scores, ranks and instance identities
+    are untouched\ \ $\cdot$\ \ the main model is not modified}};
+\pic[scale=1.0] at ([shift={(0.42,0)}]ban.west) {lock};
+\pic[scale=1.0] at ([shift={(-0.42,0)}]ban.east) {lock};
+
+% ===== measured effect ===================================================
+\node[subk, anchor=north] at (9.10,1.58)
+  {mask AP \textbf{43.6\,/\,58.6\,/\,69.1} and AP$_{75}$
+   \textbf{47.0\,/\,70.7\,/\,87.4} on inshore\,/\,official\,/\,offshore ---
+   the fingerprint of a pure boundary correction:\\[1pt]
+   on the inshore split AP$_{50}$ moves by only $+0.7$ while
+   AP$_{75}$ moves by $+10.9$.};
+
+\end{tikzpicture}
+\end{document}

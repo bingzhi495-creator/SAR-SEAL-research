@@ -1,0 +1,41 @@
+% ======================================================================
+% Section V: Discussion  +  Section VI: Conclusion
+% Compressed 2026-08-07 per REVIEW_LIUQK.md / _RESTRUCTURE_MAP.md:
+% V-B (what did not help) moved to Sec. IV-G of sec_exp.tex; V-A cut by
+% ~40% (the seven-direction recital now lives only in Table tab:arch);
+% V-C limitations cut to ~200 words; VI rewritten as a single past-tense
+% paragraph per STYLE_GUIDE Sec. 7 (headline numbers 44.5/48.3/62.1 only).
+% Facts audited against docs/ALL_TABLES.md and _v27_backup/sec_disc.tex.
+% 2026-09-03 (docs/TGRS_SUBMISSION_REVIEW.md): P1-1 carrier/operator
+% wording; P1-13 seed annotation on the Wasserstein-cost figures (sources:
+% runs/_PAPER_TABLE.md:73,98-100, runs/_a2hrsid.out:3, runs/_a2s1.out:5,
+% runs/_nextq.out:1, runs/_c0a2.out:3); P1-10 contrastive-phrase count 3 -> 1;
+% P0-10 carrier--dataset pairs; P0-14 Data/Code Availability +
+% Acknowledgment placeholders appended after the Conclusion.
+% ======================================================================
+
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{A Preservation Regularity: When Architecture Engineering Pays}
+\label{sec:disc-preservation}
+
+One regularity organizes the controlled ledger of Section~IV: on a strong COCO-pretrained base, a modification survives in proportion to how much of the pretrained representation it preserves. Every weight-touching intervention of Table~\ref{tab:arch} failed to pay under the recovery stack; the carriers plus the fusion operator delivered the entire +11.1/+8.2/+5.2 lift. The regularity is regime-dependent. On a from-scratch Mask2Former at 17.9 inshore mask AP, the specialized modules of O2Former are worth +25.2 points \cite{o2former2025}. In our own earlier experiments, a Gaussian--Wasserstein matching cost gained +4.4 inshore on a from-scratch-head base (12.5 to 16.9; single-seed base, two-seed mean). The same cost turned neutral to negative once the identical model was COCO-initialized (27.9 to 27.4, single seed). Architecture engineering pays where the representation leaves headroom for injected priors. Preservation is necessary but not sufficient. The strip adapter respected it through a zero-initialized gate and still lost 0.9 inshore point, because the elongation prior mismatches the quasi-point-like near-shore hulls of HRSID. The two correctors obey the same regularity from outside the network.
+
+\subsection{Limitations}
+\label{sec:disc-limitations}
+
+Five limitations bound our claims. First, single-look amplitude imagery imposes a sensor ceiling: the physics that separates a berthed hull from the dock structure it touches is absent from the input. A radiometric-consistency re-ranking probe accordingly recovered +0.0 inshore over a flip-TTA control. Second, the residual gap has moved, not closed. Offshore HRSID still trails O2Former by 1.6 points (70.1 against 71.7), and PSeg-SSDD remains 1.1 inshore and 2.1 offshore below the same architecture. Third, the evidence base is two collections of single-sensor amplitude imagery. The sweep of Table~\ref{tab:arch} is eliminative rather than exhaustive, so stronger interventions than the forms we tested may exist. Fourth, the training-free claim is scoped to the recovery stack of Section~III. Each corrector is refitted on the target training split, and the refined-tier comparison inherits the operating-point caveat of Section~IV. Fifth, the soup depends on member compatibility: the six PSeg-SSDD seeds average well within two groups and poorly across them (Section~\ref{sec:exp:main}). A training-split test that picks compatible members without touching test data is left to future work.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This article proposed a three-tier self-correcting inference cascade for SAR ship instance segmentation, together with a controlled study of the pretraining regime it rests on. To recover the detections single-view inference loses in near-shore clutter, we introduced a consensus-gated mask-IoU vote fusion operator and deployed it on a standard weight-soup and wide-TTA carrier. Its ablation showed that the operator, not the view count, decides whether aggressive augmentation helps or collapses. To move the two residuals the stack leaves, we devised two small correctors supervised only by the frozen model's own training-split errors. A band-guarded boundary-patch refiner edits only mask pixels, and a learned consensus re-ranker edits only scores; both were audited for leakage. Experiments on HRSID and PSeg-SSDD demonstrated the effectiveness and robustness of the cascade: 44.5 inshore mask AP and 48.3 inshore AP$_{75}$ on HRSID, and 62.1 inshore AP on PSeg-SSDD. On the HRSID near-shore split these figures exceed the strongest specialized 500-epoch architecture at one third of its epochs and roughly 8$\times$ test-time cost. Ablation experiments underlined that architecture- and training-side modifications of the strong base were flat, negative, or absorbed. The identical recipe (stack plus refiner), in contrast, lifted six further carrier--dataset pairs across five distinct architectures on every split. In the future, we plan to extend the recipe to sensors providing polarimetric or sub-aperture information, where the amplitude ceiling identified here may be broken.
+
+\section*{Data and Code Availability}
+% TODO-USER: replace the placeholder repository URL (review checklist section 5, item 5).
+The HRSID and PSeg-SSDD datasets are publicly available from their original authors. Our code, all training and inference configurations, and the evaluation scripts will be released at \url{https://github.com/XXX/XXX} upon acceptance. The release includes the COCO-format annotations, the inshore/offshore split lists with the scripts that produce them, and the souped Mask2Former-R50, refiner, and re-ranker checkpoints for both datasets. The implementation builds on MMDetection 3.3.0 and PyTorch 2.0.1.
+
+\section*{Acknowledgment}
+% TODO-USER: funding acknowledgment; IEEE requires disclosure of AI-generated content here if applicable
+The authors thank XXX.

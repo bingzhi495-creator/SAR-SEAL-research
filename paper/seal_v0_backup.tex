@@ -1,0 +1,122 @@
+%% SEAL — SAR inshore small-ship instance segmentation: a diagnose-before-fix framework.
+%% IEEEtran journal format (target: IEEE JSTARS / TGRS). Compile: pdflatex seal; bibtex seal; pdflatex x2.
+%% v0 (2026-06-18): Abstract/Intro/RelatedWork/Conclusion = full prose; Method/Experiments = outline.
+%% Numbers are confirmed PSeg multi-seed values; HRSID marked \HRSIDtodo.
+\documentclass[journal]{IEEEtran}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+
+% placeholder macro for pending HRSID numbers
+\newcommand{\HRSIDtodo}[1]{\textcolor{red}{[HRSID: #1]}}
+\newcommand{\TODO}[1]{\textcolor{blue}{[TODO: #1]}}
+
+\begin{document}
+
+\title{Diagnose Before You Fix: A Bottleneck-Decomposition Framework for Inshore Small-Ship Instance Segmentation in SAR Imagery}
+
+\author{Anonymous Author(s)% <-this % stops a space
+\thanks{Manuscript submitted June 2026.}}
+
+\markboth{IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 2026}%
+{Author \MakeLowercase{\textit{et al.}}: Diagnose Before You Fix}
+
+\maketitle
+
+\begin{abstract}
+Instance segmentation of ships in synthetic-aperture-radar (SAR) imagery is markedly harder in \emph{inshore} scenes than offshore, yet most methods improve the architecture or inject priors without first asking \emph{where} the inshore gap comes from. We take a diagnose-before-fix view. Using an oracle-box analysis on a strong query-based baseline (Mask2Former-R50), we decompose the inshore high-IoU mask gap (AP$_{75}$) into a detection-coverage component ($\sim$60\%) and a mask-resolution component ($\sim$40\%). Guided by this decomposition, we apply a \emph{minimal} remedy---recomputing only the final-layer mask at half resolution ($1/4\!\rightarrow\!1/2$) with a lightweight learned sharpening module---obtaining a seed-robust $+2.6$ AP$_{75}$ on PSeg-SSDD (two seeds each; a larger but single-seed, statistically-suggestive $+4.6$ inshore AP$_{75}$ whose image-level bootstrap CI includes zero), which a bilinear-only control attributes roughly evenly to resolution ($+1.3$) and the learned module ($+1.5$). As a complementary \emph{training-free} component, a coherent-speckle statistical evidence field acts as a shared high-recall prior that mildly but seed-robustly lifts detection recall ($+1.85$ AR, $+2.1$ small-object recall) and seeds a detection front-end, while we honestly characterize where the same prior is \emph{not} useful (per-pixel ship/clutter discrimination). Finally, we contribute two evaluation-protocol findings: a quantification of the substantial chip-level leakage in the de-facto HRSID split (92.7\% of test chips share pixels with training chips; 10.8\% by $\ge$50\% area) with a leakage-free scene-level re-split, and a measurement that the standard Boundary-IoU dilation degenerates to Mask-IoU for the extremely small ships dominating SAR data (91.5\%\,/\,67\% of HRSID/PSeg instances), motivating a multi-$d$ report. We deliberately do not claim state-of-the-art on aggregate mask AP; our contribution is a diagnostic framework with a verified minimal remedy, a rigorous and honest study of a statistical prior, and a reproducible evaluation protocol.
+\end{abstract}
+
+\begin{IEEEkeywords}
+SAR, ship instance segmentation, inshore, mask refinement, oracle analysis, data leakage, Boundary IoU, coherent speckle, evaluation protocol.
+\end{IEEEkeywords}
+
+\section{Introduction}
+\IEEEPARstart{S}{hips} in SAR imagery are routinely detected and segmented for maritime surveillance, traffic monitoring, and search-and-rescue. While offshore ships---bright targets on a near-homogeneous sea---are now segmented with high accuracy, \emph{inshore} performance lags far behind: on HRSID, inshore mask AP can be roughly half the offshore value, and the per-pixel statistics of ships and man-made shore clutter are not separable in principle. This inshore regime is the practically important one, and closing the gap is the implicit goal of much recent work.
+
+Most of that work proceeds by \emph{adding capacity}: stronger backbones, orientation-aware queries, foundation-model priors, or diffusion decoders. Such additions often improve aggregate numbers, but rarely answer a prior question: for a given strong baseline, what specifically fails inshore---are ships not found, or are found ships poorly masked? Without that decomposition, an architectural gain cannot be attributed to the mechanism it claims, and effort may target a sub-problem that is not the binding constraint.
+
+We argue for a \emph{diagnose-before-fix} methodology and instantiate it for inshore SAR ship segmentation. On a strong, widely-used query-based baseline (Mask2Former-R50), we run an oracle-box analysis measuring, separately, (i) the fraction of inshore ground-truth instances the baseline fails to detect, and (ii) for instances it \emph{does} detect, how far the masks fall short of the high-IoU (AP$_{75}$) criterion. On PSeg-SSDD this decomposes the inshore AP$_{75}$ deficit into $\sim$60\% detection-coverage and $\sim$40\% mask-resolution---the latter a concrete, addressable bottleneck that, to our knowledge, no prior SAR-segmentation method explicitly targets.
+
+Guided by the diagnosis, we apply the \emph{minimal} surgery the analysis prescribes rather than a general capacity increase: we recompute only the final decoder layer's mask at half resolution (from the standard $1/4$ stride to $1/2$) with a small learned sharpening module, leaving the nine auxiliary layers and the matching unchanged. This yields a seed-robust $+2.6$ AP$_{75}$ on PSeg-SSDD (two seeds per configuration; a larger $+4.6$ inshore AP$_{75}$ at seed~0, which a $2000$-resample image-level bootstrap places at a $95\%$ CI of $[-0.5,+9.5]$---suggestive and consistent with the diagnosis, but not significant on the small 46-image inshore stratum, so we headline the overall $+2.6$), and a bilinear-only control attributes the gain roughly evenly to the resolution increase ($+1.3$) and to the learned sharpening ($+1.5$)---so we claim ``higher mask resolution \emph{and} lightweight learned refinement'', not pure resolution. Crucially, the gain materialises exactly where the oracle predicted, giving it explanatory weight beyond a tuned number. We do not observe robust gains in overall AP or small-object AP (the latter within seed noise), and we report this plainly. We further validate the head cross-dataset on HRSID (denser scenes, official split), where it is essentially \emph{neutral} (AP$_{75}$ $+0.5$, within single-seed noise) yet does no harm; crucially, on HRSID's $76$ real large instances the large-object AP is flat ($-0.2$), showing that an apparent $-13.7$ large-object drop on PSeg-SSDD was small-sample noise (PSeg-SSDD has only two large instances) rather than a regression---a conclusion only a cross-dataset check can establish.
+
+Alongside the segmentation main line, we examine whether a \emph{training-free} SAR statistical prior can help---held to the same evidential bar, with honest negatives. We build a multi-scale nonparametric evidence (MNE) field from coherent-speckle statistics. The field is \emph{not} a good per-pixel ship/clutter classifier (it does not beat a box-filter $z$-score by a meaningful margin on either dataset), consistent with the non-separability of ship and shore clutter; but it \emph{is} a useful high-recall signal---evidence seeds injected into a DETR detector's reference points give a seed-robust $+1.85$ AR ($+2.1$ small-object recall) at no mAP cost, with a random-seed control isolating the statistic from any high-recall proposal. This ``useful for recall, not for discrimination'' characterization is, we argue, more valuable than an over-claimed prior.
+
+Finally, while building a faithful evaluation we uncovered two protocol issues with measurable impact. First, the de-facto HRSID chip split leaks heavily: 92.7\% of test chips share at least one pixel with a training chip and 10.8\% overlap by $\ge$50\% of their area, so reported numbers partly measure memorization; we publish a leakage-free scene-level re-split and the official-vs-scene gap. Second, the standard Boundary-IoU dilation (2\% of the image diagonal) degenerates to plain Mask-IoU for the extremely small ships dominating SAR data (91.5\% of HRSID, 67\% of PSeg instances), so a single-$d$ Boundary-IoU is not an independent quality axis here; we report a multi-$d$ curve.
+
+\noindent\textbf{Contributions.} (1) A diagnose-before-fix framework that decomposes the inshore SAR mask gap via oracle-box analysis and prescribes a \emph{minimal} remedy whose gain is verified to land where the diagnosis predicts (seed-robust $+2.6$ AP$_{75}$, with a resolution/learned-refinement decomposition). (2) A rigorous, honest study of a training-free coherent-speckle evidence prior as a shared high-recall signal for both detection and segmentation---including the negative result that it does not discriminate ship from clutter---each evidence use paired with an evidence-removed or trivial-prior control. (3) Two reproducible evaluation-protocol contributions: quantified HRSID-split leakage with a leakage-free scene-level re-split, and the SAR-small-ship Boundary-IoU degeneration with a multi-$d$ report. (4) A dual-delivery evaluation in which detection and segmentation each play to their strengths over a shared prior. We do not claim state-of-the-art on aggregate mask AP; we aim for correctly-attributed, honestly-bounded advances.
+
+\section{Related Work}
+\subsection{SAR ship instance segmentation}
+\TODO{comparison table and citations to be filled by the literature-grounding workflow: O$^2$Former (inshore AP$_{75}$ 45.9, offshore 71.7), MC-SAM SEG (HRSID 66.4), RSPrompter / HQ-SAM family.} These methods improve queries, orientation modeling, or foundation-model prompting; none reports a decomposition of \emph{where} the inshore gap arises, and none targets the mask-resolution axis explicitly. Our baseline Mask2Former-R50 (PSeg-SSDD 0.518 mask AP, HRSID 0.348 on the official split) is intentionally a standard, reproducible carrier rather than a tuned record; we compete on a correctly-attributed inshore AP$_{75}$ gain and on protocol, not on aggregate AP.
+
+\subsection{Query-based segmentation and mask refinement}
+Mask2Former and MaskDINO produce masks by a dot product between per-query embeddings and a $1/4$-stride mask feature, capping fine-boundary fidelity for tiny objects. Per-instance or coarse-to-fine refinement is a mature paradigm---RefineMask, PointRend, Mask Transfiner, DynaMask---typically adding $1$--$3$ AP$_{75}$. We do not claim the refinement \emph{paradigm} as novel; our contribution is (a) diagnosing that mask resolution is the binding inshore constraint in SAR via oracle analysis, and (b) the minimal, final-layer-only instantiation suited to single-GPU SAR practice, with an ablation separating resolution from the learned module.
+
+\subsection{Statistical and CFAR priors in SAR}
+Constant-false-alarm-rate (CFAR) detection and its truncated/ordered-statistics variants are classical high-recall, low-precision ship locators; the two-stage ``CFAR candidate then learned discriminator'' pattern encodes that such priors localize but do not classify. We position MNE in this lineage and, rather than claiming a novel discriminative prior, \emph{quantify} the high-recall/low-precision behaviour and use it only where sound (recall, seeding), reporting the negative discrimination result explicitly.
+
+\subsection{Data leakage and segmentation evaluation protocols}
+Leakage quantification is an established methodological concern in ML; in SAR/remote sensing, chip-tiling of a few large scenes risks cross-split overlap. We are, to our knowledge, the first to quantify the HRSID official-split leakage and release a scene-level re-split. Boundary IoU \cite{cheng2021boundary} notes it approaches Mask IoU for small objects; we measure how severe this is in the SAR small-ship regime and report a multi-$d$ curve to keep an independent boundary axis.
+
+\subsection{SAR ship detection benchmarks}
+Modern detectors (YOLO family, Mamba-YOLO, DETR variants) reach high box AP / recall on HRSID/SSDD \TODO{e.g., Mamba-YOLO HRSID box mAP$_{50}$ 0.871 / Pd 0.792}. Our detection line (SeedDINO) is evaluated in this context with explicit protocol notes (COCO-pretrained vs from-scratch), as the detection half of a dual-delivery system sharing the evidence prior with the segmentation line.
+
+\section{Method}
+\TODO{full prose to be supplied by the paper-drafting workflow (paper\_draft\_v1.md); outline below.}
+\subsection{Overview: a diagnose-then-operate pipeline}
+\subsection{Multi-scale nonparametric evidence (MNE) field}
+% training-free, supporting role; definition + consumers (input / seeding / loss)
+\subsection{Oracle-box diagnosis of the inshore AP$_{75}$ gap}
+% decomposition: detection-coverage vs mask-resolution
+\subsection{Final-layer mask refinement (SealM2FHead)}
+% recompute only final mask at 1/4->1/2 + learned sharpening; equations
+\subsection{Evidence detection seeding (SeedDINO)}
+% inject seed boxes into reference_points; oracle upper bound
+\subsection{Inference mask-NMS and dual-delivery collaboration}
+\subsection{Evidence-removed and trivial-prior controls}
+
+\section{Experiments}
+\TODO{full prose to be supplied by the paper-drafting workflow; outline and confirmed numbers below.}
+\subsection{Datasets and protocol}
+% HRSID / PSeg-SSDD; leakage quantification + scene-level split; multi-d Boundary IoU
+\subsection{Implementation details}
+% single RTX 3090 Ti; Mask2Former-R50; 36 epochs; etc.
+\subsection{Main result: mask refinement}
+% Table: A0 vs A0R-refine (2 seeds) AP75 0.619->0.645 (+2.6); inshore +4.6 (seed0);
+% bilinear decomposition +1.3 resolution / +1.5 learned.
+% M4 DONE: inshore AP75 image-level bootstrap (2000 resamples, 46 imgs):
+%   point +4.6, 95% CI [-0.5,+9.5], P(>0)=0.96 -> suggestive, not significant.
+%   Report CI in caption; headline the seed-robust overall +2.6.
+%   (verdict: runs/refine_gate/M4_近岸AP75_bootstrap裁决.md)
+% M1 DONE (HRSID cross-dataset, official split, iter_100848 LR~0):
+%   A0 AP/AP75/AP_l = 0.348/0.378/0.126 ; A0R = 0.351/0.383/0.124.
+%   -> AP75 +0.5 (single-seed, within noise) = NEUTRAL/no-harm, do NOT claim a gain.
+%   -> AP_l -0.2 on 76 REAL large instances DISPELS the PSeg -13.7 (2-instance noise).
+%   -> cleaner masks generalize: split 0.303->0.288, merge 0.153->0.141.
+%   Frame HRSID as cross-dataset robustness (no harm + AP_l truth-test), NOT a 2nd win.
+%   (verdict: runs/a0r_refine_hrsid/HRSID细化头裁决.md)
+\subsection{Diagnostic-framework validation}
+% oracle-box decomposition (60% detection + 40% resolution) and its delivery
+\subsection{Detection seeding and mask-NMS}
+% AR +1.85 / small +2.1 (2 seeds); random and oracle controls; mask-NMS split 0.344->0.152
+\subsection{Protocol results}
+% \HRSIDtodo{official-vs-scene Delta}; multi-d Boundary IoU degeneration 91.5%/67%
+\subsection{Ablations and honest negative results}
+% MNE evidence-removed controls; G1 (per-pixel non-discrimination), D2, seed precision 17.6%
+
+\section{Discussion}
+\TODO{Discussion prose to be supplied by the workflow; points: MNE's honest training-free supporting role; protocol contributions stand independently; dual delivery; limitations.}
+
+\section{Conclusion}
+We presented a diagnose-before-fix study of inshore SAR ship instance segmentation. Rather than adding capacity blindly, we used an oracle-box analysis to decompose the inshore high-IoU mask gap into detection-coverage and mask-resolution components, and applied the minimal remedy the diagnosis prescribed---a final-layer half-resolution mask with lightweight learned sharpening---obtaining a seed-robust $+2.6$ AP$_{75}$ whose source we attribute, via a bilinear control, to resolution and learned refinement in roughly equal parts, and which materializes precisely where the diagnosis predicted. We further gave an honest account of a training-free coherent-speckle evidence prior as a shared high-recall signal---useful for detection recall and seeding, but explicitly not a ship/clutter discriminator---each claim guarded by an evidence-removed or trivial control. Lastly, we contributed two reproducible evaluation-protocol results: quantified HRSID-split leakage with a leakage-free re-split, and the small-ship Boundary-IoU degeneration with a multi-$d$ report. We did not pursue aggregate-AP records; we pursued correctly-attributed, honestly-bounded advances and a reproducible protocol. Future work includes a detect-and-segment cascade operationalizing the shared prior across both tasks, and improving inshore seed precision where the speckle statistic is fundamentally limited.
+
+\bibliographystyle{IEEEtran}
+\bibliography{seal_refs}
+
+\end{document}

@@ -1,0 +1,208 @@
+% fig1b_readout.pdf -- Fig. 1-B, read-out geometry of the frozen base.
+% NEW FILE, written to FIGURE_REDESIGN_SPEC S3.1b.  It is NOT \input anywhere
+% yet: whether the article can afford the page is decided at integration.
+%
+% Message (one sentence, SPEC S3.1b): the mask is decided at stride 4 and only
+% then upsampled x4 -- that is where the boundary halo of Section III-E comes
+% from, i.e. this is the reason the BPR rung of Fig. 3 exists.
+%
+% Squint focus = the upsampling wedge: the ONLY 0.8 pt stroke in the figure,
+% and the only place where a drawn edge grows (0.50 cm -> 2.00 cm) inside one
+% glyph.  Everything else is 0.5 pt.  The two module boxes are grey chrome on
+% purpose (SPEC S3.1b: "this is not a redraw of Mask2Former, only its read-out
+% chain"); depth of layers and attention type belong in the caption.
+%
+% GEOMETRY IS DERIVED, NOT DRAWN BY EYE (SPEC S2.4).
+%   G1  drawn edge = zoom * px / 400 cm  (1 mm of edge per 40 tensor pixels)
+%   G2  slab depth = max(0.04, 0.04 + 0.055*log2(C/256)) cm  (+0.55 mm per
+%       channel doubling)
+% so every block below is a consequence of the shape recorded in
+% assets/manifest.json, and a reader can re-derive it with a ruler:
+%   chip      800 px             -> 2.000 cm
+%   C2  256 @ 200x200, stride  4 -> 0.500 cm face, 0.040 cm depth
+%   C3  512 @ 100x100, stride  8 -> 0.250 cm face, 0.095 cm depth
+%   C4 1024 @  50x50 , stride 16 -> 0.125 cm face, 0.150 cm depth
+%   C5 2048 @  25x25 , stride 32 -> 0.0625 cm face -> DRAWN AT THE 1.2 mm
+%      FLOOR (0.120 cm) and flagged with the "~" glyph above it, exactly as
+%      SPEC S2.4 requires; depth 0.205 cm
+%   F   256 @ 200x200            -> 0.500 cm face, 0.040 cm depth
+%   logits 100 x 200 x 200       -> 0.500 cm plane
+%   output 100 x 800 x 800       -> 2.000 cm plane
+% The 4x jump the figure is about is therefore the drawn 0.500 -> 2.000 cm
+% step across the wedge, not a claim in a label.
+%
+% REAL DATA (SPEC S2.5).  All eight rasters are the actual tensors of ONE
+% forward pass of runs/c0_maskiou_v2/soup_s023/iter_100872.pth on the HRSID
+% inshore chip P0101_1200_2000_3000_3800.jpg (image_id 1528), dumped by
+% carrier/dump_figure_assets.py; provenance for each is assets/manifest.json.
+% Feature maps are the integer nearest-neighbour *_xN copies (never
+% interpolated), so the PDF renderer cannot invent pixels the tensor does not
+% have.  Worst drawn resolution is the 800 px chip and the 800 px output at
+% 20.0 mm = 1016 dpi; every feature map is above 2000 dpi.
+%
+% NUMBERS DRAWN (SPEC H2): tensor shapes and the four backbone strides only.
+% No AP, no epoch, no runtime, no parameter count, no layer count.  Word count
+% 21 (budget 40).  Padlocks: 0 (SPEC S4.2 quota for this figure).
+%
+% Authored at exactly 18.2 x 4.00 cm = 516 x 113.4 pt = \textwidth, aspect
+% 4.55:1 -- the same canvas as fig1_framework.pdf, so if both are printed the
+% pair reads as one spread.  Include with width=\textwidth in figure*[!t] at
+% scale 1.0, so \footnotesize is a true 8 pt and \scriptsize a true 7 pt.
+%
+% FOUR DOCUMENTED DEVIATIONS from the letter of SPEC S3.1b (each forced by a
+% measured collision or by a SPEC S4.2 gate):
+%   D1  math script size.  tikz_style_v5 declares \DeclareMathSizes{8}{8}{6}{6}
+%       and {7}{7}{6}{6}, i.e. a 6 pt floor for sub/superscripts.  This figure
+%       is the first whose allowed vocabulary is full of subscripts (C_2, C_5,
+%       e_q, U_{4x}), so at that setting the FONT gate at --min-pt 7 fails on
+%       every one of them.  The two declarations are restated as {8}{8}{7}{7}
+%       and {7}{7}{7}{7}: scripts print at the sub-label size, the figure keeps
+%       exactly two type sizes (8 pt / 7 pt) and the 7 pt floor holds.
+%   D2  colour budget (<= 10 distinct vector colours, SPEC S4.2).  The 3D
+%       tensor pic spends four tints (colour!30/!20/!11/!75) and the tensor
+%       pile three more (white, !8, !60); with frozgray, black!7 and flowink
+%       that is already ten.  \tokencol as shipped in tikz_style.tex fills its
+%       bars with colour!13, an eleventh.  It is restated below with the
+%       colour!11 of the tensor front face -- identical geometry, one fewer
+%       colour -- so the query column and the feature slabs share one tint.
+%   D3  where the size labels sit.  SPEC S2.4 puts a tensor's shape label
+%       directly under its front bottom edge.  For F that label is 53.7 pt =
+%       1.89 cm wide under a 0.50 cm block, so it reaches back under the
+%       pixel-decoder box and collides with it (measured, not estimated).  All
+%       small-tensor labels are therefore set on ONE baseline at y = 2.20,
+%       below every box's bottom edge (y = 2.30), which removes the collision
+%       and gives the strip a single label rule.  The two full-size rasters
+%       (chip, output) keep their own baseline at y = 1.56.
+%   D4  "$C_2$..$C_5$" in the spec's verbatim list is set as "$C_2$--$C_5$";
+%       an en dash is the range mark the rest of the article uses.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style_v5}
+
+% ---- D1: lift the math script floor from 6 pt to the 7 pt sub-label size --
+\DeclareMathSizes{8}{8}{7}{7}
+\DeclareMathSizes{7}{7}{7}{7}
+
+% ---- D2: the query column, restated with the tensor front-face tint -------
+% Geometry byte-for-byte as tikz_style.tex; only the bar fill moves from
+% #5!13 to #5!11 so the figure stays inside the ten-colour budget.
+\renewcommand{\tokencol}[5]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \pgfmathsetmacro{\tkP}{0.098}
+    \pgfmathsetmacro{\tkT}{0.056}
+    \pgfmathsetmacro{\tkW}{0.5*#4}
+    \pgfmathtruncatemacro{\tkN}{#3-1}
+    \pgfmathsetmacro{\tkY}{0.5*(\tkN*\tkP+\tkT)}
+    \foreach \tki in {0,...,\tkN} {
+      \pgfmathsetmacro{\tkc}{\tkY-\tki*\tkP}
+      \fill[#5!11] (-\tkW,\tkc-\tkT) rectangle (\tkW,\tkc);
+      \draw[#5!75, line width=0.5pt] (-\tkW,\tkc-\tkT) rectangle (\tkW,\tkc);
+    }
+  \end{scope}}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{4.00}
+
+\def\yS{2.65}      % the read-out strip: chip, pyramid, F, logits, output
+\def\yB{0.75}      % the query strip: Q, transformer decoder, e_q
+\def\yCap{2.20}    % one baseline for every small-tensor shape label (D3)
+\def\yBig{1.56}    % one baseline for the two 800 x 800 rasters
+\def\yTok{1.20}    % one baseline for the two token-column labels
+
+% =========================================================================
+%  INPUT -- the real 800 x 800 model input (assets/chip.png, 1016 dpi)
+% =========================================================================
+\realpanel{1.32}{\yS}{800}{1}{chip.png}{datablue!60, line width=0.5pt}
+\node[sub, anchor=north] at (1.32,\yBig) {SAR chip\\ $800\times800$};
+\draw[flow] (2.37,\yS) -- (2.82,\yS);
+
+% =========================================================================
+%  BACKBONE PYRAMID -- four real feature maps, extent falling 8x while the
+%  slab depth grows with the channel count.  No arrows inside the pyramid:
+%  the shrinking geometry IS the statement, and one label serves all four.
+% =========================================================================
+\pic (c2) at (3.12,\yS) {tensor={px=200, ch=256,  img=feat_c2_x4.png}};
+\pic (c3) at (3.77,\yS) {tensor={px=100, ch=512,  img=feat_c3_x8.png}};
+\pic (c4) at (4.29,\yS) {tensor={px=50,  ch=1024, img=feat_c4_x16.png}};
+\pic (c5) at (4.73,\yS) {tensor={px=48,  ch=2048, img=feat_c5_x32.png}};
+% C5's true edge is 0.0625 cm; it is drawn at the 1.2 mm floor, so it carries
+% the "~" the floor rule (SPEC S2.4) asks for.
+\node[sub, anchor=south] at (4.73,2.86) {$\approx$};
+\node[sub, anchor=north] at (3.919,\yCap) {$C_2$--$C_5$, strides 4/8/16/32};
+\draw[flow] (5.02,\yS) -- (5.47,\yS);
+
+% =========================================================================
+%  PIXEL DECODER -- grey chrome, one line (SPEC S3.1b)
+% =========================================================================
+\node[froz, minimum width=30mm, minimum height=7mm] (pdec) at (7.02,\yS)
+  {pixel decoder};
+\draw[flow] (8.57,\yS) -- (9.02,\yS);
+
+% =========================================================================
+%  MASK FEATURE F -- the real 256 x 200 x 200 tensor, still at stride 4
+% =========================================================================
+\pic (mf) at (9.32,\yS) {tensor={px=200, ch=256, img=maskfeat_x2.png}};
+\node[sub, anchor=north] at (9.32,\yCap) {$\mathbf{F}$: $256@200\times200$};
+\draw[flow] (9.65,\yS) -- (10.32,\yS);
+
+% =========================================================================
+%  THE READ-OUT -- one dot product, no formula (SPEC S3.1b deletion list)
+% =========================================================================
+\node[lbl] (dot) at (10.549,\yS) {$\otimes$};
+\draw[flow] (10.78,\yS) -- (11.05,\yS);
+
+% =========================================================================
+%  MASK LOGITS -- the real logits of the top-scoring query, AT STRIDE 4.
+%  This 0.50 cm plane is where the mask is actually decided.
+% =========================================================================
+\pic (lg) at (11.343,\yS)
+  {tensorpile={px=200, ch=4, color=datablue, img=mask_logits_q36_x4.png}};
+\node[sub, anchor=north] at (11.52,\yCap) {$100\times200\times200$\\ logits};
+\draw[flow] (11.82,\yS) -- (12.28,\yS);
+
+% =========================================================================
+%  THE 4x UPSAMPLE -- the squint focus.  The wedge is the only 0.8 pt stroke
+%  in the figure and the only glyph whose drawn edge grows: 0.50 cm in,
+%  2.00 cm out, i.e. every decided pixel is stretched over 4x4 output pixels.
+%  That is the halo Section III-E targets.
+% =========================================================================
+\fill[datablue!11]
+  (12.323,2.40) -- (15.123,1.65) -- (15.123,3.65) -- (12.323,2.90) -- cycle;
+\draw[datablue!75, line width=0.8pt] (12.323,2.40) -- (15.123,1.65);
+\draw[datablue!75, line width=0.8pt] (12.323,2.90) -- (15.123,3.65);
+\node[lbl] at (13.723,\yS) {$\mathcal{U}_{4\times}$};
+\draw[flow] (15.17,\yS) -- (15.63,\yS);
+
+% =========================================================================
+%  OUTPUT -- the real fused instance masks at full resolution (1016 dpi)
+% =========================================================================
+\pic (out) at (16.673,\yS)
+  {tensorpile={px=800, ch=3, color=datablue, img=pred_masks.png}};
+\node[sub, anchor=north] at (16.733,\yBig) {$100\times800\times800$};
+
+% =========================================================================
+%  THE QUERY STRIP -- 100 tokens with no spatial extent, so they are drawn
+%  as a bar column and never as a slab (SPEC S2.4).
+% =========================================================================
+\tokencol{4.60}{\yB}{8}{0.44}{datablue}
+\node[sub, anchor=south] at (4.60,\yTok) {$\mathbf{Q}$: $100\times256$};
+\draw[flow] (4.87,\yB) -- (5.27,\yB);
+
+\node[froz, minimum width=34mm, minimum height=7mm] (tdec) at (7.02,\yB)
+  {transformer decoder};
+\draw[flow] (8.77,\yB) -- (9.13,\yB);
+
+\tokencol{9.40}{\yB}{8}{0.44}{datablue}
+\node[sub, anchor=south] at (9.40,\yTok) {$\mathbf{e}_q$};
+
+% the two rails that close the loop: multi-scale memory down, embeddings up.
+% Both are unlabelled (SPEC S3.1b deletes the "3 memory levels, 256-d" note).
+\draw[flow]  (7.02,2.30) -- (7.02,1.10);
+\draw[flowt] (9.66,\yB) -- (10.549,\yB) -- (dot.south);
+
+\end{tikzpicture}
+\end{document}

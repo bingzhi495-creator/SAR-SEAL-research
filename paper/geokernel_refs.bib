@@ -1,0 +1,75 @@
+% GeoKernel/ShapePrior literature -- verified via web lookups (ship-prior-sota
+% workflow, 2026-06-20). arXiv ids below are confirmed; entries marked
+% "VERIFY id" had their id truncated in the record -- complete before camera-ready.
+% Mask2Former (cheng2022mask2former) and O2Former (gao2025o2former) live in
+% seal_refs.bib -- do NOT duplicate here.
+
+@inproceedings{dynamicfilter,
+  title     = {Dynamic Filter Networks},
+  author    = {De Brabandere, Bert and Jia, Xu and Tuytelaars, Tinne and Van Gool, Luc},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2016}, note = {arXiv:1605.09673}
+}
+@inproceedings{condconv,
+  title     = {{CondConv}: Conditionally Parameterized Convolutions for Efficient Inference},
+  author    = {Yang, Brandon and Bender, Gabriel and Le, Quoc V. and Ngiam, Jiquan},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2019}, note = {arXiv:1904.04971}
+}
+@inproceedings{condinst,
+  title     = {Conditional Convolutions for Instance Segmentation},
+  author    = {Tian, Zhi and Shen, Chunhua and Chen, Hao},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year      = {2020}, note = {arXiv:2003.05664; extended: arXiv:2102.03026}
+}
+@inproceedings{solov2,
+  title     = {{SOLOv2}: Dynamic and Fast Instance Segmentation},
+  author    = {Wang, Xinlong and Zhang, Rufeng and Kong, Tao and Li, Lei and Shen, Chunhua},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2020}, note = {arXiv:2003.10152}
+}
+@inproceedings{knet,
+  title     = {{K-Net}: Towards Unified Image Segmentation},
+  author    = {Zhang, Wenwei and Pang, Jiangmiao and Chen, Kai and Loy, Chen Change},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2021}, note = {arXiv:2106.14855}
+}
+@inproceedings{sparseinst,
+  title     = {Sparse Instance Activation for Real-Time Instance Segmentation},
+  author    = {Cheng, Tianheng and Wang, Xinggang and Li, Shaoyu and Liu, Wenyu and Wang, Lichao and Huang, Lei},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2022}, note = {SparseInst; VERIFY arXiv id before camera-ready}
+}
+@inproceedings{dynamask,
+  title     = {{DynaMask}: Dynamic Mask Selection for Instance Segmentation},
+  author    = {Li, Ruihuang and He, Chenhang and Li, Shuai and Zhang, Yabin and Zhang, Lei},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2023}, note = {arXiv:2303.07868; adapts mask RESOLUTION (orthogonal axis)}
+}
+@inproceedings{arc,
+  title     = {Adaptive Rotated Convolution for Rotated Object Detection},
+  author    = {Pu, Yifan and Wang, Yiru and Xia, Zhuofan and Han, Yizeng and Wang, Yulin and Gan, Weihao and Wang, Zidong and Song, Shiji and Huang, Gao},
+  booktitle = {IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2023}, note = {arXiv:2303.07820; rotates BACKBONE kernels for optical DETECTION, not the mask, not SAR}
+}
+
+% --- SAR-ship-specific shape/ellipse/Gaussian prior art (Gao et al. line) --- %
+% These OCCUPY the "ellipse/Gaussian shape for SAR ships" space; cite to bound novelty.
+@article{sarellipse,
+  title  = {Ellipse Encoding for Arbitrary-Oriented {SAR} Ship Detection Based on Dynamic Key Points},
+  author = {Gao, Fei and Huo, Y. and Sun, J. and others},
+  journal= {IEEE Transactions on Geoscience and Remote Sensing (or J-STARS)},
+  year   = {2024}, note = {VERIFY venue+arXiv/DOI before camera-ready}
+}
+@article{mldet,
+  title  = {Multitask Learning for {SAR} Ship Detection with Gaussian-Mask Joint Segmentation},
+  author = {Zhao, M. and Zhang, X. and Kaup, A.},
+  journal= {IEEE Transactions on Geoscience and Remote Sensing},
+  year   = {2023}, note = {VERIFY arXiv/DOI before camera-ready}
+}
+@article{bboxfreesar,
+  title  = {{BBox}-Free {SAR} Ship Instance Segmentation Based on Gaussian Heatmap},
+  author = {Gao, Fei and Zhong, F. and Sun, J. and Hussain, A. and Zhou, H.},
+  journal= {IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
+  year   = {2024}, note = {VERIFY arXiv/DOI before camera-ready}
+}

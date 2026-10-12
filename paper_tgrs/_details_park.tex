@@ -1,0 +1,155 @@
+% =========================================================================
+% _details_park.tex — NOT COMPILED. Do not \input this file from main.tex.
+% Implementation-detail material removed from sec_method.tex during the
+% Section III restructure of 2026-08-07 (REVIEW_LIUQK #11 #16-19,
+% _RESTRUCTURE_MAP.md).  Parked here for A4-exp to absorb into IV-B
+% (Implementation Details) and IV-E (Ablation).  Sentences are verbatim or
+% near-verbatim from _v27_backup/sec_method.tex, which remains the source
+% of truth.  Every number traces to docs/ALL_TABLES.md.
+% Blocks are tagged with their intended destination.
+% =========================================================================
+
+% ------------------------------------------------------------------
+% [-> IV-B] Stage-A training protocol (from old III-B "Base Model")
+% ------------------------------------------------------------------
+% Stage~A fine-tunes the model from COCO instance-segmentation weights for
+% 55 epochs (100{,}872 iterations at batch size 2 with 2-step gradient
+% accumulation) at $800\times 800$ resolution and initial learning rate
+% $2.5\times 10^{-5}$ on a single RTX 3090\,Ti.  An auxiliary mask-IoU
+% rescoring head present in the implementation is disabled ($\lambda=0$);
+% the weight soup subsumes its gain.
+
+% ------------------------------------------------------------------
+% [-> IV-B, optional] Base architecture tensor inventory (old III-B).
+% The 12-page Method section cites Mask2Former and keeps only the
+% stride-4 readout fact; reuse below only if a reviewer asks.
+% ------------------------------------------------------------------
+% The ResNet-50 backbone produces a four-level pyramid $\{C_2,C_3,C_4,C_5\}$
+% at strides $\{4,8,16,32\}$, with shapes $B\times 256\times 200\times 200$,
+% $B\times 512\times 100\times 100$, $B\times 1024\times 50\times 50$, and
+% $B\times 2048\times 25\times 25$ for an $800\times 800$ input.  A six-layer
+% multi-scale deformable-attention pixel decoder (8 heads, 256 dimensions)
+% fuses $C_3$--$C_5$ into a stride-4 mask feature
+% $\mathbf{F}\in\mathbb{R}^{B\times 256\times 200\times 200}$ plus three
+% flattened memory levels at strides $\{8,16,32\}$.  $N=100$ learnable
+% queries traverse nine decoder layers; a linear head maps each query to
+% class logits (ship versus no-object), a mask head maps it to a
+% 256-dimensional embedding, and the mask is the sigmoid of the per-pixel
+% dot product with $\mathbf{F}$, bilinearly upsampled $4\times$ and
+% thresholded at 0.5.  (Old Eqs. (output)/(readout), deleted.)
+
+% ------------------------------------------------------------------
+% [-> IV-B or drop] Soup geometry recital (old III-C; deleted from Method
+% as a recital, parked in case IV wants one sentence of it)
+% ------------------------------------------------------------------
+% Three independently seeded runs land within 0.1 inshore AP of one another
+% (27.7/27.6/27.7).  Over all 565 floating-point tensors (44.2\,M
+% parameters) of the three checkpoints the pairwise distances
+% $\|\theta_{s_i}-\theta_{s_j}\|_2$ are 30.16, 29.81, and 30.18, and
+% $\theta^{\star}$ is their centroid at 17.27, 17.49, and 17.29 from them;
+% the released checkpoint reproduces the recomputed uniform mean to
+% $1.6\times 10^{-7}$, that is, to float32 rounding.
+% Soup lifts (three-seed mean): 27.7 -> 29.6 inshore (+1.9), 45.6 -> 47.4
+% official, 59.6 -> 61.1 offshore.  Under the full stack the single souped
+% checkpoint matches a three-model prediction ensemble (39.3/53.6/64.0) at
+% one third of its inference cost.
+
+% ------------------------------------------------------------------
+% [-> IV-B] TTA implementation details (old III-D)
+% ------------------------------------------------------------------
+% The mask head rescales its outputs (\texttt{rescale=True}) so that every
+% view returns masks at the native $800\times 800$ resolution.
+% Six-view core $\{736,800,864\}\times\{\mathrm{id},\mathrm{hflip}\}$:
+% +7.0 inshore on average (+6.9/+7.4/+6.7 across the three seeds,
+% $\sigma\approx 0.3$), with a regime gradient inshore +7.0, official +5.5,
+% offshore +3.4.  Widening to the eight views adds a further +2.0 inshore
+% on seed $s_0$ (34.6 to 36.6), is flat on the official split, and costs
+% 0.6 offshore.  SSDD rescales the TTA ladder to \{416,512,608,704\}
+% (already stated in sec_exp).
+
+% ------------------------------------------------------------------
+% [-> IV-B] BPR training details (old III-F)
+% ------------------------------------------------------------------
+% The refiner is trained once, in about 19 minutes.  The full stack is run
+% on the training split and its predictions are matched to training ground
+% truth at mask IoU $\ge 0.5$; square boundary patches of side 64, upscaled
+% $2\times$, are cropped along each matched contour, forming (prediction,
+% ground-truth) patch pairs.  A 2.35M-parameter UNet is trained on these
+% pairs with a combined binary cross-entropy and Dice objective (old
+% Eq. (bprloss), deleted from Method).  The filename overlap between
+% refiner training patches and test images is zero.  Overlapping patch
+% logits are averaged inside the band and thresholded at 0.5.
+% Edit-size example (old Fig. figm_bpr text): refinement flips 106 of the
+% 4096 pixels of one boundary patch, and the $\pm 4$-pixel band around a
+% 738-pixel hull holds 1157 editable pixels.
+
+% ------------------------------------------------------------------
+% [-> IV-E] BPR results and fingerprint (old III-F closing)
+% ------------------------------------------------------------------
+% With the BPR rung the pipeline reaches 43.6/58.6/69.1 mask AP and
+% 47.0/70.7/87.4 AP$_{75}$ on inshore/official/offshore.  The metric
+% fingerprint is that of a pure boundary correction: inshore AP$_{50}$
+% moves by only +0.7 while AP$_{75}$ moves by +10.9.  Seven-vector leakage
+% audit of the application path lives in sec_exp (compress to ~3 sentences
+% per the map).
+
+% ------------------------------------------------------------------
+% [-> IV-B] Re-ranker fitting protocol (old III-G)
+% ------------------------------------------------------------------
+% Every candidate above a score floor of 0.01 contributes a row, kept and
+% rejected alike; HRSID yields 51{,}781 rows from 3{,}642 training images
+% and PSeg-SSDD 5{,}122 rows from 928.  A histogram-based gradient-boosted
+% regression tree (300 boosting iterations, learning rate 0.08,
+% least-squares loss) is fitted to these rows.  The mixing weight $\alpha$
+% is the only hyperparameter and is selected without touching test data:
+% training images are partitioned by image identifier into a fit part and
+% a holdout part in a 4:1 ratio (2{,}914 and 728 images on HRSID), $g$ is
+% fitted on the fit part alone, and $\alpha$ is swept over
+% $\{0.3,0.5,1.0\}$ by COCO segm AP on the held-out training images.
+% HRSID selects $\alpha=0.5$ (train-side proxy 57.6 to 58.9 AP); PSeg-SSDD,
+% whose re-ranker is refitted from scratch on its own training split,
+% selects $\alpha=1.0$ (proxy 65.0 to 67.8).  The chosen weight is then
+% frozen and $g$ is refitted on all training rows.  Everything runs on a
+% CPU: 4\,s to harvest features and 19\,s to fit on HRSID, 2\,s and 9\,s
+% on PSeg-SSDD.
+% Candidate binding: each detection of the preceding rung is bound to its
+% fusion-stage candidate by a greedy one-to-one mask-IoU match at
+% threshold 0.5, purely to retrieve consensus statistics; a detection with
+% no match keeps its original score untouched; on the HRSID inshore split
+% 23{,}857 of 28{,}539 detections are matched.
+
+% ------------------------------------------------------------------
+% [-> IV-E] Re-ranker diagnostics and results (old III-G closing)
+% ------------------------------------------------------------------
+% On the held-out training images the Spearman correlation between $g$ and
+% the true mask IoU is 0.68 on HRSID and 0.86 on PSeg-SSDD.  Permutation
+% importance ranks the score channel first by a wide margin, then mask
+% area, fill ratio, and the view count $n_v$; grouped by feature block
+% (held-out 20\% of the 3{,}642 HRSID training images, three repeats) it
+% reads 1.1418 for the six consensus statistics, 0.0771 for the seven
+% geometry descriptors, and 0.0000 for the emitted score, the seed score
+% alone accounting for 1.0944 of the consensus total.
+% Result lifts: HRSID 43.6/58.6/69.1 -> 44.5/59.4/70.1 mask AP, inshore
+% AP$_{75}$ 47.0 -> 48.3; PSeg-SSDD 60.0/66.3/68.8 -> 62.1/67.5/69.8.
+
+% ------------------------------------------------------------------
+% [-> IV-B, "Inference cost" paragraph] (old III-H Complexity, deleted)
+% ------------------------------------------------------------------
+% The soup costs one offline elementwise average and nothing at inference;
+% the recovery stack updates no weights and adds no parameters to the base.
+% Test-time cost is dominated by the $V=8$ forward passes, and the measured
+% end-to-end cost of the full method is approximately $8\times$ a
+% single-view pass.  Fusion adds one $K\times K$ Gram product over binary
+% masks and a greedy scan with $K\le 800$; this overhead is contained in
+% the measured $8\times$ figure.  The optional refiner adds a
+% 2.35M-parameter UNet, trained once in about 19 minutes, and a
+% per-instance boundary-patch pass at test time; total cost remains
+% approximately $8\times$ plus this small constant.  The optional
+% re-ranker's features are already computed by the fusion stage, one
+% gradient-boosted tree evaluation over 14 scalars costs microseconds per
+% instance, and no image is read a second time, so the rung is free to the
+% nearest measurable unit at test time and costs 23\,s of CPU once at fit
+% time on HRSID (11\,s on PSeg-SSDD).  Stage~A itself trains for 55 epochs
+% on one GPU, against the 500-epoch specialized protocol of o2former2025.
+% A carrier or a dataset new to the recipe needs its own $g$; refitting
+% one costs under a CPU-minute and no GPU time.

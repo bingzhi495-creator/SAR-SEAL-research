@@ -1,0 +1,65 @@
+% Correct separation of parameter preparation and image inference.
+% All dimensions are physical PDF points (bp); compile in this directory.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{amsmath,amssymb}
+\usetikzlibrary{arrows.meta,calc}
+\definecolor{ops}{HTML}{D55E00}
+\definecolor{trn}{HTML}{009E73}
+\definecolor{data}{HTML}{0072B2}
+\definecolor{chrome}{HTML}{6E6E6E}
+\definecolor{ink}{HTML}{262626}
+\newcommand{\mainfont}{\fontsize{8bp}{9bp}\selectfont}
+\newcommand{\subfont}{\fontsize{7bp}{8bp}\selectfont}
+\begin{document}
+\begin{tikzpicture}[x=1bp,y=1bp,font=\mainfont,text=ink,
+ every node/.style={align=center,inner sep=0pt,outer sep=0pt},
+ box/.style={rounded corners=1.5bp,minimum height=25bp,line width=.5bp},
+ frozen/.style={box,fill=black!8,draw=chrome},
+ carrier/.style={box,fill=ops!6,draw=ops,dash pattern=on 2bp off 1.2bp},
+ vote/.style={box,fill=ops!18,draw=ops,line width=.8bp},
+ corrector/.style={box,fill=trn!16,draw=trn,line width=.8bp,dash pattern=on 2bp off 1.2bp},
+ flow/.style={-{Stealth[length=1.6mm,width=1.2mm,line width=.5bp]},draw=ink,line width=.8bp},
+ group/.style={draw=chrome,line width=.5bp,densely dotted,rounded corners=2bp}]
+\path[use as bounding box] (0bp,0bp) rectangle (516bp,122bp);
+% Upper path: frozen checkpoint parameters. Lower path: image/candidate data.
+\draw[group] (4,74) rectangle (132,109);
+\draw[group] (136,17) rectangle (286,109);
+\draw[group] (294,17) rectangle (458,62);
+\node[font=\mainfont\bfseries,anchor=south] at (68,112) {Stage A: frozen base};
+\node[font=\mainfont\bfseries,anchor=south] at (213,112) {Stage B, rung 1: training-free};
+\node[font=\mainfont\bfseries,anchor=south] at (376,77)
+ {Stage B, rungs 2--3:\\trained correctors};
+\node[frozen,minimum width=114bp] (base) at (68,91.5)
+ {\textbf{Mask2Former--R50}\\{\subfont frozen, 3 seeds}};
+\node[carrier,minimum width=67bp] (soup) at (176,91.5)
+ {\textbf{Weight soup}\\{\subfont weight space}};
+% One padlock, attached to the frozen parameter source.
+\fill[chrome] (119,97) rectangle (124,101);
+\draw[chrome,line width=.5bp] (120,101) -- (120,103)
+ arc[start angle=180,end angle=0,radius=1.5bp] -- (123,101);
+\draw[flow] (base.east) -- (soup.west);
+\node[inner sep=0pt] (chip) at (68,39)
+ {\includegraphics[width=48bp,height=48bp]{assets_fig1/chip.png}};
+\draw[data,line width=.5bp] (44,15) rectangle (92,63);
+\node[anchor=north,font=\subfont] at (68,11) {SAR chip\quad $800\!\times\!800$};
+\node[carrier,minimum width=63bp] (tta) at (176,39)
+ {\textbf{Wide TTA}\\{\subfont input space}};
+\node[vote,minimum width=69bp] (vote) at (248,39)
+ {\textbf{Consensus vote}\\{\subfont output space}};
+\node[corrector,minimum width=80bp] (bpr) at (339,39)
+ {\textbf{Boundary refiner}\\{\subfont writes mask pixels}};
+\node[corrector,minimum width=65bp] (rank) at (420,39)
+ {\textbf{Re-ranker}\\{\subfont writes scores}};
+\node[box,fill=data!12,draw=data,minimum width=48bp] (out) at (490,39)
+ {\textbf{instances}\\{\subfont $\{(m,s)\}$}};
+\draw[flow] (soup.south) -- (tta.north);
+\draw[flow] (92,39) -- (tta.west);
+\draw[flow] (tta.east) -- (vote.west);
+\draw[flow] (vote.east) -- (bpr.west);
+\draw[flow] (bpr.east) -- (rank.west);
+\draw[flow] (rank.east) -- (out.west);
+\end{tikzpicture}
+\end{document}

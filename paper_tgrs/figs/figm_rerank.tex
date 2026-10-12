@@ -1,0 +1,147 @@
+% figm_rerank.pdf — learned consensus re-ranking (Sec. III-G).
+% A separate figure rather than a panel of figm_bpr: the two optional rungs
+% write to DISJOINT fields (refiner -> mask pixels, re-ranker -> scores), so
+% folding them into one diagram would blur exactly the property the section
+% is built to establish.  This one is single-column and vertical, which is
+% also what the 14-dimensional feature block wants.
+% Shape story, drawn rather than stated: 14 cells -> a tree ensemble -> ONE
+% scalar; the bottom panel shows the same 800x800 mask plane entering and
+% leaving the operator as the identical raster, while only the height of the
+% score bar changes.
+%
+% v3 CHANGES
+%  * The three feature groups used to be asserted by colour alone.  Panel (b)
+%    now DRAWS the measured permutation importance of each group, reproduced
+%    exactly from runs/_scic.out:21 by figs/measure_rerank_importance.py
+%    (n_repeats=3 on the held-out 20% of the 3642 train images, 51 781 rows):
+%      consensus 1.1418  |  emitted score 0.0000  |  mask geometry 0.0771
+%    dominated by seed_score = 1.0944; the next four are log_area 0.0270,
+%    fill 0.0257, n_views 0.0230, support 0.0108.  Stored in
+%    assets/rerank_importance.json.
+%  * Panel (c) shows the REAL 800x800 fused instance masks (assets/
+%    pred_masks.png, chip P0101_1200_2000_3000_3800.jpg, 800 px over 20 mm =
+%    1016 dpi) as the SAME file twice, so "bit-identical in and out" is
+%    something the reader can check by eye rather than a claim.
+% Facts: sec_method.tex III-G (Eqs. rrfeat/rrblocks/rrblend), sec_exp.tex
+%   Table on re-ranking; val Spearman 0.6766 stored in runs/scic/reranker.pkl.
+% Authored at exactly 8.89 cm = 252 pt = \columnwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasc{11.10}
+
+% ===== input ==============================================================
+\node[data, anchor=north west, minimum width=86.9mm, minimum height=8mm]
+  (inst) at (0.10,11.05)
+  {\textbf{fused instances}
+   $\bigl\{(\mathbf{m}_i,s^{\mathrm{out}}_i)\bigr\}$\\[-1pt]
+   {\scriptsize each bound to the cluster $\mathcal{C}$ that produced it,
+    by a one-to-one mask-IoU match}};
+\draw[flow] (4.445,10.25) -- (4.445,10.01);
+
+% ===== (a) the 14-dimensional feature vector: 14 cells, not a map ========
+\node[panl, anchor=north west] at (0.10,9.99) {(a)};
+\node[sub, text=black!70] at (4.445,9.87)
+  {$\boldsymbol{\phi}\in\mathbb{R}^{14}$: 14 cells, no spatial extent,
+   no image pixel read};
+\def\bx{0.805}
+\foreach \i/\sym/\col in {%
+  0/{$|\mathcal{C}|$}/opsred, 1/{$n_v$}/opsred, 2/{$\bar{J}$}/opsred,
+  3/{$J_{\min}$}/opsred, 4/{$s_r$}/opsred, 5/{$\Delta s$}/opsred,
+  6/{$s^{\mathrm{out}}$}/frozgray,
+  7/{$a$}/datablue, 8/{$w$}/datablue, 9/{$h$}/datablue,
+  10/{$w/h$}/datablue, 11/{fill}/datablue, 12/{$c_x$}/datablue,
+  13/{$c_y$}/datablue} {
+  \pgfmathsetmacro{\cxl}{\bx+0.52*\i}
+  \fill[\col!13] (\cxl,9.20) rectangle ({\cxl+0.52},9.64);
+  \draw[\col!70, line width=0.5pt] (\cxl,9.20) rectangle ({\cxl+0.52},9.64);
+  \node[sub, text=black!80] at ({\cxl+0.26},9.42) {\sym};
+}
+\draw[brace] (3.925,9.08) -- (0.805,9.08);
+\draw[brace] (4.445,9.08) -- (3.925,9.08);
+\draw[brace] (8.085,9.08) -- (4.445,9.08);
+\node[sub, anchor=north, text=opsred] at (2.365,8.89)
+  {consensus evidence\\ (operator~3)};
+\node[sub, anchor=north, text=black!70] at (4.185,8.89)
+  {score\\ emitted};
+\node[sub, anchor=north, text=datablue] at (6.265,8.89)
+  {mask geometry\\ ($a,w,h$ log-scaled)};
+
+% ===== (b) what the fitted model actually leans on, MEASURED =============
+% Group totals of the permutation importance reproduced exactly from
+% runs/_scic.out:21 (assets/rerank_importance.json).
+\draw[grp] (0.10,6.55) rectangle (8.79,8.15);
+\node[panl, anchor=north west] at (0.18,8.09) {(b)};
+\node[grptitle, anchor=north, align=center, text width=70mm] at (4.60,8.09)
+  {measured permutation importance};
+\foreach \yb/\vv/\nm/\cl in {%
+  7.45/1.1418/{consensus}/opsred,
+  7.10/0.0000/{score emitted}/frozgray,
+  6.75/0.0771/{mask geometry}/datablue} {
+  \node[sub, anchor=east] at (2.86,\yb) {\nm};
+  \hbarrow{2.94}{\yb}{5.0}{(\vv)/1.2}{\cl}{1.8pt}{\vv}
+}
+\draw[flow] (4.445,6.51) -- (4.445,6.27);
+
+% ===== the fitted map =====================================================
+% v4: the three sub-lines were set with \\[-2pt], i.e. 6 pt of leading on
+% 7 pt type, leaving a measured 1.08 pt of white between successive lines --
+% legible, but the tightest setting anywhere in the figure set and the reason
+% this box reads as a wall.  Leading relaxed to \\[-1pt] and the box grown
+% 1.2 mm to hold it; everything below shifts down by the same 1.2 mm.
+\node[trn, anchor=north west, minimum width=86.9mm, minimum height=12.7mm]
+  (gbt) at (0.10,6.27)
+  {\textbf{gradient-boosted regression tree} $g$\\[-1pt]
+   {\scriptsize 300 boosting iterations, learning rate 0.08, least-squares loss}\\[-1pt]
+   {\scriptsize target: mask IoU against the best-matching \emph{training} annotation}\\[-1pt]
+   {\scriptsize 51\,781 rows from 3\,642 HRSID train images; 4\,s harvest $+$ 19\,s fit, CPU only}};
+\node[badgetrn] at ($(gbt.north west)+(0.26,0)$) {5};
+\draw[flow] (4.445,5.00) -- (4.445,4.76);
+
+% ===== the blend ==========================================================
+\node[ops, anchor=north west, minimum width=86.9mm, minimum height=8.5mm]
+  (bl) at (0.10,4.76)
+  {$s^{\mathrm{final}}=\alpha\,\mathrm{clip}\bigl(g(\boldsymbol{\phi}),0,1\bigr)
+     +(1-\alpha)\,s^{\mathrm{out}}$\\[-1pt]
+   {\scriptsize $\alpha$ swept over $\{0.3,0.5,1.0\}$ on \emph{held-out train}
+    images; HRSID selects $\alpha=0.5$}};
+
+% ===== (c) what may and may not change, DRAWN ============================
+\draw[grp] (0.10,0.80) rectangle (8.79,3.75);
+\node[panl, anchor=north west] at (0.18,3.69) {(c)};
+\node[grptitle, anchor=north] at (4.60,3.69)
+  {What the operator writes, and what it may not};
+\draw[black!45, densely dotted, line width=0.7pt] (5.45,0.90) -- (5.45,3.30);
+
+% --- the same real 800x800 masks go in and come out ----------------------
+\realpanel{1.40}{2.35}{800}{1}{pred_masks.png}{datablue!70, line width=0.5pt}
+\realpanel{4.05}{2.35}{800}{1}{pred_masks.png}{datablue!70, line width=0.5pt}
+\draw[flow] (2.48,2.35) -- (2.90,2.35);
+\fill[white] (2.56,2.22) rectangle (2.81,2.48);
+\pic[scale=0.85] at (2.685,2.35) {lock};
+\node[sub, anchor=north, align=center, text width=50mm] at (2.72,1.28)
+  {\textbf{bit-identical} $800^2$ plane in and out};
+
+% --- only the scalar score moves -----------------------------------------
+\scorebar{6.15}{1.75}{0.22}{datablue}
+\scorebar{7.75}{1.75}{0.52}{trngreen}
+\draw[flow] (6.35,2.07) -- (7.55,2.07);
+\node[sub, anchor=north] at (6.15,1.67) {$s^{\mathrm{out}}$};
+\node[sub, anchor=north] at (7.75,1.67) {$s^{\mathrm{final}}$};
+\node[sub, anchor=south, align=center, text=trngreen] at (6.95,2.55)
+  {\textbf{rewritten}: one scalar\\ per instance, hence the rank};
+
+% ===== measured effect ====================================================
+\node[subk, anchor=north] at (4.445,0.68)
+  {43.6\,/\,58.6\,/\,69.1 $\to$ \textbf{44.5\,/\,59.4\,/\,70.1} mask AP,
+   inshore AP$_{75}$ $47.0\to\mathbf{48.3}$;\\[1pt]
+   Spearman $0.68$ between $g$ and the realized mask IoU on held-out train images};
+
+\end{tikzpicture}
+\end{document}

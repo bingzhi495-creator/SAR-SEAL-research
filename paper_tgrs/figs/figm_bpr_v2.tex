@@ -1,0 +1,136 @@
+% figm_bpr.pdf — optional boundary-patch refinement (Sec. III-E).
+% Left  (training, once, ~19 min): full-stack predictions on the TRAIN split
+%   matched to GT at mask IoU >= 0.5; 64x64 patches cropped along each matched
+%   contour, upscaled 2x, used to fit a 2.35M UNet under BCE + Dice.
+% Right (inference): a +-4 px band b(p) around the predicted contour is the
+%   only editable region; the UNet re-segments the patches, overlapping logits
+%   are averaged inside the band and thresholded at 0.5; every pixel outside
+%   is bit-identical and no score, rank or identity is touched.
+% Facts: sec_method.tex III-E, Eqs. (bprloss)/(guard); ALL_TABLES.md T1 row 4,
+%   T2 (+BPR rows), T10 (inshore AP50 +0.7 against AP75 +10.9).
+% Authored at exactly 18.2 cm = 516 pt = \textwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{6.60}
+
+\def\yA{5.45}   % row 1 of both panels
+\def\yB{3.55}   % row 2 of both panels
+
+% ===== panel frames and titles ===========================================
+\draw[grp] (0.08,2.30) rectangle (8.86,6.16);
+\draw[grp] (9.34,2.30) rectangle (18.12,6.16);
+\node[grptitle, anchor=south] at (4.47,6.22)
+  {Training the refiner --- once, $\approx$19 min, on the train split};
+\node[grptitle, anchor=south] at (13.73,6.22)
+  {Inference --- band-guarded write-back};
+
+% =========================================================================
+%  TRAINING SIDE
+% =========================================================================
+\node[plain, anchor=west, text width=79mm, minimum height=9mm] (t1) at (0.28,\yA)
+  {\textbf{harvest the model's own errors on the train split}\\[-1pt]
+   {\scriptsize full-stack predictions paired with GT at mask IoU $\ge0.5$;
+    no new annotation}};
+\draw[flow] (1.55,4.98) -- (1.55,4.16);
+
+% --- boundary-patch cropping (GT solid blue, prediction dashed orange) ----
+\begin{scope}[shift={(1.55,\yB)}, scale=1.15]
+  \fill[datablue!16] \hull;
+  \draw[datablue, line width=0.8pt] \hull;
+  \draw[opsred, dash pattern=on 1.3pt off 1.0pt, line width=0.7pt,
+        shift={(0.05,0.05)}, scale=0.92] \hull;
+  \foreach \px/\py in {0.72/0.00, -0.22/0.33, -0.62/-0.12, 0.42/-0.22}
+    \draw[black!70, line width=0.55pt]
+      ({\px-0.15},{\py-0.15}) rectangle ({\px+0.15},{\py+0.15});
+\end{scope}
+\node[sub, anchor=north] at (1.55,2.92)
+  {$64\!\times\!64$ boundary patches\\ GT solid vs prediction dashed};
+
+\draw[flow] (2.66,\yB) -- (3.12,\yB);
+\node[sub, anchor=south] at (2.89,3.62) {$2\times$};
+
+% --- the refiner: a small UNet hourglass (figure-local glyph) -------------
+\begin{scope}[shift={(4.30,\yB)}]
+  \foreach \x/\h in {-1.02/0.94, -0.77/0.72, -0.52/0.54, -0.27/0.38,
+                     -0.02/0.28, 0.23/0.38, 0.48/0.54, 0.73/0.72, 0.98/0.94} {
+    \pgfmathsetmacro{\hh}{\h/2}
+    \fill[trngreen!14] (\x,-\hh) rectangle ({\x+0.17},\hh);
+    \draw[trngreen, line width=0.5pt] (\x,-\hh) rectangle ({\x+0.17},\hh);
+  }
+  \foreach \xa/\xb/\yy in {-0.85/1.06/0.50, -0.60/0.81/0.38, -0.35/0.56/0.28}
+    \draw[aux, draw=black!40] (\xa,\yy) to[bend left=32] (\xb,\yy);
+\end{scope}
+\node[sub, anchor=north] at (4.30,2.92) {2.35M-parameter UNet\\ 4 down / 4 up};
+
+\draw[flow] (5.55,\yB) -- (6.05,\yB);
+\node[trn, anchor=west, minimum width=26mm, minimum height=11mm]
+  (loss) at (6.05,\yB)
+  {$\mathcal{L}_{\mathrm{ref}}$\\[-1pt]
+   {\scriptsize binary cross-entropy}\\[-2pt]
+   {\scriptsize $+$ Dice, on patch pixels}\\[-2pt]
+   {\scriptsize main model never touched}};
+
+% =========================================================================
+%  INFERENCE SIDE
+% =========================================================================
+\node[plain, anchor=west, text width=79mm, minimum height=9mm] (i1) at (9.54,\yA)
+  {\textbf{$\pm4$-px band guard around the fused contour}\\[-1pt]
+   {\scriptsize $b(p)=\mathbf{1}\bigl[\,d(p,\partial\mathbf{m}^{\mathrm{out}})\le4\,\bigr]$,
+    obtained as dilation $\ominus$ erosion}};
+\draw[flow] (10.75,4.98) -- (10.75,4.22);
+
+% --- band illustration ---------------------------------------------------
+\begin{scope}[shift={(10.75,\yB)}, scale=1.15]
+  \draw[opsred!32, line width=2.2mm] \hull;
+  \draw[black!55, dash pattern=on 1.1pt off 1.0pt, line width=0.45pt, scale=1.24]
+    \hull;
+  \draw[black!55, dash pattern=on 1.1pt off 1.0pt, line width=0.45pt, scale=0.74]
+    \hull;
+  \draw[datablue, line width=0.8pt] \hull;
+  \node[sub, text=black!75] at (0.03,0.02) {locked};
+\end{scope}
+\node[sub, anchor=north] at (10.95,2.92)
+  {$\pm4$-px band (dilate $\ominus$ erode)\\ the only writable region};
+
+\draw[flow] (11.90,\yB) -- (12.30,\yB);
+\node[trn, anchor=west, minimum width=28mm, minimum height=11mm]
+  (r1) at (12.30,\yB)
+  {\textbf{UNet re-segments}\\[-1pt]
+   {\scriptsize the boundary patches}\\[-2pt]
+   {\scriptsize overlapping logits averaged}\\[-2pt]
+   {\scriptsize in the band, threshold $0.5$}};
+\node[badgetrn] at ($(r1.north west)+(0.26,0)$) {4};
+\draw[flow] (r1.east) -- (15.60,\yB);
+\node[data, anchor=west, minimum width=24mm, minimum height=11mm]
+  (r2) at (15.60,\yB)
+  {\textbf{refined mask} $\mathbf{m}^{\mathrm{final}}$\\[-1pt]
+   {\scriptsize $=b\,\hat{\mathbf{m}}+(1{-}b)\,\mathbf{m}^{\mathrm{out}}$}\\[-2pt]
+   {\scriptsize band-guarded write-back}};
+
+% ===== invariance banner =================================================
+\node[froz, anchor=south west, minimum width=180mm, minimum height=8.4mm]
+  (ban) at (0.10,1.22)
+  {\textbf{\ \ what the refiner may not do}\\[-1pt]
+   {\scriptsize every pixel outside the $\pm4$-px band is bit-identical to the
+    stack's output\ \ $\cdot$\ \ detection scores, ranks and instance identities
+    are untouched\ \ $\cdot$\ \ the main model is not modified}};
+\pic[scale=1.0] at ([shift={(0.42,0)}]ban.west) {lock};
+\pic[scale=1.0] at ([shift={(-0.42,0)}]ban.east) {lock};
+
+% ===== measured effect ===================================================
+\node[subk, anchor=north] at (9.10,1.02)
+  {mask AP \textbf{43.6\,/\,58.6\,/\,69.1} and AP$_{75}$
+   \textbf{47.0\,/\,70.7\,/\,87.4} on inshore\,/\,official\,/\,offshore ---
+   the fingerprint of a pure boundary correction:\\[1pt]
+   on the inshore split AP$_{50}$ moves by only $+0.7$ while
+   AP$_{75}$ moves by $+10.9$.};
+
+\end{tikzpicture}
+\end{document}

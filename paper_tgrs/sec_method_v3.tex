@@ -1,0 +1,209 @@
+% =========================================================================
+% sec_method.tex — Section III: METHOD (pure section content)
+% Preamble requirements (main file): \usepackage{amsmath,amssymb,graphicx,
+%   booktabs,algorithm,algorithmic}
+% All numbers verified against E:/SAR/seal/docs/ALL_TABLES.md (T1,T2,T5,T8,
+%   T10,T11) and E:/SAR/seal/docs/PAPER_DRAFT.md (Sec. 3).
+% =========================================================================
+
+\section{Method}\label{sec:method}
+
+This section presents the proposed framework. We first fix notation and the problem setup, then describe the base model and the pretraining regime on which every later number rests. The three training-free recovery operators follow in pipeline order: a same-basin weight soup in weight space (Sec.~\ref{sec:soup}), wide multi-scale flip test-time augmentation (TTA) in input space (Sec.~\ref{sec:tta}), and a consensus-gated mask-IoU vote fusion in output space (Sec.~\ref{sec:fusion}). We close with two optional self-correctors, a boundary-patch refiner that may edit only mask pixels (Sec.~\ref{sec:bpr}) and a learned consensus re-ranker that may edit only scores (Sec.~\ref{sec:rerank}), and with an analysis of computational cost (Sec.~\ref{sec:complexity}). Fig.~\ref{fig:framework} summarizes the pipeline.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figs/fig1_framework}
+\caption{Overview of the proposed framework. Gray with a padlock marks components we never update, vermillion the three training-free operators of rung~1, and dashed green the two optional trained correctors of rungs~2--3; the rail below each stage reports the HRSID mask AP it reaches, and the braces name the residual axis it removes. Stage~A fine-tunes an unmodified COCO-pretrained Mask2Former-R50 for 55 epochs under three seeds; no layer, loss, or schedule is changed. Stage~B rung~1 averages the three checkpoints into a single weight soup $\theta^{\star}$, runs the souped model under eight multi-scale flip views, and merges the pooled candidates by consensus-gated mask-IoU voting, lifting inshore/official/offshore mask AP from 27.7/45.6/59.6 to 38.8/53.8/64.8 at zero additional training. The optional boundary-patch refiner (2.35M parameters, $\pm$4-pixel band guard, about 19 minutes of training) reaches 43.6/58.6/69.1, and the optional consensus re-ranker of Sec.~\ref{sec:rerank}, which writes to the score field alone and edits no mask pixel, carries the same predictions to 44.5/59.4/70.1. The two correctors write to disjoint fields, so neither can undo the other. The band underneath expands one forward pass of the frozen base with every tensor drawn to a single scale, 1\,mm of edge per 40 image pixels, so that a stride-32 map is one eighth the linear size of a stride-4 map and slab depth grows 0.55\,mm per channel doubling; the same scale governs Figs.~\ref{fig:m-tta}--\ref{fig:m-rerank}. A spatial feature map is drawn as an extruded slab, a query set, which has no spatial extent, as a column of bars, and a mask stack as a pile of planes.}
+\label{fig:framework}
+\end{figure*}
+
+\subsection{Problem Setup and Notation}\label{sec:setup}
+
+Given a single-look SAR amplitude chip $\mathbf{x}\in\mathbb{R}^{B\times 3\times 800\times 800}$, in which the grayscale channel is replicated to three channels and $B=1$ at test time, ship instance segmentation asks for a set of scored binary masks
+\begin{equation}\label{eq:output}
+\mathcal{Y}=\bigl\{(\mathbf{m}_i,s_i)\bigr\}_{i=1}^{N_{\mathrm{out}}},\quad
+\mathbf{m}_i\in\{0,1\}^{800\times 800},\ s_i\in[0,1],
+\end{equation}
+where $\mathbf{m}_i$ is the binary mask of the $i$th instance, $s_i$ its confidence, and $N_{\mathrm{out}}\le 100$ after score ranking under the COCO convention. Evaluation is COCO mask AP ($\times$100 throughout) on the HRSID official test split and on its inshore and offshore partitions, following the protocol of \cite{o2former2025}. Tensors are ordered $B\times C\times H\times W$; bold lower case denotes vectors or masks, bold upper case matrices, calligraphic letters sets, and $\theta$ the full parameter vector of the segmentation network $\Phi_{\theta}$. The method has two stages, and its inference side is a cascade of three rungs. Stage~A is a standard, unmodified Mask2Former-R50 \cite{mask2former2022} fine-tuned from COCO initialization. Stage~B, our contribution, updates no weight of Stage~A. Its first rung is training-free and acts at three disjoint pipeline stages, weight space, input space, and output-fusion space. Its second and third rungs are two small correctors fitted on Stage~A's own errors on the training split rather than on new annotations: a boundary-patch refiner that may write only mask pixels (Sec.~\ref{sec:bpr}) and a consensus re-ranker that may write only scores (Sec.~\ref{sec:rerank}). Every rung is optional, every rung is reported separately in each table, and the training-free claim of this article is scoped to the first.
+
+\subsection{Base Model and the Pretraining Regime}\label{sec:base}
+
+The base is used exactly as released. The ResNet-50 backbone produces a four-level pyramid $\{C_2,C_3,C_4,C_5\}$ at strides $\{4,8,16,32\}$, with shapes $B\times 256\times 200\times 200$, $B\times 512\times 100\times 100$, $B\times 1024\times 50\times 50$, and $B\times 2048\times 25\times 25$ for an $800\times 800$ input. A six-layer multi-scale deformable-attention pixel decoder (8 heads, 256 dimensions) fuses $C_3$--$C_5$ into a stride-4 mask feature $\mathbf{F}\in\mathbb{R}^{B\times 256\times 200\times 200}$ plus three flattened memory levels at strides $\{8,16,32\}$. $N=100$ learnable queries $\mathbf{Q}\in\mathbb{R}^{B\times 100\times 256}$ traverse nine decoder layers, each applying masked cross-attention to one memory level in round-robin order, query self-attention, and a feed-forward block. A linear head maps each query to class logits in $\mathbb{R}^{B\times 100\times 2}$ (ship versus no-object); a mask head maps it to an embedding $\mathbf{e}_q\in\mathbb{R}^{256}$, and the mask of query $q$ is read out as
+\begin{equation}\label{eq:readout}
+\mathbf{m}_q=\mathbf{1}\Bigl[\sigma\bigl(\mathcal{U}_{4\times}(\mathbf{e}_q^{\top}\mathbf{F})\bigr)\ge 0.5\Bigr],
+\qquad q=1,\dots,100,
+\end{equation}
+where $\mathbf{e}_q^{\top}\mathbf{F}\in\mathbb{R}^{200\times 200}$ is the per-pixel dot product between the mask embedding and $\mathbf{F}$, $\mathcal{U}_{4\times}$ denotes bilinear upsampling to $800\times 800$, $\sigma$ is the sigmoid, and $\mathbf{1}[\cdot]$ is the indicator applied pixelwise.
+
+Stage~A fine-tunes this model from COCO instance-segmentation weights for 55 epochs (100{,}872 iterations at batch size 2 with 2-step gradient accumulation) at $800\times 800$ resolution and initial learning rate $2.5\times 10^{-5}$ on a single RTX 3090\,Ti. An auxiliary mask-IoU rescoring head present in the implementation is disabled ($\lambda=0$); the weight soup subsumes its gain (Section~IV). The initialization is not a detail. Under the 500-epoch from-scratch-head protocol of \cite{o2former2025}, the identical architecture reaches 17.9 inshore mask AP; with COCO initialization it reaches 27.7 (three-seed mean) after 55 epochs. This 9.8-point regime gap exceeds any single architectural increment reported in the specialized SAR instance-segmentation literature. We therefore impose a preservation constraint: no layer, loss, or training schedule of Stage~A is modified. Section~IV supports this constraint empirically with a seven-direction ablation in which every architecture- and training-side modification of this base was flat, negative, or absorbed.
+
+\subsection{Same-Basin Weight Soup}\label{sec:soup}
+
+Fine-tuning is stochastic. Three independently seeded runs land within 0.1 inshore AP of one another (27.7/27.6/27.7), yet their prediction errors differ, and the first operator removes this seed variance in weight space. The three checkpoints are averaged elementwise into a uniform model soup \cite{modelsoups2022},
+\begin{equation}\label{eq:soup}
+\theta^{\star}=\frac{1}{3}\sum_{s\in\{s_0,\,s_2,\,s_3\}}\theta_s,
+\end{equation}
+where $\theta_{s_0}$, $\theta_{s_2}$, and $\theta_{s_3}$ are the parameter vectors of the three fine-tuned checkpoints. Two same-basin conditions make the average a flat-minimum model rather than a broken interpolation: all members are fine-tuned from the same COCO initialization with identical parameter keys, and their batch-normalization buffers are byte-equal. Fig.~\ref{fig:m-soup} sketches the resulting geometry on a schematic one-dimensional slice of the loss landscape: the three checkpoints occupy neighboring minima on the floor of one shared basin, and the elementwise average lands on the flatter basin floor between them rather than on a barrier. The soup is computed once, offline, and yields a single deterministic checkpoint at $1\times$ inference cost. It lifts the three-seed mean from 27.7 to 29.6 inshore (+1.9), 45.6 to 47.4 official, and 59.6 to 61.1 offshore. Under the full stack this single checkpoint matches a three-model prediction ensemble (39.3/53.6/64.0) at one third of its inference cost (Section~IV).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figs/figm_soup}
+\caption{Same-basin weight soup (Sec.~\ref{sec:soup}). On a schematic one-dimensional slice of the loss landscape, the three independently seeded fine-tuning runs $\theta_{s_0}$, $\theta_{s_2}$, and $\theta_{s_3}$ (blue dots) terminate in neighboring minima on the floor of one shared basin, and their uniform elementwise average $\theta^{\star}$ (orange star) lands on the flatter basin floor between them. The average is a valid flat-minimum model because all members share the COCO initialization with identical parameter keys and byte-equal batch-normalization buffers; the result is a single deterministic checkpoint at $1\times$ inference cost. The lower panel records what the operator does to shape, namely nothing: three identical checkpoint glyphs enter and one identical glyph leaves, so no tensor in the network is reshaped and the pixel scale of Fig.~\ref{fig:framework} has nothing to measure here.}
+\label{fig:m-soup}
+\end{figure}
+
+\subsection{Wide Multi-Scale Flip TTA}\label{sec:tta}
+
+The second operator attacks scale-induced variance in input space. The souped model $\Phi_{\theta^{\star}}$ is run under the view set
+\begin{equation}\label{eq:views}
+\mathcal{V}=\{640,\,800,\,960,\,1088\}\times\{\mathrm{id},\,\mathrm{hflip}\},
+\qquad V=|\mathcal{V}|=8,
+\end{equation}
+where each pair $(\rho,f)\in\mathcal{V}$ resizes the chip to $\rho\times\rho$ and optionally applies a horizontal flip. The pooled candidate set is
+\begin{equation}\label{eq:pool}
+\bigl\{(\mathbf{m}_k,s_k)\bigr\}_{k=1}^{K}
+=\bigcup_{(\rho,f)\in\mathcal{V}}
+f^{-1}\Bigl(\Phi_{\theta^{\star}}\bigl(f(R_{\rho}(\mathbf{x}))\bigr)\Bigr),
+\end{equation}
+where $R_{\rho}$ denotes bilinear resizing to $\rho\times\rho$, $f^{-1}$ inverts the flip on the predicted masks (the identity for unflipped views), and the mask head rescales its outputs so that every view returns masks at the native $800\times 800$ resolution; consequently $K\le 8\times 100=800$ scored candidates per image. Fig.~\ref{fig:m-tta} depicts this fan-out and pooling geometry.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figs/figm_tta}
+\caption{Wide multi-scale flip test-time augmentation (TTA) (Sec.~\ref{sec:tta}). A single SAR chip fans out into the eight views of Eq.~(\ref{eq:views}), the four scales $\{640,800,960,1088\}$ crossed with identity and horizontal flip; every view passes through the frozen soup model $\Phi_{\theta^{\star}}$, in which no weight is updated, all predicted masks are rescaled back to the native $H\times W$ resolution, and the results are pooled into at most $K\le 800$ scored candidates per image. The four views are drawn at their true relative size, 16.0/20.0/24.0/27.2\,mm, so the reason the upsampled views help is visible directly: the 1088 view places $2.9\times$ the pixels on the same pixel-starved near-shore hull. The lower band draws the accompanying asymmetry: the eight raw outputs live on four different rasters, shown as a size ladder, whereas after $f^{-1}$ and \texttt{rescale=True} all eight return at one common $800\times 800$ raster, which is what makes the pooled candidates commensurable.}
+\label{fig:m-tta}
+\end{figure*}
+
+The set is deliberately wide. A six-view core $\{736,800,864\}\times\{\mathrm{id},\mathrm{hflip}\}$ already lifts single-checkpoint inshore AP by +7.0 on average (+6.9/+7.4/+6.7 across the three seeds, $\sigma\approx 0.3$), with a regime gradient (inshore +7.0, official +5.5, offshore +3.4) concentrated exactly where speckle and dock clutter are hardest. Widening to the eight views of Eq.~(\ref{eq:views}) adds a further +2.0 inshore on seed $s_0$ (34.6 to 36.6) yet is flat on the official split and costs 0.6 offshore: the upsampled scales 960 and 1088 place more pixels on pixel-starved near-shore hulls, while large, well-resolved offshore ships gain nothing. The soup and TTA axes stack near-additively; their standalone inshore gains (+1.9 and +6.9) predict 36.5 where the measured combination reaches 36.1, a mildly sub-additive interaction, and we claim no synergy. What the pooled views do demand is a fusion rule. Under plain box-NMS merging the soup $\times$ 8-view configuration reaches 37.1/52.6/64.2 inshore/official/offshore; the next subsection shows why this reference fuser underuses the ensemble and how two plausible alternatives fail outright.
+
+\subsection{Consensus-Gated Mask-IoU Vote Fusion}\label{sec:fusion}
+
+Merging up to 800 overlapping candidates is where aggressive TTA either pays or collapses, and the observed failure modes dictate the design. Box-space suppression is geometrically wrong for harbors: two ships berthed in parallel produce boxes with high IoU but masks with low IoU, so box-NMS structurally deletes true neighbors. Score-decay suppression fails differently. SOLO-style matrix-NMS only attenuates the roughly eight near-duplicates that $V=8$ views generate per object, floods the ranking with survivors, and collapses to 4.1/8.9/14.4 mask AP on the identical candidate set. Unconditional pixelwise averaging fails on the opposite flank: majority voting over every cluster erodes long, well-resolved offshore boundaries to 55.9, below the 59.6 no-TTA base, even though the same candidates reach 64.2 offshore under box-NMS. The fuser, not the views, is the safety condition. Our operator therefore clusters in mask-IoU space, deletes duplicates hard, and averages only where the ensemble itself signals disagreement.
+
+All $K$ candidate masks are flattened into rows of $\mathbf{M}\in\{0,1\}^{K\times HW}$, and the pairwise mask-IoU (Jaccard) matrix is
+\begin{equation}\label{eq:iou}
+J_{jk}=\frac{\mathbf{m}_j^{\top}\mathbf{m}_k}
+{\mathbf{1}^{\top}\mathbf{m}_j+\mathbf{1}^{\top}\mathbf{m}_k-\mathbf{m}_j^{\top}\mathbf{m}_k},
+\end{equation}
+where $\mathbf{m}_j^{\top}\mathbf{m}_k$, the $(j,k)$ entry of the Gram matrix $\mathbf{M}\mathbf{M}^{\top}$, counts intersection pixels and $\mathbf{1}^{\top}\mathbf{m}_j$ is the area of mask $j$. Candidates are consumed greedily in score order. With $\mathcal{U}$ the set of not-yet-consumed indices, one cluster is formed per iteration as
+\begin{equation}\label{eq:cluster}
+\mathcal{C}=\{r\}\cup\bigl\{j\in\mathcal{U}: c_j=c_r,\ J_{rj}\ge\tau\bigr\},
+\qquad r=\arg\max_{k\in\mathcal{U}}s_k,
+\end{equation}
+where $r$ indexes the seed (the highest-scoring unconsumed candidate), $c_j$ is the class label of candidate $j$, and $\tau=0.5$ is the mask-IoU threshold. Each cluster is read out under a cross-view agreement gate,
+\begin{equation}\label{eq:fuse}
+\mathbf{m}^{\mathrm{out}}(p)=
+\begin{cases}
+\mathbf{1}\Bigl[\displaystyle\sum_{j\in\mathcal{C}}\mathbf{m}_j(p)>\tfrac{|\mathcal{C}|}{2}\Bigr],
+& 2\le|\mathcal{C}|\le S_{\max},\\[8pt]
+\mathbf{m}_r(p), & \text{otherwise},
+\end{cases}
+\end{equation}
+where $p$ ranges over pixels and $S_{\max}=6$ bounds the agreement band. The output score is
+\begin{equation}\label{eq:score}
+s^{\mathrm{out}}=s_r\,\bigl(|\mathcal{C}|/V\bigr)^{\gamma},
+\qquad \gamma=0,
+\end{equation}
+where $\gamma=0$ reduces the rule to plain seed-score inheritance; the general form is kept because the consensus ratio $|\mathcal{C}|/V$ is the quantity the gate consumes. The output box is regenerated from the fused mask. Algorithm~\ref{alg:fusion} lists the complete procedure, and Fig.~\ref{fig:m-fusion} sketches the operator together with the two failure modes that motivate its gate.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figs/figm_fusion}
+\caption{Consensus-gated mask-IoU vote fusion (Sec.~\ref{sec:fusion}). Pooled candidates are compared through the pairwise mask-IoU matrix $J_{ij}$ of Eq.~(\ref{eq:iou}), whose same-class diagonal blocks (orange) are consumed as greedy clusters seeded in score order at threshold $\tau=0.5$. The agreement gate $2\le|\mathcal{C}|\le 6$ routes each cluster to one of two paths, drawn in the lower panel as what happens to the mask planes themselves: clusters inside the band exhibit genuine cross-view disagreement and collapse by pixelwise majority into a single plane of exactly the same size (denoising path, orange), whereas singletons and near-unanimous clusters keep the seed plane verbatim and delete the rest (sharpness-preserving path, blue). Every plane in the figure is an $800\times 800$ mask drawn at the article-wide scale, so the operator is visibly shape-preserving. The output score is inherited from the seed ($\gamma=0$), and the output box is regenerated from the fused mask. The red box records the failure modes that motivate the gate: matrix-NMS score decay collapses inshore AP to 4.1, and unconditional majority voting erodes offshore AP to 55.9, below the 59.6 no-TTA base.}
+\label{fig:m-fusion}
+\end{figure*}
+
+\begin{algorithm}[!t]
+\caption{Consensus-Gated Mask-IoU Vote Fusion}
+\label{alg:fusion}
+\begin{algorithmic}[1]
+\REQUIRE candidates $\{(\mathbf{m}_k,s_k)\}_{k=1}^{K}$ from $V=8$ views; mask-IoU threshold $\tau=0.5$; agreement band $[2,S_{\max}]$ with $S_{\max}=6$; $\gamma=0$
+\ENSURE fused instance set $\mathcal{Y}$
+\STATE sort candidates by score, descending; mark all unused; $\mathcal{Y}\leftarrow\emptyset$
+\WHILE{unused candidates remain}
+  \STATE $r\leftarrow$ highest-scoring unused candidate; $\mathcal{C}\leftarrow\{r\}$
+  \STATE absorb every unused same-class $j$ with $J_{rj}\ge\tau$ into $\mathcal{C}$
+  \STATE mark $\mathcal{C}$ used
+  \IF{$2\le|\mathcal{C}|\le S_{\max}$}
+    \STATE $\mathbf{m}^{\mathrm{out}}\leftarrow$ pixelwise majority vote over $\mathcal{C}$ \COMMENT{denoise}
+  \ELSE
+    \STATE $\mathbf{m}^{\mathrm{out}}\leftarrow\mathbf{m}_r$ \COMMENT{singleton or near-unanimous: preserve seed verbatim}
+  \ENDIF
+  \STATE $s^{\mathrm{out}}\leftarrow s_r\,(|\mathcal{C}|/V)^{\gamma}$; box $\leftarrow$ \texttt{mask2bbox}$(\mathbf{m}^{\mathrm{out}})$
+  \STATE append $(\mathbf{m}^{\mathrm{out}},s^{\mathrm{out}})$ to $\mathcal{Y}$
+\ENDWHILE
+\RETURN top-100 of $\mathcal{Y}$ by score
+\end{algorithmic}
+\end{algorithm}
+
+The agreement band reads the ensemble's own cross-view consensus as a per-instance variance estimate. A near-unanimous cluster ($|\mathcal{C}|>6$) is a clean detection whose seed mask any averaging can only erode; it is emitted verbatim. A singleton has nothing to vote over and is likewise preserved. Clusters inside the band exhibit genuine cross-view disagreement, typically ambiguous inshore ships, and only these are majority-denoised. The gate is monotone in the band ceiling (inshore 38.4/38.6/38.8 for $S_{\max}=4/5/6$, with offshore fixed at 64.8), and the full operator reaches 38.8/53.8/64.8, matching or exceeding the seed-only readout (38.2/53.5/64.8) on all three splits. Composed, the stack lifts the 27.7/45.6/59.6 base by +11.1/+8.2/+5.2 with no weight updated.
+
+\subsection{Optional Boundary-Patch Refinement (BPR)}\label{sec:bpr}
+
+The stack recovers detection and recall, not boundary precision. Mask logits predicted at stride 4 ($200\times 200$) are upsampled $4\times$ bilinearly in Eq.~(\ref{eq:readout}), so predicted contours carry a soft halo of roughly one to two pixels, and on a typical $9\times 18$-pixel inshore hull a one-pixel boundary shift already costs about 0.15--0.25 IoU. No training-free control we tested moves this residual (Section~IV). We therefore add an optional trained second rung in the BPR paradigm \cite{bpr2021}, constructed so that it cannot alter anything except boundary pixels; Fig.~\ref{fig:m-bpr} summarizes its training and band-guarded application paths.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figs/figm_bpr}
+\caption{Optional boundary-patch refinement (Sec.~\ref{sec:bpr}). Left (training, once, about 19 min): full-stack predictions on the training split are matched to ground truth at mask IoU $\ge 0.5$; $64\times 64$ patches are cropped along each matched contour (ground truth blue, prediction orange dashed), upscaled $2\times$, and used to train a 2.35M-parameter UNet under the combined binary cross-entropy and Dice objective of Eq.~(\ref{eq:bprloss}). At the article-wide scale a $64\times 64$ patch is 1.6\,mm against the mask's 20\,mm, so the patch pipeline is shown in an explicit $\times 4$ zoom, inside which the $2\times$ upscaling is drawn as a growth and the UNet hourglass tapers with its own patch resolution $128\to 8\to 128$. Right (inference): a $\pm 4$-pixel band around the predicted boundary, obtained as dilation minus erosion, defines the only editable region, shown in an explicit $\times 8$ zoom because the band is one percent of the image side; its interior and its exterior both carry padlocks; the UNet re-segments the boundary patches, overlapping logits are averaged inside the band and thresholded at 0.5, and every pixel outside the band is bit-identical to the stack's output. Detection scores, ranks, and instance identities are untouched, and the main model is never modified.}
+\label{fig:m-bpr}
+\end{figure*}
+
+The refiner is trained once, in about 19 minutes. The full stack is run on the training split and its predictions are matched to training ground truth at mask IoU $\ge 0.5$; square boundary patches of side 64, upscaled $2\times$, are cropped along each matched contour, forming (prediction, ground-truth) patch pairs. A 2.35M-parameter UNet is trained on these pairs with a combined binary cross-entropy and Dice objective,
+\begin{equation}\label{eq:bprloss}
+\begin{split}
+\mathcal{L}_{\mathrm{ref}}
+={}&-\frac{1}{|\Omega|}\sum_{p\in\Omega}\bigl[y_p\log\hat{y}_p+(1-y_p)\log(1-\hat{y}_p)\bigr]\\
+&+1-\frac{2\sum_{p\in\Omega}\hat{y}_p\,y_p+\varepsilon}
+{\sum_{p\in\Omega}\hat{y}_p+\sum_{p\in\Omega}y_p+\varepsilon},
+\end{split}
+\end{equation}
+where $\Omega$ is the set of patch pixels, $\hat{y}_p\in(0,1)$ the refiner's sigmoid output at pixel $p$, $y_p\in\{0,1\}$ the ground-truth label, and $\varepsilon$ a small stability constant. The main model is never touched, and the filename overlap between refiner training patches and test images is zero.
+
+Application is band-guarded. At test time the refiner re-segments the boundary patches of each detected instance, and the refined prediction is written back only inside a $\pm 4$-pixel band around the original boundary,
+\begin{equation}\label{eq:guard}
+\begin{split}
+\mathbf{m}^{\mathrm{final}}(p)&=b(p)\,\hat{\mathbf{m}}(p)+\bigl(1-b(p)\bigr)\,\mathbf{m}^{\mathrm{out}}(p),\\
+b(p)&=\mathbf{1}\bigl[d\bigl(p,\partial\mathbf{m}^{\mathrm{out}}\bigr)\le 4\bigr],
+\end{split}
+\end{equation}
+where $\hat{\mathbf{m}}$ is the refiner output stitched over the patches, $\partial\mathbf{m}^{\mathrm{out}}$ the boundary of the stack's mask, and $d(\cdot,\cdot)$ the pixel distance to that boundary. Every pixel outside the band is bit-identical to the stack's output, and detection scores, ranks, and instance identities are untouched: the refiner can displace boundaries by a few pixels but can neither add, remove, nor re-rank detections. With this rung the pipeline reaches 43.6/58.6/69.1 mask AP and 47.0/70.7/87.4 AP$_{75}$ on inshore/official/offshore. The metric fingerprint is that of a pure boundary correction, since inshore AP$_{50}$ moves by only +0.7 while AP$_{75}$ moves by +10.9; Section~IV audits the application path along seven leakage vectors. The training-free claim of this article is accordingly scoped to the stack of Secs.~\ref{sec:soup}--\ref{sec:fusion}, and the refiner, like the re-ranker that follows, is reported separately in every table.
+
+\subsection{Learned Consensus Re-Ranking}\label{sec:rerank}
+
+Two axes of the residual are now treated and a third is not. Mask AP is a ranking metric, so a candidate whose mask is accurate but whose score falls below a worse neighbor forfeits precision at every recall level it should have dominated. The fusion operator of Sec.~\ref{sec:fusion} already computes the quantity that predicts mask quality, the cross-view consensus of each cluster, and then discards it: Eq.~(\ref{eq:score}) reduces to seed-score inheritance at $\gamma=0$ because no fixed exponent on $|\mathcal{C}|/V$ improved all three splits at once. Rather than search harder for a formula, we stop writing one. The base model makes its errors on the training split as readily as on the test split, and those errors are free supervision, so the map from consensus evidence to mask quality is fitted instead of guessed. Fig.~\ref{fig:m-rerank} summarizes the operator.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figs/figm_rerank}
+\caption{Learned consensus re-ranking (Sec.~\ref{sec:rerank}). Each fused instance is described by the 14 scalars of Eqs.~(\ref{eq:rrfeat})--(\ref{eq:rrblocks}): six consensus statistics that the fusion stage of Sec.~\ref{sec:fusion} has already computed (vermillion), the score it emits (gray), and seven mask-geometry descriptors (blue); no image pixel is read a second time. A gradient-boosted regression tree is fitted on training-split predictions alone, with the mask IoU against the best-matching training annotation as target, and its output is blended into the detection score by Eq.~(\ref{eq:rrblend}) at a mixing weight $\alpha$ selected on held-out training images. Only the score field is rewritten: masks, instance identities, and the size of the output set are bit-identical to the input, which the lower panel draws directly, the same $800\times 800$ mask plane entering and leaving the operator as the identical glyph while only the height of the score bar changes.}
+\label{fig:m-rerank}
+\end{figure}
+
+Each fused instance is described by a 14-dimensional vector of scalars,
+\begin{equation}\label{eq:rrfeat}
+\boldsymbol{\phi}=\bigl[\boldsymbol{\phi}_{\mathrm{c}}^{\top},\ s^{\mathrm{out}},\ \boldsymbol{\phi}_{\mathrm{g}}^{\top}\bigr]^{\top}\in\mathbb{R}^{14},
+\end{equation}
+whose consensus and geometry blocks are
+\begin{equation}\label{eq:rrblocks}
+\begin{split}
+\boldsymbol{\phi}_{\mathrm{c}}&=\bigl[\,|\mathcal{C}|,\ n_v,\ \bar{J},\ J_{\min},\ s_r,\ \Delta s\,\bigr]^{\top},\\
+\boldsymbol{\phi}_{\mathrm{g}}&=\bigl[\,\log(1{+}a),\ \log(1{+}w),\ \log(1{+}h),\\
+&\qquad\quad w/h,\ a/(wh),\ c_x,\ c_y\,\bigr]^{\top},
+\end{split}
+\end{equation}
+where $|\mathcal{C}|$ is the cluster size of Eq.~(\ref{eq:cluster}), $n_v$ the number of distinct views of Eq.~(\ref{eq:views}) contributing to that cluster, $\bar{J}$ and $J_{\min}$ the mean and the minimum pairwise mask IoU of Eq.~(\ref{eq:iou}) inside it, $s_r$ the seed score, $\Delta s$ the spread between the largest and the smallest member score, $s^{\mathrm{out}}$ the score the fusion stage emits, $a$ the mask area, $w$ and $h$ the width and height of the mask box, and $(c_x,c_y)$ the box center normalized by image width and height. Under the deployed setting $\gamma=0$ the two score channels $s_r$ and $s^{\mathrm{out}}$ coincide, which costs a tree ensemble nothing and keeps the same extractor valid for $\gamma>0$. No image pixel is read anywhere in Eq.~(\ref{eq:rrblocks}): every entry is a by-product of computation the stack has already performed, which is what makes the operator cost microseconds per instance.
+
+The regression target is the mask IoU between the candidate and its best-matching training annotation, and zero when the candidate overlaps none. Every candidate above a score floor of 0.01 contributes a row, kept and rejected alike, so the model sees the failures and not only the survivors; HRSID yields 51{,}781 rows from 3{,}642 training images and PSeg-SSDD 5{,}122 rows from 928. A histogram-based gradient-boosted regression tree $g$ (300 boosting iterations, learning rate 0.08, least-squares loss) is fitted to these rows, and its prediction is blended into the detection score as
+\begin{equation}\label{eq:rrblend}
+s^{\mathrm{final}}=\alpha\,\mathrm{clip}\bigl(g(\boldsymbol{\phi}),0,1\bigr)+(1-\alpha)\,s^{\mathrm{out}},
+\end{equation}
+where $\alpha\in[0,1]$ trades the learned quality estimate against the network's own confidence and the clip keeps the regressor inside the score range.
+
+The mixing weight is the only hyperparameter, and it is selected without touching test data. Training images are partitioned by image identifier into a fit part and a holdout part in a 4:1 ratio (2{,}914 and 728 images on HRSID), $g$ is fitted on the fit part alone, and $\alpha$ is swept over $\{0.3,0.5,1.0\}$ by COCO segm AP measured on the held-out training images. HRSID selects $\alpha=0.5$, which moves that train-side proxy from 57.6 to 58.9 AP; PSeg-SSDD, whose re-ranker is refitted from scratch on its own training split, selects $\alpha=1.0$ and moves its proxy from 65.0 to 67.8. The chosen weight is then frozen and $g$ is refitted on all training rows. Everything runs on a CPU: 4 s to harvest features and 19 s to fit on HRSID, 2 s and 9 s on PSeg-SSDD. On the held-out training images the Spearman correlation between $g$ and the true mask IoU is 0.68 on HRSID and 0.86 on PSeg-SSDD, and permutation importance ranks the score channel first by a wide margin, then mask area, fill ratio, and the view count $n_v$. The operator does not replace the network's confidence; it corrects it with evidence the network never saw in a single forward pass.
+
+Two safety properties follow from what the operator is allowed to write. First, the candidate set is preserved exactly. Masks, instance identities, and the size of the output set are bit-identical to the input, and only the score field changes, so re-ranking can neither create, delete, nor reshape a detection. Each detection of the preceding rung is bound to its fusion-stage candidate by a greedy one-to-one mask-IoU match at threshold 0.5, purely to retrieve that candidate's consensus statistics, and a detection with no match keeps its original score untouched; on the HRSID inshore split 23{,}857 of 28{,}539 detections are matched. Second, the refiner and the re-ranker write to disjoint fields. The refiner edits mask pixels inside a $\pm 4$-pixel band, the re-ranker reads scalars produced by the fusion stage and edits scores, so neither can undo the other and the order of application is a matter of convenience; we apply the refiner first so that the masks finally reported are the refined ones. On HRSID the re-ranking rung lifts 43.6/58.6/69.1 to 44.5/59.4/70.1 mask AP and inshore AP$_{75}$ from 47.0 to 48.3; on PSeg-SSDD it lifts 60.0/66.3/68.8 to 62.1/67.5/69.8. A carrier or a dataset new to the recipe needs its own $g$, since the consensus statistics belong to that carrier, and refitting one costs under a CPU-minute and no GPU time.
+
+\subsection{Complexity}\label{sec:complexity}
+
+The soup costs one offline elementwise average and nothing at inference; the recovery stack updates no weights and adds no parameters to the base. Test-time cost is dominated by the $V=8$ forward passes of Eq.~(\ref{eq:pool}), and the measured end-to-end cost of the full method is approximately $8\times$ a single-view pass. Fusion adds one $K\times K$ Gram product over binary masks and a greedy scan with $K\le 800$; this overhead is contained in the measured $8\times$ figure. The optional refiner adds a 2.35M-parameter UNet, trained once in about 19 minutes, and a per-instance boundary-patch pass at test time; total cost remains approximately $8\times$ plus this small constant. The optional re-ranker is cheaper still. Its features are already computed by the fusion stage, one gradient-boosted tree evaluation over 14 scalars costs microseconds per instance, and no image is read a second time, so the rung is free to the nearest measurable unit at test time and costs 23 s of CPU once at fit time on HRSID (11 s on PSeg-SSDD). Stage~A itself trains for 55 epochs on one GPU, against the 500-epoch specialized protocol of \cite{o2former2025}. No component of Stage~B touches a single weight of Stage~A, so the recipe wraps any Mask2Former-class base unchanged.

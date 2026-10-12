@@ -1,0 +1,38 @@
+\begin{table}[t]
+\centering
+\caption{Semantic segmentation baselines on SAR ship sets, \emph{from scratch}, single RTX~3090\,Ti, budget-10 lightweight configs (binary ship/background, Dice/mIoU at threshold $0.5$). This is a \emph{separate protocol} from SEAL's COCO instance mask AP on Mask2Former-R50 and is \emph{not} merged with it; numbers are a same-hardware semantic landscape, claims limited to this protocol.}
+\label{tab:seg-semantic}
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Model & Dataset & Dice & mIoU & $P$ & $R$ \\
+\midrule
+DeepLabV3+ & HRSID & 0.6663 & 0.4996 & 0.7750 & 0.5844 \\
+DeepLabV3+ & SSDD & 0.8066 & 0.6759 & 0.8794 & 0.7450 \\
+\addlinespace
+SegFormer & HRSID & 0.6320 & 0.4620 & 0.7521 & 0.5449 \\
+SegFormer & SSDD & 0.7773 & 0.6357 & 0.8169 & 0.7413 \\
+\addlinespace
+Mask2Former (tiny) & HRSID & 0.6358 & 0.4661 & 0.7644 & 0.5443 \\
+Mask2Former (tiny) & SSDD & 0.7954 & 0.6603 & 0.8309 & 0.7629 \\
+\addlinespace
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{UNet++ instance segmentation baselines (connected-component instance protocol), from scratch. A \emph{third, distinct} protocol from both Table~\ref{tab:seg-semantic} and SEAL's COCO instance AP; reported separately, claims limited to this protocol.}
+\label{tab:seg-instance}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Variant & Dataset & Dice & AP$_{50}$ & AP$_{75}$ \\
+\midrule
+UNet++ (clean) & HRSID & 0.7646 & 0.6499 & 0.4169 \\
+UNet++ (clean) & SSDD & 0.8411 & 0.6665 & 0.4614 \\
+\addlinespace
+UNet++ (boundary) & HRSID & 0.7803 & 0.6443 & 0.4104 \\
+UNet++ (boundary) & SSDD & 0.8557 & 0.6945 & 0.4850 \\
+\addlinespace
+\bottomrule
+\end{tabular}
+\end{table}

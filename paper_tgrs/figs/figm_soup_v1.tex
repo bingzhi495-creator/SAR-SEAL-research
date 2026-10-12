@@ -1,0 +1,67 @@
+% figm_soup.pdf — weight-soup mechanism: schematic 1-D loss landscape with three
+% neighboring minima theta_{s0}/theta_{s2}/theta_{s3} in one shared basin; the
+% uniform average theta* lands on the flatter basin floor.
+% Facts: ALL_TABLES.md T1/T7; sec_method.tex III-B (same COCO init, identical
+% parameter keys, byte-equal BN buffers; single deterministic ckpt, 1x cost).
+% Compile: pdflatex (standalone).
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+
+% ---------------- schematic 1-D loss landscape ----------------
+\draw[->, line width=0.8pt] (0,0) -- (7.7,0)
+  node[below left, lbl] {$\theta$ (weight space, 1-D slice)};
+\draw[->, line width=0.8pt] (0,0) -- (0,3.4) node[left, lbl] {$\mathcal{L}(\theta)$};
+\node[sub, anchor=west] at (0.15,3.2) {(schematic)};
+
+% one wide basin, three shallow dimples on its floor
+\draw[line width=1.0pt, modblue] plot[smooth, tension=0.75] coordinates {
+  (0.30,3.10) (0.80,2.00) (1.40,1.25) (2.10,0.78)
+  (2.60,0.58) (2.90,0.52) (3.30,0.60) (3.70,0.47) (4.00,0.48)
+  (4.60,0.62) (5.40,0.53) (6.00,0.68) (6.60,1.05) (7.10,1.90) (7.50,3.00) };
+
+% three fine-tuned seeds (blue dots) + soup average (orange star)
+\fill[modblue] (2.90,0.52) circle[radius=1.5pt];
+\fill[modblue] (3.70,0.47) circle[radius=1.5pt];
+\fill[modblue] (5.40,0.53) circle[radius=1.5pt];
+\node[lbl, text=modblue] at (2.55,0.78) {$\theta_{s_0}$};
+\node[lbl, text=modblue] at (3.45,0.22) {$\theta_{s_2}$};
+\node[lbl, text=modblue] at (5.75,0.78) {$\theta_{s_3}$};
+\node[star, star points=5, star point ratio=2.2, fill=oursorange,
+      inner sep=1.6pt] (star) at (4.00,0.48) {};
+\node[lbl, text=oursorange] at (4.58,0.26) {$\theta^{\star}$};
+
+% ---------------- annotation stack below ----------------
+\node[ours, minimum width=42mm] (soup) at (3.9,-1.95)
+  {\textbf{uniform weight soup}\\[1pt]
+   $\theta^{\star}=\tfrac{1}{3}\bigl(\theta_{s_0}+\theta_{s_2}+\theta_{s_3}\bigr)$};
+\node[blk, minimum width=44mm] (cond) at (1.65,-3.55)
+  {same-basin conditions\\[1pt]
+   {\scriptsize same COCO init $\cdot$ identical param keys}\\
+   {\scriptsize byte-equal BN buffers}};
+\node[blk, minimum width=32mm] (cost) at (6.35,-3.55)
+  {$1\times$ inference cost\\[1pt]
+   {\scriptsize one deterministic checkpoint}};
+
+% checkpoints feed the soup
+\draw[arr, draw=black!55, line width=0.6pt] (2.90,0.44) -- ($(soup.north)+(-1.25,0)$);
+\draw[arr, draw=black!55, line width=0.6pt] (3.70,0.39) -- (soup.north);
+\draw[arr, draw=black!55, line width=0.6pt] (5.40,0.45) -- ($(soup.north)+(1.45,0)$);
+
+% conditions enable the soup; soup yields 1x-cost checkpoint
+\draw[arr] (cond.north) -- ($(soup.south west)+(0.55,0)$);
+\draw[arr] ($(soup.south east)+(-0.55,0)$) -- (cost.north);
+
+% the average lands on the flatter basin floor
+\draw[arro, dashed] ($(soup.north)+(0.55,0)$) to[out=75,in=-55] (4.14,0.36);
+\node[note, text=oursorange, anchor=west] at (5.15,-0.85)
+  {average lands on the\\ flatter basin floor};
+
+\end{tikzpicture}
+\end{document}

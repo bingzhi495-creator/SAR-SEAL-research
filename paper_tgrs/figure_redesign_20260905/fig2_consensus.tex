@@ -1,0 +1,94 @@
+% Reproducible Fig. 2, authored at exact 516 x 196 PDF points.
+% Read review/FIG2_NOTES.md: operator replay on top-16 real candidates;
+% not the deployed full-pool branch outcome. All assets are measured.
+% Compile in this folder with pdflatex -interaction=nonstopmode -halt-on-error.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{amsmath,amssymb,graphicx}
+\usetikzlibrary{arrows.meta,calc}
+\definecolor{opsred}{HTML}{D55E00}
+\definecolor{datablue}{HTML}{0072B2}
+\definecolor{frozgray}{HTML}{6E6E6E}
+\definecolor{flowink}{HTML}{262626}
+\DeclareMathSizes{8.03}{8.03}{6.03}{6.03}
+\DeclareMathSizes{7.02625}{7.02625}{6.03}{6.03}
+\newcommand{\mainfont}{\fontsize{8bp}{9.3bp}\selectfont}
+\newcommand{\subfont}{\fontsize{7bp}{8.4bp}\selectfont}
+\tikzset{
+  base/.style={x=1bp,y=1bp,font=\mainfont,draw=flowink,line width=0.5bp,
+               every node/.style={inner sep=0pt,outer sep=0pt,text=flowink,align=center}},
+  main/.style={font=\mainfont},
+  sub/.style={font=\subfont,text=black!75},
+  flow/.style={draw=flowink,line width=0.8bp,-{Stealth[length=1.6mm,width=1.2mm,line width=0.5bp]}},
+  branch/.style={draw=flowink,line width=0.5bp,-{Stealth[length=1.6mm,width=1.2mm,line width=0.5bp]}},
+  aux/.style={draw=frozgray,line width=0.5bp,dash pattern=on 2.6bp off 1.2bp,
+              -{Stealth[length=1.6mm,width=1.2mm,line width=0.5bp]}},
+  frame/.style={draw=frozgray,line width=0.5bp},
+  emitted/.style={draw=opsred,line width=0.8bp},
+  omitted/.style={draw=frozgray,line width=0.5bp,densely dotted}
+}
+\newcommand{\tile}[4]{%
+  \node at (#1,44) {\includegraphics[width=64bp]{assets_fig2/#2.png}};
+  \draw[#3] ({#1-32},{44-86*64/110/2}) rectangle ({#1+32},{44+86*64/110/2});
+  \node[sub] at (#1,10) {#4};}
+\begin{document}
+\begin{tikzpicture}[base]
+\useasboundingbox (0,0) rectangle (516.006,196.002);
+
+% A flat montage represents candidate sets; no tensor-volume metaphor.
+\foreach \x/\y/\v in {47/173/0,77/173/2,47/143/4,77/143/6}{
+  \node at (\x,\y) {\includegraphics[width=28bp]{assets_fig2/views_\v.png}};
+  \draw[frame] ({\x-14},{\y-14}) rectangle ({\x+14},{\y+14});
+}
+\node[main] at (62,119) {candidate pool};
+\node[sub] at (62,109) {$K\le800$ from 8 views};
+\draw[flow] (98,158) -- (153,158);
+
+% Recomputed from the exact 16 native member masks used below. Original
+% matrix was from a different pass; its provenance mismatch is documented.
+\node at (196,158) {\includegraphics[width=72bp]{assets_fig2/iou_matrix_x48.png}};
+\draw[frame] (160,122) rectangle (232,194);
+\draw[emitted] (160,167) rectangle (187,194);
+\draw[omitted] (187,135.5) rectangle (218.5,167);
+\draw[omitted] (218.5,131) rectangle (223,135.5);
+\draw[emitted] (223,122) rectangle (232,131);
+\node[sub,anchor=east] at (155,180.5) {6};
+\node[sub,anchor=east] at (155,151.25) {7};
+\node[sub,anchor=east] at (155,134.5) {1};
+\node[sub,anchor=east] at (155,125.5) {2};
+\node[main] at (196,112) {pairwise mask IoU};
+\node[sub] at (196,102) {$K{=}16$ highest-scoring};
+\draw[flow] (240,158) -- (311,158);
+
+% One coloured operator is sufficient; whitespace carries the grouping.
+\node[draw=opsred,fill=opsred!18,line width=0.8bp,rounded corners=1.5bp,
+      minimum width=136bp,minimum height=32bp] (clus) at (386,158) {};
+\node[main,font=\mainfont\bfseries] at (386,164) {Greedy clustering};
+\node[sub] at (386,151) {seeds in score order, $\tau{=}0.5$};
+\draw[branch] (clus.south) -- (386,95) -- (126,95) -- (126,88);
+\draw[branch] (386,95) -- (390,95) -- (390,88);
+\node[sub] at (285,102) {$2\le|C|\le6$};
+\node[sub] at (407,102) {else};
+
+% The two outcomes form equal-width, aligned comparisons at one native scale.
+\draw[omitted] (258,6) -- (258,85);
+\node[main,font=\mainfont\bfseries,anchor=west] at (12,80) {(a)};
+\node[main,font=\mainfont\bfseries] at (126,80) {pixel vote};
+\node[main,font=\mainfont\bfseries,anchor=west] at (276,80) {(b)};
+\node[main,font=\mainfont\bfseries] at (390,80) {keep the seed};
+\tile{44}{inband_members}{frame}{members}
+\draw[branch] (80,44) -- (90,44);
+\tile{126}{inband_votes}{frame}{vote count}
+\draw[branch] (162,44) -- (172,44);
+\tile{208}{inband_fused}{emitted}{fused}
+\tile{308}{outband_members}{frame}{members}
+\draw[branch] (344,44) -- (354,44);
+\tile{390}{outband_seed}{emitted}{seed kept}
+\draw[aux] (426,44) -- (436,44);
+\node[sub,text=opsred] at (431,56) {$\times$};
+\tile{472}{outband_counterfactual}{omitted}{vote would erode}
+\input{assets_fig2/seed_contour.tex}
+\end{tikzpicture}
+\end{document}

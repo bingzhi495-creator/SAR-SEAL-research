@@ -1,0 +1,374 @@
+%% ===========================================================================
+%% seal_refs.bib  --  SEAL: Diagnose-Before-You-Fix (inshore SAR ship inst. seg.)
+%% Cleaned / de-duplicated / verified bibliography.  bibtex-compilable.
+%% Bibliographystyle: IEEEtran  (\bibliography{seal_refs} in seal.tex).
+%%
+%% --- CLEANING NOTES (what was changed and why) ------------------------------
+%% DROPPED (fabricated / unverifiable):
+%%   * xu2024mssdnet ("MSSD-Net"): the source comment states NO citable
+%%     "MSCK-Net" was located; this entry is a guessed stand-in with no
+%%     verifiable authors and is cited nowhere in the draft. Removed.
+%%
+%% DE-DUPLICATED:
+%%   * zhang2021ssdd appeared twice (the second copy contained an author typo
+%%     "Yanqing"); merged into a single verified entry (author "Xu, Yanqin").
+%%   * cheng2021boundaryiou / cheng2021boundary are the SAME paper (Boundary IoU,
+%%     CVPR 2021). Kept a single key "cheng2021boundary" (the key \cite-d in
+%%     seal.tex); dropped the duplicate "cheng2021boundaryiou".
+%%
+%% FIXED:
+%%   * samsar2025: raw entry had author="Anonymous (not verified)". Verified
+%%     authors are Mahdi Rahimi and Saeed Sharifian; corrected to vol. 284,
+%%     art. 127852 (Expert Syst. Appl., 2025). The DOI from the raw entry is
+%%     retained but was NOT verifiable against the article PII (S0957417425014745).
+%%
+%% VERIFIED (real, kept / lightly normalized):
+%%   * gao2025o2former (arXiv:2506.11913), xu2025diffsarshipinst (ISPRS J. v223),
+%%     mansour2026zeroshot (arXiv:2604.17920), samsar2025 — confirmed via web search.
+%%
+%% STILL NEEDED BY THE DRAFT BUT NOT SUPPLIED IN THE RAW COLLECTION
+%% (paper_draft_v1.md cites these; add verified entries before submission):
+%%   Hoiem et al. ECCV 2012 (detector error diagnosis);
+%%   TIDE / Bolya et al. ECCV 2020; "Mind the Gap" arXiv 2026 (VIS oracle decomp.);
+%%   Kapoor & Narayanan, Patterns 2023 (leakage taxonomy);
+%%   HQ-ISNet (RS 2020); LFG-Net; DAB-DETR (ICLR 2022); DN-DETR (CVPR 2022);
+%%   Carion et al. DETR (ECCV 2020); a CFAR survey/textbook beyond finn1968cfar.
+%%   (BPR is already present as tang2021bpr.)
+%% ===========================================================================
+
+
+%% ===========================  SAR ship instance segmentation  ==============
+
+@article{gao2025o2former,
+  title   = {{O$^2$Former}: Direction-Aware and Multi-Scale Query Enhancement for {SAR} Ship Instance Segmentation},
+  author  = {Gao, Fei and Li, Yunrui and He, Xiaoyu and Sun, Jinping and Wang, Jun},
+  journal = {arXiv preprint arXiv:2506.11913},
+  year    = {2025}
+}
+
+@article{xu2025diffsarshipinst,
+  title     = {{DiffSARShipInst}: Diffusion model for ship instance segmentation from synthetic aperture radar imagery},
+  author    = {Xu, Xiaowo and Zhang, Xiaoling and Wei, Shunjun and Shi, Jun and Zhang, Wensi and Zhang, Tianwen and Zhan, Xu and Xu, Yanqin and Zeng, Tianjiao},
+  journal   = {ISPRS Journal of Photogrammetry and Remote Sensing},
+  volume    = {223},
+  pages     = {440--455},
+  year      = {2025},
+  publisher = {Elsevier},
+  doi       = {10.1016/j.isprsjprs.2025.02.028}
+}
+
+@article{yang2023srnet,
+  title     = {Ship Instance Segmentation Based on Rotated Bounding Boxes for {SAR} Images},
+  author    = {Yang, Xinpeng and Zhang, Qiang and Dong, Qiulei and Han, Zhen and Luo, Xiliang and Wei, Dongdong},
+  journal   = {Remote Sensing},
+  volume    = {15},
+  number    = {5},
+  pages     = {1324},
+  year      = {2023},
+  publisher = {MDPI},
+  doi       = {10.3390/rs15051324}
+}
+
+@article{zhang2022maisenet,
+  title     = {A Mask Attention Interaction and Scale Enhancement Network for {SAR} Ship Instance Segmentation},
+  author    = {Zhang, Tianwen and Zhang, Xiaoling},
+  journal   = {IEEE Geoscience and Remote Sensing Letters},
+  volume    = {19},
+  pages     = {1--5},
+  year      = {2022},
+  publisher = {IEEE},
+  doi       = {10.1109/LGRS.2022.3189961}
+}
+
+@article{shao2023scaleinscale,
+  title     = {Scale in Scale for {SAR} Ship Instance Segmentation},
+  author    = {Shao, Zikang and Zhang, Xiaoling and Wei, Shunjun and Shi, Jun and Ke, Xiao and Xu, Xiaowo and Zhan, Xu and Zhang, Tianwen and Zeng, Tianjiao},
+  journal   = {Remote Sensing},
+  volume    = {15},
+  number    = {3},
+  pages     = {629},
+  year      = {2023},
+  publisher = {MDPI},
+  doi       = {10.3390/rs15030629}
+}
+
+@article{ke2022htcplus,
+  title     = {{HTC+} for {SAR} Ship Instance Segmentation},
+  author    = {Ke, Xiao and Zhang, Xiaoling and Zhang, Tianwen and Shi, Jun and Wei, Shunjun},
+  journal   = {Remote Sensing},
+  volume    = {14},
+  number    = {10},
+  pages     = {2395},
+  year      = {2022},
+  publisher = {MDPI},
+  doi       = {10.3390/rs14102395}
+}
+
+@article{samsar2025,
+  title     = {{SAMSAR}: A modified {SAM} architecture for oceanic ship segmentation of satellite {SAR} images using {CNN}-based Cross-Fused Attention},
+  author    = {Rahimi, Mahdi and Sharifian, Saeed},
+  journal   = {Expert Systems with Applications},
+  volume    = {284},
+  pages     = {127852},
+  year      = {2025},
+  publisher = {Elsevier},
+  doi       = {10.1016/j.eswa.2025.128140}
+}
+
+@article{mansour2026zeroshot,
+  title   = {Prompting Foundation Models for Zero-Shot Ship Instance Segmentation in {SAR} Imagery},
+  author  = {Mansour, Islam and Sica, Francescopaolo and Schmitt, Michael},
+  journal = {arXiv preprint arXiv:2604.17920},
+  year    = {2026}
+}
+
+
+%% ===============  Foundation-model / SAM-based segmentation  ================
+
+@article{zheng2024mcsamseg,
+  title   = {Tuning a {SAM}-Based Model with Multi-Cognitive Visual Adapter to Remote Sensing Instance Segmentation},
+  author  = {Zheng, Linghao and Pu, Xinyang and Xu, Feng},
+  journal = {arXiv preprint arXiv:2408.08576},
+  year    = {2024}
+}
+
+@article{chen2024rsprompter,
+  title   = {{RSPrompter}: Learning to Prompt for Remote Sensing Instance Segmentation Based on Visual Foundation Model},
+  author  = {Chen, Keyan and Liu, Chenyang and Chen, Hao and Zhang, Haotian and Li, Wenyuan and Zou, Zhengxia and Shi, Zhenwei},
+  journal = {IEEE Transactions on Geoscience and Remote Sensing},
+  volume  = {62},
+  pages   = {1--17},
+  year    = {2024},
+  doi     = {10.1109/TGRS.2024.3356074}
+}
+
+@article{pu2025classwisesamadapter,
+  title   = {{ClassWise-SAM-Adapter}: Parameter-Efficient Fine-Tuning Adapts Segment Anything to {SAR} Domain for Semantic Segmentation},
+  author  = {Pu, Xinyang and Jia, Hecheng and Zheng, Linghao and Wang, Feng and Xu, Feng},
+  journal = {IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
+  volume  = {18},
+  pages   = {4791--4804},
+  year    = {2025},
+  doi     = {10.1109/JSTARS.2025.3532690}
+}
+
+@inproceedings{kirillov2023sam,
+  title     = {Segment Anything},
+  author    = {Kirillov, Alexander and Mintun, Eric and Ravi, Nikhila and Mao, Hanzi and Rolland, Chloe and Gustafson, Laura and Xiao, Tete and Whitehead, Spencer and Berg, Alexander C. and Lo, Wan-Yen and Doll{\'a}r, Piotr and Girshick, Ross},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  pages     = {4015--4026},
+  year      = {2023}
+}
+
+@inproceedings{ke2023hqsam,
+  title     = {Segment Anything in High Quality},
+  author    = {Ke, Lei and Ye, Mingqiao and Danelljan, Martin and Liu, Yifan and Tai, Yu-Wing and Tang, Chi-Keung and Yu, Fisher},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2023}
+}
+
+@article{ravi2024sam2,
+  title   = {{SAM 2}: Segment Anything in Images and Videos},
+  author  = {Ravi, Nikhila and Gabeur, Valentin and Hu, Yuan-Ting and Hu, Ronghang and Ryali, Chaitanya and Ma, Tengyu and Khedr, Haitham and R{\"a}dle, Roman and Rolland, Chloe and Gustafson, Laura and Mintun, Eric and Pan, Junting and Alwala, Kalyan Vasudev and Carion, Nicolas and Wu, Chao-Yuan and Girshick, Ross and Doll{\'a}r, Piotr and Feichtenhofer, Christoph},
+  journal = {arXiv preprint arXiv:2408.00714},
+  year    = {2024}
+}
+
+
+%% =================  Query-based segmentation & detection  ==================
+
+@inproceedings{cheng2022mask2former,
+  title     = {Masked-Attention Mask Transformer for Universal Image Segmentation},
+  author    = {Cheng, Bowen and Misra, Ishan and Schwing, Alexander G. and Kirillov, Alexander and Girdhar, Rohit},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {1290--1299},
+  year      = {2022}
+}
+
+@inproceedings{li2023maskdino,
+  title     = {Mask {DINO}: Towards a Unified Transformer-Based Framework for Object Detection and Segmentation},
+  author    = {Li, Feng and Zhang, Hao and Xu, Huaizhe and Liu, Shilong and Zhang, Lei and Ni, Lionel M. and Shum, Heung-Yeung},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {3041--3050},
+  year      = {2023}
+}
+
+@inproceedings{zhang2023dino,
+  title     = {{DINO}: {DETR} with Improved DeNoising Anchor Boxes for End-to-End Object Detection},
+  author    = {Zhang, Hao and Li, Feng and Liu, Shilong and Zhang, Lei and Su, Hang and Zhu, Jun and Ni, Lionel M. and Shum, Heung-Yeung},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023}
+}
+
+
+%% =====================  Mask refinement / high-quality masks  ==============
+
+@inproceedings{kirillov2020pointrend,
+  title     = {{PointRend}: Image Segmentation as Rendering},
+  author    = {Kirillov, Alexander and Wu, Yuxin and He, Kaiming and Girshick, Ross},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {9799--9808},
+  year      = {2020}
+}
+
+@inproceedings{zhang2021refinemask,
+  title     = {{RefineMask}: Towards High-Quality Instance Segmentation with Fine-Grained Features},
+  author    = {Zhang, Gang and Lu, Xin and Tan, Jingru and Li, Jianmin and Zhang, Zhaoxiang and Li, Quanquan and Hu, Xiaolin},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {6861--6869},
+  year      = {2021}
+}
+
+@inproceedings{ke2022masktransfiner,
+  title     = {Mask Transfiner for High-Quality Instance Segmentation},
+  author    = {Ke, Lei and Danelljan, Martin and Li, Xia and Tai, Yu-Wing and Tang, Chi-Keung and Yu, Fisher},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {4412--4421},
+  year      = {2022}
+}
+
+@inproceedings{li2023dynamask,
+  title     = {{DynaMask}: Dynamic Mask Selection for Instance Segmentation},
+  author    = {Li, Ruihuang and He, Chenhang and Li, Shuai and Zhang, Yabin and Zhang, Lei},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {11279--11288},
+  year      = {2023}
+}
+
+@inproceedings{cheng2020bmaskrcnn,
+  title     = {Boundary-Preserving Mask {R-CNN}},
+  author    = {Cheng, Tianheng and Wang, Xinggang and Huang, Lichao and Liu, Wenyu},
+  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+  pages     = {660--676},
+  year      = {2020}
+}
+
+@inproceedings{tang2021bpr,
+  title     = {Look Closer to Segment Better: Boundary Patch Refinement for Instance Segmentation},
+  author    = {Tang, Chufeng and Chen, Hang and Li, Xiao and Li, Jianmin and Zhang, Zhaoxiang and Hu, Xiaolin},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {13926--13935},
+  year      = {2021}
+}
+
+@inproceedings{yuan2020segfix,
+  title     = {{SegFix}: Model-Agnostic Boundary Refinement for Segmentation},
+  author    = {Yuan, Yuhui and Xie, Jingyi and Chen, Xilin and Wang, Jingdong},
+  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+  pages     = {489--506},
+  year      = {2020}
+}
+
+
+%% =========================  Evaluation metrics  ============================
+
+@inproceedings{cheng2021boundary,
+  title     = {Boundary {IoU}: Improving Object-Centric Image Segmentation Evaluation},
+  author    = {Cheng, Bowen and Girshick, Ross and Doll{\'a}r, Piotr and Berg, Alexander C. and Kirillov, Alexander},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages     = {15334--15342},
+  year      = {2021}
+}
+
+
+%% ===========================  Datasets  ===================================
+
+@article{wei2020hrsid,
+  title     = {{HRSID}: A High-Resolution {SAR} Images Dataset for Ship Detection and Instance Segmentation},
+  author    = {Wei, Shunjun and Zeng, Xiangfeng and Qu, Qizhe and Wang, Mou and Su, Hao and Shi, Jun},
+  journal   = {IEEE Access},
+  volume    = {8},
+  pages     = {120234--120254},
+  year      = {2020},
+  publisher = {IEEE},
+  doi       = {10.1109/ACCESS.2020.3005861}
+}
+
+@article{zhang2021ssdd,
+  title     = {{SAR} Ship Detection Dataset ({SSDD}): Official Release and Comprehensive Data Analysis},
+  author    = {Zhang, Tianwen and Zhang, Xiaoling and Li, Jianwei and Xu, Xiaowo and Wang, Baoyou and Zhan, Xu and Xu, Yanqin and Ke, Xiao and Zeng, Tianjiao and Su, Hao and Ahmad, Israr and Pan, Dece and Liu, Chang and Zhou, Yue and Shi, Jun and Wei, Shunjun},
+  journal   = {Remote Sensing},
+  volume    = {13},
+  number    = {18},
+  pages     = {3690},
+  year      = {2021},
+  publisher = {MDPI},
+  doi       = {10.3390/rs13183690}
+}
+
+
+%% =====================  SAR ship detection / YOLO family  ==================
+
+@article{wang2024mambayolo,
+  title   = {Mamba {YOLO}: {SSMs}-Based {YOLO} for Object Detection},
+  author  = {Wang, Zeyu and Li, Chen and Xu, Huiying and Zhu, Xinzhong},
+  journal = {arXiv preprint arXiv:2406.05835},
+  year    = {2024}
+}
+
+@software{jocher2023yolov8,
+  title   = {Ultralytics {YOLO} (Version 8.0.0)},
+  author  = {Jocher, Glenn and Chaurasia, Ayush and Qiu, Jing},
+  year    = {2023},
+  url     = {https://github.com/ultralytics/ultralytics},
+  note    = {License: AGPL-3.0}
+}
+
+@article{khanam2024yolov11,
+  title   = {{YOLOv11}: An Overview of the Key Architectural Enhancements},
+  author  = {Khanam, Rahima and Hussain, Muhammad},
+  journal = {arXiv preprint arXiv:2410.17725},
+  year    = {2024}
+}
+
+@article{tian2025yolov12,
+  title   = {{YOLOv12}: Attention-Centric Real-Time Object Detectors},
+  author  = {Tian, Yunjie and Ye, Qixiang and Doermann, David},
+  journal = {arXiv preprint arXiv:2502.12524},
+  year    = {2025}
+}
+
+
+%% ====================  SAR physics / statistical priors  ===================
+
+@article{goodman1976speckle,
+  title   = {Some Fundamental Properties of Speckle},
+  author  = {Goodman, Joseph W.},
+  journal = {Journal of the Optical Society of America},
+  volume  = {66},
+  number  = {11},
+  pages   = {1145--1150},
+  year    = {1976},
+  doi     = {10.1364/JOSA.66.001145}
+}
+
+@book{oliver2004sar,
+  title     = {Understanding Synthetic Aperture Radar Images},
+  author    = {Oliver, Chris and Quegan, Shaun},
+  publisher = {SciTech Publishing},
+  edition   = {2nd},
+  year      = {2004}
+}
+
+@article{finn1968cfar,
+  title   = {Adaptive Detection Mode with Threshold Control as a Function of Spatially Sampled Clutter-Level Estimates},
+  author  = {Finn, H. M. and Johnson, R. S.},
+  journal = {RCA Review},
+  volume  = {29},
+  pages   = {414--465},
+  year    = {1968}
+}
+
+
+%% =========================  Statistics  ====================================
+
+@article{mann1947whitney,
+  title   = {On a Test of Whether One of Two Random Variables is Stochastically Larger than the Other},
+  author  = {Mann, Henry B. and Whitney, Donald R.},
+  journal = {The Annals of Mathematical Statistics},
+  volume  = {18},
+  number  = {1},
+  pages   = {50--60},
+  year    = {1947},
+  doi     = {10.1214/aoms/1177730491}
+}

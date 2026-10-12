@@ -1,0 +1,148 @@
+% figm_bpr.pdf -- boundary-patch refinement (Sec. III-C).  v6 REDRAW (S4 of
+% docs/FIGURE_REDESIGN_SPEC.md S3.3), REBALANCED in S8.
+%
+% Message (one sentence, S3.3): the refiner may rewrite only a +-4-pixel
+% annulus around the fused contour -- here is that annulus, and here is one
+% real patch before and after.
+%
+% Everything drawn is real data from ONE instance (index 24) of ONE chip,
+% P0101_1200_2000_3000_3800.jpg (image_id 1528); provenance for every raster
+% is in assets/manifest.json:
+%   * the single 800x800 overview is assets/pred_masks.png, the fused instance
+%     masks, 800 px over 20 mm = 1016 dpi;
+%   * the two small boxes on it are the REAL windows the dump recorded --
+%     patch_origin_yx = (536,0) with patch_size 64 for (a), and
+%     crop_yx = (524,0,597,57) for (b).  They very nearly coincide because
+%     both crops are cut from the same stretch of the same contour;
+%   * (a) assets/patch_before_x2.png / patch_after_x2.png at x20 (1024 px over
+%     32.0 mm = 813 dpi); the red coarse contour and the green refined
+%     contour are baked into the rasters by the dump, not redrawn here;
+%   * (b) assets/band_annulus_x3.png at x20 (1026x1314 px over 28.5 x 36.5 mm
+%     = 914 dpi), the REAL dilate(m,4) XOR erode(m,4) annulus, amber over the
+%     real chip with the real red hull contour.
+%
+% S8 REBALANCE (the only change from the S4 draft; the S4 draft passed all six
+% gates but was measurably loose -- panel (b) was a 25.7 x 32.9 mm tile with a
+% 22 mm void to its left, a 19 mm void to its right and an orphan "writable"
+% label floating in that void, against a 58 mm panel (a)).  Three moves, no
+% new element and no new word:
+%   R1  ONE magnification for both panels.  (a) went x13 -> x20 and (b) went
+%       x18 -> x20, so the two panels are now 32.0 mm and 28.5 x 36.5 mm and
+%       carry the same visual weight, and the caption states one scale instead
+%       of two.  Both needed a larger nearest-neighbour embedding copy to stay
+%       above the 600 dpi floor; both are exact integer upscales written by
+%       add_derived_assets.py and recorded in assets/manifest.json (a 512 px
+%       copy at 32.0 mm would be 406 dpi, which is why patch_*_x2.png exists).
+%   R2  "writable" moved from a free-floating label to the right of (b) to the
+%       tile-label row under it, where it now sits on the same baseline as
+%       "coarse" and "refined" (y = 0.92) -- the four rasters and their four
+%       labels are one row, so the label is read as (b)'s name, exactly as
+%       "coarse" is (a)'s.
+%   R3  the padlock invariant moved from under (b) to the foot of the figure,
+%       horizontally centred (its 3.0 cm of 7 pt text spans 7.45-10.6 cm on an
+%       18.2 cm canvas), which is what fills the former bottom-centre void.
+% Net measured effect: the three inter-group gaps went 37.5 / 34.7 / 19.3 mm
+% -> 23.5 / 23.5 / 3.5 mm and the drawn raster area went 12.5 -> 31.0 cm^2 on
+% an unchanged 18.2 x 5.20 cm canvas.
+%
+% COORDINATE BUG FIXED IN THE S4 REVISION (SPEC S3.3 / S6 item 7).  The v5
+% file drew both locator boxes 72-80 px too low: the patch box sat at rows
+% 608-672 although patch_origin_yx = (536,0), and the band box at rows 604-676
+% although crop_yx = (524,0,597,57).  The mapping from mask pixels to canvas
+% centimetres, for an overview of centre (cx,cy) and half side 1.00 cm over
+% an 800 px plane, is
+%       x = cx - 1.00 + col/800*2.00 ,   y = cy + 1.00 - row/800*2.00 ,
+% which for the S8 overview centre (cx,cy) = (1.35,2.00) gives
+%   A  rows 536..600, cols  0..64 -> (0.3500,1.5000) rect (0.5100,1.6600)
+%   B  rows 524..597, cols  0..57 -> (0.3500,1.5075) rect (0.4925,1.6900)
+% Both are used verbatim below, so a reader can re-derive them from the
+% manifest with a ruler.  The overview itself is unchanged at 20 mm / 800 px,
+% the same G1 scale the 800^2 planes of Fig. 1 and Fig. 1-B are drawn at, so
+% "x20" is literally 20x the overview.
+%
+% Facts: sec_method.tex Section III-C (Boundary-Patch Refinement) and its
+% Eq. (guard).  NO accuracy number is drawn (H1); the AP effect is Table IV.
+%
+% Authored at exactly 18.2 x 5.20 cm = 516 x 147.4 pt = \textwidth,
+% aspect 3.50:1 -> include with width=\textwidth at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style_v5}
+
+% Local override of the shared padlock glyph: tikz_style.tex draws its shackle
+% at 0.65 pt, which would be a THIRD stroke tier in a figure whose budget is
+% 0.5 pt / 0.8 pt (spec S2.2).  Geometry is untouched.
+\tikzset{lock/.pic={
+  \fill[frozgray] (-0.105,-0.105) rectangle (0.105,0.055);
+  \draw[frozgray, line width=0.5pt]
+    (-0.060,0.055) -- (-0.060,0.105)
+    arc[start angle=180, end angle=0, radius=0.060] -- (0.060,0.055);
+  \fill[white] (0,-0.022) circle[radius=0.020];
+}}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{5.20}
+
+\def\yrow{0.92}    % the one tile-label baseline: four rasters, four names
+\def\ytile{2.60}   % centre line of the (a) tiles, the UNet box and the arrows
+
+% =========================================================================
+%  ONE overview (spec S3.3 deletion 4: the duplicate 800^2 plane is gone),
+%  drawn at the unchanged G1 scale, 20 mm / 800 px
+% =========================================================================
+\realpanel{1.35}{2.00}{800}{1}{pred_masks.png}{frozgray, line width=0.5pt}
+\node[sub, anchor=north, align=center] at (1.35,\yrow)
+  {fused masks\\$800\times800$};
+
+% --- the two real locator windows (see the mapping in the header) ---------
+\draw[zoombox] (0.3500,1.5000) rectangle (0.5100,1.6600);   % (a) 64x64 patch
+\draw[zoombox] (0.3500,1.5075) rectangle (0.4925,1.6900);   % (b) 57x73 band
+
+% --- magnification cone, locator -> the crop it becomes ------------------
+\draw[zoomray] (0.5100,1.6600) -- (4.695,4.20);
+\draw[zoomray] (0.5100,1.5000) -- (4.695,1.00);
+
+% =========================================================================
+%  (a) one real boundary patch, before and after the refiner, at x20
+% =========================================================================
+\node[panl, anchor=south west] at (4.695,4.75)
+  {(a) $64\times64$ patch, $\times20$};
+
+\realpanel{6.295}{\ytile}{64}{20}{patch_before_x2.png}{zoombox}
+\node[sub, anchor=north] at (6.295,\yrow) {coarse};
+
+\draw[flow] (7.895,\ytile) -- (8.075,\ytile);
+\node[froz, minimum width=12mm, minimum height=6mm] at (8.675,\ytile) {UNet};
+\draw[flow] (9.275,\ytile) -- (9.455,\ytile);
+
+% the refiner's OUTPUT carries the corrector hue and the only 0.8 pt stroke
+% in the figure, so the squint focus is the contribution itself (H10).
+\realpanel{11.055}{\ytile}{64}{20}{patch_after_x2.png}%
+  {trngreen, line width=0.8pt, dash pattern=on 2pt off 1.2pt}
+\node[sub, anchor=north] at (11.055,\yrow) {refined};
+
+% =========================================================================
+%  (b) the real +-4 px annulus at the SAME x20: the only pixels the refiner
+%  may write.  57 x 73 native px * 0.05 cm = 2.85 x 3.65 cm.
+% =========================================================================
+\node[panl, anchor=south west] at (15.00,4.75)
+  {(b) $\pm4$ px band, $\times20$};
+
+\node[inner sep=0pt, outer sep=0pt] at (16.425,2.825)
+  {\includegraphics[width=2.85cm,height=3.65cm]{\assetdir/band_annulus_x3.png}};
+\draw[zoombox] (15.00,1.00) rectangle (17.85,4.65);
+\node[sub, anchor=north] at (16.425,\yrow) {writable};
+
+% =========================================================================
+%  the one padlock in this figure (spec S2.3 quota) + the one-line invariant
+%  that replaces the grey banner, at the foot, centred on the canvas
+% =========================================================================
+\pic at (7.45,0.35) {lock};
+\node[sub, anchor=west] at (7.62,0.35) {outside the band: bit-identical};
+
+\end{tikzpicture}
+\end{document}

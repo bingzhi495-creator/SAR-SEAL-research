@@ -1,0 +1,153 @@
+% fig1_framework.pdf — Section III overview: the three-rung cascade.
+% Stage A  : frozen COCO-init Mask2Former-R50 (lock glyph), 3 seeds.
+% Stage B  : rung 1 training-free (soup / wide TTA / consensus fusion),
+%            rungs 2-3 optional trained correctors on disjoint write fields
+%            (BPR -> mask pixels only, re-ranker -> score field only).
+% Bottom   : the AP progression rail (T1) and the error-axis spine on which
+%            the article's story rests (variance -> boundary -> ranking).
+% Numbers  : docs/ALL_TABLES.md T1 + sec_method.tex III-G.  Nothing invented.
+% Authored at exactly 18.2 cm = 516 pt = \textwidth  ->  include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{5.55}
+
+% ===== column grid ========================================================
+% chip .05-.68 | A 1.10-3.50 | deck 4.28 | (1) 5.05 | (2) 7.37 | (3) 9.69
+% | (4) 12.09 | (5) 14.41-16.41 | out 17.15      (blocks 20 mm, gutters 3.2 mm)
+\def\yF{4.00}      % data-flow line
+\def\yS{4.86}      % tensor-shape rail
+\def\yAP{2.78}     % AP progression rail
+
+% ===== named regions (O1: dotted, unfilled, title outside) ================
+\draw[grp] (0.02,2.48) rectangle (4.80,5.14);
+\draw[grp] (4.95,2.48) rectangle (11.79,5.14);
+\draw[grp] (11.99,2.48) rectangle (16.51,5.14);
+\node[grptitle, anchor=south] at (2.41,5.20) {Stage A: frozen base};
+\node[grptitle, anchor=south] at (8.37,5.20)
+  {Stage B, rung 1: training-free recovery};
+\node[grptitle, anchor=south] at (14.25,5.20)
+  {Stage B, rungs 2--3: trained correctors};
+
+% ===== Stage A ============================================================
+\sarchip{0.47}{\yF}{0.63}{0}
+\node[sub, anchor=north] at (0.47,3.60) {SAR chip};
+\draw[flow] (0.79,\yF) -- (1.20,\yF);
+
+\node[froz, anchor=west, minimum width=23mm, minimum height=10.5mm]
+  (base) at (1.20,\yF)
+  {\textbf{Mask2Former--R50}\\[0.5pt]
+   {\scriptsize COCO-init, 55 epochs}\\[-1pt]
+   {\scriptsize 3 seeds $\to\theta_{s_0},\theta_{s_2},\theta_{s_3}$}};
+\fill[white] ([shift={(-0.13,-0.13)}]base.north east)
+             rectangle ([shift={(0.13,0.13)}]base.north east);
+\pic[scale=1.1] at (base.north east) {lock};
+\draw[flow] (base.east) -- (3.88,\yF);
+
+% three stored checkpoints, drawn as a deck of slabs
+\foreach \dx/\dy in {-0.10/-0.08, 0/0, 0.10/0.08}
+  \pic[scale=0.80] at (4.28+\dx,\yF+\dy) {ckpt};
+\draw[flow] (4.68,\yF) -- (5.05,\yF);
+
+% ===== rung 1: three training-free operators ==============================
+\node[ops, anchor=west, minimum width=20mm, minimum height=12mm]
+  (op1) at (5.05,\yF)
+  {\textbf{Weight soup}\\[0.5pt]
+   {\scriptsize weight space}\\[-1pt]
+   {\scriptsize $\theta^{\star}=\frac{1}{3}\sum_{s}\theta_{s}$}\\[-1pt]
+   {\scriptsize $1\times$ inference}};
+\node[ops, anchor=west, minimum width=20mm, minimum height=12mm]
+  (op2) at (7.37,\yF)
+  {\textbf{Wide TTA}\\[0.5pt]
+   {\scriptsize input space}\\[-1pt]
+   {\scriptsize 4 scales $\times$ 2 flips}\\[-1pt]
+   {\scriptsize $V{=}8$, pool $K\le800$}};
+\node[ops, anchor=west, minimum width=20mm, minimum height=12mm]
+  (op3) at (9.69,\yF)
+  {\textbf{Consensus vote}\\[0.5pt]
+   {\scriptsize output space}\\[-1pt]
+   {\scriptsize mask-IoU $\tau=0.5$}\\[-1pt]
+   {\scriptsize band $2\le|\mathcal{C}|\le6$}};
+\draw[flow] (op1.east) -- (op2.west);
+\draw[flow] (op2.east) -- (op3.west);
+\foreach \nm/\ix in {op1/1, op2/2, op3/3}
+  \node[badgeops] at ($(\nm.north west)+(0.26,0)$) {\ix};
+
+% ===== rungs 2-3: optional trained correctors =============================
+\node[trn, anchor=west, minimum width=20mm, minimum height=12mm]
+  (op4) at (12.09,\yF)
+  {\textbf{BPR refiner}\\[0.5pt]
+   {\scriptsize writes \emph{mask pixels}}\\[-1pt]
+   {\scriptsize $\pm4$-px band guard}\\[-1pt]
+   {\scriptsize 2.35M UNet, 19 min}};
+\node[trn, anchor=west, minimum width=20mm, minimum height=12mm]
+  (op5) at (14.41,\yF)
+  {\textbf{Re-ranker}\\[0.5pt]
+   {\scriptsize writes \emph{scores}}\\[-1pt]
+   {\scriptsize 14 stats $\to$ GBT}\\[-1pt]
+   {\scriptsize 19 s CPU, no GPU}};
+\draw[flow] (op3.east) -- (op4.west);
+\draw[flow] (op4.east) -- (op5.west);
+\foreach \nm/\ix in {op4/4, op5/5}
+  \node[badgetrn] at ($(\nm.north west)+(0.26,0)$) {\ix};
+
+% ===== output =============================================================
+\draw[flow] (op5.east) -- (16.85,\yF);
+\pic[scale=1.05] at (17.20,4.18) {maskicon};
+\node[sub, anchor=north] at (17.20,3.80) {$\{(\mathbf{m}_i,s_i)\}$};
+
+% ===== tensor-shape rail (O5) =============================================
+\node[tsr] at (1.00,\yS) {Bx3x800x800};
+\node[sub] at (7.21,\yS) {$\theta^{\star}$};
+\node[tsr] at (9.53,\yS) {Kx800x800};
+\node[tsr] at (13.05,\yS) {Nx800x800};
+
+% ===== AP progression rail ================================================
+\node[sub, anchor=east] at (1.30,\yAP) {mask AP};
+\node[subk] at (2.30,\yAP)  {27.7 / 45.6 / 59.6};
+\node[subk] at (6.05,\yAP)  {29.6 / 47.4 / 61.1};
+\node[subk] at (8.37,\yAP)  {37.1 / 52.6 / 64.2$^{\dagger}$};
+\node[subk] at (10.69,\yAP) {\bfseries 38.8 / 53.8 / 64.8};
+\node[subk] at (13.09,\yAP) {43.6 / 58.6 / 69.1};
+\node[subk] at (15.41,\yAP) {\bfseries 44.5 / 59.4 / 70.1};
+
+% ===== error-axis spine ===================================================
+\draw[brace] (11.69,2.26) -- (5.05,2.26);
+\draw[brace] (14.09,2.26) -- (12.09,2.26);
+\draw[brace] (16.41,2.26) -- (14.41,2.26);
+\node[sub, anchor=east, text=black!70] at (4.80,1.90)
+  {residual axis\\ removed:};
+\node[subk] at (8.37,1.90)
+  {\textbf{prediction variance}\\ weight $\cdot$ input $\cdot$ output space};
+\node[subk] at (13.09,1.90) {\textbf{boundary}\\ precision};
+\node[subk] at (15.41,1.90) {\textbf{score}\\ ranking};
+
+% ===== legend (O3) ========================================================
+\def\yL{1.06}
+\draw[froz] (0.10,0.91) rectangle (0.52,1.21);
+\pic[scale=0.85] at (0.31,\yL) {lock};
+\node[sub, anchor=west, text=black!75] at (0.64,\yL)
+  {frozen: no weight of Stage~A is updated};
+\draw[ops] (5.30,0.91) rectangle (5.72,1.21);
+\node[sub, anchor=west, text=black!75] at (5.84,\yL)
+  {training-free operator (rung~1)};
+\draw[trn] (9.55,0.91) rectangle (9.97,1.21);
+\node[sub, anchor=west, text=black!75] at (10.09,\yL)
+  {optional trained corrector (rungs~2--3)};
+\draw[data] (14.60,0.91) rectangle (15.02,1.21);
+\node[sub, anchor=west, text=black!75] at (15.14,\yL) {data / tensor};
+
+% ===== footnote line ======================================================
+\node[sub, anchor=west, text=black!70] at (0.10,0.40)
+  {Rail: HRSID mask AP (COCO segm AP\,$\times$100) after each rung, as
+   inshore\,/\,official\,/\,offshore.\quad
+   $^{\dagger}$box-NMS merge, the reference fuser that operator~3 replaces.};
+
+\end{tikzpicture}
+\end{document}

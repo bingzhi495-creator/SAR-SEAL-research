@@ -1,0 +1,84 @@
+% Fig. 3: native BPR patches and the exact band-limited writeback contract.
+% Compile here: pdflatex -interaction=nonstopmode -halt-on-error fig3_bpr.tex
+% Unchanged real rasters; provenance: review/FIG3_NOTES.md.
+% Coordinates are PDF bp. Canvas is exactly 516 x 148 bp at 1:1 placement.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx,textcomp,graphicx}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\usetikzlibrary{arrows.meta}
+\definecolor{opsred}{HTML}{D55E00}
+\definecolor{trngreen}{HTML}{009E73}
+\definecolor{amber}{HTML}{E69F00}
+\definecolor{flowink}{HTML}{262626}
+\definecolor{frozgray}{HTML}{6E6E6E}
+\def\assetdir{assets_fig3}
+\newcommand{\mainfont}{\fontsize{8bp}{9.5bp}\selectfont}
+\newcommand{\subfont}{\fontsize{7bp}{8.5bp}\selectfont}
+\tikzset{
+ every node/.style={inner sep=0bp,outer sep=0bp,align=center,font=\mainfont,text=flowink},
+ title/.style={font=\mainfont\bfseries,text=flowink,anchor=north west},
+ sub/.style={font=\subfont,text=black!75},
+ edge/.style={line width=.5bp},
+ % PGF caps a .8-bp Stealth outline at .765bp for this exact head geometry.
+ % Explicit .5-bp head outlines preserve the requested two stroke tiers.
+ flow/.style={draw=flowink,line width=.8bp,-{Stealth[length=1.6mm,width=1.2mm,line width=.5bp]}},
+ leader/.style={draw=frozgray,line width=.5bp},
+ trained/.style={draw=trngreen,fill=trngreen!16,line width=.8bp,
+   dash pattern=on 2bp off 1.2bp,rounded corners=1.5bp},
+}
+\begin{document}
+\begin{tikzpicture}[x=1bp,y=-1bp]
+\path[use as bounding box] (0bp,0bp) rectangle (516bp,-148bp);
+% Dimensions are derived from manifest native pixels and the 20-mm overview:
+% 20mm / 800 pixels * 20 = .5mm per pixel in both insets.
+% Patch: 64 x 64 -> 32 x 32mm. Band: 57 x 73 -> 28.5 x 36.5mm.
+\node[title] at (125,5.2) {(a) 64\texttimes64 patch, \texttimes20};
+\node[title] at (420,5.2) {(b) \textpm4 px band, \texttimes20};
+% Common raster baseline: 119.5 bp. Band preserves its native aspect ratio.
+\node[anchor=north west] at (12,62.8070866142)
+ {\includegraphics[width=20mm,height=20mm]{\assetdir/pred_masks.png}};
+\draw[edge,draw=frozgray] (12,62.8070866142) rectangle (68.6929133858,119.5);
+\node[sub,anchor=north] at (40.3464566929,123.6) {coarse masks\\800\texttimes800};
+% Pixel mapping: x=12+col*(56.6929133858/800),
+% y=62.8070866142+row*(56.6929133858/800).
+% Patch window: origin_yx=(536,0), end_yx=(600,64).
+\draw[edge,draw=opsred] (12,100.7913385827) rectangle (16.5354330709,105.3267716535);
+% Band crop: (524,0,597,57), with end-exclusive crop coordinates.
+\draw[edge,draw=amber,dash pattern=on 2bp off 1.2bp]
+ (12,99.9409448819) rectangle (16.0393700787,105.1141732283);
+% One neutral no-head correspondence-leader vocabulary, distinct from flow.
+\draw[leader] (16.5354330709,100.7913385827) -- (125,28.7913385827);
+\draw[leader] (16.5354330709,105.3267716535) -- (125,119.5);
+% Real grayscale SAR, with recorded pre/post contours overlaid for display.
+\node[anchor=north west] at (125,28.7913385827)
+ {\includegraphics[width=32mm,height=32mm]{\assetdir/patch_before_x2.png}};
+\draw[edge,draw=opsred] (125,28.7913385827) rectangle (215.7086614173,119.5);
+\node[sub,anchor=north] at (170.3543307087,123.6) {coarse};
+% Green dashed denotes a separately trained corrector. It has two channels.
+\draw[flow] (219,74.1456692914) -- (235,74.1456692914);
+\node[trained,minimum width=38bp,minimum height=29bp] at (256,74.1456692914)
+ {\textbf{UNet}\\[-.3bp]{\subfont gray + mask}};
+\draw[flow] (277,74.1456692914) -- (292,74.1456692914);
+\node[anchor=north west] at (295,28.7913385827)
+ {\includegraphics[width=32mm,height=32mm]{\assetdir/patch_after_x2.png}};
+\draw[edge,draw=trngreen] (295,28.7913385827) rectangle (385.7086614173,119.5);
+\node[sub,anchor=north] at (340.3543307087,123.6) {refined};
+% Amber marks the exact writable support, separate from the inference flow.
+\node[anchor=north west] at (420,16.0354330709)
+ {\includegraphics[width=28.5mm,height=36.5mm]{\assetdir/band_annulus_x3.png}};
+\draw[edge,draw=amber] (420,16.0354330709) rectangle (500.7874015748,119.5);
+\node[sub,anchor=north] at (460.3937007874,123.6) {writable};
+% One padlock, associated only with the unchanged-pixel invariant.
+\begin{scope}[shift={(211,141.1)}]
+ \fill[frozgray] (-2.45,-1.45) rectangle (2.45,2.45);
+ \draw[edge,draw=frozgray] (-1.5,-1.45) -- (-1.5,-2.4)
+  arc[start angle=180,end angle=360,x radius=1.5,y radius=1.5]
+  -- (1.5,-1.45);
+ \fill[white] (0,.1) circle[radius=.45bp];
+\end{scope}
+\node[sub,anchor=west] at (217,141.1) {outside the band: bit-identical};
+\end{tikzpicture}
+\end{document}

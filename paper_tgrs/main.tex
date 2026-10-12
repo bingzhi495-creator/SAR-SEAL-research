@@ -1,0 +1,54 @@
+% =========================================================================
+% main.tex — TGRS submission master file.
+% Sections live in sec_*.tex; figures in figs/*.pdf; bibliography in refs.bib.
+% Build: pdflatex main && bibtex main && pdflatex main && pdflatex main
+% =========================================================================
+\documentclass[journal]{IEEEtran}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor} % \providecolor + \colorbox color key in sec_method (REVIEW_LIUQK #12)
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{cite}
+
+% Float placement: Section IV carries five double-column floats over four pages;
+% relax the defaults so more than one of them can share a page top, and
+% tighten the float/text separations (page-budget convergence, map §5).
+\setcounter{dbltopnumber}{3}
+\renewcommand{\dbltopfraction}{0.92}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\dblfloatpagefraction}{0.70}
+\setlength{\textfloatsep}{8pt plus 2pt minus 3pt}
+\setlength{\dbltextfloatsep}{8pt plus 2pt minus 3pt}
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{6pt plus 2pt minus 2pt}
+
+\begin{document}
+
+% \title{Less Architecture, More Recovery: A Training-Free Inference Framework and a Pretraining-Regime Study for SAR Ship Instance Segmentation}  % pre-review title (P1-1), kept for reference
+\title{Less Architecture, More Recovery: Consensus-Gated Mask-IoU Vote Fusion and Self-Correcting Inference for SAR Ship Instance Segmentation}
+
+\author{Bingzhi~Hou,~\IEEEmembership{Student Member,~IEEE,} et~al.%
+\thanks{Manuscript received XXX; revised XXX. (Corresponding author: Bingzhi Hou.)}%
+\thanks{The authors are with XXX University, XXX, China (e-mail: bingzhi495@gmail.com).}}
+
+\markboth{IEEE Transactions on Geoscience and Remote Sensing}%
+{Hou \MakeLowercase{\textit{et al.}}: Less Architecture, More Recovery}
+
+\maketitle
+
+\input{sec_intro}
+\input{sec_related}
+\input{sec_method}
+\input{sec_exp}
+\input{sec_disc}
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}

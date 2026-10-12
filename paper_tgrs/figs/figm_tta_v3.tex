@@ -1,0 +1,129 @@
+% figm_tta.pdf — wide multi-scale flip TTA (Sec. III-C).
+% The geometric point of this figure is an ASYMMETRY:
+%   different size in  ->  ONE frozen model  ->  the SAME size out.
+% Upper band: one 800x800 chip is resized to R in {640,800,960,1088}; the four
+%   views are drawn at TRUE relative size (16.0 / 20.0 / 24.0 / 27.2 mm under
+%   the article-wide scale of 1 mm per 40 px), each behind its horizontally
+%   flipped twin, so V = 8 views enter one frozen checkpoint.
+% Lower band: the eight raw outputs live on four different rasters (drawn as a
+%   corner-aligned size ladder); rescale=True and f^{-1} map every one of them
+%   back to the native 800x800, drawn as eight planes of IDENTICAL size, which
+%   is what makes the pool of K <= 800 candidates commensurable.
+% Facts: sec_method.tex III-C, Eq. (views); ALL_TABLES.md T1 rows 2'-3, T11.
+% Authored at exactly 18.2 cm = 516 pt = \textwidth -> include at scale 1.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\input{tikz_style}
+
+\begin{document}
+\begin{tikzpicture}[fig]
+\figcanvasd{9.15}
+
+\def\yV{6.55}   % centre line of the eight views
+\def\yR{2.35}   % centre line of the return path
+
+% =====================  input chip, 800 x 800  ===========================
+\pgfmathsetmacro{\sIn}{\pxc{800}}
+\sarchip{1.20}{\yV}{\sIn}{0}
+\node[sub, anchor=north] at (1.20,5.44)
+  {SAR chip\\ native $800\times800$};
+\draw[flow] (2.32,\yV) -- (2.62,\yV);
+
+% =====================  the eight views, at true relative size  ==========
+\draw[grp] (2.66,4.72) rectangle (14.20,8.34);
+\node[grptitle, anchor=south, align=center] at (8.43,8.40)
+  {$\mathcal{V}=\{640,800,960,1088\}\times\{\mathrm{id},\mathrm{hflip}\}$:
+   $V=8$ views, drawn at true relative size\\[-1pt]
+   {\scriptsize\mdseries\color{black!55}front chip = identity, behind = horizontal
+    flip;\ the $1088$ view puts $2.9\times$ the mask pixels on the same hull
+    as the $640$ view}};
+
+\foreach \L/\R in {2.81/640, 5.13/800, 7.85/960, 11.03/1088} {
+  \pgfmathsetmacro{\sV}{\pxc{\R}}
+  \pgfmathsetmacro{\cV}{\L+0.5*\sV}
+  \sarchip{\cV+0.30}{\yV+0.30}{\sV}{1}
+  \sarchip{\cV}{\yV}{\sV}{0}
+  \node[sub, anchor=north] at (\cV,5.09) {$\R$};
+}
+\draw[flow] (14.20,\yV) -- (14.66,\yV);
+
+% =====================  one frozen model, eight passes  ==================
+\node[froz, anchor=east, text width=32mm, minimum height=15mm]
+  (model) at (18.10,\yV)
+  {\textbf{soup model} $\Phi_{\theta^{\star}}$\\[0.5pt]
+   {\scriptsize \emph{one} checkpoint,}\\[-2pt]
+   {\scriptsize \emph{eight} forward passes}\\[-2pt]
+   {\scriptsize no weight updated}\\[-2pt]
+   {\scriptsize $100$ queries per view}};
+\fill[white] ([shift={(-0.13,-0.13)}]model.north east)
+             rectangle ([shift={(0.13,0.13)}]model.north east);
+\pic[scale=1.1] at (model.north east) {lock};
+
+% =====================  the return path  =================================
+\draw[flowt] (16.40,5.80) -- (16.40,4.45) -- (1.70,4.45) -- (1.70,3.79);
+\node[sub, anchor=north, text=black!70] at (12.55,4.38)
+  {$8\times100$ raw masks};
+
+% --- the eight raw outputs: four different rasters (corner-aligned ladder)
+\foreach \R in {1088, 960, 800, 640} {
+  \pgfmathsetmacro{\sL}{\pxc{\R}}
+  \fill[white] (0.34,0.99) rectangle (0.34+\sL,0.99+\sL);
+  \fill[datablue!5] (0.34,0.99) rectangle (0.34+\sL,0.99+\sL);
+  \draw[datablue!65, line width=0.45pt]
+    (0.34,0.99) rectangle (0.34+\sL,0.99+\sL);
+  \node[sub, anchor=south east, inner sep=1pt] at (0.34+\sL,0.99+\sL) {$\R$};
+}
+\begin{scope}[shift={(1.14,1.79)}, scale=0.55]
+  \fill[datablue!35] \hull;
+  \draw[datablue!90, line width=0.35pt] \hull;
+\end{scope}
+\node[sub, anchor=north, align=center] at (1.72,0.87)
+  {eight raw outputs, \emph{four} rasters\\
+   $8\times100\times R\times R$};
+\draw[flow] (3.16,\yR) -- (3.58,\yR);
+
+% =====================  invert and rescale  ==============================
+\node[ops, anchor=west, text width=27mm, minimum height=14mm]
+  (resc) at (3.58,\yR)
+  {\textbf{invert \& rescale}\\[0.5pt]
+   {\scriptsize $f^{-1}$ undoes each flip}\\[-2pt]
+   {\scriptsize \texttt{rescale=True} maps}\\[-2pt]
+   {\scriptsize every view back to $800^2$}};
+\node[badgeops] at ($(resc.north west)+(0.26,0)$) {2};
+\draw[flow] (6.51,\yR) -- (6.70,\yR);
+
+% --- ... and out they come at ONE common size -----------------------------
+\maskstack{7.72}{\yR}{800}{8}{datablue}{1}
+\node[sub, anchor=north, align=center] at (8.20,1.18)
+  {eight sets, \emph{one} raster\\ $8\times100\times800\times800$};
+\draw[brace] (9.56,4.03) -- (6.72,4.03);
+\node[sub, anchor=south, text=opsred] at (8.14,4.09)
+  {all eight now the same size};
+\draw[flow] (9.72,\yR) -- (10.14,\yR);
+
+% =====================  candidate pool  ==================================
+\node[data, anchor=west, text width=27mm, minimum height=14mm]
+  (pool) at (10.14,\yR)
+  {\textbf{candidate pool}\\[0.5pt]
+   {\scriptsize $K\le V\!\times\!100=800$}\\[-2pt]
+   {\scriptsize scored masks per image}\\[-2pt]
+   {\scriptsize input to the fusion stage}};
+
+% =====================  measured effect  =================================
+\node[plain, anchor=north east, align=left, inner sep=4pt,
+      text width=46mm] (eff) at (18.10,4.05)
+  {{\footnotesize\bfseries measured effect}\\[1pt]
+   {\scriptsize (inshore\,/\,official\,/\,offshore mask AP)}\\[1.5pt]
+   {\scriptsize six-view core $\{736,800,864\}\times\{\mathrm{id},\mathrm{hflip}\}$:
+      $+7.0$ inshore (three-seed mean, $\sigma\approx0.3$); regime gradient
+      $+7.0\,/\,+5.5\,/\,+3.4$.}\\[1.5pt]
+   {\scriptsize Widening to the eight views above: $+2.0$ inshore on seed
+      $s_0$ ($34.6\!\to\!36.6$), flat official, $-0.6$ offshore.}\\[1.5pt]
+   {\scriptsize Cost: $V=8$ forward passes of one checkpoint; no weight
+      updated, no parameter added.}};
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,93 @@
+% Supplementary readout anatomy. Compile here with pdflatex.
+% Assets are unmodified copies; see assets_fig1b/manifest.json and FIG1B_NOTES.md.
+% Equal-size feature thumbnails visualize channel norms, not tensor geometry.
+% q36 is ONE displayed example; final tensor is symbolic, not pred_masks.png.
+\expandafter\def\csname ver@epstopdf-base.sty\endcsname{2020/01/24}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx,graphicx,textcomp}
+\usetikzlibrary{arrows.meta,calc}
+\definecolor{data}{HTML}{0072B2}
+\definecolor{chrome}{HTML}{6E6E6E}
+\definecolor{ink}{HTML}{262626}
+\newcommand{\mainfont}{\fontsize{8bp}{9bp}\selectfont}
+\newcommand{\subfont}{\fontsize{7bp}{8bp}\selectfont}
+\newcommand{\xx}{\texttimes}
+\newcommand{\tile}[4]{\node[inner sep=0pt] at (#1,#2)
+ {\includegraphics[width=#3bp,height=#3bp]{assets_fig1b/#4}};}
+\begin{document}
+\begin{tikzpicture}[x=1bp,y=1bp,font=\mainfont,text=ink,
+ every node/.style={align=center,inner sep=0pt,outer sep=0pt},
+ box/.style={draw=chrome,fill=black!8,rounded corners=1.5bp,line width=.5bp},
+ flow/.style={-{Stealth[length=3bp,width=2.5bp]},draw=ink,line width=.5bp},
+ wire/.style={draw=ink,line width=.5bp}]
+\path[use as bounding box] (0bp,0bp) rectangle (516bp,122bp);
+% SAR observation and the four true ResNet-50 feature shapes.
+\tile{27}{83}{42}{chip.png}
+\draw[data,line width=.5bp] (6,62) rectangle (48,104);
+\node[font=\subfont,anchor=north] at (27,57) {SAR chip\\800\xx800};
+\node[font=\mainfont\bfseries] at (125,118) {ResNet-50};
+\draw[wire] (48,83) -- (62,83);
+\draw[wire] (62,47) -- (62,104);
+\foreach \yy/\fn/\nm/\ss in {
+104/feat_c2_x4.png/C2/256@200\xx200,
+85/feat_c3_x8.png/C3/512@100\xx100,
+66/feat_c4_x16.png/C4/1024@50\xx50,
+47/feat_c5_x32.png/C5/2048@25\xx25}{
+ \draw[flow] (62,\yy) -- (71,\yy);
+ \tile{80}{\yy}{16}{\fn}
+ \node[anchor=west,font=\mainfont\bfseries] at (93,\yy) {\nm};
+ \node[anchor=west,font=\subfont] at (107,\yy) {\ss};
+ \draw[wire] (174,\yy) -- (181,\yy);
+}
+\draw[wire] (181,47) -- (181,104);
+% Pixel decoder supplies a stride-four mask feature and multi-scale memory.
+\node[box,minimum width=66bp,minimum height=25bp] (pd) at (231,83)
+ {\textbf{pixel decoder}};
+\draw[flow] (181,83) -- (pd.west);
+\tile{313}{83}{20}{maskfeat_x2.png}
+\draw[data,line width=.5bp] (303,73) rectangle (323,93);
+\node[font=\subfont,anchor=north] at (313,66) {F: 256@200\xx200};
+\draw[flow] (pd.east) -- (302,83);
+% The readout is the inner product of projected mask embeddings and F.
+\node[circle,draw=data,fill=data!10,line width=.8bp,
+ minimum size=12bp,font=\mainfont] (dot) at (353,83) {\textbullet};
+\draw[flow] (324,83) -- (dot.west);
+\draw[data,fill=data!10,line width=.5bp] (375,77) rectangle (395,97);
+\draw[data,fill=data!10,line width=.5bp] (373,75) rectangle (393,95);
+\tile{381}{83}{20}{mask_logits_q36_x4.png}
+\draw[data,line width=.5bp] (371,73) rectangle (391,93);
+\node[font=\subfont,anchor=north] at (381,66)
+ {100\xx200\xx200\\logits};
+\draw[flow] (dot.east) -- (370,83);
+% Bilinear upsampling is a deterministic image-space operation.
+\path[fill=data!10] (405,74) -- (449,63) -- (449,103) -- (405,92) -- cycle;
+\draw[data,line width=.8bp] (405,74) -- (449,63);
+\draw[data,line width=.8bp] (405,92) -- (449,103);
+\node[font=\mainfont\bfseries] at (427,83) {bilinear \xx4};
+\draw[flow] (396,83) -- (403,83);
+\draw[flow] (450,83) -- (459,83);
+% SYMBOLIC output: no empirical full-resolution 100-query raster was available.
+\draw[data,fill=data!10,line width=.5bp] (467,68) rectangle (507,108);
+\draw[data,fill=data!10,line width=.5bp] (464,65) rectangle (504,105);
+\draw[data,fill=white,line width=.5bp] (461,62) rectangle (501,102);
+\node[font=\subfont,anchor=north] at (484,57) {100\xx800\xx800\\logits};
+% Query path. The embedding block includes the mask MLP after decoder norm.
+\foreach \dy in {-6,-2,2,6}{
+ \draw[data,fill=data!10,line width=.5bp]
+ (163,20+\dy) rectangle (177,22+\dy);
+}
+\node[font=\subfont,anchor=south] at (170,32) {100\xx256};
+\node[font=\subfont,anchor=north] at (170,9) {learned queries};
+\node[box,minimum width=76bp,minimum height=24bp] (td) at (231,21)
+ {\textbf{transformer}\\\textbf{decoder}};
+\draw[flow] (178,21) -- (td.west);
+\draw[flow] (pd.south) -- (td.north);
+\node[font=\subfont,fill=white,inner sep=1bp] at (231,51)
+ {multi-scale\\memory};
+\node[box,minimum width=64bp,minimum height=24bp] (me) at (310,21)
+ {\textbf{mask embeddings}\\{\subfont 100\xx256}};
+\draw[flow] (td.east) -- (me.west);
+\draw[flow] (me.east) -- (353,21) -- (dot.south);
+\end{tikzpicture}
+\end{document}

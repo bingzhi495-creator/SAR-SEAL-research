@@ -1,0 +1,64 @@
+% Copy each block to the relevant place in the manuscript; do not append all
+% figures together. Paths below are relative to E:/SAR/seal/paper_tgrs/.
+% Preserve the provenance qualifiers in the captions.
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figure_redesign_20260905/fig1_overview.pdf}
+  \caption{Overview of the inference cascade with parameter preparation
+  separated from image processing. The three fitted Mask2Former-R50 carrier
+  checkpoints are averaged offline, and the resulting weights remain fixed
+  during inference. Wide TTA includes both view transforms and all forward
+  calls to the frozen souped model. Consensus vote merges candidates; the
+  trained boundary refiner updates mask pixels, and the reranker updates
+  scores. The SAR input is real and the final instance set is symbolic.
+  Carrier training includes an auxiliary mask-quality objective, although
+  its inference-time rescoring is disabled. Frozen describes deployment
+  after fitting; field preservation does not imply a performance guarantee.}
+  \label{fig:overview_revised}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figure_redesign_20260905/fig2_consensus.pdf}
+  \caption{Consensus-gated fusion replayed on the 16 highest-scoring stored
+  candidates of one HRSID inshore chip. The measured mask-IoU matrix and the
+  lower panels use the same 16 masks. Solid vermilion blocks mark supports
+  in the voting band; dotted gray marks the other supports. (a) The
+  six-member subset cluster is voted. (b) The seven-member subset cluster
+  keeps its seed; the seed contour over the rejected vote shows pixels
+  voting would remove. Both views show $110\times86$ native pixels at the
+  same scale; the left edge in (a) is the image boundary. This top-16 replay
+  illustrates the operator, not full 800-candidate deployment, where the
+  two seeds collect 10 and 9 members and both keep their seed.}
+  \label{fig:fusion_revised}
+\end{figure*}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figure_redesign_20260905/fig3_bpr.pdf}
+  \caption{Boundary-patch refinement using a real single-view frozen-soup
+  prediction. (a) A native $64\times64$ window, shown at $20\times$ the
+  overview scale: coarse and refined contours on the same SAR crop. The
+  trained UNet reads grayscale and binary-mask channels resized to
+  $128\times128$; output probabilities are reduced to the native grid and
+  averaged across overlapping windows. (b) The four-pixel morphological
+  band at the same scale. Only covered band pixels may change; all others,
+  scores and ranks remain unchanged. This window was selected for the
+  number of changed pixels and illustrates the mechanism, not typical accuracy.}
+  \label{fig:bpr_revised}
+\end{figure*}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figure_redesign_20260905/fig4_pr.pdf}
+  \caption{Precision-recall curves on the PSeg-SSDD inshore split at mask
+  IoU (a) 0.50 and (b) 0.75, before learned reranking. The three variants
+  are labelled directly in (b); comparison methods form the two gray tiers
+  named in (a). Shading shows the stored stack/BPR curve difference. The
+  graphical revision preserves all 101 sampled points of each existing
+  source curve; the original prediction evaluation was not rerun for this revision.}
+  \label{fig:pr_revised}
+\end{figure}
+
+% Supplement only: see review/FIG1B_NOTES.md for the complete caption.
+% \includegraphics[width=\textwidth]{figure_redesign_20260905/fig1b_readout.pdf}
