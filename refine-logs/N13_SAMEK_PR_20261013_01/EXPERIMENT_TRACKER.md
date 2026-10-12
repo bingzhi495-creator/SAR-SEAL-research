@@ -20,3 +20,7 @@ GPU relationship original owned driver session80380 launched; no terminal or cac
 ROOT actual GPU relation terminal0 CLOSED: full741/1661 canonical100 bytes EXACT, all mismatch counts0; subsetG exact too. 157.109sec, whole observed GPU2689MiB, cleanup allocated/reserved0; all8696 source refs verified. ROOT relationship record created (not cache Q). CPUv2 and training pending. Prior two exit1 results preserved.
 
 CPU v2 original owned session92516 launched after relationship ROOT close: 39normal+6failed,45pins,8712bound sources,deadline1800sec. Pending actual terminal/Q; training not started. No restart on observation timeout.
+
+## CPU v2 actual0 ROOT closed; first paired training launched
+
+CPU original92516 CLOSED actual0/834.391sec; all741/1661 and sampled-F original1e-4 strong gates passed. Whole-L CPU original1e-4 diagnostic fails6/741 and remains FALSE, no retrospective pass. ROOT actual40normal/6failed source closure/factory bytejoin complete. Seed701 epochs1–8 LOG_PR/GEO_PR originalowned GPU38050 launched; fixed48 and paired three-seed recipe unchanged. No qualified training endpoint/AP yet.

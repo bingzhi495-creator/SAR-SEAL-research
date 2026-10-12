@@ -3,7 +3,7 @@
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-13**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 
-**当前状态（N13）：** 全741图/1661query的冻结GPU M→L逐字节关系已实际通过；独立CPU v2缓存复核正在运行，固定48轮配对训练尚未开始。原CPU v01及单图诊断失败保留；未取得新AP、核心创新或TGRS投稿依据。[最新状态](docs/N13_sameK_region_execution_status_20261013.md)。
+**当前状态（N13）：** 全741图/1661query冻结GPU M→L逐字节关系及独立CPU v2缓存资格已通过，种子701 LOG_PR/GEO_PR配对训练1–8轮已实际启动；48轮为唯一主端点、三个配对种子。原full-L CPU1e-4在6/741图仍失败并作为诊断保留。当前没有合格新训练端点/AP、核心创新或TGRS依据。[最新状态](docs/N13_sameK_region_execution_status_20261013.md)。
 
 ## 从这里开始
 
@@ -94,10 +94,12 @@ N13核验失败后，已在新的数值执行前保存[固定单图诊断登记]
 
 **N13有限诊断已结束：** 第4图原FP32重算有1/536571个值超过原容差，FP64有3个；该图P与原边界区域未变。原判据仍失败，未产生缓存Q或开始训练。见[限定调试观察](research_round_20260925_global/N13_NATIVE_L_REPLAY_DIAGNOSTIC_OBSERVATION_20261013.md)；不以单图数值差或源码审阅宣称方法效用、创新或全缓存资格。
 
-- [N13 全样本 GPU 关系与 CPU v2 资格修订](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_AND_CPU_QUALIFICATION_AMENDMENT_20261013.md)：已登记；GPU关系实际通过，CPU v2运行中，原失败及固定训练配方保留。
+- [N13 全样本 GPU 关系与 CPU v2 资格修订](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_AND_CPU_QUALIFICATION_AMENDMENT_20261013.md)：GPU关系与CPU v2资格实际通过，原失败及固定训练配方保留。
 
-- [N13 CPU v2 与固定48轮训练源码接口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_sameK_region_qualified_relation_training_source_20261013_02/SOURCE_ABI.md)：独立静态审阅通过，CPU v2正在执行；训练仍待资格。
+- [N13 CPU v2 与固定48轮训练源码接口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_sameK_region_qualified_relation_training_source_20261013_02/SOURCE_ABI.md)：CPU v2实际资格通过，种子701配对训练1–8轮已启动。
 
-- [N13 全体冻结 M→L GPU 关系实际通过](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_OBSERVATION_20261013.md)：741图/1661query逐字节一致，原执行157.109秒；CPU v2运行中，训练待资格。
+- [N13 全体冻结 M→L GPU 关系实际通过](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_OBSERVATION_20261013.md)：741图/1661query逐字节一致，原执行157.109秒；已获CPU v2资格并启动首段配对训练。
 
 - [N13 直接先例定点更新（六项）](research_round_20260925_global/N13_POINT_REGION_DIRECT_PRECEDENT_UPDATE_20261013.md)：含2026年SeSAM近邻；同K几何区域是待检验差异，已有采样/点头/带外继承不算独立创新。当前训练配方保持不变。
+
+- [N13 CPU v2实际合格结果与训练准入范围](research_round_20260925_global/N13_CACHE_CPU_V2_ACTUAL_QUALIFIED_RESULT_20261013.md)：全部区域/监督/采样强门通过；原full-L CPU容差在6图失败保留为诊断。种子701首段配对训练运行中。

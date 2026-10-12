@@ -47,3 +47,9 @@ ROOT 已启动单次有限关系叶，等待实际终止。六份新 v02 源码�
 ## CPU v2 已实际启动
 
 关系ROOT独立复核实际通过后，新CPU v2已经启动单次复核：完整39正常/6失败/45身份pin，8712项来源，CPU0/1两线程、1800秒、无自动重试。当前尚未获CPU缓存Q，训练未开始；原持有执行句柄持续等待同一任务，不超时重启。
+
+## CPU v2实际资格通过；种子701首段训练已启动
+
+ROOT已确认CPU原leaf实际exit0（834.391秒），全部741图/1661实例的区域、draw、GT监督、alias及原sampled-F1e-4强门通过。完整来源与原PR factory字节相同核验完成。原full-L CPU1e-4在6/741图仍失败，仅按新v2协议记诊断，不宣称原门通过。
+
+种子701 LOG_PR/GEO_PR各1–8轮已实际启动，原owned session38050，固定48总端点/三个配对种子。还未产生合格训练端点或AP。见[CPU完整资格与范围](../research_round_20260925_global/N13_CACHE_CPU_V2_ACTUAL_QUALIFIED_RESULT_20261013.md)。
