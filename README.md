@@ -3,9 +3,11 @@
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-13**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 
-**当前状态（N13）：** 全741图/1661query冻结GPU M→L关系与独立CPU v2缓存资格已通过。种子701两臂首段8轮与E08检查点已保存，但收尾REPORT的变量错误使原任务实际退出1；端点尚未独立资格。已启动保留失败身份的单次CPU恢复核验，等待实际结束与独立采用资格，固定48轮/三个配对种子方案不变。原full-L CPU1e-4在6/741图仍失败并保留为诊断。没有新AP、核心创新或TGRS依据。[最新状态](docs/N13_sameK_region_execution_status_20261013.md)、[失败与恢复方案](research_round_20260925_global/N13_SEED701_E08_REPORT_FAILURE_AND_RECOVERY_PLAN_20261013.md)。
+**当前状态（N13）：** 全741图/1661query冻结关系及独立CPU缓存资格已通过。种子701两臂首段8轮在原GPU收尾报告处退出1；新独立CPU恢复已实际退出0并经ROOT闭合，两个完整E08检查点取得采用资格，未重训或改写原失败。下一步702/703冷启动，固定48轮/三个配对种子不变。原full-L CPU6图失败保留为诊断；没有新AP、核心创新或TGRS依据。[实际恢复结果](research_round_20260925_global/N13_SEED701_E08_CPU_RECOVERY_ACTUAL_QUALIFIED_RESULT_20261013.md)、[最新状态](docs/N13_sameK_region_execution_status_20261013.md)。
 
-新[CPU恢复入口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)及协议已在执行前同步，现已启动单次检查；原GPU失败与缺失报告保留。
+新[CPU恢复入口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)已实际通过独立端点检查；原GPU失败与缺失报告保留。
+
+后续[冷启动训练源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_qualified_endpoint_training_source_20261013_03/ABI.md)已静态审阅并保存，尚未执行；当前入口只允许702/703首段，后续区块需独立准入。
 
 ## 从这里开始
 

@@ -6,7 +6,7 @@
 |GPU缓存|实际退出0/ROOT核验，通过生成阶段|FIT741/1661/两臂sameK|
 |CPU缓存资格|v01失败保留；新v2完整741/1661实际0并ROOT资格|真实GPU字段上独立区域/点/标签/F重放|
 |固定第4图L诊断|原任务退出1/ROOT记录闭合，仅诊断观察，原判据失败|保持原FP32容差，定位差异，不资格缓存|
-|三配对seed×48轮|701首段8轮已记录/原GPU收尾actual1，端点待恢复资格；其余未执行|六头79728更新/头，唯一48端点|
+|三配对seed×48轮|701首段8轮/原GPU1保留，新CPU0 ROOT采用资格通过；702/703待冷启动|六头79728更新/头，唯一48端点|
 |全DEV评价/CPU资格|未执行|全100 queries、实际AP/固定误差与成本|
 
 冻结计划见 [EXPERIMENT_PLAN_20261013.md](EXPERIMENT_PLAN_20261013.md)。当前 [执行状态](../../docs/N13_sameK_region_execution_status_20261013.md)持续更新，创建时的跟踪快照另存为日期版本。没有声明创新、充分收敛或 TGRS 依据。
@@ -32,3 +32,7 @@ Original38050 CLOSED actual1 after8epochs/checkpoint save: final REPORT uses und
 ## Explicit CPU recovery leaf started (pending actual terminal)
 
 Reviewed v03 recovery SOURCE and protocol preregistered before ROOT singleowned56178 launch.40normal+7failed/47pins/8740sources; CPU01/threads2/coldCUDA/deadline1800, nooptimizer/noautomaticretry. OriginalGPU1/reportabsence/nineartifacts preserved. No adopted endpoint or AP yet; wait originalhandle only.
+
+## Recovery actual0 ROOT adopted complete E08
+
+Original56178 CLOSED actual0/181.719sec; ROOT all41normal+7failed and8740source refs/Q/report closed. Complete paired weights/13288visits/optimizersteps/privateRNG/fullFIT endpoint verified, nooptimizer updates/retrain. OriginalGPU1/reportabsence/nineartifacts unchanged. Adoptedforcontinuationonly; nextcold702/703, E09needsseparateadoptionentry; noAP/efficacy/innovation claim.
