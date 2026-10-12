@@ -57,6 +57,10 @@
 
 历史入口示例：`python protocol/pseg_to_coco.py`（需配置数据路径）及 `python protocol/seal_eval.py --preds ... --gt ...`。当前科学入口采用 `--spec ABS --owner-execute`，依赖本地冻结数据、初始化和来源资格链。本次保存源码，不包含全部绑定输入，**尚不能下载后一键复现最新实验**；不得删除检查以冒充已验证的可移植版本。
 
+
+
+**2026-10-13 / N10：** 新 PR-FL-91 点头已通过实际 CPU 数值资格；已启动 C/PR 各两个相同下游种子的公平固定8轮训练，每模型13,288次更新，冻结同一教师和缓存、保持原生候选/评分。训练尚未核验结束，没有 PR AP 或创新结论。见 [本轮固定协议](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[实际状态](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)及 [研发代码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/)。
+
 ## 持续同步
 
 本仓库是后续研究的持续记录入口。总结、综述、方法设计、研发源码和论文更新形成后，在当前工作任务内及时提交；实验成功、失败和未完成的验证均按实际状态保留。具体范围与流程见 [持续同步规则](docs/CONTINUOUS_SYNC.md)。
