@@ -26,4 +26,6 @@ N12 在固定原生匹配群体中显示弱的、依阈值变化的同预算覆�
 
 ## 有限诊断准备
 
-[诊断登记](../research_round_20260925_global/N13_NATIVE_L_REPLAY_DIAGNOSTIC_PLAN_20261013.md)和[数值验证审阅](../research_round_20260925_global/N13_NATIVE_L_NUMERIC_VALIDATION_REVIEW_20261013.md)已形成。[独立单图诊断源码](../research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_cache_L_replay_diagnostic_source_20261013_01/ABI.md)已经停写，AST/编译检查通过，由ROOT绑定；当前尚未执行。诊断固定第4图，原FP32检查仍失败时保存报告后退出1，不能生成缓存Q。核心点包反序列化会带入未使用的监督缓冲，但诊断不访问标签或标注。后续资格方案需单独登记和实际核验。
+[诊断登记](../research_round_20260925_global/N13_NATIVE_L_REPLAY_DIAGNOSTIC_PLAN_20261013.md)和[数值验证审阅](../research_round_20260925_global/N13_NATIVE_L_NUMERIC_VALIDATION_REVIEW_20261013.md)已形成。[独立单图诊断源码](../research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_cache_L_replay_diagnostic_source_20261013_01/ABI.md)已经停写，AST/编译检查通过，由ROOT绑定；原持有任务已真实退出1并完成ROOT失败记录核对，104.718秒，已保存诊断报告。诊断固定第4图，原FP32检查仍失败时保存报告后退出1，不能生成缓存Q。核心点包反序列化会带入未使用的监督缓冲，但诊断不访问标签或标注。后续资格方案需单独登记和实际核验。
+
+固定单图已得到[限定范围的调试观察](../research_round_20260925_global/N13_NATIVE_L_REPLAY_DIAGNOSTIC_OBSERVATION_20261013.md)：FP32在536571值中违例1个、FP64违例3个，该图P/原边界区域没有变化。原判据仍失败，未生成Q，没有训练提升或缓存资格。后续登记同设备数值关系重放及独立CPU选择器核验，不按观测调容差。
