@@ -27,7 +27,7 @@
 
 当前 N09 检验简单全局 logit 偏移能解释多少 C 收益。只在 FIT 缓存点上拟合、只在原生 |L|≤2 内应用、保持 query 和原生分数。FIT CPU 已正常结束，δ = −0.169106405372359；首个 DEV 评价在原生精确一致性检查处退出 1，没有产生 AP。失败及待查原因见 [N09 实际执行状态](docs/N09_global_offset_runtime_state_20261012.md)。它是已知替代控制，不是创新点，也不能由 FIT BCE 下降推断 AP 提高。
 
-2026-10-13 新首图诊断真实退出 0：原始 all100 完整复现归档，chunk4 的掩膜与 logit 相同，但质量分数及 S0 出现小量差异。正按原始全100评分路径准备 SOURCE 修复；全 DEV 尚未通过，也没有偏移控制 AP。[诊断与后续决定](research_round_20260925_global/N09_NATIVE_EXPORT_BATCH_DIAGNOSTIC_RESULT_20261013.md)。
+2026-10-13 已修复原始 all100 评分路径；完整 DEV 的 GPU 评价和独立 CPU 核验均真实退出 0，原生 18,700 候选输出精确复现。全局偏移 AP 为 **67.1466401**，比原生仅高 **0.0755834** 个百分点、比 C 均值低 **1.0194955**；未达到预登记近似替代规则。这只限定本次全局偏移，不证明新颖性或 F/e 因果作用。[完整核验结果](research_round_20260925_global/N09_FIXED_GLOBAL_OFFSET_RESULT_20261013.md)。下一步准备 [PointRend 式公平结构对照](research_round_20260925_global/FAIR_POINT_HEAD_CONTROL_DESIGN_20261013.md)，新对照尚未执行。
 
 当前核心创新、正式 TEST、跨集收益和 TGRS 投稿依据仍未成立。失败结果和停止原因保留，不将局部提升包装为最终成功。
 
@@ -45,7 +45,8 @@
 最新 SOURCE 位于 `research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/` 下：
 
 - `N07_frozen_E24_original_detail_point_refinement_source_20261012_01/`：FIT 缓存、点头训练、GPU 评价、独立 CPU 核验。
-- `N09_FIT_only_global_logit_offset_control_source_20261012_01/`：全局偏移数学、FIT 求解及待完成评价。
+- `N09_FIT_only_global_logit_offset_control_source_20261012_01/`：全局偏移数学、FIT 求解及独立 CPU 核验；历史首个评价失败保留。
+- `N09_FIT_only_global_logit_offset_control_source_20261013_02/`：恢复原始 all100 评分路径的完整 DEV 评价器。
 - `N06_fixed_E24_one_to_one_error_audit_source_20261012_01/`、`N01_uniform_point_supervision_gradient_probe_source_20261012_01/`：固定误差和监督诊断。
 
 ## 数据与复现范围
