@@ -43,3 +43,7 @@ ROOT 已启动单次有限关系叶，等待实际终止。六份新 v02 源码�
 ## 全体关系实际通过（157.109秒）
 
 原owned leaf实际exit0，ROOT闭合来源/全部741图与1661query，canonical100和subsetG均逐字节一致，mismatch0，GPU cleanup0。关系资格不能代替CPU缓存Q；CPU v2待执行，训练未开始。[实际观察与范围](../research_round_20260925_global/N13_CANONICAL_GPU_RELATION_OBSERVATION_20261013.md)。
+
+## CPU v2 已实际启动
+
+关系ROOT独立复核实际通过后，新CPU v2已经启动单次复核：完整39正常/6失败/45身份pin，8712项来源，CPU0/1两线程、1800秒、无自动重试。当前尚未获CPU缓存Q，训练未开始；原持有执行句柄持续等待同一任务，不超时重启。

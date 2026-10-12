@@ -18,3 +18,5 @@ Original CPU v01 exit1 and index3 diagnostic exit1 are preserved. New full741/16
 GPU relationship original owned driver session80380 launched; no terminal or cache qualification yet. Six v02 sources STOP/static review PASS; one deterministic metadata key mapping fixed before binding. Training remains pending.
 
 ROOT actual GPU relation terminal0 CLOSED: full741/1661 canonical100 bytes EXACT, all mismatch counts0; subsetG exact too. 157.109sec, whole observed GPU2689MiB, cleanup allocated/reserved0; all8696 source refs verified. ROOT relationship record created (not cache Q). CPUv2 and training pending. Prior two exit1 results preserved.
+
+CPU v2 original owned session92516 launched after relationship ROOT close: 39normal+6failed,45pins,8712bound sources,deadline1800sec. Pending actual terminal/Q; training not started. No restart on observation timeout.
