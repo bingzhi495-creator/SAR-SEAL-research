@@ -23,3 +23,7 @@ N12 在固定原生匹配群体中显示弱的、依阈值变化的同预算覆�
 ## 首个CPU核验失败与根因调查
 
 原v01源码、GPU缓存和失败运行冻结保存。实际检查错误为 Practical CPU native L replay differs; never substitute CPU L for inputs。静态核对的插值与裁剪路径一致：200→800、裁剪有效图像、再恢复原图；尚不能区分平台浮点差与错误载体。历史N07的1e-4近零/近带 allowance 不等于全幅L逐像素allclose保证，N13新增的更强检查此前未经实际校准。下一步以固定第4图做一次有限诊断，报告原判据和差异位置，不后验放宽容差。诊断本身不使缓存合格，不作为方法负结果。
+
+## 有限诊断准备
+
+[诊断登记](../research_round_20260925_global/N13_NATIVE_L_REPLAY_DIAGNOSTIC_PLAN_20261013.md)和[数值验证审阅](../research_round_20260925_global/N13_NATIVE_L_NUMERIC_VALIDATION_REVIEW_20261013.md)已形成。[独立单图诊断源码](../research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_cache_L_replay_diagnostic_source_20261013_01/ABI.md)已经停写，AST/编译检查通过，由ROOT绑定；当前尚未执行。诊断固定第4图，原FP32检查仍失败时保存报告后退出1，不能生成缓存Q。核心点包反序列化会带入未使用的监督缓冲，但诊断不访问标签或标注。后续资格方案需单独登记和实际核验。
