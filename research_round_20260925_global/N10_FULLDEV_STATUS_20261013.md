@@ -1,15 +1,15 @@
-# N10 固定全DEV评价：GPU结束，独立CPU核验执行中
+# N10 固定全DEV评价：GPU与独立CPU已闭合
 
-2026-10-13。固定8轮C/PR四端点已经训练GPU与独立CPU实际退出0并由ROOT核验。当前阶段评价187幅DEV图像、380个原始实例，每图100候选；native和四头均保存18700个预测。不使用TEST，不据DEV重新挑轮次、阈值或分数。
+2026-10-13。固定8轮、四头各13,288更新，训练GPU/CPU与完整DEV评价GPU/CPU均实际正常退出并由ROOT核验。评价人口为DEV187图/380个原始实例，每图100查询，native及四头各18,700预测；无TEST、NMS、分数筛除或GT选query，不据DEV选最好轮次。
 
-新评价源码已独立静态审阅通过（61452B，SHA256 49c6dbc37434be372d8bb5b7e841a519491db8122f1eacef314a9e87f29a94e7），唯一发现的train.KEYS接口错误在绑定前按真实ARMS/SEEDS修正；没有由该错误引起的实际科学运行失败。已保存独立源码副本后，ROOT绑定并启动一次GPU评价；原叶进程在01:47:28（北京时间）创建，实际运行339.50秒后正常退出0，父进程回收并确认原身份消失。
+C均值mask AP **68.1661355**，PR结构适配均值 **67.9273781**，原生 **67.0710566**。两组C−PR为+0.1250985/+0.3524163，均值+0.2387574 AP点，未满足结果前锁定的两组均正且均值≥+0.30优先条件。因此保留两臂收益，不自动优先延长该结构；当前预算不证明充分收敛或方法总体失效。完整AP/AP75、公平边界、固定配对反例及成本见 [结果摘要](../docs/N10_fixed8_C_PR_fullDEV_qualified_result_20261013.md)。
 
-评价复用已独立核验的N07最终F/e/M/class字段，保留其原生产者来源。原生完整100查询渲染、查询排序、quality/S0及全部18700条导出字典必须精确重现合格E24基线，才允许输出新细化结果。C/PR使用同一原生闭区间abs(L)<=2、点块2048、F通道块16和同一渲染器，只修改掩膜，所有候选、类别、排序、S0、空掩膜规则均固定。无需新教师前向或JPEG解码。
+GPU复用原N07 F/e/M/classes来源，natural all100渲染/排序/quality/S0以及全部18,700条原生输出必须精确复现合格E24参考，才输出细化。C/PR同一原生abs(L)≤2闭带、点块2048、F通道块16、原渲染器、固定S0/类别/顺序及空掩膜规则。GPU耗时339.50秒，整卡观测峰5,491MiB。
 
-原GPU报告已核对完整187幅/380实例/五组各18700候选，原生全部导出和COCO精确基线通过、GPU内存已清理。当前尚无独立CPU核验后的新AP结论。独立CPU源码已通过静态审阅，ROOT已启动实际受限核验任务：五组完整导出和COCO，以及四头全部原生窄带点的独立公式；不能用GPU报告直接宣布精度提升。后续按固定协议决定公平长训或新误差假设。
+独立CPU实际1128.937秒、CPU0/1两线程、CUDA冷态；以独立函数公式复算四头各4,573,049带内像素/19,439块，五组官方COCO12、官方一对一像素及固定原生query–GT像素分别核对。预锁1e−4实用支持容差不是CPU/GPU逐位等同或认证误差界；近似CPU掩膜没有替换GPU指标输入。没有教师CPU前向、F/e→M投影CPU重放、JPEG解码或完整优化器轨迹复算。
 
-正常运行祖先31、历史实际失败3已完整终止后才建立本阶段来源绑定；正常退出不代表科研结论成功。所有原科学载荷和运行中绑定源码不为同步读取或哈希，GitHub使用启动前保存的独立副本。
+ROOT先确认原CPU进程held exit0、父回收及原身份消失，闭合33正常祖先与3个保留实际失败，再核对Q、来源、真实五导出指标和配对汇总，最后执行预锁决定。CPU Q为206,415B / SHA256 343e8137be64f09eded2f7c1822e77538a471f832a45b63c205cdb0d193e73b2；ROOT决定记录12,718B / dfbd54dca53648306d02284f36fa9d5b672bde865ea2537a6511b65b2dd42937。原资格链和科学载荷不加入公开范围。
 
-见[实验协议](../refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[实时状态](../refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)和[评价ABI](multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/EVALUATION_SOURCE_ABI.md)。
+四臂在原生IoU≥.90固定配对上的平均IoU均小幅下降，整体AP增益不能代表全部轮廓改善。下一问题是可编辑区域的实际误差覆盖与修复上限；其诊断源码正在编写，尚未执行。见 [误差依据](../docs/N01_N06_N07_N09_ERROR_EVIDENCE_FOR_NEXT_DECISION_20261013.md)、[定向查新](FIXED_BAND_SAMPLING_RISK_PRECEDENT_MEMO_20261013.md)、[协议](../refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[跟踪](../refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)及 [评价ABI](multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/EVALUATION_SOURCE_ABI.md)。
 
-独立CPU reader SOURCE：63952B，SHA256 af3039f1ef24d060c57a8817e064d6fa626553164b39bc124d18ce0496e9bb3b。GPU每头原生窄带点共4573049，按2048点分块共19439次调用；CPU实际吞吐未测，以CPU01/线程2和事前3600秒有限时限执行。正常祖先32及历史失败3均已终止0/1并按真实身份分别闭合，不自动重试。GPU报告SHA256 17999b0dc053df418084e0cdf505276b0486392d109bccb7fa43ca467f212b31。
+当前C条件偏置已有直接先例，PR是同载体结构适配而非完整PointRend作者复现；参数接近不等于有效容量严格相同。核心创新、外部SOTA优势、充分收敛、正式TEST及跨数据集验证仍未成立。
