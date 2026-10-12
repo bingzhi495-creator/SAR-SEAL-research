@@ -1,6 +1,6 @@
 {
   "snapshot_date": "2026-10-12",
-  "publication_state": "CONTENT_PREPARED_REMOTE_VERIFICATION_PENDING",
+  "publication_state": "PUBLISHED_RESEARCH_SNAPSHOT_VERIFIED",
   "selected_github_account": "bingzhi495-creator",
   "new_source_directories": [
     "research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/E24_native0_fixed_export_COCO_reference_source_20261012",
@@ -3478,9 +3478,9 @@
       "all_part_files_match_SHA256_and_bytes": true,
       "ordered_part_concatenations_match_original_PDF_SHA256_and_bytes": true
     },
-    "remote_verification_state": "PENDING",
-    "github_workflow_execution_verified": false,
-    "remote_restored_PDF_bytes_verified": false
+    "remote_verification_state": "VERIFIED",
+    "github_workflow_execution_verified": true,
+    "remote_restored_PDF_bytes_verified": true
   },
   "manifest_self_hash_exclusion": {
     "path": "docs/publication_manifest_20261012.json",
@@ -3500,5 +3500,19 @@
       "static_review_status_origin": "ROOT supplied status; this publication step verifies only the exact SOURCE byte binding.",
       "purpose": "Prepared diagnostic SOURCE for native export batch investigation; no observed diagnostic outcome is attached."
     }
-  ]
+  ],
+  "remote_verification": {
+    "verified_at_utc": "2026-10-12T15:37:14.0019666Z",
+    "repository": "bingzhi495-creator/SAR-SEAL-research",
+    "verified_payload_commit": "2c583e4259c30041c86ffed3d2421b518d3c3363",
+    "verified_payload_tree": "6dd8197f32bad2f552c3edcd523fc4eec84114d5",
+    "verification_method": "Exact remote Git tree equality with the independent local publication staging tree",
+    "file_count_including_this_manifest": 677,
+    "authored_manuscript_PDF_count": 12,
+    "tree_truncated": false,
+    "workflow_run_id": 38271211647,
+    "workflow_conclusion": "success",
+    "workflow_url": "https://github.com/bingzhi495-creator/SAR-SEAL-research/actions/runs/38271211647",
+    "scope_note": "The reference verifies the complete payload immediately before adding this verification metadata; this manifest excludes its own digest. This is an archive integrity check, not scientific validation."
+  }
 }
