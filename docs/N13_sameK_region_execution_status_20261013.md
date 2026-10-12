@@ -7,7 +7,7 @@
 - 固定48轮/三个配对种子方案已预登记；GPU冻结缓存与canonical关系、独立CPU v2完整缓存资格均已通过。原CPU v01与诊断退出1保留，全幅CPU L1e-4在6/741图仍失败，按v2协议仅记诊断。
 - 种子701 LOG_PR/GEO_PR原owned任务38050实际退出1：两臂8轮与E08检查点保存后，最终REPORT引用未定义变量common，报告缺失。635.797秒、整卡峰值2095MiB，无资源中断。
 - ROOT已核验40正常/7失败RAW及原8719项来源，保留9项产物和失败记录。端点尚未独立CPU资格，不自动重跑、不改写原SOURCE或退出码。
-- 下一步：明确登记独立CPU恢复资格协议，检查端点、访问/更新序列、优化器、RNG及全FIT最后一轮BCE，再决定合法接续。没有AP或效用结论。
+- 新v03独立CPU恢复核验已实际启动：原owned session56178，完整40正常/7失败/47身份pins、8740来源绑定。检查端点、访问/更新序列、优化器、RNG及全FIT最后一轮BCE；当前未取得采用资格，没有AP或效用结论。
 
 [详细失败事实与恢复边界](../research_round_20260925_global/N13_SEED701_E08_REPORT_FAILURE_AND_RECOVERY_PLAN_20261013.md)。下文各节为时间顺序的历史记录；以本节为当前状态。
 
@@ -66,3 +66,7 @@ ROOT已确认CPU原leaf实际exit0（834.391秒），全部741图/1661实例的�
 ## 恢复SOURCE停写与静态审阅通过
 
 [新v03纯CPU恢复入口及ABI](../research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)已停写，通过AST3.8/编译与一次独立静态审阅；资源记录精确关联的两处收紧已核对。原v02六文件与九项产物不变。新SOURCE将由ROOT单次绑定执行；当前尚未执行，不能宣布采用端点或训练提升。
+
+## 新CPU恢复叶已实际启动
+
+ROOT单次owned session56178已启动；40正常/7失败/47pins和8740项完整来源均已绑定，CPU0/1两线程、1800秒、无CUDA初始化、无优化器更新、无自动重试。原GPU1及9产物仍保留，原REPORT继续缺失。当前尚无恢复采用Q/真实终止资格；等待同一原句柄，观察超时不重启。源码与协议在执行前已经同步。

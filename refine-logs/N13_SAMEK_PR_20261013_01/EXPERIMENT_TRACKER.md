@@ -28,3 +28,7 @@ CPU original92516 CLOSED actual0/834.391sec; all741/1661 and sampled-F original1
 ## Seed701 E08 saved; original GPU report failure preserved
 
 Original38050 CLOSED actual1 after8epochs/checkpoint save: final REPORT uses undefined common (train.py534). ROOT all40normal/7failed and8719source refs verified;9artifacts preserved, REPORT absent. 635.797sec/GPU2095MiB. Endpoint unqualified; explicit finite CPU recovery planned, not executed. Never relabel original failure or infer efficacy from BCE; fixed48/paired3seed recipe unchanged.
+
+## Explicit CPU recovery leaf started (pending actual terminal)
+
+Reviewed v03 recovery SOURCE and protocol preregistered before ROOT singleowned56178 launch.40normal+7failed/47pins/8740sources; CPU01/threads2/coldCUDA/deadline1800, nooptimizer/noautomaticretry. OriginalGPU1/reportabsence/nineartifacts preserved. No adopted endpoint or AP yet; wait originalhandle only.
