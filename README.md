@@ -2,6 +2,9 @@
 
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-13**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
+
+**当前状态（N13）：** 全741图/1661query的冻结GPU M→L逐字节关系已实际通过；独立CPU v2缓存复核正在运行，固定48轮配对训练尚未开始。原CPU v01及单图诊断失败保留；未取得新AP、核心创新或TGRS投稿依据。[最新状态](docs/N13_sameK_region_execution_status_20261013.md)。
+
 ## 从这里开始
 
 - [当前研究目标与执行要求](RESEARCH_GOAL.md)：问题、公平比较、重复实验、机制验证和停止规则。
@@ -91,8 +94,8 @@ N13核验失败后，已在新的数值执行前保存[固定单图诊断登记]
 
 **N13有限诊断已结束：** 第4图原FP32重算有1/536571个值超过原容差，FP64有3个；该图P与原边界区域未变。原判据仍失败，未产生缓存Q或开始训练。见[限定调试观察](research_round_20260925_global/N13_NATIVE_L_REPLAY_DIAGNOSTIC_OBSERVATION_20261013.md)；不以单图数值差或源码审阅宣称方法效用、创新或全缓存资格。
 
-- [N13 全样本 GPU 关系与 CPU v2 资格修订](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_AND_CPU_QUALIFICATION_AMENDMENT_20261013.md)：已登记，未执行；保留原失败，固定训练配方不变。
+- [N13 全样本 GPU 关系与 CPU v2 资格修订](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_AND_CPU_QUALIFICATION_AMENDMENT_20261013.md)：已登记；GPU关系实际通过，CPU v2运行中，原失败及固定训练配方保留。
 
-- [N13 CPU v2 与固定48轮训练源码接口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_sameK_region_qualified_relation_training_source_20261013_02/SOURCE_ABI.md)：独立静态审阅通过，尚未执行；GPU 关系叶运行中。
+- [N13 CPU v2 与固定48轮训练源码接口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_sameK_region_qualified_relation_training_source_20261013_02/SOURCE_ABI.md)：独立静态审阅通过，CPU v2正在执行；训练仍待资格。
 
-- [N13 全体冻结 M→L GPU 关系实际通过](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_OBSERVATION_20261013.md)：741图/1661query逐字节一致，原执行157.109秒；CPU v2与训练仍待执行。
+- [N13 全体冻结 M→L GPU 关系实际通过](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_OBSERVATION_20261013.md)：741图/1661query逐字节一致，原执行157.109秒；CPU v2运行中，训练待资格。
