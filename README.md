@@ -1,6 +1,6 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
-论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-12**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
+论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-13**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 ## 从这里开始
 
@@ -8,6 +8,7 @@
 - [论文版本索引](docs/PAPER_INDEX.md)：各代正文、补充材料与历史稿的关系。
 - 可阅读历史修订稿：[正文 PDF](paper_tgrs/revision_tgrs_20260905/main.pdf)、[补充 PDF](paper_tgrs/revision_tgrs_20260905/supplement.pdf)、[说明](paper_tgrs/revision_tgrs_20260905/README_CN.md)。它们属于旧融合主线，未重写成 10 月当前研究；PDF 与当前源码的对应关系未重新编译核验。
 - [数据获取与版本说明](docs/DATA_ACCESS.md)、[上游数据索引](docs/upstream_data_index.json)：PSeg-SSDD 与 HRSID 的官方入口。
+- [掩膜残差读出与校准先例核查](research_round_20260925_global/CALIBRATION_PRECEDENT_REVIEW_20261012.md)：PointRend、Implicit PointRend、质量评分及 SAR 直接先例；机制假设仍待检验。
 - [完整实验计划](refine-logs/EXPERIMENT_PLAN.md)、[实验跟踪](refine-logs/EXPERIMENT_TRACKER.md)、[下一研究批次](refine-logs/NEXT_RESEARCH_BATCH.md)。这些记录保留历史合同；有日期的最新状态优先。
 
 ## 当前证据和决定
@@ -25,6 +26,8 @@
 详见 [固定长预算 A/B 结果](docs/fixed_endpoint_joint_native_E24warm48_result_20261012.md)与 [N07 全部种子及固定端点评价](docs/N07_fixed8_fullDEV_point_refinement_result_20261012.md)。N07 每头固定 8 轮、13,288 更新；两个下游种子共享同一个教师初始化，不能替代多教师重复或充分收敛证据。R−C 配对均值为 −0.012924 AP 点，未满足结果前锁定的跟进规则；保留效用，停止当前 patch 配方扩展。
 
 当前 N09 检验简单全局 logit 偏移能解释多少 C 收益。只在 FIT 缓存点上拟合、只在原生 |L|≤2 内应用、保持 query 和原生分数。FIT CPU 已正常结束，δ = −0.169106405372359；首个 DEV 评价在原生精确一致性检查处退出 1，没有产生 AP。失败及待查原因见 [N09 实际执行状态](docs/N09_global_offset_runtime_state_20261012.md)。它是已知替代控制，不是创新点，也不能由 FIT BCE 下降推断 AP 提高。
+
+2026-10-13 新首图诊断真实退出 0：原始 all100 完整复现归档，chunk4 的掩膜与 logit 相同，但质量分数及 S0 出现小量差异。正按原始全100评分路径准备 SOURCE 修复；全 DEV 尚未通过，也没有偏移控制 AP。[诊断与后续决定](research_round_20260925_global/N09_NATIVE_EXPORT_BATCH_DIAGNOSTIC_RESULT_20261013.md)。
 
 当前核心创新、正式 TEST、跨集收益和 TGRS 投稿依据仍未成立。失败结果和停止原因保留，不将局部提升包装为最终成功。
 
