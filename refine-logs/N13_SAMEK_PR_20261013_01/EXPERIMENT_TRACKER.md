@@ -4,9 +4,9 @@
 |---|---|---|
 |SOURCE|缓存及训练四文件独立静态审阅 PASS，停写；缓存四文件已绑定发布|新区域缓存/统一门控/连续长预算|
 |GPU缓存|实际退出0/ROOT核验，通过生成阶段|FIT741/1661/两臂sameK|
-|CPU缓存资格|首个任务实际退出1，第4图L重算检查失败，未资格|真实GPU字段上独立区域/点/标签/F重放|
+|CPU缓存资格|v01失败保留；新v2完整741/1661实际0并ROOT资格|真实GPU字段上独立区域/点/标签/F重放|
 |固定第4图L诊断|原任务退出1/ROOT记录闭合，仅诊断观察，原判据失败|保持原FP32容差，定位差异，不资格缓存|
-|三配对seed×48轮|未执行，等待缓存独立资格|六头79728更新/头，唯一48端点|
+|三配对seed×48轮|701首段8轮已记录/原GPU收尾actual1，端点待恢复资格；其余未执行|六头79728更新/头，唯一48端点|
 |全DEV评价/CPU资格|未执行|全100 queries、实际AP/固定误差与成本|
 
 冻结计划见 [EXPERIMENT_PLAN_20261013.md](EXPERIMENT_PLAN_20261013.md)。当前 [执行状态](../../docs/N13_sameK_region_execution_status_20261013.md)持续更新，创建时的跟踪快照另存为日期版本。没有声明创新、充分收敛或 TGRS 依据。
@@ -24,3 +24,7 @@ CPU v2 original owned session92516 launched after relationship ROOT close: 39nor
 ## CPU v2 actual0 ROOT closed; first paired training launched
 
 CPU original92516 CLOSED actual0/834.391sec; all741/1661 and sampled-F original1e-4 strong gates passed. Whole-L CPU original1e-4 diagnostic fails6/741 and remains FALSE, no retrospective pass. ROOT actual40normal/6failed source closure/factory bytejoin complete. Seed701 epochs1–8 LOG_PR/GEO_PR originalowned GPU38050 launched; fixed48 and paired three-seed recipe unchanged. No qualified training endpoint/AP yet.
+
+## Seed701 E08 saved; original GPU report failure preserved
+
+Original38050 CLOSED actual1 after8epochs/checkpoint save: final REPORT uses undefined common (train.py534). ROOT all40normal/7failed and8719source refs verified;9artifacts preserved, REPORT absent. 635.797sec/GPU2095MiB. Endpoint unqualified; explicit finite CPU recovery planned, not executed. Never relabel original failure or infer efficacy from BCE; fixed48/paired3seed recipe unchanged.
