@@ -39,3 +39,7 @@ N12 在固定原生匹配群体中显示弱的、依阈值变化的同预算覆�
 ## GPU 关系叶已实际启动；v02 训练源码待资格
 
 ROOT 已启动单次有限关系叶，等待实际终止。六份新 v02 源码完成独立静态审阅 PASS 并保存；修复了关系 SPEC/report 的来源键映射错误。审阅不代表数值通过。CPU 资格与训练尚未开始；原失败和固定48轮配方保留。
+
+## 全体关系实际通过（157.109秒）
+
+原owned leaf实际exit0，ROOT闭合来源/全部741图与1661query，canonical100和subsetG均逐字节一致，mismatch0，GPU cleanup0。关系资格不能代替CPU缓存Q；CPU v2待执行，训练未开始。[实际观察与范围](../research_round_20260925_global/N13_CANONICAL_GPU_RELATION_OBSERVATION_20261013.md)。

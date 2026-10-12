@@ -94,3 +94,5 @@ N13核验失败后，已在新的数值执行前保存[固定单图诊断登记]
 - [N13 全样本 GPU 关系与 CPU v2 资格修订](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_AND_CPU_QUALIFICATION_AMENDMENT_20261013.md)：已登记，未执行；保留原失败，固定训练配方不变。
 
 - [N13 CPU v2 与固定48轮训练源码接口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_sameK_region_qualified_relation_training_source_20261013_02/SOURCE_ABI.md)：独立静态审阅通过，尚未执行；GPU 关系叶运行中。
+
+- [N13 全体冻结 M→L GPU 关系实际通过](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_OBSERVATION_20261013.md)：741图/1661query逐字节一致，原执行157.109秒；CPU v2与训练仍待执行。
