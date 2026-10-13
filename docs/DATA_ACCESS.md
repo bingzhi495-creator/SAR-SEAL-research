@@ -45,3 +45,7 @@ HRSID 仓库有 [GPL-3.0 LICENSE](https://github.com/chaozhong2010/HRSID/blob/ma
 提交获取说明、转换/审计源码和协议说明；保留本地原图、标注、权重与运行缓存。未将“数据有官方公开链接”表述为“数据已经随仓库上传”。后续如建立原图镜像，需要针对所选实际压缩包核对许可范围、保留原许可与署名，并记录版本与校验清单。
 
 大文件也需采用适当载体：GitHub 普通 Git 对超过 50 MiB 的文件告警，阻止超过 100 MiB 的文件；超限文件需 Git LFS 或其他合适分发方式。依据 [GitHub 官方大文件说明](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)，不能直接把大数据压缩包或整个实验缓存当普通源码推送。
+
+## 2026-10-13 / HRSID原论文与作者说明补核
+
+[定向核查记录](../research_round_20260925_global/HRSID_OFFICIAL_PROTOCOL_AND_RELEASE_SCOPE_CHECK_20261013.md)补充原论文公开文本 §II-A～C 与作者README依据。65/35指图像数量，尚未确认原场景互斥；公开文本的20%/25%重叠表述差异仍待PDF图像复核，不据此断言实际泄漏。JPG/PNG、近岸/离岸标记和400纯背景图须按所选版本逐项核对。仓库GPL-3.0与论文CC BY 4.0未明确映射至外链影像和全量标注，暂保持官方获取入口，不新增数据镜像。此补核未读取任何本地数据包或执行实验。
