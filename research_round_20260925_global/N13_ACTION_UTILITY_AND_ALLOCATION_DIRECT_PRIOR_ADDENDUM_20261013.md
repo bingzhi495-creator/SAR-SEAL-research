@@ -50,7 +50,7 @@ s_{flip}=\delta_{actual}
 \{(1+\hat q)p_{error}-[\hat q+(1-\hat q)P]\}.
 \]
 
-这是 **instance-quality-conditioned proxy**，不是 E[ΔIoU|Z]、IoU最优解或AP最优策略：真实 T/U 与局部改变相关，随机分母使 E[比率]不等于比率E；估计 q_hat 也不等于真实 IoU。即使真实 q 已知，按加性分子排序也不保证最大化联合修改后的完整比值。AP 另含阈值、排序及匹配；原生预测类别/分数/order 均应固定，禁止把调分收益混入。质量估计新增的容量、拟合曝光与成本必须共享并单列，不能仍把总体称8451参数。
+这是 **instance-quality-conditioned proxy**，不是 E[ΔIoU|Z]、IoU最优解或AP最优策略：真实 T/U 与局部改变相关，随机分母使 E[比率]不等于比率E；估计 q_hat 也不等于真实 IoU。对预测概率构造的加性代理，即使真实原生 q 已知，也不能保证最大化期望最终 IoU；但对真实逐点标签、固定独立二值候选和等成本 exact K 的特殊情形，五类优先序恰是完整单实例 IoU oracle，且不需要真实 q。[限定证明与完全校准概率反例](N13_FIXED_K_BINARY_IOU_ORACLE_AND_PROBABILISTIC_PROXY_LIMIT_20261014.md)。AP 另含阈值、排序及匹配；原生预测类别/分数/order 均应固定，禁止把调分收益混入。质量估计新增的容量、拟合曝光与成本必须共享并单列，不能仍把总体称8451参数。
 
 该假设只检验两件相关事实：质量权重是否比同一 utility head 的像素收益排序更合适，以及预估支持后仅在所选 K 点执行 PR 是否比全域实际 flip 强替代更经济。各排序使用同一 PR、输入约束、A/B划分、点样本、种子及 native K，不因增加后处理而多训第三个 selector；若质量估计另有训练，要重新预登记其共享预算。真实 q 只能用于训练/离线机制诊断，不能作为部署收益。
 
@@ -71,3 +71,7 @@ s_{flip}=\delta_{actual}
 - [DACF作者仓库](https://github.com/yang199809/DACF-Net)本次可见文件仍为.gitignore、LICENSE、README；[作者README](https://raw.githubusercontent.com/yang199809/DACF-Net/main/README.md)表示代码在整理以供发布。因此仍不可记为已取得可运行的完整作者基线，更不可记为已公平复现。此处不从README中的投稿措辞推断当前出版社发表状态。
 
 本轮没有取得会实质改变现有sameK utility强对照的新直接SAR行动净收益/学习预算分配证据；部分出版社正文访问受限，不能排除全文机制漏检。检索未命中不支持首次、领域空白、核心创新或TGRS成熟结论。继续保留既有稠密实际flip/error强替代及同等优化成本要求；当前N13两臂、训练长度与评价规则不改。该补核仅存摘要概述、检索范围和链接，不收录第三方论文全文。
+
+## 2026-10-14：真实标签oracle与预测概率代理的范围更正
+
+已完成[固定K二值IoU理论核对](N13_FIXED_K_BINARY_IOU_ORACLE_AND_PROBABILISTIC_PROXY_LIMIT_20261014.md)：真实逐点五类顺序在明确条件下恰为完整单实例IoU oracle；预测概率即使完全校准、真实原生q与U已知，也无期望IoU最优保证。此为理论更正和人工反例，未开展新SAR实验。后续如登记收益选择器，应增补共享同一概率头的固定r=1/2后处理对照，以检验估计质量权重的必要性；当前N13配方不改。
