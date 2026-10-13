@@ -56,3 +56,8 @@ ROOT metadata准备实际退出0后，cold702 LOG_PR/GEO_PR两臂1–8轮单次�
 ## 2026-10-13 / All first E08 qualified; continuous701 E09–16 launched
 
 Original CPU70335181 CLOSED actual0/181.797sec. ROOT complete45normal+7failed/pins52 checks and8802source closure completed by next-training metadata21396 actual0; Q/report/13288updates/optimizer/RNG/endpoints joined. Allthree E08 qualified for typed continuation; original701GPU1/reportabsence retained. v04 adopted701 E09–16 originalowned18190 launched, pending terminal/CPUqualification; restore optimizer/privateRNG/history, fixed48 unchanged. Metadata72247 actual0 established real187 selector payload11761976000bytes plus2GiBreserve13909459648bytes, observedfree207379947520 sufficient; no evalSPEC/AP.
+
+
+## 2026-10-13 / continuous701 E16 GPU0; independent CPU running
+
+GPUoriginal18190 CLOSED actual0/648.875sec/wholeGPUobserved2379MiB. CompleteRAW46+failed7 then metadata94470 actual0,8818sources,pins53, leaf13288/cumulative26576 and adoptedv2 parent/report/checkpoint refs checked. IndependentCPU original64759 launched, pending terminal/Q; no E16qualification/AP. Next reviewed702 helper requires futureRAW47 after actualCPU0 and uses702coldv3 parent. Fixedthree48/noautomaticretry/originalGPU7011+missingREPORT retained.

@@ -31,3 +31,8 @@ ROOT元数据检查原任务72247实际退出0。沿已核验的来源找到原1
 全187/18,700query评价SOURCE已静态审阅，保留原生类别/分数/顺序/空query，使用精确GPU L重建同K区域，独立CPU检查所有ROI与官方COCO指标。只能在真实GPU0、CPU0和ROOT闭合后发布qualified AP。原full-L CPU容差在6/741图失败仍仅为诊断，不改写为通过。
 
 协议与当前追踪见[固定48轮计划](../refine-logs/N13_SAMEK_PR_20261013_01/EXPERIMENT_PLAN_20261013.md)、[运行记录](../docs/N13_sameK_region_execution_status_20261013.md)和[完整DEV接口](N13_FIXED_DEV_EVALUATION_INTERFACE_CONTRACT_20261013.md)。[预测修补收益的后续设计](N13_LEARNED_EDIT_UTILITY_NEXT_HYPOTHESIS_20261013.md)仍是待检验假设，不改变本轮实验。
+
+
+## 2026-10-13 后续实际更新：701 GPU已完成E16，CPU核验运行中
+
+原GPU18190 CLOSED actual0，648.875秒，整卡观察峰值2379MiB。ROOT全46正常/7失败门后，独立CPU准备原94470实际退出0，核对8,818项来源、v4报告/每臂累计26,576更新、明确v2采用父端点与E16权重引用。新的CPU资格原64759单次启动，当前未实际终止，E16端点尚未获独立CPU资格；没有新AP。下一步仅在原CPU实际0并完整闭合后，接续702自身v3 E08端点至第9–16轮，不把701状态用于702。固定三种子/48预算保留。
