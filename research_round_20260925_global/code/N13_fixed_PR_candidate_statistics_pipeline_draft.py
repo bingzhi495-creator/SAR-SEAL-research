@@ -35,13 +35,15 @@ def _raster(torch_module, value, name, shape, dtype, device):
 def diagnose_fixed_pr_pair(torch_module, adapter, statistics, oracle, *,
                            weight_tensors, F_original, native_L, old_LOG,
                            new_halo, G, image_id, gt_id, query_id,
-                           expected_original_LOG_binary, metadata):
+                           expected_original_LOG_binary, metadata, distance_bands=None):
     """Return Torch candidate/reference reconstruction and JSON-safe records.
 
     Raster/weights are explicit Torch tensors. G is the explicit NumPy Boolean
     raster required by supplied statistics; it is used only in that call after
     reconstruction succeeds. metadata and all three actual identities are
     mandatory and checked by statistics. No final S, K or comparator is exposed.
+    Optional distance_bands are forwarded unchanged after reconstruction passes;
+    no distance formula or source identity is constructed or certified here.
     """
     if not isinstance(native_L, torch_module.Tensor) or native_L.ndim != 2:
         raise ValueError("native_L must have shape [H,W]")
@@ -92,7 +94,8 @@ def diagnose_fixed_pr_pair(torch_module, adapter, statistics, oracle, *,
         oracle, A=cpu_boolean_copy(A), C=cpu_boolean_copy(C), G=G,
         old_LOG=cpu_boolean_copy(old_LOG), new_halo=cpu_boolean_copy(new_halo),
         S=cpu_boolean_copy(old_LOG), K=K, image_id=image_id, gt_id=gt_id,
-        query_id=query_id, candidate_independent_of_selection=True, metadata=metadata)
+        query_id=query_id, candidate_independent_of_selection=True, metadata=metadata,
+        distance_bands=distance_bands)
     diagnostic = json.loads(json.dumps(diagnostic, allow_nan=False))
     return {
         "status": STATUS, "candidate": C, "candidate_partitions": candidates,

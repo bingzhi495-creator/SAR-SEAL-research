@@ -296,25 +296,146 @@ def _region_summary(items):
     return {"pixel_count_totals": sums, "instance_coverage_means": fractions}
 
 
-def diagnose_population(oracle, *, matched_instances, unmatched_gt,
-                        metadata, locked_population=None):
+def _precomputed_diagnostic(record):
+    """Validate and copy a serialized draft row, without replaying raster work.
+
+    This checks the schema and basic bookkeeping used by the same population
+    summary. It cannot authenticate supplied values, masks, identity provenance,
+    candidate independence or scientific qualification.
+    """
+    row = _json_snapshot(record, "precomputed diagnostic")
+
+    def fields(value, keys, name):
+        if not isinstance(value, dict) or not set(keys).issubset(value):
+            raise ValueError(name + " requires the documented JSON fields")
+
+    def count(value, name, maximum=None):
+        if type(value) is not int or value < 0 or maximum is not None and value > maximum:
+            raise ValueError(name + " must be a nonnegative integer count within its domain")
+
+    def fraction(value, name, optional=False):
+        if optional and value is None:
+            return
+        if type(value) not in (int, float) or not 0 <= value <= 1:
+            raise ValueError(name + " must be a finite fraction")
+
+    fields(row, ("status", "scope", "identity", "metadata", "shape", "K", "Omega_count",
+        "candidate_evaluated_points", "candidate_independence_caller_declared", "S_equals_old_LOG",
+        "distance_bands", "distance_bands_uncovered_pixels", "regions", "controls",
+        "threshold_crossings", "conditional_iou_gaps", "minimum_unavoidable_exact_K_harms",
+        "actual_exact_K_oracle_harms", "at_most_K_is_separate_constraint_diagnosis"), "diagnostic row")
+    if row["status"] != STATUS or row["scope"] != SCOPE:
+        raise ValueError("precomputed rows must retain the unqualified draft status and scope")
+    if any(row[key] is not True for key in ("candidate_independence_caller_declared", "S_equals_old_LOG",
+                                           "at_most_K_is_separate_constraint_diagnosis")):
+        raise ValueError("precomputed row must preserve this protocol's caller declarations")
+    fields(row["identity"], ("image_id", "gt_id", "query_id"), "identity")
+    for key in ("image_id", "gt_id", "query_id"):
+        row["identity"][key] = _identity(row["identity"][key], key)
+    if not isinstance(row["metadata"], dict) or not isinstance(row["shape"], list) or len(row["shape"]) != 2:
+        raise ValueError("precomputed metadata/shape must preserve the diagnostic schema")
+    for dimension in row["shape"]:
+        if type(dimension) is not int or dimension <= 0:
+            raise ValueError("precomputed shape must have two positive integer dimensions")
+    pixels = row["shape"][0] * row["shape"][1]
+    for key in ("K", "Omega_count", "candidate_evaluated_points", "distance_bands_uncovered_pixels"):
+        count(row[key], key, pixels)
+    if row["K"] > row["Omega_count"] or row["candidate_evaluated_points"] != row["Omega_count"]:
+        raise ValueError("precomputed K and logical candidate counts are inconsistent")
+    for key in ("minimum_unavoidable_exact_K_harms", "actual_exact_K_oracle_harms"):
+        count(row[key], key, row["K"])
+
+    region_names = ("old_LOG", "new_halo", "outside_Omega")
+    coverage_keys = ("native_error_coverage", "native_fp_coverage", "native_fn_coverage")
+
+    def region(value, name):
+        fields(value, REGION_KEYS + coverage_keys, name)
+        for key in REGION_KEYS:
+            count(value[key], name + "." + key, pixels)
+        if value["candidate_eligible_count"] > value["pixels"] or value["native_errors"] != value["native_fp"] + value["native_fn"]:
+            raise ValueError(name + " has inconsistent basic region counts")
+        for key in coverage_keys:
+            fraction(value[key], name + "." + key, optional=True)
+
+    fields(row["regions"], region_names, "regions")
+    for name in region_names:
+        region(row["regions"][name], name)
+    if not isinstance(row["distance_bands"], dict):
+        raise TypeError("distance_bands must be a JSON dictionary")
+    for name, band in row["distance_bands"].items():
+        if not name.strip():
+            raise ValueError("distance-band name must be nonempty")
+        fields(band, ("source", "source_registered", "statistics", "by_region"), "distance-band")
+        if not isinstance(band["source"], str) or not band["source"].strip() or band["source_registered"] is not False:
+            raise ValueError("distance-band requires an explicit unregistered source declaration")
+        region(band["statistics"], "distance-band statistics")
+        fields(band["by_region"], region_names, "distance-band regions")
+        for name in region_names:
+            region(band["by_region"][name], "distance-band " + name)
+
+    names = ("native",) + BRANCHES
+    fields(row["controls"], names, "controls")
+    fields(row["threshold_crossings"], names, "threshold crossings")
+    for name in names:
+        control = row["controls"][name]
+        fields(control, COUNT_KEYS + ("iou", "selected_actions_by_region"), "control " + name)
+        for key in COUNT_KEYS:
+            count(control[key], name + "." + key, pixels)
+        if control["union"] <= 0 or control["union"] != control["tp"] + control["fp"] + control["fn"]:
+            raise ValueError("control has inconsistent union counts")
+        if control["written_count"] != control["selected_count"] or control["flip_count"] > control["selected_count"]:
+            raise ValueError("control has inconsistent write/flip counts")
+        fraction(control["iou"], name + ".iou")
+        fields(control["selected_actions_by_region"], region_names, "selected actions")
+        for region_name in region_names:
+            actions = control["selected_actions_by_region"][region_name]
+            fields(actions, ("selected_count",) + ACTIONS, "selected region actions")
+            for key in ("selected_count",) + ACTIONS:
+                count(actions[key], name + "." + region_name + "." + key, pixels)
+        fields(row["threshold_crossings"][name], ("native", "original"), "crossing references")
+        for ref in ("native", "original"):
+            crossings = row["threshold_crossings"][name][ref]
+            fields(crossings, tuple(format(t, ".2f") for t in THRESHOLDS), "threshold labels")
+            for t in THRESHOLDS:
+                crossing = crossings[format(t, ".2f")]
+                fields(crossing, ("upward", "downward"), "threshold directions")
+                if any(type(crossing[key]) is not bool for key in ("upward", "downward")):
+                    raise TypeError("threshold directions must be explicit JSON booleans")
+    fields(row["conditional_iou_gaps"], ("budget", "candidate", "selection"), "conditional gaps")
+    for key in ("budget", "candidate", "selection"):
+        fraction(row["conditional_iou_gaps"][key], key + " conditional gap")
+    return row
+
+
+def diagnose_population(oracle, *, matched_instances=None, matched_diagnostics=None,
+                        unmatched_gt, metadata, locked_population=None):
     """Diagnose explicit input records and preserve actual GT/query identities.
 
-    Each matched record contains diagnose_instance's keyword inputs. Unmatched
+    Exactly one matched path must be supplied, as an explicit list or tuple.
+    matched_instances contains diagnose_instance's keyword inputs; the additive
+    matched_diagnostics path contains its already computed JSON rows and never
+    calls diagnose_instance again. Its schema/basic-count checks do not certify
+    original rasters, values, candidate independence or scientific provenance.
+    Both paths use the same identity checks and one population summary below.
+    Unmatched
     GT records contain image_id, gt_id and optional JSON metadata ONLY. A lock,
     when supplied, must specify matched_count, unmatched_gt_count,total_gt_count.
     Global GT IDs must be unique; query IDs are unique within their actual image.
     This does not certify native .50 matching; ROOT registers actual provenance.
     """
-    if not isinstance(matched_instances, (list, tuple)) or not isinstance(unmatched_gt, (list, tuple)):
+    if (matched_instances is None) == (matched_diagnostics is None):
+        raise ValueError("supply exactly one of matched_instances or matched_diagnostics")
+    records = matched_instances if matched_instances is not None else matched_diagnostics
+    if not isinstance(records, (list, tuple)) or not isinstance(unmatched_gt, (list, tuple)):
         raise TypeError("explicit matched and unmatched record lists required")
     meta = _json_snapshot(metadata, "population metadata")
     gt_seen, query_seen = set(), set()
     rows, unmatched = [], []
-    for record in matched_instances:
+    for record in records:
         if not isinstance(record, dict):
             raise TypeError("matched instance must be an explicit dictionary")
-        row = diagnose_instance(oracle, **record)
+        row = (diagnose_instance(oracle, **record) if matched_instances is not None
+               else _precomputed_diagnostic(record))
         ids = row["identity"]
         gt_identity = ids["gt_id"]
         query_identity = (ids["image_id"], ids["query_id"])
@@ -538,3 +659,4 @@ if __name__ == "__main__":
     if not args.self_test or not args.oracle:
         parser.error("only explicit --self-test --oracle PATH is supported as a CLI")
     _self_test(args.oracle)
+
