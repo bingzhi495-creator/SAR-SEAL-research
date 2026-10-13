@@ -3,20 +3,20 @@
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-14**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 
-**当前状态（N13）：** 三个配对种子的六个固定48轮训练头均已独立CPU及ROOT核验，各79,728次更新；六头训练损失未满足预锁稳定条件。首个701 E08完整DEV评价与独立CPU均实际0，ROOT闭合9,382项来源；合格AP为原生67.071057、LOG67.949114、GEO67.894438，GEO−LOG为−0.054676点，仅为一个种子的预锁学习曲线。701 E48 GPU原28604已实际0（912.25秒），CPU准备原27894已闭合9,397项来源，独立CPU原24977已单次启动；全部三个主端点合格前，不宣称稳定增益、核心创新或TGRS依据。原训练及序列化失败始终保留。[合格曲线与成本范围](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)、[已核验端点与接续状态](research_round_20260925_global/N13_ALL_THREE_E08_ENDPOINTS_AND_CONTINUOUS48_STATUS_20261013.md)、[完整历史记录](docs/N13_sameK_region_execution_status_20261013.md)。
+**当前状态（N13）：** 三个配对种子的六个固定48轮训练头均已独立CPU及ROOT核验，各79,728次更新；六头训练损失未满足预锁稳定条件。首个701 E08完整DEV评价与独立CPU均实际0，ROOT闭合9,382项来源；合格AP为原生67.071057、LOG67.949114、GEO67.894438，GEO−LOG为−0.054676点，仅为一个种子的预锁学习曲线。701 E48 GPU28604/CPU24977已实际0并ROOT核验：LOG67.844542、GEO67.545843、原生67.071057，GEO−LOG为−0.298699点，预锁全部配对为正条件已在701未通过。ROOT已闭合9,406项继承来源及新CPU输出，702 E48 GPU原60879已单次启动；全部三个主端点合格前，不宣称稳定增益、核心创新或TGRS依据。原训练及序列化失败始终保留。[合格曲线与成本范围](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)、[已核验端点与接续状态](research_round_20260925_global/N13_ALL_THREE_E08_ENDPOINTS_AND_CONTINUOUS48_STATUS_20261013.md)、[完整历史记录](docs/N13_sameK_region_execution_status_20261013.md)。
 
 新[CPU恢复入口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)已实际通过独立端点检查；原GPU失败与缺失报告保留。
 
-后续[冷启动训练源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_qualified_endpoint_training_source_20261013_03/ABI.md)已静态审阅并保存，702/703首段训练及独立CPU核验已通过；当前入口只允许702/703首段。后续[连续48轮接续源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_continuous48_adopted_endpoint_training_source_20261013_04/ABI.md)已通过静态审阅，三个种子第9–16轮、第17–24轮、第25–32轮及第33–40轮均已通过核验，三个固定E48均已通过独立CPU和ROOT核验，原固定DEV评价失败保留，修复版GPU/CPU及ROOT已通过，701 E08曲线合格，701 E48 GPU已正常结束、独立CPU核验已启动。见[训练与接续状态](research_round_20260925_global/N13_SEED702_COLD_TRAINING_AND_CONTINUOUS48_SOURCE_STATUS_20261013.md)及[完整DEV评价接口](research_round_20260925_global/N13_FIXED_DEV_EVALUATION_INTERFACE_CONTRACT_20261013.md)。
+后续[冷启动训练源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_qualified_endpoint_training_source_20261013_03/ABI.md)已静态审阅并保存，702/703首段训练及独立CPU核验已通过；当前入口只允许702/703首段。后续[连续48轮接续源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_continuous48_adopted_endpoint_training_source_20261013_04/ABI.md)已通过静态审阅，三个种子第9–16轮、第17–24轮、第25–32轮及第33–40轮均已通过核验，三个固定E48均已通过独立CPU和ROOT核验，原固定DEV评价失败保留，修复版GPU/CPU及ROOT已通过，701 E08曲线及701 E48主端点均已合格，702 E48评价已启动。见[训练与接续状态](research_round_20260925_global/N13_SEED702_COLD_TRAINING_AND_CONTINUOUS48_SOURCE_STATUS_20261013.md)及[完整DEV评价接口](research_round_20260925_global/N13_FIXED_DEV_EVALUATION_INTERFACE_CONTRACT_20261013.md)。
 
 ## 从这里开始
 
-- [首个合格E08曲线与主张范围](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)：两臂均高于原生，GEO主AP略低于LOG；保留全L诊断失败与实际阶段成本，E48主结果待完整评价。
+- [合格E08曲线与首个E48主端点](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)：701 E48 GEO−LOG为−0.298699点，每组正条件未通过；保留诊断失败和成本，702/703及完整均值待评价。
 
 - [固定DEV执行错误与独立修复版](research_round_20260925_global/N13_FIXED_DEV_SERIALIZATION_REPAIR_STATUS_20261013.md)：原实际失败与未完成产物保留；诊断布尔类型及历史失败前缀接口已修正，修复版GPU/CPU及ROOT已实际通过；首个E08曲线合格，固定E48主评价已启动，原失败保留。
 
 - [固定48轮训练资格与稳定性结果](research_round_20260925_global/N13_FIXED48_TRAINING_QUALIFIED_RESULT_20261013.md)：六头各79,728更新，全部端点核验通过；六头43–48轮平均可编辑BCE较37–42轮均下降超过1%，尚不支持充分收敛；训练资格与实际AP评价分别核验。
-- [HRSID官方协议与发布范围核查](research_round_20260925_global/HRSID_OFFICIAL_PROTOCOL_AND_RELEASE_SCOPE_CHECK_20261013.md)：原文公开文本支持裁片比例，场景独立性与数据再发布许可仍待核验；未访问本地数据包。
+- [HRSID官方协议与发布范围核查](research_round_20260925_global/HRSID_OFFICIAL_PROTOCOL_AND_RELEASE_SCOPE_CHECK_20261013.md)：原文支持65/35裁片协议；补核固定作者提交与未回应许可issue，场景独立与数据再发布许可仍未确认；未打开数据包。
 - [Poly-BRBLE 原论文全文核查](research_round_20260925_global/N13_POLY_BRBLE_FULLTEXT_CHECK_20261013.md)：直接先例已包含边界buffer、不确定选点与点精修；明确当前sameK差异、联合处理限制和后续强对照。
 - [SAR提示式基础模型全文核查](research_round_20260925_global/SAR_PROMPTED_FOUNDATION_MODELS_FULLTEXT_REVIEW_20261013.md)：核对监督范围、指标与可复现性，并明确它与当前残差点头实验的可比边界。
 - [学习选择器的监督目标与完整模型边界](research_round_20260925_global/N13_LEARNED_SELECTOR_TARGETS_AND_FINE_FEATURE_PRIOR_CHECK_20261014.md)：Mask Transfiner的GT缩放损失目标与固定作者重实现、RefineMask的可训练P2/SFM及Simple版本；明确后续强对照与创新措辞。
