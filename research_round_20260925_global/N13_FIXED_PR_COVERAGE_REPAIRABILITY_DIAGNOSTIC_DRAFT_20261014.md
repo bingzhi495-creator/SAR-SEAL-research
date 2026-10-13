@@ -131,3 +131,18 @@ python -B research_round_20260925_global/code/N13_fixed_PR_diagnostic_statistics
 ```
 
 真实载体、exact L/F、width2、374+6身份、原LOG完整重建、资源与独立CPU资格均未由这些小例确认。当前701 E24 GPU已实际0，独立CPU接续中；剩余固定E24曲线完成后再登记真实固定PR诊断，不以准备工具代替SAR效用或核心创新证据。
+
+
+## 2026-10-14：width2作者定义的外部静态核对
+
+ROOT在线核对了[RefineMask固定提交函数](https://github.com/zhanggang001/RefineMask/blob/bf81cac8090115e80c690cd94c4e25a1e6550603/mmdet/models/losses/cross_entropy_loss.py#L117-L145)，未读取运行中的本地绑定来源。对二值原栅格P，令n为零padding的5×5前景数，静态推导得到：
+
+```text
+positive_response = max(25P − n, 0) / 25
+negative_response = max(n − 25P, 0) / 25
+width2 = (P AND n ≤ 22) OR (NOT P AND n ≥ 3)
+```
+
+函数先将输入转FP32；第二路对已经padding的P取补，两路严格>.1后标边界1，再以剩余前景标2。由此推得全零P无width2；全一P在常规H/W≥5时为两像素图像边框；孤立单前景不生成完整5×5 halo。以上是二值输入的源码静态推论，不是本地执行证据；也不能套用sameK距离D的空/满不确定性回退。
+
+下个科学任务实际结束并完成原资格门后，ROOT须只读核对实际RefineMask_author_source及N12 v02 run.py/qualify.py/common.py的调用、转换和边缘规则，确认本地原件与上述定义一致。未加载真实P、未核验真实诊断域，当前曲线及停止决定不变。
