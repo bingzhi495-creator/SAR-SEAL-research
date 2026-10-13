@@ -81,8 +81,17 @@ max(0, K − 有益候选数 − 不变候选数)，并核对实际oracle所选�
 
 按普通ABI实现40,497参数：F256非仿射LayerNorm(eps=1e-5)，c=clamp(L,−8,8)/8逐层注入三个91维ReLU和最后线性层。候选比较符必须显式选严格>0或含等号≥0，实际科学导出采用哪一种仍待ROOT核验。旧LOG与新增halo分别以2048点分块；新增halo不改变旧LOG分块。非连续L的merged_C采用可写连续副本，输入和既有梯度不改写。
 
-已有合成自测实际退出0：独立nn.Module/LayerNorm/Linear算术对照、零末层和L=0阈值、旧域分块不变、输入/梯度保持、非法输入拒绝及非连续输出写回。普通导入不加载Torch；-O自测按预期拒绝。环境为host Torch2.2.2+cpu，单CPU线程、未初始化CUDA；与科学Torch2.0.1+cu118不同，不能代替其资格。独立只读审阅未发现草案发布阻塞错误，但非连续输入例子使用零末层，尚未核验非零残差下的特征像素对应。实际采用前补独立逐点参考检查；完整F有限性检查、非连续reshape副本和CUDA分块数值仍需实际内存/时耗和数值核验。
+已有合成自测实际退出0：独立nn.Module/LayerNorm/Linear算术对照、零末层和L=0阈值、旧域分块不变、输入/梯度保持、非法输入拒绝及非连续输出写回。普通导入不加载Torch；-O自测按预期拒绝。环境为host Torch2.2.2+cpu，单CPU线程、未初始化CUDA；与科学Torch2.0.1+cu118不同，不能代替其资格。独立只读审阅未发现草案发布阻塞错误，其指出的非连续输入零末层覆盖缺口已由下面一次非零残差逐点合成检查补齐。完整F有限性检查、非连续reshape副本和CUDA分块数值仍需实际内存/时耗和数值核验；这不取得科学执行资格。
 
 复现已有合成检查：在仓库根目录运行 `python -B research_round_20260925_global/code/N13_original_raster_fixed_PR_adapter_draft.py --self-test`。这不会读取SAR数据，不执行科学资格或上传。自测只能验证小规模算术，不能证明科学运行、任务效用或创新。
 
 真实诊断须先完成剩余预锁曲线，随后由ROOT在相关任务真实终止后核验：真实八张量键映射；GPU L与F原renderer；原LOG的abs(L)≤2和native L>0；width2对应既有generate_block_target(P,2)==1原栅格实现及图边界处理，不以通用距离≤2替代；实际候选二值比较符；逐对固定374人口/六未匹配者与稳定匹配规则；原LOG所选位置和完整最终输出重建。合成草案不自动满足这些门；不能重建原输出时先定位身份/数值/坐标问题，不开展收益选择器长训。
+
+
+## 2026-10-14：非零残差与非连续栅格的独立合成补查
+
+[针对性检查代码](code/N13_original_raster_fixed_PR_nonzero_strided_check.py)一次实际执行正常退出0，耗时2.625秒、无stderr。使用非零八张量权重及非连续F[256,5,7]/L[5,7]，独立nn.Module按F[:,y,x]逐点取特征，不复用适配器reshape/gather或其残差函数。七个小例覆盖两种二值比较符、新增域4→12点、原域23点和三种空域；索引、二值与merged_C精确一致，u最大绝对差4.47035×10⁻⁸、L+u最大差1.19209×10⁻⁷，通过预先固定的rtol=10⁻⁶/atol=10⁻⁷。扩大新增域时旧域索引/残差/logit/二值位级不变，所有输入原样。
+
+Host Python3.10.13、Torch2.2.2+cpu、psutil5.9.0，亲和[0,1]、1/1线程、CUDA未初始化。此次检查不覆盖非连续输入跨2048点分块，也不建立大栅格资源、科学Torch2.0.1+cu118、真实模型/renderer/域或导出比较符资格。原适配器及真实检查源/输出保留；发布副本只统一文本换行。没有重跑既有自测、读取科学载荷或改变当前预锁评价。
+
+复现：在仓库根目录运行 `python -B research_round_20260925_global/code/N13_original_raster_fixed_PR_nonzero_strided_check.py --adapter research_round_20260925_global/code/N13_original_raster_fixed_PR_adapter_draft.py`。CPU亲和[0,1]是此检查的显式要求；不具备这两个可用CPU的环境会拒绝，不能把该拒绝解释为模型失效。
