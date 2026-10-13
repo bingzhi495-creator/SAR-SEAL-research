@@ -79,13 +79,13 @@ max(0, K − 有益候选数 − 不变候选数)，并核对实际oracle所选�
 
 [原栅格适配器](code/N13_original_raster_fixed_PR_adapter_draft.py)为UNBOUND_DRAFT / SYNTHETIC_ONLY。输入显式八张量、F_original、exact native L及互不重叠的原LOG/新增halo域，返回升序原图flat索引、未被旧band门裁去的原始残差、L+u及二值候选；域外保持原生L>0。它不构建区域、不读GT或检查点，不接收K或最终选集合，不执行发布。数学API省去残差无关的e/patch；私有合成ABI包装仅检查形状/零patch，不认证真实e来源。
 
-按普通ABI实现40,497参数：F256非仿射LayerNorm(eps=1e-5)，c=clamp(L,−8,8)/8逐层注入三个91维ReLU和最后线性层。候选比较符必须显式选严格>0或含等号≥0，实际科学导出采用哪一种仍待ROOT核验。旧LOG与新增halo分别以2048点分块；新增halo不改变旧LOG分块。非连续L的merged_C采用可写连续副本，输入和既有梯度不改写。
+按普通ABI实现40,497参数：F256非仿射LayerNorm(eps=1e-5)，c=clamp(L,−8,8)/8逐层注入三个91维ReLU和最后线性层。候选比较符由实际协议固定。ROOT已在科学任务间隙完成[真实源码文字核对](N13_FIXED_PR_ACTUAL_SOURCE_INTERFACE_REVIEW_20261014.md)：实际导出使用严格logit>0，即strict_gt_zero；含等号≥0仅为合成API分支。该文字核对不代替真实端点、输入、原输出重建和运行资格。旧LOG与新增halo分别以2048点分块；新增halo不改变旧LOG分块。非连续L的merged_C采用可写连续副本，输入和既有梯度不改写。
 
 已有合成自测实际退出0：独立nn.Module/LayerNorm/Linear算术对照、零末层和L=0阈值、旧域分块不变、输入/梯度保持、非法输入拒绝及非连续输出写回。普通导入不加载Torch；-O自测按预期拒绝。环境为host Torch2.2.2+cpu，单CPU线程、未初始化CUDA；与科学Torch2.0.1+cu118不同，不能代替其资格。独立只读审阅未发现草案发布阻塞错误，其指出的非连续输入零末层覆盖缺口已由下面一次非零残差逐点合成检查补齐。完整F有限性检查、非连续reshape副本和CUDA分块数值仍需实际内存/时耗和数值核验；这不取得科学执行资格。
 
 复现已有合成检查：在仓库根目录运行 `python -B research_round_20260925_global/code/N13_original_raster_fixed_PR_adapter_draft.py --self-test`。这不会读取SAR数据，不执行科学资格或上传。自测只能验证小规模算术，不能证明科学运行、任务效用或创新。
 
-真实诊断须先完成剩余预锁曲线，随后由ROOT在相关任务真实终止后核验：真实八张量键映射；GPU L与F原renderer；原LOG的abs(L)≤2和native L>0；width2对应既有generate_block_target(P,2)==1原栅格实现及图边界处理，不以通用距离≤2替代；实际候选二值比较符；逐对固定374人口/六未匹配者与稳定匹配规则；原LOG所选位置和完整最终输出重建。合成草案不自动满足这些门；不能重建原输出时先定位身份/数值/坐标问题，不开展收益选择器长训。
+ROOT已完成八张量源码键、F原renderer/flat gather、strict_gt_zero及固定原生匹配函数的文字核对，见[接口说明](N13_FIXED_PR_ACTUAL_SOURCE_INTERFACE_REVIEW_20261014.md)。真实诊断仍须先完成剩余预锁曲线，再登记并核验实际端点与八张量证明、exact GPU L/F来源、原LOG的abs(L)≤2和native L>0、width2对应既有generate_block_target(P,2)==1原栅格实现及图边界处理、逐对固定374人口/六未匹配者的实际身份、以及原LOG所选位置和完整最终输出重建；不以通用距离≤2替代width2。合成草案不自动满足这些门；不能重建原输出时先定位身份/数值/坐标问题，不开展收益选择器长训。
 
 
 ## 2026-10-14：非零残差与非连续栅格的独立合成补查
@@ -105,3 +105,29 @@ Host Python3.10.13、Torch2.2.2+cpu、psutil5.9.0，亲和[0,1]、1/1线程、CU
 2. 行动条件明确。只换选点器时，各对照共享选择前生成、冻结且不依赖最终选集合的C；若新结构使C依赖所选集合，须重新登记候选条件，原固定C oracle不再解释其余量。保留旧值/拒绝写入如改成at-most-K，应单列预算与写入条件；核对实际选点、写入、翻转、修复、伤害及不变计数，不称原exact-K收益。
 
 新假设是否有效以同协议完整COCO AP差值判断，固定配对IoU及修复/伤害仅解释差值出现在哪里。此桥接是未来评价条件，未执行新部署策略、未得到AP提升或核心创新；当前预锁曲线、E48停止决定及后续单一诊断顺序不变。
+
+
+## 2026-10-14：纯统计连接与独立分母检查
+
+[统计模块](code/N13_fixed_PR_diagnostic_statistics_draft.py)已保存为UNBOUND_DRAFT / SYNTHETIC_ONLY。diagnose_instance和diagnose_population显式复用既有纯布尔oracle，调用者提供A/C/G、互斥old_LOG/new_halo、S/K及实际image/GT/query身份；此协议严格S=old_LOG、K=|S|、Ω=old_LOG∪new_halo。候选独立性仅保存调用者声明，不由统计程序认证。模块不加载模型、权重、GT文件或科学资料，不构造width2，也不取得科学执行资格。
+
+输出分别保留四个主分支和at-most-K，统计逐对IoU、像素TP/FP/FN、选点/字面写入/二值翻转/修复/伤害/不变、三项非负条件差、exact-K被迫伤害，以及相对native和原支持的.50/.75/.90/.95双向跨越。区域分为old/new/outside；可选距离带由调用者显式给布尔mask和来源说明，只检查互斥，不认证距离定义。零错误图的coverage为未定义，逐实例均值只用有定义的分母，与总像素加权比例分别记录。candidate_evaluated_points是所提供Ω中的逻辑候选数量，不是实际PR调用、时耗或资源测量；真实运行须另记录这些成本。
+
+匹配与未匹配GT的身份独立保存，禁止重复GT或image/query身份。未匹配者不赋query、K或域；配对IoU均值仅除matched数，可另报配对达阈数/totalGT，不能称AP或召回。可显式锁定matched/unmatched/total三个期望计数；该计数检查不代替真实374+6配对来源。
+
+首次隐藏host合成执行实际退出0，0.375秒，3个手算小例及14项非法输入拒绝通过。独立静态审阅指出原支持跌破.50、字面写入与翻转、宏均值与像素汇总、域外错误的证据覆盖缺口；随后[独立手算补查](code/N13_fixed_PR_diagnostic_statistics_independent_hand_check.py)一次实际退出0，0.306秒，4个案例的525项显式核对通过，未改原模块、未重跑原自测或oracle穷举。检查包括宏IoU=7/12与像素IoU=5/9、3+1身份、old/halo/outside像素错误覆盖2/5、2/5、1/5及宏覆盖1/3、1/2、1/6，以及K=0和被迫伤害/拒绝的分离。以上均是人工布尔值，不是SAR结果。
+
+两次使用host Python3.10.13、NumPy1.26.4，CPU亲和[0,1]、四个线程环境1、-B、CUDA空且未导入Torch；与科学运行环境的相容性仍待实际核验。正常import统计模块只加载标准库，生产输入校验显式抛异常；自测与独立检查显式拒绝-O。
+
+复现独立手算检查（需NumPy、psutil及可用CPU0/1；以下设置在当前PowerShell会话及后续子进程生效）：
+
+```powershell
+$env:CUDA_VISIBLE_DEVICES = ""
+$env:OMP_NUM_THREADS = "1"
+$env:MKL_NUM_THREADS = "1"
+$env:OPENBLAS_NUM_THREADS = "1"
+$env:NUMEXPR_NUM_THREADS = "1"
+python -B research_round_20260925_global/code/N13_fixed_PR_diagnostic_statistics_independent_hand_check.py --statistics research_round_20260925_global/code/N13_fixed_PR_diagnostic_statistics_draft.py --oracle research_round_20260925_global/code/N13_fixed_candidate_action_oracle_draft.py
+```
+
+真实载体、exact L/F、width2、374+6身份、原LOG完整重建、资源与独立CPU资格均未由这些小例确认。当前701 E24 GPU已实际0，独立CPU接续中；剩余固定E24曲线完成后再登记真实固定PR诊断，不以准备工具代替SAR效用或核心创新证据。
