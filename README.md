@@ -3,11 +3,11 @@
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-13**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 
-**当前状态（N13）：** 701、702两个配对种子的两臂均已核验至第24轮，各臂累计39,864次更新；703已核验至第16轮，各臂累计26,576次更新。703第17–24轮GPU已单次启动，尚未实际终止或取得本段独立CPU资格。固定三配对种子/48轮及逐8轮块交错顺序不变，原701首段GPU1和缺失报告保留。完整DEV评价尚未执行，没有新AP、核心创新或TGRS结论。[已核验端点与接续状态](research_round_20260925_global/N13_ALL_THREE_E08_ENDPOINTS_AND_CONTINUOUS48_STATUS_20261013.md)、[完整历史记录](docs/N13_sameK_region_execution_status_20261013.md)。
+**当前状态（N13）：** 701、702两个配对种子的两臂均已核验至第24轮，各臂累计39,864次更新；703已核验至第16轮，各臂累计26,576次更新。703第17–24轮GPU已正常结束，独立CPU核验已启动，尚未取得本段资格。固定三配对种子/48轮及逐8轮块交错顺序不变，原701首段GPU1和缺失报告保留。完整DEV评价尚未执行，没有新AP、核心创新或TGRS结论。[已核验端点与接续状态](research_round_20260925_global/N13_ALL_THREE_E08_ENDPOINTS_AND_CONTINUOUS48_STATUS_20261013.md)、[完整历史记录](docs/N13_sameK_region_execution_status_20261013.md)。
 
 新[CPU恢复入口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)已实际通过独立端点检查；原GPU失败与缺失报告保留。
 
-后续[冷启动训练源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_qualified_endpoint_training_source_20261013_03/ABI.md)已静态审阅并保存，702/703首段训练及独立CPU核验已通过；当前入口只允许702/703首段。后续[连续48轮接续源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_continuous48_adopted_endpoint_training_source_20261013_04/ABI.md)已通过静态审阅，三个种子第9–16轮及701/702第17–24轮均已通过核验；703第17–24轮GPU已启动，等待实际终止及独立CPU核验。见[训练与接续状态](research_round_20260925_global/N13_SEED702_COLD_TRAINING_AND_CONTINUOUS48_SOURCE_STATUS_20261013.md)及[完整DEV评价接口](research_round_20260925_global/N13_FIXED_DEV_EVALUATION_INTERFACE_CONTRACT_20261013.md)。
+后续[冷启动训练源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_qualified_endpoint_training_source_20261013_03/ABI.md)已静态审阅并保存，702/703首段训练及独立CPU核验已通过；当前入口只允许702/703首段。后续[连续48轮接续源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_continuous48_adopted_endpoint_training_source_20261013_04/ABI.md)已通过静态审阅，三个种子第9–16轮及701/702第17–24轮均已通过核验；703第17–24轮GPU已正常结束，独立CPU核验进行中。见[训练与接续状态](research_round_20260925_global/N13_SEED702_COLD_TRAINING_AND_CONTINUOUS48_SOURCE_STATUS_20261013.md)及[完整DEV评价接口](research_round_20260925_global/N13_FIXED_DEV_EVALUATION_INTERFACE_CONTRACT_20261013.md)。
 
 ## 从这里开始
 
@@ -78,7 +78,7 @@ N09已完成简单全局logit偏移控制：仅在FIT缓存点拟合、只在原
 
 ## 持续同步
 
-本仓库是后续研究的持续记录入口。总结、综述、方法设计、研发源码和论文更新形成后，在当前工作任务内及时提交；实验成功、失败和未完成的验证均按实际状态保留。具体范围与流程见 [持续同步规则](docs/CONTINUOUS_SYNC.md)。
+本仓库是后续研究的持续记录入口。总结、综述、方法设计、研发源码与配置、论文更新及实质对话研究总结形成后，在当前工作任务内及时提交；实验成功、失败和未完成的验证均按实际状态保留。只有核验远端提交与目标文件后才记为已同步，失败则标为待同步；应用关闭或离线时不承诺自动上传。具体范围与流程见 [持续同步规则](docs/CONTINUOUS_SYNC.md)。
 
 ## 发布范围与许可
 
@@ -86,7 +86,9 @@ N09已完成简单全局logit偏移控制：仅在FIT缓存点拟合、只在原
 
 作者、单位、日期和其他提交元数据保留占位符。自有项目尚未指定统一开源许可；第三方实现使用原始来源链接与各自许可证，不把第三方代码改授为本项目许可。外部下载的文献全文、第三方参考仓库、凭据、运维配置、无关工程以及整个工作区 Git 历史不随本快照发布。
 
-下一项仅作为待检验假设：同一冻结模型、点头、编辑与训练预算下，先比较几何边界选择与不确定性选择，完整训练采用至少三个配对种子。强先例、反证条件及执行边界见 [区域选择设计备忘录](research_round_20260925_global/N11_REGION_CHOICE_NEXT_HYPOTHESIS_20261013.md)；尚未新增训练或确认创新。
+**以下为历史形成记录；当前训练进度以顶部和最新状态段为准。**
+
+当时下一项仅作为待检验假设：同一冻结模型、点头、编辑与训练预算下，先比较几何边界选择与不确定性选择，完整训练采用至少三个配对种子。强先例、反证条件及执行边界见 [区域选择设计备忘录](research_round_20260925_global/N11_REGION_CHOICE_NEXT_HYPOTHESIS_20261013.md)；尚未新增训练或确认创新。
 
 **N12 实验前登记：** [同预算区域覆盖诊断协议](refine-logs/N12_REGION_COVERAGE_20261013_01/EXPERIMENT_PLAN.md)已锁定主比较与反证规则；[执行跟踪](refine-logs/N12_REGION_COVERAGE_20261013_01/EXPERIMENT_TRACKER.md)记录实际状态：首个GPU运行在依赖文件来源核验处退出1，尚未开始区域计算；修正实际包树绑定后，GPU及独立CPU均真实退出0并完成ROOT核验。失败源码与修正版均保存，见[运行状态](docs/N12_region_diagnostic_runtime_status_20261013.md)。只有真实GPU及独立CPU核验完成后才报告新覆盖/距离结果；并非新方法效用。
 
@@ -115,4 +117,4 @@ N13核验失败后，已在新的数值执行前保存[固定单图诊断登记]
 
 - [后续候选：预测实际修补的正负收益](research_round_20260925_global/N13_LEARNED_EDIT_UTILITY_NEXT_HYPOTHESIS_20261013.md)：与同容量错误概率选择器比较；待登记、未执行，不改变当前三种子48轮实验。像素收益不等于IoU/AP提升。
 
-- [N13三个首段端点完整核验及连续48轮进度](research_round_20260925_global/N13_ALL_THREE_E08_ENDPOINTS_AND_CONTINUOUS48_STATUS_20261013.md)：701原报告失败保留，703独立CPU核验已通过；701第9–16轮GPU完成、独立CPU核验中。完整DEV实际载荷约10.95GiB，尚无新AP。
+- [N13三个首段端点完整核验及连续48轮进度](research_round_20260925_global/N13_ALL_THREE_E08_ENDPOINTS_AND_CONTINUOUS48_STATUS_20261013.md)：701原报告失败保留；701/702已核验至E24，703第17–24轮GPU正常结束、独立CPU核验中。完整DEV实际载荷约10.95GiB，尚无新AP。
