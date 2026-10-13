@@ -3,17 +3,19 @@
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-14**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 
-**当前状态（N13）：** 三种子固定E48主结果均已实际GPU0、独立CPU0及ROOT核验，并独立复算：LOG均值67.768660±0.076106 AP，GEO67.579076±0.075406；GEO−LOG配对差依次−0.298699/−0.103715/−0.166335点，均值−0.189583、样本SD0.099549。C1未通过且均值≤0，已按预锁规则停止当前GEO区域与监督联合配方扩展；六头未稳定、共享教师和历史DEV限制保留，不推断方法总体失效。 三条主行经83常规/8保留失败/91身份及9,453项继承来源闭合，新增CPU输出由实际stdout另外锚定。剩余五个预锁E08/E24只作曲线；702 E08 GPU原87247已实际退出0（926.704秒），CPU准备22737实际0，ROOT闭合84常规/8失败/92身份和9,468项来源后，独立CPU原59044单次启动并确认运行，不改选主端点。下一固定PR诊断协议及纯布尔代码已保存，人工穷举和独立静态审阅通过，真实SAR适配/执行尚未登记；先区分动作预算、候选能力和选择余量，暂不长训收益选择器。尚无核心创新、正式TEST/跨集或TGRS依据。[完整三种子结果与下一诊断](research_round_20260925_global/N13_FIXED48_THREE_SEED_PRIMARY_RESULT_AND_NEXT_DIAGNOSTIC_20261014.md)、[合格曲线与成本范围](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)、[历史执行记录](docs/N13_sameK_region_execution_status_20261013.md)。
+**当前状态（N13）：** 三种子固定E48主结果已完整核验：LOG 67.768660±0.076106 AP，GEO 67.579076±0.075406；配对差均值−0.189583点，三组均负。C1未通过，已按预锁规则停止当前GEO区域与监督联合配方扩展。六头损失尚未稳定，不能推断方法总体失效。702 E08曲线现已GPU/独立CPU/ROOT核验：LOG67.891010、GEO67.959036，差+0.068026点；它不替换E48主结果。下一703 E08预锁GPU原84481单次启动且确认运行，其后仍需独立CPU及ROOT资格。下一固定PR诊断的纯布尔模块和原栅格适配器均已保存，仅合成验证，真实SAR执行尚未登记。共享教师、历史DEV187/380、无正式TEST/跨集及无核心创新/TGRS依据的范围保留。 [完整三种子结果与下一诊断](research_round_20260925_global/N13_FIXED48_THREE_SEED_PRIMARY_RESULT_AND_NEXT_DIAGNOSTIC_20261014.md)、[合格曲线与成本范围](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)、[历史执行记录](docs/N13_sameK_region_execution_status_20261013.md)。
 
 新[CPU恢复入口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)已实际通过独立端点检查；原GPU失败与缺失报告保留。
 
-后续[冷启动训练源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_qualified_endpoint_training_source_20261013_03/ABI.md)已静态审阅并保存，702/703首段训练及独立CPU核验已通过；当前入口只允许702/703首段。后续[连续48轮接续源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_continuous48_adopted_endpoint_training_source_20261013_04/ABI.md)已通过静态审阅，三个种子第9–16轮、第17–24轮、第25–32轮及第33–40轮均已通过核验，三个固定E48均已通过独立CPU和ROOT核验，原固定DEV评价失败保留，修复版GPU/CPU及ROOT已通过，701 E08曲线及三条E48主端点均已合格；702 E08曲线GPU已实际结束，独立CPU接续中。见[训练与接续状态](research_round_20260925_global/N13_SEED702_COLD_TRAINING_AND_CONTINUOUS48_SOURCE_STATUS_20261013.md)及[完整DEV评价接口](research_round_20260925_global/N13_FIXED_DEV_EVALUATION_INTERFACE_CONTRACT_20261013.md)。
+后续[冷启动训练源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_qualified_endpoint_training_source_20261013_03/ABI.md)已静态审阅并保存，702/703首段训练及独立CPU核验已通过；当前入口只允许702/703首段。后续[连续48轮接续源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_continuous48_adopted_endpoint_training_source_20261013_04/ABI.md)已通过静态审阅，三个种子第9–16轮、第17–24轮、第25–32轮及第33–40轮均已通过核验，三个固定E48均已通过独立CPU和ROOT核验，原固定DEV评价失败保留，修复版GPU/CPU及ROOT已通过，701 E08曲线及三条E48主端点均已合格；702 E08曲线已完成独立CPU和ROOT核验，703 E08预锁GPU接续中。见[训练与接续状态](research_round_20260925_global/N13_SEED702_COLD_TRAINING_AND_CONTINUOUS48_SOURCE_STATUS_20261013.md)及[完整DEV评价接口](research_round_20260925_global/N13_FIXED_DEV_EVALUATION_INTERFACE_CONTRACT_20261013.md)。
+
+新[原栅格固定PR适配器草案](research_round_20260925_global/code/N13_original_raster_fixed_PR_adapter_draft.py)实现已知F/L算术及独立候选分块；无GT、K或最终选集合输入。仅CPU合成验证，实际模型来源、域定义、导出及资源资格仍待核验。见[诊断方案和验证范围](research_round_20260925_global/N13_FIXED_PR_COVERAGE_REPAIRABILITY_DIAGNOSTIC_DRAFT_20261014.md)。
 
 ## 从这里开始
 
-- [合格E08曲线与首个E48主端点](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)：701 E48 GEO−LOG为−0.298699点，每组正条件未通过；701/702 GEO−LOG均负；保留诊断失败和成本，703及完整均值待完成。
+- [合格曲线与三种子主结果](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)：三条E48已核验并执行当前联合配方停止决定；701/702 E08仅作固定学习曲线，703 E08评价运行中。
 
-- [固定DEV执行错误与独立修复版](research_round_20260925_global/N13_FIXED_DEV_SERIALIZATION_REPAIR_STATUS_20261013.md)：原实际失败与未完成产物保留；诊断布尔类型及历史失败前缀接口已修正，修复版GPU/CPU及ROOT已实际通过；首个E08曲线合格，固定E48主评价已启动，原失败保留。
+- [固定DEV执行错误与独立修复版](research_round_20260925_global/N13_FIXED_DEV_SERIALIZATION_REPAIR_STATUS_20261013.md)：原实际失败及未完成产物保留；修复版已通过GPU、独立CPU和ROOT核验，完整三种子主结果及当前曲线见最新状态。
 
 - [固定48轮训练资格与稳定性结果](research_round_20260925_global/N13_FIXED48_TRAINING_QUALIFIED_RESULT_20261013.md)：六头各79,728更新，全部端点核验通过；六头43–48轮平均可编辑BCE较37–42轮均下降超过1%，尚不支持充分收敛；训练资格与实际AP评价分别核验。
 - [HRSID官方协议与发布范围核查](research_round_20260925_global/HRSID_OFFICIAL_PROTOCOL_AND_RELEASE_SCOPE_CHECK_20261013.md)：原文支持65/35裁片协议；补核固定作者提交与未回应许可issue，场景独立与数据再发布许可仍未确认；未打开数据包。
