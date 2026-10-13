@@ -3,7 +3,7 @@
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-14**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 
-**当前状态（N13）：** 三个配对种子的六个固定48轮训练头均已独立CPU及ROOT核验，各79,728次更新；六头训练损失未满足预锁稳定条件。首个701 E08完整DEV评价与独立CPU均实际0，ROOT闭合9,382项来源；合格AP为原生67.071057、LOG67.949114、GEO67.894438，GEO−LOG为−0.054676点，仅为一个种子的预锁学习曲线。701 E48 GPU28604/CPU24977已实际0并ROOT核验：LOG67.844542、GEO67.545843、原生67.071057，GEO−LOG为−0.298699点，预锁全部配对为正条件已在701未通过。ROOT已闭合701的9,406项继承来源及新CPU输出；702 E48 GPU60879/CPU23689均实际0并经ROOT核验：LOG67.769106、GEO67.665391，GEO−LOG−0.103715点；ROOT经81常规/8失败/89身份和9,429项继承来源及新增CPU输出闭合，703 E48 GPU8268已实际0，CPU准备16299实际0并经82常规/8失败/90身份和9,443项来源读回，CPU原1202单次启动且确认仍运行；全部三个主端点合格前，不宣称稳定增益、核心创新或TGRS依据。原训练及序列化失败始终保留。[合格曲线与成本范围](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)、[已核验端点与接续状态](research_round_20260925_global/N13_ALL_THREE_E08_ENDPOINTS_AND_CONTINUOUS48_STATUS_20261013.md)、[完整历史记录](docs/N13_sameK_region_execution_status_20261013.md)。
+**当前状态（N13）：** 三种子固定E48主结果均已实际GPU0、独立CPU0及ROOT核验，并独立复算：LOG均值67.768660±0.076106 AP，GEO67.579076±0.075406；GEO−LOG配对差依次−0.298699/−0.103715/−0.166335点，均值−0.189583、样本SD0.099549。C1未通过且均值≤0，已按预锁规则停止当前GEO区域与监督联合配方扩展；六头未稳定、共享教师和历史DEV限制保留，不推断方法总体失效。 三条主行经83常规/8保留失败/91身份及9,453项继承来源闭合，新增CPU输出由实际stdout另外锚定。剩余五个预锁E08/E24只作曲线；702 E08 GPU原87247在完整主决策及精确READY读回后单次启动并确认仍运行，不改选主端点。下一固定PR可行动范围诊断为未执行草案，先区分修补能力与支持覆盖，暂不长训收益选择器。尚无核心创新、正式TEST/跨集或TGRS依据。[完整三种子结果与下一诊断](research_round_20260925_global/N13_FIXED48_THREE_SEED_PRIMARY_RESULT_AND_NEXT_DIAGNOSTIC_20261014.md)、[合格曲线与成本范围](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)、[历史执行记录](docs/N13_sameK_region_execution_status_20261013.md)。
 
 新[CPU恢复入口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)已实际通过独立端点检查；原GPU失败与缺失报告保留。
 
@@ -22,6 +22,7 @@
 - [学习选择器的监督目标与完整模型边界](research_round_20260925_global/N13_LEARNED_SELECTOR_TARGETS_AND_FINE_FEATURE_PRIOR_CHECK_20261014.md)：Mask Transfiner的GT缩放损失目标与固定作者重实现、RefineMask的可训练P2/SFM及Simple版本；明确后续强对照与创新措辞。
 - [固定K二值IoU oracle与概率代理边界](research_round_20260925_global/N13_FIXED_K_BINARY_IOU_ORACLE_AND_PROBABILISTIC_PROXY_LIMIT_20261014.md)：更正真实标签与预测概率的适用范围，给出证明、人工反例及固定权重强对照；不是新SAR实验。
 - [固定预算行动选择的两项直接先例查漏](research_round_20260925_global/N13_FIXED_BUDGET_ACTION_UTILITY_DIRECT_PRIOR_GAPS_20261014.md)：MagNet候选置信排序、PromptMoE执行质量监督，以及待登记的错误预测/实际翻转、MagNet式排序和固定权重强对照；当前实验不改。
+- [固定48轮三种子完整主结果与下一诊断](research_round_20260925_global/N13_FIXED48_THREE_SEED_PRIMARY_RESULT_AND_NEXT_DIAGNOSTIC_20261014.md)：配对均值为负，按原规则停止当前联合配方；保留所有指标、成本、失败与适用范围，下一行动oracle只是草案。
 - [实测区域成本的归因边界](research_round_20260925_global/N13_MEASURED_REGION_COST_ATTRIBUTION_PLAN_20261014.md)：聚合计时含两臂选择、排序校验和摘要；列明遗漏的传输/导出成本及主评价后最小补测，未认定子阶段瓶颈或取得加速。
 - [共享投影与成本公平性审阅](research_round_20260925_global/N13_SHARED_PROJECTION_COST_FAIRNESS_REVIEW_20261013.md)：稠密强对照应同样共享特征投影；列明计算、内存和数值等价的边界，实际加速与质量收益仍待检验。
 - [当前研究目标与执行要求](RESEARCH_GOAL.md)：问题、公平比较、重复实验、机制验证和停止规则。
