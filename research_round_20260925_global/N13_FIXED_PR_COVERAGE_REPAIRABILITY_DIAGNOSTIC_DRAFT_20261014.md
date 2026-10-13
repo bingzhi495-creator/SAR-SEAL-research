@@ -130,7 +130,7 @@ $env:NUMEXPR_NUM_THREADS = "1"
 python -B research_round_20260925_global/code/N13_fixed_PR_diagnostic_statistics_independent_hand_check.py --statistics research_round_20260925_global/code/N13_fixed_PR_diagnostic_statistics_draft.py --oracle research_round_20260925_global/code/N13_fixed_candidate_action_oracle_draft.py
 ```
 
-真实载体、exact L/F、width2、374+6身份、原LOG完整重建、资源与独立CPU资格均未由这些小例确认。当前701 E24 GPU已实际0，独立CPU接续中；剩余固定E24曲线完成后再登记真实固定PR诊断，不以准备工具代替SAR效用或核心创新证据。
+真实载体、exact L/F、width2、374+6身份、原LOG完整重建、资源与独立CPU资格均未由这些小例确认。当前701 E24已完成独立CPU/ROOT核验，702 E24 GPU已实际0，独立CPU接续中；剩余固定E24曲线完成后再登记真实固定PR诊断，不以准备工具代替SAR效用或核心创新证据。
 
 
 ## 2026-10-14：width2作者定义的外部静态核对
@@ -146,3 +146,10 @@ width2 = (P AND n ≤ 22) OR (NOT P AND n ≥ 3)
 函数先将输入转FP32；第二路对已经padding的P取补，两路严格>.1后标边界1，再以剩余前景标2。由此推得全零P无width2；全一P在常规H/W≥5时为两像素图像边框；孤立单前景不生成完整5×5 halo。以上是二值输入的源码静态推论，不是本地执行证据；也不能套用sameK距离D的空/满不确定性回退。
 
 701 E24独立CPU实际结束、下一702 E24完整来源门通过后，ROOT已在新GPU准入前只读核对实际RefineMask_author_source及N12 v02 run.py/qualify.py/common.py。绑定函数、FP32/CPU调用、padding后取补、严格>.1、标签覆盖和独立整数/25计数与上述定义一致；sameK D的空/满回退没有用于width2。未加载真实P或运行边界计算，真实诊断域仍未核验，当前曲线及停止决定不变。见[本地接口补充](N13_FIXED_PR_ACTUAL_SOURCE_INTERFACE_REVIEW_20261014.md)。
+
+
+## 2026-10-14：候选生成、原LOG完整重建与统计已接通
+
+新[连接层及合成证据](N13_FIXED_PR_PIPELINE_SYNTHETIC_INTEGRATION_CHECK_20261014.md)先生成不接收G/S/K的固定C，再仅在旧LOG域写回并与必需的原预测参考逐像素相等核对；通过后才让统计读取G，固定S=old_LOG和K=|S|。真实权重/L/F/参考身份、候选独立性、width2、人口、运行时与资源均未由此认证。
+
+72项首次手算检查实际0；独立八像素例/一次错误参考拒绝的106项核对实际0，补齐新增域真实翻转和非空域外保持的合成证据。完整C不能冒充原LOG输出，exact-K强制伤害与at-most-K分别报告；详见总结中的手算表和便携复现命令。没有再运行已有自测，没有读取实时科学载荷，也没有执行新的SAR诊断或报告AP/创新。702 E24独立CPU原32807已单次启动；完成剩余曲线后，再登记真实固定PR诊断。
