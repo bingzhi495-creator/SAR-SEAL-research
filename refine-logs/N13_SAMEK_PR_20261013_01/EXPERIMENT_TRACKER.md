@@ -51,3 +51,8 @@ ROOT metadata准备实际退出0后，cold702 LOG_PR/GEO_PR两臂1–8轮单次�
 ## 2026-10-13 / 703首段GPU实际0；CPU独立核验运行中
 
 原48721 CLOSED actual0，646.985sec/whole GPU observed2111MiB。ROOT all44normal+7failed门后，CPU准备原51870 CLOSED actual0，8792来源、51pins、报告/权重引用/每臂13288更新核验完成。独立CPU原35181已启动，未终止，未宣称训练端点资格或AP。固定48、三配对种子、原701GPU1和缺失报告均保留；第三种子合格后接续交错训练。后续utility-selection设计仅普通待检验文档，不改变此协议。
+
+
+## 2026-10-13 / All first E08 qualified; continuous701 E09–16 launched
+
+Original CPU70335181 CLOSED actual0/181.797sec. ROOT complete45normal+7failed/pins52 checks and8802source closure completed by next-training metadata21396 actual0; Q/report/13288updates/optimizer/RNG/endpoints joined. Allthree E08 qualified for typed continuation; original701GPU1/reportabsence retained. v04 adopted701 E09–16 originalowned18190 launched, pending terminal/CPUqualification; restore optimizer/privateRNG/history, fixed48 unchanged. Metadata72247 actual0 established real187 selector payload11761976000bytes plus2GiBreserve13909459648bytes, observedfree207379947520 sufficient; no evalSPEC/AP.
