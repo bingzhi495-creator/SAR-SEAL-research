@@ -1,6 +1,6 @@
 # N13 固定完整 DEV 评价：接口契约与最小改动方案
 
-日期：2026-10-13。状态：**仅静态接口设计，尚无评价源码、实际评价或 AP 结果**。本文由独立发布副本中的 N10 评价源码、N13 v2 头/门控/缓存资格源码、cold v3 源码及锁定 N13 实验方案静态推导；没有读取科学载荷、标注、SPEC、Q、RAW，没有哈希、导入或执行科学源码。实际端点资格与运行统计由 ROOT 提供并核验。
+日期：2026-10-13。状态：**静态接口与源码已完成并通过聚焦审阅；尚未绑定、实际评价或取得 AP 结果**。本文由独立发布副本中的 N10 评价源码、N13 v2 头/门控/缓存资格源码、cold v3 源码及锁定 N13 实验方案静态推导；没有读取科学载荷、标注、SPEC、Q、RAW，没有哈希、导入或执行科学源码。实际端点资格与运行统计由 ROOT 提供并核验。
 
 ## 1. 评价对象与不可变条件
 
@@ -18,7 +18,7 @@
 |分支|必要实际来源|端点状态要求|
 |---|---|---|
 |normal_training_v3|实际 v3 train SOURCE / SPEC / REPORT / GPU RAW / admission；实际 v3 CPU reader / SPEC / Q / RAW / admission；ROOT 终端确认；两臂 checkpoint / proof|GPU0 与 CPU0 为不同真实原进程；cold v3 只接受 702/703 E08；CP schema 为 v3；每臂 13,288 updates|
-|normal_training_v4|实际 v4 train 与 CPU reader 的同组字段；前一合格端点的完整分支描述；两臂 checkpoint / proof|精确 v4 schema 待实现作者提供；连续 optimizer / 私有 order RNG / 累计访问，累计更新为 1661 × epoch；不能仅凭 schema 后缀接受|
+|normal_training_v4|实际 v4 train 与 CPU reader 的同组字段；前一合格端点的完整分支描述；两臂 checkpoint / proof|显式 v4 schema 已由停止的连续训练源码及评价来源白名单提供；连续 optimizer / 私有 order RNG / 累计访问，累计更新为 1661 × epoch；不能仅凭 schema 后缀接受|
 |recovered_failed_gpu_v2|原 v2 train SOURCE / SPEC / **GPU1** RAW / admission / PB / bootstrap / ROOT 故障记录 / 原 9 件产物；实际 **v3** recovery CPU SOURCE / SPEC / REPORT / Q / **CPU0** RAW / admission；ROOT adoption **v1** 记录|仅 701 E08；原 CP metadata 保留 v2 source/spec/admission；原 GPU1 始终在失败链；原 REPORT 缺失不由 synthetic REPORT 填充；CPU0 仅资格化既有端点，不改称原 GPU0|
 
 统一检查：两臂 CP 的真实源、seed、累计 epoch、缓存 Q、teacher、头工厂、有限 state、8/40497、proof、无待处理梯度，与相应 CPU Q 的 checkpoint_results 精确相连。加载后的 state digest 与 START 一致，评价前后 state 不变。无需在评价中重放完整训练轨迹；不能据此声称梯度或每步 AdamW 已独立重演。
@@ -90,3 +90,8 @@
 5. 全187或预锁分片的具体范围、每叶deadline/完整输出名称、全局assembly规则；预锁CPU numeric_protocol。没有足够耗时依据时，不承诺单叶全187或GPU-hours。
 
 上述是实现前明确的小范围契约，不扩大 N13 方法臂、训练预算或创新主张。其目的为尽快得到公平、完整、可复核的真实 AP；BCE 接近或几何 oracle 收益不替代该结果。
+
+
+## 2026-10-13 实现状态更新
+
+endpoint_lineage.py、evaluate.py、qualify_evaluation_cpu.py及EVALUATION_SOURCE_ABI.md已停写；Python3.8语法和一次独立聚焦静态审阅通过，ROOT核对关键接口。源码仅实现完整187配对，不含分片框架；尚未绑定或执行，没有新AP。实际像素存储、全部端点/来源/身份与准入仍由ROOT在科学执行前锁定。
