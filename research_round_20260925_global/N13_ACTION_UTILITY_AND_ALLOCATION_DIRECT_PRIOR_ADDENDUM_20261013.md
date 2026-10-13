@@ -61,3 +61,13 @@ s_{flip}=\delta_{actual}
 ## 核验状态
 
 已实际浏览 primary 论文/出版社、作者 arXiv 及作者仓库入口；代码只读在线文本/README，未执行。三份作者仓库已明确链接；其余未确认作者代码，未将第三方实现当作者原件。SegBlocks 的作者 HTML 与 RL-Axial 出版社正文可读；部分 CVF/OpenReview 机制来自其 primary 搜索索引正文，未据此声称已下载逐页阅读。SAM-Veteran 录用元数据仍待独立核验。本文仅含概述、链接及独立代数分析，不收录第三方全文。普通文档形成后 STOP，由 ROOT 审阅及同步；同步不等于假设成立。
+
+
+## 2026-10-13 有限SAR补核：提示分割与作者代码状态
+
+本轮多智能体限定三条primary检索，ROOT另实际打开作者arXiv摘要与DACF作者仓库目录/README。查询原文为 `SAR ship instance segmentation reinforcement utility budget adaptive computation 2025 2026`、`SAR ship instance segmentation mask refinement point uncertainty error prediction 2025 2026`、`"DACF-Net" "SAR" instance segmentation 2026`。前两条限制arxiv.org、ieeexplore.ieee.org、tandfonline.com、mdpi.com、sciencedirect.com、link.springer.com、github.com；第三条限制tandfonline.com、github.com、arxiv.org、ieeexplore.ieee.org。这是本轮定向补核，不能当作穷尽查新或无先例证明。
+
+- [Prompting Foundation Models for Zero-Shot Ship Instance Segmentation in SAR Imagery](https://arxiv.org/abs/2604.17920)，Mansour、Sica、Schmitt，arXiv v1日期2026-04-20。ROOT所读摘要为SAR数据训练YOLOv11检测框，再以框提示SAM2生成mask，无像素mask监督；当前发表venue和作者代码未确认。这与当前候选的固定修补器正负收益预测及sameK支持分配在所读机制上不同；此判断限于摘要，没有声称已逐页核对全文。其zero-shot范围不能扩写为整个系统未经SAR训练，也不能与当前全FIT mask监督方案按不同指标直接排名。
+- [DACF作者仓库](https://github.com/yang199809/DACF-Net)本次可见文件仍为.gitignore、LICENSE、README；[作者README](https://raw.githubusercontent.com/yang199809/DACF-Net/main/README.md)表示代码在整理以供发布。因此仍不可记为已取得可运行的完整作者基线，更不可记为已公平复现。此处不从README中的投稿措辞推断当前出版社发表状态。
+
+本轮没有取得会实质改变现有sameK utility强对照的新直接SAR行动净收益/学习预算分配证据；部分出版社正文访问受限，不能排除全文机制漏检。检索未命中不支持首次、领域空白、核心创新或TGRS成熟结论。继续保留既有稠密实际flip/error强替代及同等优化成本要求；当前N13两臂、训练长度与评价规则不改。该补核仅存摘要概述、检索范围和链接，不收录第三方论文全文。
