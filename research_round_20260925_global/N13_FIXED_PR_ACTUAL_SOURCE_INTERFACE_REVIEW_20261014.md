@@ -31,4 +31,15 @@
 
 ## 仍待完成
 
-还需登记真实诊断的端点与输入引用、exact L/域重构、width2的具体原实现与边缘规则、.50实际配对身份、资源及独立CPU验证。不能用普通距离阈值近似width2，不能把本次文字核对视作这些资格已通过。适配器已有非零/非连续CPU合成检查，但科学运行时版本、真实渲染与导出联接、大栅格成本及真实候选行动仍未验证。完成剩余三条预锁E24曲线后，按[诊断方案](N13_FIXED_PR_COVERAGE_REPAIRABILITY_DIAGNOSTIC_DRAFT_20261014.md)登记并执行，不新增训练轮次或选最好端点。
+还需登记真实诊断的端点与输入引用、exact L/域重构、width2在实际诊断逐query上的域重构、.50实际配对身份、资源及独立CPU验证。不能用普通距离阈值近似width2，不能把本次文字核对视作这些资格已通过。适配器已有非零/非连续CPU合成检查，但科学运行时版本、真实渲染与导出联接、大栅格成本及真实候选行动仍未验证。完成剩余三条预锁E24曲线后，按[诊断方案](N13_FIXED_PR_COVERAGE_REPAIRABILITY_DIAGNOSTIC_DRAFT_20261014.md)登记并执行，不新增训练轮次或选最好端点。
+
+
+## 2026-10-14补充：width2本地绑定文字核对
+
+701 E24 GPU/独立CPU实际0，下一702 E24准备及ROOT完整9,523项来源读回实际0后，ROOT在新GPU准入前核对了实际绑定作者generate_block_target，以及[N12 v02 run.py](multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N12_native_geometry_budget_region_coverage_source_20261013_02/run.py)、[qualify.py](multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N12_native_geometry_budget_region_coverage_source_20261013_02/qualify.py)、[common.py](multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N12_native_geometry_budget_region_coverage_source_20261013_02/common.py)文字。未导入或执行这些模块，未加载GT/图像/张量，冻结源码未改。
+
+run.author_boundary_function只提取绑定作者函数AST；GPU_leaf_CPU_regions核对布尔P与FP32 z形状、有限值及P==(z>0)，并用CPU FP32 P[None]显式boundary_width=2调用作者函数，再取label1。此width2计算由GPU叶中的CPU子步骤完成，不能误称CUDA边界卷积。
+
+作者函数使用5×5中心24/其余−1的核，零padding后取补、两路响应除25严格>.1，边界标1再将剩余前景标2。qualify.CPU_regions用独立int64积分窗口、整数响应≥3和同标签顺序；两套文本与[外部静态定义](N13_FIXED_PR_COVERAGE_REPAIRABILITY_DIAGNOSTIC_DRAFT_20261014.md)一致。全零/全一时D=inf及不确定性排序仅用于geometry_same_K，width2仍无条件按作者定义计算，不能借用这个回退。
+
+本次解决了函数、调用dtype/device、边缘和空/满语义的源码定位；没有执行新合成或SAR诊断，不认证新统计/适配器在实际科学环境的数值、域重构、输入身份或资源。新的Ω、固定701 LOG E48候选、原LOG完整输出重建及374+6实际身份仍须在剩余曲线后登记并核验。

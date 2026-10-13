@@ -145,4 +145,4 @@ width2 = (P AND n ≤ 22) OR (NOT P AND n ≥ 3)
 
 函数先将输入转FP32；第二路对已经padding的P取补，两路严格>.1后标边界1，再以剩余前景标2。由此推得全零P无width2；全一P在常规H/W≥5时为两像素图像边框；孤立单前景不生成完整5×5 halo。以上是二值输入的源码静态推论，不是本地执行证据；也不能套用sameK距离D的空/满不确定性回退。
 
-下个科学任务实际结束并完成原资格门后，ROOT须只读核对实际RefineMask_author_source及N12 v02 run.py/qualify.py/common.py的调用、转换和边缘规则，确认本地原件与上述定义一致。未加载真实P、未核验真实诊断域，当前曲线及停止决定不变。
+701 E24独立CPU实际结束、下一702 E24完整来源门通过后，ROOT已在新GPU准入前只读核对实际RefineMask_author_source及N12 v02 run.py/qualify.py/common.py。绑定函数、FP32/CPU调用、padding后取补、严格>.1、标签覆盖和独立整数/25计数与上述定义一致；sameK D的空/满回退没有用于width2。未加载真实P或运行边界计算，真实诊断域仍未核验，当前曲线及停止决定不变。见[本地接口补充](N13_FIXED_PR_ACTUAL_SOURCE_INTERFACE_REVIEW_20261014.md)。
