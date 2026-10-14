@@ -1,0 +1,14 @@
+{
+  "schema": "N16-paired-scout-endpoint-CPU-numeric-protocol-v1",
+  "status": "UNBOUND_DRAFT_NO_ACTUAL_REFERENCES",
+  "locked_before_GPU_training": true,
+  "locked_before_CPU_execution": true,
+  "abs_logits": 0.0001,
+  "abs_meanCE": 0.0001,
+  "rtol": 0.0,
+  "epochs": [8, 24],
+  "meanCE_algorithm": "same captured GPU F/e/L and same four FP32 weights; full per-image FP32 batch logits, FP32 CE(reduction=none), FP32 mean(weight*CE), then Python float accumulation in canonical dataset order and division by nonempty images; no sumweights renormalization",
+  "scope": "CPU factory versus independent explicit CPU logits pointwise absolute check; each CPU path fixed mean-image weighted CE versus recorded GPU aggregate absolute check; parameter and optimizer readback exact; no recorded GPU point logits, no GPU-CPU pointwise equivalence or selected-index/sign/rank/AP proof",
+  "failure_semantics": "numeric qualification failure; not AP outcome, no tolerance relaxation, no automatic retry",
+  "binding_contract": "ROOT makes a concrete immutable protocol before GPU training and includes its true reference in the GPU training SPEC CPU_endpoint_numeric_protocol and sources; later CPU SPEC pins the same protocol and the completed actual GPU report independently, avoiding circular reference"
+}
