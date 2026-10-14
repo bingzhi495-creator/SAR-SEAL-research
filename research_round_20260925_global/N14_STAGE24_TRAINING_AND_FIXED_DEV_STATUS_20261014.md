@@ -1,6 +1,6 @@
 # N14：固定stage24训练与DEV评价状态
 
-更新：2026-10-14T03:26:10.321Z。GPU训练与独立CPU端点均真实结束0，并完成ROOT固定stage24资格。没有N14 DEV/AP。
+更新：2026-10-14T04:03:14.147Z。固定stage24训练、完整DEV GPU/独立CPU及ROOT最终资格全部通过。模块未达到预锁AP门，当前MEMORY配方停止扩展。下文按形成顺序保留过程，当前结论见本段与文末。
 
 两组共同旧701 LOG E24父头，新阶段起点同时重建AdamW；新stage1—8/9—16/17—24之间连续恢复模型、AdamW及私有图像顺序，不重置阶段优化器。原E24＋新stage24不是连续48轮。模块是F+c的上下文记忆标量残差适配，额外2201参数未由容量对照排除。
 
@@ -57,3 +57,9 @@ ROOT首个元数据读取器79326在完整来源与Q引用门后因同一Windows
 原GPU35919已按实际新admission单次启动，10,066来源、101常规成功/9保留失败/110身份继承；只观察同一原任务，无自动重试。两组均取固定新stage24，全部187图/380 GT/18,700自然query、原生分数和oldLOG支持；全图F在GPU按原接口渲染，一次保存真实点输入供CPU同输入公式及mask/COCO12复算。[完整GPU入口](code/N14_stage24_fixed_DEV_GPU_runner_draft.py)和[合同](N14_STAGE24_FIXED_DEV_GPU_RUNNER_CONTRACT_20261014.md)已完成普通静态审阅并被ROOT绑定至新GPU执行；[独立CPU入口](code/N14_stage24_fixed_DEV_independent_CPU_replay_draft.py)和[合同](N14_STAGE24_FIXED_DEV_CPU_REPLAY_CONTRACT_20261014.md)已AST核验但尚UNBOUND/未执行。运行中的科学载荷、绑定源码与资格链未为同步读取；此处发布独立预绑定普通源码副本和已闭合纯数值总结。
 
 独立研究审阅建议：若过预锁AP门，额外2205参数的零输出plain残差MLP(257→8→14→1)可作为保持共同warm起始输出的容量替代，对照memory2201；均匀bank路由检查输入条件作用。两者只能缩小容量/条件偏置等替代解释，不自动独立证明memory检索创新，当前没有执行这些对照。若D不正，优先另锁GT无关utility支持选择的单一假设：既有22.53%覆盖限374条件匹配，sameK几何24.67%却只有+0.000729条件oracle，泛泛扩大边界证据弱。更宽候选域预测实际可纠错收益需新候选cache及强错误概率/普通排序对照；held-out oracle/AP75不升则否定该配方。GLDet提供空间邻域的待验先验，不证明当前无空间memory机制。首试AP结束前不启动新模块或融合。
+
+## 最终完整DEV合格结果
+
+GPU35919/CPU71805及ROOT60866均真实退出0并核验（402.297/374.047秒科学运行；103常规/9失败/112身份、10,271来源）。全18,700 query同GPU输入计算、strict sign/RLE与官方COCO12一致。BASE AP67.686611781，MEMORY67.683479457；P=−0.003132324，D=−0.415905491，C1不通过，停止本配方追加seed/budget和融合，未推断方法总体失效/充分收敛。当前无科学worker运行。
+
+完整数值、成本和适用范围见[最终结果](N14_FIXED24_FAIR_COMPARISON_QUALIFIED_RESULT_AND_STOP_20261014.md)；下一[行动效用假设](N15_ACTION_UTILITY_SUPPORT_SELECTION_NEXT_HYPOTHESIS_20261014.md)仍待正式登记及实际执行。训练loss较低没有成为mask AP增益，不宣称核心创新或TGRS就绪。

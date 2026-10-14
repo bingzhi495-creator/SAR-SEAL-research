@@ -3,7 +3,7 @@
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-14**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 
-**当前单模块试训（N14）：** 固定新stage24两组训练、独立CPU及ROOT核验均通过，每臂39,864追加更新/24个完整图像顺序/三段trace/AdamW step通过。最终FIT BCE基线0.3093457609、模块0.3049729146，CPU/GPU均值误差≤3.08e-9，尚不能当AP收益。完整固定DEV187图/380 GT/all100原GPU35919已单次启动，保留原分数和LOG支持；独立同GPU点输入CPU入口已形成但未执行，无N14核验后AP或创新结论。[第24轮实际资格及当前评价](research_round_20260925_global/N14_STAGE24_TRAINING_AND_FIXED_DEV_STATUS_20261014.md)、[预锁协议](research_round_20260925_global/N14_CONTEXT_MEMORY_SINGLE_MODULE_EXPLORATION_PROTOCOL_20261014.md)、[首次AP前的停止差值解释](research_round_20260925_global/N14_FIXED24_FIRST_SEED_DECISION_CLARIFICATION_20261014.md)。
+**当前单模块结果（N14）：** 固定新stage24训练与完整DEV187/all100 GPU、独立CPU及ROOT资格均通过（每臂39,864更新，全18,700 query同GPU输入sign/RLE/COCO12一致）。BASE AP67.686612、MEMORY67.683479；模块−基线−0.003132点、相对原较强E24端点−0.415905点，C1未通过，按预锁规则停止该配方追加seed/预算和融合。训练BCE下降约1.41%没有转为AP收益；不推断方法总体失效或充分收敛。[完整合格结果与停止决定](research_round_20260925_global/N14_FIXED24_FAIR_COMPARISON_QUALIFIED_RESULT_AND_STOP_20261014.md)、[首次AP前规则](research_round_20260925_global/N14_FIXED24_FIRST_SEED_DECISION_CLARIFICATION_20261014.md)。下一[行动效用支持选择假设](research_round_20260925_global/N15_ACTION_UTILITY_SUPPORT_SELECTION_NEXT_HYPOTHESIS_20261014.md)尚未登记/执行，先验证固定强refiner在更宽GT无关池中的可纠错机会，无核心创新或TGRS完成依据。
 
 **新增直接先例（GLDet）：** 用户提供的TGRS2025论文含实例分割，原文SSDD/HRSID mask AP71.3/58.6、整网500轮。已核全文/表格；完整作者代码尚未确认。空间扫描/邻域卷积/方向pool需要新空间载体，当前点头不能原样接入；保持首试，随后再评一个局部候选，不直接比较不同划分AP。[原论文综述](research_round_20260925_global/GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)。
 
