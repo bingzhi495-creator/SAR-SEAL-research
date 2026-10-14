@@ -1,6 +1,6 @@
 # N17 固定DEV：执行准备与边界
 
-2026-10-15。完整24轮GPU及独立E8/E24 CPU端点均原实际退出0、Root完整资格完成；新DEV首段原GPU122的01/02（监督18818/11194）均实际退出1，分别为COCO字段接口和Root漏列旧预测Source；未生成START/REPORT/新预测。19个失败完整保留，独立03绑定修正准备中；没有新AP。下一步固定主E24 atmost完整187图/380GT/18700自然query，在原冻结teacher/PR/C/K/类别分数和query顺序下比较LOCAL与CENTER。
+2026-10-15。完整24轮GPU及独立E8/E24 CPU端点均原实际退出0、Root完整资格完成；新DEV首段原GPU122的01/02（监督18818/11194）均实际退出1，分别为COCO字段接口和Root漏列旧预测Source；未生成START/REPORT/新预测。19个失败完整保留，独立03已单次启动（原监督83596），实际终止和新捕获资格仍待完成；没有新AP。下一步固定主E24 atmost完整187图/380GT/18700自然query，在原冻结teacher/PR/C/K/类别分数和query顺序下比较LOCAL与CENTER。
 
 [数值body](code/N17_ALL100_LOCAL_CENTER_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)已冻结、一次定向静态审阅READY、发布副本一项tiny SYN原退出0；普通body接口证据不代替实际DEV载体或GPU输出资格。[共享载体必要ABI](N17_FIXEDDEV_SHARED_CARRIER_GPU_REQUIRED_ABI_UNBOUND_20261015_01.md)记录旧物理bundle与shared成员、索引映射、四模型注入、callback与新writer差异，Root实际核了四段metadata完整关联，真实bundle张量校验仍留给下一original owned GPU任务。
 
@@ -41,3 +41,10 @@ Root监督单一科学任务，CPU01/2线程/GPU0，allocator4096MiB/整卡8192M
 ## 第二次实际失败已保留，03尚未启动
 
 见[两次接口/清单失败与恢复](N17_FIRSTDEV_REFERENCE_ABI_FAILURE_AND_RECOVERY_20261015.md)。正常仍122、失败19/总141身份pin，旧结果12个导出strictrefs及复用控制全187顺序已核验并补齐。不存在运行中科学任务；Root等待仅保留19门的新独立03，预定科学配方不改。
+
+
+## 第三版原GPU已启动
+
+[入口03](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_GPU_SHARD_ROOT_UNBOUND_DRAFT_20261015_03.py)105070B/SHA4348aba0d60ceacd0afeb6135019972f19a23ac4428ada0866240472573aa5c5，[合同03](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_GPU_SHARD_ROOT_UNBOUND_CONTRACT_20261015_03.md)及[合成检查](code/test_N17_FIXEDDEV_GPU_SHARD_ROOT_TINY_SYNTHETIC_ONLY_20261015_03.py)保存。发布副本同一项SYN原退出0（test0.141秒），一次定向静态审阅READY。新spec完整保留原02所有Source，并补12个已核旧导出ref；native/R各187图18700query的原顺序全部吻合。正常122/失败19/141身份pin的纯原前缀通过后，Root新单次启动首47图（监督83596）。
+
+03只增加失败19完整身份门及本次显式绑定纠错，COCO、选点、PR、writer和主门不改。尚无新REPORT、AP或创新结论；实际运行中Source/载荷/资格链不为同步读取。后续只观察原监督句柄，终止后按原资格规则推进，其余分区不自动重启。
