@@ -39,3 +39,9 @@ GPU04/05改为每图一个真实闭合bundle、内部仅严格字符串member ID
 CPU03/04改为每图真实bundle只load一次，检查member、registry、使用集合严格完整；原9字段数字证明和12策略COCO规则保留。合成100query/12策略/K0/完整成员通过，8类异常拒绝；独立一次静态审阅未发现确定阻断。CPU真实完整证明尚未执行。
 
 [逐图GPU源码04](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_UNBOUND_20261014_04.py)、[bundle合同](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_BUNDLE_CONTRACT_20261014_04.md)、[现行GPU05](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_UNBOUND_20261014_05.py)、[现行CPU04](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_CPU_UNBOUND_20261014_04.py)、[CPU逐图adapter](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_CPU_ADAPTER_UNBOUND_20261014_02.py)。本仓库仅发布独立普通副本；运行中的科学捕获、绑定SOURCE与资格链没有为同步而读取、复制或哈希。
+
+## 逐图版实际截止与固定分段补充（2026-10-14T11:30:11.518Z）
+
+逐图版原监督session72971已在1800.375秒真实受控退出1，149/187图；held exit1、reaped、原birth消失均核验，abort为QUALIFIED_ORIGINAL_LEAF_RESOURCE_OR_DEADLINE，error空、wait错误无、GPU观察错误无；整卡观察峰值4497MiB，最小可用RAM31018995712字节。原完整REPORT缺失，无完整AP，失败部分捕获不复用。所有15个失败原样保留，此结果不是方法效用失败。
+
+现已在原实际终止核验后锁定[固定ordinal四段执行补充](N16_FIXED_FULLDEV_EXECUTION_PARTITION_SUPPLEMENT_20261014.md)。每段全100query/12策略、相同冻结模型与数值规则；四段各实际GPU0闭合，独立CPU汇总完整18700后统一12COCO，再独立全scopeCPU证明。各bundle保留原shard binding，不能改造来源；训练owner107/108和后续各owner明确join。总评价时长增加，训练预算、数据、候选、预测、E24主端点/指标/停止门不变；不平均分段AP、不减证据范围、不复用失败partial。新分段科学任务尚未启动，入口正在普通研发。
