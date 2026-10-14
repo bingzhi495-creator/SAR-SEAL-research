@@ -4,7 +4,7 @@
 
 
 
-**最新进展（N16）：** 完整FIT缓存的GPU、独立CPU和ROOT资格均原实际退出0；741图、3035136点、全74100自然query。固定24轮Utility/Error配对训练已原实际退出0，每臂17784更新；独立E8/E24端点CPU核验已启动，尚无新增AP。[正式准入与当前任务](research_round_20260925_global/N16_FULLFIT_CACHE_EXECUTION_STATUS_20261014.md)。
+**最新进展（N16）：** 完整FIT缓存的GPU、独立CPU和ROOT资格均原实际退出0；741图、3035136点、全74100自然query。固定24轮Utility/Error配对训练已原实际退出0，每臂17784更新；独立E8/E24端点CPU与ROOT最终资格均已通过，尚无新增AP。[正式准入与当前任务](research_round_20260925_global/N16_FULLFIT_CACHE_EXECUTION_STATUS_20261014.md)。
 
 **最近已完成的单模块结果（N14）：** 固定新stage24训练与完整DEV187/all100 GPU、独立CPU及ROOT资格均通过（每臂39,864更新，全18,700 query同GPU输入sign/RLE/COCO12一致）。BASE AP67.686612、MEMORY67.683479；模块−基线−0.003132点、相对原较强E24端点−0.415905点，C1未通过，按预锁规则停止该配方追加seed/预算和融合。训练BCE下降约1.41%没有转为AP收益；不推断方法总体失效或充分收敛。[完整合格结果与停止决定](research_round_20260925_global/N14_FIXED24_FAIR_COMPARISON_QUALIFIED_RESULT_AND_STOP_20261014.md)、[首次AP前规则](research_round_20260925_global/N14_FIXED24_FIRST_SEED_DECISION_CLARIFICATION_20261014.md)。下一轮[固定强E24行动机会诊断](refine-logs/N15_FIXED_ACTION_OPPORTUNITY_20261014_01/EXPERIMENT_PLAN.md)已于UTC04:31:14预登记，[真实GPU、独立CPU与ROOT诊断现已全部合格](research_round_20260925_global/N15_FIXED_E24_ACTION_OPPORTUNITY_QUALIFIED_RESULT_AND_NEXT_STEP_20261014.md)：同K的C行动oracle相对Omega平均+1.461603 IoU点，286/374>=.5点，高IoU实例增加39，预锁机会门通过。当前是GT理想行动选择上界，没有学习选择器的AP结果，[N16唯一公平scout协议现已锁定](research_round_20260925_global/N16_FAIR_UTILITY_SELECTOR_LOCKED_TRAINING_DESIGN_20261014.md)，已核原matcher负query不受mask监督，双方共同扩展背景代理target并纠正分层采样比例；新完整缓存以等价快速构域实现单次执行中；两个实现失败和原641/741受控时限失败均保留；两scout尚未训练。固定无GT候选C、相同K预算和374匹配条件人口，区分实际PR可修补机会、避免伤害及理想GT上界。GO门提前锁定，没有新AP或核心创新结论。原[下一假设](research_round_20260925_global/N15_ACTION_UTILITY_SUPPORT_SELECTION_NEXT_HYPOTHESIS_20261014.md)保留提出时状态。
 
@@ -167,10 +167,12 @@ N13核验失败后，已在新的数值执行前保存[固定单图诊断登记]
 
 单图探针元数据原44062实际0（9,975来源、94成功、原8失败及新增1失败、总103身份）；ROOT准入后，原GPU33452已单次启动。比较原容差不变，不生成Q／AP，数值原因尚待实际结束和ROOT读回。
 
-最新执行状态：[N16全FIT缓存已实际完成、待独立CPU核验](research_round_20260925_global/N16_FULLFIT_CACHE_EXECUTION_STATUS_20261014.md)。正常退出0，741图/3035136点/611.937秒；完整独立CPU核验及ROOT最终准入均已实际通过；固定24轮配对scout训练已原实际退出0，独立端点核验运行中，尚无新增AP。
+最新执行状态：[N16全FIT缓存已实际完成、待独立CPU核验](research_round_20260925_global/N16_FULLFIT_CACHE_EXECUTION_STATUS_20261014.md)。正常退出0，741图/3035136点/611.937秒；完整独立CPU核验及ROOT最终准入均已实际通过；固定24轮配对scout训练已原实际退出0，独立端点核验与ROOT最终资格已通过，尚无新增AP。
 
 [独立机制与结果解释矩阵](research_round_20260925_global/N16_FIXED_PROTOCOL_MECHANISM_RESULT_INTERPRETATION_20261014.md)：净纠错不等于AP；背景代理监督、dense-flip强对照及完整部署成本的主张边界。训练端点与部署选点的独立CPU核验源码已保存为未绑定草稿，合成通过不等于实际资格。
 
 **N16正式训练准入：** GPU和独立CPU全部741图/3035136点实际通过，combined最大绝对误差1.52587890625e-5、实际修正符号精确；ROOT闭合通过后已启动固定24轮Utility/Error配对训练任务。E24主评价尚未执行。
 
 **固定24轮已完成：** 两臂各17784更新、72843264点暴露，原GPU任务正常退出0；端点独立CPU核验已启动，完整DEV AP尚未执行。训练完成不等于方法涨点或投稿资格。
+
+**固定端点完整资格通过：** E8/E24模型、实际AdamW状态与计数、私有图序、完整训练记录和独立CPU前向/固定损失均通过，原GPU/CPU/ROOT均实际0。当前准备完整DEV187/all100的固定E24主评价；尚无新AP、部署选点或SOTA/TGRS结论。
