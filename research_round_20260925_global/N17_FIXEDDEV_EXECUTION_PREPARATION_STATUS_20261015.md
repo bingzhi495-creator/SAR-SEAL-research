@@ -1,6 +1,6 @@
 # N17 固定DEV：执行准备与边界
 
-2026-10-15。完整24轮配对训练及独立E8/E24端点资格完成。五个GPU分区全部原真实退出0，187图/18700自然query/10种策略捕获和完整导出metadata已核；最后原73897监督1246.547秒，整卡观察峰值3062MiB，最低可用RAM24.26GB。Root先通过127正常+20失败纯原RAW（f1f8dc），再核最后46图全部Source/spec/ad/phase/bootstrap与capture/export。失败partial不复用，正常127/失败20/147身份pin。首个独立CPU数值分区已启动（owner127，原监督30221，[0,47)），最终COCO尚未执行，当前没有新AP。模型、24轮训练、主E24-atmost及停止规则不变。
+2026-10-15。完整24轮配对训练及独立E8/E24端点资格完成。五个GPU分区全部原真实退出0，187图/18700自然query/10策略捕获与完整导出metadata已核。首独立CPU原30221实际退出1，144.547秒；Root先通过127正常+21失败纯原RAW，确认为Root构造sources遗漏解码器引用，未运行数值、REPORT不存在。正常127/失败21/148实际终态身份，失败partial不复用；CPU03/final03/post02正在做失败链与来源闭合最小适配。当前没有运行中科学leaf、新AP或创新结论，科学配方不变。
 
 [数值body](code/N17_ALL100_LOCAL_CENTER_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)已冻结、一次定向静态审阅READY、发布副本一项tiny SYN原退出0；普通body接口证据不代替实际DEV载体或GPU输出资格。[共享载体必要ABI](N17_FIXEDDEV_SHARED_CARRIER_GPU_REQUIRED_ABI_UNBOUND_20261015_01.md)记录旧物理bundle与shared成员、索引映射、四模型注入、callback与新writer差异，Root实际核了四段metadata完整关联，真实bundle张量校验仍留给下一original owned GPU任务。
 
@@ -122,3 +122,8 @@ GLDet原文含检测与实例分割，整网500轮结果见[已核原论文](GLD
 五分区187图输出metadata已完成；这不能代替实际数值/选点/mask/RLE独立核验或统一COCO。首CPU原30221正在运行，GPU不可见、CPU01两线程、资源限制和无自动重试保持。后置ROOT入口已完成一次独立静态审阅，等待原最终COCO任务真实结束后执行。
 
 [GLDet与当前N17的技术差异及最少后续证据](GLDET_N17_INCREMENTAL_RESEARCH_NOTE_20261015.md)：已有模块和邻域先例不直接算创新，先取得主结果；负则停止当前配方并分析已存在输出，正则按预锁重复。
+
+
+## 首独立CPU来源遗漏已定位
+
+[实际失败与最小修复](N17_CPU_SOURCE_REFERENCE_FAILURE_AND_REPAIR_20261015.md)记录原终态和根因。启动前结构检查已准确拒绝原漏引用spec并通过合成回归，不替代科学资格。修正版尚未实际运行，全部GPU原件及训练/主门保留。
