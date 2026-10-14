@@ -4,6 +4,7 @@
 
 ## 当前状态
 
+- 新增用户提供的GLDet正式TGRS2025原论文综述：已核全文及方法/表格，包含mask任务，SSDD/HRSID原文mask AP71.3/58.6、500轮整网训练。不能同历史DEV68.x直接比，完整作者实现未确认；当前点头缺空间邻域，后续局部候选需新独立cache，不改变正在运行的memory首试。[GLDet综述](../research_round_20260925_global/GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)。
 - 已核验N13三seed E48差值均负，停止该GEO联合配方扩展；全部E24曲线也已核验。新单图image113探针33452及ROOT93075均实际0，支持仅该两对F渲染差异，旧失败9不删，整374对未授予Q。[探针结果](../research_round_20260925_global/N13_IMAGE113_NUMERICAL_PROBE_RESULT_20261014.md)。
 - N14已单次启动共同LOG E24父头后的两分支新阶段1—8轮任务，预锁主端点24轮，每branch同缓存/LOG支持/原分数/resetAdamW，暂无N14 AP结果或创新证明。[预锁协议](../research_round_20260925_global/N14_CONTEXT_MEMORY_SINGLE_MODULE_EXPLORATION_PROTOCOL_20261014.md)；[微信资料核查](../research_round_20260925_global/WECHAT_366_MODULES_PRIMARY_SOURCE_REVIEW_20261014.md)。
 - 固定48轮/三个配对种子方案已预登记；冻结GPU关系与独立CPU缓存资格已通过，原full-L CPU allclose在6/741图失败保留为诊断。

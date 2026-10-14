@@ -5,6 +5,8 @@
 
 **当前单模块试训（N14）：** 已单次启动共同LOG E24父头后的BASE_CONTINUATION/MEMORY_ADDON等预算任务，首leaf为新阶段1—8轮、每分支13,288更新，预锁主端点为新阶段24轮。当前处于启动校验/运行阶段，尚无N14 AP结果；两分支均重置AdamW，同LOG支持、缓存与自然query分数，新增2201参数。逐轮FIT损失不是AP收益；有重复收益后才补容量/检索对照和融合。[协议与执行顺序](research_round_20260925_global/N14_CONTEXT_MEMORY_SINGLE_MODULE_EXPLORATION_PROTOCOL_20261014.md)、[微信资料原始来源核查](research_round_20260925_global/WECHAT_366_MODULES_PRIMARY_SOURCE_REVIEW_20261014.md)。
 
+**新增直接先例（GLDet）：** 用户提供的TGRS2025论文含实例分割，原文SSDD/HRSID mask AP71.3/58.6、整网500轮。已核全文/表格；完整作者代码尚未确认。空间扫描/邻域卷积/方向pool需要新空间载体，当前点头不能原样接入；保持首试，随后再评一个局部候选，不直接比较不同划分AP。[原论文综述](research_round_20260925_global/GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)。
+
 **当前已核验结果（N13）：** 三种子固定E48 LOG/GEO均值67.768660/67.579076 AP，配对差−0.189583点，三组均负，已停止该GEO联合配方扩展。全部E24曲线已核验，LOG/GEO均值67.992117/67.781883。真实诊断CPU失败9保留；image113四路探针实际0并ROOT核验，仅支持此例CPU/GPU特征渲染差异，同GPU F的CPU PR满足原容差，全374对尚未qualified。[局部探针结果](research_round_20260925_global/N13_IMAGE113_NUMERICAL_PROBE_RESULT_20261014.md)。无正式TEST、跨集或核心创新/TGRS结论。
 
 
