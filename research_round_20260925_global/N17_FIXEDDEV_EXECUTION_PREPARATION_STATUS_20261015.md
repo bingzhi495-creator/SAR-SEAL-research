@@ -24,3 +24,10 @@ GPU外层已形成、修正三处确定构造问题并过一次小SYN/定向静�
 
 
 [首轮失败与独立02恢复说明](N17_FIRSTDEV_REFERENCE_ABI_FAILURE_AND_RECOVERY_20261015.md)：24轮训练资格不受影响，没有新DEV AP；新执行尚未启动。
+
+
+## 独立02修正版已原启动
+
+正常122+失败18/140身份pin与全部原失败已核；独立02首47图任务已单次启动（原监督11194），尚待原实际退出与捕获资格；没有新AP。修正仅COCO内嵌字段和失败18门，科学配方不变。新[入口02](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_GPU_SHARD_ROOT_UNBOUND_DRAFT_20261015_02.py)101252字节/SHA c9d82140b39a8d7f664cfefb3290ba5974ddf2e786e2fd0be96c00993960d106，[合同02](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_GPU_SHARD_ROOT_UNBOUND_CONTRACT_20261015_02.md)与[小型合成检查](code/test_N17_FIXEDDEV_GPU_SHARD_ROOT_TINY_SYNTHETIC_ONLY_20261015_02.py)保存；发布副本同一项SYN原实际0（0.058秒），一次定向静态审阅READY，均不代替真实DEV资格。
+
+Root监督单一科学任务，CPU01/2线程/GPU0，allocator4096MiB/整卡8192MiB、RSS16GiB/1800秒、无自动重试；数据盘新输出，原01未改或复用。同步仅普通发布副本和状态，不读取运行中Source/载荷/资格链。
