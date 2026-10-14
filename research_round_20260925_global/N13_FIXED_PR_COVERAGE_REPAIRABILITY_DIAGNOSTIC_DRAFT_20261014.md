@@ -172,3 +172,9 @@ width2 = (P AND n ≤ 22) OR (NOT P AND n ≥ 3)
 [接口及有限检查](N13_FIXED_PR_PRECOMPUTED_POPULATION_AND_DISTANCE_INTERFACE_CHECK_20261014.md)新增matched_diagnostics预计算JSON路径，与原matched_instances二选一，复用同一身份/人口锁/分母/距离带键及汇总代码，不再调用diagnose_instance。连接层显式distance_bands仅在原LOG重建门后透传，不构造距离公式。这样可逐对保留JSON并释放栅格；没有测量真实内存或时间收益。
 
 59项/10拒绝、35项小例检查和独立静态审阅通过，仅SYNTHETIC_ONLY；预计算数据、来源、候选独立性及距离身份仍未认证。最后703 E24 GPU实际0，独立CPU原92886已单次启动；实际结束和完整ROOT曲线资格后才登记真实374+6诊断，不提前宣称效果或调整停止决定。
+
+## 2026-10-14：全部固定曲线合格，真实诊断已登记启动
+
+全部三个E24已核验，LOG/GEO均值67.992117/67.781883，配对差−0.210233点；E48主结论及停止不变。实际载体为预锁第一701 LOG E48，人口来自原生.50匹配已核验的374对与6个未匹配GT。真实执行元数据原24101实际0，完整9,579来源、93常规/8失败/101身份登记后，科学原GPU59604单次启动；尚无诊断结果资格。固定K及候选不依赖所选集合；GT只作身份复核及离线统计。距离额外固定为原生in-domain chessboard D≤1、1<D≤2、2<D≤4、D>4/∞四带，空/满为∞；它不替代作者width2。详见[完整曲线与启动范围](N13_FIXED24_THREE_SEED_CURVE_RESULT_AND_REAL_DIAGNOSTIC_START_20261014.md)。实际GPU后还需独立CPU/ROOT资格，不能将启动当成效用、AP提升或核心创新。
+
+GPU原59604已实际正常结束165.468秒，held handle／reaped／原出生身份消失通过；第94项RAW-only终止合并门实际0。独立CPU资格稿已由子agent编写及另一agent静态核对，ROOT确认GPU owner CUDA参数为0并修正UNBOUND稿，确认实际外部ABI；[CPU研发副本](code/N13_fixed_PR_real_diagnostic_cpu_qualification_draft.py)的独立私有执行副本已登记并单次启动，尚未完成资格。CPU预锁实际carrier.numeric_protocol中的支持atol/rtol=10⁻⁴，并另锁公式比较atol/rtol=10⁻⁴；近零符号差按原实用规则记录、不是认证误差界，不用CPU近似L或符号替换GPU候选。CPU元数据原44623实际0，完整9,967来源、94常规／8失败／102身份通过ROOT准入，原CPU4404单次启动，完整资格仍待实际CPU／ROOT读回。
