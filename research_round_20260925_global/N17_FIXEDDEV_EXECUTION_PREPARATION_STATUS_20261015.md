@@ -1,10 +1,10 @@
 # N17 固定DEV：执行准备与边界
 
-2026-10-15。完整24轮GPU及独立E8/E24 CPU训练资格完成。首段原GPU83596真实退出0（1409.422秒），47图/4700自然query、47物理捕获SHA、10种策略共47000预测及原导出顺序/非seg字段均经Root metadata核对；独立CPU数值资格与完整187图AP仍待完成。第二段原GPU59160已启动，[47,94)固定范围和科学配方不变。正常123/失败19/142身份pin，原两次接口/清单错误完整保留。
+2026-10-15。完整24轮GPU及独立E8/E24 CPU训练资格完成。首段原GPU83596真实退出0、47图metadata核验完成；第二段原59160在1800.329秒受控时限中断，REPORT不存在，未获合格结果。失败20完整保留，正常123/失败20/143身份pin，失败partial不复用。新五个物理执行分区已预锁，Source04已冻结并启动第二物理分区[47,70)，原监督64568；CPU02/final02准备中；模型/训练/评价主门与完整187人口不变。尚无新AP。
 
 [数值body](code/N17_ALL100_LOCAL_CENTER_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)已冻结、一次定向静态审阅READY、发布副本一项tiny SYN原退出0；普通body接口证据不代替实际DEV载体或GPU输出资格。[共享载体必要ABI](N17_FIXEDDEV_SHARED_CARRIER_GPU_REQUIRED_ABI_UNBOUND_20261015_01.md)记录旧物理bundle与shared成员、索引映射、四模型注入、callback与新writer差异，Root实际核了四段metadata完整关联，真实bundle张量校验仍留给下一original owned GPU任务。
 
-沿旧成功四段[0,47)/[47,94)/[94,141)/[141,187)作固定执行分区，不改变训练或科学评价配方；后续8个profile保留E8/E24×两ERROR臂×atmost/exact，主仅E24 atmost，不从输出事后挑最高。四段最终合并后统一全DEV COCO，不平均各段AP。原native与强R预测只有在完整绑定和导出条件吻合时复用；新CUDA模型logits、选点与PR动作需新capture及独立CPU资格。
+原先沿旧成功四段[0,47)/[47,94)/[94,141)/[141,187)作固定执行分区；第二段受控时限失败后，现按[五段执行补充](N17_CONTROLLED_DEADLINE_AND_FIVE_PARTITION_EXECUTION_AMENDMENT_20261015.md)执行，不改变训练或科学评价配方；后续8个profile保留E8/E24×两ERROR臂×atmost/exact，主仅E24 atmost，不从输出事后挑最高。当前五个物理分区最终合并后统一全DEV COCO，不平均各段AP。原native与强R预测只有在完整绑定和导出条件吻合时复用；新CUDA模型logits、选点与PR动作需新capture及独立CPU资格。
 
 GPU外层已形成、修正三处确定构造问题并过一次小SYN/定向静态审阅，Root冻结首段Source/spec/admission后原运行已终止1；selected CPU proof core已冻结/审阅但未真实执行，新bundle与参数解码合同已明确。首组增益门与重复停止规则见[预锁计划](N17_LOCAL_NATIVE_LOGIT_ERROR_SELECTOR_EXPERIMENT_PLAN_20261015.md)。[已完成训练资格](N17_ENDPOINT_CPU_QUALIFICATION_ENTRY_AND_STATUS_20261015.md)不能升级为精度、机制创新、SOTA或TGRS结论。
 
@@ -78,3 +78,8 @@ CPU own Source gate与CUDAempty独立，失败9–19保留；只有父GPU实际0
 [局部粗mask/ERROR/选点的直接先例核查](N17_LOCAL_NATIVE_L_ERROR_SCOUT_TARGETED_PRIOR_CHECK_20261015.md)保存SEED（IEEE Access2026）、QuBER（ICRA2025）、MagNet与PointRend的一手原文/代码差异及检索记录。错误估计后精修、预测邻域辅助选点已有先例；e33三类属于SEED多配置代码分支，期刊最终配方尚未核到全文。当前N17是同冻结PR预算下真实八邻相对中心复制的信息检验，尚不证明空间拓扑机制或创新。Cross-model指定后端未可用，独立数据库与全文缺口明示，不称穷尽查新。
 
 此补充未改变现有训练/评价/重复门；GPU第二段原59160仍待实际终态，完整AP与独立数值资格未完成。
+
+
+## 第二段受控中断，五段补充已锁
+
+[时限事件及五物理分区执行补充](N17_CONTROLLED_DEADLINE_AND_FIVE_PARTITION_EXECUTION_AMENDMENT_20261015.md)保存实际原终态、失败partial非资格、旧Source03首段复用范围及新分区。原4分区接口版本不改写，新GPU04/CPU02/final02最小适配；模型、数值算法、主解释器不改。当前没有运行中科学任务，等待新Source冻结/限定检查后再由Root单次启动。
