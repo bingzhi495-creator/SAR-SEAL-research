@@ -1,0 +1,9 @@
+# UNBOUND N17 FIT-only CPU119 cache entry
+
+New typed N17 schema is an explicit supplemental field; old schema/locked_protocol remain solely the inherited parent-gate ABI/ancestral recipe. New N17 experiment lock and initialization metadata are independently closed; no old Source or protocol is rewritten. Own normal119/failed17/pins136; explicit inherited_source_gate(path,spec,cpu=True), never hard118 final source_gate/run.
+
+Pure original119 terminal RAW prefix passes before first scientific hash/import; parent module membership precedes strict3ref loading. Gate closes original qualified full FIT GPU105/CPU106/Root cache, report/labels/point refs; original N16 fullDEV Root qualification is preserved. ColdCPU Torch2.0.1+cu118/NumPy1.23.5/CV2 4.8.0, affinity01/two threads/1800/RSS16GiB/wholeGPU8192/no retry.
+
+Calls new six-callback body for original741 packets/native-L carriers; output only neighbors8.npy per image plus manifest/Q. Independent NumPy and actual NPY readback byte-exact, full row identity/query/native-grid point order and original sampled center byte-exact. No new GT file/matching/teacher/PR/optimizer/DEV prediction or AP. Old packet includes existing GT-derived labels; those are preserved. Final Source/spec/admission/library/CPU RNG checks retained. Own Q remains pending actual0/Root scope qualification.
+
+Two tiny stdlib contract/real BOM metadata tests passed after RED-GREEN (including corrected utf-8-sig codec); four portable body reader/NPY/identity/sign-zero/point-order cases passed. Once targeted static review accepted wrapper SHA8fe49c102aa4be611cb8d859c55ef2cd0e453d33b88bdc953af563b687e21a1b and body SHA8b93e98690cc01549a1e7474d4d7d422290637b604245b77ccef3aaf9ead9bc6. These support interface readiness, not actual741 extraction, training eligibility or efficacy.

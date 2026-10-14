@@ -1,0 +1,15 @@
+# N17 真实FIT邻域缓存：冻结与执行状态
+
+2026-10-15。**已形成首实际取数前的新实验锁与确定性初态元数据；真实cache提取尚未启动。** 原N16完整主门STOP仍保持，不补旧162/163。当前只准备ERROR真实八邻与同容量中心复制，未宣称创新或涨点。
+
+新锁于2026-10-14T17:11:08.581Z形成，保留旧N16锁作为教师/PR/采样祖先语义；新N17研究定义独立字段绑定，不能覆盖旧锁。已确认原合格FIT741图/1661GT/74100query及3035136样本有独立full-native-L载体，新薄cache理论FP32 payload97124352字节，741个.npy另计headers与manifest。取数不新跑teacher，原labels/weights/query/point顺序和包字节保留；不使用DEV生成FIT。
+
+私有初始化202610150171/172/173由旧513 factory生成原四tensor后只加8个零列；同两臂状态精确且存储独立、外部CPU RNG恢复、无CUDA初始化。使用与冻结factory逐字一致的普通发布源码生成确定性参数元数据，原工具退出0；只计算合成初始参数，未加载SAR数据/训练权重、未训练。完整digest契约及每tensor SHA见[初始化元数据](N17_INITIALIZATION_METADATA_20261015.json)。首171四张量组合digest为`5b9f58a3dece9720f84b257d03ae6928a7129e6f364e218f6bd49475d5fb7aa7`。
+
+原背景标签为empty-set训练代理，不能称普遍真背景；载入旧packet会载入已有训练标签及GT派生元数据，新增邻域只依赖query/native-L/flat坐标，没有新GT文件或GT邻域选择。新body用独立Torch/NumPy原坐标公式和NPY读回逐点字节exact；原shape/边角/同query/点序/中心值需真实741完整核验，合成通过不能替代这一项。
+
+执行入口保留既有metadata-gate的旧schema ABI，同时新增明确N17 schema及独立新锁；CPU参数显式CPUempty、affinity01、两线程、1800秒、单leaf/无自动重试。取数入口不得调用旧硬118完整COCO函数；父119正常/17失败/136pin与严格Source成员/原身份先闭合，原资格冻结不改写。新cacheQ仍必须原actual0与Root完整检查才有训练资格。
+
+尚待真实提取与资格、四参新训练入口、配对24轮端点和固定DEV全100评价；当前没有新的科学作业或AP。研究成功门、重复规则及机制界限见[公平计划](N17_LOCAL_NATIVE_LOGIT_ERROR_SELECTOR_EXPERIMENT_PLAN_20261015.md)。
+
+普通[CPU入口](code/N17_FIT_NATIVE_NEIGHBOR_CACHE_CPU_ROOT_UNBOUND_DRAFT_20261015_01.py)、[入口合同](code/N17_FIT_NATIVE_NEIGHBOR_CACHE_CPU_ROOT_UNBOUND_DRAFT_20261015_01.md)、[取数body](code/N17_FIT_NATIVE_L_NEIGHBOR_CACHE_BODY_UNBOUND_DRAFT_20261015_01.py)及[body合同](code/N17_FIT_NATIVE_L_NEIGHBOR_CACHE_BODY_UNBOUND_DRAFT_20261015_01.md)已准备；入口两项/可移植body四项小SYN通过，一次接口静态审阅通过。仍是普通接口证据，真实数据资格待原任务结束。
