@@ -27,3 +27,15 @@ CPU只读闭合原GPU选择缓存的资源核算：29404940原图像素；570566
 CPU02入口与GPU03前门AST一致，评价后缀与CPU01保持一致；微型CPU合成全100query/12策略/K0边界通过，7项畸形捕获被拒绝。真正的18700query实际证明尚未开始。
 
 [新GPU03普通源码](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_UNBOUND_20261014_03.py)、[接口与失败保留修正](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_CORRECTION_20261014_03.md)、[CPU02普通源码](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_CPU_UNBOUND_20261014_02.py)、[CPU合同](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_CPU_CONTRACT_20261014_02.md)。旧GPU02为该失败任务的普通源码历史副本，不能替代新入口执行资格。
+
+## 原30分钟截止与逐图存储版（2026-10-14T10:53:50.460Z）
+
+第二次完整DEV原作业在1800.297秒真实受控中断，51/187图，整卡观察峰值4479MiB，最小可用RAM30474997760字节。held exit1、reaped、原birth消失均已核验，abort为QUALIFIED_ORIGINAL_LEAF_RESOURCE_OR_DEADLINE；无报告、无完整AP。部分捕获保留但未获资格，不用于新运行或方法效用判断。
+
+已结束作业的第二图耗时30.672秒，其中捕获回调19.6601秒（约64.1%）；PR2.7386秒、scout1.1341秒、gather0.7972秒、readback0.2006秒、排序0.219秒、评分0.266秒。此单图重叠诊断不等于独立部署速度或完整数据集成本。小文件写入/读回/哈希是具体工程优化依据。
+
+GPU04/05改为每图一个真实闭合bundle、内部仅严格字符串member ID，不构造虚拟文件ref或自引用SHA；仍保留每2048点实际GPU输入/输出、每query各端点/控制完整mask及原Omega。每图1次保存、1次读回、1次哈希在合成spy检查中通过；每图raw<=1GiB、单文件<=2GiB、RSS16GiB和原1800秒等资源门保持。新05仅在04上添加失败14的首次SHA前RAW保留/closed owner join；科学计算与选择规则未变。新独立原监督入口已启动，尚待真实成功结束；不能把合成IO收益当真实提速或AP收益。
+
+CPU03/04改为每图真实bundle只load一次，检查member、registry、使用集合严格完整；原9字段数字证明和12策略COCO规则保留。合成100query/12策略/K0/完整成员通过，8类异常拒绝；独立一次静态审阅未发现确定阻断。CPU真实完整证明尚未执行。
+
+[逐图GPU源码04](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_UNBOUND_20261014_04.py)、[bundle合同](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_BUNDLE_CONTRACT_20261014_04.md)、[现行GPU05](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_UNBOUND_20261014_05.py)、[现行CPU04](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_CPU_UNBOUND_20261014_04.py)、[CPU逐图adapter](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_CPU_ADAPTER_UNBOUND_20261014_02.py)。本仓库仅发布独立普通副本；运行中的科学捕获、绑定SOURCE与资格链没有为同步而读取、复制或哈希。
