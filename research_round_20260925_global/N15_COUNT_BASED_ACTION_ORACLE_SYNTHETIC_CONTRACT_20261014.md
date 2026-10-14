@@ -16,4 +16,4 @@ GT replacement oracle亦只在同一C、同一atmostK内将afterbit设为G，不
 
 验证记录：依次hand-check助益优先、真实noop精确预算、强制harm顺序，三次新增测试先预期失败后实现通过。完整8项标准库synthetic tests通过；独立枚举1944小整数实例、36000合法selected-count vectors、19440 exact/atmost比较无反例，含空并集、K0、不合法计数/超pool预算、强制harm、atmost未用预算和大整数精确分式。使用python -I -S隔离站点包；测试仅此普通helper与标准库。expected RED退出是TDD开发记录，不是科研执行失败或RAW祖先。ROOT委派的独立逐像素枚举亦纯stdlib通过：0–4pixels下69,905真实物理cases、414,770 helpercalls，以Fraction逐真实subset比较；另0–3pixels下14,425 Ω⊆C域pairs验证native≤atmostΩ≤atmostC≤GTreplace-atmostC及exactΩ==actualΩ≤exactC≤atmostC，无反例。独立测试文件test_N15_COUNT_ORACLE_INDEPENDENT_PIXEL_EXHAUSTIVE_SYNTHETIC_ONLY_20261014_01.py；其逐点枚举与本稿count枚举不同。
 
-单实例IoU oracle不证明AP/模型效用/收益归因。ROOT未来374匹配pairs的预锁GO门为meanΔ>=.005且fraction(slotgain>=4)>=.90且至少20/374 pairs Δ>=.005；本helper不计算这项总体决策。6 unmatched不进入374mean，不补0IoU。本稿未接入候选数据、未算任何实际Δ、未宣称SAR收益或后续执行合格。
+单实例IoU oracle不证明AP/模型效用/收益归因。ROOT已于UTC04:31:14冻结374匹配pairs的GO门：meanΔ>=.005、至少20/374 pairs Δ>=.005，且oracle IoU>=.90的实例数C相对Omega净增至少4例（三条件同时满足）。早期稿将“.90 slot gain>=4”误解成了slotgain比例门，现仅更正该文字；helper/测试从未实现此总体门，实际GPU与冻结JSON一直采用正确的高IoU实例计数门；本helper不计算这项总体决策。6 unmatched不进入374mean，不补0IoU。本稿未接入候选数据、未算任何实际Δ、未宣称SAR收益或后续执行合格。
