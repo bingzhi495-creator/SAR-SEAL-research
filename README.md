@@ -192,3 +192,5 @@ N13核验失败后，已在新的数值执行前保存[固定单图诊断登记]
 
 
 [scout条件重复的初始化编号登记](research_round_20260925_global/N16_SCOUT_INITIALIZATION_REPEAT_PROSPECTIVE_LOCK_20261014.md)：在ROOT查看本轮完整AP前，固定后续202610140162/163；只改变配对scout初始化，原停止门不变，没有开始新增训练，结论限固定载体下初始化稳健性。
+
+[后续最少必要实验与验证边界](research_round_20260925_global/N17_MINIMAL_SCIENTIFIC_EVIDENCE_NEXT_ACTIONS_20261015.md)：先完成主AP，有收益按锁复验，无收益先分析已有全量错误；只在新改动、失败或具体疑点出现时重复工程检查。
