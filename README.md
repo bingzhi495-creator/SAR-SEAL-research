@@ -29,6 +29,8 @@
 
 ## 从这里开始
 
+- [N16预锁主结果解释器](research_round_20260925_global/code/N16_FIRST_SEED_RESULT_INTERPRETER_UNBOUND_DRAFT_20261014_01.md)：仅E24主端点触发复验/停止；6项合成检查通过，真实AP解释待完整独立资格。
+
 - [N16四CPU证明后的最终完整核验合同](research_round_20260925_global/code/N16_FIXED_E24_ALL100_SCOUT_CPU_NUMERIC_SHARDS_QUALIFIER_CONTRACT_20261014_01.md)：代码/最小合成/静态审阅已准备，尚未实际执行，不替代完整资格。
 
 - [N15下一单一公平选择器草案](research_round_20260925_global/N15_SINGLE_FAIR_UTILITY_SELECTOR_MINIMAL_UNBOUND_DESIGN_20261014.md)：相同容量/输入的修补效用与错误概率，两者共有真实目标/负query及成本规则；ROOT指出均匀all100采样的稀释风险，尚未正式登记或训练。

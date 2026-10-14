@@ -1,0 +1,11 @@
+# UNBOUND — N16 first-seed result interpreter
+
+API: interpret_first_seed(control_results,reference_AP_percent=68.09938494745545). Pure stdlib/math; no file IO, model/science execution, Source/RAW/Q qualification or Git. ROOT supplies results only after its separate final118 actual0 qualification.
+
+Exactly twelve locked policy names, each dict.stats list/tuple of twelve canonical COCO numbers: fraction0..1 or -1 undefined. Percent-unit stats, bool/NaN/Inf/missing policy/bad length reject; fixed reference R is already AP percent and cannot change. Table returns AP/AP50/AP75/AR100 at indices0/1/2/8 in percent, -1 as None plus undefined_metrics. Preserve original input; original raw fractions and unrounded percent floats retained.
+
+Only U=E24_UTILITY_atmost AP and E=E24_ERROR_atmost AP decide Delta=U-max(E,R), with normal Python float ×100/subtraction, no decimal rounding/tolerance. Delta>=1 and U>E: decision GO, allow seeds202610140162/163. Delta<=0: STOP current recipe. 0<Delta<1: ONE_EXTRA_SEED, at most202610140162, no immediate163 permission. MainAP undefined: RULE_NOT_EVALUABLE/no repeat trigger. E8/exact/dense/MagNet are table rows only and never replace main. GO means conditional development repeats; does not establish innovation or TGRS readiness, and does not authorize an unqualified scientific run.
+
+Output schema N16-first-seed-fixed-main-result-interpretation-v1; table/canonical_stats_fraction,UTILITY_AP_fraction/ERROR_AP_fraction,UTILITY_AP_percent/ERROR_AP_percent,fixed_reference_AP_percent/comparison_reference_AP_percent,Delta_AP_points,Utility_strictly_above_paired_Error,decision,allowed_extra_seeds,extra_seed_count_limit,decision_rule. qualification_performed/innovation_established/TGRS_readiness_established False.
+
+AST_OK; six stdlib-only synthetic tests RED→GREEN: exact1 and neighboring representable AP-percent boundaries; zero/negative/reference-dominated cases; secondary winners cannot rescue main; full table/precision/input immutability/undefined; undefinedmain; invalid finite/unit/type/count/reference. Raw-fraction neighbors can coincide after ×100, so boundary fixtures use distinct percent values; no threshold or scientific rule changed. No actual result read.
