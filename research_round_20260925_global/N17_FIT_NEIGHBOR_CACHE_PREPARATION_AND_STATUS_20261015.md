@@ -1,6 +1,6 @@
 # N17 真实FIT邻域缓存：冻结与执行状态
 
-2026-10-15。**已形成首实际取数前的新实验锁与确定性初态元数据；真实cache提取尚未启动。** 原N16完整主门STOP仍保持，不补旧162/163。当前只准备ERROR真实八邻与同容量中心复制，未宣称创新或涨点。
+2026-10-15。**新锁/初态在取数前冻结，真实全741 FIT邻域缓存原actual0与Root完整资格已完成；新的配对训练尚未启动。** 原N16完整主门STOP仍保持，不补旧162/163。当前只准备ERROR真实八邻与同容量中心复制，未宣称创新或涨点。
 
 新锁于2026-10-14T17:11:08.581Z形成，保留旧N16锁作为教师/PR/采样祖先语义；新N17研究定义独立字段绑定，不能覆盖旧锁。已确认原合格FIT741图/1661GT/74100query及3035136样本有独立full-native-L载体，新薄cache理论FP32 payload97124352字节，741个.npy另计headers与manifest。取数不新跑teacher，原labels/weights/query/point顺序和包字节保留；不使用DEV生成FIT。
 
@@ -18,3 +18,12 @@
 ## 真实CPU119取数任务已启动
 
 取数前准备与初始化元数据已在远端提交682fa2cecd09a549fec7843d2ffa194b0259cd7e核验，9份普通文件blob一致。原监督session18357现已启动，完整741 FIT/3035136原样本、正常119+失败17+136身份pin、CPUempty/两线程/1800秒/无自动重试，先纯原RAW前缀通过再入新Source门。当前任务待原actual结束，所有缓存Q/训练资格/新AP尚未完成；观察超时只续查同一原handle，不重启。
+
+
+## 全741 FIT真实邻域缓存原实际0，Root资格完成
+
+原监督session18357实际退出0，用时566.609秒；held0/reaped/原birth消失、abort/error为空、无wait/GPU观察错误均核验，最小可用RAM30,970,847,232字节，整卡观察峰值2248MiB。完整741图/74100自然query/3035136原采样点：同query原native坐标中心字节exact，Torch八邻与独立NumPy坐标公式全点字节exact、center复制及实际NPY读回exact，原labels/weights/point顺序由未改旧packet保留。
+
+741个真实float32[4096,8]数组共97,124,352B payload，serialized arrays97,219,200B，其中headers94,848B。Root另核原任务/Source/spec/admission/phase、独立新锁/初态与原FIT缓存绑定、全741原query/point/shape/packet/carrier行、741新NPY引用哈希和完整scope；原pending Q不改写，另独立Root结果建立配对训练资格。normal120+17失败+137身份pin纯前缀已原actual0，才读取/哈希新产物。源/权重、RAW/SPEC/Q/manifest/cache及全量点坐标不发布；此处为经核验状态摘要。
+
+当前已具真实新增输入的训练资格，不是模型AP或机制证据。两臂[训练body](code/N17_PAIRED_LOCAL_CENTER_ERROR_TRAIN_BODY_UNBOUND_DRAFT_20261015_01.py)、[合同](code/N17_PAIRED_LOCAL_CENTER_ERROR_TRAIN_BODY_UNBOUND_DRAFT_20261015_01.md)与[小型实际NPY四参集成检查](code/test_N17_PAIRED_LOCAL_CENTER_ERROR_TRAIN_BODY_SYNTHETIC_ONLY_20261015_01.py)已保存；发布副本一项合成集成检查原退出0（0.219秒），验证两臂同初态/独立storage、四参输入、同ERROR标签/权重、E8/E24 model/optim/RNG/history与counter。仅SYN，不是741图正式训练，尚待[GPU入口接线](N17_PAIRED_ERROR_SCOUT_TRAINING_WRAPPER_ABI_REPORT_UNBOUND_20261015_01.md)及实际启动，默认种子202610150171保持预锁。
