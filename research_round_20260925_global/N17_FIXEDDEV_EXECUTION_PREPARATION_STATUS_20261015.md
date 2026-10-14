@@ -1,6 +1,6 @@
 # N17 固定DEV：执行准备与边界
 
-2026-10-15。完整24轮GPU及独立E8/E24 CPU端点均原实际退出0、Root完整资格完成；新DEV首段原GPU122的01/02（监督18818/11194）均实际退出1，分别为COCO字段接口和Root漏列旧预测Source；未生成START/REPORT/新预测。19个失败完整保留，独立03已单次启动（原监督83596），实际终止和新捕获资格仍待完成；没有新AP。下一步固定主E24 atmost完整187图/380GT/18700自然query，在原冻结teacher/PR/C/K/类别分数和query顺序下比较LOCAL与CENTER。
+2026-10-15。完整24轮GPU及独立E8/E24 CPU训练资格完成。首段原GPU83596真实退出0（1409.422秒），47图/4700自然query、47物理捕获SHA、10种策略共47000预测及原导出顺序/非seg字段均经Root metadata核对；独立CPU数值资格与完整187图AP仍待完成。第二段原GPU59160已启动，[47,94)固定范围和科学配方不变。正常123/失败19/142身份pin，原两次接口/清单错误完整保留。
 
 [数值body](code/N17_ALL100_LOCAL_CENTER_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)已冻结、一次定向静态审阅READY、发布副本一项tiny SYN原退出0；普通body接口证据不代替实际DEV载体或GPU输出资格。[共享载体必要ABI](N17_FIXEDDEV_SHARED_CARRIER_GPU_REQUIRED_ABI_UNBOUND_20261015_01.md)记录旧物理bundle与shared成员、索引映射、四模型注入、callback与新writer差异，Root实际核了四段metadata完整关联，真实bundle张量校验仍留给下一original owned GPU任务。
 
@@ -62,3 +62,12 @@ CPU own Source gate与CUDAempty独立，失败9–19保留；只有父GPU实际0
 [主结果纯函数](code/N17_FIXED_MAIN_RESULT_INTERPRETER_UNBOUND_DRAFT_20261015_01.py)和[合同](code/N17_FIXED_MAIN_RESULT_INTERPRETER_UNBOUND_DRAFT_20261015_01.md)只接收已资格E24-atmost/percent/171→172→173的有序主摘要；强参考固定68.09938494745545，不接E8、exact或次要最好值。聚合严格为mean(LOCAL)-max(mean(CENTER),strong)，同时单独要求每组LOCAL>CENTER。Root逐行核对预锁规则，发布副本[一项手工边界合成检查](code/test_N17_FIXED_MAIN_RESULT_INTERPRETER_SYNTHETIC_ONLY_20261015_01.py)原实际0（test0.010秒）；没有读取真实AP或赋予资格。
 
 首组非正停止，正但不足1最多172、两组均值门及各组win通过才开173，首组>=1按预锁完成两组重复；三组均值>=1且均pairwin仅支持冻结载体下scout初始化效用。该函数不证明创新、充分收敛、全网重复、SOTA或TGRS。
+
+
+## 首段实际完成，第二段与全量合并准备
+
+首段新GPU输出raw4,442,363,040字节/serialized4,568,606,464字节，800profile/图×47=37600个策略包。内部profile按自然query0..99索引，实际导出按原qids顺序，两者各自保持，不假定内部索引顺序等于导出顺序。原监督83596 held0/reaped/birth消失、无abort/error，整卡观察峰值3846MiB；47文件和十策略预测strictrefs均核验。仅捕获与metadata，尚未独立核实际logits/选点/mask/RLE或全DEV AP，不是涨点。
+
+新的[统一full187 CPU/COCO入口](code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_01.py)与[合同](code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_CONTRACT_20261015_01.md)已冻结，一次定向静态审阅READY，发布副本[一项元数据合成检查](code/test_N17_FIXEDDEV_FULL187_FINAL_METADATA_SYNTHETIC_ONLY_20261015_01.py)原实际0（test0.063秒）；未执行真实全量评估。最后消费四个独立数值CPU报告、统一18700预测和原GT380，不平均局部AP；每政策一次官方完整COCO，主只E24atmost，pending报告与原实际0后Root资格分开。
+
+第二段原59160运行期间，只同步独立普通代码/本文/README；不为同步读取运行中绑定Source、载荷或资格链。后续原任务终态后继续另外两段与独立CPU，正式TEST/跨集/核心创新/TGRS仍未完成。
