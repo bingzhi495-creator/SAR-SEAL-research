@@ -43,3 +43,7 @@
 ## 完整DEV评价启动
 
 已锁定E24主端点、12个固定控制与全部18700自然query。原监督入口已启动，未宣称GPU成功或新增AP。资源计数与固定决策规则见[本轮评价协议和状态](N16_FIXED_E24_FULLDEV_EVALUATION_PROTOCOL_AND_STATUS_20261014.md)。
+
+## 完整DEV原接口失败已保留，修正版已启动
+
+首次完整评价因旧packet_check缺report字段原真实退出1，第一图中断，无新增AP。新GPU03只修正原报告/上下文传递并增加失败13保留门，已启动独立新监督任务；CPU02入口已准备但实际证明尚未开始。没有重做训练或改变选择规则。[详细失败与当前状态](N16_FIXED_E24_FULLDEV_EVALUATION_PROTOCOL_AND_STATUS_20261014.md)。

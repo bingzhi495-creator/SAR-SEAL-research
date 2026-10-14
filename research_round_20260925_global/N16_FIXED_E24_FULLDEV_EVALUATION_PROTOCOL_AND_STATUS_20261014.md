@@ -17,3 +17,13 @@ CPU只读闭合原GPU选择缓存的资源核算：29404940原图像素；570566
 本次采用新普通GPU入口02；此前未执行01发现局部CPU字典覆盖模式布尔值的问题，02仅改局部变量名称，4项合成回归通过。候选域K返回值及完整掩膜预算的静态接口修正亦保留。上述工程检查不构成科学收益。
 
 [GPU普通研发源码](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_UNBOUND_20261014_02.py)、[捕获与CPU解码合同](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_CONTRACT_20261014_01.md)、[接口修正记录](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_CORRECTION_20261014_02.md)。这些为独立普通发布副本；没有运行中的原始载荷、绑定SOURCE、凭据、数据、权重或第三方PDF。
+
+## 原失败记录与新修正版（2026-10-14T10:13:26.504Z）
+
+首次完整DEV入口原监督真实退出1，用时149.390秒；held handle退出1、回收及原birth消失均核验，abort/error均为空，整卡观察峰值2254MiB，最小可用RAM33256136704字节。第一张图调用旧packet_check时缺少report字段，尚无新增预测或AP；不是方法负结果。原ENTRY/SPEC/RAW/START与日志冻结保留，原REPORT缺失。
+
+新普通GPU03仅补原N07 report对应字段、向旧选择缓存传递原context，并增加原失败13在首次SHA之前的终止/身份检查以及后续SOURCE/owner闭合；科学配方未变。独立新监督入口现已启动，尚待实际成功结束，不是自动重试。
+
+CPU02入口与GPU03前门AST一致，评价后缀与CPU01保持一致；微型CPU合成全100query/12策略/K0边界通过，7项畸形捕获被拒绝。真正的18700query实际证明尚未开始。
+
+[新GPU03普通源码](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_UNBOUND_20261014_03.py)、[接口与失败保留修正](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_GPU_CORRECTION_20261014_03.md)、[CPU02普通源码](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_CPU_UNBOUND_20261014_02.py)、[CPU合同](code/N16_FIXED_E24_ALL100_SCOUT_FULLDEV_CPU_CONTRACT_20261014_02.md)。旧GPU02为该失败任务的普通源码历史副本，不能替代新入口执行资格。
