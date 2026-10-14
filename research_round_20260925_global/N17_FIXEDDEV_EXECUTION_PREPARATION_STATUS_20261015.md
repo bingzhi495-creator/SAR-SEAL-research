@@ -109,3 +109,9 @@ GLDet原文含检测与实例分割，整网500轮结果见[已核原论文](GLD
 原17919真实退出0，held0/reaped/birth消失，无error/abort/观察错误；监督1754.328秒，整卡观察峰值2995MiB，最低可用RAM23.83GB。Root先通过126正常+20失败纯原RAW（04664c原退出0），再核47图全部capture SHA、manifest坐标/自然query索引、10种各4700完整导出；class/score/query顺序和native/强R黄金slice完全一致。物理0/1/2/3累计141/187图metadata已核，不是独立CPU或全量AP资格。
 
 最后GPU物理分区[141,187)已冻结并启动，原监督73897、owner126，Source04算法及科学规则不变，单leaf/资源限制/1800秒/无自动重试保持。此段结束并核验后，按已冻结CPU02完成五段独立数值，再统一187图/380GT/18700自然query全量COCO。当前尚无新AP、重复seed或创新成立结论。
+
+## 独立后置ROOT入口已冻结，尚未实际执行
+
+[post-only ROOT CPU入口](code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_DRAFT_20261015_01.py)与[合同](code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_CONTRACT_20261015_01.md)已形成并冻结。原final02只产生待Root核验的COCO结果，完整前缀须真实追加原final结束记录后另建独立post任务；新入口通过真实Source/owner门调用原后置函数，不改旧context，不再跑COCO或模型。外层继续pending，直到本post自身原actual0后才发布结果。
+
+发布副本一项纯元数据fixture原退出0（93d502/test0.023秒），核调用顺序及禁止重算AP；一次新suffix定向独立静态审阅已READY（只读普通代码，未运行科学任务）。没有实际post科学执行或新AP资格。CPU metadata读取步骤也已接好，仅原CPU真实0及纯结束前缀0后读取；最终细数值和统一COCO仍由已冻结科学入口完成。当前最后GPU原73897仍未终止。
