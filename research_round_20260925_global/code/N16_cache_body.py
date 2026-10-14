@@ -12,6 +12,7 @@ Only synthetic sampling-helper tests have run, never this scientific body.
 """
 from contextlib import contextmanager
 import types
+import time
 
 
 def require(ok, message):
@@ -178,7 +179,7 @@ def tensor_payload_bytes(torch, value):
 
 
 def cache_image(torch, np, cv2, ndimage, modules, model, dataset, coco, spec, context,
-                old_packet, old_row, index, pr_head, diag15, helper):
+                old_packet, old_row, index, pr_head, diag15, helper, C_engine):
     if type(modules) is dict:
         pref, old, diag, joint, preflight, cache7 = (modules[k] for k in ('pref', 'old', 'diag', 'joint', 'preflight', 'cache7'))
     else:
@@ -244,11 +245,13 @@ def cache_image(torch, np, cv2, ndimage, modules, model, dataset, coco, spec, co
         # Legacy matched-only native rendering was numerically qualified, not bit-identical.
         require(torch.allclose(old_replay, old_packet['native_logits'], rtol=spec['old_native_L_rtol'], atol=spec['old_native_L_atol']),
                 'ROOT must carry the OLD qualified practical L tolerance, never silently replace it')
+        domain_started=time.monotonic()
         domain_indices, C_counts, K_counts = {}, [], []
         for q in range(100):
-            P, Omega, C, idx, positions = diag15.domains_from_native(np, ndimage, natural_cpu[q].numpy())
+            P, Omega, C, idx, positions = C_engine.domains_from_native_cv2(np, cv2, natural_cpu[q].numpy())
             C_counts.append(len(idx)); K_counts.append(len(positions))
             domain_indices[q] = torch.from_numpy(idx)
+        domain_elapsed_seconds=time.monotonic()-domain_started
         active = [q for q in range(100) if assignment['valid_targets'][q] and C_counts[q] > 0 and K_counts[q] > 0]
         positive = [q for q in active if assignment['supervision_kind_by_query'][q] == 'matched']
         background = [q for q in active if assignment['supervision_kind_by_query'][q] == 'background']
@@ -320,6 +323,7 @@ def cache_image(torch, np, cv2, ndimage, modules, model, dataset, coco, spec, co
     bg_queries = [q for q in range(100) if assignment['supervision_kind_by_query'][q] == 'background']
     row = dict(dataset_index=index, image_id=identity['image_id'], identity=identity, raw_GT=len(raw_GT),
         natural_queries=100, points=len(flat), unique_sampled_F_points=len(unique_flat),
+        domain_CPU_elapsed_seconds=domain_elapsed_seconds, domain_engine="CV2_RECT17_WITH_EMPTY_P_SHORTCUT",
         active_queries=len(active), active_matched_queries=len(positive), active_background_queries=len(background),
         matching_loss_seed=matching_seed, point_seed=sample_seed, C_counts_all100=C_counts, K_counts_all100=K_counts,
         stratum_plan=sample['plan'], utility_class_counts=torch.bincount(labels['utility_labels'], minlength=3).tolist(),

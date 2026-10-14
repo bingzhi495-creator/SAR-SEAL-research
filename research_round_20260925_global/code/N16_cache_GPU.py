@@ -116,9 +116,9 @@ def ninth_failed_raw_only(spec):
     check_pin(extra['pin'], raw, extra['phase'], 1)
     expected = spec['normal_RAW_count']
     require(type(expected) is int and expected >= 97 and
-            type(spec['total_failed_RAW_count']) is int and spec['total_failed_RAW_count'] == 11 and
+            type(spec['total_failed_RAW_count']) is int and spec['total_failed_RAW_count'] == 12 and
             type(spec['total_terminal_identity_pin_count']) is int and
-            spec['total_terminal_identity_pin_count'] == expected + 11 and
+            spec['total_terminal_identity_pin_count'] == expected + 12 and
             extra['RAW_ref']['path'] not in spec['terminal_identity_pins'],
             'Failed9 is separate; total terminal pins must equal normal+9')
     return raw
@@ -202,6 +202,116 @@ def eleventh_failed_raw_only(spec):
     check_pin(extra['pin'],raw,extra['phase'],1)
     return raw
 
+"""UNBOUND pure canonical controlled-failure RAW predicate; no I/O or hash.
+
+ROOT must read and bind the actual record/pin, prove original ownership and
+record locator phase, and invoke this BEFORE any Source read/hash. This helper
+does not supply those proofs or qualify partial caches. Its embedded tests use
+only invented dictionaries and do not establish a scientific execution result.
+"""
+import math
+
+ABORT = 'QUALIFIED_ORIGINAL_LEAF_RESOURCE_OR_DEADLINE'
+GPU_SCOPE = 'whole GPU observed, not per-process WDDM allocation'
+MIN_RAM_BYTES = 16 * 1024**3
+GPU_LIMIT_MIB = 8192
+
+
+class RawGateError(ValueError):
+    pass
+
+
+def helpercheck(raw, pin):
+    """Check canonical owned controlled-failure structure; allow extra fields.
+
+    pin.phase is a record-locator obligation of the ROOT wrapper: the canonical
+    actual RAW has no phase field. No synthetic field may be added to obtain a
+    pass. This function never opens a record, computes SHA, or reads Source.
+    """
+    def need(condition, field):
+        if not condition:
+            raise RawGateError('Controlled resource RAW gate failed: '+field)
+
+    def field(obj,key):
+        need(type(obj) is dict and key in obj,key+' missing')
+        return obj[key]
+
+    def finite_number(value):
+        return type(value) is int or (type(value) is float and math.isfinite(value))
+
+    def same_json(left,right):
+        if type(left) is not type(right):
+            return False
+        if type(left) is dict:
+            return (all(type(k) is str for k in left) and set(left)==set(right)
+                    and all(same_json(left[k],right[k]) for k in left))
+        if type(left) is list:
+            return len(left)==len(right) and all(same_json(a,b) for a,b in zip(left,right))
+        if type(left) is float:
+            return math.isfinite(left) and math.isfinite(right) and left==right
+        return type(left) in (str,int,bool,type(None)) and left==right
+
+    need(type(raw) is dict and type(pin) is dict,'raw/pin dictionaries')
+    need(field(raw,'status')=='ACTUAL_OWNED_TERMINAL','status')
+    rc=field(raw,'returncode')
+    need(type(rc) is int and rc==1,'returncode must be exact failure1')
+    need(field(raw,'root_wait_reaped') is True,'root_wait_reaped')
+    held=field(raw,'held_handle_exit')
+    need(field(held,'wait_state')=='WAIT_OBJECT_0','held wait_state')
+    actual_exit=field(held,'actual_exit_code')
+    need(type(actual_exit) is int and actual_exit==1,'held actual_exit_code must be failure1')
+    birth=field(raw,'numeric_birth_absence')
+    need(field(birth,'original_birth_absent') is True,'original birth absence')
+    need(field(raw,'error') is None,'error must be None')
+    need(field(raw,'abort')==ABORT,'exact controlled resource/deadline abort')
+    need(field(raw,'wait_errors') is False,'wait_errors must be False')
+    gpu_errors=field(raw,'GPU_observation_errors')
+    need(type(gpu_errors) is list and gpu_errors==[],'GPU_observation_errors must be empty list')
+    identity,pinned_identity=field(raw,'original_identity'),field(pin,'original_identity')
+    need(type(identity) is dict and bool(identity) and type(pinned_identity) is dict
+         and bool(pinned_identity) and same_json(identity,pinned_identity),'original_identity pin exact')
+    sha,pinned_sha=field(raw,'admission_sha256'),field(pin,'admission_sha256')
+    need(type(sha) is str and len(sha)==64 and all(c in '0123456789abcdef' for c in sha)
+         and type(pinned_sha) is str and sha==pinned_sha,'admission SHA pin exact; no SHA computed')
+    if 'returncode' in pin:
+        need(type(pin['returncode']) is int and pin['returncode']==1,'optional pin returncode must be failure1')
+    if 'phase' in raw and 'phase' in pin:
+        need(same_json(raw['phase'],pin['phase']),'optional RAW phase matches pin')
+    minimum_ram=field(raw,'minimum_ram_bytes')
+    need(finite_number(minimum_ram) and minimum_ram>=MIN_RAM_BYTES,'minimum_ram_bytes >=16GiB')
+    peak=field(raw,'whole_GPU_observed_peak_MiB')
+    need(finite_number(peak) and 0<=peak<=GPU_LIMIT_MIB,'whole GPU observed peak <=8192MiB')
+    limit=field(raw,'whole_GPU_used_limit_MiB')
+    need(type(limit) is int and limit==GPU_LIMIT_MIB,'whole GPU limit must remain8192MiB')
+    need(field(raw,'whole_leaf_VRAM_certified') is False,'per-leaf VRAM certification must remain False')
+    need(field(raw,'GPU_scope')==GPU_SCOPE,'whole GPU observation scope')
+    elapsed=field(raw,'elapsed_seconds')
+    need(finite_number(elapsed) and 1800<=elapsed<=1805,'controlled resource/deadline elapsed1800..1805')
+    return dict(passed=True,normal_success=False,resource_or_deadline_failure=True,
+                numeric_or_method_failure_proven=False,partial_caches_qualified=False,
+                returncode=1,held_actual_exit_code=1,abort=ABORT,
+                minimum_ram_bytes=minimum_ram,whole_GPU_observed_peak_MiB=peak,
+                elapsed_seconds=elapsed,phase_locator_proof_required_from_ROOT_wrapper=True,
+                record_IO_performed=False,Source_read_or_hash_performed=False)
+
+
+
+
+def twelfth_resource_failure_raw_only(spec):
+    extra=spec['additional_preserved_N16_controlled_resource_failure']
+    ref_shape(extra['RAW_ref']);p=Path(extra['RAW_ref']['path'])
+    require(p.name=='PARENT_RECEIPT.json' and p.parent.name==extra['phase']==extra['pin']['phase'] and
+        extra['returncode']==1 and extra['RAW_ref']['path'] not in spec['terminal_identity_pins'] and
+        extra['RAW_ref']['path'] not in (spec['additional_preserved_independent_CPU_failure']['RAW_ref']['path'],
+            spec['additional_preserved_N16_cache_failure']['RAW_ref']['path'],
+            spec['additional_preserved_N16_cache_target_dtype_failure']['RAW_ref']['path']),
+        'Original resource-failed12 locator/pin must remain distinct')
+    raw=read(p)
+    decision=helpercheck(raw,extra['pin'])
+    require(decision['passed'] and decision['normal_success'] is False and decision['partial_caches_qualified'] is False,
+        'Controlled failure is preserved, never promoted to scientific cache success')
+    return raw
+
 def source_gate(path, spec, cpu=False):
     require(spec['schema'] == (CPU_SCHEMA if cpu else SCHEMA) and
         type(spec['expected_normal_RAW_count']) is int and spec['expected_normal_RAW_count'] >= 105 + int(cpu) and
@@ -211,8 +321,9 @@ def source_gate(path, spec, cpu=False):
     ninth_failed_raw_only(spec)
     failed10=tenth_failed_raw_only(spec)
     failed11=eleventh_failed_raw_only(spec)
+    failed12=twelfth_resource_failure_raw_only(spec)
     raws, closure = pre_gate(spec, spec['expected_normal_RAW_count'])
-    for key in CARRIER_KEYS + ('entry_source', 'locked_protocol', 'cache_body_source', 'labels_source', 'FIT', 'original_fit_cache_report', 'native_context_spec', 'region_common_source', 'original_fit_cache_entry_source', 'action_diagnostic_source'):
+    for key in CARRIER_KEYS + ('entry_source', 'locked_protocol', 'cache_body_source', 'labels_source', 'FIT', 'original_fit_cache_report', 'native_context_spec', 'region_common_source', 'original_fit_cache_entry_source', 'action_diagnostic_source', 'C_engine_source'):
         closed(closure, spec[key])
     closed(closure, spec['additional_preserved_independent_CPU_failure']['RAW_ref'])
     if not cpu:
@@ -269,6 +380,17 @@ def source_gate(path, spec, cpu=False):
     failed_owner11=lineage.owner_join(failrow11,failed11,closure)
     require(failed_owner11['scientific_spec']==fail11['spec'] and failed_owner11['entry']==fail11['entry_source']['path'] and
         failed_owner11['cuda_visible_devices']=='0','Preserved N16 actual failure11 original SOURCE/spec/ad owner differs')
+    fail12=spec['additional_preserved_N16_controlled_resource_failure']
+    for k in ('RAW_ref','admission','phase_binding','bootstrap','entry_source','spec'):closed(closure,fail12[k])
+    failrow12=dict(receipt=fail12['RAW_ref'],phase=fail12['phase'],admission=fail12['admission'],
+        phase_binding=fail12['phase_binding'],bootstrap=fail12['bootstrap'])
+    failed_owner12=lineage.owner_join(failrow12,failed12,closure)
+    require(failed_owner12['scientific_spec']==fail12['spec'] and failed_owner12['entry']==fail12['entry_source']['path'] and
+        failed_owner12['cuda_visible_devices']=='0','Preserved resource failure12 original owner differs')
+    failed_spec12=read(closed(closure,fail12['spec']))
+    absent_report12=Path(failed_spec12['output_directory'])/'REPORT.json'
+    require(not absent_report12.exists() and not absent_report12.is_symlink() and fail12['original_report_absent'] is True,
+        'Original controlled-abort report must remain absent, no fabricated success')
     gi = lineage.owner_ref_join(context, gate['owners'], spec['carrier_GPU_RAW'], spec['carrier_GPU_admission'],
         spec['carrier_evaluation_source'], spec['carrier_GPU_spec'], '0')
     ci = lineage.owner_ref_join(context, gate['owners'], spec['carrier_CPU_RAW'], spec['carrier_CPU_admission'],
@@ -355,6 +477,7 @@ def run(spec_path):
     body=load(spec['cache_body_source'],'_N16_actual_all100_cache_body')
     helper=load(spec['labels_source'],'_N16_actual_sampled_labels')
     diag15=load(spec['action_diagnostic_source'],'_N16_qualified_N15_domains')
+    C_engine=load(spec['C_engine_source'],'_N16_exact_rectangular_C_engine')
     require(not torch.cuda.is_initialized(),'Every admission/source/lineage/budget check precedes CUDA')
     torch.cuda.init();torch.cuda.set_per_process_memory_fraction(min(1.,4096*1024**2/torch.cuda.get_device_properties(0).total_memory),0)
     torch.cuda.reset_peak_memory_stats(0);model.to('cuda:0');head.to('cuda:0');output.mkdir()
@@ -374,7 +497,7 @@ def run(spec_path):
             require(old_packet['source']==old_report['source'] and old_packet['spec']==old_report['spec'] and
                 old_packet['schema']==cache7.PACKET_SCHEMA, 'Exact old packet/source/spec identity required')
             row,packet=body.cache_image(torch,np,cv2,ndimage,module_map,model,dataset,coco,spec,context,
-                old_packet,old_row,index,head,diag15,helper)
+                old_packet,old_row,index,head,diag15,helper,C_engine)
             require(row['dataset_index']==index and row['image_id']==ids[index] and row['natural_queries']==100 and
                 row['points']<=4096 and row['raw_tensor_payload_bytes']<=536870912,'Actual image/cache bound differs')
             packet.update(source=gate['source'],spec=gate['spec_ref'],GPU_admission=gate['admission_ref'],phase=spec['phase'],

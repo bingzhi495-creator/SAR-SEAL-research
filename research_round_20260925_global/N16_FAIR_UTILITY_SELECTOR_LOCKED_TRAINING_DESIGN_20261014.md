@@ -37,3 +37,9 @@ canonical GPU scout logits为FP32，转CPU后统一稳定NumPy FP64 softmax/scor
 前两次真实缓存任务均以actual1结束：第一次配置漏region_common_source，在模型加载前退出；第二次在首图目标分配时，adapter错把原native分类label_weights要求为FP32。原源码、配置、输出和终止身份均保留为第10/11次失败。原native label_weights由int64 gt_labels.new_ones产生，应原样INT64；mask_weights与训练采样importance仍FP32。已通过缺失入口及native类型两项RED→GREEN回归检查，并以新Source/独立新执行修正，不自动重试，不改GT、模型、采样、24轮预算、数值容差或AP门。这些错误不支持方法有效/无效结论。
 
 当前真实缓存执行中；本仓库只更新既有普通发布副本，不在运行中读取/复制/hash科学输入或产物用于上传。此前混合query采样批次生成PR labels；部署全C升序和selected-only批次仍需actual共同输入abs1e-4及strictsign资格，不能由合成测试替代。独立CPU资格主体、配对训练及部署评价代码已形成并有合成CPU检查，仍属UNBOUND，尚无新AP。
+
+## 实际构域时限与等价工程修订
+
+原执行实际达到1800.265秒由所有者受控终止，return1及原abort字符串完整保留为第12失败；终止后RAW先核验，原trace确认641/741图、2625536点、43371143022序列化bytes，无REPORT。该部分不qualified、不拼接为成功、不复用。当前启动新的完整缓存版本，仅用CV2矩形17膨胀+空P快捷路径替换SciPy实现并逐图记录构域时间；相同数据/教师/PR、真实GT/背景代理、点序/私有seed、采样权重/学习配方及1800秒上限保持。
+
+在实际seal_gpu环境NumPy1.23.5/SciPy1.10.1/CV2 4.8.0合成282例五项数组/K逐位相同。355×501稀疏案例单算子中位SciPy22.434ms/CV2.8602ms；500×600空P39.6106/.8617ms；密P5.5876/2.6159ms。仅合成算子测量，不能据此承诺整个科学流程加速或模型涨点。原慢实现和部分产物保留，独立CPU资格、24轮配对训练及正式完整评价仍待真实执行。
