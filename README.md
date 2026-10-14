@@ -3,7 +3,10 @@
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-14**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 
-**当前状态（N13）：** 三种子固定E48主结果已完整核验：LOG 67.768660±0.076106 AP，GEO 67.579076±0.075406；配对差均值−0.189583点，三组均负。C1未通过，已停止当前GEO支持域与监督联合配方扩展，不推断方法总体失效。三个E08及全部三个E24固定曲线已核验；E24 LOG/GEO均值67.992117/67.781883，配对差−0.210233点。最后703 E24 GPU65204/CPU92886均实际0（913.703/1166.000秒），ROOT原20024完整检查9,560项继承来源及追加10项独立引用、93常规/8失败/101身份门。曲线不能替换E48或重开已停止的配方。真实固定PR诊断已按预锁第一701 LOG E48载体登记，374原生配对＋6未匹配GT，9,579项来源；元数据24101实际0，原GPU59604实际0（165.468秒），独立CPU原4404实际1（174.094秒）。ROOT完整9,967来源故障审计实际0：已检查25图／37对后新增Halo的公式差超过预锁容差；第9失败保留，无诊断结果资格，下一项为图像113两对的四路径数值定位已单次启动原GPU33452，未放宽容差或自动重试。共享教师、历史DEV187/380、无正式TEST/跨集及核心创新/TGRS依据的范围保留。 [完整曲线](research_round_20260925_global/N13_FIXED24_THREE_SEED_CURVE_RESULT_AND_REAL_DIAGNOSTIC_START_20261014.md)、[CPU实际失败及下一项定位](research_round_20260925_global/N13_REAL_FIXED_PR_CPU_COMPATIBILITY_FAILURE_AND_SINGLE_IMAGE_PROBE_20261014.md)、[执行记录](docs/N13_sameK_region_execution_status_20261013.md)。
+**当前单模块试训（N14）：** 已单次启动共同LOG E24父头后的BASE_CONTINUATION/MEMORY_ADDON等预算任务，首leaf为新阶段1—8轮、每分支13,288更新，预锁主端点为新阶段24轮。当前处于启动校验/运行阶段，尚无N14 AP结果；两分支均重置AdamW，同LOG支持、缓存与自然query分数，新增2201参数。逐轮FIT损失不是AP收益；有重复收益后才补容量/检索对照和融合。[协议与执行顺序](research_round_20260925_global/N14_CONTEXT_MEMORY_SINGLE_MODULE_EXPLORATION_PROTOCOL_20261014.md)、[微信资料原始来源核查](research_round_20260925_global/WECHAT_366_MODULES_PRIMARY_SOURCE_REVIEW_20261014.md)。
+
+**当前已核验结果（N13）：** 三种子固定E48 LOG/GEO均值67.768660/67.579076 AP，配对差−0.189583点，三组均负，已停止该GEO联合配方扩展。全部E24曲线已核验，LOG/GEO均值67.992117/67.781883。真实诊断CPU失败9保留；image113四路探针实际0并ROOT核验，仅支持此例CPU/GPU特征渲染差异，同GPU F的CPU PR满足原容差，全374对尚未qualified。[局部探针结果](research_round_20260925_global/N13_IMAGE113_NUMERICAL_PROBE_RESULT_20261014.md)。无正式TEST、跨集或核心创新/TGRS结论。
+
 
 新[CPU恢复入口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)已实际通过独立端点检查；原GPU失败与缺失报告保留。
 
