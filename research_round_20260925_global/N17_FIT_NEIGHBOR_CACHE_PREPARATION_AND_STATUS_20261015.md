@@ -13,3 +13,8 @@
 尚待真实提取与资格、四参新训练入口、配对24轮端点和固定DEV全100评价；当前没有新的科学作业或AP。研究成功门、重复规则及机制界限见[公平计划](N17_LOCAL_NATIVE_LOGIT_ERROR_SELECTOR_EXPERIMENT_PLAN_20261015.md)。
 
 普通[CPU入口](code/N17_FIT_NATIVE_NEIGHBOR_CACHE_CPU_ROOT_UNBOUND_DRAFT_20261015_01.py)、[入口合同](code/N17_FIT_NATIVE_NEIGHBOR_CACHE_CPU_ROOT_UNBOUND_DRAFT_20261015_01.md)、[取数body](code/N17_FIT_NATIVE_L_NEIGHBOR_CACHE_BODY_UNBOUND_DRAFT_20261015_01.py)及[body合同](code/N17_FIT_NATIVE_L_NEIGHBOR_CACHE_BODY_UNBOUND_DRAFT_20261015_01.md)已准备；入口两项/可移植body四项小SYN通过，一次接口静态审阅通过。仍是普通接口证据，真实数据资格待原任务结束。
+
+
+## 真实CPU119取数任务已启动
+
+取数前准备与初始化元数据已在远端提交682fa2cecd09a549fec7843d2ffa194b0259cd7e核验，9份普通文件blob一致。原监督session18357现已启动，完整741 FIT/3035136原样本、正常119+失败17+136身份pin、CPUempty/两线程/1800秒/无自动重试，先纯原RAW前缀通过再入新Source门。当前任务待原actual结束，所有缓存Q/训练资格/新AP尚未完成；观察超时只续查同一原handle，不重启。
