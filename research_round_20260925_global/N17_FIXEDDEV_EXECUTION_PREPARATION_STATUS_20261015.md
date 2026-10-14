@@ -48,3 +48,10 @@ Root监督单一科学任务，CPU01/2线程/GPU0，allocator4096MiB/整卡8192M
 [入口03](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_GPU_SHARD_ROOT_UNBOUND_DRAFT_20261015_03.py)105070B/SHA4348aba0d60ceacd0afeb6135019972f19a23ac4428ada0866240472573aa5c5，[合同03](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_GPU_SHARD_ROOT_UNBOUND_CONTRACT_20261015_03.md)及[合成检查](code/test_N17_FIXEDDEV_GPU_SHARD_ROOT_TINY_SYNTHETIC_ONLY_20261015_03.py)保存。发布副本同一项SYN原退出0（test0.141秒），一次定向静态审阅READY。新spec完整保留原02所有Source，并补12个已核旧导出ref；native/R各187图18700query的原顺序全部吻合。正常122/失败19/141身份pin的纯原前缀通过后，Root新单次启动首47图（监督83596）。
 
 03只增加失败19完整身份门及本次显式绑定纠错，COCO、选点、PR、writer和主门不改。尚无新REPORT、AP或创新结论；实际运行中Source/载荷/资格链不为同步读取。后续只观察原监督句柄，终止后按原资格规则推进，其余分区不自动重启。
+
+
+## 独立CPU数值外层已准备，未实际启动
+
+[单段CPU入口](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_CPU_NUMERIC_SHARD_ROOT_UNBOUND_DRAFT_20261015_01.py)69212B/SHAd32ef4c5505f94340b75dff5fdd8598fa1a33ea5b7f05097251c24cd356730db与[必填接口合同](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_CPU_NUMERIC_SHARD_ROOT_UNBOUND_CONTRACT_20261015_01.md)已冻结、一次定向静态审阅READY。发布副本[同一项stdlib假引用header检查](code/test_N17_FIXEDDEV_CPU_NUMERIC_SHARD_HEADER_SYNTHETIC_ONLY_20261015_01.py)原实际0（test0.055秒）；不测试真实权重、SAR数值或执行资格。
+
+CPU own Source gate与CUDAempty独立，失败9–19保留；只有父GPU实际0/完整Source/新bundle与模型资格闭合后才可绑定启动。四新scout的factory与独立CPU式、真实GPU排名/选点、PR两式、mask/RLE和原qids/类分数逐项核验；单段不算AP，最后仍需四段完整scope和统一全187 COCO。尚未实际执行，不自证任何新结果。
