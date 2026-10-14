@@ -83,3 +83,11 @@ CPU own Source gate与CUDAempty独立，失败9–19保留；只有父GPU实际0
 ## 第二段受控中断，五段补充已锁
 
 [时限事件及五物理分区执行补充](N17_CONTROLLED_DEADLINE_AND_FIVE_PARTITION_EXECUTION_AMENDMENT_20261015.md)保存实际原终态、失败partial非资格、旧Source03首段复用范围及新分区。原4分区接口版本不改写，新GPU04/CPU02/final02最小适配；模型、数值算法、主解释器不改。当前没有运行中科学任务，等待新Source冻结/限定检查后再由Root单次启动。
+
+## 五段适配的新核验程序已冻结，尚未实际执行
+
+2026-10-15。[CPU numeric02](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_CPU_NUMERIC_SHARD_ROOT_UNBOUND_DRAFT_20261015_02.py)与[最终统一COCO02](code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_02.py)已完成一次定向静态审阅并冻结。CPU02拒绝normal<127的提前CPU执行，实际owner由Root完整原prefix给出；旧Source03首段与新Source04其余段分别闭合，不混用旧四段与新五段。失败20和执行补充全量保留，数值算法/主评价门不改。
+
+发布副本各一项纯元数据合成检查原退出0：CPU6709e4/test0.047秒，final251734/test0.456秒。检查只覆盖程序接口，不证明真实张量或分割收益。尚未运行新的CPU数值分区与全量COCO。GPU第二物理分区的原监督64568仍未返回终止；不能提前读绑定载荷、报告AP或宣称核验成功。
+
+GLDet原文含检测与实例分割，整网500轮结果见[已核原论文](GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)。N17只是局部原生mask信息的受控效用检验，不是完整GLDet复现；即使收益为正，仍需容量/信息结构替代对照、重复种子和跨集证据。
