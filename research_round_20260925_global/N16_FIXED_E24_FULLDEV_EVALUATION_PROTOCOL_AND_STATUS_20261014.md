@@ -1,6 +1,6 @@
 # N16 固定24轮完整开发集评价
 
-记录时间：2026-10-14T10:01:13.099Z。状态：原监督入口已启动，尚待GPU真实结束及独立CPU证明；没有新增AP结论。
+记录时间：2026-10-14T14:05:00.198Z。当前：四段GPU和完整AP汇总原实际0，独立数值核验原时限失败，固定四段新证明准备中；没有完整资格收益结论。
 
 Utility与Error使用同一初始四张量、同一FIT点/权重/顺序和固定24轮AdamW训练，各17784更新，已完成独立E8/E24端点核验。不同标签目标的训练交叉熵不能直接比较优劣。
 
@@ -77,3 +77,10 @@ normal112+failed15纯RAW前缀原实际退出0后，最后一段原监督session
 最后一段原监督session44104真实退出0，固定ordinal[141,187)、46图/4600自然query/12组完整本段预测和46真实逐图bundle；elapsed650.578秒，整卡观察峰值3120MiB，最小可用RAM31,057,043,456字节，serialized捕获5,641,734,831字节。held退出0、reaped、原birth消失均核验，abort/error为空、wait/GPU观察错误均无。四个不可变分段现均原实际GPU0，完整覆盖187图/18700query，每个策略18,700预测，187真bundle与原binding均保留；不平均局部AP，也不复用失败部分。
 
 normal113+failed15纯RAW前缀原实际退出0后，独立CUDAempty CPU全量汇总原监督session44225已启动，own113、训练107/108与四段109–112明确join；初始source闭包12577项，完整原native/strong预测复现后统一12COCO。其实际结束与全scope独立CPU证明114仍须完成，当前没有完整且独立资格的AP/涨点或TGRS结论。
+
+
+## 完整AP汇总实际0、全scope数值核验受控截止
+
+完整CPU汇总原session44225真实退出0，406.875秒；held0/reaped/原birth消失均核验，abort/error为空、wait/GPU观察错误均无。全部187图/18700自然query的12组统一COCO已计算，原native/strong预测逐值一致。原source闭包12577项；该结果仍待完整独立数值资格，不宣布涨点。
+
+全scope数值核验原session65044在1800.359秒受控实际退出1，77/187图证明，无Q.json；原身份、held1/reaped/birth消失与资源门均核验，部分不复用，原失败16保留。现锁定[固定四段CPU数值执行补充](N16_FIXED_FULLDEV_CPU_NUMERIC_PARTITION_SUPPLEMENT_20261014.md)：owners114–117各独立本段全部all100/12策略数值证明，再由118完整合并并复算12COCO。局部不算AP、完整范围和原数值门不变，总评价时长增加；训练/选择/评价/停止门不变。
