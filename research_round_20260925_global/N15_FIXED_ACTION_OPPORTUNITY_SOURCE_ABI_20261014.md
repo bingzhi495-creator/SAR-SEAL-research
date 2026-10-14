@@ -19,3 +19,7 @@ pair diagnostic键：schema、identity、budget_K、C_count、native、native_co
 REPORT schema=N15-fixed-E24-action-opportunity-GPU-report-v1、status=N15_FIXED_E24_ACTION_OPPORTUNITY_COMPLETE_PENDING_INDEPENDENT_CPU，包含carrier refs、locked_protocol、count/array helper refs、fixed_population、head_checkpoint/state proof、capture_manifest/capture_refs187、pair_diagnostics/population/image_checks/start/trace真refs、所有native+selector检查、两PR路径实际calls/成本、resources/library/cleanup。GO是未独立CPU确认的privileged diagnostic decision；不是AP收益/可学selector/创新/方法总体结论，当前terminal不能自认证。report capture_manifest rows明确dataset_index/image_id/capture/pairs/U/C_points/K_points/raw_tensor_payload_bytes。
 
 最终成本口径：cost_seconds.capture_inclusive_inputs_PR_oracle 包含采样、两PR路径、pair核验、oracle与保存/读回，和PR/oracle分项重叠不可相加。REPORT另有cost_components_are_not_additive=true与capture_cost_scope说明；total_elapsed_seconds为总壁钟。ROOT已完成only-synthetic关键接口smoke（无CUDA/实际Sci）；本agent只作AST与文本读回，无科学执行。独立ordinary静态审查未见数学/capture确定阻断。
+
+## 执行后状态（2026-10-14）
+
+上文UNBOUND/未执行描述开发时状态。相同源码现已由ROOT实际绑定并通过GPU、独立CPU和ROOT核验；[合格机会结果与范围](N15_FIXED_E24_ACTION_OPPORTUNITY_QUALIFIED_RESULT_AND_NEXT_STEP_20261014.md)为当前执行记录。该资格只支持同GPU输入与条件oracle，不是新AP、选择器可学性或创新成立，原冻结科研源码不改写。

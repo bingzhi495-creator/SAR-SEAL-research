@@ -23,3 +23,7 @@ capture每图一真实wholepacket，members不是ref。CPU读取实际GPU union-
 成功Q/details绑定完整实际report/captures/资格闭包；写出bytes计算stdout SHA，不读运行时自身Q。Q始终 `current_owned_CPU_terminal_self_certified=False`，ROOT须实际CPU exit0/reap/birth absent后再独立资格。任何数值/sign差异输出 `NUMERICAL_QUALIFICATION_FAILURE` 并退出1，其他绑定/执行问题另列资格失败；不当作scientific STOP、不放宽门、不自动重试，也不抹去继承failed9。本次新失败RAW由ROOT另保留。
 
 成功仅说明本批真实GPU输入的计算读回资格以及原privileged条件IoU诊断一致。未资格CPU renderer/fullAP、训练、selector可学性、部署、TEST/cross-data、创新/TGRS或方法总体优劣；合成数学测试不构成actual科学资格。
+
+## 执行后状态（2026-10-14）
+
+上文UNBOUND/未执行描述开发时状态。相同源码现已由ROOT实际绑定并通过GPU、独立CPU和ROOT核验；[合格机会结果与范围](N15_FIXED_E24_ACTION_OPPORTUNITY_QUALIFIED_RESULT_AND_NEXT_STEP_20261014.md)为当前执行记录。该资格只支持同GPU输入与条件oracle，不是新AP、选择器可学性或创新成立，原冻结科研源码不改写。
