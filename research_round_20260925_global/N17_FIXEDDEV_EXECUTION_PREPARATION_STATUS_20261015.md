@@ -55,3 +55,10 @@ Root监督单一科学任务，CPU01/2线程/GPU0，allocator4096MiB/整卡8192M
 [单段CPU入口](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_CPU_NUMERIC_SHARD_ROOT_UNBOUND_DRAFT_20261015_01.py)69212B/SHAd32ef4c5505f94340b75dff5fdd8598fa1a33ea5b7f05097251c24cd356730db与[必填接口合同](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_CPU_NUMERIC_SHARD_ROOT_UNBOUND_CONTRACT_20261015_01.md)已冻结、一次定向静态审阅READY。发布副本[同一项stdlib假引用header检查](code/test_N17_FIXEDDEV_CPU_NUMERIC_SHARD_HEADER_SYNTHETIC_ONLY_20261015_01.py)原实际0（test0.055秒）；不测试真实权重、SAR数值或执行资格。
 
 CPU own Source gate与CUDAempty独立，失败9–19保留；只有父GPU实际0/完整Source/新bundle与模型资格闭合后才可绑定启动。四新scout的factory与独立CPU式、真实GPU排名/选点、PR两式、mask/RLE和原qids/类分数逐项核验；单段不算AP，最后仍需四段完整scope和统一全187 COCO。尚未实际执行，不自证任何新结果。
+
+
+## 固定主结果解释规则已实现，尚未输入真实AP
+
+[主结果纯函数](code/N17_FIXED_MAIN_RESULT_INTERPRETER_UNBOUND_DRAFT_20261015_01.py)和[合同](code/N17_FIXED_MAIN_RESULT_INTERPRETER_UNBOUND_DRAFT_20261015_01.md)只接收已资格E24-atmost/percent/171→172→173的有序主摘要；强参考固定68.09938494745545，不接E8、exact或次要最好值。聚合严格为mean(LOCAL)-max(mean(CENTER),strong)，同时单独要求每组LOCAL>CENTER。Root逐行核对预锁规则，发布副本[一项手工边界合成检查](code/test_N17_FIXED_MAIN_RESULT_INTERPRETER_SYNTHETIC_ONLY_20261015_01.py)原实际0（test0.010秒）；没有读取真实AP或赋予资格。
+
+首组非正停止，正但不足1最多172、两组均值门及各组win通过才开173，首组>=1按预锁完成两组重复；三组均值>=1且均pairwin仅支持冻结载体下scout初始化效用。该函数不证明创新、充分收敛、全网重复、SOTA或TGRS。
