@@ -116,9 +116,9 @@ def ninth_failed_raw_only(spec):
     check_pin(extra['pin'], raw, extra['phase'], 1)
     expected = spec['normal_RAW_count']
     require(type(expected) is int and expected >= 97 and
-            type(spec['total_failed_RAW_count']) is int and spec['total_failed_RAW_count'] == 9 and
+            type(spec['total_failed_RAW_count']) is int and spec['total_failed_RAW_count'] == 11 and
             type(spec['total_terminal_identity_pin_count']) is int and
-            spec['total_terminal_identity_pin_count'] == expected + 9 and
+            spec['total_terminal_identity_pin_count'] == expected + 11 and
             extra['RAW_ref']['path'] not in spec['terminal_identity_pins'],
             'Failed9 is separate; total terminal pins must equal normal+9')
     return raw
@@ -181,6 +181,27 @@ def validate_protocol(spec,closure):
     require(protocol==EXPECTED_PROTOCOL,"Exact locked N16 protocol differs")
     return protocol
 
+
+def tenth_failed_raw_only(spec):
+    extra=spec['additional_preserved_N16_cache_failure']
+    require(extra['returncode']==1 and extra['RAW_ref']['path'] not in spec['terminal_identity_pins'] and
+        extra['RAW_ref']['path']!=spec['additional_preserved_independent_CPU_failure']['RAW_ref']['path'],
+        'Original N16 failed owner10 must remain separate from normal and old failure owners')
+    raw=terminal_raw_only(extra['RAW_ref'],extra['phase'],1)
+    check_pin(extra['pin'],raw,extra['phase'],1)
+    return raw
+
+
+def eleventh_failed_raw_only(spec):
+    extra=spec['additional_preserved_N16_cache_target_dtype_failure']
+    require(extra['returncode']==1 and extra['RAW_ref']['path'] not in spec['terminal_identity_pins'] and
+        extra['RAW_ref']['path'] not in (spec['additional_preserved_independent_CPU_failure']['RAW_ref']['path'],
+            spec['additional_preserved_N16_cache_failure']['RAW_ref']['path']),
+        'Original N16 target-dtype failed owner11 must remain separate')
+    raw=terminal_raw_only(extra['RAW_ref'],extra['phase'],1)
+    check_pin(extra['pin'],raw,extra['phase'],1)
+    return raw
+
 def source_gate(path, spec, cpu=False):
     require(spec['schema'] == (CPU_SCHEMA if cpu else SCHEMA) and
         type(spec['expected_normal_RAW_count']) is int and spec['expected_normal_RAW_count'] >= 105 + int(cpu) and
@@ -188,8 +209,10 @@ def source_gate(path, spec, cpu=False):
         spec['automatic_retry'] is False and spec['allocator_limit_MiB'] == 4096 and spec['whole_GPU_limit_MiB'] == 8192,
         'New N15 actual full ancestry/schema/owner resource recipe required')
     ninth_failed_raw_only(spec)
+    failed10=tenth_failed_raw_only(spec)
+    failed11=eleventh_failed_raw_only(spec)
     raws, closure = pre_gate(spec, spec['expected_normal_RAW_count'])
-    for key in CARRIER_KEYS + ('entry_source', 'locked_protocol', 'cache_body_source', 'labels_source', 'FIT', 'original_fit_cache_report', 'native_context_spec'):
+    for key in CARRIER_KEYS + ('entry_source', 'locked_protocol', 'cache_body_source', 'labels_source', 'FIT', 'original_fit_cache_report', 'native_context_spec', 'region_common_source', 'original_fit_cache_entry_source', 'action_diagnostic_source'):
         closed(closure, spec[key])
     closed(closure, spec['additional_preserved_independent_CPU_failure']['RAW_ref'])
     if not cpu:
@@ -232,6 +255,20 @@ def source_gate(path, spec, cpu=False):
     lineage = load(original['endpoint_lineage_source'], '_N15_original_E24_lineage')
     lineage.check_recipe(original)
     gate = lineage.own_gate(path, context, spec['entry_source']['path'] if cpu else __file__, closure, raws, cpu=cpu)
+    fail10=spec['additional_preserved_N16_cache_failure']
+    for k in ('RAW_ref','admission','phase_binding','bootstrap','entry_source','spec'):closed(closure,fail10[k])
+    failrow=dict(receipt=fail10['RAW_ref'],phase=fail10['phase'],admission=fail10['admission'],
+        phase_binding=fail10['phase_binding'],bootstrap=fail10['bootstrap'])
+    failed_owner=lineage.owner_join(failrow,failed10,closure)
+    require(failed_owner['scientific_spec']==fail10['spec'] and failed_owner['entry']==fail10['entry_source']['path'] and
+        failed_owner['cuda_visible_devices']=='0','Preserved N16 actual failure10 original SOURCE/spec/ad owner differs')
+    fail11=spec['additional_preserved_N16_cache_target_dtype_failure']
+    for k in ('RAW_ref','admission','phase_binding','bootstrap','entry_source','spec'):closed(closure,fail11[k])
+    failrow11=dict(receipt=fail11['RAW_ref'],phase=fail11['phase'],admission=fail11['admission'],
+        phase_binding=fail11['phase_binding'],bootstrap=fail11['bootstrap'])
+    failed_owner11=lineage.owner_join(failrow11,failed11,closure)
+    require(failed_owner11['scientific_spec']==fail11['spec'] and failed_owner11['entry']==fail11['entry_source']['path'] and
+        failed_owner11['cuda_visible_devices']=='0','Preserved N16 actual failure11 original SOURCE/spec/ad owner differs')
     gi = lineage.owner_ref_join(context, gate['owners'], spec['carrier_GPU_RAW'], spec['carrier_GPU_admission'],
         spec['carrier_evaluation_source'], spec['carrier_GPU_spec'], '0')
     ci = lineage.owner_ref_join(context, gate['owners'], spec['carrier_CPU_RAW'], spec['carrier_CPU_admission'],

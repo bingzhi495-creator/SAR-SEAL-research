@@ -111,7 +111,7 @@ def observe_all100_targets(torch, head, digest_tensor):
 
 def final_assignment(torch, observation, mapping, ann_ids, num_classes):
     labels, lw, mw = observation['labels'], observation['label_weights'], observation['mask_weights']
-    require(labels.dtype == torch.int64 and lw.dtype == mw.dtype == torch.float32
+    require(labels.dtype == lw.dtype == torch.int64 and mw.dtype == torch.float32
             and bool(torch.isfinite(lw).all()) and bool(torch.isfinite(mw).all()), 'Exact finite native target dtype required')
     positive, negative = observation['positive_query_indices'], observation['negative_query_indices']
     require(len(ann_ids) == len(mapping) and sorted(mapping) == list(range(len(ann_ids)))
