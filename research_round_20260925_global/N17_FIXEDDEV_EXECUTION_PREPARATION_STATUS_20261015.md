@@ -71,3 +71,10 @@ CPU own Source gate与CUDAempty独立，失败9–19保留；只有父GPU实际0
 新的[统一full187 CPU/COCO入口](code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_01.py)与[合同](code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_CONTRACT_20261015_01.md)已冻结，一次定向静态审阅READY，发布副本[一项元数据合成检查](code/test_N17_FIXEDDEV_FULL187_FINAL_METADATA_SYNTHETIC_ONLY_20261015_01.py)原实际0（test0.063秒）；未执行真实全量评估。最后消费四个独立数值CPU报告、统一18700预测和原GT380，不平均局部AP；每政策一次官方完整COCO，主只E24atmost，pending报告与原实际0后Root资格分开。
 
 第二段原59160运行期间，只同步独立普通代码/本文/README；不为同步读取运行中绑定Source、载荷或资格链。后续原任务终态后继续另外两段与独立CPU，正式TEST/跨集/核心创新/TGRS仍未完成。
+
+
+## 定向先例补充与创新边界
+
+[局部粗mask/ERROR/选点的直接先例核查](N17_LOCAL_NATIVE_L_ERROR_SCOUT_TARGETED_PRIOR_CHECK_20261015.md)保存SEED（IEEE Access2026）、QuBER（ICRA2025）、MagNet与PointRend的一手原文/代码差异及检索记录。错误估计后精修、预测邻域辅助选点已有先例；e33三类属于SEED多配置代码分支，期刊最终配方尚未核到全文。当前N17是同冻结PR预算下真实八邻相对中心复制的信息检验，尚不证明空间拓扑机制或创新。Cross-model指定后端未可用，独立数据库与全文缺口明示，不称穷尽查新。
+
+此补充未改变现有训练/评价/重复门；GPU第二段原59160仍待实际终态，完整AP与独立数值资格未完成。
