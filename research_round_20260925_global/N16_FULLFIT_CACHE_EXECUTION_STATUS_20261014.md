@@ -15,3 +15,7 @@
 新背景空集监督仅用于原生分类背景/采样负query，不冒充原Mask2Former已有负mask监督。实际FIT中65279个背景query的native mask与任一GT IoU>=0.5，这只是重复或潜在TP风险诊断，不能自动改标签、筛query或判定方法有效。两种scout共享这种新增监督，需公平AP实测检验是否损伤完整自然100-query输出。
 
 当前未开始scout训练、未新增DEV/TEST或AP。通过原GPU0+独立CPU0核验后才允许固定24轮两种scout同初始化同点同图序训练；E8只记曲线，E24为主判断。收益参照max(同训Error, 强固定E24 AP68.09938494745545)，至少+1 AP且超过配对Error才进入后续确认。仍需重复种子和跨数据集；动作效用原语已有直接先例，不把训练成功等同于创新。
+
+## 08:17 UTC 后续执行
+
+完整独立CPU核验已启动（原始单任务会话73717），目前等待原进程终止，未读取运行中的缓存或资格链用于同步。CPU映射修复body03/wrapper05已完成原生tuple/共有五项证明/原parser映射RED→GREEN，Q通过明确实际检查fields与训练接口对齐，仍须ROOT原实际CPU0。训练端点保存OrderedDict需要递归CPU/detach/clone，否则GPU权重不能可靠保存且readback会出现tensor布尔歧义；新trainbody02/wrapper03只修复这两处容器处理，原runtime合成回归已通过，尚无实际GPU训练或迁移资格。冻结原件保留，不把预检查脚本问题算作科学负结果。
