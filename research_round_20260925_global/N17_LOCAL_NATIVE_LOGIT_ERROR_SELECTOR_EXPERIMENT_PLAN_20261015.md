@@ -45,3 +45,8 @@ ROOT 已核 FIT 的741份 full same-query native_L_refs 元数据；实际提取
 若首组落在0<Δ<1，完成172后，仅以两组已合格、可评估主结果计算 `mean(AL)-max(mean(AC),R)`：该值≥1且**两组各自AL>AC**才允许173，否则停止。最终三组 meanDelta 采用同一公式 `mean(AL)-max(mean(AC),R)`；即使 meanDelta≥1且三组各自胜AC，也仅支持共享冻结 teacher 下的 scout 初始化效用，不构成创新证据。
 
 正收益也仅支持当前冻结 teacher、代理标签、数据划分与短预算下的邻域输入效用。中心复制控制匹配参数量与初态，但不匹配八邻值分布/协方差或有效输入秩，收益可能来自局部置信度、容量使用或优化；尚不能专门归因空间排列。保值破位控制及跨集/正式 TEST 验证只在主门正收益后另行预锁；这里不扩大实验清单，也不把同 teacher 的 scout 重复称独立 backbone 证据。
+
+
+## 基础模块状态（2026-10-15）
+
+[独立普通kernel/init源码](code/N17_NATIVE_L_NEIGHBORS_AND_SCOUT_INIT_UNBOUND_DRAFT_20261015_01.py)和[ABI](code/N17_NATIVE_L_NEIGHBORS_AND_SCOUT_INIT_UNBOUND_DRAFT_20261015_01.md)已保存，原107行快照一次针对性接口审阅未见确定阻断；[可移植6项合成测试](code/test_N17_NATIVE_L_NEIGHBORS_AND_SCOUT_INIT_SYNTHETIC_ONLY_20261015_01.py)原实际0（0.022秒）。覆盖同query/非方图/边角/1×1/饱和/空点/非法索引、独立NumPyexact、旧四tensor/补零/RNG和初态函数一致性。新forward(F,e,L,extra8)需要新入口适配，旧三参入口不能直接使用。测试仅合成输入/旧普通factory，未生成741真实邻域cache、未完成真实输入数值资格、未启动N17训练/DEV评价；不得以此宣称涨点。
