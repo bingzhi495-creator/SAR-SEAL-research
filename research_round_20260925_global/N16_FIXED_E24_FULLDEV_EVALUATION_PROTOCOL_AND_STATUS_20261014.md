@@ -1,6 +1,6 @@
 # N16 固定24轮完整开发集评价
 
-记录时间：2026-10-14T14:44:32.808Z。当前：GPU四段与AP汇总实际0，数值CPU首段47图实际0、第二段运行中；尚无完整资格收益结论。
+记录时间：2026-10-14T15:16:21.996Z。当前：GPU四段与AP汇总实际0，数值CPU前两段94图实际0、第三段运行中；尚无完整资格收益结论。
 
 Utility与Error使用同一初始四张量、同一FIT点/权重/顺序和固定24轮AdamW训练，各17784更新，已完成独立E8/E24端点核验。不同标签目标的训练交叉熵不能直接比较优劣。
 
@@ -110,3 +110,10 @@ normal115+fail16纯原RAW前缀实际0之后，第二段原监督session68223已
 ## 主结果解释器已保存，真实解释仍待完整资格
 
 新增[首种子解释器](code/N16_FIRST_SEED_RESULT_INTERPRETER_UNBOUND_DRAFT_20261014_01.py)及[合同](code/N16_FIRST_SEED_RESULT_INTERPRETER_UNBOUND_DRAFT_20261014_01.md)、[6项纯合成测试](code/test_N16_FIRST_SEED_RESULT_INTERPRETER_SYNTHETIC_ONLY_20261014_01.py)。它只接收已合格的12策略COCO原比例，按原精度换算AP/AP50/AP75/AR100；仅E24 Utility-atmost与Error-atmost及固定68.09938494745545强参考决定STOP/最多补162/允许162163。缺失指标保持未定义，E8/exact/dense/MagNet不能替代主端点；它不做资格认证，不证明创新或TGRS。6项边界/单位/NaN/bool/undefined/主次区分与输入不修改检查及一次小静态审阅通过；该解释器尚未接收真实N16 AP数字，须最终118实际0与Root完整资格后才用于真实结论。
+
+
+## 第二段完整独立数值CPU实际0，第三段启动
+
+第二段原监督session68223真实退出0，用时1568.140秒，held0/reaped/原birth消失已核验；abort/error为空、wait/GPU观察错误无，最小可用RAM29,314,043,904字节、整卡观察峰值2272MiB。固定[47,94)47图/4700自然query/12策略本段完整预测及47份全新逐图证明，全部保存GPU logits严格排名/索引、两独立PR公式和严格sign、原native/strong与完整新mask/RLE核验通过。无局部COCO/AP；前两段完整94图/9400query已各自实际0。
+
+normal116+failed16纯原RAW前缀实际0后，第三段原监督session4452启动，own116、固定[94,141)47图/4700query，同一冻结CPU03/adapter/全部科学规则。最后一段[141,187)46图及最终118全18700/12COCO仍待实际完成；尚未用真实AP触发复验/停止，没有完整DEV效用、创新或TGRS结论。
