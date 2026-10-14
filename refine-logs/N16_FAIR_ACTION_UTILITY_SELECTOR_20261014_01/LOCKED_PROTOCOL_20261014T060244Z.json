@@ -1,0 +1,155 @@
+{
+  "schema": "N16-two-scout-fixed-E24-FIT-selector-locked-v1",
+  "locked_UTC": "2026-10-14T06:02:44.021Z",
+  "locked_before_N16_actual_FIT_cache": true,
+  "teacher": "qualified native0 E24",
+  "fixed_PR": {
+    "seed": 202610120701,
+    "epoch": 24,
+    "parameters": 40497,
+    "strong_DEV_AP": 68.09938494745545
+  },
+  "population": {
+    "FIT_images": 741,
+    "FIT_instances": 1661,
+    "natural_queries_per_image": 100,
+    "DEV_images": 187,
+    "DEV_natural_queries": 18700
+  },
+  "targets": {
+    "positive": "last original native matcher assigned raw instance; original mask_weight1",
+    "negative": "explicit NEW common background-emptyset proxy, only original sampler.neg_inds with background class and mask_weight0",
+    "ignored": "never assigned empty; invalid target excluded",
+    "no_extra_annotation": true
+  },
+  "candidate": {
+    "P": "actual original GPU L>0",
+    "Omega": "abs(actual original GPU L)<=2",
+    "C": "Omega union P union Chebyshev radius8 dilation(P)",
+    "K": "count(Omega)",
+    "query_filter": "none by score or GT",
+    "K0": "no edit; no training candidate samples"
+  },
+  "sampler": {
+    "point_seed_base": 202610140160000,
+    "matching_loss_seed_base": 202610122001,
+    "max_points_per_image": 4096,
+    "proposal": "2048 per active matched/background stratum; 4096 if only one; uniform active query then uniform C point, replacement",
+    "target_distribution": "uniform valid active query within image, then uniform its C point; each image one equal update",
+    "importance": "(active_query_count_in_stratum/all_active_query_count)/proposal_stratum_probability",
+    "loss": "mean(weight_i * cross_entropy_i); no per-batch sum-weight renormalization or additional class weights",
+    "algorithm": {
+      "RNG": "Torch CPU private Generator seeded point_seed_base+dataset_index",
+      "group_order": [
+        "matched",
+        "background"
+      ],
+      "calls": "per existing group one randint(n_active_queries,(count,)); then one randint(|C_query|,(1,)) per sampled draw in draw order",
+      "sample_order": "matched samples followed by background samples; replacement duplicates preserved",
+      "weights_dtype": "float32",
+      "GT_point_sampling": "only matcher stratum; no utility/help/harm or pixel GT resampling"
+    }
+  },
+  "scout": {
+    "inputs": "nonaffine LN(F256) and LN(e256), eps1e-5; unclipped raw L/8",
+    "layers": [
+      513,
+      32,
+      3
+    ],
+    "activation": "ReLU",
+    "parameters": 16547,
+    "tensors": 4,
+    "paired_identical_initial_state": true,
+    "normal_Linear_init": true,
+    "utility_classes": [
+      "help",
+      "harm",
+      "noop"
+    ],
+    "error_classes": [
+      "FP",
+      "FN",
+      "correct"
+    ]
+  },
+  "training": {
+    "seed": 202610140161,
+    "order_seed": 202610140160001,
+    "epochs": 24,
+    "curve_endpoints": [
+      8,
+      24
+    ],
+    "AdamW_lr": 0.0003,
+    "AdamW_weight_decay": 0.0001,
+    "AdamW_betas": [
+      0.9,
+      0.999
+    ],
+    "AdamW_eps": 1e-8,
+    "LR_schedule": "constant",
+    "update_unit": "one same cached image batch per arm; same order/points/weights",
+    "empty_image": "both skip; count actual updates",
+    "mixed_precision": false,
+    "gradient_clip": null
+  },
+  "selection": {
+    "canonical": "FP32 scout logits transferred to CPU, stable NumPy FP64 softmax/score",
+    "utility": "p_help-p_harm",
+    "error": "2*(p_FP+p_FN)-1",
+    "main": "atmost K, strictly score>0",
+    "supplement": "exact K real points only",
+    "ties": [
+      "score descending",
+      "abs native L ascending",
+      "flat index ascending"
+    ],
+    "rank_tolerance": 0,
+    "qualification": "selected indices exact; no allclose substitution"
+  },
+  "main_GATE": {
+    "metric": "official COCO mask AP full natural all100 at fixed E24 scout endpoint; all original class/S0/order unchanged",
+    "reference": "max(error_same24_AP,68.09938494745545)",
+    "GO": "utility-minus-reference >=1 AP point and utility>paired error",
+    "nonpositive": "stop current recipe, no extra budget/seed",
+    "positive_under1": "at most one prelocked extra seed then original goal repeat rule",
+    "no_DEV_epoch_or_threshold_selection": true
+  },
+  "strong_controls": [
+    "original strong fixed E24",
+    "same-trained error scout",
+    "dense error+actual_flip indicator: delta*(2p_error-1)",
+    "adapted two-class MagNet: 2sigmoid(-absL)*abs(tanh((L+u)/2))"
+  ],
+  "cost": {
+    "canonical_unshared_first": true,
+    "shared_projection": "future engineering only after both-arm equal numeric qualification",
+    "all100_include_background": true,
+    "count_all_C_PR_for_dense_controls": true,
+    "report_label_generation_separately": true
+  },
+  "numeric": {
+    "absolute": 0.0001,
+    "relative": 0,
+    "actual_after_sign_exact": true
+  },
+  "execution": {
+    "ROOT_single_leaf": true,
+    "CPU_affinity": [
+      0,
+      1
+    ],
+    "threads": 2,
+    "allocator_MiB": 4096,
+    "whole_GPU_observed_MiB": 8192,
+    "deadline_seconds": 1800,
+    "automatic_retry": false
+  },
+  "claims": {
+    "training_started": false,
+    "new_AP": false,
+    "new_primitive": false,
+    "TGRS_ready": false
+  }
+}
