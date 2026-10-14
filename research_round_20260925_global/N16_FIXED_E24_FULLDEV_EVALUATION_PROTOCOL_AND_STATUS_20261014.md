@@ -140,3 +140,10 @@ normal118+failed16纯原RAW前缀实际0后，最终全scope CPU原监督session
 最终全量CPU原监督session8768实际退出1，用时124.766秒；held1/reaped/原birth消失、资源及abort/error为空已核验，未生成Q.json。异常发生于Source前置门：closed函数返回Path，而load函数要求包含path/bytes/sha256的严格引用。此前静态审阅及合成测试未覆盖这一实际接口组合，不能据其通过宣称入口已经有效。
 
 四段完整187图/18700query的独立数值原实际0证据仍保留，无需重跑。修正采用先验证closed成员和哈希，再把原严格ref传入load；保留原失败17及六项元数据引用，另建02源码/资格/输出，旧失败原件不改写。正常owner仍118，失败记录增至17、身份pin135；四个数值父报告仍保持原failed16合同。新02待实际完成，尚无最终资格、主收益判断或投稿级结论。这是实现接口失败，不是方法负结果。
+
+
+## 最小接口修正02已启动全量复核
+
+新02按原严格ref ABI拆开闭合验证和导入，新增原失败17保留门，独立审阅通过。发布副本的3项纯stdlib回归实际0（0.017秒），仅验证引用类型与失败门，不替代科学结果。normal118+failed17纯RAW前缀原实际0后，原监督session18225已启动；保持CPUempty、两线程、1800秒、无自动重试，统一核187份新证明并复算全18700/12COCO。训练、数值父证明和科学选择规则不变；原01失败冻结，当前02仍待实际结束与Root完整资格。
+
+[普通修正源码](code/N16_FIXED_E24_ALL100_SCOUT_CPU_NUMERIC_SHARDS_AGGREGATE_ROOT_UNBOUND_DRAFT_20261014_02.py)、[合同](code/N16_FIXED_E24_ALL100_SCOUT_CPU_NUMERIC_SHARDS_AGGREGATE_ROOT_UNBOUND_DRAFT_20261014_02.md)、[可移植小回归](code/test_N16_FINAL_CPU_REFERENCE_ABI_FAILURE17_SYNTHETIC_ONLY_20261014_02.py)。
