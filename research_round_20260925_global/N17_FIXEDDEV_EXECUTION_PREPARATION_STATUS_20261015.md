@@ -137,3 +137,8 @@ CPU03仅新增typed21保留与当前计数，旧GPU父03/04计数和数值循环
 ## 后续全量COCO03与后置ROOT02已接好
 
 [最终COCO03](code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_03.py) own schema v2 消费五份numeric-v3/21报告；[post-only ROOT02](code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_DRAFT_20261015_02.py)冻结绑定该final03完整Source，独立原终态确认，不重跑COCO。发布副本一项必要元数据fixture原退出0（fd027c/test0.042秒），一次窄范围静态接线审阅READY；数值/主解释器/原GT/评分规则不改，两入口均尚未实际执行。当前原CPU45412仍运行，不能提前读取载荷、统一AP或作科研结论。
+
+
+## 运行中的执行效率观察
+
+[普通代码静态观察](N17_CPU_REDUNDANT_COMPUTATION_STATIC_OBSERVATION_20261015.md)确认部分输入gather和extra8期望值反复生成；未测耗时，未作修改，不保证提速。原45412仍运行，当前只有逐图输出记录，完整原终态/五分区独立数值/统一AP尚待，不将记录数量认作资格。
