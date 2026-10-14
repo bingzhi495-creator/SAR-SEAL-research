@@ -56,3 +56,10 @@ CPU03/04改为每图真实bundle只load一次，检查member、registry、使用
 新增normal110+failed15纯RAW前缀实际退出0后，第二段原监督session88419已启动，范围固定[47,94)，训练和选点规则不变；后续两段、独立CPU全量汇总及完整数值证明仍待实际执行。
 
 [CPU全量汇总02普通源码](code/N16_FIXED_E24_ALL100_SCOUT_SHARDS_AGGREGATE_UNBOUND_20261014_02.py)、[汇总合同](code/N16_FIXED_E24_ALL100_SCOUT_SHARDS_AGGREGATE_CONTRACT_20261014_02.md)、[完整独立CPU证明普通源码](code/N16_FIXED_E24_ALL100_SCOUT_SHARDS_FULLDEV_CPU_PROOF_UNBOUND_20261014_01.py)、[证明合同](code/N16_FIXED_E24_ALL100_SCOUT_SHARDS_FULLDEV_CPU_PROOF_CONTRACT_20261014_01.md)。这些已形成的普通研发产物及时保存，但尚未实际执行；合成覆盖/绑定检查不是实际来源资格或真实COCO验证。
+
+
+## 第二段实际正常结束、第三段已启动
+
+第二段原监督session88419已真实退出0，固定ordinal[47,94)、47图/4700自然query/12组完整本段预测和47逐图bundle；elapsed795.016秒、整卡观察峰值4045MiB、最小可用RAM31,734,976,512字节，实际serialized捕获7,234,091,379字节。held退出0、reaped、原birth消失均核验，abort/error为空、wait/GPU观察错误均无。本段原生/强固定E24原预测逐值相同；未计算局部AP。
+
+新的normal111+failed15纯RAW前缀已实际退出0，第三段原监督session80747启动，范围固定[94,141)，训练owner107/108与冻结科学配方不变。现共有两个完整实际GPU0段、94图/9400query；全187/18700的统一COCO、全部独立CPU数值核验和Root全量资格仍未完成，没有涨点、SOTA或TGRS成功结论。
