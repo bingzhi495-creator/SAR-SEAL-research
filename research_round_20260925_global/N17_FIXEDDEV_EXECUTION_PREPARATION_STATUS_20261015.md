@@ -7,3 +7,8 @@
 沿旧成功四段[0,47)/[47,94)/[94,141)/[141,187)作固定执行分区，不改变训练或科学评价配方；后续8个profile保留E8/E24×两ERROR臂×atmost/exact，主仅E24 atmost，不从输出事后挑最高。四段最终合并后统一全DEV COCO，不平均各段AP。原native与强R预测只有在完整绑定和导出条件吻合时复用；新CUDA模型logits、选点与PR动作需新capture及独立CPU资格。
 
 GPU外层正在普通源码实现，尚未绑定实际Source/spec/admission或启动；selected CPU proof core也在准备，未知新bundle字段不预造。首组增益门与重复停止规则见[预锁计划](N17_LOCAL_NATIVE_LOGIT_ERROR_SELECTOR_EXPERIMENT_PLAN_20261015.md)。[已完成训练资格](N17_ENDPOINT_CPU_QUALIFICATION_ENTRY_AND_STATUS_20261015.md)不能升级为精度、机制创新、SOTA或TGRS结论。
+
+
+## 独立选点数值core已形成，仍未执行实际DEV资格
+
+[CPU proof core](code/N17_SELECTED_NUMERIC_CPU_PROOF_BODY_UNBOUND_DRAFT_20261015_01.py)及[参数合同](code/N17_SELECTED_NUMERIC_CPU_CORE_UNBOUND_CONTRACT_20261015_01.md)已冻结，发布副本一项tiny capture→hooks合成检查原退出0（test0.059秒），一次定向静态审阅READY；不是真实DEV输出资格。core以独立NumPy核真8/center8字节值、factory与独立CPU公式各对实际GPU logits absolute1e-4；排名只由实际GPU logits的canonicalFP64分数定义，选点/mask/RLE exact，PR两式/完整C与selected兼容及严格sign保持。新bundle解码和Source/全100/query类分数顺序/完整187_scope/实际终止均由尚待绑定执行的外层闭合，core不自证AP或创新。
