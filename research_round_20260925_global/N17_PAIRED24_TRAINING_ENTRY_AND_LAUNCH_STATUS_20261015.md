@@ -1,6 +1,6 @@
 # N17 配对24轮：固定入口与实际任务启动
 
-2026-10-15。真实全741 FIT八邻缓存已经原任务退出0并通过Root资格。新的LOCAL_ERROR/CENTER_ERROR配对24轮任务已由Root实际启动，原监督会话78143；目前尚未取得退出码、完整更新计数、端点资格或新AP。任务先核验输入及环境，不能由“启动”认定已经完成训练。
+2026-10-15。真实全741 FIT八邻缓存已经原任务退出0并通过Root资格。新的LOCAL_ERROR/CENTER_ERROR配对24轮原任务现已退出0，原监督会话78143；Root已核实际结束、完整更新计数及端点文件绑定。独立CPU数值资格和新AP尚未完成。
 
 两臂使用原合格FIT741图/1661实例/74100自然query及每图4096原样本，原标签、权重和顺序不变；LOCAL使用同query原网格3×3八邻clip[-8,8]/8，CENTER重复同中心值八次。保留旧513维输入及固定教师/PR，每臂521→32→3、16803参数、四张量。新增输入是待检验假设，不宣称SAR专属或新原语。
 
@@ -20,3 +20,14 @@ UPDATE_TRACE只保存17784 paired_image_update更新子流；CPU可核更新身�
 ## 端点数值核验体已形成，尚未执行真实CPU资格
 
 [独立CPU数值body](code/N17_PAIRED_ERROR_ENDPOINT_CPU_QUALIFIER_BODY_UNBOUND_DRAFT_20261015_01.py)及[合同](code/N17_PAIRED_ERROR_ENDPOINT_CPU_QUALIFIER_BODY_UNBOUND_DRAFT_20261015_01.md)已保存为UNBOUND草稿；[发布副本小型测试](code/test_N17_PAIRED_ERROR_ENDPOINT_CPU_QUALIFIER_SYNTHETIC_ONLY_20261015_01.py)一项原实际退出0（test0.382秒）。fixture的全量计数/图序元数据为显式合成，不是实际741训练结果。它核两CPU公式与完整snapshot/更新子流接口；真实CPU资格仍须原GPU任务结束、锁定Source/输入并实际运行。初始digest由外层核验；训练后的新8列及两臂不要求仍零、必非零或必分化。
+
+
+## 原GPU120实际退出0，完整配对24轮元数据核验完成
+
+原监督会话78143实际退出0，用时673.813秒；held0/reaped/原birth消失、abort/error为空且无观察错误，整卡观察峰值2652MiB、最小可用RAM31335907328B。纯原RAW121前缀（121正常+17失败、138身份pin）实际通过后，Root才首次读取/哈希新产物。
+
+两臂各24轮、17784真实paired更新、72843264点曝光；完整17784条更新子流、24段history及图序、E8/E24完整snapshot和FIT端点文件哈希/绑定均核验。GPU START/REPORT中两臂实际初始digest及每张量摘要都吻合取数前的预锁初态，原教师/PR、合格邻域缓存、新锁和输入Source绑定保持。此为原实际结束及元数据证据；原pending REPORT不改写，独立CPU完整数值资格仍未执行。
+
+GPU记录的固定FIT每图平均加权ERROR CE：E8 LOCAL0.0097649774/CENTER0.0062145345，E24 LOCAL0.0052634131/CENTER0.0023572680。数值独立复核尚待完成；LOCAL报告损失高于CENTER，不能按预期解释为有效，也不能由FIT损失判定部署AP或方法总体失效。必须继续固定端点CPU核验与完整DEV主评价。
+
+[固定DEV最小接线方案](N17_FIXED_DEV_SELECTOR_MINIMAL_WIRING_PLAN_UNBOUND_20261015_01.md)仅依据普通源码确认缓存载体接口可能足够；实际复用资格尚未核验，不能由这份方案认定已复用或已完成DEV预测。下一项是CPU121端点资格，之后主E24 atmost统一全187图/18700自然query COCO；当前没有新AP、正效用、创新或TGRS结论。
