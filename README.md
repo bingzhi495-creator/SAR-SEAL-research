@@ -3,7 +3,7 @@
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-14**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 
-**当前单模块试训（N14）：** 首8轮已通过GPU44066、CPU1652及ROOT完整Source/产物资格核验，每branch13,288实际AdamW计数与完整顺序/trace通过，CPU与GPU最终FIT均值误差<2e-9。BCE基线0.3474584506、模块0.3473273801，不能当AP涨点。第9—16轮已单次启动原GPU3518，恢复两branch模型/AdamW/private order，保持同LOG缓存、支持、分数与预锁24轮主端点。暂无N14 DEV/AP或核心创新结论。[实际结果和当前状态](research_round_20260925_global/N14_STAGE8_TRAINING_ACTUAL0_AND_EVIDENCE_SCOPE_20261014.md)、[预锁协议](research_round_20260925_global/N14_CONTEXT_MEMORY_SINGLE_MODULE_EXPLORATION_PROTOCOL_20261014.md)、[微信来源审阅](research_round_20260925_global/WECHAT_366_MODULES_PRIMARY_SOURCE_REVIEW_20261014.md)。
+**当前单模块试训（N14）：** 第16轮GPU3518、独立CPU75870与ROOT69384均实际退出0并核验，每臂累计26,576次更新、模型/优化器恢复及完整顺序/trace通过；CPU/GPU最终FIT均值差<2e-9。BCE基线0.3255756509、模块0.3212987759，训练损失相对下降约1.31%，尚非AP涨点。第17—24轮原GPU14941已单次启动，连续恢复该新阶段状态，预锁24轮主端点保持。当前无N14 DEV/AP或核心创新结论。[第16轮核验及续训](research_round_20260925_global/N14_STAGE16_QUALIFIED_AND_FIXED24_CONTINUATION_20261014.md)、[预锁协议](research_round_20260925_global/N14_CONTEXT_MEMORY_SINGLE_MODULE_EXPLORATION_PROTOCOL_20261014.md)、[微信来源审阅](research_round_20260925_global/WECHAT_366_MODULES_PRIMARY_SOURCE_REVIEW_20261014.md)。
 
 **新增直接先例（GLDet）：** 用户提供的TGRS2025论文含实例分割，原文SSDD/HRSID mask AP71.3/58.6、整网500轮。已核全文/表格；完整作者代码尚未确认。空间扫描/邻域卷积/方向pool需要新空间载体，当前点头不能原样接入；保持首试，随后再评一个局部候选，不直接比较不同划分AP。[原论文综述](research_round_20260925_global/GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)。
 
