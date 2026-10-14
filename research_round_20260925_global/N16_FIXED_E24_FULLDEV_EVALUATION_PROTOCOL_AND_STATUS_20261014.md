@@ -84,3 +84,10 @@ normal113+failed15纯RAW前缀原实际退出0后，独立CUDAempty CPU全量汇
 完整CPU汇总原session44225真实退出0，406.875秒；held0/reaped/原birth消失均核验，abort/error为空、wait/GPU观察错误均无。全部187图/18700自然query的12组统一COCO已计算，原native/strong预测逐值一致。原source闭包12577项；该结果仍待完整独立数值资格，不宣布涨点。
 
 全scope数值核验原session65044在1800.359秒受控实际退出1，77/187图证明，无Q.json；原身份、held1/reaped/birth消失与资源门均核验，部分不复用，原失败16保留。现锁定[固定四段CPU数值执行补充](N16_FIXED_FULLDEV_CPU_NUMERIC_PARTITION_SUPPLEMENT_20261014.md)：owners114–117各独立本段全部all100/12策略数值证明，再由118完整合并并复算12COCO。局部不算AP、完整范围和原数值门不变，总评价时长增加；训练/选择/评价/停止门不变。
+
+
+## 第一段新独立数值CPU已启动
+
+四固定段的第一段原监督session54364已启动，fixed ordinal[0,47)、47图/4700自然query/12策略，own114，完整normal114+fail16的纯RAW前缀原实际0后进入新Source门；同一原数值adapter02逐字一致，CPU03仅加入原失败16/CPU执行补充、固定slice和Source成员精确字典查询。最小纯stdlib分段/owner/typedfailure拒绝检查及针对性最终静态审閱通过，只支持接口准备，不等于实际数值/COCO资格。当前任务待原终止，下一段不得提前启动。
+
+[CPU03普通源码](code/N16_FIXED_E24_ALL100_SCOUT_CPU_NUMERIC_SHARD_UNBOUND_20261014_03.py)、[合同](code/N16_FIXED_E24_ALL100_SCOUT_CPU_NUMERIC_SHARD_CONTRACT_20261014_03.md)、[最小合成检查](code/N16_CPU_NUMERIC_SHARD16_SYNTHETIC_TEST_20261014_03.py)。同步仅读取普通tmp副本，没有读取、改写、复制或哈希运行中的实际ENTRY/SPEC/RAW/bundle等科学绑定。
