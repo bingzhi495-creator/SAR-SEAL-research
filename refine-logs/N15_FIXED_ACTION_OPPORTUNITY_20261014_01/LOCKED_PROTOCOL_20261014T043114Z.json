@@ -1,0 +1,121 @@
+{
+  "schema": "N15-fixed-E24-action-opportunity-locked-v1",
+  "locked_UTC": "2026-10-14T04:31:14.389Z",
+  "locked_before_N15_actual_data_execution": true,
+  "carrier_seed": 202610120701,
+  "carrier_epoch": 24,
+  "arm": "LOG_PR",
+  "carrier_label": "LOG_PR_seed202610120701_E24_fixed_native_score",
+  "population": {
+    "matched_count": 374,
+    "unmatched_gt_count": 6,
+    "total_gt_count": 380
+  },
+  "native_matching_threshold": 0.5,
+  "unmatched_semantics": "UNEVALUABLE_NO_QUERY_NOT_ZERO_IOU_EXCLUDED_FROM374_MEAN",
+  "candidate": {
+    "native_binary": "P = original_GPU_native_L > 0",
+    "old": "Omega = abs(original_GPU_native_L) <= 2",
+    "wide": "C = Omega union P union Chebyshev_radius8_dilation(P), clipped to original raster",
+    "radius_pixels": 8,
+    "budget": "K = |Omega|",
+    "GT_independent": true,
+    "empty_P": "C = Omega",
+    "K_zero": "No edits; native result"
+  },
+  "action": {
+    "definition": "A = (original_GPU_native_L + fixed_E24_PR_ungated_residual) > 0",
+    "pool_order": "sorted_unique_flat_original_raster_indices",
+    "chunk": 2048,
+    "common_action": "C_forward restricted to Omega and C for fair action oracle",
+    "strong_carrier_check": "independent original Omega-only forward reconstructs exact fixed E24 prediction and refined counts",
+    "overlap_check": "C versus Omega-only residual and combined absolute tolerance1e-4; every final binary sign identical; failure is numeric qualification failure with no automatic retry"
+  },
+  "comparisons": [
+    "native",
+    "actual_PR_Omega_original",
+    "actual_PR_Omega_common_C",
+    "action_oracle_atmostK_Omega_common_C",
+    "action_oracle_atmostK_C",
+    "action_oracle_exactK_C_with_real_noops",
+    "GT_replacement_oracle_atmostK_C_same_pool_same_budget"
+  ],
+  "oracle": {
+    "class_counts": {
+      "a": "FP->TN",
+      "b": "FN->TP",
+      "c": "TP->FN",
+      "d": "TN->FP",
+      "z": "physical no-op"
+    },
+    "atmost_order": [
+      "b",
+      "a"
+    ],
+    "exact_order": [
+      "b",
+      "a",
+      "z",
+      "d",
+      "c"
+    ],
+    "GT_classes": "a=C_FP,b=C_FN,c=d=0,z=C_TP+C_TN",
+    "ground_truth_only_privileged_diagnostic": true
+  },
+  "main_comparison": "action_oracle_atmostK_C minus action_oracle_atmostK_Omega_common_C",
+  "secondary_comparison": "action_oracle_atmostK_Omega_common_C minus actual_PR_Omega_common_C",
+  "GO": {
+    "all_conditions_required": true,
+    "mean_delta_iou_min_fraction": {
+      "numerator": 1,
+      "denominator": 200
+    },
+    "mean_over_matched": 374,
+    "sum_delta_iou_min_fraction": {
+      "numerator": 374,
+      "denominator": 200
+    },
+    "minimum_pairs_with_delta_ge_1_over200": 20,
+    "increase_in_pairs_iou_ge_9_over10_min": 4,
+    "rational_decision": true,
+    "meaning": "Permit one fair selector hypothesis preregistration; not AP success, learnability, novelty or TGRS readiness"
+  },
+  "not_GO": "Stop only this fixed E24 PR/radius8 candidate-action selector recipe; no radius/budget sweep or late gate change",
+  "resources": {
+    "ROOT_single_owner": true,
+    "deadline_seconds": 1800,
+    "CPU_affinity": [
+      0,
+      1
+    ],
+    "threads": 2,
+    "allocator_limit_MiB": 4096,
+    "whole_GPU_observed_limit_MiB": 8192,
+    "available_RAM_min_GiB": 16,
+    "automatic_retry": false,
+    "hidden_process": true
+  },
+  "qualification": {
+    "GPU_original_held_handle_actual_exit0_required": true,
+    "all_103_success_9_failed_ancestors_RAW_first": true,
+    "full_bound_SOURCE_before_import": true,
+    "CPU_same_actual_GPU_sampled_inputs": true,
+    "CPU_two_independent_PR_formulae": true,
+    "CPU_residual_combined_absolute_tolerance": 0.0001,
+    "CPU_exact_final_sign_and_oracle_counts": true,
+    "ROOT_after_CPU_actual_exit0_required": true
+  },
+  "outputs": {
+    "conditional_IoU_only": true,
+    "all_natural100_native_and_selector_provenance_checks": true,
+    "PR_diagnostic_only_matched374": true,
+    "full_AP_evaluated": false,
+    "training_started": false,
+    "no_TEST": true,
+    "no_cross_dataset": true,
+    "main_cost": "candidate fullC and extra originalOmega PR are real diagnostic cost; equal K is not equal compute"
+  },
+  "claim": "Test whether a wider GT-independent pool exposes helpful actual frozen E24 actions at the same K beyond what simply rejecting harmful actions in Omega can explain",
+  "anti_claim": "More native errors or a high GT oracle do not imply this refiner can correct them or that a cheap selector is learnable",
+  "future_selector_only_if_GO": "Fixed candidate M, scout capacity/input/labels/initialization/FIT sampling/trainbudget and full18,700 prediction evaluation; error-prediction + known fixed action control; action-label generation cost and sameFIT exposure disclosed; repeat seeds and strong E24 reference required separately"
+}
