@@ -6,7 +6,7 @@
 
 - 新增用户提供的GLDet正式TGRS2025原论文综述：已核全文及方法/表格，包含mask任务，SSDD/HRSID原文mask AP71.3/58.6、500轮整网训练。不能同历史DEV68.x直接比，完整作者实现未确认；当前点头缺空间邻域，后续局部候选需新独立cache，不改变正在运行的memory首试。[GLDet综述](../research_round_20260925_global/GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)。
 - 已核验N13三seed E48差值均负，停止该GEO联合配方扩展；全部E24曲线也已核验。新单图image113探针33452及ROOT93075均实际0，支持仅该两对F渲染差异，旧失败9不删，整374对未授予Q。[探针结果](../research_round_20260925_global/N13_IMAGE113_NUMERICAL_PROBE_RESULT_20261014.md)。
-- N14已单次启动共同LOG E24父头后的两分支新阶段1—8轮任务，预锁主端点24轮，每branch同缓存/LOG支持/原分数/resetAdamW，暂无N14 AP结果或创新证明。[预锁协议](../research_round_20260925_global/N14_CONTEXT_MEMORY_SINGLE_MODULE_EXPLORATION_PROTOCOL_20261014.md)；[微信资料核查](../research_round_20260925_global/WECHAT_366_MODULES_PRIMARY_SOURCE_REVIEW_20261014.md)。
+- N14首stage1—8 GPU44066实际0、CPU1652实际0及ROOT full10003 Source/Q实际0；每branch13288实际计数/顺序/trace通过，CPU/GPU最终全FIT平均BCE差<2e-9。新9—16轮GPU3518已单次启动并恢复optimizer/private order，不重置。无DEV/AP收益或创新结论；24轮主端点不变。[首8轮记录和续训状态](../research_round_20260925_global/N14_STAGE8_TRAINING_ACTUAL0_AND_EVIDENCE_SCOPE_20261014.md)。
 - 固定48轮/三个配对种子方案已预登记；冻结GPU关系与独立CPU缓存资格已通过，原full-L CPU allclose在6/741图失败保留为诊断。
 - 三个配对种子的两臂均已通过固定E48独立CPU及ROOT核验，各79,728次更新。703最终CPU59830实际0（186.156秒）；完整75项常规/7项保留失败RAW、82项身份门后，固定评价准备6397实际0，ROOT闭合9,152项来源及六个最终头。
 - 六个头均触发预锁定NOT_STABLE_GT1PCT_DROP标记，不能称充分收敛；固定48轮不自动扩展。原46956因诊断JSON含bool_实际退出1并保留；修复版GPU72600实际退出0，CPU准备13217实际0并核对9,372项来源，独立CPU83108已实际0并ROOT闭合9382来源，701 E08曲线合格；701 E48 GPU28604/CPU24977均实际0且ROOT核验，GEO−LOG为−0.298699 AP点；702 E48 GPU60879/CPU23689均实际0并经ROOT核验：LOG67.769106、GEO67.665391，GEO−LOG−0.103715点；ROOT经81常规/8失败/89身份和9,429项继承来源及新增CPU输出闭合，703 E48 GPU8268/CPU1202均实际0并ROOT核验，三条E48主行完整且C1失败，按原规则停止当前联合配方扩展。
