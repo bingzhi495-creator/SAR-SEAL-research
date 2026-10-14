@@ -1,6 +1,6 @@
 # N17 固定DEV：执行准备与边界
 
-2026-10-15。完整24轮GPU及独立E8/E24 CPU端点均原实际退出0、Root完整资格完成；新DEV首段原GPU122任务（原监督18818）实际退出1，在Source接口门内中止，未生成START/REPORT/预测；原失败保留，独立02修正准备中；没有新AP。下一步固定主E24 atmost完整187图/380GT/18700自然query，在原冻结teacher/PR/C/K/类别分数和query顺序下比较LOCAL与CENTER。
+2026-10-15。完整24轮GPU及独立E8/E24 CPU端点均原实际退出0、Root完整资格完成；新DEV首段原GPU122的01/02（监督18818/11194）均实际退出1，分别为COCO字段接口和Root漏列旧预测Source；未生成START/REPORT/新预测。19个失败完整保留，独立03绑定修正准备中；没有新AP。下一步固定主E24 atmost完整187图/380GT/18700自然query，在原冻结teacher/PR/C/K/类别分数和query顺序下比较LOCAL与CENTER。
 
 [数值body](code/N17_ALL100_LOCAL_CENTER_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)已冻结、一次定向静态审阅READY、发布副本一项tiny SYN原退出0；普通body接口证据不代替实际DEV载体或GPU输出资格。[共享载体必要ABI](N17_FIXEDDEV_SHARED_CARRIER_GPU_REQUIRED_ABI_UNBOUND_20261015_01.md)记录旧物理bundle与shared成员、索引映射、四模型注入、callback与新writer差异，Root实际核了四段metadata完整关联，真实bundle张量校验仍留给下一original owned GPU任务。
 
@@ -28,11 +28,16 @@ GPU外层已形成、修正三处确定构造问题并过一次小SYN/定向静�
 
 ## 独立02修正版已原启动
 
-正常122+失败18/140身份pin与全部原失败已核；独立02首47图任务已单次启动（原监督11194），尚待原实际退出与捕获资格；没有新AP。修正仅COCO内嵌字段和失败18门，科学配方不变。新[入口02](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_GPU_SHARD_ROOT_UNBOUND_DRAFT_20261015_02.py)101252字节/SHA c9d82140b39a8d7f664cfefb3290ba5974ddf2e786e2fd0be96c00993960d106，[合同02](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_GPU_SHARD_ROOT_UNBOUND_CONTRACT_20261015_02.md)与[小型合成检查](code/test_N17_FIXEDDEV_GPU_SHARD_ROOT_TINY_SYNTHETIC_ONLY_20261015_02.py)保存；发布副本同一项SYN原实际0（0.058秒），一次定向静态审阅READY，均不代替真实DEV资格。
+正常122+失败18/140身份pin与全部原失败已核；独立02首47图任务已单次启动（原监督11194），现已原实际退出1，Root遗漏旧预测Source闭包，无START/REPORT/新预测；没有新AP。02修正仅COCO内嵌字段和失败18门，科学配方不变。新[入口02](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_GPU_SHARD_ROOT_UNBOUND_DRAFT_20261015_02.py)101252字节/SHA c9d82140b39a8d7f664cfefb3290ba5974ddf2e786e2fd0be96c00993960d106，[合同02](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_GPU_SHARD_ROOT_UNBOUND_CONTRACT_20261015_02.md)与[小型合成检查](code/test_N17_FIXEDDEV_GPU_SHARD_ROOT_TINY_SYNTHETIC_ONLY_20261015_02.py)保存；发布副本同一项SYN原实际0（0.058秒），一次定向静态审阅READY，均不代替真实DEV资格。
 
 Root监督单一科学任务，CPU01/2线程/GPU0，allocator4096MiB/整卡8192MiB、RSS16GiB/1800秒、无自动重试；数据盘新输出，原01未改或复用。同步仅普通发布副本和状态，不读取运行中Source/载荷/资格链。
 
 
 ## 新图捕获解码器已准备
 
-[纯CPU解码器](code/N17_NEW_IMAGE_BUNDLE_CPU_CORE_ADAPTER_UNBOUND_DRAFT_20261015_01.py)及[短合同](code/N17_NEW_IMAGE_BUNDLE_CPU_CORE_ADAPTER_UNBOUND_DRAFT_20261015_01.md)已冻结，一次定向静态审阅READY；发布副本[一项100query×8profile合成检查](code/test_N17_NEW_IMAGE_BUNDLE_CPU_CORE_ADAPTER_SYNTHETIC_ONLY_20261015_01.py)原实际0（test0.403秒）。只核新9key bundle结构、角色/字节/成员顺序、oldshared union恢复、mask littlepadding与core tuple接线，不读取真实DEV或给予实际数值资格。GPU任务仍待原实际终态；CPU外层尚在构造，未实际启动。
+[纯CPU解码器](code/N17_NEW_IMAGE_BUNDLE_CPU_CORE_ADAPTER_UNBOUND_DRAFT_20261015_01.py)及[短合同](code/N17_NEW_IMAGE_BUNDLE_CPU_CORE_ADAPTER_UNBOUND_DRAFT_20261015_01.md)已冻结，一次定向静态审阅READY；发布副本[一项100query×8profile合成检查](code/test_N17_NEW_IMAGE_BUNDLE_CPU_CORE_ADAPTER_SYNTHETIC_ONLY_20261015_01.py)原实际0（test0.403秒）。只核新9key bundle结构、角色/字节/成员顺序、oldshared union恢复、mask littlepadding与core tuple接线，不读取真实DEV或给予实际数值资格。GPU02已原实际退出1，失败19保留；CPU外层尚在构造，未实际启动。
+
+
+## 第二次实际失败已保留，03尚未启动
+
+见[两次接口/清单失败与恢复](N17_FIRSTDEV_REFERENCE_ABI_FAILURE_AND_RECOVERY_20261015.md)。正常仍122、失败19/总141身份pin，旧结果12个导出strictrefs及复用控制全187顺序已核验并补齐。不存在运行中科学任务；Root等待仅保留19门的新独立03，预定科学配方不改。

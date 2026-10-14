@@ -11,3 +11,10 @@
 从GLDet得到的当前N17仅为同query局部原生logit信息的低成本检验，不是GLDet复现或完整局部梯度网络。先尝试模块是可行研发策略；若涨点，仍须排除额外容量、预算、评价因素，并说明与直接先例的具体差异。尚无核心创新、SOTA或TGRS投稿资格。
 
 [固定DEV最新状态](N17_FIXEDDEV_EXECUTION_PREPARATION_STATUS_20261015.md) · [完整训练资格](N17_ENDPOINT_CPU_QUALIFICATION_ENTRY_AND_STATUS_20261015.md) · [预登记计划](N17_LOCAL_NATIVE_LOGIT_ERROR_SELECTOR_EXPERIMENT_PLAN_20261015.md)
+
+
+## 第二次原失败：Root SOURCE漏项
+
+独立02原监督11194真实退出1（183.953秒），原句柄已回收、原birth消失。COCO内嵌dict检查已通过，随后读取`native_official_PREDICTIONS.json`时因新spec Sources缺少原结果导出文件而拒绝。Root构造清单遗漏，不是模型错误。仍未生成START/REPORT/新预测/输出目录。
+
+Root先通过全部122正常+19失败的纯原RAW，再核验12个旧结果导出的原strictref/字节/SHA并补入下次Source闭包；两个实际复用控制均为187图/18700自然query，逐图原qids顺序完整吻合。原01/02保持冻结，第19次失败完整保留，总141身份pin。下一独立03仅保留failure19及修正绑定，数值算法和原主门不变；尚未启动。
