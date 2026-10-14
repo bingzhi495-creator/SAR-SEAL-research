@@ -70,3 +70,10 @@ CPU03/04改为每图真实bundle只load一次，检查member、registry、使用
 第三段原监督session80747真实退出0，固定ordinal[94,141)、47图/4700自然query/12组完整本段预测和47实际逐图bundle；elapsed748.578秒，整卡观察峰值3178MiB，最小可用RAM31,408,115,712字节，serialized捕获6,902,566,518字节。held退出0、reaped、原birth消失均核验，abort/error为空、wait/GPU观察错误均无。本段原生与原强固定E24预测逐值一致，无局部AP。
 
 normal112+failed15纯RAW前缀原实际退出0后，最后一段原监督session44104启动，固定ordinal[141,187)共46图/4600query。前三段141图/14100query已正常完成预测生成；完整187/18700统一12COCO与全部独立CPU证明仍待结束，禁止用局部输出宣布涨点。
+
+
+## 四段真实GPU0全部完成、统一CPU汇总已启动
+
+最后一段原监督session44104真实退出0，固定ordinal[141,187)、46图/4600自然query/12组完整本段预测和46真实逐图bundle；elapsed650.578秒，整卡观察峰值3120MiB，最小可用RAM31,057,043,456字节，serialized捕获5,641,734,831字节。held退出0、reaped、原birth消失均核验，abort/error为空、wait/GPU观察错误均无。四个不可变分段现均原实际GPU0，完整覆盖187图/18700query，每个策略18,700预测，187真bundle与原binding均保留；不平均局部AP，也不复用失败部分。
+
+normal113+failed15纯RAW前缀原实际退出0后，独立CUDAempty CPU全量汇总原监督session44225已启动，own113、训练107/108与四段109–112明确join；初始source闭包12577项，完整原native/strong预测复现后统一12COCO。其实际结束与全scope独立CPU证明114仍须完成，当前没有完整且独立资格的AP/涨点或TGRS结论。
