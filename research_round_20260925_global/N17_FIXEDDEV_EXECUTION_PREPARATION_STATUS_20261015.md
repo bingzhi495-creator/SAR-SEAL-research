@@ -1,6 +1,6 @@
 # N17 固定DEV：执行准备与边界
 
-2026-10-15。完整24轮配对训练及独立E8/E24端点资格完成。五个GPU分区全部原真实退出0，187图/18700自然query/10策略捕获与完整导出metadata已核。首独立CPU原30221实际退出1，144.547秒；Root先通过127正常+21失败纯原RAW，确认为Root构造sources遗漏解码器引用，未运行数值、REPORT不存在。正常127/失败21/148实际终态身份，失败partial不复用；CPU03已冻结、发布副本一项fixture实际0（95155c）、一次新增前门静态审阅READY；首修正版CPU原45412已启动，owner127/[0,47)。final03/post02已冻结并通过一次合并接口fixture与接线静态审阅，尚未实际执行；当前没有新AP或创新结论，科学配方不变。
+2026-10-15。完整24轮配对训练及独立E8/E24端点资格完成，五GPU分区187图/18700query/10策略捕获与完整导出metadata已核。首CPU修正版原45412真实退出0（1699.391秒），Root先通过128正常+21失败纯原RAW（a2c326），再核全部47图独立数值报告/完整imageproof与10种各4700原GPU预测精确一致。已完成首段47/187图独立CPU证据，完整统一AP尚未执行。第二CPU分区[47,70)已启动，owner128/原监督8462。正常128/失败21/149实际终态身份，失败partial不复用；模型、24轮配方、主E24-atmost和预锁重复门不变。
 
 [数值body](code/N17_ALL100_LOCAL_CENTER_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)已冻结、一次定向静态审阅READY、发布副本一项tiny SYN原退出0；普通body接口证据不代替实际DEV载体或GPU输出资格。[共享载体必要ABI](N17_FIXEDDEV_SHARED_CARRIER_GPU_REQUIRED_ABI_UNBOUND_20261015_01.md)记录旧物理bundle与shared成员、索引映射、四模型注入、callback与新writer差异，Root实际核了四段metadata完整关联，真实bundle张量校验仍留给下一original owned GPU任务。
 
@@ -142,3 +142,10 @@ CPU03仅新增typed21保留与当前计数，旧GPU父03/04计数和数值循环
 ## 运行中的执行效率观察
 
 [普通代码静态观察](N17_CPU_REDUNDANT_COMPUTATION_STATIC_OBSERVATION_20261015.md)确认部分输入gather和extra8期望值反复生成；未测耗时，未作修改，不保证提速。原45412仍运行，当前只有逐图输出记录，完整原终态/五分区独立数值/统一AP尚待，不将记录数量认作资格。
+
+
+## 首独立CPU实际通过，第二段已启动
+
+原45412 held0/reaped/birth消失、无error/abort/观察错误，最低可用RAM24.24GB；GPU不可见、CPU01两线程。全部47图/100自然query/八profile/四scout与两PR公式的独立CPU检查实际运行完成，数值容差1e-4保持，实际GPU排名/选点/full mask/RLE exact。Root原终态及纯前缀通过后核REPORT绑定、全部imageproof消费统计、10种各4700输出与GPU完整数组精确一致和原非mask字段/顺序；没有重跑数值或局部COCO。
+
+Root metadata读取工具曾将GPU元数据对象直接送入严格Boolean断言，读回报错后定位并改成显式Boolean；它未运行科学leaf、未读取REPORT或新增RAW，因此不新增第22次科学失败。修正后原实际0产物读回通过，科学Source/数值规则及21历史失败不变。已创建新第二CPU spec/admission/phase，原8462单次启动[47,70)，23图/2300query，完整来源结构预检查通过。完整187统一COCO与最终ROOT仍待。

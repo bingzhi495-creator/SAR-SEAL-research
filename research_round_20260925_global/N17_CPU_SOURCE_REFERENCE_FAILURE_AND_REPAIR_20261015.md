@@ -18,3 +18,8 @@ CPU03已冻结，发布副本一项fake metadata回归实际退出0（95155c/tes
 
 
 [统一全量COCO03](code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_03.py)及[独立后置ROOT02](code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_DRAFT_20261015_02.py)仅适配新numeric-v3/current21和冻结final引用，30个typed前门与CPU03一致，COCO/主解释/合并算法保留。不以fixture或静态READY宣称真实数值、全量AP或创新成立。
+
+
+## 修正版首段已实际通过
+
+原45412真实退出0，1699.391秒；纯128正常+21失败前缀实际0（a2c326）后，47图完整独立数值报告与10政策各4700预测读回通过。第二CPU原8462已启动，完整AP仍待。Root元数据读回的一处严格Boolean输入错误已修正，该步骤没有科学leaf/RAW或数值重跑，不新增科学失败；当前正常128/21失败/149终态身份，历史科学原件不改。
