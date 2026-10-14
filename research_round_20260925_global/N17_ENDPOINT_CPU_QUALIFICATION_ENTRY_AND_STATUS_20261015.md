@@ -1,0 +1,13 @@
+# N17 独立E8/E24端点CPU资格：入口与实际任务状态
+
+2026-10-15。GPU120原配对24轮任务已实际0，Root已核每臂17784更新/72843264曝光、同预锁初态、完整端点文件绑定与trace计数。新CPU121独立数值资格任务已实际启动，原监督会话54006；尚待实际退出及完整Q/DETAILS资格，未取得新DEV AP。
+
+独立CPU_SCHEMA及own入口保留原typed RAW/SOURCE门，正常121+失败17、138身份pin；GPU120明确以原CUDA0实际owner及120-prefix加入，无relative owner猜测。原pending GPU报告保持，实际退出与独立Root元数据证据另记录；不改旧Source/锁/缓存/权重。
+
+[普通CPU入口](code/N17_LOCAL_CENTER_ERROR_PAIRED_ENDPOINT_CPU_ROOT_UNBOUND_DRAFT_20261015_01.py)最终SHA9267ae0cfc79837ac07b25610dbf189e384528de3d09e2dfc88c76c180f0857f；[接线合同](code/N17_LOCAL_CENTER_ERROR_PAIRED_ENDPOINT_CPU_ROOT_UNBOUND_CONTRACT_20261015_01.md)保留准确真实产物ABI，顶层snapshot、FIT endpoint内层，E8前5928/E24全17784 paired更新子流。一次定向静态审阅READY，发布副本一项标准库小型合成接口检查原退出0（test0.017秒）；仅发明字典/普通模块，无真实科研数据与执行证明。
+
+[数值body](code/N17_PAIRED_ERROR_ENDPOINT_CPU_QUALIFIER_BODY_UNBOUND_DRAFT_20261015_01.py)与[合同](code/N17_PAIRED_ERROR_ENDPOINT_CPU_QUALIFIER_BODY_UNBOUND_DRAFT_20261015_01.md)已通过合成接口检查及一次定向静态审阅。正式任务独立重建初态并核预锁digest、两ERROR臂四张量521→32→3/16803、完整AdamW moments/steps/flags、私有图序RNG/history/counts、更新子流identity/order/loss/history，最后两完整FIT端点每图4096同点输入。补零仅初态；训练后不要求新列仍零、非零或两臂必分化。
+
+同输入CPU factory与独立biasedLN/matmul两公式logitsabsolute1e-4/rtol0，以及GPU报告aggregate ERROR meanCE absolute1e-4/rtol0；数值资格不宣称GPU逐点logits、选点/排名/AP、优化轨迹复放或核心创新。CPUempty/CPU01/两线程、RAM16GiB、1800秒、无自动重试；观察超时只续查54006原handle。
+
+正式Q保持qualifiedFalse及Root_actual_CPU0_verifiedFalse，须原任务实际0及Root完整绑定/范围核验才建立独立训练资格。运行中科学Source/产物/资格链不为同步读取或发布，此页为独立普通摘要。随后按[固定DEV接线方案](N17_FIXED_DEV_SELECTOR_MINIMAL_WIRING_PLAN_UNBOUND_20261015_01.md)推进主E24 atmost完整COCO评价，预锁强参考68.09938494745545及停止/重复规则不变。[原GPU结束证据](N17_PAIRED24_TRAINING_ENTRY_AND_LAUNCH_STATUS_20261015.md)、[公平计划](N17_LOCAL_NATIVE_LOGIT_ERROR_SELECTOR_EXPERIMENT_PLAN_20261015.md)。
