@@ -44,4 +44,6 @@ CPU03/04改为每图真实bundle只load一次，检查member、registry、使用
 
 逐图版原监督session72971已在1800.375秒真实受控退出1，149/187图；held exit1、reaped、原birth消失均核验，abort为QUALIFIED_ORIGINAL_LEAF_RESOURCE_OR_DEADLINE，error空、wait错误无、GPU观察错误无；整卡观察峰值4497MiB，最小可用RAM31018995712字节。原完整REPORT缺失，无完整AP，失败部分捕获不复用。所有15个失败原样保留，此结果不是方法效用失败。
 
-现已在原实际终止核验后锁定[固定ordinal四段执行补充](N16_FIXED_FULLDEV_EXECUTION_PARTITION_SUPPLEMENT_20261014.md)。每段全100query/12策略、相同冻结模型与数值规则；四段各实际GPU0闭合，独立CPU汇总完整18700后统一12COCO，再独立全scopeCPU证明。各bundle保留原shard binding，不能改造来源；训练owner107/108和后续各owner明确join。总评价时长增加，训练预算、数据、候选、预测、E24主端点/指标/停止门不变；不平均分段AP、不减证据范围、不复用失败partial。新分段科学任务尚未启动，入口正在普通研发。
+现已在原实际终止核验后锁定[固定ordinal四段执行补充](N16_FIXED_FULLDEV_EXECUTION_PARTITION_SUPPLEMENT_20261014.md)。每段全100query/12策略、相同冻结模型与数值规则；四段各实际GPU0闭合，独立CPU汇总完整18700后统一12COCO，再独立全scopeCPU证明。各bundle保留原shard binding，不能改造来源；训练owner107/108和后续各owner明确join。总评价时长增加，训练预算、数据、候选、预测、E24主端点/指标/停止门不变；不平均分段AP、不减证据范围、不复用失败partial。首段已于本轮启动，固定global ordinal[0,47)，原监督session17396；原始RAW前缀通过后进入新Source/预算门。完整AP仍未形成，四段实际0、全量汇总与独立CPU证明仍须完成。
+
+[分段GPU普通源码](code/N16_FIXED_E24_ALL100_SCOUT_SHARD_GPU_UNBOUND_20261014_01.py)、[分段合同](code/N16_FIXED_E24_ALL100_SCOUT_SHARD_GPU_CONTRACT_20261014_01.md)。5项最小合成检查通过，固定107/108训练来源、global47分段索引和15号受控失败均保留；它们不替代实际科学执行。第一段保守serialized上界13,647,216,640字节、所需free31,363,956,736字节，按闭合本段真实几何计算；不按样本比例估、不复用149图失败partial。
