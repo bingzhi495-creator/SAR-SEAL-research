@@ -1,6 +1,6 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
-论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-15**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
+论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-16**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
 
 
@@ -11,6 +11,8 @@
 **增量查新：** [O²Former与DACF-net先例核查](research_round_20260925_global/DIRECT_SAR_INSTANCE_SEGMENTATION_INCREMENTAL_PRIOR_CHECK_20261015_01.md)分别标记全文和官方域索引证据，不与当前DEV跨协议排名；方向、多尺度和上下文模块已有直接先例；已补记v1实现需澄清的形状与对齐边界，不将自行适配称作完整作者复现。
 
 **自主UNet++与历史资产扩展审阅：** 按用户说明记录自主设计，已还原13组实际前向结构；重点保留选择性跨尺度传输、H/4语义与方向互补、采样重建协同三条候选。扩展登记1009个源码/配置/示例项；D内260个模型候选中222个关联数值训练记录，另20个pth是评价缓存。Mamba100轮/MSCK160轮等检测成绩与实例mask AP分开；旧full骨架与clean50轮不能混同，来源未接上不等于未训练。[扩展总评与下一步](research_round_20260925_global/UNETPP_EXPANDED_MODEL_ASSET_REVIEW_AND_NEXT_DESIGN_20261015.md)、[自主结构还原](research_round_20260925_global/UNETPP_SELF_DESIGNED_STRUCTURE_RECONSTRUCTION_20261015.md)、[全部源码目录](research_round_20260925_global/UNETPP_COMPLETE_MODEL_SOURCE_CATALOG_20261015.md)、[训练资产目录](research_round_20260925_global/UNETPP_COMPLETE_TRAINED_ASSET_CATALOG_20261015.md)、[有界先例核对](research_round_20260925_global/UNETPP_SELF_STRUCTURE_BOUNDED_PRIOR_CONTEXT_20261015.md)。三条均尚未确认学术新颖性或当前实例效用，不改N20端点。
+
+**自主传输路由的近年先例补查（10月16日）：** 新读ICUnet++（2023）、RPAU-Net++（2025）及两篇遥感分割作者稿，补充直接门控位置对照；不以“UNet+++CBAM”称新。Root确认原model_new1为先门控后上采样，后续需区分运算顺序与被门控支路，所列对照尚未执行。[有界查新与源码顺序校核](research_round_20260925_global/UNETPP_UPSAMPLE_TRANSPORT_RECENT_DIRECT_PRIOR_20261016.md)。
 
 **旧自主结构的权重来源补查：** 222已定位writer/reader代码声明；111/222/两份ALL_NEW完成只读ZIP与pickle操作码元数据登记，未加载模型或tensor。不同前向、开关与完整训练身份仍需核对；部分旧AP50/AP75实际是整幅掩膜IoU阈值通过指标，不能用于COCO mask AP排名。[来源与结构线索](research_round_20260925_global/UNETPP_LEGACY_PROVENANCE_AND_CONTAINER_EVIDENCE_20261015.md)、[有界只读工具](tools/legacy_weight_metadata_intake.py)、[两项合成回归](tests/test_legacy_weight_metadata_intake.py)。
 

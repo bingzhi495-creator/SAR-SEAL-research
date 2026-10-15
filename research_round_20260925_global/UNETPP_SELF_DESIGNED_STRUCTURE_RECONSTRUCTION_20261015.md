@@ -89,3 +89,8 @@
 ## 后续来源与容器元数据补查（2026-10-15）
 
 本文件保留此前静态审阅/只做stat阶段的范围。后续Root已仅打开111、222和两份ALL_NEW的ZIP目录与有界pickle元数据，没有加载模型/张量或哈希整份权重。新增writer/reader声明、参数名样集合及兼容性限制见[后续证据](UNETPP_LEGACY_PROVENANCE_AND_CONTAINER_EVIDENCE_20261015.md)。该补查仍不认证完整原训练、唯一forward或当前AP；不能用元数据相等合并或删除权重。另明确区分旧掩膜IoU阈值通过指标、连通域代理AP与COCO AP。
+
+
+## 近年先例与运算顺序补充（2026-10-16）
+
+ICUnet++已研究UNet++的decoder/skip CBAM放置；RPAU-Net++明确处理浅层编码支路，可作为直接放置对照的先例。Root另精确核查原model_new1：先CBAM得到up_x、再进行上采样，不能直接写成上采样后CBAM；原x保留仅相对于该传输门控，不代表stage0注意力或H/4批次上下文不存在。[正文证据、未读边界及A0/A1/B1对照修正](UNETPP_UPSAMPLE_TRANSPORT_RECENT_DIRECT_PRIOR_20261016.md)。没有新执行、效用或学术新颖性结论，当前N20不变。
