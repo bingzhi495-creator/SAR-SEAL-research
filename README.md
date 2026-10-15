@@ -6,7 +6,7 @@
 
 **自主设计与作者基线归属补充：** 团队自定义UNet++按完整结构评估；历史D目录的单个FPN文件与DiffSARShipInst作者固定版本统一换行后完全一致，SCJE-FPN及其中采用的CARAFE/ACmix须按作者基线引用。两份本地R535配置声明启用SCJE，不能仅改builder构造普通FPN对照；这不认证当前E/N20调用。[归属、实际路由与对照要求](research_round_20260925_global/UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
 
-**当前进行（N20）：** 首201全187图/380GT/18700自然query及独立post/Root资格完成：LOCAL68.297126、同预算CENTER67.978791、强R68.099385，主差值+0.197741 AP点。按预锁规则，第二种子202610150202的同配方24轮正式训练任务已启动，原supervisor55247运行；未读取活动批训练进度，未宣称当前训练结束或AP复验成功。初始化与合成清理探针已合格。当前181正常/26保留科学失败/207终态，运行任务未加入正常链。[首201完整结果](research_round_20260925_global/N20_FIRST201_FULLDEV_QUALIFIED_RESULTS_AND_REPEAT_DECISION_20261016.md)、[第二种子入口与状态](research_round_20260925_global/N20_REPEAT202_INITIALIZATION_AND_SYNTHETIC_CLEANUP_STATUS_20261016.md)。
+**当前进行（N20）：** 第二种子202610150202原训练55247实际退出0，新纯终态前缀182实际0先于报告读取。两臂24轮/17,784更新完成并保存E8/E24；独立CPU182原任务97964已启动，仍待终态核验与完整DEV评价。首201主差值仍+0.197741 AP点；没有第二种子AP或重复收益结论。当前182正常/26保留科学失败/208终态，活动CPU不计完成。[第二种子训练结束与端点核验](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
 
 **全量汇总入口状态：** 已按32份固定范围执行全187图统一COCO，并完成独立post与Root实际终态核验；静态审阅仅保留为执行前历史。[静态审阅记录](research_round_20260925_global/N20_FINAL32_ENTRY_STATIC_READINESS_REVIEW_20261016.md)。
 
