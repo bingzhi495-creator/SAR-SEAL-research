@@ -4,7 +4,7 @@
 
 
 
-**当前进行（N20）：** 同预算固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验，原训练GPU失败24保留。前三DEV分片均已实际退出0；Root各自在新纯终态前缀通过后核验47图/4700查询、47份物理捕获及十策略完整预测，累计141图/14100查询。第四分片[141,187)已启动，仍用同一冻结入口/模型/评分/容差/预算；当前144正常/25失败/169终态。独立CPU数值与全187统一AP仍待完成，**没有N20 AP或创新成功结论**。[最新状态与代码](research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)、[执行记录](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
+**当前进行（N20）：** 固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验，原训练GPU失败24保留。四个DEV GPU原任务均实际退出0；Root各自在新纯终态前缀通过后核验全部187图/18700自然query、187份物理捕获及十策略完整预测，捕获共13,714,348,716B。首个独立CPU数值分片[0,24)已启动，0/8完成；当前145正常/25失败/170终态，运行任务未计入完成数。全187统一AP仍待数值核验之后计算，**没有N20 AP或创新成功结论**。[最新状态与代码](research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)、[执行记录](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
 **已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
 
