@@ -1,6 +1,6 @@
 # N20：全部DEV GPU分片完成及CPU数值核验状态
 
-更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成3/32份（18图/1800自然query），第四份[18,24)运行中。正常148/保留失败26/174终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
+更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成4/32份（24图/2400自然query），第五份[24,30)运行中。正常149/保留失败26/175终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
 
 ## 已实际完成
 
@@ -88,3 +88,12 @@
 第四份[18,24)同冻结entry03已启动，pre-HASH RAW-only检查actual0（0.299秒，无Torch）；无自动重试。累计3/32份、18图/1800自然query/14400策略记录，正常148/失败26/总终态174。尚无N20全187官方COCO/AP。完成子范围数值核验不等于涨点、重复种子或核心创新。
 
 独立的[HRSID官方PNG目录与TEST实核](HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)取得同包完整目录及TEST 1962图/5922实例；同包TRAIN短响应未完成，不能与先前Git候选TRAIN混配。[F9条件性信息说明](N20_RENDERED_F9_CONDITIONAL_INFORMATION_AND_CONTROL_SCOPE_20261015_01.md)澄清最终渲染栅格邻域及四基结论的条件，没有读取实际位置/张量或改动当前配方。
+
+
+## 第四份独立CPU通过，第五份已启动
+
+[18,24)原supervisor68897 held实际退出0（835.922秒），原句柄回收且出生身份消失，error/abort均无。Root先运行新pure149+failed26实际0（0.386秒，无Torch），随后核原RAW-bound stdout REPORT引用、Source/spec/admission/phase/bootstrap及23项绑定。6图/600自然query/4800策略记录、16376注册成员完整覆盖；双CPU scout公式分别对实际GPU最大2.288818359375e-5，原绝对1e-4/rtol0、2048分块、FP64评分/索引、PR两公式、strict sign及mask/RLE检查不变，十策略各600完整预测与父域切片全字段相同。原REPORT pending/qualified=False保留，本子范围外部核验不是完整DEV或AP资格。
+
+第五份[24,30)沿用同一冻结entry03与模型/主端点，RAW-only prehash检查实际0（0.342秒，无Torch）后唯一原supervisor29083启动，无自动重试。累计4/32份、24/187图、2400/18700自然query及19200策略记录，正常149/保留失败26/175终态。尚未运行统一全187官方COCO。
+
+独立HRSID小分块新轮首请求仍短响应，已停止；Root实读partial长度及SHA与安全日志一致。没有完整TRAIN，不混用旧Git候选TRAIN；详情见[官方PNG来源记录](HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)。
