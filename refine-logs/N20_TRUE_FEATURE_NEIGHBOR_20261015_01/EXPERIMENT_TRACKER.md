@@ -32,3 +32,5 @@
 - **下一唯一科学任务**：第二GPU范围[47,94)，使用与成功首段相同冻结入口；RAW-only启动前检查actual0，无Torch/首次SHA前即停；原supervisor85580独立输出，无自动重试。四GPU全部原actual0后，按预锁八CPU范围进行数值核验，再统一官方COCO汇总，绝不平均分片AP。
 
 - **第二GPU完整实际0与第三GPU启动**：原supervisor85580 actual0（1721.031秒），新pure143+failed25先actual0（0.430秒），随后读取并核原RAW/ad/spec/entry/phase/bootstrap及REPORT/START/MANIFEST13绑定，47份物理捕获共4,243,201,508B逐SHA相同，十策略各4700完整预测及原image/query/class/S0顺序、canonical profiles、零cleanup/预算/范围/无partial复用。保留原pending-CPU状态，不升级为数值qualified。第三段原supervisor97208已启动、[94,141)、同冻结entry与E8/E24；启动前pure RAW-only检查0.289秒actual0，无Torch/首次SHA前停止。当前唯一科学任务为第三段，不新增训练或融合。
+
+- **与失败25直接相关的CPU字节路径定向核对**：仅检查普通未绑定decoder421f、numeric BODY dbf与CPU tail c7ee三份源码，未发现相同可达的Long→Byte视图路径。decoder的registry为finite/numel描述；BODY仅FP32→INT32同宽比较、非scalar输入及n>0点块，K0跳过；tail的FP32模型状态比较调用完成父GPU_outer_source的n20_same_bits，后续须绑定已成功修复源5b09，不能绑定失败副本360f。动态ref旧helper未展开，未导入/测试/修改科学代码；这只是一次有限静态风险核对，不是实际CPU资格。无具体问题故停止额外检查，继续等待原第三GPU97208。
