@@ -163,3 +163,10 @@ Root metadata读取工具曾将GPU元数据对象直接送入严格Boolean断言
 原44983真实退出0，1494.219秒，held0/reaped/birth消失、无error/abort/观察错误；纯前缀1e3664实际0后，24图/2400query全部imageproof及10种各2400预测与原GPU完整scope exact。累计94图独立证据，不是统一AP。
 
 [七CPU任务执行补充](N17_REMAINING_CPU_SEVEN_SCOPE_EXECUTION_AMENDMENT_20261015.md)仅拆尚未执行的剩余范围：GPU父3拆[94,117)/[117,141)，父4拆[141,164)/[164,187)。前三旧合格CPU03不改，新CPU04/final04/post03尚待冻结；当前科学leaf为空，没有新增失败、训练或AP。
+
+
+## 七CPU接口就绪，剩余首段已启动
+
+前三CPU03共94图/9400query保持原合格数值报告，原五GPU全187捕获保持。新CPU04只运行全局scope3–6，父GPU映射3/3/4/4；数值循环/公式AST保持，未实现cache优化。CPU04一项纯元数据检查原退出0（test0.209秒），final04/post03合并接口一项纯元数据检查原退出0（test0.648秒）；合成通过不代表实际数值/AP。
+
+Root已冻结新scope3 [94,117)并单次启动，原监督19917、normal owner130、失败21、151既有终态身份。当前只有这一科学leaf；等待原actual终态后先过纯RAW前缀，再读科学报告。新[CPU04入口](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_CPU_NUMERIC_SHARD_ROOT_UNBOUND_DRAFT_20261015_04.py)、[final04入口](code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_04.py)及[post03入口](code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_DRAFT_20261015_03.py)已保存；后两尚未实际执行。统一187图/380GT/18700query的主AP仍待，不报告涨点或创新。
