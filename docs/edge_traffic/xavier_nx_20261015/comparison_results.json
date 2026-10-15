@@ -1,0 +1,234 @@
+{
+  "date": "2026-10-15",
+  "status": "executed_desktop_demo_not_qualified_for_full_requirement",
+  "requested_classes": [
+    "person",
+    "bicycle",
+    "electric bicycle",
+    "car",
+    "bus"
+  ],
+  "training_performed": false,
+  "runs": [
+    {
+      "status": "executed",
+      "model": "yolov8n.pt",
+      "model_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "source": "Pexels 5675618, HD 1920x1080/29.970 FPS, full 719 frames",
+      "source_resolution": [
+        1920,
+        1080
+      ],
+      "source_fps": 29.97002997002997,
+      "frames_inferred": 719,
+      "source_duration_tested_seconds": 23.990633333333335,
+      "skipped_frames": 0,
+      "batch_size": 1,
+      "network_input": [
+        640,
+        640
+      ],
+      "precision": "FP16",
+      "confidence_threshold": 0.25,
+      "nms_iou_threshold": 0.7,
+      "max_det": 300,
+      "warmup_frames": 30,
+      "hardware": "NVIDIA GeForce RTX 3090 Ti",
+      "runtime": "PyTorch (not TensorRT)",
+      "torch_version": "2.0.1+cu118",
+      "cuda_version": "11.8",
+      "ultralytics_version": "8.3.43",
+      "opencv_version": "4.8.0",
+      "platform": "Windows-10-10.0.26200-SP0",
+      "python": "3.8.17",
+      "selected_class_names": {
+        "0": "person",
+        "1": "bicycle",
+        "2": "car",
+        "3": "motorcycle",
+        "5": "bus",
+        "7": "truck"
+      },
+      "ebike_supported": false,
+      "accuracy_evaluation": "not_evaluated_no_ground_truth",
+      "count_note": "Detection boxes summed over frames; not unique objects, not true positives",
+      "box_counts_over_frames": {
+        "car": 4931,
+        "person": 732,
+        "bus": 330,
+        "truck": 479,
+        "motorcycle": 60,
+        "bicycle": 93
+      },
+      "frames_with_each_class": {
+        "car": 719,
+        "person": 597,
+        "bus": 299,
+        "truck": 351,
+        "motorcycle": 58,
+        "bicycle": 84
+      },
+      "pipeline_fps_without_encoding": 94.42370252935382,
+      "pipeline_latency_ms_p50": 10.401000000001659,
+      "pipeline_latency_ms_p95": 11.906239999999979,
+      "sdk_mean_ms": {
+        "preprocess": 1.0417658364159341,
+        "inference": 4.338020409595983,
+        "postprocess": 1.0983579181994783
+      },
+      "wall_seconds_with_render_encoding": 15.428355199999999,
+      "wall_fps_with_render_encoding": 46.60250497732902,
+      "timer_note": "Pipeline includes decode, preprocess, inference, NMS and CPU box transfer; excludes rendering/JSON/video encoding. Wall includes these, excludes model loading and warmup. No live-network/display latency claim.",
+      "xavier_nx_tested": false
+    },
+    {
+      "status": "executed",
+      "model": "yolo11n.pt",
+      "model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+      "source": "Pexels 5675618, HD 1920x1080/29.970 FPS, full 719 frames",
+      "source_resolution": [
+        1920,
+        1080
+      ],
+      "source_fps": 29.97002997002997,
+      "frames_inferred": 719,
+      "source_duration_tested_seconds": 23.990633333333335,
+      "skipped_frames": 0,
+      "batch_size": 1,
+      "network_input": [
+        640,
+        640
+      ],
+      "precision": "FP16",
+      "confidence_threshold": 0.25,
+      "nms_iou_threshold": 0.7,
+      "max_det": 300,
+      "warmup_frames": 30,
+      "hardware": "NVIDIA GeForce RTX 3090 Ti",
+      "runtime": "PyTorch (not TensorRT)",
+      "torch_version": "2.0.1+cu118",
+      "cuda_version": "11.8",
+      "ultralytics_version": "8.3.43",
+      "opencv_version": "4.8.0",
+      "platform": "Windows-10-10.0.26200-SP0",
+      "python": "3.8.17",
+      "selected_class_names": {
+        "0": "person",
+        "1": "bicycle",
+        "2": "car",
+        "3": "motorcycle",
+        "5": "bus",
+        "7": "truck"
+      },
+      "ebike_supported": false,
+      "accuracy_evaluation": "not_evaluated_no_ground_truth",
+      "count_note": "Detection boxes summed over frames; not unique objects, not true positives",
+      "box_counts_over_frames": {
+        "car": 5254,
+        "person": 611,
+        "bus": 153,
+        "truck": 394,
+        "motorcycle": 25,
+        "bicycle": 114
+      },
+      "frames_with_each_class": {
+        "car": 719,
+        "person": 521,
+        "bus": 149,
+        "truck": 282,
+        "motorcycle": 23,
+        "bicycle": 93
+      },
+      "pipeline_fps_without_encoding": 89.53974974598844,
+      "pipeline_latency_ms_p50": 10.986400000000174,
+      "pipeline_latency_ms_p95": 12.568559999998463,
+      "sdk_mean_ms": {
+        "preprocess": 1.012467873776241,
+        "inference": 5.645777486129994,
+        "postprocess": 1.0755887780965452
+      },
+      "wall_seconds_with_render_encoding": 15.4165071,
+      "wall_fps_with_render_encoding": 46.63832055706055,
+      "timer_note": "Pipeline includes decode, preprocess, inference, NMS and CPU box transfer; excludes rendering/JSON/video encoding. Wall includes these, excludes model loading and warmup. No live-network/display latency claim.",
+      "xavier_nx_tested": false
+    },
+    {
+      "status": "executed",
+      "model": "yolov8s.pt",
+      "model_sha256": "268e5bb54c640c96c3510224833bc2eeacab4135c6deb41502156e39986b562d",
+      "source": "Pexels 5675618, HD 1920x1080/29.970 FPS, full 719 frames",
+      "source_resolution": [
+        1920,
+        1080
+      ],
+      "source_fps": 29.97002997002997,
+      "frames_inferred": 719,
+      "source_duration_tested_seconds": 23.990633333333335,
+      "skipped_frames": 0,
+      "batch_size": 1,
+      "network_input": [
+        640,
+        640
+      ],
+      "precision": "FP16",
+      "confidence_threshold": 0.25,
+      "nms_iou_threshold": 0.7,
+      "max_det": 300,
+      "warmup_frames": 30,
+      "hardware": "NVIDIA GeForce RTX 3090 Ti",
+      "runtime": "PyTorch (not TensorRT)",
+      "torch_version": "2.0.1+cu118",
+      "cuda_version": "11.8",
+      "ultralytics_version": "8.3.43",
+      "opencv_version": "4.8.0",
+      "platform": "Windows-10-10.0.26200-SP0",
+      "python": "3.8.17",
+      "selected_class_names": {
+        "0": "person",
+        "1": "bicycle",
+        "2": "car",
+        "3": "motorcycle",
+        "5": "bus",
+        "7": "truck"
+      },
+      "ebike_supported": false,
+      "accuracy_evaluation": "not_evaluated_no_ground_truth",
+      "count_note": "Detection boxes summed over frames; not unique objects, not true positives",
+      "box_counts_over_frames": {
+        "car": 5348,
+        "person": 775,
+        "truck": 552,
+        "bus": 246,
+        "bicycle": 136,
+        "motorcycle": 87
+      },
+      "frames_with_each_class": {
+        "car": 719,
+        "person": 648,
+        "truck": 360,
+        "bus": 210,
+        "bicycle": 132,
+        "motorcycle": 82
+      },
+      "pipeline_fps_without_encoding": 98.73802368883027,
+      "pipeline_latency_ms_p50": 9.952300000000136,
+      "pipeline_latency_ms_p95": 11.541230000000535,
+      "sdk_mean_ms": {
+        "preprocess": 1.0317466189367217,
+        "inference": 4.585957825598365,
+        "postprocess": 1.1150876736276174
+      },
+      "wall_seconds_with_render_encoding": 14.800088699999998,
+      "wall_fps_with_render_encoding": 48.58078992459012,
+      "timer_note": "Pipeline includes decode, preprocess, inference, NMS and CPU box transfer; excludes rendering/JSON/video encoding. Wall includes these, excludes model loading and warmup. No live-network/display latency claim.",
+      "xavier_nx_tested": false
+    }
+  ],
+  "verified_failure": {
+    "frame_index": 479,
+    "issue": "tanker truck and nearby vehicles merged and classified as bus by YOLO11n and YOLOv8s"
+  },
+  "accuracy_evaluated": false,
+  "reason": "No independent human bounding-box ground truth; no e-bike class",
+  "xavier_nx_tested": false
+}
