@@ -1,5 +1,7 @@
 # N17 固定DEV：执行准备与边界
 
+**最新状态：2026-10-15，N17完整COCO及post实际退出后资格均完成。LOCAL67.786531/CENTER68.103370/R68.099385，主Δ−0.316840点，预锁STOP；正常136/失败21/157终态身份，无运行中的N17任务。后文为历史过程记录；当前结果以[最终结果](N17_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)为准。**
+
 2026-10-15。完整24轮配对训练、独立E8/E24端点及全187图/18700query七CPU数值核验完成。final04统一全187图/380GT/18700query/10策略官方COCO原监督32002实际退出0（452.672秒）；纯135正常+21失败前缀12d3d4原退出0，十份全18700预测与七CPU完整拼接严格一致，Q/DETAILS来源绑定及187proof/5manifest/187capture覆盖通过Root metadata检查。正常135/失败21/156既有终态身份。独立post03资格已由原监督55099单次启动，owner135，当前单科学leaf；不重算AP、模型或数值。原Q保持pending/qualifiedFalse，主收益和停止决定尚未作为合格结果发布。
 
 [数值body](code/N17_ALL100_LOCAL_CENTER_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)已冻结、一次定向静态审阅READY、发布副本一项tiny SYN原退出0；普通body接口证据不代替实际DEV载体或GPU输出资格。[共享载体必要ABI](N17_FIXEDDEV_SHARED_CARRIER_GPU_REQUIRED_ABI_UNBOUND_20261015_01.md)记录旧物理bundle与shared成员、索引映射、四模型注入、callback与新writer差异，Root实际核了四段metadata完整关联，真实bundle张量校验仍留给下一original owned GPU任务。
