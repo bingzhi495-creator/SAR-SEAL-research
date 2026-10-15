@@ -84,3 +84,8 @@ Git候选与PNG TRAIN共同文件名3572，候选独有1、PNG TRAIN独有70，�
 ## 2026-10-15：另立规则02续取，完整数据仍pending
 
 [新任务及首块实证](../research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)保留旧超时和失败partial。仅重核并复用两完整块；新规则每8MiB允许300秒/owned310秒，最多678新请求、5681525099B与12小时，无自动重试。首个新8MiB块实际198.735秒完成且Root核物理SHA/长度，任务仍在运行，尚无完整ZIP、全成员CRC或新增影像/mask/AP资格。延长超时减少这一块被过早截断，不证明提速，也不改变N20。
+
+
+## 2026-10-15：规则02实际停止与官方备用候选
+
+[完整获取记录](../research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)：规则02共7新请求/57712075B body，有效连续前缀64MiB；第7新块在300秒超时，只收到7380427B，失败partial不accepted。Root核终态及全部新body和64MiB前缀；整包、目录复核及全CRC仍pending，未启动第三轮整包获取。固定作者README另列百度vxrs候选但未明确PNG/同版；本机唯一公开GET只返回302至提取码页，未识别包名。bs64入口明确为JPG，不能替代本PNG版本；所有链接与公开提取码的来源见上文记录。没有登录、绕验证码或使用非公开API，也没有恢复盲测/跨集资格。

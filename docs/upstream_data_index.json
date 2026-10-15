@@ -1,6 +1,6 @@
 {
   "checked_date": "2026-10-12",
-  "scope": "Official access links plus independently verified HRSID PNG archive directory and complete TRAIN/TEST annotation byte/JSON metadata; no image pixels, mask decoding, or AP evaluation; two official encoded PNG files verified for byte/container integrity only (no IDAT/pixel decoding); independent 8MiB range transfer verified, subsequent full archive acquisition stopped after request 3 timeout, only 16MiB accepted prefix, full dataset still pending; new explicit acquisition rule 02 is running, only verified complete seeds reused and first NEW 8MiB block verified, no full dataset qualification",
+  "scope": "Official access links plus independently verified HRSID PNG archive directory and complete TRAIN/TEST annotation byte/JSON metadata; no image pixels, mask decoding, or AP evaluation; two official encoded PNG files verified for byte/container integrity only (no IDAT/pixel decoding); independent 8MiB range transfer verified, subsequent full archive acquisition stopped after request 3 timeout, only 16MiB accepted prefix, full dataset still pending; new explicit acquisition rule 02 later stopped after a timeout, only verified complete seeds reused and first NEW 8MiB block verified, no full dataset qualification; terminal02 accepted 64MiB prefix independently checked, full archive pending; author Baidu candidate format/version unconfirmed",
   "raw_images_included": false,
   "complete_annotation_payloads_included": false,
   "datasets": [
@@ -240,7 +240,7 @@
           "scientific_failure_count_changed": false
         },
         "continuation_attempt_02": {
-          "status": "RUNNING_NEW_EXPLICIT_RULE",
+          "status": "STOPPED_TIMEOUT_NO_RETRY",
           "old_failed_attempt_preserved": true,
           "failed_partial_reused": false,
           "initial_reverified_prefix_bytes": 16777216,
@@ -253,12 +253,34 @@
           "first_NEW_block_elapsed_seconds": 198.735,
           "first_NEW_block_Root_SHA256_and_length_verified": true,
           "first_NEW_block_SHA256": "38d4e04c7a2ab61dc251c6fc5aa36d09dcdeb2d3069bbff99d7ac68040f4cedf",
-          "at_least_accepted_contiguous_bytes": 25165824,
+          "at_least_accepted_contiguous_bytes": 67108864,
           "archive_complete": false,
           "all_member_CRC_verified": false,
           "dataset_qualified": false,
-          "N20_Source_modified": false
+          "N20_Source_modified": false,
+          "original_session_actual_exit": 1,
+          "NEW_HTTP_requests": 7,
+          "actual_NEW_body_bytes": 57712075,
+          "NEW_complete_blocks": 6,
+          "accepted_contiguous_bytes": 67108864,
+          "failed_partial_bytes": 7380427,
+          "failed_curl_exit": 28,
+          "Root_all_7_NEW_body_SHA_and_64MiB_prefix_verified": true,
+          "third_archive_attempt_started": false
         }
+      },
+      "author_Baidu_access_metadata_20261015": {
+        "source": "https://raw.githubusercontent.com/chaozhong2010/HRSID/2d682fe0c023df03a8fe1b1bf2e2ac76811e43b5/README.md",
+        "PNG_candidate_url": "https://pan.baidu.com/s/1EitHYJ7tpGh0q9Qb3QA5SQ",
+        "public_extraction_code": "vxrs",
+        "PNG_format_and_version_confirmed": false,
+        "single_GET_HTTP_status": 302,
+        "single_GET_body_bytes": 135,
+        "redirect_path": "/share/init",
+        "package_name_identified": false,
+        "JPG_url": "https://pan.baidu.com/s/1z0-E3Lwdkg14feu1FwRf3g",
+        "JPG_public_extraction_code": "bs64",
+        "JPG_not_substituted_for_PNG": true
       }
     }
   ],
