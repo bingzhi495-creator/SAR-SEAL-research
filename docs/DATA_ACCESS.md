@@ -79,3 +79,8 @@ Git候选与PNG TRAIN共同文件名3572，候选独有1、PNG TRAIN独有70，�
 ## 2026-10-15：完整影像获取仍未完成
 
 [实际传输及停止记录](../research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)：单请求8MiB范围控制通过，Root核body/SHA/关键HTTP头与计数；随后fresh整包获取两块完整（16MiB有效前缀），第三块在45秒超时，原会话退出1，失败partial不accepted。该批共3请求/18491347B实际body，按规则停止、无自动重试。没有取得完整ZIP或解压新增影像，也没有像素/mask/AP资格；前述两个PNG文件的容器字节核验仍仅限两文件。原归档及所有分块/私有配置不上传Git。
+
+
+## 2026-10-15：另立规则02续取，完整数据仍pending
+
+[新任务及首块实证](../research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)保留旧超时和失败partial。仅重核并复用两完整块；新规则每8MiB允许300秒/owned310秒，最多678新请求、5681525099B与12小时，无自动重试。首个新8MiB块实际198.735秒完成且Root核物理SHA/长度，任务仍在运行，尚无完整ZIP、全成员CRC或新增影像/mask/AP资格。延长超时减少这一块被过早截断，不证明提速，也不改变N20。
