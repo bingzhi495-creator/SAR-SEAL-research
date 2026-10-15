@@ -4,7 +4,7 @@
 
 
 
-**当前进行（N20）：** 固定24轮的两臂E8/E24保存模型已通过独立CPU与Root核验：741图、每臂17,784次更新，完整同输入两公式与保存GPU端点CE在原1e-4绝对容差内。原GPU最后CUDA清理失败24及缺失REPORT永久保留，没有重训或改记GPU成功。当前141正常/24失败/165终态，固定DEV首分片原任务已启动，尚待完成数值和全量评价，**没有N20 AP或创新成功结论**。[核验结果与范围](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[实时状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
+**当前进行（N20）：** 固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验；原GPU清理失败24保留。DEV首分片又在输出字节回读的零步长Long视图处实际exit1（失败25，无资源abort），无完整REPORT/AP，31个partial不复用。错误已合成复现并以同测试验证最小修复；模型/评分/容差/预算不变，修复版独立原任务36736已启动。当前141正常/25失败/166终态，**没有N20 AP或创新成功结论**。[恢复核验](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[最新执行与修复证据](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
 **已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
 
@@ -41,7 +41,7 @@
 
 - [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：全741图缓存资格完成，固定24轮E8/E24保存模型已独立CPU/Root核验；原GPU清理失败保留，完整DEV AP尚未执行。[恢复核验](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
-- [N20完整DEV核验与继续规则](research_round_20260925_global/code/N20_FULL187_COCO_FINAL_AND_POST_MINIMAL_WIRING_UNBOUND_20261015_01.md)：四GPU与八CPU完整来源/统一COCO10端点的后续合同；CPU代码已准备但未执行。主判定器3项合成行为检查通过，仅解释预锁继续规则，不判定创新或发表成功。
+- [N20完整DEV核验与继续规则](research_round_20260925_global/code/N20_FULL187_COCO_FINAL_AND_POST_MINIMAL_WIRING_UNBOUND_20261015_02.md)：四GPU与八CPU完整来源/统一COCO10端点的后续合同；CPU代码已准备但未执行。主判定器3项合成行为检查通过，仅解释预锁继续规则，不判定创新或发表成功。
 
 - [N20真实F邻域结构原型与训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数零初始化空间适配器；设计文档保留提出时状态，最新固定24轮保存模型已核验。普通DW结构仅为信息基线，不称新创新，实际AP仍待完整DEV。
 

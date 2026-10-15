@@ -1,6 +1,6 @@
 # N20 执行状态（2026-10-15）
 
-**最新：独立CPU保存模型恢复原进程实际exit0，pure RAW141+failed24实际0后，Root完成来源、原六产物、完整输入遍历和数值证据核对。E8/E24保存模型资格通过；原GPU清理失败24与缺失REPORT不变。141正常/24失败/165终态，固定DEV首分片原任务已启动，没有N20 AP。**
+**最新：原DEV首分片47836实际exit1，916.14秒、无资源abort。错误在输出torch.save/readback的Long零步长字节视图；原31个物理文件是未资格partial，不复用、无完整REPORT/AP。失败25封存，pure RAW141+failed25实际0后才诊断。最小回归先RED(同错)后GREEN；仅修逐字节比较助手，模型/四源码/初始化/训练/评分/捕获/容差/范围/预算保持。修复版新原任务36736已启动，当前141正常/25失败/166终态。**
 
 - 全741图真实F邻域缓存已通过GPU/独立CPU/Root资格：旧样本3,035,136、unique中心1,786,820、额外位置2,159,732，新增序列化缓存2,360,944,527B。旧中心逐byte一致；CPU未独立重渲染额外F。
 - 预锁初始化digest a13802fc0bf4f23a8ab368b11b15a24b60552baadf1ab8264daf242173854a68；LOCAL真实九邻域与CENTER重复中心，两臂5张量/18,851参数、相同四层MLP初态/采样/图序/AdamW/固定24轮。
@@ -19,3 +19,10 @@
 - **CPU后续代码已准备，未执行**：独立前门/数值tail与新F9 decoder/body经一次定向静态ABI审阅READY，语法检查通过；四GPU全部原actual0后才按预先划定八子范围做CPU核验。不能把未来owners145–152或完整COCO写成已执行。[八CPU预锁范围](CPU_EXECUTION_PARTITION_PLANNED_20261015_01.json)、[CPU前门合同](../../research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_CPU_FRONT_UNBOUND_CONTRACT_20261015_01.md)、[全187 COCO/post合同](../../research_round_20260925_global/code/N20_FULL187_COCO_FINAL_AND_POST_MINIMAL_WIRING_UNBOUND_20261015_01.md)。
 - **继续判定器的有限检查**：纯首201解释器的3项合成行为测试实际0，覆盖较强CENTER优先、Δ=0/0<Δ<1/Δ>=1、undefined、错误seed/端点/单位/强参考及辅助字段拒绝。它只给继续规则，不认证输入、不把未来复验或发表标为成功。
 - **具体工程疑点，尚非实测瓶颈**：每个2048点F9回调约18MiB，四head及query重复的CPU拷贝可能增加证据采集成本。文件时间点不足以证明瓶颈或独立FPS。当前冻结任务不改；只有真实资源中止后，才可另锁执行版本检验按图唯一输入证明与逐调用GPU位一致门，保留实际logit、独立CPU两公式、FP64排序、fresh PR和严格sign/RLE。CPU allclose本身不能证明输入逐byte一致，不能悄删旧证据或沿用不再成立的旗标。
+
+- **失败25的隔离修复**：原actual held exit1/reap/birthgone及原source/spec/ad/phase/bootstrap/stderr均已严格锁定；原REPORT不存在。tiny测试以NumPy空INT64/FP64、singleton stride0、0D、真实BytesIO torch.save/load复现相同错误（RED：1test/7errors/2.399s），修复后同测试GREEN（1test/2.102s），保留signed-zero逐byte差异及shape/dtype拒绝。AST验证tail除n20_same_bits外完全同一。empty判相等仍须dtype/shape相同，非空保持UINT8精确比较，无allclose替代或容差放宽。
+- **修复版新原任务**：完整入口AST与一次定向装配审阅通过；typed25在首Source hash前核原失败、后闭合原源/日志；pre-HASH RAW-only实际0（0.233秒，无Torch）。新原36736独立输出，从[0,47)重新计算，不采用失败31文件作为完成证据。只新增必要检查器/失败链工程修复，不训练新模型，不实现性能猜想。运行中不为同步读/hash科学载荷或绑定Source。
+- **CPU装配错误单独复现与修正**：原CPUfront01错误要求全局历史N19 CPU_SCHEMA等于新N20 schema；保留历史常量的纯header测试先RED，front02仅删该多余global比较后GREEN（1test/0.008s）。它仍是未执行草稿，后续当前failure25链必须适配，旧current24版本不能直接启动。
+
+- **后续当前25链源码**：CPUfront03仅修current header与新DEV父25/+25，历史缓存21/恢复24/训练失败23/原DEV失败24不变；新header fixture保留历史N19常量，真实纯header检查通过，非CPU数值资格。当前[CPU范围补充02](CPU_EXECUTION_PARTITION_PLANNED_20261015_02.json)与[final/post合同02](../../research_round_20260925_global/code/N20_FULL187_COCO_FINAL_AND_POST_MINIMAL_WIRING_UNBOUND_20261015_02.md)替代未执行旧current24版本；仍必须先取得完整四GPU原actual0。
+- 新字节回归的GREEN复现需显式选择 `--tail N20_FIXEDDEV_FEATURE_ERROR_GPU_RUN_TAIL_UNBOUND_DRAFT_20261015_02.py`；同测试默认旧tail01用于保留RED复现，不能将历史默认RED误当新修复仍失败。两个版本源码与失败证据均留存；不发布原科学载荷/绑定资格链。
