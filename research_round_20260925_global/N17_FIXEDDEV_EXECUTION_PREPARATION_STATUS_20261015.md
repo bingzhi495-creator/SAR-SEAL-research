@@ -1,6 +1,6 @@
 # N17 固定DEV：执行准备与边界
 
-2026-10-15。完整24轮配对训练及独立E8/E24端点资格完成，五GPU分区187图/18700query/10策略输出metadata已核。前三CPU03与新CPU04 scope3/4/5均原实际退出0，累计164图/16400query完整独立数值报告及读回通过；最新scope5 [141,164)监督941.797秒，纯133正常+21失败前缀5f532c原退出0。正常133/失败21/154既有终态身份。七CPU执行补充保持，最后scope6 [164,187)已由原监督64124单次启动，owner133/父GPU4，当前单科学leaf。全部数值核验通过后再执行final04统一187图COCO和post03资格；没有新完整AP或创新成立结论。
+2026-10-15。完整24轮配对训练及独立E8/E24端点资格完成，五GPU分区187图/18700query/10策略输出metadata已核。全部七CPU（原三CPU03、新四CPU04）均原实际退出0，187图/18700query完整独立数值报告及读回全部通过；最后scope6 [164,187)监督737.594秒，纯134正常+21失败前缀432fff原退出0。正常134/失败21/155既有终态身份。final04统一全187图/380GT/18700query/10策略官方COCO已由原监督32002单次启动，owner134，当前单科学leaf，不重算模型/数值、不平均局部AP。之后还需独立post03与Root实际终态核验；当前没有已资格新AP或创新成立结论。
 
 [数值body](code/N17_ALL100_LOCAL_CENTER_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)已冻结、一次定向静态审阅READY、发布副本一项tiny SYN原退出0；普通body接口证据不代替实际DEV载体或GPU输出资格。[共享载体必要ABI](N17_FIXEDDEV_SHARED_CARRIER_GPU_REQUIRED_ABI_UNBOUND_20261015_01.md)记录旧物理bundle与shared成员、索引映射、四模型注入、callback与新writer差异，Root实际核了四段metadata完整关联，真实bundle张量校验仍留给下一original owned GPU任务。
 
@@ -191,3 +191,12 @@ Root已冻结新scope3 [94,117)并单次启动，原监督19917、normal owner13
 原监督15231实际退出0（held0/reaped/原birth消失，无error/abort/观察错误），监督941.797秒，最低可用RAM25.24GB。Root先过133正常+21失败纯RAW前缀（5f532c原退出0），再核23个逐图100query×8profile证明、scope限定bundle/成员消费及10策略各2300条预测；与原完整父GPU4预测对应slice严格一致，原qids/class/S0保持。新报告283658字节、SHAcd1fd9d372b97ab4967cd89156855e7320d50907cb3eb64cf404af7620e73c56。
 
 加原三CPU03和已接受scope3/4，累计164图/16400query。metadata reader不重算模型、数值或COCO；局部报告与Root摘要仍qualifiedFalse/fullAPFalse。最后scope6 [164,187)父GPU4完整原descriptor及Source04/两份执行补充/Sources闭合已绑定，原监督64124已启动，owner133。运行中科学载荷/Source/资格链未为同步读取、复制或哈希。全187统一AP与独立post资格未执行，不报告涨点。
+
+
+## 最后CPU完成：187图数值核验通过，统一COCO已启动
+
+原监督64124实际退出0（held0/reaped/原birth消失，无error/abort/观察错误），监督737.594秒，最低可用RAM25.40GB。Root先过134正常+21失败纯RAW前缀（432fff原退出0），再核最后23图的逐图100query×8profile证明、scope限定bundle/成员消费及10策略各2300条预测；与原完整父GPU4预测对应slice严格一致，原qids/class/S0保持。最后报告283652字节、SHA9c311b7bf6be5a00b5c0fd5db900956ae07f6be6559288cf42642fd840b5e49b。
+
+全部7个CPU descriptor覆盖完整187图/18700query，各实际数值报告及Root metadata读回通过，原前三CPU03复用且未改，四新CPU04分范围完整消费。metadata reader不重算模型、数值或COCO；完成数值核验不等于AP效用。
+
+[final04统一COCO入口](code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_04.py)已完成真实7份descriptor、两版CPU Source、两份执行补充、共同固定训练/PR/解释器及Sources闭合绑定，原监督32002已启动，owner134。合并完整18700条预测后每策略调用一次官方COCO；不平均局部AP，不从E8/exact挑最好值。当前仍待final原actual0、纯前缀、输出绑定及独立post03资格。运行中的科学载荷/Source/资格链未为此次同步读取、复制或哈希。
