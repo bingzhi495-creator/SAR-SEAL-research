@@ -1,0 +1,109 @@
+{
+  "schema": "N20-fixed-eight-CPU-numeric-subscopes-before-qualification-v1",
+  "locked_utc": "2026-10-15T06:18:48.430Z",
+  "status": "PLANNED_NOT_EXECUTED",
+  "reason": "Whole-image ordinal subscopes of the same four GPU populations; no AP/outcome-based selection. All four actual GPU terminals and source lineage must be qualified before any CPU scope.",
+  "GPU_ranges": [
+    [
+      0,
+      47
+    ],
+    [
+      47,
+      94
+    ],
+    [
+      94,
+      141
+    ],
+    [
+      141,
+      187
+    ]
+  ],
+  "planned_GPU_owners": [
+    141,
+    142,
+    143,
+    144
+  ],
+  "CPU_ranges": [
+    [
+      0,
+      24
+    ],
+    [
+      24,
+      47
+    ],
+    [
+      47,
+      71
+    ],
+    [
+      71,
+      94
+    ],
+    [
+      94,
+      118
+    ],
+    [
+      118,
+      141
+    ],
+    [
+      141,
+      164
+    ],
+    [
+      164,
+      187
+    ]
+  ],
+  "CPU_parent_GPU_ids": [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3
+  ],
+  "planned_CPU_owners": [
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152
+  ],
+  "normal_count_before_first_CPU_if_all_four_GPU_actual0": 145,
+  "preserved_failed_count": 24,
+  "complete_images": 187,
+  "natural_queries": 18700,
+  "raw_GT": 380,
+  "policy_count": 10,
+  "new_policy_count": 8,
+  "CPU_affinity": [
+    0,
+    1
+  ],
+  "threads": 2,
+  "CUDA_visible_devices": "",
+  "leaf_deadline_seconds": 1800,
+  "automatic_retry": false,
+  "full187_official_COCO_required": true,
+  "local_scope_AP_allowed": false,
+  "main_endpoint": "E24_LOCAL_ERROR_atmost vs max(E24_CENTER_ERROR_atmost,strong_R)",
+  "strong_R_AP": 68.09938494745545,
+  "original_training_GPU_exit1_preserved": true,
+  "training_source": "separate ROOT-qualified preserved E8/E24 model recovery; no original GPU REPORT",
+  "CPU_proof_actual_executed": false,
+  "GPU_all_four_actual0_verified": false,
+  "qualification_performed": false,
+  "AP_evaluated": false
+}

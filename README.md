@@ -39,6 +39,8 @@
 
 - [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：全741图缓存资格完成，固定24轮E8/E24保存模型已独立CPU/Root核验；原GPU清理失败保留，完整DEV AP尚未执行。[恢复核验](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
+- [N20完整DEV核验与继续规则](research_round_20260925_global/code/N20_FULL187_COCO_FINAL_AND_POST_MINIMAL_WIRING_UNBOUND_20261015_01.md)：四GPU与八CPU完整来源/统一COCO10端点的后续合同；CPU代码已准备但未执行。主判定器3项合成行为检查通过，仅解释预锁继续规则，不判定创新或发表成功。
+
 - [N20真实F邻域结构原型与训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数零初始化空间适配器；设计文档保留提出时状态，最新固定24轮保存模型已核验。普通DW结构仅为信息基线，不称新创新，实际AP仍待完整DEV。
 
 - [路口五类检测数据集核查（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/DATASET_SHORTLIST.md)：Intersection-Flow-5K、MIO-TCD、BDD100K与电动自行车专项候选；明确类别/视角/许可/获取状态及部分标注问题。

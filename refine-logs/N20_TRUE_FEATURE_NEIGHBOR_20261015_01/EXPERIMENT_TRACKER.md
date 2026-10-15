@@ -15,3 +15,7 @@
 [详细恢复证据与范围](../../research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)。
 
 - **固定DEV首分片已启动**：RAW-only启动前检查actual0（0.228秒，无Torch/科学输入哈希），完整入口AST通过；一次独立source-only ABI审阅READY。原supervisor47836持有唯一新GPU任务，范围[0,47)，无自动重试。真实原栅格F9捕获/2048评分/保存GPUlogit+FP64分数及新CPU解码器已接线；CPU手算2×3邻域与反例拒绝1项actual0（2.006秒），只是合成行为检查。运行中仅同步独立TMP普通副本和此状态，不读取/哈希运行载荷或绑定SOURCE用于发布；本段不代表GPU实际数值完成或AP。
+
+- **CPU后续代码已准备，未执行**：独立前门/数值tail与新F9 decoder/body经一次定向静态ABI审阅READY，语法检查通过；四GPU全部原actual0后才按预先划定八子范围做CPU核验。不能把未来owners145–152或完整COCO写成已执行。[八CPU预锁范围](CPU_EXECUTION_PARTITION_PLANNED_20261015_01.json)、[CPU前门合同](../../research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_CPU_FRONT_UNBOUND_CONTRACT_20261015_01.md)、[全187 COCO/post合同](../../research_round_20260925_global/code/N20_FULL187_COCO_FINAL_AND_POST_MINIMAL_WIRING_UNBOUND_20261015_01.md)。
+- **继续判定器的有限检查**：纯首201解释器的3项合成行为测试实际0，覆盖较强CENTER优先、Δ=0/0<Δ<1/Δ>=1、undefined、错误seed/端点/单位/强参考及辅助字段拒绝。它只给继续规则，不认证输入、不把未来复验或发表标为成功。
+- **具体工程疑点，尚非实测瓶颈**：每个2048点F9回调约18MiB，四head及query重复的CPU拷贝可能增加证据采集成本。文件时间点不足以证明瓶颈或独立FPS。当前冻结任务不改；只有真实资源中止后，才可另锁执行版本检验按图唯一输入证明与逐调用GPU位一致门，保留实际logit、独立CPU两公式、FP64排序、fresh PR和严格sign/RLE。CPU allclose本身不能证明输入逐byte一致，不能悄删旧证据或沿用不再成立的旗标。
