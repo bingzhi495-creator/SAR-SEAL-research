@@ -41,3 +41,5 @@
 
 - **首CPU实际资源中断，保留失败26**：原supervisor89755在1800.343秒held实际exit1、reaped/birthgone，abort为运行资源/截止门；新pure145+failed26先actual0（0.411秒，无Torch），再读取结果。原目录13份逐图partial、无REPORT，不复用也不计CPU完成。当前正常145/失败26/总终态171；不是模型失效或新AP。
 - **重新锁定执行资源分片**：[执行计划03](CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)将每个原GPU父域切成8份、最多6整图，共32份完整覆盖187图。只减小执行范围，原模型/捕获/双公式/容差/评分/主端点不变；历史八份计划、失败25/训练失败24保持原样。新typed26、CPU和final/post合同适配进行中，未绑定/执行，不自动重试、不复用失败partial。
+
+- **32范围接口接线与首份实际启动**：当前26链entry03（168252B，SHA045e5857166193e14403df8948e0a661cad9373c557bccf84b6f99ebc7d9a150）已冻结并绑定首份[0,6)。32scope metadata合成RED→GREEN、typed26合成、完整entry AST/header提取式检查和数值循环AST不变检查均通过，仅是接线证据；四GPU报告仍历史25，失败26独立保留。pre-HASH RAW-only actual0（0.292秒，无Torch），唯一原supervisor40922已启动，CUDA空/CPU01两线程/1800秒/RSS16GiB/无自动重试。当前145正常/26失败/171终态，0/32CPU合格，不提前计完成或计算AP。final/post entry02及32范围合同已保存，尚未绑定/执行。普通源稿和检查器同步，当前绑定Source/运行载荷不为发布而读取。

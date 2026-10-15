@@ -27,8 +27,8 @@
 | 代码与检查 | 实际状态 | 证据限度 |
 |---|---|---|
 | 历史25链CPU entry02 | 首独立CPU[0,24)实际资源中断 | 无完整REPORT；保留失败26，partial不复用 |
-| full187 COCO front/tail及完整entry01 | 已装配，AST通过，一次定向静态审阅READY | 尚未绑定/真实运行COCO |
-| post-actual后置门、合同及完整entry01 | 一次独立静态审阅READY；文本装配/AST实际通过 | 不自证post实际退出；未绑定/执行 |
+| 历史full187 COCO entry01 | 旧八范围源稿保留 | 本次新32范围使用entry02，仍未执行COCO |
+| 历史post完整entry01 | 旧八范围源稿保留 | 本次新32范围使用entry02，未绑定/执行 |
 | public proof_query合成CPU集成检查01 | 实际0，1项测试，2.079秒 | 手构2×3数据；验证两公式/评分/选点/PR/RLE及篡改拒绝，不认证真实GPU |
 
 源码：[CPU完整入口](code/N20_FIXEDDEV_FEATURE_ERROR_CPU_ENTRY_UNBOUND_DRAFT_20261015_02.py)、[全量COCO完整入口](code/N20_FIXEDDEV_FULL187_COCO_CPU_ENTRY_UNBOUND_DRAFT_20261015_01.py)、[post完整入口](code/N20_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_ENTRY_UNBOUND_DRAFT_20261015_01.py)、[合成集成检查](code/test_N20_SELECTED_NUMERIC_CPU_PUBLIC_API_SYNTHETIC_ONLY_20261015_01.py)。这些是可保存研发稿，不能把文件存在或静态READY写为真实实验成功。
@@ -50,6 +50,12 @@
 
 这是数值核验任务的资源问题，不是额外训练，也不是部署推理速度测量。当前正常145/失败26/总终态171，合格CPU0份，仍没有N20 AP。原四GPU报告与捕获、E8/E24模型以及失败25/训练失败24保持原样。
 
-新[执行补充03](../refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)将每个原GPU父域按最多6张连续整图切成8份，四父域共32份，覆盖187图/18700自然query且无重叠、无遗漏。新owner145–176，之后统一全187 COCO与后置核验另有自己的执行身份。改变仅针对执行资源，不按AP或partial结果选择图片；原八份计划保留为历史，不把部分文件升级为通过。新前门/最终合并合同仍在适配，尚未绑定和执行。
+新[执行补充03](../refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)将每个原GPU父域按最多6张连续整图切成8份，四父域共32份，覆盖187图/18700自然query且无重叠、无遗漏。新owner145–176，之后统一全187 COCO与后置核验另有自己的执行身份。改变仅针对执行资源，不按AP或partial结果选择图片；原八份计划保留为历史，不把部分文件升级为通过。新CPU完整入口03已冻结，首份[0,6)独立核验已启动，0/32完成；统一COCO和post完整入口02已完成文本装配/AST检查，仍未绑定和执行。
 
 源码层面确认：atmost/exact已共享各head的CPU输出，不存在按八策略重复八遍head的情况；仍有重复F9构造、掩膜解包和不变状态检查，尚无实测阶段耗时证明其为瓶颈。本轮优先只减小分片，不改数值函数；仍逐份检查实际捕获输入、四模型各两CPU公式、原2048批次、绝对1e-4/rtol0、保存FP64分数、fresh PR、strict sign、mask/RLE及全部十策略预测。不能减少验证后仍宣称执行了原完整证明。
+
+### 32份核验代码与首份启动
+
+[CPU完整entry03](code/N20_FIXEDDEV_FEATURE_ERROR_CPU_ENTRY_UNBOUND_DRAFT_20261015_03.py)、[CPU合同02](code/N20_FIXEDDEV_FEATURE_ERROR_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)、[统一COCO entry02](code/N20_FIXEDDEV_FULL187_COCO_CPU_ENTRY_UNBOUND_DRAFT_20261015_02.py)与[post entry02](code/N20_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_ENTRY_UNBOUND_DRAFT_20261015_02.py)已保存。合成元数据检查覆盖32份完整人口、旧范围/错误parent/失败partial拒绝；完整入口header的AST提取式检查通过。源码比较确认每图all100数值循环、PR双公式、检查、编码及序列化AST与旧版一致，历史GPU25保持原样。它们只说明装配与合同符合预期，不替代真实GPU/CPU数值或AP资格。
+
+启动前新纯RAW-only检查actual0（0.292秒），无Torch且在首次Source哈希前停止。唯一新原CPU任务为[0,6)，CUDA空、CPU0/1与两线程、1800秒上限、RSS16GiB及最小可用RAM16GiB，无自动重试。当前仍正常145/失败26/171终态，0/32合格；运行中的任务不计完成。模型和原四GPU捕获未重算，主端点和全187官方COCO仍按原锁定规则。
