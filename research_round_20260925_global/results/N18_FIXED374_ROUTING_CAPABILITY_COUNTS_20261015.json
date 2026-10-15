@@ -1,0 +1,190 @@
+{
+  "schema": "N18-sanitized-qualified-fixed374-routing-capability-result-v1",
+  "date": "2026-10-15",
+  "status": "QUALIFIED_POST_ORIGINAL_ACTUAL0",
+  "scope": {
+    "dataset": "SSDD internal DEV",
+    "reference_images": 187,
+    "reference_GT": 380,
+    "conditional_matched_instances": 374,
+    "unmatched_unevaluable": 6,
+    "minimum_native_pair_IoU": 0.5063529411764706,
+    "all_natural_queries_count": 18700,
+    "statistics_cover_all_natural_queries": false,
+    "new_AP_evaluated": false,
+    "model_or_PR_forward": false
+  },
+  "protocol": {
+    "paired_population": "unchanged N15 native score fixed query-GT pairs, IoU threshold 0.5",
+    "policies": [
+      "E24_LOCAL_atmost",
+      "E24_CENTER_atmost",
+      "Omega_strong_R"
+    ],
+    "epoch": 24,
+    "mode": "atmost",
+    "same_captured_PR_action_and_actual_masks_exact": true,
+    "zero_K_excluded_from_capability_denominators": true,
+    "GT_used_for_ranking": false
+  },
+  "summary": {
+    "counts": {
+      "schema": "N18-fixed-PR-routing-capability-counts-v1",
+      "aggregation": "micro",
+      "matched_queries": 374,
+      "PR_observed_queries": 374,
+      "K0_queries": 0,
+      "candidate_points": 949613,
+      "E_all_queries": 65423,
+      "B": 11146,
+      "H": 16248,
+      "actual_action_flips": 27394,
+      "PR_capability_E_denominator": 65423,
+      "PR_repairable_fraction": 0.17036821912782965,
+      "budget_repairable_denominator": 10927,
+      "selections": {
+        "E24_LOCAL_atmost": {
+          "selected_support": 26219,
+          "helpful_selected": 4574,
+          "harmful_selected": 3651,
+          "actual_flips": 8225,
+          "selected_noop": 17994,
+          "helpful_over_budget_repairable": 0.4185961380067722
+        },
+        "E24_CENTER_atmost": {
+          "selected_support": 26522,
+          "helpful_selected": 4972,
+          "harmful_selected": 3756,
+          "actual_flips": 8728,
+          "selected_noop": 17794,
+          "helpful_over_budget_repairable": 0.45501967603184773
+        },
+        "Omega_strong_R": {
+          "selected_support": 41142,
+          "helpful_selected": 6564,
+          "harmful_selected": 8528,
+          "actual_flips": 15092,
+          "selected_noop": 26050,
+          "helpful_over_budget_repairable": 0.6007138281321497
+        }
+      }
+    },
+    "PR_unrepairable_fraction": 0.8296317808721704,
+    "PR_unrepairable_numerator": 54277,
+    "PR_unrepairable_denominator": 65423,
+    "routing_miss_rate": {
+      "E24_LOCAL_atmost": 0.5814038619932278,
+      "E24_CENTER_atmost": 0.5449803239681523,
+      "Omega_strong_R": 0.3992861718678503
+    },
+    "routing_miss_numerator": {
+      "E24_LOCAL_atmost": 6353,
+      "E24_CENTER_atmost": 5955,
+      "Omega_strong_R": 4363
+    },
+    "routing_miss_denominator": 10927,
+    "selected_flip_harm_fraction": {
+      "E24_LOCAL_atmost": 0.4438905775075988,
+      "E24_CENTER_atmost": 0.4303391384051329,
+      "Omega_strong_R": 0.5650675854757488
+    },
+    "selected_flip_harm_numerator": {
+      "E24_LOCAL_atmost": 3651,
+      "E24_CENTER_atmost": 3756,
+      "Omega_strong_R": 8528
+    },
+    "selected_flip_harm_denominator": {
+      "E24_LOCAL_atmost": 8225,
+      "E24_CENTER_atmost": 8728,
+      "Omega_strong_R": 15092
+    }
+  },
+  "exploratory_per_instance": {
+    "instances": 374,
+    "zero_repairable_budget_instances": 5,
+    "opportunity_budget_quantiles": {
+      "0": 0,
+      "1": 1094,
+      "0.25": 7,
+      "0.5": 12,
+      "0.75": 27
+    },
+    "native_IoU_quantiles": {
+      "0": 0.5063529411764706,
+      "1": 0.9707491979618796,
+      "0.25": 0.8064797711299333,
+      "0.5": 0.8558940296228432,
+      "0.75": 0.8963087519569805
+    },
+    "policy_distributions": {
+      "E24_LOCAL_atmost": {
+        "routing_miss_rate_quantiles": {
+          "0": 0,
+          "1": 1,
+          "0.25": 0.33333333333333337,
+          "0.5": 0.5135135135135135,
+          "0.75": 0.7272727272727273
+        },
+        "instances_with_any_helpful": 337,
+        "instances_with_any_harmful": 297,
+        "instances_capturing_all_budget_repairable": 16
+      },
+      "E24_CENTER_atmost": {
+        "routing_miss_rate_quantiles": {
+          "0": 0,
+          "1": 1,
+          "0.25": 0.2857142857142857,
+          "0.5": 0.5,
+          "0.75": 0.7142857142857143
+        },
+        "instances_with_any_helpful": 342,
+        "instances_with_any_harmful": 290,
+        "instances_capturing_all_budget_repairable": 18
+      },
+      "Omega_strong_R": {
+        "routing_miss_rate_quantiles": {
+          "0": 0,
+          "1": 1,
+          "0.25": 0.33333333333333337,
+          "0.5": 0.5,
+          "0.75": 0.6363636363636364
+        },
+        "instances_with_any_helpful": 359,
+        "instances_with_any_harmful": 324,
+        "instances_capturing_all_budget_repairable": 21
+      }
+    },
+    "local_versus_R": {
+      "fewer_helpful_instances": 180,
+      "more_helpful_instances": 144,
+      "fewer_harmful_instances": 176,
+      "more_harmful_instances": 120
+    },
+    "scope": "Exploratory per-instance count distributions after aggregate; no new IoU threshold grouping, AP rerun or causal decomposition"
+  },
+  "execution": {
+    "original_CPU_returncode": 0,
+    "elapsed_seconds": 472.219000000041,
+    "normal_completed": 137,
+    "preserved_failures": 21,
+    "terminal_identities": 158,
+    "Root_integer_sums_independently_verified": true,
+    "original_Q_remains_pending_unmodified": true
+  },
+  "interpretation": {
+    "existing_scouts_lose_repairable_action_coverage_while_reducing_harm": true,
+    "head_is_primary_AP_bottleneck_established": false,
+    "pixel_count_difference_is_AP_causal_decomposition": false,
+    "original_N17_main_decision": "STOP",
+    "next_seed_or_fusion_allowed": false,
+    "formal_TEST": false,
+    "cross_dataset": false,
+    "innovation_established": false,
+    "TGRS_readiness_established": false
+  },
+  "missing_evidence": [
+    "direction-specific benefit and harm needed to explain IoU tradeoffs",
+    "all-natural-query official matching and score ranking not covered by fixed374 counts",
+    "fair intervention, repetition, formal test and cross-dataset evidence for a new method"
+  ]
+}

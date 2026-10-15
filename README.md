@@ -8,9 +8,11 @@
 
 **最近已完成的单模块结果（N14）：** 固定新stage24训练与完整DEV187/all100 GPU、独立CPU及ROOT资格均通过（每臂39,864更新，全18,700 query同GPU输入sign/RLE/COCO12一致）。BASE AP67.686612、MEMORY67.683479；模块−基线−0.003132点、相对原较强E24端点−0.415905点，C1未通过，按预锁规则停止该配方追加seed/预算和融合。训练BCE下降约1.41%没有转为AP收益；不推断方法总体失效或充分收敛。[完整合格结果与停止决定](research_round_20260925_global/N14_FIXED24_FAIR_COMPARISON_QUALIFIED_RESULT_AND_STOP_20261014.md)、[首次AP前规则](research_round_20260925_global/N14_FIXED24_FIRST_SEED_DECISION_CLARIFICATION_20261014.md)。下一轮[固定强E24行动机会诊断](refine-logs/N15_FIXED_ACTION_OPPORTUNITY_20261014_01/EXPERIMENT_PLAN.md)已于UTC04:31:14预登记，[真实GPU、独立CPU与ROOT诊断现已全部合格](research_round_20260925_global/N15_FIXED_E24_ACTION_OPPORTUNITY_QUALIFIED_RESULT_AND_NEXT_STEP_20261014.md)：同K的C行动oracle相对Omega平均+1.461603 IoU点，286/374>=.5点，高IoU实例增加39，预锁机会门通过。当前是GT理想行动选择上界，没有学习选择器的AP结果，[N16唯一公平scout协议现已锁定](research_round_20260925_global/N16_FAIR_UTILITY_SELECTOR_LOCKED_TRAINING_DESIGN_20261014.md)，已核原matcher负query不受mask监督，双方共同扩展背景代理target并纠正分层采样比例；完整缓存已通过GPU、独立CPU和ROOT核验，两scout已完成相同固定24轮训练及E8/E24端点资格；两个实现失败和原641/741受控时限失败均保留。固定无GT候选C、相同K预算和374匹配条件人口，区分实际PR可修补机会、避免伤害及理想GT上界。GO门提前锁定，没有新AP或核心创新结论。原[下一假设](research_round_20260925_global/N15_ACTION_UTILITY_SUPPORT_SELECTION_NEXT_HYPOTHESIS_20261014.md)保留提出时状态。
 
-**当前研发（N17已完成）：** 同预算24轮LOCAL/CENTER、全187图/380GT/18700query、五GPU与七数值CPU、统一全量官方COCO及post实际退出后Root资格均完成。主E24-atmost LOCAL **67.786531**、CENTER **68.103370**、强R **68.099385**，Δ **−0.316840 AP点**，按预锁STOP当前配方，不补172/173、不融合。正常136/失败21/157终态身份；没有运行中的N17科学任务。下一步只复用原捕获分析选点与修正能力瓶颈，尚未执行诊断；没有创新/TGRS就绪结论。[完整结果](research_round_20260925_global/N17_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[全部10端点原始stats](research_round_20260925_global/results/N17_FIXED24_ALL10_COCO_STATS_20261015.json)、[claim判定](research_round_20260925_global/N17_RESULT_TO_CLAIM_20261015/findings.md)。
+**当前研发（N17已完成）：** 同预算24轮LOCAL/CENTER、全187图/380GT/18700query、五GPU与七数值CPU、统一全量官方COCO及post实际退出后Root资格均完成。主E24-atmost LOCAL **67.786531**、CENTER **68.103370**、强R **68.099385**，Δ **−0.316840 AP点**，按预锁STOP当前配方，不补172/173、不融合。正常136/失败21/157终态身份；没有运行中的N17科学任务。N18诊断已实际完成并核验，见下一段；没有创新/TGRS就绪结论。[完整结果](research_round_20260925_global/N17_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[全部10端点原始stats](research_round_20260925_global/results/N17_FIXED24_ALL10_COCO_STATS_20261015.json)、[claim判定](research_round_20260925_global/N17_RESULT_TO_CLAIM_20261015/findings.md)。
 
-**机会与指标的边界：** [条件IoU机会不能保证全量AP](research_round_20260925_global/N17_CONDITIONAL_IOU_OPPORTUNITY_VERSUS_FULL_AP_20261015.md)给出结果后最小诊断：区分实际选点漏掉可修位置与固定PR本身不可修；尚未执行统计，不改变主端点/停止规则，不把未匹配query当真实背景。
+**N18已核诊断：** 原374固定配对，LOCAL可修选中4574/有害3651，强Ω6564/8528；LOCAL同时减少纠正和误改，漏选率58.140%高于Ω39.929%。PR可修11146/65423（17.037%）与N15一致，不能据此认定主要AP瓶颈。原CPU实际0/472.219秒，正常137/失败21/158身份，无科学任务运行。下一项先研究FP/FN的非对称修补取舍，再锁定公平强对照；没有新训练/AP/创新结论。[完整统计和下一假设](research_round_20260925_global/N18_QUALIFIED_ROUTING_CAPABILITY_RESULT_AND_NEXT_HYPOTHESIS_20261015.md)、[像素数与AP边界](research_round_20260925_global/N18_PIXEL_COUNTS_VERSUS_AP_INTERPRETATION_20261015.md)。
+
+**机会与指标的边界：** [条件IoU机会不能保证全量AP](research_round_20260925_global/N17_CONDITIONAL_IOU_OPPORTUNITY_VERSUS_FULL_AP_20261015.md)给出结果后最小诊断：区分实际选点漏掉可修位置与固定PR本身不可修；N18统计已完成，不改变主端点/停止规则，不把未匹配query当真实背景。
 
 **新增直接先例（GLDet）：** 用户提供的TGRS2025论文含实例分割，原文SSDD/HRSID mask AP71.3/58.6、整网500轮。已核全文/表格；完整作者代码尚未确认。空间扫描/邻域卷积/方向pool需要新空间载体，当前点头不能原样接入；N14无空间memory首试已按负结果停止，GLDet的完整空间结构迁移仍未执行，不直接比较不同划分AP。[原论文综述](research_round_20260925_global/GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)、[代码现况和单项局部信息检验设计](research_round_20260925_global/GLDET_CODE_RECHECK_AND_MINIMAL_LOCAL_INFORMATION_TEST_20261015.md)。其局部信息检验已演变为N17：完整FIT邻域缓存和固定24轮训练已合格，DEV全量验证完成且主结果负收益停止；这是低成本信息检验，尚非完整GLDet复现或新创新。不能使用DEV捕获训练。
 
@@ -31,7 +33,7 @@
 
 ## 从这里开始
 
-- [N18最小机制诊断计划](refine-logs/N18_FIXED_PR_ROUTING_CAPABILITY_20261015_01/EXPERIMENT_PLAN.md)：固定374配对复用已存动作，区分路由漏选与PR纠错能力；纯计数手算及单项接口检查已通过；新读取源码完成一次独立静态审查。真实CPU诊断原任务79926已单次启动，等待实际退出与结果核验。
+- [N18最小机制诊断计划](refine-logs/N18_FIXED_PR_ROUTING_CAPABILITY_20261015_01/EXPERIMENT_PLAN.md)：固定374配对复用已存动作，区分路由漏选与PR纠错能力；纯计数手算及单项接口检查已通过；新读取源码完成一次独立静态审查。真实CPU诊断实际退出0并通过Root整数/来源核对；结果见[N18诊断](research_round_20260925_global/N18_QUALIFIED_ROUTING_CAPABILITY_RESULT_AND_NEXT_HYPOTHESIS_20261015.md)。
 
 - [N17局部粗mask、错误估计和选点直接先例](research_round_20260925_global/N17_LOCAL_NATIVE_L_ERROR_SCOUT_TARGETED_PRIOR_CHECK_20261015.md)：SEED/QuBER/MagNet/PointRend重叠与具体差异，现阶段只做信息探针，不确认创新。
 
