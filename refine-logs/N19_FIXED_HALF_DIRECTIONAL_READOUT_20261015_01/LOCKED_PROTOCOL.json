@@ -1,0 +1,140 @@
+{
+  "schema": "N19-fixed-half-directional-readout-probe-locked-v1",
+  "locked_UTC": "2026-10-15T03:22:17.491Z",
+  "locked_before_N19_scientific_execution": true,
+  "status": "PRELOCKED_EXPLORATORY_PROBE_NOT_NEW_TRAINING",
+  "problem_anchor": "N18 fixed374: existing scout reduces both helpful and harmful edits, losing repairable action coverage; conditional counts do not identify primary AP bottleneck.",
+  "hypothesis": "Fixed direction-specific action costs on the same learned help/harm/noop probabilities improve full natural-query mask AP beyond symmetric score, ordinary direction-agnostic bias, reversed direction and existing strong controls.",
+  "prior_proposal": "N13_FIXED_K_BINARY_IOU_ORACLE_AND_PROBABILISTIC_PROXY_LIMIT_20261014.md already proposed r=1/2; no new theorem or expected IoU/AP optimality claim",
+  "population": {
+    "dataset": "SSDD internal DEV previously used for research",
+    "images": 187,
+    "GT": 380,
+    "natural_queries": 18700,
+    "FIT_images": 741,
+    "DEV_reused_for_method_design": true,
+    "fixed374_diagnostic_is_not_evaluation_population": true
+  },
+  "frozen_models": {
+    "teacher": "native0 qualified E24",
+    "PR_seed": 202610120701,
+    "PR_epoch": 24,
+    "utility_scout_initialization_seed": 202610140161,
+    "utility_scout_epoch": 24,
+    "utility_scout_training_epochs": 24,
+    "utility_scout_updates": 17784,
+    "new_training": false,
+    "new_quality_head": false,
+    "new_models_or_forward": false
+  },
+  "candidates": {
+    "P": "native L>0",
+    "Omega": "abs(native L)<=2",
+    "C": "Omega union P union Chebyshev-radius8 dilation(P)",
+    "K": "count(Omega)",
+    "K0": "empty support; output native; action chunks absent"
+  },
+  "probabilities": {
+    "source": "actual qualified N16 E24 UTILITY scout logits, class order help,harm,noop",
+    "canonical": "numpy float64 softmax of supplied actual FP32 logits with subtract-row-max stabilization",
+    "GT_input": false
+  },
+  "policies": {
+    "SYMMETRIC": "p_help-p_harm; original existing Utility reconstruction control only",
+    "DIR_HALF": "if P=0: p_help-0.5*p_harm; if P=1: 0.5*p_help-p_harm; MAIN",
+    "GLOBAL_HALF": "p_help-0.5*p_harm regardless P; ordinary bias control",
+    "REVERSED_HALF": "if P=0: 0.5*p_help-p_harm; if P=1: p_help-0.5*p_harm; reversed-direction control"
+  },
+  "selection": {
+    "mode": "atmost",
+    "strict_score_positive": true,
+    "maximum": "K",
+    "ties": [
+      "score descending",
+      "abs(native L) ascending",
+      "flat index ascending"
+    ],
+    "selected_support_storage": "ascending flat indices",
+    "fixed_coefficient": 0.5,
+    "coefficient_search": false,
+    "threshold_search": false,
+    "epoch_search": false,
+    "exact_mode_search": false
+  },
+  "actions": {
+    "source": "same actual qualified N16 common-C GPU_combined>0",
+    "model_formula_replay": false,
+    "pr_inference": false,
+    "new_support_application_is_cached_action_simulation": true,
+    "deployment_PR_selected_batch_equivalence_measured": false,
+    "same_action_check": "original symmetric selected indices and full mask must exactly reconstruct original qualified E24 UTILITY prediction"
+  },
+  "evaluation": {
+    "main": "official whole187 COCO segm AP50:95 percent",
+    "maxDets": [
+      1,
+      10,
+      100
+    ],
+    "score_filter": null,
+    "original_GT_crowd_ignore": true,
+    "all_query_scores_classes_order_preserved": true,
+    "secondary": [
+      "AP50",
+      "AP75",
+      "APS",
+      "APM",
+      "APL",
+      "AR1",
+      "AR10",
+      "AR100",
+      "ARS",
+      "ARM",
+      "ARL"
+    ],
+    "local_AP_averaging": false
+  },
+  "main_rule": {
+    "formula": "DIR_HALF_AP-max(SYMMETRIC_AP,ERROR_E24_atmost_AP,strong_R_AP,GLOBAL_HALF_AP,REVERSED_HALF_AP)",
+    "strong_R_AP_percent": 68.09938494745545,
+    "DIR_HALF_is_only_main": true,
+    "best_control_cannot_replace_main": true,
+    "nonpositive": "STOP current fixed-half readout hypothesis; no r/threshold/epoch/budget/seed/fusion rescue",
+    "positive": "exploratory evidence only; prelock fresh same-budget training repeats before additional scientific runs; no innovation/TGRS success claim",
+    "fresh_repeat_seed_candidates": [
+      202610150191,
+      202610150192
+    ],
+    "fresh_repeats_currently_admitted": false
+  },
+  "integrity": {
+    "prior_N16_and_N17_STOP_preserved": true,
+    "old_utility_seed162163_and_old_local172173_not_allowed": true,
+    "all_existing_failure_records_preserved": true,
+    "no_partial_reuse": true,
+    "one_root_owned_scientific_leaf": true,
+    "CPU_affinity": [
+      0,
+      1
+    ],
+    "threads": 2,
+    "CUDA_visible_devices": "",
+    "maximum_RSS_bytes": 17179869184,
+    "minimum_available_RAM_bytes": 17179869184,
+    "whole_GPU_limit_MiB": 8192,
+    "allocator_limit_MiB": 4096,
+    "deadline_seconds": 1800,
+    "automatic_retry": false
+  },
+  "claims": {
+    "novel_primitives": false,
+    "quality_estimation_effect": false,
+    "expected_ratio_optimality": false,
+    "AP_causal_decomposition": false,
+    "independent_confirmatory_holdout": false,
+    "formal_TEST": false,
+    "cross_dataset": false,
+    "innovation_established": false,
+    "TGRS_readiness": false
+  }
+}
