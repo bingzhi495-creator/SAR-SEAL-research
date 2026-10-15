@@ -1,6 +1,6 @@
 {
   "checked_date": "2026-10-12",
-  "scope": "Official metadata and access links only; no local scientific data read or payload validation",
+  "scope": "Official access links plus independently verified HRSID PNG archive directory and complete TRAIN/TEST annotation byte/JSON metadata; no image pixels, mask decoding, or AP evaluation",
   "raw_images_included": false,
   "complete_annotation_payloads_included": false,
   "datasets": [
@@ -36,13 +36,27 @@
         {
           "path": "annotations/train2017.json",
           "bytes_reported_by_upstream_api": 11592317,
-          "file_url": "https://github.com/chaozhong2010/HRSID/blob/master/annotations/train2017.json",
-          "download_url": "https://raw.githubusercontent.com/chaozhong2010/HRSID/master/annotations/train2017.json",
-          "payload_read": false
+          "file_url": "https://github.com/chaozhong2010/HRSID/blob/2d682fe0c023df03a8fe1b1bf2e2ac76811e43b5/annotations/train2017.json",
+          "download_url": "https://raw.githubusercontent.com/chaozhong2010/HRSID/2d682fe0c023df03a8fe1b1bf2e2ac76811e43b5/annotations/train2017.json",
+          "payload_read": true,
+          "checked_commit": "2d682fe0c023df03a8fe1b1bf2e2ac76811e43b5",
+          "payload_verified_date": "2026-10-15",
+          "SHA256": "4ac69031accd771b784f90e128f206373f7332293a0130324333154d723541fc",
+          "images": 3573,
+          "annotations": 9870,
+          "image_records_without_annotation_references": 215,
+          "verified_PNG_TRAIN_filename_relation": {
+            "intersection": 3572,
+            "candidate_only": 1,
+            "PNG_TRAIN_only": 70,
+            "candidate_is_subset": false,
+            "candidate_PNG_TEST_filename_intersection": 0
+          },
+          "interchangeable_with_official_PNG_TRAIN": false
         }
       ],
-      "annotation_directory_metadata_url": "https://api.github.com/repos/chaozhong2010/HRSID/contents/annotations?ref=master",
-      "test_annotation_note": "test2017.json was not listed in the upstream repository annotation directory; obtain from the selected author download package",
+      "annotation_directory_metadata_url": "https://api.github.com/repos/chaozhong2010/HRSID/contents/annotations?ref=2d682fe0c023df03a8fe1b1bf2e2ac76811e43b5",
+      "test_annotation_note": "No test2017.json in the checked fixed Git directory; complete test2017.json and train2017.json were separately acquired from the same author PNG archive and independently verified on 2026-10-15. Do not mix Git candidate TRAIN with PNG TEST.",
       "access": [
         {
           "version": "JPG",
@@ -66,7 +80,92 @@
           "url": "https://drive.google.com/file/d/1U0Sj1SHoq-2VjXXUKwpXae6rBI3YjyDP/view?usp=sharing"
         }
       ],
-      "external_archive_license_scope": "Not expressly mapped in reviewed repository README/LICENSE; archive notices not inspected"
+      "external_archive_license_scope": "Not expressly mapped in reviewed repository README/LICENSE; archive notices not inspected",
+      "verified_PNG_annotation_version": {
+        "verified_date": "2026-10-15",
+        "evidence_note": "../research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md",
+        "official_public_file_id": "1xgXi8KC3MDWuu7Yp4n2J-LOPYLRszHAc",
+        "archive_title": "HRSID_png.zip",
+        "archive_declared_bytes": 5698302315,
+        "archive_Last_Modified": "Wed, 01 Jul 2020 15:10:52 GMT",
+        "full_archive_SHA256": null,
+        "central_directory": {
+          "bytes": 672944,
+          "SHA256": "4a54303e8cce24f0330cddd2e6d3c12205c8b0002859d0b5bf534efb531a2dce",
+          "entries": 5612,
+          "PNG_files": 5604,
+          "JSON_members": 5,
+          "directories": 3
+        },
+        "TRAIN": {
+          "member": "annotations/train2017.json",
+          "bytes": 15641078,
+          "SHA256": "3e240c38014526e9b93206a946105fb41c808272238932b0d4c2422978d5116f",
+          "CRC32": "18c7bae6",
+          "images": 3642,
+          "annotations": 11047,
+          "image_records_without_annotation_references": 0
+        },
+        "TEST": {
+          "member": "annotations/test2017.json",
+          "bytes": 8608088,
+          "SHA256": "eb611754afc74c34222fa52cc04a500d1b84f956782fcbcc0e91d9766c4ac937",
+          "CRC32": "18a3bf81",
+          "images": 1962,
+          "annotations": 5922,
+          "image_records_without_annotation_references": 1
+        },
+        "split_relationship": {
+          "file_name_intersection": 0,
+          "file_name_union": 5604,
+          "image_ID_intersection": 1962,
+          "annotation_ID_intersection": 5922,
+          "image_ID_namespace": "split",
+          "annotation_ID_namespace": "split",
+          "exact_images_directory_filename_coverage": true,
+          "missing_or_uncovered_PNG_names": 0,
+          "direct_bare_ID_concatenation_valid": false
+        },
+        "all_categories": [
+          {
+            "id": 1,
+            "name": "ship"
+          }
+        ],
+        "all_image_metadata_dimensions": [
+          800,
+          800
+        ],
+        "total_split_annotations": 16969,
+        "author_reported_instances": 16951,
+        "instance_count_difference_explained": false,
+        "annotation_JSON_license_entry": {
+          "id": 0,
+          "name": null,
+          "url": null
+        },
+        "mask_decoded": false,
+        "image_pixels_read": false,
+        "AP_evaluated": false,
+        "added_to_current_N20_scientific_sources": false,
+        "blind_TEST_restored": false,
+        "scene_independence_proven": false,
+        "external_data_redistribution_permission_verified": false
+      },
+      "known_local_image_candidate_inventory": {
+        "date": "2026-10-15",
+        "scope": "one bounded historical directory only; not a whole-disk inventory",
+        "regular_files": 358,
+        "extension": ".jpg",
+        "file_bytes": 66018309,
+        "exact_PNG_official_filename_matches": 0,
+        "filename_matching": "exact full file names only; no prefix or suffix rewrite",
+        "files_opened_or_hashed": false,
+        "official_PNG_version_or_completeness_certified": false
+      }
     }
-  ]
+  ],
+  "initial_metadata_review_date": "2026-10-12",
+  "updated_date": "2026-10-15",
+  "checked_date_scope": "Initial public-link metadata review; later artifact verifications are dated per dataset"
 }

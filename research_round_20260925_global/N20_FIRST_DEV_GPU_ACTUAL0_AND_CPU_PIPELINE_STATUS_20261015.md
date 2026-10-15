@@ -1,6 +1,6 @@
 # N20：全部DEV GPU分片完成及CPU数值核验状态
 
-更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成5/32份（30图/3000自然query），第六份[30,36)运行中。正常150/保留失败26/176终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
+更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成6/32份（36图/3600自然query），第七份[36,42)运行中。正常151/保留失败26/177终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
 
 ## 已实际完成
 
@@ -115,3 +115,12 @@ N20最多检验当前渲染像素邻域在本初始化/预算/监督/固定PR下
 ### HRSID同包标注版本实核完成
 
 [官方PNG来源记录](HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)现已完整取得TRAIN及TEST：Root独立核原生curl完成范围、实际块SHA、完整压缩流与解压字节/CRC/JSON。TRAIN3642图/11047实例、TEST1962图/5922实例，文件名无交集且并集5604精确覆盖同包PNG目录；数值imageID/annID跨split复用，不能据裸ID认定重复或直接合并。Git候选文件名仅共同3572、候选独有1/PNG TRAIN独有70，不能混用。没有图像像素/mask解码/跨集AP或盲测资格恢复；本次N20数据和Source不变，所有原下载失败保留。
+
+
+## 第六份独立CPU通过，第七份已启动
+
+[30,36)原supervisor59461 held实际退出0（633.813秒），原句柄回收且出生身份消失，error/abort均无。Root先执行新pure151+failed26实际0（0.382秒，无Torch），随后核原RAW-bound stdout REPORT引用、Source/spec/admission/phase/bootstrap与完整23项绑定。6图/600自然query/4800策略记录、15002注册成员完整覆盖；双CPU scout公式分别对实际GPU最大3.0517578125e-5，原绝对1e-4/rtol0、2048分块、FP64评分/索引、PR两公式、strict sign和mask/RLE门保持，十策略各600完整预测与原父域切片逐字段相等。原REPORT保持pending/qualified=False；该子范围核验不是全DEV/AP资格。
+
+第七份[36,42)同冻结entry03、模型/主端点，RAW-only prehash实际0（0.296秒，无Torch）后唯一原supervisor95848已启动，无自动重试。累计6/32份、36图/3600自然query/28800策略记录，正常151/保留失败26/177终态。统一全187官方COCO尚未执行。
+
+[数据获取说明](../docs/DATA_ACCESS.md)及[机器可读上游索引](../docs/upstream_data_index.json)现已区分Git候选与同包PNG的实际标注版本、SHA/CRC、split ID命名空间及未完成影像/mask/AP资格。本机一次有界目录元数据盘点仅确认历史目录内358个.jpg普通文件、66018309B，未打开或hash文件；不能认证完整原数据或与官方PNG像素同版。没有据后缀/前缀改名或替换标注，不改变N20数据或Source。

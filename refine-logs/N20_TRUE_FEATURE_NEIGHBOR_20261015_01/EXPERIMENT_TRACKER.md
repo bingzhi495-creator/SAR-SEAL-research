@@ -60,3 +60,6 @@
 - **有限独立研究复审**：既有374匹配实例统计同时有路由余量及固定PR动作能力限制，不包含6未匹配GT/全部自然query；像素有害多于有益与强R提升AP并存，不能排序为唯一AP瓶颈。N20检验最终渲染像素邻域，正负结果仍依预锁Delta和重复门解释；详见[当前状态](../../research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)。未追加方法/测试或改变主端点。
 
 - **HRSID同包元数据实核完成**：不同客户端有界轮保留所有失败，第三轮完整首块+第四轮完整七块+第五轮四块取得完整TRAIN，Root独立核每块/deflate/raw/CRC/JSON。TRAIN3642/11047、TEST1962/5922，filename交集0/并集5604且全部PNG目录exact；跨split imageID交1962/annID交5922为数值复用，后续需split命名空间。Git候选共同3572/仅候选1/仅PNG TRAIN70，不混配。无图像/mask/AP或加入当前科学Sources；[详细自写来源记录](../../research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)包含所有取件失败和实际证据范围。
+
+- **第六份CPU实际0及第七份启动**：[30,36)原supervisor59461 held exit0（633.813秒），pure151+failed26先actual0（0.382秒，无Torch），随后核RAW-bound stdout报告ref、Source/spec/admission/phase/bootstrap及23绑定；600query/4800profiles/15002注册members，十策略各600完整预测与父切片全字段一致，双CPU scout公式对GPU最大3.0517578125e-5，原门和REPORT pendingFalse保留。第七份[36,42)同冻结Source，prehash actual0（0.296秒）后唯一原supervisor95848运行，无自动重试。累计6/32、36图/3600query/28800profiles，正常151/保留失败26/177终态，尚无全187 AP。
+- **数据入口与影像范围明确**：更新[数据获取说明](../../docs/DATA_ACCESS.md)/[上游索引](../../docs/upstream_data_index.json)，区分实际同包PNG TRAIN/TEST和Git候选及split ID复用。一次有界本地目录盘点仅358个.jpg文件、66018309B，未打开/hash文件，不能认证完整原数据或同PNG像素；不据文件名更换数据。仅普通文档/索引同步，未读取运行科学载荷或绑定Source用于发布。
