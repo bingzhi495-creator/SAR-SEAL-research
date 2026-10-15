@@ -125,3 +125,14 @@ Root与独立代理分别以目录项/文件大小元数据检查一个已定位
 作者[固定提交README](https://raw.githubusercontent.com/chaozhong2010/HRSID/2d682fe0c023df03a8fe1b1bf2e2ac76811e43b5/README.md)明确PNG高保真入口仍为当前Google Drive。另列[作者百度候选](https://pan.baidu.com/s/1EitHYJ7tpGh0q9Qb3QA5SQ)，公开提取码vxrs，但未明确其包名、PNG/JPG或同版关系；[另一作者百度入口](https://pan.baidu.com/s/1z0-E3Lwdkg14feu1FwRf3g)（公开码bs64）明确是JPG，不能静默替代本PNG版本。
 
 对vxrs候选仅执行一次20秒/512KiB有界公开页面GET，无代理、redirect、登录或额外API。实际返回302、135B、约10.72秒，仅指向/share/init提取码页，没有包名/目录。Root核原响应状态、body长度和重定向路径。没有据此认定链接失效、必须登录、可下载或与Drive同版，也未切换版本或启动第三次整包下载。完整影像获取、解码、mask对齐、正式跨集协议及评估仍pending；原数据、响应原件和私有配置不上传Git。
+
+
+## 独立WLAN源地址绑定控制：连接超时，未取得HTTP响应
+
+在不更改系统路由、服务或代理设置的条件下，对相同PNG归档另做一次固定首8MiB范围控制，只尝试一个请求；curl全程上限120秒、owned回收130秒，无重试、redirect或URL刷新。使用本机WLAN的一个已核Preferred数值IPv4作为进程源绑定参数；先前只读路由查询显示源地址选择可影响路由，但这不是该次HTTP实际走向的证明。
+
+原held会话真实退出1，curl exit28，约10.031秒结束并已回收；原stderr记录连接在10005毫秒超时，writeout size_download为0、time_total为10.005831秒，响应头文件0B。Root独立核安全摘要SHA及原私有日志必要字段。没有HTTP响应，也没有curl实际local/remote地址，因此不能确认实际源匹配、绕过TAP、网络加速，不能把失败归因于Google源或某个网络环节。未执行实际远端路由追加查询、未追加第二请求或第三轮整包下载。
+
+写出模板将无响应状态000作为未加引号的JSON数字，导致连接失败后的次级JSON解析错误；原记录不改写。一份新普通离线草稿以字符串保留HTTP状态，通过000/206/畸形日志的合成RED→GREEN检查，尚未集成实际传输，也不改变原失败。该记录修复不是模型创新或数据获取成功。私有地址、签名下载地址、配置与日志原件不在Git发布范围。
+
+有效归档前缀仍仅64MiB，两个已核PNG编码文件的范围不变；完整5604图、像素与mask对齐、跨集训练/评价仍未完成。此次网络失败不计入N20科学失败26；没有读取或更改运行中的科学载荷与绑定Source。

@@ -4,9 +4,9 @@
 
 
 
-**当前进行（N20）：** 固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验，原训练GPU失败24保留；四个DEV GPU分片全部实际0。独立CPU已完成并核验11/32份，连续覆盖[0,65)，累计65图/6500自然query、52000策略记录；十策略完整预测均与各自父域切片精确一致。各份scout双CPU公式对实际GPU最大差异均≤4.57763671875e-5，满足原1e-4门。第十二份[65,71)已启动；当前156正常/26保留科学失败/182终态。**尚无N20全量AP、涨点或创新成功结论**。[最新状态](research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)、[执行记录](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[32份执行范围](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)。
+**当前进行（N20）：** 固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验，原训练GPU失败24保留；四个DEV GPU分片全部实际0。独立CPU已完成并核验12/32份，连续覆盖[0,71)，累计71图/7100自然query、56800策略记录；十策略完整预测均与各自父域切片精确一致。各份scout双CPU公式对实际GPU最大差异均≤4.57763671875e-5，满足原1e-4门。第十三份[71,77)已启动；当前157正常/26保留科学失败/183终态。**尚无N20全量AP、涨点或创新成功结论**。[最新状态](research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)、[执行记录](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[32份执行范围](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)。
 
-**跨集数据准备：** 官方HRSID同包TRAIN/TEST标注与两个PNG编码文件已核验。两轮整包获取均超时停止，当前只有64MiB有效前缀；官方百度候选的PNG格式/同版关系尚未确认，完整影像、mask与跨集实验仍未完成。[实际版本与获取记录](research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)。
+**跨集数据准备：** 官方HRSID同包TRAIN/TEST标注与两个PNG编码文件已核验。两轮整包获取均超时停止，当前只有64MiB有效前缀；官方百度候选的PNG格式/同版关系尚未确认；一次独立WLAN源地址绑定控制在连接阶段10秒超时、收到0B，未重试，也未证明绕过TAP或加速。完整影像、mask与跨集实验仍未完成。[实际版本与获取记录](research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)。
 
 **增量查新：** [O²Former与DACF-net先例核查](research_round_20260925_global/DIRECT_SAR_INSTANCE_SEGMENTATION_INCREMENTAL_PRIOR_CHECK_20261015_01.md)分别标记全文和官方域索引证据，不与当前DEV跨协议排名；方向、多尺度和上下文模块已有直接先例；已补记v1实现需澄清的形状与对齐边界，不将自行适配称作完整作者复现。
 
