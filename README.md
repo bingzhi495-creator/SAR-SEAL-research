@@ -6,7 +6,7 @@
 
 **自主设计与作者基线归属补充：** 团队自定义UNet++按完整结构评估；历史D目录的单个FPN文件与DiffSARShipInst作者固定版本统一换行后完全一致，SCJE-FPN及其中采用的CARAFE/ACmix须按作者基线引用。两份本地R535配置声明启用SCJE，不能仅改builder构造普通FPN对照；这不认证当前E/N20调用。[归属、实际路由与对照要求](research_round_20260925_global/UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
 
-**当前进行（N20）：** 首个种子202610150201的全187图/380实例/18700自然query统一COCO、32份CPU、四GPU及独立后置/Root资格全部完成。LOCAL 68.297126、同预算CENTER 67.978791、冻结强参考68.099385；主差值LOCAL−max(CENTER,强参考)=+0.197741 AP点，相对CENTER为+0.318335点。这是单seed小幅正收益，未达到原1点阶段门槛，尚无重复、正式TEST、跨集或创新成功结论。按预锁规则只允许增加seed202610150202同配方复验，不增加训练预算或融合；第二种子初始化及合成GPU清理探针已合格，SAR训练尚未启动。[第二种子准备](research_round_20260925_global/N20_REPEAT202_INITIALIZATION_AND_SYNTHETIC_CLEANUP_STATUS_20261016.md)、[完整十策略结果与解释](research_round_20260925_global/N20_FIRST201_FULLDEV_QUALIFIED_RESULTS_AND_REPEAT_DECISION_20261016.md)、[指标摘要](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/FIRST201_FULLDEV_QUALIFIED_METRICS_20261016.json)。
+**当前进行（N20）：** 首201全187图/380GT/18700自然query及独立post/Root资格完成：LOCAL68.297126、同预算CENTER67.978791、强R68.099385，主差值+0.197741 AP点。按预锁规则，第二种子202610150202的同配方24轮正式训练任务已启动，原supervisor55247运行；未读取活动批训练进度，未宣称当前训练结束或AP复验成功。初始化与合成清理探针已合格。当前181正常/26保留科学失败/207终态，运行任务未加入正常链。[首201完整结果](research_round_20260925_global/N20_FIRST201_FULLDEV_QUALIFIED_RESULTS_AND_REPEAT_DECISION_20261016.md)、[第二种子入口与状态](research_round_20260925_global/N20_REPEAT202_INITIALIZATION_AND_SYNTHETIC_CLEANUP_STATUS_20261016.md)。
 
 **全量汇总入口状态：** 已按32份固定范围执行全187图统一COCO，并完成独立post与Root实际终态核验；静态审阅仅保留为执行前历史。[静态审阅记录](research_round_20260925_global/N20_FINAL32_ENTRY_STATIC_READINESS_REVIEW_20261016.md)。
 
