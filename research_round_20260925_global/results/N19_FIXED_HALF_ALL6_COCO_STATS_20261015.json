@@ -1,0 +1,301 @@
+{
+  "schema": "N19-sanitized-qualified-fixed-half-full187-cached-action-result-v1",
+  "date": "2026-10-15",
+  "status": "QUALIFIED_POST_ORIGINAL_ACTUAL0_STOP",
+  "protocol": {
+    "prelocked_UTC": "2026-10-15T03:22:17.491Z",
+    "internal_DEV_reused_for_design": true,
+    "images": 187,
+    "GT": 380,
+    "natural_queries": 18700,
+    "initialization_seed": 202610140161,
+    "scout_epoch": 24,
+    "original_training_epochs": 24,
+    "original_updates": 17784,
+    "new_training": false,
+    "quality_head": false,
+    "classes": [
+      "help",
+      "harm",
+      "noop"
+    ],
+    "mode": "atmost K, strict score>0",
+    "ties": [
+      "score descending",
+      "abs native L ascending",
+      "flat ascending"
+    ],
+    "only_main": "DIR_HALF",
+    "fixed_half": true,
+    "coefficient_or_threshold_search": false,
+    "all_original_scores_classes_query_order_preserved": true,
+    "cached_action_simulation": true,
+    "new_selected_PR_batch_qualified": false,
+    "whole_population_official_COCO": true,
+    "score_filter": null,
+    "maxDets": [
+      1,
+      10,
+      100
+    ]
+  },
+  "stats_unit": "fraction; -1 sentinel unmodified",
+  "stats_labels": [
+    "AP",
+    "AP50",
+    "AP75",
+    "APS",
+    "APM",
+    "APL",
+    "AR1",
+    "AR10",
+    "AR100",
+    "ARS",
+    "ARM",
+    "ARL"
+  ],
+  "control_results": {
+    "DIR_HALF": {
+      "stats": [
+        0.6772650903170778,
+        0.9681662614283039,
+        0.8543956048668621,
+        0.676923880019604,
+        0.6837847046034732,
+        0.6999999999999998,
+        0.37157894736842106,
+        0.7284210526315789,
+        0.7544736842105263,
+        0.7631386861313868,
+        0.7323809523809524,
+        0.7
+      ],
+      "metrics": {
+        "AP": 0.6772650903170778,
+        "AP50": 0.9681662614283039,
+        "AP75": 0.8543956048668621,
+        "APS": 0.676923880019604,
+        "APM": 0.6837847046034732,
+        "APL": 0.6999999999999998,
+        "AR1": 0.37157894736842106,
+        "AR10": 0.7284210526315789,
+        "AR100": 0.7544736842105263,
+        "ARS": 0.7631386861313868,
+        "ARM": 0.7323809523809524,
+        "ARL": 0.7
+      },
+      "reused_baseline": false
+    },
+    "GLOBAL_HALF": {
+      "stats": [
+        0.6781679977598433,
+        0.9681662614283039,
+        0.8543956048668621,
+        0.6789555393761617,
+        0.6845104545077483,
+        0.6999999999999998,
+        0.37184210526315786,
+        0.7302631578947368,
+        0.7531578947368421,
+        0.7624087591240876,
+        0.7295238095238095,
+        0.7
+      ],
+      "metrics": {
+        "AP": 0.6781679977598433,
+        "AP50": 0.9681662614283039,
+        "AP75": 0.8543956048668621,
+        "APS": 0.6789555393761617,
+        "APM": 0.6845104545077483,
+        "APL": 0.6999999999999998,
+        "AR1": 0.37184210526315786,
+        "AR10": 0.7302631578947368,
+        "AR100": 0.7531578947368421,
+        "ARS": 0.7624087591240876,
+        "ARM": 0.7295238095238095,
+        "ARL": 0.7
+      },
+      "reused_baseline": false
+    },
+    "REVERSED_HALF": {
+      "stats": [
+        0.6778936946294157,
+        0.9681662614283039,
+        0.8528111915172556,
+        0.6779277522594055,
+        0.6852693064177467,
+        0.6999999999999998,
+        0.37184210526315786,
+        0.7292105263157895,
+        0.7528947368421053,
+        0.7616788321167882,
+        0.7304761904761905,
+        0.7
+      ],
+      "metrics": {
+        "AP": 0.6778936946294157,
+        "AP50": 0.9681662614283039,
+        "AP75": 0.8528111915172556,
+        "APS": 0.6779277522594055,
+        "APM": 0.6852693064177467,
+        "APL": 0.6999999999999998,
+        "AR1": 0.37184210526315786,
+        "AR10": 0.7292105263157895,
+        "AR100": 0.7528947368421053,
+        "ARS": 0.7616788321167882,
+        "ARM": 0.7304761904761905,
+        "ARL": 0.7
+      },
+      "reused_baseline": false
+    },
+    "SYMMETRIC": {
+      "stats": [
+        0.6766673177180061,
+        0.9681662614283039,
+        0.8528111915172556,
+        0.676379490312109,
+        0.6853482360275472,
+        0.6999999999999998,
+        0.37184210526315786,
+        0.7284210526315789,
+        0.7539473684210527,
+        0.7627737226277371,
+        0.7314285714285714,
+        0.7
+      ],
+      "metrics": {
+        "AP": 0.6766673177180061,
+        "AP50": 0.9681662614283039,
+        "AP75": 0.8528111915172556,
+        "APS": 0.676379490312109,
+        "APM": 0.6853482360275472,
+        "APL": 0.6999999999999998,
+        "AR1": 0.37184210526315786,
+        "AR10": 0.7284210526315789,
+        "AR100": 0.7539473684210527,
+        "ARS": 0.7627737226277371,
+        "ARM": 0.7314285714285714,
+        "ARL": 0.7
+      },
+      "reused_baseline": true
+    },
+    "ERROR_E24_atmost": {
+      "stats": [
+        0.6789593217484052,
+        0.9700872688674647,
+        0.8527643500255847,
+        0.674631693577572,
+        0.6976061418621449,
+        0.6999999999999998,
+        0.37421052631578944,
+        0.7336842105263157,
+        0.7563157894736843,
+        0.7572992700729927,
+        0.7542857142857142,
+        0.7
+      ],
+      "metrics": {
+        "AP": 0.6789593217484052,
+        "AP50": 0.9700872688674647,
+        "AP75": 0.8527643500255847,
+        "APS": 0.674631693577572,
+        "APM": 0.6976061418621449,
+        "APL": 0.6999999999999998,
+        "AR1": 0.37421052631578944,
+        "AR10": 0.7336842105263157,
+        "AR100": 0.7563157894736843,
+        "ARS": 0.7572992700729927,
+        "ARM": 0.7542857142857142,
+        "ARL": 0.7
+      },
+      "reused_baseline": true
+    },
+    "strong_R": {
+      "stats": [
+        0.6809938494745545,
+        0.969989604793129,
+        0.852134677847247,
+        0.6774399176376944,
+        0.6974242300663346,
+        0.6999999999999998,
+        0.37394736842105264,
+        0.735,
+        0.7597368421052632,
+        0.7653284671532847,
+        0.7457142857142857,
+        0.7
+      ],
+      "metrics": {
+        "AP": 0.6809938494745545,
+        "AP50": 0.969989604793129,
+        "AP75": 0.852134677847247,
+        "APS": 0.6774399176376944,
+        "APM": 0.6974242300663346,
+        "APL": 0.6999999999999998,
+        "AR1": 0.37394736842105264,
+        "AR10": 0.735,
+        "AR100": 0.7597368421052632,
+        "ARS": 0.7653284671532847,
+        "ARM": 0.7457142857142857,
+        "ARL": 0.7
+      },
+      "reused_baseline": true
+    }
+  },
+  "main": {
+    "APs_percent": {
+      "DIR_HALF": 67.72650903170778,
+      "GLOBAL_HALF": 67.81679977598432,
+      "REVERSED_HALF": 67.78936946294158,
+      "SYMMETRIC": 67.66673177180061,
+      "ERROR_E24_atmost": 67.89593217484052,
+      "strong_R": 68.09938494745545
+    },
+    "Delta_AP_points": -0.3728759157476702,
+    "DIR_minus_SYMMETRIC_AP_points": 0.05977725990716465,
+    "DIR_minus_GLOBAL_AP_points": -0.09029074427654393,
+    "DIR_minus_REVERSED_AP_points": -0.06286043123380125,
+    "decision": "STOP_CURRENT_FIXED_HALF_READOUT",
+    "allowed_next_seeds": [],
+    "best_control_cannot_replace_main": true
+  },
+  "Root_verified_population_proof_summary": {
+    "images": 187,
+    "queries": 18700,
+    "K0": 17,
+    "C_points": 57056641,
+    "selected_counts": {
+      "DIR_HALF": 3933282,
+      "GLOBAL_HALF": 4167567,
+      "REVERSED_HALF": 4067968
+    },
+    "symmetric_support": 3990816,
+    "changed_support_queries": {
+      "DIR_HALF": 16475,
+      "GLOBAL_HALF": 10592,
+      "REVERSED_HALF": 15222
+    },
+    "all_original_symmetric_exact": true
+  },
+  "execution": {
+    "original_actual_exit_code": 0,
+    "elapsed_seconds": 426.81199999991804,
+    "pure_RAW_chain_actual_exit_code": 0,
+    "Root_owner_metadata_and_all187_proofs_and_all3_prediction_populations_verified": true,
+    "normal_completed": 138,
+    "preserved_failures": 21,
+    "total_terminal_identities": 159,
+    "original_pending_Q_unmodified": true,
+    "formal_cross_model_review_completed": false
+  },
+  "scope": {
+    "single_preexisting_scout_initialization": true,
+    "not_general_invalidity_of_metric_aware_policies": true,
+    "no_new_model_or_PR_forward": true,
+    "full_source_control_checks_not_new_deployment_numerics": true,
+    "formal_TEST": false,
+    "cross_dataset": false,
+    "innovation_established": false,
+    "TGRS_readiness": false
+  }
+}

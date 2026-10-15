@@ -12,6 +12,8 @@
 
 **N18已核诊断：** 原374固定配对，LOCAL可修选中4574/有害3651，强Ω6564/8528；LOCAL同时减少纠正和误改，漏选率58.140%高于Ω39.929%。PR可修11146/65423（17.037%）与N15一致，不能据此认定主要AP瓶颈。原CPU实际0/472.219秒，正常137/失败21/158身份，无科学任务运行。下一项先研究FP/FN的非对称修补取舍，再锁定公平强对照；没有新训练/AP/创新结论。[完整统计和下一假设](research_round_20260925_global/N18_QUALIFIED_ROUTING_CAPABILITY_RESULT_AND_NEXT_HYPOTHESIS_20261015.md)、[像素数与AP边界](research_round_20260925_global/N18_PIXEL_COUNTS_VERSUS_AP_INTERPRETATION_20261015.md)。
 
+**最新完成（N19）：** 固定1/2方向评分DIR AP **67.726509**，普通偏置67.816800、反向偏置67.789369、强R68.099385；主Δ **−0.372876点**，当前方案STOP，不补评分参数/质量头/种子。全187图/18700query及Root资格完成，正常138/失败21/159身份，无科学任务运行。下一项准备真实feature邻域的同容量/同预算结构检验，尚未训练。[全部结果与范围](research_round_20260925_global/N19_FIXED_HALF_FULLDEV_QUALIFIED_RESULT_AND_STOP_20261015.md)、[原始stats12](research_round_20260925_global/results/N19_FIXED_HALF_ALL6_COCO_STATS_20261015.json)。
+
 **机会与指标的边界：** [条件IoU机会不能保证全量AP](research_round_20260925_global/N17_CONDITIONAL_IOU_OPPORTUNITY_VERSUS_FULL_AP_20261015.md)给出结果后最小诊断：区分实际选点漏掉可修位置与固定PR本身不可修；N18统计已完成，不改变主端点/停止规则，不把未匹配query当真实背景。
 
 **新增直接先例（GLDet）：** 用户提供的TGRS2025论文含实例分割，原文SSDD/HRSID mask AP71.3/58.6、整网500轮。已核全文/表格；完整作者代码尚未确认。空间扫描/邻域卷积/方向pool需要新空间载体，当前点头不能原样接入；N14无空间memory首试已按负结果停止，GLDet的完整空间结构迁移仍未执行，不直接比较不同划分AP。[原论文综述](research_round_20260925_global/GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)、[代码现况和单项局部信息检验设计](research_round_20260925_global/GLDET_CODE_RECHECK_AND_MINIMAL_LOCAL_INFORMATION_TEST_20261015.md)。其局部信息检验已演变为N17：完整FIT邻域缓存和固定24轮训练已合格，DEV全量验证完成且主结果负收益停止；这是低成本信息检验，尚非完整GLDet复现或新创新。不能使用DEV捕获训练。
@@ -35,7 +37,7 @@
 
 - [Xavier NX 路口预训练检测选型与公开实测（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/REPORT.md)：三模型各完整719帧；权重来源、可复跑工具、误报失败例与NX待验收条件。尚未满足电动自行车独立识别/五类高准确率/NX30FPS。
 
-- [N19固定方向代价探针](refine-logs/N19_FIXED_HALF_DIRECTIONAL_READOUT_20261015_01/EXPERIMENT_PLAN.md)：只用已有同头概率、固定1/2评分及普通/反向偏置对照，协议已事前锁定；body手算与outer接口检查通过，源码及一次独立定向审阅完成。原CPU88945单次运行中，待实际退出后核验三份完整AP；不将预览当合格结果。[查新](research_round_20260925_global/N19_IOU_DIRECTIONAL_ACTION_RISK_TARGETED_PRIOR_20261015.md)判为低新颖性/效用待检验，保持旧STOP，不称新理论或质量估计效应。
+- [N19固定方向代价探针](refine-logs/N19_FIXED_HALF_DIRECTIONAL_READOUT_20261015_01/EXPERIMENT_PLAN.md)：只用已有同头概率、固定1/2评分及普通/反向偏置对照，协议已事前锁定；body手算与outer接口检查通过，源码及一次独立定向审阅完成。原CPU实际0/426.812秒，三份完整AP及Root资格完成，主DIR67.726509，Δ−0.372876点，按预锁STOP；[完整结果](research_round_20260925_global/N19_FIXED_HALF_FULLDEV_QUALIFIED_RESULT_AND_STOP_20261015.md)。[查新](research_round_20260925_global/N19_IOU_DIRECTIONAL_ACTION_RISK_TARGETED_PRIOR_20261015.md)判为低新颖性/效用待检验，保持旧STOP，不称新理论或质量估计效应。
 
 - [N18最小机制诊断计划](refine-logs/N18_FIXED_PR_ROUTING_CAPABILITY_20261015_01/EXPERIMENT_PLAN.md)：固定374配对复用已存动作，区分路由漏选与PR纠错能力；纯计数手算及单项接口检查已通过；新读取源码完成一次独立静态审查。真实CPU诊断实际退出0并通过Root整数/来源核对；结果见[N18诊断](research_round_20260925_global/N18_QUALIFIED_ROUTING_CAPABILITY_RESULT_AND_NEXT_HYPOTHESIS_20261015.md)。
 
