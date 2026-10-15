@@ -1,6 +1,6 @@
 # N20 执行状态（2026-10-15）
 
-**最新：原DEV首分片47836实际exit1，916.14秒、无资源abort。错误在输出torch.save/readback的Long零步长字节视图；原31个物理文件是未资格partial，不复用、无完整REPORT/AP。失败25封存，pure RAW141+failed25实际0后才诊断。最小回归先RED(同错)后GREEN；仅修逐字节比较助手，模型/四源码/初始化/训练/评分/捕获/容差/范围/预算保持。修复版新原任务36736已启动，当前141正常/25失败/166终态。**
+**最新：修复版首DEV原任务实际exit0，1411.156秒。纯RAW142+failed25实际0先于任何本轮报告/载荷读取；Root核三产物13绑定、47图/4700query、47份物理文件3,151,195,873B和十策略各4700条预测、原query/class/S0顺序与cleanup零占用。仅GPU完成与来源/字节核验；独立CPU数值、全187统一COCO/AP仍待完成。第二分片原任务已启动，当前142正常/25失败/167终态；失败25及31份partial不复用，科学配方不变。下文旧“已启动/尚未执行”保留当时状态，以本段及文末为准。**
 
 - 全741图真实F邻域缓存已通过GPU/独立CPU/Root资格：旧样本3,035,136、unique中心1,786,820、额外位置2,159,732，新增序列化缓存2,360,944,527B。旧中心逐byte一致；CPU未独立重渲染额外F。
 - 预锁初始化digest a13802fc0bf4f23a8ab368b11b15a24b60552baadf1ab8264daf242173854a68；LOCAL真实九邻域与CENTER重复中心，两臂5张量/18,851参数、相同四层MLP初态/采样/图序/AdamW/固定24轮。
@@ -26,3 +26,7 @@
 
 - **后续当前25链源码**：CPUfront03仅修current header与新DEV父25/+25，历史缓存21/恢复24/训练失败23/原DEV失败24不变；新header fixture保留历史N19常量，真实纯header检查通过，非CPU数值资格。当前[CPU范围补充02](CPU_EXECUTION_PARTITION_PLANNED_20261015_02.json)与[final/post合同02](../../research_round_20260925_global/code/N20_FULL187_COCO_FINAL_AND_POST_MINIMAL_WIRING_UNBOUND_20261015_02.md)替代未执行旧current24版本；仍必须先取得完整四GPU原actual0。
 - 新字节回归的GREEN复现需显式选择 `--tail N20_FIXEDDEV_FEATURE_ERROR_GPU_RUN_TAIL_UNBOUND_DRAFT_20261015_02.py`；同测试默认旧tail01用于保留RED复现，不能将历史默认RED误当新修复仍失败。两个版本源码与失败证据均留存；不发布原科学载荷/绑定资格链。
+
+- **首GPU实际0后的推进**：首完整REPORT与MANIFEST、START及原RAW/admission/phase/bootstrap引用已由Root在新pure142+failed25实际0后核验；47份新捕获均逐文件SHA一致，native/R及8新策略的预测各4700条，保存状态仍为pending CPU，未把原REPORT改为qualified。新[核验范围与待执行源码](../../research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)列出证据等级。
+- **当前八CPU完整入口与最终评价入口**：当前25链CPU entry02 AST与纯header检查actual0；full187 final front/tail/完整entry已装配并AST通过，post后置门一次独立静态READY，均UNBOUND_NOT_EXECUTED，不能计为CPU/AP资格。新增完整public proof_query合成CPU集成检查actual0（1test/2.079秒），覆盖两公式/FP64评分/选点/PR/RLE与篡改拒绝；它不消费真实数据或替代原GPU捕获的数值检查。
+- **下一唯一科学任务**：第二GPU范围[47,94)，使用与成功首段相同冻结入口；RAW-only启动前检查actual0，无Torch/首次SHA前即停；原supervisor85580独立输出，无自动重试。四GPU全部原actual0后，按预锁八CPU范围进行数值核验，再统一官方COCO汇总，绝不平均分片AP。
