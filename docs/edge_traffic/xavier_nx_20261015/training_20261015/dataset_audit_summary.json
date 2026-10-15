@@ -1,0 +1,93 @@
+{
+  "status": "audited_ready",
+  "source": "https://www.kaggle.com/api/v1/datasets/download/starsw/intersection-flow-5k?datasetVersionNumber=4",
+  "source_version": 4,
+  "selection_seed": 20261015,
+  "splits": {
+    "train": {
+      "images": 1022,
+      "empty_images": 0,
+      "objects": {
+        "vehicle": 35180,
+        "bicycle": 4381,
+        "bus": 544,
+        "pedestrian": 3317,
+        "truck": 1425,
+        "engine": 115,
+        "tricycle": 328,
+        "obstacle": 15146
+      },
+      "coarse_filename_prefixes": {
+        "101": 138,
+        "166": 537,
+        "169": 253,
+        "202": 96
+      }
+    },
+    "val": {
+      "images": 128,
+      "empty_images": 0,
+      "objects": {
+        "vehicle": 4158,
+        "bicycle": 461,
+        "truck": 148,
+        "pedestrian": 412,
+        "tricycle": 45,
+        "bus": 46,
+        "obstacle": 1490,
+        "engine": 15
+      },
+      "coarse_filename_prefixes": {
+        "101": 20,
+        "166": 54,
+        "169": 34,
+        "202": 20
+      }
+    },
+    "test": {
+      "images": 128,
+      "empty_images": 0,
+      "objects": {
+        "vehicle": 4188,
+        "bicycle": 556,
+        "truck": 141,
+        "pedestrian": 476,
+        "bus": 60,
+        "obstacle": 1383,
+        "tricycle": 39,
+        "engine": 14
+      },
+      "coarse_filename_prefixes": {
+        "101": 26,
+        "166": 51,
+        "169": 31,
+        "202": 20
+      }
+    }
+  },
+  "class_names": [
+    "vehicle",
+    "bus",
+    "bicycle",
+    "pedestrian",
+    "engine",
+    "truck",
+    "tricycle",
+    "obstacle"
+  ],
+  "exact_cross_split_duplicates": 0,
+  "exclusions": [
+    {
+      "split": "train",
+      "image": "1662026787.286564112.jpg",
+      "reason": "source normalized bbox exceeds [0,1]; original data retained; entire training image excluded before metrics"
+    },
+    {
+      "split": "train",
+      "image": "1662426245.880890369.jpg",
+      "reason": "source normalized bbox exceeds [0,1]; original data retained; entire training image excluded before metrics"
+    }
+  ],
+  "scope": "fixed pilot from official split; camera independence not established; coarse filename groups overlap across splits",
+  "ebike_separately_defined": false
+}

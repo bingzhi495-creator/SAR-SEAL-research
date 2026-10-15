@@ -37,7 +37,7 @@
 
 ## 从这里开始
 
-- [YOLO11n路口微调首轮计划（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/training_20261015/TRAINING_PLAN.md)：用户已授权；官方v4数据获取中，计划固定30轮，尚无训练后精度或NX帧率结果。
+- [YOLO11n路口微调首轮计划（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/training_20261015/TRAINING_PLAN.md)：固定pilot实际1022/128/128图、30轮；数据已核验，2张train异常原件保留并在指标前排除；源码已准备，尚无训练后结果。
 
 - [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：全741图缓存资格完成，固定24轮E8/E24保存模型已独立CPU/Root核验；原GPU清理失败保留，完整DEV AP尚未执行。[恢复核验](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
