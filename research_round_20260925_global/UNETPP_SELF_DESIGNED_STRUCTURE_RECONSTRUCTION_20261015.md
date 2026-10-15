@@ -84,3 +84,8 @@
 
 
 发布说明：本文件是自写审阅与研究记录。逐文件私有JSON索引留存本地；未发布历史权重、原始数据、全量标注、运维配置或第三方论文全文。相关记录见[扩展总评](UNETPP_EXPANDED_MODEL_ASSET_REVIEW_AND_NEXT_DESIGN_20261015.md)。
+
+
+## 后续来源与容器元数据补查（2026-10-15）
+
+本文件保留此前静态审阅/只做stat阶段的范围。后续Root已仅打开111、222和两份ALL_NEW的ZIP目录与有界pickle元数据，没有加载模型/张量或哈希整份权重。新增writer/reader声明、参数名样集合及兼容性限制见[后续证据](UNETPP_LEGACY_PROVENANCE_AND_CONTAINER_EVIDENCE_20261015.md)。该补查仍不认证完整原训练、唯一forward或当前AP；不能用元数据相等合并或删除权重。另明确区分旧掩膜IoU阈值通过指标、连通域代理AP与COCO AP。
