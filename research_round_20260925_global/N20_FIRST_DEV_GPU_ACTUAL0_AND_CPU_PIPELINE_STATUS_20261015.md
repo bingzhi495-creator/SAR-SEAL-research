@@ -1,6 +1,6 @@
 # N20：全部DEV GPU分片完成及CPU数值核验状态
 
-更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成4/32份（24图/2400自然query），第五份[24,30)运行中。正常149/保留失败26/175终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
+更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成5/32份（30图/3000自然query），第六份[30,36)运行中。正常150/保留失败26/176终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
 
 ## 已实际完成
 
@@ -97,3 +97,21 @@
 第五份[24,30)沿用同一冻结entry03与模型/主端点，RAW-only prehash检查实际0（0.342秒，无Torch）后唯一原supervisor29083启动，无自动重试。累计4/32份、24/187图、2400/18700自然query及19200策略记录，正常149/保留失败26/175终态。尚未运行统一全187官方COCO。
 
 独立HRSID小分块新轮首请求仍短响应，已停止；Root实读partial长度及SHA与安全日志一致。没有完整TRAIN，不混用旧Git候选TRAIN；详情见[官方PNG来源记录](HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)。
+
+
+## 第五份独立CPU通过，第六份已启动
+
+[24,30)原supervisor29083 held实际退出0（767.563秒），原句柄回收且出生身份消失，error/abort均无。Root先运行新pure150+failed26实际0（0.336秒，无Torch），随后核RAW-bound stdout REPORT引用、Source/spec/admission/phase/bootstrap及完整23项绑定。6图/600自然query/4800策略记录、16271注册成员完整覆盖；双CPU scout公式分别对实际GPU最大3.0517578125e-5，原绝对1e-4/rtol0、2048分块、FP64评分/索引、PR两公式、strict sign和mask/RLE门保持，十策略各600完整预测与原父域切片逐字段一致。原REPORT保持pending/qualified=False，本子范围核验不等同完整DEV或AP资格。
+
+第六份[30,36)同冻结entry03与模型/主端点，RAW-only prehash实际0（0.304秒，无Torch）后唯一原supervisor59461启动，无自动重试。累计5/32份、30图/3000自然query/24000策略记录；正常150/保留失败26/176终态。统一全187官方COCO尚未执行。
+
+### 研究判断的有限独立复审
+
+独立审阅复核[N18能力统计](N18_QUALIFIED_ROUTING_CAPABILITY_RESULT_AND_NEXT_HYPOTHESIS_20261015.md)和[像素与AP边界](N18_PIXEL_COUNTS_VERSUS_AP_INTERPRETATION_20261015.md)：LOCAL漏选6353/10927个预算内可修机会、实际翻转44.389%有害，说明路由有改进余量；固定PR对C内65423原错误可修11146，也说明条件性动作能力有限。二者同时存在，不能排序为唯一全量AP主瓶颈；该群体仅374个原生IoU≥0.5匹配实例，不含6个未匹配GT和其他自然query。强R有益6564/有害8528却将全量AP提升约1.03点，是按像素净量直接解释AP的实际反例。此次仅复核已有合格统计，没有新增数值实验或测量N20实际邻域秩。
+
+N20最多检验当前渲染像素邻域在本初始化/预算/监督/固定PR下的效用；它不是原特征网格相邻单元实验。同名义参数的CENTER未完全匹配输入秩、协方差和优化几何。Delta≤0仍STOP当前配方，包括LOCAL高于CENTER但不超过强R的情况；Delta>0只按既定门复验，不因单次收益跳到创新/泛化主张。下一轮若要改变selector或PR，仍需区分AP敏感实例的漏选/误改与缺少可修动作；本次不启动新的方法实验或改写停止规则。
+
+
+### HRSID同包标注版本实核完成
+
+[官方PNG来源记录](HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)现已完整取得TRAIN及TEST：Root独立核原生curl完成范围、实际块SHA、完整压缩流与解压字节/CRC/JSON。TRAIN3642图/11047实例、TEST1962图/5922实例，文件名无交集且并集5604精确覆盖同包PNG目录；数值imageID/annID跨split复用，不能据裸ID认定重复或直接合并。Git候选文件名仅共同3572、候选独有1/PNG TRAIN独有70，不能混用。没有图像像素/mask解码/跨集AP或盲测资格恢复；本次N20数据和Source不变，所有原下载失败保留。
