@@ -8,3 +8,5 @@
 - 先锁主Delta=AP_LOCAL−max(AP_CENTER,68.09938494745545)，按原方案决定重复seed，不事后补参数追分。当前普通DW信息检验不是GLDet复现，也不是已证核心创新。旧N16/N17/N19 STOP与原失败均保留；没有正式TEST/跨集/TGRS成功结论。
 
 - 独立只读静态接口核对READY：CPUfront02/body01/tail01的loader双槽、E8/E24内层端点/顶层snapshot、五张量/20binding、5928/17784 trace与原parent/common/RNG一致。下一CPUown141/23/164，训练GPU140/23/163，缓存祖先21；仅静态，CPU数值tiny和全量资格尚未执行。
+
+- **最新运行观察：已进入实际成对训练。** phase03原worker监控见START于本地13:09:22创建，UPDATE_TRACE持续增长（13:09:56已169394B）；仅查看存在/大小/时间，未为同步读取或哈希运行科学载荷。普通已审训练源在两臂AdamW.step后才写paired_image_update，因此可报告已开始参数更新；原所有者2553尚未终态，不能据此认定训练完整、端点合格、收敛或AP收益。继续固定24轮，完成后先原actual0与pure RAW141+failed23，再独立CPU及固定DEV主评价。
