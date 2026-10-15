@@ -35,7 +35,7 @@
 
 ## 从这里开始
 
-- [N20真实F邻域实验已锁定](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：去重增量特征缓存、相同18851参数LOCAL/CENTER、固定24轮与主AP停止规则；坐标和单图成对更新检查actual0，真实提取入口已准备，尚无新训练/AP。[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
+- [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：GPU提取原任务实际0，全741图/3035136样本，中心逐byte一致，新增缓存约2.36GB；独立CPU核验原任务已启动。共同初态已新锁，两组24轮训练尚未开始，无新AP/创新结论。[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
 - [N20真实F邻域结构原型与下一训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数零初始化空间适配器；2项CPU合成行为检查通过。训练/DEV同16通道两级renderer已静态核对，真实邻域缓存和配对训练尚未开始；普通DW结构仅为信息基线，不称新创新。
 
