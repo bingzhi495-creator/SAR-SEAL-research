@@ -10,6 +10,8 @@
 
 **当前研发：** N17同预算24轮LOCAL/CENTER训练及独立端点已合格，五GPU分区187图/380GT/18700query/10策略输出metadata完成。前三CPU03原45412/8462/44983均实际退出0，94图/9400query完整数值报告和读回通过。基于已测耗时及1800秒限制，已锁[剩余CPU七任务执行补充](research_round_20260925_global/N17_REMAINING_CPU_SEVEN_SCOPE_EXECUTION_AMENDMENT_20261015.md)：前三不重跑，剩余四范围各23/24图，模型/评价/主门不变；新CPU04/final04/post03接口已通过限定元数据检查；剩余scope3 [94,117)已由原监督19917单次启动，owner130，当前一个科学leaf。正常130/失败21/151终态身份，完整统一AP尚待。[最新状态](research_round_20260925_global/N17_FIXEDDEV_EXECUTION_PREPARATION_STATUS_20261015.md)、[公平计划](research_round_20260925_global/N17_LOCAL_NATIVE_LOGIT_ERROR_SELECTOR_EXPERIMENT_PLAN_20261015.md)。
 
+**机会与指标的边界：** [条件IoU机会不能保证全量AP](research_round_20260925_global/N17_CONDITIONAL_IOU_OPPORTUNITY_VERSUS_FULL_AP_20261015.md)给出结果后最小诊断：区分实际选点漏掉可修位置与固定PR本身不可修；尚未执行统计，不改变主端点/停止规则，不把未匹配query当真实背景。
+
 **新增直接先例（GLDet）：** 用户提供的TGRS2025论文含实例分割，原文SSDD/HRSID mask AP71.3/58.6、整网500轮。已核全文/表格；完整作者代码尚未确认。空间扫描/邻域卷积/方向pool需要新空间载体，当前点头不能原样接入；N14无空间memory首试已按负结果停止，GLDet的局部空间候选仍未执行，不直接比较不同划分AP。[原论文综述](research_round_20260925_global/GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)、[代码现况和单项局部信息检验设计](research_round_20260925_global/GLDET_CODE_RECHECK_AND_MINIMAL_LOCAL_INFORMATION_TEST_20261015.md)。其局部信息检验已演变为N17：完整FIT邻域缓存和固定24轮训练已合格，DEV全量验证正在执行；这是低成本信息检验，尚非完整GLDet复现或新创新。不能使用DEV捕获训练。
 
 **当前已核验结果（N13）：** 三种子固定E48 LOG/GEO均值67.768660/67.579076 AP，配对差−0.189583点，三组均负，已停止该GEO联合配方扩展。全部E24曲线已核验，LOG/GEO均值67.992117/67.781883。真实诊断CPU失败9保留；image113四路探针实际0并ROOT核验，仅支持此例CPU/GPU特征渲染差异，同GPU F的CPU PR满足原容差，全374对尚未qualified。[局部探针结果](research_round_20260925_global/N13_IMAGE113_NUMERICAL_PROBE_RESULT_20261014.md)。无正式TEST、跨集或核心创新/TGRS结论。
