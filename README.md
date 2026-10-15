@@ -4,7 +4,7 @@
 
 
 
-**当前进行（N20）：** 固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验，原训练GPU失败24保留。四个DEV GPU原任务均实际退出0；Root各自在新纯终态前缀通过后核验全部187图/18700自然query、187份物理捕获及十策略完整预测，捕获共13,714,348,716B。首个独立CPU数值分片[0,24)已启动，0/8完成；当前145正常/25失败/170终态，运行任务未计入完成数。全187统一AP仍待数值核验之后计算，**没有N20 AP或创新成功结论**。[最新状态与代码](research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)、[执行记录](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
+**当前进行（N20）：** 固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验，原训练GPU失败24保留。四个DEV GPU原任务均实际退出0，全部187图/18700自然query、187份捕获及十策略完整预测的来源与文件已核验。首次CPU[0,24)于1800.343秒触及运行资源时限，原held exit1及13份partial保留为失败26，不能据此判断方法失效。新纯终态前缀actual0先于结果读取；当前145正常/26失败/171终态，合格CPU仍为0份。已另锁每份最多6图、共32份的完整核验范围，源码适配中；模型、双公式、容差、评分和主端点不变。**没有N20 AP或创新成功结论**。[最新状态](research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)、[执行记录](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[新执行分片](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)。
 
 **已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
 
@@ -43,7 +43,7 @@
 
 - [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：全741图缓存资格完成，固定24轮E8/E24保存模型已独立CPU/Root核验；原GPU清理失败保留，完整DEV AP尚未执行。[恢复核验](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
-- [N20完整DEV核验与继续规则](research_round_20260925_global/code/N20_FULL187_COCO_FINAL_AND_POST_MINIMAL_WIRING_UNBOUND_20261015_02.md)：四GPU与八CPU完整来源/统一COCO10端点的后续合同；CPU代码已准备但未执行。主判定器3项合成行为检查通过，仅解释预锁继续规则，不判定创新或发表成功。
+- [N20完整DEV核验与继续规则](research_round_20260925_global/code/N20_FULL187_COCO_FINAL_AND_POST_MINIMAL_WIRING_UNBOUND_20261015_02.md)：原四GPU与八CPU完整来源/统一COCO10端点的历史合同；首CPU实际资源中断后改锁32份核验范围，新适配进行中。主判定器3项合成行为检查通过，仅解释预锁继续规则，不判定创新或发表成功。
 
 - [N20真实F邻域结构原型与训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数零初始化空间适配器；设计文档保留提出时状态，最新固定24轮保存模型已核验。普通DW结构仅为信息基线，不称新创新，实际AP仍待完整DEV。
 

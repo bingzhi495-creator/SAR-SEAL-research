@@ -1,0 +1,264 @@
+{
+  "schema": "N20-fixed-thirty-two-CPU-numeric-subscopes-after-resource-deadline-v1",
+  "locked_utc": "2026-10-15T09:23:19.695Z",
+  "status": "PLANNED_NOT_EXECUTED",
+  "reason": "Resource execution amendment after actual controlled deadline. Same four completed GPU populations, all 187 whole images, all 18700 natural queries and ten fixed policies; no local-scope AP or outcome-based selection.",
+  "GPU_ranges": [
+    [
+      0,
+      47
+    ],
+    [
+      47,
+      94
+    ],
+    [
+      94,
+      141
+    ],
+    [
+      141,
+      187
+    ]
+  ],
+  "planned_GPU_owners": [
+    141,
+    142,
+    143,
+    144
+  ],
+  "CPU_ranges": [
+    [
+      0,
+      6
+    ],
+    [
+      6,
+      12
+    ],
+    [
+      12,
+      18
+    ],
+    [
+      18,
+      24
+    ],
+    [
+      24,
+      30
+    ],
+    [
+      30,
+      36
+    ],
+    [
+      36,
+      42
+    ],
+    [
+      42,
+      47
+    ],
+    [
+      47,
+      53
+    ],
+    [
+      53,
+      59
+    ],
+    [
+      59,
+      65
+    ],
+    [
+      65,
+      71
+    ],
+    [
+      71,
+      77
+    ],
+    [
+      77,
+      83
+    ],
+    [
+      83,
+      89
+    ],
+    [
+      89,
+      94
+    ],
+    [
+      94,
+      100
+    ],
+    [
+      100,
+      106
+    ],
+    [
+      106,
+      112
+    ],
+    [
+      112,
+      118
+    ],
+    [
+      118,
+      124
+    ],
+    [
+      124,
+      130
+    ],
+    [
+      130,
+      136
+    ],
+    [
+      136,
+      141
+    ],
+    [
+      141,
+      147
+    ],
+    [
+      147,
+      153
+    ],
+    [
+      153,
+      159
+    ],
+    [
+      159,
+      165
+    ],
+    [
+      165,
+      171
+    ],
+    [
+      171,
+      177
+    ],
+    [
+      177,
+      183
+    ],
+    [
+      183,
+      187
+    ]
+  ],
+  "CPU_parent_GPU_ids": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+  ],
+  "planned_CPU_owners": [
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176
+  ],
+  "normal_count_before_first_CPU_if_all_four_GPU_actual0": 145,
+  "preserved_failed_count": 26,
+  "complete_images": 187,
+  "natural_queries": 18700,
+  "raw_GT": 380,
+  "policy_count": 10,
+  "new_policy_count": 8,
+  "CPU_affinity": [
+    0,
+    1
+  ],
+  "threads": 2,
+  "CUDA_visible_devices": "",
+  "leaf_deadline_seconds": 1800,
+  "automatic_retry": false,
+  "full187_official_COCO_required": true,
+  "local_scope_AP_allowed": false,
+  "main_endpoint": "E24_LOCAL_ERROR_atmost vs max(E24_CENTER_ERROR_atmost,strong_R)",
+  "strong_R_AP": 68.09938494745545,
+  "original_training_GPU_exit1_preserved": true,
+  "training_source": "separate ROOT-qualified preserved E8/E24 model recovery; no original GPU REPORT",
+  "CPU_proof_actual_executed": false,
+  "GPU_all_four_actual0_verified": true,
+  "qualification_performed": false,
+  "AP_evaluated": false,
+  "amends_prior_file": "CPU_EXECUTION_PARTITION_PLANNED_20261015_02.json",
+  "amendment_reason": "Original first CPU [0,24) terminated at the 1800-second resource deadline with held exit1; preserve failed26. Replace eight planned scopes by thirty-two consecutive scopes of at most six whole images. No model, score, data or numeric-rule change; no AP-based scope selection.",
+  "original_failed_DEV25_preserved": true,
+  "failed_DEV_partial_outputs_reused": false,
+  "planned_final_CPU_owner": 177,
+  "planned_post_actual_CPU_owner": 178,
+  "original_failed_CPU26_preserved": true,
+  "failed_CPU26_partial_outputs_reused": false,
+  "original_failed_CPU26_elapsed_seconds": 1800.342999999877,
+  "observed_partial_proof_filename_count": 13,
+  "partial_filename_observation_is_qualification": false
+}
