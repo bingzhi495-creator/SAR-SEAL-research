@@ -1,6 +1,6 @@
 # N20：全部DEV GPU分片完成及CPU数值核验状态
 
-更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成1/32份（6图/600自然query），第二份[6,12)运行中。正常146/保留失败26/172终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
+更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成2/32份（12图/1200自然query），第三份[12,18)运行中。正常147/保留失败26/173终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
 
 ## 已实际完成
 
@@ -70,4 +70,12 @@
 
 [纯metadata读取检查器](code/N20_ROOT_CPU_PROOF_METADATA_VALIDATOR_SOURCE_ONLY_20261015_01.mjs)及[手工反例](code/test_N20_ROOT_CPU_PROOF_METADATA_VALIDATOR_SYNTHETIC_ONLY_20261015_01.mjs)已保存：100 query/800 profiles，覆盖K0、2048分块边界和11项篡改拒绝；两公式各对GPU≤1e-4时，彼此差异统计允许2e-4，不错误收紧科学门。手工检查不替代真实数据验证。
 
-第二份[6,12)沿用同一冻结完整CPU Source与模型/容差/规则；新RAW-only启动前检查实际0（0.295秒，无Torch/首次SHA前停止），唯一原任务已启动，无自动重试。当前完成1/32份，即6/187图、600/18700自然query；正常146、失败26、合计172。只有全部32份原CPU实际0并核验后才统一全187官方COCO，当前没有新AP、涨点、SOTA或TGRS结论。
+第二份[6,12)沿用同一冻结完整CPU Source与模型/容差/规则；新RAW-only启动前检查实际0（0.295秒，无Torch/首次SHA前停止），唯一原任务已启动，无自动重试。首份完成时为1/32份，即6/187图、600/18700自然query；正常146、失败26、合计172；当前进度见下方第二份更新。只有全部32份原CPU实际0并核验后才统一全187官方COCO，当前没有新AP、涨点、SOTA或TGRS结论。
+
+## 第二份独立CPU通过，第三份已启动
+
+[6,12)原任务实际退出0（1178.000秒），held句柄回收且原出生身份消失，无资源abort/等待错误。Root先执行pure147+failed26实际0（0.387秒，无Torch），随后核原Source/spec/admission/phase/bootstrap、23项报告绑定和原RAW-bound stdout报告ref；6份proof覆盖600自然query、4800策略记录及19802注册成员，ten策略各600预测与原GPU父切片全字段一致。两个CPU scout公式分别对实际GPU最大差异均为3.0517578125e-5，原2048分块、1e-4/rtol0、FP64评分与选点、PR两公式和strict sign/mask/RLE门不变。原REPORT仍pending/qualified=False，Root本子范围核验不升级为完整DEV资格。
+
+第三份[12,18)沿同一冻结Source启动，pre-HASH RAW-only检查实际0（0.285秒，无Torch），无自动重试。累计2/32份、12图/1200query、9600策略记录；当前正常147/失败26/173终态。全部32份完成前不运行统一AP，不以局部核验代替模型效用。
+
+独立并行的[HRSID候选标注版本实文件核查](HRSID_OFFICIAL_ANNOTATION_INTAKE_20261015_01.md)只完成固定作者提交的隔离JSON元数据验证：3573图/9870标注，215图无标注关联；PNG/JPG版本、完整TEST与母景关系未认证。未把原JSON/影像加入本次N20数据或Source，也未发布原数据。

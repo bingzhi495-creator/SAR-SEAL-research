@@ -4,7 +4,7 @@
 
 
 
-**当前进行（N20）：** 固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验，原训练GPU失败24保留；四个DEV GPU分片全部实际0。缩小范围后的首CPU[0,6)实际0并通过Root逐图证明与预测核验：6图/600自然query、4800策略记录、19225个注册成员；两CPU公式对GPU最大差异4.57763671875e-5，满足原1e-4门。第二份[6,12)已启动，当前完成1/32份；146正常/26保留失败/172终态。原[0,24)资源中断与partial保留，不复用。**尚无N20全量AP、涨点或创新成功结论**。[最新状态](research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)、[执行记录](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[32份执行范围](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)。
+**当前进行（N20）：** 固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验，原训练GPU失败24保留；四个DEV GPU分片全部实际0。独立CPU已完成并核验2/32份：[0,6)与[6,12)，累计12图/1200自然query、9600策略记录，十策略完整预测均与原父域切片精确一致。两份scout CPU公式对实际GPU最大差异分别为4.57763671875e-5与3.0517578125e-5，满足原1e-4门。第三份[12,18)已启动；当前147正常/26保留失败/173终态。**尚无N20全量AP、涨点或创新成功结论**。[最新状态](research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)、[执行记录](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[32份执行范围](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)。
 
 **已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
 
@@ -45,7 +45,7 @@
 
 - [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：全741图缓存资格完成，固定24轮E8/E24保存模型已独立CPU/Root核验；原GPU清理失败保留，完整DEV AP尚未执行。[恢复核验](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
-- [N20当前32份核验合同](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)与[全187统一评价合同](research_round_20260925_global/code/N20_FIXEDDEV_FULL187_COCO_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)：首份6图独立CPU已实际0并通过Root核验，第二份已启动；final/post完整entry02未执行；旧八份合同保留为历史。主端点与继续规则不变，合成检查不是实际AP或发表依据。
+- [N20当前32份核验合同](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)与[全187统一评价合同](research_round_20260925_global/code/N20_FIXEDDEV_FULL187_COCO_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)：前两份独立CPU已实际0并通过Root核验，第三份已启动；final/post完整entry02未执行；旧八份合同保留为历史。主端点与继续规则不变，合成检查不是实际AP或发表依据。
 
 - [N20真实F邻域结构原型与训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数零初始化空间适配器；设计文档保留提出时状态，最新固定24轮保存模型已核验。普通DW结构仅为信息基线，不称新创新，实际AP仍待完整DEV。
 

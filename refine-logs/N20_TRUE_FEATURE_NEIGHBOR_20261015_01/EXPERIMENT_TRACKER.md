@@ -46,3 +46,6 @@
 
 - **首32范围CPU实际0并通过Root核验**：[0,6)原supervisor40922 held exit0（1088.890秒），新pure146+failed26先actual0（0.407秒，无Torch）再读原结果。RAW-bound stdout REPORT ref、Source/spec/admission/phase/bootstrap及完整23项绑定核对；6份proof、600自然query、4800 profiles、19225注册members全覆盖；两CPU公式对GPU最大4.57763671875e-5，原1e-4/rtol0与strict sign门不变。十策略各600条预测与原父切片全字段相等，原REPORT仍pending/False。纯metadata读取器手工100query/800profiles及11项拒绝RED→GREEN通过，仅辅助Root读取、不执行新数值forward。
 - **第二份[6,12)实际启动**：同冻结entry03/原E8-E24，own146/current26/172终态，RAW-only prehash actual0（0.295秒、无Torch）；唯一原supervisor69024运行中。当前1/32完成，失败26与partial不复用，不平均分片AP；全187 AP仍未执行。运行Source/科学载荷未为本次同步读取/复制/哈希，只使用已核验内存事实及普通独立源码。
+
+- **第二份CPU实际0及第三份启动**：[6,12)原supervisor69024 held exit0（1178.000秒），新pure147+failed26先actual0（0.387秒，无Torch），之后Root核原RAW-bound stdout/Source/spec/admission/phase/bootstrap/23绑定、600query/4800profiles/19802注册members以及十策略各600完整预测原父切片exact。双CPU scout公式对GPU最大3.0517578125e-5，原数值与strict sign/RLE门不变，原REPORT保留pendingFalse。第三份[12,18)同冻结entry03已启动，prehash RAW-only actual0（0.285秒）后唯一原supervisor36183运行；当前2/32、12图/1200query，147正常/26失败/173终态，无N20 AP。
+- **跨集元数据独立准备**：已另存并同步[HRSID候选版本实文件说明](../../research_round_20260925_global/HRSID_OFFICIAL_ANNOTATION_INTAKE_20261015_01.md)，Root独立核固定提交JSON3573/9870/215无标注关联；只隔离元数据，没有mask decode/图像/跨集训练/AP或原数据发布，完整版本和测试划分仍未知。
