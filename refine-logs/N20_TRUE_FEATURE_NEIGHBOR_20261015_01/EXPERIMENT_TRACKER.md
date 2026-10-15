@@ -66,3 +66,10 @@
 
 - **第七份CPU实际0及第八份启动**：[36,42)原supervisor95848 held exit0（645.547秒），pure152+failed26先actual0（0.412秒，无Torch），随后核RAW-bound stdout报告ref、Source/spec/admission/phase/bootstrap/23绑定；600query/4800profiles/15008注册members，十策略各600预测与父切片全字段一致，双CPU scout公式对GPU最大3.0517578125e-5，原门及REPORT pendingFalse保留。第八份[42,47)5图同冻结Source，prehash actual0（0.350秒）后唯一原supervisor66496运行，无自动重试。累计7/32、42图/4200query/33600profiles，正常152/保留失败26/178终态，尚无全187 AP。
 - **独立元数据与原图编码文件准备**：[F9几何说明](../../research_round_20260925_global/N20_RENDERED_F9_CONDITIONAL_INFORMATION_AND_CONTROL_SCOPE_20261015_01.md)新增原F空间尺寸未在已审ABI显式保存的有限核对，不拿图像H,W冒充。[官方PNG两文件字节试点](../../research_round_20260925_global/HRSID_OFFICIAL_PNG_ENCODED_IMAGE_BYTES_PILOT_20261015_01.md)实际取得两编码PNG并Root独立核SHA/ZIP与PNG全部chunk CRC/IHDR；header重复CSP误拒失败保留，RED→GREEN最小修复后fresh02成功。未解码IDAT/像素或mask、未评价/加入N20Sources，尚非完整跨集数据。
+
+
+## 第八份独立CPU通过，第九份已启动
+
+[42,47)原supervisor66496 held实际退出0（1337.344秒），原句柄回收且出生身份消失，error/abort均无。Root先执行新pure153+failed26实际0（0.343秒，无科学库导入），随后核验RAW-bound stdout REPORT引用、Source/spec/admission/phase/bootstrap与完整23项绑定。5图/500自然query/4000策略记录、20065注册成员完整覆盖；双CPU scout公式分别对实际GPU最大3.0517578125e-5，满足原绝对1e-4/rtol0门；十策略各500完整预测与原父域切片逐字段相同。原REPORT仍为pending/qualified=False，外部Root仅对该子范围核验通过，不等于全DEV/AP资格。
+
+第九份[47,53)切入第二个GPU父域[47,94)，沿用冻结Source/模型/主端点。RAW-only prehash实际0（0.307秒，无科学库导入）后唯一原supervisor63376启动，无自动重试。累计8/32份、47图/4700自然query/37600策略记录，正常153/保留科学失败26/179终态。全187图统一官方COCO尚未执行，无N20涨点、创新或TGRS成功结论。

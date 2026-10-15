@@ -74,3 +74,8 @@ Git候选与PNG TRAIN共同文件名3572，候选独有1、PNG TRAIN独有70，�
 ## 2026-10-15：官方PNG编码文件获取试点
 
 [两文件试点](../research_round_20260925_global/HRSID_OFFICIAL_PNG_ENCODED_IMAGE_BYTES_PILOT_20261015_01.md)已从同包TRAIN/TEST各固定首名取得完整PNG编码文件，Root独立核文件SHA、ZIP和PNG全部chunk CRC及800×800 RGB8 IHDR。没有解码IDAT/像素、核真实mask对齐、运行模型或取得全部5604图；与上方历史358个JPG目录盘点分开记录。不用两个试点替代完整跨集基准，不把本次获取恢复成盲测资格。原PNG不上传Git。
+
+
+## 2026-10-15：完整影像获取仍未完成
+
+[实际传输及停止记录](../research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)：单请求8MiB范围控制通过，Root核body/SHA/关键HTTP头与计数；随后fresh整包获取两块完整（16MiB有效前缀），第三块在45秒超时，原会话退出1，失败partial不accepted。该批共3请求/18491347B实际body，按规则停止、无自动重试。没有取得完整ZIP或解压新增影像，也没有像素/mask/AP资格；前述两个PNG文件的容器字节核验仍仅限两文件。原归档及所有分块/私有配置不上传Git。

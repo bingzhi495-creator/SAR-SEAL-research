@@ -1,6 +1,6 @@
 {
   "checked_date": "2026-10-12",
-  "scope": "Official access links plus independently verified HRSID PNG archive directory and complete TRAIN/TEST annotation byte/JSON metadata; no image pixels, mask decoding, or AP evaluation; two official encoded PNG files verified for byte/container integrity only (no IDAT/pixel decoding)",
+  "scope": "Official access links plus independently verified HRSID PNG archive directory and complete TRAIN/TEST annotation byte/JSON metadata; no image pixels, mask decoding, or AP evaluation; two official encoded PNG files verified for byte/container integrity only (no IDAT/pixel decoding); independent 8MiB range transfer verified, subsequent full archive acquisition stopped after request 3 timeout, only 16MiB accepted prefix, full dataset still pending",
   "raw_images_included": false,
   "complete_annotation_payloads_included": false,
   "datasets": [
@@ -213,6 +213,32 @@
         "model_or_AP_evaluated": false,
         "complete_dataset_obtained": false,
         "added_to_current_N20_scientific_sources": false
+      },
+      "archive_transport_status_20261015": {
+        "evidence_note": "../research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md",
+        "single_8MiB_control": {
+          "actual_body_bytes": 8388608,
+          "elapsed_seconds": 17.516,
+          "HTTP_status": 206,
+          "Root_bytes_and_critical_headers_verified": true,
+          "full_archive": false
+        },
+        "full_archive_attempt": {
+          "status": "STOPPED_TIMEOUT_NO_RETRY",
+          "original_session_actual_exit": 1,
+          "requests": 3,
+          "actual_body_bytes": 18491347,
+          "accepted_complete_blocks": 2,
+          "accepted_contiguous_bytes": 16777216,
+          "failed_partial_bytes": 1714131,
+          "failed_curl_exit": 28,
+          "archive_transfer_complete": false,
+          "central_directory_recheck_complete": false,
+          "all_member_CRC_verified": false,
+          "dataset_qualified": false,
+          "N20_Source_modified": false,
+          "scientific_failure_count_changed": false
+        }
       }
     }
   ],
