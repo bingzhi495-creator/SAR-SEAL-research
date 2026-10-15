@@ -1,6 +1,6 @@
 # N20：全部DEV GPU分片完成及CPU数值核验状态
 
-更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成2/32份（12图/1200自然query），第三份[12,18)运行中。正常147/保留失败26/173终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
+更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成3/32份（18图/1800自然query），第四份[18,24)运行中。正常148/保留失败26/174终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
 
 ## 已实际完成
 
@@ -79,3 +79,12 @@
 第三份[12,18)沿同一冻结Source启动，pre-HASH RAW-only检查实际0（0.285秒，无Torch），无自动重试。累计2/32份、12图/1200query、9600策略记录；当前正常147/失败26/173终态。全部32份完成前不运行统一AP，不以局部核验代替模型效用。
 
 独立并行的[HRSID候选标注版本实文件核查](HRSID_OFFICIAL_ANNOTATION_INTAKE_20261015_01.md)只完成固定作者提交的隔离JSON元数据验证：3573图/9870标注，215图无标注关联；PNG/JPG版本、完整TEST与母景关系未认证。未把原JSON/影像加入本次N20数据或Source，也未发布原数据。
+
+
+## 第三份独立CPU通过，第四份已启动
+
+[12,18)原任务held实际退出0（871.141秒），原句柄回收、原出生身份消失，error/abort均无。Root先执行新pure148+failed26实际0（0.390秒，无Torch），随后才读取本段科学结果；原RAW-bound stdout报告ref、Source/spec/admission/phase/bootstrap及完整23项绑定通过。6图、600自然query、4800策略记录、17116注册成员完整覆盖；双CPU scout公式各对实际GPU最大2.288818359375e-5，原1e-4/rtol0、2048分块、FP64评分/索引、PR两公式、strict sign及mask/RLE门不变。十策略各600条预测与原GPU父域切片逐字段一致，原REPORT仍pending/qualified=False。
+
+第四份[18,24)同冻结entry03已启动，pre-HASH RAW-only检查actual0（0.299秒，无Torch）；无自动重试。累计3/32份、18图/1800自然query/14400策略记录，正常148/失败26/总终态174。尚无N20全187官方COCO/AP。完成子范围数值核验不等于涨点、重复种子或核心创新。
+
+独立的[HRSID官方PNG目录与TEST实核](HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)取得同包完整目录及TEST 1962图/5922实例；同包TRAIN短响应未完成，不能与先前Git候选TRAIN混配。[F9条件性信息说明](N20_RENDERED_F9_CONDITIONAL_INFORMATION_AND_CONTROL_SCOPE_20261015_01.md)澄清最终渲染栅格邻域及四基结论的条件，没有读取实际位置/张量或改动当前配方。
