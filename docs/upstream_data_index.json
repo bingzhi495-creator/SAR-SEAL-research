@@ -1,6 +1,6 @@
 {
   "checked_date": "2026-10-12",
-  "scope": "Official access links plus independently verified HRSID PNG archive directory and complete TRAIN/TEST annotation byte/JSON metadata; no image pixels, mask decoding, or AP evaluation",
+  "scope": "Official access links plus independently verified HRSID PNG archive directory and complete TRAIN/TEST annotation byte/JSON metadata; no image pixels, mask decoding, or AP evaluation; two official encoded PNG files verified for byte/container integrity only (no IDAT/pixel decoding)",
   "raw_images_included": false,
   "complete_annotation_payloads_included": false,
   "datasets": [
@@ -162,6 +162,57 @@
         "filename_matching": "exact full file names only; no prefix or suffix rewrite",
         "files_opened_or_hashed": false,
         "official_PNG_version_or_completeness_certified": false
+      },
+      "encoded_PNG_byte_intake_pilot": {
+        "date": "2026-10-15",
+        "evidence_note": "../research_round_20260925_global/HRSID_OFFICIAL_PNG_ENCODED_IMAGE_BYTES_PILOT_20261015_01.md",
+        "selection": "lexicographic first file_name in each previously fixed TRAIN and TEST; no model-output selection",
+        "encoded_PNG_files_Root_byte_verified": 2,
+        "successful_fresh02_HTTP_requests": 14,
+        "successful_fresh02_application_body_bytes": 2745196,
+        "prior_header_parser_failure_preserved": true,
+        "files": [
+          {
+            "split": "TRAIN",
+            "archive_member": "images/P0001_0_800_7200_8000.png",
+            "bytes": 1769250,
+            "SHA256": "83a09088ce3c695fa4e7d40f9573a4b292c81be2423d9dbb0584fbb161c70010",
+            "ZIP_CRC32": "9d760dda",
+            "IHDR": {
+              "width": 800,
+              "height": 800,
+              "bit_depth": 8,
+              "color_type": 2,
+              "compression": 0,
+              "filter": 0,
+              "interlace": 0
+            },
+            "all_PNG_chunk_CRC_verified": true
+          },
+          {
+            "split": "TEST",
+            "archive_member": "images/P0001_0_800_10190_10990.png",
+            "bytes": 1407681,
+            "SHA256": "1e3f032f595494587c9e37223ef83c3eceb1d071342fb38240636ff34445c2d3",
+            "ZIP_CRC32": "2e129a7f",
+            "IHDR": {
+              "width": 800,
+              "height": 800,
+              "bit_depth": 8,
+              "color_type": 2,
+              "compression": 0,
+              "filter": 0,
+              "interlace": 0
+            },
+            "all_PNG_chunk_CRC_verified": true
+          }
+        ],
+        "IDAT_decoded": false,
+        "image_pixels_decoded": false,
+        "masks_decoded": false,
+        "model_or_AP_evaluated": false,
+        "complete_dataset_obtained": false,
+        "added_to_current_N20_scientific_sources": false
       }
     }
   ],
