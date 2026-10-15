@@ -12,3 +12,8 @@ O²Former原文§IV-A称沿用官方划分，§IV-C又写随机抽样；具体�
 DACF-net索引页首标注IJDE及在线日期2026-09-08；摘要和性能比较段报告上述AP，§4.2摘录报告12轮。这里的日期、数值和预算都只能记作“官方域索引报告”，不是Root复核或复现结论。原始出版入口：[DACF-net: a dynamic attention and context fusion network with geometry-aware multi-scale refinement for sar ship instance segmentation](https://www.tandfonline.com/doi/full/10.1080/17538947.2026.2696657)。
 
 N20检验冻结教师及固定PR条件下，最终渲染像素F的3×3邻域与中心复制对照的小读出；这与上述网络级特征/查询联合训练存在区别，但区别本身不等于创新。方向、多尺度与上下文增强已有直接先例，不能宣称首次。当前仍缺可比预算、初始化重复和跨集证据；论文TEST或分场景AP也不能与本项目当前DEV直接排名。上述文献只补充最近先例与未来公平比较范围，不替代N20固定主端点、停止规则或实际资格。
+
+
+## v1复现范围补核
+
+按原文§III-B/III-C，还需明确：OQG池化形状、softmax维度与prototype更新对齐；OAEM旋转分支通道及是否反向对齐；极坐标2通道到C通道的映射和融合gate形状。同页未见作者代码入口，GitHub工具链接不等于作者实现。这些属于细节尚不能唯一确定，不证明方法无效；自行补齐须公开选择并标同协议适配，不能据此标完整作者复现。

@@ -160,3 +160,12 @@ N20最多检验当前渲染像素邻域在本初始化/预算/监督/固定PR下
 第十一份[59,65)沿用相同冻结Source、模型、数值规则和主端点，RAW-only prehash实际0（0.315秒，无科学库导入）后唯一原supervisor59589启动，无自动重试。累计10/32份、59图/5900自然query/47200策略记录，正常155/保留科学失败26/181终态。统一全187图官方COCO尚未执行；没有N20涨点、创新或TGRS成功结论。
 
 [有限增量先例核查](DIRECT_SAR_INSTANCE_SEGMENTATION_INCREMENTAL_PRIOR_CHECK_20261015_01.md)区分O²Former预印本全文与DACF-net官方域索引，未把未直开全文的数值升级为独立复核；不改变当前端点。[HRSID获取](HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)新规则02已再次受控停止，64MiB前缀不等于完整数据集，官方百度候选格式仍未确认。
+
+
+## 第十一份独立CPU通过，第十二份已启动
+
+[59,65)原supervisor59589 held实际退出0（894.422秒），原句柄回收、出生身份消失且无error/abort。Root先执行新pure156+failed26实际0（0.466秒，无科学库导入），再用原固定核验函数完成RAW-bound stdout REPORT、Source/spec/admission/phase/bootstrap与23项绑定核验。6图/600自然query/4800策略记录、17309注册成员完整覆盖；双CPU scout公式分别对实际GPU最大3.0517578125e-5，满足原绝对1e-4/rtol0门；十策略各600完整预测与第二GPU父域原切片逐字段相同。原REPORT保持pending/qualified=False；该子范围的外部Root通过不等于全DEV或AP资格。
+
+第十二份[65,71)同冻结Source、模型、数值和主端点，RAW-only prehash实际0（0.349秒，无科学库导入）后唯一原supervisor84549启动，无自动重试。累计11/32份、65图/6500自然query/52000策略记录，正常156/保留科学失败26/182终态。统一全187图官方COCO尚未执行，没有N20涨点、创新或TGRS成功结论。
+
+[有限先例综述](DIRECT_SAR_INSTANCE_SEGMENTATION_INCREMENTAL_PRIOR_CHECK_20261015_01.md)补记O²Former v1三类实现澄清项；这不证明外部算法无效，自行选择实现时须标同协议适配而非完整作者复现，不改当前N20端点。

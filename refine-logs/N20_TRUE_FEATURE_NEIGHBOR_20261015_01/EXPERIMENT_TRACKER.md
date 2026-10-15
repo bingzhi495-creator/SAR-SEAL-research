@@ -87,3 +87,10 @@
 [53,59)原supervisor29173 held实际退出0（845.047秒），原句柄回收、出生身份消失且无error/abort。Root先执行新pure155+failed26实际0（0.389秒，无科学库导入），再以原固定核验函数的单次进程流程完成RAW-bound stdout REPORT、Source/spec/admission/phase/bootstrap和23项绑定核验。6图/600自然query/4800策略记录、16968注册成员完整覆盖；双CPU scout公式分别对实际GPU最大3.0517578125e-5，满足原绝对1e-4/rtol0门；十策略各600完整预测与原第二GPU父域切片逐字段一致。原REPORT仍为pending/qualified=False，仅该子范围通过外部Root核验，没有全DEV/AP资格。
 
 第十一份[59,65)沿用相同冻结Source、模型、数值规则和主端点，RAW-only prehash实际0（0.315秒，无科学库导入）后唯一原supervisor59589启动，无自动重试。累计10/32份、59图/5900自然query/47200策略记录，正常155/保留科学失败26/181终态。统一全187图官方COCO尚未执行；没有N20涨点、创新或TGRS成功结论。
+
+
+## 第十一份独立CPU通过，第十二份已启动
+
+[59,65)原supervisor59589 held实际退出0（894.422秒），原句柄回收、出生身份消失且无error/abort。Root先执行新pure156+failed26实际0（0.466秒，无科学库导入），再用原固定核验函数完成RAW-bound stdout REPORT、Source/spec/admission/phase/bootstrap与23项绑定核验。6图/600自然query/4800策略记录、17309注册成员完整覆盖；双CPU scout公式分别对实际GPU最大3.0517578125e-5，满足原绝对1e-4/rtol0门；十策略各600完整预测与第二GPU父域原切片逐字段相同。原REPORT保持pending/qualified=False；该子范围的外部Root通过不等于全DEV或AP资格。
+
+第十二份[65,71)同冻结Source、模型、数值和主端点，RAW-only prehash实际0（0.349秒，无科学库导入）后唯一原supervisor84549启动，无自动重试。累计11/32份、65图/6500自然query/52000策略记录，正常156/保留科学失败26/182终态。统一全187图官方COCO尚未执行，没有N20涨点、创新或TGRS成功结论。
