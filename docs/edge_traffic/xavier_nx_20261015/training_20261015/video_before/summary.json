@@ -1,0 +1,72 @@
+{
+  "status": "executed",
+  "model": "yolo11n.pt",
+  "model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "source": "..\\input\\intersection_pexels_5675618.mp4",
+  "source_resolution": [
+    1920,
+    1080
+  ],
+  "source_fps": 29.97002997002997,
+  "frames_inferred": 719,
+  "source_duration_tested_seconds": 23.990633333333335,
+  "skipped_frames": 0,
+  "batch_size": 1,
+  "network_input": [
+    640,
+    640
+  ],
+  "precision": "FP16",
+  "confidence_threshold": 0.25,
+  "nms_iou_threshold": 0.7,
+  "max_det": 300,
+  "warmup_frames": 30,
+  "hardware": "NVIDIA GeForce RTX 3090 Ti",
+  "board": "",
+  "runtime": "PyTorch (not TensorRT)",
+  "torch_version": "2.0.1+cu118",
+  "cuda_version": "11.8",
+  "ultralytics_version": "8.3.43",
+  "opencv_version": "4.8.0",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.8.17",
+  "selected_class_names": {
+    "0": "person",
+    "1": "bicycle",
+    "2": "car",
+    "3": "motorcycle",
+    "5": "bus",
+    "7": "truck"
+  },
+  "ebike_supported": false,
+  "accuracy_evaluation": "not_evaluated_no_ground_truth",
+  "count_note": "Detection boxes summed over frames; not unique objects, not true positives",
+  "box_counts_over_frames": {
+    "car": 5254,
+    "person": 611,
+    "bus": 153,
+    "truck": 394,
+    "motorcycle": 25,
+    "bicycle": 114
+  },
+  "frames_with_each_class": {
+    "car": 719,
+    "person": 521,
+    "bus": 149,
+    "truck": 282,
+    "motorcycle": 23,
+    "bicycle": 93
+  },
+  "pipeline_fps_without_encoding": 81.24376222484155,
+  "pipeline_latency_ms_p50": 12.164200000000847,
+  "pipeline_latency_ms_p95": 13.962190000000518,
+  "sdk_mean_ms": {
+    "preprocess": 1.0663514674455963,
+    "inference": 5.986665651430175,
+    "postprocess": 1.252926772095066
+  },
+  "wall_seconds_with_render_encoding": 16.698375,
+  "wall_fps_with_render_encoding": 43.05808199899691,
+  "timer_note": "Pipeline includes decode, preprocess, inference, NMS and CPU box transfer; excludes rendering/JSON/video encoding. Wall includes these, excludes model loading and warmup. No live-network/display latency claim.",
+  "xavier_nx_tested": false
+}

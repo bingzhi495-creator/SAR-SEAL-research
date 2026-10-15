@@ -1,0 +1,217 @@
+{
+  "status": "evaluated",
+  "hardware": "RTX3090Ti",
+  "xavier_nx_tested": false,
+  "before_common4": {
+    "map50": 0.17527672440668296,
+    "map50_95": 0.112522781935298,
+    "per_class": {
+      "vehicle": {
+        "map50_95": 0.2722185910863554,
+        "map50": 0.43812129975642067,
+        "precision_conf025_iou05": 0.7870588235294118,
+        "recall_conf025_iou05": 0.3194842406876791,
+        "true_positives": 1338,
+        "false_positives": 362,
+        "gt_objects": 4188
+      },
+      "bus": {
+        "map50_95": 0.13588469273488346,
+        "map50": 0.1710718021569877,
+        "precision_conf025_iou05": 0.25806451612903225,
+        "recall_conf025_iou05": 0.26666666666666666,
+        "true_positives": 16,
+        "false_positives": 46,
+        "gt_objects": 60
+      },
+      "bicycle": {
+        "map50_95": 0.004062549112054063,
+        "map50": 0.008722300801508723,
+        "precision_conf025_iou05": 0.0,
+        "recall_conf025_iou05": 0.0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "gt_objects": 556
+      },
+      "pedestrian": {
+        "map50_95": 0.03792529480789907,
+        "map50": 0.08319149491181478,
+        "precision_conf025_iou05": 0.532258064516129,
+        "recall_conf025_iou05": 0.06932773109243698,
+        "true_positives": 33,
+        "false_positives": 29,
+        "gt_objects": 476
+      }
+    },
+    "official_coco_stats": [
+      0.112522781935298,
+      0.17527672440668296,
+      0.11418870566102814,
+      0.004056450717632484,
+      0.06691770671394252,
+      0.291670883011445,
+      0.07759636816322868,
+      0.15278653172427265,
+      0.19954041235962133,
+      0.012110927445539876,
+      0.15877309580891724,
+      0.4443773963053328
+    ],
+    "metric": "official pycocotools bbox AP, IoU .50:.95, 101 recall points, maxDets=100",
+    "pr_operating_point": "confidence .25, IoU .50, class-wise COCO matching, maxDets=100",
+    "evaluation_type": "real_dataset_gt",
+    "images": 128,
+    "gt_objects": 5280,
+    "prediction_count": 37095,
+    "checkpoint": "E:\\SAR\\seal\\delivery\\xavier_nx_traffic_20261015\\training_20261015\\yolo11n.pt",
+    "split": "test",
+    "mapping_kind": "coco80",
+    "inference": {
+      "input": 640,
+      "batch": 16,
+      "precision": "FP16",
+      "conf": 0.001,
+      "nms_iou": 0.7,
+      "max_candidates": 300,
+      "tta": false
+    },
+    "mapping_scope": "vehicle~COCO car, bus, bicycle, pedestrian~COCO person; semantic equivalence not fully verified"
+  },
+  "after_common4": {
+    "map50": 0.481182427669032,
+    "map50_95": 0.31630279469773626,
+    "per_class": {
+      "vehicle": {
+        "map50_95": 0.5269440015698862,
+        "map50": 0.7361213153888166,
+        "precision_conf025_iou05": 0.7507507507507507,
+        "recall_conf025_iou05": 0.7163323782234957,
+        "true_positives": 3000,
+        "false_positives": 996,
+        "gt_objects": 4188
+      },
+      "bus": {
+        "map50_95": 0.4612007909906431,
+        "map50": 0.5887079301340886,
+        "precision_conf025_iou05": 0.7674418604651163,
+        "recall_conf025_iou05": 0.55,
+        "true_positives": 33,
+        "false_positives": 10,
+        "gt_objects": 60
+      },
+      "bicycle": {
+        "map50_95": 0.20925152880259026,
+        "map50": 0.43662258639184887,
+        "precision_conf025_iou05": 0.6263157894736842,
+        "recall_conf025_iou05": 0.42805755395683454,
+        "true_positives": 238,
+        "false_positives": 142,
+        "gt_objects": 556
+      },
+      "pedestrian": {
+        "map50_95": 0.06781485742782546,
+        "map50": 0.16327787876137417,
+        "precision_conf025_iou05": 0.6565656565656566,
+        "recall_conf025_iou05": 0.13655462184873948,
+        "true_positives": 65,
+        "false_positives": 34,
+        "gt_objects": 476
+      }
+    },
+    "official_coco_stats": [
+      0.31630279469773626,
+      0.481182427669032,
+      0.312284987902142,
+      0.03253388843987507,
+      0.29026304319763224,
+      0.6823842175428467,
+      0.14365914460649343,
+      0.2863879887157188,
+      0.3781553962724213,
+      0.07184367078940784,
+      0.4017425958325246,
+      0.7551046548029381
+    ],
+    "metric": "official pycocotools bbox AP, IoU .50:.95, 101 recall points, maxDets=100",
+    "pr_operating_point": "confidence .25, IoU .50, class-wise COCO matching, maxDets=100",
+    "evaluation_type": "real_dataset_gt",
+    "images": 128,
+    "gt_objects": 5280,
+    "prediction_count": 37272,
+    "checkpoint": "E:\\SAR\\seal\\delivery\\xavier_nx_traffic_20261015\\training_20261015\\runs\\yolo11n_pilot302\\weights\\best.pt",
+    "split": "test",
+    "mapping_kind": "native8",
+    "inference": {
+      "input": 640,
+      "batch": 16,
+      "precision": "FP16",
+      "conf": 0.001,
+      "nms_iou": 0.7,
+      "max_candidates": 300,
+      "tta": false
+    },
+    "mapping_scope": "vehicle~COCO car, bus, bicycle, pedestrian~COCO person; semantic equivalence not fully verified"
+  },
+  "delta_common4_map50_95_percentage_points": 20.378001276243825,
+  "delta_common4_map50_percentage_points": 30.590570326234907,
+  "after_native8_sdk": {
+    "metrics/precision(B)": 0.507280055446,
+    "metrics/recall(B)": 0.38265677470739745,
+    "metrics/mAP50(B)": 0.3992176529646009,
+    "metrics/mAP50-95(B)": 0.26300773739623357,
+    "fitness": 0.2766287289530703
+  },
+  "native8_per_class": {
+    "vehicle": {
+      "map50_95": 0.5584788384207149,
+      "map50": 0.7650088055249875,
+      "precision_at_sdk_selected_f1": 0.6545849742331528,
+      "recall_at_sdk_selected_f1": 0.752865329512894
+    },
+    "bus": {
+      "map50_95": 0.4794135130756798,
+      "map50": 0.6223468588098984,
+      "precision_at_sdk_selected_f1": 0.6389786342483604,
+      "recall_at_sdk_selected_f1": 0.5833333333333334
+    },
+    "bicycle": {
+      "map50_95": 0.21768457954535664,
+      "map50": 0.4419081385802217,
+      "precision_at_sdk_selected_f1": 0.4670460668738142,
+      "recall_at_sdk_selected_f1": 0.4766187050359712
+    },
+    "pedestrian": {
+      "map50_95": 0.07402782754742471,
+      "map50": 0.18473488337934665,
+      "precision_at_sdk_selected_f1": 0.4814069794047192,
+      "recall_at_sdk_selected_f1": 0.16176470588235295
+    },
+    "engine": {
+      "map50_95": 0.0733207553672955,
+      "map50": 0.1078857687623645,
+      "precision_at_sdk_selected_f1": 0.18780512113845446,
+      "recall_at_sdk_selected_f1": 0.07142857142857142
+    },
+    "truck": {
+      "map50_95": 0.23592656264391382,
+      "map50": 0.351171974524302,
+      "precision_at_sdk_selected_f1": 0.43816797858464523,
+      "recall_at_sdk_selected_f1": 0.375886524822695
+    },
+    "tricycle": {
+      "map50_95": 0.4088836633029526,
+      "map50": 0.556740247003567,
+      "precision_at_sdk_selected_f1": 0.5760660870954988,
+      "recall_at_sdk_selected_f1": 0.5128205128205128
+    },
+    "obstacle": {
+      "map50_95": 0.05632615926653058,
+      "map50": 0.16394454713211976,
+      "precision_at_sdk_selected_f1": 0.6141846019893545,
+      "recall_at_sdk_selected_f1": 0.1265365148228489
+    }
+  },
+  "scope": "single-seed, 1022/128/128 official-split pilot after two pre-metric training-only exclusions, 30 epochs; scene independence unverified",
+  "gt": "real official dataset annotations; no pseudo labels used for evaluation",
+  "notes": "Common4 uses official COCO maxDets100; native8 SDK max_det300 metrics reported separately. Native SDK P/R are at its selected F1 point, not fixed confidence .25."
+}

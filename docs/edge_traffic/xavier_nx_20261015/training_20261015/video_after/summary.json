@@ -1,0 +1,76 @@
+{
+  "status": "executed",
+  "model": "best.pt",
+  "model_sha256": "2863330dd29eb1a9e8b7a7e1513940db91cc29bd4b7fc4d2886627dddf2f6afc",
+  "source": "..\\input\\intersection_pexels_5675618.mp4",
+  "source_resolution": [
+    1920,
+    1080
+  ],
+  "source_fps": 29.97002997002997,
+  "frames_inferred": 719,
+  "source_duration_tested_seconds": 23.990633333333335,
+  "skipped_frames": 0,
+  "batch_size": 1,
+  "network_input": [
+    640,
+    640
+  ],
+  "precision": "FP16",
+  "confidence_threshold": 0.25,
+  "nms_iou_threshold": 0.7,
+  "max_det": 300,
+  "warmup_frames": 30,
+  "hardware": "NVIDIA GeForce RTX 3090 Ti",
+  "board": "",
+  "runtime": "PyTorch (not TensorRT)",
+  "torch_version": "2.0.1+cu118",
+  "cuda_version": "11.8",
+  "ultralytics_version": "8.3.43",
+  "opencv_version": "4.8.0",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.8.17",
+  "selected_class_names": {
+    "0": "vehicle",
+    "1": "bus",
+    "2": "bicycle",
+    "3": "pedestrian",
+    "4": "engine",
+    "5": "truck",
+    "6": "tricycle",
+    "7": "obstacle"
+  },
+  "ebike_supported": false,
+  "accuracy_evaluation": "not_evaluated_no_ground_truth",
+  "count_note": "Detection boxes summed over frames; not unique objects, not true positives",
+  "box_counts_over_frames": {
+    "vehicle": 4965,
+    "bus": 446,
+    "bicycle": 834,
+    "truck": 934,
+    "pedestrian": 429,
+    "obstacle": 17,
+    "tricycle": 8
+  },
+  "frames_with_each_class": {
+    "vehicle": 719,
+    "bus": 378,
+    "bicycle": 609,
+    "truck": 672,
+    "pedestrian": 274,
+    "obstacle": 17,
+    "tricycle": 7
+  },
+  "pipeline_fps_without_encoding": 84.77485766843765,
+  "pipeline_latency_ms_p50": 11.61700000000021,
+  "pipeline_latency_ms_p95": 13.522859999999426,
+  "sdk_mean_ms": {
+    "preprocess": 1.0613466668692684,
+    "inference": 5.973154381021173,
+    "postprocess": 1.1935462872076763
+  },
+  "wall_seconds_with_render_encoding": 16.2871023,
+  "wall_fps_with_render_encoding": 44.14536034442418,
+  "timer_note": "Pipeline includes decode, preprocess, inference, NMS and CPU box transfer; excludes rendering/JSON/video encoding. Wall includes these, excludes model loading and warmup. No live-network/display latency claim.",
+  "xavier_nx_tested": false
+}
