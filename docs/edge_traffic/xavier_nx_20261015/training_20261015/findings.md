@@ -1,0 +1,7 @@
+# 核查记录
+
+已有YOLO11n官方预训练权重、CUDA训练环境（seal_gpu，torch2.0.1+cu118，Ultralytics8.3.43）和719帧Pexels路口视频。Intersection-Flow-5K作者仓库给Kaggle入口starsw/intersection-flow-5k，6,928图/8类；实际归档尚待下载核查。
+
+当前GPU约3.1GB已用、13%利用率，不能据此判断无其他任务；不干预其他进程。
+
+已实际访问Kaggle官方v4元数据和下载GET，无需账号即可取得公开归档；HEAD返回404不代表GET不可用。归档压缩大小6,175,277,050字节，解压总量约6.3GB。单文件猜测路径返回404，改为HTTP Range读取真实ZIP目录及小文档，不再猜测文件下载API。官方列表确认归档包含此前GitHub树缺失的README_zh.md。
