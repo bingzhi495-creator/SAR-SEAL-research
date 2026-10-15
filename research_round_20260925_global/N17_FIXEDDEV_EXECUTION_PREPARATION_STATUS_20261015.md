@@ -1,6 +1,6 @@
 # N17 固定DEV：执行准备与边界
 
-2026-10-15。完整24轮配对训练及独立E8/E24端点资格完成，五GPU分区187图/18700query/10策略输出metadata已核。前三CPU03原45412/8462/44983均actual0，47+23+24=94图/9400query完整独立数值报告及读回通过。第三段1494.219秒，纯130正常+21失败前缀1e3664原退出0；正常130/失败21/151终态身份。为降低剩余大CPU任务触限风险，首次完整AP前已锁七CPU任务执行补充，前三不重跑，剩余按四个23/24图范围执行；CPU04/COCO04/post03准备中。当前无运行中科学leaf，完整统一AP尚未执行，科学配方/主门不变。
+2026-10-15。完整24轮配对训练及独立E8/E24端点资格完成，五GPU分区187图/18700query/10策略输出metadata已核。前三CPU03与新CPU04 scope3均原实际退出0，累计117图/11700query完整独立数值报告及读回通过；最新scope3 [94,117)监督1198.266秒，纯131正常+21失败前缀9375b6原退出0。正常131/失败21/152既有终态身份。七CPU执行补充保持，原三段复用，剩余scope4 [117,141)已由原监督40274单次启动，owner131/父GPU3，当前单科学leaf。随后还有scope5/6，final04统一187图COCO和post03资格尚未实际执行；没有新AP或创新成立结论。
 
 [数值body](code/N17_ALL100_LOCAL_CENTER_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)已冻结、一次定向静态审阅READY、发布副本一项tiny SYN原退出0；普通body接口证据不代替实际DEV载体或GPU输出资格。[共享载体必要ABI](N17_FIXEDDEV_SHARED_CARRIER_GPU_REQUIRED_ABI_UNBOUND_20261015_01.md)记录旧物理bundle与shared成员、索引映射、四模型注入、callback与新writer差异，Root实际核了四段metadata完整关联，真实bundle张量校验仍留给下一original owned GPU任务。
 
@@ -170,3 +170,10 @@ Root metadata读取工具曾将GPU元数据对象直接送入严格Boolean断言
 前三CPU03共94图/9400query保持原合格数值报告，原五GPU全187捕获保持。新CPU04只运行全局scope3–6，父GPU映射3/3/4/4；数值循环/公式AST保持，未实现cache优化。CPU04一项纯元数据检查原退出0（test0.209秒），final04/post03合并接口一项纯元数据检查原退出0（test0.648秒）；合成通过不代表实际数值/AP。
 
 Root已冻结新scope3 [94,117)并单次启动，原监督19917、normal owner130、失败21、151既有终态身份。当前只有这一科学leaf；等待原actual终态后先过纯RAW前缀，再读科学报告。新[CPU04入口](code/N17_FIXEDDEV_LOCAL_CENTER_ERROR_CPU_NUMERIC_SHARD_ROOT_UNBOUND_DRAFT_20261015_04.py)、[final04入口](code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_04.py)及[post03入口](code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_DRAFT_20261015_03.py)已保存；后两尚未实际执行。统一187图/380GT/18700query的主AP仍待，不报告涨点或创新。
+
+
+## 新CPU04首scope实际完成，累计117图
+
+原监督19917实际退出0（held0/reaped/原birth消失，无error/abort/观察错误），监督1198.266秒，最低可用RAM29.26GB。Root先过131正常+21失败纯RAW前缀（9375b6原退出0），再核新CPU04报告、23个逐图完整100query×8profile证明、scope限定bundle/成员消费及10策略各2300条预测；与原完整父GPU3预测的对应slice严格一致，原qids/class/S0保持。新报告283662字节、SHA e13750dabbade4066df4f506031fcb1d801a27c3561aeb15092a0b4321418567。
+
+原三CPU03 94图不改不重跑，加本scope累计117图/11700query。元数据读回没有重算模型、数值或COCO；局部报告及Root摘要不自证完整AP资格。scope4 [117,141)新绑定的Source、纯前缀、父GPU3完整descriptor、CPU补充及Sources闭合均保持，原监督40274已启动，owner131。运行中的科学载荷/Source/资格链未为同步读取、复制或哈希。
