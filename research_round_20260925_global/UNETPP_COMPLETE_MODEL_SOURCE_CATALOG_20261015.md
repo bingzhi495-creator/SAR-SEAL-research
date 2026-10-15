@@ -20,7 +20,7 @@ rg --files --hidden --no-ignore 枚举 3739 个指定扩展名文本路径；最
 | Mamba-YOLO | SS2D uses cross_selective_scan; VSS/XSS with local/gated blocks and VisionClueMerge build multiscale model. T config ends Detect; independent yolo-mamba-seg config ends Segment.（research_ops_runs/sar_model_benchmark_comparison_20260608_1312/repos/Mamba-YOLO/ultralytics/nn/modules/mamba_yolo.py:6-170,305-416; cfg/models/mamba-yolo/Mamba-YOLO-T.yaml:8-38; yolo-mamba-seg.yaml:17-47） | Detector training does not validate segmentation config. Selective state-space or feature-merge component is a generic transferable mechanism requiring end-to-end fair control, not instant SAR novelty. |
 | MSCK-Net | Multi-scale strip/local grouped-convolution branches with residual layer scale and ConvGLU; HGNetv2_MSCK + HybridEncoder + D-FINE are box detector in examined SAR config.（research_ops_runs/sar_model_benchmark_comparison_20260608_1312/repos/MSCK-Net/engine/backbone/StripBlock3.py:45-122; configs/IS/msck-n-hrsid.yml:14-48） | Strong anisotropic/directional operator control, but box AP must not enter mask AP table. |
 | MSCK evaluator files are not models | last/checkpoint paths save self.state_dict; eval/latest.pth and eval/{000,050,...}.pth save coco_evaluator.coco_eval[bbox].eval. eval.pth similarly saves evaluator output.（research_ops_runs/sar_model_benchmark_comparison_20260608_1312/repos/MSCK-Net/engine/solver/det_solver.py:106-112,175-184,199） | Exclude these evaluator tensors from trained-model count, without loading them. |
-| SCJE_FPN / CARAFE / ACmix | Vendored FPN has content-aware CARAFE first-level upsampling and ACmix-based SCJE_FPN refinement; comments identify CARAFE ICCV2019. These are direct sampling/refinement precedents already locally present.（assets/diffsarshipinst/source/detectron2/modeling/backbone/fpn.py:231-244,292-386,737-772,873+） | Useful strong generic upsampling/attention-convolution control; not a new primitive or proof the configured model trained successfully. |
+| SCJE_FPN / CARAFE / ACmix | DiffSARShipInst作者方案；2026-10-16单文件对照确认D副本与作者固定提交的FPN统一LF后文本一致。CARAFE/ACmix是其采用的已有组件。 | 直接作者基线；两份本地R535配置静态选中SCJE，不代表本轮实际运行或当前E/N20使用。普通FPN对照须处理P1–P6接口。 |
 | HGTFN | Hyperspectral spectral encoder, superpixel hypergraph, key-pixel selection and ViT; output class distribution per pixel, not SAR instances.（research_ops_runs/sar_model_benchmark_comparison_20260608_1312/repos/HGTFN/model.py:74-167） | Only borrow selective-compute hypothesis if relevant evidence exists; exclude from SAR instance performance comparison. |
 
 ## 全部顶层模型族/骨干/包装登记
@@ -335,3 +335,8 @@ HDSC仍是候选，需要后续检索逐实例分隔、repulsion和边界监督�
 
 
 发布说明：本文件是自写审阅与研究记录。逐文件私有JSON索引留存本地；未发布历史权重、原始数据、全量标注、运维配置或第三方论文全文。相关记录见[扩展总评](UNETPP_EXPANDED_MODEL_ASSET_REVIEW_AND_NEXT_DESIGN_20261015.md)。
+
+
+## 作者归属与配置关联补充（2026-10-16）
+
+此前索引中“vendored framework with extensions”仅表示相对普通Detectron2存在扩展，不表示这些扩展由本项目新增。SCJE-FPN组合可在DiffSARShipInst作者固定源码直接核查；本地这一FPN统一LF后与作者文本一致。此前两份R535配置“未建立模块关联”的登记是当时索引边界；后续静态核查已确认二者选择SCJE builder、DiffSARShipInst与P1–P6消费接口。多比例池化增强forward已注释，不能称启用。仅更新本条证据，不认证实际训练、完整fork或当前E/N20。详见[归属与路由补充](UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
