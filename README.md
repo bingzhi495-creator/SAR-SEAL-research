@@ -4,11 +4,13 @@
 
 
 
-**当前进行（N20）：** 固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验，原训练GPU失败24保留；四个DEV GPU分片全部实际0。独立CPU已完成并核验12/32份，连续覆盖[0,71)，累计71图/7100自然query、56800策略记录；十策略完整预测均与各自父域切片精确一致。各份scout双CPU公式对实际GPU最大差异均≤4.57763671875e-5，满足原1e-4门。第十三份[71,77)已启动；当前157正常/26保留科学失败/183终态。**尚无N20全量AP、涨点或创新成功结论**。[最新状态](research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)、[执行记录](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[32份执行范围](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)。
+**当前进行（N20）：** 固定24轮E8/E24保存模型已通过独立CPU与Root恢复核验，原训练GPU失败24保留；四个DEV GPU分片全部实际0。独立CPU已完成并核验14/32份，连续覆盖[0,83)，累计83图/8300自然query、66400策略记录；十策略完整预测均与各自父域切片精确一致。各份scout双CPU公式对实际GPU最大差异均≤4.57763671875e-5，满足原1e-4门。第十五份[83,89)已启动；当前159正常/26保留科学失败/185终态。**尚无N20全量AP、涨点或创新成功结论**。[最新状态](research_round_20260925_global/N20_FIRST_DEV_GPU_ACTUAL0_AND_CPU_PIPELINE_STATUS_20261015.md)、[执行记录](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[32份执行范围](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)。
 
-**跨集数据准备：** 官方HRSID同包TRAIN/TEST标注与两个PNG编码文件已核验。两轮整包获取均超时停止，当前只有64MiB有效前缀；官方百度候选的PNG格式/同版关系尚未确认；一次独立WLAN源地址绑定控制在连接阶段10秒超时、收到0B，未重试，也未证明绕过TAP或加速。完整影像、mask与跨集实验仍未完成。[实际版本与获取记录](research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)。
+**跨集数据准备：** 用户指定目录已找到5604个JPG文件名及配套实例polygon，train3642图/11047实例、test1962/5922；Root核两JSON身份与完整名称对应。合并文件16951实例与两split合计16969不等，不能互换；影像/mask、官方JPG身份与历史TEST边界仍待资格核验。此前官方PNG获取仅64MiB，已停止网络尝试；当前N20不变。[本地JPG评议](research_round_20260925_global/HRSID_LOCAL_JPG_METADATA_AND_VERSION_BOUNDARY_20261015.md)、[完整获取记录](research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)。
 
 **增量查新：** [O²Former与DACF-net先例核查](research_round_20260925_global/DIRECT_SAR_INSTANCE_SEGMENTATION_INCREMENTAL_PRIOR_CHECK_20261015_01.md)分别标记全文和官方域索引证据，不与当前DEV跨协议排名；方向、多尺度和上下文模块已有直接先例；已补记v1实现需澄清的形状与对齐边界，不将自行适配称作完整作者复现。
+
+**历史资产已详细审阅：** 用户提供的UNet++工作区有31份训练记录、36份评价记录及八组可借鉴方法；三种子、强generic控制和跨集反转均保留。语义F1/前景IoU、连通域代理AP和COCO mask AP分开，旧不公平短预算不能证明机制失效；当前仅形成有条件候选，不改N20主端点。[总评与下一步方案](research_round_20260925_global/UNETPP_HISTORICAL_ASSETS_SYNTHESIS_AND_REUSE_PLAN_20261015.md)、[源码机制](research_round_20260925_global/UNETPP_HISTORICAL_ARCHITECTURE_REVIEW_20261015.md)、[历史结果](research_round_20260925_global/UNETPP_HISTORICAL_RESULTS_REVIEW_20261015.md)。
 
 **已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
 

@@ -89,3 +89,10 @@ Git候选与PNG TRAIN共同文件名3572，候选独有1、PNG TRAIN独有70，�
 ## 2026-10-15：规则02实际停止与官方备用候选
 
 [完整获取记录](../research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)：规则02共7新请求/57712075B body，有效连续前缀64MiB；第7新块在300秒超时，只收到7380427B，失败partial不accepted。Root核终态及全部新body和64MiB前缀；整包、目录复核及全CRC仍pending，未启动第三轮整包获取。固定作者README另列百度vxrs候选但未明确PNG/同版；本机唯一公开GET只返回302至提取码页，未识别包名。bs64入口明确为JPG，不能替代本PNG版本；所有链接与公开提取码的来源见上文记录。没有登录、绕验证码或使用非公开API，也没有恢复盲测/跨集资格。
+
+
+## 用户指定历史工作区中的本地JPG候选（2026-10-15）
+
+已定位5604个JPG文件名，与train3642图/11047实例、test1962图/5922实例的原COCO polygon逐字完整对应；Root另核两JSON SHA与名称集合。原合并标注5604图/16951实例不等两split合计16969，按文件名和几何字段忽略重编号ID有22项仅split/4项仅merged，不能互换或静默纠正。详见[本地数据评议](../research_round_20260925_global/HRSID_LOCAL_JPG_METADATA_AND_VERSION_BOUNDARY_20261015.md)。
+
+本次没有读取影像/归档字节或解码mask，实际尺寸/完整性/空间对齐、官方JPG归档身份、许可/母景及历史测试使用仍须核验。可以另锁JPG跨集协议，但不能冒充此前PNG身份或恢复盲TEST；当前N20数据不变。旧语义模型与跨集测试使用历史见[资产总评](../research_round_20260925_global/UNETPP_HISTORICAL_ASSETS_SYNTHESIS_AND_REUSE_PLAN_20261015.md)。只发布自写说明，不发布原图、标注或权重。
