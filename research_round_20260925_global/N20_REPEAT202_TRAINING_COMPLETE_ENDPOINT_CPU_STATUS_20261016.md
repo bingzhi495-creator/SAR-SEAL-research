@@ -40,3 +40,14 @@
 独立CPU两公式最大logit绝对差为6.103515625e-5，与保存GPU端点的平均CE最大绝对差为1.4736514404589673e-9，均小于原1e-4绝对容差；只支持同输入端点兼容性，不证明逐点GPU输出、整个优化轨迹重放或额外特征独立重渲染。原pending Q/DETAILS不改，外部资格单独保存。原工具复核01/02失败及三项针对性回归均保留，第三版实际退出0。
 
 [经核验的普通端点摘要](../refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/REPEAT202_ENDPOINT_QUALIFIED_SUMMARY_20261016.json)在DEV绑定之前生成；本次同步只读取此独立摘要、普通文档与未绑定代码，没有为发布读取活动GPU的载荷、绑定Source或资格链。全187图统一COCO及32个固定CPU数值范围仍待执行；预算和预锁两种子判定不变。
+
+
+## 第二种子CPU32入口草稿完成（科学执行待四GPU结束）
+
+首DEV GPU183原任务63518仍在运行；本节仅记录未绑定代码准备。新独立CPU前门与尾部保留首组的全部32固定范围、四父GPU映射、两种公式、原1e-4/rtol0、strict-sign、选点、掩码和RLE核验。新门要求四个实际完成的GPU descriptor、正常GPU181＋CPU182的端点资格，以及首次CPU/AP前冻结的当前执行锁。当前执行锁尚未生成；旧首201的执行补充仅作历史，不充当第二种子计划。
+
+执行锁使用32个明确递增的CPU owner与四个实际GPU owner，不按分段编号推断任务身份。前门核对完整预期JSON、原32范围、当前owner映射、预算和AP未执行标记；尾部按同一完整14字段绑定对接新GPU结果。独立静态审阅未发现确定接口阻断。尾部新增编号准入回归实际RED→GREEN，最终3测试/12合成场景通过；Root新增执行锁回归3测试/49元数据场景通过，涵盖32范围、非连续显式编号、错误范围、错误owner、旧seed及额外预算/AP标志。首次测试框架漏注入stdlib JSON依赖，补齐后通过，未改前门或数学逻辑，不是模型失败。
+
+这些回归仅编译实际源代码中的元数据函数，不加载Torch、真实快照或捕获数据；不能替代实际四GPU完成、CPU数值资格或第二种子AP。数学core与F9 decoder无需改动。后续全部32范围通过后才做完整187图统一COCO，不平均分片AP，也不据静态通过宣称涨点。
+
+源码：[CPU前门](code/N20_REPEAT202_FIXEDDEV_CPU_FRONT_UNBOUND_DRAFT_20261016_01.py)、[前门合同](code/N20_REPEAT202_FIXEDDEV_CPU_FRONT_UNBOUND_CONTRACT_20261016_01.md)、[CPU尾部](code/N20_REPEAT202_FIXEDDEV_CPU_NUMERIC_RUN_TAIL_UNBOUND_DRAFT_20261016_01.py)、[尾部合同](code/N20_REPEAT202_FIXEDDEV_CPU_NUMERIC_RUN_TAIL_UNBOUND_CONTRACT_20261016_01.md)、[编号回归](code/N20_REPEAT202_FIXEDDEV_CPU_SCOPE_METADATA_TEST_UNBOUND_20261016_01.py)、[执行锁回归](code/test_N20_REPEAT202_CPU_PARTITION_LOCK_METADATA_ONLY_20261016_01.py)。测试与所需未绑定源码在同一code目录；合同tmp路径指原工作区。

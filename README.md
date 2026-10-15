@@ -6,7 +6,7 @@
 
 **自主设计与作者基线归属补充：** 团队自定义UNet++按完整结构评估；历史D目录的单个FPN文件与DiffSARShipInst作者固定版本统一换行后完全一致，SCJE-FPN及其中采用的CARAFE/ACmix须按作者基线引用。两份本地R535配置声明启用SCJE，不能仅改builder构造普通FPN对照；这不认证当前E/N20调用。[归属、实际路由与对照要求](research_round_20260925_global/UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
 
-**当前进行（N20）：** 第二种子202610150202的训练GPU181、独立端点CPU182及外部Root产物核验均完成，新纯终态183实际0；两臂24轮/17,784更新，E8/E24状态与同输入两CPU公式及GPU保存均值CE通过原容差。第一个固定DEV范围[0,47)的GPU183原任务63518已启动，活动产物不读取，尚无第二种子AP。当前183正常原任务终态/26保留科学失败/209终态；活动GPU不计完成。首201主差值仍+0.197741 AP点，重复效用、正式TEST、跨集、机制和创新结论待证。[结果范围与当前状态](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
+**当前进行（N20）：** 第二种子202610150202的训练GPU181、独立端点CPU182及外部Root产物核验均完成，新纯终态183实际0；两臂24轮/17,784更新，E8/E24状态与同输入两CPU公式及GPU保存均值CE通过原容差。第一个固定DEV范围[0,47)的GPU183原任务63518已启动，活动产物不读取，尚无第二种子AP。当前183正常原任务终态/26保留科学失败/209终态；活动GPU不计完成。首201主差值仍+0.197741 AP点，重复效用、正式TEST、跨集、机制和创新结论待证。[结果范围与当前状态](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。 CPU32独立核验入口草稿与执行锁回归已保存，实际数值执行仍待四GPU结束。
 
 **全量汇总入口状态：** 已按32份固定范围执行全187图统一COCO，并完成独立post与Root实际终态核验；静态审阅仅保留为执行前历史。[静态审阅记录](research_round_20260925_global/N20_FINAL32_ENTRY_STATIC_READINESS_REVIEW_20261016.md)。
 

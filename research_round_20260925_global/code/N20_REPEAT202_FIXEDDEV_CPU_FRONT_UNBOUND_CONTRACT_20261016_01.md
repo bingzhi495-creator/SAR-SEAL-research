@@ -1,0 +1,17 @@
+# repeat202 DEV CPU32前门合同
+
+UNBOUND_NOT_EXECUTED。当前四GPU完成记录、32CPU当前执行plan及CPU输出尚不能预称完成。普通源码静态准备，无Torch/数值/载荷读取；Root实际终态及新纯前缀通过后才物化执行。
+
+装配：F typed前缀与legacy helpers → repeat202 GPUfront0886纯metadata → endpoint CPUfrontf2eb纯metadata → DEVfront9fa8纯metadata → 原prior carrier hook及其依赖 → 本CPUfront → 新CPU numeric tail → 单CLI。只最后source_gate执行自己的CPU own_gate；定义当前N20_FINAL_CPU_SCHEMA=N20_DEV_CPU_SCHEMA，历史schema及失败1..26不改。不能调用父GPU/CPU source_gate或修改父spec。
+
+当前schema `ROOT-N20-repeat202-fixedDEV-local-center-feature-error-CPU-numeric-shard-spec-v1`。qualification_owner_index显式int>=187，必须等normal_RAW_count、expected_normal_RAW_count、cpu_shard_owner_index；不能145+cid推断。cid0..31、原32个完整图像范围及parent ids(每GPU8段)逐字不变。completed_GPU_shards四项exact10字段沿旧ABI，各实际owner>=183、严格递增且早于当前CPU；每原Source200187B/SHAa2aabdb78be8c91ffd93dcf902fc4f7941cfdb27bdc56a194ce448ef6156cf22，各物理路径原样保留。GPU_shard/whole manifest保持完整父对象，子范围只另生成scope_*。
+
+必须新增当前plan：N20_repeat202_CPU_execution_partition_lock strictref及expected_N20_repeat202_CPU_execution_partition_lock完整JSON。schema `ROOT-N20-repeat202-fixedDEV-CPU32-execution-partition-lock-v1`，status `PRELOCKED_BEFORE_REPEAT202_CPU_OR_AP`；字段initialization_seed202610150202、full_dataset_range[0,187]、CPU_dataset_ranges32、GPU_owner_indices四个显式int等描述记录；CPU_owner_indices32个显式严格递增int，当前owner等第cid项；normal_RAW_count_before_first_CPU等首项，total_failed_RAW_count26、budget_or_fusion_allowed=False、AP_evaluated=False。Root将在四GPU真实0后/首CPU及AP前生成冻结；本草稿不需要读取当前尚不存在的plan。旧CPU_execution_partition_supplement仅201历史，不能作为当前202调度证明。
+
+原新训练资格键 N20_repeat202_ROOT_training_qualification/expected完整JSON、首201许可、init179/probe180、缓存/teacher/PR/模型/8与24端点均严格沿用。CPU current26/pinsnormal+26；原独立pin字典normal+8，typed独立记录保持。normal GPU181+CPU182共同资格不改为201 recovery。
+
+新DEV父binding14字段：source/spec/GPU_admission/phase/N20_repeat202_ROOT_training_qualification/initialization_seed/N20_locked_protocol/legacy_qualified_result/new_eval_body_source/capture_body_source/coordinates_source/checkpoints/shard_id/dataset_ordinal_range。START/manifest/report原样核；normal training GPU=True、recovery=False、endpointCPU=True，但DEV自身qualified/ROOTactual0/CPU数值资格仍pending。10策略/187图/18700query及原class/S0/qids导出顺序保留；CPU两公式、FP64排名、strictsign、RLE和1e-4/rtol0由原独立core与tail执行，本front不改数学。
+
+gate沿旧CPUtail接口：completed_GPU_shards、parent_GPU/report/manifest/START/binding、expected_predictions/groups、scope_rows/capture_refs/image_ids/expected_predictions/groups、gpu_helpers、training.original_binding23/trained_checkpoints、legacy_rows/populations/prior shared+decoder refs、own/context/common/lineage/parent等。N16四逻辑与N17五物理carrier角色不混淆；prior hook使用闭合原GPU spec，避免把own新F9 decoder替代原commonPR decoder。全187统一COCO与两seed判定均属未来步骤；不得平均分片AP或以局部进度宣称创新/TGRS。
+
+STOP EDIT。

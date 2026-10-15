@@ -267,3 +267,8 @@ CPU179源码初始化实际0，新pure180实际0后Root核验；GPU180合成清�
 ## 第二种子固定DEV入口准备（未执行）
 
 入口准备时CPU182原97964运行；其后实际退出0并完成新纯183终态门，外部Root复核仍在进行。新DEV前门和尾部保存，metadata seed准入5测试/29场景通过，尚无第二种子AP或完整DEV数值资格。未来装配以原CPU实际0、新纯183实际0及外部Root端点资格为前提；原预算、端点与停止规则不变。[代码与范围](../../research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
+
+
+## 第二种子CPU32独立核验入口草稿
+
+首GPU183原63518继续运行。CPU前门/尾部保留32固定范围与原两公式；静态接口审阅通过，编号回归3测试/12场景、执行锁回归3测试/49场景通过。首次锁回归框架漏注入JSON已修正，未改方法。四GPU真实完成、当前执行锁与全部CPU数值资格仍待执行；没有第二种子AP。[源码及范围](../../research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
