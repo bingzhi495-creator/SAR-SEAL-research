@@ -1,0 +1,12 @@
+# N20 repeat202训练tail草稿：未执行、修复未验证
+
+输出源码：`N20_REPEAT202_TRAIN_GPU_RUN_TAIL_UNBOUND_DRAFT_20261016_01.py`。基于旧tail SHA256 `af590e05f27303a164a0168fbc0e182ee5d45b707cc3f28211a5cbc3ca1b05e6`，旧文件与冻结源码未修改。
+
+- 初始化常量为202610150202；body保持原数学，准入改为202属于REPEAT_SEEDS，并继续显式make_paired_state(...,seed=N20_TRAIN_SEED)。新锁与expected digest由front/Root提供，不复用首201 digest。
+- 缓存、顺序种子202610140160001、两臂五张量18851参数、24轮、E8/E24、每臂17784更新/72843264点曝光、原AdamW和训练/日志/端点ABI保持。REPORT的history/epoch_orders由释放前生成的独立JSON兼容CPU副本提供。
+- 清理依次记录原model/optimizer释放、完整state释放、cuBLAS workspace释放三个阶段，另记录释放前状态；所有记录仅为allocated/reserved字节。沿用旧N16的_cuda_clearCublasWorkspaces，并保留最终allocated==reserved==0门。没有声称该API是failure24唯一根因或修复已验证。
+- 清理阶段在最终0门之前另写一条owned stdout侧带JSON事件，失败时仍能保留实际数值；UPDATE_TRACE每更新的schema/数量及最终REPORT/status字段不变。
+- gate沿旧ABI：closure/source/spec_ref/admission_ref/admission/common/lineage/parent，parent_cache_report/_ref，neighbor_report/_ref，非空training_binding_refs。front可额外返回首201许可和新init元数据；新许可strictref应加入training_binding_refs。
+- spec仍须output_directory、phase、entry_source、GPU_admission_file、sources、动态normal/failed/pin计数、initialization_seed=202610150202、expected_N20_initialization_digest、四model source refs、N20_locked_protocol和locked_protocol，以及原资源上限。初始化source-map必须包含四model refs和N20_training_tail_source实际basename。
+
+本轮只执行标准库文本变换和ast.parse语法解析；未导入/执行新旧模块、Torch、测试、合成数值或训练，也未Git。Root仍需完成一次最小合成GPU清理探针、新202 source-only初始化实际0资格、front/tail冻结闭合、更新计数与首201仅一次复验许可，再决定准入。清理诊断stages是cleanup字段的新增子项，Root消费端应保留旧allocated_after/reserved_after读取并审阅新元数据。
