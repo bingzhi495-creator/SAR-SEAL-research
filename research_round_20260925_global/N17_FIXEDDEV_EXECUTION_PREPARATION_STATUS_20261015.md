@@ -1,6 +1,6 @@
 # N17 固定DEV：执行准备与边界
 
-2026-10-15。完整24轮配对训练及独立E8/E24端点资格完成，五GPU分区187图/18700query/10策略输出metadata已核。前三CPU03与新CPU04 scope3均原实际退出0，累计117图/11700query完整独立数值报告及读回通过；最新scope3 [94,117)监督1198.266秒，纯131正常+21失败前缀9375b6原退出0。正常131/失败21/152既有终态身份。七CPU执行补充保持，原三段复用，剩余scope4 [117,141)已由原监督40274单次启动，owner131/父GPU3，当前单科学leaf。随后还有scope5/6，final04统一187图COCO和post03资格尚未实际执行；没有新AP或创新成立结论。
+2026-10-15。完整24轮配对训练及独立E8/E24端点资格完成，五GPU分区187图/18700query/10策略输出metadata已核。前三CPU03与新CPU04 scope3/4均原实际退出0，累计141图/14100query完整独立数值报告及读回通过；最新scope4 [117,141)监督1068.891秒，纯132正常+21失败前缀d33b73原退出0。正常132/失败21/153既有终态身份。七CPU执行补充保持，scope5 [141,164)已由原监督15231单次启动，owner132/父GPU4，当前单科学leaf。之后还剩scope6 [164,187)，再执行final04统一187图COCO和post03资格；没有新完整AP或创新成立结论。
 
 [数值body](code/N17_ALL100_LOCAL_CENTER_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)已冻结、一次定向静态审阅READY、发布副本一项tiny SYN原退出0；普通body接口证据不代替实际DEV载体或GPU输出资格。[共享载体必要ABI](N17_FIXEDDEV_SHARED_CARRIER_GPU_REQUIRED_ABI_UNBOUND_20261015_01.md)记录旧物理bundle与shared成员、索引映射、四模型注入、callback与新writer差异，Root实际核了四段metadata完整关联，真实bundle张量校验仍留给下一original owned GPU任务。
 
@@ -177,3 +177,10 @@ Root已冻结新scope3 [94,117)并单次启动，原监督19917、normal owner13
 原监督19917实际退出0（held0/reaped/原birth消失，无error/abort/观察错误），监督1198.266秒，最低可用RAM29.26GB。Root先过131正常+21失败纯RAW前缀（9375b6原退出0），再核新CPU04报告、23个逐图完整100query×8profile证明、scope限定bundle/成员消费及10策略各2300条预测；与原完整父GPU3预测的对应slice严格一致，原qids/class/S0保持。新报告283662字节、SHA e13750dabbade4066df4f506031fcb1d801a27c3561aeb15092a0b4321418567。
 
 原三CPU03 94图不改不重跑，加本scope累计117图/11700query。元数据读回没有重算模型、数值或COCO；局部报告及Root摘要不自证完整AP资格。scope4 [117,141)新绑定的Source、纯前缀、父GPU3完整descriptor、CPU补充及Sources闭合均保持，原监督40274已启动，owner131。运行中的科学载荷/Source/资格链未为同步读取、复制或哈希。
+
+
+## 新CPU04第二scope完成，累计141图
+
+原监督40274实际退出0（held0/reaped/原birth消失，无error/abort/观察错误），监督1068.891秒，最低可用RAM25.54GB。Root先过132正常+21失败纯RAW前缀（d33b73原退出0），再核24个逐图100query×8profile证明、scope限定bundle/成员消费及10策略各2400条预测；与原完整父GPU3预测对应slice严格一致，原qids/class/S0保持。新报告284249字节、SHA82acad949a2c999f2b25d7b29801f057d8a01da46774d64661e58e386a289a10。
+
+加原三CPU03和已接受scope3，累计141图/14100query。metadata reader不重算模型、数值或COCO；局部报告与Root摘要仍qualifiedFalse/fullAPFalse。新scope5 [141,164)父GPU4完整原descriptor及Source04/两份执行补充/Sources闭合已绑定，原监督15231已启动，owner132。运行中科学载荷/Source/资格链未为同步读取、复制或哈希。全187统一AP未执行，不报告涨点。
