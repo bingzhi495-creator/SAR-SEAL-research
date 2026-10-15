@@ -4,7 +4,7 @@
 
 
 
-**当前进行（N20）：** 固定24轮的两臂E8/E24保存模型已通过独立CPU与Root核验：741图、每臂17,784次更新，完整同输入两公式与保存GPU端点CE在原1e-4绝对容差内。原GPU最后CUDA清理失败24及缺失REPORT永久保留，没有重训或改记GPU成功。当前141正常/24失败/165终态，DEV载体与评估代码接线中，**没有N20 AP或创新成功结论**。[核验结果与范围](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[实时状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
+**当前进行（N20）：** 固定24轮的两臂E8/E24保存模型已通过独立CPU与Root核验：741图、每臂17,784次更新，完整同输入两公式与保存GPU端点CE在原1e-4绝对容差内。原GPU最后CUDA清理失败24及缺失REPORT永久保留，没有重训或改记GPU成功。当前141正常/24失败/165终态，固定DEV首分片原任务已启动，尚待完成数值和全量评价，**没有N20 AP或创新成功结论**。[核验结果与范围](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[实时状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
 **已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
 
