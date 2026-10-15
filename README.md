@@ -4,7 +4,7 @@
 
 
 
-**当前进行（N20）：** 全741张FIT真实九邻域特征缓存已完成GPU实际退出0、独立CPU实际退出0及Root完整逐图证明核验；固定3035136样本/1786820中心，旧中心特征逐byte一致。LOCAL真实邻域与CENTER重复中心两组固定24轮训练的原任务已启动，当前正在来源与输入检查，尚无N20 AP。两臂同初始化、五张量18851参数、同样本/图序/预算；普通空间算子只检验信息价值，不直接认定创新。[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[锁定实验方案](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)、[训练入口源码](research_round_20260925_global/code/N20_PAIRED_TRAIN_GPU_ENTRY_UNBOUND_DRAFT_20261015_01.py)。
+**当前进行（N20）：** 全741张FIT真实九邻域特征缓存已完成GPU实际退出0、独立CPU实际退出0及Root完整逐图证明核验；固定3035136样本/1786820中心，旧中心特征逐byte一致。LOCAL真实邻域与CENTER重复中心两组固定24轮训练的原首试因缺少输出父目录actual1且未进入Torch/梯度；原失败22与原输出缺失保留。父目录补齐后第二次在旧检查器写死失败总数处actual1，原失败23也保留，两次均未Torch/梯度。当前计数已修正且全部RAW启动前检查实际通过；第三次原任务正在启动检查，模型/初始化/科学配方不变，尚无N20 AP。两臂同初始化、五张量18851参数、同样本/图序/预算；普通空间算子只检验信息价值，不直接认定创新。[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[锁定实验方案](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)、[训练入口源码](research_round_20260925_global/code/N20_PAIRED_TRAIN_GPU_ENTRY_UNBOUND_DRAFT_20261015_03.py)。
 
 **已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
 
