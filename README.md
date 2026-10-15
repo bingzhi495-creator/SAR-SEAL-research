@@ -4,7 +4,7 @@
 
 
 
-**当前进行（N20）：** 全741图真实九邻域缓存已通过GPU/独立CPU和Root核验。两臂保存了固定E8/E24快照、FIT端点和完整更新记录，但原GPU任务在最后CUDA释放检查处实际exit1，原REPORT缺失，失败24永久保留。已停止训练重试，独立CPU保存产物恢复任务已启动，检查两臂模型/五AdamW状态/私有图序/轨迹及两公式与原GPU端点均值。检查器合成测试实际0，真实恢复资格尚未完成，**没有N20 AP或创新成功结论**。[实时状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[原训练源](research_round_20260925_global/code/N20_PAIRED_TRAIN_GPU_ENTRY_UNBOUND_DRAFT_20261015_03.py)、[恢复核验入口普通副本](research_round_20260925_global/code/N20_SAVED_TRAINING_ARTIFACT_RECOVERY_CPU_ENTRY_UNBOUND_DRAFT_20261015_02.py)。
+**当前进行（N20）：** 固定24轮的两臂E8/E24保存模型已通过独立CPU与Root核验：741图、每臂17,784次更新，完整同输入两公式与保存GPU端点CE在原1e-4绝对容差内。原GPU最后CUDA清理失败24及缺失REPORT永久保留，没有重训或改记GPU成功。当前141正常/24失败/165终态，DEV载体与评估代码接线中，**没有N20 AP或创新成功结论**。[核验结果与范围](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[实时状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
 **已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
 
@@ -37,9 +37,9 @@
 
 ## 从这里开始
 
-- [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：GPU提取原任务实际0，全741图/3035136样本，中心逐byte一致，新增缓存约2.36GB；独立CPU核验原任务已启动。共同初态已新锁，两组24轮训练尚未开始，无新AP/创新结论。[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
+- [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：全741图缓存资格完成，固定24轮E8/E24保存模型已独立CPU/Root核验；原GPU清理失败保留，完整DEV AP尚未执行。[恢复核验](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
-- [N20真实F邻域结构原型与下一训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数零初始化空间适配器；2项CPU合成行为检查通过。训练/DEV同16通道两级renderer已静态核对，真实邻域缓存和配对训练尚未开始；普通DW结构仅为信息基线，不称新创新。
+- [N20真实F邻域结构原型与训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数零初始化空间适配器；设计文档保留提出时状态，最新固定24轮保存模型已核验。普通DW结构仅为信息基线，不称新创新，实际AP仍待完整DEV。
 
 - [路口五类检测数据集核查（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/DATASET_SHORTLIST.md)：Intersection-Flow-5K、MIO-TCD、BDD100K与电动自行车专项候选；明确类别/视角/许可/获取状态及部分标注问题。
 
