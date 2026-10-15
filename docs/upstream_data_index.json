@@ -287,7 +287,7 @@
         "file_name_inventory": {
           "JPG": 5604,
           "casefold_duplicate_names": 0,
-          "archive_or_image_bytes_read": false
+          "archive_or_image_bytes_read": true
         },
         "train": {
           "images": 3642,
@@ -314,7 +314,37 @@
         "historical_test_exposure": "used in prior semantic/threshold/transfer analyses; not restored blind",
         "current_N20_data_changed": false,
         "full_annotation_payloads_included": false,
-        "review_document": "../research_round_20260925_global/HRSID_LOCAL_JPG_METADATA_AND_VERSION_BOUNDARY_20261015.md"
+        "review_document": "../research_round_20260925_global/HRSID_LOCAL_JPG_METADATA_AND_VERSION_BOUNDARY_20261015.md",
+        "followup_20261015": {
+          "annotation_semantics_vs_official_PNG": {
+            "train_all_fields_and_IDs_equal_by_stem": true,
+            "test_all_fields_and_IDs_equal_by_stem": true,
+            "raw_annotation_bytes_equal": false,
+            "numeric_tolerance": 0,
+            "source_modified": false
+          },
+          "encoded_intake": {
+            "files": 5604,
+            "encoded_bytes": 611018124,
+            "all_headers": "JPEG 800x800, 3 components, 8bit",
+            "header_or_terminal_marker_rejections": 0,
+            "full_encoded_hash_complete": true,
+            "pixels_or_masks_decoded": false,
+            "JPEG_verify_limitation": "only closes file; entropy and pixel decodability not established",
+            "excluded_child_junction_not_followed": "cast_images"
+          },
+          "encoded_duplicate_groups": {
+            "cross_train_test": 2,
+            "within_test": 1,
+            "within_train": 0,
+            "all_three_annotation_field_multisets_equal": false,
+            "official_PNG_image_duplicates_not_measured": true
+          },
+          "original_split_modified": false,
+          "recommended_supplement": "prelocked deduplication sensitivity; report original protocol separately",
+          "current_N20_impact_known": false,
+          "dataset_qualified": false
+        }
       }
     }
   ],

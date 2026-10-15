@@ -96,3 +96,8 @@ Git候选与PNG TRAIN共同文件名3572，候选独有1、PNG TRAIN独有70，�
 已定位5604个JPG文件名，与train3642图/11047实例、test1962图/5922实例的原COCO polygon逐字完整对应；Root另核两JSON SHA与名称集合。原合并标注5604图/16951实例不等两split合计16969，按文件名和几何字段忽略重编号ID有22项仅split/4项仅merged，不能互换或静默纠正。详见[本地数据评议](../research_round_20260925_global/HRSID_LOCAL_JPG_METADATA_AND_VERSION_BOUNDARY_20261015.md)。
 
 本次没有读取影像/归档字节或解码mask，实际尺寸/完整性/空间对齐、官方JPG归档身份、许可/母景及历史测试使用仍须核验。可以另锁JPG跨集协议，但不能冒充此前PNG身份或恢复盲TEST；当前N20数据不变。旧语义模型与跨集测试使用历史见[资产总评](../research_round_20260925_global/UNETPP_HISTORICAL_ASSETS_SYNTHESIS_AND_REUSE_PLAN_20261015.md)。只发布自写说明，不发布原图、标注或权重。
+
+
+## 本地JPG的后续证据更新（2026-10-15）
+
+本地train/test与官方PNG split的全部实例标注字段按stem/ID精确一致；5604文件编码/头部检查已实际完成，均800×800三分量JPEG，但未解码像素或mask。完整编码SHA发现两组train/test重复和一组test内部重复，各组标注多重集不同。原数据及划分不改；另行预锁去重敏感性补充。不能据此认证JPG官方归档身份、像素/mask对齐、母景独立或N20影响。[可核对的补充记录](../research_round_20260925_global/HRSID_LOCAL_JPG_METADATA_AND_VERSION_BOUNDARY_20261015.md)。
