@@ -4,7 +4,7 @@
 
 
 
-**当前进行（N20）：** 全741张FIT真实九邻域特征缓存已完成GPU实际退出0、独立CPU实际退出0及Root完整逐图证明核验；固定3035136样本/1786820中心，旧中心特征逐byte一致。LOCAL真实邻域与CENTER重复中心两组固定24轮训练的原首试因缺少输出父目录actual1且未进入Torch/梯度；原失败22与原输出缺失保留。父目录补齐后第二次在旧检查器写死失败总数处actual1，原失败23也保留，两次均未Torch/梯度。当前计数已修正且全部RAW启动前检查实际通过；第三次原任务已通过启动检查，监控观察到START与持续写入的参数更新记录，正在两组实际训练；模型/初始化/科学配方不变。原任务尚未终态，尚无N20 AP。两臂同初始化、五张量18851参数、同样本/图序/预算；普通空间算子只检验信息价值，不直接认定创新。[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[锁定实验方案](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)、[训练入口源码](research_round_20260925_global/code/N20_PAIRED_TRAIN_GPU_ENTRY_UNBOUND_DRAFT_20261015_03.py)。
+**当前进行（N20）：** 全741图真实九邻域缓存已通过GPU/独立CPU和Root核验。两臂保存了固定E8/E24快照、FIT端点和完整更新记录，但原GPU任务在最后CUDA释放检查处实际exit1，原REPORT缺失，失败24永久保留。已停止训练重试，独立CPU保存产物恢复任务已启动，检查两臂模型/五AdamW状态/私有图序/轨迹及两公式与原GPU端点均值。检查器合成测试实际0，真实恢复资格尚未完成，**没有N20 AP或创新成功结论**。[实时状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)、[原训练源](research_round_20260925_global/code/N20_PAIRED_TRAIN_GPU_ENTRY_UNBOUND_DRAFT_20261015_03.py)、[恢复核验入口普通副本](research_round_20260925_global/code/N20_SAVED_TRAINING_ARTIFACT_RECOVERY_CPU_ENTRY_UNBOUND_DRAFT_20261015_02.py)。
 
 **已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
 
@@ -221,3 +221,10 @@ N13核验失败后，已在新的数值执行前保存[固定单图诊断登记]
 [保留第21次失败的统一COCO03](research_round_20260925_global/code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_03.py) · [独立后置ROOT02](research_round_20260925_global/code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_DRAFT_20261015_02.py)：均已冻结/接口检查通过，待五段独立CPU实际证据和原终态后执行，不是新AP。
 
 [独立CPU重复计算的静态观察](research_round_20260925_global/N17_CPU_REDUNDANT_COMPUTATION_STATIC_OBSERVATION_20261015.md)：两个只读缓存候选，未测耗时、未实现，不改变当前核验。
+
+
+N20后续未执行源码：[独立CPU端点核验入口](research_round_20260925_global/code/N20_PAIRED_TRAIN_CPU_ENTRY_UNBOUND_DRAFT_20261015_01.py)、[真实邻域全候选评分](research_round_20260925_global/code/N20_ALL100_LOCAL_CENTER_FEATURE_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)、[分段DEV入口前门](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_GPU_FRONT_UNBOUND_DRAFT_20261015_01.py)。CPU入口只通过语法检查；评分body通过语法和一次独立静态核对，尚未数值执行；DEV前门尚需接真实legacy/prior carrier hook，不可直接启动。已有common-C精修仅作固定参考，新选中点仍fresh计算并保留原数值/符号门，不把缓存读取当部署计时。
+
+原正常GPU0路径下的CPU141/23和DEV142前门保留为未执行历史草稿；收尾失败24后当前改用CPU恢复140/24/164，原GPUactual0保持False。后续DEV需消费新恢复资格，不能直接套用旧前门或补写缺失GPU报告。
+
+已另存[消费恢复资格的DEV前门v02](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_GPU_FRONT_UNBOUND_DRAFT_20261015_02.py)：GPU失败只保留为失败记录，四个模型从原快照取，后续首DEV141/24；仍需真实legacy/priorcarrier hooks和CPU恢复实际资格，未绑定、未执行。
