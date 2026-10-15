@@ -35,6 +35,8 @@
 
 ## 从这里开始
 
+- [N20真实F邻域结构原型与下一训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数零初始化空间适配器；2项CPU合成行为检查通过。训练/DEV同16通道两级renderer已静态核对，真实邻域缓存和配对训练尚未开始；普通DW结构仅为信息基线，不称新创新。
+
 - [路口五类检测数据集核查（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/DATASET_SHORTLIST.md)：Intersection-Flow-5K、MIO-TCD、BDD100K与电动自行车专项候选；明确类别/视角/许可/获取状态及部分标注问题。
 
 - [Xavier NX 路口预训练检测选型与公开实测（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/REPORT.md)：三模型各完整719帧；权重来源、可复跑工具、误报失败例与NX待验收条件。尚未满足电动自行车独立识别/五类高准确率/NX30FPS。
