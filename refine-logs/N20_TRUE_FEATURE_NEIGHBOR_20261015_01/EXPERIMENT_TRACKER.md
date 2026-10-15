@@ -1,6 +1,6 @@
 # N20 执行状态（2026-10-15）
 
-**最新：前两DEV原任务均实际exit0；每段先执行新纯终态前缀actual0，再由Root核验完整13绑定/来源、47图/4700自然query、47份物理捕获与十策略各4700条预测。累计94图/9400query的GPU输出完整性已核，独立CPU数值及全187统一COCO/AP未完成。第二段1721.031秒、4,243,201,508B捕获、cleanup零占用；仍在原1800秒与原资源范围内。第三GPU[94,141)已启动，当前143正常/25失败/168终态，失败25及全部旧失败保留。下文历史状态以本段与文末为准。**
+**最新：前三DEV原任务均实际exit0；每段先执行新纯终态前缀actual0，再由Root核验完整13绑定/来源、47图/4700自然query、47份物理捕获与十策略各4700条预测。累计141图/14100query的GPU输出完整性已核，独立CPU数值及全187统一COCO/AP未完成。第三段1651.609秒、3,825,291,460B捕获、cleanup零占用，仍在原1800秒与原资源范围内。第四GPU[141,187)已启动，当前144正常/25失败/169终态，所有旧失败及STOP保留。下文历史状态以本段与文末为准。**
 
 - 全741图真实F邻域缓存已通过GPU/独立CPU/Root资格：旧样本3,035,136、unique中心1,786,820、额外位置2,159,732，新增序列化缓存2,360,944,527B。旧中心逐byte一致；CPU未独立重渲染额外F。
 - 预锁初始化digest a13802fc0bf4f23a8ab368b11b15a24b60552baadf1ab8264daf242173854a68；LOCAL真实九邻域与CENTER重复中心，两臂5张量/18,851参数、相同四层MLP初态/采样/图序/AdamW/固定24轮。
@@ -34,3 +34,5 @@
 - **第二GPU完整实际0与第三GPU启动**：原supervisor85580 actual0（1721.031秒），新pure143+failed25先actual0（0.430秒），随后读取并核原RAW/ad/spec/entry/phase/bootstrap及REPORT/START/MANIFEST13绑定，47份物理捕获共4,243,201,508B逐SHA相同，十策略各4700完整预测及原image/query/class/S0顺序、canonical profiles、零cleanup/预算/范围/无partial复用。保留原pending-CPU状态，不升级为数值qualified。第三段原supervisor97208已启动、[94,141)、同冻结entry与E8/E24；启动前pure RAW-only检查0.289秒actual0，无Torch/首次SHA前停止。当前唯一科学任务为第三段，不新增训练或融合。
 
 - **与失败25直接相关的CPU字节路径定向核对**：仅检查普通未绑定decoder421f、numeric BODY dbf与CPU tail c7ee三份源码，未发现相同可达的Long→Byte视图路径。decoder的registry为finite/numel描述；BODY仅FP32→INT32同宽比较、非scalar输入及n>0点块，K0跳过；tail的FP32模型状态比较调用完成父GPU_outer_source的n20_same_bits，后续须绑定已成功修复源5b09，不能绑定失败副本360f。动态ref旧helper未展开，未导入/测试/修改科学代码；这只是一次有限静态风险核对，不是实际CPU资格。无具体问题故停止额外检查，继续等待原第三GPU97208。
+
+- **第三GPU完整实际0与第四GPU启动**：原supervisor97208 actual0（1651.609秒），新pure144+failed25先actual0（0.677秒），随后读取并核原RAW/ad/spec/entry/phase/bootstrap及REPORT/START/MANIFEST13绑定；47份物理捕获共3,825,291,460B逐SHA相同，十策略各4700完整预测及原image/query/class/S0顺序、canonical profiles、零cleanup/预算/范围/无partial复用。原报告保留pending-CPU状态。第四段原supervisor21000已启动、[141,187)、46图/4600query，同冻结entry与E8/E24；启动前pure RAW-only检查0.319秒actual0，无Torch/首次SHA前停止。当前唯一科学任务为第四段，不新增训练或融合。全部四GPU完成后仍按预锁八CPU范围逐点核验，再统一全187官方COCO；没有分片AP或提前选型。
