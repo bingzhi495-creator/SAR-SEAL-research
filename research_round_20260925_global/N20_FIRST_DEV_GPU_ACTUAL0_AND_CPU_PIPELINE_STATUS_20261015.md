@@ -1,6 +1,6 @@
 # N20：全部DEV GPU分片完成及CPU数值核验状态
 
-更新：2026-10-15。证据等级为单初始化、内部DEV、全部四GPU分片实际完成和来源/文件核验；没有N20 AP结果、正式TEST、跨数据集或发表就绪结论。
+更新：2026-10-15。当前全部四GPU分片完成；独立CPU已完成1/32份（6图/600自然query），第二份[6,12)运行中。正常146/保留失败26/172终态。证据限于单初始化、内部DEV及已完成数值子范围，没有N20全量AP、正式TEST、跨数据集或发表就绪结论。
 
 ## 已实际完成
 
@@ -58,4 +58,16 @@
 
 [CPU完整entry03](code/N20_FIXEDDEV_FEATURE_ERROR_CPU_ENTRY_UNBOUND_DRAFT_20261015_03.py)、[CPU合同02](code/N20_FIXEDDEV_FEATURE_ERROR_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)、[统一COCO entry02](code/N20_FIXEDDEV_FULL187_COCO_CPU_ENTRY_UNBOUND_DRAFT_20261015_02.py)与[post entry02](code/N20_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_ENTRY_UNBOUND_DRAFT_20261015_02.py)已保存。合成元数据检查覆盖32份完整人口、旧范围/错误parent/失败partial拒绝；完整入口header的AST提取式检查通过。源码比较确认每图all100数值循环、PR双公式、检查、编码及序列化AST与旧版一致，历史GPU25保持原样。它们只说明装配与合同符合预期，不替代真实GPU/CPU数值或AP资格。
 
-启动前新纯RAW-only检查actual0（0.292秒），无Torch且在首次Source哈希前停止。唯一新原CPU任务为[0,6)，CUDA空、CPU0/1与两线程、1800秒上限、RSS16GiB及最小可用RAM16GiB，无自动重试。当前仍正常145/失败26/171终态，0/32合格；运行中的任务不计完成。模型和原四GPU捕获未重算，主端点和全187官方COCO仍按原锁定规则。
+启动前新纯RAW-only检查actual0（0.292秒），无Torch且在首次Source哈希前停止。唯一新原CPU任务为[0,6)，CUDA空、CPU0/1与两线程、1800秒上限、RSS16GiB及最小可用RAM16GiB，无自动重试。该首份启动时为正常145/失败26/171终态，0/32合格；当前进度见下方更新，运行中的任务不计完成。模型和原四GPU捕获未重算，主端点和全187官方COCO仍按原锁定规则。
+
+## 首份独立CPU核验通过，第二份已启动
+
+[0,6)原任务实际退出0，1088.890秒，原句柄已回收、出生身份消失，无资源abort或等待错误。Root先执行新纯终态前缀146正常+26失败，实际0（0.407秒，无Torch），再读取报告、来源和结果。原RAW绑定stdout中的报告ref与物理REPORT完全一致，原entry/spec/admission/phase/bootstrap与来源绑定均核对。原REPORT仍保持pending/qualified=False，不修改为自授资格。
+
+6份逐图proof覆盖600个自然query、4800个策略记录及19225个注册成员。Root读取各strictref并逐项核自然query顺序、K/C、四head双CPU公式统计、2048分块、绝对1e-4/rtol0、严格符号、FP64评分与索引/mask/RLE门以及全部成员覆盖；两CPU公式分别对实际GPU的最大差异均为4.57763671875e-5。十策略各600条完整预测与原GPU父域切片逐值相等，包括image/query导出顺序、类别、S0与RLE；没有重排自然query来掩盖预测顺序差异。
+
+这些统计由实际退出0的冻结数值Source计算，Root结合来源、原终态、实际日志、完整proof及预测作本子范围核验；只看True旗标不能重新证明张量运算。注册成员覆盖是去重集合一致，不代表每个成员只被访问一次。核验耗时含来源验证与重复公式，不是独立推理FPS。
+
+[纯metadata读取检查器](code/N20_ROOT_CPU_PROOF_METADATA_VALIDATOR_SOURCE_ONLY_20261015_01.mjs)及[手工反例](code/test_N20_ROOT_CPU_PROOF_METADATA_VALIDATOR_SYNTHETIC_ONLY_20261015_01.mjs)已保存：100 query/800 profiles，覆盖K0、2048分块边界和11项篡改拒绝；两公式各对GPU≤1e-4时，彼此差异统计允许2e-4，不错误收紧科学门。手工检查不替代真实数据验证。
+
+第二份[6,12)沿用同一冻结完整CPU Source与模型/容差/规则；新RAW-only启动前检查实际0（0.295秒，无Torch/首次SHA前停止），唯一原任务已启动，无自动重试。当前完成1/32份，即6/187图、600/18700自然query；正常146、失败26、合计172。只有全部32份原CPU实际0并核验后才统一全187官方COCO，当前没有新AP、涨点、SOTA或TGRS结论。

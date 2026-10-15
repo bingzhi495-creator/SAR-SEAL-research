@@ -43,3 +43,6 @@
 - **重新锁定执行资源分片**：[执行计划03](CPU_EXECUTION_PARTITION_PLANNED_20261015_03.json)将每个原GPU父域切成8份、最多6整图，共32份完整覆盖187图。只减小执行范围，原模型/捕获/双公式/容差/评分/主端点不变；历史八份计划、失败25/训练失败24保持原样。新typed26、CPU和final/post合同适配进行中，未绑定/执行，不自动重试、不复用失败partial。
 
 - **32范围接口接线与首份实际启动**：当前26链entry03（168252B，SHA045e5857166193e14403df8948e0a661cad9373c557bccf84b6f99ebc7d9a150）已冻结并绑定首份[0,6)。32scope metadata合成RED→GREEN、typed26合成、完整entry AST/header提取式检查和数值循环AST不变检查均通过，仅是接线证据；四GPU报告仍历史25，失败26独立保留。pre-HASH RAW-only actual0（0.292秒，无Torch），唯一原supervisor40922已启动，CUDA空/CPU01两线程/1800秒/RSS16GiB/无自动重试。当前145正常/26失败/171终态，0/32CPU合格，不提前计完成或计算AP。final/post entry02及32范围合同已保存，尚未绑定/执行。普通源稿和检查器同步，当前绑定Source/运行载荷不为发布而读取。
+
+- **首32范围CPU实际0并通过Root核验**：[0,6)原supervisor40922 held exit0（1088.890秒），新pure146+failed26先actual0（0.407秒，无Torch）再读原结果。RAW-bound stdout REPORT ref、Source/spec/admission/phase/bootstrap及完整23项绑定核对；6份proof、600自然query、4800 profiles、19225注册members全覆盖；两CPU公式对GPU最大4.57763671875e-5，原1e-4/rtol0与strict sign门不变。十策略各600条预测与原父切片全字段相等，原REPORT仍pending/False。纯metadata读取器手工100query/800profiles及11项拒绝RED→GREEN通过，仅辅助Root读取、不执行新数值forward。
+- **第二份[6,12)实际启动**：同冻结entry03/原E8-E24，own146/current26/172终态，RAW-only prehash actual0（0.295秒、无Torch）；唯一原supervisor69024运行中。当前1/32完成，失败26与partial不复用，不平均分片AP；全187 AP仍未执行。运行Source/科学载荷未为本次同步读取/复制/哈希，只使用已核验内存事实及普通独立源码。
