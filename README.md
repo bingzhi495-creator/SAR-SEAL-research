@@ -6,7 +6,7 @@
 
 **自主设计与作者基线归属补充：** 团队自定义UNet++按完整结构评估；历史D目录的单个FPN文件与DiffSARShipInst作者固定版本统一换行后完全一致，SCJE-FPN及其中采用的CARAFE/ACmix须按作者基线引用。两份本地R535配置声明启用SCJE，不能仅改builder构造普通FPN对照；这不认证当前E/N20调用。[归属、实际路由与对照要求](research_round_20260925_global/UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
 
-**当前进行（N20）：** 第二种子202610150202的固定24轮训练、端点核验和四段DEV元数据接收历史保持。CPU32第26批[147,153)原任务212实际退出0，Root来源及保存数值证明摘要的独立元数据接收已通过；目前26/32批、153/187图、15300/18700自然query完成，十组对照保留。第27批[153,159)原任务213、supervisor34298已启动，活动产物不读取。当前213个正常原任务终态、26个保留科学失败、合计239；活动任务不计完成。全187图数值资格与统一COCO仍待完成，尚无第二种子AP。首201主差值仍+0.197741 AP点；重复效用、正式TEST、跨集、机制与创新结论待证。 [结果范围与当前状态](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
+**当前进行（N20）：** 第二种子202610150202的固定24轮训练、端点核验和四段DEV元数据接收历史保持。CPU32第27批[153,159)原任务213实际退出0，Root来源及保存数值证明摘要的独立元数据接收已通过；目前27/32批、159/187图、15900/18700自然query完成，十组对照保留。第28批[159,165)原任务214、supervisor5997已启动，活动产物不读取。当前214个正常原任务终态、26个保留科学失败、合计240；活动任务不计完成。全187图数值资格与统一COCO仍待完成，尚无第二种子AP。首201主差值仍+0.197741 AP点；重复效用、正式TEST、跨集、机制与创新结论待证。 [结果范围与当前状态](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
 
 **复核开销测量：** 第二批外部接收实际完成分段计时，共297.468秒，其中原来源及保存证明核验293.453秒；不能进一步归因于某一具体检查，也不作为模型FPS或加速收益。当前32范围、科学入口与核验规则保持。[实测分项与后续工程候选](research_round_20260925_global/N20_CPU_REVIEW_COST_AND_FUTURE_PROTOCOL_20261016.md)。
 
@@ -248,7 +248,7 @@ N13核验失败后，已在新的数值执行前保存[固定单图诊断登记]
 
 [正式TEST与跨集证据准备度](research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)：定位既有测试暴露与HRSID旧TEST选型历史，区分固定配方外部评价与独立确认性证据；实际包、真mask、ID/场景与许可覆盖仍须执行前闭合。本次仅普通历史/元数据审阅，未新增科学验证。
 
-[补充跨集候选：Instance-RSDD（尚未入场）](research_round_20260925_global/INSTANCE_RSDD_PUBLIC_DATA_CANDIDATE_AND_MASK_SCOPE_20261016.md)：已核对论文的人工逐实例像素标注说明与作者获取入口；包内编码、实际划分、历史使用、独立性与许可仍待核验。另区分旋转框掩膜与船体轮廓真值；未新增跨集AP，不改变N20。
+[补充跨集候选：Instance-RSDD（尚未入场）](research_round_20260925_global/INSTANCE_RSDD_PUBLIC_DATA_CANDIDATE_AND_MASK_SCOPE_20261016.md)：已核对论文的人工逐实例像素标注说明与作者入口，并实际看到 `annotation_coco` 目录及标称1KB的 `readme.txt`；目录名不认证COCO格式，包内编码、实际划分、历史使用、独立性与许可仍待核验。未新增跨集AP，不改变N20。
 
 [历史TEST用途台账补充（2026-10-16）](research_round_20260925_global/HISTORICAL_TEST_USE_LEDGER_TEXT_EVIDENCE_20261016.md)：从已发布实验稿定位HRSID融合设置/BPR种子与PSeg-SSDD对比checkpoint的测试选型披露，补齐具体已知用途；原始运行、权重与时间链未重新核验，不推及当前N20，不恢复盲测身份。
 
