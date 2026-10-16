@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-17",
+  "auditor": "gpt-5.6-sol available cross-model alternative; not GPT-5.4 or Codex MCP",
+  "scope": "current N20 full187 assembled evaluation, two-seed prelocked interpreter and necessary one-hop GT/COCO paths; not a whole-project audit",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "claim_supported": "partial",
+  "provisional": true,
+  "second_seed_post_ROOT_accepted": false,
+  "confidence_main_rule": "high",
+  "confidence_end_to_end_scientific_claim": "medium",
+  "checks": {
+    "gt_provenance": {
+      "status": "pass",
+      "details": "Within the checked evaluation path GT loads fixed DEV annotations, not model outputs; upstream annotation creation not re-audited."
+    },
+    "score_normalization": {
+      "status": "pass",
+      "details": "Raw COCO stats0to1; multiply100 only; max(CENTER,R) is comparison baseline."
+    },
+    "result_existence": {
+      "status": "warn",
+      "details": "Q and DETAILS agree; 10 prediction files exist and each has18700 records; post acceptance pending."
+    },
+    "dead_code": {
+      "status": "pass",
+      "details": "Effective final run calls real COCOeval(segm) evaluate/accumulate/summarize for each fixed policy."
+    },
+    "scope": {
+      "status": "warn",
+      "details": "Reused internal DEV187, two downstream initializations on shared frozen carrier, different recovered/normal execution provenance; formal TEST/cross-data absent. Historical draft ledger confirms limited best-on-test/inshore selection disclosures; this does not identify current N20 selection."
+    },
+    "eval_type": "real_gt/internal_reused_DEV/official_COCO_mask_AP"
+  },
+  "prelocked_action": "STOP_CURRENT_RECIPE; no seed203, budget extension or fusion rescue",
+  "historical_TEST_ledger_independently_reviewed_in_initial_audit": false,
+  "novelty_established": false,
+  "TGRS_ready": false,
+  "goal_complete": false,
+  "historical_TEST_ledger_addendum_reviewed": true,
+  "historical_TEST_ledger_evidence_scope": "Direct disclosures in historical drafts; original processes/weight identity/time chain not re-audited; does not establish N20 TEST-based selection"
+}
