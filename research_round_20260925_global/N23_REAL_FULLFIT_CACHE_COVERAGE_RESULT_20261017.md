@@ -39,3 +39,7 @@ active归一化可改变尺度，不能补回42个零Omega实例的监督。不�
 本核查没有重新解码真实mask或重做原匹配，目标及C成员资格沿用已独立接收的N16缓存。只统计已有采样覆盖，不外推完整像素域。背景重复/权重并未由主适配器保留，不能将matched统计冒称全采样统计。N22两类机会差排序冲突不变，N20停止规则不变；无seed203、追加预算或融合挽救。
 
 [聚合JSON](results/N23_FULLFIT_CACHE_COVERAGE_AGGREGATE_20261017.json)、[执行前方案](../refine-logs/N23_FULLFIT_CACHE_COVERAGE_20261017_01/EXPERIMENT_PLAN.md)、[实际入口与覆盖源码](code/N23_FULLFIT_CACHE_COVERAGE_SOURCE_ONLY_20261017_01/README.md)。科研总目标仍未完成。
+
+## 覆盖结果后的后续进展
+
+两份清单已核741图1661个GT→query全部一致、无重复query、同teacher；这不替代真实Tensor联核。已在结果前固定原1024点loss锚定、lambda0.25的三臂新增24轮配方，首个E01–08任务已启动并复查原进程仍运行。输入联核及GPU梯度门包含在该任务内，阶段结果待实际终态接收；目前无新AP。[独立训练方案](../refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)。

@@ -1,5 +1,7 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
+**当前运行（N23）：** 三臂锚定训练的首个E01–08阶段已启动，原进程复查仍运行；总预算固定新增24轮，阶段间恢复完整优化器和私有RNG。真实缓存联核与GPU梯度检查包含在该进程内，尚无经接收的训练阶段结果或新AP。整卡占用一次观测约1937MiB，仅作资源观测，不作为本进程VRAM证书。[固定方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)、[训练源码](research_round_20260925_global/code/N23_ANCHORED_DOMAIN_TRAIN_SOURCE_ONLY_20261017_01/README.md)。
+
 **下一组训练（执行前预锁）：** 原Omega监督锚定+C经验池三臂源码已形成，15项合成测试通过；保留原1024点损失系数1，共用C池，lambda0.25，同强E24初值、固定新增24轮。清单1661个GT→q全一致；真实Tensor联核、GPU梯度检查与优化更新尚未执行。主AP仅E24，统一Omega/K/原score并重跑冻结强R。[固定训练方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)、[源码与测试](research_round_20260925_global/code/N23_ANCHORED_DOMAIN_TRAIN_SOURCE_ONLY_20261017_01/README.md)。
 
 **最新实际结果（N23）：** 全741图、1661GT和3035136原采样覆盖核查已真实0并经Root接收；1650非空GT中42个Omega零点，matched的Omega仅24955/1517568=1.644407%，唯一Omega点中位数7；另11个K0无采样。按预锁先修所有臂共同采样，不能直接拿当前池做主公平训练。实际28.969秒，无新训练/AP；全局225正常+28失败=253，legacy pins233。[完整结果](research_round_20260925_global/N23_REAL_FULLFIT_CACHE_COVERAGE_RESULT_20261017.md)、[聚合数据](research_round_20260925_global/results/N23_FULLFIT_CACHE_COVERAGE_AGGREGATE_20261017.json)。
