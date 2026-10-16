@@ -4,7 +4,7 @@
 
 **诊断代码准备：** 已补全强R选区与全C未门控PR动作的静态接口，提供[精确计数内核及合成测试](research_round_20260925_global/code/N22_INSTANCE_ACTION_ORACLE_SOURCE_ONLY_20261017_01/README.md)，8项测试实际通过。已形成[结果前锁定方案](refine-logs/N22_FIT_INSTANCE_OPPORTUNITY_20261017_01/EXPERIMENT_PLAN.md)，沿用独立选出的FIT32图、全部100自然query；预登记时真实采集尚未启动，没有新训练或AP；UNet++门控说明已按实际单次Sigmoid更正。
 
-**下一步的数据缺口：** 已核缓存声明包含完整原生L底座，但没有全C实际PR动作和当前router选点，4096个采样动作不能外推。先补齐FIT实例级诊断输入，再决定改路由还是修正器；不重命名已试过的Utility或实际flip对照。[数据可用性与采集缺口](research_round_20260925_global/FIT_INSTANCE_OPPORTUNITY_DATA_AVAILABILITY_20261017.md)。
+**下一项训练准备（N23，尚未启动）：** 同点训练域适配器已形成，4项合成测试通过；保持真实匹配GT、原点顺序与重复、F/L及重要性权重，仅生成Omega/C两种门控。真实缓存接入和训练尚未执行；需先核对GT与Omega覆盖并锁定损失归一化，避免弱化对照。N22已补齐其预锁FIT32范围内的全C动作，不能外推到全训练集。[适配器、测试与未决条件](research_round_20260925_global/code/N23_SHARED_POINT_DOMAIN_ADAPTER_DRAFT_20261017_01/README.md)、[数据来源与历史缺口](research_round_20260925_global/FIT_INSTANCE_OPPORTUNITY_DATA_AVAILABILITY_20261017.md)。
 
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-17**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
