@@ -6,7 +6,7 @@
 
 **自主设计与作者基线归属补充：** 团队自定义UNet++按完整结构评估；历史D目录的单个FPN文件与DiffSARShipInst作者固定版本统一换行后完全一致，SCJE-FPN及其中采用的CARAFE/ACmix须按作者基线引用。两份本地R535配置声明启用SCJE，不能仅改builder构造普通FPN对照；这不认证当前E/N20调用。[归属、实际路由与对照要求](research_round_20260925_global/UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
 
-**当前进行（N20）：** 第二种子202610150202的固定24轮训练、端点核验和四段DEV元数据接收历史保持。CPU32第7批[36,42)原任务193实际退出0，Root来源及保存数值证明摘要的独立元数据接收已通过；目前7/32批、42/187图、4200/18700自然query完成，十组对照保留。第8批[42,47)原任务194、supervisor56946已启动，活动产物不读取。当前194个正常原任务终态、26个保留科学失败、合计220；活动任务不计完成。全187图数值资格与统一COCO仍待完成，尚无第二种子AP。首201主差值仍+0.197741 AP点；重复效用、正式TEST、跨集、机制与创新结论待证。 [结果范围与当前状态](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
+**当前进行（N20）：** 第二种子202610150202的固定24轮训练、端点核验和四段DEV元数据接收历史保持。CPU32第8批[42,47)原任务194实际退出0，Root来源及保存数值证明摘要的独立元数据接收已通过；目前8/32批、47/187图、4700/18700自然query完成，十组对照保留。第9批[47,53)原任务195、supervisor71600已启动，活动产物不读取。当前195个正常原任务终态、26个保留科学失败、合计221；活动任务不计完成。全187图数值资格与统一COCO仍待完成，尚无第二种子AP。首201主差值仍+0.197741 AP点；重复效用、正式TEST、跨集、机制与创新结论待证。 [结果范围与当前状态](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
 
 **复核开销测量：** 第二批外部接收实际完成分段计时，共297.468秒，其中原来源及保存证明核验293.453秒；不能进一步归因于某一具体检查，也不作为模型FPS或加速收益。当前32范围、科学入口与核验规则保持。[实测分项与后续工程候选](research_round_20260925_global/N20_CPU_REVIEW_COST_AND_FUTURE_PROTOCOL_20261016.md)。
 
@@ -71,7 +71,7 @@
 
 - [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：全741图缓存资格完成，固定24轮E8/E24保存模型已独立CPU/Root核验；原GPU清理失败保留，完整DEV AP尚未执行。[恢复核验](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)、[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
 
-- [N20当前32份核验合同](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)与[全187统一评价合同](research_round_20260925_global/code/N20_FIXEDDEV_FULL187_COCO_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)：前七份独立CPU已实际0并通过Root核验，第八份已启动；final/post完整entry02未执行；旧八份合同保留为历史。主端点与继续规则不变，合成检查不是实际AP或发表依据。
+- [N20当前32份核验合同](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)与[全187统一评价合同](research_round_20260925_global/code/N20_FIXEDDEV_FULL187_COCO_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)：规定分批核验、全量统一评价及独立复核流程；实际进展见[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。旧八份合同保留为历史。主端点与继续规则不变，合成检查不是实际AP或发表依据。
 
 - [N20真实F邻域结构原型与训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数零初始化空间适配器；设计文档保留提出时状态，最新固定24轮保存模型已核验。普通DW结构仅为信息基线，不称新创新，实际AP仍待完整DEV。
 
