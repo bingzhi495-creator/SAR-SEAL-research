@@ -1,6 +1,6 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
-**当前运行（N23）：** 三臂锚定训练已实际完成并经Root接收新增E01–16，每臂累计26,576次更新；两段分别190.141/190.219秒。741图联核和三类真实样本梯度等价检查通过；已恢复完整状态继续固定E17–24，最近原进程复查仍运行。尚无新AP，不代表创新成立；这也不是自定义UNet++整网的验证。[实际阶段进度](research_round_20260925_global/N23_ANCHORED_TRAINING_STAGE_PROGRESS_20261017.md)、[原固定方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)。
+**当前进度（N23）：** 三臂均已完成并接收固定新增24轮、每臂39,864次更新；三段实际合计571.314秒。741图联核及三类实际样本梯度检查通过。四头统一E24评价源码已形成，4项合成检查通过，已锁定原Omega/K/score、逐query强R精确校准、四个物理GPU分片及完整187图COCO；实际DEV/AP尚未执行。[实际训练进度](research_round_20260925_global/N23_ANCHORED_TRAINING_STAGE_PROGRESS_20261017.md)、[执行前评价方案](refine-logs/N23_FIXED_E24_FOURHEAD_DEV_20261017_01/EXPERIMENT_PLAN.md)、[评价源码](research_round_20260925_global/code/N23_FOURHEAD_FIXED_E24_DEV_SOURCE_ONLY_20261017_02/README.md)。没有核心创新或TGRS就绪结论。
 
 **训练执行前准备（历史快照，现已由上方实际进度接续）：** 原Omega监督锚定+C经验池三臂源码已形成，15项合成测试通过；保留原1024点损失系数1，共用C池，lambda0.25，同强E24初值、固定新增24轮。清单1661个GT→q全一致；真实Tensor联核、GPU梯度检查与优化更新尚未执行。主AP仅E24，统一Omega/K/原score并重跑冻结强R。[固定训练方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)、[源码与测试](research_round_20260925_global/code/N23_ANCHORED_DOMAIN_TRAIN_SOURCE_ONLY_20261017_01/README.md)。
 
