@@ -4,7 +4,7 @@
 
 **下一项（N27，未执行）：** 对FIT1661真匹配实例检查固定精修Ω内外的错误与GT域内完美纠错后的条件IoU；先确认支持范围限制，再决定用户UNet++路径对照。[诊断预锁计划](refine-logs/N27_MATCHED_SUPPORT_CENSUS_20261017_01/EXPERIMENT_PLAN.md)。正式TEST、跨集和完整结构验证仍待完成。
 
-**UNet++ 模块复核（2026-10-17）：** 已重新核对自定义 CBAM_block 内部的卷积、注意力、残差及 SimAM 增强，解码块的不同顺序、H/4 方向融合和 up_x 传输路径；这是实际源码确认，尚非完整公平训练证据。当前 N26 未直接训练这套 UNet++。[具体改动与验证边界](research_round_20260925_global/UNETPP_MODULE_MODIFICATIONS_CONFIRMED_20261017.md)。
+**UNet++ 模块复核（2026-10-17）：** 已重新核对自定义 CBAM_block 内部的卷积、注意力、残差及 SimAM 增强，H/4 方向融合和 up_x 传输路径；补核发现解码块前置 BN/ReLU 结果被 `conv1(x)` 覆盖，已纠正此前的顺序描述并记录独立修复对照方案。这是实际源码确认，尚非完整公平训练证据。当前 N26 未直接训练这套 UNet++。[具体改动与验证边界](research_round_20260925_global/UNETPP_MODULE_MODIFICATIONS_CONFIRMED_20261017.md)。
 
 **前轮结构训练（N23，当前配方STOP）：** 三臂均完成固定新增24轮、每臂39864次更新；完整187图/380GT/18700query统一COCO已实际完成并经Root接收。B mask AP **67.807324**，A_COMMON **67.788929**、A_ACTIVE **67.603337**，强R **68.099385**；主Delta **−0.292061 AP点**，不追加本配方种子/预算/调参/融合。原native/R的全部预测及COCO12精确复现。[完整结果与范围](research_round_20260925_global/N23_FIXED24_FULLDEV_RESULT_AND_STOP_20261017.md)、[全部指标与成本](research_round_20260925_global/results/N23_FIXED24_FOURHEAD_COCO_AGGREGATE_20261017.json)、[结果到主张](research_round_20260925_global/N23_RESULT_TO_CLAIM_20261017/findings.md)。
 
