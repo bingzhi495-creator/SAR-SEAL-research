@@ -23,6 +23,8 @@ Root接收后，对已结束的实际绑定源码作了窄查：`diagnose.py:200
 
 前提被否定：撤回共享四角解释，回到实际误差和可用特征分析；不围绕该解释追加模块。前提被支持：仅允许考虑另行预锁的原生邻域对像素F9比较，仍须控制物理感受野、容量、初始化、监督和预算，不能自动启动长训。
 
-[直接先例核查](N20_NATIVE_GRID_SAMPLING_DIRECT_PRIOR_CANDIDATE_20261016.md)已经记录LIIF等原生邻域先例；原生九点、坐标和局部集成本身不作为新原语。当前纯几何工具已通过8项UNIT_FIXTURE；这不认证实际FIT结果。
+[直接先例核查](N20_NATIVE_GRID_SAMPLING_DIRECT_PRIOR_CANDIDATE_20261016.md)已经记录LIIF等原生邻域先例；原生九点、坐标和局部集成本身不作为新原语。支持代数8项及选样/汇总8项UNIT_FIXTURE均已通过；这不认证实际FIT结果。
+
+通用源码与测试：[插值支持](code/N21_NATIVE_SUPPORT_GEOMETRY_SOURCE_ONLY_20261017_01/native_support.py)、[选样与汇总](code/N21_NATIVE_SUPPORT_GEOMETRY_SOURCE_ONLY_20261017_01/fit_geometry.py)、[支持代数测试](code/N21_NATIVE_SUPPORT_GEOMETRY_SOURCE_ONLY_20261017_01/test_native_support.py)、[选样与汇总测试](code/N21_NATIVE_SUPPORT_GEOMETRY_SOURCE_ONLY_20261017_01/test_fit_geometry.py)。两组测试均为独立UNIT_FIXTURE，不含本项目真实数据。该通用工具公开不等于发布原始FIT缓存或证明新方法有效。
 
 实际执行将新建独立Source、契约和输出；只绑定此诊断所需的直接输入、源码与已完成父结果，不重新运行历史COCO或全模型来源门。既有资格链和失败记录完整保留。单一Root所有者、CPU0/1、两线程、CUDA为空、1800秒、RSS上限16GiB、可用RAM至少16GiB、整卡观察上限8192MiB、无自动重试。输出在原任务实际退出和外部接收前保持pending，不由程序自证成功。
