@@ -304,10 +304,17 @@ CPU草稿准备时首GPU183原63518仍在运行，随后已正常结束并完成
 [第三段普通核验摘要](REPEAT202_THIRDDEV_METADATA_SUMMARY_20261016.json)；[当前范围及草稿导航](../../research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
 
 
-## 当前：全部DEV分段接收完成，首个CPU32数值复核已启动
+## 历史：全部DEV分段接收完成，首个CPU32数值复核已启动
 
 第二种子202610150202的固定24轮训练与独立端点核验已完成，四个DEV分段均实际退出0。每段均先通过新的纯终态前置检查，再接收产物；全部187图/18700 query/十策略的14项来源绑定、187份捕获SHA及原导出顺序已核对。这只是元数据与完整性接收，tensor数值资格和全187图统一COCO尚未完成。当前CPU32执行计划已锁定，首个[0,6)复核任务187、原supervisor54707已启动，0/32完成，不读取活动产物。当前187个正常原任务终态、26个保留科学失败、合计213，活动CPU不计完成。尚无第二种子AP；首201主差值仍+0.197741 AP点，重复效用、正式TEST、跨集、机制与创新结论待证。
 
 最后46图/4600 query的46份捕获共2,494,559,828字节逐SHA通过，四段累计13,715,609,621字节。首CPU前已经锁定四GPU和32CPU显式身份及原32范围；CPU入口实际装配但数值未完成。公开摘要在CPU绑定前保存，未为同步读取活动Source或载荷。
 
 [全部四段普通核验摘要](REPEAT202_ALLFOURDEV_METADATA_SUMMARY_20261016.json)；[状态与接续边界](../../research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)；[原生网格与渲染F9先例补查](../../research_round_20260925_global/N20_NATIVE_GRID_VS_RENDERED_F9_DIRECT_PRIOR_REVIEW_20261016_01.md)。
+
+
+## 当前：首个CPU32批次接收完成，第二批运行
+
+第二种子202610150202的固定24轮训练、独立端点核验和四段DEV元数据接收已完成。CPU32首批[0,6)原任务187实际退出0，并经新纯终态188前置检查及Root来源、保存的数值证明摘要核对；目前1/32批、6/187图、600/18700 query完成，十组对照均保留。第二批[6,12)原任务188、supervisor11648已启动，活动产物不读取。当前188个正常原任务终态、26个保留科学失败、合计214；活动任务不计完成。全187图数值资格与统一COCO仍待完成，尚无第二种子AP。首201主差值仍+0.197741 AP点，重复效用、正式TEST、跨集、机制与创新结论待证。
+
+[首批普通核验摘要](REPEAT202_FIRSTCPU32_METADATA_SUMMARY_20261016.json)；[执行范围与接续说明](../../research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。

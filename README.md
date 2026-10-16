@@ -6,9 +6,9 @@
 
 **自主设计与作者基线归属补充：** 团队自定义UNet++按完整结构评估；历史D目录的单个FPN文件与DiffSARShipInst作者固定版本统一换行后完全一致，SCJE-FPN及其中采用的CARAFE/ACmix须按作者基线引用。两份本地R535配置声明启用SCJE，不能仅改builder构造普通FPN对照；这不认证当前E/N20调用。[归属、实际路由与对照要求](research_round_20260925_global/UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
 
-**当前进行（N20）：** 第二种子202610150202的固定24轮训练与独立端点核验已完成，四个DEV分段均实际退出0。每段均先通过新的纯终态前置检查，再接收产物；全部187图/18700 query/十策略的14项来源绑定、187份捕获SHA及原导出顺序已核对。这只是元数据与完整性接收，tensor数值资格和全187图统一COCO尚未完成。当前CPU32执行计划已锁定，首个[0,6)复核任务187、原supervisor54707已启动，0/32完成，不读取活动产物。当前187个正常原任务终态、26个保留科学失败、合计213，活动CPU不计完成。尚无第二种子AP；首201主差值仍+0.197741 AP点，重复效用、正式TEST、跨集、机制与创新结论待证。 [结果范围与当前状态](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
+**当前进行（N20）：** 第二种子202610150202的固定24轮训练、独立端点核验和四段DEV元数据接收已完成。CPU32首批[0,6)原任务187实际退出0，并经新纯终态188前置检查及Root来源、保存的数值证明摘要核对；目前1/32批、6/187图、600/18700 query完成，十组对照均保留。第二批[6,12)原任务188、supervisor11648已启动，活动产物不读取。当前188个正常原任务终态、26个保留科学失败、合计214；活动任务不计完成。全187图数值资格与统一COCO仍待完成，尚无第二种子AP。首201主差值仍+0.197741 AP点，重复效用、正式TEST、跨集、机制与创新结论待证。 [结果范围与当前状态](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
 
-**全量汇总入口状态：** 已按32份固定范围执行全187图统一COCO，并完成独立post与Root实际终态核验；静态审阅仅保留为执行前历史。[静态审阅记录](research_round_20260925_global/N20_FINAL32_ENTRY_STATIC_READINESS_REVIEW_20261016.md)。
+**首种子201的全量汇总状态：** 已按32份固定范围执行全187图统一COCO，并完成独立post与Root实际终态核验；静态审阅仅保留为执行前历史。[静态审阅记录](research_round_20260925_global/N20_FINAL32_ENTRY_STATIC_READINESS_REVIEW_20261016.md)。
 
 **跨集数据准备：** 本地5604个JPG的train/test实例标注，与已核官方PNG对应split按文件stem、ID及全部标注字段精确相等；完整文本SHA不同。5604文件编码哈希/头部检查实际0，均800×800三分量JPEG，尚未解码像素/mask。发现两组跨train/test相同编码图、一组test内部重复，其标注多重集均不同；原协议保留，未来另预锁去重敏感性补充。合并标注16951实例与split合计16969不等，不能互换。官方JPG归档身份、掩膜空间对齐和母景独立未确认，不恢复盲TEST；不继续等待PNG下载，不改变N20。[本地数据完整补充](research_round_20260925_global/HRSID_LOCAL_JPG_METADATA_AND_VERSION_BOUNDARY_20261015.md)。
 
