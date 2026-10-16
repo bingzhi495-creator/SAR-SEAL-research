@@ -1,0 +1,221 @@
+{
+  "schema": "N27-public-aggregate-v1",
+  "status": "ACTUAL0_ROOT_ACCEPTED_FULL_FIT_MATCHED_SUPPORT_CENSUS",
+  "protocol": {
+    "population": "Existing FIT741 images/1661 original true matcher query-GT pairs",
+    "query_assignment": "Original frozen matcher, all nonnegative raw_GT_index_by_query; negatives and ignored queries excluded without pseudo-labels",
+    "prediction": "Original P=(CPU FP32 native_L>0); complete fixed R; R equals P outside Omega",
+    "support": "Omega=(abs(CPU FP32 native_L)<=FP32(2))",
+    "GT_usage": "FIT only; real annotated masks for diagnostic counts and unavailable perfect-inside-support oracle",
+    "oracle": "For each nonempty matched GT: IoU_max=(GT_area-FN_outside)/(GT_area+FP_outside), directly cross-checked against constructed diagnostic mask",
+    "denominators": "Pooled outside errors / pooled FP+FN; median uses only nonzero-error instances; zero-error instances separate",
+    "thresholds": [
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95
+    ],
+    "new_training": false,
+    "AP": false,
+    "DEV": false,
+    "TEST": false,
+    "no_teacher_or_PR_forward": true,
+    "no_new_mask_or_weight_publication": true
+  },
+  "summary": {
+    "K0_instances": 11,
+    "R_counts": {
+      "FN": 42006,
+      "FN_inside": 11598,
+      "FN_outside": 30408,
+      "FP": 43737,
+      "FP_inside": 10822,
+      "FP_outside": 32915,
+      "TP": 1296842,
+      "TP_inside": 24754,
+      "TP_outside": 1272088
+    },
+    "R_current_IoU_bands": {
+      "[0.60,0.65)": 2,
+      "[0.65,0.70)": 6,
+      "[0.70,0.75)": 12,
+      "[0.75,0.80)": 38,
+      "[0.80,0.85)": 125,
+      "[0.85,0.90)": 388,
+      "[0.90,0.95)": 723,
+      "at_least_0.95": 357,
+      "below_0.50": 10
+    },
+    "R_empty_instances": 9,
+    "R_error_pixels": 85743,
+    "R_nonzero_error_instances": 1661,
+    "R_nonzero_instance_outside_error_fraction_median": 0.8285714285714286,
+    "R_outside_error_pixels": 63323,
+    "R_pooled_outside_error_fraction": 0.7385209288221779,
+    "R_zero_error_instances": 0,
+    "images": 741,
+    "native_counts": {
+      "FN": 45824,
+      "FN_inside": 15416,
+      "FN_outside": 30408,
+      "FP": 50346,
+      "FP_inside": 17431,
+      "FP_outside": 32915,
+      "TP": 1293024,
+      "TP_inside": 20936,
+      "TP_outside": 1272088
+    },
+    "native_empty_instances": 9,
+    "samples": 1661,
+    "threshold_comparison": "exact integer ratios versus exact decimal threshold; no tolerance",
+    "threshold_coverage": [
+      {
+        "IoU": 0.5,
+        "R_below_and_still_unreachable": 10,
+        "R_below_but_oracle_reachable": 0,
+        "R_below_threshold": 10,
+        "R_reached": 1651,
+        "native_reached": 1651,
+        "support_oracle_reached": 1651
+      },
+      {
+        "IoU": 0.55,
+        "R_below_and_still_unreachable": 10,
+        "R_below_but_oracle_reachable": 0,
+        "R_below_threshold": 10,
+        "R_reached": 1651,
+        "native_reached": 1649,
+        "support_oracle_reached": 1651
+      },
+      {
+        "IoU": 0.6,
+        "R_below_and_still_unreachable": 10,
+        "R_below_but_oracle_reachable": 0,
+        "R_below_threshold": 10,
+        "R_reached": 1651,
+        "native_reached": 1646,
+        "support_oracle_reached": 1651
+      },
+      {
+        "IoU": 0.65,
+        "R_below_and_still_unreachable": 12,
+        "R_below_but_oracle_reachable": 0,
+        "R_below_threshold": 12,
+        "R_reached": 1649,
+        "native_reached": 1644,
+        "support_oracle_reached": 1649
+      },
+      {
+        "IoU": 0.7,
+        "R_below_and_still_unreachable": 16,
+        "R_below_but_oracle_reachable": 2,
+        "R_below_threshold": 18,
+        "R_reached": 1643,
+        "native_reached": 1639,
+        "support_oracle_reached": 1645
+      },
+      {
+        "IoU": 0.75,
+        "R_below_and_still_unreachable": 24,
+        "R_below_but_oracle_reachable": 6,
+        "R_below_threshold": 30,
+        "R_reached": 1631,
+        "native_reached": 1617,
+        "support_oracle_reached": 1637
+      },
+      {
+        "IoU": 0.8,
+        "R_below_and_still_unreachable": 52,
+        "R_below_but_oracle_reachable": 16,
+        "R_below_threshold": 68,
+        "R_reached": 1593,
+        "native_reached": 1564,
+        "support_oracle_reached": 1609
+      },
+      {
+        "IoU": 0.85,
+        "R_below_and_still_unreachable": 146,
+        "R_below_but_oracle_reachable": 47,
+        "R_below_threshold": 193,
+        "R_reached": 1468,
+        "native_reached": 1393,
+        "support_oracle_reached": 1515
+      },
+      {
+        "IoU": 0.9,
+        "R_below_and_still_unreachable": 424,
+        "R_below_but_oracle_reachable": 157,
+        "R_below_threshold": 581,
+        "R_reached": 1080,
+        "native_reached": 934,
+        "support_oracle_reached": 1237
+      },
+      {
+        "IoU": 0.95,
+        "R_below_and_still_unreachable": 1101,
+        "R_below_but_oracle_reachable": 203,
+        "R_below_threshold": 1304,
+        "R_reached": 357,
+        "native_reached": 246,
+        "support_oracle_reached": 560
+      }
+    ],
+    "zero_error_instance_fraction": "undefined; excluded from median and counted separately"
+  },
+  "derived": {
+    "native_error_pixels": 96170,
+    "R_error_reduction_pixels": 10427,
+    "high_IoU_thresholds": [
+      {
+        "IoU": 0.9,
+        "unreachable_fraction_among_current_below": 0.729776247848537
+      },
+      {
+        "IoU": 0.95,
+        "unreachable_fraction_among_current_below": 0.8443251533742331
+      }
+    ]
+  },
+  "validation": {
+    "original_single_attempt_actual0": true,
+    "original_reaped": true,
+    "held_identity_and_fresh_RAW_FIRST": true,
+    "Root_artifact_identity_and_scalar_relations": true,
+    "Root_independent_pixel_or_model_replay": false,
+    "worker_original_pixel_digest_assignment_K_and_FP64_target_checks_complete": true,
+    "direct_oracle_integer_formula_exact": true,
+    "pending_original_outputs_preserved": true
+  },
+  "cost": {
+    "worker_body_seconds": 109.60999999986961,
+    "entry_seconds": 112.46799999987707,
+    "original_owned_process_seconds": 112.90599999995902,
+    "peak_RSS_bytes": 511946752,
+    "minimum_available_RAM_bytes": 33128427520,
+    "CUDA_initialized": false,
+    "CPU_affinity": [
+      0,
+      1
+    ],
+    "threads": 2,
+    "deadline_seconds": 1800,
+    "automatic_retry": false
+  },
+  "limitations": [
+    "FIT mechanism diagnosis only; not held-out generalization or AP evaluation",
+    "Matched mask/support ceiling; not AP, proposal-recall or learnability upper bound",
+    "Outside-support errors do not prove coarse semantic pollution or effectiveness/novelty of a particular gate",
+    "No new structural training, formal TEST, cross-data result or TGRS readiness"
+  ],
+  "sources": {
+    "prelocked_plan": "refine-logs/N27_MATCHED_SUPPORT_CENSUS_20261017_01/EXPERIMENT_PLAN.md",
+    "preregistered_source_commit": "67d4e2b90ca168e8ebcae25fb529cbb54a79c51e",
+    "source_directory": "research_round_20260925_global/code/N27_MATCHED_SUPPORT_CENSUS_SOURCE_ONLY_20261017_01"
+  }
+}
