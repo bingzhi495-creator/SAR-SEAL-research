@@ -8,7 +8,7 @@
 
 **自定义 UNet++ 历史训练证据：** full 版本有明确训练入口；SamplingBoundary 的 HRSID、SSDD 配置与各 5 轮、每轮 64 批的历史日志对应。未确认历史模型源码及权重身份，也不据此推断实例 AP 收益。[入口、短训记录与证据边界](research_round_20260925_global/UNETPP_HISTORICAL_TRAINING_ROUTE_EVIDENCE_20261017.md)。
 
-**当前进行（N20）：** 第二种子全187图统一COCO原任务85159已实际退出0，fresh220前置检查通过；独立post接收尚未完成，当前数字明确标为待接收预览。固定主终点E24-atmost下，seed201 LOCAL/CENTER/强R为68.297126/67.978791/68.099385 AP，seed202为67.991722/67.697705/68.099385 AP。两seed的LOCAL−CENTER均为正，但相对max(CENTER,R)的平均主差值仅+0.045039 AP点，未达到预锁1点续验门槛；预览决策为STOP_CURRENT_RECIPE，不启动seed203、追加预算或融合来补救主终点。当前220正常终态+26保留失败=246，尚无post终态计入；此结论限于当前配方、两个下游初始化和重复使用的内部DEV，不能推断整体方法失效或TGRS就绪。 [两seed全部结果与阶段判定](research_round_20260925_global/N20_TWO_SEED_MAIN_RESULTS_20261017.md)。
+**当前进行（N20）：** 第二种子全187图统一COCO原任务85159已实际退出0，fresh220前置检查通过；独立post原19115实际退出1并保留为failure27，新的失败前缀a151e0实际退出0，Root接收仍未完成，当前数字保持待接收预览。固定主终点E24-atmost下，seed201 LOCAL/CENTER/强R为68.297126/67.978791/68.099385 AP，seed202为67.991722/67.697705/68.099385 AP。两seed的LOCAL−CENTER均为正，但相对max(CENTER,R)的平均主差值仅+0.045039 AP点，未达到预锁1点续验门槛；预览决策为STOP_CURRENT_RECIPE，不启动seed203、追加预算或融合来补救主终点。当前220正常终态+27保留失败=247、legacy pins228，失败post不计正常完成。问题为JSON往返使整数seed字典键变字符串后的对象比较失败，完整数值及STOP预览不变，不是模型失败；fixture10项aea237实际退出0；独立恢复原session5111已启动（launch5020e5），尚无actual终态，Root接收仍pending，不能写成已恢复。此结论限于当前配方、两个下游初始化和重复使用的内部DEV，不能推断整体方法失效或TGRS就绪。 [两seed全部结果与阶段判定](research_round_20260925_global/N20_TWO_SEED_MAIN_RESULTS_20261017.md)。
 
 **复核开销测量：** 第二批外部接收实际完成分段计时，共297.468秒，其中原来源及保存证明核验293.453秒；不能进一步归因于某一具体检查，也不作为模型FPS或加速收益。当前32范围、科学入口与核验规则保持。[实测分项与后续工程候选](research_round_20260925_global/N20_CPU_REVIEW_COST_AND_FUTURE_PROTOCOL_20261016.md)。
 
@@ -22,7 +22,7 @@
 
 **自主UNet++与历史资产扩展审阅：** 按用户说明记录自主设计，已还原13组实际前向结构；重点保留选择性跨尺度传输、H/4语义与方向互补、采样重建协同三条候选。扩展登记1009个源码/配置/示例项；D内260个模型候选中222个关联数值训练记录，另20个pth是评价缓存。Mamba100轮/MSCK160轮等检测成绩与实例mask AP分开；旧full骨架与clean50轮不能混同，来源未接上不等于未训练。[扩展总评与下一步](research_round_20260925_global/UNETPP_EXPANDED_MODEL_ASSET_REVIEW_AND_NEXT_DESIGN_20261015.md)、[自主结构还原](research_round_20260925_global/UNETPP_SELF_DESIGNED_STRUCTURE_RECONSTRUCTION_20261015.md)、[全部源码目录](research_round_20260925_global/UNETPP_COMPLETE_MODEL_SOURCE_CATALOG_20261015.md)、[训练资产目录](research_round_20260925_global/UNETPP_COMPLETE_TRAINED_ASSET_CATALOG_20261015.md)、[有界先例核对](research_round_20260925_global/UNETPP_SELF_STRUCTURE_BOUNDED_PRIOR_CONTEXT_20261015.md)。三条均尚未确认学术新颖性或当前实例效用，不改N20端点。
 
-**UNet++模块内部改造补充：** 已核到复合残差注意力、门控细节上采样及真正进入输出的抗混叠下采样，不能只按组件名字当作原版。另定位full的未使用BlurPool结果、前置BN旁路和DSConv批次索引问题，目前为静态证据，尚未张量回归；不改正在运行的N20。[具体实现、问题与验证范围](research_round_20260925_global/UNETPP_MODULE_INTERNAL_CHANGES_SOURCE_CHECK_20261016.md)。
+**UNet++模块内部改造复核（10月17日）：** 已重新核到编码与解码复合注意力、抗混叠下采样、门控细节上采样四组内部设计及实际forward；full有`trainer_coco.py:5/62`训练入口。full的未使用BlurPool结果、前置BN旁路及DSConv批次索引问题仍为静态证据，尚未张量回归；当前N20不是这套UNet++整网试验。[具体实现、问题与验证范围](research_round_20260925_global/UNETPP_MODULE_INTERNAL_CHANGES_SOURCE_CHECK_20261016.md)。
 
 **UNet++末端门控机制补充：** 本地SimAM核心公式与作者公式相同，外层 `h + SimAM(h)` 构成带恒等项的空间选择增益；需用固定增益等对照区分选择作用与整体放大，尚未执行验证。[公式、适用条件与候选对照](research_round_20260925_global/UNETPP_SIMAM_RESIDUAL_MECHANISM_STATIC_NOTE_20261016.md)。
 

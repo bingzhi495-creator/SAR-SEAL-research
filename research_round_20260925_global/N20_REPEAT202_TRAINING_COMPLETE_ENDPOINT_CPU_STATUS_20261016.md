@@ -348,8 +348,12 @@ Root对已结束真实CPU入口核对后补齐接续接口，保留原元数据�
 [全部32批的普通状态摘要](../refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/REPEAT202_CPU32_ALL32_FULL187_RUNNING_SUMMARY_20261017.json)。
 
 
-## 当前：两seed数值已生成，第二seed独立接收待完成（2026-10-17）
+## 历史：两seed数值已生成，第二seed独立接收待完成（2026-10-17）
 
 第二种子全187图统一COCO原任务85159已实际退出0，fresh220前置检查通过；独立post接收尚未完成，当前数字明确标为待接收预览。固定主终点E24-atmost下，seed201 LOCAL/CENTER/强R为68.297126/67.978791/68.099385 AP，seed202为67.991722/67.697705/68.099385 AP。两seed的LOCAL−CENTER均为正，但相对max(CENTER,R)的平均主差值仅+0.045039 AP点，未达到预锁1点续验门槛；预览决策为STOP_CURRENT_RECIPE，不启动seed203、追加预算或融合来补救主终点。当前220正常终态+26保留失败=246，尚无post终态计入；此结论限于当前配方、两个下游初始化和重复使用的内部DEV，不能推断整体方法失效或TGRS就绪。
 
 [完整主结果、全部次要输出与范围](N20_TWO_SEED_MAIN_RESULTS_20261017.md)。
+
+## 当前：失败27保留，独立恢复原session5111运行中（2026-10-17）
+
+独立post原任务19115实际退出1，原件保留为failure27；新的RAW-only失败前缀已实际退出0（a151e0）。当前为220个正常终态、27个保留失败、247个总终态身份及228个legacy pins，失败post不计入正常完成。已定位为两个按seed索引的字典在JSON往返后由整数键变为字符串键，直接比较Python对象因而失败；完整数值及预锁`STOP_CURRENT_RECIPE`预览保持不变，这是接收接口问题，不能当作模型失败。第二seed的Root接收仍未完成。fixture10项已实际退出0（aea237），Source装配已实际退出0（8336a3）；独立恢复原session5111已启动（launch5020e5），尚无actual终态，Root接收仍pending；不能写成已恢复，也不把合成回归或启动当作实际资格。冻结Source、Q和数值产物不改，不重算十组COCO。
