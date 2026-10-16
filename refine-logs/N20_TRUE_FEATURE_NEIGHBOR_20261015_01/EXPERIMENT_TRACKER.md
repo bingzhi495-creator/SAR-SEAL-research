@@ -550,10 +550,18 @@ CPU草稿准备时首GPU183原63518仍在运行，随后已正常结束并完成
 独立post原任务19115实际退出1，原件保留为failure27；新的RAW-only失败前缀已实际退出0（a151e0）。当前为220个正常终态、27个保留失败、247个总终态身份及228个legacy pins，失败post不计入正常完成。已定位为两个按seed索引的字典在JSON往返后由整数键变为字符串键，直接比较Python对象因而失败；完整数值及预锁`STOP_CURRENT_RECIPE`预览保持不变，这是接收接口问题，不能当作模型失败。第二seed的Root接收仍未完成。fixture10项已实际退出0（aea237），Source装配已实际退出0（8336a3）；独立恢复原session5111已启动（launch5020e5），尚无actual终态，Root接收仍pending；不能写成已恢复，也不把合成回归或启动当作实际资格。冻结Source、Q和数值产物不改，不重算十组COCO。
 
 
-## 当前：Root接收完成，阶段结果冻结STOP（2026-10-17）
+## 历史：N20 Root接收完成，阶段结果冻结STOP（2026-10-17）
 
 独立metadata恢复原session5111已实际退出0（d0bcf3），exactheld保存完成（2cf477）；fresh221 FIRST实际退出0（8860e1）后，Root外部接收已实际完成（2f5d6a），第二seed的Root接收完成。原post19115实际退出1及failure27继续保留；恢复修复的是JSON往返造成整数seed键变字符串后的metadata对象比较，没有重训或重算十组COCO。接收完成后为221个正常终态、27个保留失败、248个总终态身份及229个legacy pins；失败post不计正常完成。本次接收完成时无运行中的科学数值任务。
 
 固定主终点仍为E24-atmost；两seed主差值分别为+0.19774082590998887和-0.10766322799986483 AP点，精确均值为+0.04503879895506202 AP点。阶段决策已冻结为`STOP_CURRENT_RECIPE`，不启动seed203、不追加预算、不融合补救主终点。结论限定于当前配方、两个下游初始化和重复使用的内部DEV；不能推断总体方法失效、创新成立或TGRS就绪。几何诊断工具仅为fixture开发，尚未进行本项目FIT实测；正式TEST、跨集、机制证据和整体研究目标仍未完成。
 
 此处为Root后续执行进展注，不是原跨模型审阅者重新审计或重新评级；原WARN/provisional partial及其范围、历史TEST补充和限制全部保留，不追认为PASS。
+
+## 当前：N21几何前提被否定，N20停止结论保持（2026-10-17）
+
+单次FIT-only预锁诊断已完成原任务实际0、新终态前缀实际0与Root外部接收。32图×64个唯一均匀整数中心共2048组；主分母2002组均无任何阶段clamp，同一原生相邻2×2单元计数为0，理想系数矩阵rank9计数为2002。主分母覆盖2002/2048满足50%要求，同单元比例0/2002未达原80%阈值，决策为`SHARED_FOUR_PREMISE_REJECTED`。46个边界组及全部rank/support直方图完整保留于摘要。
+
+撤回当前采样范围内“普遍共享四角→低秩瓶颈”的前提，不据此启动native邻域训练、加模块或追加预算。本次是理想Fraction插值系数几何，不是实际F、LayerNorm后特征rank或历史训练点分布测量；无新训练、AP、DEV/TEST或总体方法有效性结论。原Q的pending/未自证标志未改，外部Root接收另行完成；N20的两seed结果及`STOP_CURRENT_RECIPE`保持。当前全局222个正常终态、27个保留失败、249个总终态身份、230个legacy pins；上方N20历史221/27/248不改。整体研究目标未完成。
+
+[N21完整结果与范围](../../research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_RESULT_20261017.md)、[普通机器摘要](../../research_round_20260925_global/results/N21_NATIVE_SUPPORT_GEOMETRY_SUMMARY_20261017.json)、[预锁原文与执行后补记](../../research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_PRELOCK_20261017.md)。
