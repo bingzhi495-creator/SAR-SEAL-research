@@ -16,3 +16,7 @@
 DEV捕获入口/主体已实现并冻结；不同R文件引用的元数据误拒绝已在未执行代码阶段修正，2项纯metadata检查通过。真实CPU尚未启动；FIT捕获source仍待最终静态整合，不把源码就绪当数据就绪。[DEV源码](../../research_round_20260925_global/code/N26_DEV_QUALITY_FEATURES_SOURCE_ONLY_20261017_01/README.md)。
 
 最新：DEV全18700已actual0并Root artifact intake，84.797秒；数值验证和训练资格仍pending。FIT捕获Source已冻结/5项标准库检查和静态复核通过，两片真实执行待启动。[阶段记录](../../research_round_20260925_global/N26_DATA_CAPTURE_PROGRESS_20261017.md)。
+
+- FIT shard0：371图/681实例，原任务actual0，约232.672s；Root文件/人口接收通过，独立数值资格False。
+- FIT shard1：370图，原任务已启动并观察运行；尚无接收结论。
+- 全量CPU数值复核/固定624步质量头训练/固定COCO评价：代码完成、元数据测试及静态复核完成，均未实际执行。
