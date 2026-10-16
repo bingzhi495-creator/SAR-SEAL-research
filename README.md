@@ -6,6 +6,8 @@
 
 **自主设计与作者基线归属补充：** 团队自定义UNet++按完整结构评估；历史D目录的单个FPN文件与DiffSARShipInst作者固定版本统一换行后完全一致，SCJE-FPN及其中采用的CARAFE/ACmix须按作者基线引用。两份本地R535配置声明启用SCJE，不能仅改builder构造普通FPN对照；这不认证当前E/N20调用。[归属、实际路由与对照要求](research_round_20260925_global/UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
 
+**自定义 UNet++ 历史训练证据：** full 版本有明确训练入口；SamplingBoundary 的 HRSID、SSDD 配置与各 5 轮、每轮 64 批的历史日志对应。未确认历史模型源码及权重身份，也不据此推断实例 AP 收益。[入口、短训记录与证据边界](research_round_20260925_global/UNETPP_HISTORICAL_TRAINING_ROUTE_EVIDENCE_20261017.md)。
+
 **当前进行（N20）：** 第二种子202610150202的固定24轮训练、端点核验和四段DEV元数据接收历史保持。CPU32最后一批[183,187)原任务218（supervisor85118）实际退出0，独立Root元数据接收完成；32/32批全部接收，覆盖187/187图、18700/18700自然query，十组预设对照保持。目前219个正常原任务终态、26个保留科学失败，合计245；这不把新启动任务计为完成。全187图统一评价的原启动任务85159已启动，前置核验和指标计算尚待该原任务完成；不读取活动科学产物，不平均分批AP，不重试或更改配方。全187图Root资格、第二种子AP和独立结果解释仍未完成；首201主差值仍为+0.197741 AP点，重复效用、正式TEST、跨集、机制和创新结论待证。 [结果范围与当前状态](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
 
 **复核开销测量：** 第二批外部接收实际完成分段计时，共297.468秒，其中原来源及保存证明核验293.453秒；不能进一步归因于某一具体检查，也不作为模型FPS或加速收益。当前32范围、科学入口与核验规则保持。[实测分项与后续工程候选](research_round_20260925_global/N20_CPU_REVIEW_COST_AND_FUTURE_PROTOCOL_20261016.md)。
