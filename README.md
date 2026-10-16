@@ -22,6 +22,8 @@
 
 **UNet++模块内部改造补充：** 已核到复合残差注意力、门控细节上采样及真正进入输出的抗混叠下采样，不能只按组件名字当作原版。另定位full的未使用BlurPool结果、前置BN旁路和DSConv批次索引问题，目前为静态证据，尚未张量回归；不改正在运行的N20。[具体实现、问题与验证范围](research_round_20260925_global/UNETPP_MODULE_INTERNAL_CHANGES_SOURCE_CHECK_20261016.md)。
 
+**采样候选直接先例补查（10月16日）：** 已核BlurPool、FADE、DySample、FreqFusion，以及2025遥感双向重采样和2026抗混叠分割先例；模块内部改造已确认，联合机制与实例效用待验。记录聚合/相位、普通残差容量、外部skip及共享BN的替代解释；不改当前N20。[有限查新与可否定假设](research_round_20260925_global/UNETPP_SAMPLING_DIRECT_PRIOR_TARGETED_REVIEW_20261016.md)。
+
 **自主传输路由的近年先例补查（10月16日）：** 新读ICUnet++（2023）、RPAU-Net++（2025）及两篇遥感分割作者稿，补充直接门控位置对照；不以“UNet+++CBAM”称新。Root确认原model_new1为先门控后上采样，后续需区分运算顺序与被门控支路，所列对照尚未执行。[有界查新与源码顺序校核](research_round_20260925_global/UNETPP_UPSAMPLE_TRANSPORT_RECENT_DIRECT_PRIOR_20261016.md)。
 
 **旧自主结构的权重来源补查：** 222已定位writer/reader代码声明；111/222/两份ALL_NEW完成只读ZIP与pickle操作码元数据登记，未加载模型或tensor。不同前向、开关与完整训练身份仍需核对；部分旧AP50/AP75实际是整幅掩膜IoU阈值通过指标，不能用于COCO mask AP排名。[来源与结构线索](research_round_20260925_global/UNETPP_LEGACY_PROVENANCE_AND_CONTAINER_EVIDENCE_20261015.md)、[有界只读工具](tools/legacy_weight_metadata_intake.py)、[两项合成回归](tests/test_legacy_weight_metadata_intake.py)。
