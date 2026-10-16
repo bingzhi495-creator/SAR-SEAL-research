@@ -1,13 +1,11 @@
 # N26 独立输入核验源码
 
-2026-10-17，SOURCE_ONLY，未执行的实现。纯标准库元数据检查和静态审阅不能替代真实数据执行。当前第一片371图/681匹配实例已完成实际0退出及Root文件/人口接收，第二片捕获仍在运行；独立CPU核验和质量头训练尚未运行。
+2026-10-17。源码内容已按原冻结绑定协议实际执行并完成Root原终态/产物核验；不是只通过静态检查。
 
-CPU独立重提取FIT1661与DEV18700输入；从原matcher、原e0、完整预测RLE与FIT GT独立count交并得到FP64 IoU，逐位核标签与特征。DEV不读GT；保留低质量、空mask、K0；不将未匹配query伪标0，不使用max-any-GT。使用同一插值实现再次提取，不能称独立插值算法；不重复R模型前向。旧容器连带反序列化F/L，但不作特征输入或复制到合并包。
+全量CPU核验任务实际正常结束118.672秒并经Root接受。FIT741图/1661真配对IoU及特征逐位一致，DEV187图/18700query特征逐位一致；DEV GT不读，GT仅作FIT原matcher目标，未匹配query不伪标0，empty/K0保留。共享同一插值实现再提取，不能称独立插值算法或R前向重演。
 
-捕获阶段的FIT/DEV特征函数副本路径不同；各组内完整引用必须一致，跨组仅在两个实际绑定源码均通过身份核验后接受相同bytes+SHA256。相关4项纯元数据测试RED→GREEN。
+这是已有MaskIoU思路的query–mask适配，非完整Mask Scoring R-CNN复现或已成立创新。输入、训练和评价资源及准入由原执行协议控制；不能从该源码副本直接推得独立复现成功。
 
-运行产物只输出待接收报告与六键合并包，资格保持False；须原任务实际0结束、独立Root接收后才能用于训练。
+本目录SOURCE_ONLY，不含数据、全量标注、权重、缓存或资格链，仍需生成原协议要求的输入和身份绑定。不同捕获阶段特征工厂的路径差异已通过各组内部完整引用一致、实际绑定源码同bytes+SHA256处理。
 
-本目录不能直接独立训练：仍需按原协议生成并绑定数据、源文件、输入资格与资源准入。缓存、权重、标注、私有RLE和执行资格未发布；resource_control.py与quality_head.py来自此前已批准的普通发布内容缓存，本次没有为同步读取运行中的绑定SOURCE。
-
-[主计划](../../../refine-logs/N26_QUERY_MASK_QUALITY_BASELINE_20261017_01/EXPERIMENT_PLAN.md) · [数据阶段记录](../../N26_DATA_CAPTURE_PROGRESS_20261017.md)
+[完整实测与限制](../../N26_FIXED_R_QUALITY_THREE_SEED_RESULT_20261017.md) · [逐种子完整COCO](../../results/N26_FIXED_R_QUALITY_THREE_SEED_AGGREGATE_20261017.json) · [执行前主计划](../../../refine-logs/N26_QUERY_MASK_QUALITY_BASELINE_20261017_01/EXPERIMENT_PLAN.md)

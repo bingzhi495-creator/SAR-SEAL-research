@@ -1,0 +1,503 @@
+{
+  "schema": "N26-fixed-R-known-quality-adaptation-three-seed-public-aggregate-v1",
+  "status": "ACTUAL0_ROOT_ACCEPTED_THREE_PRELOCKED_SEEDS_STAGE_UTILITY_SUPPORTED",
+  "FIT_images": 741,
+  "FIT_matched_GT": 1661,
+  "DEV_images": 187,
+  "DEV_GT": 380,
+  "DEV_queries": 18700,
+  "endpoint_epoch": 24,
+  "batch_size": 64,
+  "updates_per_seed": 624,
+  "parameters": 299521,
+  "state_tensors": 6,
+  "score_rule": "S0*qhat",
+  "mask_geometry_changed": false,
+  "teacher_retrained": false,
+  "DEV_used_for_epoch_selection": false,
+  "official_TEST_used": false,
+  "public_DEV_not_official_TEST": true,
+  "three_seeds_share_same_frozen_teacher": true,
+  "seed_selection": "first prelocked seed gain>=1 -> both remaining prelocked seeds; no best-seed selection",
+  "original_AP_percent": 68.09938494745545,
+  "quality_AP_mean_percent": 69.53736693986352,
+  "quality_AP_sample_SD_points": 0.10744864652967262,
+  "Delta_AP_mean_points": 1.4379819924080646,
+  "all_paired_gains_positive": true,
+  "mean_gain_ge1": true,
+  "seeds": [
+    {
+      "seed": 202610172601,
+      "epochs": 24,
+      "updates": 624,
+      "original_AP_percent": 68.09938494745545,
+      "quality_AP_percent": 69.42361315215425,
+      "Delta_AP_percent": 1.324228204698798,
+      "original_COCO": {
+        "iouType": "segm",
+        "maxDets": [
+          1,
+          10,
+          100
+        ],
+        "metrics": {
+          "AP": 0.6809938494745545,
+          "AP50": 0.969989604793129,
+          "AP75": 0.852134677847247,
+          "APL": 0.6999999999999998,
+          "APM": 0.6974242300663346,
+          "APS": 0.6774399176376944,
+          "AR1": 0.37394736842105264,
+          "AR10": 0.735,
+          "AR100": 0.7597368421052632,
+          "ARL": 0.7,
+          "ARM": 0.7457142857142857,
+          "ARS": 0.7653284671532847
+        },
+        "official_COCO_crowd_ignore_semantics": true,
+        "original_GT_preserved": true,
+        "score_filter": null,
+        "stats": [
+          0.6809938494745545,
+          0.969989604793129,
+          0.852134677847247,
+          0.6774399176376944,
+          0.6974242300663346,
+          0.6999999999999998,
+          0.37394736842105264,
+          0.735,
+          0.7597368421052632,
+          0.7653284671532847,
+          0.7457142857142857,
+          0.7
+        ]
+      },
+      "quality_COCO": {
+        "iouType": "segm",
+        "maxDets": [
+          1,
+          10,
+          100
+        ],
+        "metrics": {
+          "AP": 0.6942361315215425,
+          "AP50": 0.9742786231218068,
+          "AP75": 0.8702188179959759,
+          "APL": 0.6999999999999998,
+          "APM": 0.6925379881804301,
+          "APS": 0.6934362083343634,
+          "AR1": 0.3815789473684211,
+          "AR10": 0.7336842105263158,
+          "AR100": 0.7597368421052632,
+          "ARL": 0.7,
+          "ARM": 0.7457142857142857,
+          "ARS": 0.7653284671532847
+        },
+        "official_COCO_crowd_ignore_semantics": true,
+        "original_GT_preserved": true,
+        "score_filter": null,
+        "stats": [
+          0.6942361315215425,
+          0.9742786231218068,
+          0.8702188179959759,
+          0.6934362083343634,
+          0.6925379881804301,
+          0.6999999999999998,
+          0.3815789473684211,
+          0.7336842105263158,
+          0.7597368421052632,
+          0.7653284671532847,
+          0.7457142857142857,
+          0.7
+        ]
+      },
+      "per_IoU": [
+        {
+          "Delta_AP_percent": 0.42890183286777983,
+          "IoU": 0.5,
+          "baseline_AP_percent": 96.9989604793129,
+          "quality_AP_percent": 97.42786231218068
+        },
+        {
+          "Delta_AP_percent": 0.47516587967341195,
+          "IoU": 0.55,
+          "baseline_AP_percent": 96.37472582164433,
+          "quality_AP_percent": 96.84989170131774
+        },
+        {
+          "Delta_AP_percent": 0.48110880526294864,
+          "IoU": 0.6,
+          "baseline_AP_percent": 95.60873464126199,
+          "quality_AP_percent": 96.08984344652494
+        },
+        {
+          "Delta_AP_percent": 0.4673371667317525,
+          "IoU": 0.65,
+          "baseline_AP_percent": 93.82472243553576,
+          "quality_AP_percent": 94.29205960226751
+        },
+        {
+          "Delta_AP_percent": 0.7128802744098124,
+          "IoU": 0.7,
+          "baseline_AP_percent": 91.9032786027454,
+          "quality_AP_percent": 92.61615887715521
+        },
+        {
+          "Delta_AP_percent": 1.8084140148728949,
+          "IoU": 0.75,
+          "baseline_AP_percent": 85.2134677847247,
+          "quality_AP_percent": 87.0218817995976
+        },
+        {
+          "Delta_AP_percent": 4.205542743960066,
+          "IoU": 0.8,
+          "baseline_AP_percent": 71.05090156105072,
+          "quality_AP_percent": 75.25644430501079
+        },
+        {
+          "Delta_AP_percent": 3.2418412709753994,
+          "IoU": 0.85,
+          "baseline_AP_percent": 40.0659937494002,
+          "quality_AP_percent": 43.3078350203756
+        },
+        {
+          "Delta_AP_percent": 1.406736930152869,
+          "IoU": 0.8999999999999999,
+          "baseline_AP_percent": 9.937650899975413,
+          "quality_AP_percent": 11.344387830128282
+        },
+        {
+          "Delta_AP_percent": 0.014353128081000277,
+          "IoU": 0.95,
+          "baseline_AP_percent": 0.015413498903164407,
+          "quality_AP_percent": 0.029766626984164685
+        }
+      ],
+      "training_first_epoch_online_pre_update_MSE": 0.02753631031664379,
+      "training_final_epoch_online_pre_update_MSE": 0.0009278683894589176,
+      "training_body_wall_seconds": 2.9380000000819564,
+      "quality_head_batching_and_transfers_wall_seconds": 0.32800000021234155,
+      "official_two_COCO_wall_seconds": 2.375,
+      "eval_body_wall_seconds": 4.094000000040978,
+      "training_torch_peak_allocated_bytes": 24968704,
+      "eval_torch_peak_allocated_bytes": 10450432
+    },
+    {
+      "seed": 202610172602,
+      "epochs": 24,
+      "updates": 624,
+      "original_AP_percent": 68.09938494745545,
+      "quality_AP_percent": 69.63714218423894,
+      "Delta_AP_percent": 1.5377572367834915,
+      "original_COCO": {
+        "iouType": "segm",
+        "maxDets": [
+          1,
+          10,
+          100
+        ],
+        "metrics": {
+          "AP": 0.6809938494745545,
+          "AP50": 0.969989604793129,
+          "AP75": 0.852134677847247,
+          "APL": 0.6999999999999998,
+          "APM": 0.6974242300663346,
+          "APS": 0.6774399176376944,
+          "AR1": 0.37394736842105264,
+          "AR10": 0.735,
+          "AR100": 0.7597368421052632,
+          "ARL": 0.7,
+          "ARM": 0.7457142857142857,
+          "ARS": 0.7653284671532847
+        },
+        "official_COCO_crowd_ignore_semantics": true,
+        "original_GT_preserved": true,
+        "score_filter": null,
+        "stats": [
+          0.6809938494745545,
+          0.969989604793129,
+          0.852134677847247,
+          0.6774399176376944,
+          0.6974242300663346,
+          0.6999999999999998,
+          0.37394736842105264,
+          0.735,
+          0.7597368421052632,
+          0.7653284671532847,
+          0.7457142857142857,
+          0.7
+        ]
+      },
+      "quality_COCO": {
+        "iouType": "segm",
+        "maxDets": [
+          1,
+          10,
+          100
+        ],
+        "metrics": {
+          "AP": 0.6963714218423894,
+          "AP50": 0.9748423103005014,
+          "AP75": 0.8723123345070404,
+          "APL": 0.6999999999999998,
+          "APM": 0.6955252174335965,
+          "APS": 0.6944857191534723,
+          "AR1": 0.3831578947368421,
+          "AR10": 0.7336842105263158,
+          "AR100": 0.7597368421052632,
+          "ARL": 0.7,
+          "ARM": 0.7457142857142857,
+          "ARS": 0.7653284671532847
+        },
+        "official_COCO_crowd_ignore_semantics": true,
+        "original_GT_preserved": true,
+        "score_filter": null,
+        "stats": [
+          0.6963714218423894,
+          0.9748423103005014,
+          0.8723123345070404,
+          0.6944857191534723,
+          0.6955252174335965,
+          0.6999999999999998,
+          0.3831578947368421,
+          0.7336842105263158,
+          0.7597368421052632,
+          0.7653284671532847,
+          0.7457142857142857,
+          0.7
+        ]
+      },
+      "per_IoU": [
+        {
+          "Delta_AP_percent": 0.48527055073724057,
+          "IoU": 0.5,
+          "baseline_AP_percent": 96.9989604793129,
+          "quality_AP_percent": 97.48423103005014
+        },
+        {
+          "Delta_AP_percent": 0.5236262846679693,
+          "IoU": 0.55,
+          "baseline_AP_percent": 96.37472582164433,
+          "quality_AP_percent": 96.8983521063123
+        },
+        {
+          "Delta_AP_percent": 0.5111895587127435,
+          "IoU": 0.6,
+          "baseline_AP_percent": 95.60873464126199,
+          "quality_AP_percent": 96.11992419997473
+        },
+        {
+          "Delta_AP_percent": 0.5902159897992476,
+          "IoU": 0.65,
+          "baseline_AP_percent": 93.82472243553576,
+          "quality_AP_percent": 94.41493842533501
+        },
+        {
+          "Delta_AP_percent": 0.8438703989687468,
+          "IoU": 0.7,
+          "baseline_AP_percent": 91.9032786027454,
+          "quality_AP_percent": 92.74714900171415
+        },
+        {
+          "Delta_AP_percent": 2.01776566597934,
+          "IoU": 0.75,
+          "baseline_AP_percent": 85.2134677847247,
+          "quality_AP_percent": 87.23123345070404
+        },
+        {
+          "Delta_AP_percent": 4.368081281204965,
+          "IoU": 0.8,
+          "baseline_AP_percent": 71.05090156105072,
+          "quality_AP_percent": 75.41898284225569
+        },
+        {
+          "Delta_AP_percent": 4.048714398571342,
+          "IoU": 0.85,
+          "baseline_AP_percent": 40.0659937494002,
+          "quality_AP_percent": 44.11470814797154
+        },
+        {
+          "Delta_AP_percent": 1.968244885890229,
+          "IoU": 0.8999999999999999,
+          "baseline_AP_percent": 9.937650899975413,
+          "quality_AP_percent": 11.905895785865642
+        },
+        {
+          "Delta_AP_percent": 0.020593353302928864,
+          "IoU": 0.95,
+          "baseline_AP_percent": 0.015413498903164407,
+          "quality_AP_percent": 0.03600685220609327
+        }
+      ],
+      "training_first_epoch_online_pre_update_MSE": 0.028738145600143126,
+      "training_final_epoch_online_pre_update_MSE": 0.000987502931209852,
+      "training_body_wall_seconds": 2.609999999869615,
+      "quality_head_batching_and_transfers_wall_seconds": 0.32799999974668026,
+      "official_two_COCO_wall_seconds": 2.405999999959022,
+      "eval_body_wall_seconds": 4.20299999974668,
+      "training_torch_peak_allocated_bytes": 24968704,
+      "eval_torch_peak_allocated_bytes": 10450432
+    },
+    {
+      "seed": 202610172603,
+      "epochs": 24,
+      "updates": 624,
+      "original_AP_percent": 68.09938494745545,
+      "quality_AP_percent": 69.55134548319735,
+      "Delta_AP_percent": 1.4519605357419039,
+      "original_COCO": {
+        "iouType": "segm",
+        "maxDets": [
+          1,
+          10,
+          100
+        ],
+        "metrics": {
+          "AP": 0.6809938494745545,
+          "AP50": 0.969989604793129,
+          "AP75": 0.852134677847247,
+          "APL": 0.6999999999999998,
+          "APM": 0.6974242300663346,
+          "APS": 0.6774399176376944,
+          "AR1": 0.37394736842105264,
+          "AR10": 0.735,
+          "AR100": 0.7597368421052632,
+          "ARL": 0.7,
+          "ARM": 0.7457142857142857,
+          "ARS": 0.7653284671532847
+        },
+        "official_COCO_crowd_ignore_semantics": true,
+        "original_GT_preserved": true,
+        "score_filter": null,
+        "stats": [
+          0.6809938494745545,
+          0.969989604793129,
+          0.852134677847247,
+          0.6774399176376944,
+          0.6974242300663346,
+          0.6999999999999998,
+          0.37394736842105264,
+          0.735,
+          0.7597368421052632,
+          0.7653284671532847,
+          0.7457142857142857,
+          0.7
+        ]
+      },
+      "quality_COCO": {
+        "iouType": "segm",
+        "maxDets": [
+          1,
+          10,
+          100
+        ],
+        "metrics": {
+          "AP": 0.6955134548319736,
+          "AP50": 0.9747972767454663,
+          "AP75": 0.8712794017905398,
+          "APL": 0.6999999999999998,
+          "APM": 0.6954794558390448,
+          "APS": 0.6943425469388187,
+          "AR1": 0.3821052631578947,
+          "AR10": 0.735,
+          "AR100": 0.7597368421052632,
+          "ARL": 0.7,
+          "ARM": 0.7457142857142857,
+          "ARS": 0.7653284671532847
+        },
+        "official_COCO_crowd_ignore_semantics": true,
+        "original_GT_preserved": true,
+        "score_filter": null,
+        "stats": [
+          0.6955134548319736,
+          0.9747972767454663,
+          0.8712794017905398,
+          0.6943425469388187,
+          0.6954794558390448,
+          0.6999999999999998,
+          0.3821052631578947,
+          0.735,
+          0.7597368421052632,
+          0.7653284671532847,
+          0.7457142857142857,
+          0.7
+        ]
+      },
+      "per_IoU": [
+        {
+          "Delta_AP_percent": 0.4807671952337387,
+          "IoU": 0.5,
+          "baseline_AP_percent": 96.9989604793129,
+          "quality_AP_percent": 97.47972767454664
+        },
+        {
+          "Delta_AP_percent": 0.5250466539072107,
+          "IoU": 0.55,
+          "baseline_AP_percent": 96.37472582164433,
+          "quality_AP_percent": 96.89977247555154
+        },
+        {
+          "Delta_AP_percent": 0.5199037987891728,
+          "IoU": 0.6,
+          "baseline_AP_percent": 95.60873464126199,
+          "quality_AP_percent": 96.12863844005116
+        },
+        {
+          "Delta_AP_percent": 0.5830116874102771,
+          "IoU": 0.65,
+          "baseline_AP_percent": 93.82472243553576,
+          "quality_AP_percent": 94.40773412294604
+        },
+        {
+          "Delta_AP_percent": 0.9075322121942406,
+          "IoU": 0.7,
+          "baseline_AP_percent": 91.9032786027454,
+          "quality_AP_percent": 92.81081081493964
+        },
+        {
+          "Delta_AP_percent": 1.9144723943292803,
+          "IoU": 0.75,
+          "baseline_AP_percent": 85.2134677847247,
+          "quality_AP_percent": 87.12794017905398
+        },
+        {
+          "Delta_AP_percent": 4.3081289766673905,
+          "IoU": 0.8,
+          "baseline_AP_percent": 71.05090156105072,
+          "quality_AP_percent": 75.35903053771811
+        },
+        {
+          "Delta_AP_percent": 3.8700596779087633,
+          "IoU": 0.85,
+          "baseline_AP_percent": 40.0659937494002,
+          "quality_AP_percent": 43.93605342730896
+        },
+        {
+          "Delta_AP_percent": 1.4013009082713026,
+          "IoU": 0.8999999999999999,
+          "baseline_AP_percent": 9.937650899975413,
+          "quality_AP_percent": 11.338951808246716
+        },
+        {
+          "Delta_AP_percent": 0.009381852707656206,
+          "IoU": 0.95,
+          "baseline_AP_percent": 0.015413498903164407,
+          "quality_AP_percent": 0.024795351610820613
+        }
+      ],
+      "training_first_epoch_online_pre_update_MSE": 0.027631119100521625,
+      "training_final_epoch_online_pre_update_MSE": 0.0009432458395165296,
+      "training_body_wall_seconds": 2.5470000002533197,
+      "quality_head_batching_and_transfers_wall_seconds": 0.29600000008940697,
+      "official_two_COCO_wall_seconds": 2.3279999997466803,
+      "eval_body_wall_seconds": 3.969000000040978,
+      "training_torch_peak_allocated_bytes": 24968704,
+      "eval_torch_peak_allocated_bytes": 10450432
+    }
+  ],
+  "scope": "Known query-mask conditional quality regression adaptation with fixed R masks on the existing FIT/internal-DEV protocol. Descriptive three downstream-head seeds, not independent teacher initializations, official TEST, cross-dataset, geometry improvement, SOTA or established core novelty.",
+  "preregistered_source_commit": "a31e281df33537ff76dd278310c4536707577f45",
+  "original_mask_predictions_and_qhat1_COCO12_exact_all_seeds": true,
+  "new_core_innovation_established": false,
+  "publication_ready": false
+}

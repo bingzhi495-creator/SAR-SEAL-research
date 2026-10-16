@@ -1,13 +1,11 @@
-# N26 质量头固定训练与评价源码
+# N26 固定质量头训练与评价源码
 
-2026-10-17，SOURCE_ONLY，未执行的实现。纯标准库元数据检查和静态审阅不能替代真实数据执行。当前第一片371图/681匹配实例已完成实际0退出及Root文件/人口接收，第二片捕获仍在运行；独立CPU核验和质量头训练尚未运行。
+2026-10-17。源码内容已按原冻结绑定协议实际执行并完成Root原终态/产物核验；不是只通过静态检查。
 
-训练：冻结强R，仅1040→256→128→1质量MLP，299521参数；FIT741图/1661原始GT匹配query，MSE回归完整原图IoU，24轮×26批=624更新，batch64、尾61，AdamW 3e-4、wd1e-4，无调度/早停/DEV选轮。仅支持预锁完整种子202610172601、202610172602、202610172603，是否复验由主计划门槛决定，不自动启动全部。
+三个预锁完整种子202610172601/2602/2603已各完成24轮、624更新、batch64尾61及完整18700query评价；AP69.423613/69.637142/69.551345，均值69.537367。保持原R掩膜、类别、query及顺序，仅S0*qhat；qhat1原COCO12逐组exact，评价batch64尾12。模型299521参数，无DEV选轮/评分函数搜索；样本SD0.107449，平均+1.437982点。
 
-评价：E24固定端点，完整187图/18700query，64批、尾12；先用qhat=1精确恢复R预测与COCO12，再只评价S0*qhat，保留原mask/class/query/顺序，无qhat-only、NMS或分数函数选择。GT只在预测及CUDA释放后用于原官方COCO。保留训练状态与优化器/RNG。
+这是已有MaskIoU思路的query–mask适配，非完整Mask Scoring R-CNN复现或已成立创新。输入、训练和评价资源及准入由原执行协议控制；不能从该源码副本直接推得独立复现成功。
 
-已完成3项纯元数据种子测试RED→GREEN及独立静态接口复核；未发生新训练或AP结果。这是已有MaskIoU思想的query–mask适配，不是完整Mask Scoring R-CNN复现或已成立创新。
+本目录SOURCE_ONLY，不含数据、全量标注、权重、缓存或资格链，仍需生成原协议要求的输入和身份绑定。不同捕获阶段特征工厂的路径差异已通过各组内部完整引用一致、实际绑定源码同bytes+SHA256处理。
 
-本目录不能直接独立训练：仍需按原协议生成并绑定数据、源文件、输入资格与资源准入。缓存、权重、标注、私有RLE和执行资格未发布；resource_control.py与quality_head.py来自此前已批准的普通发布内容缓存，本次没有为同步读取运行中的绑定SOURCE。
-
-[主计划](../../../refine-logs/N26_QUERY_MASK_QUALITY_BASELINE_20261017_01/EXPERIMENT_PLAN.md) · [数据阶段记录](../../N26_DATA_CAPTURE_PROGRESS_20261017.md)
+[完整实测与限制](../../N26_FIXED_R_QUALITY_THREE_SEED_RESULT_20261017.md) · [逐种子完整COCO](../../results/N26_FIXED_R_QUALITY_THREE_SEED_AGGREGATE_20261017.json) · [执行前主计划](../../../refine-logs/N26_QUERY_MASK_QUALITY_BASELINE_20261017_01/EXPERIMENT_PLAN.md)
