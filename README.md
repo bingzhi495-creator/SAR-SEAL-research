@@ -1,8 +1,8 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
-**当前运行（N23）：** 三臂锚定训练的首个E01–08阶段已启动，原进程复查仍运行；总预算固定新增24轮，阶段间恢复完整优化器和私有RNG。真实缓存联核与GPU梯度检查包含在该进程内，尚无经接收的训练阶段结果或新AP。整卡占用一次观测约1937MiB，仅作资源观测，不作为本进程VRAM证书。[固定方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)、[训练源码](research_round_20260925_global/code/N23_ANCHORED_DOMAIN_TRAIN_SOURCE_ONLY_20261017_01/README.md)。
+**当前运行（N23）：** 三臂锚定训练已实际完成并经Root接收新增E01–16，每臂累计26,576次更新；两段分别190.141/190.219秒。741图联核和三类真实样本梯度等价检查通过；已恢复完整状态继续固定E17–24，最近原进程复查仍运行。尚无新AP，不代表创新成立；这也不是自定义UNet++整网的验证。[实际阶段进度](research_round_20260925_global/N23_ANCHORED_TRAINING_STAGE_PROGRESS_20261017.md)、[原固定方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)。
 
-**下一组训练（执行前预锁）：** 原Omega监督锚定+C经验池三臂源码已形成，15项合成测试通过；保留原1024点损失系数1，共用C池，lambda0.25，同强E24初值、固定新增24轮。清单1661个GT→q全一致；真实Tensor联核、GPU梯度检查与优化更新尚未执行。主AP仅E24，统一Omega/K/原score并重跑冻结强R。[固定训练方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)、[源码与测试](research_round_20260925_global/code/N23_ANCHORED_DOMAIN_TRAIN_SOURCE_ONLY_20261017_01/README.md)。
+**训练执行前准备（历史快照，现已由上方实际进度接续）：** 原Omega监督锚定+C经验池三臂源码已形成，15项合成测试通过；保留原1024点损失系数1，共用C池，lambda0.25，同强E24初值、固定新增24轮。清单1661个GT→q全一致；真实Tensor联核、GPU梯度检查与优化更新尚未执行。主AP仅E24，统一Omega/K/原score并重跑冻结强R。[固定训练方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)、[源码与测试](research_round_20260925_global/code/N23_ANCHORED_DOMAIN_TRAIN_SOURCE_ONLY_20261017_01/README.md)。
 
 **最新实际结果（N23）：** 全741图、1661GT和3035136原采样覆盖核查已真实0并经Root接收；1650非空GT中42个Omega零点，matched的Omega仅24955/1517568=1.644407%，唯一Omega点中位数7；另11个K0无采样。按预锁先修所有臂共同采样，不能直接拿当前池做主公平训练。实际28.969秒，无新训练/AP；全局225正常+28失败=253，legacy pins233。[完整结果](research_round_20260925_global/N23_REAL_FULLFIT_CACHE_COVERAGE_RESULT_20261017.md)、[聚合数据](research_round_20260925_global/results/N23_FULLFIT_CACHE_COVERAGE_AGGREGATE_20261017.json)。
 
@@ -12,7 +12,7 @@
 
 **诊断代码准备：** 已补全强R选区与全C未门控PR动作的静态接口，提供[精确计数内核及合成测试](research_round_20260925_global/code/N22_INSTANCE_ACTION_ORACLE_SOURCE_ONLY_20261017_01/README.md)，8项测试实际通过。已形成[结果前锁定方案](refine-logs/N22_FIT_INSTANCE_OPPORTUNITY_20261017_01/EXPERIMENT_PLAN.md)，沿用独立选出的FIT32图、全部100自然query；预登记时真实采集尚未启动，没有新训练或AP；UNet++门控说明已按实际单次Sigmoid更正。
 
-**下一项训练准备（N23，尚未启动）：** 原同点适配器已在全741真实缓存通过，覆盖结果要求先修共同采样，再锁定损失和同预算强对照。优先核对原PR的有效Omega缓存；不能一边补点，也不能仅超过被稀释的A即宣称成功。[适配器范围](research_round_20260925_global/code/N23_SHARED_POINT_DOMAIN_ADAPTER_DRAFT_20261017_01/README.md)。
+**共同采样修复前准备（N23历史快照）：** 原同点适配器已在全741真实缓存通过，覆盖结果要求先修共同采样，再锁定损失和同预算强对照。优先核对原PR的有效Omega缓存；不能一边补点，也不能仅超过被稀释的A即宣称成功。[适配器范围](research_round_20260925_global/code/N23_SHARED_POINT_DOMAIN_ADAPTER_DRAFT_20261017_01/README.md)。
 
 论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-17**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
 
