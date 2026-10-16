@@ -8,7 +8,9 @@
 
 **自定义 UNet++ 历史训练证据：** full 版本有明确训练入口；SamplingBoundary 的 HRSID、SSDD 配置与各 5 轮、每轮 64 批的历史日志对应。未确认历史模型源码及权重身份，也不据此推断实例 AP 收益。[入口、短训记录与证据边界](research_round_20260925_global/UNETPP_HISTORICAL_TRAINING_ROUTE_EVIDENCE_20261017.md)。
 
-**当前进行（N20）：** 第二种子全187图统一COCO原任务85159已实际退出0，fresh220前置检查通过；独立post原19115实际退出1并保留为failure27，新的失败前缀a151e0实际退出0，Root接收仍未完成，当前数字保持待接收预览。固定主终点E24-atmost下，seed201 LOCAL/CENTER/强R为68.297126/67.978791/68.099385 AP，seed202为67.991722/67.697705/68.099385 AP。两seed的LOCAL−CENTER均为正，但相对max(CENTER,R)的平均主差值仅+0.045039 AP点，未达到预锁1点续验门槛；预览决策为STOP_CURRENT_RECIPE，不启动seed203、追加预算或融合来补救主终点。当前220正常终态+27保留失败=247、legacy pins228，失败post不计正常完成。问题为JSON往返使整数seed字典键变字符串后的对象比较失败，完整数值及STOP预览不变，不是模型失败；fixture10项aea237实际退出0；独立恢复原session5111已启动（launch5020e5），尚无actual终态，Root接收仍pending，不能写成已恢复。此结论限于当前配方、两个下游初始化和重复使用的内部DEV，不能推断整体方法失效或TGRS就绪。 [两seed全部结果与阶段判定](research_round_20260925_global/N20_TWO_SEED_MAIN_RESULTS_20261017.md)。
+**当前状态（N20）：** 第二种子全187图统一COCO及独立Root接收均已完成，阶段结果冻结为`STOP_CURRENT_RECIPE`。固定主终点E24-atmost下，seed201 LOCAL/CENTER/强R仍为68.297126/67.978791/68.099385 AP，seed202仍为67.991722/67.697705/68.099385 AP；平均主差值为+0.045039 AP点（精确值+0.04503879895506202），未达到预锁1点门槛，不启动seed203、追加预算或融合。恢复原session5111实际退出0，exactheld已保存，fresh221 FIRST实际退出0后，Root外部接收实际完成；当前221正常终态+27保留失败=248、legacy pins229。原post19115实际退出1作为failure27保留，恢复只修复metadata的JSON键比较，没有重训或重算十组COCO。几何诊断工具仅处于fixture开发，尚未进行本项目FIT实测。旧独立审阅仍为WARN/provisional partial；本阶段不证明总体胜过强R、创新成立或TGRS就绪，总目标未完成。[两seed全部结果与阶段判定](research_round_20260925_global/N20_TWO_SEED_MAIN_RESULTS_20261017.md)。
+
+**下一项已预锁（N21）：** 用32张FIT图、每图64个确定性整数中心，检验像素九邻是否普遍共享一个原生2×2支持单元。精确组合两阶段插值；边界组单列，50%覆盖要求与80%前提阈值均在结果前锁定。尚无真实几何结果，不推实际特征rank或AP，不改变N20停止结论。[规则、直接源码路径与证据边界](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_PRELOCK_20261017.md)。接收前的失败及恢复时间线保留在两seed主结果说明和Git历史中。
 
 **复核开销测量：** 第二批外部接收实际完成分段计时，共297.468秒，其中原来源及保存证明核验293.453秒；不能进一步归因于某一具体检查，也不作为模型FPS或加速收益。当前32范围、科学入口与核验规则保持。[实测分项与后续工程候选](research_round_20260925_global/N20_CPU_REVIEW_COST_AND_FUTURE_PROTOCOL_20261016.md)。
 
