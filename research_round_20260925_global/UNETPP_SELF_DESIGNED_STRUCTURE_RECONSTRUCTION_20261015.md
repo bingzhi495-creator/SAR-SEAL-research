@@ -91,6 +91,12 @@
 本文件保留此前静态审阅/只做stat阶段的范围。后续Root已仅打开111、222和两份ALL_NEW的ZIP目录与有界pickle元数据，没有加载模型/张量或哈希整份权重。新增writer/reader声明、参数名样集合及兼容性限制见[后续证据](UNETPP_LEGACY_PROVENANCE_AND_CONTAINER_EVIDENCE_20261015.md)。该补查仍不认证完整原训练、唯一forward或当前AP；不能用元数据相等合并或删除权重。另明确区分旧掩膜IoU阈值通过指标、连通域代理AP与COCO AP。
 
 
+## 模块内部也有改造：审阅范围补充（2026-10-16）
+
+用户再次指出模块本身也经过调整。实际源码确认此前以连线和路由为重点的描述不够完整：full中的CBAM_block输出是残差激活再加SimAM响应；SamplingBoundary的上下采样内部也分别包含真实模糊采样和门控细节残差。基础原语的归属与复合模块的自定义实现应分开评价，不能仅凭类名将整块当作未经修改的原版。
+
+本轮也定位了实际输出路径和批次索引问题，仍是静态检查，未做张量回归或修复历史文件。此前13组forward还原保留为当时记录；新的模块级证据与限制以[本轮补充核对](UNETPP_MODULE_INTERNAL_CHANGES_SOURCE_CHECK_20261016.md)为准。不同文件版本仍需分别核对权重身份，模块改造不自动证明学术新颖性或效用。
+
 ## 近年先例与运算顺序补充（2026-10-16）
 
 ICUnet++已研究UNet++的decoder/skip CBAM放置；RPAU-Net++明确处理浅层编码支路，可作为直接放置对照的先例。Root另精确核查原model_new1：先CBAM得到up_x、再进行上采样，不能直接写成上采样后CBAM；原x保留仅相对于该传输门控，不代表stage0注意力或H/4批次上下文不存在。[正文证据、未读边界及A0/A1/B1对照修正](UNETPP_UPSAMPLE_TRANSPORT_RECENT_DIRECT_PRIOR_20261016.md)。没有新执行、效用或学术新颖性结论，当前N20不变。
