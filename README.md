@@ -2,6 +2,8 @@
 
 **最新实际结果（N22）：** FIT32图/3200自然query完整动作采集及独立CPU复算均已实际0并完成Root接收；53真实配对的原生/Omega路由/固定PR有益动作oracle/理想C oracle平均IoU为90.223344/91.361366/93.656927/96.157998%。两类机会差2.295561/2.501071点相近，阈值事件22/20排序不同，已完整检查6个冲突例；不认定head主瓶颈或新AP收益。Omega外2489/3850错误、694可修/1007有害，当前固定PR带外无残差数据梯度已核；下一项准备同结构/同点训练域强控制，尚未启动训练。GPU304.563秒、CPU9.984秒，首次初始化错误actual1保留；全局224正常+28失败=252，legacy pins232。总目标未完成。[完整结果](research_round_20260925_global/N22_FIT_FULLC_QUALIFIED_DIAGNOSTIC_RESULT_20261017.md)、[聚合摘要](research_round_20260925_global/results/N22_FIT_FULLC_FIXED_PAIR_SUMMARY_20261017.json)、[源码与23项合成测试](research_round_20260925_global/code/N22_FIT_FULLC_DIAGNOSTIC_SOURCE_ONLY_20261017_01/README.md)。
 
+**N23覆盖核查准备：** 全741图原采样的独立CPU入口与覆盖内核已形成，11项合成测试通过，真实接入与训练尚未启动。预锁保留1661真实GT和3035136原点分母，检查Omega零覆盖、重复坐标与ESS；零覆盖时先修所有臂共同采样，不能直接做主公平比较。[执行前方案](refine-logs/N23_FULLFIT_CACHE_COVERAGE_20261017_01/EXPERIMENT_PLAN.md)、[源码与测试](research_round_20260925_global/code/N23_FULLFIT_CACHE_COVERAGE_SOURCE_ONLY_20261017_01/README.md)。
+
 **诊断代码准备：** 已补全强R选区与全C未门控PR动作的静态接口，提供[精确计数内核及合成测试](research_round_20260925_global/code/N22_INSTANCE_ACTION_ORACLE_SOURCE_ONLY_20261017_01/README.md)，8项测试实际通过。已形成[结果前锁定方案](refine-logs/N22_FIT_INSTANCE_OPPORTUNITY_20261017_01/EXPERIMENT_PLAN.md)，沿用独立选出的FIT32图、全部100自然query；预登记时真实采集尚未启动，没有新训练或AP；UNet++门控说明已按实际单次Sigmoid更正。
 
 **下一项训练准备（N23，尚未启动）：** 同点训练域适配器已形成，4项合成测试通过；保持真实匹配GT、原点顺序与重复、F/L及重要性权重，仅生成Omega/C两种门控。真实缓存接入和训练尚未执行；需先核对GT与Omega覆盖并锁定损失归一化，避免弱化对照。N22已补齐其预锁FIT32范围内的全C动作，不能外推到全训练集。[适配器、测试与未决条件](research_round_20260925_global/code/N23_SHARED_POINT_DOMAIN_ADAPTER_DRAFT_20261017_01/README.md)、[数据来源与历史缺口](research_round_20260925_global/FIT_INSTANCE_OPPORTUNITY_DATA_AVAILABILITY_20261017.md)。
