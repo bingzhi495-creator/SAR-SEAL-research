@@ -246,6 +246,8 @@ N13核验失败后，已在新的数值执行前保存[固定单图诊断登记]
 
 [正式TEST与跨集证据准备度](research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)：定位既有测试暴露与HRSID旧TEST选型历史，区分固定配方外部评价与独立确认性证据；实际包、真mask、ID/场景与许可覆盖仍须执行前闭合。本次仅普通历史/元数据审阅，未新增科学验证。
 
+[补充跨集候选：Instance-RSDD（尚未入场）](research_round_20260925_global/INSTANCE_RSDD_PUBLIC_DATA_CANDIDATE_AND_MASK_SCOPE_20261016.md)：已核对论文的人工逐实例像素标注说明与作者获取入口；包内编码、实际划分、历史使用、独立性与许可仍待核验。另区分旋转框掩膜与船体轮廓真值；未新增跨集AP，不改变N20。
+
 [历史TEST用途台账补充（2026-10-16）](research_round_20260925_global/HISTORICAL_TEST_USE_LEDGER_TEXT_EVIDENCE_20261016.md)：从已发布实验稿定位HRSID融合设置/BPR种子与PSeg-SSDD对比checkpoint的测试选型披露，补齐具体已知用途；原始运行、权重与时间链未重新核验，不推及当前N20，不恢复盲测身份。
 
 
