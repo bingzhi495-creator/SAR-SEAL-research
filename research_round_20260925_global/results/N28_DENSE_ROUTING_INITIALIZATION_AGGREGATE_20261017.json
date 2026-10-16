@@ -1,0 +1,105 @@
+{
+  "schema": "N28-public-initialization-interface-aggregate-v1",
+  "status": "ORIGINAL_ACTUAL0_ROOT_ACCEPTED_INITIALIZATION_FIRST_REAL_INTERFACE",
+  "preregistered_source_commit": "53c263bb8c9217f955835836bd2a87a38599487f",
+  "scope": {
+    "real_FIT_images_tested": 1,
+    "real_matched_instances_tested": 1,
+    "initialization_seeds": 3,
+    "full_FIT_training_qualified": false,
+    "optimizer_created": false,
+    "optimizer_steps": 0,
+    "full_training_executed": false,
+    "AP": false,
+    "DEV": false,
+    "TEST": false,
+    "source_only_not_one_click_data_release": true
+  },
+  "worker_reported_checks": {
+    "AP": false,
+    "CPU_global_RNG_restored": true,
+    "DEV": false,
+    "F_to_N16_centers_allclose_atol": 0.0001,
+    "F_to_N16_centers_allclose_rtol": 0.0001,
+    "F_to_N16_centers_bitexact": true,
+    "F_to_N16_centers_max_abs_error": 0,
+    "TEST": false,
+    "base": "Original saved FP32 natural native_L, not replayed M or binary R",
+    "coarse_to_native_bitexact": true,
+    "coarse_to_native_max_abs_error": 0,
+    "coarse_to_native_signs_exact": true,
+    "dataset_indices": [
+      0
+    ],
+    "disposable_backward_probes_total": 2,
+    "disposable_readout_perturbations": true,
+    "elapsed_seconds": 2.0630000000819564,
+    "feature_scope": "Single frozen pixel-decoder mask feature at 200x200; learned hierarchy, not captured FPN levels",
+    "first_coarse_M_digest_exact": true,
+    "first_full_F_digest_exact": true,
+    "first_query_GT_identity_exact": true,
+    "full_training_executed": false,
+    "images": 1,
+    "modes": [
+      "SELECTIVE",
+      "WHOLE_NODE"
+    ],
+    "new_training": false,
+    "nonzero_readout_route_max_abs_difference": 3.031163942068815e-07,
+    "optimizer_created": false,
+    "optimizer_steps": 0,
+    "original_models_or_weights_modified": false,
+    "paired_state_dict_exact_all_seeds": true,
+    "parameter_count_per_arm": 2978555,
+    "samples": 1,
+    "seeds": [
+      202610172801,
+      202610172802,
+      202610172803
+    ],
+    "tests": {
+      "SELECTIVE": {
+        "all_parameter_gradients_finite": true,
+        "disposable_backward_probes": 1,
+        "full_mask_outside_write_verified": true,
+        "native_logits_values_and_masks_preserved": true,
+        "optimizer_steps": 0,
+        "probe_is_efficacy_training": false,
+        "zero_delta_exact": true
+      },
+      "WHOLE_NODE": {
+        "all_parameter_gradients_finite": true,
+        "disposable_backward_probes": 1,
+        "full_mask_outside_write_verified": true,
+        "native_logits_values_and_masks_preserved": true,
+        "optimizer_steps": 0,
+        "probe_is_efficacy_training": false,
+        "zero_delta_exact": true
+      }
+    },
+    "training_eligible": false,
+    "virgin_trained_updates": 0
+  },
+  "validation": {
+    "original_actual0": true,
+    "original_held_identity_and_fresh_RAW_FIRST": true,
+    "Root_source_and_artifact_hash_intake": true,
+    "Root_independent_neural_or_pixel_replay": false
+  },
+  "cost": {
+    "body_seconds": 2.0630000000819564,
+    "entry_seconds": 4.719000000040978,
+    "owned_process_seconds": 5.405999999959022,
+    "peak_allocated_GPU_bytes": 365477376,
+    "allocated_GPU_bytes_after_cleanup": 0,
+    "reserved_GPU_bytes_after_cleanup": 0,
+    "peak_process_RSS_bytes": 1011867648,
+    "minimum_available_RAM_bytes": 32570359808
+  },
+  "limitations": [
+    "First real matched instance only; not all741 numerical validation or efficacy",
+    "The nonzero-readout output difference is a routing-path integration probe, not an AP or useful-feature effect",
+    "Single frozen mask feature with a learned hierarchy, not captured backbone FPN multi-level inputs",
+    "Virgin initialization checkpoints remain private; no training or TGRS-level success is claimed"
+  ]
+}

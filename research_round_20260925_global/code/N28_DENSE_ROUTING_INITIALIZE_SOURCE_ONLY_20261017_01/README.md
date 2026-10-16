@@ -1,6 +1,6 @@
 # N28：实例条件密集路由的初始化与接口源码
 
-2026-10-17。状态：已实现、冻结并完成静态审阅和4项纯标准库路由行为检查；真实数值尚未执行，正式结构训练尚未启动。
+2026-10-17。状态：已实现、冻结，原GPU任务已实际退出0并Root接收；3seed配对初始化及第0图首个真匹配实例的前向/反向、零残差/全域写入均通过。正式结构训练尚未启动，完整FIT训练资格未建立。
 
 本小型适配沿用户model_new1的up_x连接，单层冻结mask feature F256与自然query e/原coarse M生成完整delta_M；两组均可修改全mask。SELECTIVE保留其他出边D，WHOLE_NODE改用同一已计算T=G(D)，跨尺度均U(T)。同尺度共享纯CBAM，独立上采样边，宽度16/32/64/128/256。它是查询条件的实例精修适配，不是完整历史语义UNet++或多层FPN输入的复现。
 
@@ -12,3 +12,5 @@
 种子202610172801/2802/2803；原native_L为base，不拿二值R或CPU重放替代。F/e LayerNorm无affine，F200→800→actual裁剪→original沿既有GPU投影。旧N13 full-F载体及新N16自然query/L的身份、摘要和实用数值关系必须先核。当前仅第一真实接口资格，不授予全FIT训练资格，不报告AP/DEV/TEST。
 
 [执行前计划及正式训练前缺口](../../../refine-logs/N28_DENSE_ROUTING_20261017_01/EXPERIMENT_PLAN.md)；[N27实测依据](../../N27_MATCHED_SUPPORT_CENSUS_RESULT_20261017.md)。模型、优化器、数据、GT、载体、RAW/SPEC/Q和绑定凭据不随本源码发布，因此尚非一键运行镜像。
+
+[实际初始化结果与范围](../../N28_DENSE_ROUTING_INITIALIZATION_RESULT_20261017.md)。无optimizer step、AP、DEV或TEST；原始共同初始权重不发布。
