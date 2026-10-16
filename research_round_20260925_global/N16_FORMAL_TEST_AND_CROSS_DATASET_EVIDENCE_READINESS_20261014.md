@@ -2,7 +2,7 @@
 
 本页仅定位独立发布副本已有的数据协议、元数据核查和历史审阅；未读取实际 SCI/SOURCE/RAW、影像、GT、权重或缓存，未运行科学代码、重新核验数据包或新增联网调查。既有审计直接复用，不能把准备文档当作实际数据或评价资格。
 
-**测试暴露已有记录，不能默认恢复盲测身份。** [历史确认实验方案第42行](../paper_tgrs/revision_tgrs_20260905/CONFIRMATORY_EXPERIMENTS_CN.md)明确记录：HRSID test 已用于规则选择，PSeg-SSDD test 结果也已公开查看。[2026-10-11论文源码审阅](../docs/paper_review_20261011.md)进一步定位旧 HRSID TEST 融合超参数选择、best-on-test 及近岸选点；[历史修订报告](../paper_tgrs/revision_tgrs_20260905/REVISION_REPORT_CN.md)同样明确测试参与参数与方案选择。HRSID 旧 TEST 不能通过重命名恢复 blind。SSDD **结果暴露不等于已确认具体参数选型**：本次未找到完整的 SSDD 测试接触清单、选型参数/模型及其时间关系，不能由这个缺口推断“没有历史选型”。
+**测试暴露已有记录，不能默认恢复盲测身份。** [历史确认实验方案第42行](../paper_tgrs/revision_tgrs_20260905/CONFIRMATORY_EXPERIMENTS_CN.md)明确记录：HRSID test 已用于规则选择，PSeg-SSDD test 结果也已公开查看。[2026-10-11论文源码审阅](../docs/paper_review_20261011.md)进一步定位旧 HRSID TEST 融合超参数选择、best-on-test 及近岸选点；[历史修订报告](../paper_tgrs/revision_tgrs_20260905/REVISION_REPORT_CN.md)同样明确测试参与参数与方案选择。HRSID 旧 TEST 不能通过重命名恢复 blind。**2026-10-16补充：SSDD 已有具体模型选型的历史文本记录。** [历史 TEST 用途台账](HISTORICAL_TEST_USE_LEDGER_TEXT_EVIDENCE_20261016.md)定位到旧实验稿第203/209行：对应对比表的 competitor checkpoint 为 best-on-test，两项 SAR 模块本地复现按近岸子集选择。此为文稿披露，完整测试接触清单、实际参数/权重身份、运行时间关系与原始产物绑定仍缺；不能推及当前 N20，也不能宣称台账已经闭合。
 
 **PSeg-SSDD：官方接口和转换准备已有，正式入场核验尚不完整。** [DATA_ACCESS](../docs/DATA_ACCESS.md)记录 [Official-SSDD作者入口](https://github.com/TianwenZhang0825/Official-SSDD)及[数据论文](https://www.mdpi.com/2072-4292/13/18/3690)：PSeg 真实多边形与 BBox/RBox 版本不同，官方 train928/test232，内部 FIT741/DEV187 不等于 TEST232。已有 `protocol/pseg_to_coco.py` 转换入口，但会跳过缺失 XML/无有效多边形对象，不能凭转换完成认定数量与真值完整。仓库 Apache-2.0 与外链影像压缩包逐文件授权范围未被完整映射；当前发布官方获取入口，不声明原图镜像已获核实授权。
 

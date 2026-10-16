@@ -246,6 +246,8 @@ N13核验失败后，已在新的数值执行前保存[固定单图诊断登记]
 
 [正式TEST与跨集证据准备度](research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)：定位既有测试暴露与HRSID旧TEST选型历史，区分固定配方外部评价与独立确认性证据；实际包、真mask、ID/场景与许可覆盖仍须执行前闭合。本次仅普通历史/元数据审阅，未新增科学验证。
 
+[历史TEST用途台账补充（2026-10-16）](research_round_20260925_global/HISTORICAL_TEST_USE_LEDGER_TEXT_EVIDENCE_20261016.md)：从已发布实验稿定位HRSID融合设置/BPR种子与PSeg-SSDD对比checkpoint的测试选型披露，补齐具体已知用途；原始运行、权重与时间链未重新核验，不推及当前N20，不恢复盲测身份。
+
 
 [scout条件重复的初始化编号登记](research_round_20260925_global/N16_SCOUT_INITIALIZATION_REPEAT_PROSPECTIVE_LOCK_20261014.md)：在ROOT查看本轮完整AP前，固定后续202610140162/163；只改变配对scout初始化，原停止门不变，没有开始新增训练，结论限固定载体下初始化稳健性。
 
