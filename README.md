@@ -1,5 +1,7 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
+**最新实际结果（N22）：** FIT32图/3200自然query完整动作采集及独立CPU复算均已实际0并完成Root接收；53真实配对的原生/Omega路由/固定PR有益动作oracle/理想C oracle平均IoU为90.223344/91.361366/93.656927/96.157998%。两类机会差2.295561/2.501071点相近，阈值事件22/20排序不同，已完整检查6个冲突例；不认定head主瓶颈或新AP收益。Omega外2489/3850错误、694可修/1007有害，当前固定PR带外无残差数据梯度已核；下一项准备同结构/同点训练域强控制，尚未启动训练。GPU304.563秒、CPU9.984秒，首次初始化错误actual1保留；全局224正常+28失败=252，legacy pins232。总目标未完成。[完整结果](research_round_20260925_global/N22_FIT_FULLC_QUALIFIED_DIAGNOSTIC_RESULT_20261017.md)、[聚合摘要](research_round_20260925_global/results/N22_FIT_FULLC_FIXED_PAIR_SUMMARY_20261017.json)、[源码与23项合成测试](research_round_20260925_global/code/N22_FIT_FULLC_DIAGNOSTIC_SOURCE_ONLY_20261017_01/README.md)。
+
 **诊断代码准备：** 已补全强R选区与全C未门控PR动作的静态接口，提供[精确计数内核及合成测试](research_round_20260925_global/code/N22_INSTANCE_ACTION_ORACLE_SOURCE_ONLY_20261017_01/README.md)，8项测试实际通过。已形成[结果前锁定方案](refine-logs/N22_FIT_INSTANCE_OPPORTUNITY_20261017_01/EXPERIMENT_PLAN.md)，沿用独立选出的FIT32图、全部100自然query；预登记时真实采集尚未启动，没有新训练或AP；UNet++门控说明已按实际单次Sigmoid更正。
 
 **下一步的数据缺口：** 已核缓存声明包含完整原生L底座，但没有全C实际PR动作和当前router选点，4096个采样动作不能外推。先补齐FIT实例级诊断输入，再决定改路由还是修正器；不重命名已试过的Utility或实际flip对照。[数据可用性与采集缺口](research_round_20260925_global/FIT_INSTANCE_OPPORTUNITY_DATA_AVAILABILITY_20261017.md)。
@@ -14,7 +16,7 @@
 
 **当前状态（N20）：** 第二种子全187图统一COCO及独立Root接收均已完成，阶段结果冻结为`STOP_CURRENT_RECIPE`。固定主终点E24-atmost下，seed201 LOCAL/CENTER/强R仍为68.297126/67.978791/68.099385 AP，seed202仍为67.991722/67.697705/68.099385 AP；平均主差值为+0.045039 AP点（精确值+0.04503879895506202），未达到预锁1点门槛，不启动seed203、追加预算或融合。恢复原session5111实际退出0，exactheld已保存，fresh221 FIRST实际退出0后，Root外部接收实际完成；N20接收时为221正常终态+27保留失败=248、legacy pins229。原post19115实际退出1作为failure27保留，恢复只修复metadata的JSON键比较，没有重训或重算十组COCO。独立N21几何结果见下，不改变本阶段停止结论。旧独立审阅仍为WARN/provisional partial；本阶段不证明总体胜过强R、创新成立或TGRS就绪，总目标未完成。[两seed全部结果与阶段判定](research_round_20260925_global/N20_TWO_SEED_MAIN_RESULTS_20261017.md)。
 
-**最新完成（N21）：** 预锁32张FIT图×64个唯一整数中心、共2048组的理想插值几何诊断已实际0并完成Root外部接收。主分母2002/2048满足50%覆盖要求，同一原生2×2单元为0/2002，按原80%判据为`SHARED_FOUR_PREMISE_REJECTED`；主分母的理想系数矩阵均rank9。撤回“普遍同四角→低秩瓶颈”前提，不据此启动原生邻域训练。当前全局222正常+27失败=249、legacy pins230；不更改N20停止规则，不推实际F/LN rank、训练点分布、AP或总体模型有效性，总目标未完成。[完整结果](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_RESULT_20261017.md)、[结果前预锁原文](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_PRELOCK_20261017.md)、[机器可读摘要](research_round_20260925_global/results/N21_NATIVE_SUPPORT_GEOMETRY_SUMMARY_20261017.json)。接收前的失败及恢复时间线保留在两seed主结果说明和Git历史中。
+**已完成（N21）：** 预锁32张FIT图×64个唯一整数中心、共2048组的理想插值几何诊断已实际0并完成Root外部接收。主分母2002/2048满足50%覆盖要求，同一原生2×2单元为0/2002，按原80%判据为`SHARED_FOUR_PREMISE_REJECTED`；主分母的理想系数矩阵均rank9。撤回“普遍同四角→低秩瓶颈”前提，不据此启动原生邻域训练。当前全局222正常+27失败=249、legacy pins230；不更改N20停止规则，不推实际F/LN rank、训练点分布、AP或总体模型有效性，总目标未完成。[完整结果](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_RESULT_20261017.md)、[结果前预锁原文](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_PRELOCK_20261017.md)、[机器可读摘要](research_round_20260925_global/results/N21_NATIVE_SUPPORT_GEOMETRY_SUMMARY_20261017.json)。接收前的失败及恢复时间线保留在两seed主结果说明和Git历史中。
 
 **复核开销测量：** 第二批外部接收实际完成分段计时，共297.468秒，其中原来源及保存证明核验293.453秒；不能进一步归因于某一具体检查，也不作为模型FPS或加速收益。当前32范围、科学入口与核验规则保持。[实测分项与后续工程候选](research_round_20260925_global/N20_CPU_REVIEW_COST_AND_FUTURE_PROTOCOL_20261016.md)。
 

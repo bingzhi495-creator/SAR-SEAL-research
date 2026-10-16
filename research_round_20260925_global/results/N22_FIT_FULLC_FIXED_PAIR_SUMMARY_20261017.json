@@ -1,0 +1,219 @@
+{
+  "schema": "N22_PUBLIC_AGGREGATE_FIXED_PAIR_DIAGNOSTIC_V1",
+  "status": "GPU_AND_INDEPENDENT_CPU_ACTUAL0_ROOT_ACCEPTED",
+  "population": {
+    "collected_queries": 3200,
+    "ignored_queries": 0,
+    "image_count": 32,
+    "native_iou_zero_pairs": 0,
+    "pair_population": "ALL_ORIGINAL_MATCHER_REAL_GT_PAIRS_INCLUDING_NATIVE_IOU_ZERO",
+    "paired_instances": 53,
+    "query_count_per_image": 100,
+    "total_real_gt": 53,
+    "unassigned_queries": 3147,
+    "unmatched_gt": 0
+  },
+  "methods": [
+    {
+      "method": "native",
+      "mean_iou": 0.9022334410430436,
+      "mean_delta_from_native": 0.0,
+      "threshold_ge_counts": [
+        53,
+        53,
+        53,
+        53,
+        52,
+        50,
+        46,
+        44,
+        37,
+        9
+      ]
+    },
+    {
+      "method": "router_R",
+      "mean_iou": 0.9136136590389755,
+      "mean_delta_from_native": 0.01138021799593191,
+      "threshold_ge_counts": [
+        53,
+        53,
+        53,
+        53,
+        53,
+        52,
+        48,
+        45,
+        40,
+        18
+      ]
+    },
+    {
+      "method": "fixed_PR_beneficial_oracle",
+      "mean_iou": 0.9365692668113489,
+      "mean_delta_from_native": 0.03433582576830528,
+      "threshold_ge_counts": [
+        53,
+        53,
+        53,
+        53,
+        53,
+        53,
+        51,
+        47,
+        44,
+        30
+      ]
+    },
+    {
+      "method": "ideal_C_error_oracle",
+      "mean_iou": 0.9615799818058548,
+      "mean_delta_from_native": 0.059346540762811185,
+      "threshold_ge_counts": [
+        53,
+        53,
+        53,
+        53,
+        53,
+        53,
+        52,
+        50,
+        50,
+        40
+      ]
+    }
+  ],
+  "threshold_values": [
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95
+  ],
+  "opportunities": [
+    {
+      "direction": "router_selection",
+      "mean_iou_gap": 0.02295560777237337,
+      "pairs_positive_gap": 53,
+      "threshold_up_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        2,
+        4,
+        12
+      ]
+    },
+    {
+      "direction": "fixed_PR_action_availability",
+      "mean_iou_gap": 0.025010714994505905,
+      "pairs_positive_gap": 51,
+      "threshold_up_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        6,
+        10
+      ]
+    }
+  ],
+  "count_totals": {
+    "I": 58043,
+    "K": 3100,
+    "U": 61893,
+    "b_FN": 408,
+    "b_FP": 509,
+    "candidate_fn": 1708,
+    "candidate_fp": 2142,
+    "candidate_tn": 87928,
+    "candidate_tp": 58043,
+    "h_TN": 231,
+    "h_TP": 187,
+    "native_fn": 1708,
+    "native_fp": 2142,
+    "pr_beneficial_fn": 598,
+    "pr_beneficial_fp": 1013,
+    "selected_count": 3100
+  },
+  "candidate_coverage": {
+    "C_FN": 1708,
+    "C_FP": 2142,
+    "native_FN": 1708,
+    "native_FP": 2142,
+    "outside_C_FN": 0,
+    "outside_C_FP": 0
+  },
+  "regional_totals": {
+    "Omega_inside": {
+      "C_count": 3100,
+      "native_fn": 617,
+      "native_fp": 744,
+      "native_fp_other_real_GT": 23,
+      "native_fp_pure_background": 721,
+      "pr_beneficial_fn": 408,
+      "pr_beneficial_fp": 509,
+      "pr_beneficial_fp_other_real_GT": 9,
+      "pr_beneficial_fp_pure_background": 500,
+      "pr_harmful_tn": 231,
+      "pr_harmful_tp": 187
+    },
+    "Omega_outside": {
+      "C_count": 146721,
+      "native_fn": 1091,
+      "native_fp": 1398,
+      "native_fp_other_real_GT": 27,
+      "native_fp_pure_background": 1371,
+      "pr_beneficial_fn": 190,
+      "pr_beneficial_fp": 504,
+      "pr_beneficial_fp_other_real_GT": 3,
+      "pr_beneficial_fp_pure_background": 501,
+      "pr_harmful_tn": 267,
+      "pr_harmful_tp": 740
+    }
+  },
+  "CPU_combined_sign_mismatches": 0,
+  "CPU_GPU_combined_max_abs_difference": 0.0,
+  "runtime": {
+    "GPU_original_seconds": 304.56300000008196,
+    "CPU_original_seconds": 9.984000000171363,
+    "whole_GPU_observed_peak_MiB": 3817,
+    "GPU_torch_peak_allocated_bytes": 1087410176,
+    "GPU_peak_observed_RSS_bytes": 1352118272,
+    "CPU_peak_observed_RSS_bytes": 444751872
+  },
+  "integrity": {
+    "normal_terminals": 224,
+    "preserved_failures": 28,
+    "total_terminals": 252,
+    "legacy_pins": 232,
+    "first_capture_failure_preserved": true,
+    "model_architecture_unchanged": true,
+    "no_new_training": true,
+    "no_AP": true,
+    "original_pending_outputs_unchanged": true
+  },
+  "scope": "32 FIT images, all100 queries acquired; all53 original true-GT matcher pairs; no IoU filter. R is same-fullC-action Omega restriction; all means rounded representations of private exact Fractions.",
+  "interpretation": {
+    "mean_vs_threshold_ordering_disagrees": true,
+    "head_is_main_AP_bottleneck_established": false,
+    "instance_competition_mechanism_supported": false,
+    "core_innovation_established": false,
+    "TGRS_readiness": false,
+    "goal_complete": false
+  },
+  "next_action": "Review all6 mean-vs-threshold disagreement cases; validate actual gradient support and prepare same-structure/shared-samples Omega-vs-C training control before a new mechanism claim."
+}
