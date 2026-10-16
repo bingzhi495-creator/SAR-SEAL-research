@@ -1,5 +1,7 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
+**下一组训练（执行前预锁）：** 原Omega监督锚定+C经验池三臂源码已形成，15项合成测试通过；保留原1024点损失系数1，共用C池，lambda0.25，同强E24初值、固定新增24轮。清单1661个GT→q全一致；真实Tensor联核、GPU梯度检查与优化更新尚未执行。主AP仅E24，统一Omega/K/原score并重跑冻结强R。[固定训练方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)、[源码与测试](research_round_20260925_global/code/N23_ANCHORED_DOMAIN_TRAIN_SOURCE_ONLY_20261017_01/README.md)。
+
 **最新实际结果（N23）：** 全741图、1661GT和3035136原采样覆盖核查已真实0并经Root接收；1650非空GT中42个Omega零点，matched的Omega仅24955/1517568=1.644407%，唯一Omega点中位数7；另11个K0无采样。按预锁先修所有臂共同采样，不能直接拿当前池做主公平训练。实际28.969秒，无新训练/AP；全局225正常+28失败=253，legacy pins233。[完整结果](research_round_20260925_global/N23_REAL_FULLFIT_CACHE_COVERAGE_RESULT_20261017.md)、[聚合数据](research_round_20260925_global/results/N23_FULLFIT_CACHE_COVERAGE_AGGREGATE_20261017.json)。
 
 **最新实际结果（N22）：** FIT32图/3200自然query完整动作采集及独立CPU复算均已实际0并完成Root接收；53真实配对的原生/Omega路由/固定PR有益动作oracle/理想C oracle平均IoU为90.223344/91.361366/93.656927/96.157998%。两类机会差2.295561/2.501071点相近，阈值事件22/20排序不同，已完整检查6个冲突例；不认定head主瓶颈或新AP收益。Omega外2489/3850错误、694可修/1007有害，当前固定PR带外无残差数据梯度已核；下一项准备同结构/同点训练域强控制，尚未启动训练。GPU304.563秒、CPU9.984秒，首次初始化错误actual1保留；全局224正常+28失败=252，legacy pins232。总目标未完成。[完整结果](research_round_20260925_global/N22_FIT_FULLC_QUALIFIED_DIAGNOSTIC_RESULT_20261017.md)、[聚合摘要](research_round_20260925_global/results/N22_FIT_FULLC_FIXED_PAIR_SUMMARY_20261017.json)、[源码与23项合成测试](research_round_20260925_global/code/N22_FIT_FULLC_DIAGNOSTIC_SOURCE_ONLY_20261017_01/README.md)。
