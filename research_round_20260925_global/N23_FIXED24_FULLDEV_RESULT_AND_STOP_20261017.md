@@ -35,6 +35,6 @@ B−A_COMMON=+0.018395，B−A_ACTIVE=+0.203986；预锁Delta=B−max(A_COMMON,A
 3. 未解决：四头推理仍限定同一Omega。B的域外监督只通过共享参数影响Omega预测；因此负结果不是全C推理或所有空间结构的否定，也不直接证明过拟合或充分收敛。
 4. 下一项：完整187图的GT—query—IoU阈值错误普查，保留全部低质/无匹配GT，先区分高IoU候选缺失与已有候选的排序/贪心关联损失。诊断不预选新模块；只有证据支持后才锁定一条结构假设和强普通替代控制。它也不能将离线GT重排或配对IoU当全DEV AP上界。
 
-没有正式TEST、跨数据集、训练种子稳定性或核心创新证据；总目标继续。后续N24完整普查已实际完成，见[完整误差结果](N24_FULLDEV_ERROR_CENSUS_RESULT_20261017.md)；原N23停止规则不变。当前没有科学任务运行，N25评分诊断尚未实现或执行。本轮不是自定义UNet++整网或内部模块的有效性验证。
+没有正式TEST、跨数据集、训练种子稳定性或核心创新证据；总目标继续。后续N24完整普查已实际完成，见[完整误差结果](N24_FULLDEV_ERROR_CENSUS_RESULT_20261017.md)；原N23停止规则不变。N25评分诊断也已完成，见[GT oracle结果](N25_FIXEDMASK_SCORE_ORACLE_RESULT_20261017.md)；它不改变N23停止决定。当前无科学任务运行，下一项是N26可学习质量基线。本轮不是自定义UNet++整网或内部模块的有效性验证。
 
 [完整COCO12及成本聚合](results/N23_FIXED24_FOURHEAD_COCO_AGGREGATE_20261017.json)、[执行前评价方案](../refine-logs/N23_FIXED_E24_FOURHEAD_DEV_20261017_01/EXPERIMENT_PLAN.md)、[评价源码](code/N23_FOURHEAD_FIXED_E24_DEV_SOURCE_ONLY_20261017_02/README.md)、[结果到主张](N23_RESULT_TO_CLAIM_20261017/findings.md)、[最新直接先例](N23_DIRECT_SUPERVISION_AND_2026_STRUCTURAL_PRIOR_CHECK_20261017.md)。
