@@ -9,7 +9,7 @@
 | `D:/SAR/UNet++/model_full.py:86–121` | 两层3×3卷积 → 通道与空间门控 → 加投影或恒等残差 → ReLU → 再加 SimAM 响应 | 是复合残差注意力块的内部设计。若记残差激活为 h，实际输出为 `h + SimAM(h)`；不能只描述为“插入一个CBAM”。 |
 | `D:/SAR/UNet++/model_full.py:239–271` | 解码块有不同的归一化位置、两层卷积、通道与空间门控及残差路径 | 编码与解码模块不是完全相同的实现；但前置归一化存在下述旁路问题，不能照构造器意图描述实际运算。 |
 | `D:/SAR/UNet++/model_sampling_boundary.py:8–37` | 固定3×3二项式核、逐通道卷积、reflect padding、stride2，再送入 ConvBlock | 与本地clean版本的 MaxPool 路径有实际算子差异，模糊采样结果确实被后续网络使用。 |
-| `D:/SAR/UNet++/model_sampling_boundary.py:40–59` | `resize(x) + sigmoid(gate(resize(x))) * detail(resize(x))`；detail 包含逐通道3×3、归一化、ReLU、逐点1×1和归一化 | 上采样包含可学习的门控细节残差，而非纯双线性插值；117–136行还显示同尺度模块在不同嵌套列中复用。 |
+| `D:/SAR/UNet++/model_sampling_boundary.py:40–59` | `resize(x) + gate(resize(x)) * detail(resize(x))`；detail 包含逐通道3×3、归一化、ReLU、逐点1×1和归一化 | gate本身为1×1卷积接Sigmoid。上采样包含可学习的门控细节残差，而非纯双线性插值；117–136行还显示同尺度模块在不同嵌套列中复用。 |
 | `D:/SAR/UNet++/model_full.py:401–413` | 语义分支与普通卷积分支分开，后者进入x/y双向DSConv，三路拼接后融合 | 模块输入来源和融合运算也有明确设计；Transformer路径受真实开关控制，不能仅凭类已定义就计入实际模型。 |
 
 本地clean比较范围为 `model_unetpp_clean.py` 中的 MaxPool 和普通双线性上采样；这不是与所有文献方法的全面比较。上述证据确认自定义实现和输出函数，不确认每个基础原语首次提出。与直接先例的具体差异仍需以原论文和作者实现逐项对照。
