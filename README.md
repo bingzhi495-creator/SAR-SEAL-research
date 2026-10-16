@@ -6,13 +6,15 @@
 
 **自主设计与作者基线归属补充：** 团队自定义UNet++按完整结构评估；历史D目录的单个FPN文件与DiffSARShipInst作者固定版本统一换行后完全一致，SCJE-FPN及其中采用的CARAFE/ACmix须按作者基线引用。两份本地R535配置声明启用SCJE，不能仅改builder构造普通FPN对照；这不认证当前E/N20调用。[归属、实际路由与对照要求](research_round_20260925_global/UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
 
-**当前进行（N20）：** 第二种子202610150202的固定24轮训练和独立端点核验已完成。前三个固定DEV范围[0,47)、[47,94)、[94,141)均实际退出0，并在新的纯终态前置检查通过后接收产物；累计141图/14100 query/十策略的来源绑定、捕获文件SHA及原导出顺序已核对。这是元数据与完整性接收，独立tensor数值资格和全187图统一COCO仍未完成。最后范围[141,187)的原GPU186任务30806已启动，活动任务不计完成。当前186个正常原任务终态、26个保留科学失败、合计212；尚无第二种子AP。首201主差值仍为+0.197741 AP点，重复效用、正式TEST、跨集、机制和创新结论待证。 [当前状态与核验范围](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。完整AP与post新草稿已保存并通过合成元数据检查，尚未正式组装或运行，Root真实链整合审阅待完成。
+**当前进行（N20）：** 第二种子202610150202的固定24轮训练与独立端点核验已完成，四个DEV分段均实际退出0。每段均先通过新的纯终态前置检查，再接收产物；全部187图/18700 query/十策略的14项来源绑定、187份捕获SHA及原导出顺序已核对。这只是元数据与完整性接收，tensor数值资格和全187图统一COCO尚未完成。当前CPU32执行计划已锁定，首个[0,6)复核任务187、原supervisor54707已启动，0/32完成，不读取活动产物。当前187个正常原任务终态、26个保留科学失败、合计213，活动CPU不计完成。尚无第二种子AP；首201主差值仍+0.197741 AP点，重复效用、正式TEST、跨集、机制与创新结论待证。 [结果范围与当前状态](research_round_20260925_global/N20_REPEAT202_TRAINING_COMPLETE_ENDPOINT_CPU_STATUS_20261016.md)。
 
 **全量汇总入口状态：** 已按32份固定范围执行全187图统一COCO，并完成独立post与Root实际终态核验；静态审阅仅保留为执行前历史。[静态审阅记录](research_round_20260925_global/N20_FINAL32_ENTRY_STATIC_READINESS_REVIEW_20261016.md)。
 
 **跨集数据准备：** 本地5604个JPG的train/test实例标注，与已核官方PNG对应split按文件stem、ID及全部标注字段精确相等；完整文本SHA不同。5604文件编码哈希/头部检查实际0，均800×800三分量JPEG，尚未解码像素/mask。发现两组跨train/test相同编码图、一组test内部重复，其标注多重集均不同；原协议保留，未来另预锁去重敏感性补充。合并标注16951实例与split合计16969不等，不能互换。官方JPG归档身份、掩膜空间对齐和母景独立未确认，不恢复盲TEST；不继续等待PNG下载，不改变N20。[本地数据完整补充](research_round_20260925_global/HRSID_LOCAL_JPG_METADATA_AND_VERSION_BOUNDARY_20261015.md)。
 
 **增量查新：** [O²Former与DACF-net先例核查](research_round_20260925_global/DIRECT_SAR_INSTANCE_SEGMENTATION_INCREMENTAL_PRIOR_CHECK_20261015_01.md)分别标记全文和官方域索引证据，不与当前DEV跨协议排名；方向、多尺度和上下文模块已有直接先例；已补记v1实现需澄清的形状与对齐边界，不将自行适配称作完整作者复现。
+
+**采样与精修直接先例补查：** LIIF已包含原生3×3、相对坐标及解码后局部集成；I-MedSAM展示先插值到目标网格再作连续精修的另一条路线。条件rank上界不是本项目实测瓶颈；原生邻域本身不能算新原语。七项有限证据区分代码、正文与索引摘录，不宣称穷尽2026研究。[有限补查与设计边界](research_round_20260925_global/N20_NATIVE_GRID_VS_RENDERED_F9_DIRECT_PRIOR_REVIEW_20261016_01.md)。
 
 **自主UNet++与历史资产扩展审阅：** 按用户说明记录自主设计，已还原13组实际前向结构；重点保留选择性跨尺度传输、H/4语义与方向互补、采样重建协同三条候选。扩展登记1009个源码/配置/示例项；D内260个模型候选中222个关联数值训练记录，另20个pth是评价缓存。Mamba100轮/MSCK160轮等检测成绩与实例mask AP分开；旧full骨架与clean50轮不能混同，来源未接上不等于未训练。[扩展总评与下一步](research_round_20260925_global/UNETPP_EXPANDED_MODEL_ASSET_REVIEW_AND_NEXT_DESIGN_20261015.md)、[自主结构还原](research_round_20260925_global/UNETPP_SELF_DESIGNED_STRUCTURE_RECONSTRUCTION_20261015.md)、[全部源码目录](research_round_20260925_global/UNETPP_COMPLETE_MODEL_SOURCE_CATALOG_20261015.md)、[训练资产目录](research_round_20260925_global/UNETPP_COMPLETE_TRAINED_ASSET_CATALOG_20261015.md)、[有界先例核对](research_round_20260925_global/UNETPP_SELF_STRUCTURE_BOUNDED_PRIOR_CONTEXT_20261015.md)。三条均尚未确认学术新颖性或当前实例效用，不改N20端点。
 
