@@ -1,0 +1,69 @@
+{
+  "AP": false,
+  "DEV": false,
+  "GT_visits_per_arm": 550,
+  "Root_tensor_or_optimizer_replay": false,
+  "TEST": false,
+  "all_scalar_values_finite": true,
+  "arms": {
+    "FULL": {
+      "BCE": {
+        "count": 256,
+        "maximum": 0.010124722379259765,
+        "mean": 0.0016508067943717887,
+        "median": 0.0012010129576083273,
+        "minimum": 5.386306293075904e-05
+      },
+      "loss": {
+        "count": 256,
+        "maximum": 0.36506101163104177,
+        "mean": 0.03761742272763513,
+        "median": 0.031495895236730576,
+        "minimum": 0.01093463134020567
+      },
+      "softDice": {
+        "count": 256,
+        "maximum": 0.36379531745252935,
+        "mean": 0.035966615680440524,
+        "median": 0.02928932011127472,
+        "minimum": 0.010880768299102783
+      }
+    },
+    "PLAIN": {
+      "BCE": {
+        "count": 256,
+        "maximum": 0.010444015031680465,
+        "mean": 0.0016463424978251703,
+        "median": 0.0012248514540260658,
+        "minimum": 7.889584958320484e-05
+      },
+      "loss": {
+        "count": 256,
+        "maximum": 0.3649429341312498,
+        "mean": 0.03782337541360903,
+        "median": 0.03131432458758354,
+        "minimum": 0.012692773714661598
+      },
+      "softDice": {
+        "count": 256,
+        "maximum": 0.3636919506664934,
+        "mean": 0.03617703269468238,
+        "median": 0.029460802674293518,
+        "minimum": 0.012031376361846924
+      }
+    }
+  },
+  "global_update_sequence_contiguous": true,
+  "mean_loss_FULL_minus_PLAIN": -0.00020595268597389804,
+  "paired_actual_inputs_exact": true,
+  "recipe_or_endpoint_selected_from_monitor": false,
+  "rows_per_arm": 256,
+  "schema": "U40-training-loss-monitor-sanitized-v1",
+  "scope": "Matched-instance training-fit monitor only; repeated visits, no DEV/AP/full-query false-positive/convergence/innovation evidence",
+  "seed": 202610173101,
+  "span": {
+    "start": 2048,
+    "stop": 2304
+  },
+  "status": "ACTUAL_ACCEPTED_TRAINING_SCALAR_AUDIT"
+}

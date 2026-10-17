@@ -1,6 +1,6 @@
 # 以自主完整UNet++为主体的实例分割方法设计与实验路线
 
-日期：2026-10-17。当前状态：自主完整UNet++卷积资源版与原plain64两臂各2048正式更新已接收，原状态已启动[2048,2304)接续；总预算仍每臂50轮/37050更新。N28固定E24完整DEV按原门槛STOP当前路由配方，主方法独立训练。E50私有执行控制草稿与独立静态互接审已完成，尚未实际准备/绑定/数值执行。完整主方法尚无AP或创新成立结论，后文保留形成时记录。
+日期：2026-10-17。当前状态：自主完整UNet++卷积资源版与原plain64两臂各2304正式更新已接收，原状态已启动[2304,2560)接续；总预算仍每臂50轮/37050更新。N28固定E24完整DEV按原门槛STOP当前路由配方，主方法独立训练。E50私有执行控制草稿与独立静态互接审已完成，尚未实际准备/绑定/数值执行。完整主方法尚无AP或创新成立结论，后文保留形成时记录。
 
 ## 1. 本轮设计决定
 
@@ -241,3 +241,8 @@ N28固定端点及完整COCO已实际完成，原native/R全部12指标精确复
 第八正式段[1792,2048)原actual0已接收，两臂各累计2048更新（第2轮+566图），每臂574匹配GT训练访问，原owned995.063秒、worker946.578秒，完整恢复/保存回读通过、CUDA allocated/reserved清0。[实测](../../research_round_20260925_global/results/U40_FORMAL_U01792_02048_ACTUAL_20261017.json)。[训练loss监测](../../research_round_20260925_global/results/U40_U01792_02048_TRAINING_LOSS_MONITOR_20261017.json)同图均值普通0.035317、自主0.035126，全部有限但差距小，不支持AP、收敛或创新主张。原[2048,2304)已从各自完整状态及同一ORDER启动，固定50轮端点不变。
 
 [U43 HRSID完整人口检查核心](../../research_round_20260925_global/code/U43_HRSID_POPULATION_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)与[CPU入口](../../research_round_20260925_global/code/U43_HRSID_POPULATION_CHECK_ENTRY_DRAFT_20261017_01/README.md)已完成6项纯元数据/失败路径测试和独立静态互接审；全5604图/16969原实例的真实检查尚未准备/绑定/执行。它是跨集输入兼容检查，不改U40或授予外部效用/盲测结论。
+
+
+第九正式段[2048,2304)原actual0已接收，两臂各累计2304更新（3轮+81图），每臂550次匹配GT训练访问，原owned980.078秒、worker934.266秒，恢复/保存回读通过。[实测](../../research_round_20260925_global/results/U40_FORMAL_U02048_02304_ACTUAL_20261017.json)、[训练loss监测](../../research_round_20260925_global/results/U40_U02048_02304_TRAINING_LOSS_MONITOR_20261017.json)。普通/自主均值0.037823/0.037617，全部有限但差距小，没有新增AP或收敛主张。
+
+间插U43全5604输入检查原actual1已保留，在PIL来源门处4.844秒退出，尚未population/像素/原split记录解析/COCO栅格；入口已对编码Source字节做闭合。Root纯文件检查证实十二库仅路径别名与物理路径不同、bytes/SHA全相同，旧源码/绑定/产物保持。Root失败接收没有图像/GT语义重演或数据资格；[失败及范围](../../research_round_20260925_global/results/U43_HRSID_POPULATION_LIBRARY_PATH_FAILURE_ACTUAL_20261017.json)、[明确修复计划](../../research_round_20260925_global/U43_CANONICAL_LIBRARY_REFERENCE_REPAIR_PLAN_20261017.md)。普通/自主主训练的配对模型父仍是2304；运行记账父单独接收该失败。原[2304,2560)已接续启动，固定50轮端点不变。

@@ -1,5 +1,7 @@
 # 正式 TEST 与跨数据集证据准备度（2026-10-14）
 
+**当前状态补记（2026-10-17，首次全集检查失败已保留）：** U43首次实际任务在PIL库引用核验处退出1，0图/0实例完成解码或栅格，尚无全集输入资格。根因是环境入口与重定向物理路径在严格ref.path中不同，十二库bytes/SHA一致；原编码Source已闭合，但未解析split标注记录。以下早先“未执行”为当时记录；最新证据见本页末尾。
+
 本页仅定位独立发布副本已有的数据协议、元数据核查和历史审阅；未读取实际 SCI/SOURCE/RAW、影像、GT、权重或缓存，未运行科学代码、重新核验数据包或新增联网调查。既有审计直接复用，不能把准备文档当作实际数据或评价资格。
 
 **2026-10-17最新来源增量：** 实际绑定initializer已与官方公开端点的多项指纹一致，见文末后续核对；完整远端SHA256、独立训练谱系及全人口真实像素/raster仍未完成。前文保留各阶段形成时的边界。
@@ -48,3 +50,10 @@ Root随后仅流式读取该原初始化文件字节，完整SHA与其已绑定r
 2026-10-17 执行准备补记：[U43固定检查计划](U43_HRSID_FULL_PIXEL_MASK_INPUT_CHECK_PLAN_20261017.md)已形成，Root已从原完整encoded/header记录提取5604个原JPEG与两split的严格引用候选，并仅按文件字节固定十二个选定库引用；未重新读取原JPEG/GT、导入这些库或执行人口检查。Root私有prepare/bind/register/intake控制草稿已完成少量纯元数据行为与独立静态互接审，实际绑定与科学执行仍待原训练任务终止后统一安排，不因准备完成授予数据资格。
 
 [U44外部自动实例推理方案](U44_HRSID_FIXED_EXTERNAL_PREDICTION_DESIGN_20261017.md)明确采用小CPU窗口、GPU逐模型轮换、只保留最终RLE；不把内部187图reader改常数冒充1962人口，不建立全人口F/M/L密集缓存。新图无GT模型接口、固定E50端点/效用及强R外部来源仍缺，保持planned/not run；输入检查通过也不证明任何跨集AP或未见数据泛化。
+
+
+## 2026-10-17 U43首次实际失败与独立修复
+
+[原actual1失败摘要](results/U43_HRSID_POPULATION_LIBRARY_PATH_FAILURE_ACTUAL_20261017.json)已核原held、birth/reap、原13ad/phase/log及partial并完成Root失败保留，4.844秒无资源中断；REPORT FAILED、population为空、IMAGE_CHECKS0行，无Q/SAFE。入口此前已hash原JPEG和两split标注的准入字节，不能表述为完全未读数据；实际像素解码、原split记录解析及官方mask栅格尚未执行，TEST_annotations_read仍为原报告None，不伪称noTEST。
+
+Root未导入科学库，仅对十二个选定库作[路径/字节诊断](results/U43_LIBRARY_CANONICAL_PATH_DIAGNOSTIC_20261017.json)：入口路径经目录重定向到物理位置，所有长度及SHA一致，仅ref.path不同。旧body resolve后的整个ref相等门产生确定拒绝条件，不能据此判定图像或方法失效。[明确独立修复计划](U43_CANONICAL_LIBRARY_REFERENCE_REPAIR_PLAN_20261017.md)只将十二项库引用规范化，保留全部科学源码、人口、资源、原严格来源门及首次失败；新的私有命名空间与repair_of关系已形成未绑定草稿，尚未实际重新执行。U40配对模型父维持2304并已原状态接续；科学资格与运行记账父分别处理，不以数据检查失败重训或改变主方法。
