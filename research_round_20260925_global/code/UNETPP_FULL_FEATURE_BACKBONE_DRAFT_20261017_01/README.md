@@ -9,3 +9,7 @@
 测试工厂make_real_legacy_suite(torch,legacy_class)要求实际闭合原类，计划用64尺寸、eval、no_grad，临时将第四语义头替换Identity获得原forward特征，再与wrapper逐元素精确比较，最后恢复原头。测试不会把tiny假主干当成原结构；尚未执行，不证明梯度、真实影像、400资源、训练或AP。原历史模型及其依赖与权重不在本目录重新发布。
 
 进一步执行入口见[真实full CPU64检查](../U30_FULL_FEATURE_CPU_DRAFT_20261017_01/README.md)，方法计划见[完整方案](../../../refine-logs/UNETPP_FULL_METHOD_20261017_01/EXPERIMENT_PLAN.md)。
+
+## 后续实际执行
+
+本目录原代码已在执行前发布后由Root受控执行；原完整full卷积主体64尺寸的特征精确等价和eval反向两项实际通过并接收。此前未执行文字为研发版本历史，源码保持不变。[实际结果及局限](../../U30_REAL_FULL_FEATURE_CPU64_ACTUAL_RESULT_20261017.md)。400资源、train态BN、真实影像/GT/渲染、主训练和AP仍未完成。

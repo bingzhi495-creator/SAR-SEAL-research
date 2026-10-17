@@ -1,0 +1,156 @@
+{
+  "AP": false,
+  "CUDA_cold_checkpoints": 14,
+  "CUDA_initialization_attempts": [],
+  "CUDA_initialized": false,
+  "DEV": false,
+  "GT_loaded": false,
+  "TEST": false,
+  "actual_CPU_affinity": [
+    0,
+    1
+  ],
+  "actual_CPU_interop_threads": 2,
+  "actual_CPU_threads": 2,
+  "actual_call_counts": {
+    "feature_exit": 1,
+    "legacy_forward": 0,
+    "wrapper": 1
+  },
+  "actual_full_architecture_verified": false,
+  "actual_started_tests": [
+    "U30_FULL_FEATURE_PUBLIC_CONTRACT.make_real_legacy_suite.<locals>.RealLegacySize64Contract.test_feature_forward_matches_real_legacy_with_temporary_identity_semantic_head",
+    "U30_FULL_FEATURE_CPU_PROBE_BODY.run.<locals>.RealFullAdapterBackwardContract.test_size64_real_feature_adapter_finite_backward_and_unused_heads_unchanged"
+  ],
+  "all_tests_passed": true,
+  "allocated_parameter_count": 67303293,
+  "allocated_parameter_tensors": 333,
+  "batch_size": 1,
+  "dependency_module_aliases_restored_exact": true,
+  "effective_parameter_count": 53122947,
+  "effective_parameter_tensors": 245,
+  "external_CPU_RNG_restored_exact": true,
+  "goal_complete": false,
+  "gradient_missing_names": [],
+  "gradient_nonfinite_names": [],
+  "gradient_zero_names": [],
+  "inactive_parameter_count": 14180346,
+  "inactive_parameter_tensors": 88,
+  "innovation_established": false,
+  "input_gradient_checks": {
+    "coarse": {
+      "exact_zero": false,
+      "finite": true,
+      "missing": false
+    },
+    "embeddings": {
+      "exact_zero": false,
+      "finite": true,
+      "missing": false
+    },
+    "image": {
+      "exact_zero": false,
+      "finite": true,
+      "missing": false
+    }
+  },
+  "input_size": 64,
+  "limitations": [
+    "Only one synthetic size64 image in eval mode, original full convolutional feature graph and two query readouts.",
+    "The public unchanged test compares the feature wrapper bitexactly with original full forward using a temporary identity semantic head.",
+    "Original Transformer allocation is explicitly disabled; no old weights are loaded and no original model bug is repaired.",
+    "Effective/inactive parameter names are selected before backward from the wrapper ABI; zero finite gradients are allowed.",
+    "No train-mode BN update, size400 resource, actual-image/GT/teacher/renderer, optimizer, AP or efficacy evidence."
+  ],
+  "minimum_available_RAM_bytes": 33318146048,
+  "mode": "eval",
+  "new_training": false,
+  "nontrainable_parameter_count": 0,
+  "optimizer_steps": 0,
+  "original_full_feature_modules_executed": true,
+  "original_owned_seconds": 5.155999999959022,
+  "original_semantic_heads_executed": false,
+  "original_weights_loaded": false,
+  "output_shape": [
+    2,
+    1,
+    64,
+    64
+  ],
+  "peak_RSS_bytes": 914485248,
+  "query_count": 2,
+  "real_images_loaded": false,
+  "real_legacy_feature_forward_bitexact": true,
+  "report_body_seconds": 2.094000000040978,
+  "requires_grad_parameter_count": 67303293,
+  "requires_grad_parameter_tensors": 333,
+  "schema": "UNETPP-real-full-feature-size64-CPU-actual-summary-v1",
+  "semantic_head_BN_all_bitexact_unchanged": true,
+  "semantic_head_BN_buffer_count": 18,
+  "semantic_head_BN_buffer_counts_by_head": {
+    "final_super_0_1": 3,
+    "final_super_0_2": 3,
+    "final_super_0_3": 3,
+    "final_super_0_4": 9
+  },
+  "semantic_head_BN_modules": [
+    "final_super_0_1.0",
+    "final_super_0_2.0",
+    "final_super_0_3.0",
+    "final_super_0_4.addcoords.pa.1",
+    "final_super_0_4.addcoords.pa.4",
+    "final_super_0_4.conv.0"
+  ],
+  "semantic_head_call_counts": {
+    "final_super_0_1": 0,
+    "final_super_0_2": 0,
+    "final_super_0_3": 0,
+    "final_super_0_4": 0
+  },
+  "size400_verified": false,
+  "source_identities": {
+    "adapter_source": {
+      "bytes": 6420,
+      "sha256": "9ad221170f69c028474f76700c991cb76dfecf19b11f5198767843b8e378d8b3"
+    },
+    "body_source": {
+      "bytes": 22659,
+      "sha256": "01b96d631f2cb4e2a1bd46d43ccac94fc3aa89e930c09c5e6cb8f624741d8fbd"
+    },
+    "dsconv_source": {
+      "bytes": 15207,
+      "sha256": "b4b612edf9f87cf29dc48bb675d501658fdec5dbee1ea363a7f02d86d197e5f0"
+    },
+    "entry_source": {
+      "bytes": 10731,
+      "sha256": "5a9dee9aea5cca664f5e06addb01ff06ab1662eab30666e5f0c6685d15650bb4"
+    },
+    "feature_source": {
+      "bytes": 5643,
+      "sha256": "f7953780580449dd246cbdf1803652183c1dd178f2fd60b37adb238a6d2b6a5a"
+    },
+    "head_source": {
+      "bytes": 2622,
+      "sha256": "6caba966ac7601b611fd1b36fdbd1d758875c5d029758fefe586738c8009f16e"
+    },
+    "legacy_source": {
+      "bytes": 19653,
+      "sha256": "c210b318be29aca7d26516e9f47c8849e2c6a76642d4049fe7b133726ee809b9"
+    },
+    "runtime_source": {
+      "bytes": 9796,
+      "sha256": "9b17a7bdd9c44fe159583f4c82d38f1b42970662507986654900767e8ba5f383"
+    },
+    "test_source": {
+      "bytes": 2781,
+      "sha256": "3a0dabb7d72237cc983bc980d5a532f120fae2fb98336fe190b541e2b61361e7"
+    }
+  },
+  "source_preregistered_commit": "baaa78464cd81ec2e9069e89726d1111bd892d86",
+  "status": "ACTUAL0_ROOT_ACCEPTED_SIZE64_EVAL_FEATURE_CONTRACT_ONLY",
+  "tests_run": 2,
+  "train_mode_BN_verified": false,
+  "training_eligible": false,
+  "unexpected_inactive_gradient_names": [],
+  "zero_gradients_allowed": true
+}

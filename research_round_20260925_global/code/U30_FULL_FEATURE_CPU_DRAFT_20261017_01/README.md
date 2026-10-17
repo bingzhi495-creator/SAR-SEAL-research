@@ -9,3 +9,7 @@ spec=ROOT-U30-full-feature-CPU-spec-v1，operation=CPU_U30_FULL_FEATURE_CONTRACT
 仅两项：不改动原64尺寸feature测试源；以及真实full→feature wrapper→共享adapter、B1/Q2、eval+autograd，非零末层读出。反向之前从ABI固定effective/inactive参数清单；所有effective梯度存在且有限，有限零张量/中心零offset不误判失败；所有预期inactive梯度为空。记录图像/查询/粗logit梯度、一次wrapper/特征调用、原legacy forward零次、四个语义头均零调用及全部head BN buffers逐元素不变。
 
 输出FULL_FEATURE_CONTRACT_REPORT.json、UNITTEST_STDOUT.txt，只有通过才写待Root实际终态接收的Q。成功也仅证明随机合成64尺寸eval特征路径，明确不授予400资源、train态BN、旧权重、真实影像/GT/teacher/渲染、优化器、训练/AP或完整方法资格。本目录不包含实际spec、资格链或运行载荷。
+
+## 后续实际执行
+
+本目录原代码已在执行前发布后由Root受控执行；原完整full卷积主体64尺寸的特征精确等价和eval反向两项实际通过并接收。此前未执行文字为研发版本历史，源码保持不变。[实际结果及局限](../../U30_REAL_FULL_FEATURE_CPU64_ACTUAL_RESULT_20261017.md)。400资源、train态BN、真实影像/GT/渲染、主训练和AP仍未完成。
