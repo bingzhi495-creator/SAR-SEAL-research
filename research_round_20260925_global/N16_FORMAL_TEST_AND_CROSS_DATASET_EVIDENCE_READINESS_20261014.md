@@ -36,3 +36,10 @@ Root随后仅流式读取该原初始化文件字节，完整SHA与其已绑定r
 [官方直连全流尝试](results/M2F_OFFICIAL_COCO_REMOTE_BYTES_WITNESS_20261017_01.json)在固定90秒后、实际96.282秒退出，仅取得4MiB，保持FAILED_PUBLIC_REMOTE_FETCH_NO_LOCAL_IDENTITY；局部SHA不充作全文件摘要，不重试扩大预算。HTTP ETag是不透明validator，OSS也不保证所有创建方式的ETag均为内容MD5；本次只报告字串相等，不认证服务端MD5语义。[HTTP规范](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.3)、[OSS数据校验说明](https://www.alibabacloud.com/help/en/oss/user-guide/data-verification/)。Last-Modified仅为端点元数据，不证明训练时间或数据范围。
 
 [官方v3.1.0索引](https://github.com/open-mmlab/mmdetection/blob/v3.1.0/configs/mask2former/metafile.yml#L115-L130)、[配置](https://github.com/open-mmlab/mmdetection/blob/v3.1.0/configs/mask2former/mask2former_r50_8xb2-lsj-50e_coco.py)、[README](https://github.com/open-mmlab/mmdetection/blob/v3.1.0/configs/mask2former/README.md)将该候选关联到ImageNet-1K预训练R50/COCO train2017实例模型；这是发布方声明，不是本项目独立重建全部训练谱系。八位文件名校验标识也不等于完整SHA256，参见[MMEngine下载命名规则](https://mmengine.readthedocs.io/en/latest/api/generated/mmengine.utils.dl_utils.load_url.html)。本次来源证据有实质增量，但历史TEST查看/选择不被清除，母景独立、JPG/PNG像素等价、全人口真实mask及未见泛化仍未证明。当前两臂配方、数据、顺序和固定50轮端点不变。
+
+
+## 2026-10-17 U43完整人口检查实现（未执行）
+
+[完整人口核心](code/U43_HRSID_POPULATION_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)及[CPU入口/工作体](code/U43_HRSID_POPULATION_CHECK_ENTRY_DRAFT_20261017_01/README.md)已完成并保存：固定原train3642图/11047实例、test1962图/5922实例，全5604/16969逐图调用原U42完整解码/官方polygon栅格；原组件、crowd、空图、失败项和split局部ID均保留，跨split裸ID复用合法。两目录共6项标准库元数据/失败路径行为测试通过，另经一次独立静态互接审。没有导入真实PIL/NumPy/mask或Torch，没有打开原图/GT执行人口检查，尚未实际prepare/bind/launch；私有Root控制正在起草，不因代码或测试存在视为已取得资格。
+
+未来单次CPU任务只核输入兼容与计数，保留5604私有逐图报告；仅全图解码及16969原实例栅格成功才申请原actual0/Root接收。失败/中断不删图、修标、自动重试或改预算。全程无模型、预测、训练或AP，实际使用TEST标注会如实披露；结果也不能证明语义标注对齐、JPG等于PNG像素、母景独立或恢复未接触测试身份。它不改变已锁U40主方法与50轮训练。

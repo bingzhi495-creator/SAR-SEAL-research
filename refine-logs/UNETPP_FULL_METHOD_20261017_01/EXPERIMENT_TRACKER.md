@@ -1,6 +1,6 @@
 # 完整自主UNet++实例方法：执行跟踪
 
-日期：2026-10-17。完整自主卷积主干与普通对照两臂各1792正式更新已接收，现已启动[1792,2048)原状态接续。N28固定E24完整DEV按原门槛STOP当前路由配方。表格为当前状态，后文保留形成时记录。
+日期：2026-10-17。完整自主卷积主干与普通对照两臂各2048正式更新已接收，现已启动[2048,2304)原状态接续。N28固定E24完整DEV按原门槛STOP当前路由配方。表格为当前状态，后文保留形成时记录。
 
 设计收敛确认：最终候选直接以既有自研完整UNet++为主体，保持当前U40连续训练；历史boundary/frequency_boundary正收益有条件复用，不能自动归给full/new1或当前实例AP。本次只明确方法组织与归属，不改动已锁数值源码、配方、总预算、端点或停止规则。
 
@@ -11,7 +11,7 @@
 | U02 | 实现共享实例接口 | 一次图像主干＋小型查询残差头 | tiny三项及真实full64两项均实际通过并接收；原特征精确等价且245张量梯度有限 | 真实400及跨图资源已通过；沿固定主训练和端点评价验证效用 |
 | U03 | 检验真实输入和资格 | 原图/几何/原100查询/L/匹配GT | U38全741/1661与104同源初始化已接收；U39跨图检查通过 | 固定E50的完整DEV输入和评价核心独立准备，未数值执行 |
 | U04 | 测量真实成本 | 完整full卷积资源版与普通对照 | U40首段双臂256更新已接收；原任务969.312秒，CUDA约1.91GiB/RSS约13.04GiB | 后续段独立记录成本与恢复，不能由局部耗时承诺整轮或加速 |
-| U05 | 首组公平主训练 | 普通完整UNet++ vs自主full，seed3101 | 已接收各1792更新；[1792,2048)原接续任务已启动 | 每臂50轮/37050更新才评价；尚无主方法AP |
+| U05 | 首组公平主训练 | 普通完整UNet++ vs自主full，seed3101 | 已接收各2048更新；[2048,2304)原接续任务已启动 | 每臂50轮/37050更新才评价；尚无主方法AP |
 | U06 | 验证核心归因 | 容量/计算替代、复合块/方向替换 | 条件待执行 | 主效用成立后只做能改变结论的最少控制 |
 | U07 | 重复与跨数据集 | 3102/3103；另一公共实例数据集 | 条件待执行 | 按预定收益门槛推进，不承诺必然成功 |
 | N28 | 路由固定端点 | SELECTIVE vs WHOLE_NODE；seed2801 | 完整187图COCO已接收；AP67.021271/66.655257；门槛Delta−2.516096 | STOP当前配方，不扩预算/种子/融合；不代替完整主干证据 |
@@ -95,3 +95,8 @@ U40第四段原actual0已接收，两臂各1024更新；本段每臂556 GT访问
 第七正式段[1536,1792)原actual0已接收，两臂各累计1792更新（第2轮+310图），每臂563匹配GT训练访问，原owned986.109秒、worker937.172秒，完整恢复/保存回读通过、CUDA allocated/reserved清0。[实测](../../research_round_20260925_global/results/U40_FORMAL_U01536_01792_ACTUAL_20261017.json)。[训练loss监测](../../research_round_20260925_global/results/U40_U01536_01792_TRAINING_LOSS_MONITOR_20261017.json)同图均值普通0.037304、自主0.037189，全部有限但接近，不支持AP或创新主张。原[1792,2048)已从各自完整状态及同一ORDER启动，50轮端点不变。
 
 在原终态/Root接收后、下一科学任务前完成[teacher初始化多指纹核对](../../research_round_20260925_global/results/M2F_COCO_INITIALIZER_ENDPOINT_FINGERPRINT_LINKAGE_20261017.json)：当前FIT/N13/N16五处teacher引用相等，加载回执追到原COCO initializer，本地完整SHA匹配绑定ref，官方前缀/长度/首4MiB指纹和MD5-ETag字串比较均一致。它支持公开端点来源关联；[全流尝试](../../research_round_20260925_global/results/M2F_OFFICIAL_COCO_REMOTE_BYTES_WITNESS_20261017_01.json)仍未完成，ETag不被等同服务端MD5，完整远端SHA/独立训练谱系/未见数据泛化未成立。没有NN、tensor、训练权重或像素重放；完整证据范围见[跨集准备度](../../research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)。
+
+
+第八正式段[1792,2048)原actual0已接收，两臂各累计2048更新（第2轮+566图），每臂574匹配GT训练访问，原owned995.063秒、worker946.578秒，完整恢复/保存回读通过、CUDA allocated/reserved清0。[实测](../../research_round_20260925_global/results/U40_FORMAL_U01792_02048_ACTUAL_20261017.json)。[训练loss监测](../../research_round_20260925_global/results/U40_U01792_02048_TRAINING_LOSS_MONITOR_20261017.json)同图均值普通0.035317、自主0.035126，全部有限但差距小，不支持AP、收敛或创新主张。原[2048,2304)已从各自完整状态及同一ORDER启动，固定50轮端点不变。
+
+[U43 HRSID完整人口检查核心](../../research_round_20260925_global/code/U43_HRSID_POPULATION_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)与[CPU入口](../../research_round_20260925_global/code/U43_HRSID_POPULATION_CHECK_ENTRY_DRAFT_20261017_01/README.md)已完成6项纯元数据/失败路径测试和独立静态互接审；全5604图/16969原实例的真实检查尚未准备/绑定/执行。它是跨集输入兼容检查，不改U40或授予外部效用/盲测结论。
