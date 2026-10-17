@@ -14,3 +14,5 @@
 完整配方、重复seed门槛与停止规则见[训练执行前计划](../../../refine-logs/N28_DENSE_ROUTING_20261017_01/TRAIN_EXPERIMENT_PLAN.md)。每epoch每臂741次更新，24轮17,784次；AdamW lr3e-4/wd1e-4，FP32，无scheduler/AMP/增强/早停。数据、权重、GT、checkpoint、RAW/SPEC/Q/资格及运维绑定不发布，故尚非一键复现镜像。
 
 [初始化实际结果](../../N28_DENSE_ROUTING_INITIALIZATION_RESULT_20261017.md)；[N27完整几何依据](../../N27_MATCHED_SUPPORT_CENSUS_RESULT_20261017.md)。当前无新AP、正式TEST、跨集或核心创新成立结论。
+
+后续状态：首段原任务已受控超时退出，失败历史已核验并保留；检查点恢复尚未核验，不能将原八轮记为成功。[失败及恢复要求](../../N28_FIRST_TRAINING_RESOURCE_ABORT_20261017.md)。
