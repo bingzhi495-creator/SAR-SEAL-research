@@ -30,6 +30,9 @@ def strict(value):
         and type(value['bytes']) is int and value['bytes']>=0
         and type(value['sha256']) is str and len(value['sha256'])==64
         and set(value['sha256'])<=set('0123456789abcdef'),'Exact direct reference')
+def canonical_reference(value):
+    strict(value)
+    return dict(value,path=str(Path(value['path'])))
 def load(path,name):
     path=Path(path);module=types.ModuleType(name);module.__file__=str(path);sys.modules[name]=module
     exec(compile(path.read_bytes(),str(path),'exec'),module.__dict__);return module
@@ -76,7 +79,12 @@ def run(path):
         'Original thirteen-field admission and complete current Source map')
     for value in spec['sources']:need(reference(value['path'])==value,'Every Source unchanged before Torch')
     no_torch();runtime=load(spec['runtime_source']['path'],'U32_ACTUAL_NATIVE100_RESOURCE_CONTROL')
-    no_torch();c=runtime.Control(spec);c.execution_spec_ref=spec_ref;c.execution_admission_ref=reference(admission_path)
+    class CanonicalControl(runtime.Control):
+        def closed(self,value):
+            # Preserve legacy spec bytes; normalize only equivalent Windows
+            # path spelling before the original exact membership/hash checks.
+            return super().closed(canonical_reference(value))
+    no_torch();c=CanonicalControl(spec);c.execution_spec_ref=spec_ref;c.execution_admission_ref=reference(admission_path)
     c.check();need(len(c.allowed)==len(spec['sources']),'Unique direct sources in actual Control')
     for value in spec['sources']:c.closed(value)
     need(c.psutil.Process().cpu_affinity()==[0,1]
