@@ -148,3 +148,10 @@ U36原任务实际退出0并完成外部元数据接收。两臂相同FP32、chu
 下一项已保存[U38最小验证方案](../../research_round_20260925_global/U38_FULL_METHOD_READER_AND_RESOURCE_GATE_DESIGN_20261017.md)与[CPU组合函数草稿](../../research_round_20260925_global/code/U38_FULL_METHOD_CPU_QUALIFIER_DRAFT_20261017_01/DESIGN.md)，尚未执行；先全741流式读取和共有初始化，再最小跨图连续更新，不要求全FIT M100/S0。
 
 [U38 CPU入口/工作体](../../research_round_20260925_global/code/U38_FULL_METHOD_CPU_ENTRY_DRAFT_20261017_01/DESIGN.md)已形成，严格741原JPEG引用有序摘要接线；只完成静态检查，不代表全人口读入或共同初始化实际通过。
+
+
+## 16. 全FIT读取及共同初始化已实际通过
+
+U38原实际退出0并外部接收：完整741图/1661匹配实例的原JPEG/RGB400/几何与原GT/query关联均已检查；104公共状态（68参数张量+36BNbuffer）及共享实例头按seed202610173101实际同源，未映射/失活边界保留，模型随后释放。CPU任务289.953秒，完整读取166.826秒、初始化0.864秒；未初始化CUDA、无NN前后向/优化器/训练/AP。此结果不是由静态代码推定通过，Root也没有独立像素重演。[完整结果与范围](../../research_round_20260925_global/U38_FULL_FIT_RGB_AND_COMMON_INITIALIZATION_ACTUAL_RESULT_20261017.md)。
+
+完整人口原shape572种、G1至29，资源代表序列按预定metadata规则为54(G1,190×303)→710(G27,327×489)→54。下一项[U39跨图资源函数](../../research_round_20260925_global/code/U39_FULL_METHOD_CROSS_IMAGE_RESOURCE_DRAFT_20261017_01/DESIGN.md)已形成但未运行：两臂各3次丢弃试点更新，Adam/BN跨图保留，所有27匹配实例按1/G参与。CPU资格和此前U36单图两步均不代替此跨图更新，也不计入正式50轮；不为证明绝对无泄漏扩展大量资格循环。前节未执行描述为此前时间线。

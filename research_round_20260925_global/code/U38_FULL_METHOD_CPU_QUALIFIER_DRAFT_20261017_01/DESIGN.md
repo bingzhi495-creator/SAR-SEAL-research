@@ -1,6 +1,6 @@
 # U38 CPU 资格函数草稿
 
-仅普通未绑定源码。当前只做 AST 与纯 Python metadata 检查；没有执行 Torch/NumPy、模型、JPEG/GT/cache/权重读取，没有接触活动 N28 的 SOURCE/RAW/Q。后续执行、Source 闭合与硬时间/内存边界由 Root wrapper 负责；本文件没有 runner/binder、子进程或重试逻辑。
+以下为执行前设计记录；实际执行状态见文末2026-10-17补记。源码编写时仅做 AST 与纯 Python metadata 检查，没有读取JPEG/GT/cache/权重或活动科研链。执行、Source闭合与硬时间/内存边界由Root wrapper负责；本函数自身没有runner/binder、子进程或重试逻辑。
 
 ## 精确接口
 
@@ -8,7 +8,7 @@
 
 modules/source_refs 恰有11角色：`shared_initialization/rgb_matched_reader`，U34 原七角色 `full_legacy/full_dsconv/full_head/full_feature/plain_legacy/plain_feature/instance_adapter`，以及 U37 两角色 `matched_reader/image_geometry`。前两模块固定公开 SHA，其他精确 SHA 来自其已核常量；所有模块文件在调用前经 `c.closed`、路径、长度与字节 SHA 核对。函数不自行加载任意模块或 checkpoint。
 
-已读公开源：`P/research_round_20260925_global/code/U34_FULL_PLAIN_INIT_DRAFT_20261017_01/shared_initialization.py`（SHA `4ba968db7688a03d5975c8546607791a5e09e82ef6c5c7d096cd6a368d1b0292`）和 `code/U37_FULL_RGB_MATCHED_READER_DRAFT_20261017_01/rgb_matched_reader.py`（SHA `678ce3781872e21e961b24a7b0a4d0ecc69f0f8a08b8feb7eb0b2e8624d57025`），其中 `P=E:/SAR/seal/github_release_20261011`。当前未执行这些函数。
+已读公开源：`P/research_round_20260925_global/code/U34_FULL_PLAIN_INIT_DRAFT_20261017_01/shared_initialization.py`（SHA `4ba968db7688a03d5975c8546607791a5e09e82ef6c5c7d096cd6a368d1b0292`）和 `code/U37_FULL_RGB_MATCHED_READER_DRAFT_20261017_01/rgb_matched_reader.py`（SHA `678ce3781872e21e961b24a7b0a4d0ecc69f0f8a08b8feb7eb0b2e8624d57025`），其中 `P=E:/SAR/seal/github_release_20261011`。这些是设计时核对的普通发布源；实际执行补记如下。
 
 ## 两阶段，均保持 CUDA 冷
 
@@ -31,3 +31,7 @@ L 是原 N16 native_L 按 GT匹配 query 选择的结果，不是强 PR 修补�
 成功仅表示本次 CPU 原 reader/RGB 与公共初始化检查完成；`new_training=False`、`GPU_resource_gate_passed=False`。不存在 AP/DEV/TEST 评价、科学方法门、正式训练起算或全主干数值等价结论。
 
 `image_references_metadata_sha256` 单独摘要 `reader.image_references` 的完整有序引用列表，供入口与预准入 JPEG 引用逐字段、逐序绑定；不以包含其他 context 引用的总摘要替代。
+
+## 2026-10-17 实际补记
+
+U38原任务实际退出0并经Root接收：完整741图/1661匹配实例的原JPEG、EXIF/尺寸、RGB400几何与原query—GT读取检查通过；公共104状态（68参数张量、36BN buffer）及实例适配器按seed202610173101精确同源，CPU模型对象释放通过。资格函数167.781881秒，reader166.826471秒、初始化0.864321秒；无NN forward、优化器、旧权重读取、训练或CUDA初始化。Root只接收终态/来源/报告元数据，没有像素或NN重演。GPU三图连续更新、正式50轮和AP仍未执行；不与U36已有两步GPU试点混算。完整资源范围和候选图见[实际结果](../../U38_FULL_FIT_RGB_AND_COMMON_INITIALIZATION_ACTUAL_RESULT_20261017.md)。本补记只更新普通说明，不修改执行源码或冻结原件。
