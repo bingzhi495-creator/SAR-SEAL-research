@@ -1,12 +1,12 @@
 # 以自主完整UNet++为主体的实例分割方法设计与实验路线
 
-日期：2026-10-17。状态：用户明确指定主线后的研发方案；共享实例接口已完成tiny真实nn CPU合约；原完整卷积主体的feature wrapper已实际通过CPU64特征精确等价与eval反向检查，尚未开始400真实影像主训练。本文不是已成立的创新或投稿结论，也不改写既有实验端点。
+日期：2026-10-17。当前状态：以自主完整UNet++卷积资源版为主体，正式50轮训练已经启动；首个[0,256)段两臂各256次更新已实际接收，[256,512)从各自完整状态续训中。当前无实例AP或创新成立结论。下方有编号补记保留研发时间线，较早的“未启动”是当时状态；冻结执行原件不随本文更新。
 
 ## 1. 本轮设计决定
 
 后续主方法直接以本项目自行组织的完整UNet++结构为主体。保留复合模块、H/4语义与横纵方向分支、原融合层及完整嵌套解码；实例接口只承担实例区分和掩膜读出。不能再仅用提取的一种注意力路由代表用户全部设计。
 
-当前N28的两臂路由试验继续按原固定24轮方案执行，作为其中一项连接设计的独立证据。它不是完整full主干复现。已接收第14轮、每臂10374次更新，无新AP。不得根据中间训练损失改变端点或选用最好轮次。
+N28的两臂路由试验保留原固定24轮方案，作为其中一项连接设计的独立证据。它不是完整full主干复现。当前已接收第20轮、每臂14820次更新，尚未到评价端点。完整主干U40优先续训；不得根据中间训练损失改变端点或选用最好轮次。
 
 ## 2. 已有正收益应被承认，也要正确归属
 
@@ -82,7 +82,7 @@ DGX现有SSH已于本轮只读连通。GB10统一内存可用约71.48GiB；用�
 
 头部实例条件机制可采用已有动态/查询读出思想，不作为独立首创。[QueryInst](https://openaccess.thecvf.com/content/ICCV2021/papers/Fang_Instances_As_Queries_ICCV_2021_paper.pdf)已有动态掩膜头；[BlendMask](https://openaccess.thecvf.com/content_CVPR_2020/html/Chen_BlendMask_Top-Down_Meets_Bottom-Up_for_Instance_Segmentation_CVPR_2020_paper.html)已有共享密集basis与实例信息融合；[DSCNet](https://openaccess.thecvf.com/content/ICCV2023/html/Qi_Dynamic_Snake_Convolution_Based_on_Topological_Geometric_Constraints_for_Tubular_ICCV_2023_paper.html)已研究动态蛇形算子与多视图融合；[O2Former预印本](https://arxiv.org/abs/2506.11913)已在SAR船实例上结合方向敏感表示和多尺度query。因此，方向＋query或共享主干＋动态头本身不能作为新颖性结论。
 
-新增检索还发现DACF-net的2026论文题名线索，但出版社正文请求403，尚未核对其完整方法/数字：[出版社入口](https://www.tandfonline.com/doi/full/10.1080/17538947.2026.2696657)。不能宣称已读全文或已排除与其重叠。
+直接先例已更新至O2Former的JSTARS2026正式出版元数据及DACF-net出版社可检索的方法/实验段落；O2Former具体配方仍来自arXiv v1，DACF-net完整公式和补充材料未读。方向、多尺度query、跨层调制和残差融合均有直接先例。详见[查新与证据边界](../../research_round_20260925_global/U40_DIRECT_PRIOR_UPDATE_20261017.md)，不能用标题差异或非统一协议数字宣布新颖或胜出。
 
 ## 7. 预算、初始化与评价规则
 

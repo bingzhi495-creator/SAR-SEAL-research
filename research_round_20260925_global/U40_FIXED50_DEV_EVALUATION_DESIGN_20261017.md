@@ -44,7 +44,7 @@ binary = corrected > 0
 
 ## 4. 复用边界与结果
 
-最小拟API为 `validate_final_endpoint(...)`、`predict_final_shard(torch,np,c,spec,pre,modules,report)` 和 `evaluate_final_population(torch,np,c,spec,pre,modules,report)`；当前只设计，不实现函数。沿原 `population_contract.replace_segmentations/merge_predictions` 合并完整人口；不平均四份 shard AP。
+初版只含接口设计；现已有未绑定、未执行数值的 [GPU预测函数](code/U40_FIXED50_DEV_PREDICTION_DRAFT_20261017_01/DESIGN.md) `validate_final_endpoint(metadata)` / `predict_shard(...)` 和 [CPU完整人口评价函数](code/U40_FIXED50_DEV_METRICS_DRAFT_20261017_01/README.md) `evaluate_population(torch,np,c,spec,pre,modules,report)`。两核心各3项纯元数据测试通过，真实恢复、RGB、GPU、COCO和资源均未验证；外层入口、187 JPEG引用及执行准入仍待接线。沿原 `population_contract.replace_segmentations/merge_predictions` 合并完整人口，不平均四份 shard AP。
 
 旧 `eval_body.py` 的 `gpu/cpu/run/validate_endpoint` 不能整体调用：其中固定 E24、旧seed/模型schema/参数数、SELECTIVE/WHOLE_NODE与旧gate。只复用其 `official_metrics` 数值函数及已核官方COCO helper，保留标准 segm 12指标、maxDets `[1,10,100]`、原crowd/ignore语义及未定义值。完整DEV为187图/380GT；native和强R原预测同时报告，全部12指标必须重现其原接受结果。原R参考不重新训练或改分数。
 
@@ -53,3 +53,8 @@ binary = corrected > 0
 最终主要报告 FULL−PLAIN、FULL/PLAIN各自相对native和强R的完整 mask AP/AP75/AR及既定几何统计。效用判断只按U40冻结主计划；**不复制旧 E24 eval_body 中 N26_AP 常数和 seed推进代码**，不新增阈值、不用中途结果换端点。N26若按主计划作为额外参考，必须单列其不同来源/预算，不能当本轮配对对照。
 
 成本分别计CPU恢复/缓存检查/JPEG+RGB400、UNet encode、query读出、render/RLE及完整叶walltime。新UNet主干成本计入，但冻结teacher预计算成本不在本次前向中；不能沿旧报告 `end_to_end_backbone_cost_included=False` 或宣称完整pipeline FPS。评价无训练、不写新权重，真实恢复/全部校准/资源/COCO结果均待固定端点实际执行。当前任务到此STOP，不开启额外检查叶。
+
+
+## 5. 原COCO字段语义的窄范围核对
+
+普通原helper直接将prediction的deepcopy交给`loadRes`，未删除bbox/area。官方[coco.py](https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/coco.py)会优先按非空bbox计算检测面积；[cocoeval.py](https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/cocoeval.py)的segm IoU仍由掩膜计算，检测面积参与未匹配预测的面积范围忽略。实际原预测是否含bbox尚未读取，不能据此认定当前AP错误。新核心保留锁定规则和所有非segmentation字段，实际执行时报告bbox/area字段计数，native/R全部12项仍须精确复现；不静默剔除字段、不另加第二AP或改选择门槛。
