@@ -6,6 +6,8 @@
 
 **N28查新与评价研发：** [五项直接先例核查](research_round_20260925_global/N28_DIRECT_PRECEDENT_REVIEW_20261017.md)明确分支门控已有先例，具体出边分工仍待验证；[固定24轮评价设计](research_round_20260925_global/N28_FIXED24_DEV_EVALUATION_DESIGN_20261017.md)及[未执行源码](research_round_20260925_global/code/N28_FIXED24_DEV_EVAL_DRAFT_20261017_01/README.md)已保存。9项标准库捏造元数据检查通过；实际DEV读取、GPU预测、COCO与几何诊断尚未执行，不能据此报告涨点。
 
+**N28恢复执行前预锁：** [CPU完整状态检查及单轮分段修订](refine-logs/N28_DENSE_ROUTING_20261017_01/RESOURCE_RECOVERY_PLAN.md)已冻结；[恢复检查源码](research_round_20260925_global/code/N28_CHECKPOINT_RECOVERY_SOURCE_ONLY_20261017_01/README.md)及[修订训练源码](research_round_20260925_global/code/N28_SINGLE_EPOCH_TRAIN_SOURCE_ONLY_20261017_01/README.md)在执行前保存。两项标准库元数据检查通过，实际检查点恢复与GPU续训尚未执行；没有新AP。
+
 **最新机制诊断（N27，完整FIT741/1661已实际完成）：** R剩余错误73.8521%在固定Ω外。IoU0.90/0.95当前未达标实例中，即使域内用GT完美纠正，仍无法达标的分别为424/581、1101/1304。该结果支持检验具备域外写入能力的结构，不证明门控有效、AP上界或核心创新。下一项选择性传输/整体增强两臂必须同输入、同写入权限、同预算，尚未实现训练。[结果及下一项约束](research_round_20260925_global/N27_MATCHED_SUPPORT_CENSUS_RESULT_20261017.md)、[全部阈值与成本](research_round_20260925_global/results/N27_MATCHED_SUPPORT_CENSUS_AGGREGATE_20261017.json)、[预锁计划](refine-logs/N27_MATCHED_SUPPORT_CENSUS_20261017_01/EXPERIMENT_PLAN.md)、[源码](research_round_20260925_global/code/N27_MATCHED_SUPPORT_CENSUS_SOURCE_ONLY_20261017_01/README.md)。正式TEST、跨集和完整结构验证仍待完成。
 
 **UNet++ 模块复核（2026-10-17）：** 已重新核对自定义 CBAM_block 内部的卷积、注意力、残差及 SimAM 增强，H/4 方向融合和 up_x 传输路径；补核发现解码块前置 BN/ReLU 结果被 `conv1(x)` 覆盖，已纠正此前的顺序描述并记录独立修复对照方案。这是实际源码确认，尚非完整公平训练证据。当前 N26 未直接训练这套 UNet++。[具体改动与验证边界](research_round_20260925_global/UNETPP_MODULE_MODIFICATIONS_CONFIRMED_20261017.md)。
