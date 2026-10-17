@@ -12,7 +12,7 @@
 
 **固定端点评价研发：** [E50完整DEV评价设计](research_round_20260925_global/U40_FIXED50_DEV_EVALUATION_DESIGN_20261017.md)已有[预测核心](research_round_20260925_global/code/U40_FIXED50_DEV_PREDICTION_DRAFT_20261017_01/DESIGN.md)和[完整人口CPU评价核心](research_round_20260925_global/code/U40_FIXED50_DEV_METRICS_DRAFT_20261017_01/README.md)草稿，各3项纯元数据测试通过；[数值外层入口](research_round_20260925_global/code/U40_FIXED50_DEV_ENTRY_DRAFT_20261017_01/README.md)也已实现，另3项纯元数据测试与独立静态接口审阅通过，均未实际数值执行；[RGB读取桥](research_round_20260925_global/code/U40_FIXED50_DEV_RGB_READER_IMPLEMENTATION_DRAFT_20261017_01/README.md)已完成源码、静态与3项纯元数据测试，真实读取和数值路径尚未执行。仅在每臂37,050更新完成并接收后评价187图/18,700查询；保留原查询映射、S0及全部候选。187个原JPEG候选引用已从四份原JSON采集清单精确提取，桥的真实metadata函数已通过；[准备摘要](research_round_20260925_global/results/U40_FIXED50_DEV_METADATA_PREPARATION_ACTUAL_20261017.json)。尚未读取JPEG/tensor/GT/权重或执行NN/COCO，实际文件/数值准入仍待固定端点；不补teacher、不用中途AP选型。
 
-**直接先例更新：** [O2Former与DACF-net查新](research_round_20260925_global/U40_DIRECT_PRIOR_UPDATE_20261017.md)区分正式发表与arXiv证据、离岸/近岸与整体AP，以及结构/骨干/后处理版本；方向、跨层调制和残差融合已有直接先例，当前结构收益与差异仍待同预算和机制对照。
+**直接先例更新：** [O2Former与DACF-net查新](research_round_20260925_global/U40_DIRECT_PRIOR_UPDATE_20261017.md)区分正式发表与arXiv证据、离岸/近岸与整体AP，以及结构/骨干/后处理版本；方向、跨层调制和残差融合已有直接先例，当前结构收益与差异仍待同预算和机制对照。[固定query精修与点提示比较范围](research_round_20260925_global/U40_FIXED_QUERY_REFINEMENT_AND_PROMPT_PROTOCOL_PRIORS_20261017.md)补核ReSAM正式索引/v1/作者代码及CascadePSP先例，不改正在运行的配方。
 
 **U38执行源码：** [CPU入口与工作体](research_round_20260925_global/code/U38_FULL_METHOD_CPU_ENTRY_DRAFT_20261017_01/DESIGN.md)和[组合资格函数](research_round_20260925_global/code/U38_FULL_METHOD_CPU_QUALIFIER_DRAFT_20261017_01/DESIGN.md)已实际执行并接收；完整原JPEG引用有序摘要一致、公共初始化已实际构造/核对后释放，Root接收没有重放像素或神经计算。
 
