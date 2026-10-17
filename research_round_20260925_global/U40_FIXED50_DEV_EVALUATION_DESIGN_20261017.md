@@ -22,7 +22,7 @@ prepare(torch, np, c, context, original_image_refs,
 reader.load(index) -> 原 item 对象值 + rgb400 / geometry / rgb_receipt
 ```
 
-原 DEV item 的 F/e/M/L/identity/query_ids 原样保留。Root 未来另准入187个有序原 JPEG strict refs，加载后与真实 packet `identity.image` 逐项 join；不猜目录、不用 GT补身份、不构造“G=100”伪GT字段。目前该187引用接线尚未完成，不能写成数据已齐。
+原 DEV item 的 F/e/M/L/identity/query_ids 原样保留。Root 未来另准入187个有序原 JPEG strict refs，加载后与真实 packet `identity.image` 逐项 join；不猜目录、不用 GT补身份、不构造“G=100”伪GT字段。后续已在原N07报告与四份N16 JSON采集清单中实际提取有序187个原JPEG候选引用，逐项核dataset/image/shape/bundle/query/native_packet/capture_binding关系，并调用普通RGB桥真实metadata函数检查通过；[准备摘要](results/U40_FIXED50_DEV_METADATA_PREPARATION_ACTUAL_20261017.json)。尚未打开/哈希JPEG或tensor，正式Source闭合、像素与数值校准仍待固定端点，不写成数据数值资格已齐。
 
 桥不调用锁定 FIT 的 U37.prepare/_RGBReader；只沿 U37 已核 JPEG/EXIF/RGB处理与同一 image_geometry 数值路径：JPEG尺寸等于原shape，EXIF absent/1，RGB uint8→FP32/255，原800内容整数几何→右/下零pad→400；不重建 teacher mean/std。原 `image_geometry.make_geometry(...,800,400)` 同时承担最终增量渲染。桥设计见 [RGB桥设计](U40_FIXED50_DEV_RGB_BRIDGE_DESIGN_20261017.md)，SHA `09fbd437a383b760f8115b043b8086a2b21411b654d7cfdb06e1cd44285cbe20`。
 
@@ -44,7 +44,7 @@ binary = corrected > 0
 
 ## 4. 复用边界与结果
 
-初版只含接口设计；现已有未绑定、未执行数值的 [GPU预测函数](code/U40_FIXED50_DEV_PREDICTION_DRAFT_20261017_01/DESIGN.md) `validate_final_endpoint(metadata)` / `predict_shard(...)` 和 [CPU完整人口评价函数](code/U40_FIXED50_DEV_METRICS_DRAFT_20261017_01/README.md) `evaluate_population(torch,np,c,spec,pre,modules,report)`。两核心各3项纯元数据测试通过，真实恢复、RGB、GPU、COCO和资源均未验证；外层入口、187 JPEG引用及执行准入仍待接线。沿原 `population_contract.replace_segmentations/merge_predictions` 合并完整人口，不平均四份 shard AP。
+初版只含接口设计；现已有未绑定、未执行数值的 [GPU预测函数](code/U40_FIXED50_DEV_PREDICTION_DRAFT_20261017_01/DESIGN.md) `validate_final_endpoint(metadata)` / `predict_shard(...)` 和 [CPU完整人口评价函数](code/U40_FIXED50_DEV_METRICS_DRAFT_20261017_01/README.md) `evaluate_population(torch,np,c,spec,pre,modules,report)`。两核心各3项纯元数据测试通过，真实恢复、RGB、GPU、COCO和资源均未验证；187 JPEG候选引用的元数据接线已完成；外层入口、实际文件闭合及执行准入仍待接线。沿原 `population_contract.replace_segmentations/merge_predictions` 合并完整人口，不平均四份 shard AP。
 
 旧 `eval_body.py` 的 `gpu/cpu/run/validate_endpoint` 不能整体调用：其中固定 E24、旧seed/模型schema/参数数、SELECTIVE/WHOLE_NODE与旧gate。只复用其 `official_metrics` 数值函数及已核官方COCO helper，保留标准 segm 12指标、maxDets `[1,10,100]`、原crowd/ignore语义及未定义值。完整DEV为187图/380GT；native和强R原预测同时报告，全部12指标必须重现其原接受结果。原R参考不重新训练或改分数。
 
