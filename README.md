@@ -6,6 +6,8 @@
 
 **正式训练前剩余接线：** [U36暂存源码](research_round_20260925_global/code/U36_REAL400_CPU_SAVED_ACTIVATIONS_DRAFT_20261017_01/README.md)已实际运行；[U34共同初始化](research_round_20260925_global/code/U34_FULL_PLAIN_INIT_DRAFT_20261017_01/DESIGN.md)和[U37真实RGB400读取](research_round_20260925_global/code/U37_FULL_RGB_MATCHED_READER_DRAFT_20261017_01/DESIGN.md)尚待实际验收。先流式验证完整FIT741/1661的JPEG来源及几何，再检验公共104状态和连续跨图资源；保持当前可运行反传方式，VJP只作独立候选。现有reader只返回G个匹配M/L/e，不自动提供全部100查询M/S0；完整评价的输入补采须单独完成。
 
+**完整主干下一步源码：** [U38最小验证安排](research_round_20260925_global/U38_FULL_METHOD_READER_AND_RESOURCE_GATE_DESIGN_20261017.md)与[CPU组合资格函数](research_round_20260925_global/code/U38_FULL_METHOD_CPU_QUALIFIER_DRAFT_20261017_01/DESIGN.md)已形成，仅静态审阅/纯Python元数据检查；尚未实际读取741图或构造共同模型。优先单叶全人口CPU验证，再同叶两臂各连续3次代表图更新；不预设无实测依据的多次分片，也不增加训练不需要的全FIT候选补采。
+
 **完整主干的真实输入（U32已完成）：** 冻结模型在一张9实例FIT影像上真实取得100查询M/F，原L、查询、类别、GT/匹配、分数及输出顺序与既有锚点精确一致。实际退出0并接收；无优化器、DEV、TEST或AP。U36已完成普通/自主400主干每臂两次一次性更新；仅该真实单图范围，见上方最新结果。[结果和具体试点](research_round_20260925_global/U32_NATIVE100_CAPTURE_ACTUAL_AND_U33_REAL400_PLAN_20261017.md)。
 
 **最新实测（N26，三预锁种子完成）：** 固定R掩膜，仅学习质量乘分；AP为69.423613 / 69.637142 / 69.551345，均值**69.537367 ± 0.107449**（样本SD），相对原R 68.099385平均**+1.437982 AP点**。各624次更新及完整187图/380GT/18700query COCO均实际结束并经Root接收，qhat1原COCO12精确复现。**这是已有质量回归适配的评分效用，掩膜未改善，核心创新尚未成立。** [完整结果](research_round_20260925_global/N26_FIXED_R_QUALITY_THREE_SEED_RESULT_20261017.md)、[全指标与成本](research_round_20260925_global/results/N26_FIXED_R_QUALITY_THREE_SEED_AGGREGATE_20261017.json)、[主张评议](research_round_20260925_global/N26_RESULT_TO_CLAIM_20261017/findings.md)、[执行前计划](refine-logs/N26_QUERY_MASK_QUALITY_BASELINE_20261017_01/EXPERIMENT_PLAN.md)、[训练评价源码](research_round_20260925_global/code/N26_QUALITY_TRAIN_EVAL_SOURCE_ONLY_20261017_01/README.md)。

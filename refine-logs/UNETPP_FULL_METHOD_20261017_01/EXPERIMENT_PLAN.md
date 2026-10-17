@@ -144,3 +144,5 @@ U36原任务实际退出0并完成外部元数据接收。两臂相同FP32、chu
 原匹配reader仅返回G个实例的M/L/e；native_L来源虽含100查询，不自动拥有全部M100、S0或其实际一致性证明。正式DEV全候选评价所需来源补采须独立接齐，不能由U32单图推定全人口具备。新的资格更新必须事先明确为丢弃试点或正式预算，不事后改称主训练首轮。完整50轮主训练尚未启动，效用、重复与跨集条件保持不变。
 
 [U36真实结果与成本](../../research_round_20260925_global/U36_REAL400_TRAINING_RESOURCE_ACTUAL_RESULT_20261017.md)。前节“尚未执行”为当时快照；U33/U35失败与数值路径均保留，没有重写或重跑来消除失败。
+
+下一项已保存[U38最小验证方案](../../research_round_20260925_global/U38_FULL_METHOD_READER_AND_RESOURCE_GATE_DESIGN_20261017.md)与[CPU组合函数草稿](../../research_round_20260925_global/code/U38_FULL_METHOD_CPU_QUALIFIER_DRAFT_20261017_01/DESIGN.md)，尚未执行；先全741流式读取和共有初始化，再最小跨图连续更新，不要求全FIT M100/S0。
