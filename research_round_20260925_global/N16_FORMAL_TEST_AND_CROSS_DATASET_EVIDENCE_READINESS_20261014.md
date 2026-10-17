@@ -18,3 +18,5 @@
 4. 冻结 HRSID 外部路线（当前任务书优先源数据训练后零调参迁移）；实际核验母场景/裁片重叠、同源和重复。未确认场景独立时仅称官方切片协议上的受限外部评价，不称独立采集/地理泛化。原结果和负迁移保留，不能看 TEST 后换阈值、轮次或数据集选优。
 
 本页没有新增正式 TEST、外部 AP、未见测试证明或许可认证；未闭合项目保持缺失状态。
+
+2026-10-17 U41补记：[未绑定单图采集接口](code/U41_UNBOUND_NEW_IMAGE_NATIVE_CAPTURE_DRAFT_20261017_01/README.md)已实现，复用原N07最终mask_embed输出e（不能用旧pre-hook输入h）、M/F、原渲染/导出；自然轴与导出qids分开。只读实际安装库确认：直接删LoadAnnotations仍会在training=True的pad_mask分支访问masks；新稿沿既有data_samples=None guard保留图像归一化/固定800补边，并重建原metadata规则，不造GT。3项标准库接口测试和独立静态审阅通过；没有真实像素/前向等价、模型加载/来源闭合、HRSID1962或SSDD232人口runner，不能据此宣布跨集可运行或已具数据资格。前述像素、实例真值、历史暴露及teacher训练接触缺口不变。
