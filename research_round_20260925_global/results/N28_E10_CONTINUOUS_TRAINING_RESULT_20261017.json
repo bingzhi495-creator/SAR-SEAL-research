@@ -1,0 +1,84 @@
+{
+  "AP": false,
+  "DEV": false,
+  "ROOT_intake_actual0_chunk": "09d926",
+  "TEST": false,
+  "cumulative_updates_per_arm": 7410,
+  "end_epoch": 10,
+  "optimizer_final_checks": {
+    "SELECTIVE": {
+      "all_parameter_steps_exact": true,
+      "expected_step": 7410,
+      "parameter_tensors": 161,
+      "recipe_exact": true
+    },
+    "WHOLE_NODE": {
+      "all_parameter_steps_exact": true,
+      "expected_step": 7410,
+      "parameter_tensors": 161,
+      "recipe_exact": true
+    }
+  },
+  "optimizer_restore_equality_checked": true,
+  "optimizer_start_checks": {
+    "SELECTIVE": {
+      "all_parameter_steps_exact": true,
+      "expected_step": 6669,
+      "parameter_tensors": 161,
+      "recipe_exact": true
+    },
+    "WHOLE_NODE": {
+      "all_parameter_steps_exact": true,
+      "expected_step": 6669,
+      "parameter_tensors": 161,
+      "recipe_exact": true
+    }
+  },
+  "original_owned_elapsed_seconds": 352.71799999987707,
+  "original_terminal_chunk": "2766b1",
+  "parameter_counts": {
+    "SELECTIVE": 2978555,
+    "WHOLE_NODE": 2978555
+  },
+  "schema": "N28-single-epoch-actual-accepted-ordinary-summary-v1",
+  "seed": 202610172801,
+  "stage_history": [
+    {
+      "GT_visits": 1661,
+      "arms": {
+        "SELECTIVE": {
+          "GT_visits": 1661,
+          "active_parameter_tensors": 161,
+          "finite_gradient_checks": 119301,
+          "image_loss_sum": 52.09159925300628,
+          "instance_loss_sum": 198.5995122184977,
+          "mean_image_loss": 0.07029905432254559,
+          "mean_instance_loss": 0.1195662325216723,
+          "microbatches": 876,
+          "updates": 741
+        },
+        "WHOLE_NODE": {
+          "GT_visits": 1661,
+          "active_parameter_tensors": 161,
+          "finite_gradient_checks": 119301,
+          "image_loss_sum": 51.832858914043754,
+          "instance_loss_sum": 199.28843305585906,
+          "mean_image_loss": 0.06994987707698212,
+          "mean_instance_loss": 0.1199809952172541,
+          "microbatches": 876,
+          "updates": 741
+        }
+      },
+      "cumulative_updates_per_arm": 7410,
+      "epoch": 10,
+      "full_mask_writable": true,
+      "images": 741,
+      "loss_weighting": "chunk_GT/image_GT; fixed microbatch BN semantics",
+      "microbatch": 4,
+      "optimizer_updates_per_image_per_arm": 1,
+      "shared_microbatches": 876,
+      "teacher_updated": false
+    }
+  ],
+  "start_epoch": 9
+}

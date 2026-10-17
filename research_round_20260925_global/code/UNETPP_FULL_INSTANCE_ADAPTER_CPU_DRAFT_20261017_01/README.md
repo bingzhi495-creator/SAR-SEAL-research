@@ -11,3 +11,7 @@
 schema：ROOT-UNETPP-full-instance-adapter-contract-CPU-spec-v1；operation：CPU_UNETPP_FULL_INSTANCE_ADAPTER_CONTRACT；prelock：UNETPP-full-instance-adapter-contract-prelock-v1。五个源码角色之外，还需原当前Root资格、固定测试预锁、完整sources、全套原始运行控制与输出目录。此目录没有绑定这些引用，也没有授予实际执行或Root资格。
 
 本草稿不实例化用户原full、DSConv或Transformer，不加载旧权重/真实影像/GT，不检查400网格渲染、不计算AP、不证明整网训练显存或完整结构有效。实际执行及Root原任务接收均尚未进行，不能把源码中的测试/报告字段当作已发生的结果。
+
+## 后续实际执行更新
+
+本目录源码在beae064c43a7325c8d68cc243b86ee841c13a5ef预先发布后已由Root受控执行，三项tiny真实nn测试实际通过并接收；此前未执行描述保留为版本历史。[结果及范围](../../UNETPP_SHARED_ADAPTER_CPU_RESULT_AND_FULL_FEATURE_STATUS_20261017.md)。原full、真实影像/400渲染和AP仍未执行。

@@ -1,0 +1,60 @@
+{
+  "AP": false,
+  "CPU_affinity": [
+    0,
+    1
+  ],
+  "CPU_interop_threads": 2,
+  "CPU_threads": 2,
+  "CUDA_cold_checkpoints": 9,
+  "CUDA_initialization_attempts": 0,
+  "CUDA_initialized": false,
+  "DEV": false,
+  "GT_loaded": false,
+  "TEST": false,
+  "actual_test_names": [
+    "test_one_image_encoding_serves_grouped_individual_and_permuted_queries",
+    "test_nonzero_readout_has_real_finite_nonzero_backward_to_shared_backbone",
+    "test_zero_initialized_head_is_exact_zero_residual"
+  ],
+  "additional_tests": 2,
+  "all_tests_passed": true,
+  "external_CPU_RNG_restored_exact": true,
+  "finite_nonzero_backward": true,
+  "goal_complete": false,
+  "innovation_established": false,
+  "minimum_available_RAM_bytes": 33620922368,
+  "new_training": false,
+  "optimizer_steps": 0,
+  "original_full_backbone_executed": false,
+  "original_owned_seconds": 3.264999999664724,
+  "original_weights_loaded": false,
+  "peak_RSS_bytes": 355794944,
+  "public_tests": 1,
+  "real_images_loaded": false,
+  "rendering_verified": false,
+  "report_body_elapsed_seconds": 0.10900000017136335,
+  "schema": "UNETPP-shared-instance-adapter-CPU-synthetic-actual-summary-v1",
+  "scope": [
+    "Real tiny-nn CPU contracts only; the full user UNet++/DSConv/Transformer was neither instantiated nor executed.",
+    "No real-image, frozen teacher, initialization/checkpoint, renderer, complete architecture, training efficacy, CUDA memory or AP evidence.",
+    "Unused original semantic output parameters need not receive gradients when reading an earlier feature; the probe verifies the captured backbone path and adapter readout.",
+    "The tests do not certify training memory bounded by query microbatch size or numerical equivalence on GPU."
+  ],
+  "source_preregistered_commit": "beae064c43a7325c8d68cc243b86ee841c13a5ef",
+  "status": "ACTUAL0_ROOT_ACCEPTED_SYNTHETIC_ONLY",
+  "tests_run": 3,
+  "training_eligible": false,
+  "unused_semantic_tail_gradients_absent": true,
+  "zero_residual_check": {
+    "backbone_calls": 1,
+    "exact_zero_residual": true,
+    "finite": true,
+    "shape": [
+      5,
+      1,
+      8,
+      12
+    ]
+  }
+}
