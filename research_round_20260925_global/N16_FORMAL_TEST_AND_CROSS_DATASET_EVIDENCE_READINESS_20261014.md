@@ -2,6 +2,8 @@
 
 本页仅定位独立发布副本已有的数据协议、元数据核查和历史审阅；未读取实际 SCI/SOURCE/RAW、影像、GT、权重或缓存，未运行科学代码、重新核验数据包或新增联网调查。既有审计直接复用，不能把准备文档当作实际数据或评价资格。
 
+**2026-10-17最新来源增量：** 实际绑定initializer已与官方公开端点的多项指纹一致，见文末后续核对；完整远端SHA256、独立训练谱系及全人口真实像素/raster仍未完成。前文保留各阶段形成时的边界。
+
 **测试暴露已有记录，不能默认恢复盲测身份。** [历史确认实验方案第42行](../paper_tgrs/revision_tgrs_20260905/CONFIRMATORY_EXPERIMENTS_CN.md)明确记录：HRSID test 已用于规则选择，PSeg-SSDD test 结果也已公开查看。[2026-10-11论文源码审阅](../docs/paper_review_20261011.md)进一步定位旧 HRSID TEST 融合超参数选择、best-on-test 及近岸选点；[历史修订报告](../paper_tgrs/revision_tgrs_20260905/REVISION_REPORT_CN.md)同样明确测试参与参数与方案选择。HRSID 旧 TEST 不能通过重命名恢复 blind。**2026-10-16补充：SSDD 已有具体模型选型的历史文本记录。** [历史 TEST 用途台账](HISTORICAL_TEST_USE_LEDGER_TEXT_EVIDENCE_20261016.md)定位到旧实验稿第203/209行：对应对比表的 competitor checkpoint 为 best-on-test，两项 SAR 模块本地复现按近岸子集选择。此为文稿披露，完整测试接触清单、实际参数/权重身份、运行时间关系与原始产物绑定仍缺；不能推及当前 N20，也不能宣称台账已经闭合。
 
 **PSeg-SSDD：官方接口和转换准备已有，正式入场核验尚不完整。** [DATA_ACCESS](../docs/DATA_ACCESS.md)记录 [Official-SSDD作者入口](https://github.com/TianwenZhang0825/Official-SSDD)及[数据论文](https://www.mdpi.com/2072-4292/13/18/3690)：PSeg 真实多边形与 BBox/RBox 版本不同，官方 train928/test232，内部 FIT741/DEV187 不等于 TEST232。已有 `protocol/pseg_to_coco.py` 转换入口，但会跳过缺失 XML/无有效多边形对象，不能凭转换完成认定数量与真值完整。仓库 Apache-2.0 与外链影像压缩包逐文件授权范围未被完整映射；当前发布官方获取入口，不声明原图镜像已获核实授权。
@@ -24,3 +26,13 @@
 2026-10-17 输入与来源补记：[U42单图像素/掩膜检查草稿](code/U42_UNBOUND_HRSID_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)补上强制Image.load及每个原ann的官方COCO栅格链，不复用旧ImageDraw/打平组件的loader。保留原组件、crowd和失败实例；连续area与离散像素面积只记差值，有限越界坐标只诊断不裁剪/提前拒绝。EXIF缺tag按存储坐标记录未旋转，非1/非法/读取异常拒绝；缺tag不是已验证tag1或语义对齐。三项标准库接口/失败注入测试与独立静态审阅通过，真实解码/栅格分支未运行，没有取得全5604人口资格。
 
 当前teacher的上游初始化来源仍未闭合。普通发布源码中的[native COCO初始化检查](multimodal_data_pilot_20260928/native_coco_comparator_initialization_preparation_20261008/qualify_initializers_cpu_v2.py)第147–171行明确将public_checkpoint_origin_and_training_recipe_verified设为False；其COCO路径、配置名和类别兼容不能证明官方字节身份或从未接触HRSID/SSDD留出。源码合同经SPATIAL24完整FIT741训练、N07严格E24载入并另行DEV评价，但不替代实际资格链的数据/权重绑定核验。[官方MMDetection v3.1.0模型索引](https://raw.githubusercontent.com/open-mmlab/mmdetection/v3.1.0/configs/mask2former/metafile.yml)给出同名mask2former_r50_8xb2-lsj-50e_coco配置及候选权重mask2former_r50_8xb2-lsj-50e_coco_20220506_191028-41b088b6.pth；尚未与当前实际绑定初始checkpoint的完整摘要比对，不能写成已认证同一权重。未发现训练接触证据不等于证明未接触，字节不等也不自动证明SAR训练。下一环是实际绑定初始化ref与可信官方下载字节/作者配方的对应，当前不宣称未见数据泛化；本补记未读取运行中实际资格链或权重，不改变U40。
+
+## 2026-10-17 后续实际初始化来源核对
+
+第7段原actual0及Root接收完成后、下一科学任务启动前，Root按当前已接受context严格JSON引用，读取FIT、N13资格/报告、N16 GPU报告及原START加载回执；每份JSON均核原严格bytes/SHA，五处native0 E24 teacher引用逐值相同，加载回执的original_initialization.checkpoint指向本地m2f_r50_coco.pth。此为原worker加载证据与metadata链，不是独立重放教师网络/状态；没有打开训练后E24权重、tensor、图像或GT。
+
+Root随后仅流式读取该原初始化文件字节，完整SHA与其已绑定ref相等：176432372字节、SHA256 `41b088b62838c986004f94bab2870395b669ec6bd11b6590369b838b0de06879`；文件未改写、未反序列化。官方端点HTTP200响应Content-Length同值，官方文件名SHA前缀41b088b6与本地一致；从未带Range的GET顺序读取的首4194304字节SHA，与本地同一前缀逐摘要相等。本地整文件MD5字串d5bd8b504b06199b5a7de45627447485与ETag字串相同。[实际脱敏摘要](results/M2F_COCO_INITIALIZER_ENDPOINT_FINGERPRINT_LINKAGE_20261017.json)。这些共同支持与指定公开端点的来源关联，不是全量远端SHA256已取得。
+
+[官方直连全流尝试](results/M2F_OFFICIAL_COCO_REMOTE_BYTES_WITNESS_20261017_01.json)在固定90秒后、实际96.282秒退出，仅取得4MiB，保持FAILED_PUBLIC_REMOTE_FETCH_NO_LOCAL_IDENTITY；局部SHA不充作全文件摘要，不重试扩大预算。HTTP ETag是不透明validator，OSS也不保证所有创建方式的ETag均为内容MD5；本次只报告字串相等，不认证服务端MD5语义。[HTTP规范](https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.3)、[OSS数据校验说明](https://www.alibabacloud.com/help/en/oss/user-guide/data-verification/)。Last-Modified仅为端点元数据，不证明训练时间或数据范围。
+
+[官方v3.1.0索引](https://github.com/open-mmlab/mmdetection/blob/v3.1.0/configs/mask2former/metafile.yml#L115-L130)、[配置](https://github.com/open-mmlab/mmdetection/blob/v3.1.0/configs/mask2former/mask2former_r50_8xb2-lsj-50e_coco.py)、[README](https://github.com/open-mmlab/mmdetection/blob/v3.1.0/configs/mask2former/README.md)将该候选关联到ImageNet-1K预训练R50/COCO train2017实例模型；这是发布方声明，不是本项目独立重建全部训练谱系。八位文件名校验标识也不等于完整SHA256，参见[MMEngine下载命名规则](https://mmengine.readthedocs.io/en/latest/api/generated/mmengine.utils.dl_utils.load_url.html)。本次来源证据有实质增量，但历史TEST查看/选择不被清除，母景独立、JPG/PNG像素等价、全人口真实mask及未见泛化仍未证明。当前两臂配方、数据、顺序和固定50轮端点不变。

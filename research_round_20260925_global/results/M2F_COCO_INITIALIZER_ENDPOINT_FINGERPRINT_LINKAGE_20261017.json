@@ -1,0 +1,51 @@
+{
+  "ETag_proven_to_be_server_content_MD5": false,
+  "actual_current_FIT_teacher_refs_equal_across_five_metadata_roles": true,
+  "all_literal_fingerprints_agree": true,
+  "byte_check_performed_after_original_terminal_and_Root_acceptance_before_next_scientific_launch": true,
+  "checkpoint_bytes_saved": false,
+  "checkpoint_or_tensor_deserialized": false,
+  "comparisons": {
+    "first4MiB_SHA256_equals_observed_response_prefix": true,
+    "local_MD5_string_equals_response_ETag": true,
+    "local_SHA256_matches_actual_bound_initializer_ref": true,
+    "official_filename_SHA256_prefix_equals_local_prefix": true,
+    "response_Content_Length_equals_local_bytes": true
+  },
+  "full_remote_SHA256_comparison_completed": false,
+  "historical_TEST_exposure_erased": false,
+  "independent_training_data_ancestry_verified": false,
+  "interpretation": "Multiple literal fingerprints support association with the official endpoint. ETag remains an opaque validator; no server-MD5 guarantee, complete remote SHA256 or independently reconstructed training ancestry is claimed. Training recipe remains publisher-declared; historical benchmark exposure is separate.",
+  "local_initializer": {
+    "MD5": "d5bd8b504b06199b5a7de45627447485",
+    "SHA256": "41b088b62838c986004f94bab2870395b669ec6bd11b6590369b838b0de06879",
+    "bytes": 176432372,
+    "first4MiB_SHA256": "9b2208cfd8223b6aba1086b3916648b9059cc775e7fd095bd32e98b852c77c79",
+    "logical_filename": "m2f_r50_coco.pth"
+  },
+  "metadata_chain": "Accepted U40 context -> FIT/N13 metadata -> N16 GPU report -> original START teacher loading -> original initializer checkpoint ref.",
+  "metadata_source_scope": "Hash-closed original metadata and worker loading receipt; teacher neural/state replay was not performed.",
+  "no_pixel_neural_optimizer_or_CUDA_work": true,
+  "official_response": {
+    "headers": {
+      "Content-Length": "176432372",
+      "Content-Type": "application/octet-stream",
+      "ETag": "\"D5BD8B504B06199B5A7DE45627447485\"",
+      "Last-Modified": "Mon, 16 Jan 2023 07:41:58 GMT"
+    },
+    "http_status": 200,
+    "observed_contiguous_response_prefix_SHA256": "9b2208cfd8223b6aba1086b3916648b9059cc775e7fd095bd32e98b852c77c79",
+    "observed_contiguous_response_prefix_bytes": 4194304,
+    "official_filename_SHA256_prefix": "41b088b6",
+    "original_request": "Unranged GET; Accept-Encoding identity; read sequentially from response start; no checkpoint saved.",
+    "source_index_url": "https://raw.githubusercontent.com/open-mmlab/mmdetection/v3.1.0/configs/mask2former/metafile.yml",
+    "source_weights_url": "https://download.openmmlab.com/mmdetection/v3.0/mask2former/mask2former_r50_8xb2-lsj-50e_coco/mask2former_r50_8xb2-lsj-50e_coco_20220506_191028-41b088b6.pth"
+  },
+  "original_initializer_unmodified": true,
+  "original_public_full_stream_attempt_status": "FAILED_PUBLIC_REMOTE_FETCH_NO_LOCAL_IDENTITY",
+  "schema": "actual-bound-initializer-official-endpoint-fingerprint-linkage-v1",
+  "status": "SOURCE_ASSOCIATION_SUPPORTED_FULL_REMOTE_SHA256_INCOMPLETE",
+  "teacher_E24_checkpoint_SHA256": "376f725c42a0d522700add19548943328064426835061282d95d510f27d1ec4e",
+  "trained_teacher_checkpoint_bytes_opened": false,
+  "unseen_data_generalization_established": false
+}

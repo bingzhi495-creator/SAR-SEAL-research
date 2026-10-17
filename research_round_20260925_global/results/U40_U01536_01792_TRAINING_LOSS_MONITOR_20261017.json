@@ -1,0 +1,59 @@
+{
+  "AP": false,
+  "DEV": false,
+  "TEST": false,
+  "all_recorded_losses_finite": true,
+  "arms": {
+    "FULL": {
+      "BCE": {
+        "max": 0.012917548418045044,
+        "mean": 0.0018997552266314048,
+        "median": 0.0012978877348359674,
+        "min": 0.00013581864186562598
+      },
+      "loss": {
+        "max": 0.1408626139163971,
+        "mean": 0.03718868374926387,
+        "median": 0.030440044589340687,
+        "min": 0.010825973935425282
+      },
+      "softDice": {
+        "max": 0.1297130584716797,
+        "mean": 0.03528892822177445,
+        "median": 0.028593942523002625,
+        "min": 0.010388195514678955
+      }
+    },
+    "PLAIN": {
+      "BCE": {
+        "max": 0.012381482869386673,
+        "mean": 0.0018825264693340814,
+        "median": 0.001272387892640836,
+        "min": 0.0001326092315139249
+      },
+      "loss": {
+        "max": 0.14112143218517303,
+        "mean": 0.03730374217047938,
+        "median": 0.031117494218051434,
+        "min": 0.011836235411465168
+      },
+      "softDice": {
+        "max": 0.12994778156280518,
+        "mean": 0.03542121553665543,
+        "median": 0.029059916734695435,
+        "min": 0.011378049850463867
+      }
+    }
+  },
+  "efficacy_evaluated": false,
+  "interpretation": "Matched-instance training-fit monitor only. Composition differs across segments; no AP, convergence, all-query false-positive or innovation conclusion; not used for checkpoint, budget or recipe selection.",
+  "schema": "U40-accepted-segment-training-loss-monitor-v1",
+  "scope": "Root stdlib scalar aggregation from both accepted original worker JSON traces after original actual0 and Root acceptance, before next scientific launch. Identical actual input per paired update; no pixel/tensor/NN/optimizer/checkpoint replay.",
+  "seed": 202610173101,
+  "span": {
+    "start": 1536,
+    "stop": 1792
+  },
+  "training_recipe_changed": false,
+  "updates_per_arm": 256
+}

@@ -1,6 +1,6 @@
 # 以自主完整UNet++为主体的实例分割方法设计与实验路线
 
-日期：2026-10-17。当前状态：自主完整UNet++卷积资源版与原plain64两臂各1536正式更新已接收，原状态已启动[1536,1792)接续；总预算仍每臂50轮/37050更新。N28固定E24完整DEV按原门槛STOP当前路由配方，主方法独立训练。E50私有执行控制草稿与独立静态互接审已完成，尚未实际准备/绑定/数值执行。完整主方法尚无AP或创新成立结论，后文保留形成时记录。
+日期：2026-10-17。当前状态：自主完整UNet++卷积资源版与原plain64两臂各1792正式更新已接收，原状态已启动[1792,2048)接续；总预算仍每臂50轮/37050更新。N28固定E24完整DEV按原门槛STOP当前路由配方，主方法独立训练。E50私有执行控制草稿与独立静态互接审已完成，尚未实际准备/绑定/数值执行。完整主方法尚无AP或创新成立结论，后文保留形成时记录。
 
 ## 1. 本轮设计决定
 
@@ -219,3 +219,7 @@ N28固定端点及完整COCO已实际完成，原native/R全部12指标精确复
 第六正式段[1280,1536)原actual0已接收，两臂各累计1536更新（第2轮+54图），每臂568匹配GT训练访问，原owned986.234秒、worker940.125秒，恢复/保存回读通过，CUDA allocated/reserved清0；Root无神经重放。[实测](../../research_round_20260925_global/results/U40_FORMAL_U01280_01536_ACTUAL_20261017.json)。原[1536,1792)已从各自完整模型/Adam/BN/RNG及同一ORDER接续启动，原50轮端点不变。[第6段训练loss](../../research_round_20260925_global/results/U40_U01280_01536_TRAINING_LOSS_MONITOR_20261017.json)全部有限，同图平均普通0.035898、自主0.035758，仍接近，不支持AP、收敛或创新主张，不用于改配方/选轮次。
 
 [U42单图像素/COCO栅格检查草稿](../../research_round_20260925_global/code/U42_UNBOUND_HRSID_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)完成3项标准库接口测试和独立静态审阅，尚未真实解码/栅格运行或取得人口资格；保留原实例、面积差异与越界坐标诊断。teacher上游公开初始化来源仍须实际绑定摘要与官方来源对应，不能由COCO文件名或兼容性推断未见数据泛化；[证据范围](../../research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)。
+
+第七正式段[1536,1792)原actual0已接收，两臂各累计1792更新（第2轮+310图），每臂563匹配GT训练访问，原owned986.109秒、worker937.172秒，完整恢复/保存回读通过、CUDA allocated/reserved清0。[实测](../../research_round_20260925_global/results/U40_FORMAL_U01536_01792_ACTUAL_20261017.json)。[训练loss监测](../../research_round_20260925_global/results/U40_U01536_01792_TRAINING_LOSS_MONITOR_20261017.json)同图均值普通0.037304、自主0.037189，全部有限但接近，不支持AP或创新主张。原[1792,2048)已从各自完整状态及同一ORDER启动，50轮端点不变。
+
+在原终态/Root接收后、下一科学任务前完成[teacher初始化多指纹核对](../../research_round_20260925_global/results/M2F_COCO_INITIALIZER_ENDPOINT_FINGERPRINT_LINKAGE_20261017.json)：当前FIT/N13/N16五处teacher引用相等，加载回执追到原COCO initializer，本地完整SHA匹配绑定ref，官方前缀/长度/首4MiB指纹和MD5-ETag字串比较均一致。它支持公开端点来源关联；[全流尝试](../../research_round_20260925_global/results/M2F_OFFICIAL_COCO_REMOTE_BYTES_WITNESS_20261017_01.json)仍未完成，ETag不被等同服务端MD5，完整远端SHA/独立训练谱系/未见数据泛化未成立。没有NN、tensor、训练权重或像素重放；完整证据范围见[跨集准备度](../../research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)。
