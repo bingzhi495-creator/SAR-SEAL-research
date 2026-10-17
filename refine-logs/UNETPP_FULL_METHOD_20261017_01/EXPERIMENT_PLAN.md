@@ -146,3 +146,5 @@ U36原任务实际退出0并完成外部元数据接收。两臂相同FP32、chu
 [U36真实结果与成本](../../research_round_20260925_global/U36_REAL400_TRAINING_RESOURCE_ACTUAL_RESULT_20261017.md)。前节“尚未执行”为当时快照；U33/U35失败与数值路径均保留，没有重写或重跑来消除失败。
 
 下一项已保存[U38最小验证方案](../../research_round_20260925_global/U38_FULL_METHOD_READER_AND_RESOURCE_GATE_DESIGN_20261017.md)与[CPU组合函数草稿](../../research_round_20260925_global/code/U38_FULL_METHOD_CPU_QUALIFIER_DRAFT_20261017_01/DESIGN.md)，尚未执行；先全741流式读取和共有初始化，再最小跨图连续更新，不要求全FIT M100/S0。
+
+[U38 CPU入口/工作体](../../research_round_20260925_global/code/U38_FULL_METHOD_CPU_ENTRY_DRAFT_20261017_01/DESIGN.md)已形成，严格741原JPEG引用有序摘要接线；只完成静态检查，不代表全人口读入或共同初始化实际通过。

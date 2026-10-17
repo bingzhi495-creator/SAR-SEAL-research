@@ -29,3 +29,5 @@ L 是原 N16 native_L 按 GT匹配 query 选择的结果，不是强 PR 修补�
 报告资源量只有逐图加载后及初始化前后的边界 RSS/available RAM 样本、最大边界采样RSS和耗时，不冒称连续峰值、pinned驻留量、速度或泄漏证明。报告不包含原始像素、GT mask 或权重张量，不写文件；Root 可按发布范围保存摘要。
 
 成功仅表示本次 CPU 原 reader/RGB 与公共初始化检查完成；`new_training=False`、`GPU_resource_gate_passed=False`。不存在 AP/DEV/TEST 评价、科学方法门、正式训练起算或全主干数值等价结论。
+
+`image_references_metadata_sha256` 单独摘要 `reader.image_references` 的完整有序引用列表，供入口与预准入 JPEG 引用逐字段、逐序绑定；不以包含其他 context 引用的总摘要替代。

@@ -198,6 +198,7 @@ def qualify(torch, np, c, context, modules, source_refs, image_control=None, rep
         report['input_reference_count'] = len(reader.input_references)
         report['input_references_metadata_sha256'] = metadata_sha256(reader.input_references)
         report['image_reference_count'] = len(reader.image_references)
+        report['image_references_metadata_sha256'] = metadata_sha256(reader.image_references)
         seen_images, seen_annotations = set(), set()
         for index in range(741):
             _cold(torch)
