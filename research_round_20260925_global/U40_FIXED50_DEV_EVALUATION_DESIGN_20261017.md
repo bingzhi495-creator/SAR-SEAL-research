@@ -58,3 +58,5 @@ binary = corrected > 0
 ## 5. 原COCO字段语义的窄范围核对
 
 普通原helper直接将prediction的deepcopy交给`loadRes`，未删除bbox/area。官方[coco.py](https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/coco.py)会优先按非空bbox计算检测面积；[cocoeval.py](https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/cocoeval.py)的segm IoU仍由掩膜计算，检测面积参与未匹配预测的面积范围忽略。实际原预测是否含bbox尚未读取，不能据此认定当前AP错误。新核心保留锁定规则和所有非segmentation字段，实际执行时报告bbox/area字段计数，native/R全部12项仍须精确复现；不静默剔除字段、不另加第二AP或改选择门槛。
+
+私有E50执行控制草稿现已补齐prepare/bind、原调用登记和Root终态接收；两组共6项纯stdlib元数据行为检查及一次独立静态互接审通过。最小收口只将Root接收范围限定为源码、必要JSON和实际输出核验，输入JPEG/cache/checkpoint字节闭合仍由原driver/worker负责；科学来源、数学、资源和原numerical core均未改变。这些私有运维助手不公开发布，也未执行真实prepare/bind/接收。只有原E50/37050实际接收、全部原叶已reap后才可准入，不能以草稿通过代替真实恢复/RGB/COCO结果。
