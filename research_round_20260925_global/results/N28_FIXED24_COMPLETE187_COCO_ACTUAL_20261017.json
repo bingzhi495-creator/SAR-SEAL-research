@@ -1,0 +1,385 @@
+{
+  "AP": true,
+  "AP_points": {
+    "R": 68.09938494745545,
+    "SELECTIVE": 67.02127141758079,
+    "WHOLE_NODE": 66.65525723645973,
+    "native_official": 67.07105663749373
+  },
+  "COCO12_stats": {
+    "R": [
+      0.6809938494745545,
+      0.969989604793129,
+      0.852134677847247,
+      0.6774399176376944,
+      0.6974242300663346,
+      0.6999999999999998,
+      0.37394736842105264,
+      0.735,
+      0.7597368421052632,
+      0.7653284671532847,
+      0.7457142857142857,
+      0.7
+    ],
+    "SELECTIVE": [
+      0.6702127141758079,
+      0.9637216497270853,
+      0.8110453086269861,
+      0.6647594544518547,
+      0.6941961716705607,
+      0.6999999999999998,
+      0.3692105263157895,
+      0.7278947368421053,
+      0.751578947368421,
+      0.7507299270072993,
+      0.7542857142857142,
+      0.7
+    ],
+    "WHOLE_NODE": [
+      0.6665525723645973,
+      0.9689643741549371,
+      0.8239313590891587,
+      0.6594953017310452,
+      0.6886792402251617,
+      0.6999999999999998,
+      0.3671052631578947,
+      0.7226315789473684,
+      0.7473684210526315,
+      0.7481751824817519,
+      0.7457142857142857,
+      0.7
+    ],
+    "native_official": [
+      0.6707105663749372,
+      0.9700872688674647,
+      0.8384266469643687,
+      0.6649127521447775,
+      0.6926333148544733,
+      0.6999999999999998,
+      0.36973684210526314,
+      0.726842105263158,
+      0.7510526315789472,
+      0.7503649635036497,
+      0.7533333333333333,
+      0.7
+    ]
+  },
+  "DEV": true,
+  "Delta_AP_points": -2.5160955222827255,
+  "GT": 380,
+  "Root_neural_or_COCO_or_pixel_replay": false,
+  "TEST": false,
+  "first_seed_gate_suggestion": "STOP_CURRENT_RECIPE",
+  "fixed_epoch": 24,
+  "geometry": {
+    "AP_computed": false,
+    "Omega_basis": "Original GPU-captured native_L absolute<=2; support mask is not inferred from a method mask",
+    "ROOT_actual_terminal_self_certified": false,
+    "interpretation_limit": "Conditional geometry on GTs originally matched by native_official at IoU .50; not all380-GT localization evidence, not AP and not an AP/learnability bound. Every method uses the same original query even if its new mask becomes empty or worse.",
+    "methods": {
+      "R": {
+        "counts": {
+          "FN": 34593,
+          "FN_inside": 7468,
+          "FN_outside": 27125,
+          "FP": 35580,
+          "FP_inside": 9864,
+          "FP_outside": 25716,
+          "TP": 337444,
+          "TP_inside": 7198,
+          "TP_outside": 330246
+        },
+        "fixed_pair_pass_counts": {
+          "0.90": 92,
+          "0.95": 1
+        },
+        "matched_instances": 374,
+        "mean_IoU": 0.8446398310210218,
+        "pooled_IoU": 0.8278457473559738,
+        "pooled_error_pixels": 70173,
+        "pooled_inside_error_pixels": 17332,
+        "pooled_outside_error_fraction": 0.7530104171119947,
+        "pooled_outside_error_pixels": 52841
+      },
+      "SELECTIVE": {
+        "counts": {
+          "FN": 24657,
+          "FN_inside": 2355,
+          "FN_outside": 22302,
+          "FP": 53973,
+          "FP_inside": 20846,
+          "FP_outside": 33127,
+          "TP": 347380,
+          "TP_inside": 12311,
+          "TP_outside": 335069
+        },
+        "fixed_pair_pass_counts": {
+          "0.90": 75,
+          "0.95": 3
+        },
+        "matched_instances": 374,
+        "mean_IoU": 0.8391278152631916,
+        "pooled_IoU": 0.8154268679138987,
+        "pooled_error_pixels": 78630,
+        "pooled_inside_error_pixels": 23201,
+        "pooled_outside_error_fraction": 0.7049345033702149,
+        "pooled_outside_error_pixels": 55429
+      },
+      "WHOLE_NODE": {
+        "counts": {
+          "FN": 24618,
+          "FN_inside": 2334,
+          "FN_outside": 22284,
+          "FP": 109272,
+          "FP_inside": 21582,
+          "FP_outside": 87690,
+          "TP": 347419,
+          "TP_inside": 12332,
+          "TP_outside": 335087
+        },
+        "fixed_pair_pass_counts": {
+          "0.90": 67,
+          "0.95": 2
+        },
+        "matched_instances": 374,
+        "mean_IoU": 0.8378485053212322,
+        "pooled_IoU": 0.7218211169955268,
+        "pooled_error_pixels": 133890,
+        "pooled_inside_error_pixels": 23916,
+        "pooled_outside_error_fraction": 0.8213757562177907,
+        "pooled_outside_error_pixels": 109974
+      },
+      "native_official": {
+        "counts": {
+          "FN": 33703,
+          "FN_inside": 6578,
+          "FN_outside": 27125,
+          "FP": 34506,
+          "FP_inside": 8790,
+          "FP_outside": 25716,
+          "TP": 338334,
+          "TP_inside": 8088,
+          "TP_outside": 330246
+        },
+        "fixed_pair_pass_counts": {
+          "0.90": 80,
+          "0.95": 1
+        },
+        "matched_instances": 374,
+        "mean_IoU": 0.8414231314153922,
+        "pooled_IoU": 0.8322219297835654,
+        "pooled_error_pixels": 68209,
+        "pooled_inside_error_pixels": 15368,
+        "pooled_outside_error_fraction": 0.7746924892609479,
+        "pooled_outside_error_pixels": 52841
+      }
+    },
+    "new_method_GT_pair_selection": false,
+    "new_training": false,
+    "qualified": false,
+    "schema": "N28-original-native-fixed-pair-geometry-summary-v1",
+    "scope": {
+      "conditioned_on_original_native_matched_GT": true,
+      "no_new_method_rematching": true,
+      "private_pair_records_not_for_publication": true,
+      "selected_GT_coverage_fraction": 0.9842105263157894,
+      "selected_native_nonignored_GT": 374,
+      "selection_IoU": 0.5,
+      "selection_area": "all",
+      "selection_maxDets": 100,
+      "selection_model": "native_official",
+      "total_DEV_GT": 380,
+      "total_DEV_images": 187,
+      "total_natural_queries": 18700,
+      "unmatched_or_ignored_GT_excluded": true
+    },
+    "threshold_comparison": "Exact integer TP/union ratios against .90/.95; no tolerance"
+  },
+  "images": 187,
+  "innovation_established": false,
+  "new_training": false,
+  "no_shard_AP_average": true,
+  "operation": "CPU_N28_DENSE_FIXED24_COCO",
+  "original_leaf_elapsed_seconds": 10.483999999705702,
+  "original_minimum_available_RAM_bytes": 35556761600,
+  "original_native_R_COCO12_exact": true,
+  "paired_Delta_AP_points": 0.3660141811210593,
+  "per_IoU": {
+    "R": [
+      {
+        "AP_percent": 96.9989604793129,
+        "IoU": 0.5
+      },
+      {
+        "AP_percent": 96.37472582164433,
+        "IoU": 0.55
+      },
+      {
+        "AP_percent": 95.60873464126199,
+        "IoU": 0.6
+      },
+      {
+        "AP_percent": 93.82472243553576,
+        "IoU": 0.65
+      },
+      {
+        "AP_percent": 91.9032786027454,
+        "IoU": 0.7
+      },
+      {
+        "AP_percent": 85.2134677847247,
+        "IoU": 0.75
+      },
+      {
+        "AP_percent": 71.05090156105072,
+        "IoU": 0.8
+      },
+      {
+        "AP_percent": 40.0659937494002,
+        "IoU": 0.85
+      },
+      {
+        "AP_percent": 9.937650899975413,
+        "IoU": 0.8999999999999999
+      },
+      {
+        "AP_percent": 0.015413498903164407,
+        "IoU": 0.95
+      }
+    ],
+    "SELECTIVE": [
+      {
+        "AP_percent": 96.37216497270853,
+        "IoU": 0.5
+      },
+      {
+        "AP_percent": 96.04969042701484,
+        "IoU": 0.55
+      },
+      {
+        "AP_percent": 95.75587970847911,
+        "IoU": 0.6
+      },
+      {
+        "AP_percent": 94.62679208501208,
+        "IoU": 0.65
+      },
+      {
+        "AP_percent": 92.69019369163787,
+        "IoU": 0.7
+      },
+      {
+        "AP_percent": 81.10453086269861,
+        "IoU": 0.75
+      },
+      {
+        "AP_percent": 67.4311237816112,
+        "IoU": 0.8
+      },
+      {
+        "AP_percent": 39.98335606262775,
+        "IoU": 0.85
+      },
+      {
+        "AP_percent": 6.177916404331974,
+        "IoU": 0.8999999999999999
+      },
+      {
+        "AP_percent": 0.02106617968593622,
+        "IoU": 0.95
+      }
+    ],
+    "WHOLE_NODE": [
+      {
+        "AP_percent": 96.89643741549371,
+        "IoU": 0.5
+      },
+      {
+        "AP_percent": 96.716942644122,
+        "IoU": 0.55
+      },
+      {
+        "AP_percent": 95.99238822309906,
+        "IoU": 0.6
+      },
+      {
+        "AP_percent": 94.0574301887178,
+        "IoU": 0.65
+      },
+      {
+        "AP_percent": 91.38852069265796,
+        "IoU": 0.7
+      },
+      {
+        "AP_percent": 82.39313590891587,
+        "IoU": 0.75
+      },
+      {
+        "AP_percent": 64.97722313214955,
+        "IoU": 0.8
+      },
+      {
+        "AP_percent": 38.77685911124865,
+        "IoU": 0.85
+      },
+      {
+        "AP_percent": 5.33885745103002,
+        "IoU": 0.8999999999999999
+      },
+      {
+        "AP_percent": 0.014777597162701344,
+        "IoU": 0.95
+      }
+    ],
+    "native_official": [
+      {
+        "AP_percent": 97.00872688674647,
+        "IoU": 0.5
+      },
+      {
+        "AP_percent": 96.34362079597547,
+        "IoU": 0.55
+      },
+      {
+        "AP_percent": 95.68234563319592,
+        "IoU": 0.6
+      },
+      {
+        "AP_percent": 95.18221591693323,
+        "IoU": 0.65
+      },
+      {
+        "AP_percent": 92.39871252537004,
+        "IoU": 0.7
+      },
+      {
+        "AP_percent": 83.84266469643687,
+        "IoU": 0.75
+      },
+      {
+        "AP_percent": 64.34531383041369,
+        "IoU": 0.8
+      },
+      {
+        "AP_percent": 38.310213574055375,
+        "IoU": 0.85
+      },
+      {
+        "AP_percent": 7.581744810226003,
+        "IoU": 0.8999999999999999
+      },
+      {
+        "AP_percent": 0.015007705584036768,
+        "IoU": 0.95
+      }
+    ]
+  },
+  "queries": 18700,
+  "schema": "N28-fixed24-DEV-sanitized-summary-v1",
+  "scope": "Original terminal and byte/JSON relations accepted. Calibration/model/COCO/matching remain original worker numerical evidence; historically exposed DEV, no TEST claim.",
+  "seed": 202610172801,
+  "seed_gate_decided": false,
+  "whole_GPU_observed_peak_MiB": 1448,
+  "worker_elapsed_seconds": 7.688000000081956,
+  "worker_peak_RSS_bytes": 564502528
+}

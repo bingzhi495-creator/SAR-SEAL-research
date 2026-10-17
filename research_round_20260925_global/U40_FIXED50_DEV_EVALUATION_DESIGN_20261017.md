@@ -44,7 +44,7 @@ binary = corrected > 0
 
 ## 4. 复用边界与结果
 
-初版只含接口设计；现已有未绑定、未执行数值的 [GPU预测函数](code/U40_FIXED50_DEV_PREDICTION_DRAFT_20261017_01/DESIGN.md) `validate_final_endpoint(metadata)` / `predict_shard(...)` 和 [CPU完整人口评价函数](code/U40_FIXED50_DEV_METRICS_DRAFT_20261017_01/README.md) `evaluate_population(torch,np,c,spec,pre,modules,report)`。两核心各3项纯元数据测试通过，真实恢复、RGB、GPU、COCO和资源均未验证；187 JPEG候选引用的元数据接线已完成；外层入口、实际文件闭合及执行准入仍待接线。沿原 `population_contract.replace_segmentations/merge_predictions` 合并完整人口，不平均四份 shard AP。
+初版只含接口设计；现已有未绑定、未执行数值的 [GPU预测函数](code/U40_FIXED50_DEV_PREDICTION_DRAFT_20261017_01/DESIGN.md) `validate_final_endpoint(metadata)` / `predict_shard(...)` 和 [CPU完整人口评价函数](code/U40_FIXED50_DEV_METRICS_DRAFT_20261017_01/README.md) `evaluate_population(torch,np,c,spec,pre,modules,report)`。两核心各3项纯元数据测试通过，真实恢复、RGB、GPU、COCO和资源均未验证；187 JPEG候选引用的元数据接线已完成；[最薄数值外层](code/U40_FIXED50_DEV_ENTRY_DRAFT_20261017_01/README.md)已完成源码、3项纯元数据测试与一次独立静态接口审阅；实际文件闭合、绑定接收及E50数值执行仍待完成。沿原 `population_contract.replace_segmentations/merge_predictions` 合并完整人口，不平均四份 shard AP。
 
 旧 `eval_body.py` 的 `gpu/cpu/run/validate_endpoint` 不能整体调用：其中固定 E24、旧seed/模型schema/参数数、SELECTIVE/WHOLE_NODE与旧gate。只复用其 `official_metrics` 数值函数及已核官方COCO helper，保留标准 segm 12指标、maxDets `[1,10,100]`、原crowd/ignore语义及未定义值。完整DEV为187图/380GT；native和强R原预测同时报告，全部12指标必须重现其原接受结果。原R参考不重新训练或改分数。
 

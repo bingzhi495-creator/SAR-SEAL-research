@@ -1,6 +1,6 @@
 # N28：固定24轮DEV评价草稿
 
-2026-10-17。状态：固定E24两臂各17784更新已实际结束并经Root接收；五份数值源码已按相同字节冻结用于实际评价，首个47图预测分片原任务已启动并登记，尚未接收该预测或AP结果。完整187图/380GT/18700查询仍待四分片及统一CPU COCO；不能以源码、元数据测试或启动事实替代数值结果。
+2026-10-17。状态：两臂固定24轮/17784更新、四GPU预测及完整187图/380GT/18700查询CPU COCO均实际退出0并经Root接收。SELECTIVE67.021271 AP、WHOLE_NODE66.655257，低于强参考，Root按预锁规则STOP当前路由配方；[完整结果](../../N28_FIXED24_FULLDEV_RESULT_AND_FULL_METHOD_CONTINUATION_20261017.md)。原native/R全部12指标精确复现。这里不是完整自主UNet++主干实验或正式TEST。
 
 - dev_reader.py：原完整187图的N07密集F/e/M与N16实际GPU native_L读取，不用抽样F_unique代替dense特征。
 - population_contract.py：保留原100query/S0/class/order；四段完整合并，拒绝缺失、重复、改分或改序。
