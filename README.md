@@ -8,9 +8,11 @@
 
 **跨图训练实测与正式实现：** [U39原始试点](research_round_20260925_global/results/U39_CROSS_IMAGE_RESOURCE_ACTUAL_20261017.md)实际退出0并接收：两臂各3次连续更新，覆盖27实例图，状态图间保留；6次丢弃更新不计正式预算。[主方法衔接](research_round_20260925_global/U39_CROSS_IMAGE_RESOURCE_AND_FINAL_METHOD_CONTINUATION_20261017.md)继续沿用已有自定义UNet++卷积骨架。[U40连续训练代码](research_round_20260925_global/code/U40_FULL_METHOD_CONTINUOUS_TRAIN_DRAFT_20261017_01/DESIGN.md)已完成静态及纯元数据检查，尚未实际执行；每臂50轮/37,050更新，完整保存恢复模型、Adam、BN、RNG及共同顺序。尚无新增AP。
 
-**正式训练接线：** [U40入口与工作体](research_round_20260925_global/code/U40_FULL_METHOD_CONTINUOUS_TRAIN_ENTRY_DRAFT_20261017_01/DESIGN.md)已完成静态及10项纯元数据检查；首个正式[0,256)任务已启动，正在运行，配对完成数等待实际终态与保存核验。固定两臂同一50轮顺序，每段256次更新、共145段（末段186）；完整保存恢复模型/Adam/BN/RNG，首段与续段在正式预算内验证真实保存与恢复。磁盘按保守预算预留，实际体积首段后记录；不另加试点，不发布权重。
+**正式训练接线：** [U40入口与工作体](research_round_20260925_global/code/U40_FULL_METHOD_CONTINUOUS_TRAIN_ENTRY_DRAFT_20261017_01/DESIGN.md)首个正式[0,256)段已实际退出0并接收，两臂各256次、合计512次更新，完整模型/BN/Adam/RNG状态已保存；[原始核验摘要](research_round_20260925_global/results/U40_FORMAL_U00000_00256_ACTUAL_20261017.json)。下段[256,512)原任务已启动，实际恢复与完成数待终态核验。固定两臂同一50轮顺序，每段256次更新、共145段（末段186）；完整保存恢复模型/Adam/BN/RNG，首段与续段在正式预算内验证真实保存与恢复。磁盘按保守预算预留，实际体积首段后记录；不另加试点，不发布权重。
 
-**固定端点评价研发：** [E50完整DEV评价设计](research_round_20260925_global/U40_FIXED50_DEV_EVALUATION_DESIGN_20261017.md)与[RGB读取桥设计](research_round_20260925_global/U40_FIXED50_DEV_RGB_BRIDGE_DESIGN_20261017.md)均为未实现、未执行设计。仅在每臂37,050更新完成并接收后评价187图/18,700查询；保留原查询映射、S0及全部候选。187幅原图引用尚待接齐，不补teacher、不用中途AP选型。
+**固定端点评价研发：** [E50完整DEV评价设计](research_round_20260925_global/U40_FIXED50_DEV_EVALUATION_DESIGN_20261017.md)仍未实现；[RGB读取桥](research_round_20260925_global/code/U40_FIXED50_DEV_RGB_READER_IMPLEMENTATION_DRAFT_20261017_01/README.md)已完成源码、静态与3项纯元数据测试，真实读取和数值路径尚未执行。仅在每臂37,050更新完成并接收后评价187图/18,700查询；保留原查询映射、S0及全部候选。187幅原图引用尚待接齐，不补teacher、不用中途AP选型。
+
+**直接先例更新：** [O2Former与DACF-net查新](research_round_20260925_global/U40_DIRECT_PRIOR_UPDATE_20261017.md)区分正式发表与arXiv证据、离岸/近岸与整体AP，以及结构/骨干/后处理版本；方向、跨层调制和残差融合已有直接先例，当前结构收益与差异仍待同预算和机制对照。
 
 **U38执行源码：** [CPU入口与工作体](research_round_20260925_global/code/U38_FULL_METHOD_CPU_ENTRY_DRAFT_20261017_01/DESIGN.md)和[组合资格函数](research_round_20260925_global/code/U38_FULL_METHOD_CPU_QUALIFIER_DRAFT_20261017_01/DESIGN.md)已实际执行并接收；完整原JPEG引用有序摘要一致、公共初始化已实际构造/核对后释放，Root接收没有重放像素或神经计算。
 
