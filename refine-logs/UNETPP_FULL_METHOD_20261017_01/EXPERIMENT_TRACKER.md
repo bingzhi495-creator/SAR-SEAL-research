@@ -26,3 +26,5 @@
 最新普通对照已选plain64 model1；几何/plain两项均已RED后实现，仅AST；all100M实际补采源已完成但未执行。此前session45218记录为已终态历史，当前无该任务。[本轮进展](../../research_round_20260925_global/U31_MAIN_CONTROL_AND_NATIVE100_INPUT_PROGRESS_20261017.md)。
 
 U32真实100查询M/F补采已实际完成并接收；U33新400双臂两步资源试点仍未执行，不是正式主训练。[当前实测与具体试点](../../research_round_20260925_global/U32_NATIVE100_CAPTURE_ACTUAL_AND_U33_REAL400_PLAN_20261017.md)。
+
+U33两CPU/普通臂零残差与分组/首步更新通过，第二步4GiB下OOM，FULL未执行，原失败已核验保留。U35仅两臂共同训练chunk1，未执行；U34公共初始化仅静态草稿，正式主训练未启动。[具体结果与修订](../../research_round_20260925_global/U33_REAL400_OOM_RESULT_AND_CHUNK1_REVISION_20261017.md)。

@@ -7,3 +7,7 @@ PLAIN为原普通64通道UNet++，FULL为自主完整卷积资源版；共享相
 固定CPU0/1两线程、CUDA0、allocator4GiB/整卡观测8GiB、RSS/可用RAM各16GiB、1800秒；失败保留，无自动重试。逐阶段CUDA峰值和50ms取样RSS按测量范围报告。该试点产生真实优化器更新但不进入正式训练，不计算AP，不证明741图资源、收敛或方法效用。
 
 依赖仓库相邻的完整主干/实例适配、普通主干与几何草稿；私有本机spec、资格、数据、权重与运行路径不随代码发布。只能由原Root单叶准入入口执行，不在import时运行。[完整主方案](../../../refine-logs/UNETPP_FULL_METHOD_20261017_01/EXPERIMENT_PLAN.md)、[输入实测与试点](../../U32_NATIVE100_CAPTURE_ACTUAL_AND_U33_REAL400_PLAN_20261017.md)。
+
+## 首次实际执行：资源失败已保留
+
+两CPU公共合约、普通臂400的零残差与分组检查、第一次真实AdamW更新通过；第二步在已有状态时触及4GiB配额，原任务actual1。FULL未执行，没有双臂通过或AP结论。独立U35只降低两臂训练chunk；[实际摘要和修订](../../U33_REAL400_OOM_RESULT_AND_CHUNK1_REVISION_20261017.md)。上文未执行状态为执行前历史快照。

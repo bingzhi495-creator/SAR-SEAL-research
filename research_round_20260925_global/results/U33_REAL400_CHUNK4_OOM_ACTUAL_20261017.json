@@ -1,0 +1,70 @@
+{
+  "AP": false,
+  "DEV": false,
+  "TEST": false,
+  "all741_qualification": false,
+  "convergence_established": false,
+  "data_scope": {
+    "GT": 9,
+    "images": 1,
+    "input_size": 400,
+    "natural_queries": 100,
+    "split": "FIT"
+  },
+  "error_type": "OutOfMemoryError",
+  "failure_location": "PLAIN second optimizer update backward",
+  "formal_main_training_started": false,
+  "full_method_training_eligible": false,
+  "limitations": [
+    "One real-image pilot under a fixed 4GiB allocator.",
+    "PLAIN completed stage0/1 and one real update; second backward ran with 148 existing AdamW state entries and ran out of memory.",
+    "FULL was never executed. This does not establish that FULL or PLAIN is generally ineffective.",
+    "Partial numerical checks remain worker evidence, not independent Root neural replay."
+  ],
+  "method_failure_established": false,
+  "new_training": true,
+  "original_actual_exit_code": 1,
+  "pilot_optimizer_updates_completed": {
+    "FULL": 0,
+    "PLAIN": 1
+  },
+  "pilot_successful": false,
+  "resource_scope": {
+    "GPU_peak_is_recorded_stage_peak": true,
+    "RSS_is_sampled_not_absolute_peak": true,
+    "RSS_sampling_interval_seconds": 0.05,
+    "allocator_limit_MiB": 4096,
+    "whole_GPU_limit_MiB": 8192
+  },
+  "schema": "U33-real-image400-OOM-failure-sanitized-summary-v1",
+  "status": "ACTUAL1_OOM_PRESERVED_PLAIN_SECOND_BACKWARD_FULL_NOT_EXECUTED",
+  "successful_pending_Q_exists": false,
+  "utility_evaluated": false,
+  "worker_partial_checks": {
+    "FULL_executed": false,
+    "PLAIN_optimizer_updates_completed": 1,
+    "PLAIN_parameters": {
+      "allocated": 47201125,
+      "effective": 47198305,
+      "inactive": 2820
+    },
+    "PLAIN_second_backward_OOM": true,
+    "PLAIN_second_forward_existing_AdamW_states": 148,
+    "PLAIN_second_update_completed": false,
+    "PLAIN_stage0_zero_PASS": true,
+    "PLAIN_stage1_nonzero_PASS": true,
+    "first_update_BCE": 0.003863815140600005,
+    "first_update_gradient_summary": {
+      "finite_effective_gradient_tensors": 148,
+      "inactive_gradient_none_tensors": 16,
+      "optimizer_state_tensors": 148,
+      "optimizer_step": 1,
+      "zero_effective_gradient_tensors": 146
+    },
+    "first_update_loss": 0.130683614872396,
+    "first_update_softDice": 0.12681979603237575,
+    "measured_GPU_stage_peak_allocated_bytes": 3906598400,
+    "public_CPU_tests_passed": 2,
+    "sampled_RSS_peak_bytes": 962248704
+  }
+}
