@@ -1,0 +1,291 @@
+{
+  "AP": false,
+  "DEV": false,
+  "ROOT_verified": {
+    "neural_or_pixel_replay": false,
+    "original_actual0_held_and_fresh_FIRST": true,
+    "report_scalar_digest_relations": true,
+    "thirteen_field_admission_and_sources": true
+  },
+  "TEST": false,
+  "activation_checkpointing": false,
+  "all741_qualification": false,
+  "arms": {
+    "FULL": {
+      "after_arm_allocated_bytes": 0,
+      "after_arm_reserved_bytes": 0,
+      "allocated_parameters": 67303293,
+      "effective_parameter_tensors": 245,
+      "effective_parameters": 53122947,
+      "inactive_parameter_tensors": 88,
+      "inactive_parameters": 14180346,
+      "measured_GPU_stage_peak_allocated_bytes": 2119900160,
+      "optimizer_updates": 2,
+      "original_legacy_forward_calls": 0,
+      "sampled_RSS_peak_bytes": 13953851392,
+      "semantic_head_BN_buffers_unchanged": 18,
+      "shared_image_encodes": 4,
+      "steps": [
+        {
+          "BCE": 0.0038638152182102208,
+          "discarded_bn1_changed_buffers": 18,
+          "encoder_saved_on_cpu": {
+            "cpu_saved_tensor_count": 862,
+            "cuda_restore_calls": 7029,
+            "cuda_source_pack_calls": 862,
+            "event_byte_scope": "cumulative save/unpack events including repeats; not unique storage or peak memory",
+            "pack_calls": 862,
+            "packed_bytes_total": 7638842304,
+            "pin_memory": true,
+            "pinned_nonempty_pack_calls": 816,
+            "restored_bytes_total": 61266200256,
+            "unpack_calls": 7029
+          },
+          "finite_effective_gradient_tensors": 245,
+          "inactive_gradient_none_tensors": 88,
+          "loss": 0.13068361673504114,
+          "optimizer_state_tensors": 245,
+          "optimizer_step": 1,
+          "softDice": 0.12681980265511406,
+          "step": 1,
+          "zero_effective_gradient_tensors": 243
+        },
+        {
+          "BCE": 0.003859082780157527,
+          "discarded_bn1_changed_buffers": 18,
+          "encoder_saved_on_cpu": {
+            "cpu_saved_tensor_count": 862,
+            "cuda_restore_calls": 7029,
+            "cuda_source_pack_calls": 862,
+            "event_byte_scope": "cumulative save/unpack events including repeats; not unique storage or peak memory",
+            "pack_calls": 862,
+            "packed_bytes_total": 7638842304,
+            "pin_memory": true,
+            "pinned_nonempty_pack_calls": 816,
+            "restored_bytes_total": 61266200256,
+            "unpack_calls": 7029
+          },
+          "finite_effective_gradient_tensors": 245,
+          "inactive_gradient_none_tensors": 88,
+          "loss": 0.1306388732045889,
+          "optimizer_state_tensors": 245,
+          "optimizer_step": 2,
+          "softDice": 0.12677978807025483,
+          "step": 2,
+          "zero_effective_gradient_tensors": 0
+        }
+      ],
+      "unused_semantic_head_calls": 0,
+      "worker_nonzero_query_equivalence_passed": true,
+      "worker_zero_native_L_bitexact": true
+    },
+    "PLAIN": {
+      "after_arm_allocated_bytes": 0,
+      "after_arm_reserved_bytes": 0,
+      "allocated_parameters": 47201125,
+      "effective_parameter_tensors": 148,
+      "effective_parameters": 47198305,
+      "inactive_parameter_tensors": 16,
+      "inactive_parameters": 2820,
+      "measured_GPU_stage_peak_allocated_bytes": 1964204544,
+      "optimizer_updates": 2,
+      "original_legacy_forward_calls": 0,
+      "sampled_RSS_peak_bytes": 7098806272,
+      "semantic_head_BN_buffers_unchanged": 12,
+      "shared_image_encodes": 4,
+      "steps": [
+        {
+          "BCE": 0.0038638152182102208,
+          "discarded_bn1_changed_buffers": 0,
+          "encoder_saved_on_cpu": {
+            "cpu_saved_tensor_count": 330,
+            "cuda_restore_calls": 2970,
+            "cuda_source_pack_calls": 330,
+            "event_byte_scope": "cumulative save/unpack events including repeats; not unique storage or peak memory",
+            "pack_calls": 330,
+            "packed_bytes_total": 4098603776,
+            "pin_memory": true,
+            "pinned_nonempty_pack_calls": 300,
+            "restored_bytes_total": 36887433984,
+            "unpack_calls": 2970
+          },
+          "finite_effective_gradient_tensors": 148,
+          "inactive_gradient_none_tensors": 16,
+          "loss": 0.13068361673504114,
+          "optimizer_state_tensors": 148,
+          "optimizer_step": 1,
+          "softDice": 0.12681980265511406,
+          "step": 1,
+          "zero_effective_gradient_tensors": 146
+        },
+        {
+          "BCE": 0.0038591219991859463,
+          "discarded_bn1_changed_buffers": 0,
+          "encoder_saved_on_cpu": {
+            "cpu_saved_tensor_count": 330,
+            "cuda_restore_calls": 2970,
+            "cuda_source_pack_calls": 330,
+            "event_byte_scope": "cumulative save/unpack events including repeats; not unique storage or peak memory",
+            "pack_calls": 330,
+            "packed_bytes_total": 4098603776,
+            "pin_memory": true,
+            "pinned_nonempty_pack_calls": 300,
+            "restored_bytes_total": 36887433984,
+            "unpack_calls": 2970
+          },
+          "finite_effective_gradient_tensors": 148,
+          "inactive_gradient_none_tensors": 16,
+          "loss": 0.1306394273415208,
+          "optimizer_state_tensors": 148,
+          "optimizer_step": 2,
+          "softDice": 0.1267803046438429,
+          "step": 2,
+          "zero_effective_gradient_tensors": 0
+        }
+      ],
+      "unused_semantic_head_calls": 0,
+      "worker_nonzero_query_equivalence_passed": true,
+      "worker_zero_native_L_bitexact": true
+    }
+  },
+  "common_backbone_initialization_qualified": false,
+  "convergence_established": false,
+  "data_scope": {
+    "branch_input_size": 400,
+    "images": 1,
+    "natural_queries": 100,
+    "raw_GT": 9,
+    "split": "FIT"
+  },
+  "formal_main_training_started": false,
+  "full_method_training_eligible": false,
+  "innovation_established": false,
+  "limitations": [
+    "Separate tiny ordinary/cpu_saved arms execute two synthetic updates each; the real FIT image arms execute two updates each, eight total.",
+    "Tiny torch.equal loss/gradient/BN/optimizer comparisons do not establish ordinary-versus-CPU-saved equivalence for full400.",
+    "CPU saved-tensor bytes count repeated pack/unpack events, not unique activations, peak RAM or a speedup.",
+    "One fixed FIT image and two disposable updates per real-image arm.",
+    "Different backbones are neither parameter-matched nor paired tensor initializations; adapter initial tensors match.",
+    "Native packet associations, numerical equality and gradients remain worker evidence, not independent Root NN replay.",
+    "No generalization, convergence, comparative AP improvement or publication-level method claim."
+  ],
+  "limits": {
+    "allocator_MiB": 4096,
+    "allowed_cpus": [
+      0,
+      1
+    ],
+    "deadline_seconds": 1800,
+    "threads": 2,
+    "whole_GPU_MiB": 8192
+  },
+  "measurement_scope": {
+    "GPU_peak": "maximum recorded stage allocator peaks; not a continuously retained task peak",
+    "RSS": "50ms sampled process RSS, not the absolute OS high-water mark"
+  },
+  "new_training": true,
+  "pilot_only": true,
+  "published_source_commit": "2957bf9eb617909f6cbc4c8a222a97e93efec273",
+  "real_image_optimizer_updates": 4,
+  "schema": "U36-real400-cpu-saved-activations-two-update-sanitized-summary-v1",
+  "source_digests": {
+    "body_source": {
+      "bytes": 55839,
+      "sha256": "1e726092a19d80a06f58d6a56f85f4c15bff2b744f0468a7e0a35fa2c85999e5"
+    },
+    "entry_source": {
+      "bytes": 17524,
+      "sha256": "ccc8e0d21ec53643d5c201f71dfd5d4cc9c40a8dcc178657c0cd0bccc8d242b4"
+    },
+    "full_dsconv": {
+      "bytes": 15207,
+      "sha256": "b4b612edf9f87cf29dc48bb675d501658fdec5dbee1ea363a7f02d86d197e5f0"
+    },
+    "full_feature": {
+      "bytes": 5643,
+      "sha256": "f7953780580449dd246cbdf1803652183c1dd178f2fd60b37adb238a6d2b6a5a"
+    },
+    "full_head": {
+      "bytes": 2622,
+      "sha256": "6caba966ac7601b611fd1b36fdbd1d758875c5d029758fefe586738c8009f16e"
+    },
+    "full_legacy": {
+      "bytes": 19653,
+      "sha256": "c210b318be29aca7d26516e9f47c8849e2c6a76642d4049fe7b133726ee809b9"
+    },
+    "geometry_test": {
+      "bytes": 2163,
+      "sha256": "89478969d8196a030ecd28437f57212172ad37ade03a05d6aeed8e8fd1958ab7"
+    },
+    "image_geometry": {
+      "bytes": 3024,
+      "sha256": "65db107de80c5f1d4dade7cb2ffd3f241fd6bf7f9b233cb1aa9c90cbfd00abf7"
+    },
+    "instance_adapter": {
+      "bytes": 6420,
+      "sha256": "9ad221170f69c028474f76700c991cb76dfecf19b11f5198767843b8e378d8b3"
+    },
+    "plain_feature": {
+      "bytes": 3499,
+      "sha256": "d93ff973a57ec3abfde98bb7b9ab4fcf5a3443445a512c2acd16460fce5bfbad"
+    },
+    "plain_legacy": {
+      "bytes": 6932,
+      "sha256": "902e13e5c60b1579459854c6bf4393ad8f268092a73a1d851f0fa640c810f48d"
+    },
+    "plain_test": {
+      "bytes": 3095,
+      "sha256": "81e200e0888e3bdf7b364c0b74d4744fe972beabcc1e38215f10d2e94336e113"
+    },
+    "runtime_source": {
+      "bytes": 9796,
+      "sha256": "9b17a7bdd9c44fe159583f4c82d38f1b42970662507986654900767e8ba5f383"
+    }
+  },
+  "status": "ACTUAL0_ROOT_METADATA_ACCEPTED_DISPOSABLE_PILOT_ONLY",
+  "tiny_contract_optimizer_updates": 4,
+  "tiny_saved_tensor_GPU_contract": {
+    "CPU_saved_events": {
+      "cpu_saved_tensor_count": 24,
+      "cuda_restore_calls": 48,
+      "cuda_source_pack_calls": 24,
+      "event_byte_scope": "cumulative save/unpack events including repeats; not unique storage or peak memory",
+      "pack_calls": 24,
+      "packed_bytes_total": 8832,
+      "pin_memory": true,
+      "pinned_nonempty_pack_calls": 22,
+      "restored_bytes_total": 17664,
+      "unpack_calls": 48
+    },
+    "GPU_released_after_each_mode": true,
+    "full400_equivalence_claimed": false,
+    "independent_ROOT_numerical_replay": false,
+    "measured_GPU_stage_peak_allocated_bytes": 28672,
+    "modes": {
+      "cpu_saved": 2,
+      "ordinary": 2
+    },
+    "numerical_rule": "torch.equal; no tolerance fallback",
+    "optimizer_updates": 4,
+    "resource_speedup_claimed": false,
+    "sampled_RSS_peak_bytes": 827420672,
+    "worker_comparison_failures": 0,
+    "worker_torch_equal_comparison_groups": 10
+  },
+  "total_disposable_optimizer_updates": 8,
+  "training_encode_saved_tensor_mode": "save_on_cpu_pin_memory_true",
+  "utility_evaluated": false,
+  "worker_reported_checks": {
+    "actual_GPU_arms": [
+      "PLAIN",
+      "FULL"
+    ],
+    "common_adapter_initial_tensor_digests_equal": true,
+    "native_zero_identity_both_arms": true,
+    "no_old_UNet_weights": true,
+    "nonzero_query_grouping_both_arms": true,
+    "original_input_fields_immutable": true,
+    "public_CPU_contract_tests": 2,
+    "sequential_arms": true
+  }
+}
