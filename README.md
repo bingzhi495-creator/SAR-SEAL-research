@@ -6,7 +6,7 @@
 
 **全量输入与共同初始化已通过：** U38原任务退出0且外部接收，完成全部FIT741图/1661匹配实例的原JPEG、EXIF、RGB400/整数几何及原缓存/GT关联检查；实际完成公共104状态与共享实例头同源初始化。CUDA未初始化，无训练或AP。原尺寸572种、G范围1–29，不能以此前9实例单图代替全部负载。[实际结果](research_round_20260925_global/U38_FULL_FIT_RGB_AND_COMMON_INITIALIZATION_ACTUAL_RESULT_20261017.md)、[脱敏摘要](research_round_20260925_global/results/U38_FULL_METHOD_CPU_READER_INIT_ACTUAL_20261017.md)。下一项为两臂各按小图→27实例高负载图→原小图连续3次一次性更新；[U39函数与边界](research_round_20260925_global/code/U39_FULL_METHOD_CROSS_IMAGE_RESOURCE_DRAFT_20261017_01/DESIGN.md)仅静态/纯元数据检查，尚未运行。正式50轮未开始，DEV全100候选输入准备独立推进。
 
-**跨图试点与正式训练研发：** [U39执行入口](research_round_20260925_global/code/U39_FULL_METHOD_CROSS_IMAGE_ENTRY_DRAFT_20261017_01/DESIGN.md)已完成静态及纯元数据检查，尚未数值执行；实际张量仅预定两幅图，全741元数据与JPEG来源保持闭合。[U40连续训练设计](research_round_20260925_global/U40_FULL_METHOD_CONTINUOUS_TRAIN_IMPLEMENTATION_DESIGN_20261017.md)落实50轮总预算、配对图段及完整模型/Adam/BN/RNG恢复，仍为未执行设计。
+**跨图训练实测与正式实现：** [U39原始试点](research_round_20260925_global/results/U39_CROSS_IMAGE_RESOURCE_ACTUAL_20261017.md)实际退出0并接收：两臂各3次连续更新，覆盖27实例图，状态图间保留；6次丢弃更新不计正式预算。[主方法衔接](research_round_20260925_global/U39_CROSS_IMAGE_RESOURCE_AND_FINAL_METHOD_CONTINUATION_20261017.md)继续沿用已有自定义UNet++卷积骨架。[U40连续训练代码](research_round_20260925_global/code/U40_FULL_METHOD_CONTINUOUS_TRAIN_DRAFT_20261017_01/DESIGN.md)已完成静态及纯元数据检查，尚未实际执行；每臂50轮/37,050更新，完整保存恢复模型、Adam、BN、RNG及共同顺序。尚无新增AP。
 
 **U38执行源码：** [CPU入口与工作体](research_round_20260925_global/code/U38_FULL_METHOD_CPU_ENTRY_DRAFT_20261017_01/DESIGN.md)和[组合资格函数](research_round_20260925_global/code/U38_FULL_METHOD_CPU_QUALIFIER_DRAFT_20261017_01/DESIGN.md)已实际执行并接收；完整原JPEG引用有序摘要一致、公共初始化已实际构造/核对后释放，Root接收没有重放像素或神经计算。
 

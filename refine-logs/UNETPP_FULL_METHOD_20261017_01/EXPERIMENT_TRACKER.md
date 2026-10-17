@@ -43,3 +43,5 @@ U33两CPU/普通臂零残差与分组/首步更新通过，第二步4GiB下OOM�
 U38原actual0已接收：全741/1661真实读取、公共104状态和adapter同源均通过，CUDA冷、无训练。下一项U39跨图6次一次性更新仅静态草稿；正式50轮/AP未做。[实际结果](../../research_round_20260925_global/U38_FULL_FIT_RGB_AND_COMMON_INITIALIZATION_ACTUAL_RESULT_20261017.md)。N28第19轮已由第18轮原状态接续启动；不将启动计为已完成。
 
 第19轮原actual0已接收，每臂累计14079更新；360秒，无中途DEV/AP。[实测](../../research_round_20260925_global/results/N28_E19_CONTINUOUS_TRAINING_ACTUAL_20261017.json)。U39跨图执行源码已形成，尚未运行；U40仅连续训练实现设计，正式50轮未启动。
+
+U39原actual0已接收，两臂各3次连续丢弃更新，覆盖27实例图；正式预算仍0。U40连续核心已形成、静态审阅及3项纯元数据测试通过，尚未正式数值执行。采用既有自定义卷积主干和共享实例残差读出，不另起骨架，无本次AP或创新成立结论。
