@@ -1,0 +1,147 @@
+{
+  "AP": false,
+  "DEV": false,
+  "GT": 9,
+  "PR_head_forward_calls": 0,
+  "ROOT_actual_intake_chunk": "5e7f49",
+  "TEST": false,
+  "U33_400_and_renderer_verified": false,
+  "actual_decoded_images": 1,
+  "actual_img_shape": [
+    450,
+    800
+  ],
+  "actual_teacher_loss_forwards": 1,
+  "checks": {
+    "M_reconstructed": false,
+    "N16_native_L_atol": 0.0001,
+    "N16_native_L_max_abs_error": 0.0,
+    "N16_native_L_rtol": 0.0,
+    "N16_native_sign_exact": true,
+    "N22_anchor_S0_by_query_bitexact": true,
+    "N22_anchor_all10_matches_exact": true,
+    "N22_anchor_all10_raw_processed_GT_correspondence_exact": true,
+    "N22_anchor_all10_target_observations_exact": true,
+    "N22_anchor_assignment_exact": true,
+    "N22_anchor_class_bitexact": true,
+    "N22_anchor_export_query_order_exact": true,
+    "N22_anchor_mask_quality_bitexact": true,
+    "N22_anchor_native_L_bitexact": true,
+    "N22_anchor_native_e0_bitexact": true,
+    "N22_anchor_processed_targets_exact": true,
+    "N22_anchor_raw_GT_bitexact": true,
+    "N22_anchor_raw_GT_ids_exact": true,
+    "N22_anchor_raw_mapping_exact": true,
+    "N22_anchor_top_scores_bitexact": true,
+    "PR_forward_calls": 0,
+    "PR_frozen_eval_no_grad": true,
+    "PR_points_executed": false,
+    "PR_state_unchanged": true,
+    "actual_M_from_teacher_forward": true,
+    "actual_native_F_shape_checked": true,
+    "actual_native_M100_shape_checked": true,
+    "all_native_fields_FP32_finite_detached": true,
+    "complete_raw_GT9_binary": true,
+    "domains_computed": false,
+    "external_CPU_CUDA_RNG_restored": true,
+    "fullC_actions_executed": false,
+    "native30_loss_atom_count": 30,
+    "native30_loss_atoms_finite": true,
+    "original_N16_assignment_exact": true,
+    "original_N16_class_bitexact": true,
+    "original_N16_e_bitexact": true,
+    "original_all10_matches_exact": true,
+    "original_all10_raw_processed_GT_correspondence_exact": true,
+    "original_all10_target_observations_exact": true,
+    "original_image_identity_exact": true,
+    "original_matching_seed_exact": true,
+    "original_native30_loss_atom_keys_exact": true,
+    "original_processed_targets_exact": true,
+    "original_raw_GT_digest_exact": true,
+    "original_raw_mapping_exact": true,
+    "teacher_frozen_eval_no_grad": true,
+    "teacher_state_unchanged": true
+  },
+  "cleanup": {
+    "CUDA_initialized": true,
+    "allocated_after": 0,
+    "peak_allocated_bytes": 759550976,
+    "reserved_after": 0
+  },
+  "dataset_index": 691,
+  "full_method_training_eligible": false,
+  "image_id": 871,
+  "images": 1,
+  "independent_CPU_numerical_verification": false,
+  "legacy_bootstrap_metadata_images": 32,
+  "minimum_available_RAM_bytes": 32941015040,
+  "optimizer_created": false,
+  "original_actual_terminal_chunk": "9e442c",
+  "original_owned_seconds": 22.29699999978766,
+  "original_shape": [
+    283,
+    503
+  ],
+  "peak_RSS_bytes": 1185894400,
+  "queries": 100,
+  "schema": "U32-native100-one-FIT-actual-sanitized-summary-v1",
+  "scope": "Actual original GPU native100 M/F capture on one FIT image; Root terminal/source/report metadata accepted. No400 backbone/renderer/utility or AP evidence.",
+  "source_preregistered_commit": "b54857ec9db5327d5784b317a984389928c7dc7d",
+  "status": "ACTUAL0_ROOT_ACCEPTED_NATIVE_FIELDS_ONLY",
+  "tensor_dtypes": {
+    "native_F256": "torch.float32",
+    "native_L": "torch.float32",
+    "native_M200": "torch.float32",
+    "native_class_logits": "torch.float32",
+    "native_e0": "torch.float32",
+    "native_quality_by_export_order": "torch.float32",
+    "native_scores_by_query": "torch.float32",
+    "native_top_scores_by_export_order": "torch.float32",
+    "raw_GT": "torch.bool"
+  },
+  "tensor_shapes": {
+    "native_F256": [
+      1,
+      256,
+      200,
+      200
+    ],
+    "native_L": [
+      100,
+      283,
+      503
+    ],
+    "native_M200": [
+      1,
+      100,
+      200,
+      200
+    ],
+    "native_class_logits": [
+      1,
+      100,
+      2
+    ],
+    "native_e0": [
+      1,
+      100,
+      256
+    ],
+    "native_quality_by_export_order": [
+      100
+    ],
+    "native_scores_by_query": [
+      100
+    ],
+    "native_top_scores_by_export_order": [
+      100
+    ],
+    "raw_GT": [
+      9,
+      283,
+      503
+    ]
+  },
+  "training_eligible": false,
+  "training_updates": 0
+}
