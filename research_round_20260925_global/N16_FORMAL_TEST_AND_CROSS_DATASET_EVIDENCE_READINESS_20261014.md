@@ -43,3 +43,8 @@ Root随后仅流式读取该原初始化文件字节，完整SHA与其已绑定r
 [完整人口核心](code/U43_HRSID_POPULATION_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)及[CPU入口/工作体](code/U43_HRSID_POPULATION_CHECK_ENTRY_DRAFT_20261017_01/README.md)已完成并保存：固定原train3642图/11047实例、test1962图/5922实例，全5604/16969逐图调用原U42完整解码/官方polygon栅格；原组件、crowd、空图、失败项和split局部ID均保留，跨split裸ID复用合法。两目录共6项标准库元数据/失败路径行为测试通过，另经一次独立静态互接审。没有导入真实PIL/NumPy/mask或Torch，没有打开原图/GT执行人口检查，尚未实际prepare/bind/launch；私有Root控制正在起草，不因代码或测试存在视为已取得资格。
 
 未来单次CPU任务只核输入兼容与计数，保留5604私有逐图报告；仅全图解码及16969原实例栅格成功才申请原actual0/Root接收。失败/中断不删图、修标、自动重试或改预算。全程无模型、预测、训练或AP，实际使用TEST标注会如实披露；结果也不能证明语义标注对齐、JPG等于PNG像素、母景独立或恢复未接触测试身份。它不改变已锁U40主方法与50轮训练。
+
+
+2026-10-17 执行准备补记：[U43固定检查计划](U43_HRSID_FULL_PIXEL_MASK_INPUT_CHECK_PLAN_20261017.md)已形成，Root已从原完整encoded/header记录提取5604个原JPEG与两split的严格引用候选，并仅按文件字节固定十二个选定库引用；未重新读取原JPEG/GT、导入这些库或执行人口检查。Root私有prepare/bind/register/intake控制草稿已完成少量纯元数据行为与独立静态互接审，实际绑定与科学执行仍待原训练任务终止后统一安排，不因准备完成授予数据资格。
+
+[U44外部自动实例推理方案](U44_HRSID_FIXED_EXTERNAL_PREDICTION_DESIGN_20261017.md)明确采用小CPU窗口、GPU逐模型轮换、只保留最终RLE；不把内部187图reader改常数冒充1962人口，不建立全人口F/M/L密集缓存。新图无GT模型接口、固定E50端点/效用及强R外部来源仍缺，保持planned/not run；输入检查通过也不证明任何跨集AP或未见数据泛化。
