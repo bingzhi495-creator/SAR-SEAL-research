@@ -20,3 +20,7 @@
 本页没有新增正式 TEST、外部 AP、未见测试证明或许可认证；未闭合项目保持缺失状态。
 
 2026-10-17 U41补记：[未绑定单图采集接口](code/U41_UNBOUND_NEW_IMAGE_NATIVE_CAPTURE_DRAFT_20261017_01/README.md)已实现，复用原N07最终mask_embed输出e（不能用旧pre-hook输入h）、M/F、原渲染/导出；自然轴与导出qids分开。只读实际安装库确认：直接删LoadAnnotations仍会在training=True的pad_mask分支访问masks；新稿沿既有data_samples=None guard保留图像归一化/固定800补边，并重建原metadata规则，不造GT。3项标准库接口测试和独立静态审阅通过；没有真实像素/前向等价、模型加载/来源闭合、HRSID1962或SSDD232人口runner，不能据此宣布跨集可运行或已具数据资格。前述像素、实例真值、历史暴露及teacher训练接触缺口不变。
+
+2026-10-17 输入与来源补记：[U42单图像素/掩膜检查草稿](code/U42_UNBOUND_HRSID_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)补上强制Image.load及每个原ann的官方COCO栅格链，不复用旧ImageDraw/打平组件的loader。保留原组件、crowd和失败实例；连续area与离散像素面积只记差值，有限越界坐标只诊断不裁剪/提前拒绝。EXIF缺tag按存储坐标记录未旋转，非1/非法/读取异常拒绝；缺tag不是已验证tag1或语义对齐。三项标准库接口/失败注入测试与独立静态审阅通过，真实解码/栅格分支未运行，没有取得全5604人口资格。
+
+当前teacher的上游初始化来源仍未闭合。普通发布源码中的[native COCO初始化检查](multimodal_data_pilot_20260928/native_coco_comparator_initialization_preparation_20261008/qualify_initializers_cpu_v2.py)第147–171行明确将public_checkpoint_origin_and_training_recipe_verified设为False；其COCO路径、配置名和类别兼容不能证明官方字节身份或从未接触HRSID/SSDD留出。源码合同经SPATIAL24完整FIT741训练、N07严格E24载入并另行DEV评价，但不替代实际资格链的数据/权重绑定核验。[官方MMDetection v3.1.0模型索引](https://raw.githubusercontent.com/open-mmlab/mmdetection/v3.1.0/configs/mask2former/metafile.yml)给出同名mask2former_r50_8xb2-lsj-50e_coco配置及候选权重mask2former_r50_8xb2-lsj-50e_coco_20220506_191028-41b088b6.pth；尚未与当前实际绑定初始checkpoint的完整摘要比对，不能写成已认证同一权重。未发现训练接触证据不等于证明未接触，字节不等也不自动证明SAR训练。下一环是实际绑定初始化ref与可信官方下载字节/作者配方的对应，当前不宣称未见数据泛化；本补记未读取运行中实际资格链或权重，不改变U40。
