@@ -1,0 +1,107 @@
+{
+  "AP": false,
+  "DEV": false,
+  "TEST": false,
+  "all741_qualification": false,
+  "convergence_established": false,
+  "data_scope": {
+    "GT": 9,
+    "images": 1,
+    "input_size": 400,
+    "natural_queries": 100,
+    "split": "FIT"
+  },
+  "error_type": "OutOfMemoryError",
+  "failure_location": "FULL first optimizer update image encoder/CONV0_3 BatchNorm forward",
+  "formal_main_training_started": false,
+  "full_method_training_eligible": false,
+  "limitations": [
+    "One real-image pilot under a fixed 4GiB allocator.",
+    "PLAIN completed both real updates with query_chunk1 and released GPU allocations; FULL passed stage0/1 then ran out of memory in its first train-mode encoder forward with empty optimizer state.",
+    "FULL completed no optimizer update. This does not establish general ineffectiveness or an AP comparison.",
+    "Partial numerical checks remain worker evidence, not independent Root neural replay."
+  ],
+  "method_failure_established": false,
+  "new_training": true,
+  "original_actual_exit_code": 1,
+  "pilot_optimizer_updates_completed": {
+    "FULL": 0,
+    "PLAIN": 2
+  },
+  "pilot_successful": false,
+  "resource_scope": {
+    "GPU_peak_is_recorded_stage_peak": true,
+    "RSS_is_sampled_not_absolute_peak": true,
+    "RSS_sampling_interval_seconds": 0.05,
+    "allocator_limit_MiB": 4096,
+    "whole_GPU_limit_MiB": 8192
+  },
+  "schema": "U35-real-image400-chunk1-OOM-failure-sanitized-summary-v1",
+  "status": "ACTUAL1_OOM_PRESERVED_PLAIN_TWO_UPDATES_FULL_FIRST_FORWARD_FAILED",
+  "successful_pending_Q_exists": false,
+  "utility_evaluated": false,
+  "worker_partial_checks": {
+    "FULL_effective_parameter_tensors": 245,
+    "FULL_failed_interval_GPU_peak_allocated_bytes": 4143634944,
+    "FULL_failed_interval_sampled_RSS_peak_bytes": 1044627456,
+    "FULL_first_train_forward_OOM": true,
+    "FULL_inactive_parameter_tensors": 88,
+    "FULL_optimizer_state_entries_before": 0,
+    "FULL_optimizer_updates_completed": 0,
+    "FULL_parameters": {
+      "allocated": 67303293,
+      "effective": 53122947,
+      "inactive": 14180346
+    },
+    "FULL_stage0_zero_PASS": true,
+    "FULL_stage1_nonzero_PASS": true,
+    "PLAIN_after_arm_allocated_bytes": 0,
+    "PLAIN_after_arm_reserved_bytes": 0,
+    "PLAIN_complete_arm": {
+      "after_arm_allocated_bytes": 0,
+      "after_arm_reserved_bytes": 0,
+      "allocated_parameters": 47201125,
+      "effective_parameter_tensors": 148,
+      "effective_parameters": 47198305,
+      "inactive_parameter_tensors": 16,
+      "inactive_parameters": 2820,
+      "measured_GPU_stage_peak_allocated_bytes": 4104901632,
+      "optimizer_updates": 2,
+      "original_legacy_forward_calls": 0,
+      "sampled_RSS_peak_bytes": 953536512,
+      "semantic_head_BN_buffers_unchanged": 12,
+      "shared_image_encodes": 4,
+      "steps": [
+        {
+          "BCE": 0.0038638152182102208,
+          "discarded_bn1_changed_buffers": 0,
+          "finite_effective_gradient_tensors": 148,
+          "inactive_gradient_none_tensors": 16,
+          "loss": 0.13068361673504114,
+          "optimizer_state_tensors": 148,
+          "optimizer_step": 1,
+          "softDice": 0.12681980265511406,
+          "step": 1,
+          "zero_effective_gradient_tensors": 146
+        },
+        {
+          "BCE": 0.0038591219991859463,
+          "discarded_bn1_changed_buffers": 0,
+          "finite_effective_gradient_tensors": 148,
+          "inactive_gradient_none_tensors": 16,
+          "loss": 0.1306394273415208,
+          "optimizer_state_tensors": 148,
+          "optimizer_step": 2,
+          "softDice": 0.1267803046438429,
+          "step": 2,
+          "zero_effective_gradient_tensors": 0
+        }
+      ],
+      "unused_semantic_head_calls": 0,
+      "worker_nonzero_query_equivalence_passed": true,
+      "worker_zero_native_L_bitexact": true
+    },
+    "PLAIN_optimizer_updates_completed": 2,
+    "public_CPU_tests_passed": 2
+  }
+}

@@ -127,3 +127,7 @@ U33拟先实际运行几何解析与原plain64特征公共合约，再依次对P
 ## 13. chunk4真实资源失败与独立chunk1修订
 
 U33两CPU合约、普通臂400零残差与非零分组比较、第一步AdamW更新实际通过，第二步已有148个状态时backward OOM；固定分配上限4GiB，物理卡约24GiB。FULL未执行，失败保留，不作总体方法判断。U35只对两臂共同改训练chunk4→1，九GT各1/9，维持每图一次encode/update、两步、FP32、相同输入/监督/优化器/资源；eval25×4和Q2判据不变，源码尚未执行。正式公共算子104状态初始化草稿已形成，只静态，完整seed202610173101，未构造/复制权重或主训练。[结果和修订合同](../../research_round_20260925_global/U33_REAL400_OOM_RESULT_AND_CHUNK1_REVISION_20261017.md)。
+
+## 14. 逐实例普通臂两步通过，自主主干仍需资源修订
+
+U35原actual1已核验保留：PLAIN两步和臂间CUDA双0均通过；FULL真实400 eval/零残差/非零分组通过，但首次train encode在CONV0_3 BN处4GiB配额下OOM，没有FULL更新。U36拟两臂统一FP32保存张量CPU暂存，不改结构/分辨率/块/优化器/监督、不作checkpoint重算，先小型GPU两步梯度等价再真实图，当前未执行。共有16算子104状态初始化仍仅静态；正式主训练未开始。单次VJP只另存候选，不与本轮暂存叠加。[最新实测与设计边界](../../research_round_20260925_global/U35_REAL400_PARTIAL_RESULT_AND_FP32_CPU_ACTIVATION_DESIGN_20261017.md)。
