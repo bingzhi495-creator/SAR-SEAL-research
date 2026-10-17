@@ -12,7 +12,7 @@
 | U05 | 首组公平主训练 | 普通完整UNet++ vs自主full，seed3101 | 待U02–U04和完整预锁 | 拟同50轮/37050更新，固定端点评价；未启动 |
 | U06 | 验证核心归因 | 容量/计算替代、复合块/方向替换 | 条件待执行 | 主效用成立后只做能改变结论的最少控制 |
 | U07 | 重复与跨数据集 | 3102/3103；另一公共实例数据集 | 条件待执行 | 按预定收益门槛推进，不承诺必然成功 |
-| N28 | 保留路由独立证据 | SELECTIVE vs WHOLE_NODE；seed2801 | 第11轮已接收，每臂8151更新；11→12原任务已启动 | 仍到固定24轮才完整DEV评价；不是完整full验证 |
+| N28 | 保留路由独立证据 | SELECTIVE vs WHOLE_NODE；seed2801 | 第14轮已接收，每臂10374更新；下一科学动作准备真实M100补采 | 仍到固定24轮才完整DEV评价；不是完整full验证 |
 | HW | 确认DGX入口 | Spark GB10只读连接与资源快照 | SSH实际成功；有用户llama服务及未核CPU任务 | 保留用户进程，数值执行仍由Root统一安排 |
 
 科学执行只沿当前原句柄追踪，观察超时不重启。当前N28原session45218；本文为普通跟踪记录，不构成其绑定输入或执行资格。具体来源与失败保留仍由原执行记录维护。
@@ -22,3 +22,5 @@
 补记：CPU tiny测试原任务3.265秒、三项全通过；仅接口范围，未执行原完整结构。原full64测试草稿已形成，尚未执行。实际接线和结果导航见[本轮研发进展](../../research_round_20260925_global/UNETPP_SHARED_ADAPTER_CPU_RESULT_AND_FULL_FEATURE_STATUS_20261017.md)。
 
 真实full64原任务约5.156秒、两项全部通过且经Root接收；400/真实影像/训练/AP仍未执行。[完整结果](../../research_round_20260925_global/U30_REAL_FULL_FEATURE_CPU64_ACTUAL_RESULT_20261017.md)。此前未执行描述为历史记录。
+
+最新普通对照已选plain64 model1；几何/plain两项均已RED后实现，仅AST；all100M实际补采源已完成但未执行。此前session45218记录为已终态历史，当前无该任务。[本轮进展](../../research_round_20260925_global/U31_MAIN_CONTROL_AND_NATIVE100_INPUT_PROGRESS_20261017.md)。

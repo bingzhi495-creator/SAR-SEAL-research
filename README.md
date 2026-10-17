@@ -4,13 +4,13 @@
 
 **最新实测（N26，三预锁种子完成）：** 固定R掩膜，仅学习质量乘分；AP为69.423613 / 69.637142 / 69.551345，均值**69.537367 ± 0.107449**（样本SD），相对原R 68.099385平均**+1.437982 AP点**。各624次更新及完整187图/380GT/18700query COCO均实际结束并经Root接收，qhat1原COCO12精确复现。**这是已有质量回归适配的评分效用，掩膜未改善，核心创新尚未成立。** [完整结果](research_round_20260925_global/N26_FIXED_R_QUALITY_THREE_SEED_RESULT_20261017.md)、[全指标与成本](research_round_20260925_global/results/N26_FIXED_R_QUALITY_THREE_SEED_AGGREGATE_20261017.json)、[主张评议](research_round_20260925_global/N26_RESULT_TO_CLAIM_20261017/findings.md)、[执行前计划](refine-logs/N26_QUERY_MASK_QUALITY_BASELINE_20261017_01/EXPERIMENT_PLAN.md)、[训练评价源码](research_round_20260925_global/code/N26_QUALITY_TRAIN_EVAL_SOURCE_ONLY_20261017_01/README.md)。
 
-**当前结构研发（N28，已完成第11轮）：** 两组各累计8151次AdamW更新，原10→11任务实际退出0并接收，11→12原任务已启动；原模型/优化器/随机状态继续接续。总端点仍为24轮，无新AP。该试验只检验选择性路由适配，不代替完整自主主干验证。[前次恢复与模块范围](research_round_20260925_global/N28_E06_CONTINUOUS_TRAINING_RESULT_20261017.md)、[最新完整结构计划](refine-logs/UNETPP_FULL_METHOD_20261017_01/EXPERIMENT_PLAN.md)。
+**当前结构研发（N28，已完成第14轮）：** 两组各累计10374次AdamW更新，第12至14轮均原实际退出0并接收；原模型/优化器/随机状态继续接续。总端点仍为24轮，无新AP。该试验只检验选择性路由适配，不代替完整自主主干验证。[前次恢复与模块范围](research_round_20260925_global/N28_E06_CONTINUOUS_TRAINING_RESULT_20261017.md)、[最新完整结构计划](refine-logs/UNETPP_FULL_METHOD_20261017_01/EXPERIMENT_PLAN.md)。
 
 **N28查新与评价研发：** [五项直接先例核查](research_round_20260925_global/N28_DIRECT_PRECEDENT_REVIEW_20261017.md)明确分支门控已有先例，具体出边分工仍待验证；[固定24轮评价设计](research_round_20260925_global/N28_FIXED24_DEV_EVALUATION_DESIGN_20261017.md)及[未执行源码](research_round_20260925_global/code/N28_FIXED24_DEV_EVAL_DRAFT_20261017_01/README.md)已保存。9项标准库捏造元数据检查通过；实际DEV读取、GPU预测、COCO与几何诊断尚未执行，不能据此报告涨点。
 
-**N28恢复预锁与源码：** [恢复预锁](refine-logs/N28_DENSE_ROUTING_20261017_01/RESOURCE_RECOVERY_PLAN.md)、[CPU检查源码](research_round_20260925_global/code/N28_CHECKPOINT_RECOVERY_SOURCE_ONLY_20261017_01/README.md)与[单轮修订训练源码](research_round_20260925_global/code/N28_SINGLE_EPOCH_TRAIN_SOURCE_ONLY_20261017_01/README.md)均在执行前发布。CPU恢复检查及第6至11轮原GPU训练已实际结束并接收；原8轮任务的超时仍保留为失败。训练接续成功不代表方法已经涨点。
+**N28恢复预锁与源码：** [恢复预锁](refine-logs/N28_DENSE_ROUTING_20261017_01/RESOURCE_RECOVERY_PLAN.md)、[CPU检查源码](research_round_20260925_global/code/N28_CHECKPOINT_RECOVERY_SOURCE_ONLY_20261017_01/README.md)与[单轮修订训练源码](research_round_20260925_global/code/N28_SINGLE_EPOCH_TRAIN_SOURCE_ONLY_20261017_01/README.md)均在执行前发布。CPU恢复检查及第6至14轮原GPU训练已实际结束并接收；原8轮任务的超时仍保留为失败。训练接续成功不代表方法已经涨点。
 
-**最新机制诊断（N27，完整FIT741/1661已实际完成）：** R剩余错误73.8521%在固定Ω外。IoU0.90/0.95当前未达标实例中，即使域内用GT完美纠正，仍无法达标的分别为424/581、1101/1304。该结果支持检验具备域外写入能力的结构，不证明门控有效、AP上界或核心创新。对应N28路由两臂保持同输入、同写入权限、同预算，已完成第11轮，固定端点效用尚未评价。[结果及下一项约束](research_round_20260925_global/N27_MATCHED_SUPPORT_CENSUS_RESULT_20261017.md)、[全部阈值与成本](research_round_20260925_global/results/N27_MATCHED_SUPPORT_CENSUS_AGGREGATE_20261017.json)、[预锁计划](refine-logs/N27_MATCHED_SUPPORT_CENSUS_20261017_01/EXPERIMENT_PLAN.md)、[源码](research_round_20260925_global/code/N27_MATCHED_SUPPORT_CENSUS_SOURCE_ONLY_20261017_01/README.md)。正式TEST、跨集和完整结构验证仍待完成。
+**最新机制诊断（N27，完整FIT741/1661已实际完成）：** R剩余错误73.8521%在固定Ω外。IoU0.90/0.95当前未达标实例中，即使域内用GT完美纠正，仍无法达标的分别为424/581、1101/1304。该结果支持检验具备域外写入能力的结构，不证明门控有效、AP上界或核心创新。对应N28路由两臂保持同输入、同写入权限、同预算，已完成第14轮，固定端点效用尚未评价。[结果及下一项约束](research_round_20260925_global/N27_MATCHED_SUPPORT_CENSUS_RESULT_20261017.md)、[全部阈值与成本](research_round_20260925_global/results/N27_MATCHED_SUPPORT_CENSUS_AGGREGATE_20261017.json)、[预锁计划](refine-logs/N27_MATCHED_SUPPORT_CENSUS_20261017_01/EXPERIMENT_PLAN.md)、[源码](research_round_20260925_global/code/N27_MATCHED_SUPPORT_CENSUS_SOURCE_ONLY_20261017_01/README.md)。正式TEST、跨集和完整结构验证仍待完成。
 
 **UNet++ 模块复核（2026-10-17）：** 已重新核对自定义 CBAM_block 内部的卷积、注意力、残差及 SimAM 增强，H/4 方向融合和 up_x 传输路径；补核发现解码块前置 BN/ReLU 结果被 `conv1(x)` 覆盖，已纠正此前的顺序描述并记录独立修复对照方案。这是实际源码确认，尚非完整公平训练证据。当前 N26 未直接训练这套 UNet++。[具体改动与验证边界](research_round_20260925_global/UNETPP_MODULE_MODIFICATIONS_CONFIRMED_20261017.md)。
 
@@ -298,3 +298,5 @@ N20后续未执行源码：[独立CPU端点核验入口](research_round_20260925
 原正常GPU0路径下的CPU141/23和DEV142前门保留为未执行历史草稿；收尾失败24后当前改用CPU恢复140/24/164，原GPUactual0保持False。后续DEV需消费新恢复资格，不能直接套用旧前门或补写缺失GPU报告。
 
 已另存[消费恢复资格的DEV前门v02](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_GPU_FRONT_UNBOUND_DRAFT_20261015_02.py)：GPU失败只保留为失败记录，四个模型从原快照取，后续首DEV141/24；仍需真实legacy/priorcarrier hooks和CPU恢复实际资格，未绑定、未执行。
+
+**完整主线接线更新：** 已选plain64原结构作更贴近的普通对照；新几何/plain包装已实现仅AST，FIT全部查询M100真实补采源已完成但尚未执行。历史clean32/GN、plain64与full64分别注明，不把它们混成同一基线。[当前研发与输入缺口](research_round_20260925_global/U31_MAIN_CONTROL_AND_NATIVE100_INPUT_PROGRESS_20261017.md)。

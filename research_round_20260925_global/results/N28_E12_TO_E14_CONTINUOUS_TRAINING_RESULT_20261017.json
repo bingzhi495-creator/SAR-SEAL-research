@@ -1,0 +1,258 @@
+{
+  "AP": false,
+  "DEV": false,
+  "TEST": false,
+  "schema": "N28-three-accepted-single-epoch-summaries-v1",
+  "stages": [
+    {
+      "AP": false,
+      "DEV": false,
+      "ROOT_intake_actual0_chunk": "d5520a",
+      "TEST": false,
+      "cumulative_updates_per_arm": 8892,
+      "end_epoch": 12,
+      "optimizer_final_checks": {
+        "SELECTIVE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 8892,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        },
+        "WHOLE_NODE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 8892,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        }
+      },
+      "optimizer_restore_equality_checked": true,
+      "optimizer_start_checks": {
+        "SELECTIVE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 8151,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        },
+        "WHOLE_NODE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 8151,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        }
+      },
+      "original_owned_elapsed_seconds": 353.7349999998696,
+      "original_terminal_chunk": "ce32ec",
+      "parameter_counts": {
+        "SELECTIVE": 2978555,
+        "WHOLE_NODE": 2978555
+      },
+      "schema": "N28-single-epoch-actual-accepted-ordinary-summary-v1",
+      "seed": 202610172801,
+      "stage_history": [
+        {
+          "GT_visits": 1661,
+          "arms": {
+            "SELECTIVE": {
+              "GT_visits": 1661,
+              "active_parameter_tensors": 161,
+              "finite_gradient_checks": 119301,
+              "image_loss_sum": 50.40907767647877,
+              "instance_loss_sum": 176.36519918078557,
+              "mean_image_loss": 0.06802844490752871,
+              "mean_instance_loss": 0.10618013195712557,
+              "microbatches": 876,
+              "updates": 741
+            },
+            "WHOLE_NODE": {
+              "GT_visits": 1661,
+              "active_parameter_tensors": 161,
+              "finite_gradient_checks": 119301,
+              "image_loss_sum": 50.319122191984206,
+              "instance_loss_sum": 176.69281062157825,
+              "mean_image_loss": 0.06790704749255629,
+              "mean_instance_loss": 0.10637736942900557,
+              "microbatches": 876,
+              "updates": 741
+            }
+          },
+          "cumulative_updates_per_arm": 8892,
+          "epoch": 12,
+          "full_mask_writable": true,
+          "images": 741,
+          "loss_weighting": "chunk_GT/image_GT; fixed microbatch BN semantics",
+          "microbatch": 4,
+          "optimizer_updates_per_image_per_arm": 1,
+          "shared_microbatches": 876,
+          "teacher_updated": false
+        }
+      ],
+      "start_epoch": 11
+    },
+    {
+      "AP": false,
+      "DEV": false,
+      "TEST": false,
+      "cumulative_updates_per_arm": 9633,
+      "end_epoch": 13,
+      "optimizer_final_checks": {
+        "SELECTIVE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 9633,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        },
+        "WHOLE_NODE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 9633,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        }
+      },
+      "optimizer_restore_equality_checked": true,
+      "optimizer_start_checks": {
+        "SELECTIVE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 8892,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        },
+        "WHOLE_NODE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 8892,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        }
+      },
+      "original_owned_elapsed_seconds": 353.96799999987707,
+      "original_terminal_chunk": "1b9d03",
+      "parameter_counts": {
+        "SELECTIVE": 2978555,
+        "WHOLE_NODE": 2978555
+      },
+      "schema": "N28-single-epoch-actual-accepted-ordinary-summary-v1",
+      "seed": 202610172801,
+      "stage_history": [
+        {
+          "GT_visits": 1661,
+          "arms": {
+            "SELECTIVE": {
+              "GT_visits": 1661,
+              "active_parameter_tensors": 161,
+              "finite_gradient_checks": 119301,
+              "image_loss_sum": 49.8172060130164,
+              "instance_loss_sum": 170.66825461760163,
+              "mean_image_loss": 0.06722969772336897,
+              "mean_instance_loss": 0.10275030380349286,
+              "microbatches": 876,
+              "updates": 741
+            },
+            "WHOLE_NODE": {
+              "GT_visits": 1661,
+              "active_parameter_tensors": 161,
+              "finite_gradient_checks": 119301,
+              "image_loss_sum": 49.49096907535568,
+              "instance_loss_sum": 171.19909253856167,
+              "mean_image_loss": 0.06678943195054747,
+              "mean_instance_loss": 0.10306989315988059,
+              "microbatches": 876,
+              "updates": 741
+            }
+          },
+          "cumulative_updates_per_arm": 9633,
+          "epoch": 13,
+          "full_mask_writable": true,
+          "images": 741,
+          "loss_weighting": "chunk_GT/image_GT; fixed microbatch BN semantics",
+          "microbatch": 4,
+          "optimizer_updates_per_image_per_arm": 1,
+          "shared_microbatches": 876,
+          "teacher_updated": false
+        }
+      ],
+      "start_epoch": 12
+    },
+    {
+      "AP": false,
+      "DEV": false,
+      "TEST": false,
+      "cumulative_updates_per_arm": 10374,
+      "end_epoch": 14,
+      "optimizer_final_checks": {
+        "SELECTIVE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 10374,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        },
+        "WHOLE_NODE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 10374,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        }
+      },
+      "optimizer_restore_equality_checked": true,
+      "optimizer_start_checks": {
+        "SELECTIVE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 9633,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        },
+        "WHOLE_NODE": {
+          "all_parameter_steps_exact": true,
+          "expected_step": 9633,
+          "parameter_tensors": 161,
+          "recipe_exact": true
+        }
+      },
+      "original_owned_elapsed_seconds": 357.125,
+      "original_terminal_chunk": "8823c2",
+      "parameter_counts": {
+        "SELECTIVE": 2978555,
+        "WHOLE_NODE": 2978555
+      },
+      "schema": "N28-single-epoch-actual-accepted-ordinary-summary-v1",
+      "seed": 202610172801,
+      "stage_history": [
+        {
+          "GT_visits": 1661,
+          "arms": {
+            "SELECTIVE": {
+              "GT_visits": 1661,
+              "active_parameter_tensors": 161,
+              "finite_gradient_checks": 119301,
+              "image_loss_sum": 49.65158120216802,
+              "instance_loss_sum": 170.9496984765865,
+              "mean_image_loss": 0.06700618245906616,
+              "mean_instance_loss": 0.10291974622311047,
+              "microbatches": 876,
+              "updates": 741
+            },
+            "WHOLE_NODE": {
+              "GT_visits": 1661,
+              "active_parameter_tensors": 161,
+              "finite_gradient_checks": 119301,
+              "image_loss_sum": 49.16979739861563,
+              "instance_loss_sum": 168.54653446143493,
+              "mean_image_loss": 0.06635600188747048,
+              "mean_instance_loss": 0.1014729286342173,
+              "microbatches": 876,
+              "updates": 741
+            }
+          },
+          "cumulative_updates_per_arm": 10374,
+          "epoch": 14,
+          "full_mask_writable": true,
+          "images": 741,
+          "loss_weighting": "chunk_GT/image_GT; fixed microbatch BN semantics",
+          "microbatch": 4,
+          "optimizer_updates_per_image_per_arm": 1,
+          "shared_microbatches": 876,
+          "teacher_updated": false
+        }
+      ],
+      "start_epoch": 13
+    }
+  ]
+}
