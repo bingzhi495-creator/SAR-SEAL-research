@@ -1,0 +1,110 @@
+{
+  "schema": "N28-E05-CPU-state-recovery-aggregate-v1",
+  "seed": 202610172801,
+  "status": "ACTUAL0_ROOT_ACCEPTED_CPU_E05_ENDPOINT_PENDING_ACTUAL_GPU_RESTORE",
+  "completed_epoch": 5,
+  "cumulative_effective_updates_per_arm": 3705,
+  "parameter_count_per_arm": 2978555,
+  "original_requested_E08_task_successful": false,
+  "original_failure_preserved": true,
+  "CPU_probe_actual_returncode": 0,
+  "CPU_probe_original_owned_seconds": 4.04700000025332,
+  "CPU_probe_entry_elapsed_seconds": 3.4220000002533197,
+  "CPU_probe_peak_RSS_bytes": 415088640,
+  "optimizer_checks": {
+    "SELECTIVE": {
+      "all_parameter_steps_exact": true,
+      "expected_step": 3705,
+      "parameter_tensors": 161,
+      "raw_and_loaded_moments_shape_dtype_finite": true,
+      "raw_and_loaded_state_tensors_bitexact": true,
+      "recipe_exact": true,
+      "state_entries": 161
+    },
+    "WHOLE_NODE": {
+      "all_parameter_steps_exact": true,
+      "expected_step": 3705,
+      "parameter_tensors": 161,
+      "raw_and_loaded_moments_shape_dtype_finite": true,
+      "raw_and_loaded_state_tensors_bitexact": true,
+      "recipe_exact": true,
+      "state_entries": 161
+    }
+  },
+  "model_and_BN_strict_CPU_load_checked": true,
+  "private_order_and_CPU_RNG_actually_restored": true,
+  "external_CPU_RNG_restored": true,
+  "CUDA_RNG_payload_bytes": 816,
+  "actual_CUDA_RNG_restore_verified": false,
+  "next_update_equivalence_verified": false,
+  "prior_checkpoint_files_E01_to_E04_contents_read": false,
+  "checkpoint_selected_by_loss": false,
+  "largest_contiguous_saved_logged_epoch": 5,
+  "historical_FIT_population_per_epoch": {
+    "images": 741,
+    "GT": 1661
+  },
+  "historical_training_loss": [
+    {
+      "epoch": 1,
+      "updates": 741,
+      "mean_image_loss": {
+        "SELECTIVE": 0.08088016700359028,
+        "WHOLE_NODE": 0.08083798638739788
+      }
+    },
+    {
+      "epoch": 2,
+      "updates": 1482,
+      "mean_image_loss": {
+        "SELECTIVE": 0.07576061266332403,
+        "WHOLE_NODE": 0.07589306044624804
+      }
+    },
+    {
+      "epoch": 3,
+      "updates": 2223,
+      "mean_image_loss": {
+        "SELECTIVE": 0.0750099490358973,
+        "WHOLE_NODE": 0.07470114446558089
+      }
+    },
+    {
+      "epoch": 4,
+      "updates": 2964,
+      "mean_image_loss": {
+        "SELECTIVE": 0.07383758891197914,
+        "WHOLE_NODE": 0.07384971257578204
+      }
+    },
+    {
+      "epoch": 5,
+      "updates": 3705,
+      "mean_image_loss": {
+        "SELECTIVE": 0.07363913124037577,
+        "WHOLE_NODE": 0.0735397141448168
+      }
+    }
+  ],
+  "CPU_probe_new_training": false,
+  "CPU_probe_forward_calls": 0,
+  "CPU_probe_backward_calls": 0,
+  "CPU_probe_optimizer_steps": 0,
+  "CPU_probe_GT_reads": 0,
+  "CPU_probe_CUDA_initialized": false,
+  "ROOT_scope": "Root actual CPU-worker terminal/source/checkpoint-hash and independent scalar/log/history metadata intake. CPU strict model/BN/complete optimizer and CPU/private RNG load checks are worker evidence; Root does not deserialize the checkpoint or replay numerical state. CUDA restoration, next-update equivalence and requested E08 completion remain unverified.",
+  "full24_complete": false,
+  "AP_evaluated": false,
+  "DEV_evaluated": false,
+  "TEST": false,
+  "formal_TEST": false,
+  "cross_dataset": false,
+  "innovation_established": false,
+  "goal_complete": false,
+  "next_task_original_live_snapshot_UTC": "2026-10-17 00:52:33",
+  "next_task_epochs": [
+    5,
+    6
+  ],
+  "next_task_status_at_snapshot": "ORIGINAL_HANDLE_OBSERVED_LIVE_NOT_TERMINAL_ACCEPTED"
+}
