@@ -1,5 +1,10 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
+
+<!-- U57_STATIC_TRAINING_PLAN_20261018_01 -->
+
+[DGX 原更新全量成对训练设计](research_round_20260925_global/U57_DGX_ORIGINAL_UPDATE_FULL_FIT_TRAINING_PLAN_20261018.md)：独立新环境从零计数，沿用已有结构与原数学更新；先验收741图实际读取，再完成一次接续全链检查，随后固定E50。当前仅设计，训练实现与执行尚未完成。
+
 <!-- U54_ACTUAL_INPUTS_AND_BASELINE_CONTROL_20261018_01 -->
 
 **2026-10-18 最新状态：** 全741图/1661实例的本机CPU便携导出已通过；DGX全量传输与实际读取尚未完成。本机接续因RAM低于原限额实际停止，正式进度仍为2816/37050步/臂，严格失败资格存在原输出捕获缺口。DGX严格诊断中PLAIN原法自重放通过，候选参数超出预锁容差；FULL遇到不支持的确定性反向，未完成比较。候选未采纳，无新增AP。见[最新真实结果及下一步](research_round_20260925_global/U56_ACTUAL_STRICT_CONTROL_AND_MAIN_RESOURCE_STOP_20261018.md)、[全量导出汇总](research_round_20260925_global/results/U53_ALL741_CPU_EXPORTS_ACTUAL_20261018.json)和[严格诊断摘要](research_round_20260925_global/results/U56_DGX_STRICT_EQUIVALENCE_ACTUAL_FAILURE_20261018.json)。
