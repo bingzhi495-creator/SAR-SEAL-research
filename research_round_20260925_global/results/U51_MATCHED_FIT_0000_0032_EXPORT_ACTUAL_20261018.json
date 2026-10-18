@@ -1,0 +1,2574 @@
+{
+  "AP": false,
+  "CPU_only": true,
+  "DGX_execution_qualified": false,
+  "ROOT_numeric_replay": false,
+  "cost": {
+    "elapsed_seconds": 13.328000000212342,
+    "peak_RSS_bytes": 643702784
+  },
+  "flags": {
+    "CPU_only": true,
+    "CUDA_uninitialized_after": true,
+    "CUDA_uninitialized_before": true,
+    "callerCPU_RNG_preserved": true,
+    "callerNumPy_RNG_preserved": true,
+    "callerPython_RNG_preserved": true,
+    "data_objects_released": true,
+    "default_dtype_preserved": true,
+    "grad_mode_preserved": true,
+    "module_aliases_restored": true,
+    "source_bytes_verified": true,
+    "source_unchanged_after": true,
+    "thread_controls_preserved": true
+  },
+  "images": 32,
+  "matched_instances": 43,
+  "new_training": false,
+  "original_metadata_images": 741,
+  "original_metadata_instances": 1661,
+  "packages": [
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 711420,
+          "sha256": "5dfce9b6a98949ab3e1a31e7df55916273dc4565b39baf255d83bf776df0a5bf",
+          "shape": [
+            1,
+            355,
+            501
+          ],
+          "source_sha256": "5dfce9b6a98949ab3e1a31e7df55916273dc4565b39baf255d83bf776df0a5bf"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "f5668ed5ad4038b46f4f5e580c94e3b6365e0084369b3e07e9f229117ccf9916",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "f5668ed5ad4038b46f4f5e580c94e3b6365e0084369b3e07e9f229117ccf9916"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "bfaba7fd065c12141623c994a201269647eb493c4b440595c2613dd6e1f4177c",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "bfaba7fd065c12141623c994a201269647eb493c4b440595c2613dd6e1f4177c"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "a8ce9d963d5ef93b6ba1582a77324bc5ec98d9b8975648f0dedd6348f4e3a15b",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "a8ce9d963d5ef93b6ba1582a77324bc5ec98d9b8975648f0dedd6348f4e3a15b"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 711420,
+          "sha256": "dca8c57347ecd6f9858bf99aa9ec158342a2c74f53cf75a93d83edd8f2eeb18c",
+          "shape": [
+            1,
+            355,
+            501
+          ],
+          "source_sha256": "dca8c57347ecd6f9858bf99aa9ec158342a2c74f53cf75a93d83edd8f2eeb18c"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3542107,
+      "package_sha256": "aa9db52f555195bd1a371adb7955268d2b08e3b9f40cc812d2ba261283afa603",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 806000,
+          "sha256": "002ee1d6a9cace1b5b46a31d87e2034a3b0f785d9aec63be9e81fd3813d7050f",
+          "shape": [
+            1,
+            403,
+            500
+          ],
+          "source_sha256": "002ee1d6a9cace1b5b46a31d87e2034a3b0f785d9aec63be9e81fd3813d7050f"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "7563a1d50814b00f08b482afcd175c23b9f371f1e027f043a72f4cb18f901e1d",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "7563a1d50814b00f08b482afcd175c23b9f371f1e027f043a72f4cb18f901e1d"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "f34c015ec7716b0068c2e26ab1ee98728b5b5dcb62993698115632e4bba48c1c",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "f34c015ec7716b0068c2e26ab1ee98728b5b5dcb62993698115632e4bba48c1c"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "8a4d72c4c477879d46fa12c4c8a11ee2ca4f5ec5a2c0054c18e91ea361932e31",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "8a4d72c4c477879d46fa12c4c8a11ee2ca4f5ec5a2c0054c18e91ea361932e31"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 806000,
+          "sha256": "94b0b9085cf3ff3cf3aff92a61e47502128fbaf74f810cfbaeaca4aa5aa78043",
+          "shape": [
+            1,
+            403,
+            500
+          ],
+          "source_sha256": "94b0b9085cf3ff3cf3aff92a61e47502128fbaf74f810cfbaeaca4aa5aa78043"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3731291,
+      "package_sha256": "2def80561ba45585db9658754cfdeb5db97e71995669e7b0d7f7805dd5a27b50",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 666656,
+          "sha256": "a45c0aca3886d105e0312518a3b3f364d501e0bba4b0a31d204ad130eddd888b",
+          "shape": [
+            1,
+            332,
+            502
+          ],
+          "source_sha256": "a45c0aca3886d105e0312518a3b3f364d501e0bba4b0a31d204ad130eddd888b"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "6b1bc578489a448c679c2a4aa219752573d95ed0cf11525d0eb22fa9b0ce4a16",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "6b1bc578489a448c679c2a4aa219752573d95ed0cf11525d0eb22fa9b0ce4a16"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "1662a2346575a844c288e3f84ddb2bf1bdb84d91593553407ec8528cd57c6269",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "1662a2346575a844c288e3f84ddb2bf1bdb84d91593553407ec8528cd57c6269"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "0df9792d189dde76a7946babcf257ab9fabe085a0ee5b28c6baefd42d2c708df",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "0df9792d189dde76a7946babcf257ab9fabe085a0ee5b28c6baefd42d2c708df"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 666656,
+          "sha256": "3679165ecfa16a708dcbacf755752d64f76c0a6164475a87024bb57ebaf284f1",
+          "shape": [
+            1,
+            332,
+            502
+          ],
+          "source_sha256": "3679165ecfa16a708dcbacf755752d64f76c0a6164475a87024bb57ebaf284f1"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3452635,
+      "package_sha256": "a4026738225a82d8d78e926b0e4699645354dce3b1654a901d0c831e7aaf5ad7",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 2146284,
+          "sha256": "6434128c1636cbafc2bae1bda3f0a02d20d9c5671f653148c027e7f5aba81447",
+          "shape": [
+            3,
+            357,
+            501
+          ],
+          "source_sha256": "6434128c1636cbafc2bae1bda3f0a02d20d9c5671f653148c027e7f5aba81447"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 480000,
+          "sha256": "cc627ad0a05a7069ac7b45ac2d7568a7b6abbf69937f1cbaf85cacb1f34e0ed7",
+          "shape": [
+            3,
+            200,
+            200
+          ],
+          "source_sha256": "cc627ad0a05a7069ac7b45ac2d7568a7b6abbf69937f1cbaf85cacb1f34e0ed7"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 3072,
+          "sha256": "3b619779d5b4daac1b395d25734a5303a8fc5b2c018919bb1b56ca7354b7b636",
+          "shape": [
+            3,
+            256
+          ],
+          "source_sha256": "3b619779d5b4daac1b395d25734a5303a8fc5b2c018919bb1b56ca7354b7b636"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "60b5e76fb633829b0dc49aecec5a1126b22727a4f0f1846468cef61ebbec7d38",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "60b5e76fb633829b0dc49aecec5a1126b22727a4f0f1846468cef61ebbec7d38"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 2146284,
+          "sha256": "313f83b891013fdd108d5667c929e1e734c271ca880901ebf7f664cae14581ea",
+          "shape": [
+            3,
+            357,
+            501
+          ],
+          "source_sha256": "313f83b891013fdd108d5667c929e1e734c271ca880901ebf7f664cae14581ea"
+        }
+      },
+      "images": 1,
+      "matched_instances": 3,
+      "package_bytes": 6733979,
+      "package_sha256": "0912f4ab52a93a656ba5967b42ab57d1deeec39577ae8e4462bc0f17d81850ed",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 537096,
+          "sha256": "cde6ef1ae1e7e90d99235100c778ab2b9b28c308a7ae866b0b0a27b602240a5f",
+          "shape": [
+            1,
+            322,
+            417
+          ],
+          "source_sha256": "cde6ef1ae1e7e90d99235100c778ab2b9b28c308a7ae866b0b0a27b602240a5f"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "6d243f0157b2991dce8d12e8b4c0259ec973fca6a45fd2e902514273e74f5364",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "6d243f0157b2991dce8d12e8b4c0259ec973fca6a45fd2e902514273e74f5364"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "6e3d12d1fd8e36a145e006567ef97e73102aa52b9aaec9bc3a3f7dada46ff902",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "6e3d12d1fd8e36a145e006567ef97e73102aa52b9aaec9bc3a3f7dada46ff902"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "d3d3e75c56d70bc7761baebc5044245bd731a05b6cd52421e44dfbde0e150bce",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "d3d3e75c56d70bc7761baebc5044245bd731a05b6cd52421e44dfbde0e150bce"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 537096,
+          "sha256": "0cb13ddaea031ce75668b8c65ea438b13ad522e265a97ee1c4bb14ed52c35dd6",
+          "shape": [
+            1,
+            322,
+            417
+          ],
+          "source_sha256": "0cb13ddaea031ce75668b8c65ea438b13ad522e265a97ee1c4bb14ed52c35dd6"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3193563,
+      "package_sha256": "85a8bd9da4e13494b32f55f2358f6293e4c94e70d4f1c6417d11528a28780f6a",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 571536,
+          "sha256": "800ca15345860370185010869bd296f39ce3f705771ac4772a32f4752ab5e29f",
+          "shape": [
+            1,
+            324,
+            441
+          ],
+          "source_sha256": "800ca15345860370185010869bd296f39ce3f705771ac4772a32f4752ab5e29f"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "830899bc3db37eb3ce6b58de91f5d5a6bde55dadf79362a21bf16dc840e4e333",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "830899bc3db37eb3ce6b58de91f5d5a6bde55dadf79362a21bf16dc840e4e333"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "03340dc07e7dd5f252e187bc38a71f4e9e48d118fc81f44c65b6f09489fadbc4",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "03340dc07e7dd5f252e187bc38a71f4e9e48d118fc81f44c65b6f09489fadbc4"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "1a3ba9c81d3f59b54a51c57160d707d144b99bce803f7243032b5ab1a4334c9b",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "1a3ba9c81d3f59b54a51c57160d707d144b99bce803f7243032b5ab1a4334c9b"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 571536,
+          "sha256": "0542f01ca71ecb5a7005a9b3a7f3a09d2b1870b76dc13025b0872ca06dc7dc97",
+          "shape": [
+            1,
+            324,
+            441
+          ],
+          "source_sha256": "0542f01ca71ecb5a7005a9b3a7f3a09d2b1870b76dc13025b0872ca06dc7dc97"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3262427,
+      "package_sha256": "219fd8ce3dee90e5ec9c0f9a89bd4d9a3e511354422f8e9fe80948092c15790d",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 569184,
+          "sha256": "02b12cd44c22203a793e90a370e8a5635e10a78140a2d33dcd255a43b66a96fa",
+          "shape": [
+            1,
+            308,
+            462
+          ],
+          "source_sha256": "02b12cd44c22203a793e90a370e8a5635e10a78140a2d33dcd255a43b66a96fa"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "211665c5b2e47ec228bdb31864fd30e2fe3f2991144a35e3fd9f8e8b10fa2a26",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "211665c5b2e47ec228bdb31864fd30e2fe3f2991144a35e3fd9f8e8b10fa2a26"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "854c6a6ceb89cab35f69fed2dcecc7269c3932887ed37c0ba3f14805227f4eb6",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "854c6a6ceb89cab35f69fed2dcecc7269c3932887ed37c0ba3f14805227f4eb6"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "aaf594c289fc4cb7cbc80f3725896ebd9412fdc2eea1356a4bdfad41efbeea28",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "aaf594c289fc4cb7cbc80f3725896ebd9412fdc2eea1356a4bdfad41efbeea28"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 569184,
+          "sha256": "46b782122e5c1eb3f81198e36b894578879c57e086523829c799d700305d942e",
+          "shape": [
+            1,
+            308,
+            462
+          ],
+          "source_sha256": "46b782122e5c1eb3f81198e36b894578879c57e086523829c799d700305d942e"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3257691,
+      "package_sha256": "94036c56b4e5615ee02fe1ec0513cb1653867a3aa321cf3f435cf5502acb9b9b",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 660676,
+          "sha256": "79816b68edead36d30a79fce9281ce120f8989dcef8643a1af5b38cbc132fc28",
+          "shape": [
+            1,
+            331,
+            499
+          ],
+          "source_sha256": "79816b68edead36d30a79fce9281ce120f8989dcef8643a1af5b38cbc132fc28"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "b4e90b1227c3eae02169cfc239590a8af4407bcd8ef540d7d87c70a3dff0e46a",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "b4e90b1227c3eae02169cfc239590a8af4407bcd8ef540d7d87c70a3dff0e46a"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "3ecf614fed39ac38c375d0e4542e7b45b72e27dcf20e1e41a98f3468ac8653de",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "3ecf614fed39ac38c375d0e4542e7b45b72e27dcf20e1e41a98f3468ac8653de"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "909540f8fd343c8a97b55bc5e51daa11917046ad96094c519f0bb5fb53fdb008",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "909540f8fd343c8a97b55bc5e51daa11917046ad96094c519f0bb5fb53fdb008"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 660676,
+          "sha256": "4d8f81ba16a0ccbcf2d6cc46c3271f96362b5e03a72575451676be1f60b8445f",
+          "shape": [
+            1,
+            331,
+            499
+          ],
+          "source_sha256": "4d8f81ba16a0ccbcf2d6cc46c3271f96362b5e03a72575451676be1f60b8445f"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3440731,
+      "package_sha256": "7f489e6087bb478301c699b8e4db758dc1b77881bac2e0dc0d0558637bb5b4d5",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 505920,
+          "sha256": "617149f26378ee71226de2b8c6642d0ec92c6318a164082ed821002140bc781d",
+          "shape": [
+            1,
+            310,
+            408
+          ],
+          "source_sha256": "617149f26378ee71226de2b8c6642d0ec92c6318a164082ed821002140bc781d"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "a6c484cd077ebc4272c0e065eb631ad72292af5d0d3eb16ea837b93a62811959",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "a6c484cd077ebc4272c0e065eb631ad72292af5d0d3eb16ea837b93a62811959"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "886d6127f5edd37cef9fed95d0f7bc62f84cc9c3ccdaa6ed470f9412872eec23",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "886d6127f5edd37cef9fed95d0f7bc62f84cc9c3ccdaa6ed470f9412872eec23"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "5df9ce85a5c015b7dadc73297180a9531b9485f9d179027ca551f0b88c6b3377",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "5df9ce85a5c015b7dadc73297180a9531b9485f9d179027ca551f0b88c6b3377"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 505920,
+          "sha256": "4d27dca773b682997bc9a6a163bdb71830440f3c9db74fd290ccba8ece4c25d4",
+          "shape": [
+            1,
+            310,
+            408
+          ],
+          "source_sha256": "4d27dca773b682997bc9a6a163bdb71830440f3c9db74fd290ccba8ece4c25d4"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3131163,
+      "package_sha256": "4d7ce8fce553f853bd9cde07b3081d69bb48c268b46e04c5b9ec810178b611c9",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1191960,
+          "sha256": "c76a49fc9a4bf47c7234f91f0f3369e8effd33668365925aca9eddf2c26e3a4d",
+          "shape": [
+            3,
+            258,
+            385
+          ],
+          "source_sha256": "c76a49fc9a4bf47c7234f91f0f3369e8effd33668365925aca9eddf2c26e3a4d"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 480000,
+          "sha256": "db2089b832a13694a615486a50d9c0f5768e5250e35e1d9ea0f9bcaf60444310",
+          "shape": [
+            3,
+            200,
+            200
+          ],
+          "source_sha256": "db2089b832a13694a615486a50d9c0f5768e5250e35e1d9ea0f9bcaf60444310"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 3072,
+          "sha256": "ccb78b222f030f9a16de8d22e726ee5a3bc48cad1e1fea8588b704f5c390a7d2",
+          "shape": [
+            3,
+            256
+          ],
+          "source_sha256": "ccb78b222f030f9a16de8d22e726ee5a3bc48cad1e1fea8588b704f5c390a7d2"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "bd5c73515a5593daf9e2c8bda2db5ffda7ea055cc52065dd031023c163e4ca31",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "bd5c73515a5593daf9e2c8bda2db5ffda7ea055cc52065dd031023c163e4ca31"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1191960,
+          "sha256": "3190fb3916a06f6f8d3eb748ad9b761ecaef810b345ac54058dde1fd94b1dafe",
+          "shape": [
+            3,
+            258,
+            385
+          ],
+          "source_sha256": "3190fb3916a06f6f8d3eb748ad9b761ecaef810b345ac54058dde1fd94b1dafe"
+        }
+      },
+      "images": 1,
+      "matched_instances": 3,
+      "package_bytes": 4825371,
+      "package_sha256": "03aa3fcb17faae48c9f29bb0dc9717ebdfe74871fb97abe3a08aeab641ebe602",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 966728,
+          "sha256": "a1894cee910bccba33cd810a1f9cf7a8466f076ee72555174217b4669a7ad3d8",
+          "shape": [
+            2,
+            283,
+            427
+          ],
+          "source_sha256": "a1894cee910bccba33cd810a1f9cf7a8466f076ee72555174217b4669a7ad3d8"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 320000,
+          "sha256": "fd0df482b295b5361318964dd70d27cf52411e3ed4f084b8f0590644eeaf7816",
+          "shape": [
+            2,
+            200,
+            200
+          ],
+          "source_sha256": "fd0df482b295b5361318964dd70d27cf52411e3ed4f084b8f0590644eeaf7816"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 2048,
+          "sha256": "66e6193cf966cf4efbcb7f30aab22494c91d84599beb788dfb3b751442274e65",
+          "shape": [
+            2,
+            256
+          ],
+          "source_sha256": "66e6193cf966cf4efbcb7f30aab22494c91d84599beb788dfb3b751442274e65"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "396d715c1588b23b5ed8ac4bdef71687f02457de3fa1026d9ffd36f9adfd04fd",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "396d715c1588b23b5ed8ac4bdef71687f02457de3fa1026d9ffd36f9adfd04fd"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 966728,
+          "sha256": "597a17bede3fead739d3ca818122a9bcfb0c417264df3f64d5a8a78478d0a854",
+          "shape": [
+            2,
+            283,
+            427
+          ],
+          "source_sha256": "597a17bede3fead739d3ca818122a9bcfb0c417264df3f64d5a8a78478d0a854"
+        }
+      },
+      "images": 1,
+      "matched_instances": 2,
+      "package_bytes": 4213851,
+      "package_sha256": "ec57d3dc7bf54a29d2801e4ffa0686450ca9c98aeaf6b1af76644b8e03ddae2f",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1416000,
+          "sha256": "0d655428ce72413076bb27cdcdba755d34a26461935cf448082ca0ffde4a97d2",
+          "shape": [
+            2,
+            354,
+            500
+          ],
+          "source_sha256": "0d655428ce72413076bb27cdcdba755d34a26461935cf448082ca0ffde4a97d2"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 320000,
+          "sha256": "da0e61f6b0a1f1040e0b39e19c8bf7f9276294e398e9826ce6708ae96847c922",
+          "shape": [
+            2,
+            200,
+            200
+          ],
+          "source_sha256": "da0e61f6b0a1f1040e0b39e19c8bf7f9276294e398e9826ce6708ae96847c922"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 2048,
+          "sha256": "0cccd53490df061a392f5695b56373f7c3216f51d3860c3d6d0d5f3ba8ce1e7d",
+          "shape": [
+            2,
+            256
+          ],
+          "source_sha256": "0cccd53490df061a392f5695b56373f7c3216f51d3860c3d6d0d5f3ba8ce1e7d"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "30bc250681abea4b0bd7320124bf5ebf08ff529bd357e0e1ee9e57a6f6683cd1",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "30bc250681abea4b0bd7320124bf5ebf08ff529bd357e0e1ee9e57a6f6683cd1"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1416000,
+          "sha256": "f4581dbc1113b5246b3f09768fb6398eb9d9ad6cda4024d3fdfec1d0853d0bb4",
+          "shape": [
+            2,
+            354,
+            500
+          ],
+          "source_sha256": "f4581dbc1113b5246b3f09768fb6398eb9d9ad6cda4024d3fdfec1d0853d0bb4"
+        }
+      },
+      "images": 1,
+      "matched_instances": 2,
+      "package_bytes": 5112347,
+      "package_sha256": "2777913da09afad902183e0bbe6120722d27b849e8f3fbbd92edcfda5bdf4262",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 505080,
+          "sha256": "69ed8bde2e4fb44e391b50ae62a02cd606ecc4ba20ae63e4972d7f250d8a20c2",
+          "shape": [
+            1,
+            345,
+            366
+          ],
+          "source_sha256": "69ed8bde2e4fb44e391b50ae62a02cd606ecc4ba20ae63e4972d7f250d8a20c2"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "3699ed9fb42a97df67a8da2d61f46414d7fced6d12df7db2f7855d6173c97757",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "3699ed9fb42a97df67a8da2d61f46414d7fced6d12df7db2f7855d6173c97757"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "bb79c95481fdd5f83641cbf0b794294be4fe3e620aaa0405324f1709a696b1c2",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "bb79c95481fdd5f83641cbf0b794294be4fe3e620aaa0405324f1709a696b1c2"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "d64efba738dfc5d7810423156ea1f59de36989b34e2308c31398c760455b1c07",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "d64efba738dfc5d7810423156ea1f59de36989b34e2308c31398c760455b1c07"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 505080,
+          "sha256": "4d88a27f8ed65c1b4b322824cf9111947254c03aa5b13500ac5b30e3f238e61a",
+          "shape": [
+            1,
+            345,
+            366
+          ],
+          "source_sha256": "4d88a27f8ed65c1b4b322824cf9111947254c03aa5b13500ac5b30e3f238e61a"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3129435,
+      "package_sha256": "8166dc4a89af3a460175e8b31b1633369dae1f12e948d6531283f5d713d9fe14",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 503820,
+          "sha256": "161eb246569bff605b97bb93534a571ecbfdf2ec507e5004028d82c1c7bebc07",
+          "shape": [
+            1,
+            311,
+            405
+          ],
+          "source_sha256": "161eb246569bff605b97bb93534a571ecbfdf2ec507e5004028d82c1c7bebc07"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "e3843c76c796b4899a323a0c766cf93020eed1095d02585155c46046825c0492",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "e3843c76c796b4899a323a0c766cf93020eed1095d02585155c46046825c0492"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "7dc936650a96f93f04c5361d023caa2d9358834960df35ef38885d19e59d9cdf",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "7dc936650a96f93f04c5361d023caa2d9358834960df35ef38885d19e59d9cdf"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "7523f8a1a6a2bdb6ed048c632dd31db75e6aa1ff93873291bf64ea5d875746be",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "7523f8a1a6a2bdb6ed048c632dd31db75e6aa1ff93873291bf64ea5d875746be"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 503820,
+          "sha256": "32fc6ac171c3c73d2b406437a2bd5219fa5bd83a70dd8d4af92a806a0c5f1dec",
+          "shape": [
+            1,
+            311,
+            405
+          ],
+          "source_sha256": "32fc6ac171c3c73d2b406437a2bd5219fa5bd83a70dd8d4af92a806a0c5f1dec"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3127003,
+      "package_sha256": "26be7b505a64ba1560ed2abe018767ae190b64f11311b81b87356a7349d6e420",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 465120,
+          "sha256": "ea1d4cdccb69aabec9f4e1118cf688928f80b4056b9cd7db7d5ce2b47a535ced",
+          "shape": [
+            1,
+            285,
+            408
+          ],
+          "source_sha256": "ea1d4cdccb69aabec9f4e1118cf688928f80b4056b9cd7db7d5ce2b47a535ced"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "f1c29463889578af55cee4da02dec4f92b084eff5970f9d737c28073c52e08bb",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "f1c29463889578af55cee4da02dec4f92b084eff5970f9d737c28073c52e08bb"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "6a9684b7cdebdb54df35756af2c3c8e090d79b70941f62117c18f15207249f39",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "6a9684b7cdebdb54df35756af2c3c8e090d79b70941f62117c18f15207249f39"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "005cd6d9570eefa2fdfea4d8b53e2d424496d79c18bd619e81233649f11c59c3",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "005cd6d9570eefa2fdfea4d8b53e2d424496d79c18bd619e81233649f11c59c3"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 465120,
+          "sha256": "3d1833b4949938c724cc915e0a1d6339facb9a04d5b59ada6749dc2f4f033a7b",
+          "shape": [
+            1,
+            285,
+            408
+          ],
+          "source_sha256": "3d1833b4949938c724cc915e0a1d6339facb9a04d5b59ada6749dc2f4f033a7b"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3049563,
+      "package_sha256": "84cb6a16c20cfc112c29f470c03dfa147d3332adcc60775f2cf25dc05dc7f170",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 524808,
+          "sha256": "d213155c8a9df4bb89d11d1467700f742f678acd27a9f67d2dc1aeb4c7616992",
+          "shape": [
+            1,
+            333,
+            394
+          ],
+          "source_sha256": "d213155c8a9df4bb89d11d1467700f742f678acd27a9f67d2dc1aeb4c7616992"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "70853cebd479d313e6784a247627e65cc2a34058bb656ed3582a9b529b1ee12d",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "70853cebd479d313e6784a247627e65cc2a34058bb656ed3582a9b529b1ee12d"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "1d7dda054bae84c02334ffc0d99a411440a743507b03b7d3ad9b865d0527b205",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "1d7dda054bae84c02334ffc0d99a411440a743507b03b7d3ad9b865d0527b205"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "409aca10f2e3a7551454cac01fb6682c98455904fc59a5d0f7a9a5e66a104303",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "409aca10f2e3a7551454cac01fb6682c98455904fc59a5d0f7a9a5e66a104303"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 524808,
+          "sha256": "650ae953d605129f73b91df8d36fa0690474e95e03961259c9edfae22ca8dc4a",
+          "shape": [
+            1,
+            333,
+            394
+          ],
+          "source_sha256": "650ae953d605129f73b91df8d36fa0690474e95e03961259c9edfae22ca8dc4a"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3168987,
+      "package_sha256": "a6b39d0765529121075836db33d3cc4830eb8f7d2c2feb7a0efc5a1242e2ba2c",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 538200,
+          "sha256": "d715ce376f10c201290fe5f5a9aa0fcb6cfcf609b18eff21c9c253a3bee7c012",
+          "shape": [
+            1,
+            325,
+            414
+          ],
+          "source_sha256": "d715ce376f10c201290fe5f5a9aa0fcb6cfcf609b18eff21c9c253a3bee7c012"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "0865e8fdaf79b584008fee0949fb5e2aaab417faa356717bfb9deb5a3958a587",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "0865e8fdaf79b584008fee0949fb5e2aaab417faa356717bfb9deb5a3958a587"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "bb37a513f86500198490905af2908452d57893a010c4d5cd101243a83598fdcd",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "bb37a513f86500198490905af2908452d57893a010c4d5cd101243a83598fdcd"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "8869864a93eb249eef7e843cdad99562521fcc369f904d80f3a6ed425de27e49",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "8869864a93eb249eef7e843cdad99562521fcc369f904d80f3a6ed425de27e49"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 538200,
+          "sha256": "1b8d9f6e0ae80e1e9146354b99ba66540434b3fbc2f89d2698f789bc3a43e539",
+          "shape": [
+            1,
+            325,
+            414
+          ],
+          "source_sha256": "1b8d9f6e0ae80e1e9146354b99ba66540434b3fbc2f89d2698f789bc3a43e539"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3195739,
+      "package_sha256": "a60cbb398083e8771683a97d888be05b7778be5d702058f5b9db8f08909c2660",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 476720,
+          "sha256": "bb07f10359b21944dfb3dd36b741e031a24f4f8709c1df6e82418f137991b120",
+          "shape": [
+            1,
+            295,
+            404
+          ],
+          "source_sha256": "bb07f10359b21944dfb3dd36b741e031a24f4f8709c1df6e82418f137991b120"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "e8884c6e0c1beeb29b27c8d3eefd5d47189ce343ea982466b40989b22b7a03c5",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "e8884c6e0c1beeb29b27c8d3eefd5d47189ce343ea982466b40989b22b7a03c5"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "0ddb97dda2db0586c8f66b05e1760426bf173ca2c961d039cc1e380e72b2a159",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "0ddb97dda2db0586c8f66b05e1760426bf173ca2c961d039cc1e380e72b2a159"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "b52106e1efa0b92286c60304cbf716987d657c49b1323b5d20c9966ec878f53d",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "b52106e1efa0b92286c60304cbf716987d657c49b1323b5d20c9966ec878f53d"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 476720,
+          "sha256": "c94aaf525a46ea211705c581ec08a58ec451722eef8ca019453abda2c9ac9d2d",
+          "shape": [
+            1,
+            295,
+            404
+          ],
+          "source_sha256": "c94aaf525a46ea211705c581ec08a58ec451722eef8ca019453abda2c9ac9d2d"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3072731,
+      "package_sha256": "f58e9a19084d6cbc584baa8c10a6a356d1b34e40743d62a79cbf2f4878e6cf1d",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 661344,
+          "sha256": "5df0c7e4a54049ae06e2e19eb8ddc0a2ebb20cbe0253fde817256057f1fdc303",
+          "shape": [
+            1,
+            332,
+            498
+          ],
+          "source_sha256": "5df0c7e4a54049ae06e2e19eb8ddc0a2ebb20cbe0253fde817256057f1fdc303"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "f9d6264620c96c64606c18c037012f0abd9a86e76b71a01fe3f93b9f403f525d",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "f9d6264620c96c64606c18c037012f0abd9a86e76b71a01fe3f93b9f403f525d"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "09a7f8ed0529f3af8b376e086f02c595a7c89a7e2b1319b13656f66032f9d2f9",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "09a7f8ed0529f3af8b376e086f02c595a7c89a7e2b1319b13656f66032f9d2f9"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "03d611546d07a4f9408e8730b50e2cb399fae6903878b14579cf6dc3c561e461",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "03d611546d07a4f9408e8730b50e2cb399fae6903878b14579cf6dc3c561e461"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 661344,
+          "sha256": "18801ebc89cf8f5f65cd28f5484161f0363c31c934a68bb40f80797ba78dcbc6",
+          "shape": [
+            1,
+            332,
+            498
+          ],
+          "source_sha256": "18801ebc89cf8f5f65cd28f5484161f0363c31c934a68bb40f80797ba78dcbc6"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3442011,
+      "package_sha256": "3df9a9857be9560f4c7dc758d85e2ace5a61aee8c02bec031c1e0cb25b35d091",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 533140,
+          "sha256": "daee8c7de72eb8b1321eaaa998a106155e25c2674f7120449a26b9b0a7d6ce53",
+          "shape": [
+            1,
+            305,
+            437
+          ],
+          "source_sha256": "daee8c7de72eb8b1321eaaa998a106155e25c2674f7120449a26b9b0a7d6ce53"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "3908e373c1e90c5e3066c8b24e8fe8b9d16eec3021992d3077031e05717fd852",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "3908e373c1e90c5e3066c8b24e8fe8b9d16eec3021992d3077031e05717fd852"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "d9b538da532df03dd133d6d154d6d131ad0b16ee803d5e9a17140003fa77584e",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "d9b538da532df03dd133d6d154d6d131ad0b16ee803d5e9a17140003fa77584e"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "eac9d494420af20ce2289110af63cd1fbad5a97e6e129ec6790ba936fd1277d3",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "eac9d494420af20ce2289110af63cd1fbad5a97e6e129ec6790ba936fd1277d3"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 533140,
+          "sha256": "6051d35b958b753a9906dba162398cad4e546db744e63a69e1c889cb9501449d",
+          "shape": [
+            1,
+            305,
+            437
+          ],
+          "source_sha256": "6051d35b958b753a9906dba162398cad4e546db744e63a69e1c889cb9501449d"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3185627,
+      "package_sha256": "c05e5b135d614ebef329ec36f9faf3752ab83fce572fbb6823e9972d7ba90190",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 562464,
+          "sha256": "b1797031d4657b9c8937495e8501a21c142456073f1fbd0f32cc7255a939153c",
+          "shape": [
+            1,
+            324,
+            434
+          ],
+          "source_sha256": "b1797031d4657b9c8937495e8501a21c142456073f1fbd0f32cc7255a939153c"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "7016ad4078b565ea4a9c8abd64025f35be2c53084de20f25a07a68eb6d9663cd",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "7016ad4078b565ea4a9c8abd64025f35be2c53084de20f25a07a68eb6d9663cd"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "0b0bb85b13dbf923357686b353375048ec1aa988a163459691107016cfb296cc",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "0b0bb85b13dbf923357686b353375048ec1aa988a163459691107016cfb296cc"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "7b9ab82833d67c3ac0c50d4ab20e5809d12a704852715f64b0b98691a3f45d87",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "7b9ab82833d67c3ac0c50d4ab20e5809d12a704852715f64b0b98691a3f45d87"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 562464,
+          "sha256": "c029d3e27df047be92d1bc7456f0d8f86bf3124d31f17849f92d4d2fe0117902",
+          "shape": [
+            1,
+            324,
+            434
+          ],
+          "source_sha256": "c029d3e27df047be92d1bc7456f0d8f86bf3124d31f17849f92d4d2fe0117902"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3244251,
+      "package_sha256": "c92d81b5cea8cdc371cc4eec4b3b9ab91b358ff0841d00557872b79e2a72fd2f",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 480184,
+          "sha256": "8e2c3037f9df9f8bdaf6ca98f814a53460dc59dddc261a272546017d7d741ea7",
+          "shape": [
+            1,
+            311,
+            386
+          ],
+          "source_sha256": "8e2c3037f9df9f8bdaf6ca98f814a53460dc59dddc261a272546017d7d741ea7"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "060f5204d4d749e1d029ff3347acd0cee8a2fd15466c7d73bcbf501c16040e23",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "060f5204d4d749e1d029ff3347acd0cee8a2fd15466c7d73bcbf501c16040e23"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "5b93567ddec7238c071b4733f8c03291458310cb5b4e55a7228d9562e66a8cd6",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "5b93567ddec7238c071b4733f8c03291458310cb5b4e55a7228d9562e66a8cd6"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "dcc6ebab9ded201ac15a0b89ec2ab180c041af13eb920fe788fb6260b875e30f",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "dcc6ebab9ded201ac15a0b89ec2ab180c041af13eb920fe788fb6260b875e30f"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 480184,
+          "sha256": "d29a6f97144ad6d2e133467ba7e08e6bca685c9e2dfa16712b8d645e10d9baee",
+          "shape": [
+            1,
+            311,
+            386
+          ],
+          "source_sha256": "d29a6f97144ad6d2e133467ba7e08e6bca685c9e2dfa16712b8d645e10d9baee"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3079643,
+      "package_sha256": "2596c1b4e022abd3975d9502100eca491aa5fb9fcbe97e036960a7d4b08dac1c",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 502576,
+          "sha256": "7c8db5f01129fc7bd9bdbc693fd555a96ab786ddf715dc5031450aa5cc9bc96b",
+          "shape": [
+            1,
+            311,
+            404
+          ],
+          "source_sha256": "7c8db5f01129fc7bd9bdbc693fd555a96ab786ddf715dc5031450aa5cc9bc96b"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "2ccb6189d3fb3f3b599f057118536b96f516faa9bed4f7efb2a20544cdccf76a",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "2ccb6189d3fb3f3b599f057118536b96f516faa9bed4f7efb2a20544cdccf76a"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "19eb487e46bad64e07f6407996142bfc86055c524b0aebcb5d3b2546bacb8057",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "19eb487e46bad64e07f6407996142bfc86055c524b0aebcb5d3b2546bacb8057"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "e0db834ddbdc8054cbe94691835af11c1e804bc2ab16edc02d9390481d11c3a6",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "e0db834ddbdc8054cbe94691835af11c1e804bc2ab16edc02d9390481d11c3a6"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 502576,
+          "sha256": "0ae133b53eb8ef522d3a71efec5b0f6b8822a665287a58821107225e97aa5c77",
+          "shape": [
+            1,
+            311,
+            404
+          ],
+          "source_sha256": "0ae133b53eb8ef522d3a71efec5b0f6b8822a665287a58821107225e97aa5c77"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3124443,
+      "package_sha256": "f6ed5c25954bbbc7c9cbdd9d6cd8289903237d6e1f8b8e96e28b09d5c4b092c2",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 534300,
+          "sha256": "8282fcaff19696da48eb796a548325bf8d3dcc14f369d3e3fd2baad449746837",
+          "shape": [
+            1,
+            325,
+            411
+          ],
+          "source_sha256": "8282fcaff19696da48eb796a548325bf8d3dcc14f369d3e3fd2baad449746837"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "3d6da428406deb7954bee5ad45b96e586721da07497164d8885c1d8cb26ad510",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "3d6da428406deb7954bee5ad45b96e586721da07497164d8885c1d8cb26ad510"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "7a5bec0a5ae9d86f1e7cef9ee926b283945094f1b1d6062286e38a98af97660d",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "7a5bec0a5ae9d86f1e7cef9ee926b283945094f1b1d6062286e38a98af97660d"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "3fc56fcb754cfdb81ac3f7b46bca5461c91c4c5a7e659cf8d96f5e4351f3c1d7",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "3fc56fcb754cfdb81ac3f7b46bca5461c91c4c5a7e659cf8d96f5e4351f3c1d7"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 534300,
+          "sha256": "28eb9d19c041bd816ed017de0200eba0839032311bf3432e439f5a03d0b84ca2",
+          "shape": [
+            1,
+            325,
+            411
+          ],
+          "source_sha256": "28eb9d19c041bd816ed017de0200eba0839032311bf3432e439f5a03d0b84ca2"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3187931,
+      "package_sha256": "a9ccdb4edd9bcf99adcfc62c9a0cc2656f28084653e91d0993ce00d4a755c2d0",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1512400,
+          "sha256": "24ebe7a48f7fe81c96fb8cb2546552002a9c7ebebf5e856e29c46e29a16c7da3",
+          "shape": [
+            2,
+            398,
+            475
+          ],
+          "source_sha256": "24ebe7a48f7fe81c96fb8cb2546552002a9c7ebebf5e856e29c46e29a16c7da3"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 320000,
+          "sha256": "56772a414f609736266aa413e493f4b473dcb0d73c26a607da9543dc4bae668a",
+          "shape": [
+            2,
+            200,
+            200
+          ],
+          "source_sha256": "56772a414f609736266aa413e493f4b473dcb0d73c26a607da9543dc4bae668a"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 2048,
+          "sha256": "86487bb07ec6a7837cdf6fceb3e53c3b03655b73283d02cc18b12b7dc7d33474",
+          "shape": [
+            2,
+            256
+          ],
+          "source_sha256": "86487bb07ec6a7837cdf6fceb3e53c3b03655b73283d02cc18b12b7dc7d33474"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "681b53aab484eee15d613aac5cb06edbbaa73e2594040266d071fba0b2bb1597",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "681b53aab484eee15d613aac5cb06edbbaa73e2594040266d071fba0b2bb1597"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1512400,
+          "sha256": "a4d9c519b9f4371d0c7be0138e7d45ebd150e1eb281b43814bd1fbe2e66cb7ca",
+          "shape": [
+            2,
+            398,
+            475
+          ],
+          "source_sha256": "a4d9c519b9f4371d0c7be0138e7d45ebd150e1eb281b43814bd1fbe2e66cb7ca"
+        }
+      },
+      "images": 1,
+      "matched_instances": 2,
+      "package_bytes": 5305179,
+      "package_sha256": "31308e2eec185260c9b53282da6aa67106721bb5c0cb70294dccfc19ddd386b8",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 559436,
+          "sha256": "8333532ee477ec19c995dc1df3e23acaa353707a96aea08065ad21f36df103c6",
+          "shape": [
+            1,
+            323,
+            433
+          ],
+          "source_sha256": "8333532ee477ec19c995dc1df3e23acaa353707a96aea08065ad21f36df103c6"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "25ba3cfb3705a7a5b42f5d057434ebbe7b78f4103917faa30c0cbe1961caf73a",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "25ba3cfb3705a7a5b42f5d057434ebbe7b78f4103917faa30c0cbe1961caf73a"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "5240ac82857a2df2a851f3f69ffb0fc61a023f6186ac5acc324f773fa70a93e5",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "5240ac82857a2df2a851f3f69ffb0fc61a023f6186ac5acc324f773fa70a93e5"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "df85bd8dacaed01d13bce47456153de9cd91b864ac7fe25e5bbdf44805a5c3ac",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "df85bd8dacaed01d13bce47456153de9cd91b864ac7fe25e5bbdf44805a5c3ac"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 559436,
+          "sha256": "4c7f1ca6549bbd273fffc6bd339197cf81460aa9b23b1750586b9982b36a07bb",
+          "shape": [
+            1,
+            323,
+            433
+          ],
+          "source_sha256": "4c7f1ca6549bbd273fffc6bd339197cf81460aa9b23b1750586b9982b36a07bb"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3238235,
+      "package_sha256": "6dc9b265c04a2d418b0197d5a4c7228449e8e7595f39a4d00600b3300b6ed6e9",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 538824,
+          "sha256": "e1c545fbadcfa20905f55f55c47e75aaa9a6c6535dc17a18517b5f205fe027e8",
+          "shape": [
+            1,
+            314,
+            429
+          ],
+          "source_sha256": "e1c545fbadcfa20905f55f55c47e75aaa9a6c6535dc17a18517b5f205fe027e8"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "be04233a7e68e03892a42bcb9c599c6f3fb50741afcabc9885c07955f7d7f653",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "be04233a7e68e03892a42bcb9c599c6f3fb50741afcabc9885c07955f7d7f653"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "d401f52654677a1ae39c9c36639e42774daf7a8890e86446368b055184619227",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "d401f52654677a1ae39c9c36639e42774daf7a8890e86446368b055184619227"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "a90c33f270cb2ce36ccda198817df52a915daf48b99e3ce689eab7bd74103f93",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "a90c33f270cb2ce36ccda198817df52a915daf48b99e3ce689eab7bd74103f93"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 538824,
+          "sha256": "7aade9275792ffdb5aee84624ff171014cc547acacb86f657802ddbfa8ee0f11",
+          "shape": [
+            1,
+            314,
+            429
+          ],
+          "source_sha256": "7aade9275792ffdb5aee84624ff171014cc547acacb86f657802ddbfa8ee0f11"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3197019,
+      "package_sha256": "909459bf8b5fb51ffa36bedcf73bed7a82f980c2ff16987c7bf9f47a24c83f1a",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1095640,
+          "sha256": "483e642b4f519adf2d262ccc9fd50a5e377d04821249e1e622539d12b4f13ffb",
+          "shape": [
+            2,
+            301,
+            455
+          ],
+          "source_sha256": "483e642b4f519adf2d262ccc9fd50a5e377d04821249e1e622539d12b4f13ffb"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 320000,
+          "sha256": "7d8e6828916e5b4957fa885cf6c2867d11cff2165c0c83f8b9774c851bb9bf74",
+          "shape": [
+            2,
+            200,
+            200
+          ],
+          "source_sha256": "7d8e6828916e5b4957fa885cf6c2867d11cff2165c0c83f8b9774c851bb9bf74"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 2048,
+          "sha256": "4d560b3869e015a0c4435f233b1b2972107ed8113ab94d4402675833621be4c0",
+          "shape": [
+            2,
+            256
+          ],
+          "source_sha256": "4d560b3869e015a0c4435f233b1b2972107ed8113ab94d4402675833621be4c0"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "c5b0e87ff53ac00aa07f7149426d89f77654f341e21226634f7f1b05c7deef98",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "c5b0e87ff53ac00aa07f7149426d89f77654f341e21226634f7f1b05c7deef98"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1095640,
+          "sha256": "9b11e8f71f190bf56680f5a2b0280fd4ba0f2a8e98440fbd06bb8927900acde0",
+          "shape": [
+            2,
+            301,
+            455
+          ],
+          "source_sha256": "9b11e8f71f190bf56680f5a2b0280fd4ba0f2a8e98440fbd06bb8927900acde0"
+        }
+      },
+      "images": 1,
+      "matched_instances": 2,
+      "package_bytes": 4471643,
+      "package_sha256": "6bd394d58828da77031494beb316f116a3540fba86ee3de68e3eb5f9c30d8614",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 962024,
+          "sha256": "735571c3a2cdb8a0997e06a5259a00ee7f7c8209919c7d3c82897f7507a4fe62",
+          "shape": [
+            2,
+            287,
+            419
+          ],
+          "source_sha256": "735571c3a2cdb8a0997e06a5259a00ee7f7c8209919c7d3c82897f7507a4fe62"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 320000,
+          "sha256": "6ef22373991a0364c60f3790f9b0e94dcdd5c64ffda38e3c76ee070bad8048ee",
+          "shape": [
+            2,
+            200,
+            200
+          ],
+          "source_sha256": "6ef22373991a0364c60f3790f9b0e94dcdd5c64ffda38e3c76ee070bad8048ee"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 2048,
+          "sha256": "793d4092a860f70f4a51383b6de0c3637d6ab9d2fe2db67f730246f18a8a8e6f",
+          "shape": [
+            2,
+            256
+          ],
+          "source_sha256": "793d4092a860f70f4a51383b6de0c3637d6ab9d2fe2db67f730246f18a8a8e6f"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "bfea6d5728d769e5a916866c32a78101e8af9a5dc91a6e1d936ede7a77775d9b",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "bfea6d5728d769e5a916866c32a78101e8af9a5dc91a6e1d936ede7a77775d9b"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 962024,
+          "sha256": "c7feb1092b68d14d621114aca20e847659705d5cf475d0ecefb92f3bc6de2911",
+          "shape": [
+            2,
+            287,
+            419
+          ],
+          "source_sha256": "c7feb1092b68d14d621114aca20e847659705d5cf475d0ecefb92f3bc6de2911"
+        }
+      },
+      "images": 1,
+      "matched_instances": 2,
+      "package_bytes": 4204379,
+      "package_sha256": "0602722966a5d01f8e96014596906271038bb482ebe15548a361e8ac86fc3805",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1437912,
+          "sha256": "f6e99f7c5b0c5f230e32fdea643bf36912369b2f1f8939c6bb9f8e36eb2eeea2",
+          "shape": [
+            3,
+            317,
+            378
+          ],
+          "source_sha256": "f6e99f7c5b0c5f230e32fdea643bf36912369b2f1f8939c6bb9f8e36eb2eeea2"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 480000,
+          "sha256": "f801f1a6b75dddb5755c880819133ef73aad90f9389dd21c76b7b4e17447a722",
+          "shape": [
+            3,
+            200,
+            200
+          ],
+          "source_sha256": "f801f1a6b75dddb5755c880819133ef73aad90f9389dd21c76b7b4e17447a722"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 3072,
+          "sha256": "dec4074fd5a3d1b7ffde3d18b3b877f3fcf5d951af92bbd99e862c5695204bb9",
+          "shape": [
+            3,
+            256
+          ],
+          "source_sha256": "dec4074fd5a3d1b7ffde3d18b3b877f3fcf5d951af92bbd99e862c5695204bb9"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "a4dada29268a2a0cf7594d584803bb5b812956aadc75495e8ca7db79ad9cc2c2",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "a4dada29268a2a0cf7594d584803bb5b812956aadc75495e8ca7db79ad9cc2c2"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1437912,
+          "sha256": "97b317dc1feca118308f3fc7bbe61f6c6326bf853a2de17a7199974ad028b8d8",
+          "shape": [
+            3,
+            317,
+            378
+          ],
+          "source_sha256": "97b317dc1feca118308f3fc7bbe61f6c6326bf853a2de17a7199974ad028b8d8"
+        }
+      },
+      "images": 1,
+      "matched_instances": 3,
+      "package_bytes": 5317275,
+      "package_sha256": "53ea3ddb16812735a04ba61bcbca483dd6f7f0997f042176379abe7133d7fa6e",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 390528,
+          "sha256": "5e4ea82bbff2b24359386c65e9ef67278e8065a2e6399861b1cf575f8ba027d4",
+          "shape": [
+            1,
+            288,
+            339
+          ],
+          "source_sha256": "5e4ea82bbff2b24359386c65e9ef67278e8065a2e6399861b1cf575f8ba027d4"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "cf8233ca9676ecac26f36b9860043380ef7317cc51dfa8e322af0d41eb5793e7",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "cf8233ca9676ecac26f36b9860043380ef7317cc51dfa8e322af0d41eb5793e7"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "e990703dcc9568e5037de6933fab152f50ddbd50406297896695538d1d786aad",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "e990703dcc9568e5037de6933fab152f50ddbd50406297896695538d1d786aad"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "aedaa5f8d1b7783649c05e965630f50dddc6f65cabb7020a0d346f75980e678f",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "aedaa5f8d1b7783649c05e965630f50dddc6f65cabb7020a0d346f75980e678f"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 390528,
+          "sha256": "9a487c6b61ba3d81c42e33c33adc4bc6379460b1b4acb92c1cbf876083ea747d",
+          "shape": [
+            1,
+            288,
+            339
+          ],
+          "source_sha256": "9a487c6b61ba3d81c42e33c33adc4bc6379460b1b4acb92c1cbf876083ea747d"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 2900379,
+      "package_sha256": "c1bb8d830133f59d0905a98142a48bedd56314b843a3e5538c7f9c53892af660",
+      "weights_only_CPU_roundtrip_verified": true
+    },
+    {
+      "fields": {
+        "L": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 559680,
+          "sha256": "2498cf9be4669e138b032c12dcb88949915ca212faa6bd55dbdd3d40435cc6d7",
+          "shape": [
+            1,
+            318,
+            440
+          ],
+          "source_sha256": "2498cf9be4669e138b032c12dcb88949915ca212faa6bd55dbdd3d40435cc6d7"
+        },
+        "M": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 160000,
+          "sha256": "1874eaf33e8a7891d73b1b2e3c73413b346c795b1e08daeb4566a3f27fe49f30",
+          "shape": [
+            1,
+            200,
+            200
+          ],
+          "source_sha256": "1874eaf33e8a7891d73b1b2e3c73413b346c795b1e08daeb4566a3f27fe49f30"
+        },
+        "e": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1024,
+          "sha256": "f78db58cc90e890b03bde946730181d4a9256a52c3afcf32b40bbddeeb0ae929",
+          "shape": [
+            1,
+            256
+          ],
+          "source_sha256": "f78db58cc90e890b03bde946730181d4a9256a52c3afcf32b40bbddeeb0ae929"
+        },
+        "rgb400": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 1920000,
+          "sha256": "bfd50168113600327b5794c6437393545a928b42c5cefac17fad1444fa8a386f",
+          "shape": [
+            1,
+            3,
+            400,
+            400
+          ],
+          "source_sha256": "bfd50168113600327b5794c6437393545a928b42c5cefac17fad1444fa8a386f"
+        },
+        "targets": {
+          "bitexact": true,
+          "compact_storage": true,
+          "dtype": "torch.float32",
+          "independent_storage": true,
+          "logical_bytes": 559680,
+          "sha256": "72db0f23059db0c1df1e03a12ed23597030b3d526cfd675c281e01e8ba9d70ef",
+          "shape": [
+            1,
+            318,
+            440
+          ],
+          "source_sha256": "72db0f23059db0c1df1e03a12ed23597030b3d526cfd675c281e01e8ba9d70ef"
+        }
+      },
+      "images": 1,
+      "matched_instances": 1,
+      "package_bytes": 3238683,
+      "package_sha256": "c0ad13d04a61ca51b69f8320f2950d69ed470de712abcd76941be0f5639f348a",
+      "weights_only_CPU_roundtrip_verified": true
+    }
+  ],
+  "resource_observations": {
+    "minimum_available_RAM_bytes": 34260586496,
+    "peak_RSS_bytes": 643702784,
+    "samples": 966,
+    "sampling_errors": [],
+    "violations": []
+  },
+  "schema": "U51-matched-CPU-export-sanitized-summary-v1",
+  "status": "ACTUAL0_ROOT_ACCEPTED_MATCHED_CPU_BATCH_EXPORTS_ONLY",
+  "versions": {
+    "numpy": "1.23.5",
+    "torch": "2.0.1+cu118"
+  },
+  "whole_population_tensor_exported": false
+}

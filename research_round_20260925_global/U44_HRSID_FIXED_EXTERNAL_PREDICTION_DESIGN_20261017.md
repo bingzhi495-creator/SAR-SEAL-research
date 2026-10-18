@@ -25,3 +25,19 @@ Root统一oneleaf：每叶1800秒、CPU0/1和2线程、4GiB allocator/8GiB整卡
 本结果最多是源训练后固定参数、零外部调参的受限官方切片评价。既有HRSID TEST曾参与选择、编码重复图/异标注及母景独立未知必须披露；不能恢复盲测或直接声称未见场景泛化。teacher初始化已有官方端点多指纹关联，但完整远端SHA256与独立训练谱系仍未证明。U43即使通过也只证明输入可读/栅格兼容，不证明语义对齐或官方JPG与PNG像素相等。
 
 依据：[U41接口与边界](code/U41_UNBOUND_NEW_IMAGE_NATIVE_CAPTURE_DRAFT_20261017_01/README.md)、[E50设计](U40_FIXED50_DEV_EVALUATION_DESIGN_20261017.md)、[预测数学/恢复源码](code/U40_FIXED50_DEV_PREDICTION_DRAFT_20261017_01/prediction_core.py)、[最薄内部入口](code/U40_FIXED50_DEV_ENTRY_DRAFT_20261017_01/README.md)、[跨集准备度及来源增量](N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)、[主计划及效用规则](../refine-logs/UNETPP_FULL_METHOD_20261017_01/EXPERIMENT_PLAN.md)。既有primary：[官方COCO实现](https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/cocoeval.py)、[官方模型索引](https://github.com/open-mmlab/mmdetection/blob/v3.1.0/configs/mask2former/metafile.yml)。未新增文献/权重下载。
+
+## 单图接线实现补记（2026-10-18）
+
+已形成 `code/U44_NEW_IMAGE_ITEM_BRIDGE_DRAFT_20261017_01/image_item.py`：把U41实际采集的自然轴e/M/L与原100条预测接到U40逐图预测函数，e/M仅去batch0、独立复制到CPU，保留原导出query排列与S0；RGB400沿原JPEG/EXIF/几何及除255路径。输出不保留F/C或完整capture引用，但不能据此证明外层已释放teacher。两项标准库元数据测试RED→GREEN与独立静态ABI审通过，真实像素、张量、窗口及资源路径尚未执行。
+
+最小生命周期顺序已核：U34 build_pair要求CUDA冷态，须在teacher首次上GPU之前一次性构造CPU两臂；随后按原严格E50状态/BN/无效参数与初始化谱系要求恢复，保持trained head不重置。旧U40 `_arm` 会pop并销毁模型，不能直接用于连续窗口；逐图 `_calibration_and_prediction` 可复用，外层仍须no_grad并实际检查逐臂释放。外部manifest的split/ordinal留外层，U41只接image_id/image_ref/original_shape，预测继续使用官方原整数image_id。
+
+旧 `legacy_eval.official_metrics` 包装本身硬限制187图，外部不能直接调用；后续仅复用人口无关的底层 `official.coco_metrics` 加限定原TEST1962/5922的薄包装。原GT area/bbox/crowd/ignore与原预测非segmentation字段保留，全196200候选收齐后统一评价。窗口调度、teacher实际构造、严格恢复抽取及外部完整COCO包装尚未实现；当前桥不代表已有跨集预测或AP。
+
+## 2026-10-18 函数层实现与资源边界
+
+普通函数层已形成：[严格E50 CPU恢复](code/U44_EXTERNAL_FIXED50_RESTORE_DRAFT_20261018_01/README.md)、[固定小窗口](code/U44_EXTERNAL_STREAM_WINDOW_DRAFT_20261018_01/README.md)、[完整TEST合并/逐方法COCO](code/U44_EXTERNAL_SPLIT_METRICS_DRAFT_20261018_01/README.md)。恢复直接沿原四引用/17训练源/初始化回执、strict model/BN/inactive检查；不重置训练头，不创建或恢复optimizer，加载CP中CPU optimizer容器后释放。窗口沿同一CPU三模型逐个GPU驻留，实际hook核每图1backbone/CONV0_4及旧语义头0；CPU/GPU前后核原数值state proof，原100候选/S0与零残差校准保持，最后释放dense载体。合并使用native单份原参照，检查全1962/196200无缺重后，按原TEST5922/全部标注逐method调用原人口无关COCO，不平均片AP或改bbox/area。
+
+这些为普通未绑定实现。恢复2项、窗口2项、合并3项标准库元数据测试及静态接口核对已完成；没有真实Tensor/图像/模型/COCO数值执行。完整人口合成测试可能占用数百MiB但未采样其RSS与绝对UTC，主训练低内存中断的具体原因未确立；后续科学叶运行期间只做小fixture，大人口验证应在无科学叶且有受控资源余量时进行。外部teacher实际构造/加载、owner入口、来源/原片接收与真正的全流程资源资格仍缺，不因函数存在恢复blind TEST或宣称外部AP已可运行。
+
+资源失败保持为原actual1：[摘要](results/U40_U02560_02816_RESOURCE_ABORT_ACTUAL_20261018.json)。用户已允许资源充足时按原限额独立接续；冻结科学代码、16GiB可用RAM门、4GiB allocator/8GiB整卡及50轮预算均不放宽。为避免重复已知资源中断，接续前先核对真实余量并保留失败旧attempt/新attempt来源，不能覆盖原文件或复用未接收部分CP。

@@ -1,0 +1,81 @@
+{
+  "AP": false,
+  "GPU_cleanup": {
+    "CUDA_initialized": true,
+    "allocated_bytes": 0,
+    "peak_allocated_bytes": 2269620224,
+    "reserved_bytes": 0
+  },
+  "ROOT_numeric_replay": false,
+  "cost": {
+    "elapsed_seconds": 25.280999999959022,
+    "peak_RSS_bytes": 1633939456
+  },
+  "flags": {
+    "CPU_packet_only": true,
+    "CUDA_uninitialized_before": true,
+    "GPU_capture_executed": true,
+    "GPU_cleanup_zero": true,
+    "backend_controls_restored": true,
+    "callerCPU_RNG_preserved": true,
+    "default_dtype_preserved": true,
+    "grad_mode_preserved": true,
+    "module_aliases_restored": true,
+    "source_bytes_verified": true,
+    "thread_controls_preserved": true
+  },
+  "gpu_math_settings": {
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true
+  },
+  "images": 1,
+  "new_training": false,
+  "packet_SHA256": "a5da858a5e8f579041e77eddc599ab41484ed17cd095001f658834ef987c5794",
+  "packet_bytes": 313126555,
+  "packet_shapes": {
+    "C": [
+      1,
+      100,
+      2
+    ],
+    "F": [
+      1,
+      256,
+      200,
+      200
+    ],
+    "L": [
+      100,
+      800,
+      800
+    ],
+    "M": [
+      1,
+      100,
+      200,
+      200
+    ],
+    "e": [
+      1,
+      100,
+      256
+    ]
+  },
+  "population_qualified": false,
+  "queries": 100,
+  "resource_observations": {
+    "minimum_available_RAM_bytes": 30322851840,
+    "peak_RSS_bytes": 1633939456,
+    "samples": 854,
+    "sampling_errors": [],
+    "violations": []
+  },
+  "schema": "U48-native-capture-sanitized-summary-v1",
+  "status": "ACTUAL0_ROOT_ACCEPTED_SINGLE_NEW_IMAGE_CAPTURE_ONLY",
+  "versions": {
+    "numpy": "1.23.5",
+    "torch": "2.0.1+cu118"
+  }
+}

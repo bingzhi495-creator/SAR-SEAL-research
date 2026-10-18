@@ -1,0 +1,37 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FULL_minus_PLAIN_mean_loss": -8.472462195641128e-05,
+  "TEST": false,
+  "efficacy_evaluated": false,
+  "innovation_established": false,
+  "mean_reduction": "Unweighted mean of256 per-image GT-averaged training losses",
+  "per_arm": {
+    "FULL": {
+      "BCE": 0.0017839019517911416,
+      "GT_visits": 561,
+      "all_monitored_loss_scalars_finite": true,
+      "loss": 0.03616286268515978,
+      "softDice": 0.03437896041217902,
+      "updates": 256
+    },
+    "PLAIN": {
+      "BCE": 0.0017530832923272769,
+      "GT_visits": 561,
+      "all_monitored_loss_scalars_finite": true,
+      "loss": 0.03624758730711619,
+      "softDice": 0.034494503722200594,
+      "updates": 256
+    }
+  },
+  "relative_mean_training_loss_change_percent": -0.23373865200616573,
+  "same_actual_input_trace_sequence": true,
+  "schema": "U40-training-loss-monitor-only-v1",
+  "scope": "Root JSON scalar analysis after original actual0 and accepted paired256 updates. No tensor/model replay, heldout evaluation or significance claim; training loss is not AP gain or proof of mechanism.",
+  "seed": 202610173101,
+  "span": {
+    "start": 2560,
+    "stop": 2816
+  },
+  "training_seed_replication": false
+}

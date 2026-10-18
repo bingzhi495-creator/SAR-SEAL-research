@@ -1,0 +1,46 @@
+{
+  "GPU_name": "NVIDIA GB10",
+  "OS_MemAvailable_kB": 72218160,
+  "OS_MemTotal_kB": 127598612,
+  "U40_source_changed": false,
+  "actual_tool_chunks": {
+    "OS_memory_GPU": "48fe15",
+    "main_package_metadata": "2d729a",
+    "second_environment": "43c497"
+  },
+  "architecture": "aarch64",
+  "benchmark_completed": false,
+  "docker_metadata_query": "PERMISSION_DENIED; no escalation attempted",
+  "driver_or_kernel_compatibility_qualified": false,
+  "locked_local_runtime": {
+    "numpy": "1.23.5",
+    "python": "3.8.17",
+    "torch": "2.0.1+cu118"
+  },
+  "next_action": "A direct splice into immutable U40 is not admitted by its locked runtime/source. Any DGX numerical run needs a separate explicit source/runtime port, original input/checkpoint identity checks, same-budget PLAIN/FULL controls and resource validation. No speed or model-effect claim from available system memory.",
+  "nvidia_smi_memory_total": "N/A",
+  "nvidia_smi_memory_used": "N/A",
+  "publication_excludes": "SSH address/account/keys/config, remote operational configuration and unrelated process arguments",
+  "recorded_at_UTC": "2026-10-18T07:52:18.146783+00:00",
+  "remote_packages": {
+    "mmcv": "2.1.0",
+    "mmdet": "3.3.0",
+    "mmengine": "0.10.3",
+    "numpy": "1.26.4",
+    "pycocotools": "2.0.11",
+    "torch": "2.10.0+cu130",
+    "torchvision": "0.25.0+cu130"
+  },
+  "remote_python": "3.12.14",
+  "schema": "SAR-DGX-readonly-environment-observation-v1",
+  "scientific_execution_started": false,
+  "scope": "Remote authenticated read-only OS/package metadata; no ML package import or numerical execution",
+  "second_known_environment": {
+    "probe_exit_code": 1,
+    "python_observed_from_traceback": "3.12",
+    "torch_package_metadata": "NOT_FOUND"
+  },
+  "training_resumed": false,
+  "training_updates_credited": 0,
+  "transfer_inventory_verified": false
+}

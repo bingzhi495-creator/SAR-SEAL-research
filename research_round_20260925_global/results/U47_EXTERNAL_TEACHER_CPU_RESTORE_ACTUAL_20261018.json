@@ -1,0 +1,49 @@
+{
+  "AP": false,
+  "ROOT_numeric_replay": false,
+  "cost": {
+    "elapsed_seconds": 21.5,
+    "peak_RSS_bytes": 1632632832
+  },
+  "external_prediction_qualified": false,
+  "flags": {
+    "CPU_only": true,
+    "CUDA_uninitialized_after": true,
+    "CUDA_uninitialized_before": true,
+    "module_aliases_restored": true,
+    "source_bytes_verified": true,
+    "teacher_model_released": true
+  },
+  "forward_executed": false,
+  "new_training": false,
+  "parameter_tensors": 451,
+  "resource_observations": {
+    "minimum_available_RAM_bytes": 29951766528,
+    "peak_RSS_bytes": 1632632832,
+    "samples": 705,
+    "sampling_errors": [],
+    "violations": []
+  },
+  "restore_checks": {
+    "CUDA_initialized": false,
+    "all_modules_eval": true,
+    "all_parameter_grads_none": true,
+    "all_parameters_frozen": true,
+    "external_CPU_RNG_restored": true,
+    "independent_anchor_released": true,
+    "model_forward_executed": false,
+    "optimizer_created": false,
+    "optimizer_restored": false,
+    "original_helper_bindings_restored": true,
+    "restored_model_BN_state_exact": true
+  },
+  "schema": "U47-teacher-CPU-restore-sanitized-summary-v1",
+  "state_entries": 610,
+  "status": "ACTUAL0_ROOT_ACCEPTED_TEACHER_CPU_RESTORE_ONLY",
+  "teacher_checkpoint_SHA256": "376f725c42a0d522700add19548943328064426835061282d95d510f27d1ec4e",
+  "teacher_state_canonical_SHA256": "2959c00f6f996cbf50e2696b9404929ebab914bf176184bba9d09bf7ac37f6eb",
+  "versions": {
+    "numpy": "1.23.5",
+    "torch": "2.0.1+cu118"
+  }
+}

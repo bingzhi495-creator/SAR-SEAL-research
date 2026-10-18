@@ -1,5 +1,8 @@
 # 正式 TEST 与跨数据集证据准备度（2026-10-14）
 
+**当前实际状态（2026-10-18）：** U43规范路径修复已实际执行并完成失败保留。十二库引用检查通过，完整5604图RGB解码成功、16969实例均尝试官方栅格，16956项非空通过、13项为空（train9/test4）；原每实例非空预锁未满足，不能称全量输入通过。未删图、未改标注；TEST标注已实际读取，未用于模型选择，没有模型/AP。见[实际失败](results/U43_CANONICAL_POPULATION_EMPTY_RASTER_FAILURE_ACTUAL_20261018.json)及[COCO规则与后续协议](U43_EMPTY_RASTER_COCO_PROTOCOL_REVIEW_20261018.md)。后文保留形成时历史状态。
+
+
 **当前状态补记（2026-10-17，首次全集检查失败已保留）：** U43首次实际任务在PIL库引用核验处退出1，0图/0实例完成解码或栅格，尚无全集输入资格。根因是环境入口与重定向物理路径在严格ref.path中不同，十二库bytes/SHA一致；原编码Source已闭合，但未解析split标注记录。以下早先“未执行”为当时记录；最新证据见本页末尾。
 
 本页仅定位独立发布副本已有的数据协议、元数据核查和历史审阅；未读取实际 SCI/SOURCE/RAW、影像、GT、权重或缓存，未运行科学代码、重新核验数据包或新增联网调查。既有审计直接复用，不能把准备文档当作实际数据或评价资格。
@@ -57,3 +60,17 @@ Root随后仅流式读取该原初始化文件字节，完整SHA与其已绑定r
 [原actual1失败摘要](results/U43_HRSID_POPULATION_LIBRARY_PATH_FAILURE_ACTUAL_20261017.json)已核原held、birth/reap、原13ad/phase/log及partial并完成Root失败保留，4.844秒无资源中断；REPORT FAILED、population为空、IMAGE_CHECKS0行，无Q/SAFE。入口此前已hash原JPEG和两split标注的准入字节，不能表述为完全未读数据；实际像素解码、原split记录解析及官方mask栅格尚未执行，TEST_annotations_read仍为原报告None，不伪称noTEST。
 
 Root未导入科学库，仅对十二个选定库作[路径/字节诊断](results/U43_LIBRARY_CANONICAL_PATH_DIAGNOSTIC_20261017.json)：入口路径经目录重定向到物理位置，所有长度及SHA一致，仅ref.path不同。旧body resolve后的整个ref相等门产生确定拒绝条件，不能据此判定图像或方法失效。[明确独立修复计划](U43_CANONICAL_LIBRARY_REFERENCE_REPAIR_PLAN_20261017.md)只将十二项库引用规范化，保留全部科学源码、人口、资源、原严格来源门及首次失败；新的私有命名空间与repair_of关系已形成未绑定草稿，尚未实际重新执行。U40配对模型父维持2304并已原状态接续；科学资格与运行记账父分别处理，不以数据检查失败重训或改变主方法。
+
+## 2026-10-18 外部评价最小接线与实际输入结果
+
+**当前实际状态（2026-10-18）：** U43规范路径修复已实际执行并完成失败保留。十二库引用检查通过，完整5604图RGB解码成功、16969实例均尝试官方栅格，16956项非空通过、13项为空（train9/test4）；原每实例非空预锁未满足，不能称全量输入通过。未删图、未改标注；TEST标注已实际读取，未用于模型选择，没有模型/AP。见[实际失败](results/U43_CANONICAL_POPULATION_EMPTY_RASTER_FAILURE_ACTUAL_20261018.json)及[COCO规则与后续协议](U43_EMPTY_RASTER_COCO_PROTOCOL_REVIEW_20261018.md)。后文保留形成时历史状态。
+
+[单图桥](code/U44_NEW_IMAGE_ITEM_BRIDGE_DRAFT_20261017_01/README.md)已完成未绑定实现：自然e/M/L独立CPU复制、原查询排列/分数字典不变、沿真实JPEG与原400几何；两项元数据测试及独立静态审通过，非真实数值资格。U34两臂须在teacher首次CUDA前构造，旧U40整臂生命周期和legacy_eval.official_metrics的187图限制不能照搬；逐图数学与底层人口无关COCO可有限复用。窗口、严格恢复接线与外部统一评价仍缺。原TEST全部标注保持；是否实施额外nonempty敏感性须在AP前预锁，不能伪标crowd或只加ignore。历史TEST暴露、母景、JPG/PNG语义和teacher谱系范围不被本次检查清除。
+
+## 2026-10-18 函数层实现与资源边界
+
+普通函数层已形成：[严格E50 CPU恢复](code/U44_EXTERNAL_FIXED50_RESTORE_DRAFT_20261018_01/README.md)、[固定小窗口](code/U44_EXTERNAL_STREAM_WINDOW_DRAFT_20261018_01/README.md)、[完整TEST合并/逐方法COCO](code/U44_EXTERNAL_SPLIT_METRICS_DRAFT_20261018_01/README.md)。恢复直接沿原四引用/17训练源/初始化回执、strict model/BN/inactive检查；不重置训练头，不创建或恢复optimizer，加载CP中CPU optimizer容器后释放。窗口沿同一CPU三模型逐个GPU驻留，实际hook核每图1backbone/CONV0_4及旧语义头0；CPU/GPU前后核原数值state proof，原100候选/S0与零残差校准保持，最后释放dense载体。合并使用native单份原参照，检查全1962/196200无缺重后，按原TEST5922/全部标注逐method调用原人口无关COCO，不平均片AP或改bbox/area。
+
+这些为普通未绑定实现。恢复2项、窗口2项、合并3项标准库元数据测试及静态接口核对已完成；没有真实Tensor/图像/模型/COCO数值执行。完整人口合成测试可能占用数百MiB但未采样其RSS与绝对UTC，主训练低内存中断的具体原因未确立；后续科学叶运行期间只做小fixture，大人口验证应在无科学叶且有受控资源余量时进行。外部teacher实际构造/加载、owner入口、来源/原片接收与真正的全流程资源资格仍缺，不因函数存在恢复blind TEST或宣称外部AP已可运行。
+
+资源失败保持为原actual1：[摘要](results/U40_U02560_02816_RESOURCE_ABORT_ACTUAL_20261018.json)。用户已允许资源充足时按原限额独立接续；冻结科学代码、16GiB可用RAM门、4GiB allocator/8GiB整卡及50轮预算均不放宽。为避免重复已知资源中断，接续前先核对真实余量并保留失败旧attempt/新attempt来源，不能覆盖原文件或复用未接收部分CP。

@@ -1,0 +1,89 @@
+{
+  "AP": false,
+  "DEV": false,
+  "TEST": false,
+  "U40_checkpoint_optimizer_RNG_resumed": false,
+  "arms": {
+    "FULL": {
+      "GT_visits": 29,
+      "status": "PASS",
+      "updates_completed": 3
+    },
+    "PLAIN": {
+      "GT_visits": 29,
+      "status": "PASS",
+      "updates_completed": 3
+    }
+  },
+  "cost": {
+    "Torch_peak_allocated_bytes": 2331896320,
+    "minimum_available_RAM_bytes": 57705947136,
+    "original_SSH_seconds": 45.09400000004098,
+    "owner_seconds": 44.18059947100119,
+    "peak_group_RSS_bytes": 12269146112,
+    "pilot_body_seconds": 38.878374616993824,
+    "worker_seconds": 41.45159477699781
+  },
+  "cross_environment_bitexact_claimed": false,
+  "distinct_matched_instances": 28,
+  "environment": {
+    "machine": "aarch64",
+    "numpy": "1.26.4",
+    "python": "3.12.14",
+    "system": "Linux",
+    "torch": "2.10.0+cu130"
+  },
+  "final_CUDA_cleanup": {
+    "allocated_bytes": 0,
+    "reserved_bytes": 0
+  },
+  "fixed_source_model_structure": true,
+  "flags": {
+    "CUDA_uninitialized_before": true,
+    "backend_controls_restored": true,
+    "caller_CPU_RNG_preserved": true,
+    "caller_NumPy_RNG_preserved": true,
+    "caller_Python_RNG_preserved": true,
+    "child_resources_within_limits": true,
+    "dtype_grad_threads_preserved": true,
+    "module_aliases_restored": true,
+    "source_bytes_verified": true,
+    "source_unchanged_after": true
+  },
+  "formal_U40_budget_credit": 0,
+  "image_order": [
+    54,
+    710,
+    54
+  ],
+  "images": 2,
+  "innovation_established": false,
+  "limitation": "Two-image six-update compatibility/resource pilot under existing background GPU load; no AP, long training, all-population, relative speed or method-utility evidence.",
+  "main_training": false,
+  "main_training_frontier": 2816,
+  "new_training": true,
+  "resource_scope": {
+    "CPU_threads": 2,
+    "Linux_parent_and_child_original_births_absent": true,
+    "allocator_cap_bytes": 4294967296,
+    "allowed_cpus": [
+      0,
+      1
+    ],
+    "background_GPU_service_observed": true,
+    "deadline_seconds": 1800,
+    "exclusive_GPU_context": false,
+    "maximum_RSS_bytes": 17179869184,
+    "minimum_available_RAM_bytes": 17179869184,
+    "original_WDDM_whole8GiB_contract_certified": false,
+    "owned_process_group_empty": true,
+    "whole_GPU_memory_MiB": null
+  },
+  "same_seed_cross_environment_initialization_equal_claimed": false,
+  "schema": "U50-DGX-paired-pilot-sanitized-actual-v1",
+  "source_and_export_transfer_bytes_verified": true,
+  "speedup_established": false,
+  "status": "ACTUAL0_ROOT_ACCEPTED_INDEPENDENT_LINUX_PILOT_ONLY",
+  "successful_disposable_optimizer_updates": 6,
+  "whole_population_tensor_exported": false
+}

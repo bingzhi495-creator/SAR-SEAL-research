@@ -1,0 +1,30 @@
+# U51 prelocked-batch CPU export entry — SOURCE ONLY / UNEXECUTED
+
+<!-- U51_FIRST_BATCH_ACTUAL_ACCEPTED_20261018_01 -->
+
+**后续实际状态：** 原入口与helper已在Root独立CPU任务中实际完成首批0–31，32图/43匹配实例；原值、紧凑存储和真实CPU重载通过，原任务退出0并接收。worker13.328秒，峰值RSS643702784 B，包共117777312 B，CUDA未初始化。见[本批摘要](../../results/U51_MATCHED_FIT_0000_0032_EXPORT_ACTUAL_20261018.json)。仅首批，不证明741图全量完成或DGX全量训练；下文未执行是开发阶段记录。
+
+
+`entry.py --spec ABS` is a new copy of the reviewed U49 owned CPU worker (original21070B/SHA21b11d33…), generalized only from two fixed indices to one explicitly prelocked batch. No original U49 source or frozen source is changed. The new matched export helper is independently authored in this same directory; this entry calls its actual `validate_batch` and `export_item(..., batch_indices=spec['dataset_indices'])`, rather than constructing a simplified reader or target.
+
+Spec schema is **`U51-matched-CPU-export-spec-v1`** (no `ROOT-` prefix), operation **`CPU_U51_MATCHED_TRAINING_INPUT_EXPORT`**. `dataset_indices` must be a nonempty Python list of at most32 unique strict integers0..740. Its given order is retained; it is neither sorted nor silently completed. Root can choose naturally ordered batches, but no additional increasing-order rejection is introduced. The helper independently validates the same original batch and retains it in each U51 portable package.
+
+Remaining spec fields and source layout stay as U49:
+
+- Original-driver-bound `phase`, fresh canonical absolute D: `output_directory`, `expected_versions={torch:'2.0.1+cu118',numpy:'1.23.5'}`.
+- `limits={allowed_cpus:[0,1],threads:2,maximum_RSS_bytes:17179869184,minimum_available_RAM_bytes:17179869184,deadline_seconds:180,CUDA_visible_devices:''}`. The original owner must enforce the whole-leaf deadline and original whole-GPU boundary; the entry stays CUDA-cold and does not add a GPU phase.
+- Exactly five `source_roles`: `entry_source`, `export_source`, `rgb_reader_source`, `matched_reader_source`, `geometry_source`. New exporter pin closes the final U51 helper; all three original reader/geometry hashes remain unchanged.
+- Exactly ten actual canonical `library_sources`: psutil, torch, numpy, PIL, PIL.Image, PIL.ImageFile, pycocotools, pycocotools.coco, pycocotools.mask, pycocotools._mask. These selected files do not constitute a full environment/binary closure.
+- Original U38 `context_ref` contains the original FIT-context/N13-qualification/N13-report refs. It is separate from `input_sources`.
+- `input_sources` contains exactly the actual deduplicated union of those three metadata refs, the original FIT annotation ref, and each selected original index's carrier/N16packet/native-L/JPEG ref. The count is not guessed: worker reconstruction follows the original context/report fields, compares exact path→ref maps, rejects duplicate supplied refs and retains all original source bytes. No other image/tensor is loaded or discovered.
+- `sources` explicitly admits all selected code, libraries, context and input references plus any original-owner control dependencies. Every declared direct dependency must be a member; all admitted file bytes are closed before ML/image imports.
+
+The original complete741-image/1661-GT metadata is still parsed by the original reader/COCO path; this fact is disclosed. **Only the requested batch's actual tensors and JPEGs are loaded**, with original per-image F/M/query/native-L/matcher/GT validation unchanged. Exported values remain exactly rgb400/e/M/L/targets, matched GT order, compact independent CPU FP32 storage, original geometry and raw-byte equivalence. F is validated by the original reader before export and omitted only from the portable downstream package; it is not replaced by a placeholder. There is no model, optimizer, loss, matching recomputation, GPU work or AP.
+
+The worker exclusively creates `MATCHED_FIT_<original_index>.pt` per selected image through the helper's original save/weights-only-CPU-roundtrip contract. It releases source/export/roundtrip tensor references after each image before moving to the next. Source bytes/actual library paths, CPU affinity, threads, CUDA cold state, caller CPU/NumPy/Python RNG, dtype/grad state, temporary module aliases and sampled resources retain the original checks. There is no overwrite, automatic retry, background full-population discovery or silent failure skipping.
+
+Private `REPORT.json` schema is `U51-matched-CPU-export-report-v1`, status COMPLETE/FAILED. `dataset_indices` is the exact prelock, stages follow that list and package refs retain original ordinal names. Added fields are `requested_batch_images`, `actual_completed_images`, `batch_export_complete`. The completed count increments immediately after a returned save/roundtrip and is retained if later cleanup fails. `batch_export_complete` is true only if the entire batch and final contracts pass. Actual failures retain partial files and report and produce a nonzero original child result. They do not grant any accepted coverage or automatically recover a batch.
+
+`original_metadata_population={images:741,GT:1661,tensor_population_revalidated:False}` and `whole_population_exported=False` remain explicit even for a successful batch. No entry boolean aggregates multiple batches or qualifies all741. Root must separately bind, observe, accept and track each actual batch without missing/duplicate original ordinals before claiming a complete portable population. This entry has no Root bind/register/accept controller or launcher.
+
+Authoring uses two tiny standard-library metadata tests only: batch boundaries/duplicates/strict integers/order/source admission and sanitized summaries. No actual Ops/RAW/Q/frozen H source, dataset, weight, private manifest or remote machine is accessed, and no ML library or numerical path is executed. Real tensor equality, serialization, original data I/O, resources and batch export remain **UNEXECUTED** until a separately owned actual leaf is run and accepted by Root. Reports and portable files contain private original provenance/targets and must not be published verbatim; only reviewed scalar summaries belong in the public repository.

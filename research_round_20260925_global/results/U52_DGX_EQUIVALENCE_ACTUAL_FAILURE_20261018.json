@@ -1,0 +1,91 @@
+{
+  "AP": false,
+  "DEV": false,
+  "TEST": false,
+  "baseline_control_exact": false,
+  "candidate_equivalence_verdict": null,
+  "candidate_updates_executed": 0,
+  "comparisons": [
+    {
+      "RNG_exact": true,
+      "baseline_replay_exact": false,
+      "categories": {
+        "Adam": {
+          "max_abs": 5.820766091346741e-11,
+          "mismatched_tensors": 294,
+          "tensors": 444
+        },
+        "buffers": {
+          "max_abs": 0.0,
+          "mismatched_tensors": 0,
+          "tensors": 102
+        },
+        "gradients": {
+          "max_abs": 4.656612873077393e-10,
+          "mismatched_tensors": 147,
+          "tensors": 164
+        },
+        "parameters": {
+          "max_abs": 1.1920928955078125e-07,
+          "mismatched_tensors": 119,
+          "tensors": 164
+        }
+      },
+      "groups_exact": true,
+      "step": 2
+    },
+    {
+      "RNG_exact": true,
+      "baseline_replay_exact": false,
+      "categories": {
+        "Adam": {
+          "max_abs": 9.630604091981354e-10,
+          "mismatched_tensors": 295,
+          "tensors": 444
+        },
+        "buffers": {
+          "max_abs": 3.5762786865234375e-07,
+          "mismatched_tensors": 59,
+          "tensors": 102
+        },
+        "gradients": {
+          "max_abs": 9.630610975364107e-09,
+          "mismatched_tensors": 148,
+          "tensors": 164
+        },
+        "parameters": {
+          "max_abs": 2.174731343984604e-05,
+          "mismatched_tensors": 135,
+          "tensors": 164
+        }
+      },
+      "groups_exact": true,
+      "step": 3
+    }
+  ],
+  "cost": {
+    "minimum_available_RAM_bytes": 60103708672,
+    "original_SSH_seconds": 52.78099999995902,
+    "owner_seconds": 42.87062346501625,
+    "peak_group_RSS_bytes": 9775718400
+  },
+  "final_CUDA_cleanup": {
+    "allocated_bytes": 0,
+    "reserved_bytes": 0
+  },
+  "formal_U40_budget_credit": 0,
+  "innovation_established": false,
+  "limitation": "Original implementation replay failed the prelocked bitexact control; candidate was not run. Cause requires separate deterministic-control or implementation analysis. No candidate failure, speedup, AP or main-training conclusion.",
+  "main_paired_frontier": 2816,
+  "main_training": false,
+  "original_SSH_returncode": 1,
+  "original_actual_tool_exit_code": 1,
+  "original_worker_returncode": 1,
+  "partial_original_report_preserved": true,
+  "resource_violation_observed": false,
+  "schema": "U52-DGX-equivalence-sanitized-actual-failure-v1",
+  "source_and_terminal_metadata_verified": true,
+  "speedup_established": false,
+  "status": "ACTUAL1_BASELINE_SELF_REPLAY_CONTROL_STOPPED",
+  "successful_disposable_original_updates": 5
+}

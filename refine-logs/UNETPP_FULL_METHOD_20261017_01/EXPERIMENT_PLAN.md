@@ -1,6 +1,26 @@
 # 以自主完整UNet++为主体的实例分割方法设计与实验路线
 
-日期：2026-10-17。当前状态：自主完整UNet++卷积资源版与原plain64两臂各2304正式更新已接收，原状态已启动[2304,2560)接续；总预算仍每臂50轮/37050更新。N28固定E24完整DEV按原门槛STOP当前路由配方，主方法独立训练。E50私有执行控制草稿与独立静态互接审已完成，尚未实际准备/绑定/数值执行。完整主方法尚无AP或创新成立结论，后文保留形成时记录。
+<!-- U51_FIRST_BATCH_AND_U40_RESUMED_20261018_01 -->
+
+2026-10-18 后续：U51首批32图/43匹配实例已actual0导出并接收（117777312 B，worker13.328秒，RSS643702784 B），全量准备32/741图。DGX原配对试点已6真实step通过但不计本机主训。资源双观察恢复后，原U40 2816→3072已启动；已接收端点仍2816，运行不冒记3072，无新增DEV/AP。[当前实际记录](../../research_round_20260925_global/U50_DGX_PAIRED_PILOT_ACTUAL_AND_FULL_INPUT_NEXT_20261018.md)。
+
+
+<!-- U40_2816_ACCEPTED_CURRENT_20261018_01 -->
+
+2026-10-18 最新已接收端点：2816/37050（3轮+593图，预算7.60%）。原2560→2816任务actual0，经Root原终态/FIRST/来源/配对检查点和轨迹核验接收；两臂各256更新、561实例访问，512次成功step，原任务1060.828秒，未越原资源限额。FULL/PLAIN训练损失均有限且相近，无新增DEV/TEST/AP，不凭−0.234%相对训练损失宣称效用。运行账户293正常/36失败，与模型更新次数分开。下一段2816→3072仅已准备请求，启动仍须双资源观察。U49/U50仅普通源码完成，未实际导出或DGX运行；所有历史失败保留。详见[本段核验及后续](../../research_round_20260925_global/U40_U02560_02816_ACCEPTED_AND_DGX_EXPORT_STATUS_20261018.md)。
+
+
+<!-- U40_POST_U48_ACTUAL_LIVE_20261018_01 -->
+
+2026-10-18 接续实况更新：09:09:57 UTC 与09:11:48 UTC两次资源观察均达标，free RAM分别38350995456/38238998528 B、整卡2065/1963 MiB。Root已实际启动并登记原配对2560→2816接续任务，17份训练来源及原配方/限额不变，恢复原2560检查点。当前为运行中，尚无该段终态或新配对预算；有效端点仍2560/37050。此前资源不足描述保留为当时观察，不能据启动记为已完成。
+
+
+<!-- U48_NATIVE_EXECUTION_CURRENT_20261018_01 -->
+
+2026-10-18 U48 实测补记：原 E24 教师在预选 HRSID TRAIN 首图的完整原生100查询推理已实际退出0并接收，耗时26.453秒、分配器峰值约2.11GiB，清理后allocated/reserved0；原2GiB后处理OOM actual1单独核验保留。单图资源修正版只改2→3GiB分配cap，数学/输入/score不变；无新训练/AP/全人口资格。主训有效端点仍每臂2560/37050；新增运行账户为292正常/36失败，不等于训练进度。最新账户到原f35训练失败及未变2560模型父的元数据继承已实际验证，未绑定/启动接续。主训需两次相隔至少30秒的free RAM≥32GiB与整卡基线≤3584MiB观察；当前未达门，17源/共同图序/配方/固定E50预算不改。详见[单图实测](../../research_round_20260925_global/U48_SINGLE_HRSID_NATIVE_CAPTURE_ACTUAL_AND_NEXT_STEP_20261018.md)。
+
+
+日期：2026-10-17。当前状态：自主完整UNet++卷积资源版与原plain64两臂各2560正式更新已接收，[2560,2816)原尝试因资源门受控终止并保留，待充足余量独立接续；总预算仍每臂50轮/37050更新。N28固定E24完整DEV按原门槛STOP当前路由配方，主方法独立训练。E50私有执行控制草稿与独立静态互接审已完成，尚未实际准备/绑定/数值执行。完整主方法尚无AP或创新成立结论，后文保留形成时记录。
 
 ## 1. 本轮设计决定
 
@@ -246,3 +266,46 @@ N28固定端点及完整COCO已实际完成，原native/R全部12指标精确复
 第九正式段[2048,2304)原actual0已接收，两臂各累计2304更新（3轮+81图），每臂550次匹配GT训练访问，原owned980.078秒、worker934.266秒，恢复/保存回读通过。[实测](../../research_round_20260925_global/results/U40_FORMAL_U02048_02304_ACTUAL_20261017.json)、[训练loss监测](../../research_round_20260925_global/results/U40_U02048_02304_TRAINING_LOSS_MONITOR_20261017.json)。普通/自主均值0.037823/0.037617，全部有限但差距小，没有新增AP或收敛主张。
 
 间插U43全5604输入检查原actual1已保留，在PIL来源门处4.844秒退出，尚未population/像素/原split记录解析/COCO栅格；入口已对编码Source字节做闭合。Root纯文件检查证实十二库仅路径别名与物理路径不同、bytes/SHA全相同，旧源码/绑定/产物保持。Root失败接收没有图像/GT语义重演或数据资格；[失败及范围](../../research_round_20260925_global/results/U43_HRSID_POPULATION_LIBRARY_PATH_FAILURE_ACTUAL_20261017.json)、[明确修复计划](../../research_round_20260925_global/U43_CANONICAL_LIBRARY_REFERENCE_REPAIR_PLAN_20261017.md)。普通/自主主训练的配对模型父仍是2304；运行记账父单独接收该失败。原[2304,2560)已接续启动，固定50轮端点不变。
+
+2026-10-18：第10段实际0与Root接收完成，两臂各2560更新，匹配训练loss普通0.036857、自主0.036750，全部有限、差异小，不支持AP或收敛结论。HRSID路径修复完成全5604/16969访问但13空栅格未过原非空门，actual1保留；主训练从原状态接续[2560,2816)，配方不变。外部单图薄桥已实现，仅元数据测试/静态审通过；外部COCO保留官方原标注，敏感性须另行预锁，尚未执行。
+
+2026-10-18资源状态更新：第11段original actual1，最小可用RAM16993021952字节低于16GiB；wholeGPU8165MiB未超8192，elapsed775.453秒未到deadline。Root仅接收终态/源/日志和失败记账，未授部分CP/每臂成功资格，预算信用0，原paired frontier2560保持。具体进程归因未知，并行全人口合成fixture可能干扰但无RSS/绝对时刻证明；训练运行期间不再做大人口fixture。用户允许资源充足按原限额独立接续，旧attempt与全部原件保留，不放宽配方/预算。外部恢复/小窗口/原TEST合并COCO函数已形成未执行实现，源和静态/元数据范围见U44最新设计。
+
+## 2026-10-18：独立新颖性复核与条件机制对照（尚未执行）
+
+本轮复核不改变当前U40的17科学源码、共同顺序、初始化、50轮预算或端点评价规则。训练loss仅作过程诊断；效用、重复稳定性及机制仍待原门槛检验。
+
+当前H/4语义支路与x/y DSConv独立计算后经concat和con2融合，可描述为语义与方向信息融合；尚不能据此称为语义条件动态采样，或声称已经证明特殊协同。直接SAR先例[O2Former](https://arxiv.org/abs/2506.11913)已公开方向感知和多尺度query增强；本轮核到的是2025-06-13预印本摘要与元数据，未独立复现其AP。[DSCNet作者仓库](https://github.com/YaoleiQi/DSCNet)明确介绍形态约束与多视图特征融合，但本轮未核其精确三路代码是否与本项目同构，也未证明该先例在当前SAR协议下的效用。[SimAM原论文](https://proceedings.mlr.press/v139/yang21o.html)已有无新增参数的逐神经元注意力；采用这些原语的数量不构成创新证据。外审提及但本轮未成功核到原始页面的额外论文不作为此处既定新颖性证据。
+
+最有竞争力的常规解释是：额外有效卷积、感受野差异和输入依赖幅值增益，改善了一般密集精修。当前FULL与PLAIN有效参数约53.12M与47.20M，主比较并非容量匹配，不能将其潜在收益全部归给方向采样或空间注意力。
+
+仅在主效用满足原推进条件后，优先预锁以下最少对照，不能按外部TEST结果选控制：
+
+1. 保留H/4支路输入、通道、con2及其余结构，以静态x/y规则采样或预锁的强静态条带卷积替换动态采样；记录实际有效参数和训练/推理成本。移除或闲置offset网络时，不把无作用参数计作有效容量匹配。具体替代实现与初始化规则须在运行前锁定，本条不是已运行控制。
+2. 对z+SimAM(z)=(1+g(z))z，只将空间门g替换成每通道空间均值，得到(1+mean_HW(g))z，保留CBAM及其余残差。它去除空间选择并保留平均门值，不保证输出范数严格相同，亦不独自证明因果机制。
+
+两项均须沿原可比数据、训练预算、评价规则与共同query/S0协议进行。如果静态或均值门控制足以解释收益，应收缩机制与创新主张；保留真实效用及失败结果，不能为保持新颖叙事而改名或事后换评价。是否还需额外容量控制取决于这些具体实现的实际差异，而不是预先宣称两项已足够支持TGRS。
+
+## 2026-10-18：DSConv实现接线核查（静态事实；数值待验证）
+
+Root在已结束的原任务绑定中核到full_dsconv为15207 B，SHA256 `b4b612edf9f87cf29dc48bb675d501658fdec5dbee1ea363a7f02d86d197e5f0`；普通发布副本[U33 dsconv.py](../../research_round_20260925_global/code/U33_REAL_IMAGE_400_PROBE_DRAFT_20261017_01/dsconv.py)逐字节相同。完整full/feature普通副本也与该数值版本对应。本节没有修改任何冻结源码或训练结果。
+
+K=9的morph0在第166行detach().clone后，仅通过第177行循环重新接回内侧六点；两个端点0/8保留前向偏移但不保留其直接offset梯度。morph1第234行clone保留梯度，两方向的range(1,center)均未将端点纳入累计。它们并非相同方向的两个假分支，也不是整个offset网络都失活。第277–347行的邻点整数索引之外仍用连续坐标计算双线性权重，未静态发现该路径整体截断。语义支路在concat处融合，不能声称其并行输出显式输入了offset网络。
+
+可证伪的下一项只有一个B1/K9/H=W=1坐标诊断：对morph0 sum(y)、morph1 sum(x)分别求18通道VJP与中心有限差分。静态预期选中9通道morph0的AD为[0,1,2,3,0,3,2,1,0]、FD为[1,1,2,3,0,3,2,1,1]；morph1 AD/FD均为后者，未选偏移半部均0。以上是待实测预期，不能充当数值结果。
+
+[探针源码](../../research_round_20260925_global/code/U45_DSC_COORDINATE_VJP_DIAGNOSTIC_DRAFT_20261018_01/README.md)仅作局部CPU双精度坐标公式核查，不运行卷积、BN、整网、插值特征或数据。若实际确认差异且目标确为中心固定、全部9点向外累计，最小新版本候选为移除该detach、两处循环包括center；这一改动改变原计算与梯度，必须另建版本和实际验证，不得原位改旧Source、沿用旧结果归因或宣称AP提升。实际训练是否受影响及修复是否有任务效用仍未确认。
+
+
+## 2026-10-18: actual U45/U46 coordinate diagnostic accepted
+
+Both original CPU jobs exited0 and were Root-accepted. U45 original morph0 AD [0,1,2,3,0,3,2,1,0] differs at endpoints0/8 from FD [1,1,2,3,0,3,2,1,1]; original morph1 AD/FD agree with the latter. Separate three-line U46 candidate has both-axis AD/FD [1,2,3,4,0,4,3,2,1], matching the predeclared complete-accumulation VJP. CPU-double coordinate sums only: no full Jacobian, DSConv feature interpolation, real images, FP32 network, training or AP. Complete endpoint accumulation already has an author-code precedent; no new sampling-method claim.
+
+[Actual evidence, source and next step](../../research_round_20260925_global/U45_U46_DSC_COORDINATE_ACTUAL_FINDING_AND_NEXT_STEP_20261018.md). Current accounting290 normal/35 failed is independent of unchanged U40 model frontier2560. Do not swap U46 into the running protocol. Main recovery02 control is prepared but unbound; resource observation at07:25:18 UTC was insufficient. Earlier pending-numerics descriptions remain historical; this is the current numerical status.
+
+
+## 2026-10-18: actual U47 teacher CPU restoration accepted
+
+The original teacher-only job exited0 and was Root-accepted. Complete E24 state610/parameter451 and model/BN bytes matched the original loading proof; frozen eval CPU, no gradients, caller RNG/helper bindings restored, anchor/model released. Worker21.5seconds, sampled peakRSS1632632832bytes; CUDA remained cold. No image/dataset/forward/optimizer/AP. [Actual scope and DGX observation](../../research_round_20260925_global/U47_TEACHER_CPU_RESTORE_ACTUAL_AND_DGX_STATUS_20261018.md). U47 supplies the missing teacher restoration function; current outer pipeline still needs resolved preprocessing provenance and real new-image forward before E50 external predictions.
+
+Accounting291normal/35failed is separate from unchanged U40 paired model frontier2560. DGX SSH/OS/package metadata was actually read without ML import: aarch64/GB10 with about69GiB available system RAM, Python3.12/Torch2.10 in the established main environment. That runtime does not satisfy immutable local U40; no direct continuation, numerical port or speed claim. Main resource admission remains unmet; original limits and E50 endpoint are unchanged.

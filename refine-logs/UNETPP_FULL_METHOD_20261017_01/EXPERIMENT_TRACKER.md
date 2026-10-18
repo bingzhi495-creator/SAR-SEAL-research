@@ -1,6 +1,30 @@
 # 完整自主UNet++实例方法：执行跟踪
 
-日期：2026-10-17。完整自主卷积主干与普通对照两臂各2304正式更新已接收，现已启动[2304,2560)原状态接续。N28固定E24完整DEV按原门槛STOP当前路由配方。表格为当前状态，后文保留形成时记录。
+<!-- U51_FIRST_BATCH_AND_U40_RESUMED_20261018_01 -->
+
+2026-10-18 后续：U51首批32图/43匹配实例已actual0导出并接收（117777312 B，worker13.328秒，RSS643702784 B），全量准备32/741图。DGX原配对试点已6真实step通过但不计本机主训。资源双观察恢复后，原U40 2816→3072已启动；已接收端点仍2816，运行不冒记3072，无新增DEV/AP。[当前实际记录](../../research_round_20260925_global/U50_DGX_PAIRED_PILOT_ACTUAL_AND_FULL_INPUT_NEXT_20261018.md)。
+
+
+<!-- U40_2816_ACCEPTED_CURRENT_20261018_01 -->
+
+2026-10-18 最新已接收端点：2816/37050（3轮+593图，预算7.60%）。原2560→2816任务actual0，经Root原终态/FIRST/来源/配对检查点和轨迹核验接收；两臂各256更新、561实例访问，512次成功step，原任务1060.828秒，未越原资源限额。FULL/PLAIN训练损失均有限且相近，无新增DEV/TEST/AP，不凭−0.234%相对训练损失宣称效用。运行账户293正常/36失败，与模型更新次数分开。下一段2816→3072仅已准备请求，启动仍须双资源观察。U49/U50仅普通源码完成，未实际导出或DGX运行；所有历史失败保留。详见[本段核验及后续](../../research_round_20260925_global/U40_U02560_02816_ACCEPTED_AND_DGX_EXPORT_STATUS_20261018.md)。
+
+
+<!-- U40_POST_U48_ACTUAL_LIVE_20261018_01 -->
+
+2026-10-18 接续实况更新：09:09:57 UTC 与09:11:48 UTC两次资源观察均达标，free RAM分别38350995456/38238998528 B、整卡2065/1963 MiB。Root已实际启动并登记原配对2560→2816接续任务，17份训练来源及原配方/限额不变，恢复原2560检查点。当前为运行中，尚无该段终态或新配对预算；有效端点仍2560/37050。此前资源不足描述保留为当时观察，不能据启动记为已完成。
+
+
+<!-- U48_NATIVE_EXECUTION_CURRENT_20261018_01 -->
+
+2026-10-18 U48 实测补记：原 E24 教师在预选 HRSID TRAIN 首图的完整原生100查询推理已实际退出0并接收，耗时26.453秒、分配器峰值约2.11GiB，清理后allocated/reserved0；原2GiB后处理OOM actual1单独核验保留。单图资源修正版只改2→3GiB分配cap，数学/输入/score不变；无新训练/AP/全人口资格。主训有效端点仍每臂2560/37050；新增运行账户为292正常/36失败，不等于训练进度。最新账户到原f35训练失败及未变2560模型父的元数据继承已实际验证，未绑定/启动接续。主训需两次相隔至少30秒的free RAM≥32GiB与整卡基线≤3584MiB观察；当前未达门，17源/共同图序/配方/固定E50预算不改。详见[单图实测](../../research_round_20260925_global/U48_SINGLE_HRSID_NATIVE_CAPTURE_ACTUAL_AND_NEXT_STEP_20261018.md)。
+
+
+<!-- U40_RESOURCE_RECOVERY_CURRENT_20261018_01 -->
+
+2026-10-18接续终态：原内存中止后发起的独立同段尝试又因整卡显存8398>8192 MiB受控结束，原任务已回收，失败记账已核验；RAM最低17490812928 B高于16 GiB，800.078秒未到时限。当前有效端点仍每臂2560，未读取或复用该失败尝试的部分权重与trace，新增配对预算为0。两个失败尝试的实际资源成本保留，不把资源中止判为模型失效。下一主训启动观察按整卡基线≤3584 MiB、free RAM≥32 GiB，覆盖分配器4 GiB及512 MiB整卡余量；原数值配方和运行限额未改。当前先核精确版本DSConv的局部坐标梯度，不构建网络，不替代主效用评价。
+
+更新：2026-10-18。完整自主卷积主干与普通对照两臂各2560正式更新已接收，[2560,2816)原尝试资源中断已保留，新独立接续任务已整卡超限结束，尚未接收新配对端点。N28固定E24完整DEV按原门槛STOP当前路由配方。表格为当前状态，后文保留形成时记录。
 
 设计收敛确认：最终候选直接以既有自研完整UNet++为主体，保持当前U40连续训练；历史boundary/frequency_boundary正收益有条件复用，不能自动归给full/new1或当前实例AP。本次只明确方法组织与归属，不改动已锁数值源码、配方、总预算、端点或停止规则。
 
@@ -11,7 +35,7 @@
 | U02 | 实现共享实例接口 | 一次图像主干＋小型查询残差头 | tiny三项及真实full64两项均实际通过并接收；原特征精确等价且245张量梯度有限 | 真实400及跨图资源已通过；沿固定主训练和端点评价验证效用 |
 | U03 | 检验真实输入和资格 | 原图/几何/原100查询/L/匹配GT | U38全741/1661与104同源初始化已接收；U39跨图检查通过 | 固定E50的完整DEV输入和评价核心独立准备，未数值执行 |
 | U04 | 测量真实成本 | 完整full卷积资源版与普通对照 | U40首段双臂256更新已接收；原任务969.312秒，CUDA约1.91GiB/RSS约13.04GiB | 后续段独立记录成本与恢复，不能由局部耗时承诺整轮或加速 |
-| U05 | 首组公平主训练 | 普通完整UNet++ vs自主full，seed3101 | 已接收各2304更新；[2304,2560)原接续任务已启动 | 每臂50轮/37050更新才评价；尚无主方法AP |
+| U05 | 首组公平主训练 | 普通完整UNet++ vs自主full，seed3101 | 已接收各2560更新；第11段两次资源中断均已保留，当前先核坐标梯度 | 每臂50轮/37050更新才评价；尚无主方法AP |
 | U06 | 验证核心归因 | 容量/计算替代、复合块/方向替换 | 条件待执行 | 主效用成立后只做能改变结论的最少控制 |
 | U07 | 重复与跨数据集 | 3102/3103；另一公共实例数据集 | 条件待执行 | 按预定收益门槛推进，不承诺必然成功 |
 | N28 | 路由固定端点 | SELECTIVE vs WHOLE_NODE；seed2801 | 完整187图COCO已接收；AP67.021271/66.655257；门槛Delta−2.516096 | STOP当前配方，不扩预算/种子/融合；不代替完整主干证据 |
@@ -105,3 +129,21 @@ U40第四段原actual0已接收，两臂各1024更新；本段每臂556 GT访问
 第九正式段[2048,2304)原actual0已接收，两臂各累计2304更新（3轮+81图），每臂550次匹配GT训练访问，原owned980.078秒、worker934.266秒，恢复/保存回读通过。[实测](../../research_round_20260925_global/results/U40_FORMAL_U02048_02304_ACTUAL_20261017.json)、[训练loss监测](../../research_round_20260925_global/results/U40_U02048_02304_TRAINING_LOSS_MONITOR_20261017.json)。普通/自主均值0.037823/0.037617，全部有限但差距小，没有新增AP或收敛主张。
 
 间插U43全5604输入检查原actual1已保留，在PIL来源门处4.844秒退出，尚未population/像素/原split记录解析/COCO栅格；入口已对编码Source字节做闭合。Root纯文件检查证实十二库仅路径别名与物理路径不同、bytes/SHA全相同，旧源码/绑定/产物保持。Root失败接收没有图像/GT语义重演或数据资格；[失败及范围](../../research_round_20260925_global/results/U43_HRSID_POPULATION_LIBRARY_PATH_FAILURE_ACTUAL_20261017.json)、[明确修复计划](../../research_round_20260925_global/U43_CANONICAL_LIBRARY_REFERENCE_REPAIR_PLAN_20261017.md)。普通/自主主训练的配对模型父仍是2304；运行记账父单独接收该失败。原[2304,2560)已接续启动，固定50轮端点不变。
+
+2026-10-18实测：第10段[2304,2560)actual0并接收，GT访问614/臂，模型/Adam/BN/RNG恢复与保存回读通过、无AP。HRSID规范路径修复原任务actual1已保留：5604图均解码，13/16969实例为空栅格，未删图/改GT；该失败不证明数据不可用或方法失败。U44单图桥两项元数据测试与独立静态审通过，数值/窗口/外部AP未运行。U40已原状态启动[2560,2816)，固定E50不变。
+
+2026-10-18资源终态补记：第11段[2560,2816)actual1，原受控abort与失败记账已接收。minfreeRAM低于16GiB，未把部分PLAIN迹线/CP当作配对成功，当前仍2560/臂。未确认游戏或元数据测试等单一触发原因；大人口合成测试已停止并禁止与科学叶并行。用户允许真实余量充足后沿原限额另立attempt，原checkpoint/Source/顺序/预算不变。外部CPU restore、window、split metrics三个未绑定函数层已保存，真实外部数值及owner仍缺。
+
+
+## 2026-10-18: actual U45/U46 coordinate diagnostic accepted
+
+Both original CPU jobs exited0 and were Root-accepted. U45 original morph0 AD [0,1,2,3,0,3,2,1,0] differs at endpoints0/8 from FD [1,1,2,3,0,3,2,1,1]; original morph1 AD/FD agree with the latter. Separate three-line U46 candidate has both-axis AD/FD [1,2,3,4,0,4,3,2,1], matching the predeclared complete-accumulation VJP. CPU-double coordinate sums only: no full Jacobian, DSConv feature interpolation, real images, FP32 network, training or AP. Complete endpoint accumulation already has an author-code precedent; no new sampling-method claim.
+
+[Actual evidence, source and next step](../../research_round_20260925_global/U45_U46_DSC_COORDINATE_ACTUAL_FINDING_AND_NEXT_STEP_20261018.md). Current accounting290 normal/35 failed is independent of unchanged U40 model frontier2560. Do not swap U46 into the running protocol. Main recovery02 control is prepared but unbound; resource observation at07:25:18 UTC was insufficient. Earlier pending-numerics descriptions remain historical; this is the current numerical status.
+
+
+## 2026-10-18: actual U47 teacher CPU restoration accepted
+
+The original teacher-only job exited0 and was Root-accepted. Complete E24 state610/parameter451 and model/BN bytes matched the original loading proof; frozen eval CPU, no gradients, caller RNG/helper bindings restored, anchor/model released. Worker21.5seconds, sampled peakRSS1632632832bytes; CUDA remained cold. No image/dataset/forward/optimizer/AP. [Actual scope and DGX observation](../../research_round_20260925_global/U47_TEACHER_CPU_RESTORE_ACTUAL_AND_DGX_STATUS_20261018.md). U47 supplies the missing teacher restoration function; current outer pipeline still needs resolved preprocessing provenance and real new-image forward before E50 external predictions.
+
+Accounting291normal/35failed is separate from unchanged U40 paired model frontier2560. DGX SSH/OS/package metadata was actually read without ML import: aarch64/GB10 with about69GiB available system RAM, Python3.12/Torch2.10 in the established main environment. That runtime does not satisfy immutable local U40; no direct continuation, numerical port or speed claim. Main resource admission remains unmet; original limits and E50 endpoint are unchanged.

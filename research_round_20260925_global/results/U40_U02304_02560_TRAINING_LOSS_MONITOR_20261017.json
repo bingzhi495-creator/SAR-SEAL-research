@@ -1,0 +1,69 @@
+{
+  "AP": false,
+  "DEV": false,
+  "GT_visits_per_arm": 614,
+  "Root_tensor_or_optimizer_replay": false,
+  "TEST": false,
+  "all_scalar_values_finite": true,
+  "arms": {
+    "FULL": {
+      "BCE": {
+        "count": 256,
+        "maximum": 0.013797041028738022,
+        "mean": 0.0017506743807505247,
+        "median": 0.0012034210230922326,
+        "minimum": 0.00012170086847618222
+      },
+      "loss": {
+        "count": 256,
+        "maximum": 0.36574600148014724,
+        "mean": 0.03675024954645778,
+        "median": 0.030659206211566925,
+        "minimum": 0.013499492779374123
+      },
+      "softDice": {
+        "count": 256,
+        "maximum": 0.36445006419872417,
+        "mean": 0.034999574967584476,
+        "median": 0.02951231598854065,
+        "minimum": 0.012360453605651855
+      }
+    },
+    "PLAIN": {
+      "BCE": {
+        "count": 256,
+        "maximum": 0.014032802544534206,
+        "mean": 0.0017481237866880507,
+        "median": 0.0011850841110572219,
+        "minimum": 0.00014429775183089077
+      },
+      "loss": {
+        "count": 256,
+        "maximum": 0.367224465822801,
+        "mean": 0.03685684663241773,
+        "median": 0.030593586154282093,
+        "minimum": 0.013483749702572823
+      },
+      "softDice": {
+        "count": 256,
+        "maximum": 0.3659444759631979,
+        "mean": 0.035108722630415486,
+        "median": 0.028583988547325134,
+        "minimum": 0.012739300727844238
+      }
+    }
+  },
+  "global_update_sequence_contiguous": true,
+  "mean_loss_FULL_minus_PLAIN": -0.00010659708595994744,
+  "paired_actual_inputs_exact": true,
+  "recipe_or_endpoint_selected_from_monitor": false,
+  "rows_per_arm": 256,
+  "schema": "U40-training-loss-monitor-sanitized-v1",
+  "scope": "Matched-instance training-fit monitor only; repeated visits, no DEV/AP/full-query false-positive/convergence/innovation evidence",
+  "seed": 202610173101,
+  "span": {
+    "start": 2304,
+    "stop": 2560
+  },
+  "status": "ACTUAL_ACCEPTED_TRAINING_SCALAR_AUDIT"
+}
