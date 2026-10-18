@@ -1,6 +1,10 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
 
+<!-- U57_NEAREST_PRIOR_20261018_01 -->
+
+[最近直接先例查新（含2026已发表来源）](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)：保留5项直接相关先例，区分原文/作者代码/仅索引可得；U形网络+实例条件及图像+粗mask精修不能作为宽泛首创。当前整合效用仍待公平训练，容量/计算匹配为优先解释对照；未核线索明确保留。
+
 <!-- U57_STATIC_TRAINING_PLAN_20261018_01 -->
 
 [DGX 原更新全量成对训练设计](research_round_20260925_global/U57_DGX_ORIGINAL_UPDATE_FULL_FIT_TRAINING_PLAN_20261018.md)：独立新环境从零计数，沿用已有结构与原数学更新；先验收741图实际读取，再完成一次接续全链检查，随后固定E50。当前仅设计，训练实现与执行尚未完成。
