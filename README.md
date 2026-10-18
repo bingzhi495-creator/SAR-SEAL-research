@@ -5,6 +5,10 @@
 
 [最近直接先例查新（含2026已发表来源）](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)：保留5项直接相关先例，区分原文/作者代码/仅索引可得；U形网络+实例条件及图像+粗mask精修不能作为宽泛首创。当前整合效用仍待公平训练，容量/计算匹配为优先解释对照；未核线索明确保留。
 
+<!-- U57_ORIGINAL_UPDATE_CODE_20261018_01 -->
+
+[DGX 独立原更新训练源码草稿](research_round_20260925_global/code/U57_DGX_ORIGINAL_UPDATE_TRAINING_DRAFT_20261018_01/README.md)：保留原数值更新，新增全状态断点接续和配对提交；5项微型标准库测试及独立静态审查通过，修复输入摘要字段不一致。尚未运行模型/训练，必须先真实接收全741图验证，再执行一次独立SMOKE与全新E50；不计入本机2816步，不构成涨点或速度结论。
+
 <!-- U57_STATIC_TRAINING_PLAN_20261018_01 -->
 
 [DGX 原更新全量成对训练设计](research_round_20260925_global/U57_DGX_ORIGINAL_UPDATE_FULL_FIT_TRAINING_PLAN_20261018.md)：独立新环境从零计数，沿用已有结构与原数学更新；先验收741图实际读取，再完成一次接续全链检查，随后固定E50。当前仅设计，训练实现与执行尚未完成。
