@@ -1,0 +1,196 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FULL": {
+    "baseline_control_exact": null,
+    "candidate_equivalence_verdict": null,
+    "candidate_updates_executed": 0,
+    "operator": "adaptive_max_pool2d_backward_cuda",
+    "status": "UNSUPPORTED_STRICT_DETERMINISTIC_BACKWARD",
+    "successful_updates": 0
+  },
+  "PLAIN": {
+    "baseline_control_exact": true,
+    "candidate_within_prelocked_tolerances": false,
+    "comparisons": [
+      {
+        "RNG_exact": true,
+        "categories": {
+          "Adam": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 444
+          },
+          "buffers": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 102
+          },
+          "gradients": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 164
+          },
+          "loss": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 3
+          },
+          "parameters": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 164
+          }
+        },
+        "groups_exact": true,
+        "passed": true,
+        "step": 2,
+        "trajectory": "BASE_B"
+      },
+      {
+        "RNG_exact": true,
+        "categories": {
+          "Adam": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 444
+          },
+          "buffers": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 102
+          },
+          "gradients": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 164
+          },
+          "loss": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 3
+          },
+          "parameters": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 164
+          }
+        },
+        "groups_exact": true,
+        "passed": true,
+        "step": 3,
+        "trajectory": "BASE_B"
+      },
+      {
+        "RNG_exact": true,
+        "categories": {
+          "Adam": {
+            "maximum_absolute_difference": 4.3300474317220505e-11,
+            "outside_tolerance_tensors": 0,
+            "tensors": 444
+          },
+          "buffers": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 102
+          },
+          "gradients": {
+            "maximum_absolute_difference": 4.3301895402692026e-10,
+            "outside_tolerance_tensors": 0,
+            "tensors": 164
+          },
+          "loss": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 3
+          },
+          "parameters": {
+            "maximum_absolute_difference": 2.682209014892578e-06,
+            "outside_tolerance_tensors": 10,
+            "tensors": 164
+          }
+        },
+        "groups_exact": true,
+        "passed": false,
+        "step": 2,
+        "trajectory": "CANDIDATE"
+      },
+      {
+        "RNG_exact": true,
+        "categories": {
+          "Adam": {
+            "maximum_absolute_difference": 5.238689482212067e-10,
+            "outside_tolerance_tensors": 0,
+            "tensors": 444
+          },
+          "buffers": {
+            "maximum_absolute_difference": 3.5762786865234375e-07,
+            "outside_tolerance_tensors": 0,
+            "tensors": 102
+          },
+          "gradients": {
+            "maximum_absolute_difference": 5.238689482212067e-09,
+            "outside_tolerance_tensors": 0,
+            "tensors": 164
+          },
+          "loss": {
+            "maximum_absolute_difference": 0.0,
+            "outside_tolerance_tensors": 0,
+            "tensors": 3
+          },
+          "parameters": {
+            "maximum_absolute_difference": 1.9949395209550858e-05,
+            "outside_tolerance_tensors": 46,
+            "tensors": 164
+          }
+        },
+        "groups_exact": true,
+        "passed": false,
+        "step": 3,
+        "trajectory": "CANDIDATE"
+      }
+    ],
+    "status": "COMPARISON_COMPLETED"
+  },
+  "TEST": false,
+  "actual_SSH_returncode": 1,
+  "actual_original_tool_exit_code": 1,
+  "actual_worker_returncode": 1,
+  "all_original_owned_processes_absent": true,
+  "backend_policy": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic_algorithms_enabled": true,
+    "deterministic_warn_only": false
+  },
+  "candidate_adopted": false,
+  "cost": {
+    "minimum_available_RAM_bytes": 57256988672,
+    "original_SSH_seconds": 74.3589999997057,
+    "owner_seconds": 57.19254908300354,
+    "peak_group_RSS_bytes": 12939472896
+  },
+  "final_CUDA_cleanup": {
+    "allocated_bytes": 0,
+    "reserved_bytes": 0
+  },
+  "formal_U40_budget_credit": 0,
+  "innovation_established": false,
+  "limitation": "PLAIN candidate exceeded prelocked parameter tolerances on two disposable diagnostic updates despite passing gradient/Adam/buffer/loss tolerances. FULL strict comparison stopped at an unsupported deterministic backward before any optimizer update. No overall equivalence, speedup, model accuracy, convergence or publication claim. Original non-strict training is not invalidated by this diagnostic.",
+  "main_paired_frontier": 2816,
+  "main_training": false,
+  "model_weights_adopted": false,
+  "overall_comparison_complete": false,
+  "resource_violation_observed": false,
+  "schema": "U56-DGX-strict-equivalence-sanitized-actual-failure-v1",
+  "source_and_terminal_metadata_verified": true,
+  "speedup_established": false,
+  "status": "ACTUAL1_PLAIN_PARAMETER_TOLERANCE_EXCEEDED_FULL_UNSUPPORTED_DETERMINISTIC_BACKWARD",
+  "successful_candidate_updates": 2,
+  "successful_disposable_updates": 7,
+  "successful_original_updates": 5,
+  "thresholds_changed_after_result": false
+}

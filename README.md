@@ -2,7 +2,7 @@
 
 <!-- U54_ACTUAL_INPUTS_AND_BASELINE_CONTROL_20261018_01 -->
 
-**2026-10-18 最新已核验状态：** 全741图/1661实例的CPU便携输入导出已通过；DGX全量真实载入尚未验证。更新等价性试验因原法自重放不逐位相等而停止（实际5次原法更新，候选未运行）。正式主训练仍已核验2816/37050步，满足原资源门后已启动下一256步，未提前计完成；无新增AP。见[全量输入、对照失败与续训记录](research_round_20260925_global/U54_ALL_INPUTS_AND_UPDATE_CONTROL_20261018.md)、[全量导出汇总](research_round_20260925_global/results/U53_ALL741_CPU_EXPORTS_ACTUAL_20261018.json)和[原始对照失败摘要](research_round_20260925_global/results/U52_DGX_EQUIVALENCE_ACTUAL_FAILURE_20261018.json)。
+**2026-10-18 最新状态：** 全741图/1661实例的本机CPU便携导出已通过；DGX全量传输与实际读取尚未完成。本机接续因RAM低于原限额实际停止，正式进度仍为2816/37050步/臂，严格失败资格存在原输出捕获缺口。DGX严格诊断中PLAIN原法自重放通过，候选参数超出预锁容差；FULL遇到不支持的确定性反向，未完成比较。候选未采纳，无新增AP。见[最新真实结果及下一步](research_round_20260925_global/U56_ACTUAL_STRICT_CONTROL_AND_MAIN_RESOURCE_STOP_20261018.md)、[全量导出汇总](research_round_20260925_global/results/U53_ALL741_CPU_EXPORTS_ACTUAL_20261018.json)和[严格诊断摘要](research_round_20260925_global/results/U56_DGX_STRICT_EQUIVALENCE_ACTUAL_FAILURE_20261018.json)。
 
 
 <!-- U53_INPUT_PREPARATION_20261018_01 -->
