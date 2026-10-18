@@ -1,0 +1,222 @@
+{
+  "AP": null,
+  "AP_evaluated": false,
+  "TGRS_readiness_established": false,
+  "accuracy_gain_established": false,
+  "as_of_UTC": "2026-10-18T14:37:44.882171+00:00",
+  "comparison_scope": {
+    "capacity_matched": false,
+    "protocol": "FP32 RGB400 B1; original U39 update; query chunk1; BCE+softDice mean over matched queries; AdamW lr3e-4 wd1e-4; new independent DGX E50 from zero; deterministic_algorithms=False; no U52 VJP; no local-state splice",
+    "same_fixed_FIT_population": true,
+    "same_training_span_order_recipe": true,
+    "shared_initialization_items": 104
+  },
+  "core_novelty_established": false,
+  "formal": {
+    "SSH_exit_code": 0,
+    "accepted_updates_per_arm": 256,
+    "aggregate_accepted_updates": 512,
+    "all_owned_processes_absent": true,
+    "arms": {
+      "FULL": {
+        "CUDA_cleanup": {
+          "allocated": 0,
+          "reserved": 0
+        },
+        "matched_instance_visits": 525,
+        "parameters": {
+          "allocated": 67303293,
+          "effective": 53122947,
+          "inactive": 14180346
+        },
+        "updates_completed": 256
+      },
+      "PLAIN": {
+        "CUDA_cleanup": {
+          "allocated": 0,
+          "reserved": 0
+        },
+        "matched_instance_visits": 525,
+        "parameters": {
+          "allocated": 47201125,
+          "effective": 47198305,
+          "inactive": 2820
+        },
+        "updates_completed": 256
+      }
+    },
+    "checkpoint_and_trace_bytes_verified": true,
+    "final_CUDA_cleanup": {
+      "allocated": 0,
+      "reserved": 0
+    },
+    "minimum_available_RAM_bytes": 55820165120,
+    "mode": "FORMAL",
+    "original_tool_exit_code": 0,
+    "owner_elapsed_seconds": 956.3854875229881,
+    "peak_group_RSS_bytes": 12880809984,
+    "resource_violations": [],
+    "root_accepted": true,
+    "run_id": "U57_DGX_FORMAL_s3101_20261018_01",
+    "seed": 202610173101,
+    "source_and_logs_byte_verified": true,
+    "span": {
+      "start": 0,
+      "stop": 256
+    },
+    "target_updates_per_arm": 37050,
+    "whole_GPU_WDDM8GiB_contract_certified": false,
+    "whole_GPU_observed_peak_MiB": null,
+    "worker_exit_code": 0
+  },
+  "input_and_disposable_smoke": {
+    "AP": null,
+    "as_of_UTC": "2026-10-18T14:12:51.273048+00:00",
+    "formal_training_started_as_of_snapshot": false,
+    "private_runtime_paths_included": false,
+    "records": [
+      {
+        "CUDA_uninitialized": true,
+        "SSH_exit_code": 0,
+        "all_owned_processes_absent": true,
+        "all_sources_and_logs_byte_verified": true,
+        "failed_loads": 0,
+        "images": 741,
+        "kind": "CPU_INPUT_VALIDATION",
+        "matched_GT": 1661,
+        "minimum_available_RAM_bytes": 73293193216,
+        "no_training": true,
+        "original_tool_exit_code": 0,
+        "owner_elapsed_seconds": 94.77248407699517,
+        "peak_group_RSS_bytes": 666492928,
+        "resource_violations": [],
+        "root_accepted": true,
+        "worker_exit_code": 0
+      },
+      {
+        "G_per_update": {
+          "FULL": [
+            1
+          ],
+          "PLAIN": [
+            1
+          ]
+        },
+        "SSH_exit_code": 0,
+        "all_owned_processes_absent": true,
+        "all_sources_and_logs_byte_verified": true,
+        "formal_training_budget_credit": 0,
+        "input_indices": {
+          "FULL": [
+            54
+          ],
+          "PLAIN": [
+            54
+          ]
+        },
+        "kind": "SMOKE",
+        "minimum_available_RAM_bytes": 56669757440,
+        "mode": "SMOKE",
+        "original_tool_exit_code": 0,
+        "owner_elapsed_seconds": 37.01486279099481,
+        "peak_group_RSS_bytes": 12928786432,
+        "resource_violations": [],
+        "restored_all_state_exact": {
+          "FULL": null,
+          "PLAIN": null
+        },
+        "root_accepted": true,
+        "run_id": "U57_DGX_SMOKE_s3101_20261018_01",
+        "span": {
+          "start": 0,
+          "stop": 1
+        },
+        "updates_per_arm": {
+          "FULL": 1,
+          "PLAIN": 1
+        },
+        "whole_GPU_observed_peak_MiB": null,
+        "worker_exit_code": 0
+      },
+      {
+        "G_per_update": {
+          "FULL": [
+            27
+          ],
+          "PLAIN": [
+            27
+          ]
+        },
+        "SSH_exit_code": 0,
+        "all_owned_processes_absent": true,
+        "all_sources_and_logs_byte_verified": true,
+        "formal_training_budget_credit": 0,
+        "input_indices": {
+          "FULL": [
+            710
+          ],
+          "PLAIN": [
+            710
+          ]
+        },
+        "kind": "SMOKE",
+        "minimum_available_RAM_bytes": 57215254528,
+        "mode": "SMOKE",
+        "original_tool_exit_code": 0,
+        "owner_elapsed_seconds": 62.90861345099984,
+        "peak_group_RSS_bytes": 13152649216,
+        "resource_violations": [],
+        "restored_all_state_exact": {
+          "FULL": true,
+          "PLAIN": true
+        },
+        "root_accepted": true,
+        "run_id": "U57_DGX_SMOKE_s3101_20261018_01",
+        "span": {
+          "start": 1,
+          "stop": 2
+        },
+        "updates_per_arm": {
+          "FULL": 1,
+          "PLAIN": 1
+        },
+        "whole_GPU_observed_peak_MiB": null,
+        "worker_exit_code": 0
+      }
+    ],
+    "schema": "U57-public-safe-CPU-and-smoke-observations-v1",
+    "scope": "Input integrity and two disposable continuation segments only; no accuracy, speed superiority, full-population resource, SOTA or publication claim.",
+    "weights_included": false
+  },
+  "local_main": {
+    "accepted_updates_per_arm": 2816,
+    "failed_partial_state_reused": false,
+    "fresh_resource_observations": [
+      {
+        "UTC": "2026-10-18T14:35:20.628957+00:00",
+        "free_RAM_bytes": 31431491584,
+        "ready": false,
+        "whole_GPU_used_MiB": 11523
+      },
+      {
+        "UTC": "2026-10-18T14:35:54.138122+00:00",
+        "free_RAM_bytes": 30896762880,
+        "ready": false,
+        "whole_GPU_used_MiB": 11524
+      }
+    ],
+    "latest_observed_actual1_unqualified_capture_gap_preserved": true,
+    "status": "WAITING_ORIGINAL_RESOURCE_ADMISSION",
+    "target_updates_per_arm": 37050
+  },
+  "next": [
+    "Continue the same accepted independent DGX FORMAL profile toward37050 per arm; preserve full state and fixed endpoint rules.",
+    "Admit local2816 continuation only after the original resource gates and reviewed capture-gap recovery branch pass.",
+    "At the locked full endpoint evaluate mask AP/AP75/recall/cost; then diagnose fixed-query transitions and compare capacity/compute controls.",
+    "Repeated seeds, direct-prior strong comparisons and cross-dataset evidence remain required."
+  ],
+  "raw_runtime_payloads_published": false,
+  "schema": "U57-public-sanitized-execution-summary-v1",
+  "status": "FORMAL_PAIRED_PREFIX_256_ROOT_ACCEPTED",
+  "weights_published": false
+}

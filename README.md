@@ -1,5 +1,17 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
+<!-- U57_ACTUAL_FORMAL_20261018_01 -->
+
+## 当前状态（2026-10-18）
+
+全741图输入已在DGX实际校验通过；两段接续测试通过；独立正式训练已接收**PLAIN/FULL各256/37050步**。本机保持**各2816/37050步**，当前资源不满足原准入门槛。两条训练记录独立，不能相加。**无新增AP或已证实涨点，尚无TGRS投稿就绪结论。**
+
+- [本轮真实结果、限制及下一步](research_round_20260925_global/U57_ALL741_DGX_TRAINING_ACTUAL_20261018.md) · [结构化实测摘要](research_round_20260925_global/results/U57_DGX_ORIGINAL_TRAINING_ACTUAL_20261018.json)
+- [直接先例查新](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md) · [固定query风险与否证设计](research_round_20260925_global/U57_FIXED_QUERY_REFINEMENT_RISK_AND_DIRECT_PRIORS_20261018.md)
+- [训练实现与协议](research_round_20260925_global/code/U57_DGX_ORIGINAL_UPDATE_TRAINING_DRAFT_20261018_01/README.md)：源码成稿时的“未执行”标签保留为历史；当前实际执行状态以上述结果为准。
+
+<details>
+<summary>历史阶段记录（以顶部当前状态为准）</summary>
 
 <!-- U57_NEAREST_PRIOR_20261018_01 -->
 
@@ -189,6 +201,8 @@
 新[显式区域装配接口](research_round_20260925_global/N13_FIXED_PR_NATIVE_DOMAIN_ASSEMBLY_SYNTHETIC_CHECK_20261014.md)连接native L、CPU作者回调与互斥旧域/halo；49项字面回调检查及13项拒绝实际通过，尚未验证真实作者数值、来源、CUDA或SAR域。
 
 新[诊断接口补齐](research_round_20260925_global/N13_FIXED_PR_PRECOMPUTED_POPULATION_AND_DISTANCE_INTERFACE_CHECK_20261014.md)复用同一人口汇总，允许保留逐对JSON后释放栅格，并在原LOG重建后透传显式距离分层。59项/10拒绝和35项有限检查实际通过；不认证预计算数值、距离来源或真实SAR效果。
+
+</details>
 
 ## 从这里开始
 
