@@ -5,6 +5,10 @@
 
 [最近直接先例查新（含2026已发表来源）](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)：保留5项直接相关先例，区分原文/作者代码/仅索引可得；U形网络+实例条件及图像+粗mask精修不能作为宽泛首创。当前整合效用仍待公平训练，容量/计算匹配为优先解释对照；未核线索明确保留。
 
+<!-- ROOT_U54_U57_ACCEPTANCE_CODE_20261018_01 -->
+
+[全量输入接收元数据草稿](research_round_20260925_global/code/U54_ROOT_ACCEPTANCE_METADATA_DRAFT_20261018_01/README.md) / [DGX训练接收元数据草稿](research_round_20260925_global/code/U57_ROOT_ACCEPTANCE_METADATA_DRAFT_20261018_01/README.md)：辅助将真实退出、回收与逐项字节核验组织为下一段输入；合计5项微型标准库测试通过，尚未用于真实接收。函数不观察外部进程、不读取数据、不自行推进训练，不替代真实执行证据。
+
 <!-- U57_ORIGINAL_UPDATE_CODE_20261018_01 -->
 
 [DGX 独立原更新训练源码草稿](research_round_20260925_global/code/U57_DGX_ORIGINAL_UPDATE_TRAINING_DRAFT_20261018_01/README.md)：保留原数值更新，新增全状态断点接续和配对提交；5项微型标准库测试及独立静态审查通过，修复输入摘要字段不一致。尚未运行模型/训练，必须先真实接收全741图验证，再执行一次独立SMOKE与全新E50；不计入本机2816步，不构成涨点或速度结论。
