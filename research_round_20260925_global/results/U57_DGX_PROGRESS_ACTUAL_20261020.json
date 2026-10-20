@@ -1,0 +1,116 @@
+{
+  "AP_evaluated": false,
+  "DGX_independent_account": {
+    "failed": 2,
+    "normal": 7,
+    "total": 9
+  },
+  "DGX_updates_per_arm": 768,
+  "TGRS_ready": false,
+  "counts_spliced": false,
+  "innovation_established": false,
+  "local_account_unchanged": true,
+  "local_updates_per_arm": 2816,
+  "observed_UTC": "2026-10-20T15:47:15.753732+00:00",
+  "precision_improvement_established": false,
+  "schema": "U57-public-safe-scalar-progress-v1",
+  "segments": [
+    {
+      "AP": false,
+      "DEV": false,
+      "TEST": false,
+      "accepted": true,
+      "arms": {
+        "FULL": {
+          "GPU_cleanup": {
+            "allocated": 0,
+            "reserved": 0
+          },
+          "end_cursor": {
+            "completed_epochs": 0,
+            "global_updates": 512,
+            "within_epoch": 512
+          },
+          "matched_instance_visits_added": 576,
+          "restored_all_state_exact": true,
+          "updates_added": 256
+        },
+        "PLAIN": {
+          "GPU_cleanup": {
+            "allocated": 0,
+            "reserved": 0
+          },
+          "end_cursor": {
+            "completed_epochs": 0,
+            "global_updates": 512,
+            "within_epoch": 512
+          },
+          "matched_instance_visits_added": 576,
+          "restored_all_state_exact": true,
+          "updates_added": 256
+        }
+      },
+      "owner_elapsed_seconds": 1017.6710480939946,
+      "owner_minimum_available_RAM_bytes": 56759980032,
+      "owner_peak_RSS_bytes": 13104611328,
+      "owner_violations": [],
+      "span": {
+        "start": 256,
+        "stop": 512
+      },
+      "worker_minimum_available_RAM_bytes": 56759980032,
+      "worker_peak_RSS_bytes": 13006712832,
+      "worker_violations": []
+    },
+    {
+      "AP": false,
+      "DEV": false,
+      "TEST": false,
+      "accepted": true,
+      "arms": {
+        "FULL": {
+          "GPU_cleanup": {
+            "allocated": 0,
+            "reserved": 0
+          },
+          "end_cursor": {
+            "completed_epochs": 1,
+            "global_updates": 768,
+            "within_epoch": 27
+          },
+          "matched_instance_visits_added": 624,
+          "restored_all_state_exact": true,
+          "updates_added": 256
+        },
+        "PLAIN": {
+          "GPU_cleanup": {
+            "allocated": 0,
+            "reserved": 0
+          },
+          "end_cursor": {
+            "completed_epochs": 1,
+            "global_updates": 768,
+            "within_epoch": 27
+          },
+          "matched_instance_visits_added": 624,
+          "restored_all_state_exact": true,
+          "updates_added": 256
+        }
+      },
+      "owner_elapsed_seconds": 1062.453248498001,
+      "owner_minimum_available_RAM_bytes": 59565826048,
+      "owner_peak_RSS_bytes": 13131669504,
+      "owner_violations": [],
+      "span": {
+        "start": 512,
+        "stop": 768
+      },
+      "worker_minimum_available_RAM_bytes": 59565826048,
+      "worker_peak_RSS_bytes": 13036675072,
+      "worker_violations": []
+    }
+  ],
+  "status": "ACTUAL_TERMINATED_AND_ROOT_ACCEPTED",
+  "updates_budget_per_arm": 37050,
+  "weights_or_runtime_payload_published": false
+}

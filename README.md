@@ -1,8 +1,33 @@
 # SEAL：公共 SAR 船舶实例分割研究
 
+<!-- U57_U60_ACTUAL_20261021_01 -->
+
+## 当前状态（2026-10-21）
+
+DGX PLAIN/FULL 已各完成并接收 **1024/37050 次正式更新**。独立SMOKE2两臂的真实CPU构造/严格恢复已通过，未训练、未forward、不计正式额度；本机仍各2816次，两条记录独立。**尚无最终AP、涨点或TGRS就绪结论。**
+
+- [本轮真实训练、CPU恢复及证据边界](research_round_20260925_global/U57_U60_ACTUAL_TRAINING_AND_CPU_RESTORE_20261021.md) · [实测标量](research_round_20260925_global/results/U57_U60_ACTUAL_SCALARS_20261021.json)
+- [U60恢复检查源码](research_round_20260925_global/code/U60_DGX_SMOKE_RESTORE_ENTRY_DRAFT_20261020_01/README.md)：7项有限测试及静态审阅后另经上述真实执行。目录UNEXECUTED标签为成稿时状态；E50恢复、完整预测及AP仍待验证。
+- [U59完整候选输入草稿](research_round_20260925_global/code/U59_DGX_DEV_FULL_QUERY_PACKAGE_DRAFT_20261018_01/README.md)仍待真实导出、传输与零残差校准；[查新与直接先例](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)。
+
+<details>
+<summary>历史阶段记录（以顶部当前状态为准）</summary>
+
+<!-- U57_PROGRESS_20261020_01 -->
+
+### 2026-10-20 阶段记录
+
+DGX PLAIN/FULL 已各完成并接收 **768/37050 次正式更新**（完整一轮后再27图）；本机各2816次保持独立，不能相加。最新本机成对资源检查未全部达标，未放宽限额。**尚无最终AP、已证实涨点或TGRS就绪结论。**
+
+- [训练进展、成本、评估缺口与下一步](research_round_20260925_global/U57_TRAINING_PROGRESS_AND_EVALUATION_READINESS_20261020.md) · [实测标量记录](research_round_20260925_global/results/U57_DGX_PROGRESS_ACTUAL_20261020.json)
+- [U58模型恢复草稿](research_round_20260925_global/code/U58_DGX_FIXED50_RESTORE_DRAFT_20261018_01/README.md) · [U59全候选输入草稿](research_round_20260925_global/code/U59_DGX_DEV_FULL_QUERY_PACKAGE_DRAFT_20261018_01/README.md)：18项有限合成测试及独立静态审阅通过，真实恢复、序列化、搬运和零残差校准仍未执行。
+- [直接先例查新](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md) · [风险与否证设计](research_round_20260925_global/U57_FIXED_QUERY_REFINEMENT_RISK_AND_DIRECT_PRIORS_20261018.md)
+
+
+
 <!-- U57_ACTUAL_FORMAL_20261018_01 -->
 
-## 当前状态（2026-10-18）
+### 2026-10-18 首段历史记录
 
 全741图输入已在DGX实际校验通过；两段接续测试通过；独立正式训练已接收**PLAIN/FULL各256/37050步**。本机保持**各2816/37050步**，当前资源不满足原准入门槛。两条训练记录独立，不能相加。**无新增AP或已证实涨点，尚无TGRS投稿就绪结论。**
 
@@ -10,8 +35,7 @@
 - [直接先例查新](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md) · [固定query风险与否证设计](research_round_20260925_global/U57_FIXED_QUERY_REFINEMENT_RISK_AND_DIRECT_PRIORS_20261018.md)
 - [训练实现与协议](research_round_20260925_global/code/U57_DGX_ORIGINAL_UPDATE_TRAINING_DRAFT_20261018_01/README.md)：源码成稿时的“未执行”标签保留为历史；当前实际执行状态以上述结果为准。
 
-<details>
-<summary>历史阶段记录（以顶部当前状态为准）</summary>
+
 
 <!-- U57_NEAREST_PRIOR_20261018_01 -->
 
