@@ -14,6 +14,8 @@ DGX PLAIN/FULL 已各完成并接收 **1792/37050 次正式更新**。独立SMOK
 
 - [U63独立CPU8G导出配置](research_round_20260925_global/code/U63_DEV_REMAINING186_CPU8G_EXPORT_DRAFT_20261021_01/README.md)：已实际通过剩余186图18600候选的导出、保存后重载及Root验收；与首图拼成完整187图索引。DGX读取和零残差RLE校准仍待验证。
 
+- 本轮新状态：187包传输中，至少21包完成远端字节核验；[U65完整CPU读取入口](research_round_20260925_global/code/U65_DGX_DEV187_CPU_READER_VALIDATION_DRAFT_20261021_01/README.md)仅完成源码与静态检查，尚未真实读取。原2048候选因E盘写满丢失外层结束记录，严格前沿仍1792；保留候选与额外计算后，已预锁并启动一次同配方受控重算，未验收、不选优。
+
 <details>
 <summary>历史阶段记录（以顶部当前状态为准）</summary>
 
