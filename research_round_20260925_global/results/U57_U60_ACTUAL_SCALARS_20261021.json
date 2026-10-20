@@ -1,6 +1,94 @@
 {
   "AP_evaluated": false,
-  "DGX_updates_per_arm": 1024,
+  "DEV_single_full100_export": {
+    "AP": false,
+    "CPU_only": true,
+    "DEV_technical_input": true,
+    "DGX_read_qualified": false,
+    "RAW_read_to_create_held": false,
+    "Root_accepted": true,
+    "all_cleanup_and_control_flags_passed": true,
+    "authentic_stdout_held_retained": true,
+    "cost": {
+      "elapsed_seconds": 5.266000000294298,
+      "peak_RSS_bytes": 706146304
+    },
+    "fields": {
+      "L": {
+        "compact_storage": true,
+        "dtype": "float32",
+        "independent_storage": true,
+        "shape": [
+          100,
+          317,
+          420
+        ],
+        "source_bitexact": true
+      },
+      "M": {
+        "compact_storage": true,
+        "dtype": "float32",
+        "independent_storage": true,
+        "shape": [
+          100,
+          200,
+          200
+        ],
+        "source_bitexact": true
+      },
+      "e": {
+        "compact_storage": true,
+        "dtype": "float32",
+        "independent_storage": true,
+        "shape": [
+          100,
+          256
+        ],
+        "source_bitexact": true
+      },
+      "rgb400": {
+        "compact_storage": true,
+        "dtype": "float32",
+        "independent_storage": true,
+        "shape": [
+          1,
+          3,
+          400,
+          400
+        ],
+        "source_bitexact": true
+      }
+    },
+    "formal_training_budget_credit": 0,
+    "historical_GT_container_may_have_been_loaded": true,
+    "images": 1,
+    "natural_query_axes_retained": true,
+    "new_GT_rasterization": false,
+    "new_training": false,
+    "observed_UTC": "2026-10-20T17:07:52.476166+00:00",
+    "original_dictionaries_exact": true,
+    "original_metadata_images": 187,
+    "original_metadata_queries": 18700,
+    "owner_elapsed_seconds": 5.719000000040978,
+    "owner_whole_GPU_observed_peak_MiB": 1312,
+    "package_bytes": 71301919,
+    "prior_unqualified_failure_not_upgraded": true,
+    "queries": 100,
+    "query_order_exact": true,
+    "resource_observations": {
+      "minimum_available_RAM_bytes": 35124326400,
+      "peak_RSS_bytes": 706146304,
+      "samples": 259,
+      "sampling_errors": [],
+      "violations": []
+    },
+    "schema": "U61-public-safe-actual-single-full100-export-v1",
+    "weights_only_CPU_roundtrip_verified": true,
+    "whole_population_tensor_exported": false,
+    "whole_workflow_elapsed_not_claimed": true,
+    "zero_residual_RLE_calibration": false
+  },
+  "DGX_updates_per_arm": 1280,
   "SMOKE_CPU_restore": {
     "AP": false,
     "CUDA_uninitialized": true,
@@ -36,10 +124,10 @@
         },
         "end_cursor": {
           "completed_epochs": 1,
-          "global_updates": 1024,
-          "within_epoch": 283
+          "global_updates": 1280,
+          "within_epoch": 539
         },
-        "instance_visits_added": 556,
+        "instance_visits_added": 604,
         "restored_all_state_exact": true,
         "updates_added": 256
       },
@@ -50,31 +138,32 @@
         },
         "end_cursor": {
           "completed_epochs": 1,
-          "global_updates": 1024,
-          "within_epoch": 283
+          "global_updates": 1280,
+          "within_epoch": 539
         },
-        "instance_visits_added": 556,
+        "instance_visits_added": 604,
         "restored_all_state_exact": true,
         "updates_added": 256
       }
     },
-    "owner_elapsed_seconds": 998.9048160649982,
-    "owner_minimum_available_RAM_bytes": 59518529536,
-    "owner_peak_RSS_bytes": 13075329024,
+    "owner_elapsed_seconds": 1041.324551195008,
+    "owner_minimum_available_RAM_bytes": 59157274624,
+    "owner_peak_RSS_bytes": 13121163264,
     "resource_violations": [],
     "span": {
-      "start": 768,
-      "stop": 1024
+      "start": 1024,
+      "stop": 1280
     }
   },
+  "full187_DEV_tensor_exported": false,
   "independent_DGX_account": {
     "failed": 2,
-    "normal": 9,
-    "total": 11
+    "normal": 10,
+    "total": 12
   },
   "innovation_established": false,
   "local_updates_per_arm": 2816,
-  "observed_UTC": "2026-10-20T16:24:54.191398+00:00",
+  "observed_UTC": "2026-10-20T16:54:34.118224+00:00",
   "precision_improvement_established": false,
   "schema": "U57-U60-public-safe-actual-scalars-v1",
   "status": "ALL_ORIGINAL_TASKS_TERMINATED_AND_ROOT_ACCEPTED",
