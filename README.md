@@ -4,7 +4,7 @@
 
 ## 当前状态（2026-10-21）
 
-DGX PLAIN/FULL 已各完成并严格接收 **2048/37050 次正式更新**（2轮+566图）；后续2048→2304的原任务正在运行，尚未接收。独立SMOKE2两臂的真实CPU构造/严格恢复已通过，未训练、未forward、不计正式额度；本机仍各2816次，两条记录独立。**尚无最终AP、涨点或TGRS就绪结论。**
+DGX PLAIN/FULL 已各完成并严格接收 **2304/37050 次正式更新**（3轮+81图）。当前没有运行中的数值任务；下一段2304→2560仅计划，尚未启动。独立SMOKE2两臂的真实CPU构造/严格恢复已通过，未训练、未forward、不计正式额度；本机仍各2816次，两条记录独立。**尚无最终AP、涨点或TGRS就绪结论。**
 
 - [本轮真实训练、CPU恢复及证据边界](research_round_20260925_global/U57_U60_ACTUAL_TRAINING_AND_CPU_RESTORE_20261021.md) · [实测标量](research_round_20260925_global/results/U57_U60_ACTUAL_SCALARS_20261021.json)
 - [U60恢复检查源码](research_round_20260925_global/code/U60_DGX_SMOKE_RESTORE_ENTRY_DRAFT_20261020_01/README.md)：7项有限测试及静态审阅后另经上述真实执行。目录UNEXECUTED标签为成稿时状态；E50恢复、完整预测及AP仍待验证。
@@ -14,7 +14,7 @@ DGX PLAIN/FULL 已各完成并严格接收 **2048/37050 次正式更新**（2轮
 
 - [U63独立CPU8G导出配置](research_round_20260925_global/code/U63_DEV_REMAINING186_CPU8G_EXPORT_DRAFT_20261021_01/README.md)：已实际通过剩余186图18600候选的导出、保存后重载及Root验收；与首图拼成完整187图索引。DGX读取和零残差RLE校准仍待验证。
 
-- 本轮新状态：187包传输中，观察至2026-10-20 19:15:18 UTC，至少39包完成远端字节核验，原有限传输任务仍运行，未完成全量传输或Torch读取。[U65完整CPU读取入口](research_round_20260925_global/code/U65_DGX_DEV187_CPU_READER_VALIDATION_DRAFT_20261021_01/README.md)已有四份metadata/源码在远端staged，状态为STAGED_NOT_ADMITTED_UNEXECUTED，实际读取0图。原2048候选的磁盘记录故障及512次额外更新保持未合格；预锁的单次同配方重算现已严格接收2048，不按loss/AP选优、不宣称逐bit复现或独立种子。
+- 本轮新状态：187包传输中，观察至2026-10-20 19:36:04 UTC，至少57包完成远端字节核验，原有限传输任务仍运行，未完成全量传输或Torch读取。[U65完整CPU读取入口](research_round_20260925_global/code/U65_DGX_DEV187_CPU_READER_VALIDATION_DRAFT_20261021_01/README.md)已有四份metadata/源码在远端staged，状态为STAGED_NOT_ADMITTED_UNEXECUTED，实际读取0图。原2048候选的磁盘记录故障及512次额外更新保持未合格；此前预锁的单次同配方重算已严格接收2048，后续原段现已严格接收2304，不按loss/AP选优、不宣称逐bit复现或独立种子。
 - [U65纯metadata接收器](research_round_20260925_global/code/U65_ROOT_ACCEPTANCE_METADATA_DRAFT_20261021_01/README.md)：三文件已冻结，5项有限标准库测试及独立静态审阅通过；尚未用于真实验收，不替代外部真实退出、187包读取和字节核验。
 
 <details>
