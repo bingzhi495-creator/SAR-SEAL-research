@@ -203,6 +203,36 @@
     "status": "ACTUAL_SMOKE2_CPU_MODELS_RESTORED"
   },
   "TGRS_ready": false,
+  "U57_preupdate_CUDA_init_failure_4096_4352": {
+    "AP": false,
+    "TEST": false,
+    "TGRS_ready": false,
+    "all_original_processes_absent": true,
+    "automatic_retry": false,
+    "cause_scope": "Observed CUDA init allocation failure. Other llama-server and large file cache are observed environment factors, not yet separately established causes. No method efficacy conclusion.",
+    "failure_kind": "CUDA_INIT_OOM_BEFORE_ANY_TRAINING_UPDATE",
+    "failure_location": "torch.cuda.init(); torch.cuda.set_device(0), before optimizer/reader updates",
+    "formal_training_budget_credit": 0,
+    "innovation_established": false,
+    "minimum_available_RAM_bytes": 74516193280,
+    "observed_UTC": "2026-10-20T22:27:28.067642+00:00",
+    "optimizer_steps_entered": 0,
+    "original_SSH_exit": 1,
+    "original_tool_exit": 1,
+    "owner_elapsed_seconds": 13.562655362999067,
+    "owner_peak_group_RSS_bytes": 1222455296,
+    "resource_violations": [],
+    "source_count": 771,
+    "sources_and_logs_byte_verified": true,
+    "span": {
+      "start": 4096,
+      "stop": 4352
+    },
+    "status": "ACTUAL1_ROOT_RECORDED_PREUPDATE_CUDA_INIT_OOM",
+    "strict_FORMAL_prefix_unchanged": 4096,
+    "successful_optimizer_updates": 0,
+    "worker_exit": 1
+  },
   "U57_single_controlled_recomputation": {
     "AP_or_loss_endpoint_selection": false,
     "D_storage_authority": true,
@@ -220,6 +250,51 @@
     "stop": 2048,
     "strict_success_rules_unchanged": true,
     "worker_actual_exit": 0
+  },
+  "U57_targeted_DEV187_cache_resource_observation": {
+    "AP": false,
+    "CUDA_initialized_by_cache_operation": false,
+    "NVIDIA_primary_source": "https://docs.nvidia.com/dgx/dgx-spark/known-issues.html",
+    "TEST": false,
+    "after": {
+      "Buffers": 493993984,
+      "Cached": 57757999104,
+      "MemAvailable": 75981737984,
+      "MemFree": 18587906048,
+      "SwapFree": 17179111424
+    },
+    "automatic_retry": false,
+    "before": {
+      "Buffers": 493993984,
+      "Cached": 72595255296,
+      "MemAvailable": 75973820416,
+      "MemFree": 3734548480,
+      "SwapFree": 17179111424
+    },
+    "cache_release_is_advisory": true,
+    "declared_bytes": 15136404645,
+    "elapsed_seconds": 0.26710802801244427,
+    "exclusive_failure_cause_established": false,
+    "file_bytes_written": 0,
+    "files_deleted": 0,
+    "global_drop_caches": false,
+    "live_observation_UTC": "2026-10-20 22:29:44 UTC",
+    "new_attempt_result": "PENDING_ORIGINAL_TERMINAL",
+    "new_attempt_running_not_accepted": true,
+    "new_span": {
+      "start": 4096,
+      "stop": 4352
+    },
+    "observed_UTC": "2026-10-20T22:28:05.414429+00:00",
+    "other_processes_modified": false,
+    "packages": 187,
+    "payload_read_or_deserialized": false,
+    "phase_tag": "CACHE_ADVICE01",
+    "scientific_spec_equal_except_phase_output_paths": true,
+    "scope": "Targeted POSIX_FADV_DONTNEED on already completed own187 DEV package files only; no global flush, other service termination or scientific file/recipe change. MemFree differs from MemAvailable. Subsequent success and exclusive mechanism remain unproven.",
+    "status": "OWN_COMPLETED_DEV187_CACHE_ADVISED_DONTNEED",
+    "strict_parent": 4096,
+    "training_recovery_success_established": false
   },
   "U57_unqualified_control_failure": {
     "excluded_from_main_trajectory": true,
@@ -398,19 +473,26 @@
   "counts_spliced": false,
   "current_turn_accepted_summary": {
     "AP_evaluated": false,
-    "instance_visits_added_per_arm": 1119,
-    "segments": 2,
-    "start": 3584,
+    "instance_visits_added_per_arm": 0,
+    "pending_span": {
+      "start": 4096,
+      "stop": 4352
+    },
+    "segments": 0,
+    "start": 4096,
     "stop": 4096,
-    "updates_added_per_arm": 512
+    "updates_added_per_arm": 0
   },
   "formal_followup": {
     "AP_evaluated": false,
-    "additional_accepted_updates_per_arm": 256,
+    "additional_accepted_updates_per_arm": 0,
     "automatic_retry": false,
-    "start": 3840,
-    "status": "COMPLETED_ROOT_ACCEPTED",
-    "stop": 4096,
+    "observed_UTC": "2026-10-20T22:29:44+00:00",
+    "phase_tag": "CACHE_ADVICE01",
+    "scientific_spec_equal_except_phase_output_paths": true,
+    "start": 4096,
+    "status": "RUNNING_NOT_ROOT_ACCEPTED",
+    "stop": 4352,
     "strict_accepted_prefix": 4096
   },
   "formal_segment": {
@@ -965,15 +1047,15 @@
   "full187_population_reader_qualification_scope": "DGX U59 portable CPU inputs only; no E50 restore, model forward, RLE, AP or raw Windows provenance revalidation",
   "full187_population_reader_qualified": true,
   "independent_DGX_account": {
-    "failed": 2,
+    "failed": 3,
     "normal": 22,
-    "total": 24
+    "total": 25
   },
   "independent_DGX_account_scope": "All independent DGX runs including CPU input validation; not a training-only count",
   "innovation_established": false,
   "local_updates_per_arm": 2816,
-  "numerical_task_live": false,
-  "observed_UTC": "2026-10-20T22:14:39+00:00",
+  "numerical_task_live": true,
+  "observed_UTC": "2026-10-20T22:29:44+00:00",
   "precision_improvement_established": false,
   "previous_turn_accepted_summaries": [
     {
@@ -990,9 +1072,17 @@
       "start": 3072,
       "stop": 3584,
       "updates_added_per_arm": 512
+    },
+    {
+      "AP_evaluated": false,
+      "instance_visits_added_per_arm": 1119,
+      "segments": 2,
+      "start": 3584,
+      "stop": 4096,
+      "updates_added_per_arm": 512
     }
   ],
   "schema": "U57-U60-public-safe-actual-scalars-v1",
-  "status": "STRICT4096_ACCEPTED_ALL187_BYTES_AND_CPU_READER_ROOT_ACCEPTED_NO_NUMERICAL_TASK",
+  "status": "STRICT4096_PREUPDATE_CUDA_INIT_FAILURE_RECORDED_CACHE_ADVICE_ATTEMPT_LIVE_PENDING_TERMINAL",
   "updates_budget_per_arm": 37050
 }
