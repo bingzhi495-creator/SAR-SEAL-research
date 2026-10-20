@@ -1,23 +1,67 @@
 {
   "AP_evaluated": false,
+  "DEV_full187_export_metadata_union": {
+    "DGX_reader_qualified": false,
+    "DGX_transferred": false,
+    "Root_tensor_reload": false,
+    "images": 187,
+    "metadata_union_complete": true,
+    "package_bytes": 15136404645,
+    "queries": 18700,
+    "zero_residual_RLE_calibrated": false
+  },
   "DEV_remaining186_CPU8G_export": {
     "AP": false,
     "DGX_read_qualified": false,
     "OS_RSS_hard_cap": false,
-    "accepted_exported_images": 0,
+    "Root_accepted": true,
+    "accepted_exported_images": 186,
+    "accepted_exported_queries": 18600,
+    "actual_package_bytes": 15065102726,
+    "authentic_original_receipt": true,
     "controller_delta_tests_passed": 3,
+    "flags": {
+      "CPU_only": true,
+      "CUDA_uninitialized_after": true,
+      "CUDA_uninitialized_before": true,
+      "callerCPU_RNG_preserved": true,
+      "callerNumPy_RNG_preserved": true,
+      "callerPython_RNG_preserved": true,
+      "data_objects_released": true,
+      "default_dtype_preserved": true,
+      "grad_mode_preserved": true,
+      "module_aliases_restored": true,
+      "source_bytes_verified": true,
+      "source_unchanged_after": true,
+      "thread_controls_preserved": true
+    },
     "fresh_actual_resource_pair_eligible": true,
     "independent_static_review": "NO_BLOCKER_FOUND",
     "new_training": false,
     "old_U62_unchanged": true,
+    "original_actual_exit": 0,
     "original_numerical_functions_AST_unchanged_after_profile_mapping": true,
+    "post_terminal_pure_exit": 0,
     "pre_admission_free_RAM_bytes": 26843545600,
     "requested_images": 186,
     "requested_queries": 18600,
     "runtime_free_RAM_bytes": 17179869184,
-    "status": "ORIGINAL_EXECUTION_LIVE_NOT_ROOT_ACCEPTED",
+    "status": "ACTUAL0_ROOT_ACCEPTED_REMAINING186_EXPORT_WITH_FULL187_METADATA_UNION",
     "whole187_export_qualified": false,
+    "worker_cost": {
+      "elapsed_seconds": 293.094000000041,
+      "peak_RSS_bytes": 1212231680
+    },
     "worker_delta_tests_passed": 3,
+    "worker_resources": {
+      "minimum_available_RAM_bytes": 33315282944,
+      "minimum_output_disk_free_bytes": 157191446528,
+      "output_disk_samples": 27981,
+      "peak_RSS_bytes": 1212231680,
+      "samples": 27981,
+      "sampling_errors": [],
+      "violations": []
+    },
     "worker_sampled_RSS_limit_bytes": 8589934592
   },
   "DEV_remaining186_export": {
@@ -200,7 +244,9 @@
       "stop": 1792
     }
   },
-  "full187_DEV_tensor_exported": false,
+  "full187_DEV_tensor_exported": true,
+  "full187_export_basis": "U61 accepted ordinal0 plus U63 accepted ordinals1..186; metadata union only; no joint reader or DGX qualification",
+  "full187_population_reader_qualified": false,
   "independent_DGX_account": {
     "failed": 2,
     "normal": 12,
@@ -211,6 +257,6 @@
   "observed_UTC": "2026-10-20T18:08:28.113Z",
   "precision_improvement_established": false,
   "schema": "U57-U60-public-safe-actual-scalars-v1",
-  "status": "U57_FORMAL1792_ROOT_ACCEPTED_U63_ORIGINAL_EXPORT_LIVE",
+  "status": "U57_FORMAL1792_AND_U63_REMAINING186_ROOT_ACCEPTED_FULL187_METADATA_INDEX_COMPLETE",
   "updates_budget_per_arm": 37050
 }

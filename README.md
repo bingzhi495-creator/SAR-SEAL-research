@@ -8,11 +8,11 @@ DGX PLAIN/FULL 已各完成并接收 **1792/37050 次正式更新**。独立SMOK
 
 - [本轮真实训练、CPU恢复及证据边界](research_round_20260925_global/U57_U60_ACTUAL_TRAINING_AND_CPU_RESTORE_20261021.md) · [实测标量](research_round_20260925_global/results/U57_U60_ACTUAL_SCALARS_20261021.json)
 - [U60恢复检查源码](research_round_20260925_global/code/U60_DGX_SMOKE_RESTORE_ENTRY_DRAFT_20261020_01/README.md)：7项有限测试及静态审阅后另经上述真实执行。目录UNEXECUTED标签为成稿时状态；E50恢复、完整预测及AP仍待验证。
-- [U61完整候选导出入口](research_round_20260925_global/code/U61_DEV_FULL100_SINGLE_EXPORT_DRAFT_20261021_01/README.md)已真实通过单图100候选导出与CPU重载；全187图、DGX读取及零残差校准仍待完成。[查新与直接先例](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)。
+- [U61完整候选导出入口](research_round_20260925_global/code/U61_DEV_FULL100_SINGLE_EXPORT_DRAFT_20261021_01/README.md)已真实通过单图100候选导出与CPU重载；已与U63拼齐187图；DGX读取及零残差校准待完成。[查新与直接先例](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)。
 
-- [U62剩余186图导出入口](research_round_20260925_global/code/U62_DEV_REMAINING186_EXPORT_DRAFT_20261021_01/README.md)：有限测试和静态审阅通过，尚未绑定或执行；最新本机资源观察未达到原准入门槛。实际导出仍仅单图100候选。
+- [U62剩余186图导出入口](research_round_20260925_global/code/U62_DEV_REMAINING186_EXPORT_DRAFT_20261021_01/README.md)：有限测试和静态审阅通过，尚未绑定或执行；此前资源观察未达到其准入门槛，旧版未执行；后续独立U63已完成剩余导出。
 
-- [U63独立CPU8G导出配置](research_round_20260925_global/code/U63_DEV_REMAINING186_CPU8G_EXPORT_DRAFT_20261021_01/README.md)：差异测试和独立复核通过，新25GiB资源快照达标后已启动；尚未验收，完整187图与DGX读取仍待验证。
+- [U63独立CPU8G导出配置](research_round_20260925_global/code/U63_DEV_REMAINING186_CPU8G_EXPORT_DRAFT_20261021_01/README.md)：已实际通过剩余186图18600候选的导出、保存后重载及Root验收；与首图拼成完整187图索引。DGX读取和零残差RLE校准仍待验证。
 
 <details>
 <summary>历史阶段记录（以顶部当前状态为准）</summary>
