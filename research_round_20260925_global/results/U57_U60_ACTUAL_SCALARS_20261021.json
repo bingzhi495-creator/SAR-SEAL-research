@@ -178,7 +178,7 @@
     "whole_workflow_elapsed_not_claimed": true,
     "zero_residual_RLE_calibration": false
   },
-  "DGX_updates_per_arm": 4096,
+  "DGX_updates_per_arm": 4352,
   "SMOKE_CPU_restore": {
     "AP": false,
     "CUDA_uninitialized": true,
@@ -278,6 +278,7 @@
     "file_bytes_written": 0,
     "files_deleted": 0,
     "global_drop_caches": false,
+    "historical_observation_cutoff_UTC": "2026-10-20T22:29:44+00:00",
     "live_observation_UTC": "2026-10-20 22:29:44 UTC",
     "new_attempt_result": "PENDING_ORIGINAL_TERMINAL",
     "new_attempt_running_not_accepted": true,
@@ -294,6 +295,21 @@
     "scope": "Targeted POSIX_FADV_DONTNEED on already completed own187 DEV package files only; no global flush, other service termination or scientific file/recipe change. MemFree differs from MemAvailable. Subsequent success and exclusive mechanism remain unproven.",
     "status": "OWN_COMPLETED_DEV187_CACHE_ADVISED_DONTNEED",
     "strict_parent": 4096,
+    "subsequent_strict_followup": {
+      "accepted_prefix_per_arm": 4352,
+      "accepted_updates_per_arm": 256,
+      "exclusive_failure_cause_established": false,
+      "matched_instance_visits_per_arm": 600,
+      "observed_UTC": "2026-10-20T22:46:52.227867+00:00",
+      "phase_tag": "CACHE_ADVICE01",
+      "reference": "formal_segment",
+      "span": {
+        "start": 4096,
+        "stop": 4352
+      },
+      "speedup_established": false,
+      "status": "STRICT_ROOT_ACCEPTED"
+    },
     "training_recovery_success_established": false
   },
   "U57_unqualified_control_failure": {
@@ -470,30 +486,44 @@
     "runtime_qualified": false,
     "status": "SOURCE_COMPLETE_UNBOUND_UNEXECUTED"
   },
+  "U68_DGX_fixed50_single_shard_worker": {
+    "AP": false,
+    "actual_GPU_execution": false,
+    "actual_model_forward": false,
+    "current_training_changed": false,
+    "encoder_semantic_source_qualified": false,
+    "external_GPU_supervision_complete": false,
+    "formal_training_budget_credit": 0,
+    "independent_static_review": "NO_REMAINING_SPECIFIC_BLOCKER_FOUND",
+    "intended_role": "Load admitted sources/libraries and endpoint/entry metadata; delegate frozen U66; exclusively persist full JSON and retain exception text stack",
+    "metadata_stdlib_stub_tests_passed": 6,
+    "new_algorithm": false,
+    "new_training": false,
+    "owner_qualified": false,
+    "published_source_files": 3,
+    "remote_source_commit": "f41eb55ed3567f8d20403bd13886e290ef2a42cc",
+    "runtime_qualified": false,
+    "source_remote_verified": true,
+    "status": "SOURCE_COMPLETE_UNBOUND_UNEXECUTED",
+    "traceback_retention_gap_fixed": true
+  },
   "counts_spliced": false,
   "current_turn_accepted_summary": {
     "AP_evaluated": false,
-    "instance_visits_added_per_arm": 0,
-    "pending_span": {
-      "start": 4096,
-      "stop": 4352
-    },
-    "segments": 0,
+    "instance_visits_added_per_arm": 600,
+    "segments": 1,
     "start": 4096,
-    "stop": 4096,
-    "updates_added_per_arm": 0
+    "stop": 4352,
+    "updates_added_per_arm": 256
   },
   "formal_followup": {
     "AP_evaluated": false,
     "additional_accepted_updates_per_arm": 0,
     "automatic_retry": false,
-    "observed_UTC": "2026-10-20T22:29:44+00:00",
-    "phase_tag": "CACHE_ADVICE01",
-    "scientific_spec_equal_except_phase_output_paths": true,
-    "start": 4096,
-    "status": "RUNNING_NOT_ROOT_ACCEPTED",
-    "stop": 4352,
-    "strict_accepted_prefix": 4096
+    "start": 4352,
+    "status": "NOT_LAUNCHED",
+    "stop": 4608,
+    "strict_accepted_prefix": 4352
   },
   "formal_segment": {
     "AP": false,
@@ -505,15 +535,15 @@
         },
         "end_cursor": {
           "completed_epochs": 5,
-          "global_updates": 4096,
-          "within_epoch": 391
+          "global_updates": 4352,
+          "within_epoch": 647
         },
-        "instance_visits_added": 615,
+        "instance_visits_added": 600,
         "restored_all_state_exact": true,
         "start_cursor": {
           "completed_epochs": 5,
-          "global_updates": 3840,
-          "within_epoch": 135
+          "global_updates": 4096,
+          "within_epoch": 391
         },
         "updates_added": 256
       },
@@ -524,29 +554,30 @@
         },
         "end_cursor": {
           "completed_epochs": 5,
-          "global_updates": 4096,
-          "within_epoch": 391
+          "global_updates": 4352,
+          "within_epoch": 647
         },
-        "instance_visits_added": 615,
+        "instance_visits_added": 600,
         "restored_all_state_exact": true,
         "start_cursor": {
           "completed_epochs": 5,
-          "global_updates": 3840,
-          "within_epoch": 135
+          "global_updates": 4096,
+          "within_epoch": 391
         },
         "updates_added": 256
       }
     },
     "original_SSH_exit": 0,
     "original_terminal_tool_exit": 0,
-    "owner_elapsed_seconds": 1063.1939740570087,
-    "owner_minimum_available_RAM_bytes": 58852503552,
-    "owner_peak_RSS_bytes": 13066461184,
+    "owner_elapsed_seconds": 1032.348876463002,
+    "owner_minimum_available_RAM_bytes": 59055640576,
+    "owner_peak_RSS_bytes": 13091647488,
+    "phase_tag": "CACHE_ADVICE01",
     "resource_violations": [],
     "source_count": 771,
     "span": {
-      "start": 3840,
-      "stop": 4096
+      "start": 4096,
+      "stop": 4352
     },
     "whole_GPU_WDDM8GiB_contract_certified": false,
     "worker_exit": 0
@@ -1040,6 +1071,62 @@
       },
       "whole_GPU_WDDM8GiB_contract_certified": false,
       "worker_exit": 0
+    },
+    {
+      "AP": false,
+      "arms": {
+        "FULL": {
+          "GPU_cleanup": {
+            "allocated": 0,
+            "reserved": 0
+          },
+          "end_cursor": {
+            "completed_epochs": 5,
+            "global_updates": 4096,
+            "within_epoch": 391
+          },
+          "instance_visits_added": 615,
+          "restored_all_state_exact": true,
+          "start_cursor": {
+            "completed_epochs": 5,
+            "global_updates": 3840,
+            "within_epoch": 135
+          },
+          "updates_added": 256
+        },
+        "PLAIN": {
+          "GPU_cleanup": {
+            "allocated": 0,
+            "reserved": 0
+          },
+          "end_cursor": {
+            "completed_epochs": 5,
+            "global_updates": 4096,
+            "within_epoch": 391
+          },
+          "instance_visits_added": 615,
+          "restored_all_state_exact": true,
+          "start_cursor": {
+            "completed_epochs": 5,
+            "global_updates": 3840,
+            "within_epoch": 135
+          },
+          "updates_added": 256
+        }
+      },
+      "original_SSH_exit": 0,
+      "original_terminal_tool_exit": 0,
+      "owner_elapsed_seconds": 1063.1939740570087,
+      "owner_minimum_available_RAM_bytes": 58852503552,
+      "owner_peak_RSS_bytes": 13066461184,
+      "resource_violations": [],
+      "source_count": 771,
+      "span": {
+        "start": 3840,
+        "stop": 4096
+      },
+      "whole_GPU_WDDM8GiB_contract_certified": false,
+      "worker_exit": 0
     }
   ],
   "full187_DEV_tensor_exported": true,
@@ -1048,14 +1135,14 @@
   "full187_population_reader_qualified": true,
   "independent_DGX_account": {
     "failed": 3,
-    "normal": 22,
-    "total": 25
+    "normal": 23,
+    "total": 26
   },
   "independent_DGX_account_scope": "All independent DGX runs including CPU input validation; not a training-only count",
   "innovation_established": false,
   "local_updates_per_arm": 2816,
-  "numerical_task_live": true,
-  "observed_UTC": "2026-10-20T22:29:44+00:00",
+  "numerical_task_live": false,
+  "observed_UTC": "2026-10-20T22:46:52.227867+00:00",
   "precision_improvement_established": false,
   "previous_turn_accepted_summaries": [
     {
@@ -1083,6 +1170,6 @@
     }
   ],
   "schema": "U57-U60-public-safe-actual-scalars-v1",
-  "status": "STRICT4096_PREUPDATE_CUDA_INIT_FAILURE_RECORDED_CACHE_ADVICE_ATTEMPT_LIVE_PENDING_TERMINAL",
+  "status": "STRICT4352_ACCEPTED_CACHE_ADVICE_FOLLOWUP_COMPLETE_ORIGINAL_PREUPDATE_FAILURE_RETAINED_NO_NUMERICAL_TASK",
   "updates_budget_per_arm": 37050
 }
