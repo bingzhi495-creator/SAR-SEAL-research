@@ -8,6 +8,8 @@ DGX PLAIN/FULL 已各完成并严格接收 **8192/37050次正式更新**（11轮
 
 最新接续8192→8448在配置暂存时连接超时（实际工具退出1、SSH255），尚未创建数值启动记录；配置与失败原样保留，远端目录状态未知，不计训练额度或新增科学失败。05:58 UTC两路TCP22均不通，Tailscale显示DGX离线、最后在线约8分钟前；不能据此认定关机或具体网络原因。05:59:30 UTC本机空闲32535512KiB低于原33554432KiB门槛，整卡1329MiB；未成放行pair、未新D绑定，未启动本机训练。当前无运行数值任务，待设备恢复后先只读检查已有配置，再按原科学配方接续。
 
+后续06:14:59 UTC核查补充：本机内存清理后仅一次达标，随后又低于原门槛，未形成有效放行pair；E盘已满，D盘距原全程权重保留预算还差约43.04GiB。旧入口不能因一次内存达标直接接续。[资源与存储阻碍、规则范围及恢复条件](research_round_20260925_global/U57_LOCAL_RESOURCE_AND_STORAGE_RESTART_LIMITS_20261021.md)已单独说明；本轮新增训练为0，DGX仍离线。
+
 - [本轮真实训练、CPU恢复及证据边界](research_round_20260925_global/U57_U60_ACTUAL_TRAINING_AND_CPU_RESTORE_20261021.md) · [实测标量](research_round_20260925_global/results/U57_U60_ACTUAL_SCALARS_20261021.json)
 - [研究路线与证据范围核对](research_round_20260925_global/U57_EXPERIMENT_LINEAGE_AND_EVIDENCE_SCOPE_20261021.md)：旧24＋48实验已闭环，当前E50属于独立结构实验，总目标及证据要求保持不变。
 - [GCIE-Net直接先例补记](research_round_20260925_global/U57_GCIE_DIRECT_PRIOR_DELTA_LIMITED_20261021.md)：补充SAR跨尺度门控先例，保留全文/代码未核边界。
