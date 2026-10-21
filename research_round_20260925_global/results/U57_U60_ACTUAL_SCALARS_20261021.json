@@ -241,6 +241,53 @@
     "subsequent_strict_independent_process_check_exit": 0,
     "subsequent_worker_exit": 0
   },
+  "U57_10752_capture_recompute_ESRCH_failure": {
+    "FULL_trace_exists": false,
+    "PLAIN_flushed_completed_updates_lower_bound": 6,
+    "PLAIN_last_flushed_global_update": 10502,
+    "all_original_births_and_group_absent": true,
+    "errno": 3,
+    "exact_terminal_successful_updates": null,
+    "failure_location": "Supervisor proc_identity while reading /proc/PID/stat",
+    "failure_type": "ProcessLookupError",
+    "formal_training_budget_credit": 0,
+    "old_allowance_reset": false,
+    "original_SSH_actual_exit": 1,
+    "original_artifacts_preserved": true,
+    "original_tool_actual_exit": 1,
+    "prelock_attempts_used": 1,
+    "prelock_exhausted": true,
+    "prelock_maximum_attempts": 1,
+    "qualified": false,
+    "schema": "U57-public-supervisor-ESRCH-failure-v1",
+    "scientific_method_failure_claimed": false,
+    "span": {
+      "start": 10496,
+      "stop": 10752
+    },
+    "worker_actual_wait_exit": -15
+  },
+  "U57_10752_original_capture_loss": {
+    "all_original_births_and_group_absent": true,
+    "diagnostic_loss_visibility": "Some PLAIN per-step loss was inadvertently displayed after the capture recovery decision; no selection or recipe change used it",
+    "formal_training_budget_credit": 0,
+    "independent_seed_claimed": false,
+    "loss_or_AP_selection": false,
+    "original_SSH_actual_exit": null,
+    "original_artifacts_preserved": true,
+    "original_owner_OS_exit": null,
+    "original_tool_actual_exit": 1073807364,
+    "qualified": false,
+    "schema": "U57-public-unqualified-original-capture-loss-v1",
+    "scientific_method_failure_claimed": false,
+    "span": {
+      "start": 10496,
+      "stop": 10752
+    },
+    "worker_actual_wait_exit": 0,
+    "worker_finished_updates_per_arm": 256,
+    "worker_matched_instance_visits_per_arm": 548
+  },
   "U57_7424_prelaunch_metadata_transport_failure": {
     "AP": false,
     "automatic_retry": false,
@@ -397,6 +444,27 @@
     "original_UNKNOWN_preserved": true,
     "original_numerical_exit": 0,
     "reason": "UNKNOWN_INCOMPLETE_NUMERIC_PROC_ENTRY"
+  },
+  "U57_owner_ESRCH_fix": {
+    "AP": false,
+    "DGX_actual_control_constructor_allowlist_owner_byte_read_resource_check_SSH_exit": 0,
+    "DGX_stdlib_two_new_tests_actual_SSH_exit": 0,
+    "TGRS_ready": false,
+    "automatic_retry": false,
+    "formal_training_budget_credit": 0,
+    "full_owner_CLI_qualified": false,
+    "independent_static_review": "No specific blocker",
+    "innovation_established": false,
+    "local_candidate_green_exit": 0,
+    "local_original_red_exit": 1,
+    "maximum_new_corrected_source_numerical_attempts": 1,
+    "other_770_sources_identical": true,
+    "owner_source_sha256": "6c6e2867bc7a36624f09e6483eadaaf6cd2f8340001e839000b7d85c5ac6659e",
+    "science_parent_prelock_recipe_identical": true,
+    "scientific_library_imported_by_metadata_checks": false,
+    "scope": "Only catch ProcessLookupError together with FileNotFoundError in proc_identity",
+    "source_bytes": 37956,
+    "status": "CORRECTED_SOURCE_ONE_PROSPECTIVE_ATTEMPT_ACTUALLY_LIVE_NOT_ACCEPTED"
   },
   "U57_preupdate_CUDA_init_failure_4096_4352": {
     "AP": false,
@@ -1016,22 +1084,22 @@
     "unknown_remote_completion_automatically_cleared": false
   },
   "all_byte_transfers_reaped": true,
-  "all_numerical_tasks_reaped": true,
+  "all_numerical_tasks_reaped": false,
   "counts_spliced": false,
   "current_turn_accepted_summary": {
     "AP_evaluated": false,
-    "instance_visits_added_per_arm": 1682,
-    "segments": 3,
-    "start": 9728,
+    "instance_visits_added_per_arm": 0,
+    "segments": 0,
+    "start": 10496,
     "stop": 10496,
-    "updates_added_per_arm": 768
+    "updates_added_per_arm": 0
   },
   "formal_followup": {
     "AP_evaluated": false,
     "additional_accepted_updates_per_arm": 0,
     "automatic_retry": false,
     "start": 10496,
-    "status": "NOT_LAUNCHED",
+    "status": "CORRECTED_OWNER_ORIGINAL_LIVE_PENDING_TERMINAL",
     "stop": 10752,
     "strict_accepted_prefix": 10496
   },
@@ -2970,9 +3038,9 @@
   "full187_population_reader_qualification_scope": "DGX U59 portable CPU inputs only; no E50 restore, model forward, RLE, AP or raw Windows provenance revalidation",
   "full187_population_reader_qualified": true,
   "independent_DGX_account": {
-    "failed": 3,
+    "failed": 4,
     "normal": 47,
-    "total": 50
+    "total": 51
   },
   "independent_DGX_account_scope": "All independent DGX runs including CPU input validation; not a training-only count",
   "innovation_established": false,
@@ -3027,8 +3095,8 @@
     "successful_pair": false
   },
   "local_updates_per_arm": 2816,
-  "numerical_task_live": false,
-  "observed_UTC": "2026-10-21T13:14:59.239332+00:00",
+  "numerical_task_live": true,
+  "observed_UTC": "2026-10-21T14:26:37.029241+00:00",
   "precision_improvement_established": false,
   "previous_turn_accepted_summaries": [
     {
@@ -3133,9 +3201,17 @@
       "start": 8960,
       "stop": 9728,
       "updates_added_per_arm": 768
+    },
+    {
+      "AP_evaluated": false,
+      "instance_visits_added_per_arm": 1682,
+      "segments": 3,
+      "start": 9728,
+      "stop": 10496,
+      "updates_added_per_arm": 768
     }
   ],
   "schema": "U57-U60-public-safe-actual-scalars-v1",
-  "status": "STRICT_FORMAL10496_ACCEPTED_IDLE_NO_FINAL_AP",
+  "status": "STRICT10496_CORRECTED_OWNER_ORIGINAL_LIVE_PENDING_TERMINAL",
   "updates_budget_per_arm": 37050
 }
