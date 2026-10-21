@@ -802,21 +802,22 @@
   "all_numerical_tasks_reaped": true,
   "counts_spliced": false,
   "current_turn_accepted_summary": {
-    "AP_evaluated": false,
-    "instance_visits_added_per_arm": 1709,
-    "segments": 3,
-    "start": 7424,
+    "start": 8192,
     "stop": 8192,
-    "updates_added_per_arm": 768
+    "segments": 0,
+    "updates_added_per_arm": 0,
+    "instance_visits_added_per_arm": 0,
+    "AP_evaluated": false
   },
   "formal_followup": {
     "AP_evaluated": false,
     "additional_accepted_updates_per_arm": 0,
     "automatic_retry": false,
     "start": 8192,
-    "status": "NOT_LAUNCHED",
+    "status": "METADATA_STAGE_FAILED_BEFORE_NUMERICAL_ATTEMPT_NO_LAUNCH",
     "stop": 8448,
-    "strict_accepted_prefix": 8192
+    "strict_accepted_prefix": 8192,
+    "remote_metadata_directory_state_known": false
   },
   "formal_segment": {
     "AP": false,
@@ -2316,7 +2317,7 @@
   },
   "local_updates_per_arm": 2816,
   "numerical_task_live": false,
-  "observed_UTC": "2026-10-21T05:43:40.718595+00:00",
+  "observed_UTC": "2026-10-21T06:05:29.072Z",
   "precision_improvement_established": false,
   "previous_turn_accepted_summaries": [
     {
@@ -2397,14 +2398,22 @@
       "start": 7168,
       "stop": 7424,
       "updates_added_per_arm": 256
+    },
+    {
+      "AP_evaluated": false,
+      "instance_visits_added_per_arm": 1709,
+      "segments": 3,
+      "start": 7424,
+      "stop": 8192,
+      "updates_added_per_arm": 768
     }
   ],
   "schema": "U57-U60-public-safe-actual-scalars-v1",
   "status": "STRICT_FORMAL8192_ACCEPTED_NO_FINAL_AP",
   "updates_budget_per_arm": 37050,
   "local_training_latest_resource_observation_20261021": {
-    "UTC": "2026-10-21T04:01:43.6550903Z",
-    "free_RAM_KiB": 33018540,
+    "UTC": "2026-10-21T05:59:30.3559333Z",
+    "free_RAM_KiB": 32535512,
     "original_RAM_floor_KiB": 33554432,
     "whole_GPU_used_MiB": 1329,
     "admitted": false,
@@ -2498,5 +2507,73 @@
     "source_remote_verified_commit": "1668c14b12fc134ad9bcb34af332b3e5693e206b",
     "private_transport_and_three_explicit_metadata_candidates_prepared": true,
     "actual_mixedhost_reader_or_E50_binding_qualified": false
+  },
+  "U57_8192_prelaunch_metadata_transport_failure": {
+    "schema": "Root-U57-8192-prelaunch-transport-local-resource-observation-v1",
+    "observed_UTC": "2026-10-21T05:59:30.3559333Z",
+    "strict_DGX_updates_per_arm": 8192,
+    "strict_local_updates_per_arm": 2816,
+    "span": {
+      "start": 8192,
+      "stop": 8448
+    },
+    "metadata_stage_actual_tool_exit": 1,
+    "metadata_stage_original_SSH_returncode": 255,
+    "metadata_stage_tool_chunk": "bd9bfb",
+    "numerical_launch_attempt_created": false,
+    "numerical_execution_started": false,
+    "remote_metadata_directory_state_known": false,
+    "original_metadata_failure_preserved": true,
+    "transport_probes": {
+      "observed_UTC": "2026-10-21T05:58:41.289869+00:00",
+      "configured_remote_TCP22": false,
+      "previous_user_LAN_TCP22": false,
+      "peer_control_status_online": false,
+      "peer_last_seen_minutes_approx": 8,
+      "tool_chunks": [
+        "0d3ca6",
+        "99fdcf"
+      ]
+    },
+    "root_cause": "REMOTE_REACHABILITY_UNRESOLVED_POWER_NETWORK_OR_ROUTE_NOT_DETERMINED",
+    "old_proxy_settings_changed": false,
+    "local_resource": {
+      "observed_UTC": "2026-10-21T05:59:30.3559333Z",
+      "free_RAM_KiB": 32535512,
+      "original_RAM_floor_KiB": 33554432,
+      "whole_GPU_used_MiB": 1329,
+      "original_whole_GPU_limit_MiB": 3584,
+      "tool_chunk": "9b5363",
+      "admitted": false,
+      "successful_pair": false,
+      "new_D_binding": false,
+      "training_started": false
+    },
+    "independent_DGX_account": {
+      "normal": 38,
+      "failed": 3,
+      "total": 41
+    },
+    "new_scientific_failure_count": 0,
+    "formal_training_budget_credit": 0,
+    "all_numerical_tasks_reaped": true,
+    "AP_evaluated": false,
+    "innovation_established": false,
+    "TGRS_ready": false,
+    "final_peer_readonly_observation": {
+      "observed_UTC": "2026-10-21T06:03:32Z",
+      "peer_control_status_online": false,
+      "peer_last_seen_minutes_approx": 13,
+      "tool_chunk": "62c638",
+      "numerical_launch_created": false
+    }
+  },
+  "GCIE_query_spatial_readout_limited_evidence": {
+    "status": "PRIMARY_DOMAIN_INDEX_EXCERPT_NOT_FULLTEXT_OR_CODE_REPRODUCTION",
+    "source": "https://www.mdpi.com/2072-4292/18/15/2512",
+    "scope": "Section3.2 Eq1-2 query-conditioned masks from shared quarter-resolution spatial features",
+    "implication": "These two primitives cannot independently be claimed novel; whole residual interface/UNet++ feature organization and efficacy remain unconfirmed",
+    "report": "research_round_20260925_global/GCIE_QUERY_READOUT_EVIDENCE_LIMITED_20261021.md",
+    "changes_to_training_or_evaluation": false
   }
 }

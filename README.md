@@ -4,11 +4,14 @@
 
 ## 当前状态（2026-10-21）
 
-DGX PLAIN/FULL 已各完成并严格接收 **8192/37050次正式更新**（11轮+41图）。本轮7424→8192三段每臂合计新增768次更新、1709次匹配实例访问；最新7936→8192单段为256次更新/575次访问。各段完整训练状态接续、输入轨迹一致；原数值真实退出0，771项来源/输出/日志和独立进程观察通过后接收。全部已启动数值与字节任务已回收，下一8192→8448未启动。一次不完整进程快照UNKNOWN原样保留，仅另取只读快照，没有重跑模型或新增科学失败。本机仍各2816次，独立、不拼接。**尚无最终AP、涨点或TGRS就绪结论。**
+DGX PLAIN/FULL 已各完成并严格接收 **8192/37050次正式更新**（11轮+41图）。上一轮7424→8192三段每臂合计新增768次更新、1709次匹配实例访问；最新7936→8192单段为256次更新/575次访问。各段完整训练状态接续、输入轨迹一致；原数值真实退出0，771项来源/输出/日志和独立进程观察通过后接收。全部已启动数值与字节任务已回收，下一8192→8448未启动。一次不完整进程快照UNKNOWN原样保留，仅另取只读快照，没有重跑模型或新增科学失败。本机仍各2816次，独立、不拼接。**尚无最终AP、涨点或TGRS就绪结论。**
+
+最新接续8192→8448在配置暂存时连接超时（实际工具退出1、SSH255），尚未创建数值启动记录；配置与失败原样保留，远端目录状态未知，不计训练额度或新增科学失败。05:58 UTC两路TCP22均不通，Tailscale显示DGX离线、最后在线约8分钟前；不能据此认定关机或具体网络原因。05:59:30 UTC本机空闲32535512KiB低于原33554432KiB门槛，整卡1329MiB；未成放行pair、未新D绑定，未启动本机训练。当前无运行数值任务，待设备恢复后先只读检查已有配置，再按原科学配方接续。
 
 - [本轮真实训练、CPU恢复及证据边界](research_round_20260925_global/U57_U60_ACTUAL_TRAINING_AND_CPU_RESTORE_20261021.md) · [实测标量](research_round_20260925_global/results/U57_U60_ACTUAL_SCALARS_20261021.json)
 - [研究路线与证据范围核对](research_round_20260925_global/U57_EXPERIMENT_LINEAGE_AND_EVIDENCE_SCOPE_20261021.md)：旧24＋48实验已闭环，当前E50属于独立结构实验，总目标及证据要求保持不变。
 - [GCIE-Net直接先例补记](research_round_20260925_global/U57_GCIE_DIRECT_PRIOR_DELTA_LIMITED_20261021.md)：补充SAR跨尺度门控先例，保留全文/代码未核边界。
+- [GCIE查询读出与H/4特征窄补证](research_round_20260925_global/GCIE_QUERY_READOUT_EVIDENCE_LIMITED_20261021.md)：出版社索引§3.2式1–2显示同任务已有该组合，不单列首创；全文/代码未核，保留整体差异和效用待证。
 - [RSI4EO新预印本协议核查](research_round_20260925_global/U57_RSI4EO_PREPRINT_PROTOCOL_CHECK_20261021.md)：区分作者报告与内部实验，检查几何启示，不直接排名。
 - [GB10 CPU offload性能可行性备忘](research_round_20260925_global/U57_GB10_OFFLOAD_PERFORMANCE_FEASIBILITY_20261021.md)：仅未来瓶颈假设，尚未开展性能试验，不改变正式E50配方或训练。
 - [CUDA初始化失败与定向缓存观察](research_round_20260925_global/U57_CUDA_INIT_FAILURE_AND_TARGETED_CACHE_OBSERVATION_20261021.md)：22:29:44 UTC的pending为历史观察，后续接续已严格接收4352；原0更新失败、MemFree/MemAvailable差异及因果不确定性保留，未证明速度提升。
@@ -34,7 +37,7 @@ DGX PLAIN/FULL 已各完成并严格接收 **8192/37050次正式更新**（11轮
 - [U75/U76外部接收与人口准入边界](research_round_20260925_global/U75_U76_EXTERNAL_ACCEPTANCE_AND_POPULATION_ADMISSION_LIMITED_20261021.md) · [U75单片接收](research_round_20260925_global/code/U75_ROOT_FIXED50_SHARD_ACCEPTANCE_DRAFT_20261021_01/README.md) · [U76修订02完整人口准入](research_round_20260925_global/code/U76_ROOT_FIXED50_POPULATION_ADMISSION_DRAFT_20261021_02/README.md)：源码冻结，作者7+8项有限合成测试及独立集成静态审阅未见剩余具体阻断；01漏共同manifest的源码门已在独立02最小修复，01保留。六份新源码与本备忘已另经远端核验；新helper本轮未DGX字节暂存，未绑定或真实调用；成稿时Root结果保存/CAS及U71 CPU prelaunch语义门尚未接线；后续U78/U79已补源码调用点，真实E50运行仍未接通，不授预测、ABI、Root或AP资格。
 - [U77—U79实际调用点与证据范围](research_round_20260925_global/U77_U79_ROOT_INTEGRATION_LIMITED_20261021.md)：保留U77旧01快照缺口及02通用零字段兼容问题，独立03保持原owned身份严格性；新有限测试为U77五项+两次各新增一项、U78六项、U79四项，未重复旧suite。03的进程观察函数已仅用于本次U57终态补强并真实通过；未执行真实E50 COLLECT/ENVELOPE、预测接收/CAS或CPU评价。
 - [U80—U81原启动与已保存配置消费](research_round_20260925_global/U80_U81_ORIGINAL_LAUNCH_AND_SAVED_SPEC_LIMITED_20261021.md)：共享真实预检/Popen/wait/二进制日志源码，CPU原样消费U78保存的SPEC；保留01的三处缺口，02最小修复后与U81真共享实现合成联调通过。有限测试为U80六项＋02新增三项、U81五项；未实际启动真实E50预测或CPU评价。Windows与POSIX混合宿主须可信RootAPI的显式字节reader，默认同宿主CLI不能称即用；实际部署和后续post/active回收/接收仍待落实。
-- 连接与本机资源：此前两路连接超时、未启动的记录为历史；04:01:43 UTC远程连接恢复，原配置经只读检查与相同字节暂存后只启动一次，现已接收7424。最新本机空闲33018540KiB（低于33554432KiB）、整卡1329MiB，未成放行pair、未新D绑定，无新增本机训练或科学失败。
+- 连接与本机资源：此前7168→7424的连接失败后已恢复并接收；本次8192→8448是独立的新连接中断，具体实测及未启动范围见顶部。当前本机空闲32535512KiB低于原门槛，整卡1329MiB，无新增本机训练或科学失败。
 
 <details>
 <summary>历史阶段记录（以顶部当前状态为准）</summary>
