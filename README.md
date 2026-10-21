@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-10-21）
 
-DGX PLAIN/FULL 已各严格接收 **8960/37050次正式更新**（12轮+68图）。本轮8192→8960共3段，每臂新增768次更新、1752次匹配实例访问；最新8704→8960单段各+256/608。全部数值任务已回收，下一8960→9216尚未启动。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL 已各严格接收 **9216/37050次正式更新**（12轮+324图）。本轮8960→9216共1段，每臂新增256次更新、558次匹配实例访问；最新8960→9216单段各+256/558。下一9216→9472运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
 
-全局DGX账户41正常/3失败/44总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户42正常/3失败/45总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [本轮真实训练、CPU恢复及证据边界](research_round_20260925_global/U57_U60_ACTUAL_TRAINING_AND_CPU_RESTORE_20261021.md) · [实测标量](research_round_20260925_global/results/U57_U60_ACTUAL_SCALARS_20261021.json)
 - [研究路线与证据范围核对](research_round_20260925_global/U57_EXPERIMENT_LINEAGE_AND_EVIDENCE_SCOPE_20261021.md)：旧24＋48实验已闭环，当前E50属于独立结构实验，总目标及证据要求保持不变。
@@ -198,7 +198,7 @@ DGX PLAIN/FULL 已各完成并接收 **768/37050 次正式更新**（完整一�
 
 **自定义 UNet++ 历史训练证据：** full 版本有明确训练入口；SamplingBoundary 的 HRSID、SSDD 配置与各 5 轮、每轮 64 批的历史日志对应。未确认历史模型源码及权重身份，也不据此推断实例 AP 收益。[入口、短训记录与证据边界](research_round_20260925_global/UNETPP_HISTORICAL_TRAINING_ROUTE_EVIDENCE_20261017.md)。
 
-**当前状态（N20）：** 第二种子全187图统一COCO及独立Root接收均已完成，阶段结果冻结为`STOP_CURRENT_RECIPE`。固定主终点E24-atmost下，seed201 LOCAL/CENTER/强R仍为68.297126/67.978791/68.099385 AP，seed202仍为67.991722/67.697705/68.099385 AP；平均主差值为+0.045039 AP点（精确值+0.04503879895506202），未达到预锁1点门槛，不启动seed203、追加预算或融合。恢复原session5111实际退出0，exactheld已保存，fresh221 FIRST实际退出0后，Root外部接收实际完成；N20接收时为221正常终态+27保留失败=248、legacy pins229。原post19115实际退出1作为failure27保留，恢复只修复metadata的JSON键比较，没有重训或重算十组COCO。独立N21几何结果见下，不改变本阶段停止结论。旧独立审阅仍为WARN/provisional partial；本阶段不证明总体胜过强R、创新成立或TGRS就绪，总目标未完成。[两seed全部结果与阶段判定](research_round_20260925_global/N20_TWO_SEED_MAIN_RESULTS_20261017.md)。
+**当前状态（N20）：** 第二种子全187图统一COCO及独立Root接收均已完成，阶段结果冻结为`STOP_CURRENT_RECIPE`。固定主终点E24-atmost下，seed201 LOCAL/CENTER/强R仍为68.297126/67.978791/68.099385 AP，seed202仍为67.991722/67.697705/68.099385 AP；平均主差值为+0.045039 AP点（精确值+0.04503879895506202），未达到预锁1点门槛，不启动seed203、追加预算或融合。恢复原执行任务实际退出0，exactheld已保存，fresh221 FIRST实际退出0后，Root外部接收实际完成；N20接收时为221正常终态+27保留失败=248、legacy pins229。原post19115实际退出1作为failure27保留，恢复只修复metadata的JSON键比较，没有重训或重算十组COCO。独立N21几何结果见下，不改变本阶段停止结论。旧独立审阅仍为WARN/provisional partial；本阶段不证明总体胜过强R、创新成立或TGRS就绪，总目标未完成。[两seed全部结果与阶段判定](research_round_20260925_global/N20_TWO_SEED_MAIN_RESULTS_20261017.md)。
 
 **已完成（N21）：** 预锁32张FIT图×64个唯一整数中心、共2048组的理想插值几何诊断已实际0并完成Root外部接收。主分母2002/2048满足50%覆盖要求，同一原生2×2单元为0/2002，按原80%判据为`SHARED_FOUR_PREMISE_REJECTED`；主分母的理想系数矩阵均rank9。撤回“普遍同四角→低秩瓶颈”前提，不据此启动原生邻域训练。当前全局222正常+27失败=249、legacy pins230；不更改N20停止规则，不推实际F/LN rank、训练点分布、AP或总体模型有效性，总目标未完成。[完整结果](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_RESULT_20261017.md)、[结果前预锁原文](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_PRELOCK_20261017.md)、[机器可读摘要](research_round_20260925_global/results/N21_NATIVE_SUPPORT_GEOMETRY_SUMMARY_20261017.json)。接收前的失败及恢复时间线保留在两seed主结果说明和Git历史中。
 
