@@ -4,7 +4,7 @@
 
 ## 当前状态（2026-10-21）
 
-DGX PLAIN/FULL 已各完成并严格接收 **5888/37050次正式更新**（7轮+701图）。本轮5376→5888两段各臂合计新增512次更新、1094次匹配实例访问；最新5632→5888单段为256次更新/579次访问。当前全部数值任务及字节传输已回收，下一段5888→6144尚未启动；此前CUDA初始化0更新失败、缓存观察及各轮历史完整保留，不据后续成功认定唯一原因或宣称提速。全187包字节传输及独立U65完整CPU读取已通过，本机仍各2816次，两条训练记录独立。本机本轮仅一次空闲RAM约31.3118GiB、低于原32GiB门槛的观察，未成对放行、绑定或启动，不计科学失败。**尚无最终AP、涨点或TGRS就绪结论。**
+DGX PLAIN/FULL 已各完成并严格接收 **6400/37050次正式更新**（8轮+472图）。本轮5888→6400两段各臂合计新增512次更新、1134次匹配实例访问；最新6144→6400单段为256次更新/630次访问。当前全部数值任务及字节传输已回收，下一段6400→6656尚未启动；此前CUDA初始化0更新失败、缓存观察及各轮历史完整保留，不据后续成功认定唯一原因或宣称提速。全187包字节传输及独立U65完整CPU读取已通过，本机仍各2816次，两条训练记录独立。此前本机低于32GiB门槛的单次观察保留为历史，不能当作本轮复测或成对放行，本轮未新增本机训练。**尚无最终AP、涨点或TGRS就绪结论。**
 
 - [本轮真实训练、CPU恢复及证据边界](research_round_20260925_global/U57_U60_ACTUAL_TRAINING_AND_CPU_RESTORE_20261021.md) · [实测标量](research_round_20260925_global/results/U57_U60_ACTUAL_SCALARS_20261021.json)
 - [研究路线与证据范围核对](research_round_20260925_global/U57_EXPERIMENT_LINEAGE_AND_EVIDENCE_SCOPE_20261021.md)：旧24＋48实验已闭环，当前E50属于独立结构实验，总目标及证据要求保持不变。
@@ -19,16 +19,17 @@ DGX PLAIN/FULL 已各完成并严格接收 **5888/37050次正式更新**（7轮+
 
 - [U63独立CPU8G导出配置](research_round_20260925_global/code/U63_DEV_REMAINING186_CPU8G_EXPORT_DRAFT_20261021_01/README.md)：已实际通过剩余186图18600候选的导出、保存后重载及Root验收；与首图拼成完整187图索引。独立U65完整CPU读取已通过，零残差RLE校准仍待验证。
 
-- 本轮新状态：187/187包最终远端字节inventory已核验，原传输任务真实退出0；[U65完整CPU读取入口](research_round_20260925_global/code/U65_DGX_DEV187_CPU_READER_VALIDATION_DRAFT_20261021_01/README.md)随后独立实际读取并释放187图/18700候选，198项直接来源闭合、失败与残留均0，已由Root严格接收，摘要另行stage成功。它不证明E50恢复、模型forward、RLE或AP，历史Windows原始来源未重验。全局DGX账户29正常/3失败/32总计包含独立CPU验证和更新前失败，不是纯训练计数。旧2048磁盘故障的额外512次更新及未知SSH/owner退出保持未合格；成功重算不按loss/AP选优，也不宣称逐bit复现或独立种子。
+- 本轮新状态：187/187包最终远端字节inventory已核验，原传输任务真实退出0；[U65完整CPU读取入口](research_round_20260925_global/code/U65_DGX_DEV187_CPU_READER_VALIDATION_DRAFT_20261021_01/README.md)随后独立实际读取并释放187图/18700候选，198项直接来源闭合、失败与残留均0，已由Root严格接收，摘要另行stage成功。它不证明E50恢复、模型forward、RLE或AP，历史Windows原始来源未重验。全局DGX账户31正常/3失败/34总计包含独立CPU验证和更新前失败，不是纯训练计数。旧2048磁盘故障的额外512次更新及未知SSH/owner退出保持未合格；成功重算不按loss/AP选优，也不宣称逐bit复现或独立种子。
 - [U65纯metadata接收器](research_round_20260925_global/code/U65_ROOT_ACCEPTANCE_METADATA_DRAFT_20261021_01/README.md)：原5项有限标准库测试及静态审阅之外，本次另有真实退出、187条audit和来源/日志字节核验并完成Root接收；替身测试本身不构成执行证据。
 - [U66固定E50薄预测核心](research_round_20260925_global/code/U66_DGX_FIXED50_PREDICTION_CORE_DRAFT_20261021_01/README.md)：4项有限标准库替身测试、AST及独立静态审阅通过，修正两处真实ABI接线；仍未绑定、未执行，不构成GPU/reader/恢复/forward、owner、CPU指标或AP资格。
 - [U67固定E50完整人口薄指标核心](research_round_20260925_global/code/U67_DGX_FIXED50_POPULATION_METRICS_CORE_DRAFT_20261021_01/README.md)：7项有限标准库JSON/替身测试、AST及有限静态审阅通过；尚未绑定或实际读取数据/运行COCO/AP，没有owner或运行资格，不替代真实完整人口评价。
-- [U68固定E50单shard薄worker](research_round_20260925_global/code/U68_DGX_FIXED50_SINGLE_SHARD_WORKER_DRAFT_20261021_01/README.md)：3源码文件已发布并核验，6项有限标准库/替身接线测试及静态审阅通过；真实GPU/模型路径未执行；成稿时encoder来源待核的本机起源层已另经U69追溯确认，外部GPU监督/终态与运行资格仍待核，不授owner、预测或AP资格。
+- [U68固定E50单shard薄worker](research_round_20260925_global/code/U68_DGX_FIXED50_SINGLE_SHARD_WORKER_DRAFT_20261021_01/README.md)：3源码文件已发布并核验，6项有限标准库/替身接线测试及静态审阅通过；真实GPU/模型路径未执行；成稿时encoder来源待核的本机起源层已另经U69追溯确认，外部GPU监督/终态与运行资格仍待核，不授owner、预测或AP资格。后续补核确认旧U68/U69有限来源并集漏掉恢复所需FIT reader，旧源码的有限审阅不表示完整预测就绪。
 - [U69原encoder起源追溯](research_round_20260925_global/U69_ORIGINAL_DEV_ENCODER_PROVENANCE_LIMITED_20261021.md)：仅确认本机原DEV元数据/读出源码身份，不是teacher权重、特征新提取或运行资格。
 - [U69监督入口源码](research_round_20260925_global/code/U69_DGX_FIXED50_SINGLE_SHARD_SUPERVISION_DRAFT_20261021_01/README.md) · [未来评价源码就绪边界](research_round_20260925_global/U69_FUTURE_EVALUATION_SOURCE_READINESS_LIMITED_20261021.md)：五份目录文件冻结，6+7项有限替身测试及静态集成审阅通过；五份未来运行源码已独立DGX暂存并核字节，原mask pin通过独立overlay保留、原环境未改。运行spec未绑定，源码/真实库/模型未执行；全部21个科学源码角色闭合、E50、标定、四分片和CPU COCO及外部Root资格仍待完成。
 - [U70总体评价I/O追溯](research_round_20260925_global/U70_POPULATION_EVALUATION_IO_TRACE_AND_NEXT_ADAPTER_20261021.md) · [薄CPU worker源码](research_round_20260925_global/code/U70_DGX_FIXED50_POPULATION_METRICS_WORKER_DRAFT_20261021_01/README.md)：3份源码/说明文件已冻结、同步并核验；7项有限标准库/合成JSON及import边界替身测试、AST与Root/独立静态审阅通过，未见具体阻断。7份未来科学源码、6份原JSON（14004851字节输入）及五文件库候选已独立DGX字节暂存；未绑定、未import、未真实运行或取得ABI/AP/Root资格；实际CPU监督资格及四份真实E50分片仍缺，U71另补未执行监督源码。未来AP三态为源码约定，合成结果不是真AP。
 - [U71薄CPU监督入口](research_round_20260925_global/code/U71_DGX_FIXED50_CPU_METRICS_SUPERVISION_DRAFT_20261021_01/README.md)：4文件冻结，7项有限标准库/替身测试、AST及作者外独立与Root静态审阅通过，未见具体阻断；未来entry/owner两份源码已DGX字节暂存。未绑定、未导入或真实运行，不授ABI/AP/Root资格，四份真实E50分片及实际外部门禁仍待。
 - [U71窄范围直接先例补查](research_round_20260925_global/U71_TARGETED_DIRECT_PRIOR_UPDATE_20261021.md)：补记9月27日UnfoldCRF预印本对容量/计算控制和个体退化解释的约束；不是10月17日后新发表，不更改当前主判据或增训练臂，也不证明本方法创新或外部代码已复现。
+- [U72–U74来源闭合缺口与修复](research_round_20260925_global/U72_U73_PREDICTION_SOURCE_CLOSURE_GAP_AND_FIX_20261021.md) · [U73 worker](research_round_20260925_global/code/U73_DGX_FIXED50_PREDICTION_SOURCE_CLOSURE_DRAFT_20261021_01/README.md) · [U74监督入口](research_round_20260925_global/code/U74_DGX_FIXED50_SINGLE_SHARD_SUPERVISION_DRAFT_20261021_01/README.md)：旧U68/U69遗漏的原FIT代码引用现有独立22角色接口，保留原12整ref/14关闭门，投影原21来源及19模块给U66。作者5+6项有限新测试与独立集成静态审阅未见剩余具体阻断；7份旧候选源码及3份新源码已字节暂存，14份原路径候选仍来自非最终6144端点、须E50重核。未绑定、未执行、无真实恢复/预测/AP资格；训练和模型数学不改。
 
 <details>
 <summary>历史阶段记录（以顶部当前状态为准）</summary>
