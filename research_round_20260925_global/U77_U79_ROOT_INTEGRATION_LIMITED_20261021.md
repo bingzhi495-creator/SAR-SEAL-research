@@ -6,6 +6,10 @@ U77 将“采集”与“取得外部工具终态后封装”分开。未来 col
 
 独立审阅实际发现 U77 rev01 的一处缺口：快照中的进程随后消失、读取为 None 时继续扫描，可能漏掉该快照后出现的新子进程。原01三文件与其已通过但覆盖不足的五项测试全部保留，不能视作最终可用版本。独立 rev02 仅将扫描内 None 改为 UNKNOWN 拒收，直接观察原 owner/child 缺席的语义与接口保持不变。新增合成反例 c4d62a 真实退出1，最小修正后4e9043退出0；6ea985静态/精确差异检查退出0，未重跑旧五项。rev02 collector 为19296字节，SHA256 d50c68450af3ad526b871c6b1f5123d84e101a39520c175a268cd8e5c9085cb4。作者外独立复核只补审该差异、反例与说明，结合此前全篇审阅未见剩余具体集成阻断。它仍是有限非原子快照：权限、解析或扫描不完整等情况拒收，不能由一次观察证明未来永不出现进程。
 
+随后Root在已真实退出0的U57训练段上额外复用rev02的观察函数，只读扫描实际系统；其将合法零值身份字段错判为不合法而退出1。原训练与旧post均已退出0，本次检查器错误不计科学失败、未重跑训练，严格前沿在补证前保持7168。窄诊断观察521个进程，其中301条因合法零字段被旧规则拒，未知项为空；该诊断本身不认证进程组缺席。独立rev03仅新增通用身份校验：PID仍为正，通用父PID/组/会话/start ticks可为非负整数；原owned owner/child严格身份函数逐字保留，02的扫描中消失→UNKNOWN也不改。新一项反例d77b6c退出1→fdcdb9退出0，71f06b静态/精确差异检查退出0，独立复核未见剩余具体阻断，未重跑旧suite。最终collector为19837字节/SHA256 a5d503d5b39adb3173d5323077bd191034970435ba2eb95088713cb270369187。字段说明及内核输出依据见[proc_pid_stat手册](https://man7.org/linux/man-pages/man5/proc_pid_stat.5.html)与[Linux v6.14原始实现](https://github.com/torvalds/linux/blob/v6.14/fs/proc/array.c)。
+
+Root随后仅再次独立调用rev03观察函数检查该已停止U57段，实际工具/SSH退出0，核同一spec与owner、原出生身份缺席、原组为空、boot一致并末尾复核。原报告1638字节/SHA256 c5095c1eba6b542229aa874a98e7e04d2391b3a5f529157e231354b17b5a327a经Root核验后，才用原未改接收器严格接收7424。该有限非原子观察不是U77 COLLECT/ENVELOPE真实E50执行，不是U79接收/CAS调用，也不追溯判定旧历史无效。
+
 U79 补的是原接收器的实际调用点：核对固定 U75 原码后，真正调用 accept_shard，消费原 spec、原数值外部终态和上述 POST，再独占保存 PROOF 与 PERSISTENCE。保存成功仍是“等待 Root 观察接收工具终态”，不能由函数自授工具成功。只有 Root 实际取得该工具的整数零退出、独立 chunk 和对应文件身份后，才进入单写者提交。提交重验原 proof、完整预测和固定 U75 纯校验，要求当前权威状态确为已接受的 FORMAL E50 端点，不能拿中途训练状态替代。
 
 该 CAS 使用协作独占锁、预期旧 SHA 与替换前原字节复验，仅在 Root 为唯一写者时成立；它不防无视锁的并发写者。若原子替换后目录同步或清锁失败，权威文件可能已改变而工具报错，必须检查原字节与保留产物，不能盲目重试。它只增加作用域内的预测接收记录，不增加训练额度，也不自动启动 CPU。新增异常测试 `341638` 暴露次级清理错误遮蔽原异常，修复后四项有限测试 `cceaf2` 退出零；这不是一次真实权威状态提交。
@@ -14,4 +18,4 @@ U78 则在一次调用内真正执行固定 U76 rev02，将本次返回的四份
 
 三组测试状态据作者普通记录复述，本备忘未复跑。其边界是：U77 使用临时虚构 procfs；U79 接收夹具只在临时定义中替换虚构组件 pin，提交测试另以 stub 隔离原校验；U78 使用固定原校验函数，但为虚构材料调整临时 U70 定义中的两个 pin。生产没有这些豁免，测试未运行真实原链、模型、COCO 或实际进程探测。独立审阅与作者测试也不能互相改写成真实运行证明。
 
-尚未接通的是原 U74 SSH 预测启动、真实采集与接收工具观察、四片真正接收，以及实际 CPU launch 对本次 exact spec 的原样消费和最终指标接收。Root 后续必须依次实际执行并保存证据；本轮没有全人口预测、正式评价或发表级成功。本文不新增数学、实验计划或资格层。源码说明见 [U78](code/U78_ROOT_CPU_PRELAUNCH_BINDING_DRAFT_20261021_01/README.md) 与 [U79](code/U79_ROOT_FIXED50_ACTUAL_ACCEPT_COMMIT_DRAFT_20261021_01/README.md)；[U77 rev02](code/U77_ROOT_EXTERNAL_POST_COLLECTOR_DRAFT_20261021_02/README.md)为当前源码候选；[rev01](code/U77_ROOT_EXTERNAL_POST_COLLECTOR_DRAFT_20261021_01/README.md)仅为有已知缺口的历史。
+尚未接通的是原 U74 SSH 预测启动、真实采集与接收工具观察、四片真正接收，以及实际 CPU launch 对本次 exact spec 的原样消费和最终指标接收。Root 后续必须依次实际执行并保存证据；本轮没有全人口预测、正式评价或发表级成功。本文不新增数学、实验计划或资格层。源码说明见 [U78](code/U78_ROOT_CPU_PRELAUNCH_BINDING_DRAFT_20261021_01/README.md) 与 [U79](code/U79_ROOT_FIXED50_ACTUAL_ACCEPT_COMMIT_DRAFT_20261021_01/README.md)；[U77 rev03](code/U77_ROOT_EXTERNAL_POST_COLLECTOR_DRAFT_20261021_03/README.md)为当前源码候选；[rev01](code/U77_ROOT_EXTERNAL_POST_COLLECTOR_DRAFT_20261021_01/README.md)和[rev02](code/U77_ROOT_EXTERNAL_POST_COLLECTOR_DRAFT_20261021_02/README.md)保留其已知缺口与原测试记录。
