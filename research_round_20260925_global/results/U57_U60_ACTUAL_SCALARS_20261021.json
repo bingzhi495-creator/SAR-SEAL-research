@@ -367,6 +367,44 @@
     "stage": "post_training_metadata_retrieval",
     "strict_post_and_census_and_Root_acceptance_passed": true
   },
+  "U57_13824_original_capture_failure_20261025": {
+    "AP_evaluated": false,
+    "actual_terminal": {
+      "SSH_returncode": 255,
+      "root_observed_tool_exit_code": 1,
+      "tool_chunk": "3b42ac",
+      "worker_returncode": 0
+    },
+    "all_numerical_tasks_reaped": true,
+    "cause_confirmed": false,
+    "failure_kind": "original execution capture transport nonzero; not a demonstrated model failure",
+    "formal_budget_credit_added": 0,
+    "independent_DGX_account": {
+      "failed": 5,
+      "normal": 60,
+      "total": 65
+    },
+    "independent_seed_or_repeat_claim": false,
+    "new_recovery_attempt_started": false,
+    "normal_success_acceptance_called": false,
+    "observed_UTC": "2026-10-24T19:33:36.496892+00:00",
+    "outputs_may_be_training_parent": false,
+    "private_operational_paths_credentials_or_endpoints_included": false,
+    "remote_owner_reaped": true,
+    "reported_remote_completed_prefix": 14080,
+    "reported_unqualified_matched_instance_visits_per_arm": 509,
+    "reported_unqualified_updates_per_arm": 256,
+    "schema": "U57-original-capture-failure-public-safe-status-v1",
+    "source_and_output_metadata_byte_verified": true,
+    "source_count": 771,
+    "span": {
+      "start": 13824,
+      "stop": 14080
+    },
+    "status": "ORIGINAL_TOOL1_SSH255_REMOTE_COMPLETE_OUTPUTS_UNQUALIFIED",
+    "strict_accepted_prefix": 13824,
+    "strict_original_birth_and_group_absence_observed": true
+  },
   "U57_7424_prelaunch_metadata_transport_failure": {
     "AP": false,
     "automatic_retry": false,
@@ -1245,12 +1283,20 @@
     "paper": "SegS-YOLO",
     "user_author_identity_confirmed": null
   },
+  "external_method_comparison_20261025": {
+    "DiffSARShipInst_same_protocol_reproduction_completed": false,
+    "SAMRefiner_same_coarse_mask_evaluation_completed": false,
+    "SegS_YOLO_same_protocol_reproduction_completed": false,
+    "current_FULL_endpoint_AP_available": false,
+    "document": "U57_EXTERNAL_METHOD_COMPARISON_STATUS_20261025.md",
+    "external_same_protocol_fully_trained_comparison_completed": false
+  },
   "formal_followup": {
     "AP_evaluated": false,
     "additional_accepted_updates_per_arm": 0,
     "automatic_retry": false,
     "start": 13824,
-    "status": "NOT_LAUNCHED",
+    "status": "ORIGINAL_TOOL1_SSH255_REMOTE_COMPLETE_OUTPUTS_UNQUALIFIED",
     "stop": 14080,
     "strict_accepted_prefix": 13824
   },
@@ -3950,9 +3996,9 @@
     "updates_increment_per_arm": 512
   },
   "independent_DGX_account": {
-    "failed": 4,
+    "failed": 5,
     "normal": 60,
-    "total": 64
+    "total": 65
   },
   "independent_DGX_account_scope": "All independent DGX runs including CPU input validation; not a training-only count",
   "innovation_established": false,
@@ -4008,7 +4054,7 @@
   },
   "local_updates_per_arm": 2816,
   "numerical_task_live": false,
-  "observed_UTC": "2026-10-24T18:12:11.136146+00:00",
+  "observed_UTC": "2026-10-24T19:34:16.176273+00:00",
   "precision_improvement_established": false,
   "previous_turn_accepted_summaries": [
     {
@@ -4150,10 +4196,13 @@
     ]
   },
   "schema": "U57-U60-public-safe-actual-scalars-v1",
-  "status": "STRICT_FORMAL13824_ACCEPTED_IDLE_NO_FINAL_AP",
+  "status": "STRICT_FORMAL13824_IDLE_ORIGINAL_CAPTURE_FAILED_CLOSED_NO_FINAL_AP",
   "teacher_identity_and_data_scope_20261025": {
     "DiffSARShipInst_reproduction_supported_by_this_native_result": false,
-    "actual_teacher_training_roster_DEV_intersection_reaudited": false,
+    "actual_teacher_E24_roster_audit": "results/U57_E24_TRAINING_ROSTER_SAFE_AUDIT_20261025.json",
+    "actual_teacher_E24_training_roster_DEV_intersection_count": 0,
+    "actual_teacher_training_roster_DEV_intersection_reaudited": true,
+    "all_upstream_training_data_ancestry_verified": false,
     "current_recipe_or_scientific_results_changed": false,
     "document": "U57_TEACHER_IDENTITY_AND_DATA_EXPOSURE_SCOPE_20261025.md",
     "e_field": "final_instance_mask_embedding_not_raw_query_token",

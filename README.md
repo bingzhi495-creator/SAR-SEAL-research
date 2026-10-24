@@ -4,9 +4,12 @@
 
 ## 当前状态（2026-10-25）
 
-DGX PLAIN/FULL 已各严格接收 **13824/37050次正式更新**（18轮+486图）。本轮10752→13824共12段，每臂新增3072次更新、6996次匹配实例访问；最新13568→13824单段各+256/594。全部数值任务已回收，下一13824→14080尚未启动。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL 已各严格接收 **13824/37050次正式更新**（18轮+486图，预算37.31%）。随后13824→14080段远端两臂各执行256次更新、509次匹配实例访问并退出0，但原始本机工具退出1、SSH退出255；该段已按失败采集闭环，正式新增计数为0，产物不能作为接续父状态。全部数值任务已回收，尚未启动新的恢复尝试。本机仍各2816次，独立、不拼接、不当作重复种子。**尚无当前固定50轮端点AP、涨点、创新成立或TGRS就绪结论。**
 
-全局DGX账户60正常/4失败/64总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户60正常/5失败/65总计，包含独立CPU验证，并非纯训练次数。原失败、额外计算和历史结果均保留；不能把网络采集失败写成模型失效。E50模型恢复、预测、校准和完整评价仍待。
+
+- [External method comparison: actual results, literature scope and missing fair controls (2026-10-25)](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_STATUS_20261025.md)
+- [Original E24 actual training roster audit](research_round_20260925_global/results/U57_E24_TRAINING_ROSTER_SAFE_AUDIT_20261025.json) · [Latest capture failure and unchanged formal prefix](research_round_20260925_global/results/U57_13824_CAPTURE_FAILURE_SAFE_STATUS_20261025.json)
 
 - [Current internal dataset lineage and protocol evidence (2026-10-24)](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md)
 - [Conditional ordinary capacity control: design only, not implemented](research_round_20260925_global/U57_CONDITIONAL_PLAIN_CAPACITY_CONTROL_DESIGN_20261024.md)
