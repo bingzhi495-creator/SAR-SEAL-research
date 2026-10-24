@@ -1,12 +1,12 @@
-# 正式训练11520步、CPU恢复与完整候选读取进展（2026-10-21）
+# 正式训练11776步、CPU恢复与完整候选读取进展（2026-10-21）
 
-DGX PLAIN/FULL 已各严格接收 **11520/37050次正式更新**（15轮+405图）。本轮10752→11520共3段，每臂新增768次更新、1795次匹配实例访问；最新11264→11520单段各+256/592。全部数值任务已回收，下一11520→11776尚未启动。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL 已各严格接收 **11776/37050次正式更新**（15轮+661图）。本轮10752→11776共4段，每臂新增1024次更新、2366次匹配实例访问；最新11520→11776单段各+256/571。下一11776→12032运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
 
 <!-- U57_SAFE_STATUS_CURRENT_BEGIN -->
 
 ## 当前已接收标量摘要
 
-最新11264→11520：原tool/SSH/worker均为严格整数0，两臂完整状态恢复，771项来源范围；owner 1052.539秒、组RSS峰值13043564544字节、可用RAM最低62087258112字节，违规为空。最终CUDA allocated/reserved均0，仅指配对两臂完成后的进程状态（PROCESS_FINAL_AFTER_BOTH_ARMS），不分别归为逐臂峰值或整卡8GiB证明。全局DGX账户51正常/4失败/55总计，含CPU验证而非纯训练。
+最新11520→11776：原tool/SSH/worker均为严格整数0，两臂完整状态恢复，771项来源范围；owner 1005.113秒、组RSS峰值13094150144字节、可用RAM最低62178889728字节，违规为空。最终CUDA allocated/reserved均0，仅指配对两臂完成后的进程状态（PROCESS_FINAL_AFTER_BOTH_ARMS），不分别归为逐臂峰值或整卡8GiB证明。全局DGX账户52正常/4失败/56总计，含CPU验证而非纯训练。
 
 <!-- U57_SAFE_STATUS_CURRENT_END -->
 
@@ -109,7 +109,7 @@ DGX PLAIN/FULL 已各严格接收 **11520/37050次正式更新**（15轮+405图�
 
 原SSH/owner/worker真实返回0，owner/worker原birth不存在、组为空、26项来源及日志/报告字节已核验并由Root单独接收。owner耗时11.556秒、组RSS峰值2071130112字节、可用RAM最低74399010816字节，无资源违规。固定环境为Linux/aarch64、Python3.12.14、Torch2.10.0+cu130、NumPy1.26.4、psutil6.1.1，CPU0/1及两线程；并非跨版本本机恢复。
 
-**该结果仅支持实际SMOKE2的CPU恢复路径。** 它不给正式训练额度，不证明E50权重恢复、完整预测人口、真实推理、零残差RLE校准、AP、泛化或方法效用。两步技术状态不能作为中途模型选型工具。当前正式配对前沿为11520；SMOKE2不额外计入正式训练。
+**该结果仅支持实际SMOKE2的CPU恢复路径。** 它不给正式训练额度，不证明E50权重恢复、完整预测人口、真实推理、零残差RLE校准、AP、泛化或方法效用。两步技术状态不能作为中途模型选型工具。当前正式配对前沿为11776；SMOKE2不额外计入正式训练。
 
 ## 单图完整100候选真实导出
 
@@ -203,3 +203,8 @@ After the actual original55574 terminal, the existing manifest and FIT/DEV metad
 ## 2026-10-24 execution-capture source review
 
 A bounded read-only review found that durable attempt writes and catchable-exception cleanup recording could reduce SSH-terminal log loss. It did not establish the causes of the two prior missing original records, cannot guarantee recovery of a lost original tool terminal, and did not modify or test a new execution controller. Original tool0 and SSH0 remain distinct required evidence; later metadata0 cannot replace them. [Python fsync](https://docs.python.org/3.8/library/os.html#os.fsync) and [Windows TerminateProcess](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-terminateprocess) explain the relevant durability and forced-termination limits.
+
+
+## 2026-10-24 conditional capacity-control design
+
+A source-only alternative is prepared for use only after the existing primary efficacy gate: preserve PLAIN64 and the shared instance interface, then consider ordinary residual convolution capacity at H/4. Static integer counts and an illustrative58.9824G forward-MAC increment do not certify actual effective parameters, compute or latency matching. No architecture implementation, model construction, test, additional arm or current recipe change occurred. See [candidate, initialization requirements and counterexamples](U57_CONDITIONAL_PLAIN_CAPACITY_CONTROL_DESIGN_20261024.md).
