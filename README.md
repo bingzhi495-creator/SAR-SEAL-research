@@ -9,6 +9,7 @@ DGX PLAIN/FULL 已各严格接收 **16128/37050次正式更新**（21轮+567图�
 全局DGX账户69正常/6失败/75总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [15616→15872单次恢复的严格接收结果](research_round_20260925_global/results/U57_CAPTURE_RECOVERY15616_15872_SAFE_RESOLUTION_20261025.json)：失败原段保留，新恢复从合格父状态执行；通信根因和物理修复仍未证明。
+- [SAMRefiner作者API桥接候选源码](research_round_20260925_global/code/U57_SAMREFINER_REAL_BRIDGE_DRAFT_20261025_01/README.md)：7项小NumPy边界测试及独立源码审阅通过；按作者图像路径接口批量调用，真实作者函数/模型/图像、内部候选顺序及AP仍未执行或验证。
 - [SAMRefiner固定候选适配器候选源码](research_round_20260925_global/code/U57_SAMREFINER_FIXED_CANDIDATE_ADAPTER_DRAFT_20261025_01/README.md)：13项有限标准库测试及独立静态审阅通过；真实SAM桥接、推理与AP尚未完成。
 - [SAMRefiner同粗掩膜强对照的实际接口核查](research_round_20260925_global/U57_SAMREFINER_PREDICTED_MASK_INTERFACE_AUDIT_20261025.md)：默认5轮、共享编码、候选/评分及空mask适配边界；未运行。
 - [本地候选归档与整数标签转换的实际补证](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md) · [首端点前新增的标签敏感性规则](research_round_20260925_global/U57_PROSPECTIVE_ANNOTATION_SENSITIVITY_POLICY_20261025.md)
