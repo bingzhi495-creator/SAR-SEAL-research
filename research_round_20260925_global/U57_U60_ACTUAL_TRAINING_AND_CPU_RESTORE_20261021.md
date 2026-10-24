@@ -1,12 +1,12 @@
-# 正式训练12544步、CPU恢复与完整候选读取进展（2026-10-21）
+# 正式训练12800步、CPU恢复与完整候选读取进展（2026-10-21）
 
-DGX PLAIN/FULL 已各严格接收 **12544/37050次正式更新**（16轮+688图）。本轮10752→12544共7段，每臂新增1792次更新、4060次匹配实例访问；最新12288→12544单段各+256/564。下一12544→12800运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL 已各严格接收 **12800/37050次正式更新**（17轮+203图）。本轮10752→12800共8段，每臂新增2048次更新、4668次匹配实例访问；最新12544→12800单段各+256/608。全部数值任务已回收，下一12800→13056尚未启动。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
 
 <!-- U57_SAFE_STATUS_CURRENT_BEGIN -->
 
 ## 当前已接收标量摘要
 
-最新12288→12544：原tool/SSH/worker均为严格整数0，两臂完整状态恢复，771项来源范围；owner 997.587秒、组RSS峰值13079846912字节、可用RAM最低61716631552字节，违规为空。最终CUDA allocated/reserved均0，仅指配对两臂完成后的进程状态（PROCESS_FINAL_AFTER_BOTH_ARMS），不分别归为逐臂峰值或整卡8GiB证明。全局DGX账户55正常/4失败/59总计，含CPU验证而非纯训练。
+最新12544→12800：原tool/SSH/worker均为严格整数0，两臂完整状态恢复，771项来源范围；owner 1023.370秒、组RSS峰值13117476864字节、可用RAM最低61559095296字节，违规为空。最终CUDA allocated/reserved均0，仅指配对两臂完成后的进程状态（PROCESS_FINAL_AFTER_BOTH_ARMS），不分别归为逐臂峰值或整卡8GiB证明。全局DGX账户56正常/4失败/60总计，含CPU验证而非纯训练。
 
 <!-- U57_SAFE_STATUS_CURRENT_END -->
 
@@ -109,7 +109,7 @@ DGX PLAIN/FULL 已各严格接收 **12544/37050次正式更新**（16轮+688图�
 
 原SSH/owner/worker真实返回0，owner/worker原birth不存在、组为空、26项来源及日志/报告字节已核验并由Root单独接收。owner耗时11.556秒、组RSS峰值2071130112字节、可用RAM最低74399010816字节，无资源违规。固定环境为Linux/aarch64、Python3.12.14、Torch2.10.0+cu130、NumPy1.26.4、psutil6.1.1，CPU0/1及两线程；并非跨版本本机恢复。
 
-**该结果仅支持实际SMOKE2的CPU恢复路径。** 它不给正式训练额度，不证明E50权重恢复、完整预测人口、真实推理、零残差RLE校准、AP、泛化或方法效用。两步技术状态不能作为中途模型选型工具。当前正式配对前沿为12544；SMOKE2不额外计入正式训练。
+**该结果仅支持实际SMOKE2的CPU恢复路径。** 它不给正式训练额度，不证明E50权重恢复、完整预测人口、真实推理、零残差RLE校准、AP、泛化或方法效用。两步技术状态不能作为中途模型选型工具。当前正式配对前沿为12800；SMOKE2不额外计入正式训练。
 
 ## 单图完整100候选真实导出
 
@@ -209,8 +209,14 @@ A bounded read-only review found that durable attempt writes and catchable-excep
 
 A source-only alternative is prepared for use only after the existing primary efficacy gate: preserve PLAIN64 and the shared instance interface, then consider ordinary residual convolution capacity at H/4. Static integer counts and an illustrative58.9824G forward-MAC increment do not certify actual effective parameters, compute or latency matching. No architecture implementation, model construction, test, additional arm or current recipe change occurred. See [candidate, initialization requirements and counterexamples](U57_CONDITIONAL_PLAIN_CAPACITY_CONTROL_DESIGN_20261024.md).
 
-### 2026-10-25：比较审阅与事前规则补充
+### 2026-10-25：首段发布快照与事前规则补充（16:30 UTC）
 
 本轮根实际接续12288→12544，各新增256更新/564匹配实例访问并已接收；下一段12544→12800原任务在运行中，不能授予12800完成数。初次准备因连接超时退出，尚未启动数值任务；保留失败STAGE，经新只读观察远端ABSENT、同字节SPEC续传后仅启动一次，未变更配方。独立审阅发现普通文档未定位FULL/PLAIN独立的数值晋级规则，本轮首次AP前新增[规则](U57_PROSPECTIVE_UTILITY_AND_REPEAT_POLICY_20261025.md)，不是原启动时已有的预注册。按审阅修正了中间分支达到两对均值门槛后也可触发容量控制；控制结果不取消已经承诺的三对预算。
 
 已从普通N28/N26报告和安全JSON核对固定R 68.09938494745545 AP及质量排序三种子69.53736693986352 ± 0.10744864652967262 AP。前版比较遗漏两项，现已补齐；N26改变S0、保持R几何，只支持已知质量排序适配。当前无新AP或创新结论。
+
+### 2026-10-25：本轮最终已核验状态
+
+两段12288→12544→12800原训练均实际退出0，各新增512更新、1172匹配实例访问，正式每臂12800/37050（34.55%）。模型/Adam/BN/RNG恢复及771来源、原产物、日志与严格进程观察通过Root核验；本轮数值任务已全部结束，下一12800→13056未启动。配方、资源上限和源实现未变，未计算当前E50 AP。前述16:30 UTC段落保留为当时快照，不代表仍有训练运行。
+
+普通N28/N26汇总另外通过GitHub原文件字节与本地发布副本逐字节核对，引用值与本轮规则一致，未重新运行历史COCO或权重。新复验规则仅决定后续路线，不将历史评分增益视为当前结构提升；核心创新、外部强对照、重复及跨集仍未完成。
