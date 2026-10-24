@@ -4,10 +4,11 @@
 
 ## 当前状态（2026-10-21）
 
-DGX PLAIN/FULL 正式有效前缀仍为 **10496/37050 次更新**，本轮新增合格更新为0。原10496→10752段远端虽完成，但本机原始工具非零且SSH终态未知，额外每臂256次更新/548次实例访问不计正式轨迹；一次预锁采集重算又因监控程序ESRCH异常失败，已完整停止并耗尽该次额度。具体修复已通过本机针对性测试、独立静态审阅及实际DGX标准库/控制接口检查；另行前瞻锁定的一次修复版10496→10752任务于14:23 UTC启动，**仍在运行，尚未验收**。本地2816独立，不拼接或当作重复种子。无最终AP、有效涨点、创新成立或TGRS就绪结论。
+DGX PLAIN/FULL strict accepted progress remains **10752/37050 updates per arm (29.02% of this training budget)**. The repaired-owner10496-to10752 segment was genuinely accepted, +256 updates/+548 matched-instance visits per arm. The subsequent10752-to11008 remote segment finished +256/+594 per arm, but its original local tool handle is missing and original SSH terminal remains UNKNOWN, so it adds zero qualified budget. All owned processes are now independently absent; no training is currently running and no automatic replay was launched. Local2816 stays independent. No final AP, proven gain, confirmed innovation or TGRS readiness.
 
-全局DGX账户47正常/4失败/51总计，包含既往CPU验证及本轮监控失败，不是纯训练计数；当前运行段未记正常账户。全187包与U65便携CPU读取的既有范围不变，E50模型恢复、预测、校准与总体评价仍待真实执行。
+全局DGX账户48正常/4失败/52总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
+- [Current progress and complete method explanation (2026-10-24)](research_round_20260925_global/U57_CURRENT_PROGRESS_AND_METHOD_EXPLANATION_20261024.md)
 - [原始终态丢失、ESRCH失败与最小修复](research_round_20260925_global/U57_OWNER_ESRCH_FAILURE_AND_FIX_20261021.md) · [修复候选源码与测试范围](research_round_20260925_global/code/U57_OWNER_ESRCH_FIX_DRAFT_20261021_01/README.md)
 - [本轮真实训练、CPU恢复及证据边界](research_round_20260925_global/U57_U60_ACTUAL_TRAINING_AND_CPU_RESTORE_20261021.md) · [实测标量](research_round_20260925_global/results/U57_U60_ACTUAL_SCALARS_20261021.json)
 - [研究路线与证据范围核对](research_round_20260925_global/U57_EXPERIMENT_LINEAGE_AND_EVIDENCE_SCOPE_20261021.md)：旧24＋48实验已闭环，当前E50属于独立结构实验，总目标及证据要求保持不变。

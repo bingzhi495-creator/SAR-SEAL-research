@@ -1,14 +1,12 @@
-# 正式训练10496步、CPU恢复与完整候选读取进展（2026-10-21）
+# 正式训练10752步、CPU恢复与完整候选读取进展（2026-10-21）
 
-DGX PLAIN/FULL 正式有效前缀仍为 **10496/37050 次更新**，本轮新增合格更新为0。原10496→10752段远端虽完成，但本机原始工具非零且SSH终态未知，额外每臂256次更新/548次实例访问不计正式轨迹；一次预锁采集重算又因监控程序ESRCH异常失败，已完整停止并耗尽该次额度。具体修复已通过本机针对性测试、独立静态审阅及实际DGX标准库/控制接口检查；另行前瞻锁定的一次修复版10496→10752任务于14:23 UTC启动，**仍在运行，尚未验收**。本地2816独立，不拼接或当作重复种子。无最终AP、有效涨点、创新成立或TGRS就绪结论。
+DGX PLAIN/FULL strict accepted progress remains **10752/37050 updates per arm (29.02% of this training budget)**. The repaired-owner10496-to10752 segment was genuinely accepted, +256 updates/+548 matched-instance visits per arm. The subsequent10752-to11008 remote segment finished +256/+594 per arm, but its original local tool handle is missing and original SSH terminal remains UNKNOWN, so it adds zero qualified budget. All owned processes are now independently absent; no training is currently running and no automatic replay was launched. Local2816 stays independent. No final AP, proven gain, confirmed innovation or TGRS readiness.
 
 <!-- U57_SAFE_STATUS_CURRENT_BEGIN -->
 
-## 当前执行与证据边界
+## 当前已接收标量摘要
 
-最后合格段仍为10240→10496。新修复段当前运行不等于已通过完整owner CLI、恢复、终态、字节与进程验收。失败采集重算仅可确认PLAIN至少6条已刷盘完成记录，实际终端更新数未知，不能写成0；FULL未见trace。旧重算max1保持耗尽，修复版是基于具体源码缺陷、经单独前瞻锁定的一次新源运行验证。全局DGX账户47正常/4失败/51总计。
-
-[完整失败与修复说明](U57_OWNER_ESRCH_FAILURE_AND_FIX_20261021.md)。此段为14:23 UTC启动后的运行中快照，后续结果以Git提交历史为准。
+最新10496→10752：原tool/SSH/worker均为严格整数0，两臂完整状态恢复，771项来源范围；owner 964.743秒、组RSS峰值13064929280字节、可用RAM最低57775509504字节，违规为空。最终CUDA allocated/reserved均0，仅指配对两臂完成后的进程状态（PROCESS_FINAL_AFTER_BOTH_ARMS），不分别归为逐臂峰值或整卡8GiB证明。全局DGX账户48正常/4失败/52总计，含CPU验证而非纯训练。
 
 <!-- U57_SAFE_STATUS_CURRENT_END -->
 
@@ -111,7 +109,7 @@ DGX PLAIN/FULL 正式有效前缀仍为 **10496/37050 次更新**，本轮新增
 
 原SSH/owner/worker真实返回0，owner/worker原birth不存在、组为空、26项来源及日志/报告字节已核验并由Root单独接收。owner耗时11.556秒、组RSS峰值2071130112字节、可用RAM最低74399010816字节，无资源违规。固定环境为Linux/aarch64、Python3.12.14、Torch2.10.0+cu130、NumPy1.26.4、psutil6.1.1，CPU0/1及两线程；并非跨版本本机恢复。
 
-**该结果仅支持实际SMOKE2的CPU恢复路径。** 它不给正式训练额度，不证明E50权重恢复、完整预测人口、真实推理、零残差RLE校准、AP、泛化或方法效用。两步技术状态不能作为中途模型选型工具。当前正式配对前沿为10496；SMOKE2不额外计入正式训练。
+**该结果仅支持实际SMOKE2的CPU恢复路径。** 它不给正式训练额度，不证明E50权重恢复、完整预测人口、真实推理、零残差RLE校准、AP、泛化或方法效用。两步技术状态不能作为中途模型选型工具。当前正式配对前沿为10752；SMOKE2不额外计入正式训练。
 
 ## 单图完整100候选真实导出
 
@@ -191,3 +189,8 @@ Root安全摘要另记录7份未来预测候选源码177574字节及3份新U73/U
 此前失败及资源观察（历史）：第四段准备先有参数笔误，在metadata输出/SSH前失败；仅修参数后metadata暂存原tool1/SSH255，连接在鉴权前超时，本地spec已写，但未创建数值attempt或执行训练，远端metadata目录状态未知。两路只读连接观察超时、设备在线状态未达；电源或路由等根因尚未确定，原代理设置未改，无自动重试或新增科学失败。03:30:41.564327 UTC当时最后一次只读连接复查两路仍超时，彼时未启动第四段；04:01:43 UTC连接恢复，原同字节spec经只读检查后首次执行，后已严格接收7424。完整187包字节传输与U65 CPU读取历史通过不变。仍须按原规则完成每臂37050更新固定预算、E50恢复、真实预测及原几何/RLE校准，不得计算FORMAL中途AP或据其挑选模型；固定E50后按原完整人口、候选/分数和COCO规则评价，再依预锁效用规则决定重复种子、容量/计算控制、机制和跨集验证。旧失败与额外重复计算保留。此前单次RAM约31.3118GiB/GPU1290MiB观察作为历史原样保留；此前03:20:50.2589021 UTC和03:22:00.2894983 UTC两次RAM为33568712/33441256KiB（32.0136/31.8921GiB）、整卡1329MiB，第二次低于原32GiB=33554432KiB门槛，未成放行pair、未新D绑定或启动本机训练。本机仍各2816次；后续接续须新鲜且整对达标的资源观察。
 
 [结构化标量结果](results/U57_U60_ACTUAL_SCALARS_20261021.json) · [前序训练及评估缺口](U57_TRAINING_PROGRESS_AND_EVALUATION_READINESS_20261020.md) · [直接先例查新](U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)
+
+
+## Current execution check: 2026-10-24
+
+The original73102 handle is missing and its local SSH record is unfinished. Read-only remote inspection, original byte postcheck and the unchanged U77rev03 strict observer confirm remote completion and absence of the original process births/group. Both arms report11008, but formal acceptance remains10752: later metadata cannot replace missing original terminal facts. Outputs and extra compute are retained; no AP or endpoint selection occurred and no replay was automatically started. The old live snapshot is historical. See [method and current progress](U57_CURRENT_PROGRESS_AND_METHOD_EXPLANATION_20261024.md).
