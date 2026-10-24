@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-10-25）
 
-DGX PLAIN/FULL 已各严格接收 **13312/37050次正式更新**（17轮+715图）。本轮10752→13312共10段，每臂新增2560次更新、5786次匹配实例访问；最新13056→13312单段各+256/537。全部数值任务已回收，下一13312→13568尚未启动。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL 已各严格接收 **13824/37050次正式更新**（18轮+486图）。本轮10752→13824共12段，每臂新增3072次更新、6996次匹配实例访问；最新13568→13824单段各+256/594。全部数值任务已回收，下一13824→14080尚未启动。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
 
-全局DGX账户58正常/4失败/62总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户60正常/4失败/64总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [Current internal dataset lineage and protocol evidence (2026-10-24)](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md)
 - [Conditional ordinary capacity control: design only, not implemented](research_round_20260925_global/U57_CONDITIONAL_PLAIN_CAPACITY_CONTROL_DESIGN_20261024.md)
@@ -479,3 +479,5 @@ N20后续未执行源码：[独立CPU端点核验入口](research_round_20260925
 - 2026-10-25：[SegS-YOLO官方原文增量核查](research_round_20260925_global/U57_DIRECT_PRIOR_INCREMENT_20261025.md)：确为SAR实例分割与上下文/多尺度/动态蛇形结构先例；LS-SSDD仅定性，不改变当前训练或已有晋级规则。
 
 - 2026-10-25：[最近直接先例差异表已补核SegS-YOLO](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)，保留原访问日期并另标本轮补核日期；当前未形成外部复现或新AP结论。
+
+- 2026-10-25：[教师身份与数据接触核查](research_round_20260925_global/U57_TEACHER_IDENTITY_AND_DATA_EXPOSURE_SCOPE_20261025.md)：当前原生教师为项目Mask2Former/R50 E24，纠正与DiffSAR外部先例混称；[官方COCO初始化完整摘要关联](research_round_20260925_global/results/U57_OFFICIAL_COCO_INITIALIZER_FULL_STREAM_AUDIT_20261025.json)已补齐，DEV排除仍需实际历史清单核查。历史D目录FPN归属记录不等于当前载体身份。
