@@ -1,12 +1,12 @@
-# 正式训练11008步、CPU恢复与完整候选读取进展（2026-10-21）
+# 正式训练11264步、CPU恢复与完整候选读取进展（2026-10-21）
 
-DGX PLAIN/FULL 已各严格接收 **11008/37050次正式更新**（14轮+634图）。本轮10752→11008共1段，每臂新增256次更新、594次匹配实例访问；最新10752→11008单段各+256/594。全部数值任务已回收，下一11008→11264尚未启动。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL 已各严格接收 **11264/37050次正式更新**（15轮+149图）。本轮10752→11264共2段，每臂新增512次更新、1203次匹配实例访问；最新11008→11264单段各+256/609。下一11264→11520运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
 
 <!-- U57_SAFE_STATUS_CURRENT_BEGIN -->
 
 ## 当前已接收标量摘要
 
-最新10752→11008：原tool/SSH/worker均为严格整数0，两臂完整状态恢复，771项来源范围；owner 1037.819秒、组RSS峰值13123792896字节、可用RAM最低62041419776字节，违规为空。最终CUDA allocated/reserved均0，仅指配对两臂完成后的进程状态（PROCESS_FINAL_AFTER_BOTH_ARMS），不分别归为逐臂峰值或整卡8GiB证明。全局DGX账户49正常/4失败/53总计，含CPU验证而非纯训练。
+最新11008→11264：原tool/SSH/worker均为严格整数0，两臂完整状态恢复，771项来源范围；owner 1059.218秒、组RSS峰值13138812928字节、可用RAM最低61971537920字节，违规为空。最终CUDA allocated/reserved均0，仅指配对两臂完成后的进程状态（PROCESS_FINAL_AFTER_BOTH_ARMS），不分别归为逐臂峰值或整卡8GiB证明。全局DGX账户50正常/4失败/54总计，含CPU验证而非纯训练。
 
 <!-- U57_SAFE_STATUS_CURRENT_END -->
 
@@ -109,7 +109,7 @@ DGX PLAIN/FULL 已各严格接收 **11008/37050次正式更新**（14轮+634图�
 
 原SSH/owner/worker真实返回0，owner/worker原birth不存在、组为空、26项来源及日志/报告字节已核验并由Root单独接收。owner耗时11.556秒、组RSS峰值2071130112字节、可用RAM最低74399010816字节，无资源违规。固定环境为Linux/aarch64、Python3.12.14、Torch2.10.0+cu130、NumPy1.26.4、psutil6.1.1，CPU0/1及两线程；并非跨版本本机恢复。
 
-**该结果仅支持实际SMOKE2的CPU恢复路径。** 它不给正式训练额度，不证明E50权重恢复、完整预测人口、真实推理、零残差RLE校准、AP、泛化或方法效用。两步技术状态不能作为中途模型选型工具。当前正式配对前沿为11008；SMOKE2不额外计入正式训练。
+**该结果仅支持实际SMOKE2的CPU恢复路径。** 它不给正式训练额度，不证明E50权重恢复、完整预测人口、真实推理、零残差RLE校准、AP、泛化或方法效用。两步技术状态不能作为中途模型选型工具。当前正式配对前沿为11264；SMOKE2不额外计入正式训练。
 
 ## 单图完整100候选真实导出
 
@@ -194,3 +194,12 @@ Root安全摘要另记录7份未来预测候选源码177574字节及3份新U73/U
 ## Historical execution check: 2026-10-24 12:35 UTC
 
 The original73102 handle is missing and its local SSH record is unfinished. Read-only remote inspection, original byte postcheck and the unchanged U77rev03 strict observer confirm remote completion and absence of the original process births/group. Both arms report11008, but formal acceptance remains10752: later metadata cannot replace missing original terminal facts. Outputs and extra compute are retained; no AP or endpoint selection occurred and no replay was automatically started. The old live snapshot is historical. See [method and current progress](U57_CURRENT_PROGRESS_AND_METHOD_EXPLANATION_20261024.md).
+
+
+## 2026-10-24 stopped data-protocol audit
+
+After the actual original55574 terminal, the existing manifest and FIT/DEV metadata chain was traced for a necessary scientific protocol audit before the next numerical launch. The local source is declared pseg_ssdd:928 images/2041 annotations, internally divided into FIT741/1661 and DEV187/380. All image metadata and annotation geometry were preserved, no image-ID overlap exists, and the previously recorded JPEG-group selection rule was independently recomputed. This does not certify the original author archive, current raw-image byte groups or an untouched official test. No image/weight/pixel-mask was loaded and no training split was changed. See [sanitized audit and remaining gaps](U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md).
+
+## 2026-10-24 execution-capture source review
+
+A bounded read-only review found that durable attempt writes and catchable-exception cleanup recording could reduce SSH-terminal log loss. It did not establish the causes of the two prior missing original records, cannot guarantee recovery of a lost original tool terminal, and did not modify or test a new execution controller. Original tool0 and SSH0 remain distinct required evidence; later metadata0 cannot replace them. [Python fsync](https://docs.python.org/3.8/library/os.html#os.fsync) and [Windows TerminateProcess](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-terminateprocess) explain the relevant durability and forced-termination limits.

@@ -4,10 +4,11 @@
 
 ## 当前状态（2026-10-24）
 
-DGX PLAIN/FULL 已各严格接收 **11008/37050次正式更新**（14轮+634图）。本轮10752→11008共1段，每臂新增256次更新、594次匹配实例访问；最新10752→11008单段各+256/594。全部数值任务已回收，下一11008→11264尚未启动。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL 已各严格接收 **11264/37050次正式更新**（15轮+149图）。本轮10752→11264共2段，每臂新增512次更新、1203次匹配实例访问；最新11008→11264单段各+256/609。下一11264→11520运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
 
-全局DGX账户49正常/4失败/53总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户50正常/4失败/54总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
+- [Current internal dataset lineage and protocol evidence (2026-10-24)](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md)
 - [Trained metrics and comparisons with other models (2026-10-24)](research_round_20260925_global/TRAINED_METRICS_COMPARISON_20261024.md)
 - [Current progress and complete method explanation (2026-10-24)](research_round_20260925_global/U57_CURRENT_PROGRESS_AND_METHOD_EXPLANATION_20261024.md)
 - [原始终态丢失、ESRCH失败与最小修复](research_round_20260925_global/U57_OWNER_ESRCH_FAILURE_AND_FIX_20261021.md) · [修复候选源码与测试范围](research_round_20260925_global/code/U57_OWNER_ESRCH_FIX_DRAFT_20261021_01/README.md)
