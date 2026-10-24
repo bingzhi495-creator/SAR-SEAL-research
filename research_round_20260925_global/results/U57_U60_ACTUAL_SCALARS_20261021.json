@@ -288,6 +288,25 @@
     "worker_finished_updates_per_arm": 256,
     "worker_matched_instance_visits_per_arm": 548
   },
+  "U57_11008_capture_recovery_20261024": {
+    "attempts_launched": 1,
+    "automatic_retry": false,
+    "extra_unqualified_compute_preserved_separately": true,
+    "formal_training_budget_credit": 0,
+    "independent_seed_claimed": false,
+    "loss_or_AP_selection": false,
+    "maximum_new_numerical_attempts": 1,
+    "model_owner_sources_and_recipe_identical": true,
+    "old_unqualified11008_outputs_preserved": true,
+    "only_phase_and_output_paths_differ": true,
+    "parent_is_strict10752": true,
+    "span": {
+      "start": 10752,
+      "stop": 11008
+    },
+    "status": "ONE_PROSPECTIVE_ATTEMPT_ACTUALLY_LIVE_NOT_ACCEPTED",
+    "unqualified11008_parent_used": false
+  },
   "U57_11008_original_handle_missing": {
     "all771_sources_logs_checkpoint_and_trace_byte_verified": true,
     "automatic_replay": false,
@@ -310,6 +329,21 @@
       "stop": 11008
     },
     "strict_prefix_unchanged": 10752
+  },
+  "U57_11008_prelaunch_metadata_transport_failure_20261024": {
+    "formal_training_budget_credit": 0,
+    "fresh_inspection_exit": 0,
+    "fresh_inspection_state": "ABSENT",
+    "metadata_prepare_tool_exit": 1,
+    "metadata_stage_SSH_exit": 255,
+    "new_scientific_failure_count": 0,
+    "numerical_attempt_created_at_failure": false,
+    "numerical_execution_started_at_failure": false,
+    "numerical_replay": false,
+    "original_failed_stage_preserved": true,
+    "reason": "SSH_CONNECT_TIMEOUT",
+    "same_original_spec_byte_exact_stage_exit": 0,
+    "status": "SAME_ORIGINAL_SPEC_STAGED_AFTER_FRESH_ABSENCE_CHECK"
   },
   "U57_7424_prelaunch_metadata_transport_failure": {
     "AP": false,
@@ -1118,24 +1152,22 @@
     "unknown_remote_completion_automatically_cleared": false
   },
   "all_byte_transfers_reaped": true,
-  "all_numerical_tasks_reaped": true,
+  "all_numerical_tasks_reaped": false,
   "counts_spliced": false,
   "current_turn_accepted_summary": {
     "AP_evaluated": false,
-    "instance_visits_added_per_arm": 548,
-    "segments": 1,
-    "start": 10496,
+    "instance_visits_added_per_arm": 0,
+    "segments": 0,
+    "start": 10752,
     "stop": 10752,
-    "updates_added_per_arm": 256
+    "updates_added_per_arm": 0
   },
   "formal_followup": {
     "AP_evaluated": false,
     "additional_accepted_updates_per_arm": 0,
     "automatic_retry": false,
-    "original_SSH_exit": null,
-    "original_tool_exit": null,
     "start": 10752,
-    "status": "REMOTE_COMPLETED_UNQUALIFIED_ORIGINAL_HANDLE_MISSING",
+    "status": "ONE_PRELOCKED_CAPTURE_RECOVERY_ORIGINAL_LIVE_NOT_ACCEPTED",
     "stop": 11008,
     "strict_accepted_prefix": 10752
   },
@@ -3185,8 +3217,8 @@
     "successful_pair": false
   },
   "local_updates_per_arm": 2816,
-  "numerical_task_live": false,
-  "observed_UTC": "2026-10-24T12:32:57.139688+00:00",
+  "numerical_task_live": true,
+  "observed_UTC": "2026-10-24T12:44:06.627169+00:00",
   "precision_improvement_established": false,
   "previous_turn_accepted_summaries": [
     {
@@ -3299,9 +3331,17 @@
       "start": 9728,
       "stop": 10496,
       "updates_added_per_arm": 768
+    },
+    {
+      "AP_evaluated": false,
+      "instance_visits_added_per_arm": 548,
+      "segments": 1,
+      "start": 10496,
+      "stop": 10752,
+      "updates_added_per_arm": 256
     }
   ],
   "schema": "U57-U60-public-safe-actual-scalars-v1",
-  "status": "STRICT10752_IDLE_SUBSEQUENT11008_UNQUALIFIED_ORIGINAL_HANDLE_MISSING",
+  "status": "STRICT10752_BOUNDED_CAPTURE_RECOVERY_ORIGINAL_LIVE",
   "updates_budget_per_arm": 37050
 }

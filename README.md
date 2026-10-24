@@ -4,7 +4,7 @@
 
 ## 当前状态（2026-10-21）
 
-DGX PLAIN/FULL strict accepted progress remains **10752/37050 updates per arm (29.02% of this training budget)**. The repaired-owner10496-to10752 segment was genuinely accepted, +256 updates/+548 matched-instance visits per arm. The subsequent10752-to11008 remote segment finished +256/+594 per arm, but its original local tool handle is missing and original SSH terminal remains UNKNOWN, so it adds zero qualified budget. All owned processes are now independently absent; no training is currently running and no automatic replay was launched. Local2816 stays independent. No final AP, proven gain, confirmed innovation or TGRS readiness.
+DGX PLAIN/FULL strict accepted progress remains **10752/37050 updates per arm (29.02% of this training budget)**. One prospectively bounded capture-recovery attempt10752-to11008 actually started at12:41 UTC on2026-10-24, from the accepted10752 full-state parent with the same model, owner sources, recipe and fixed endpoint. It is currently running and adds no qualified budget until genuine original termination and all checks pass. The earlier unqualified11008 outputs and UNKNOWN original tool/SSH terminals remain preserved; extra compute is reported separately. Local2816 stays independent. No interim AP, proven gain, confirmed innovation or TGRS readiness.
 
 全局DGX账户48正常/4失败/52总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 

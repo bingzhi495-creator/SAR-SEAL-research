@@ -1,6 +1,6 @@
 # 正式训练10752步、CPU恢复与完整候选读取进展（2026-10-21）
 
-DGX PLAIN/FULL strict accepted progress remains **10752/37050 updates per arm (29.02% of this training budget)**. The repaired-owner10496-to10752 segment was genuinely accepted, +256 updates/+548 matched-instance visits per arm. The subsequent10752-to11008 remote segment finished +256/+594 per arm, but its original local tool handle is missing and original SSH terminal remains UNKNOWN, so it adds zero qualified budget. All owned processes are now independently absent; no training is currently running and no automatic replay was launched. Local2816 stays independent. No final AP, proven gain, confirmed innovation or TGRS readiness.
+DGX PLAIN/FULL strict accepted progress remains **10752/37050 updates per arm (29.02% of this training budget)**. One prospectively bounded capture-recovery attempt10752-to11008 actually started at12:41 UTC on2026-10-24, from the accepted10752 full-state parent with the same model, owner sources, recipe and fixed endpoint. It is currently running and adds no qualified budget until genuine original termination and all checks pass. The earlier unqualified11008 outputs and UNKNOWN original tool/SSH terminals remain preserved; extra compute is reported separately. Local2816 stays independent. No interim AP, proven gain, confirmed innovation or TGRS readiness.
 
 <!-- U57_SAFE_STATUS_CURRENT_BEGIN -->
 
@@ -191,6 +191,6 @@ Root安全摘要另记录7份未来预测候选源码177574字节及3份新U73/U
 [结构化标量结果](results/U57_U60_ACTUAL_SCALARS_20261021.json) · [前序训练及评估缺口](U57_TRAINING_PROGRESS_AND_EVALUATION_READINESS_20261020.md) · [直接先例查新](U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)
 
 
-## Current execution check: 2026-10-24
+## Historical execution check: 2026-10-24 12:35 UTC
 
 The original73102 handle is missing and its local SSH record is unfinished. Read-only remote inspection, original byte postcheck and the unchanged U77rev03 strict observer confirm remote completion and absence of the original process births/group. Both arms report11008, but formal acceptance remains10752: later metadata cannot replace missing original terminal facts. Outputs and extra compute are retained; no AP or endpoint selection occurred and no replay was automatically started. The old live snapshot is historical. See [method and current progress](U57_CURRENT_PROGRESS_AND_METHOD_EXPLANATION_20261024.md).
