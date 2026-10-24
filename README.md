@@ -4,10 +4,11 @@
 
 ## 当前状态（2026-10-25）
 
-DGX PLAIN/FULL 已各严格接收 **13824/37050次正式更新**（18轮+486图，预算37.31%）。随后13824→14080段远端两臂各执行256次更新、509次匹配实例访问并退出0，但原始本机工具退出1、SSH退出255；该段已按失败采集闭环，正式新增计数为0，产物不能作为接续父状态。全部数值任务已回收，尚未启动新的恢复尝试。本机仍各2816次，独立、不拼接、不当作重复种子。**尚无当前固定50轮端点AP、涨点、创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL 已各严格接收 **14080/37050次正式更新**（19轮+1图）。本轮10752→14080共13段，每臂新增3328次更新、7505次匹配实例访问；最新13824→14080单段各+256/509。下一14080→14336运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
 
-全局DGX账户60正常/5失败/65总计，包含独立CPU验证，并非纯训练次数。原失败、额外计算和历史结果均保留；不能把网络采集失败写成模型失效。E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户61正常/5失败/66总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
+- [DiffSARShipInst作者配置的实际执行缺口](research_round_20260925_global/U57_DIFFSAR_AUTHOR_CONFIG_EXECUTION_GAPS_20261025.md) · [单次诊断恢复的合格结果](research_round_20260925_global/results/U57_CAPTURE_RECOVERY13824_14080_SAFE_RESOLUTION_20261025.json)
 - [External method comparison: actual results, literature scope and missing fair controls (2026-10-25)](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_STATUS_20261025.md)
 - [Original E24 actual training roster audit](research_round_20260925_global/results/U57_E24_TRAINING_ROSTER_SAFE_AUDIT_20261025.json) · [Latest capture failure and unchanged formal prefix](research_round_20260925_global/results/U57_13824_CAPTURE_FAILURE_SAFE_STATUS_20261025.json)
 
