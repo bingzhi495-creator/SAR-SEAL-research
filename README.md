@@ -4,10 +4,11 @@
 
 ## 当前状态（2026-10-25）
 
-DGX PLAIN/FULL 已各严格接收 **15104/37050次正式更新**（20轮+284图）。本轮10752→15104共17段，每臂新增4352次更新、9783次匹配实例访问；最新14848→15104单段各+256/567。下一15104→15360运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL 已各严格接收 **15360/37050次正式更新**（20轮+540图）。本轮10752→15360共18段，每臂新增4608次更新、10386次匹配实例访问；最新15104→15360单段各+256/603。下一15360→15616运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
 
-全局DGX账户65正常/5失败/70总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户66正常/5失败/71总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
+- [SAMRefiner同粗掩膜强对照的实际接口核查](research_round_20260925_global/U57_SAMREFINER_PREDICTED_MASK_INTERFACE_AUDIT_20261025.md)：默认5轮、共享编码、候选/评分及空mask适配边界；未运行。
 - [本地候选归档与整数标签转换的实际补证](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md) · [首端点前新增的标签敏感性规则](research_round_20260925_global/U57_PROSPECTIVE_ANNOTATION_SENSITIVITY_POLICY_20261025.md)
 - [DiffSARShipInst作者配置的实际执行缺口](research_round_20260925_global/U57_DIFFSAR_AUTHOR_CONFIG_EXECUTION_GAPS_20261025.md) · [单次诊断恢复的合格结果](research_round_20260925_global/results/U57_CAPTURE_RECOVERY13824_14080_SAFE_RESOLUTION_20261025.json)
 - [External method comparison: actual results, literature scope and missing fair controls (2026-10-25)](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_STATUS_20261025.md)
