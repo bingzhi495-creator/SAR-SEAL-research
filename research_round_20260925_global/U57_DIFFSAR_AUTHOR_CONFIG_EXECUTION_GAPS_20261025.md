@@ -26,3 +26,13 @@ register_coco.py确实存在，但仅版权行与两个注册函数重导出；�
 这项外部强对照尚未启动，当前唯一科学执行仍为固定主实验的一次性诊断恢复。该记录没有带来新AP，也不构成SOTA或创新成立证据。
 
 来源：[README](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/README.md)、[train配置](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/configs/DiffSARShipInst-SSDD-train.yaml)、[test配置](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/configs/DiffSARShipInst-SSDD-test.yaml)、[builtin](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/detectron2/data/datasets/builtin.py)、[register_coco](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/detectron2/data/datasets/register_coco.py)、[入口](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/train_net.py)、[setup](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/setup.py)。
+
+## 公开默认入口的初始化补核
+
+同一固定提交另限定补读4份文件：公开默认参数的resume开关关闭；DefaultTrainer将MODEL.WEIGHTS传给checkpointer，没有另选COCO/ImageNet。DetectionCheckpointer只有在路径非空时解析URL/获取路径，空值继续交给外部fvcore的Checkpointer.load。所核detector构造调用build_backbone，FPN构造转入build_resnet_backbone，未见另选预训练checkpoint的指令，部分卷积有显式Xavier初始化。
+
+因此，已核公开默认入口没有指定COCO/ImageNet权重，不能把空WEIGHTS解释为自动加载COCO。完整“必保持纯构造初值”的结论仍缺实际fvcore版本/最终空值分支和更下游ResNet构造；当前依赖主分支不能替代作者当时环境。论文实际训练的初始化仍未知，不将其写成“作者从零训练”或“作者隐式使用COCO”。
+
+另外，FPN在导入时调用ext_loader.load_ext加载carafe_forward/carafe_backward。真实环境验证除了作者setup的扩展，还必须检查这一CARAFE前后向依赖；仅普通Detectron2安装成功不足以证明整条执行链就绪。此次只读，没有运行或构建这些扩展。
+
+补核来源：[默认入口](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/detectron2/engine/defaults.py#L109)、[checkpoint分支](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/detectron2/checkpoint/detection_checkpoint.py#L34)、[detector构造](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/diffsarshipinst/detector.py#L238)、[FPN构造与扩展](https://github.com/XiaowoXuSAR/DiffSARShipInst/blob/bdc3362372213bc8c3a1f6d5b7b74dc224d1b871/detectron2/modeling/backbone/fpn.py#L584)。

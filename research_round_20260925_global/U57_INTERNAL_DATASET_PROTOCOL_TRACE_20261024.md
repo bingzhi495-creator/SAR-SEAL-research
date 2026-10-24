@@ -33,3 +33,13 @@
 本地原始下载包与作者发布物的获取记录、摘要、包内许可/文件清单及转换映射尚未由本次核验闭合；本次亦未重建原图字节分组、核原始场景来源或重新解码像素掩膜。正式外部对比和跨数据集研究仍须明确这些版本及使用历史，遵守许可，仅提供官方获取入口。
 
 本核查只补齐当前内部实验的来源说明和一致性证据；没有产生AP、模型收益、机制或TGRS就绪结论。[聚合核查记录](results/U57_INTERNAL_PSEG_SSDD_PROTOCOL_AUDIT_20261024.json) · [当前指标与比较口径](TRAINED_METRICS_COMPARISON_20261024.md)
+
+## 2026-10-25官方发布入口的限定核查
+
+本轮只读官方仓库固定提交937ccbec2ee967b7263e201aa085f25c4aecaebd、README、完整递归目录与公开Releases。该提交的目录仅README和LICENSE，递归树未截断；未提供原标注、归档、版本清单或SHA/MD5，Releases为空。README更新于2025-11-21是文档更新日期，不是数据版本日期。
+
+README指向[Google Drive文件](https://drive.google.com/file/d/1glNJUGotrbEyk43twwB9556AdngJsynZ/view)及[百度入口](https://pan.baidu.com/s/1Lpg28ZvMSgNXq00abHMZ5Q)，没有单列PSeg原始标注文件名、包版本或官方校验和。本轮未下载数据、读取本地科学资料、SSH或改变任何训练。
+
+这次证据仅锚定作者当时提供的获取入口，不能闭合本地PSeg-SSDD与官方原发布包的字节身份；仓库提交/README blob不能替代数据包摘要。下一步仍需取得官方指向的实际包，并在合法停止窗口核本地原发布物。原内部划分一致性、特定教师微调清单排除DEV与全部上游来源认证仍分别报告，不混为同一个证明。
+
+来源：[固定目录](https://github.com/TianwenZhang0825/Official-SSDD/tree/937ccbec2ee967b7263e201aa085f25c4aecaebd)、[固定README](https://github.com/TianwenZhang0825/Official-SSDD/blob/937ccbec2ee967b7263e201aa085f25c4aecaebd/README.md)、[公开Releases](https://api.github.com/repos/TianwenZhang0825/Official-SSDD/releases?per_page=100)。
