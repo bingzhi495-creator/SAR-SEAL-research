@@ -43,3 +43,19 @@ README指向[Google Drive文件](https://drive.google.com/file/d/1glNJUGotrbEyk4
 这次证据仅锚定作者当时提供的获取入口，不能闭合本地PSeg-SSDD与官方原发布包的字节身份；仓库提交/README blob不能替代数据包摘要。下一步仍需取得官方指向的实际包，并在合法停止窗口核本地原发布物。原内部划分一致性、特定教师微调清单排除DEV与全部上游来源认证仍分别报告，不混为同一个证明。
 
 来源：[固定目录](https://github.com/TianwenZhang0825/Official-SSDD/tree/937ccbec2ee967b7263e201aa085f25c4aecaebd)、[固定README](https://github.com/TianwenZhang0825/Official-SSDD/blob/937ccbec2ee967b7263e201aa085f25c4aecaebd/README.md)、[公开Releases](https://api.github.com/repos/TianwenZhang0825/Official-SSDD/releases?per_page=100)。
+
+## 2026-10-25本地候选归档与整数转换标注的实际连接
+
+官方链接的连接器元数据可见文件名Official-SSDD-OPEN.rar、类型application/rar、大小1,043,241,197字节，创建/修改时间为2021-09-18。请求精确md5Checksum/sha1Checksum/sha256Checksum/version/headRevisionId后，工具未暴露这些字段；不能据此说原服务不存在校验信息。匿名查看页未验证可见；这些时间也不是经确认的数据版本号。
+
+在全部数值任务真实结束并接收14592后，Root限定文件名搜索找到本地同名同大小候选；只列归档目录，确认含PSeg_SSDD及BBox_RBox_PSeg_SSDD路径。随后只读取其中一份训练COCO标注至内存（1,526,458字节，SHA256 4565548ce05136dba8072a4b1c1fb668f3d415e3c980ebfe05b5a8998dec1ac5），没有读取影像、测试标注、权重或像素mask，没有发布原标注。
+
+该训练标注928图/2041实例；当前FIT741图/1661实例与DEV187图/380实例的文件名集合及尺寸与其完全对应。源图像ID、类别ID和当前项目ID不同；按精确文件名、类别名称对应，标注ID按各JSON内部命名空间处理。最初误断言两份JSON的annotation-ID必须不交而失败，随后核到两侧独立重编号，保留原失败；不把该合法编号行为解释为监督泄漏。
+
+**原始浮点几何只有69条记录与当前几何完全相同，1972条不同。** 对源polygon每个坐标执行int()截断，再按顶点极值差重算bbox、按鞋带公式绝对值/2重算area，全部2041条的iscrowd/bbox/area/segmentation联合多重集合与当前FIT+DEV精确一致，没有坐标容差、舍入方案搜索或数据修改。此结果支持“当前使用的是这一整数几何转换版本”，不是原浮点COCO标注的直接字节副本。
+
+上述数值等价不唯一证明哪个历史转换脚本被执行。在限定的D:/SAR/UNet++自有Python文件检索中，未定位当时转换器，因此不提供未经核实的源码执行历史。整包官方身份仍缺摘要比对，图像像素身份和场景独立性也未由本次补齐。原已核928图源训练JSON是项目转换后的源，与FIT/DEV一致；不能将这个内部一致性扩张成原始浮点版本未变。
+
+**本轮固定主实验继续使用原整数转换标签，模型、数据、主评价和重复停止规则不改。** 浮点到整数的几何差异是否改变栅格mask或AP尚未计算，不声称已发现AP虚增或方法失效。外部方法必须采用明确、共同的标注版本；不能拿不同标签版本的自报分数直接排名。新增的[冻结端点标签敏感性规则](U57_PROSPECTIVE_ANNOTATION_SENSITIVITY_POLICY_20261025.md)在首个E50 AP前明确，属于新增次要分析，不追溯伪称原启动时已预注册。
+
+[可发布的聚合来源摘要](results/U57_LOCAL_PSEG_INTEGER_CONVERSION_PROVENANCE_20261025.json)保留证据范围及初次断言失败；不含原始路径、逐图标注或归档内容。原始工具实际退出已由Root外部观察，源几何比较和确定性转换检查均在合法停止窗口完成，之后已接续固定训练。
