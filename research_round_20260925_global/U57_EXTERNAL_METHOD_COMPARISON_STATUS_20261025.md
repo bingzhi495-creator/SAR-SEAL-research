@@ -1,5 +1,9 @@
 # 与其他方法的对比：已完成证据与尚缺的公平强对照
 
+## 后续实际单图探针合格（当前）
+
+独立清理修正后，SAMRefiner首图100候选/ViT-H FP32实际通过原工具、SSH、worker均0和Root外部核验；allocated/reserved清理后均为0，38项来源与输出及所属进程回收已核。[合格范围与安全结果](U57_SAMREFINER_ONE_IMAGE_FUNCTIONAL_PROBE_ACCEPTED_20261025.md)仅限单图功能/资源，无外部AP、全187图、内部顺序证明或方法收益结论。v02原失败不追溯更改。主训练已各合格20480/37050（55.28%）并按原配方接续；下文早期状态是历史快照。
+
 ## 实际模型进展：原失败保留，外部AP仍空缺
 
 主PLAIN/FULL已各严格接收20224/37050更新（54.59%），下一段按原配方接续。SAMRefiner首次真实单图FP32/100候选调用已返回并同步，但原作业因清理非零返回1，不合格、不生成同协议AP或合格父产物。[失败原因与证据范围](U57_SAMREFINER_FIRST_REAL_MODEL_FAILURE_AND_CLEANUP_HYPOTHESIS_20261025.md)已保存；后端缓存假说与新清理候选待实测。DiffSARShipInst/SegS-YOLO/GLDet的同协议AP仍未完成，下文早期训练步数与未调用状态是历史快照。

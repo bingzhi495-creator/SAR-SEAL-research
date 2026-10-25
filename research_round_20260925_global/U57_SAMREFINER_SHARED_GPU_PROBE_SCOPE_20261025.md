@@ -1,5 +1,9 @@
 # SAMRefiner共享GPU单图探针：前瞻执行范围
 
+## 后续实际单图探针合格（当前）
+
+独立清理修正后，SAMRefiner首图100候选/ViT-H FP32实际通过原工具、SSH、worker均0和Root外部核验；allocated/reserved清理后均为0，38项来源与输出及所属进程回收已核。[合格范围与安全结果](U57_SAMREFINER_ONE_IMAGE_FUNCTIONAL_PROBE_ACCEPTED_20261025.md)仅限单图功能/资源，无外部AP、全187图、内部顺序证明或方法收益结论。v02原失败不追溯更改。主训练已各合格20480/37050（55.28%）并按原配方接续；下文早期状态是历史快照。
+
 ## 后续实际调用结果（当前）
 
 已在共享GPU条件下实际调用ViT-H FP32及100候选，作者函数返回并CUDA同步，但退出前清理计数非零，原工具/SSH/worker均返回1，保留为失败。输出不作合格后继父产物，没有AP。[实际失败与清理假说](U57_SAMREFINER_FIRST_REAL_MODEL_FAILURE_AND_CLEANUP_HYPOTHESIS_20261025.md)和[v03未执行候选](code/U57_SAMREFINER_REAL_ONE_IMAGE_CLEANUP_FIX_DRAFT_20261025_03/README.md)记录细节。下文保留调用前的历史设计与阶段观察，不代表当前仍未调用模型。

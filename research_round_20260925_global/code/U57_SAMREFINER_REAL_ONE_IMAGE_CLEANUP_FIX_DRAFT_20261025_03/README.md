@@ -1,4 +1,8 @@
-# Explicit one-attempt cleanup correction v03 — unexecuted
+# SAMRefiner v03清理修正：已通过限定单图功能探针
+
+当前实际状态：2026-10-25已在共享GPU上完成单次清理修正验证，原工具/SSH/worker均0，原零清理条件保持并实际通过，仅38来源范围及一图100候选功能/资源探针合格。[详细范围](../../U57_SAMREFINER_ONE_IMAGE_FUNCTIONAL_PROBE_ACCEPTED_20261025.md)。无AP、全187图或核心创新结论；v02原失败保留，未作父产物。
+
+## 成稿时的设计与准备记录（历史）
 
 Status: UNEXECUTED / UNBOUND / NO GPU LEASE GRANTED. Cleanup efficacy remains unverified; this is not a successful-fix report. Frozen v02 and its failed original8312 attempt are unchanged. Its tool/SSH/worker1 and strict external closure remain failure evidence; successful author return does not upgrade that attempt to an accepted run.
 
