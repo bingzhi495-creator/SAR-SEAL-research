@@ -1,3 +1,11 @@
+## 2026-10-25 实际状态更新
+
+固定native匹配几何诊断已实际执行并通过Root接收，374/380配对；结果见../../U57_FIXED_NATIVE_GEOMETRY_DIAGNOSIS_ACTUAL_20261025.md。
+
+以下保留独立发布副本在绑定前的开发说明；其中未执行标签是当时快照。冻结科学原件未改写。
+
+Root actual update: this fixed-native-pair CPU diagnostic has completed and been externally accepted. See [actual conditional result and limits](../../U57_FIXED_NATIVE_GEOMETRY_DIAGNOSIS_ACTUAL_20261025.md). The own source publication copy was saved before execution binding. The following candidate/development status is historical.
+
 # Posthoc native-fixed-pair geometry candidate
 
 UNBOUND / NOT SCIENTIFICALLY RUN. Four stdlib metadata-contract tests pass.

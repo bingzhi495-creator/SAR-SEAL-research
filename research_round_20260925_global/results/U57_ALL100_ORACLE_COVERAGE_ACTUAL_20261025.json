@@ -1,0 +1,759 @@
+{
+  "Root_qualified": true,
+  "main_prefix_preserved": 22272,
+  "original_AP_results_unchanged": true,
+  "original_SSH_exit": 0,
+  "original_tool_exit": 0,
+  "private_GT_query_records_raw_data_weights_paths_excluded": true,
+  "resources": {
+    "elapsed_seconds": 2.5479500840301625,
+    "minimum_available_RAM_bytes": 78208622592,
+    "peak_group_RSS_bytes": 145768448,
+    "violations": []
+  },
+  "schema": "Root-all100-oracle-coverage-public-safe-v1",
+  "summary": {
+    "GT_for_model_inference": false,
+    "GT_used_for_oracle_query_selection": true,
+    "IoU_semantics": "Official mask.iou with original per-GT iscrowd; crowd entries use COCO overlap semantics",
+    "TEST": false,
+    "TGRS_ready": false,
+    "analysis_status": "ORACLE_DIAGNOSTIC_POSTHOC",
+    "author_internal_three_branches_considered": false,
+    "best_IoU_tie": "FIRST_ORIGINAL_EXPORT_INDEX",
+    "exported_masks_per_query": 1,
+    "groups": {
+      "all380": {
+        "GT_denominator": 380,
+        "methods": {
+          "R": {
+            "GT_denominator": 380,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 44,
+                "11-20": 35,
+                "2-5": 64,
+                "21-50": 83,
+                "51-100": 120,
+                "6-10": 34
+              },
+              "statistics": {
+                "mean": 34.27894736842105,
+                "median": 27.0,
+                "n": 380,
+                "q25": 5.0,
+                "q75": 57.25
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 44,
+                "11-20": 34,
+                "2-5": 64,
+                "21-50": 79,
+                "51-100": 120,
+                "6-10": 34
+              },
+              "statistics": {
+                "mean": 34.23733333333333,
+                "median": 26.0,
+                "n": 375,
+                "q25": 4.5,
+                "q75": 58.0
+              }
+            },
+            "coverage_counts": {
+              "0.50": 375,
+              "0.75": 352,
+              "0.90": 112,
+              "0.95": 4
+            },
+            "coverage_fractions": {
+              "0.50": 0.9868421052631579,
+              "0.75": 0.9263157894736842,
+              "0.90": 0.29473684210526313,
+              "0.95": 0.010526315789473684
+            },
+            "max_IoU": {
+              "mean": 0.8517590484587664,
+              "median": 0.8722570632205753,
+              "n": 380,
+              "q25": 0.8296872392007417,
+              "q75": 0.9051605095919701
+            },
+            "zero_max_IoU_GT": 2
+          },
+          "SAMRefiner": {
+            "GT_denominator": 380,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 45,
+                "11-20": 27,
+                "2-5": 48,
+                "21-50": 75,
+                "51-100": 149,
+                "6-10": 36
+              },
+              "statistics": {
+                "mean": 39.58684210526316,
+                "median": 33.0,
+                "n": 380,
+                "q25": 6.0,
+                "q75": 71.0
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 44,
+                "11-20": 26,
+                "2-5": 47,
+                "21-50": 71,
+                "51-100": 149,
+                "6-10": 36
+              },
+              "statistics": {
+                "mean": 39.86058981233244,
+                "median": 35.0,
+                "n": 373,
+                "q25": 6.0,
+                "q75": 73.0
+              }
+            },
+            "coverage_counts": {
+              "0.50": 373,
+              "0.75": 187,
+              "0.90": 4,
+              "0.95": 0
+            },
+            "coverage_fractions": {
+              "0.50": 0.9815789473684211,
+              "0.75": 0.4921052631578947,
+              "0.90": 0.010526315789473684,
+              "0.95": 0.0
+            },
+            "max_IoU": {
+              "mean": 0.7308673029514003,
+              "median": 0.7461776377217554,
+              "n": 380,
+              "q25": 0.6860454462158695,
+              "q75": 0.799901636047089
+            },
+            "zero_max_IoU_GT": 2
+          },
+          "native_official": {
+            "GT_denominator": 380,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 38,
+                "11-20": 32,
+                "2-5": 57,
+                "21-50": 94,
+                "51-100": 126,
+                "6-10": 33
+              },
+              "statistics": {
+                "mean": 36.71578947368421,
+                "median": 29.0,
+                "n": 380,
+                "q25": 5.75,
+                "q75": 62.0
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 38,
+                "11-20": 30,
+                "2-5": 57,
+                "21-50": 90,
+                "51-100": 126,
+                "6-10": 33
+              },
+              "statistics": {
+                "mean": 36.75935828877005,
+                "median": 29.0,
+                "n": 374,
+                "q25": 5.0,
+                "q75": 62.0
+              }
+            },
+            "coverage_counts": {
+              "0.50": 374,
+              "0.75": 348,
+              "0.90": 107,
+              "0.95": 4
+            },
+            "coverage_fractions": {
+              "0.50": 0.9842105263157894,
+              "0.75": 0.9157894736842105,
+              "0.90": 0.28157894736842104,
+              "0.95": 0.010526315789473684
+            },
+            "max_IoU": {
+              "mean": 0.8479416623476251,
+              "median": 0.8668587901291545,
+              "n": 380,
+              "q25": 0.8234111338905535,
+              "q75": 0.9033232088618903
+            },
+            "zero_max_IoU_GT": 2
+          }
+        }
+      },
+      "native_effectively_ignored": {
+        "GT_denominator": 0,
+        "methods": {
+          "R": {
+            "GT_denominator": 0,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 0,
+                "11-20": 0,
+                "2-5": 0,
+                "21-50": 0,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": null,
+                "median": null,
+                "n": 0,
+                "q25": null,
+                "q75": null
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 0,
+                "11-20": 0,
+                "2-5": 0,
+                "21-50": 0,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": null,
+                "median": null,
+                "n": 0,
+                "q25": null,
+                "q75": null
+              }
+            },
+            "coverage_counts": {
+              "0.50": 0,
+              "0.75": 0,
+              "0.90": 0,
+              "0.95": 0
+            },
+            "coverage_fractions": {
+              "0.50": null,
+              "0.75": null,
+              "0.90": null,
+              "0.95": null
+            },
+            "max_IoU": {
+              "mean": null,
+              "median": null,
+              "n": 0,
+              "q25": null,
+              "q75": null
+            },
+            "zero_max_IoU_GT": 0
+          },
+          "SAMRefiner": {
+            "GT_denominator": 0,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 0,
+                "11-20": 0,
+                "2-5": 0,
+                "21-50": 0,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": null,
+                "median": null,
+                "n": 0,
+                "q25": null,
+                "q75": null
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 0,
+                "11-20": 0,
+                "2-5": 0,
+                "21-50": 0,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": null,
+                "median": null,
+                "n": 0,
+                "q25": null,
+                "q75": null
+              }
+            },
+            "coverage_counts": {
+              "0.50": 0,
+              "0.75": 0,
+              "0.90": 0,
+              "0.95": 0
+            },
+            "coverage_fractions": {
+              "0.50": null,
+              "0.75": null,
+              "0.90": null,
+              "0.95": null
+            },
+            "max_IoU": {
+              "mean": null,
+              "median": null,
+              "n": 0,
+              "q25": null,
+              "q75": null
+            },
+            "zero_max_IoU_GT": 0
+          },
+          "native_official": {
+            "GT_denominator": 0,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 0,
+                "11-20": 0,
+                "2-5": 0,
+                "21-50": 0,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": null,
+                "median": null,
+                "n": 0,
+                "q25": null,
+                "q75": null
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 0,
+                "11-20": 0,
+                "2-5": 0,
+                "21-50": 0,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": null,
+                "median": null,
+                "n": 0,
+                "q25": null,
+                "q75": null
+              }
+            },
+            "coverage_counts": {
+              "0.50": 0,
+              "0.75": 0,
+              "0.90": 0,
+              "0.95": 0
+            },
+            "coverage_fractions": {
+              "0.50": null,
+              "0.75": null,
+              "0.90": null,
+              "0.95": null
+            },
+            "max_IoU": {
+              "mean": null,
+              "median": null,
+              "n": 0,
+              "q25": null,
+              "q75": null
+            },
+            "zero_max_IoU_GT": 0
+          }
+        }
+      },
+      "native_matched_nonignored": {
+        "GT_denominator": 374,
+        "methods": {
+          "R": {
+            "GT_denominator": 374,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 44,
+                "11-20": 33,
+                "2-5": 64,
+                "21-50": 79,
+                "51-100": 120,
+                "6-10": 34
+              },
+              "statistics": {
+                "mean": 34.283422459893046,
+                "median": 26.5,
+                "n": 374,
+                "q25": 4.25,
+                "q75": 58.0
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 44,
+                "11-20": 33,
+                "2-5": 64,
+                "21-50": 79,
+                "51-100": 120,
+                "6-10": 34
+              },
+              "statistics": {
+                "mean": 34.283422459893046,
+                "median": 26.5,
+                "n": 374,
+                "q25": 4.25,
+                "q75": 58.0
+              }
+            },
+            "coverage_counts": {
+              "0.50": 374,
+              "0.75": 352,
+              "0.90": 112,
+              "0.95": 4
+            },
+            "coverage_fractions": {
+              "0.50": 1.0,
+              "0.75": 0.9411764705882353,
+              "0.90": 0.2994652406417112,
+              "0.95": 0.0106951871657754
+            },
+            "max_IoU": {
+              "mean": 0.8605779284428379,
+              "median": 0.8732503210919302,
+              "n": 374,
+              "q25": 0.8321955812624005,
+              "q75": 0.9066776648794571
+            },
+            "zero_max_IoU_GT": 0
+          },
+          "SAMRefiner": {
+            "GT_denominator": 374,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 45,
+                "11-20": 25,
+                "2-5": 48,
+                "21-50": 71,
+                "51-100": 149,
+                "6-10": 36
+              },
+              "statistics": {
+                "mean": 39.70320855614973,
+                "median": 33.0,
+                "n": 374,
+                "q25": 6.0,
+                "q75": 72.5
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 44,
+                "11-20": 25,
+                "2-5": 47,
+                "21-50": 70,
+                "51-100": 149,
+                "6-10": 36
+              },
+              "statistics": {
+                "mean": 39.92722371967655,
+                "median": 35.0,
+                "n": 371,
+                "q25": 6.0,
+                "q75": 73.0
+              }
+            },
+            "coverage_counts": {
+              "0.50": 371,
+              "0.75": 187,
+              "0.90": 4,
+              "0.95": 0
+            },
+            "coverage_fractions": {
+              "0.50": 0.9919786096256684,
+              "0.75": 0.5,
+              "0.90": 0.0106951871657754,
+              "0.95": 0.0
+            },
+            "max_IoU": {
+              "mean": 0.7380054346016933,
+              "median": 0.7497016706443914,
+              "n": 374,
+              "q25": 0.6873630435356548,
+              "q75": 0.8033230045945079
+            },
+            "zero_max_IoU_GT": 0
+          },
+          "native_official": {
+            "GT_denominator": 374,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 38,
+                "11-20": 30,
+                "2-5": 57,
+                "21-50": 90,
+                "51-100": 126,
+                "6-10": 33
+              },
+              "statistics": {
+                "mean": 36.75935828877005,
+                "median": 29.0,
+                "n": 374,
+                "q25": 5.0,
+                "q75": 62.0
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 38,
+                "11-20": 30,
+                "2-5": 57,
+                "21-50": 90,
+                "51-100": 126,
+                "6-10": 33
+              },
+              "statistics": {
+                "mean": 36.75935828877005,
+                "median": 29.0,
+                "n": 374,
+                "q25": 5.0,
+                "q75": 62.0
+              }
+            },
+            "coverage_counts": {
+              "0.50": 374,
+              "0.75": 348,
+              "0.90": 107,
+              "0.95": 4
+            },
+            "coverage_fractions": {
+              "0.50": 1.0,
+              "0.75": 0.93048128342246,
+              "0.90": 0.28609625668449196,
+              "0.95": 0.0106951871657754
+            },
+            "max_IoU": {
+              "mean": 0.8566724925966668,
+              "median": 0.8678571129110697,
+              "n": 374,
+              "q25": 0.8258527131782946,
+              "q75": 0.9040595259587857
+            },
+            "zero_max_IoU_GT": 0
+          }
+        }
+      },
+      "native_unmatched_nonignored": {
+        "GT_denominator": 6,
+        "methods": {
+          "R": {
+            "GT_denominator": 6,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 0,
+                "11-20": 2,
+                "2-5": 0,
+                "21-50": 4,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": 34.0,
+                "median": 37.5,
+                "n": 6,
+                "q25": 22.0,
+                "q75": 47.0
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 0,
+                "11-20": 1,
+                "2-5": 0,
+                "21-50": 0,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": 17.0,
+                "median": 17.0,
+                "n": 1,
+                "q25": 17.0,
+                "q75": 17.0
+              }
+            },
+            "coverage_counts": {
+              "0.50": 1,
+              "0.75": 0,
+              "0.90": 0,
+              "0.95": 0
+            },
+            "coverage_fractions": {
+              "0.50": 0.16666666666666666,
+              "0.75": 0.0,
+              "0.90": 0.0,
+              "0.95": 0.0
+            },
+            "max_IoU": {
+              "mean": 0.3020488627849649,
+              "median": 0.3981593090075195,
+              "n": 6,
+              "q25": 0.09629717460532557,
+              "q75": 0.47201324912920345
+            },
+            "zero_max_IoU_GT": 2
+          },
+          "SAMRefiner": {
+            "GT_denominator": 6,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 0,
+                "11-20": 2,
+                "2-5": 0,
+                "21-50": 4,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": 32.333333333333336,
+                "median": 32.5,
+                "n": 6,
+                "q25": 19.5,
+                "q75": 47.0
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 0,
+                "11-20": 1,
+                "2-5": 0,
+                "21-50": 1,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": 27.5,
+                "median": 27.5,
+                "n": 2,
+                "q25": 22.25,
+                "q75": 32.75
+              }
+            },
+            "coverage_counts": {
+              "0.50": 2,
+              "0.75": 0,
+              "0.90": 0,
+              "0.95": 0
+            },
+            "coverage_fractions": {
+              "0.50": 0.3333333333333333,
+              "0.75": 0.0,
+              "0.90": 0.0,
+              "0.95": 0.0
+            },
+            "max_IoU": {
+              "mean": 0.2859237634164694,
+              "median": 0.30199484562001533,
+              "n": 6,
+              "q25": 0.042270531400966184,
+              "q75": 0.5008316315461775
+            },
+            "zero_max_IoU_GT": 2
+          },
+          "native_official": {
+            "GT_denominator": 6,
+            "best_candidate_S0_rank": {
+              "bins": {
+                "1": 0,
+                "11-20": 2,
+                "2-5": 0,
+                "21-50": 4,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": 34.0,
+                "median": 37.5,
+                "n": 6,
+                "q25": 22.0,
+                "q75": 47.0
+              }
+            },
+            "best_candidate_S0_rank_given_max_IoU_ge0p50": {
+              "bins": {
+                "1": 0,
+                "11-20": 0,
+                "2-5": 0,
+                "21-50": 0,
+                "51-100": 0,
+                "6-10": 0
+              },
+              "statistics": {
+                "mean": null,
+                "median": null,
+                "n": 0,
+                "q25": null,
+                "q75": null
+              }
+            },
+            "coverage_counts": {
+              "0.50": 0,
+              "0.75": 0,
+              "0.90": 0,
+              "0.95": 0
+            },
+            "coverage_fractions": {
+              "0.50": 0.0,
+              "0.75": 0.0,
+              "0.90": 0.0,
+              "0.95": 0.0
+            },
+            "max_IoU": {
+              "mean": 0.3037199101573666,
+              "median": 0.43284953844759255,
+              "n": 6,
+              "q25": 0.10526315789473684,
+              "q75": 0.4597942049179409
+            },
+            "zero_max_IoU_GT": 2
+          }
+        }
+      }
+    },
+    "innovation_established": false,
+    "interpretation_limit": "Posthoc GT oracle over exported single masks; not deployable selection, not AP or one-to-one recall, not a bound on author internal branches, not a unique cause of AP loss or proof of core innovation.",
+    "native_complete_COCO12_exact": true,
+    "native_control_COCO_recomputed": true,
+    "new_method_AP_recomputed": false,
+    "new_training": false,
+    "oracle_not_deployable_not_AP": true,
+    "original_AP_and_prediction_outputs_unchanged": true,
+    "private_GT_query_records_not_for_publication": true,
+    "qualified": false,
+    "query_identity_or_S0_modified": false,
+    "schema": "SAMRefiner-full187-all100-oracle-coverage-public-summary-v01",
+    "scope": {
+      "candidates_per_method": 18700,
+      "native_effectively_ignored_GT": 0,
+      "native_matched_GT": 374,
+      "native_nonignored_unmatched_GT": 6,
+      "native_unmatched_or_ignored_GT": 6,
+      "original_ignore_flag_GT": 0,
+      "original_iscrowd_GT": 0,
+      "queries_per_image": 100,
+      "total_DEV_images": 187,
+      "total_GT": 380
+    },
+    "score_rank_order": "DESCENDING_ORIGINAL_S0_THEN_EXPORT_INDEX",
+    "status": "COMPLETE_PENDING_ROOT_ACCEPTANCE"
+  },
+  "worker_exit": 0
+}

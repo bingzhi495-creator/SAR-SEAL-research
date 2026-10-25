@@ -1,0 +1,205 @@
+{
+  "Root_qualified": true,
+  "main_prefix_preserved": 21760,
+  "original_AP_results_unchanged": true,
+  "original_SSH_exit": 0,
+  "original_tool_exit": 0,
+  "private_pairs_raw_data_GT_weights_paths_excluded": true,
+  "resources": {
+    "elapsed_seconds": 2.850828417984303,
+    "minimum_available_RAM_bytes": 78247931904,
+    "peak_group_RSS_bytes": 151875584,
+    "violations": []
+  },
+  "schema": "Root-fixed-native-geometry-public-safe-v1",
+  "summary": {
+    "GT_for_inference": false,
+    "Omega_used": false,
+    "TEST": false,
+    "TGRS_ready": false,
+    "analysis_status": "POSTHOC_EXPLORATORY",
+    "innovation_established": false,
+    "interpretation_limit": "Posthoc conditional geometry on native IoU.50 matches only; not all380-GT geometry, not new-method AP, not a unique explanation of AP loss, not physical contour truth or core innovation.",
+    "methods": {
+      "R": {
+        "FN_over_GT": {
+          "mean": 0.07988204627101748,
+          "median": 0.06095804588596201,
+          "n": 374,
+          "q25": 0.0336155953609514,
+          "q75": 0.1098676579141622
+        },
+        "FP_over_GT": {
+          "mean": 0.09520710929322186,
+          "median": 0.0690282131661442,
+          "n": 374,
+          "q25": 0.034959683090338006,
+          "q75": 0.1149092233262238
+        },
+        "IoU": {
+          "mean": 0.8446398310210218,
+          "median": 0.8605808168460025,
+          "n": 374,
+          "q25": 0.8149327671620665,
+          "q75": 0.8987740272586336
+        },
+        "area_ratio": {
+          "mean": 1.0153250630222044,
+          "median": 1.0081411276069283,
+          "n": 374,
+          "q25": 0.939016287047625,
+          "q75": 1.0753242924528301
+        },
+        "matched_instances": 374,
+        "pixel_totals": {
+          "FN": 34593,
+          "FP": 35580,
+          "TP": 337444
+        },
+        "pooled_IoU": 0.8278457473559738,
+        "threshold_pass_counts": {
+          "0.50": 373,
+          "0.75": 338,
+          "0.90": 92,
+          "0.95": 1
+        }
+      },
+      "SAMRefiner": {
+        "FN_over_GT": {
+          "mean": 0.21113615312115658,
+          "median": 0.20377242709368243,
+          "n": 374,
+          "q25": 0.1425983436853002,
+          "q75": 0.27302753784712547
+        },
+        "FP_over_GT": {
+          "mean": 0.13718753098067157,
+          "median": 0.03183168402577308,
+          "n": 374,
+          "q25": 0.007881796396003858,
+          "q75": 0.09957006850880881
+        },
+        "IoU": {
+          "mean": 0.728607446672677,
+          "median": 0.7383827539498045,
+          "n": 374,
+          "q25": 0.6812125399275024,
+          "q75": 0.7955271479585251
+        },
+        "area_ratio": {
+          "mean": 0.9260513778595151,
+          "median": 0.838158567774936,
+          "n": 374,
+          "q25": 0.7533054791622593,
+          "q75": 0.948551492194242
+        },
+        "matched_instances": 374,
+        "pixel_totals": {
+          "FN": 60757,
+          "FP": 53207,
+          "TP": 311280
+        },
+        "pooled_IoU": 0.7320032734147924,
+        "threshold_pass_counts": {
+          "0.50": 367,
+          "0.75": 174,
+          "0.90": 4,
+          "0.95": 0
+        }
+      },
+      "native_official": {
+        "FN_over_GT": {
+          "mean": 0.08035328978694088,
+          "median": 0.0614145371615695,
+          "n": 374,
+          "q25": 0.03349339797285549,
+          "q75": 0.10840338684713666
+        },
+        "FP_over_GT": {
+          "mean": 0.0983779915268198,
+          "median": 0.07597451274362818,
+          "n": 374,
+          "q25": 0.03728465640946936,
+          "q75": 0.12099452980338389
+        },
+        "IoU": {
+          "mean": 0.8414231314153922,
+          "median": 0.8558940296228432,
+          "n": 374,
+          "q25": 0.8064797711299333,
+          "q75": 0.8963087519569805
+        },
+        "area_ratio": {
+          "mean": 1.018024701739879,
+          "median": 1.008610719577867,
+          "n": 374,
+          "q25": 0.9408118619348566,
+          "q75": 1.079300315604446
+        },
+        "matched_instances": 374,
+        "pixel_totals": {
+          "FN": 33703,
+          "FP": 34506,
+          "TP": 338334
+        },
+        "pooled_IoU": 0.8322219297835654,
+        "threshold_pass_counts": {
+          "0.50": 374,
+          "0.75": 334,
+          "0.90": 80,
+          "0.95": 1
+        }
+      }
+    },
+    "native_complete_COCO12_exact": true,
+    "native_control_COCO_recomputed": true,
+    "new_method_AP_recomputed": false,
+    "new_training": false,
+    "original_S0_class_order_preserved": true,
+    "paired_IoU_differences": {
+      "R_minus_native_official": {
+        "mean": 0.0032166996056298197,
+        "median": 0.0030606876525383075,
+        "n": 374,
+        "q25": -0.0030071346453934,
+        "q75": 0.009985436751113103
+      },
+      "SAMRefiner_minus_R": {
+        "mean": -0.11603238434834494,
+        "median": -0.1104634637990542,
+        "n": 374,
+        "q25": -0.15873518980594414,
+        "q75": -0.06819708288368614
+      },
+      "SAMRefiner_minus_native_official": {
+        "mean": -0.11281568474271511,
+        "median": -0.10539925237666958,
+        "n": 374,
+        "q25": -0.15638266654628366,
+        "q75": -0.06552334408563246
+      }
+    },
+    "private_pair_records_not_for_publication": true,
+    "qualified": false,
+    "rematching": false,
+    "schema": "SAMRefiner-full187-native-fixed-pair-geometry-public-summary-v01",
+    "scope": {
+      "conditioned_on_native_matched_nonignored_GT": true,
+      "ignored_GT": 0,
+      "selected_fraction_of_all_GT": 0.9842105263157894,
+      "selected_native_nonignored_GT": 374,
+      "selection_IoU": 0.5,
+      "selection_area": "all",
+      "selection_maxDets": 100,
+      "selection_model": "native_official",
+      "total_DEV_images": 187,
+      "total_GT": 380,
+      "total_natural_queries": 18700,
+      "unmatched_and_ignored_GT_excluded_from_geometry": true,
+      "unmatched_nonignored_GT": 6
+    },
+    "standalone_FPS_claimed": false,
+    "status": "COMPLETE_PENDING_ROOT_ACCEPTANCE"
+  },
+  "worker_exit": 0
+}

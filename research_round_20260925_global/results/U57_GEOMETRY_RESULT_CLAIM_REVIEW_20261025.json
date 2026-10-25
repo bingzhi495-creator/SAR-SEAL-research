@@ -1,0 +1,208 @@
+{
+  "artifact_consistency": {
+    "independent_remote_execution_truth_proven": false,
+    "observed_postcheck_equals_acceptance_postcheck": true,
+    "public_summary_equals_acceptance_summary": true,
+    "root_qualified": true,
+    "tool_and_SSH_exit_recorded_zero": true,
+    "worker_exit": 0
+  },
+  "claim_supported": "partial",
+  "confidence": "medium",
+  "date": "2026-10-25",
+  "evidence": [
+    "GEO-WORKER:20-24,38-70,114-190,258-307",
+    "GEO-ACCEPT:2-43,44-223,225-242",
+    "GEO-OBS:2-6",
+    "GEO-PUBLIC:1-205",
+    "GT-BYTECOPY:1",
+    "GT-CONVERSION:2-15, especially nested stdout at line 3"
+  ],
+  "gt_provenance": {
+    "all_annotations_link_to_image_roster": true,
+    "all_iscrowd_zero": true,
+    "annotations": 380,
+    "category": {
+      "id": 1,
+      "name": "ship"
+    },
+    "documented_conversion": {
+      "candidate_rules_tested": 1,
+      "declared_rule": "int() truncation per polygon coordinate; bbox extrema max-minus-min; polygon area abs(shoelace)/2",
+      "external_archive_filewise_license_coverage_authenticated": false,
+      "historical_converter_execution_authenticated": false,
+      "official_whole_archive_identity_authenticated": false,
+      "raw_joint_geometry_exact_matches": 14,
+      "raw_joint_geometry_without_exact_source_match": 366,
+      "single_declared_conversion_joint_geometry_matches": 380,
+      "status": "PASS_SCOPED_LOCAL_GEOMETRY_EQUIVALENCE"
+    },
+    "images": 187,
+    "integer_float_endpoint_sensitivity_executed": false,
+    "local_bytecopy_bytes": 118319,
+    "local_bytecopy_sha256": "5657600d6ea198f79bd5d557d2a1aadce5bec031d2ecf72a98716248d1183a55",
+    "meaning_of_original_GT_preserved": "The frozen internal DEV GT was unchanged during evaluation; this does not mean the upstream floating-point JSON was used without conversion.",
+    "metadata_parse_only_no_mask_decode": true,
+    "unique_annotation_ids": 380,
+    "unique_image_ids": 187
+  },
+  "integrity_status": "warn",
+  "integrity_status_note": "Inherited from the prior bounded audit's provenance and scope limits; no new blocking integrity failure was found in this limited geometry result-to-claim review.",
+  "interpretation": {
+    "R_weighting_note": "R has slightly higher per-instance mean/median IoU than native but slightly lower pooled IoU and slightly higher total FP/FN, so no aggregation-independent superiority claim is supported.",
+    "SAM_error_shape_note": "SAMRefiner has much higher FN mean/median and lower area-ratio mean/median. Its FP median is lower than native while FP mean and total are higher, indicating a skewed or pixel-heavy FP tail rather than uniform FP growth.",
+    "all_380_GT_geometry_established": false,
+    "fixed_S0_ranking_is_sole_explanation": false,
+    "full_AP_loss_uniquely_explained": false,
+    "geometry_changed_adversely_on_selected_same_queries": true,
+    "median_vs_pooled_note": "Per-instance mean/median weight instances equally. Pooled IoU and raw TP/FP/FN are pixel-weighted and emphasize large masks/errors.",
+    "new_method_AP_recomputed": false
+  },
+  "judgment": "The new diagnostic supports substantial adverse same-query geometry change on the 374 native-IoU0.50-matched GT pairs, so fixed S0 ranking cannot be the sole explanation there. It does not support an all-380, AP-equivalent, uniquely causal, or general SAMRefiner claim.",
+  "methods": {
+    "R": {
+      "FN_over_GT_mean": 0.07988204627101748,
+      "FN_over_GT_median": 0.06095804588596201,
+      "FP_over_GT_mean": 0.09520710929322186,
+      "FP_over_GT_median": 0.0690282131661442,
+      "IoU_mean": 0.8446398310210218,
+      "IoU_median": 0.8605808168460025,
+      "area_ratio_mean": 1.0153250630222044,
+      "area_ratio_median": 1.0081411276069283,
+      "pixel_totals": {
+        "FN": 34593,
+        "FP": 35580,
+        "TP": 337444
+      },
+      "pooled_IoU": 0.8278457473559738,
+      "threshold_pass_counts": {
+        "0.50": 373,
+        "0.75": 338,
+        "0.90": 92,
+        "0.95": 1
+      }
+    },
+    "SAMRefiner": {
+      "FN_over_GT_mean": 0.21113615312115658,
+      "FN_over_GT_median": 0.20377242709368243,
+      "FP_over_GT_mean": 0.13718753098067157,
+      "FP_over_GT_median": 0.03183168402577308,
+      "IoU_mean": 0.728607446672677,
+      "IoU_median": 0.7383827539498045,
+      "area_ratio_mean": 0.9260513778595151,
+      "area_ratio_median": 0.838158567774936,
+      "pixel_totals": {
+        "FN": 60757,
+        "FP": 53207,
+        "TP": 311280
+      },
+      "pooled_IoU": 0.7320032734147924,
+      "threshold_pass_counts": {
+        "0.50": 367,
+        "0.75": 174,
+        "0.90": 4,
+        "0.95": 0
+      }
+    },
+    "native_official": {
+      "FN_over_GT_mean": 0.08035328978694088,
+      "FN_over_GT_median": 0.0614145371615695,
+      "FP_over_GT_mean": 0.0983779915268198,
+      "FP_over_GT_median": 0.07597451274362818,
+      "IoU_mean": 0.8414231314153922,
+      "IoU_median": 0.8558940296228432,
+      "area_ratio_mean": 1.018024701739879,
+      "area_ratio_median": 1.008610719577867,
+      "pixel_totals": {
+        "FN": 33703,
+        "FP": 34506,
+        "TP": 338334
+      },
+      "pooled_IoU": 0.8322219297835654,
+      "threshold_pass_counts": {
+        "0.50": 374,
+        "0.75": 334,
+        "0.90": 80,
+        "0.95": 1
+      }
+    }
+  },
+  "minimum_next_step": {
+    "experiment": "Predeclare an all-380 score-free diagnostic that reports, for every GT and method, best IoU over all 100 queries plus the original S0 rank and identity of that best query.",
+    "interpretive_value": "Distinguishes destruction of available mask geometry across the complete GT population from survival of good geometry in another query while fixed query/ranking fails.",
+    "label": "oracle diagnostic coverage, not AP",
+    "prohibitions": [
+      "Do not rebind S0 or query identity.",
+      "Do not report oracle coverage as deployable AP.",
+      "Do not use the result to declare general SAMRefiner failure."
+    ]
+  },
+  "paired_IoU_differences": {
+    "R_minus_native_official": {
+      "mean": 0.0032166996056298197,
+      "median": 0.0030606876525383075,
+      "n": 374,
+      "q25": -0.0030071346453934,
+      "q75": 0.009985436751113103
+    },
+    "SAMRefiner_minus_R": {
+      "mean": -0.11603238434834494,
+      "median": -0.1104634637990542,
+      "n": 374,
+      "q25": -0.15873518980594414,
+      "q75": -0.06819708288368614
+    },
+    "SAMRefiner_minus_native_official": {
+      "mean": -0.11281568474271511,
+      "median": -0.10539925237666958,
+      "n": 374,
+      "q25": -0.15638266654628366,
+      "q75": -0.06552334408563246
+    }
+  },
+  "population": {
+    "ignored_GT": 0,
+    "rematching": false,
+    "same_image_query_and_GT_pair_across_methods": true,
+    "selected_fraction_of_all_GT": 0.9842105263157894,
+    "selected_native_nonignored_GT": 374,
+    "selection_IoU": 0.5,
+    "selection_area": "all",
+    "selection_conditioning": "Population membership depends on native COCO/S0 matching; within-pair geometry metrics do not use method-specific score ranking.",
+    "selection_maxDets": 100,
+    "selection_model": "native_official",
+    "total_DEV_images": 187,
+    "total_GT": 380,
+    "unmatched_nonignored_GT": 6
+  },
+  "review_mode": {
+    "active_main_source_payload_or_qualification_read": false,
+    "independent_rerun": false,
+    "private_pair_records_read": false,
+    "read_only": true,
+    "scientific_import_or_mask_decode": false,
+    "ssh_used": false
+  },
+  "reviewer": {
+    "actual_backend": "gpt-5.6-sol",
+    "is_gpt54_codex_mcp_review": false,
+    "reasoning_effort": "xhigh",
+    "role": "independent_subagent"
+  },
+  "schema": "SAMRefiner-fixed-native-geometry-limited-result-to-claim-v1",
+  "suggested_claim_revision": "On the frozen internal DEV187 annotations, among 374 native-IoU0.50-matched GT instances, SAMRefiner reduced same-query mask IoU by median 0.105 and mean 0.113 versus native without rematching; pooled IoU fell from 0.832 to 0.732 with higher aggregate FN and FP. This is conditional geometry evidence, not an all-GT or general failure claim and not a unique explanation of AP loss.",
+  "what_results_do_not_support": [
+    "All-380-GT geometry or AP-equivalence of the conditional diagnostic.",
+    "A claim that scores/ranking play no role in the total AP loss.",
+    "A unique causal mechanism for the geometry change.",
+    "General SAMRefiner failure outside this dataset, recipe, and score policy.",
+    "FULL_E50, TEST, convergence, innovation, SOTA, or TGRS readiness.",
+    "Physical contour truth, unconverted upstream floating-point GT equivalence, official whole-archive identity, historical converter authentication, or license coverage."
+  ],
+  "what_results_support": [
+    "On 374 native-IoU0.50-matched GT pairs, the same SAMRefiner query has materially lower IoU than native/R without rematching.",
+    "Both per-instance and pooled summaries show adverse SAMRefiner geometry on the conditional population.",
+    "The AP degradation cannot be explained solely by keeping original S0 ranking on these selected pairs.",
+    "Typical selected SAMRefiner masks show increased undercoverage/shrinkage, while aggregate FP is driven by a skewed or pixel-heavy tail."
+  ]
+}

@@ -4,10 +4,14 @@
 
 ## 当前状态（2026-10-25）
 
-DGX PLAIN/FULL已各严格接收 **21504/37050次正式更新（58.04%，29轮+15图）**，下一21504→21760运行中，尚未接收。完整SAMRefiner及独立CPU评价已合格：内部DEV187/380、全18700原候选及S0下，native AP67.071057、固定R68.099385、SAM默认42.770654；native/R完整COCO12精确复现。独立可用模型审阅为WARN，无阻断性FAIL，GT全文与单DEV范围限制保留。主训练配方、固定50轮、1800秒/4GiB不变。本机各2816次独立，不拼接。**FULL最终AP、重复、跨集、核心创新与TGRS依据仍未完成。** 固定native匹配几何候选已实现但尚未执行。
+DGX PLAIN/FULL已各严格接收 **22528/37050次正式更新（60.80%，30轮+298图）**；下一22528→22784已按原合格父状态启动、尚未接收。本机各2816更新保持独立。完整SAMRefiner基础默认版mask AP42.770654，native67.071057、固定R68.099385；N26固定R质量排序历史三头种子69.537±0.107，训练来源不同，不合称同预算结构消融。新完成全380 GT/每图100候选的事后oracle覆盖诊断：最佳IoU≥0.90数量为native107、R112、SAM4。GT参与诊断选择，该统计不是AP、不是可部署方法，也不涵盖SAM内部未导出的三分支或++。**FULL最终AP、外部完整方法同协议训练、容量控制、重复种子、跨集与TGRS证据仍未完成。**
 
-原训练与输入验证管线DGX账户90正常/8失败/98总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+原训练与输入验证管线DGX账户94正常/8失败/102总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
+- [全380实例、all-100 oracle覆盖诊断的实际结果](research_round_20260925_global/U57_ALL100_ORACLE_COVERAGE_ACTUAL_20261025.md)
+- [固定native几何诊断：实际FP/FN与解释范围](research_round_20260925_global/U57_FIXED_NATIVE_GEOMETRY_DIAGNOSIS_ACTUAL_20261025.md)
+- [最新精修直接先例：基础SAM、++与局部保留](research_round_20260925_global/U57_HIGH_IOU_REFINEMENT_PRIOR_UPDATE_20261025.md)
+- [实际DEV187标注来源补核](research_round_20260925_global/U57_DEV187_GT_PROVENANCE_SUPPLEMENT_20261025.md)
 - [完整187图SAMRefiner强对照：实际结果与统一评价](research_round_20260925_global/U57_SAMREFINER_FULL187_COMPARISON_EXECUTION_20261025.md)
 - [其他方法对比：实测范围、论文值与复现缺口](research_round_20260925_global/U57_COMPARISON_EVIDENCE_SNAPSHOT_20261025.md)
 - [20736原会话采集失败与一次限定接续](research_round_20260925_global/U57_20736_CAPTURE_RESET_AND_BOUNDED_RECOVERY_20261025.md)：严格前缀保持20480；失败额外计算不作父产物，新接续尚未接收。
