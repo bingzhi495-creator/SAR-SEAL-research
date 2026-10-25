@@ -1,0 +1,81 @@
+{
+  "CUDA_build_version": "13.0",
+  "CUDA_synchronized": true,
+  "FastGeodis_version": "1.0.5",
+  "SAMRefiner_inference_or_AP": false,
+  "SAR_dataset_model_or_checkpoint_used": false,
+  "all_process_group_absent": true,
+  "cases": [
+    {
+      "CPU_GPU_max_abs_delta_descriptive_only": 0.0,
+      "devices": {
+        "cpu": {
+          "checked_distance": 1.0,
+          "seed_distance": 0.0
+        },
+        "cuda:0": {
+          "checked_distance": 1.0,
+          "seed_distance": 0.0
+        }
+      },
+      "dtype": "float32",
+      "iterations": 2,
+      "lamb": 0.0,
+      "name": "euclidean",
+      "shape": [
+        1,
+        1,
+        9,
+        9
+      ],
+      "v": 10000000000.0
+    },
+    {
+      "CPU_GPU_max_abs_delta_descriptive_only": 0.0,
+      "devices": {
+        "cpu": {
+          "checked_distance": 1.0,
+          "seed_distance": 0.0
+        },
+        "cuda:0": {
+          "checked_distance": 1.0,
+          "seed_distance": 0.0
+        }
+      },
+      "dtype": "float32",
+      "iterations": 2,
+      "lamb": 1.0,
+      "name": "geodesic_step",
+      "shape": [
+        1,
+        1,
+        9,
+        9
+      ],
+      "v": 10000000000.0
+    }
+  ],
+  "core_innovation_or_TGRS_established": false,
+  "device_name": "NVIDIA GB10",
+  "no_CPU_fallback_or_wholemap_equality_selection": true,
+  "observed_UTC": "2026-10-25T01:38:46.004581+00:00",
+  "original_SSH_exit": 0,
+  "original_tool_exit": 0,
+  "process_peak_RSS_bytes": 741330944,
+  "schema": "U57-FastGeodis-fixed-synthetic-operator-public-safe-result-v1",
+  "scientific_training_credit": 0,
+  "separate_from_original_training_and_data_validation_account": true,
+  "status": "TWO_FIXED_SYNTHETIC_CPU_CUDA_CASES_PASSED",
+  "synthetic_unit_job_account": {
+    "failed": 0,
+    "normal": 1,
+    "total": 1
+  },
+  "torch_allocated_after_cleanup": 0,
+  "torch_peak_allocator_bytes": 3584,
+  "torch_version": "2.10.0+cu130",
+  "two_cases_four_explicit_CPU_CUDA_calls": true,
+  "whole_GPU_memory_contract_certified": false,
+  "worker_exit": 0,
+  "worker_seconds_including_library_imports": 1.486996134975925
+}

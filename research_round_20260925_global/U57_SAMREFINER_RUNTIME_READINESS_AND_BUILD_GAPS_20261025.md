@@ -1,6 +1,6 @@
 # SAMRefiner 实际运行准备：依赖与未闭合条件
 
-2026-10-25，北京时间。本文依据固定作者源码、官方发布元数据及一次DGX安装登记查询；初稿只做元数据核查；后续工具链检查、GPU隐藏库导入、预构建下载失败及离线暂存见本页实际更新。当前已另行完成FastGeodis隔离构建与GPU隐藏导入，详见后续实际更新；GPU核函数、SAM模型/科学图像及AP仍未执行。主线仍是固定50轮PLAIN/FULL实验，不因依赖准备改动其配方或当前环境。
+2026-10-25，北京时间。本文依据固定作者源码、官方发布元数据及一次DGX安装登记查询；初稿只做元数据核查；后续工具链检查、GPU隐藏库导入、预构建下载失败及离线暂存见本页实际更新。当前已另行完成FastGeodis隔离构建与GPU隐藏导入，详见后续实际更新；GPU算子在两个固定合成样例上已实际检查（见下节）；SAM模型/科学图像及AP仍未执行。主线仍是固定50轮PLAIN/FULL实验，不因依赖准备改动其配方或当前环境。
 
 ## 已取得的最小证据
 
@@ -71,6 +71,15 @@ CUDA_HOME环境变量未设不构成必然阻断。[PyTorch2.10](https://github.
 
 安装产物为aarch64/cpython-312原生扩展；readelf确认含CUDA设备代码段，cuobjdump列出sm_121。它支持目标代码已生成，不证明实际GPU核函数能正常执行。导入时GPU不可见、CUDA未初始化，没有加载SAM模型、权重、SAR图像或执行AP。安全标量见[本次依赖构建结果](results/U57_SAMREFINER_FASTGEODIS_NATIVE_BUILD_SAFE_STATUS_20261025.json)。源码包、二进制、环境路径配置及完整构建日志不随本仓库发布。科学训练随后从合格16896父状态继续。
 
-下一项最小功能检查仍待实际执行：[官方1.0.5 API](https://github.com/masadcv/FastGeodis/blob/1.0.5/FastGeodis/__init__.py#L37)为generalised_geodesic2d(image, softmask, v, lamb, iter=2)。按[官方示例约定](https://github.com/masadcv/FastGeodis/blob/1.0.5/README.md#L109)，使用9×9连续float32、非种子1/种子0、v=1e10及两次扫描。一例全零图、中心种子、lamb=0，检查结构、有限非负、种子约0及轴向邻点约1；另一例强度阶跃、左侧种子、lamb=1，只检查结构、有限非负、种子约0及跨边界正代价，不虚构完整距离图。
+下述最小功能检查在提出时待执行，现已按原规则实际完成（结果见本页最新更新）：[官方1.0.5 API](https://github.com/masadcv/FastGeodis/blob/1.0.5/FastGeodis/__init__.py#L37)为generalised_geodesic2d(image, softmask, v, lamb, iter=2)。按[官方示例约定](https://github.com/masadcv/FastGeodis/blob/1.0.5/README.md#L109)，使用9×9连续float32、非种子1/种子0、v=1e10及两次扫描。一例全零图、中心种子、lamb=0，检查结构、有限非负、种子约0及轴向邻点约1；另一例强度阶跃、左侧种子、lamb=1，只检查结构、有限非负、种子约0及跨边界正代价，不虚构完整距离图。
 
-未来应分别明确调用CPU与CUDA并同步GPU，CUDA不可用须报告失败而非退回CPU。可记录两者最大差异，不强制逐位相等或互当GT；[作者明确讨论扫描精度取舍](https://github.com/masadcv/FastGeodis/blob/1.0.5/README.md#L21)。此项只检验极小合成输入的二维算子功能，不是SAMRefiner或SAR模型效果，当前没有运行该测试。
+未来应分别明确调用CPU与CUDA并同步GPU，CUDA不可用须报告失败而非退回CPU。可记录两者最大差异，不强制逐位相等或互当GT；[作者明确讨论扫描精度取舍](https://github.com/masadcv/FastGeodis/blob/1.0.5/README.md#L21)。此项只检验极小合成输入的二维算子功能，不是SAMRefiner或SAR模型效果，该段最初成稿时未运行；后续实际结果及适用范围见下节。
+
+
+## 已完成：四次固定微型CPU/CUDA算子调用
+
+后续主训练17152严格接收并确认原科学进程已回收后，Root独占执行两个预先固定9×9样例，在CPU与CUDA各调用一次。原始工具、SSH、worker均退出0；Root核源字节、结果结构与原进程组为空，没有用后续查询0替代原退出。两种子距离均0，欧氏样例轴向邻点及阶跃样例跨边界检查点均1；所有结构、有限非负和CUDA同步检查通过。两组完整输出的观测最大差为0，仅适用于这两个样例，不是一般等价性证明，也不是完整距离图GT。
+
+[独立检查源码与运行范围](code/U57_FASTGEODIS_CPU_CUDA_SMOKE_20261025_01/README.md)及[安全结果](results/U57_FASTGEODIS_FIXED_CPU_CUDA_CHECK_SAFE_RESULT_20261025.json)已保存。PyTorch峰值分配3584字节、清理后分配0，进程峰值RSS741330944字节；分配峰值不含全部驱动/上下文内存，不认证whole-GPU。约1.49秒为包含库导入的worker时间，不是SAM或稳态推理速度。该单元任务另行计数，不并入原训练/输入验证管线账户或正式预算。
+
+主训练已继续。SAMRefiner作者模型、权重装载、真实图像/返回行对应与同协议AP仍未验证。作者固定提交的22个必要源码/许可文件（149194字节）仅在私有目录准备并按官方Git blob核对，未安装或运行；完整第三方源码和权重不随Git发布。ViT-H官方权重初次有界传输达到300秒上限并保留624951296字节前缀，失败状态保留；随后按同一ETag及HTTP206 Content-Range条件续传，完整文件及模型加载尚未核验，不能据元数据或部分文件宣称模型就绪。
