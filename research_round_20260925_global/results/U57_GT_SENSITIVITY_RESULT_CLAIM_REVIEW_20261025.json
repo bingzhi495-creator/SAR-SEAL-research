@@ -1,0 +1,91 @@
+{
+  "schema": "SAMRefiner-DEV187-GT-sensitivity-limited-result-to-claim-review-v1",
+  "date": "2026-10-25",
+  "review_backend": {
+    "actual": "GPT-5.6-sol xhigh",
+    "requested_GPT5_4_Codex_MCP_available": false,
+    "claimed_as_requested_MCP_audit": false
+  },
+  "claim_supported": "partial",
+  "confidence": "medium",
+  "narrow_supported_claim": "For the fixed DEV187 predictions, the R-minus-native COCO segm AP contrast is sensitive to the one local-candidate float GT restoration and reverses sign.",
+  "metrics_percent": {
+    "INTEGER_PRIMARY": {
+      "native": 67.07105663749373,
+      "R": 68.09938494745545,
+      "SAMRefiner": 42.77065358008725,
+      "R_minus_native_pp": 1.0283283099617346,
+      "SAMRefiner_minus_native_pp": -24.300403057406466
+    },
+    "LOCAL_CANDIDATE_FLOAT": {
+      "native": 68.44352297709669,
+      "R": 67.21952248889139,
+      "SAMRefiner": 46.26062099164933,
+      "R_minus_native_pp": -1.2240004882053124,
+      "SAMRefiner_minus_native_pp": -22.182901985447362
+    },
+    "float_minus_integer_pp": {
+      "native": 1.3724663396029735,
+      "R": -0.8798624585640735,
+      "SAMRefiner": 3.4899674115620782
+    },
+    "R_minus_native_contrast_shift_pp": -2.252328798167047
+  },
+  "GT_raster_summary": {
+    "annotations": 380,
+    "changed": 366,
+    "unchanged": 14,
+    "instance_IoU_mean": 0.902625707466954,
+    "instance_IoU_median": 0.90648795362016,
+    "pooled_IoU": 0.9460000691388754,
+    "integer_empty": 0,
+    "float_empty": 0,
+    "integer_area_pixels_sum": 394039,
+    "float_area_pixels_sum": 394056,
+    "area_pixels_sum_delta": 17
+  },
+  "arithmetic_checks": {
+    "all_COCO12_deltas_recomputed_match": true,
+    "all_six_AP_equal_mean_stored_per_IoU_AP": true,
+    "three_closed_summary_copies_equal_after_JSON_parse": true
+  },
+  "supported": [
+    "Annotation representation materially affects these fixed-prediction DEV187 AP values.",
+    "The R-versus-native ordering reverses between the two evaluated GT versions.",
+    "SAMRefiner remains substantially below native under the local-float candidate."
+  ],
+  "not_supported": [
+    "A robust or general positive R effect.",
+    "Official, physical-truth, or preferable status for the local-float GT.",
+    "Unique attribution to position error because polygon, bbox, area, matching, and area bins are not isolated.",
+    "General SAMRefiner failure, innovation, TGRS readiness, or completion of the main experiment.",
+    "Replacement of the primary integer GT or selection of the more favorable GT."
+  ],
+  "unexamined_or_incomplete": [
+    "The prospective first-E50 FULL-minus-PLAIN paired-GT sensitivity test.",
+    "Independent rerun of AP or rasterization.",
+    "Independent inspection of GT and prediction payloads.",
+    "Independent authentication of an official archive or physical contours.",
+    "Independent comparison of the prior qualified SAM integer result payload under this limited input set."
+  ],
+  "timing_and_scope": {
+    "posthoc_added_after_base_SAM_results": true,
+    "original_preregistration": false,
+    "first_E50_FULL_PLAIN_sensitivity_completed": false,
+    "main_experiment_endpoint_AP_present_here": false,
+    "GT_used_for_model_inference": false,
+    "new_training": false
+  },
+  "integrity_scope": {
+    "Root_acceptance_recorded": true,
+    "Root_mapper_qualification_recorded": true,
+    "independent_SSH": false,
+    "independent_scientific_rerun": false,
+    "GT_or_prediction_payloads_read": false,
+    "active_training_SOURCE_read": false,
+    "remote_execution_fully_proved_by_reviewer": false,
+    "inner_summary_preacceptance_qualified_value": false,
+    "final_acceptance_supplied_by_Root_wrapper": true
+  },
+  "minimum_next_step": "At the fixed first-E50 endpoint, run the declared paired integer/local-float evaluation on the same frozen FULL and PLAIN predictions and report both FULL-minus-PLAIN contrasts without GT selection."
+}

@@ -4,10 +4,12 @@
 
 ## 当前状态（2026-10-25）
 
-DGX PLAIN/FULL已各严格接收 **22528/37050次正式更新（60.80%，30轮+298图）**；下一22528→22784已按原合格父状态启动、尚未接收。本机各2816更新保持独立。完整SAMRefiner基础默认版mask AP42.770654，native67.071057、固定R68.099385；N26固定R质量排序历史三头种子69.537±0.107，训练来源不同，不合称同预算结构消融。新完成全380 GT/每图100候选的事后oracle覆盖诊断：最佳IoU≥0.90数量为native107、R112、SAM4。GT参与诊断选择，该统计不是AP、不是可部署方法，也不涵盖SAM内部未导出的三分支或++。**FULL最终AP、外部完整方法同协议训练、容量控制、重复种子、跨集与TGRS证据仍未完成。**
+DGX PLAIN/FULL已各严格接收 **23040/37050次正式更新（62.19%，31轮+69图）**；下一23040→23296已从原合格父状态接续、尚未接收。本机各2816更新保持独立。新增三套冻结预测的两GT敏感性诊断已实际接收：整数/本地候选浮点GT下native AP为67.071/68.444，固定R为68.099/67.220，SAM基础默认为42.771/46.261。**R相对native由+1.028变为−1.224 AP点，原正收益必须限定于整数协议。**366/380 GT栅格变化，不能将本地浮点版本冒称官方真值，亦不选择更有利标签。主训练/主评价不改，首E50 FULL/PLAIN两GT敏感性仍待。**FULL最终AP、外部完整方法公平训练、容量控制、重复、跨集与TGRS依据仍未完成。**
 
-原训练与输入验证管线DGX账户94正常/8失败/102总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+原训练与输入验证管线DGX账户96正常/8失败/104总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
+- [标注版本敏感性的实际结果：R优势反转](research_round_20260925_global/U57_INTEGER_FLOAT_GT_SENSITIVITY_ACTUAL_20261025.md)
+- [DiffSAR作者实现的CARAFE依赖与实际mapper](research_round_20260925_global/U57_DIFFSAR_CARAFE_AND_MAPPER_EXECUTION_GAPS_20261025.md)
 - [全380实例、all-100 oracle覆盖诊断的实际结果](research_round_20260925_global/U57_ALL100_ORACLE_COVERAGE_ACTUAL_20261025.md)
 - [固定native几何诊断：实际FP/FN与解释范围](research_round_20260925_global/U57_FIXED_NATIVE_GEOMETRY_DIAGNOSIS_ACTUAL_20261025.md)
 - [最新精修直接先例：基础SAM、++与局部保留](research_round_20260925_global/U57_HIGH_IOU_REFINEMENT_PRIOR_UPDATE_20261025.md)

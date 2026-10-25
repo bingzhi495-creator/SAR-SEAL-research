@@ -15,3 +15,6 @@ Root随后在所有数值叶关闭的窗口实际运行确定性stdlib补核，�
 “冻结内部GT未改动”与“上游浮点标注未经转换”是两件事。整数/浮点敏感性已在首次FULL端点AP前声明，仍待按[原政策](U57_PROSPECTIVE_ANNOTATION_SENSITIVITY_POLICY_20261025.md)执行；不因本次补核更改主GT、挑更好分数或重新命名为官方TEST。
 
 [安全元数据结果](results/U57_DEV187_GT_PROVENANCE_SUPPLEMENT_20261025.json)不含原标注全文、私有数据路径或逐实例身份。
+
+
+[三套冻结预测的追加事后两GT敏感性诊断](U57_INTEGER_FLOAT_GT_SENSITIVITY_ACTUAL_20261025.md)现已真实完成。这兑现的是本次新声明的baseline诊断，不代表首E50 FULL/PLAIN敏感性已完成；该原政策仍保持。两版全部380官方栅格均非空，366个发生变化。官方整包身份、许可与物理真值仍未认证。
