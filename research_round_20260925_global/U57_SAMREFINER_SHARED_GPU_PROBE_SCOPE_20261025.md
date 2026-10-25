@@ -1,5 +1,9 @@
 # SAMRefiner共享GPU单图探针：前瞻执行范围
 
+## 后续实际调用结果（当前）
+
+已在共享GPU条件下实际调用ViT-H FP32及100候选，作者函数返回并CUDA同步，但退出前清理计数非零，原工具/SSH/worker均返回1，保留为失败。输出不作合格后继父产物，没有AP。[实际失败与清理假说](U57_SAMREFINER_FIRST_REAL_MODEL_FAILURE_AND_CLEANUP_HYPOTHESIS_20261025.md)和[v03未执行候选](code/U57_SAMREFINER_REAL_ONE_IMAGE_CLEANUP_FIX_DRAFT_20261025_03/README.md)记录细节。下文保留调用前的历史设计与阶段观察，不代表当前仍未调用模型。
+
 2026-10-25。此为首次真实SAM模型调用前新增的执行设计，不是已完成实验，也不修改主训练配方。
 
 ## 已获得的实际证据

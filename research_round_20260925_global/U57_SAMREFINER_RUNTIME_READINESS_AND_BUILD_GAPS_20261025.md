@@ -1,5 +1,9 @@
 # SAMRefiner 实际运行准备：依赖与未闭合条件
 
+## 后续实际调用结果（当前）
+
+已在共享GPU条件下实际调用ViT-H FP32及100候选，作者函数返回并CUDA同步，但退出前清理计数非零，原工具/SSH/worker均返回1，保留为失败。输出不作合格后继父产物，没有AP。[实际失败与清理假说](U57_SAMREFINER_FIRST_REAL_MODEL_FAILURE_AND_CLEANUP_HYPOTHESIS_20261025.md)和[v03未执行候选](code/U57_SAMREFINER_REAL_ONE_IMAGE_CLEANUP_FIX_DRAFT_20261025_03/README.md)记录细节。下文保留调用前的历史设计与阶段观察，不代表当前仍未调用模型。
+
 ## 后续实际进展：DGX权重完整核验（当前）
 
 [DGX权重安全结果](results/U57_SAMREFINER_DGX_VITH_COMPLETE_SAFE_RESULT_20261025.json)已确认2564550879字节及独立全SHA256通过，固定作者15份Python源再次核对。旧慢速传输仅在新副本完整验证后按所属进程身份主动停止，原非零终态和部分文件保留。设备仍有既有推理服务，不授予虚假物理GPU独占租约；[新共享探针范围](U57_SAMREFINER_SHARED_GPU_PROBE_SCOPE_20261025.md)待绑定执行。尚无SAM模型精修或AP。以下早期记录保留为历史，不代替本段的当前状态。

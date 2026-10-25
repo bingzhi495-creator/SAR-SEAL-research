@@ -1,0 +1,113 @@
+{
+  "schema": "U57-SAMRefiner-shared-probe-v02-public-safe-failure-v1",
+  "observed_closure_UTC": "2026-10-25T07:08:12.604895+00:00",
+  "status": "ORIGINAL_FAILURE_CLOSED_FULLY_REAPED_NOT_QUALIFIED",
+  "qualified": false,
+  "original_failure_preserved": true,
+  "original_terminal_codes": {
+    "controller": 1,
+    "remote_command": 1,
+    "worker": 1
+  },
+  "automatic_retry": false,
+  "attempts_entered": 1,
+  "outputs_eligible_as_successor_parent": false,
+  "scope": {
+    "images": 1,
+    "predicted_candidates": 100,
+    "model": "SAM ViT-H with the fixed SAMRefiner author implementation",
+    "precision": "float32",
+    "configured_iterations": 5,
+    "amp": false,
+    "cpu_fallback": false,
+    "exclusive_project_scientific_leaf": true,
+    "whole_device_exclusive": false,
+    "background_GPU_service_present": true,
+    "background_identity_checked_before_launch": true,
+    "background_load_locked": false,
+    "speed_benchmark": false,
+    "GT_loaded": false,
+    "AP": false,
+    "full187": false,
+    "training_updates": 0
+  },
+  "observed_model_path": {
+    "checkpoint_bytes_verified": true,
+    "checkpoint_deserialized": true,
+    "model_constructed": true,
+    "weights_loaded": true,
+    "model_CUDA_FP32_verified": true,
+    "author_refiner_entered": true,
+    "author_refiner_returned": true,
+    "CUDA_synchronized_after_refiner": true,
+    "inference_completed_worker_flag": true,
+    "model_hooks": {
+      "image_encoder": { "pre": 1, "post": 1 },
+      "prompt_encoder": { "pre": 5, "post": 5 },
+      "mask_decoder": { "pre": 5, "post": 5 }
+    },
+    "completed_rounds_observed": null,
+    "hook_counts_are_explicit_round_or_quality_proof": false,
+    "author_internal_return_order_verified": false,
+    "historical_input_equivalence_closed": false
+  },
+  "resources": {
+    "allowed_cpus": [0, 1],
+    "threads": 2,
+    "GPU_allocator_cap_bytes": 17179869184,
+    "maximum_RSS_bytes": 17179869184,
+    "minimum_available_RAM_floor_bytes": 17179869184,
+    "startup_min_available_RAM_bytes": 51539607552,
+    "deadline_seconds": 1800,
+    "worker_elapsed_seconds_including_setup_inference_and_cleanup": 19.418421907001175,
+    "parent_elapsed_seconds": 20.423146468005143,
+    "CUDA_peak_allocated_bytes": 7011852288,
+    "worker_sampled_peak_RSS_bytes": 6123802624,
+    "parent_sampled_peak_group_RSS_bytes": 6171545600,
+    "parent_sampled_minimum_available_RAM_bytes": 65376083968,
+    "parent_sampled_resource_violations": [],
+    "worker_sampled_resource_violations": [],
+    "whole_GPU_memory_contract_certified": false
+  },
+  "failure": {
+    "stage": "cleanup_after_author_return_and_CUDA_synchronization",
+    "error_type": "ValueError",
+    "error": "Resource cleanup/allocation budget failed",
+    "CUDA_allocated_after_cleanup_bytes": 9568256,
+    "CUDA_reserved_after_cleanup_bytes": 14680064,
+    "zero_allocation_cleanup_condition_passed": false,
+    "failure_reclassified_as_success": false,
+    "OOM_established": false,
+    "background_service_causation_established": false
+  },
+  "Root_post_terminal_closure": {
+    "selected_unique_sources_post_byte_verified": 38,
+    "output_bytes_verified": true,
+    "same_boot_verified": true,
+    "owned_child_birth_absent": true,
+    "owned_group_empty": true,
+    "worker_numeric_process_absent": true,
+    "parent_numeric_process_absent": true,
+    "parent_birth_ticks_recorded": false,
+    "parent_birth_identity_closure_claimed": false,
+    "source_footprint": "Selected admitted files; not complete Python/native/shared-library binary closure",
+    "post_terminal_closure_upgrades_original_failure": false
+  },
+  "cleanup_hypothesis": {
+    "status": "SOURCE_SUPPORTED_UNTESTED_HYPOTHESIS",
+    "candidate": "Process-held cuBLAS/cuBLASLt workspaces may account for some remaining allocator allocations",
+    "live_tensor_retention_excluded": false,
+    "observed_allocation_root_cause_established": false,
+    "prospective_v03_cleanup_candidate_executed": false,
+    "sources": [
+      "https://github.com/pytorch/pytorch/blob/v2.10.0/torch/csrc/cuda/Module.cpp",
+      "https://github.com/pytorch/pytorch/blob/v2.10.0/aten/src/ATen/cuda/CublasHandlePool.cpp"
+    ]
+  },
+  "torch_version": "2.10.0+cu130",
+  "numpy_version": "1.26.4",
+  "external_comparison_AP_available": false,
+  "method_accuracy_or_innovation_established": false,
+  "TGRS_readiness_established": false,
+  "private_paths_process_ids_connection_details_images_weights_masks_excluded": true
+}
