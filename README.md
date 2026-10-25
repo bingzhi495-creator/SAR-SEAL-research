@@ -4,13 +4,15 @@
 
 ## 当前状态（2026-10-25）
 
-DGX PLAIN/FULL 已各严格接收 **18432/37050次正式更新**（24轮+648图）。已记录接续区间10752→18432共30段，每臂新增7680次更新、17282次匹配实例访问；最新18176→18432单段各+256/578。下一18432→18688运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL 已各严格接收 **18944/37050次正式更新**（25轮+419图）。已记录接续区间10752→18944共32段，每臂新增8192次更新、18380次匹配实例访问；最新18688→18944单段各+256/578。下一18944→19200运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
 
-原训练与输入验证管线DGX账户78正常/6失败/84总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+原训练与输入验证管线DGX账户80正常/7失败/87总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [15616→15872单次恢复的严格接收结果](research_round_20260925_global/results/U57_CAPTURE_RECOVERY15616_15872_SAFE_RESOLUTION_20261025.json)：失败原段保留，新恢复从合格父状态执行；通信根因和物理修复仍未证明。
 - [FastGeodis固定CPU/CUDA算子检查源码与结果](research_round_20260925_global/code/U57_FASTGEODIS_CPU_CUDA_SMOKE_20261025_01/README.md)：两个9×9样例、四次明确调用实际通过；软件/合成检查独立记账，不计完整训练、重复种子或AP。
 - [官方ViT-H权重获取状态](research_round_20260925_global/results/U57_SAM_VITH_OFFICIAL_ASSET_ACQUISITION_SAFE_STATUS_20261025.json)：文件已在本机获取并记录本地摘要，尚未加载模型；权重不上传Git。
+- [SAMRefiner真实单图驱动候选](research_round_20260925_global/code/U57_SAMREFINER_REAL_ONE_IMAGE_TRIAL_DRAFT_20261025_01/README.md)：3项纯元数据测试与静态审阅通过，完整模型未执行；[独立资源方案](research_round_20260925_global/U57_SAMREFINER_FP32_MEMORY_AND_PROSPECTIVE_RESOURCE_PLAN_20261025.md)尚未绑定。
+- [GLDet原PDF指标核查](research_round_20260925_global/U57_GLDET_ORIGINAL_PDF_METRICS_AUDIT_20261025.md)：确有实例分割，作者mask AP与本项目内部DEV不直接排名。
 - [SAMRefiner首张原图与100候选输入核对](research_round_20260925_global/code/U57_SAMREFINER_FIRST_INPUT_CHECK_20261025_01/README.md)：真实CPU单图、像素及候选顺序核验通过；没有SAM推理或AP。
 - [SAMRefiner实际运行依赖与未闭合条件](research_round_20260925_global/U57_SAMREFINER_RUNTIME_READINESS_AND_BUILD_GAPS_20261025.md)：作者定制SAM包已隔离安装并通过GPU隐藏的真实入口导入；原生GPU算子仅在两固定样例通过，SAM模型及AP仍待。
 - [SAMRefiner作者API桥接候选源码](research_round_20260925_global/code/U57_SAMREFINER_REAL_BRIDGE_DRAFT_20261025_01/README.md)：7项小NumPy边界测试及独立源码审阅通过；按作者图像路径接口批量调用，真实作者函数/模型/图像、内部候选顺序及AP仍未执行或验证。
@@ -494,3 +496,5 @@ N20后续未执行源码：[独立CPU端点核验入口](research_round_20260925
 - 2026-10-25：[最近直接先例差异表已补核SegS-YOLO](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)，保留原访问日期并另标本轮补核日期；当前未形成外部复现或新AP结论。
 
 - 2026-10-25：[教师身份与数据接触核查](research_round_20260925_global/U57_TEACHER_IDENTITY_AND_DATA_EXPOSURE_SCOPE_20261025.md)：当前原生教师为项目Mask2Former/R50 E24，纠正与DiffSAR外部先例混称；[官方COCO初始化完整摘要关联](research_round_20260925_global/results/U57_OFFICIAL_COCO_INITIALIZER_FULL_STREAM_AUDIT_20261025.json)已补齐，DEV排除仍需实际历史清单核查。历史D目录FPN归属记录不等于当前载体身份。
+
+2026-10-25接续更新：原18688→18944的TCP连接失败保持失败、0更新；新的单次30秒连接接续已通过原工具/SSH/worker0、771项字节和严格进程核验，正式前缀18944。下一18944→19200实际运行中。不同预算/预训练与数据划分的外部数字不直接排名，SAM完整模型候选仍未执行。

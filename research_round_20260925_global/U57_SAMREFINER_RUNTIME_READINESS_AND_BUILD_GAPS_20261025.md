@@ -112,3 +112,8 @@ CUDA_HOME环境变量未设不构成必然阻断。[PyTorch2.10](https://github.
 worker约1.798秒含导入与读写，不是SAM速度；self峰值RSS782811136字节，parent9次采样的最大组RSS733487104、最低可用RAM78076952576，无观测违规。真实外层GNU KILL90秒，child另有85秒监测；CPU0/1、Torch计算/交互线程及OMP/MKL/OpenBLAS均为2。采样结果不保证采样间隔内的峰值；选定源码闭合也不等于所有二进制库闭合。
 
 [安全结果](results/U57_SAMREFINER_FIRST_ORIGINAL_INPUT_CHECK_SAFE_RESULT_20261025.json)与[实际执行源码、三项身份测试及范围](code/U57_SAMREFINER_FIRST_INPUT_CHECK_20261025_01/README.md)已整理。未加载SAM或权重、未接触GT、未运行精修或AP；当前PIL全原图与历史Windows解码全原图相等、当前PIL重建rgb400与旧缓存相等均未证明，下一真实模型试跑应量化后者。权重长传输继续，不能据本次单图准备宣称完整187或外部方法复现已完成。
+
+
+## 完整模型试跑候选与资源方案尚未执行
+
+[真实单图驱动候选](code/U57_SAMREFINER_REAL_ONE_IMAGE_TRIAL_DRAFT_20261025_01/README.md)已完成3项有限纯标准库元数据测试与独立静态审阅，仍UNBOUND。权重完整stage证书、新Root lease、全部已装作者源码快照、真实GPU监督及退出/组回收均待实际接通；不能把候选当作已跑SAM。[FP32内存推导与独立资源方案](U57_SAMREFINER_FP32_MEMORY_AND_PROSPECTIVE_RESOURCE_PLAN_20261025.md)说明普通4GiB限制可能人为拦截作者ViT-H；拟单独16GiB且启动RAM48GiB，未授运行，主训练4GiB不变。没有新增SAM推理或AP。
