@@ -1,0 +1,79 @@
+{
+  "archived_own_source_sha256": {
+    "rgb400_check.py": "ea245fe9d48b30389e5554d20aa70ece69179c5b57a07c6e2f65c753ab900eb9",
+    "test_import.py": "cd1f655a0b627b4d7c58bb3b484c37d1ab916ed861ed5cb67f676b30dc7ca7f7"
+  },
+  "comparison": {
+    "RMSE": 1.4736400118224847e-08,
+    "allclose_atol_1e_7_rtol_0": false,
+    "byte_mismatch": true,
+    "comparison_performed": true,
+    "max_abs": 1.1771917343139648e-06,
+    "mean_abs": 2.219807356595993e-09,
+    "nonzero_count": 84342,
+    "numerical_mismatch": true,
+    "raw_FP32_bytes_equal": false,
+    "statistics_accumulation": "cast each input separately to float64 before subtraction",
+    "tolerance_is_descriptive_not_quality_gate": true,
+    "torch_equal": false
+  },
+  "excluded_operations": {
+    "AP": false,
+    "CUDA_initialized": false,
+    "GT_accessed": false,
+    "SAM_model_loaded": false,
+    "training_updates": 0
+  },
+  "execution_evidence": {
+    "all_source_and_input_bytes_verified": true,
+    "equality_not_required_for_success": true,
+    "external_wall_timeout_seconds": 90,
+    "original_SSH_exit": 0,
+    "original_child_exit": 0,
+    "original_tool_exit": 0,
+    "owned_process_group_absent_observed": true,
+    "parent_sampled_resource_violations": [],
+    "source_count": 17,
+    "worker_exit_code": 0,
+    "worker_sampled_resource_violations": []
+  },
+  "interpretation": {
+    "AP_effect_measured": false,
+    "AP_failure_established": false,
+    "better_input_selected": false,
+    "comparison_execution_failed": false,
+    "first_image_inputs_equal": false,
+    "full187_input_sensitivity_evaluation_executed": false,
+    "limitation": "A one-image input correspondence check; no claim about the remaining images, downstream AP impact, or historical full-resolution pixel identity.",
+    "method_failure_established": false
+  },
+  "publication_scope": {
+    "credentials_included": false,
+    "private_paths_included": false,
+    "raw_images_or_annotations_included": false,
+    "third_party_source_included": false,
+    "weights_included": false
+  },
+  "root_closure_UTC": "2026-10-25T05:05:01.637853+00:00",
+  "schema": "U57-SAMRefiner-first-only-RGB400-correspondence-safe-result-v1",
+  "scope": {
+    "compared_dtype": "float32",
+    "compared_shape": [
+      1,
+      3,
+      400,
+      400
+    ],
+    "comparison": "Current original-image RGB rebuilt through the fixed geometry versus historical cached RGB400",
+    "full187": false,
+    "image_id": 4,
+    "images_compared": 1,
+    "ordinal": 0,
+    "original_full_resolution_historical_pixel_equality_claimed": false,
+    "original_shape": [
+      317,
+      420
+    ]
+  },
+  "status": "ROOT_ACCEPTED_ONE_IMAGE_RGB400_COMPARISON_COMPLETE"
+}

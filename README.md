@@ -4,9 +4,11 @@
 
 ## 当前状态（2026-10-25）
 
-DGX PLAIN/FULL 已各严格接收 **19456/37050次正式更新**（26轮+190图，预算52.51%）。最新19200→19456单段每臂各+256次更新、508次匹配实例访问；下一19456→19712已启动，尚未接收。本机仍各2816次，独立、不拼接、不当作重复种子。原失败和额外计算保留。**尚无当前FULL/PLAIN最终AP、结构涨点、创新成立或TGRS就绪结论。** 本段为2026-10-25 13:43北京时间已接收快照。
+DGX PLAIN/FULL 已各严格接收 **19712/37050次正式更新**（26轮+446图）。已记录接续区间10752→19712共35段，每臂新增8960次更新、20136次匹配实例访问；最新19456→19712单段各+256/623。下一19712→19968运行中，尚未接收，不提前增加更新。本机仍各2816次，独立、不拼接、不当作重复种子。原失败、资源观察及额外重复计算保留。**尚无最终AP、涨点、创新成立或TGRS就绪结论。**
 
-原训练与输入验证管线DGX账户82正常/7失败/89总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+原训练与输入验证管线DGX账户83正常/7失败/90总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+
+- [RGB400首图真实比较与首端点前输入敏感性补充规则](research_round_20260925_global/U57_PROSPECTIVE_RGB400_INPUT_SENSITIVITY_POLICY_20261025.md)：比较完成但数值与字节不相等；不推定AP影响，不换主输入。
 
 - [与其他方法的最新对比快照](research_round_20260925_global/U57_COMPARISON_EVIDENCE_SNAPSHOT_20261025.md)：内部实测、PointRend结构适配及外部方法复现缺口分别列明；[19456步独立安全标量](research_round_20260925_global/results/U57_FORMAL19456_ACTUAL_SCALARS_20261021.json)。尚无外部同协议完整AP。
 
@@ -44,7 +46,7 @@ DGX PLAIN/FULL 已各严格接收 **19456/37050次正式更新**（26轮+190图�
 
 - [U63独立CPU8G导出配置](research_round_20260925_global/code/U63_DEV_REMAINING186_CPU8G_EXPORT_DRAFT_20261021_01/README.md)：已实际通过剩余186图18600候选的导出、保存后重载及Root验收；与首图拼成完整187图索引。独立U65完整CPU读取已通过，零残差RLE校准仍待验证。
 
-- 既有读取证据：187/187包最终远端字节inventory已核验，原传输任务真实退出0；[U65完整CPU读取入口](research_round_20260925_global/code/U65_DGX_DEV187_CPU_READER_VALIDATION_DRAFT_20261021_01/README.md)随后独立实际读取并释放187图/18700候选，198项直接来源闭合、失败与残留均0，已由Root严格接收，摘要另行stage成功。它不证明E50恢复、模型forward、RLE或AP，历史Windows原始来源未重验。8192阶段历史全局DGX账户38正常/3失败/41总计包含独立CPU验证和更新前失败，不是纯训练计数。旧2048磁盘故障的额外512次更新及未知SSH/owner退出保持未合格；成功重算不按loss/AP选优，也不宣称逐bit复现或独立种子。
+- 既有读取证据：187/187包最终远端字节inventory已核验，原传输任务真实退出0；[U65完整CPU读取入口](research_round_20260925_global/code/U65_DGX_DEV187_CPU_READER_VALIDATION_DRAFT_20261021_01/README.md)随后独立实际读取并释放187图/18700候选，198项直接来源闭合、失败与残留均0，已由Root严格接收，摘要另行stage成功。它不证明E50恢复、模型forward、RLE或AP，历史Windows原始来源未重验。8192阶段历史原训练与输入验证管线DGX账户38正常/3失败/41总计包含独立CPU验证和更新前失败，不是纯训练计数。旧2048磁盘故障的额外512次更新及未知SSH/owner退出保持未合格；成功重算不按loss/AP选优，也不宣称逐bit复现或独立种子。
 - [U65纯metadata接收器](research_round_20260925_global/code/U65_ROOT_ACCEPTANCE_METADATA_DRAFT_20261021_01/README.md)：原5项有限标准库测试及静态审阅之外，本次另有真实退出、187条audit和来源/日志字节核验并完成Root接收；替身测试本身不构成执行证据。
 - [U66固定E50薄预测核心](research_round_20260925_global/code/U66_DGX_FIXED50_PREDICTION_CORE_DRAFT_20261021_01/README.md)：4项有限标准库替身测试、AST及独立静态审阅通过，修正两处真实ABI接线；仍未绑定、未执行，不构成GPU/reader/恢复/forward、owner、CPU指标或AP资格。
 - [U67固定E50完整人口薄指标核心](research_round_20260925_global/code/U67_DGX_FIXED50_POPULATION_METRICS_CORE_DRAFT_20261021_01/README.md)：7项有限标准库JSON/替身测试、AST及有限静态审阅通过；尚未绑定或实际读取数据/运行COCO/AP，没有owner或运行资格，不替代真实完整人口评价。
