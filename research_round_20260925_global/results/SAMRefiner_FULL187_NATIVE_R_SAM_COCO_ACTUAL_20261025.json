@@ -1,0 +1,408 @@
+{
+  "AP": true,
+  "FULL_E50_AP_evaluated": false,
+  "TEST": false,
+  "TGRS_ready": false,
+  "cost": {
+    "CPU_parent_shared_diagnostic": {
+      "elapsed_seconds": 4.6371208319906145,
+      "minimum_available_RAM_bytes": 78253506560,
+      "peak_group_RSS_bytes": 145317888,
+      "violations": []
+    },
+    "SAM_inference_shared_diagnostic": {
+      "CUDA_peak_allocated_bytes": 7652452864,
+      "background_load_locked": false,
+      "elapsed_seconds": 959.7300517670228,
+      "model_load_count": 1,
+      "sampled_worker_peak_RSS_bytes": 6125858816,
+      "speed_benchmark": false
+    },
+    "speed_benchmark": false,
+    "whole_device_exclusive": false
+  },
+  "differences": {
+    "SAMRefiner_minus_R": {
+      "left_stats": [
+        0.42770653580087253,
+        0.9513359192223972,
+        0.27947055710796564,
+        0.4105842647213084,
+        0.48455767755583806,
+        0.6999999999999998,
+        0.2707894736842105,
+        0.5063157894736842,
+        0.5210526315789472,
+        0.4992700729927007,
+        0.5761904761904761,
+        0.7
+      ],
+      "percentage_points": [
+        -25.328731367368203,
+        -1.865368557073177,
+        -57.26641207392813,
+        -26.685565291638603,
+        -21.286655251049652,
+        0.0,
+        -10.315789473684212,
+        -22.868421052631582,
+        -23.868421052631593,
+        -26.6058394160584,
+        -16.952380952380953,
+        0.0
+      ],
+      "right_stats": [
+        0.6809938494745545,
+        0.969989604793129,
+        0.852134677847247,
+        0.6774399176376944,
+        0.6974242300663346,
+        0.6999999999999998,
+        0.37394736842105264,
+        0.735,
+        0.7597368421052632,
+        0.7653284671532847,
+        0.7457142857142857,
+        0.7
+      ],
+      "undefined_policy": "Raw -1 retained; difference undefined if either method has -1"
+    },
+    "SAMRefiner_minus_native": {
+      "left_stats": [
+        0.42770653580087253,
+        0.9513359192223972,
+        0.27947055710796564,
+        0.4105842647213084,
+        0.48455767755583806,
+        0.6999999999999998,
+        0.2707894736842105,
+        0.5063157894736842,
+        0.5210526315789472,
+        0.4992700729927007,
+        0.5761904761904761,
+        0.7
+      ],
+      "percentage_points": [
+        -24.300403057406466,
+        -1.8751349645067417,
+        -55.89560898564031,
+        -25.432848742346913,
+        -20.807563729863528,
+        0.0,
+        -9.894736842105262,
+        -22.05263157894738,
+        -23.0,
+        -25.109489051094897,
+        -17.714285714285715,
+        0.0
+      ],
+      "right_stats": [
+        0.6707105663749372,
+        0.9700872688674647,
+        0.8384266469643687,
+        0.6649127521447775,
+        0.6926333148544733,
+        0.6999999999999998,
+        0.36973684210526314,
+        0.726842105263158,
+        0.7510526315789472,
+        0.7503649635036497,
+        0.7533333333333333,
+        0.7
+      ],
+      "undefined_policy": "Raw -1 retained; difference undefined if either method has -1"
+    }
+  },
+  "innovation_established": false,
+  "original_terminal_codes": {
+    "CPU_SSH": 0,
+    "CPU_tool": 0,
+    "CPU_worker": 0,
+    "inference_SSH": 0,
+    "inference_tool": 0,
+    "inference_worker": 0
+  },
+  "population": {
+    "candidates_per_method": 18700,
+    "development_selection_exposure": true,
+    "instances": 380,
+    "internal_DEV_images": 187,
+    "official_TEST": false,
+    "queries_per_image": 100
+  },
+  "private_paths_raw_data_full_annotations_weights_credentials_excluded": true,
+  "protocol": {
+    "AMP": false,
+    "AP_display_scale": "raw COCO fractions; percent=100*value",
+    "GT_prompts": false,
+    "annotation_policy": "ORIGINAL_DEV_UNCHANGED",
+    "author_commit": "4bb7f95738c7a2e805f189210fb09e02a2197557",
+    "author_iterations": 5,
+    "category": 1,
+    "empty_policy": "AUTHOR_ALL100_UNFILTERED",
+    "evaluation": "Original closed COCO helper; segmentation maxDets[1,10,100]",
+    "input_empty_masks": 23,
+    "input_images_with_empty_masks": 7,
+    "model": "ViT-H",
+    "native_R_complete_seven_key_COCO12_exact": true,
+    "precision": "float32",
+    "same_native_candidate_identity_and_global_order": true,
+    "same_training_budget_claimed": false,
+    "score": "ORIGINAL_NATIVE_S0_UNCHANGED",
+    "seed": 2026102503
+  },
+  "qualified_scope": "One fixed-author/default inference and exact-control CPU evaluation on internalDEV; no universal comparison or core innovation",
+  "results": {
+    "R": {
+      "COCO": {
+        "iouType": "segm",
+        "maxDets": [
+          1,
+          10,
+          100
+        ],
+        "metrics": {
+          "AP": 0.6809938494745545,
+          "AP50": 0.969989604793129,
+          "AP75": 0.852134677847247,
+          "APL": 0.6999999999999998,
+          "APM": 0.6974242300663346,
+          "APS": 0.6774399176376944,
+          "AR1": 0.37394736842105264,
+          "AR10": 0.735,
+          "AR100": 0.7597368421052632,
+          "ARL": 0.7,
+          "ARM": 0.7457142857142857,
+          "ARS": 0.7653284671532847
+        },
+        "official_COCO_crowd_ignore_semantics": true,
+        "original_GT_preserved": true,
+        "score_filter": null,
+        "stats": [
+          0.6809938494745545,
+          0.969989604793129,
+          0.852134677847247,
+          0.6774399176376944,
+          0.6974242300663346,
+          0.6999999999999998,
+          0.37394736842105264,
+          0.735,
+          0.7597368421052632,
+          0.7653284671532847,
+          0.7457142857142857,
+          0.7
+        ]
+      },
+      "per_IoU": [
+        {
+          "AP_percent": 96.9989604793129,
+          "IoU": 0.5
+        },
+        {
+          "AP_percent": 96.37472582164433,
+          "IoU": 0.55
+        },
+        {
+          "AP_percent": 95.60873464126199,
+          "IoU": 0.6
+        },
+        {
+          "AP_percent": 93.82472243553576,
+          "IoU": 0.65
+        },
+        {
+          "AP_percent": 91.9032786027454,
+          "IoU": 0.7
+        },
+        {
+          "AP_percent": 85.2134677847247,
+          "IoU": 0.75
+        },
+        {
+          "AP_percent": 71.05090156105072,
+          "IoU": 0.8
+        },
+        {
+          "AP_percent": 40.0659937494002,
+          "IoU": 0.85
+        },
+        {
+          "AP_percent": 9.937650899975413,
+          "IoU": 0.8999999999999999
+        },
+        {
+          "AP_percent": 0.015413498903164407,
+          "IoU": 0.95
+        }
+      ]
+    },
+    "SAMRefiner": {
+      "COCO": {
+        "iouType": "segm",
+        "maxDets": [
+          1,
+          10,
+          100
+        ],
+        "metrics": {
+          "AP": 0.42770653580087253,
+          "AP50": 0.9513359192223972,
+          "AP75": 0.27947055710796564,
+          "APL": 0.6999999999999998,
+          "APM": 0.48455767755583806,
+          "APS": 0.4105842647213084,
+          "AR1": 0.2707894736842105,
+          "AR10": 0.5063157894736842,
+          "AR100": 0.5210526315789472,
+          "ARL": 0.7,
+          "ARM": 0.5761904761904761,
+          "ARS": 0.4992700729927007
+        },
+        "official_COCO_crowd_ignore_semantics": true,
+        "original_GT_preserved": true,
+        "score_filter": null,
+        "stats": [
+          0.42770653580087253,
+          0.9513359192223972,
+          0.27947055710796564,
+          0.4105842647213084,
+          0.48455767755583806,
+          0.6999999999999998,
+          0.2707894736842105,
+          0.5063157894736842,
+          0.5210526315789472,
+          0.4992700729927007,
+          0.5761904761904761,
+          0.7
+        ]
+      },
+      "per_IoU": [
+        {
+          "AP_percent": 95.13359192223973,
+          "IoU": 0.5
+        },
+        {
+          "AP_percent": 90.9796624863037,
+          "IoU": 0.55
+        },
+        {
+          "AP_percent": 80.1667408096075,
+          "IoU": 0.6
+        },
+        {
+          "AP_percent": 71.60994703067497,
+          "IoU": 0.65
+        },
+        {
+          "AP_percent": 52.40529436687721,
+          "IoU": 0.7
+        },
+        {
+          "AP_percent": 27.947055710796565,
+          "IoU": 0.75
+        },
+        {
+          "AP_percent": 7.866717235349735,
+          "IoU": 0.8
+        },
+        {
+          "AP_percent": 1.5098660284541192,
+          "IoU": 0.85
+        },
+        {
+          "AP_percent": 0.08766021056905318,
+          "IoU": 0.8999999999999999
+        },
+        {
+          "AP_percent": 0.0,
+          "IoU": 0.95
+        }
+      ]
+    },
+    "native_official": {
+      "COCO": {
+        "iouType": "segm",
+        "maxDets": [
+          1,
+          10,
+          100
+        ],
+        "metrics": {
+          "AP": 0.6707105663749372,
+          "AP50": 0.9700872688674647,
+          "AP75": 0.8384266469643687,
+          "APL": 0.6999999999999998,
+          "APM": 0.6926333148544733,
+          "APS": 0.6649127521447775,
+          "AR1": 0.36973684210526314,
+          "AR10": 0.726842105263158,
+          "AR100": 0.7510526315789472,
+          "ARL": 0.7,
+          "ARM": 0.7533333333333333,
+          "ARS": 0.7503649635036497
+        },
+        "official_COCO_crowd_ignore_semantics": true,
+        "original_GT_preserved": true,
+        "score_filter": null,
+        "stats": [
+          0.6707105663749372,
+          0.9700872688674647,
+          0.8384266469643687,
+          0.6649127521447775,
+          0.6926333148544733,
+          0.6999999999999998,
+          0.36973684210526314,
+          0.726842105263158,
+          0.7510526315789472,
+          0.7503649635036497,
+          0.7533333333333333,
+          0.7
+        ]
+      },
+      "per_IoU": [
+        {
+          "AP_percent": 97.00872688674647,
+          "IoU": 0.5
+        },
+        {
+          "AP_percent": 96.34362079597547,
+          "IoU": 0.55
+        },
+        {
+          "AP_percent": 95.68234563319592,
+          "IoU": 0.6
+        },
+        {
+          "AP_percent": 95.18221591693323,
+          "IoU": 0.65
+        },
+        {
+          "AP_percent": 92.39871252537004,
+          "IoU": 0.7
+        },
+        {
+          "AP_percent": 83.84266469643687,
+          "IoU": 0.75
+        },
+        {
+          "AP_percent": 64.34531383041369,
+          "IoU": 0.8
+        },
+        {
+          "AP_percent": 38.310213574055375,
+          "IoU": 0.85
+        },
+        {
+          "AP_percent": 7.581744810226003,
+          "IoU": 0.8999999999999999
+        },
+        {
+          "AP_percent": 0.015007705584036768,
+          "IoU": 0.95
+        }
+      ]
+    }
+  },
+  "schema": "Root-SAMRefiner-full187-native-R-SAM-public-safe-COCO-v1",
+  "status": "ORIGINAL_INFERENCE_AND_CPU_EVALUATION_ROOT_ACCEPTED"
+}

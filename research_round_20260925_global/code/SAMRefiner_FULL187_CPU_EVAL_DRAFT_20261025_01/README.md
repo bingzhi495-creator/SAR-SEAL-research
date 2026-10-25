@@ -1,3 +1,5 @@
+Current Root update: original full187 inference and independent native/R/SAM COCO evaluation are now accepted; see [actual result and scope](../../U57_SAMREFINER_FULL187_COMPARISON_EXECUTION_20261025.md). Source was copied before binding. The following candidate/development status is historical.
+
 # Independent full187 native/R/SAM CPU comparison candidate
 
 UNBOUND / NOT SCIENTIFICALLY RUN. Four stdlib dictionary-contract tests pass.

@@ -1,3 +1,5 @@
+Current Root update: original full187 inference and independent native/R/SAM COCO evaluation are now accepted; see [actual result and scope](../../U57_SAMREFINER_FULL187_COMPARISON_EXECUTION_20261025.md). Source was copied before binding. The following candidate/development status is historical.
+
 # Full187 SAMRefiner candidate worker
 
 Current Root status: ORIGINAL FULL187 EXECUTION STARTED / NOT ROOT ACCEPTED / NO SAM AP. The original source was copied into this ordinary publication directory before execution binding.

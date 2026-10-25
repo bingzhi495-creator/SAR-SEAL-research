@@ -1816,13 +1816,6 @@
     "status": "ACTUAL_LOCAL_METADATA_LINEAGE_AND_GEOMETRY_VERIFIED_OFFICIAL_RELEASE_IDENTITY_PENDING"
   },
   "current_next_original_is_bounded_recovery": false,
-  "current_other_numerical_task": {
-    "AP": false,
-    "method": "SAMRefiner",
-    "original_tool_session": 5443,
-    "scope": "FULL187_NATIVE100_INFERENCE_NO_GT_NO_AP",
-    "status": "ORIGINAL_SESSION_OBSERVED_LIVE_NOT_ACCEPTED"
-  },
   "current_recovery18944_actual_resolution_20261025_01": {
     "SSH_exit": 0,
     "network_root_cause_or_repair_proved": false,
@@ -1864,6 +1857,9 @@
     "paper": "SegS-YOLO",
     "user_author_identity_confirmed": null
   },
+  "external_SAMRefiner_default_full187_AP75_percent": 27.947055710796565,
+  "external_SAMRefiner_default_full187_AP_percent": 42.770653580087256,
+  "external_SAMRefiner_frozen_native_comparison_AP_evaluated": true,
   "external_method_comparison_20261025": {
     "CARAFE_extension_runtime_compatibility_verified": false,
     "DiffSARShipInst_same_protocol_reproduction_completed": false,
@@ -1909,7 +1905,7 @@
     "additional_accepted_updates_per_arm": 0,
     "automatic_retry": false,
     "start": 21248,
-    "status": "NOT_LAUNCHED_AUX_SAM_FULL187_RUNNING",
+    "status": "RUNNING_NOT_ROOT_ACCEPTED",
     "stop": 21504,
     "strict_accepted_prefix": 21248
   },
@@ -6287,6 +6283,7 @@
     "successful_pair": false
   },
   "local_updates_per_arm": 2816,
+  "main_FULL_PLAIN_final_AP_evaluated": false,
   "numerical_task_live": true,
   "observed_UTC": "2026-10-25T09:18:32.994301+00:00",
   "official_PSeg_release_entry_scope_20261025": {
@@ -6300,6 +6297,13 @@
     "repository_tree_only_README_and_LICENSE": true
   },
   "precision_improvement_established": false,
+  "previous_other_numerical_task": {
+    "AP": true,
+    "method": "SAMRefiner",
+    "original_tool_session": 5443,
+    "scope": "FULL187_NATIVE100_INFERENCE_NO_GT_NO_AP",
+    "status": "FULL187_INFERENCE_AND_CPU_COCO_ROOT_ACCEPTED"
+  },
   "previous_turn_accepted_summaries": [
     {
       "AP_evaluated": false,
@@ -6440,7 +6444,7 @@
     ]
   },
   "schema": "U57-U60-public-safe-actual-scalars-v1",
-  "status": "STRICT_FORMAL21248_ACCEPTED_SAM_FULL187_RUNNING_NO_FINAL_AP",
+  "status": "STRICT_FORMAL21248_ACCEPTED_NEXT_RUNNING_NO_FINAL_AP",
   "teacher_identity_and_data_scope_20261025": {
     "DiffSARShipInst_reproduction_supported_by_this_native_result": false,
     "actual_teacher_E24_roster_audit": "results/U57_E24_TRAINING_ROSTER_SAFE_AUDIT_20261025.json",

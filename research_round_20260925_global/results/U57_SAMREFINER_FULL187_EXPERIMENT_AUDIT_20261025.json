@@ -1,0 +1,159 @@
+{
+  "schema": "SAMRefiner-FULL187-independent-integrity-result-to-claim-audit-v1",
+  "date": "2026-10-25",
+  "auditor": {
+    "actual_backend": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "role": "independent_subagent",
+    "requested_backend": "gpt-5.4 via Codex MCP",
+    "requested_backend_available": false,
+    "is_requested_codex_mcp_audit": false,
+    "cross_model_claimed": false
+  },
+  "review_mode": {
+    "read_only": true,
+    "ssh_used": false,
+    "scientific_code_executed_or_imported": false,
+    "remote_prediction_or_gt_payload_read": false,
+    "independent_rerun": false,
+    "running_main_payload_or_bound_source_read": false,
+    "frozen_source_modified": false,
+    "upstream_fixed_commit_source_read": true
+  },
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "blocking_integrity_failure_found": false,
+  "verdict_basis": "No concrete numeric-comparison bug was found. WARN is retained because exact GT payload provenance was not independently inspected and the evidence is one fixed internal-DEV run, not because the observed negative delta is intrinsically suspicious.",
+  "checks": {
+    "A_ground_truth_provenance": {
+      "status": "warn",
+      "classification": "real_gt_internal_dev_payload_unverified",
+      "details": "The CPU worker loads a distinct DEV COCO JSON and uses that COCO object as the GT side of COCOeval. Predictions are loaded separately with loadRes; no model output is used as GT. The registry provides DEV bytes/SHA but is explicitly a not-run future registry, and this reviewer could not read the remote DEV payload or certify its upstream identity.",
+      "evidence": [
+        "CPU-WORKER:262-280",
+        "OFFICIAL:626-644",
+        "REGISTRY:27-32",
+        "REGISTRY:124-137"
+      ]
+    },
+    "B_scoring_and_normalization": {
+      "status": "pass",
+      "details": "Original finite S0 in [0,1] is preserved exactly; only segmentation changes. Raw COCO12 values are retained. Per-IoU percent is 100 times raw precision and differences are percentage points, not prediction-derived self-normalization.",
+      "evidence": [
+        "INF-WORKER:67-98",
+        "CPU-WORKER:39-75",
+        "CPU-WORKER:114-117",
+        "EVAL-BODY:218-242",
+        "PUBLIC:134-152"
+      ]
+    },
+    "C_numeric_existence_and_original_terminal": {
+      "status": "pass",
+      "bounded": true,
+      "details": "Existing acceptance and observed-postcheck files record tool/SSH/worker exit 0, full populations, and complete metrics. Read-only local structural comparisons found observed stdout equal to acceptance postcheck and public results/differences equal to CPU acceptance. This does not independently prove the entire remote execution or all bytes behind referenced hashes.",
+      "evidence": [
+        "INF-ACCEPT:2-12,38-71",
+        "CPU-ACCEPT:2-10,34-40,41-381",
+        "INF-OBS:2-6",
+        "CPU-OBS:2-6",
+        "PUBLIC:1-5,406-407"
+      ]
+    },
+    "D_metric_function_invocation": {
+      "status": "pass",
+      "details": "The CPU method loop calls official_metrics for native, R, and SAMRefiner. official_metrics calls coco_metrics, captures one COCOeval, and coco_metrics executes evaluate, accumulate, and summarize. Outputs appear in acceptance/public files.",
+      "evidence": [
+        "CPU-WORKER:230-250,276-285",
+        "EVAL-BODY:218-242",
+        "OFFICIAL:626-644",
+        "CPU-ACCEPT:41-290",
+        "PUBLIC:155-404"
+      ]
+    },
+    "E_scope_seed_semantics_full": {
+      "status": "warn",
+      "details": "Evidence is one fixed-author/default, fixed-S0 run on internal historically exposed DEV187/380 with one recorded seed. FULL187 means the complete 187-image DEV roster and all 100 queries, not FULL_E50, official TEST, convergence, seed robustness, SOTA, or TGRS readiness.",
+      "evidence": [
+        "PUBLIC:1-5,116,125-154",
+        "INF-WORKER:410-418"
+      ]
+    },
+    "F_evaluation_type": {
+      "status": "pass",
+      "classification": "real_gt",
+      "subclassification": "internal_dev_payload_unverified",
+      "excluded_classifications": [
+        "synthetic_proxy",
+        "self_supervised_proxy",
+        "simulation_only",
+        "human_eval"
+      ],
+      "evidence": [
+        "CPU-WORKER:262-280",
+        "OFFICIAL:626-644"
+      ]
+    }
+  },
+  "author_source_check": {
+    "status": "pass",
+    "commit": "4bb7f95738c7a2e805f189210fb09e02a2197557",
+    "sam_refiner_url": "https://github.com/linyq2117/SAMRefiner/blob/4bb7f95738c7a2e805f189210fb09e02a2197557/sam_refiner.py",
+    "utils_url": "https://github.com/linyq2117/SAMRefiner/blob/4bb7f95738c7a2e805f189210fb09e02a2197557/utils.py",
+    "raw_source_hashes_match_worker_pins": true,
+    "sam_refiner_sha256": "b467d8e3e3c2fc395466a293635774cb821c5ffebdb39c4e5d64ac93c49dd3ad",
+    "utils_sha256": "0d0c8e4b257935968c39f4223993b5b7de1868a4a7d886092c6a0074131299ef",
+    "tuple_and_row_conclusion": "author_packet[0] is refined_masks; the author loops over SAM mask/IoU rows, selects one of three masks by per-row predicted-IoU argmax, appends and stacks in row order, then asserts output count equals input count. No cross-row sorting/reorder path was found.",
+    "evidence": [
+      "INF-WORKER:13-18,130-135,474-488",
+      "AUTHOR-REFINER:104-165",
+      "AUTHOR-UTILS:54-165,170-249"
+    ]
+  },
+  "numerical_observation": {
+    "dataset_scope": "internal_DEV187_380_annotations",
+    "candidates_per_method": 18700,
+    "score_policy": "ORIGINAL_NATIVE_S0_UNCHANGED",
+    "native_AP": 0.6707105663749372,
+    "R_AP": 0.6809938494745545,
+    "SAMRefiner_AP": 0.42770653580087253,
+    "SAMRefiner_minus_native_AP_percentage_points": -24.300403057406466,
+    "SAMRefiner_minus_R_AP_percentage_points": -25.328731367368203,
+    "SAMRefiner_minus_native_AP50_percentage_points": -1.8751349645067417,
+    "SAMRefiner_minus_native_AP75_percentage_points": -55.89560898564031,
+    "SAMRefiner_minus_R_AP50_percentage_points": -1.865368557073177,
+    "SAMRefiner_minus_R_AP75_percentage_points": -57.26641207392813,
+    "evidence": [
+      "CPU-ACCEPT:41-290,292-381",
+      "PUBLIC:24-115,155-404"
+    ]
+  },
+  "claim_gate": {
+    "claim_supported": "partial",
+    "confidence": "medium",
+    "integrity_status": "warn",
+    "supported": [
+      "The supplied Root-accepted artifacts record the three COCO metric sets for one fixed internal-DEV recipe.",
+      "Under full native candidate population and unchanged S0, the recorded SAMRefiner AP is 0.4277065358 versus native 0.6707105664 and R 0.6809938495.",
+      "The metric functions are actually invoked and the raw results are not self-normalized.",
+      "Exact pinned upstream author source supports refined_masks as tuple element zero and preserves cross-row order while selecting one of three masks per row by predicted-IoU argmax."
+    ],
+    "unsupported": [
+      "SAMRefiner is generally ineffective or harmful beyond this exact recipe, data split, and fixed-score policy.",
+      "FULL_E50, blind TEST, convergence, seed robustness, external SOTA, innovation, or TGRS readiness.",
+      "A same-training-budget superiority or inferiority claim against external methods.",
+      "Independent proof by this reviewer of all earlier Root remote-execution facts or remote GT/prediction bytes.",
+      "A claim that any exploratory coarse-refined best-IoU matching proves row permutation or licenses post-hoc S0 remapping."
+    ],
+    "untested": [
+      "Direct GT payload provenance/content and upstream dataset identity.",
+      "Repeatability across executions, seeds, or platforms.",
+      "Runtime per-iteration three-mask branch values and selections, which were not retained in the accepted export.",
+      "Decomposition of loss into geometry degradation, stale external S0 ranking, and internal branch selection."
+    ]
+  },
+  "minimum_interpretation_changing_diagnostic": {
+    "primary": "Using preserved same-index identities, compute native-versus-refined per-query GT IoU changes and all-100 best-over-query GT coverage, stratified by original S0 rank. This distinguishes geometry collapse from retained oracle coverage with stale ranking without changing accepted AP.",
+    "prospective_extension": "On a separate predeclared diagnostic run, instrument the unchanged author loop to retain all three masks, predicted-IoU values, and selected branch per row/iteration. Use GT only to diagnose branch quality, never to select a branch for reportable AP.",
+    "pairwise_matrix_limit": "A 100x100 coarse-refined IoU matrix is exploratory only. Refinement and query overlap can change best matches, so it cannot prove row permutation, justify rebinding S0/query identity, or produce rescued AP."
+  }
+}
