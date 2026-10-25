@@ -83,3 +83,8 @@ CUDA_HOME环境变量未设不构成必然阻断。[PyTorch2.10](https://github.
 [独立检查源码与运行范围](code/U57_FASTGEODIS_CPU_CUDA_SMOKE_20261025_01/README.md)及[安全结果](results/U57_FASTGEODIS_FIXED_CPU_CUDA_CHECK_SAFE_RESULT_20261025.json)已保存。PyTorch峰值分配3584字节、清理后分配0，进程峰值RSS741330944字节；分配峰值不含全部驱动/上下文内存，不认证whole-GPU。约1.49秒为包含库导入的worker时间，不是SAM或稳态推理速度。该单元任务另行计数，不并入原训练/输入验证管线账户或正式预算。
 
 主训练已继续。SAMRefiner作者模型、权重装载、真实图像/返回行对应与同协议AP仍未验证。作者固定提交的22个必要源码/许可文件（149194字节）仅在私有目录准备并按官方Git blob核对，未安装或运行；完整第三方源码和权重不随Git发布。ViT-H官方权重初次有界传输达到300秒上限并保留624951296字节前缀，失败状态保留；随后按同一ETag及HTTP206 Content-Range条件续传，完整文件及模型加载尚未核验，不能据元数据或部分文件宣称模型就绪。
+
+
+## 官方ViT-H权重获取完成，模型仍未验证
+
+上述续传后来真实退出0，条件HTTP206的表示版本与字节范围已核，最终文件为2564550879字节。本地流式SHA256为a7bf3b02f3ebf1267aba913ff637d9a2d5c33d3173bb679e46d9f338c26f262e；这是本次本地计算的摘要，不宣称取得Meta独立公布的完整SHA256，也不把ETag当作SHA256。原300秒传输终止记录保留。文件尚未由本任务传到DGX或加载，不能据下载完成宣称SAM模型、真实图像或AP已验证。[获取安全状态](results/U57_SAM_VITH_OFFICIAL_ASSET_ACQUISITION_SAFE_STATUS_20261025.json)仅保存来源与摘要，权重本体不上传Git。

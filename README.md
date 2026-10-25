@@ -10,6 +10,7 @@ DGX PLAIN/FULL 已各严格接收 **17408/37050次正式更新**（23轮+365图�
 
 - [15616→15872单次恢复的严格接收结果](research_round_20260925_global/results/U57_CAPTURE_RECOVERY15616_15872_SAFE_RESOLUTION_20261025.json)：失败原段保留，新恢复从合格父状态执行；通信根因和物理修复仍未证明。
 - [FastGeodis固定CPU/CUDA算子检查源码与结果](research_round_20260925_global/code/U57_FASTGEODIS_CPU_CUDA_SMOKE_20261025_01/README.md)：两个9×9样例、四次明确调用实际通过；软件/合成检查独立记账，不计完整训练、重复种子或AP。
+- [官方ViT-H权重获取状态](research_round_20260925_global/results/U57_SAM_VITH_OFFICIAL_ASSET_ACQUISITION_SAFE_STATUS_20261025.json)：文件已在本机获取并记录本地摘要，尚未加载模型；权重不上传Git。
 - [SAMRefiner实际运行依赖与未闭合条件](research_round_20260925_global/U57_SAMREFINER_RUNTIME_READINESS_AND_BUILD_GAPS_20261025.md)：FastGeodis离线原生构建与隔离导入已实际通过；目标架构代码已核，GPU算子仅在两固定样例通过，SAM模型及AP仍待。
 - [SAMRefiner作者API桥接候选源码](research_round_20260925_global/code/U57_SAMREFINER_REAL_BRIDGE_DRAFT_20261025_01/README.md)：7项小NumPy边界测试及独立源码审阅通过；按作者图像路径接口批量调用，真实作者函数/模型/图像、内部候选顺序及AP仍未执行或验证。
 - [SAMRefiner固定候选适配器候选源码](research_round_20260925_global/code/U57_SAMREFINER_FIXED_CANDIDATE_ADAPTER_DRAFT_20261025_01/README.md)：13项有限标准库测试及独立静态审阅通过；真实SAM桥接、推理与AP尚未完成。
