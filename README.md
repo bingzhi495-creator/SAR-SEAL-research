@@ -4,11 +4,14 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL已各严格接收 **26368/37050次正式更新（71.17%，35轮+433图）**；下一26368→26624已接续、尚未接收。此次主轨迹各新增256更新/601匹配实例访问，主配方与771项来源不变，本机2816独立。新完成DiffSAR原生32步真实FIT健康训练：原工具/SSH/worker均0，32个不同逻辑样本的实际优化器更新、有限损失、773项来源/输入及出生组回收通过；第6步首次出现非零IAMR信号，32步17非零/15全零。这否定了以首图零梯度作为禁止训练的理由；不同输入和参数更新的影响未分离，不证明收敛或效果，也不据此修改作者初始化。保留原01/02/03单图门槛失败，健康32不计主轨迹或正式外部基线信用。完整FIT原字节已传DGX，原GT未改、741逻辑人口未去重；没有发布原图/全GT。FULL端点、完整外部AP、容量/计算、完整训练重复与跨集仍缺；内部整数收益及候选浮点GT反转边界保留，尚无SOTA/TGRS就绪结论。
+DGX PLAIN/FULL已各严格接收 **27136/37050次正式更新（73.24%，36轮+460图）**；下一27136→27392已启动、尚未接收。本goal turn各新增768次更新/1739次匹配实例访问，主771来源/配方/预算不变，本机2816独立。DiffSAR完整状态与数值检验实际完成C8/S4及另R4共16次研究更新，不计正式基线：两次恢复起点/输入增强/末RNG与采样状态严格一致，但C−S数值超原1e-4，旧CPU原工具1保持失败；同起点S−R也超阈，新的方差观察完成0仅证明此现象不专属于连续与重启比较，不授旧连续资格。新前向50轮方案保留全部state恢复、原生模型/优化器/学习率，披露native非逐位数值波动与教师预训练成本，**正式外部轨迹仍0，未开始、无AP**。HRSID两个本地ZIP的5604原图字节/CRC/header已一次核对并私有准备；5601独特字节含2组跨train/test重复，不认证官方release、许可、像素mask对齐或blind TEST。旧A/B24+追加48已NO_GO不重启；FULL端点、完整强对照、容量/计算、完整训练重复、跨集证据与TGRS就绪均未完成。
 
-原训练与输入验证管线DGX账户109正常/8失败/117总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+原训练与输入验证管线DGX账户112正常/8失败/120总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
+- [DiffSAR恢复状态与原生数值方差：旧失败保留、同起点重复实证](research_round_20260925_global/U57_DIFFSAR_STATE_AND_NUMERICAL_VARIATION_ACTUAL_20261107.md)
+- [完整外部训练的新前向协议及证据边界](research_round_20260925_global/U57_DIFFSAR_FORMAL50_STATE_CONTINUITY_FORWARD_PROTOCOL_20261107.md)
+- [HRSID5604图本地原字节、CRC、header与跨划分重复聚合](research_round_20260925_global/HRSID_JPG_INPUT_AUDIT_STATUS_20261107_04.md)
 - [DiffSAR真实32步原生训练健康结果：第6步激活掩膜信号](research_round_20260925_global/U57_DIFFSAR_NATIVE_HEALTH32_ACTUAL_20261107.md)
 - [完整FIT输入已传DGX的安全聚合](research_round_20260925_global/U57_FIT_DGX_INPUT_TRANSFER_20261107.md)与[作者原优化器/采样/学习率来源核对](research_round_20260925_global/U57_DIFFSAR_NATIVE_RECIPE_SOURCE_REVIEW_20261107.md)
 - [当前与其他方法的对比：已测数字、不同预算和外部缺口](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_20261107.md)

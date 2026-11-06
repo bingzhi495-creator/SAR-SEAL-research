@@ -1,0 +1,149 @@
+{
+  "AP": false,
+  "archives": [
+    {
+      "ZIP_directory_accepted": true,
+      "all_file_compressed_bytes": 242905077,
+      "all_file_uncompressed_bytes": 247837633,
+      "archive_role": "LOCAL_JPG_ZIP_1",
+      "casefold_basename_collision_groups": 0,
+      "container_bytes": 243301461,
+      "container_stat_stable": true,
+      "directory_members": 0,
+      "duplicate_image_basename_extra_members": 0,
+      "duplicate_image_basename_groups": 0,
+      "duplicate_member_path_extra_entries": 0,
+      "extracted_members": 0,
+      "file_compression_methods": {
+        "8": 2526
+      },
+      "file_extensions": {
+        ".jpg": 2526
+      },
+      "file_members": 2526,
+      "image_compressed_bytes": 242905077,
+      "image_encrypted_members": 0,
+      "image_extensions": {
+        ".jpg": 2526
+      },
+      "image_hashing": false,
+      "image_member_payloads_read": 0,
+      "image_members": 2526,
+      "image_uncompressed_bytes": 247837633,
+      "split_coverage": {
+        "test": {
+          "archive_images_not_in_this_split": 1644,
+          "exact_basename_present": 882,
+          "missing": 1080
+        },
+        "train": {
+          "archive_images_not_in_this_split": 882,
+          "exact_basename_present": 1644,
+          "missing": 1998
+        }
+      },
+      "symlink_members": 0,
+      "total_members": 2526,
+      "unique_image_basenames": 2526,
+      "unsafe_file_path_members": 0,
+      "windows_separator_members": 0
+    },
+    {
+      "ZIP_directory_accepted": true,
+      "all_file_compressed_bytes": 357285648,
+      "all_file_uncompressed_bytes": 363180491,
+      "archive_role": "LOCAL_JPG_ZIP_2",
+      "casefold_basename_collision_groups": 0,
+      "container_bytes": 357763466,
+      "container_stat_stable": true,
+      "directory_members": 0,
+      "duplicate_image_basename_extra_members": 0,
+      "duplicate_image_basename_groups": 0,
+      "duplicate_member_path_extra_entries": 0,
+      "extracted_members": 0,
+      "file_compression_methods": {
+        "8": 3078
+      },
+      "file_extensions": {
+        ".jpg": 3078
+      },
+      "file_members": 3078,
+      "image_compressed_bytes": 357285648,
+      "image_encrypted_members": 0,
+      "image_extensions": {
+        ".jpg": 3078
+      },
+      "image_hashing": false,
+      "image_member_payloads_read": 0,
+      "image_members": 3078,
+      "image_uncompressed_bytes": 363180491,
+      "split_coverage": {
+        "test": {
+          "archive_images_not_in_this_split": 1998,
+          "exact_basename_present": 1080,
+          "missing": 882
+        },
+        "train": {
+          "archive_images_not_in_this_split": 1080,
+          "exact_basename_present": 1998,
+          "missing": 1644
+        }
+      },
+      "symlink_members": 0,
+      "total_members": 3078,
+      "unique_image_basenames": 3078,
+      "unsafe_file_path_members": 0,
+      "windows_separator_members": 0
+    }
+  ],
+  "combined": {
+    "ZIP_containers_checked": 2,
+    "ZIP_directories_accepted": 2,
+    "archive_images_not_in_split_union": 0,
+    "combined_image_compressed_bytes": 600190725,
+    "combined_image_uncompressed_bytes": 611018124,
+    "cross_archive_image_basename_intersection": 0,
+    "duplicate_image_basename_extra_members": 0,
+    "duplicate_image_basename_groups": 0,
+    "image_members": 5604,
+    "split_coverage": {
+      "test": {
+        "exact_basename_present": 1962,
+        "missing": 0
+      },
+      "train": {
+        "exact_basename_present": 3642,
+        "missing": 0
+      }
+    },
+    "split_union_exact_basename_present": 5604,
+    "split_union_missing": 0,
+    "split_union_names": 5604,
+    "train_test_filename_intersection": 0,
+    "unique_image_basenames": 5604
+  },
+  "elapsed_seconds": 0.5,
+  "limitations": [
+    "Only two explicit existing ZIP central directories were read; no image member payload, decompression, extraction, CRC test, hash, network or scientific library.",
+    "ZIP header member count/path/sizes and filename coverage do not prove archive payload integrity, decodability, PNG/JPG pixel equivalence, official release identity, license coverage or independent TEST.",
+    "No whole-workspace search, renaming, split correction, merged-JSON substitution or dataset modification."
+  ],
+  "official_archive_or_license_certified": false,
+  "schema": "HRSID-two-existing-ZIP-central-directory-availability-v3",
+  "splits": {
+    "test": {
+      "annotation_instances": 5922,
+      "bytes_read": 8608088,
+      "images": 1962,
+      "json_read_stat_stable": true
+    },
+    "train": {
+      "annotation_instances": 11047,
+      "bytes_read": 15641078,
+      "images": 3642,
+      "json_read_stat_stable": true
+    }
+  },
+  "status": "LOCAL_ARCHIVE_DIRECTORY_COVERAGE_ONLY_NOT_IMAGE_VALIDATION",
+  "training": false
+}

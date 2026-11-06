@@ -1,0 +1,81 @@
+{
+  "status": "complete_local_bytes_crc_headers",
+  "started_utc": "2026-11-06T19:07:55Z",
+  "validation_scope": "Local source bytes, ZIP CRC, SHA256 content identity and JPEG headers only",
+  "logical_images": 5604,
+  "planned_images": 5604,
+  "streamed_image_bytes": 611018124,
+  "crc_passed_image_members": 5604,
+  "unique_content_sha256_count": 5601,
+  "unique_blob_bytes": 610556956,
+  "split_counts": {
+    "train": {
+      "images": 3642,
+      "annotations": 11047,
+      "categories": 1
+    },
+    "test": {
+      "images": 1962,
+      "annotations": 5922,
+      "categories": 1
+    }
+  },
+  "split_coverage": {
+    "train": {
+      "expected": 3642,
+      "covered": 3642,
+      "missing": 0
+    },
+    "test": {
+      "expected": 1962,
+      "covered": 1962,
+      "missing": 0
+    }
+  },
+  "header_counts": {
+    "formats": {
+      "JPEG": 5604
+    },
+    "modes": {
+      "RGB": 5604
+    },
+    "sizes": {
+      "800x800": 5604
+    },
+    "dimension_mismatch_count": 0
+  },
+  "duplicate_content_group_count": 3,
+  "duplicate_extra_logical_images": 3,
+  "cross_split_byte_duplicate_group_count": 2,
+  "cross_split_byte_duplicate_logical_images": 4,
+  "all_sources_stat_stable": true,
+  "source_sha256_recorded_privately": true,
+  "original_train_test_json_bytes_privately_copied_without_edit": true,
+  "resource_actual_receipt": {
+    "wall_seconds": 38.734,
+    "process_cpu_seconds": 11.515625,
+    "peak_working_set_bytes": 146640896,
+    "peak_pagefile_bytes": 137080832,
+    "private_bytes_at_receipt": 32452608,
+    "single_worker_streaming": true,
+    "no_image_pixel_decode": true,
+    "no_mask_creation_or_alignment": true,
+    "no_torch_numpy_or_model": true,
+    "no_network_ssh_download": true,
+    "no_original_source_mutation": true
+  },
+  "merged_json_version_difference": {
+    "train_test_annotation_sum": 16969,
+    "historically_parsed_merged_annotations": 16951,
+    "merged_not_repaired_or_used_to_reassign_ids": true
+  },
+  "limitations": [
+    "No pixel decode or mask alignment validation",
+    "No official release identity or data redistribution license verification",
+    "Filename separation does not establish scene independence",
+    "Byte duplicate observations do not reset historical TEST exposure",
+    "Logical samples preserved; no GT editing, split repair or deduplicated benchmark claim",
+    "No training, inference or AP measurement"
+  ],
+  "failure_type": null
+}

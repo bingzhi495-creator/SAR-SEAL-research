@@ -1,0 +1,160 @@
+{
+  "AP": false,
+  "elapsed_seconds": 1.7649999998975545,
+  "image_directory": {
+    "directory_metadata_stable_during_enumeration": true,
+    "exists": true,
+    "extensions": {
+      ".jpg": 358
+    },
+    "regular_bytes": 66018309,
+    "regular_file_count": 358,
+    "reparse_entries_not_followed": 0,
+    "root_is_reparse": false,
+    "subdirectories": 0
+  },
+  "limitations": [
+    "Only one explicit image directory level and three bounded annotation JSON files were read.",
+    "Image file metadata only: no image/ZIP/RAR bytes, hashing, pixel/mask decoding, model or SSH.",
+    "Segmentation validity is structural numeric/list/RLE checks, not pycocotools decoding or topology/alignment.",
+    "Exact basename existence does not certify original bytes, codec/resolution, official release identity, mother-scene independence, license coverage or blind TEST status.",
+    "No renaming, suffix conversion, annotations correction, extraction, copying or dataset modification."
+  ],
+  "official_release_or_license_certified": false,
+  "schema": "HRSID-authorised-bounded-metadata-and-split-structure-v2",
+  "split_relations": {
+    "files_not_in_split_union": 358,
+    "merged_annotation_count": 16951,
+    "merged_filename_vs_split_union_difference": 0,
+    "split_annotation_count_sum": 16969,
+    "split_union_exact_files_missing": 5604,
+    "train_test_annotation_ID_intersection": 5922,
+    "train_test_filename_intersection": 0,
+    "train_test_filename_union": 5604,
+    "train_test_image_ID_intersection": 1962
+  },
+  "splits": {
+    "merged": {
+      "annotation_count": 16951,
+      "annotation_ids_integer": true,
+      "annotation_ids_unique": true,
+      "annotations_with_unknown_category_id": 0,
+      "annotations_with_unknown_image_id": 0,
+      "bytes_read": 24250109,
+      "casefold_only_diagnostic_matches": 0,
+      "cast_images_exact_basename_missing": 5604,
+      "cast_images_exact_basename_present": 0,
+      "cast_images_not_referenced_by_this_split": 358,
+      "categories": [
+        {
+          "id": 1,
+          "name": "ship"
+        }
+      ],
+      "category_count": 1,
+      "declared_dimensions": {
+        "800x800": 5604
+      },
+      "image_count": 5604,
+      "image_filename_strings": true,
+      "image_ids_integer": true,
+      "image_ids_unique": true,
+      "images_without_annotation": 0,
+      "licenses": [
+        {
+          "name": null,
+          "url": null
+        }
+      ],
+      "read_stat_stable": true,
+      "segmentation_structures": {
+        "structurally_valid_polygon": 16951
+      },
+      "stem_only_diagnostic_matches": 0,
+      "unique_basenames": 5604,
+      "unique_file_names": 5604
+    },
+    "test": {
+      "annotation_count": 5922,
+      "annotation_ids_integer": true,
+      "annotation_ids_unique": true,
+      "annotations_with_unknown_category_id": 0,
+      "annotations_with_unknown_image_id": 0,
+      "bytes_read": 8608088,
+      "casefold_only_diagnostic_matches": 0,
+      "cast_images_exact_basename_missing": 1962,
+      "cast_images_exact_basename_present": 0,
+      "cast_images_not_referenced_by_this_split": 358,
+      "categories": [
+        {
+          "id": 1,
+          "name": "ship"
+        }
+      ],
+      "category_count": 1,
+      "declared_dimensions": {
+        "800x800": 1962
+      },
+      "image_count": 1962,
+      "image_filename_strings": true,
+      "image_ids_integer": true,
+      "image_ids_unique": true,
+      "images_without_annotation": 1,
+      "licenses": [
+        {
+          "name": null,
+          "url": null
+        }
+      ],
+      "read_stat_stable": true,
+      "segmentation_structures": {
+        "structurally_valid_polygon": 5922
+      },
+      "stem_only_diagnostic_matches": 0,
+      "unique_basenames": 1962,
+      "unique_file_names": 1962
+    },
+    "train": {
+      "annotation_count": 11047,
+      "annotation_ids_integer": true,
+      "annotation_ids_unique": true,
+      "annotations_with_unknown_category_id": 0,
+      "annotations_with_unknown_image_id": 0,
+      "bytes_read": 15641078,
+      "casefold_only_diagnostic_matches": 0,
+      "cast_images_exact_basename_missing": 3642,
+      "cast_images_exact_basename_present": 0,
+      "cast_images_not_referenced_by_this_split": 358,
+      "categories": [
+        {
+          "id": 1,
+          "name": "ship"
+        }
+      ],
+      "category_count": 1,
+      "declared_dimensions": {
+        "800x800": 3642
+      },
+      "image_count": 3642,
+      "image_filename_strings": true,
+      "image_ids_integer": true,
+      "image_ids_unique": true,
+      "images_without_annotation": 0,
+      "licenses": [
+        {
+          "name": null,
+          "url": null
+        }
+      ],
+      "read_stat_stable": true,
+      "segmentation_structures": {
+        "structurally_valid_polygon": 11047
+      },
+      "stem_only_diagnostic_matches": 0,
+      "unique_basenames": 3642,
+      "unique_file_names": 3642
+    }
+  },
+  "status": "METADATA_AND_SPLIT_STRUCTURE_CHECKED_NOT_PIXEL_VALIDATED",
+  "training": false
+}
