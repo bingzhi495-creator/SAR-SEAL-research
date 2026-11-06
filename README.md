@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **29952/37050次正式更新（80.84%，40轮+312图）**，下一29952→30208已接续、尚未接收。自29696阶段每臂各+256更新/+547匹配实例访问；原771来源、完整状态恢复与固定配方保持，本机2816独立。DiffSAR正式参考仍512，尚无端点AP。N26冻结两GT的12项原字节已私有暂存DGX；首个新CPU调用真实tool/SSH/parent-child/worker均1，在可选bbox的错误强制检查处退出，COCO案例均未开始、AP均null。Root后验确认源不变、实际exec握手、资源满足和全部进程闭合，旧失败保留，不当模型负结果；没有持续tool session就记录None，不编造句柄。另存02最小修复源码，仅使bbox可选且存在时核验，原分数/RLE/顺序/三个seed/1e−8整数AP门槛和COCO规则不改；针对性合成回归通过，实际successor仍未执行。原内部整数DEV原生67.071/R68.099/R＋N26质量排序69.537±0.107未更新，N26浮点仍未知；R在候选浮点GT下收益反转保留。主端点、公平完整外部对照、容量/成本控制、完整模型重复和跨集依据仍缺，**不宣称核心创新、SOTA或TGRS就绪。**
+DGX PLAIN/FULL各严格接收 **30208/37050次正式更新（81.53%，40轮+568图）**，下一30208→30464已接续、尚未接收。自29696阶段每臂各+512更新/+1140匹配实例访问，原771来源/完整状态恢复/固定配方保持，本机2816独立。DiffSAR正式参考仍512，尚无端点AP。N26冻结两GT新02诊断已真实完成8个COCO案例，四项原始终态0、30项来源/输入不变、真实exec/资源/全部组闭合通过；四整数AP精确重现后才评价候选浮点。整数质量头均值69.537±0.107，相对R +1.438；浮点均值68.822±0.104，相对R +1.602，三个头在两GT均为正。几何/非score内容/原评分保留，这是共享教师的三个下游头，不是整网重复或新骨架/新公式创新。参照此前原生浮点68.444，N26浮点均值仅高0.378；该原生本次未重跑，R跨GT收益反转仍保留。原01可选bbox检查失败四项终态1、0个COCO案例的历史未升级。有限独立结果复核另存，指定Codex MCP不可用仍标pending，非完整跨模型审计。当前主结构固定端点、公平完整外部强对照、容量/计算、整网重复及跨集证据仍缺，**不宣称SOTA、核心创新成立或TGRS就绪。**
 
-全局DGX账户123正常/8失败/131总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户124正常/8失败/132总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -33,6 +33,8 @@ DGX PLAIN/FULL各严格接收 **29952/37050次正式更新（80.84%，40轮+312�
 - [N26冻结输入已私有暂存DGX：字节阶段没有数值JSON解析](research_round_20260925_global/N26_FROZEN_DUALGT_DGX_INPUT_STAGE_STATUS_20261107_02.md)
 - [N26诊断02最小实现修复：原输入/评分/评价门槛保持，实际未执行](research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/README.md)
 - [排序、边界与栅格化三项原始来源短记：单一条件性负对照](research_round_20260925_global/MASK_QUALITY_RASTERIZATION_PRIMARY_RESEARCH_NOTE_20261107_09.md)
+- [N26两GT真实8例结果：排序增益整数+1.438、浮点+1.602，非几何创新](research_round_20260925_global/N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md)
+- [N26两GT有限独立结果/完整性范围复核：指定Codex审阅待补](research_round_20260925_global/N26_DUALGT02_LIMITED_RESULT_CLAIM_REVIEW_20261107.md)
 - [当前与其他方法的对比：已测数字、不同预算和外部缺口](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_20261107.md)
 - [DiffSAR两次限定梯度观察：原失败保留与解释边界](research_round_20260925_global/U57_DIFFSAR_MASK_GRADIENT_DIAGNOSTICS_20261107.md)
 - [完整FIT原图字节恢复](research_round_20260925_global/U57_FIT_RAW_RECOVERY_20261107.md)与[私有输入包组装聚合](research_round_20260925_global/U57_FIT_INPUT_ASSEMBLY_20261107.md)

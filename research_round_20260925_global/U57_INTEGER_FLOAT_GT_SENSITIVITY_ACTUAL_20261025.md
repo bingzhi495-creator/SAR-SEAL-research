@@ -38,3 +38,8 @@ R−native：整数+1.028328 AP点，浮点−1.224000点，差异方向反转�
 
 
 Limited independent result-to-claim review: PARTIAL / MEDIUM. Actual backend GPT-5.6-sol xhigh, not the unavailable specified GPT-5.4 Codex MCP. It independently checked the saved arithmetic and claim scope; it did not SSH, rerun science or read GT/prediction payloads. Root retains responsibility for actual execution qualification. [Safe review](results/U57_GT_SENSITIVITY_RESULT_CLAIM_REVIEW_20261025.json).
+
+
+## 2026-11-07后续：N26两GT诊断已实际补齐
+
+上述正文是2026-10-25形成时的历史快照，当时N26浮点尚未评价。新02已完成R及三个冻结质量头的8个COCO案例：四整数AP精确重现后，候选浮点R为67.219522，N26为68.821633±0.104069，相对R +1.602111，三头均为正。原生68.443523仍引用此前结果，本次没有重跑原生；N26均值相对该历史原生+0.378110。原R跨GT收益反转和浮点非官方真值边界不变。固定几何/原分数消费的排序效用不等于几何或结构创新，也非完整模型三个种子。首次bbox检查失败保留，新02另行预锁与真实Root接收。详见[N26新实测](N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md)与[有限独立复核](N26_DUALGT02_LIMITED_RESULT_CLAIM_REVIEW_20261107.md)。

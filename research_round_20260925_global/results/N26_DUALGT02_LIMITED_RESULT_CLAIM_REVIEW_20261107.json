@@ -1,0 +1,320 @@
+{
+  "schema": "N26-dualGT02-independent-limited-result-claim-review-v1",
+  "date": "2026-11-07",
+  "reviewer": {
+    "role": "independent inherited-model subagent",
+    "model_identity": "inherited session model; no separate prescribed reviewer backend invoked",
+    "cross_model_review": false,
+    "prescribed_Codex_MCP_GPT54_review_completed": false,
+    "review_status": "[pending Codex review]"
+  },
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "overall_claim_supported": "partial",
+  "confidence": "medium",
+  "verdict_basis": "No numerical mismatch or prohibited local score normalization was found in the designated code and saved aggregates. This is a limited consistency and claim-scope review, not full execution or ground-truth authentication.",
+  "scope": {
+    "designated_artifacts_read": 10,
+    "ordinary_source_files_read_in_full": 2,
+    "public_safe_inputs": [
+      "research_round_20260925_global/results/N26_FROZEN_DUALGT02_ACTUAL_PUBLIC_SAFE_20261107.json",
+      "research_round_20260925_global/N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md",
+      "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py",
+      "research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/worker.py",
+      "research_round_20260925_global/U57_INTEGER_FLOAT_GT_SENSITIVITY_ACTUAL_20261025.md",
+      "research_round_20260925_global/MASK_QUALITY_ANNOTATION_CONVENTION_PRIMARY_REVIEW_20261107_01.md",
+      "research_round_20260925_global/results/N26_FROZEN_DUALGT_ATTEMPT01_FAILURE_PUBLIC_SAFE_20261107.json"
+    ],
+    "additional_read_roles": [
+      "ended Root qualification metadata itself only",
+      "ended parent receipt metadata itself only",
+      "designated local-float derivation README, no linked inputs or implementation"
+    ],
+    "no_refs_followed": true,
+    "no_SSH": true,
+    "no_actual_Ops_or_bound_scientific_SOURCE_read": true,
+    "no_raw_GT_predictions_weights_read": true,
+    "no_scientific_evaluation_or_old_tests_run": true,
+    "only_standard_library_saved_scalar_arithmetic": true,
+    "no_inputs_sources_or_Root_qualification_modified": true,
+    "prescribed_backend_unavailable_as_reported_by_Root": true
+  },
+  "checks": {
+    "gt_provenance": {
+      "status": "warn",
+      "classification": "dataset_annotation_and_locally_derived_annotation_geometry_by_documented_role; not a model-output proxy in the reviewed worker",
+      "findings": [
+        "The integer GT remains the primary protocol. The float candidate restores segmentation/bbox/area from a local source annotation under a prior unique mapping; it is not a new independent annotation replicate.",
+        "The reviewed worker loads two fixed GT inputs and only checks non-geometric identity. It does not generate GT from predictions.",
+        "This reviewer did not inspect the raw annotation source, original manual-labeling chain, real derivation execution, official archive, licensing or physical truth. A provenance boolean is not independent certification."
+      ],
+      "evidence": [
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:43-67",
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:271-275",
+        "research_round_20260925_global/U57_INTEGER_FLOAT_GT_SENSITIVITY_ACTUAL_20261025.md:7-9"
+      ]
+    },
+    "frozen_scores_and_RLE": {
+      "status": "pass_with_limits",
+      "findings": [
+        "The validator requires all three heads, 18700 records each, 100 per image, category1, compressed RLE dimensions and finite frozen scores. It checks every non-score field in record order against common R.",
+        "The COCO helper deep-copies predictions and removes only optional bbox in its working copy. It does not rescore, normalize against prediction statistics, replace masks or compute a local AP surrogate.",
+        "Only standard raw COCO statistics times 100 are reported as percentages; all 96 fraction-to-percent mappings agree.",
+        "S0*qhat is an inherited ledger role, not a newly verified numeric product: score-audit JSON bodies were not parsed; qhat/product generation and implicit unique query identity were not re-audited."
+      ],
+      "evidence": [
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:69-98",
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:100-118",
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:180-183",
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:239-245",
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:276-283",
+        "research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/worker.py:8-11",
+        "research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/worker.py:24-37"
+      ]
+    },
+    "arithmetic_and_saved_values": {
+      "status": "pass",
+      "comparison_checks": 223,
+      "mismatches": [],
+      "tolerance_for_derived_float_comparisons": 1e-12,
+      "COCO_cases": 8,
+      "COCO12_fraction_percent_mappings_checked": 96,
+      "integer_gate_absolute_errors_percentage_points": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "integer_gate_fixed_tolerance_percentage_points": 1e-08,
+      "COCO_math_seconds_sum": 8.530936653958634,
+      "findings": [
+        "Saved worker/public COCO12 and timing values agree, as do paired summaries, secondary metric means and historical-native differences.",
+        "All eight cases have saved COCO_math_started/completed/AP_computed true. All four integer AP reproduction gates are true before the float loop in the reviewed source."
+      ],
+      "evidence": [
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:185-222",
+        "research_round_20260925_global/results/N26_FROZEN_DUALGT02_ACTUAL_PUBLIC_SAFE_20261107.json:74-80",
+        "research_round_20260925_global/results/N26_FROZEN_DUALGT02_ACTUAL_PUBLIC_SAFE_20261107.json:378-457",
+        "research_round_20260925_global/N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md:5-20"
+      ]
+    },
+    "real_call_chain_record": {
+      "status": "pass_with_limits",
+      "call_chain": "main -> run_diagnostic -> evaluate -> evaluate_case -> adapter.evaluate_population -> COCOeval evaluate/accumulate/summarize",
+      "findings": [
+        "The helper is not merely defined: the actual main call path reaches it, and the ended worker metadata records eight completed COCO cases with elapsed times and COCO12 values.",
+        "No separate independent function-call trace was read. Saved completion fields do not independently authenticate the actual executing SOURCE, linked native libraries or raw outputs. Root retains actual-source and execution qualification.",
+        "Calling this pure helper does not invoke the native adapter main and does not grant fixed37050/native result credit."
+      ],
+      "evidence": [
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:95-98",
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:268-270",
+        "research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/worker.py:285-295",
+        "research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/worker.py:24-37"
+      ]
+    },
+    "new_and_old_terminal_status": {
+      "status": "pass_at_metadata_level",
+      "new_original_tool_SSH_parent_worker_exit_codes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "old_original_tool_SSH_parent_worker_exit_codes": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "old_AP_computed": false,
+      "old_COCO_cases_started": 0,
+      "both_attempts_actual_account": {
+        "total": 2,
+        "normal": 1,
+        "failed": 1
+      },
+      "findings": [
+        "Ended Root qualification records diagnostic-only acceptance and process/resource/source checks. Ended parent receipt records returncode0, reaped=true, remaining owned group empty and violations empty. Public saved values match these metadata.",
+        "Worker qualified=false and parent worker_outputs_qualified=false are pre-Root roles; they do not contradict the later Root diagnostic-only qualification.",
+        "Old attempt01 remains a failed implementation/input-validation attempt, not a negative AP result or an upgraded success. The old snapshot describing successor preparation remains a historical snapshot."
+      ],
+      "evidence": [
+        "research_round_20260925_global/N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md:3-5",
+        "research_round_20260925_global/results/N26_FROZEN_DUALGT02_ACTUAL_PUBLIC_SAFE_20261107.json:27-31",
+        "research_round_20260925_global/results/N26_FROZEN_DUALGT02_ACTUAL_PUBLIC_SAFE_20261107.json:365-377",
+        "research_round_20260925_global/results/N26_FROZEN_DUALGT02_ACTUAL_PUBLIC_SAFE_20261107.json:484-488",
+        "research_round_20260925_global/results/N26_FROZEN_DUALGT_ATTEMPT01_FAILURE_PUBLIC_SAFE_20261107.json:2-17"
+      ]
+    },
+    "scope_and_innovation": {
+      "status": "warn",
+      "images": 187,
+      "GT_instances": 380,
+      "independent_datasets": 1,
+      "annotation_conventions": 2,
+      "downstream_heads": 3,
+      "common_frozen_teacher_and_R": true,
+      "full_detector_training_seed_uncertainty_measured": false,
+      "new_training": false,
+      "findings": [
+        "The positive paired signs and SD describe these three shared-teacher downstream heads on an already exposed DEV cohort. They are neither three full-model seeds nor cross-dataset or arbitrary-boundary robustness evidence.",
+        "The absence of geometric prediction changes, rather than AR100 alone, rules out interpreting this comparison as new mask repair. Equal within-protocol AR100 is a consistent secondary observation.",
+        "Quality-product ranking has a direct Mask Scoring R-CNN precedent in the designated source review. This review did not independently browse or repeat novelty search.",
+        "Within each GT protocol, quality-head mean AP_small rises but mean AP_medium and AR10 fall. AP improvement does not imply every reported metric improves. COCO scale-bin membership was not compared instance by instance across GT variants, so no physical-size mechanism is established."
+      ],
+      "evidence": [
+        "research_round_20260925_global/N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md:18-26",
+        "research_round_20260925_global/MASK_QUALITY_ANNOTATION_CONVENTION_PRIMARY_REVIEW_20261107_01.md:7-17"
+      ],
+      "secondary_metric_tradeoffs": {
+        "integer": {
+          "AP_small": {
+            "R_percent": 67.74399176376944,
+            "quality_mean_percent": 69.40881581422181,
+            "mean_delta_percentage_points": 1.664824050452367
+          },
+          "AP_medium": {
+            "R_percent": 69.74242300663346,
+            "quality_mean_percent": 69.45142204843572,
+            "mean_delta_percentage_points": -0.29100095819774197
+          },
+          "AR10": {
+            "R_percent": 73.5,
+            "quality_mean_percent": 73.4122807017544,
+            "mean_delta_percentage_points": -0.08771929824560232
+          }
+        },
+        "candidate_float": {
+          "AP_small": {
+            "R_percent": 66.8541384527305,
+            "quality_mean_percent": 68.57020153510896,
+            "mean_delta_percentage_points": 1.7160630823784686
+          },
+          "AP_medium": {
+            "R_percent": 69.5906578053861,
+            "quality_mean_percent": 69.19603793289392,
+            "mean_delta_percentage_points": -0.39461987249218566
+          },
+          "AR10": {
+            "R_percent": 72.71052631578947,
+            "quality_mean_percent": 72.5701754385965,
+            "mean_delta_percentage_points": -0.14035087719297223
+          }
+        }
+      }
+    },
+    "historical_native_and_cost": {
+      "status": "pass_with_limits",
+      "findings": [
+        "Historical native AP comes from the earlier U57 report; native was not one of these eight cases. Numeric gaps of +2.466310 and +0.378110 AP points are reference differences only, not a matched full-method ranking.",
+        "Owner9.852985s/worker9.624762s and summed COCO8.530937s refer to cached-RLE CPU evaluation. No model forward, training cost or FPS was measured.",
+        "The receipt describes shared hardware, not whole-device exclusivity. Full transitive/binary ABI provenance was not independently audited."
+      ],
+      "evidence": [
+        "research_round_20260925_global/U57_INTEGER_FLOAT_GT_SENSITIVITY_ACTUAL_20261025.md:13-17",
+        "research_round_20260925_global/U57_INTEGER_FLOAT_GT_SENSITIVITY_ACTUAL_20261025.md:27",
+        "research_round_20260925_global/N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md:20-24"
+      ]
+    }
+  },
+  "recomputed_results": {
+    "integer": {
+      "R_AP_percent": 68.09938494745545,
+      "quality_AP_percent_by_head": {
+        "202610172601": 69.42361315215425,
+        "202610172602": 69.63714218423894,
+        "202610172603": 69.55134548319735
+      },
+      "quality_AP_mean_percent": 69.53736693986352,
+      "quality_AP_sample_SD_percentage_points": 0.10744864652967262,
+      "delta_percentage_points_by_head": {
+        "202610172601": 1.324228204698798,
+        "202610172602": 1.5377572367834915,
+        "202610172603": 1.4519605357419039
+      },
+      "mean_delta_percentage_points": 1.4379819924080646,
+      "sample_SD_delta_percentage_points": 0.10744864652967262,
+      "all_three_paired_gains_positive": true,
+      "AR100_percent_identical_within_protocol": true,
+      "AR100_percent": 75.97368421052632,
+      "quality_mean_minus_historical_native_AP_points": 2.4663103023697914
+    },
+    "candidate_float": {
+      "R_AP_percent": 67.21952248889139,
+      "quality_AP_percent_by_head": {
+        "202610172601": 68.74454887529197,
+        "202610172602": 68.94001240460678,
+        "202610172603": 68.7803380224478
+      },
+      "quality_AP_mean_percent": 68.82163310078218,
+      "quality_AP_sample_SD_percentage_points": 0.10406949814442477,
+      "delta_percentage_points_by_head": {
+        "202610172601": 1.525026386400583,
+        "202610172602": 1.7204899157153903,
+        "202610172603": 1.5608155335564078
+      },
+      "mean_delta_percentage_points": 1.6021106118907937,
+      "sample_SD_delta_percentage_points": 0.10406949814442477,
+      "all_three_paired_gains_positive": true,
+      "AR100_percent_identical_within_protocol": true,
+      "AR100_percent": 74.89473684210527,
+      "quality_mean_minus_historical_native_AP_points": 0.378110123685488
+    }
+  },
+  "claims": [
+    {
+      "id": "narrow_frozen_ranking_diagnostic",
+      "claim_supported": "yes",
+      "confidence": "medium",
+      "claim": "Conditional on Root-qualified execution and faithful saved scalars, each of the three frozen downstream heads improves AP over their common R on this DEV187 cohort under both specified annotation conventions.",
+      "limits": "This is a local retrospective diagnostic; no physical-truth or full-model-seed claim."
+    },
+    {
+      "id": "general_robustness",
+      "claim_supported": "no",
+      "confidence": "high",
+      "claim": "Broad annotation/perturbation/dataset/full-detector robustness is established.",
+      "missing_evidence": "Independent evaluation cohorts, complete model repetitions and prespecified broader annotation or perturbation conditions."
+    },
+    {
+      "id": "core_innovation",
+      "claim_supported": "no",
+      "confidence": "high",
+      "claim": "The quality product is new, or core architectural/mechanistic novelty is established.",
+      "missing_evidence": "Specific distinction from direct precedents, completed FULL/PLAIN endpoint results and mechanism/capacity/compute controls."
+    },
+    {
+      "id": "SOTA_or_TGRS_ready",
+      "claim_supported": "no",
+      "confidence": "high",
+      "claim": "A fair SOTA advantage or TGRS readiness has been established.",
+      "missing_evidence": "Matched strong-method baselines, training and upstream-cost controls, full-model repetitions, cross-dataset evidence and completed endpoint qualification."
+    }
+  ],
+  "required_claim_qualifiers": [
+    "GT origin role is supported only by designated source descriptions and ended metadata, not a newly re-audited annotation-origin chain.",
+    "S0*qhat is an inherited score-role label; this diagnostic did not numerically reverify the product.",
+    "Keep historical native and new eight-case re-evaluation distinct.",
+    "Keep both attempts and the first failure visible.",
+    "Keep [pending Codex review]; do not label this GPT-5.4, cross-model or full-project integrity pass.",
+    "Report negative AP_medium and AR10 tradeoffs alongside positive total AP and AP_small; scale-bin effects do not establish a physical-size cause."
+  ],
+  "documentation_notes": [
+    "The immutable ordinary source snapshot still begins with Unexecuted; its later pure-helper use is described by the ended diagnostic. Do not edit bound or frozen SOURCE to refresh this old header.",
+    "The source review and old failure snapshot precede the new float results. Their then-pending wording is historical, not an additional current scientific failure."
+  ],
+  "unreviewed": [
+    "Raw GT provenance and original labeling independence",
+    "Historical score production and numeric S0*qhat verification",
+    "Actual bound SOURCE and full transitive/native binary execution provenance",
+    "Authenticity of raw outputs beyond the provided ended Root metadata",
+    "Main-training resumed counters and DiffSAR endpoint status beyond statements in the designated result report",
+    "Full project, data licensing, novelty completeness or publication readiness"
+  ],
+  "next_evidence": [
+    "Complete the currently fixed FULL/PLAIN endpoint and use the existing dual-GT policy without replacing the primary integer protocol.",
+    "Before broad claims, obtain fair full-method controls and complete-model repetition/cross-cohort evidence under locked evaluation rules.",
+    "If the prescribed reviewer backend later becomes available, run that review separately and preserve this limited review as its own record."
+  ]
+}
