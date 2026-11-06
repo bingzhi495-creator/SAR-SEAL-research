@@ -1,6 +1,6 @@
 # DiffSAR完整端点预测源码候选：尚未执行模型或AP
 
-2026-11-07。为固定37050更新端点准备的薄预测worker已完成并停止修改，预绑定普通副本已保存。当前外部正式参考只到512，未满足该worker的真实端点准入条件；当前主PLAIN/FULL到28160/37050并继续原锁定训练。这里的源码与测试不增加训练预算、模型执行或AP信用。
+2026-11-07。为固定37050更新端点准备的薄预测worker已完成并停止修改，预绑定普通副本已保存。当前外部正式参考只到512，未满足该worker的真实端点准入条件；当前主PLAIN/FULL到28672/37050并继续原锁定训练。这里的源码与测试不增加训练预算、模型执行或AP信用。
 
 候选仅消费Root真正合格的FORMAL37050固定checkpoint，原dtype完整加载模型参数/持久缓冲并重算typed-byte摘要；新未来评价lease连接既有真实资格引用，不修改旧训练lease或科学源码。实际作者1000候选、SAMPLE_STEP1、原NMS/后处理和所有保留mask通过原instances_to_coco_json导出，类别只做一次0→1映射。COCO maxDets100留到后续CPU评价，不把模型生成提前裁成100。
 
@@ -15,3 +15,9 @@
 [源码与接口](code/DIFFSAR_NATIVE_ENDPOINT_PREDICTION_DRAFT_20261107_01/README.md)、[原始来源与1000候选设置](U57_DIFFSAR_PAPER_INITIALIZATION_PRIMARY_REVIEW_20261107.md)、[当前真实正式512](U57_DIFFSAR_FORMAL_CONTINUATION512_ACTUAL_20261107.md)。
 
 补记：已完成[有限独立静态审阅](U57_DIFFSAR_ENDPOINT_PREDICTION_INDEPENDENT_REVIEW_20261107.md)，未确认指定接口中的具体阻断，未重跑旧测试、未执行真实模型或认证未来admission；完整运行与CPU评价仍待。
+
+后续源码准备：[CPU COCO薄适配器](code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)与[有限独立静态审阅](U57_DIFFSAR_NATIVE_CPU_COCO_ADAPTER_INDEPENDENT_REVIEW_20261107.md)已形成；4个标准库/API替身测试实际通过，未执行真实COCO。全187、category1、segm副本去bbox、maxDets[1,10,100]直接调用原COCO数学，undefined−1保留，不改分或前截100。
+
+[首次原始影像候选准备](DEV187_ORIGINAL_IMAGE_CANDIDATE_COMPOSITION_STATUS_20261107_03.md)因首行旧路径不可用而失败，0/187、0字节、0header、未生成manifest；它不证明其他186行或原数据丢失。已按新明确定位信息授权另一个有界候选任务，旧失败不升级，当前输入顺序/GT人口桥仍须独立核定。没有新的模型前向、AP、方法失效或成功结论。
+
+最新数据候选补记：在新定位实际核验183个JPEG完整SHA/长度/header后，以另一个预锁内容寻址组合生成187逻辑输入/183对象的私有manifest，4行复用同字节对象；旧两次失败保持。本轮组合没有重新读图像payload/header，当前顺序/角色及GT人口仍未Root准入，未送DGX或预测。详见上方合并历史的数据候选记录。

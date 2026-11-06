@@ -4,11 +4,14 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **28416/37050次正式更新（76.70%，38轮+258图）**，下一28416→28672已接续、尚未接收。本goal turn两臂各新增512更新/1127匹配访问，原771来源/配方保持，本机2816独立。DiffSAR正式参考仍512/37050（1.38%），本goal turn无新增native更新或AP。完整端点预测v1源码及3个有限metadata/I/O测试、独立静态审阅已保存：未确认指定接口中的具体阻断，实际37050加载、1000前向/全部mask导出和CPU COCO均未执行。薄CPU评价接口及内部DEV187原始影像候选清单正在独立准备；没有取得运行准入或新指标，不把源码就绪当真实结果。GLDet原论文500轮/800×800等条件已核，可认证作者可训练实现与初值仍未取得。原内部整数DEV AP原生67.071/R68.099/R＋N26质量排序69.537±0.107仍只支持局部效用；完整训练重复、固定R浮点GT收益反转与N26浮点评价缺口保留。主端点、公平完整外部对照、容量/成本/初值、跨集及TGRS依据仍缺。
+DGX PLAIN/FULL各严格接收 **28672/37050次正式更新（77.39%，38轮+514图）**，下一28672→28928已接续、尚未接收。本goal turn两臂各新增768更新/1721匹配访问，原771来源/配方保持，本机2816独立。DiffSAR正式参考仍512/37050（1.38%），本goal turn无新增native更新或AP。完整端点预测v1源码及3个有限metadata/I/O测试、独立静态审阅已保存：未确认指定接口中的具体阻断，实际37050加载、1000前向/全部mask导出和CPU COCO均未执行。薄CPU COCO评价适配器源码已完成，4项API替身测试通过，独立有限静态复核未确认具体阻断；真实API/指标未执行。原图候选已形成187逻辑输入/183原字节对象的内容覆盖（4行精确同字节复用）；完整SHA/header来自新定位尝试02，本轮03为元数据组合，旧01/02失败不升级。顺序/角色与GT人口仍待Root核定，未送DGX或预测。GLDet原论文500轮/800×800等条件已核，可认证作者可训练实现与初值仍未取得。原内部整数DEV AP原生67.071/R68.099/R＋N26质量排序69.537±0.107仍只支持局部效用；完整训练重复、固定R浮点GT收益反转与N26浮点评价缺口保留。主端点、公平完整外部对照、容量/成本/初值、跨集及TGRS依据仍缺。
 
-原训练与输入验证管线DGX账户117正常/8失败/125总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+原训练与输入验证管线DGX账户118正常/8失败/126总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
+- [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
+- [CPU COCO适配器有限独立审阅：运行仍待](research_round_20260925_global/U57_DIFFSAR_NATIVE_CPU_COCO_ADAPTER_INDEPENDENT_REVIEW_20261107.md)
+- [DEV187候选完整内容覆盖：187逻辑/183原字节对象，仍待Root准入](research_round_20260925_global/DEV187_ORIGINAL_IMAGE_CANDIDATE_COMPOSITION_STATUS_20261107_03.md)
 - [DiffSAR端点预测有限独立审阅：未确认具体阻断，运行仍待](research_round_20260925_global/U57_DIFFSAR_ENDPOINT_PREDICTION_INDEPENDENT_REVIEW_20261107.md)
 - [DiffSAR完整端点预测代码候选：仅源码与有限测试，未执行](research_round_20260925_global/U57_DIFFSAR_ENDPOINT_PREDICTION_SOURCE_STATUS_20261107.md)
 - [GLDet作者复现来源：500轮设置、初始化与可训练代码仍未取得](research_round_20260925_global/U57_GLDET_AUTHOR_REPRODUCTION_PRIMARY_REVIEW_20261107.md)
