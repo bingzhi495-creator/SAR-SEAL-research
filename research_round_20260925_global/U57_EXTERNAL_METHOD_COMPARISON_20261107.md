@@ -1,6 +1,8 @@
 # 当前与其他方法的比较（2026-11-07）
 
-2026-11-07当前状态：主PLAIN/FULL各严格完成27904/37050（75.31%，37轮+487图），下一27904→28160运行；[DiffSAR正式512](U57_DIFFSAR_FORMAL_CONTINUATION512_ACTUAL_20261107.md)已从合格256完整恢复并新训256，固定目标37050，尚无AP。[原始来源查证](U57_DIFFSAR_PAPER_INITIALIZATION_PRIMARY_REVIEW_20261107.md)确认公开训练500、测试1000 proposals与COCO maxDets100应分别保留；论文初值仍未知、实际1000前向尚未执行。[HRSID版本差异](HRSID_ANNOTATION_PROTOCOL_DIFF_STATUS_20261107_05.md)已精确到split仅22/merged仅4、26图，原划分/GT保持。原健康/验证及旧数值阈值失败均另列；没有新增方法AP或外部性能优势。
+新增源码准备：[DiffSAR完整端点预测候选](U57_DIFFSAR_ENDPOINT_PREDICTION_SOURCE_STATUS_20261107.md)已形成、仅3个有限metadata/I/O测试，真实模型与AP未执行。[GLDet原始来源补核](U57_GLDET_AUTHOR_REPRODUCTION_PRIMARY_REVIEW_20261107.md)确认论文500轮/800×800等条件；本轮检查未取得可认证作者可训练实现/初值，不能扩大为空仓库即全互联网无代码。
+
+2026-11-07当前状态：主PLAIN/FULL各严格完成28160/37050（76.01%，38轮+2图），下一28160→28416运行；[DiffSAR正式512](U57_DIFFSAR_FORMAL_CONTINUATION512_ACTUAL_20261107.md)已从合格256完整恢复并新训256，固定目标37050，尚无AP。[原始来源查证](U57_DIFFSAR_PAPER_INITIALIZATION_PRIMARY_REVIEW_20261107.md)确认公开训练500、测试1000 proposals与COCO maxDets100应分别保留；论文初值仍未知、实际1000前向尚未执行。[HRSID版本差异](HRSID_ANNOTATION_PROTOCOL_DIFF_STATUS_20261107_05.md)已精确到split仅22/merged仅4、26图，原划分/GT保持。原健康/验证及旧数值阈值失败均另列；没有新增方法AP或外部性能优势。
 
 尚未建立新FULL结构相对SAR外部完整强方法的性能优势。现有数字包含内部模块结果、一个SAMRefiner基础默认版推理结果和一个PointRend风格适配实验，不能合并成同预算SOTA排名。本次只整理已经完成的安全结果，没有新增AP或中途选型。
 
@@ -56,7 +58,7 @@ GLDet引用的是作者原PDFTable IV/VI，不代表统一数据划分、GT、�
 
 ## 当前执行和结论边界
 
-PLAIN/FULL固定目标每臂50轮/37050更新，目前严格接收27904（75.31%，37轮+487图），下一27904→28160运行，尚无中途或端点AP。自25088阶段累计各+2816更新/+6307匹配实例访问，本机2816独立、不拼接或当重复。FULL约53.12M参数、PLAIN约47.20M，容量/计算控制尚缺。[当前严格安全标量](results/U57_FORMAL27904_ACTUAL_SCALARS_20261021.json)。训练完成度不是论文完成度。
+PLAIN/FULL固定目标每臂50轮/37050更新，目前严格接收28160（76.01%，38轮+2图），下一28160→28416运行，尚无中途或端点AP。自25088阶段累计各+3072更新/+6845匹配实例访问，本机2816独立、不拼接或当重复。FULL约53.12M参数、PLAIN约47.20M，容量/计算控制尚缺。[当前严格安全标量](results/U57_FORMAL28160_ACTUAL_SCALARS_20261021.json)。训练完成度不是论文完成度。
 
 下一证据顺序：保持锁定E50至端点并按预定规则统一评价原生/R/N26/PLAIN/FULL；在公开统一数据协议和可核初始化下完成DiffSAR等完整对照，报告收敛与预算而非只对齐epoch标签；随后补容量/计算、完整训练重复种子与HRSID跨集。有限预算筛选要给两臂同预算，最终方法判断仍需充分训练依据。需要验证排序收益能否跨GT、跨种子和跨集保持，不能只选择有利的整数GT或开发集结果。
 

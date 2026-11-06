@@ -1,0 +1,17 @@
+# DiffSAR完整端点预测源码候选：尚未执行模型或AP
+
+2026-11-07。为固定37050更新端点准备的薄预测worker已完成并停止修改，预绑定普通副本已保存。当前外部正式参考只到512，未满足该worker的真实端点准入条件；当前主PLAIN/FULL到28160/37050并继续原锁定训练。这里的源码与测试不增加训练预算、模型执行或AP信用。
+
+候选仅消费Root真正合格的FORMAL37050固定checkpoint，原dtype完整加载模型参数/持久缓冲并重算typed-byte摘要；新未来评价lease连接既有真实资格引用，不修改旧训练lease或科学源码。实际作者1000候选、SAMPLE_STEP1、原NMS/后处理和所有保留mask通过原instances_to_coco_json导出，类别只做一次0→1映射。COCO maxDets100留到后续CPU评价，不把模型生成提前裁成100。
+
+单一内部DEV187原顺序连续运行；推理seed40244023在构造与严格加载后、mapper/整轮前只设一次，不继承训练末RNG、不逐图重seed、不支持分片或续跑。该随机约定已明确，不能声称已取得作者论文实际推理轨迹。GT380只是manifest声明，该预测worker不读或哈希GT正文、不计算AP，后续CPU评价须独立核真实GT身份。
+
+三个有限metadata/I/O测试实际6ceabb/0，AST与普通副本清单143deb/0；测试覆盖拒绝非端点、模型字节/dtype摘要接线与保留137个替身输出等，不导入真实Torch、读权重/GT或跑模型。新worker23173字节，SHA256 90e3a4f951f84d015e47db05d96ca495c5fdaec0601d279f70db911bfcba4d98。独立静态复核只可补源码证据，不能替代实际执行。
+
+仍缺真实合格37050端点/admission、DGX DEV187原始图像manifest、实际500训练→1000推理严格加载/完整前向/全部预测导出、外部过程/资源/输出资格，以及独立CPU COCO适配。CPU segm评价需复用原COCO数学、移除prediction bbox以使用mask-area、固定maxDets[1,10,100]；不能静默套用教师固定100查询的U66人口约束。
+
+当前只有源码候选和有限测试，不是完整外部复现。作者论文初值未知、预训练教师/项目训练/缓存及完整推理成本未匹配，旧原生数值比较失败与非逐位波动保持；没有AP、结构提升、SOTA或TGRS就绪证据。
+
+[源码与接口](code/DIFFSAR_NATIVE_ENDPOINT_PREDICTION_DRAFT_20261107_01/README.md)、[原始来源与1000候选设置](U57_DIFFSAR_PAPER_INITIALIZATION_PRIMARY_REVIEW_20261107.md)、[当前真实正式512](U57_DIFFSAR_FORMAL_CONTINUATION512_ACTUAL_20261107.md)。
+
+补记：已完成[有限独立静态审阅](U57_DIFFSAR_ENDPOINT_PREDICTION_INDEPENDENT_REVIEW_20261107.md)，未确认指定接口中的具体阻断，未重跑旧测试、未执行真实模型或认证未来admission；完整运行与CPU评价仍待。

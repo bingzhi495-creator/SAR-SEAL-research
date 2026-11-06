@@ -4,11 +4,14 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **27904/37050次正式更新（75.31%，37轮+487图）**，下一27904→28160已接续、尚未接收。本goal turn主各+256更新/+608匹配访问；主原771来源/配方不变，本机2816独立。**DiffSAR固定50轮公开代码参考正式达到512/37050（1.38%）**，新256→512原tool/SSH/worker均0、完整六类state真实加载与前段checkpoint匹配，24原loss及末状态有限，783选定来源/资源/回收通过；当前主已接回。它仍无端点AP，旧1e-4数值比较失败保留，native非逐位波动与初值/教师成本差异未消除。新原始来源核查确认DiffSAR公开训练500 proposals、作者测试1000、COCO maxDets100是不同角色；实际1000候选前向尚未执行，最终AP前应预锁忠实原生推理，不削减候选后声称完整复现。论文初始权重仍未知。HRSID新JSON审计：原split16969与merged16951有16947共同payload，仅split22/仅merged4，涉及26张；两跨split相同字节配对的标注payload均不同，未验证几何等价或哪版正确，主保留原split/GT。已有内部DEV整数AP原生67.071/R68.099/R＋N26排序69.537±0.107，只支持局部精修/排序；三个下游头不等于完整种子。固定R浮点GT收益反转、N26浮点评价未完成。主端点、完整外部公平AP、容量成本/完整种子/跨集/TGRS依据仍未完成。
+DGX PLAIN/FULL各严格接收 **28160/37050次正式更新（76.01%，38轮+2图）**，下一28160→28416已接续、尚未接收。本goal turn两臂各新增256更新/538匹配访问，原771来源/配方不变，本机2816独立。DiffSAR公开代码正式参考仍为512/37050（1.38%），本goal turn没有新增native更新或AP。新完整端点预测候选源码已形成并保留预绑定普通副本：只准合格37050、单187顺序、加载后一次推理seed、作者1000候选及全部保留mask导出；3个有限metadata/I/O测试通过，独立有限静态审阅未确认具体阻断；**实际checkpoint加载、1000前向、完整导出及CPU COCO评价均未执行**。GLDet原PDF补核为500轮、batch16、800×800、AdamW lr0.004；公开同名候选未提供可训练实现，作者身份、初值与精确划分未闭合，不能拿随意重实现的低分当战胜作者。内部已有整数DEV AP原生67.071/R68.099/R＋N26排序69.537±0.107仍是局部精修/排序证据；3个下游头不是完整训练重复，固定R浮点标注收益反转、N26浮点评价未完成。主端点、完整外部公平AP、容量/计算/初值控制、完整种子、跨集与TGRS依据仍缺。
 
-原训练与输入验证管线DGX账户115正常/8失败/123总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+原训练与输入验证管线DGX账户116正常/8失败/124总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
+- [DiffSAR端点预测有限独立审阅：未确认具体阻断，运行仍待](research_round_20260925_global/U57_DIFFSAR_ENDPOINT_PREDICTION_INDEPENDENT_REVIEW_20261107.md)
+- [DiffSAR完整端点预测代码候选：仅源码与有限测试，未执行](research_round_20260925_global/U57_DIFFSAR_ENDPOINT_PREDICTION_SOURCE_STATUS_20261107.md)
+- [GLDet作者复现来源：500轮设置、初始化与可训练代码仍未取得](research_round_20260925_global/U57_GLDET_AUTHOR_REPRODUCTION_PRIMARY_REVIEW_20261107.md)
 - [DiffSAR正式512：实际完整状态接续，尚无端点AP](research_round_20260925_global/U57_DIFFSAR_FORMAL_CONTINUATION512_ACTUAL_20261107.md)
 - [DiffSAR原始来源：初值未知、500训练／1000测试／maxDets100](research_round_20260925_global/U57_DIFFSAR_PAPER_INITIALIZATION_PRIMARY_REVIEW_20261107.md)
 - [HRSID标注版本差异：净差18涉及26张、原划分保留](research_round_20260925_global/HRSID_ANNOTATION_PROTOCOL_DIFF_STATUS_20261107_05.md)
