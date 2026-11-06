@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **28672/37050次正式更新（77.39%，38轮+514图）**，下一28672→28928已接续、尚未接收。本goal turn两臂各新增768更新/1721匹配访问，原771来源/配方保持，本机2816独立。DiffSAR正式参考仍512/37050（1.38%），本goal turn无新增native更新或AP。完整端点预测v1源码及3个有限metadata/I/O测试、独立静态审阅已保存：未确认指定接口中的具体阻断，实际37050加载、1000前向/全部mask导出和CPU COCO均未执行。薄CPU COCO评价适配器源码已完成，4项API替身测试通过，独立有限静态复核未确认具体阻断；真实API/指标未执行。原图候选已形成187逻辑输入/183原字节对象的内容覆盖（4行精确同字节复用）；完整SHA/header来自新定位尝试02，本轮03为元数据组合，旧01/02失败不升级。顺序/角色与GT人口仍待Root核定，未送DGX或预测。GLDet原论文500轮/800×800等条件已核，可认证作者可训练实现与初值仍未取得。原内部整数DEV AP原生67.071/R68.099/R＋N26质量排序69.537±0.107仍只支持局部效用；完整训练重复、固定R浮点GT收益反转与N26浮点评价缺口保留。主端点、公平完整外部对照、容量/成本/初值、跨集及TGRS依据仍缺。
+DGX PLAIN/FULL各严格接收 **29696/37050次正式更新（80.15%，40轮+56图）**，下一29696→29952已接续、尚未接收。自28672阶段每臂各新增1024更新/2268匹配实例访问；固定配方、771来源和完整状态恢复规则保持，本机2816独立。DiffSAR原生公开代码正式参考仍512/37050，尚无完整端点AP，初值及教师上游成本未匹配，不能称论文强复现。原始DEV187影像/GT已私有暂存DGX，187逻辑输入/183原字节对象、380实例及原GT顺序通过核验并仅作数据输入范围准入；像素解码、最终模型预测与指标资格未授予。旧数据准备失败保留。原内部整数DEV AP原生67.071/R68.099/R＋N26质量排序69.537±0.107仍只支持局部效用；三种子为下游头，共享教师。新N26冻结两GT诊断源码已形成，10项替身测试及有限静态复核完成，真实COCO尚未运行；局部私有运输包已生成、尚未送DGX。质量乘积评分的直接已知先例为Mask Scoring R-CNN，不能把该公式当新创新。固定R在候选浮点GT下的相对收益反转必须保留。GLDet、完整DiffSAR等公平完整外部对照、主固定端点、容量/计算控制、完整模型重复与跨集证据仍缺；**不宣称超越SOTA、创新已成立或TGRS就绪。**
 
-原训练与输入验证管线DGX账户118正常/8失败/126总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户122正常/8失败/130总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -24,6 +24,11 @@ DGX PLAIN/FULL各严格接收 **28672/37050次正式更新（77.39%，38轮+514�
 - [HRSID5604图本地原字节、CRC、header与跨划分重复聚合](research_round_20260925_global/HRSID_JPG_INPUT_AUDIT_STATUS_20261107_04.md)
 - [DiffSAR真实32步原生训练健康结果：第6步激活掩膜信号](research_round_20260925_global/U57_DIFFSAR_NATIVE_HEALTH32_ACTUAL_20261107.md)
 - [完整FIT输入已传DGX的安全聚合](research_round_20260925_global/U57_FIT_DGX_INPUT_TRANSFER_20261107.md)与[作者原优化器/采样/学习率来源核对](research_round_20260925_global/U57_DIFFSAR_NATIVE_RECIPE_SOURCE_REVIEW_20261107.md)
+- [原DEV187人口/尺寸/顺序核验：真实读取原GT，仅输入范围](research_round_20260925_global/DEV187_ORIGINAL_GT_POPULATION_BRIDGE_STATUS_20261107_04.md)
+- [原DEV187字节已私有暂存DGX：数据准入不等于预测](research_round_20260925_global/DEV187_DGX_RAW_INPUT_STAGE_STATUS_20261107_06.md)
+- [质量评分与标注约定直接先例：Mask Scoring R-CNN及边界文献](research_round_20260925_global/MASK_QUALITY_ANNOTATION_CONVENTION_PRIMARY_REVIEW_20261107_01.md)
+- [N26冻结排名两GT诊断：预绑定源码，真实评价尚未运行](research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_01/README.md)
+- [N26诊断有限独立静态审阅](research_round_20260925_global/N26_FROZEN_RANKING_GT_DIAGNOSTIC_INDEPENDENT_REVIEW_20261107_01.md)
 - [当前与其他方法的对比：已测数字、不同预算和外部缺口](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_20261107.md)
 - [DiffSAR两次限定梯度观察：原失败保留与解释边界](research_round_20260925_global/U57_DIFFSAR_MASK_GRADIENT_DIAGNOSTICS_20261107.md)
 - [完整FIT原图字节恢复](research_round_20260925_global/U57_FIT_RAW_RECOVERY_20261107.md)与[私有输入包组装聚合](research_round_20260925_global/U57_FIT_INPUT_ASSEMBLY_20261107.md)

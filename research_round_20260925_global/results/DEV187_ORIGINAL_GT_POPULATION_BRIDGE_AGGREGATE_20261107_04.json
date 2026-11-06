@@ -1,0 +1,66 @@
+{
+  "status": "PASSED_ORIGINAL_GT_BYTES_AND_CANDIDATE_POPULATION_DIMENSIONS_ONLY",
+  "started_utc": "2026-11-06T21:21:31Z",
+  "original_GT_body_read_this_attempt": true,
+  "GT_full_bytes_SHA256_matched_before_JSON_parse": true,
+  "bridge": {
+    "candidate_images": 187,
+    "candidate_unique_image_ids": 187,
+    "GT_images": 187,
+    "GT_unique_image_ids": 187,
+    "image_id_sets_equal": true,
+    "candidate_only_image_ids_count": 0,
+    "GT_only_image_ids_count": 0,
+    "height_width_mismatch_count": 0,
+    "invalid_height_width_records": 0,
+    "all_image_annotation_category_IDs_integer": true,
+    "GT_annotations": 380,
+    "GT_unique_annotation_ids": 380,
+    "GT_categories": 1,
+    "GT_category_ids_exactly_1": true,
+    "annotation_unknown_image_links": 0,
+    "annotation_noninteger_image_links": 0,
+    "annotation_non_category1_or_noninteger_links": 0,
+    "candidate_dataset_indices_exact_0_to_186": true,
+    "candidate_ordinal_equals_GT_images_order": true,
+    "order_relationship": "EXACT_EQUAL",
+    "GT_images_without_annotations": 0,
+    "N28_current_order_role_status": "UNKNOWN_NO_EXPLICIT_INDEPENDENT_ARRAY_ROLE_READ"
+  },
+  "Root_final_execution_admission_granted": false,
+  "N28_current_order_role_status": "UNKNOWN_NO_EXPLICIT_INDEPENDENT_ARRAY_ROLE_READ",
+  "resource_actual_receipt": {
+    "wall_seconds": 0.031,
+    "process_cpu_seconds": 0.0625,
+    "peak_working_set_bytes": 20529152,
+    "peak_pagefile_bytes": 10559488,
+    "private_bytes_at_receipt": 10559488,
+    "single_worker": true,
+    "no_image_bytes_header_pixels": true,
+    "no_mask_Torch_models_predictions_AP": true,
+    "no_SSH_HTTP_ops_changes": true
+  },
+  "prior_attempts_preserved": [
+    "01 failed before first JPEG byte",
+    "02 partial183 under basename-only prelock",
+    "03 complete187 logical over183 actual content objects"
+  ],
+  "limitations": [
+    "This attempt explicitly read original DEV GT body after exact byte-identity gate; do not describe it as metadata-only/no-GT access",
+    "Earlier locator metadata with annotation ID mappings was also parsed",
+    "Only original-GT byte identity and candidate image population/dimensions/COCO links checked",
+    "No proof of current independent N28 order role or final Root execution qualification",
+    "No physical annotation-quality, pixel/mask alignment, official TEST, official-release or license claim",
+    "No raw GT/annotations/locators/image IDs for public sync; no SSH, DGX transfer, forward, predictions or AP"
+  ],
+  "failure_type": null,
+  "execution_status": {
+    "observed_tool_chunk": "328ee5/0",
+    "supervisor_exit_code": 0,
+    "child_exit_code_propagated_by_subprocess_run": 0,
+    "blocking_supervisor_returned_after_child_exit": true,
+    "exec_returned_no_live_session": true,
+    "independent_post_exit_PID_sweep_performed": false,
+    "memory_scope": "Child Windows peak working set/pagefile only; supervisor RSS and machine-wide memory not measured"
+  }
+}
