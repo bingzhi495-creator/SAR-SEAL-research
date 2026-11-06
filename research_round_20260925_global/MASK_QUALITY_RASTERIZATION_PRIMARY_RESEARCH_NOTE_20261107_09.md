@@ -20,7 +20,7 @@
 
 ## 最有竞争力的替代解释
 
-**整数标注量化与R离散输出的相容性，可能改变固定IoU阈值附近的匹配；N26又可能学到了该版本下的质量排序。** 这是已有机制足以解释局部AP收益的假设，不需要假定新边界结构已经有效。官方`rleFrPoly`接收浮点坐标后，在细化网格离散化并构造像素RLE；先逐坐标int截断再走该实现，一般不等于直接保留浮点坐标后再走同一实现。因此连续面积总量接近，不能推出像素轮廓或TP/FP相同。[固定polygon实现](https://github.com/cocodataset/cocoapi/blob/8c9bcc3cf640524c4c20a9c40e89cb6a2f2fa0e9/common/maskApi.c#L162)、[annToRLE入口](https://github.com/cocodataset/cocoapi/blob/8c9bcc3cf640524c4c20a9c40e89cb6a2f2fa0e9/PythonAPI/pycocotools/coco.py#L383)。这是原作者实现的机制推断，不是本轮对项目mask或当前runtime的实测。
+**整数标注量化与R离散输出的相容性，可能改变固定IoU阈值附近的匹配；N26又可能学到了该版本下的质量排序。** 这是已有机制足以解释局部AP收益的假设，不需要假定新边界结构已经有效。官方`rleFrPoly`接收浮点坐标后，在细化网格离散化并构造像素RLE；先逐坐标int截断再走该实现，一般不等于直接保留浮点坐标后再走同一实现。因此连续面积总量接近，不能推出像素轮廓或TP/FP相同。[固定polygon实现](https://github.com/cocodataset/cocoapi/blob/8c9bcc3cf640524c4c20a9c40e89cb6a2f2fa0e9/common/maskApi.c#L162)、[annToRLE入口](https://github.com/cocodataset/cocoapi/blob/8c9bcc3cf640524c4c20a9c40e89cb6a2f2fa0e9/PythonAPI/pycocotools/coco.py)。这是原作者实现的机制推断，不是本轮对项目mask或当前runtime的实测。
 
 R的整数收益和N26三头的排序收益应肯定并保留；现有反转已经限制“跨标注版本稳定改善”的说法，但不能据此断言R总体无效、整数GT错误或浮点候选更接近真实船体。N26若浮点收益仍正，只支持该固定几何上的排序效用更稳健；不会变成几何创新。若不同，则需限定其标签/评价条件。FULL没有端点结果，以上不能替它预告正负。
 
