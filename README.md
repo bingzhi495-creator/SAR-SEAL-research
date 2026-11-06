@@ -4,11 +4,12 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL已各严格接收 **27136/37050次正式更新（73.24%，36轮+460图）**；下一27136→27392已启动、尚未接收。本goal turn各新增768次更新/1739次匹配实例访问，主771来源/配方/预算不变，本机2816独立。DiffSAR完整状态与数值检验实际完成C8/S4及另R4共16次研究更新，不计正式基线：两次恢复起点/输入增强/末RNG与采样状态严格一致，但C−S数值超原1e-4，旧CPU原工具1保持失败；同起点S−R也超阈，新的方差观察完成0仅证明此现象不专属于连续与重启比较，不授旧连续资格。新前向50轮方案保留全部state恢复、原生模型/优化器/学习率，披露native非逐位数值波动与教师预训练成本，**正式外部轨迹仍0，未开始、无AP**。HRSID两个本地ZIP的5604原图字节/CRC/header已一次核对并私有准备；5601独特字节含2组跨train/test重复，不认证官方release、许可、像素mask对齐或blind TEST。旧A/B24+追加48已NO_GO不重启；FULL端点、完整强对照、容量/计算、完整训练重复、跨集证据与TGRS就绪均未完成。
+DGX PLAIN/FULL已各严格接收 **27392/37050次正式更新（73.93%，36轮+716图）**；下一27392→27648已接续、尚未接收。本goal turn主各新增1024更新/2262匹配访问，原771来源/配方不变，本机2816独立。**DiffSAR固定50轮公开代码参考已从新0真实完成首256/37050次正式更新**：原tool/SSH/worker均0，256不同逻辑样本/515个增强后实例访问，7个原mapper空实例样本保留；完整模型、梯度、原生优化器/调度/RNG与采样状态已保存，781选定来源及owner回收/资源/CUDA0/0通过。无中途AP或选优。原生重复数值波动已披露，旧1e-4数值比较仍failed，旧formal v1条件不被升级；新v2仅区分完整state加载与非bitwise执行，原模型数学/初始化不修补，健康32与验证16不计正式256。教师COCO/项目24轮/缓存等上游成本和初值未匹配，不能据此宣称作者强复现、SOTA或新结构效用。HRSID5604本地原字节/CRC/header已私有验证，2组跨train/test重复及版本/历史接触限制保留；无跨集AP。当前FULL与外部固定端点、容量/计算、完整训练重复与TGRS依据仍未完成。
 
-原训练与输入验证管线DGX账户112正常/8失败/120总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+原训练与输入验证管线DGX账户113正常/8失败/121总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
+- [外部DiffSAR首256次正式更新：完整状态已保存，尚无AP](research_round_20260925_global/U57_DIFFSAR_FORMAL_FIRST256_ACTUAL_20261107.md)
 - [DiffSAR恢复状态与原生数值方差：旧失败保留、同起点重复实证](research_round_20260925_global/U57_DIFFSAR_STATE_AND_NUMERICAL_VARIATION_ACTUAL_20261107.md)
 - [完整外部训练的新前向协议及证据边界](research_round_20260925_global/U57_DIFFSAR_FORMAL50_STATE_CONTINUITY_FORWARD_PROTOCOL_20261107.md)
 - [HRSID5604图本地原字节、CRC、header与跨划分重复聚合](research_round_20260925_global/HRSID_JPG_INPUT_AUDIT_STATUS_20261107_04.md)
