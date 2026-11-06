@@ -1,0 +1,171 @@
+{
+  "AP": false,
+  "D2_fixed_operator_scope_accepted": true,
+  "TEST": false,
+  "TGRS_ready": false,
+  "active_architecture_math_replaced": false,
+  "actual_strict_config": {
+    "EMA_enabled": false,
+    "MODEL_new_allowed": false,
+    "backbone": "build_resnet_scje_fpn_backbone",
+    "cuda_initialized": false,
+    "depth": 101,
+    "global_new_allowed": false,
+    "inactive_schema_guard_passed": true,
+    "input_format": "RGB",
+    "max_size_train": 512,
+    "meta_architecture": "DiffSARShipInst",
+    "min_size_train": [
+      512
+    ],
+    "model_constructed": false,
+    "num_classes": 1,
+    "num_heads": 6,
+    "num_proposals": 500,
+    "numerical_GPU_execution": false,
+    "pixel_mean": [
+      123.675,
+      116.28,
+      103.53
+    ],
+    "pixel_std": [
+      58.395,
+      57.12,
+      57.375
+    ],
+    "status": "COMPAT_AUTHOR_FULL_PACKAGE_AND_STRICT_SSDD_CONFIG_PASSED_GPU_HIDDEN",
+    "visible_cuda_devices": 0
+  },
+  "author_commit": "bdc3362372213bc8c3a1f6d5b7b74dc224d1b871",
+  "base_install_performed": false,
+  "compat_patch": {
+    "change_count": 5,
+    "files": [
+      {
+        "after_sha256": "15e32ffcd2aabe18df8995dd01d8a4d5ac72096417dbd811acafeb2215de8b95",
+        "before_sha256": "e96e2295c3459df4f4b656a4e942250c464e13de912eb614a431bdb88ce8c131",
+        "changes": [
+          {
+            "explanation": "Remove absent FPN exports; retain the selected SCJE_FPN implementation.",
+            "id": "remove_absent_fpn_exports"
+          },
+          {
+            "explanation": "Remove import of an absent backbone unused by the target R101 configuration.",
+            "id": "remove_absent_unused_fan_import"
+          },
+          {
+            "explanation": "Remove absent external BiFPN import unused by the target configuration.",
+            "id": "remove_absent_unused_bifpn_import"
+          }
+        ],
+        "path": "detectron2/modeling/backbone/__init__.py"
+      },
+      {
+        "after_sha256": "9b64fb50a2f0ce4fa79c1170fac8fea386c27cedc007bef388ca47e48dd0b531",
+        "before_sha256": "dc8f0a18136db45b50234a9853e90fd7036be7b4012349d5aa91e5ff6c5f7b52",
+        "changes": [
+          {
+            "explanation": "Remove the unused unavailable PolyLoss import; retain the active sigmoid focal loss.",
+            "id": "remove_unused_poly_focal_import"
+          }
+        ],
+        "path": "diffsarshipinst/loss.py"
+      },
+      {
+        "after_sha256": "e7371a38af2ea59451bc2f5b6c586c8f7b12535c7b5e664dc646665ccecb7583",
+        "before_sha256": "af0ae0f595985395f8147d9bd0115d872610cb37fccfcaad6719bbe66d3bf25d",
+        "changes": [
+          {
+            "explanation": "Use Pillow's documented equivalent bilinear alias; preserve interpolation selection.",
+            "id": "replace_removed_pillow_alias"
+          }
+        ],
+        "path": "detectron2/data/transforms/transform.py"
+      }
+    ],
+    "schema": "diffsar-startup-compat-v1",
+    "status": "APPLIED",
+    "upstream_commit": "bdc3362372213bc8c3a1f6d5b7b74dc224d1b871"
+  },
+  "first_FIT_input": {
+    "Root_membership_verified": true,
+    "canonical_first_nonempty": true,
+    "image_decoded": false,
+    "instances": 1,
+    "legacy_original_location_missing_relocated_identical_bytes": true,
+    "model_constructed": false,
+    "original_image_shape": [
+      355,
+      501
+    ],
+    "raw_image_byte_identity_verified": true
+  },
+  "first_compat_config_check_exit": 1,
+  "first_compat_config_failure": "Unregistered inactive MODEL.BIFPN_1p_5p",
+  "first_failures_preserved": true,
+  "full_model_executed": false,
+  "inactive_BIFPN_schema_registration": true,
+  "innovation_established": false,
+  "installation_checks": [
+    {
+      "CUDA_initialized": false,
+      "SSH_exit": 0,
+      "hidden_import_elapsed_seconds": 3.482495474861935,
+      "hidden_import_exit": 0,
+      "hidden_import_peak_RSS_bytes": 641265664,
+      "install_elapsed_seconds": 1.3016394500155002,
+      "install_exit": 0,
+      "numerical_GPU_execution": false,
+      "phase": "RUNTIME"
+    },
+    {
+      "CUDA_initialized": false,
+      "SSH_exit": 0,
+      "hidden_import_elapsed_seconds": 1.9572374240960926,
+      "hidden_import_exit": 0,
+      "hidden_import_peak_RSS_bytes": 522899456,
+      "install_elapsed_seconds": 1.0835966931190342,
+      "install_exit": 0,
+      "numerical_GPU_execution": false,
+      "phase": "CONFIG"
+    },
+    {
+      "CUDA_initialized": false,
+      "SSH_exit": 0,
+      "hidden_import_elapsed_seconds": 3.927704308880493,
+      "hidden_import_exit": 0,
+      "hidden_import_peak_RSS_bytes": 635682816,
+      "install_elapsed_seconds": 0.6759264499414712,
+      "install_exit": 0,
+      "numerical_GPU_execution": false,
+      "phase": "TIMM"
+    }
+  ],
+  "original_author_package_import_exit": 1,
+  "original_author_package_import_failure": "Absent FPN_1p_5p export; no model constructed",
+  "original_author_source_modified": false,
+  "schema": "Root-DiffSAR-runtime-public-safe-v1",
+  "shared_base_site_packages": true,
+  "status": "ACTUAL_PACKAGE_CONFIG_AND_D2_OPERATORS_READY_FULL_MODEL_PENDING",
+  "strict_configuration_validation_relaxed": false,
+  "training": false,
+  "unchanged_original_files": 1118,
+  "versions": {
+    "antlr4-python3-runtime": "4.9.3",
+    "certifi": "2025.10.5",
+    "charset-normalizer": "3.4.4",
+    "cloudpickle": "3.1.1",
+    "fvcore": "0.1.5.post20221221",
+    "huggingface-hub": "0.21.4",
+    "hydra-core": "1.3.2",
+    "idna": "3.11",
+    "iopath": "0.1.9",
+    "omegaconf": "2.3.0",
+    "portalocker": "2.10.1",
+    "requests": "2.32.5",
+    "tabulate": "0.9.0",
+    "timm": "0.6.13",
+    "urllib3": "2.5.0",
+    "yacs": "0.1.8"
+  }
+}

@@ -1,0 +1,400 @@
+{
+  "AP": false,
+  "CUDA_allocated_after_cleanup": 0,
+  "CUDA_peak_allocated_bytes": 17073152,
+  "CUDA_reserved_after_cleanup": 0,
+  "TEST": false,
+  "TGRS_ready": false,
+  "UTC": "2026-11-06T14:42:28.008675+00:00",
+  "actual_environment": {
+    "CUDA_build": "13.0",
+    "CUDA_compute_capability": [
+      12,
+      1
+    ],
+    "CUDA_device_name": "NVIDIA GB10",
+    "Detectron2": "0.6",
+    "Torch": "2.10.0+cu130",
+    "Torchvision": "0.25.0+cu130",
+    "deterministic_algorithms": false,
+    "machine": "aarch64",
+    "python": "3.12.14",
+    "tf32_cudnn": false,
+    "tf32_matmul": false,
+    "torch_interop_threads": 2,
+    "torch_threads": 2
+  },
+  "author_commit": "bdc3362372213bc8c3a1f6d5b7b74dc224d1b871",
+  "cases": [
+    {
+      "bias": null,
+      "checks": {
+        "input_gradient": {
+          "atol": 8e-05,
+          "max_abs_error": 1.1920928955078125e-07,
+          "max_error_over_allowed": 0.0006730438326485455,
+          "passed": true,
+          "rtol": 0.0008,
+          "shape": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        "mask_gradient": {
+          "atol": 0.0001,
+          "max_abs_error": 1.4156103134155273e-07,
+          "max_error_over_allowed": 0.0007821019971743226,
+          "passed": true,
+          "rtol": 0.001,
+          "shape": [
+            1,
+            9,
+            4,
+            5
+          ]
+        },
+        "offset_gradient": {
+          "atol": 0.0001,
+          "max_abs_error": 1.1920928955078125e-07,
+          "max_error_over_allowed": 0.0006963872001506388,
+          "passed": true,
+          "rtol": 0.001,
+          "shape": [
+            1,
+            18,
+            4,
+            5
+          ]
+        },
+        "output": {
+          "atol": 3e-05,
+          "max_abs_error": 1.1175870895385742e-07,
+          "max_error_over_allowed": 0.0018930096412077546,
+          "passed": true,
+          "rtol": 0.0003,
+          "shape": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        "weight_gradient": {
+          "atol": 8e-05,
+          "max_abs_error": 1.7881393432617188e-07,
+          "max_error_over_allowed": 0.0012364460853859782,
+          "passed": true,
+          "rtol": 0.0008,
+          "shape": [
+            3,
+            2,
+            3,
+            3
+          ]
+        }
+      },
+      "deformable_groups": 1,
+      "dilation": 1,
+      "dtype": "float32",
+      "groups": 1,
+      "input_shape": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "kernel_size": 3,
+      "mask_is_independent_leaf_without_sigmoid_chain": true,
+      "mask_shape": [
+        1,
+        9,
+        4,
+        5
+      ],
+      "name": "modulated_stride1",
+      "noninteger_offsets": true,
+      "offset_order": "interleaved_dy_dx_per_kernel_point",
+      "offset_shape": [
+        1,
+        18,
+        4,
+        5
+      ],
+      "output_shape": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "padding": 1,
+      "stride": 1,
+      "weight_shape": [
+        3,
+        2,
+        3,
+        3
+      ]
+    },
+    {
+      "bias": null,
+      "checks": {
+        "input_gradient": {
+          "atol": 8e-05,
+          "max_abs_error": 8.940696716308594e-08,
+          "max_error_over_allowed": 0.0006631239666603506,
+          "passed": true,
+          "rtol": 0.0008,
+          "shape": [
+            1,
+            2,
+            5,
+            7
+          ]
+        },
+        "mask_gradient": {
+          "atol": 0.0001,
+          "max_abs_error": 1.4901161193847656e-07,
+          "max_error_over_allowed": 0.0005979558336548507,
+          "passed": true,
+          "rtol": 0.001,
+          "shape": [
+            1,
+            9,
+            3,
+            4
+          ]
+        },
+        "offset_gradient": {
+          "atol": 0.0001,
+          "max_abs_error": 5.960464477539063e-08,
+          "max_error_over_allowed": 0.00022631220053881407,
+          "passed": true,
+          "rtol": 0.001,
+          "shape": [
+            1,
+            18,
+            3,
+            4
+          ]
+        },
+        "output": {
+          "atol": 3e-05,
+          "max_abs_error": 8.940696716308594e-08,
+          "max_error_over_allowed": 0.0009866626933217049,
+          "passed": true,
+          "rtol": 0.0003,
+          "shape": [
+            1,
+            3,
+            3,
+            4
+          ]
+        },
+        "weight_gradient": {
+          "atol": 8e-05,
+          "max_abs_error": 1.1920928955078125e-07,
+          "max_error_over_allowed": 0.0006224850658327341,
+          "passed": true,
+          "rtol": 0.0008,
+          "shape": [
+            3,
+            2,
+            3,
+            3
+          ]
+        }
+      },
+      "deformable_groups": 1,
+      "dilation": 1,
+      "dtype": "float32",
+      "groups": 1,
+      "input_shape": [
+        1,
+        2,
+        5,
+        7
+      ],
+      "kernel_size": 3,
+      "mask_is_independent_leaf_without_sigmoid_chain": true,
+      "mask_shape": [
+        1,
+        9,
+        3,
+        4
+      ],
+      "name": "modulated_stride2",
+      "noninteger_offsets": true,
+      "offset_order": "interleaved_dy_dx_per_kernel_point",
+      "offset_shape": [
+        1,
+        18,
+        3,
+        4
+      ],
+      "output_shape": [
+        1,
+        3,
+        3,
+        4
+      ],
+      "padding": 1,
+      "stride": 2,
+      "weight_shape": [
+        3,
+        2,
+        3,
+        3
+      ]
+    }
+  ],
+  "cuBLAS_workspaces_cleared": true,
+  "delegated_interface_checks": {
+    "ROIAlignV2": {
+      "backend": "torchvision",
+      "independent_implementation_comparison": false,
+      "input_gradient_sum": 49.0,
+      "max_abs_constant_output_error": 0.0,
+      "output_shape": [
+        1,
+        1,
+        7,
+        7
+      ],
+      "status": "ANALYTIC_NORMAL_INTERFACE_PASSED"
+    },
+    "axis_batched_NMS": {
+      "NMS_gradient_requested": false,
+      "backend": "torchvision",
+      "independent_implementation_comparison": false,
+      "kept_indices": [
+        0,
+        2
+      ],
+      "status": "ANALYTIC_NORMAL_INTERFACE_PASSED"
+    }
+  },
+  "formal_training_credit": 0,
+  "full_model_executed": false,
+  "independent_operator_account": {
+    "failed": 0,
+    "normal": 1,
+    "total": 1
+  },
+  "innovation_established": false,
+  "ordinary_prebind_source_copy": true,
+  "original_SSH_exit": 0,
+  "original_tool_exit": 0,
+  "original_v01_unexecuted_preserved": true,
+  "parent_resources": {
+    "elapsed_seconds": 3.810850044945255,
+    "minimum_available_RAM_bytes": 72615235584,
+    "peak_group_RSS_bytes": 1589837824,
+    "violations": []
+  },
+  "post_SSH_exit": 0,
+  "post_tool_exit": 0,
+  "prelock": {
+    "AP": false,
+    "CPU_affinity": [
+      0,
+      1
+    ],
+    "GPU_allocator_cap_bytes": 1073741824,
+    "GT_or_model_or_dataset_read": false,
+    "author_implementation": "detectron2.layers.deform_conv.modulated_deform_conv",
+    "bias": null,
+    "cases": [
+      {
+        "name": "modulated_stride1",
+        "out_channels": 3,
+        "shape": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "stride": 1
+      },
+      {
+        "name": "modulated_stride2",
+        "out_channels": 3,
+        "shape": [
+          1,
+          2,
+          5,
+          7
+        ],
+        "stride": 2
+      }
+    ],
+    "deformable_groups": 1,
+    "delegated_interfaces": {
+      "ROIAlignV2": {
+        "aligned": true,
+        "atol": 1e-05,
+        "expected_constant_output": 1.0,
+        "expected_input_gradient_sum": 49.0,
+        "output_size": [
+          7,
+          7
+        ],
+        "rtol": 1e-05,
+        "sampling_ratio": 2,
+        "spatial_scale": 1.0
+      },
+      "axis_batched_NMS": {
+        "expected_keep": [
+          0,
+          2
+        ],
+        "threshold": 0.5
+      }
+    },
+    "dilation": 1,
+    "dtype": "float32",
+    "external_deadline_seconds": 120,
+    "free_RAM_floor_bytes": 17179869184,
+    "groups": 1,
+    "kernel_size": 3,
+    "maximum_attempts": 1,
+    "padding": 1,
+    "peak_group_RSS_cap_bytes": 4294967296,
+    "reference": "PyTorch zero-padded bilinear grid_sample per kernel offset plus explicit mask/weight sum",
+    "start_RAM_bytes": 51539607552,
+    "threads": 2,
+    "tolerances": {
+      "input_gradient": {
+        "atol": 8e-05,
+        "rtol": 0.0008
+      },
+      "mask_gradient": {
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "offset_gradient": {
+        "atol": 0.0001,
+        "rtol": 0.001
+      },
+      "output": {
+        "atol": 3e-05,
+        "rtol": 0.0003
+      },
+      "weight_gradient": {
+        "atol": 8e-05,
+        "rtol": 0.0008
+      }
+    }
+  },
+  "same_boot_births_and_groups_absent": true,
+  "schema": "Root-D2-fixed-operator-public-safe-v1",
+  "scope": "Two tiny FP32 modulated DCN stride1/2 output and four first-gradient comparisons against grid_sample composition; analytic TV-delegated ROIAlign/NMS wiring checks only",
+  "selected_parent_refs_postverified": 7,
+  "selected_worker_library_lease_refs_postverified": 12,
+  "status": "ACTUAL_ORIGINAL_AND_ROOT_POSTCHECK_ACCEPTED",
+  "training": false,
+  "whole_device_exclusive": false,
+  "worker_exit": 0,
+  "worker_revision": "v02_postnumeric_workspace_cleanup_only"
+}
