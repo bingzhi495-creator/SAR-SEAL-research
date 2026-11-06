@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **29696/37050次正式更新（80.15%，40轮+56图）**，下一29696→29952已接续、尚未接收。自28672阶段每臂各新增1024更新/2268匹配实例访问；固定配方、771来源和完整状态恢复规则保持，本机2816独立。DiffSAR原生公开代码正式参考仍512/37050，尚无完整端点AP，初值及教师上游成本未匹配，不能称论文强复现。原始DEV187影像/GT已私有暂存DGX，187逻辑输入/183原字节对象、380实例及原GT顺序通过核验并仅作数据输入范围准入；像素解码、最终模型预测与指标资格未授予。旧数据准备失败保留。原内部整数DEV AP原生67.071/R68.099/R＋N26质量排序69.537±0.107仍只支持局部效用；三种子为下游头，共享教师。新N26冻结两GT诊断源码已形成，10项替身测试及有限静态复核完成，真实COCO尚未运行；局部私有运输包已生成、尚未送DGX。质量乘积评分的直接已知先例为Mask Scoring R-CNN，不能把该公式当新创新。固定R在候选浮点GT下的相对收益反转必须保留。GLDet、完整DiffSAR等公平完整外部对照、主固定端点、容量/计算控制、完整模型重复与跨集证据仍缺；**不宣称超越SOTA、创新已成立或TGRS就绪。**
+DGX PLAIN/FULL各严格接收 **29952/37050次正式更新（80.84%，40轮+312图）**，下一29952→30208已接续、尚未接收。自29696阶段每臂各+256更新/+547匹配实例访问；原771来源、完整状态恢复与固定配方保持，本机2816独立。DiffSAR正式参考仍512，尚无端点AP。N26冻结两GT的12项原字节已私有暂存DGX；首个新CPU调用真实tool/SSH/parent-child/worker均1，在可选bbox的错误强制检查处退出，COCO案例均未开始、AP均null。Root后验确认源不变、实际exec握手、资源满足和全部进程闭合，旧失败保留，不当模型负结果；没有持续tool session就记录None，不编造句柄。另存02最小修复源码，仅使bbox可选且存在时核验，原分数/RLE/顺序/三个seed/1e−8整数AP门槛和COCO规则不改；针对性合成回归通过，实际successor仍未执行。原内部整数DEV原生67.071/R68.099/R＋N26质量排序69.537±0.107未更新，N26浮点仍未知；R在候选浮点GT下收益反转保留。主端点、公平完整外部对照、容量/成本控制、完整模型重复和跨集依据仍缺，**不宣称核心创新、SOTA或TGRS就绪。**
 
-全局DGX账户122正常/8失败/130总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户123正常/8失败/131总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -29,6 +29,10 @@ DGX PLAIN/FULL各严格接收 **29696/37050次正式更新（80.15%，40轮+56�
 - [质量评分与标注约定直接先例：Mask Scoring R-CNN及边界文献](research_round_20260925_global/MASK_QUALITY_ANNOTATION_CONVENTION_PRIMARY_REVIEW_20261107_01.md)
 - [N26冻结排名两GT诊断：预绑定源码，真实评价尚未运行](research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_01/README.md)
 - [N26诊断有限独立静态审阅](research_round_20260925_global/N26_FROZEN_RANKING_GT_DIAGNOSTIC_INDEPENDENT_REVIEW_20261107_01.md)
+- [N26首次实际诊断失败：可选bbox检查错误，0个COCO案例，无新AP](research_round_20260925_global/N26_FROZEN_DUALGT_ATTEMPT01_FAILURE_STATUS_20261107.md)
+- [N26冻结输入已私有暂存DGX：字节阶段没有数值JSON解析](research_round_20260925_global/N26_FROZEN_DUALGT_DGX_INPUT_STAGE_STATUS_20261107_02.md)
+- [N26诊断02最小实现修复：原输入/评分/评价门槛保持，实际未执行](research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/README.md)
+- [排序、边界与栅格化三项原始来源短记：单一条件性负对照](research_round_20260925_global/MASK_QUALITY_RASTERIZATION_PRIMARY_RESEARCH_NOTE_20261107_09.md)
 - [当前与其他方法的对比：已测数字、不同预算和外部缺口](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_20261107.md)
 - [DiffSAR两次限定梯度观察：原失败保留与解释边界](research_round_20260925_global/U57_DIFFSAR_MASK_GRADIENT_DIAGNOSTICS_20261107.md)
 - [完整FIT原图字节恢复](research_round_20260925_global/U57_FIT_RAW_RECOVERY_20261107.md)与[私有输入包组装聚合](research_round_20260925_global/U57_FIT_INPUT_ASSEMBLY_20261107.md)
