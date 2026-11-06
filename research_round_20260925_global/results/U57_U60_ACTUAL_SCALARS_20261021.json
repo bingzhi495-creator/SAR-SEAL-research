@@ -1,5 +1,19 @@
 {
   "AP_evaluated": false,
+  "CARAFE_fixed_operator_probe_20261106": {
+    "AP": false,
+    "CUDA_peak_allocated_bytes": 101376,
+    "all_outputs_and_feature_mask_gradients_passed": true,
+    "complete_DiffSAR_model_proved": false,
+    "fixed_tiny_cases": 2,
+    "independent_execution_account": {
+      "failed": 0,
+      "normal": 1,
+      "total": 1
+    },
+    "new_training": false,
+    "status": "STRICT_ROOT_ACCEPTED"
+  },
   "DEV_full187_export_metadata_union": {
     "DGX_reader_qualified": true,
     "DGX_transferred": true,
@@ -178,7 +192,7 @@
     "whole_workflow_elapsed_not_claimed": true,
     "zero_residual_RLE_calibration": false
   },
-  "DGX_updates_per_arm": 23040,
+  "DGX_updates_per_arm": 23296,
   "FastGeodis_fixed_operator_check_20261025": {
     "CUDA_build_version": "13.0",
     "CUDA_synchronized": true,
@@ -1771,6 +1785,41 @@
     "tests_reran_old_suites": false,
     "unknown_remote_completion_automatically_cleared": false
   },
+  "actual_20261106_turn_summary": {
+    "AP": false,
+    "TGRS_ready": false,
+    "bitexact_repeat_claimed": false,
+    "common_state_restored_exact": true,
+    "date": "2026-11-06",
+    "independent_seed_claimed": false,
+    "innovation_established": false,
+    "maximum_recovery_attempts": 1,
+    "model_recipe_order_budget_unchanged": true,
+    "new_matched_visits_per_arm": 561,
+    "new_original_SSH_exit": 0,
+    "new_original_tool_exit": 0,
+    "new_updates_per_arm": 256,
+    "new_worker_exit": 0,
+    "observed_original_terminal_account": {
+      "failed": 8,
+      "normal": 97,
+      "total": 105
+    },
+    "old_outputs_used_as_parent": false,
+    "old_remote_completed_UTC": "2026-10-25T13:03:11.671719+00:00",
+    "old_unknown_original_tool_session": 73287,
+    "old_unqualified_matched_visits_per_arm": 561,
+    "old_unqualified_updates_per_arm": 256,
+    "original_SSH_exit": 0,
+    "original_tool_exit": null,
+    "original_worker_wait_exit": 0,
+    "recovery_attempts_entered": 1,
+    "schema": "Root-U57-reconnect-bounded-recovery-public-safe-v1",
+    "status": "STRICT_RECOVERY_ACCEPTED_OLD_UNKNOWN_PRESERVED",
+    "strict_start": 23040,
+    "strict_stop": 23296,
+    "unknown_original_terminal_count_separate": 1
+  },
   "all100_oracle_coverage_candidate": {
     "GT_for_model_inference": false,
     "GT_used_for_oracle_query_selection": true,
@@ -1932,12 +1981,13 @@
   },
   "current_turn_accepted_summary": {
     "AP_evaluated": false,
-    "instance_visits_added_per_arm": 27580,
-    "segments": 48,
+    "instance_visits_added_per_arm": 28141,
+    "segments": 49,
     "start": 10752,
-    "stop": 23040,
-    "updates_added_per_arm": 12288
+    "stop": 23296,
+    "updates_added_per_arm": 12544
   },
+  "current_turn_accepted_summary_scope": "LEGACY_CUMULATIVE_WINDOW_FROM10752_NOT_THIS_GOAL_TURN",
   "direct_prior_increment_20261025": {
     "DOI": "10.1109/JSTARS.2025.3635282",
     "LS_SSDD_mask_AP_evidence": false,
@@ -2005,10 +2055,10 @@
     "AP_evaluated": false,
     "additional_accepted_updates_per_arm": 0,
     "automatic_retry": false,
-    "start": 23040,
+    "start": 23296,
     "status": "RUNNING_NOT_ROOT_ACCEPTED",
-    "stop": 23296,
-    "strict_accepted_prefix": 23040
+    "stop": 23552,
+    "strict_accepted_prefix": 23296
   },
   "formal_segment": {
     "AP": false,
@@ -2017,30 +2067,30 @@
       "FULL": {
         "end_cursor": {
           "completed_epochs": 31,
-          "global_updates": 23040,
-          "within_epoch": 69
+          "global_updates": 23296,
+          "within_epoch": 325
         },
-        "instance_visits_added": 548,
+        "instance_visits_added": 561,
         "restored_all_state_exact": true,
         "start_cursor": {
-          "completed_epochs": 30,
-          "global_updates": 22784,
-          "within_epoch": 554
+          "completed_epochs": 31,
+          "global_updates": 23040,
+          "within_epoch": 69
         },
         "updates_added": 256
       },
       "PLAIN": {
         "end_cursor": {
           "completed_epochs": 31,
-          "global_updates": 23040,
-          "within_epoch": 69
+          "global_updates": 23296,
+          "within_epoch": 325
         },
-        "instance_visits_added": 548,
+        "instance_visits_added": 561,
         "restored_all_state_exact": true,
         "start_cursor": {
-          "completed_epochs": 30,
-          "global_updates": 22784,
-          "within_epoch": 554
+          "completed_epochs": 31,
+          "global_updates": 23040,
+          "within_epoch": 69
         },
         "updates_added": 256
       }
@@ -2051,14 +2101,14 @@
     },
     "original_SSH_exit": 0,
     "original_terminal_tool_exit": 0,
-    "owner_elapsed_seconds": 977.6298296400346,
-    "owner_minimum_available_RAM_bytes": 61517717504,
-    "owner_peak_RSS_bytes": 13059117056,
+    "owner_elapsed_seconds": 1032.2390086150263,
+    "owner_minimum_available_RAM_bytes": 57531211776,
+    "owner_peak_RSS_bytes": 13032464384,
     "resource_violations": [],
     "source_count": 771,
     "span": {
-      "start": 22784,
-      "stop": 23040
+      "start": 23040,
+      "stop": 23296
     },
     "whole_GPU_WDDM8GiB_contract_certified": false,
     "whole_GPU_observed_peak_MiB": null,
@@ -6584,6 +6634,60 @@
       "whole_GPU_WDDM8GiB_contract_certified": false,
       "whole_GPU_observed_peak_MiB": null,
       "worker_exit": 0
+    },
+    {
+      "AP": false,
+      "GPU_cleanup_scope": "PROCESS_FINAL_AFTER_BOTH_ARMS",
+      "arms": {
+        "FULL": {
+          "end_cursor": {
+            "completed_epochs": 31,
+            "global_updates": 23040,
+            "within_epoch": 69
+          },
+          "instance_visits_added": 548,
+          "restored_all_state_exact": true,
+          "start_cursor": {
+            "completed_epochs": 30,
+            "global_updates": 22784,
+            "within_epoch": 554
+          },
+          "updates_added": 256
+        },
+        "PLAIN": {
+          "end_cursor": {
+            "completed_epochs": 31,
+            "global_updates": 23040,
+            "within_epoch": 69
+          },
+          "instance_visits_added": 548,
+          "restored_all_state_exact": true,
+          "start_cursor": {
+            "completed_epochs": 30,
+            "global_updates": 22784,
+            "within_epoch": 554
+          },
+          "updates_added": 256
+        }
+      },
+      "final_GPU_cleanup": {
+        "allocated": 0,
+        "reserved": 0
+      },
+      "original_SSH_exit": 0,
+      "original_terminal_tool_exit": 0,
+      "owner_elapsed_seconds": 977.6298296400346,
+      "owner_minimum_available_RAM_bytes": 61517717504,
+      "owner_peak_RSS_bytes": 13059117056,
+      "resource_violations": [],
+      "source_count": 771,
+      "span": {
+        "start": 22784,
+        "stop": 23040
+      },
+      "whole_GPU_WDDM8GiB_contract_certified": false,
+      "whole_GPU_observed_peak_MiB": null,
+      "worker_exit": 0
     }
   ],
   "full187_DEV_tensor_exported": true,
@@ -6651,8 +6755,8 @@
   },
   "independent_DGX_account": {
     "failed": 8,
-    "normal": 96,
-    "total": 104
+    "normal": 97,
+    "total": 105
   },
   "independent_DGX_account_scope": "Original research training/input-validation pipeline only; ordinary software preparation and synthetic operator unit checks are recorded separately",
   "innovation_established": false,
@@ -6773,7 +6877,7 @@
     "training_added_per_arm": 256
   },
   "numerical_task_live": true,
-  "observed_UTC": "2026-10-25T12:41:34.021026+00:00",
+  "observed_UTC": "2026-11-06T10:16:34.913313+00:00",
   "official_PSeg_release_entry_scope_20261025": {
     "current_training_recipe_changed": false,
     "document": "U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md",
@@ -6943,7 +7047,7 @@
     ]
   },
   "schema": "U57-U60-public-safe-actual-scalars-v1",
-  "status": "STRICT_FORMAL23040_ACCEPTED_NEXT_RUNNING_NO_FINAL_AP",
+  "status": "STRICT_FORMAL23296_ACCEPTED_NEXT_RUNNING_NO_FINAL_AP",
   "teacher_identity_and_data_scope_20261025": {
     "DiffSARShipInst_reproduction_supported_by_this_native_result": false,
     "actual_teacher_E24_roster_audit": "results/U57_E24_TRAINING_ROSTER_SAFE_AUDIT_20261025.json",

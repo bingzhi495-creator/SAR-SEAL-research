@@ -1,0 +1,291 @@
+{
+  "base_environment_modified": false,
+  "complete_DiffSAR_model_proved": false,
+  "full_binary_closure_claimed": false,
+  "original_terminal_codes": {
+    "SSH": 0,
+    "post_tool": 0,
+    "tool": 0,
+    "worker": 0
+  },
+  "parent_resources": {
+    "elapsed_seconds": 4.203760382020846,
+    "minimum_available_RAM_bytes": 73441906688,
+    "peak_group_RSS_bytes": 1069563904,
+    "violations": []
+  },
+  "qualified_scope": "TWO_TINY_FP32_CARAFE_CASES_ONLY_NOT_MODEL_OR_AP",
+  "schema": "Root-CARAFE-fixed-operator-public-safe-v1",
+  "selected_library_pins": {
+    "carafe": {
+      "bytes": 10564,
+      "sha256": "23b69582e66ec0daacf6a72d5858c1c5a8f55192bc982121c237c61307790fc5"
+    },
+    "mmcv": {
+      "bytes": 321,
+      "sha256": "81da76107986f2354bda536e94bad1a3f6d6efe2b303ee91cbdc9c5596ce5907"
+    },
+    "mmcv_extension": {
+      "bytes": 112037752,
+      "sha256": "371b4b68bf95840ffc2333114c502533421fd02b87ee0ca88b37aa215ff2ad14"
+    },
+    "torch": {
+      "bytes": 106868,
+      "sha256": "51c90fe34a7cf869517d1bab4cd114498790e169ec668f1a154c35ec64117a5e"
+    }
+  },
+  "selected_refs_postverified": {
+    "parent": 7,
+    "worker_and_libs_and_lease": 6
+  },
+  "status": "STRICT_ROOT_ACCEPTED",
+  "worker_result": {
+    "AP": false,
+    "CUDA_allocated_after_cleanup": 0,
+    "CUDA_peak_allocated_bytes": 101376,
+    "CUDA_reserved_after_cleanup": 0,
+    "GT_or_model_or_dataset_read": false,
+    "TGRS_ready": false,
+    "actual_environment": {
+      "CUDA_build": "13.0",
+      "CUDA_compute_capability": [
+        12,
+        1
+      ],
+      "CUDA_device_name": "NVIDIA GB10",
+      "MMCV": "2.1.0",
+      "Torch": "2.10.0+cu130",
+      "deterministic_algorithms": false,
+      "machine": "aarch64",
+      "python": "3.12.14",
+      "tf32_cudnn": false,
+      "tf32_matmul": false,
+      "torch_interop_threads": 2,
+      "torch_threads": 2
+    },
+    "all_outputs_and_both_first_gradients_within_fixed_tolerances": true,
+    "case_progress": [
+      {
+        "name": "non_square_signed",
+        "native_backward_returned": true,
+        "native_forward_entered": true,
+        "native_forward_returned": true,
+        "reference_backward_returned": true,
+        "reference_forward_returned": true
+      },
+      {
+        "name": "boundary_dominated",
+        "native_backward_returned": true,
+        "native_forward_entered": true,
+        "native_forward_returned": true,
+        "reference_backward_returned": true,
+        "reference_forward_returned": true
+      }
+    ],
+    "cases": [
+      {
+        "caller_supplied_nonconstant_signed_output_gradient": true,
+        "checks": {
+          "feature_gradient": {
+            "atol": 5e-05,
+            "max_abs_error": 1.1920928955078125e-07,
+            "max_error_over_allowed": 0.0008179728174582124,
+            "passed": true,
+            "rtol": 0.0005,
+            "shape": [
+              1,
+              4,
+              3,
+              5
+            ]
+          },
+          "mask_gradient": {
+            "atol": 5e-05,
+            "max_abs_error": 2.384185791015625e-07,
+            "max_error_over_allowed": 0.000691272784024477,
+            "passed": true,
+            "rtol": 0.0005,
+            "shape": [
+              1,
+              25,
+              6,
+              10
+            ]
+          },
+          "output": {
+            "atol": 2e-05,
+            "max_abs_error": 2.9802322387695312e-08,
+            "max_error_over_allowed": 0.0011542588472366333,
+            "passed": true,
+            "rtol": 0.0002,
+            "shape": [
+              1,
+              4,
+              6,
+              10
+            ]
+          }
+        },
+        "dtype": "float32",
+        "gradients_wrt_mask_leaf": true,
+        "group_size": 1,
+        "input_shape": [
+          1,
+          4,
+          3,
+          5
+        ],
+        "kernel_size": 5,
+        "mask_shape": [
+          1,
+          25,
+          6,
+          10
+        ],
+        "masks_normalized_before_detached_leaf": true,
+        "name": "non_square_signed",
+        "output_shape": [
+          1,
+          4,
+          6,
+          10
+        ],
+        "scale_factor": 2
+      },
+      {
+        "caller_supplied_nonconstant_signed_output_gradient": true,
+        "checks": {
+          "feature_gradient": {
+            "atol": 5e-05,
+            "max_abs_error": 1.862645149230957e-08,
+            "max_error_over_allowed": 0.00023875621263869107,
+            "passed": true,
+            "rtol": 0.0005,
+            "shape": [
+              1,
+              4,
+              2,
+              3
+            ]
+          },
+          "mask_gradient": {
+            "atol": 5e-05,
+            "max_abs_error": 1.1920928955078125e-07,
+            "max_error_over_allowed": 0.000618122227024287,
+            "passed": true,
+            "rtol": 0.0005,
+            "shape": [
+              1,
+              25,
+              4,
+              6
+            ]
+          },
+          "output": {
+            "atol": 2e-05,
+            "max_abs_error": 3.725290298461914e-09,
+            "max_error_over_allowed": 0.00013155746273696423,
+            "passed": true,
+            "rtol": 0.0002,
+            "shape": [
+              1,
+              4,
+              4,
+              6
+            ]
+          }
+        },
+        "dtype": "float32",
+        "gradients_wrt_mask_leaf": true,
+        "group_size": 1,
+        "input_shape": [
+          1,
+          4,
+          2,
+          3
+        ],
+        "kernel_size": 5,
+        "mask_shape": [
+          1,
+          25,
+          4,
+          6
+        ],
+        "masks_normalized_before_detached_leaf": true,
+        "name": "boundary_dominated",
+        "output_shape": [
+          1,
+          4,
+          4,
+          6
+        ],
+        "scale_factor": 2
+      }
+    ],
+    "elapsed_seconds": 3.44042340782471,
+    "formal_training_credit": 0,
+    "minimum_observed_available_RAM_bytes": 73471393792,
+    "new_training": false,
+    "operation": "CUDA_CARAFE_FIXED_FP32_FORWARD_BACKWARD_V01",
+    "prelock": {
+      "AP": false,
+      "CPU_affinity": [
+        0,
+        1
+      ],
+      "GPU_allocator_cap_bytes": 1073741824,
+      "GT_or_model_or_dataset_read": false,
+      "cases": [
+        {
+          "name": "non_square_signed",
+          "shape": [
+            1,
+            4,
+            3,
+            5
+          ]
+        },
+        {
+          "name": "boundary_dominated",
+          "shape": [
+            1,
+            4,
+            2,
+            3
+          ]
+        }
+      ],
+      "dtype": "float32",
+      "external_deadline_seconds": 120,
+      "free_RAM_floor_bytes": 17179869184,
+      "group_size": 1,
+      "kernel_size": 5,
+      "maximum_attempts": 1,
+      "official_implementation": "mmcv.ops.carafe.CARAFEFunction.apply",
+      "peak_group_RSS_cap_bytes": 4294967296,
+      "reference": "torch unfold zero padding; repeat feature H/W only; groupwise weighted sum",
+      "scale_factor": 2,
+      "threads": 2,
+      "tolerances": {
+        "feature_gradient": {
+          "atol": 5e-05,
+          "rtol": 0.0005
+        },
+        "mask_gradient": {
+          "atol": 5e-05,
+          "rtol": 0.0005
+        },
+        "output": {
+          "atol": 2e-05,
+          "rtol": 0.0002
+        }
+      }
+    },
+    "schema": "CARAFE-fixed-operator-probe-report-v1",
+    "selected_sources_unchanged_after": true,
+    "status": "TWO_FIXED_CARAFE_FP32_CUDA_CASES_PASSED_PENDING_ROOT",
+    "whole_GPU_memory_contract_certified": false,
+    "whole_device_exclusive": false,
+    "worker_peak_RSS_bytes": 1007632384
+  }
+}
