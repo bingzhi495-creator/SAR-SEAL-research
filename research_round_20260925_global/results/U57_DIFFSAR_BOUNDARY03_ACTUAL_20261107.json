@@ -1,0 +1,233 @@
+{
+  "AP": false,
+  "CUDA_allocated_after_cleanup": 0,
+  "CUDA_peak_allocated_bytes": 4465910784,
+  "CUDA_reserved_after_cleanup": 0,
+  "TEST": false,
+  "TGRS_ready": false,
+  "UTC": "2026-11-06T16:51:40.448054+00:00",
+  "actual_config": {
+    "AMP": false,
+    "EMA_enabled": false,
+    "IMS_PER_BATCH": 1,
+    "USE_FED_LOSS": false,
+    "backbone": "build_resnet_scje_fpn_backbone",
+    "crop_enabled": true,
+    "crop_size": [
+      512,
+      512
+    ],
+    "crop_type": "absolute_range",
+    "deep_supervision": true,
+    "deform_groups": 1,
+    "deform_modulated": true,
+    "deform_stages": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "heads": 6,
+    "input_format": "RGB",
+    "max_train": 512,
+    "meta_architecture": "DiffSARShipInst",
+    "min_train": [
+      512
+    ],
+    "num_classes": 1,
+    "pixel_mean": [
+      123.675,
+      116.28,
+      103.53
+    ],
+    "pixel_std": [
+      58.395,
+      57.12,
+      57.375
+    ],
+    "proposals": 500,
+    "resnet_depth": 101,
+    "sampling_steps": 1,
+    "seed": 40244023
+  },
+  "all_present_gradients_finite": true,
+  "attempts_consumed": 1,
+  "automatic_retry": false,
+  "bitexact_reproduction_claimed": false,
+  "coverage_gate_passed": false,
+  "failed_nonzero_scopes": [
+    "head.iamr."
+  ],
+  "first_original_failure_remains_failed": true,
+  "first_original_group_summary_remains_unknown": true,
+  "gradient_groups": {
+    "backbone.": {
+      "nonzero_elements": 32290231,
+      "numel_with_gradient": 48007757,
+      "parameters_with_gradient": 202
+    },
+    "backbone.bottom_up.": {
+      "nonzero_elements": 28688877,
+      "numel_with_gradient": 44370811,
+      "parameters_with_gradient": 170
+    },
+    "head.head_series.0.": {
+      "nonzero_elements": 13491660,
+      "numel_with_gradient": 13779230,
+      "parameters_with_gradient": 44
+    },
+    "head.head_series.1.": {
+      "nonzero_elements": 13639503,
+      "numel_with_gradient": 13779230,
+      "parameters_with_gradient": 44
+    },
+    "head.head_series.2.": {
+      "nonzero_elements": 13581916,
+      "numel_with_gradient": 13779230,
+      "parameters_with_gradient": 44
+    },
+    "head.head_series.3.": {
+      "nonzero_elements": 13582342,
+      "numel_with_gradient": 13779230,
+      "parameters_with_gradient": 44
+    },
+    "head.head_series.4.": {
+      "nonzero_elements": 13624566,
+      "numel_with_gradient": 13779230,
+      "parameters_with_gradient": 44
+    },
+    "head.head_series.5.": {
+      "nonzero_elements": 13617710,
+      "numel_with_gradient": 13779230,
+      "parameters_with_gradient": 44
+    },
+    "head.iamr.": {
+      "nonzero_elements": 0,
+      "numel_with_gradient": 591880,
+      "parameters_with_gradient": 14
+    }
+  },
+  "independent_boundary_account": {
+    "failed": 1,
+    "normal": 0,
+    "total": 1
+  },
+  "independent_seed_claimed": false,
+  "input_summary": {
+    "annotations_before": 1,
+    "class_mapping": "original_single_ship_to_0",
+    "image_dtype": "torch.uint8",
+    "image_shape": [
+      3,
+      400,
+      512
+    ],
+    "input_format": "RGB",
+    "instances_after": 1,
+    "mask_type": "BitMasks",
+    "original_mapper_augmentation_preserved": true,
+    "synthetic_targets": false
+  },
+  "loss_values_equal_to_observation02": true,
+  "losses": {
+    "loss_bbox": 14.114161491394043,
+    "loss_bbox_0": 5.141828536987305,
+    "loss_bbox_1": 16.665130615234375,
+    "loss_bbox_2": 2.017512083053589,
+    "loss_bbox_3": 4.508530616760254,
+    "loss_bbox_4": 5.7309722900390625,
+    "loss_ce": 3.175482749938965,
+    "loss_ce_0": 1.9537756443023682,
+    "loss_ce_1": 3.0086216926574707,
+    "loss_ce_2": 2.506061315536499,
+    "loss_ce_3": 2.1867318153381348,
+    "loss_ce_4": 2.7632501125335693,
+    "loss_fiou": 2.94039249420166,
+    "loss_fiou_0": 2.732597827911377,
+    "loss_fiou_1": 2.9113080501556396,
+    "loss_fiou_2": 2.7647511959075928,
+    "loss_fiou_3": 2.714543581008911,
+    "loss_fiou_4": 2.8540730476379395,
+    "loss_masks": 5.0,
+    "loss_masks_0": 5.0,
+    "loss_masks_1": 5.0,
+    "loss_masks_2": 5.0,
+    "loss_masks_3": 5.0,
+    "loss_masks_4": 4.967988967895508
+  },
+  "main_prefix_preserved": 25856,
+  "max_abs_loss_delta_from_observation02": 0.0,
+  "maximum_attempts": 1,
+  "model_method_invalidity_established": false,
+  "observation02_remains_failed": true,
+  "observation_collected": true,
+  "optimizer_steps": 0,
+  "original_SSH_exit": 1,
+  "original_tool_exit": 1,
+  "parent_resources": {
+    "elapsed_seconds": 9.332915957085788,
+    "minimum_available_RAM_bytes": 66224357376,
+    "peak_group_RSS_bytes": 2953515008,
+    "violations": []
+  },
+  "per_group_nonzero_count_delta_from_observation02": {
+    "backbone.": 10,
+    "backbone.bottom_up.": 9,
+    "head.head_series.0.": 0,
+    "head.head_series.1.": 0,
+    "head.head_series.2.": 0,
+    "head.head_series.3.": 0,
+    "head.head_series.4.": 0,
+    "head.head_series.5.": 0,
+    "head.iamr.": 0
+  },
+  "post_SSH_exit": 0,
+  "post_tool_exit": 0,
+  "qualified": false,
+  "retroactive_reconstruction_claimed": false,
+  "same_boot_births_and_groups_absent": true,
+  "same_case_and_seed": true,
+  "schema": "Root-DiffSAR-shared-IAMR-boundary03-public-safe-v1",
+  "scientific_scope": "One fixed random-initialization first-FIT case: total loss gradient at shared IAMR output is present finite and zero. Does not identify sigmoid, ReLU, Dice geometry or cross-head cancellation as the unique cause, and does not establish inability to train.",
+  "seed": 40244023,
+  "selected_parent_refs_postverified": 39,
+  "selected_worker_library_data_lease_refs_postverified": 31,
+  "shared_boundary_cleanup": {
+    "held_original_output_released": true,
+    "hook_calls": 1,
+    "hook_installed": true,
+    "hook_removed": true
+  },
+  "shared_output_gradient": {
+    "boundary": "head.iamr.output",
+    "classification": "FINITE_ALL_ZERO",
+    "finite": true,
+    "gradient_dtype": "torch.float32",
+    "gradient_present": true,
+    "gradient_shape": [
+      1,
+      8,
+      208,
+      256
+    ],
+    "hook_calls": 1,
+    "max_abs": 0.0,
+    "nonzero_elements": 0,
+    "objective": "sum(original_loss_dict.values())",
+    "original_output_retained": true,
+    "output_dtype": "torch.float32",
+    "output_requires_grad": true,
+    "output_shape": [
+      1,
+      8,
+      208,
+      256
+    ],
+    "return_policy": "None_no_output_replacement"
+  },
+  "status": "ACTUAL_BOUNDARY_OBSERVATION_COLLECTED_ORIGINAL_COVERAGE_GATE_FAILED",
+  "stopping_rule": "This diagnostic budget is consumed. No automatic same-case probe expansion; choose training or one evidence-justified intervention under a new hypothesis.",
+  "total_loss": 110.65769958496094,
+  "training_credit": 0,
+  "worker_exit": 1
+}

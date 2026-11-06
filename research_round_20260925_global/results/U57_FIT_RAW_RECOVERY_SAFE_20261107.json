@@ -1,0 +1,53 @@
+{
+  "counts": {
+    "FIT_image_identities_in_scope": 741,
+    "different_byte_matches_accepted": 0,
+    "newly_downloaded_JPEG_bytes": 639693,
+    "newly_downloaded_JPEG_files": 7,
+    "newly_matched_image_identities": 9,
+    "newly_matched_unique_SHA256": 7,
+    "previously_unresolved_identities": 9,
+    "previously_unresolved_unique_SHA256": 7,
+    "prior_and_delta_known_original_byte_identities": 741,
+    "prior_known_original_JPEG_byte_identities": 732,
+    "remaining_original_JPEG_identities_unresolved": 0
+  },
+  "date": "2026-11-07",
+  "execution_status": "Byte locators only: prior 732 plus recovered 9 identities = 741. No JPEG transfer to DGX, no image decode/mask construction, no complete runtime materialization, no new training.",
+  "failures_preserved": [
+    "9 fixed-commit raw HTTP requests were reset by network; no JPEGs saved.",
+    "2 connector calls rejected binary blobs as UTF-8-only; first local result parse also failed and was not upgraded to success.",
+    "HuggingFace mirror card readable; all 3 split directory API requests timed out; no HuggingFace JPEG requested."
+  ],
+  "license_scope": "Third-party repository license metadata was null. Its README asks citation of original SSDD but does not establish a specific SSDD-image redistribution grant. HuggingFace card declares Apache-2.0; that is a mirror-maintainer claim, not independently verified source-image licensing. Raw JPEGs remain private and are excluded from Git publication.",
+  "limits": [
+    "Prior 732 locators are inherited from separately pinned metadata/hash checks; this delta does not re-read every prior image.",
+    "All 741 original byte identities have known locators combining prior checks and this delta; original historic paths were not restored and no complete runtime dataset was materialized or validated.",
+    "Exact matches certify these 7 byte objects against frozen refs, not the entire official archive or mirror.",
+    "No changes to annotation geometry, annotation ID namespace, FIT/DEV/TEST splits, evaluation, training or checkpoints.",
+    "No scientific result, full external-method reproduction readiness, blind TEST recovery, or AP improvement follows from input-byte availability alone."
+  ],
+  "primary_links": [
+    "https://github.com/DonnieRaymond3/cs231n_ship_detection/blob/30cdc0e7e7fa28b67c8a2f200f25ec7bc08dd97b/README.md",
+    "https://github.com/DonnieRaymond3/cs231n_ship_detection/tree/30cdc0e7e7fa28b67c8a2f200f25ec7bc08dd97b/SSDD/PSeg_SSDD/voc_style",
+    "https://huggingface.co/datasets/dronefreak/SSDD",
+    "https://github.com/TianwenZhang0825/Official-SSDD"
+  ],
+  "schema": "SSDD-bounded-mirror-recovery-public-summary-v1",
+  "source_is_third_party_mirror": true,
+  "tool_limit_scope": "The generic GitHub fetch route rejected binary blobs. This is not a statement that all specialized GitHub tools reject binary/base64. No further network requests were made to test specialized tools after the 18-attempt cap.",
+  "verification": {
+    "API_HTTP_JSON_bytes_received": 883494,
+    "Git_blob_SHA1_also_verified": true,
+    "JPEG_bytes_limit_each": 2097152,
+    "JPEG_bytes_limit_total": 20971520,
+    "all_downloaded_files_rehashed_from_disk_after_process_exit": true,
+    "distinct_original_JPEG_SHA256_in_full_locator": 730,
+    "max_single_request_wall_limit_seconds": 30,
+    "old_scope_02_and_03_selected_refs_unchanged": true,
+    "private_full_locator_annotation_reindex_mapping_count": 1661,
+    "private_full_locator_canonical_rows": 741,
+    "request_attempts_all_routes_conservatively_counted": 18,
+    "strict_original_encoded_byte_count_and_SHA256": true
+  }
+}
