@@ -4,11 +4,14 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL已各严格接收 **27648/37050次正式更新（74.62%，37轮+231图）**；下一27648→27904已接续、尚未接收。主各自26368以来新增1280更新/2836匹配实例访问，原771来源/配方保持，本机2816独立。外部DiffSAR新公开代码参考已从新0完成256/37050次正式更新（0.69%），完整状态保存，下一原生接续控制已准备而尚未执行；固定端点前不做AP选优。**已完成内部DEV187实测：原生Mask2Former AP67.071、固定R68.099、R＋N26质量排序69.537±0.107，较原生+2.466点，较R+1.438点；±来自共享教师/R的三个下游质量头，不能代替完整训练种子或同成本结构证明。** SAMRefiner基础默认ViT-H为42.771，仅约束这个配置。GLDet论文SSDD71.3/HRSID58.6与本地划分/初始化/预算不一致，尚无其完整同协议AP。固定R在候选浮点GT上收益反转，N26浮点评价未完成；FULL骨架与外部强方法优势仍未证实。旧原生数值等同性失败保持，初始化/教师COCO与项目FIT24轮/缓存等成本未匹配，HRSID两组跨train/test相同字节重复与历史TEST使用保留。无最终FULL或外部AP、SOTA、创新成立或TGRS就绪结论。
+DGX PLAIN/FULL各严格接收 **27904/37050次正式更新（75.31%，37轮+487图）**，下一27904→28160已接续、尚未接收。本goal turn主各+256更新/+608匹配访问；主原771来源/配方不变，本机2816独立。**DiffSAR固定50轮公开代码参考正式达到512/37050（1.38%）**，新256→512原tool/SSH/worker均0、完整六类state真实加载与前段checkpoint匹配，24原loss及末状态有限，783选定来源/资源/回收通过；当前主已接回。它仍无端点AP，旧1e-4数值比较失败保留，native非逐位波动与初值/教师成本差异未消除。新原始来源核查确认DiffSAR公开训练500 proposals、作者测试1000、COCO maxDets100是不同角色；实际1000候选前向尚未执行，最终AP前应预锁忠实原生推理，不削减候选后声称完整复现。论文初始权重仍未知。HRSID新JSON审计：原split16969与merged16951有16947共同payload，仅split22/仅merged4，涉及26张；两跨split相同字节配对的标注payload均不同，未验证几何等价或哪版正确，主保留原split/GT。已有内部DEV整数AP原生67.071/R68.099/R＋N26排序69.537±0.107，只支持局部精修/排序；三个下游头不等于完整种子。固定R浮点GT收益反转、N26浮点评价未完成。主端点、完整外部公平AP、容量成本/完整种子/跨集/TGRS依据仍未完成。
 
-原训练与输入验证管线DGX账户114正常/8失败/122总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+原训练与输入验证管线DGX账户115正常/8失败/123总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
+- [DiffSAR正式512：实际完整状态接续，尚无端点AP](research_round_20260925_global/U57_DIFFSAR_FORMAL_CONTINUATION512_ACTUAL_20261107.md)
+- [DiffSAR原始来源：初值未知、500训练／1000测试／maxDets100](research_round_20260925_global/U57_DIFFSAR_PAPER_INITIALIZATION_PRIMARY_REVIEW_20261107.md)
+- [HRSID标注版本差异：净差18涉及26张、原划分保留](research_round_20260925_global/HRSID_ANNOTATION_PROTOCOL_DIFF_STATUS_20261107_05.md)
 - [外部DiffSAR首256次正式更新：完整状态已保存，尚无AP](research_round_20260925_global/U57_DIFFSAR_FORMAL_FIRST256_ACTUAL_20261107.md)
 - [DiffSAR恢复状态与原生数值方差：旧失败保留、同起点重复实证](research_round_20260925_global/U57_DIFFSAR_STATE_AND_NUMERICAL_VARIATION_ACTUAL_20261107.md)
 - [完整外部训练的新前向协议及证据边界](research_round_20260925_global/U57_DIFFSAR_FORMAL50_STATE_CONTINUITY_FORWARD_PROTOCOL_20261107.md)

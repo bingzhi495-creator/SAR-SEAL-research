@@ -1,0 +1,248 @@
+{
+  "status": "complete_json_protocol_diff_audit",
+  "started_utc": "2026-11-06T19:54:38Z",
+  "method": "Resolve image IDs inside each JSON, join images by basename, compare exact canonical non-identity annotation payload Counters",
+  "excluded_identity_fields": [
+    "id",
+    "image_id"
+  ],
+  "canonicalization": "JSON parsed values, sorted object keys; preserves array order and parsed numeric types; all other annotation fields retained",
+  "interpretation": "Field projections report value support and multiplicity changes; they do not assign a unique cross-version identity to changed instances",
+  "split_union_vs_merged": {
+    "left_definition": "Original train and test annotations, each resolved through its own image namespace; union by basename",
+    "right_definition": "Merged annotations resolved through its own image namespace; join by basename",
+    "dataset_counts": {
+      "train": {
+        "images": 3642,
+        "annotations": 11047,
+        "categories": 1
+      },
+      "test": {
+        "images": 1962,
+        "annotations": 5922,
+        "categories": 1
+      },
+      "merged": {
+        "images": 5604,
+        "annotations": 16951,
+        "categories": 1
+      }
+    },
+    "left_annotations": 16969,
+    "right_annotations": 16951,
+    "net_left_minus_right": 18,
+    "exact_matched_payload_occurrences": 16947,
+    "left_only_payload_occurrences": 22,
+    "right_only_payload_occurrences": 4,
+    "left_only_distinct_payloads_per_image_sum": 22,
+    "right_only_distinct_payloads_per_image_sum": 4,
+    "affected_image_count": 26,
+    "left_residual_image_count": 22,
+    "right_residual_image_count": 4,
+    "both_sides_residual_image_count": 0,
+    "left_only_image_names_count": 0,
+    "right_only_image_names_count": 0,
+    "filename_aligned_dimension_difference_images": 0,
+    "image_comparison_profile_counts": {
+      "exact_counter_equal": 5578,
+      "right_payload_support_strict_subset": 22,
+      "left_payload_support_strict_subset": 4
+    },
+    "field_projection_differences": {
+      "segmentation": {
+        "value_counter_different_images": 26,
+        "value_support_different_images": 26,
+        "left_only_value_occurrences": 22,
+        "right_only_value_occurrences": 4,
+        "left_only_distinct_values": 22,
+        "right_only_distinct_values": 4
+      },
+      "bbox": {
+        "value_counter_different_images": 26,
+        "value_support_different_images": 26,
+        "left_only_value_occurrences": 22,
+        "right_only_value_occurrences": 4,
+        "left_only_distinct_values": 22,
+        "right_only_distinct_values": 4
+      },
+      "area": {
+        "value_counter_different_images": 26,
+        "value_support_different_images": 26,
+        "left_only_value_occurrences": 22,
+        "right_only_value_occurrences": 4,
+        "left_only_distinct_values": 22,
+        "right_only_distinct_values": 4
+      },
+      "category_id": {
+        "value_counter_different_images": 26,
+        "value_support_different_images": 1,
+        "left_only_value_occurrences": 22,
+        "right_only_value_occurrences": 4,
+        "left_only_distinct_values": 0,
+        "right_only_distinct_values": 1
+      },
+      "iscrowd": {
+        "value_counter_different_images": 26,
+        "value_support_different_images": 1,
+        "left_only_value_occurrences": 22,
+        "right_only_value_occurrences": 4,
+        "left_only_distinct_values": 0,
+        "right_only_distinct_values": 1
+      },
+      "other_fields": {
+        "value_counter_different_images": 26,
+        "value_support_different_images": 1,
+        "left_only_value_occurrences": 22,
+        "right_only_value_occurrences": 4,
+        "left_only_distinct_values": 0,
+        "right_only_distinct_values": 1
+      }
+    },
+    "category_catalogs_exactly_equal": true,
+    "annotation_payload_field_occurrences": {
+      "train": {
+        "category_id": 11047,
+        "segmentation": 11047,
+        "area": 11047,
+        "bbox": 11047,
+        "iscrowd": 11047
+      },
+      "test": {
+        "category_id": 5922,
+        "segmentation": 5922,
+        "area": 5922,
+        "bbox": 5922,
+        "iscrowd": 5922
+      },
+      "merged": {
+        "category_id": 16951,
+        "segmentation": 16951,
+        "area": 16951,
+        "bbox": 16951,
+        "iscrowd": 16951
+      }
+    },
+    "interpretation_clarification": {
+      "left_empty_right_nonempty_images": 1,
+      "right_empty_left_nonempty_images": 0,
+      "same_image_two_sided_payload_residual_images": 0,
+      "category_crowd_other_support_difference_due_only_to_empty_vs_nonempty": true,
+      "common_exact_payloads_unchanged": 16947,
+      "interpretation": "All affected filenames have residual annotations on one side only. This is a per-filename annotation inclusion/version difference, not evidence of field rewriting of the exact matched instances."
+    }
+  },
+  "cross_split_identical_byte_annotation_comparison": {
+    "duplicate_byte_groups_compared": 2,
+    "filename_resolved_pairs_compared": 2,
+    "payload_counter_equal_pairs": 0,
+    "payload_counter_different_pairs": 2,
+    "pair_profile_counts": {
+      "both_sides_have_distinct_payload_support": 2
+    },
+    "train_annotation_occurrences_in_pairs": 27,
+    "test_annotation_occurrences_in_pairs": 25,
+    "exact_matched_payload_occurrences_in_pairs": 0,
+    "train_only_payload_occurrences_in_pairs": 27,
+    "test_only_payload_occurrences_in_pairs": 25,
+    "field_projection_differences": {
+      "segmentation": {
+        "value_counter_different_images": 2,
+        "value_support_different_images": 2,
+        "left_only_value_occurrences": 27,
+        "right_only_value_occurrences": 25,
+        "left_only_distinct_values": 27,
+        "right_only_distinct_values": 25
+      },
+      "bbox": {
+        "value_counter_different_images": 2,
+        "value_support_different_images": 2,
+        "left_only_value_occurrences": 24,
+        "right_only_value_occurrences": 22,
+        "left_only_distinct_values": 24,
+        "right_only_distinct_values": 22
+      },
+      "area": {
+        "value_counter_different_images": 2,
+        "value_support_different_images": 2,
+        "left_only_value_occurrences": 25,
+        "right_only_value_occurrences": 23,
+        "left_only_distinct_values": 22,
+        "right_only_distinct_values": 23
+      },
+      "category_id": {
+        "value_counter_different_images": 1,
+        "value_support_different_images": 0,
+        "left_only_value_occurrences": 2,
+        "right_only_value_occurrences": 0,
+        "left_only_distinct_values": 0,
+        "right_only_distinct_values": 0
+      },
+      "iscrowd": {
+        "value_counter_different_images": 1,
+        "value_support_different_images": 0,
+        "left_only_value_occurrences": 2,
+        "right_only_value_occurrences": 0,
+        "left_only_distinct_values": 0,
+        "right_only_distinct_values": 0
+      },
+      "other_fields": {
+        "value_counter_different_images": 1,
+        "value_support_different_images": 0,
+        "left_only_value_occurrences": 2,
+        "right_only_value_occurrences": 0,
+        "left_only_distinct_values": 0,
+        "right_only_distinct_values": 0
+      }
+    },
+    "anonymized_train_test_annotation_count_pairs": [
+      [
+        1,
+        1
+      ],
+      [
+        26,
+        24
+      ]
+    ]
+  },
+  "all_input_stats_stable": true,
+  "original_split_copy_sha256_matches_v04": true,
+  "limitations": [
+    "JSON metadata only; no pixels, mask rasterization, alignment or AP checked",
+    "No official release identity or data redistribution license certification",
+    "Historical TEST exposure remains; no new blind-test claim",
+    "No original GT edits, split changes, sample removal or deduplicated benchmark creation",
+    "No cross-namespace comparison of bare annotation/image IDs",
+    "Exact polygon-array inequality is not a test of geometric or rasterized-mask equivalence; point-order invariance and rasterization were not evaluated",
+    "27/25 annotation records and zero exact payload intersection do not establish different physical ship counts or which annotations are correct"
+  ],
+  "failure_type": null,
+  "resource_actual_receipt": {
+    "wall_seconds": 3.437,
+    "process_cpu_seconds": 3.421875,
+    "peak_working_set_bytes": 237477888,
+    "peak_pagefile_bytes": 229085184,
+    "private_bytes_at_receipt": 88096768,
+    "single_worker": true,
+    "no_image_or_pixel_read": true,
+    "no_mask_or_model_or_AP": true,
+    "no_network_ssh": true,
+    "no_GT_or_split_mutation": true
+  },
+  "future_evaluation_scope": {
+    "primary": "Preserve original package train/test and GT; disclose byte duplicates and annotation-version sensitivity",
+    "secondary_sensitivity_proposal_only": "Before any AP, freeze a deterministic rule excluding every test image whose complete SHA256 content matches any train image; preserve the primary benchmark and never select by outcome",
+    "currently_known_test_images_in_that_rule": 2,
+    "secondary_AP_not_run_or_claimed": true,
+    "no_GT_or_original_split_mutation": true
+  },
+  "execution_status": {
+    "observed_tool_chunk": "ca92d3/0",
+    "supervisor_exit_code": 0,
+    "child_exit_code_propagated_by_subprocess_run": 0,
+    "blocking_supervisor_returned_after_child_exit": true,
+    "exec_returned_no_live_session": true,
+    "independent_post_exit_PID_sweep_performed": false,
+    "memory_receipt_scope": "Windows GetProcessMemoryInfo peak working set/pagefile for the child audit process; supervisor RSS and machine-wide memory were not measured"
+  }
+}
