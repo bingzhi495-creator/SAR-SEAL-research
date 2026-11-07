@@ -1,0 +1,83 @@
+{
+  "schema": "sar-seal-rfdetr-native-e1-actual-safe-v1",
+  "status": "ACTUAL_RFDETR_NATIVE_BF16_E1_ARCHIVE_ACCEPTED",
+  "model": "RF-DETR Seg Nano 1.12.0",
+  "data": "SSDD internal FIT741 / DEV187",
+  "image_size": 576,
+  "batch_size": 1,
+  "accumulation": 4,
+  "original_SSH_exit": 0,
+  "worker_exit": 0,
+  "resource_closed": true,
+  "scope": {
+    "fixed_seed": 5201,
+    "initialization": "native_COCO_two_slot_prefix",
+    "fit_images": 741,
+    "dev_images": 187,
+    "completed_epochs": 1,
+    "completed_microbatches": 744,
+    "completed_updates": 186,
+    "planned_epochs": 100,
+    "planned_updates": 18600,
+    "warmup_updates": 558,
+    "precision": "bf16-mixed",
+    "validation": false,
+    "AP": false,
+    "TEST": false,
+    "resumed": false,
+    "exact_restart_trajectory_verified": false
+  },
+  "observed": {
+    "augmented_instance_accesses": 1441,
+    "duplicate_fit_accesses": 3,
+    "native_returned_loss_max": 18.46658706665039,
+    "native_returned_loss_mean": 3.975936513751578,
+    "native_returned_loss_min": 0.0,
+    "unique_fit_images": 741,
+    "witness_gradient_norms": {
+      "class_embed.weight": {
+        "maximum": 17.70811653137207,
+        "observations": 186
+      },
+      "segmentation_head.bias": {
+        "maximum": 1.4897462129592896,
+        "observations": 186
+      }
+    }
+  },
+  "checkpoint": {
+    "bytes": 543063540,
+    "weights_only_cpu_readback": true,
+    "independent_byte_verification": true,
+    "native_payload_checks_passed": true,
+    "witnesses": {
+      "classifier_raw_ema_max_abs_difference": 0.00036875344812870026,
+      "classifier_raw_max_abs_change": 0.005122318398207426
+    }
+  },
+  "timing": {
+    "native_train_seconds": 231.4942223590333,
+    "worker_elapsed_seconds": 237.75378768797964,
+    "owner_elapsed_seconds": 247.1151174060069
+  },
+  "resource": {
+    "sampling_count": 981,
+    "violations": [],
+    "cleanup_errors": [],
+    "cuda_peak_allocated_bytes": 2182555648,
+    "cuda_peak_reserved_bytes": 2248146944
+  },
+  "prior_failed_attempts": [
+    {
+      "phase": "training_start_callback",
+      "optimizer_updates": 0,
+      "checkpoint": false
+    },
+    {
+      "phase": "entry_dependency_pin",
+      "optimizer_updates": 0,
+      "checkpoint": false
+    }
+  ],
+  "prior_main_decision": "STOP_AUTOMATIC_EXTENSION"
+}
