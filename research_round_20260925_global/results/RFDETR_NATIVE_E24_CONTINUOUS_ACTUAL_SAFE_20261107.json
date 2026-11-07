@@ -1,0 +1,506 @@
+{
+  "schema": "sar-seal-rfdetr-continuous-e24-actual-safe-v1",
+  "status": "ACTUAL_RFDETR_NATIVE_BF16_CONTINUOUS_E24_ACCEPTED",
+  "model": "RF-DETR Seg Nano 1.12.0",
+  "image_size": 576,
+  "batch_size": 1,
+  "accumulation": 4,
+  "scope": {
+    "fresh_fit": true,
+    "fixed_seed": 5201,
+    "initialization": "native_COCO_two_slot_prefix",
+    "resumed": false,
+    "fit_images": 741,
+    "dev_images": 187,
+    "planned_epochs": 100,
+    "planned_updates": 18600,
+    "warmup_updates": 558,
+    "completed_epochs": 24,
+    "completed_updates": 4464,
+    "completed_microbatches": 17856,
+    "precision": "bf16-mixed",
+    "float32_matmul_precision": "high",
+    "cudnn_tf32": true,
+    "validation": false,
+    "AP": false,
+    "TEST": false
+  },
+  "checkpoint": {
+    "bytes": 543050422,
+    "weights_only_cpu_readback": true,
+    "independent_byte_verification": true,
+    "classifier_raw_max_abs_change": 0.07073032855987549,
+    "classifier_raw_ema_max_abs_difference": 0.003087233752012253
+  },
+  "observations_by_epoch": [
+    {
+      "augmented_instance_accesses": 1441,
+      "duplicate_fit_accesses": 3,
+      "epoch": 1,
+      "native_returned_loss_max": 16.46963882446289,
+      "native_returned_loss_mean": 3.9027363570298754,
+      "native_returned_loss_min": 0.0,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 18.124008178710938,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 1.6233117580413818,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1472,
+      "duplicate_fit_accesses": 3,
+      "epoch": 2,
+      "native_returned_loss_max": 11.259828567504883,
+      "native_returned_loss_mean": 2.692141983473282,
+      "native_returned_loss_min": 1.9674189388751984e-06,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 93.41598510742188,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 1.1918752193450928,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1468,
+      "duplicate_fit_accesses": 3,
+      "epoch": 3,
+      "native_returned_loss_max": 8.981212615966797,
+      "native_returned_loss_mean": 2.343286421865282,
+      "native_returned_loss_min": 0.0,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 82.51341247558594,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.8485947251319885,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1425,
+      "duplicate_fit_accesses": 3,
+      "epoch": 4,
+      "native_returned_loss_max": 10.169225692749023,
+      "native_returned_loss_mean": 2.161981610619771,
+      "native_returned_loss_min": 1.94931635633111e-06,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 94.09521484375,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.8492386937141418,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1457,
+      "duplicate_fit_accesses": 3,
+      "epoch": 5,
+      "native_returned_loss_max": 25.871295928955078,
+      "native_returned_loss_mean": 2.0306343759923466,
+      "native_returned_loss_min": 2.0903535187244415e-06,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 297.1371765136719,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.749336838722229,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1461,
+      "duplicate_fit_accesses": 3,
+      "epoch": 6,
+      "native_returned_loss_max": 6.0667619705200195,
+      "native_returned_loss_mean": 1.966255899078572,
+      "native_returned_loss_min": 3.2259325962513685e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 17.25936508178711,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.9535248875617981,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1439,
+      "duplicate_fit_accesses": 3,
+      "epoch": 7,
+      "native_returned_loss_max": 11.434844017028809,
+      "native_returned_loss_mean": 1.8512785277581776,
+      "native_returned_loss_min": 3.997562453150749e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 50.84507751464844,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.7127506732940674,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1482,
+      "duplicate_fit_accesses": 3,
+      "epoch": 8,
+      "native_returned_loss_max": 6.444592475891113,
+      "native_returned_loss_mean": 1.8163289355999108,
+      "native_returned_loss_min": 7.737305713817477e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 34.975643157958984,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.6304696798324585,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1457,
+      "duplicate_fit_accesses": 3,
+      "epoch": 9,
+      "native_returned_loss_max": 8.610540390014648,
+      "native_returned_loss_mean": 1.8034115013527503,
+      "native_returned_loss_min": 0.000262951769400388,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 48.70307922363281,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.4193160831928253,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1439,
+      "duplicate_fit_accesses": 3,
+      "epoch": 10,
+      "native_returned_loss_max": 9.445032119750977,
+      "native_returned_loss_mean": 1.8094643973431679,
+      "native_returned_loss_min": 2.7529080398380756e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 21.171894073486328,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.8421778678894043,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1463,
+      "duplicate_fit_accesses": 3,
+      "epoch": 11,
+      "native_returned_loss_max": 6.439154624938965,
+      "native_returned_loss_mean": 1.7037260351565344,
+      "native_returned_loss_min": 2.429110463708639e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 32.63766098022461,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.4308769404888153,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1464,
+      "duplicate_fit_accesses": 3,
+      "epoch": 12,
+      "native_returned_loss_max": 7.896757125854492,
+      "native_returned_loss_mean": 1.7822009635800828,
+      "native_returned_loss_min": 3.793794894590974e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 8.217495918273926,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.8128954768180847,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1455,
+      "duplicate_fit_accesses": 3,
+      "epoch": 13,
+      "native_returned_loss_max": 8.315435409545898,
+      "native_returned_loss_mean": 1.7000470544539064,
+      "native_returned_loss_min": 0.0,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 57.82559585571289,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.8472084999084473,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1422,
+      "duplicate_fit_accesses": 3,
+      "epoch": 14,
+      "native_returned_loss_max": 5.338263034820557,
+      "native_returned_loss_mean": 1.6891244315713305,
+      "native_returned_loss_min": 0.0,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 7.863855361938477,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.7205681204795837,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1469,
+      "duplicate_fit_accesses": 3,
+      "epoch": 15,
+      "native_returned_loss_max": 6.263044834136963,
+      "native_returned_loss_mean": 1.748917394794614,
+      "native_returned_loss_min": 2.2632419131696224e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 15.175185203552246,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.7050071358680725,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1446,
+      "duplicate_fit_accesses": 3,
+      "epoch": 16,
+      "native_returned_loss_max": 7.899166107177734,
+      "native_returned_loss_mean": 1.7495192474431656,
+      "native_returned_loss_min": 0.000313825614284724,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 74.46246337890625,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.6539650559425354,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1418,
+      "duplicate_fit_accesses": 3,
+      "epoch": 17,
+      "native_returned_loss_max": 9.006711959838867,
+      "native_returned_loss_mean": 1.700567029939726,
+      "native_returned_loss_min": 1.328613143414259e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 30.6748046875,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.8400084376335144,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1428,
+      "duplicate_fit_accesses": 3,
+      "epoch": 18,
+      "native_returned_loss_max": 17.191017150878906,
+      "native_returned_loss_mean": 1.6821574061502351,
+      "native_returned_loss_min": 0.00022116751642897725,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 183.7486572265625,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.411704421043396,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1426,
+      "duplicate_fit_accesses": 3,
+      "epoch": 19,
+      "native_returned_loss_max": 5.4493560791015625,
+      "native_returned_loss_mean": 1.6227765047921323,
+      "native_returned_loss_min": 8.806062396615744e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 28.203876495361328,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.4357526898384094,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1428,
+      "duplicate_fit_accesses": 3,
+      "epoch": 20,
+      "native_returned_loss_max": 6.404254913330078,
+      "native_returned_loss_mean": 1.6303384333333535,
+      "native_returned_loss_min": 7.625529542565346e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 62.52555847167969,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.6860858798027039,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1490,
+      "duplicate_fit_accesses": 3,
+      "epoch": 21,
+      "native_returned_loss_max": 8.86923599243164,
+      "native_returned_loss_mean": 1.6140041798742029,
+      "native_returned_loss_min": 1.2174888979643583e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 91.39323425292969,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.8887489438056946,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1457,
+      "duplicate_fit_accesses": 3,
+      "epoch": 22,
+      "native_returned_loss_max": 9.62801456451416,
+      "native_returned_loss_mean": 1.6684813906632832,
+      "native_returned_loss_min": 2.0903535187244415e-06,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 8.89577865600586,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.6206912994384766,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1466,
+      "duplicate_fit_accesses": 3,
+      "epoch": 23,
+      "native_returned_loss_max": 15.456426620483398,
+      "native_returned_loss_mean": 1.6176946496629152,
+      "native_returned_loss_min": 6.563827628269792e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 188.1845245361328,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.6070148348808289,
+          "observations": 186
+        }
+      }
+    },
+    {
+      "augmented_instance_accesses": 1449,
+      "duplicate_fit_accesses": 3,
+      "epoch": 24,
+      "native_returned_loss_max": 13.51229476928711,
+      "native_returned_loss_mean": 1.5625250375643749,
+      "native_returned_loss_min": 6.48312852717936e-05,
+      "unique_fit_images": 741,
+      "witness_gradient_norms": {
+        "class_embed.weight": {
+          "maximum": 143.15296936035156,
+          "observations": 186
+        },
+        "segmentation_head.bias": {
+          "maximum": 0.5892537236213684,
+          "observations": 186
+        }
+      }
+    }
+  ],
+  "native_train_seconds": 5305.329876377946,
+  "worker_elapsed_seconds": 5311.070376961958,
+  "owner_elapsed_seconds": 5320.376810780028,
+  "original_SSH_exit": 0,
+  "original_worker_exit": 0,
+  "resource_closed": true,
+  "resource": {
+    "samples": 21105,
+    "violations": [],
+    "cleanup_errors": [],
+    "cuda_peak_allocated_bytes": 2216887296,
+    "cuda_peak_reserved_bytes": 2317352960
+  }
+}
