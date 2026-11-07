@@ -1,6 +1,6 @@
 # RF-DETR 完整训练环境：实际清单、解析结果与离线准备
 
-2026-11-07。当前已获得完整发行版清单和两次原生解析的实际终端；完整训练依赖仍未安装。原 COCO Nano312 的限定 schema 兼容及 CPU 前向已通过，未重跑。[CPU 检查证据](RFDETR_SCHEMA_COMPAT_CPU_FORWARD_ACTUAL_RESULT_20261107_02.md)
+2026-11-07。已完成官方候选包核验、DGX 原生离线解析及独立目录安装尝试。包安装和元数据检查已通过。原 COCO Nano312 的限定 schema 兼容及 CPU 前向已通过，未重跑。[CPU 检查证据](RFDETR_SCHEMA_COMPAT_CPU_FORWARD_ACTUAL_RESULT_20261107_02.md)
 
 ## 完整基础环境清单
 
@@ -23,10 +23,20 @@
 
 当前改按本机取得官方文件、逐项核对大小/SHA、再传输至 DGX 的路线。根据已观察候选和版本元数据准备的候选池不等于已解析安装计划；必须由目标环境的原生离线 pip 实际闭合，并复核所有选择及21项核心。解析成功、独立目录安装、真实 CLI/编解码器导入、真实 576 SAR 训练资格分别记录。没有新的 SAR AP 或方法收益。
 
+## 离线实际结果
+
+两次在线尝试保留。候选池包括其已观察的22项和 aiohttp 闭包8项；PyArrow 补齐缺失字节后，30个整包全部以官方 SHA-256 核验，共99,643,725字节。传到 DGX 后再次逐包核验。文件传输的实际工具与 SSH 均退出0，无包安装或模型执行。
+
+DGX 以 pip 25.0.1 的原生解析器、仅本地目录与二进制包实际执行 dry-run。工具、SSH、父管控下子进程和 pip 均退出0，计划选中30项，已按官方来源和确切本地文件验收；没有网络请求，没有包变更，97项选中基础元数据与100项可见基础元数据前后一致，21项核心受保护。
+
+第一次安装时，pip install 和 pip check 均实际返回0，观察到30项安装，但隔离守卫拒绝一次 socket.bind，原任务返回1，未接受该环境。首次记录没有调用者证据。查 [pip 25.0.1 vendored urllib3 原始实现](https://github.com/pypa/pip/blob/25.0.1/src/pip/_vendor/urllib3/util/connection.py#L121-L148)，为第二个独立目录仅增加精确调用点的识别与拒绝。第二次在独立目录按同一逐包 SHA 锁实际安装30项，pip install、pip check 均退出0，进程与隔离检查均闭合。记录并拒绝了一次 pip vendored urllib3 的 IPv6 回环能力探测，没有允许绑定或联网，也未把第二次观测倒推给第一次。21项原核心版本和发行版路径保持一致；静态查找确认 typer 与 cv2 来自新目录，后者仍待真实导入和 ABI 核验。
+
+这些是环境证据。真实 576 SAR 数据流、优化器更新、精度和分割评估仍需单独执行；没有新 AP。
+
 ## 实际训练资格和公共数据准备
 
 [训练接口草稿](RFDETR_TRAINING_QUALIFICATION_INTERFACE_DRAFT_20261107_01/README.md)记录原生模型、数据、损失、优化器、EMA 和 canonical 导出顺序。首步 warmup 可使学习率为零；需要按实际梯度、计数和后续参数变化判断，不能改 `max_steps` 后假称原100轮调度。当前 batch1 掩膜路由按源码应走 CPU SciPy 分配，梯度累积4不会改变即时 batch。以后若进入合格 GPU 分配路径，其 JIT 条件和可能子进程见[源码补录](RFDETR_GPU_MATCHER_JIT_SOURCE_NOTE_20261107_01.md)，不能在未观测前推断必然发生。
 
 另已定位已有 HRSID JPG 两份归档及配套 train/test 标注，优先复用[已有完整 JPG 字节/CRC 准备](HRSID_JPG_INPUT_AUDIT_STATUS_20261107_04.md)与[标注差异记录](HRSID_ANNOTATION_PROTOCOL_DIFF_STATUS_20261107_05.md)。本次定位没有读取图像或 GT 正文。正式启用前仍须核像素和轮廓对齐、数据身份、跨划分相同图像及评价范围；不把 JPG 等同官方 PNG，也不把仓库许可证自动延伸到外部影像归档。[作者获取入口](https://github.com/chaozhong2010/HRSID#dataset-download-link)
 
-原 PLAIN/FULL 已各接受34,816/37,050次正式更新，下一34,816→35,072原任务已接续。研究总目标继续进行。
+原 PLAIN/FULL 已各接受35,328/37,050次正式更新，下一35,328→35,584原任务已接续。研究总目标继续进行。
