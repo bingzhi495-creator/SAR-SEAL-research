@@ -4,8 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**，完成内部 DEV187 的固定 50 轮整集评价。整数栅格下 FULL 相比 PLAIN 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。RF-DETR 原生 BF16 E1 已完成并独立验收 **186 次更新**，按 100 轮调度训练，保留原生断点。E2 恢复及 DEV 的 AP 待运行。
+主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**，完成内部 DEV187 的固定 50 轮整集评价。整数栅格下 FULL 相比 PLAIN 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。RF-DETR 原生 BF16 E1 已验收 **186 次更新**与原生断点。E2 从该断点实际恢复并完成第 **187 次更新**，该单步探针尚无 DEV AP。
 
+- [RF-DETR E2 原生接续，第 187 次更新已验收](research_round_20260925_global/RFDETR_NATIVE_E2_ACTUAL_ACCEPTED_20261107.md)
 - [RF-DETR BF16 E1 实测与原生断点验收](research_round_20260925_global/RFDETR_NATIVE_E1_ACTUAL_ACCEPTED_20261107.md)
 - [RF-DETR E1 的两次实际退出、根因和完整指纹修正](research_round_20260925_global/RFDETR_NATIVE_E1_FIRST_ATTEMPT_ACTUAL_FAILURE_20261107.md)
 

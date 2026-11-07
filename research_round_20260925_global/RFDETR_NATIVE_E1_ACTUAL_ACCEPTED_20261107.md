@@ -20,4 +20,6 @@
 
 E2 候选沿用 100 轮调度和原生 `Trainer.fit(ckpt_path=...)`。观察到第四个微批次、一次实际 AdamW 返回及更新 187 后设置停止。候选要求此阶段不生成新断点，不执行验证或测试。三项合成检查通过，真实断点接续尚未执行。 [E2 候选源码](code/RFDETR_NATIVE_E2_RESUME_WORKER_CANDIDATE_20261107/e2_worker.py) · [合成检查](code/RFDETR_NATIVE_E2_RESUME_WORKER_CANDIDATE_20261107/test_e2_worker.py)
 
+随后独立执行通过。 [E2 真实续训结果](RFDETR_NATIVE_E2_ACTUAL_ACCEPTED_20261107.md)
+
 [安全汇总](results/RFDETR_NATIVE_E1_ACTUAL_ACCEPTED_SAFE_20261107.json) · [长训与诊断计划](RFDETR_BASELINE_AND_DIAGNOSTIC_PLAN_20261107.md)
