@@ -247,7 +247,7 @@
     "whole_workflow_elapsed_not_claimed": true,
     "zero_residual_RLE_calibration": false
   },
-  "DGX_updates_per_arm": 36096,
+  "DGX_updates_per_arm": 36352,
   "FastGeodis_fixed_operator_check_20261025": {
     "CUDA_build_version": "13.0",
     "CUDA_synchronized": true,
@@ -460,7 +460,7 @@
       "unexpected_network_or_subprocess_denials": 0
     },
     "project_AP": null,
-    "status": "ACTUAL_V02_SYNTHETIC_METRIC_REACHED_WRAPPER_SHAPE_ASSERTION_FAILED_CLOSED_V03_PREPARED",
+    "status": "ACTUAL_NATIVE_CLI_CODEC_SYNTHETIC_CPU_PASSED",
     "v02": {
       "CLI_enum_names": {
         "augmentation_backend": "TV",
@@ -470,9 +470,100 @@
       "official_MPL_IGNORE_SYSTEM_FONTS": true
     },
     "v03": {
-      "correction": "ACCEPT_SCALAR_OR_VECTOR_WITH_EXACT_CLASS_VALUE_AND_LOG_NATIVE_METRICS",
-      "executed": false
+      "SAR_AP": null,
+      "SSH_exit": 0,
+      "actual_audit_passed": true,
+      "child_exit": 0,
+      "elapsed_seconds": 9.087758726906031,
+      "executed": true,
+      "expected_blocked_loopback_probes": 1,
+      "probe": {
+        "cli": {
+          "actual_cli_exit": 0,
+          "classes_instantiated": false,
+          "parsed_model_resolution": 576,
+          "printed_bytes": 5219
+        },
+        "image_codec": {
+          "headless_cv2_color_conversion_passed": true,
+          "opencv_runtime_version": "4.11.0",
+          "pillow_png_pixels_equal": true,
+          "simplejpeg_actual": true,
+          "size_hw": [
+            8,
+            13
+          ]
+        },
+        "mask_and_metric": {
+          "actual_backend": "faster_coco_eval",
+          "class_ids": [
+            0
+          ],
+          "class_tensor_shape": [],
+          "evaluator_module": "faster_coco_eval.core.faster_eval_api",
+          "fixture_bbox_map": 1.0,
+          "fixture_segm_map": 1.0,
+          "mask_area": 18,
+          "rle_polygon_pixels_equal": true
+        },
+        "real_sar_data": false
+      },
+      "real_SAR_training": false,
+      "resources_closed": true,
+      "terminal_chunk": "371574",
+      "tool_exit": 0,
+      "unexpected_denials": 0
     }
+  },
+  "RFDETR_NATIVE_SSDD_DATA_ENTRY_ACTUAL_20261107": {
+    "AP": null,
+    "SSH_exit": 0,
+    "actual_offline_audit_passed": true,
+    "all_split_membership_checked": true,
+    "augmentation_seed": 5201,
+    "bound_file_count": 5,
+    "bound_files_verified_before_and_after": true,
+    "cat2label": {
+      "1": 0
+    },
+    "child_exit": 0,
+    "elapsed_seconds": 8.042263729032129,
+    "label2cat": {
+      "0": 1
+    },
+    "model_executed": false,
+    "real_SAR_data": true,
+    "resources_closed": true,
+    "samples": {
+      "train": {
+        "masks_equal_direct_coco": true,
+        "original_instances": 1,
+        "transformed_chw": [
+          3,
+          576,
+          576
+        ],
+        "transformed_instances": 1
+      },
+      "valid": {
+        "masks_equal_direct_coco": true,
+        "original_instances": 1,
+        "transformed_chw": [
+          3,
+          576,
+          576
+        ],
+        "transformed_instances": 1
+      }
+    },
+    "split_images": {
+      "train": 741,
+      "valid": 187
+    },
+    "status": "ACTUAL_NATIVE_SSDD_TWO_SAMPLE_DATA_ENTRY_PASSED",
+    "terminal_chunk": "9a5144",
+    "tool_exit": 0,
+    "training": false
   },
   "RFDETR_SSDD_NATIVE_layout_actual_20261107": {
     "AP": null,
@@ -2608,11 +2699,11 @@
   },
   "current_turn_accepted_summary": {
     "AP_evaluated": false,
-    "instance_visits_added_per_arm": 56900,
-    "segments": 99,
+    "instance_visits_added_per_arm": 57403,
+    "segments": 100,
     "start": 10752,
-    "stop": 36096,
-    "updates_added_per_arm": 25344
+    "stop": 36352,
+    "updates_added_per_arm": 25600
   },
   "current_turn_accepted_summary_scope": "LEGACY_CUMULATIVE_SINCE_10752_NOT_THIS_USER_REPLY",
   "direct_prior_increment_20261025": {
@@ -2711,10 +2802,10 @@
     "AP_evaluated": false,
     "additional_accepted_updates_per_arm": 0,
     "automatic_retry": false,
-    "start": 36096,
+    "start": 36352,
     "status": "RUNNING_NOT_ROOT_ACCEPTED",
-    "stop": 36352,
-    "strict_accepted_prefix": 36096
+    "stop": 36608,
+    "strict_accepted_prefix": 36352
   },
   "formal_segment": {
     "AP": false,
@@ -2722,31 +2813,31 @@
     "arms": {
       "FULL": {
         "end_cursor": {
-          "completed_epochs": 48,
-          "global_updates": 36096,
-          "within_epoch": 528
+          "completed_epochs": 49,
+          "global_updates": 36352,
+          "within_epoch": 43
         },
-        "instance_visits_added": 593,
+        "instance_visits_added": 503,
         "restored_all_state_exact": true,
         "start_cursor": {
           "completed_epochs": 48,
-          "global_updates": 35840,
-          "within_epoch": 272
+          "global_updates": 36096,
+          "within_epoch": 528
         },
         "updates_added": 256
       },
       "PLAIN": {
         "end_cursor": {
-          "completed_epochs": 48,
-          "global_updates": 36096,
-          "within_epoch": 528
+          "completed_epochs": 49,
+          "global_updates": 36352,
+          "within_epoch": 43
         },
-        "instance_visits_added": 593,
+        "instance_visits_added": 503,
         "restored_all_state_exact": true,
         "start_cursor": {
           "completed_epochs": 48,
-          "global_updates": 35840,
-          "within_epoch": 272
+          "global_updates": 36096,
+          "within_epoch": 528
         },
         "updates_added": 256
       }
@@ -2757,14 +2848,14 @@
     },
     "original_SSH_exit": 0,
     "original_terminal_tool_exit": 0,
-    "owner_elapsed_seconds": 1107.5428845239803,
-    "owner_minimum_available_RAM_bytes": 57229705216,
-    "owner_peak_RSS_bytes": 13070684160,
+    "owner_elapsed_seconds": 991.6497586681508,
+    "owner_minimum_available_RAM_bytes": 57286000640,
+    "owner_peak_RSS_bytes": 13005561856,
     "resource_violations": [],
     "source_count": 771,
     "span": {
-      "start": 35840,
-      "stop": 36096
+      "start": 36096,
+      "stop": 36352
     },
     "whole_GPU_WDDM8GiB_contract_certified": false,
     "whole_GPU_observed_peak_MiB": null,
@@ -10044,6 +10135,60 @@
       "whole_GPU_WDDM8GiB_contract_certified": false,
       "whole_GPU_observed_peak_MiB": null,
       "worker_exit": 0
+    },
+    {
+      "AP": false,
+      "GPU_cleanup_scope": "PROCESS_FINAL_AFTER_BOTH_ARMS",
+      "arms": {
+        "FULL": {
+          "end_cursor": {
+            "completed_epochs": 48,
+            "global_updates": 36096,
+            "within_epoch": 528
+          },
+          "instance_visits_added": 593,
+          "restored_all_state_exact": true,
+          "start_cursor": {
+            "completed_epochs": 48,
+            "global_updates": 35840,
+            "within_epoch": 272
+          },
+          "updates_added": 256
+        },
+        "PLAIN": {
+          "end_cursor": {
+            "completed_epochs": 48,
+            "global_updates": 36096,
+            "within_epoch": 528
+          },
+          "instance_visits_added": 593,
+          "restored_all_state_exact": true,
+          "start_cursor": {
+            "completed_epochs": 48,
+            "global_updates": 35840,
+            "within_epoch": 272
+          },
+          "updates_added": 256
+        }
+      },
+      "final_GPU_cleanup": {
+        "allocated": 0,
+        "reserved": 0
+      },
+      "original_SSH_exit": 0,
+      "original_terminal_tool_exit": 0,
+      "owner_elapsed_seconds": 1107.5428845239803,
+      "owner_minimum_available_RAM_bytes": 57229705216,
+      "owner_peak_RSS_bytes": 13070684160,
+      "resource_violations": [],
+      "source_count": 771,
+      "span": {
+        "start": 35840,
+        "stop": 36096
+      },
+      "whole_GPU_WDDM8GiB_contract_certified": false,
+      "whole_GPU_observed_peak_MiB": null,
+      "worker_exit": 0
     }
   ],
   "full187_DEV_tensor_exported": true,
@@ -10111,8 +10256,8 @@
   },
   "independent_DGX_account": {
     "failed": 8,
-    "normal": 147,
-    "total": 155
+    "normal": 148,
+    "total": 156
   },
   "independent_DGX_account_scope": "Original research training/input-validation pipeline only; ordinary software preparation and synthetic operator unit checks are recorded separately",
   "innovation_established": false,
@@ -10267,7 +10412,7 @@
   "native_endpoint_prediction_source_status": "ORDINARY_PREBIND_SOURCE_COMPLETE_METADATA_IO_TESTS_LIMITED_STATIC_REVIEW_NO_SPECIFIC_BLOCKER_RUNTIME_UNEXECUTED",
   "native_external_formal_actual_updates": 512,
   "numerical_task_live": true,
-  "observed_UTC": "2026-11-07T07:41:48.287242+00:00",
+  "observed_UTC": "2026-11-07T07:59:46.406798+00:00",
   "official_PSeg_release_entry_scope_20261025": {
     "current_training_recipe_changed": false,
     "document": "U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md",
@@ -10524,7 +10669,7 @@
     "scientific_task_restarted": false
   },
   "schema": "U57-U60-public-safe-actual-scalars-v1",
-  "status": "STRICT_FORMAL36096_ACCEPTED_NEXT_RUNNING_NO_FINAL_AP",
+  "status": "STRICT_FORMAL36352_ACCEPTED_NEXT_RUNNING_NO_FINAL_AP",
   "teacher_identity_and_data_scope_20261025": {
     "DiffSARShipInst_reproduction_supported_by_this_native_result": false,
     "actual_teacher_E24_roster_audit": "results/U57_E24_TRAINING_ROSTER_SAFE_AUDIT_20261025.json",

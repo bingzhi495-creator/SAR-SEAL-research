@@ -45,4 +45,6 @@ DGX 以 pip 25.0.1 的原生解析器、仅本地目录与二进制包实际执�
 
 [第二次 CLI 实测与第三版修正](RFDETR_CLI_CODEC_ACTUAL_RESULT_20261107_01.md)和[实际原生 SSDD 布局](RFDETR_SSDD_NATIVE_INPUT_LAYOUT_ACTUAL_20261107_01.md)已记录。
 
-原 PLAIN/FULL 已各接受36,096/37,050次正式更新，下一36,096→36,352原任务已接续。研究总目标继续进行。
+第三版 CLI、合成编解码及[真实 SSDD DataModule 两样本](RFDETR_NATIVE_SSDD_DATA_ENTRY_ACTUAL_20261107_01.md)均已实际验收。下一阶段需以已验收的真实 SSDD 输入完成受控优化器更新。
+
+原 PLAIN/FULL 已各接受36,352/37,050次正式更新，下一36,352→36,608原任务已接续。研究总目标继续进行。

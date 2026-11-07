@@ -12,3 +12,7 @@
 第二次原任务在已接收36,096次更新后启动，实际工具、SSH 和子进程均退出1，进程独立闭合。官方 CLI 的配置检查、图像与掩膜编解码按源代码顺序已通过，faster_coco_eval 指标调用已返回。随后探针自己的 metric class index 断言失败，两个合成指标数值未进入最终回执。离线审计通过，原生字体枚举没有再次触发。主训练已接续。
 
 查固定 TorchMetrics 1.8.2 发行包和官方源代码，compute 包装器对元素数为1的张量执行 squeeze。RF-DETR 传出的单类别张量因此可以成为标量。第三版只调整探针自身的读取和记录方式，检查原张量为至多一维，元素必须为单个 int32 类别0，同时保留真实 bbox 与 segm 数值。评估后端、图像和掩膜测试内容及576配方沿用第二版。第三版实际运行待资源空档。[TorchMetrics 1.8.2 包装器](https://github.com/Lightning-AI/torchmetrics/blob/v1.8.2/src/torchmetrics/metric.py#L676-L705) · [单元素处理](https://github.com/Lightning-AI/torchmetrics/blob/v1.8.2/src/torchmetrics/utilities/data.py#L173-L179) · [第三版自有探针](RFDETR_CLI_CODEC_QUALIFICATION_DRAFT_20261107_03/probe.py)
+
+## 第三次实际运行通过
+
+第三次工具、SSH 和子进程均退出0。原生 CLI 实际打印并核对576配方，JPEG、PNG、headless OpenCV、RLE/polygon 掩膜逐像素检查均通过。faster_coco_eval 的实际模块为 faster_coco_eval.core.faster_eval_api。合成完美匹配的 bbox AP 和 mask AP 均为1.0。实际类别张量确为标量形状，读出单个 int32 类别0。两次较早的原失败按上文保留。资源闭合与离线审计通过。下一叶已取得[真实 SSDD 两样本入口结果](RFDETR_NATIVE_SSDD_DATA_ENTRY_ACTUAL_20261107_01.md)。

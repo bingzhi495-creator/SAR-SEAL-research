@@ -16,6 +16,56 @@
     "strict_completed_state_load": true,
     "strict_original_state_load": false
   },
+  "RFDETR_NATIVE_SSDD_DATA_ENTRY_ACTUAL_20261107": {
+    "AP": null,
+    "SSH_exit": 0,
+    "actual_offline_audit_passed": true,
+    "all_split_membership_checked": true,
+    "augmentation_seed": 5201,
+    "bound_file_count": 5,
+    "bound_files_verified_before_and_after": true,
+    "cat2label": {
+      "1": 0
+    },
+    "child_exit": 0,
+    "elapsed_seconds": 8.042263729032129,
+    "label2cat": {
+      "0": 1
+    },
+    "model_executed": false,
+    "real_SAR_data": true,
+    "resources_closed": true,
+    "samples": {
+      "train": {
+        "masks_equal_direct_coco": true,
+        "original_instances": 1,
+        "transformed_chw": [
+          3,
+          576,
+          576
+        ],
+        "transformed_instances": 1
+      },
+      "valid": {
+        "masks_equal_direct_coco": true,
+        "original_instances": 1,
+        "transformed_chw": [
+          3,
+          576,
+          576
+        ],
+        "transformed_instances": 1
+      }
+    },
+    "split_images": {
+      "train": 741,
+      "valid": 187
+    },
+    "status": "ACTUAL_NATIVE_SSDD_TWO_SAMPLE_DATA_ENTRY_PASSED",
+    "terminal_chunk": "9a5144",
+    "tool_exit": 0,
+    "training": false
+  },
   "RFDETR_SSDD_NATIVE_layout_actual_20261107": {
     "AP": null,
     "SSH_exit": 0,
@@ -77,7 +127,7 @@
   "blocks": [
     {
       "id": "P0",
-      "status": "ACTUAL_CLI_V02_METRIC_REACHED_PROBE_ASSERT_FAILED_CLOSED_REAL_INPUT_LAYOUT_VERIFIED",
+      "status": "ACTUAL_NATIVE_CLI_CODEC_AND_REAL_SSDD_TWO_SAMPLE_ENTRY_PASSED_TRAIN_UPDATE_PENDING",
       "task": "isolated dependency and exact split/source admission"
     },
     {
@@ -267,7 +317,7 @@
       "unexpected_network_or_subprocess_denials": 0
     },
     "project_AP": null,
-    "status": "ACTUAL_V02_SYNTHETIC_METRIC_REACHED_WRAPPER_SHAPE_ASSERTION_FAILED_CLOSED_V03_PREPARED",
+    "status": "ACTUAL_NATIVE_CLI_CODEC_SYNTHETIC_CPU_PASSED",
     "v02": {
       "CLI_enum_names": {
         "augmentation_backend": "TV",
@@ -277,8 +327,49 @@
       "official_MPL_IGNORE_SYSTEM_FONTS": true
     },
     "v03": {
-      "correction": "ACCEPT_SCALAR_OR_VECTOR_WITH_EXACT_CLASS_VALUE_AND_LOG_NATIVE_METRICS",
-      "executed": false
+      "SAR_AP": null,
+      "SSH_exit": 0,
+      "actual_audit_passed": true,
+      "child_exit": 0,
+      "elapsed_seconds": 9.087758726906031,
+      "executed": true,
+      "expected_blocked_loopback_probes": 1,
+      "probe": {
+        "cli": {
+          "actual_cli_exit": 0,
+          "classes_instantiated": false,
+          "parsed_model_resolution": 576,
+          "printed_bytes": 5219
+        },
+        "image_codec": {
+          "headless_cv2_color_conversion_passed": true,
+          "opencv_runtime_version": "4.11.0",
+          "pillow_png_pixels_equal": true,
+          "simplejpeg_actual": true,
+          "size_hw": [
+            8,
+            13
+          ]
+        },
+        "mask_and_metric": {
+          "actual_backend": "faster_coco_eval",
+          "class_ids": [
+            0
+          ],
+          "class_tensor_shape": [],
+          "evaluator_module": "faster_coco_eval.core.faster_eval_api",
+          "fixture_bbox_map": 1.0,
+          "fixture_segm_map": 1.0,
+          "mask_area": 18,
+          "rle_polygon_pixels_equal": true
+        },
+        "real_sar_data": false
+      },
+      "real_SAR_training": false,
+      "resources_closed": true,
+      "terminal_chunk": "371574",
+      "tool_exit": 0,
+      "unexpected_denials": 0
     }
   },
   "novelty": "UNCONFIRMED_pending_Codex_review",
