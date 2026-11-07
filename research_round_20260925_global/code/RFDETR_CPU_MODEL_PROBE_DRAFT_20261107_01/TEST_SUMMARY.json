@@ -1,0 +1,30 @@
+{
+  "schema": "rfdetr_cpu_probe_synthetic_test_summary_v1",
+  "date": "2026-11-07",
+  "evidence_origin": "Existing exec_command tool result; no test rerun",
+  "exec_chunk_id": "a6866e",
+  "exit_code": 0,
+  "wall_time_seconds": 0.278587,
+  "unittest_elapsed_seconds": 0.004,
+  "test_count": 6,
+  "test_status": "OK",
+  "command_arguments": ["python", "-B", "-X", "utf8", "-m", "unittest", "-v", "test_probe"],
+  "interpreter": "Existing seal_gpu environment; personal absolute executable path omitted",
+  "tests": [
+    "test_bytes_path_is_rejected_without_runtime_import",
+    "test_corrupt_state_and_wrong_native_outputs_are_not_accepted",
+    "test_missing_state_key_is_rejected_by_strict_loading",
+    "test_namespace_retry_is_bounded_and_never_uses_pickle",
+    "test_rejects_unsafe_checkpoint_without_pickle_fallback",
+    "test_valid_synthetic_control_path_stays_unqualified_and_json_safe"
+  ],
+  "test_kind": "stdlib unittest with synthetic metadata/token stubs",
+  "real_torch_imported": false,
+  "real_rfdetr_imported": false,
+  "real_checkpoint_read": false,
+  "real_model_forward_executed": false,
+  "scientific_qualification": false,
+  "qualified": false,
+  "original_stdout_tail": "Ran 6 tests in 0.004s\n\nOK",
+  "limitations": "Tests verify control behavior only; original output remains in the tool history identified by exec_chunk_id."
+}
