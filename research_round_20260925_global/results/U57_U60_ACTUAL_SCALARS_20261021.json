@@ -247,7 +247,7 @@
     "whole_workflow_elapsed_not_claimed": true,
     "zero_residual_RLE_calibration": false
   },
-  "DGX_updates_per_arm": 31488,
+  "DGX_updates_per_arm": 31744,
   "FastGeodis_fixed_operator_check_20261025": {
     "CUDA_build_version": "13.0",
     "CUDA_synchronized": true,
@@ -2180,11 +2180,11 @@
   },
   "current_turn_accepted_summary": {
     "AP_evaluated": false,
-    "instance_visits_added_per_arm": 46581,
-    "segments": 81,
+    "instance_visits_added_per_arm": 47125,
+    "segments": 82,
     "start": 10752,
-    "stop": 31488,
-    "updates_added_per_arm": 20736
+    "stop": 31744,
+    "updates_added_per_arm": 20992
   },
   "current_turn_accepted_summary_scope": "LEGACY_CUMULATIVE_SINCE_10752_NOT_THIS_USER_REPLY",
   "direct_prior_increment_20261025": {
@@ -2283,10 +2283,10 @@
     "AP_evaluated": false,
     "additional_accepted_updates_per_arm": 0,
     "automatic_retry": false,
-    "start": 31488,
+    "start": 31744,
     "status": "RUNNING_NOT_ROOT_ACCEPTED",
-    "stop": 31744,
-    "strict_accepted_prefix": 31488
+    "stop": 32000,
+    "strict_accepted_prefix": 31744
   },
   "formal_segment": {
     "AP": false,
@@ -2295,30 +2295,30 @@
       "FULL": {
         "end_cursor": {
           "completed_epochs": 42,
-          "global_updates": 31488,
-          "within_epoch": 366
+          "global_updates": 31744,
+          "within_epoch": 622
         },
-        "instance_visits_added": 567,
+        "instance_visits_added": 544,
         "restored_all_state_exact": true,
         "start_cursor": {
           "completed_epochs": 42,
-          "global_updates": 31232,
-          "within_epoch": 110
+          "global_updates": 31488,
+          "within_epoch": 366
         },
         "updates_added": 256
       },
       "PLAIN": {
         "end_cursor": {
           "completed_epochs": 42,
-          "global_updates": 31488,
-          "within_epoch": 366
+          "global_updates": 31744,
+          "within_epoch": 622
         },
-        "instance_visits_added": 567,
+        "instance_visits_added": 544,
         "restored_all_state_exact": true,
         "start_cursor": {
           "completed_epochs": 42,
-          "global_updates": 31232,
-          "within_epoch": 110
+          "global_updates": 31488,
+          "within_epoch": 366
         },
         "updates_added": 256
       }
@@ -2329,14 +2329,14 @@
     },
     "original_SSH_exit": 0,
     "original_terminal_tool_exit": 0,
-    "owner_elapsed_seconds": 1074.577468605945,
-    "owner_minimum_available_RAM_bytes": 57058091008,
-    "owner_peak_RSS_bytes": 13011468288,
+    "owner_elapsed_seconds": 1088.205241780961,
+    "owner_minimum_available_RAM_bytes": 56960131072,
+    "owner_peak_RSS_bytes": 13036421120,
     "resource_violations": [],
     "source_count": 771,
     "span": {
-      "start": 31232,
-      "stop": 31488
+      "start": 31488,
+      "stop": 31744
     },
     "whole_GPU_WDDM8GiB_contract_certified": false,
     "whole_GPU_observed_peak_MiB": null,
@@ -8644,6 +8644,60 @@
       "whole_GPU_WDDM8GiB_contract_certified": false,
       "whole_GPU_observed_peak_MiB": null,
       "worker_exit": 0
+    },
+    {
+      "AP": false,
+      "GPU_cleanup_scope": "PROCESS_FINAL_AFTER_BOTH_ARMS",
+      "arms": {
+        "FULL": {
+          "end_cursor": {
+            "completed_epochs": 42,
+            "global_updates": 31488,
+            "within_epoch": 366
+          },
+          "instance_visits_added": 567,
+          "restored_all_state_exact": true,
+          "start_cursor": {
+            "completed_epochs": 42,
+            "global_updates": 31232,
+            "within_epoch": 110
+          },
+          "updates_added": 256
+        },
+        "PLAIN": {
+          "end_cursor": {
+            "completed_epochs": 42,
+            "global_updates": 31488,
+            "within_epoch": 366
+          },
+          "instance_visits_added": 567,
+          "restored_all_state_exact": true,
+          "start_cursor": {
+            "completed_epochs": 42,
+            "global_updates": 31232,
+            "within_epoch": 110
+          },
+          "updates_added": 256
+        }
+      },
+      "final_GPU_cleanup": {
+        "allocated": 0,
+        "reserved": 0
+      },
+      "original_SSH_exit": 0,
+      "original_terminal_tool_exit": 0,
+      "owner_elapsed_seconds": 1074.577468605945,
+      "owner_minimum_available_RAM_bytes": 57058091008,
+      "owner_peak_RSS_bytes": 13011468288,
+      "resource_violations": [],
+      "source_count": 771,
+      "span": {
+        "start": 31232,
+        "stop": 31488
+      },
+      "whole_GPU_WDDM8GiB_contract_certified": false,
+      "whole_GPU_observed_peak_MiB": null,
+      "worker_exit": 0
     }
   ],
   "full187_DEV_tensor_exported": true,
@@ -8711,8 +8765,8 @@
   },
   "independent_DGX_account": {
     "failed": 8,
-    "normal": 129,
-    "total": 137
+    "normal": 130,
+    "total": 138
   },
   "independent_DGX_account_scope": "Original research training/input-validation pipeline only; ordinary software preparation and synthetic operator unit checks are recorded separately",
   "innovation_established": false,
@@ -8867,7 +8921,7 @@
   "native_endpoint_prediction_source_status": "ORDINARY_PREBIND_SOURCE_COMPLETE_METADATA_IO_TESTS_LIMITED_STATIC_REVIEW_NO_SPECIFIC_BLOCKER_RUNTIME_UNEXECUTED",
   "native_external_formal_actual_updates": 512,
   "numerical_task_live": true,
-  "observed_UTC": "2026-11-07T00:58:30.873491+00:00",
+  "observed_UTC": "2026-11-07T01:18:09.074989+00:00",
   "official_PSeg_release_entry_scope_20261025": {
     "current_training_recipe_changed": false,
     "document": "U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md",
@@ -9048,6 +9102,18 @@
       202610173103
     ]
   },
+  "public_R101_explicit_coverage_candidate": {
+    "AP": false,
+    "actual_tensors_or_model_loaded": false,
+    "finite_synthetic_test_methods": 14,
+    "offset_keys_not_transferred": 66,
+    "old_native512_changed": false,
+    "required_mapped_keys": 520,
+    "required_mapped_state_numel": 42605504,
+    "source_or_real_model_identity_proven": false,
+    "status": "UNBOUND_METADATA_ONLY_LIMITED_SYNTHETIC_TESTS_AND_STATIC_REVIEW",
+    "target_backbone_subset_keys": 586
+  },
   "public_pretrained_R101_candidate_intake": {
     "AP": false,
     "bytes": 178793939,
@@ -9066,7 +9132,7 @@
     "scientific_task_restarted": false
   },
   "schema": "U57-U60-public-safe-actual-scalars-v1",
-  "status": "STRICT_FORMAL31488_ACCEPTED_NEXT_RUNNING_NO_FINAL_AP",
+  "status": "STRICT_FORMAL31744_ACCEPTED_NEXT_RUNNING_NO_FINAL_AP",
   "teacher_identity_and_data_scope_20261025": {
     "DiffSARShipInst_reproduction_supported_by_this_native_result": false,
     "actual_teacher_E24_roster_audit": "results/U57_E24_TRAINING_ROSTER_SAFE_AUDIT_20261025.json",

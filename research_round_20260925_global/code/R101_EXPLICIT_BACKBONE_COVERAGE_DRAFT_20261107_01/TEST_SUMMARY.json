@@ -1,0 +1,30 @@
+{
+  "schema": "R101-explicit-backbone-coverage-limited-synthetic-test-summary-v1",
+  "date": "2026-11-07",
+  "status": "UNBOUND_FINITE_SYNTHETIC_METADATA_TESTS_PASSED_NO_ACTUAL_LOADING",
+  "final_test_methods": 14,
+  "final_actual_exit_code": 0,
+  "final_unittest_elapsed_seconds": 0.228,
+  "test_first_red_green_cycles": 5,
+  "fixtures": "SYNTHETIC standard-library dictionaries; no tensors, checkpoints, models or real scientific data",
+  "required_transfer_keys": 520,
+  "required_transfer_state_numel_including_FrozenBN_buffers": 42605504,
+  "required_target_keys": 586,
+  "target_DCN_offset_keys_not_in_transfer_plan": 66,
+  "stage_transfer_keys": [5, 50, 65, 350, 50],
+  "stage_transfer_state_numel": [9664, 218624, 1226752, 26163200, 14987264],
+  "scientific_libraries_imported": false,
+  "weights_or_models_read": false,
+  "actual_tensor_or_model_loading_executed": false,
+  "scientific_suite_executed": false,
+  "source_provenance_or_real_model_identity_verified": false,
+  "RGB_stride_RNG_finite_values_verified": false,
+  "actual_unloaded_parameters_unchanged_verified": false,
+  "AP": false,
+  "limitations": [
+    "Caller-provided metadata must be independently extracted and qualified in a future Root-owned actual operation",
+    "Metadata agreement does not prove tensor values, actual loading, source provenance, numerical equivalence or model execution",
+    "No existing random-initialization training trajectory was changed",
+    "Original TDD logs with local paths remain private and are not modified for publication"
+  ]
+}
