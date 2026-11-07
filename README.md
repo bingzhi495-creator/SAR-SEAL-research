@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **33536/37050次正式更新（90.52%，45轮+191图）**，33536→33792已接回原配方；相对32512每臂实际+1024更新/+2256匹配访问。本轮RF-DETR基础依赖实际离线安装/依赖检查0。首次CPU检查真实读取官方权重并构模，但原始strict因唯一新增schema缓冲缺失失败，另阻断一次bind；原tool/SSH/子进程1保留，前向未执行。真实外部严格闭合后恢复主训练，失败未升级。新的限定空缓冲兼容和审计诊断候选准备中，未重跑。**没有新RF-DETR AP、核心创新成立或TGRS就绪结论。**
+DGX PLAIN/FULL各严格接收 **33792/37050次正式更新（91.21%，45轮+447图）**，下一33792→34048原任务已运行、尚未接收；本轮相对32512每臂+1280更新/+2892匹配访问。RF-DETR首次原始state严格检查实际失败且资源已闭合，未前向；仅补官方空schema缓冲区的新v02普通代码及14项标准库合成测试已完成，真实v02验证尚未执行。**没有新RF-DETR AP、已成立核心创新或TGRS就绪结论。**
 
-全局DGX账户137正常/8失败/145总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户138正常/8失败/146总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -39,6 +39,7 @@ DGX PLAIN/FULL各严格接收 **33536/37050次正式更新（90.52%，45轮+191�
 - [质量后校准直接先例：2024 mask-IoU校准与2025折衷记录](research_round_20260925_global/SCALE_CONDITIONED_MASK_QUALITY_PRIMARY_REVIEW_20261107_01.md)
 - [官方COCO尺度分组的竞争解释：未执行的新诊断设计](research_round_20260925_global/COCO_SCALE_GROUP_RANKING_ALTERNATIVE_REVIEW_20261107_01.md)
 - [RF-DETR首次真实检查：原始strict失败、资源已闭合、主训接回](research_round_20260925_global/RFDETR_RAW_STRICT_PROBE_ACTUAL_RESULT_20261107_01.md)
+- [RF-DETR v02空schema兼容、离线诊断与待执行真实验证](research_round_20260925_global/RFDETR_V02_CANDIDATE_STATUS_20261107_02.md)
 - [RF-DETR实际基础依赖安装、数据接口与待执行CPU探针](research_round_20260925_global/RFDETR_RUNTIME_PREPARATION_STATUS_20261107_02.md)
 - [2026-11-07研究决策：数学/物理/雷达/最新模型原始证据与RF-DETR新基线](research_round_20260925_global/RESEARCH_DECISION_20261107.md)
 - [RF-DETR五块公平实验计划：100轮候选、诊断和停止规则（未运行）](research_round_20260925_global/RFDETR_BASELINE_AND_DIAGNOSTIC_PLAN_20261107.md)
