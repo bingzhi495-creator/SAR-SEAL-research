@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **31744/37050次正式更新（85.68%，42轮+622图）**，下一31744→32000原任务已运行、尚未接收。本轮自31488每臂新增256更新/544匹配实例访问，原771来源、完整状态恢复及配方保持，本机2816独立。外部公开预训练对照新增显式骨干覆盖检查候选：固定R101全部520迁移项及66个不迁移DCN offset，14项有限标准库SYNTHETIC测试通过，Root与独立代理静态审阅未见具体阻点；没有加载实际权重/模型。FrozenBN可能自动补缺失统计，故加载前必须明确查全，实际加载/数值/非白名单不变与前向仍待。R101 V1候选仅有字节取得资格；原生DiffSAR仍512，论文实际初值未知，不改旧轨迹。**新主结构端点AP、完整外部强对照、容量/计算、重复和跨集仍待，不宣称SOTA或TGRS就绪。**
+DGX PLAIN/FULL各严格接收 **32000/37050次正式更新（86.37%，43轮+137图）**，下一32000→32256原任务已运行、尚未接收。本轮每臂新增256更新/518匹配实例访问，原771来源、完整状态恢复与配方保持，本机2816独立。外部预训练候选179MB已实际传到DGX且两端完整SHA一致，仅输入字节阶段、未加载Tensor。新增真实加载helper和CPU完整模型factory worker候选：分别11项fake-tensor测试、6项stdlib contract测试通过，源码已冻结，尚未导入真实Torch或执行加载。有限静态复核确认作者真实属性、归一化闭包及DCN标量接口；CPU-only load与GPU/前向资格分开。原随机初值DiffSAR512不改。**主结构最终AP、完整外部公平效用、容量/计算、重复与跨集仍待，不宣称SOTA或TGRS就绪。**
 
-全局DGX账户130正常/8失败/138总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户131正常/8失败/139总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -38,6 +38,7 @@ DGX PLAIN/FULL各严格接收 **31744/37050次正式更新（85.68%，42轮+622�
 - [N26结果后研究取舍：先检验排序/ignore解释，不追加尺度模块](research_round_20260925_global/N26_POST_DUALGT_RESEARCH_DECISION_20261107_01.md)
 - [质量后校准直接先例：2024 mask-IoU校准与2025折衷记录](research_round_20260925_global/SCALE_CONDITIONED_MASK_QUALITY_PRIMARY_REVIEW_20261107_01.md)
 - [官方COCO尺度分组的竞争解释：未执行的新诊断设计](research_round_20260925_global/COCO_SCALE_GROUP_RANKING_ALTERNATIVE_REVIEW_20261107_01.md)
+- [R101真实加载与CPU模型factory候选：代码冻结，实际执行仍待](research_round_20260925_global/R101_REAL_LOADING_CANDIDATES_STATUS_20261107.md)
 - [R101逐键覆盖候选：520项完整规范、14项有限合成测试，未加载模型](research_round_20260925_global/code/R101_EXPLICIT_BACKBONE_COVERAGE_DRAFT_20261107_01/README.md)
 - [R101覆盖候选有限独立审阅：metadata通过不授真实加载资格](research_round_20260925_global/R101_BACKBONE_COVERAGE_CANDIDATE_REVIEW_20261107.md)
 - [已接收19段的两臂部分成本：5.59小时及限定ETA](research_round_20260925_global/MAIN_E50_PARTIAL_PAIRED_COST_20261107_01.md)

@@ -1,0 +1,28 @@
+{
+  "schema": "R101-CPU-load-probe-limited-contract-tests-v1",
+  "date": "2026-11-07",
+  "status": "UNBOUND_CANDIDATE_FINITE_STDLIB_CONTRACT_TESTS_PASSED_NO_ACTUAL_CPU_MODEL_OR_LOAD",
+  "final_test_methods": 6,
+  "final_actual_tool_chunk": "314168",
+  "final_actual_exit_code": 0,
+  "final_unittest_elapsed_seconds": 0.004,
+  "test_first_red_green_changes": 7,
+  "fixtures": "Explicit SYNTHETIC metadata refs, lease dictionaries and config objects only",
+  "scientific_libraries_imported": false,
+  "weights_models_GT_or_actual_scientific_sources_read": false,
+  "SSH": false,
+  "actual_CPU_or_ABI_execution": false,
+  "actual_checkpoint_deserialization": false,
+  "actual_model_construction": false,
+  "actual_tensor_loading": false,
+  "forward": false,
+  "training": false,
+  "AP": false,
+  "qualified": false,
+  "limitations": [
+    "Contract tests do not establish actual runtime module attributes, CPU construction, Torch API behavior, tensor comparisons, RAM or process-group closure",
+    "Root must bind exact source/input/library refs and a real same-boot closed-main one-attempt lease",
+    "Actual normalizer closure tensors are separately planned for comparison; real image normalization/data path is not tested",
+    "Successful loading does not qualify full-model forward or equivalence of modulated DCN and ordinary convolution"
+  ]
+}

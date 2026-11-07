@@ -9,3 +9,6 @@
 这项候选为另一条公开预训练参考提供实际输入准备，仍须固定映射和允许名单，验证逐key的dtype/shape/numel覆盖、载入后相等性、FrozenBN、未加载DCN offset/mask及SCJE/IAMR初始化，并按原资源资格完成真实前向。DCN调制与普通卷积不因权重尺寸相同而函数等价。只有之后从独立update0按预锁配方执行，才可称公开ImageNet骨干初始化的同协议适配；论文实际初值仍未知，也不自动匹配项目COCO教师的上游信息和成本。
 
 [官方入口及加载风险原始来源](DIFFSAR_INITIALIZATION_GAP_NEW_EVIDENCE_20261107_02.md)、[不含私有路径的字节层安全摘要](results/PUBLIC_R101_INITIALIZER_BYTE_INTAKE_PUBLIC_SAFE_20261107.json)。没有新增方法效果或强复现资格。
+
+
+后续真实输入准备：该179MB独立副本已通过直接SSH完整暂存DGX，原工具/SSH实际0，远端完整SHA与本地已固定副本一致。没有使用代理、加载Torch或反序列化权重；仅字节阶段，不增加独立官方完整SHA或论文来源认证。[真实加载候选源码状态](R101_REAL_LOADING_CANDIDATES_STATUS_20261107.md)已另存，真实模型加载仍待。

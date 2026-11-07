@@ -1,0 +1,26 @@
+{
+  "schema": "R101-actual-loading-helper-limited-fake-tensor-tests-v1",
+  "date": "2026-11-07",
+  "status": "UNBOUND_HELPER_FAKE_TESTS_PASSED_REAL_TORCH_AND_MODEL_NOT_EXECUTED",
+  "final_test_methods": 11,
+  "final_actual_exit_code": 0,
+  "final_unittest_elapsed_seconds": 0.348,
+  "test_first_red_green_cycles": 6,
+  "fixtures": "Explicit standard-library fake tensor/module/torch objects and logical R101 shapes, not real tensors",
+  "actual_torch_or_numpy_imported": false,
+  "real_checkpoint_or_model_read": false,
+  "real_tensor_loading_executed": false,
+  "real_module_identity_or_source_verified": false,
+  "real_model_coverage_or_runtime_qualified": false,
+  "forward_or_optimizer_executed": false,
+  "AP": false,
+  "limited_checks": [
+    "Independent snapshots detect payload alias, mapped and unmapped mutation",
+    "CPU strided ordinary unquantized state and finite values",
+    "Explicit dtype/shape/numel and numerical torch.equal semantics, not bitwise",
+    "Float64 nonwhite state cannot be silently cast",
+    "Source state, nonpersistent buffers, parameter identity and requires_grad",
+    "CPU Torch RNG must remain unchanged",
+    "No runtime or source authenticity follows from caller-provided fake objects"
+  ]
+}
