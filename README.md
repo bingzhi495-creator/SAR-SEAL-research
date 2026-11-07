@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **33792/37050次正式更新（91.21%，45轮+447图）**，下一33792→34048原任务已运行、尚未接收；本轮相对32512每臂+1280更新/+2892匹配访问。RF-DETR首次原始state严格检查实际失败且资源已闭合，未前向；仅补官方空schema缓冲区的新v02普通代码及14项标准库合成测试已完成，真实v02验证尚未执行。**没有新RF-DETR AP、已成立核心创新或TGRS就绪结论。**
+DGX PLAIN/FULL各严格接收 **34048/37050次正式更新（91.90%，45轮+703图）**，下一34048→34304原任务已运行、尚未接收；本轮相对32512每臂+1536更新/+3433匹配访问。RF-DETR已实际通过限定空schema补齐后的strict加载、544个原state Tensor等值/有限性及CPU Nano312一次合成前向；原v01失败与v02首次元数据目录定位失败均保留，资源已闭合、主段已接回。新增6项几何/拓扑/OT/等变原文源码审阅、单类boat行初始化核查及独立预测导出候选。**尚无RF-DETR SAR训练/AP、已成立核心创新或TGRS就绪结论。**
 
-全局DGX账户138正常/8失败/146总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户139正常/8失败/147总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -39,6 +39,11 @@ DGX PLAIN/FULL各严格接收 **33792/37050次正式更新（91.21%，45轮+447�
 - [质量后校准直接先例：2024 mask-IoU校准与2025折衷记录](research_round_20260925_global/SCALE_CONDITIONED_MASK_QUALITY_PRIMARY_REVIEW_20261107_01.md)
 - [官方COCO尺度分组的竞争解释：未执行的新诊断设计](research_round_20260925_global/COCO_SCALE_GROUP_RANKING_ALTERNATIVE_REVIEW_20261107_01.md)
 - [RF-DETR首次真实检查：原始strict失败、资源已闭合、主训接回](research_round_20260925_global/RFDETR_RAW_STRICT_PROBE_ACTUAL_RESULT_20261107_01.md)
+- [RF-DETR限定schema兼容与真实CPU前向结果](research_round_20260925_global/RFDETR_SCHEMA_COMPAT_CPU_FORWARD_ACTUAL_RESULT_20261107_02.md)
+- [形状、拓扑、OT与等变性六项原文及作者源码](research_round_20260925_global/SHAPE_TOPOLOGY_OT_EQUIVARIANCE_PRIMARY_SUPPLEMENT_20261107_01.md)
+- [单类迁移的boat分类行、强初始化与公平对照](research_round_20260925_global/RFDETR_SINGLE_CLASS_TRANSFER_INITIALIZATION_REVIEW_20261107_01.md)
+- [canonical预测导出候选：原GT、类别与top100顺序](research_round_20260925_global/code/RFDETR_CANONICAL_EXPORT_DRAFT_20261107_01/README.md)
+- [完整train/CLI依赖候选与实际执行缺口](research_round_20260925_global/RFDETR_FULL_TRAIN_CLI_DEPENDENCY_READINESS_20261107_01.md)
 - [RF-DETR v02空schema兼容、离线诊断与待执行真实验证](research_round_20260925_global/RFDETR_V02_CANDIDATE_STATUS_20261107_02.md)
 - [RF-DETR实际基础依赖安装、数据接口与待执行CPU探针](research_round_20260925_global/RFDETR_RUNTIME_PREPARATION_STATUS_20261107_02.md)
 - [2026-11-07研究决策：数学/物理/雷达/最新模型原始证据与RF-DETR新基线](research_round_20260925_global/RESEARCH_DECISION_20261107.md)

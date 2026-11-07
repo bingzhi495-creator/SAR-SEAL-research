@@ -1,0 +1,140 @@
+{
+  "AP": null,
+  "actual_SAR_data": false,
+  "actual_training": false,
+  "automatic_retry": false,
+  "expected_actual_caller": [
+    {
+      "code_identity_matches_export": true,
+      "function": "_has_ipv6",
+      "line": 127,
+      "module": "urllib3.util.connection"
+    }
+  ],
+  "first_metadata_preparation_failed": true,
+  "main_accepted_at_probe": 34048,
+  "main_training_credit": 0,
+  "metadata_preparation_attempts": 2,
+  "native_training_credit": 0,
+  "official_commit": "639eac4555ceb89ef399ccda3fde716bbcfe34cb",
+  "official_release": "1.12.0",
+  "offline_audit": {
+    "expected_count": 1,
+    "installed": true,
+    "invalid_count": 0,
+    "passed": true,
+    "qualified": false,
+    "unexpected_count": 0
+  },
+  "original_SSH_exit": 0,
+  "original_terminal_chunk": "6a155c",
+  "original_tool_exit": 0,
+  "original_tool_session": 75774,
+  "parent": {
+    "elapsed_seconds": 8.063615389866754,
+    "minimum_available_RAM_bytes": 72825446400,
+    "peak_group_RSS_bytes": 1095471104,
+    "reaped": true,
+    "returncode": 0,
+    "signals": [],
+    "termination_signals": [],
+    "violations": []
+  },
+  "post_tool_chunk": "a9048a",
+  "post_tool_exit": 0,
+  "probe": {
+    "completed_state_tensor_count": 545,
+    "device": "cpu",
+    "elapsed_seconds": 5.517927006119862,
+    "forward_executed": true,
+    "original_tensor_equality": true,
+    "outputs": {
+      "pred_boxes": {
+        "device": "cpu",
+        "dtype": "torch.float32",
+        "finite": true,
+        "numel": 400,
+        "shape": [
+          1,
+          100,
+          4
+        ]
+      },
+      "pred_logits": {
+        "device": "cpu",
+        "dtype": "torch.float32",
+        "finite": true,
+        "numel": 9100,
+        "shape": [
+          1,
+          100,
+          91
+        ]
+      },
+      "pred_masks": {
+        "device": "cpu",
+        "dtype": "torch.float32",
+        "finite": true,
+        "numel": 608400,
+        "shape": [
+          1,
+          100,
+          78,
+          78
+        ]
+      }
+    },
+    "phase_seconds": {
+      "checkpoint_load": 0.08355564088560641,
+      "forward": 0.8213359788060188,
+      "model_build": 4.4398358361795545,
+      "schema_completion": 0.0030937709379941225,
+      "state_equality": 0.08473775093443692,
+      "strict_load": 0.01590809691697359,
+      "torch_import": 5.295965820550919e-06
+    },
+    "qualified": false,
+    "resolution": 312,
+    "schema_completion": {
+      "added_buffer": {
+        "device": "cpu",
+        "dtype": "torch.bool",
+        "learned_parameter": false,
+        "numel": 0,
+        "shape": [
+          0,
+          0
+        ]
+      },
+      "added_keys": [
+        "_kp_active_mask"
+      ],
+      "num_keypoints_per_class": [],
+      "original_missing_keys": [
+        "_kp_active_mask"
+      ],
+      "original_unexpected_keys": [],
+      "qualified": false,
+      "schema_completion": "legacy_empty_keypoint_mask_v1",
+      "strict_completed_state_load": false,
+      "strict_original_state_load": false,
+      "use_grouppose_keypoints": false
+    },
+    "seed": 5201,
+    "state_numel": 33577475,
+    "state_tensor_count": 544,
+    "status": "ok",
+    "strict_completed_state_load": true,
+    "strict_original_state_load": false,
+    "strict_state_equal": true,
+    "threads_during_probe": 2,
+    "variant": "RFDETRSegNanoConfig"
+  },
+  "probe_success": true,
+  "resource_closed": true,
+  "scientific_original_attempts": 1,
+  "selected_refs_unchanged": true,
+  "status": "ROOT_ACCEPTED_CPU_NANO312_COMPLETED_SCHEMA_STRICT_LOAD_AND_ONE_SYNTHETIC_FORWARD_ONLY",
+  "v01_failed_preserved": true,
+  "worker_exit": 0
+}

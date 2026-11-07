@@ -1,6 +1,6 @@
 # 数学、物理、雷达处理与现代实例模型：研究决策
 
-日期：2026-11-07。状态：原始证据审阅与执行准备；不是新实验结果，不是投稿成熟度认证。
+日期：2026-11-07。状态：原始证据审阅与有限真实CPU接口确认；没有新SAR精度结果，不是投稿成熟度认证。
 
 ## 已完成什么
 
@@ -8,7 +8,7 @@
 
 Root 另实际取得并静态检查 RF-DETR 官方 1.12.0 固定提交 `639eac4555ceb89ef399ccda3fde716bbcfe34cb` 的完整源码归档，585 个文件、11,752,574 字节；归档 SHA256 为 `a0835160ea208bbf530217a8e0384b9527e336cde4a7398d5e7639b2112c3e91`。实际取得 Nano 实例分割权重 134,545,398 字节，MD5 与官方固定源码一致，SHA256 为 `a44613a4ecd6b5ba61a62002c600b0b6cb7a9da2936a45317ec4b62c635fb99b`。已下载 RF-DETR v2（24 页）和 OccFormer（11 页）原始 PDF，并读取相关方法与实验。第三方全文、完整代码归档和权重只保留为研究输入，本仓库发布原创综述、来源索引与本项目方案。
 
-**基础依赖已实际离线安装，首次真实CPU原始state严格检查已执行但未通过；前向、SAR训练与评估未执行。** 版本兼容问题、原始非零及资源闭合见[实际检查结果](RFDETR_RAW_STRICT_PROBE_ACTUAL_RESULT_20261107_01.md)，包准备与数据接口见[运行准备更新](RFDETR_RUNTIME_PREPARATION_STATUS_20261107_02.md)。完整训练依赖与有效模型资格仍待。
+**基础依赖已实际离线安装，限定空schema补齐后的CPU严格加载及一次合成前向已真实通过。** [实际限定结果](RFDETR_SCHEMA_COMPAT_CPU_FORWARD_ACTUAL_RESULT_20261107_02.md)保留原始工具/SSH/worker0、原state等值和输出有限性范围；[v01原始strict失败](RFDETR_RAW_STRICT_PROBE_ACTUAL_RESULT_20261107_01.md)和新的元数据定位失败不升级为成功。完整train/CLI依赖、576真实SAR输入、梯度/优化器/BF16及评估仍待。
 
 ## 这次查新如何改变选择
 
@@ -24,6 +24,8 @@ Root 另实际取得并静态检查 RF-DETR 官方 1.12.0 固定提交 `639eac45
 来源详见 [数学/雷达审阅](RADAR_MATH_PHYSICS_SIGNAL_PRIMARY_REVIEW_20261107_01.md)、[基础模型审阅](MULTIMODAL_FOUNDATION_DATA_PRIMARY_REVIEW_20261107_01.md)、[SAR 直接先例](LATEST_SAR_INSTANCE_SOTA_PRIMARY_REVIEW_20261107_01.md) 与 [采样独立审查](RFDETR_SAMPLING_IDEA_INDEPENDENT_REVIEW_20261107_01.md)。所有外部分数是作者报告，不与本项目不同协议的 AP 排名混用。
 
 后续补齐了 [6项经典雷达链路](CLASSICAL_RADAR_SIGNAL_SOURCE_SUPPLEMENT_20261107_01.md) 与 [6项变分/扩散/低秩/图竞争工作](VARIATIONAL_DIFFUSION_INVERSE_SOURCE_SUPPLEMENT_20261107_01.md)。这些是重叠家族的深化补录，不能与前述12族相加当不重复总数。经典部分追到真实 Stolt、BP CUDA kernel、MVDR/MUSIC 与复数求解器；同时发现 TorchSAR 有占位函数。扩散部分找到2025作者真实实现及低于单次U-Net、生成错误结构的论文反例；2026 GLCNet虽有源，默认张量流和loss存在待验证静态风险，不能列已跑通。补录保留 STAP、若干低秩/稀疏作者实现和原始论文全文的未完成项。
+
+后续另完成[6项形状/拓扑/OT/等变性原文与真实作者函数](SHAPE_TOPOLOGY_OT_EQUIVARIANCE_PRIMARY_SUPPLEMENT_20261107_01.md)。TopoLoRA-SAM已经组合基础模型、LoRA、空间适配器和clDice，任务为含SAR海陆的二值语义分割；不能冒充船舶实例mask AP，但足以约束普通组合的新颖性叙事。所有6项保留固定commit、直接函数、实现陷阱、简单对照和否定条件。
 
 ## 当前选定的可执行起点
 
@@ -64,3 +66,6 @@ RF-DETR 1.12.0 原生 mask loss 的点数是 `max(Hmask, Hmask*Wmask//16)`，不
 - [实际 mask loss](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/models/criterion.py)、[mask head/sampler](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/models/heads/segmentation.py)、[官方权重校验项](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/assets/model_weights.py)。
 - [OccFormer 原论文](https://arxiv.org/abs/2304.05316)、[固定采样实现](https://github.com/zhangyp15/OccFormer/blob/44aee79434d6aedca0d97fe62965032505f583e7/projects/mmdet3d_plugin/occformer/mask2former/base/mmdet_utils.py)。
 - [CaSA-DETR 出版方](https://www.mdpi.com/2072-4292/18/21/3799)、[DOFA-CLIP 原文与数据附录](https://arxiv.org/html/2503.06312v2)。
+
+
+P0新核查：[官方单类迁移默认截取COCO行0/1而非boat9](RFDETR_SINGLE_CLASS_TRANSFER_INITIALIZATION_REVIEW_20261107_01.md)。当前YAML保留为官方默认候选，语义对齐行9/1仅列同预算对照，不预判其更好。后续模块与强参考必须共享选定初始化。另已准备[严格单类逆映射和原生top100后过滤的canonical导出](code/RFDETR_CANONICAL_EXPORT_DRAFT_20261107_01/README.md)，7项标准库合成测试通过，实际PostProcess/codec/原GT仍待。完整依赖的候选及解析缺口见[train/CLI准备报告](RFDETR_FULL_TRAIN_CLI_DEPENDENCY_READINESS_20261107_01.md)。

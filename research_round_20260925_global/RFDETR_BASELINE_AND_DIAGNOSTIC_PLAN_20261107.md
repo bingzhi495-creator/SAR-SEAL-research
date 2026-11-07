@@ -1,6 +1,6 @@
 # RF-DETR-Seg 强基线及误差诊断：五个执行块
 
-2026-11-07。候选训练未执行；[实际基础依赖安装与接口审查](RFDETR_RUNTIME_PREPARATION_STATUS_20261107_02.md)已完成，真实模型资格与完整训练依赖仍待。未修改当前活动模型。
+2026-11-07。候选SAR训练未执行；[CPU COCO Nano312限定schema严格加载与一次合成前向](RFDETR_SCHEMA_COMPAT_CPU_FORWARD_ACTUAL_RESULT_20261107_02.md)已真实通过，完整训练依赖、576/真实SAR与训练资格仍待。未修改当前活动主模型。
 
 ## 研究主张与对照范围
 
@@ -16,6 +16,8 @@
 - YAML 使用官方 Lightning CLI 入口，除训练依赖还须核对该版 CLI extra/jsonargparse 下限；实际解析及构造验证完成前不得将静态字段名检查当执行成功。CLI全局seed_everything与train_config.seed均为5201，运行前核实模型构造前已生效；重复时同步更改两处并记录完整状态。
 - 不使用 DOFA-CLIP 作未见过测试数据的干净对照；其数据重叠风险未排除。没有逐样本元数据时不伪造雷达波长、looks、VV/VH 或配对光学。
 - P0 出口：独立来源/资源执行资格、隔离依赖、类别映射及输入列表均核实；否则只做普通源码准备，不报已训练。
+
+P0新增必须明示的初始化政策：现num_classes=1的官方loader保留原行0/1，boat9被截掉；[源码核查与初始化对照](RFDETR_SINGLE_CLASS_TRANSFER_INITIALIZATION_REVIEW_20261107_01.md)仅建议默认与boat9/1在相同预算下检验。当前YAML未改，不能假称已保留船行，后续模块不得享有对照没有的初始化。独立[canonical导出候选](code/RFDETR_CANONICAL_EXPORT_DRAFT_20261107_01/README.md)固定allclass top100后过滤slot1、不补选、无分数阈值；7项合成测试不替代真实codec/原GT核验。
 
 ## P1：真实接口与基线长训（待执行）
 
@@ -59,3 +61,6 @@ P2 出口：若没有覆盖/梯度缺陷，关闭本轮采样路线；这只限�
 
 
 执行更新：原始state的首次CPU严格检查实际失败，尚未前向；新的限定schema兼容需独立资格，原失败不重跑或升级。[已核证据与后续边界](RFDETR_RAW_STRICT_PROBE_ACTUAL_RESULT_20261107_01.md)。
+
+
+最新执行限定：上述历史待执行清单中的CPU COCO312空schema兼容和合成forward现已完成；576/SAR数据接口、完整train/CLI依赖、单类初始化、loss/optimizer/BF16、canonical评价和所有性能主张仍未完成，不能由一次CPU输出检查推定通过。
