@@ -57,6 +57,7 @@
 - [RF-DETR v02空schema兼容、离线诊断与待执行真实验证](research_round_20260925_global/RFDETR_V02_CANDIDATE_STATUS_20261107_02.md)
 - [RF-DETR实际基础依赖安装、数据接口与待执行CPU探针](research_round_20260925_global/RFDETR_RUNTIME_PREPARATION_STATUS_20261107_02.md)
 - [2026-11-07数学、物理与雷达方法溯源、30条原文源码索引和后续实验](research_round_20260925_global/PRIMARY_METHODS_SOURCE_AUDIT_AND_NEXT_TEST_20261107.md)
+- [完整双标注复评：FULL相对PLAIN从−0.166点变为+0.786点](research_round_20260925_global/MAIN_E50_DEV187_DUAL_GT_ACTUAL_RESULT_20261107.md)
 - [固定50轮整集DEV187实测：PLAIN 68.423，FULL 68.256，停止FULL自动扩训](research_round_20260925_global/MAIN_E50_DEV187_ACTUAL_RESULT_20261107.md)
 - [分片恢复和逐步验收记录](research_round_20260925_global/MAIN_E50_FIRST_SHARD_CORRECTED_PREDICTION_20261107.md)
 - [主线固定50轮已验收，首片原始失败和根因记录](research_round_20260925_global/MAIN_E50_ENDPOINT_AND_FIRST_SHARD_IMPORT_FAILURE_20261107.md)
