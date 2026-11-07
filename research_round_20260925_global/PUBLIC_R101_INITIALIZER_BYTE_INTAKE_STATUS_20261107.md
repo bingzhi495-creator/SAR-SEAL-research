@@ -1,0 +1,11 @@
+# 官方R101 V1初始化候选：已完成私有字节取得，未加载模型
+
+2026-11-07。Root在本地已有缓存找到与Torchvision显式ImageNet1K V1同名的resnet101-63fe2227.pth，178793939字节。没有重复联网下载；逐块取得独立私有副本，检查原文件尺寸/时间身份稳定，并重新计算副本完整SHA与源流一致。观察SHA256为63fe2227b86e8f1f2063f43a75c84d195911b6a0eace650907dd3dc62dd49a0a，前8位与[官方权重文件名](https://download.pytorch.org/models/resnet101-63fe2227.pth)一致。
+
+核验强度需明确：取得了本地源/私有副本的完整字节一致性和官方文件名的8位SHA前缀匹配，未取得独立官方完整256位预期摘要，也没有认证缓存此前的全部获取历史。不能将本次自身计算的完整SHA误写成与独立官方完整SHA比对通过。
+
+全过程只用普通字节流和标准库，没有导入Torch、反序列化tensor、执行Detectron2转换器、构造或加载模型、做前向/训练/AP。权重及原缓存位置保持私有，发布只有来源、版本、字节层事实及范围。当前随机构造初值的DiffSAR正式512轨迹和主PLAIN/FULL不变。
+
+这项候选为另一条公开预训练参考提供实际输入准备，仍须固定映射和允许名单，验证逐key的dtype/shape/numel覆盖、载入后相等性、FrozenBN、未加载DCN offset/mask及SCJE/IAMR初始化，并按原资源资格完成真实前向。DCN调制与普通卷积不因权重尺寸相同而函数等价。只有之后从独立update0按预锁配方执行，才可称公开ImageNet骨干初始化的同协议适配；论文实际初值仍未知，也不自动匹配项目COCO教师的上游信息和成本。
+
+[官方入口及加载风险原始来源](DIFFSAR_INITIALIZATION_GAP_NEW_EVIDENCE_20261107_02.md)、[不含私有路径的字节层安全摘要](results/PUBLIC_R101_INITIALIZER_BYTE_INTAKE_PUBLIC_SAFE_20261107.json)。没有新增方法效果或强复现资格。

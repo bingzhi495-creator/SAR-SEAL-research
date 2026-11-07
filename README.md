@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **31232/37050次正式更新（84.30%，42轮+110图）**，下一31232→31488已实际接续、尚未接收。最新每臂新增256更新/627匹配实例访问；自30464三个已接收段各新增768更新/1805访问，原771来源、完整状态恢复及固定配方保持，本机2816独立。最新段原tool/SSH0后，首次严格进程快照为UNKNOWN；保留旧失败，以相同冻结算法另做一次独立03观测并经原接受器接收，没有重跑训练，也没有把旧快照改成成功。主端点评价的GPU/CPU资源衔接候选已完成各12项有限合成测试与独立静态复核，未部署或真实运行。原参考数据人口/顺序/角色桥另已实际通过；最后186的普通源码合同静态允许，真实末段准备仍待。N26两GT既有排序收益、medium/AR10代价和R跨GT反转保留；DiffSAR仍正式512、无端点AP。**FULL/PLAIN最终AP、完整外部强对照、容量/成本、重复与跨集仍缺，不宣称创新成立、SOTA或TGRS就绪。**
+DGX PLAIN/FULL各严格接收 **31488/37050次正式更新（84.99%，42轮+366图）**，下一31488→31744已实际运行、尚未接收。本轮自31232每臂新增256更新/567匹配实例访问，原771来源、完整状态恢复和配方保持，本机2816独立。新增部分成本实测：26368→31232共19段，两臂owner合计5.586664小时，已经涵盖两臂、不得再乘2；从31232边界按最近8段线性外推余6.764小时owner执行，未扣运行进度且不含段间核验/终点评价，不是完成承诺或推理FPS。外部强对照已定位官方ImageNet R101及COCO迁移入口；Root从已有缓存取得179MB V1候选并完成字节层验证，未加载张量/模型或修改原生512轨迹。论文实际初值仍未知，候选不能冒称作者论文复现。**尚无FULL/PLAIN端点AP；完整外部公平性、容量/成本、重复与跨集仍缺，不宣称SOTA或TGRS就绪。**
 
-全局DGX账户128正常/8失败/136总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户129正常/8失败/137总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -38,6 +38,9 @@ DGX PLAIN/FULL各严格接收 **31232/37050次正式更新（84.30%，42轮+110�
 - [N26结果后研究取舍：先检验排序/ignore解释，不追加尺度模块](research_round_20260925_global/N26_POST_DUALGT_RESEARCH_DECISION_20261107_01.md)
 - [质量后校准直接先例：2024 mask-IoU校准与2025折衷记录](research_round_20260925_global/SCALE_CONDITIONED_MASK_QUALITY_PRIMARY_REVIEW_20261107_01.md)
 - [官方COCO尺度分组的竞争解释：未执行的新诊断设计](research_round_20260925_global/COCO_SCALE_GROUP_RANKING_ALTERNATIVE_REVIEW_20261107_01.md)
+- [已接收19段的两臂部分成本：5.59小时及限定ETA](research_round_20260925_global/MAIN_E50_PARTIAL_PAIRED_COST_20261107_01.md)
+- [外部DiffSAR公开预训练新入口：ImageNet/COCO与迁移边界](research_round_20260925_global/DIFFSAR_INITIALIZATION_GAP_NEW_EVIDENCE_20261107_02.md)
+- [R101 V1候选已私有取得：仅字节核验，未加载模型](research_round_20260925_global/PUBLIC_R101_INITIALIZER_BYTE_INTAKE_STATUS_20261107.md)
 - [31232严格接收：旧UNKNOWN保留、新同算法观察通过，无重训](research_round_20260925_global/U57_STRICT_CENSUS_UNKNOWN_AND_FRESH_OBSERVATION_20261107.md)
 - [主E50评价资源衔接候选：有限验证完成，真实运行待](research_round_20260925_global/MAIN_E50_ENDPOINT_RESOURCE_CLOSURE_SOURCE_STATUS_20261107.md)
 - [原参考数据人口/顺序/角色桥：真实I/O通过，无新AP](research_round_20260925_global/MAIN_E50_REFERENCE_ORDER_ROLE_BRIDGE_STATUS_20261107.md)

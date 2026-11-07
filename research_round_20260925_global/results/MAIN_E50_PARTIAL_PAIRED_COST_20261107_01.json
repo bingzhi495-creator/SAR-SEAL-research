@@ -1,0 +1,467 @@
+{
+  "AP": false,
+  "all20_including_boundary_segment": {
+    "both_arm_optimizer_updates_per_owner_second": 0.48390637447269036,
+    "common_cursor_increments_per_owner_second": 0.24195318723634518,
+    "matched_instance_visits_both_arms": 23048,
+    "matched_instance_visits_both_arms_per_owner_second": 1.0891673944186102,
+    "matched_instance_visits_per_arm": 11524,
+    "maximum_group_RSS_over_segments_bytes": 13056876544,
+    "minimum_available_RAM_over_segments_bytes": 56857452544,
+    "owner_seconds_per_common_cursor_increment": 4.133030903301051,
+    "owner_segment_seconds_max": 1149.3866492728703,
+    "owner_segment_seconds_mean": 1058.055911245069,
+    "owner_segment_seconds_min": 980.4465164130088,
+    "owner_segment_seconds_sample_SD": 41.04274805296888,
+    "paired_owner_elapsed_hours_sum": 5.878088395805939,
+    "paired_owner_elapsed_seconds_sum": 21161.11822490138,
+    "segments": 20,
+    "start": 26112,
+    "stop": 31232,
+    "total_updates_both_arms": 10240,
+    "updates_per_arm": 5120
+  },
+  "computed_UTC": "2026-11-07T00:52:19.804927+00:00",
+  "date": "2026-11-07",
+  "evidence_level": "AGGREGATION_OF_ORDINARY_ACCEPTED_SAFE_SUMMARIES_NO_INDEPENDENT_EXECUTION_REPLAY",
+  "input_summary_count": 20,
+  "limitations": [
+    "Only ordinary ended STRICT_ROOT_ACCEPTED safe scalar summaries were read; no original qualification replay or actual scientific task was executed.",
+    "The 26368 file is a left-boundary observation and its 26112->26368 segment is excluded from the primary26368->31232 cost.",
+    "Each owner duration already covers both PLAIN and FULL; do not multiply summed time by2. Per-arm updates are4864, both-arm optimizer updates9728.",
+    "Owner elapsed includes managed execution, restore/IO and termination scope; it is not isolated GPU training time, GPU-hours, CUDA utilization, model FLOPs, inference FPS or latency.",
+    "Sum of segment owner durations is not uninterrupted calendar wall time and excludes between-segment delays.",
+    "Group CPU RSS and host available RAM are not GPU VRAM or whole-machine memory peaks.",
+    "Current partial window excludes earlier training, teacher pretraining/projectE24/cache generation, scientific failures/repeated compute, and final prediction/evaluation; it is not full-system cost.",
+    "No matched-cost external-method or architecture-efficiency claim is supported.",
+    "The latest8 duration SD is variation of8 segments, not training-seed uncertainty.",
+    "The remaining-time projection is measured from the accepted31232 boundary, does not subtract already-running work, and provides no AP or publication-readiness prediction."
+  ],
+  "new_training": false,
+  "ordinary_input_summaries": [
+    {
+      "bytes": 1700,
+      "name": "U57_FORMAL26368_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "d5e6d2922554674083180d8dbd1707f3b35f4866c81d1f699ddbef7ab9cb1865"
+    },
+    {
+      "bytes": 1700,
+      "name": "U57_FORMAL26624_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "87f9b988dbfbd0d27d7566eb42d0fbdecd2bda38a4810aba9918776573c12015"
+    },
+    {
+      "bytes": 1700,
+      "name": "U57_FORMAL26880_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "d2d67eaa5a0f1697a690068c28db77c7e30072f5edd5a0dba4719c2e01365467"
+    },
+    {
+      "bytes": 1700,
+      "name": "U57_FORMAL27136_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "97a003bb97e1aef1a84e3dbd7a0b20848e46ba6ab9e7345ce331fb172ed9b54b"
+    },
+    {
+      "bytes": 1699,
+      "name": "U57_FORMAL27392_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "25c2007d14574728486bb130d12605d93386a3bdfbf73581e130cb8fa99d12d0"
+    },
+    {
+      "bytes": 1700,
+      "name": "U57_FORMAL27648_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "ec7168156fa1e7c671412661b7ae3c3a1fd1c4d9e5a4b081533fc4c443fa1045"
+    },
+    {
+      "bytes": 1700,
+      "name": "U57_FORMAL27904_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "e6ce0f47609ee72dfd48fa9f8b86f0881606af61b7a65ec1aae676d4073d8e3e"
+    },
+    {
+      "bytes": 1696,
+      "name": "U57_FORMAL28160_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "0810879a13828bc82e66ec51c9fb0a1e188ac125faab1ea92bbf26f595afa689"
+    },
+    {
+      "bytes": 1696,
+      "name": "U57_FORMAL28416_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "cdcec9a026e44e1b55cd3f4e2e1d0f5f59b487725840ebb43e18d2dee4e2947b"
+    },
+    {
+      "bytes": 1700,
+      "name": "U57_FORMAL28672_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "53b38a4992da57b0aefdbd6318bffa53d3a7aa62fc4ab03dbd98956e0d142e75"
+    },
+    {
+      "bytes": 1698,
+      "name": "U57_FORMAL28928_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "5f5457ba5acd467d3939eba5f3189b800064cbb2e3a7ac38f78a6aa4921e755d"
+    },
+    {
+      "bytes": 1698,
+      "name": "U57_FORMAL29184_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "4a7e0b5175a76dcf66821ab568e030b7fd56e69dabd2b84bca3e0f0df9c47f1f"
+    },
+    {
+      "bytes": 1699,
+      "name": "U57_FORMAL29440_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "2b5ed5aad62d93d70227198ba78eeb2b1ad3734fd4a2108e8a02bf489a0ed449"
+    },
+    {
+      "bytes": 1698,
+      "name": "U57_FORMAL29696_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "705e2a5a38b467c61968aa217e725ad7674386cc4e42be0a28ed623722a99fe2"
+    },
+    {
+      "bytes": 1698,
+      "name": "U57_FORMAL29952_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "e2f5224ff199d81f2265f844fa0b09fa2939464f2b63c9104b3b061c4ab8d32f"
+    },
+    {
+      "bytes": 1700,
+      "name": "U57_FORMAL30208_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "8f72f53cb0b606ebaa3e53fd25776f6aababdc9acf6c4f2e32f9923ac5b053de"
+    },
+    {
+      "bytes": 1698,
+      "name": "U57_FORMAL30464_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "4e63d66a32f4397b9cdab5ca77de24db5d898ec19a4813c8d0d094f050a4d22b"
+    },
+    {
+      "bytes": 1697,
+      "name": "U57_FORMAL30720_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "33db432d31dddb2a537563af87d89d72fe7799c11a2aae5c60ce68f402bb3f2c"
+    },
+    {
+      "bytes": 1700,
+      "name": "U57_FORMAL30976_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "9e44828c3ef8c4d974ebd5a37b06678d7bdeeff25b989352fbaf8aaede5ffae0"
+    },
+    {
+      "bytes": 1700,
+      "name": "U57_FORMAL31232_PUBLIC_SAFE_ACTUAL_SNAPSHOT_20261021_01.json",
+      "sha256": "cabaf76078a1801c73e4f06890c2e1c7dc3025cba249dd0fa3995999e213826c"
+    }
+  ],
+  "original_execution_replayed": false,
+  "primary_interval": {
+    "both_arm_optimizer_updates_per_owner_second": 0.4836915649083942,
+    "common_cursor_increments_per_owner_second": 0.2418457824541971,
+    "matched_instance_visits_both_arms": 21846,
+    "matched_instance_visits_both_arms_per_owner_second": 1.0862177145342085,
+    "matched_instance_visits_per_arm": 10923,
+    "maximum_group_RSS_over_segments_bytes": 13056876544,
+    "minimum_available_RAM_over_segments_bytes": 56857452544,
+    "owner_seconds_per_common_cursor_increment": 4.134866400613742,
+    "owner_segment_seconds_max": 1149.3866492728703,
+    "owner_segment_seconds_mean": 1058.525798557118,
+    "owner_segment_seconds_min": 980.4465164130088,
+    "owner_segment_seconds_sample_SD": 42.112108600707984,
+    "paired_owner_elapsed_hours_sum": 5.5866639368292335,
+    "paired_owner_elapsed_seconds_sum": 20111.99017258524,
+    "segments": 19,
+    "start": 26368,
+    "stop": 31232,
+    "total_updates_both_arms": 9728,
+    "updates_per_arm": 4864
+  },
+  "recent8_interval": {
+    "both_arm_optimizer_updates_per_owner_second": 0.4778572427595206,
+    "common_cursor_increments_per_owner_second": 0.2389286213797603,
+    "matched_instance_visits_both_arms": 9220,
+    "matched_instance_visits_both_arms_per_owner_second": 1.0756454536725535,
+    "matched_instance_visits_per_arm": 4610,
+    "maximum_group_RSS_over_segments_bytes": 13056876544,
+    "minimum_available_RAM_over_segments_bytes": 56896061440,
+    "owner_seconds_per_common_cursor_increment": 4.185350395550017,
+    "owner_segment_seconds_max": 1149.3866492728703,
+    "owner_segment_seconds_mean": 1071.4497012608044,
+    "owner_segment_seconds_min": 1016.8516766540706,
+    "owner_segment_seconds_sample_SD": 50.778432284619356,
+    "paired_owner_elapsed_hours_sum": 2.380999336135121,
+    "paired_owner_elapsed_seconds_sum": 8571.597610086435,
+    "segments": 8,
+    "start": 29184,
+    "stop": 31232,
+    "total_updates_both_arms": 4096,
+    "updates_per_arm": 2048
+  },
+  "remaining_fixed_budget_projection": {
+    "accepted_prefix_at_estimate": 31232,
+    "assumption": "Future owner time per common cursor increment equals recent8 mean; no change of frozen recipe or hardware",
+    "basis_segments": 8,
+    "basis_start": 29184,
+    "basis_stop": 31232,
+    "excluded": "Inter-segment postchecks, scheduling/idle/network interruptions, endpoint prediction/COCO, other research or baseline jobs, unknown future failures",
+    "not_a_completion_time_guarantee": true,
+    "not_a_statistical_confidence_interval": true,
+    "remaining_paired_owner_hours_linear": 6.763991278141667,
+    "remaining_paired_owner_seconds_linear": 24350.36860131,
+    "remaining_total_updates_both_arms": 11636,
+    "remaining_updates_per_arm": 5818,
+    "running_next_segment_not_deducted": true,
+    "target_per_arm": 37050
+  },
+  "rows": [
+    {
+      "include_in_primary_interval": false,
+      "matched_instance_visits_both_arms": 1202,
+      "matched_instance_visits_per_arm": 601,
+      "minimum_available_RAM_bytes": 57210712064,
+      "observed_UTC": "2026-11-06T17:30:51.703665+00:00",
+      "owner_elapsed_seconds": 1049.1280523161404,
+      "peak_group_RSS_bytes": 13014753280,
+      "start": 26112,
+      "stop": 26368,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1086,
+      "matched_instance_visits_per_arm": 543,
+      "minimum_available_RAM_bytes": 57146318848,
+      "observed_UTC": "2026-11-06T18:01:37.733331+00:00",
+      "owner_elapsed_seconds": 1033.6820132120047,
+      "peak_group_RSS_bytes": 13019160576,
+      "start": 26368,
+      "stop": 26624,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1208,
+      "matched_instance_visits_per_arm": 604,
+      "minimum_available_RAM_bytes": 57230393344,
+      "observed_UTC": "2026-11-06T18:20:36.392618+00:00",
+      "owner_elapsed_seconds": 1069.0939390540589,
+      "peak_group_RSS_bytes": 13021044736,
+      "start": 26624,
+      "stop": 26880,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1184,
+      "matched_instance_visits_per_arm": 592,
+      "minimum_available_RAM_bytes": 57041555456,
+      "observed_UTC": "2026-11-06T18:47:00.686463+00:00",
+      "owner_elapsed_seconds": 1042.2856117498595,
+      "peak_group_RSS_bytes": 13051793408,
+      "start": 26880,
+      "stop": 27136,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1046,
+      "matched_instance_visits_per_arm": 523,
+      "minimum_available_RAM_bytes": 57005928448,
+      "observed_UTC": "2026-11-06T19:17:34.626003+00:00",
+      "owner_elapsed_seconds": 980.4465164130088,
+      "peak_group_RSS_bytes": 13016559616,
+      "start": 27136,
+      "stop": 27392,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1148,
+      "matched_instance_visits_per_arm": 574,
+      "minimum_available_RAM_bytes": 57306910720,
+      "observed_UTC": "2026-11-06T19:41:55.531946+00:00",
+      "owner_elapsed_seconds": 1029.4338831619825,
+      "peak_group_RSS_bytes": 13007437824,
+      "start": 27392,
+      "stop": 27648,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1216,
+      "matched_instance_visits_per_arm": 608,
+      "minimum_available_RAM_bytes": 57238958080,
+      "observed_UTC": "2026-11-06T20:00:50.798205+00:00",
+      "owner_elapsed_seconds": 1080.7951092589647,
+      "peak_group_RSS_bytes": 13033549824,
+      "start": 27648,
+      "stop": 27904,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1076,
+      "matched_instance_visits_per_arm": 538,
+      "minimum_available_RAM_bytes": 57142255616,
+      "observed_UTC": "2026-11-06T20:24:54.339001+00:00",
+      "owner_elapsed_seconds": 1108.6108304630034,
+      "peak_group_RSS_bytes": 13015670784,
+      "start": 27904,
+      "stop": 28160,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1178,
+      "matched_instance_visits_per_arm": 589,
+      "minimum_available_RAM_bytes": 57223917568,
+      "observed_UTC": "2026-11-06T20:45:08.138966+00:00",
+      "owner_elapsed_seconds": 1065.8573822199833,
+      "peak_group_RSS_bytes": 13011779584,
+      "start": 28160,
+      "stop": 28416,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1188,
+      "matched_instance_visits_per_arm": 594,
+      "minimum_available_RAM_bytes": 57148829696,
+      "observed_UTC": "2026-11-06T21:05:39.757926+00:00",
+      "owner_elapsed_seconds": 1059.2353340811096,
+      "peak_group_RSS_bytes": 13044649984,
+      "start": 28416,
+      "stop": 28672,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1108,
+      "matched_instance_visits_per_arm": 554,
+      "minimum_available_RAM_bytes": 56857452544,
+      "observed_UTC": "2026-11-06T21:26:32.845374+00:00",
+      "owner_elapsed_seconds": 1019.9882660619915,
+      "peak_group_RSS_bytes": 13034418176,
+      "start": 28672,
+      "stop": 28928,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1188,
+      "matched_instance_visits_per_arm": 594,
+      "minimum_available_RAM_bytes": 57021296640,
+      "observed_UTC": "2026-11-06T21:45:20.734741+00:00",
+      "owner_elapsed_seconds": 1050.9636768228374,
+      "peak_group_RSS_bytes": 13018419200,
+      "start": 28928,
+      "stop": 29184,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1106,
+      "matched_instance_visits_per_arm": 553,
+      "minimum_available_RAM_bytes": 56896061440,
+      "observed_UTC": "2026-11-06T22:05:06.607069+00:00",
+      "owner_elapsed_seconds": 1028.000723854173,
+      "peak_group_RSS_bytes": 13041528832,
+      "start": 29184,
+      "stop": 29440,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1134,
+      "matched_instance_visits_per_arm": 567,
+      "minimum_available_RAM_bytes": 56921006080,
+      "observed_UTC": "2026-11-06T22:24:20.835004+00:00",
+      "owner_elapsed_seconds": 1022.8018244360574,
+      "peak_group_RSS_bytes": 13018005504,
+      "start": 29440,
+      "stop": 29696,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1094,
+      "matched_instance_visits_per_arm": 547,
+      "minimum_available_RAM_bytes": 56995561472,
+      "observed_UTC": "2026-11-06T22:41:37.026513+00:00",
+      "owner_elapsed_seconds": 1016.8516766540706,
+      "peak_group_RSS_bytes": 13008609280,
+      "start": 29696,
+      "stop": 29952,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1186,
+      "matched_instance_visits_per_arm": 593,
+      "minimum_available_RAM_bytes": 57109929984,
+      "observed_UTC": "2026-11-06T23:02:59.263889+00:00",
+      "owner_elapsed_seconds": 1069.5900745920371,
+      "peak_group_RSS_bytes": 13009657856,
+      "start": 29952,
+      "stop": 30208,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1090,
+      "matched_instance_visits_per_arm": 545,
+      "minimum_available_RAM_bytes": 57088847872,
+      "observed_UTC": "2026-11-06T23:22:10.622388+00:00",
+      "owner_elapsed_seconds": 1063.5975207958836,
+      "peak_group_RSS_bytes": 13022097408,
+      "start": 30208,
+      "stop": 30464,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1114,
+      "matched_instance_visits_per_arm": 557,
+      "minimum_available_RAM_bytes": 57092902912,
+      "observed_UTC": "2026-11-06T23:40:36.461068+00:00",
+      "owner_elapsed_seconds": 1082.437997473171,
+      "peak_group_RSS_bytes": 13013352448,
+      "start": 30464,
+      "stop": 30720,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1242,
+      "matched_instance_visits_per_arm": 621,
+      "minimum_available_RAM_bytes": 57133993984,
+      "observed_UTC": "2026-11-07T00:03:50.754930+00:00",
+      "owner_elapsed_seconds": 1138.9311430081725,
+      "peak_group_RSS_bytes": 13003444224,
+      "start": 30720,
+      "stop": 30976,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    },
+    {
+      "include_in_primary_interval": true,
+      "matched_instance_visits_both_arms": 1254,
+      "matched_instance_visits_per_arm": 627,
+      "minimum_available_RAM_bytes": 56928669696,
+      "observed_UTC": "2026-11-07T00:39:19.117617+00:00",
+      "owner_elapsed_seconds": 1149.3866492728703,
+      "peak_group_RSS_bytes": 13056876544,
+      "start": 30976,
+      "stop": 31232,
+      "total_updates_both_arms": 512,
+      "updates_per_arm": 256
+    }
+  ],
+  "schema": "Root-main-E50-partial-paired-owner-cost-from-safe-summaries-v1",
+  "scientific_sources_or_payloads_read": false,
+  "tests_or_scientific_suites_run": false
+}
