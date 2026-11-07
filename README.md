@@ -8,6 +8,7 @@
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
 - [RF-DETR 不间断长训候选和首个 E24 端点](research_round_20260925_global/RFDETR_NATIVE_CONTINUOUS_E24_STATUS_20261107.md)
+- [E24 固定 DEV187 的原生导出与 CPU 评价协议](research_round_20260925_global/RFDETR_E24_DEV187_EVALUATION_CHAIN_20261107.md)
 - [RF-DETR E2 原生接续，第 187 次更新已验收](research_round_20260925_global/RFDETR_NATIVE_E2_ACTUAL_ACCEPTED_20261107.md)
 - [RF-DETR BF16 E1 实测与原生断点验收](research_round_20260925_global/RFDETR_NATIVE_E1_ACTUAL_ACCEPTED_20261107.md)
 - [RF-DETR E1 的两次实际退出、根因和完整指纹修正](research_round_20260925_global/RFDETR_NATIVE_E1_FIRST_ATTEMPT_ACTUAL_FAILURE_20261107.md)
