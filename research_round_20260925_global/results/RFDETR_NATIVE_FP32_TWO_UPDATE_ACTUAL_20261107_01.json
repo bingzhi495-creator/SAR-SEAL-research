@@ -1,0 +1,209 @@
+{
+  "AP": null,
+  "SSH_exit": 0,
+  "actual_microbatches": 8,
+  "actual_optimizer_updates": 2,
+  "actual_step_return_events": [
+    {
+      "class_embed.weight": 1,
+      "segmentation_head.bias": 1
+    },
+    {
+      "class_embed.weight": 2,
+      "segmentation_head.bias": 2
+    }
+  ],
+  "checkpoint_written": false,
+  "child_exit": 0,
+  "cuda_peak_allocated_bytes": 2478671360,
+  "cuda_peak_reserved_bytes": 2518679552,
+  "cudnn_tf32": false,
+  "epoch_schedule": 100,
+  "matched_instance_visits": 15,
+  "matmul_precision": "highest",
+  "optimizer_steps_planned": 18600,
+  "owner_seconds": 18.78079006401822,
+  "precision": "32-true",
+  "resources_closed": true,
+  "sampled_resource": {
+    "available_limit_bytes": 17179869184,
+    "minimum_available_ram_bytes": 68494774272,
+    "peak_worker_rss_bytes": 3172397056,
+    "rss_limit_bytes": 32212254720
+  },
+  "status": "ACTUAL_NATIVE_SSDD_FP32_TWO_OPTIMIZER_UPDATES_PASSED",
+  "terminal_chunk": "a68101",
+  "tool_exit": 0,
+  "train_loader_batches": 744,
+  "training": true,
+  "training_body_seconds": 8.125978305004537,
+  "unexpected_audit_denials": 0,
+  "updates": [
+    {
+      "adam_steps_after": {
+        "class_embed.weight": 1,
+        "segmentation_head.bias": 1
+      },
+      "adam_steps_before": {
+        "class_embed.weight": 0,
+        "segmentation_head.bias": 0
+      },
+      "ema_updates": 1,
+      "global_step": 1,
+      "gradient_norm_before_clip": 850.3229370117188,
+      "gradient_tensors": 543,
+      "lr_after_scheduler": [
+        1.7921146953405018e-07,
+        5.793125780755272e-09,
+        7.241407225944089e-09,
+        7.241407225944089e-09,
+        9.05175903243011e-09,
+        9.05175903243011e-09,
+        1.1314698790537637e-08,
+        1.1314698790537637e-08,
+        1.4143373488172046e-08,
+        1.4143373488172046e-08,
+        1.767921686021506e-08,
+        1.767921686021506e-08,
+        2.2099021075268822e-08,
+        2.2099021075268822e-08,
+        2.7623776344086023e-08,
+        2.7623776344086023e-08,
+        3.452972043010754e-08,
+        3.452972043010754e-08,
+        4.316215053763441e-08,
+        4.316215053763441e-08,
+        5.3952688172043006e-08,
+        5.3952688172043006e-08,
+        6.744086021505376e-08,
+        6.744086021505376e-08,
+        8.430107526881721e-08,
+        8.430107526881721e-08,
+        1.3172043010752685e-07,
+        1.254480286738351e-07
+      ],
+      "lr_used": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "max_abs_parameter_change": {
+        "class_embed.weight": 0.0,
+        "segmentation_head.bias": 0.0
+      },
+      "witness_gradient_norms": {
+        "class_embed.weight": 5.0764665603637695,
+        "segmentation_head.bias": 0.612128496170044
+      }
+    },
+    {
+      "adam_steps_after": {
+        "class_embed.weight": 2,
+        "segmentation_head.bias": 2
+      },
+      "adam_steps_before": {
+        "class_embed.weight": 1,
+        "segmentation_head.bias": 1
+      },
+      "ema_updates": 2,
+      "global_step": 2,
+      "gradient_norm_before_clip": 1697.0704345703125,
+      "gradient_tensors": 543,
+      "lr_after_scheduler": [
+        3.5842293906810036e-07,
+        1.1586251561510544e-08,
+        1.4482814451888178e-08,
+        1.4482814451888178e-08,
+        1.810351806486022e-08,
+        1.810351806486022e-08,
+        2.2629397581075274e-08,
+        2.2629397581075274e-08,
+        2.8286746976344093e-08,
+        2.8286746976344093e-08,
+        3.535843372043012e-08,
+        3.535843372043012e-08,
+        4.4198042150537643e-08,
+        4.4198042150537643e-08,
+        5.5247552688172046e-08,
+        5.5247552688172046e-08,
+        6.905944086021507e-08,
+        6.905944086021507e-08,
+        8.632430107526882e-08,
+        8.632430107526882e-08,
+        1.0790537634408601e-07,
+        1.0790537634408601e-07,
+        1.3488172043010752e-07,
+        1.3488172043010752e-07,
+        1.6860215053763442e-07,
+        1.6860215053763442e-07,
+        2.634408602150537e-07,
+        2.508960573476702e-07
+      ],
+      "lr_used": [
+        1.7921146953405018e-07,
+        5.793125780755272e-09,
+        7.241407225944089e-09,
+        7.241407225944089e-09,
+        9.05175903243011e-09,
+        9.05175903243011e-09,
+        1.1314698790537637e-08,
+        1.1314698790537637e-08,
+        1.4143373488172046e-08,
+        1.4143373488172046e-08,
+        1.767921686021506e-08,
+        1.767921686021506e-08,
+        2.2099021075268822e-08,
+        2.2099021075268822e-08,
+        2.7623776344086023e-08,
+        2.7623776344086023e-08,
+        3.452972043010754e-08,
+        3.452972043010754e-08,
+        4.316215053763441e-08,
+        4.316215053763441e-08,
+        5.3952688172043006e-08,
+        5.3952688172043006e-08,
+        6.744086021505376e-08,
+        6.744086021505376e-08,
+        8.430107526881721e-08,
+        8.430107526881721e-08,
+        1.3172043010752685e-07,
+        1.254480286738351e-07
+      ],
+      "max_abs_parameter_change": {
+        "class_embed.weight": 1.7881393432617188e-07,
+        "segmentation_head.bias": 1.7881393432617188e-07
+      },
+      "witness_gradient_norms": {
+        "class_embed.weight": 3.9601690769195557,
+        "segmentation_head.bias": 0.7532520890235901
+      }
+    }
+  ],
+  "validation": false,
+  "warmup_steps": 558
+}
