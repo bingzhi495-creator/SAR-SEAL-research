@@ -1,0 +1,116 @@
+{
+  "acceptance_sha256": "db534a69a502de85eaa3f2bd764f826505e58679361d478d232b5a2facbe3d91",
+  "actual_original_SSH_exit": 0,
+  "first_independent_post_exit": 1,
+  "first_independent_post_failure": "Dict-only JSON reader received an ordered record list",
+  "independent_post_sha256": "fc5f912309faf76b26397972c818e2f3b8589b2c48bb95202a29a00dc3ecccda",
+  "original_group_independently_reaped": true,
+  "original_rerun": false,
+  "schema": "RFDETR-E24-boundary-localization-public-summary-v1",
+  "status": "ACTUAL_RFDETR_E24_COMMON_BOUNDARY_LOCALIZATION_ACCEPTED",
+  "summary": {
+    "AP_recomputed": false,
+    "COCO_matching_recomputed": false,
+    "CPU_worker_elapsed_seconds": 0.8265427281148732,
+    "FN_minus_FP": {
+      "band": {
+        "instance_mean_pp": 1.1025258965423548,
+        "pixels": 3451,
+        "pooled_pp": 1.4733130117745503
+      },
+      "outside": {
+        "instance_mean_pp": 0.19632850108327354,
+        "pixels": 3571,
+        "pooled_pp": 1.52454383223614
+      },
+      "total": {
+        "instance_mean_pp": 1.2988543976256284,
+        "pixels": 7022,
+        "pooled_pp": 2.9978568440106903
+      }
+    },
+    "TEST": false,
+    "areas_pixels": {
+      "BG_band": 74660,
+      "BG_outside": 34555122,
+      "FG_band": 64497,
+      "FG_outside": 157267,
+      "GT_disagreement": 12470,
+      "GT_union": 234234
+    },
+    "band_definition": "dilate(Gi union Gf) minus erode(Gi intersection Gf), excluding Gi xor Gf",
+    "both_variants_use_same_query": true,
+    "errors": {
+      "FN": {
+        "band": {
+          "instance_mean_pp": 6.246873312053652,
+          "pixels": 14242,
+          "pooled_pp": 6.080244541783003
+        },
+        "outside": {
+          "instance_mean_pp": 0.7602047417683968,
+          "pixels": 7775,
+          "pooled_pp": 3.3193302424071653
+        },
+        "total": {
+          "instance_mean_pp": 7.007078053822049,
+          "pixels": 22017,
+          "pooled_pp": 9.399574784190168
+        }
+      },
+      "FP": {
+        "band": {
+          "instance_mean_pp": 5.144347415511297,
+          "pixels": 10791,
+          "pooled_pp": 4.6069315300084535
+        },
+        "outside": {
+          "instance_mean_pp": 0.5638762406851233,
+          "pixels": 4204,
+          "pooled_pp": 1.7947864101710256
+        },
+        "total": {
+          "instance_mean_pp": 5.708223656196421,
+          "pixels": 14995,
+          "pooled_pp": 6.401717940179479
+        }
+      }
+    },
+    "exposure_and_concentration": {
+      "FN": {
+        "band_error_rate": 0.2208164720839729,
+        "band_exposure_fraction": 0.29083620425317,
+        "concentration_minus_exposure_pp": 35.602758282045485,
+        "error_band_fraction": 0.6468637870736249,
+        "outside_error_rate": 0.04943821653620912
+      },
+      "FP": {
+        "band_error_rate": 0.1445352263594964,
+        "band_exposure_fraction": 0.0021559477330813114,
+        "concentration_minus_exposure_pp": 71.74839322269054,
+        "error_band_fraction": 0.7196398799599867,
+        "outside_error_rate": 0.00012166069041805149
+      }
+    },
+    "interpretation": "Descriptive fixed conditional cohort. Concentration versus exposure is not a causal test.",
+    "min_sampled_available_RAM_bytes": 74304466944,
+    "morphology": "Clipped Chebyshev neighborhood on the finite original image grid",
+    "new_training": false,
+    "original_raw_pairs_exact": true,
+    "peak_sampled_worker_RSS_bytes": 63455232,
+    "radius_pixels": 2,
+    "raw_IoU_threshold": 0.9,
+    "schema": "Root-RFDETR-E24-dual-GT-raw-mask-localization-v1",
+    "scope": {
+      "dual_raw_miss_pairs": 224,
+      "fixed_pairs": 377,
+      "images": 187,
+      "images_with_dual_miss_pairs": 121,
+      "other_fixed_pairs": 153
+    },
+    "selection": "Integer GT maximum among 100 natural raw queries, ascending query index on ties",
+    "shared_background": "outside Gi union Gf",
+    "shared_foreground": "Gi intersection Gf"
+  },
+  "verification_v02_exit": 0
+}
