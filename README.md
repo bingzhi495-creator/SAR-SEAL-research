@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-主实验 PLAIN/FULL 各接受 **35584/37050次正式更新（96.04%，48轮+16图）**，各新增256次更新与632次匹配实例访问。下一段35584→35840已启动。RF-DETR 原生 CLI、JPEG/PNG、RLE/polygon 和 faster_coco_eval 合成 CPU 探针已准备，等待 DGX 空档。新增 HRS 直接先例，冻结诊断将分别记录边界与实际错分覆盖。**暂无主实验端点或 RF-DETR SAR AP。**
+主实验 PLAIN/FULL 各接受 **35840/37050次正式更新（96.73%，48轮+272图）**，各新增256次更新与563次匹配实例访问，下一35840→36096原任务已接续。RF-DETR 首次原生CLI实际调用发现枚举名错误和被拒绝的Matplotlib字体枚举，原任务非零且资源闭合，未进入编解码。按官方实现准备第二版，待实际执行。**暂无主实验端点或 RF-DETR SAR AP。**
 
-全局DGX账户145正常/8失败/153总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户146正常/8失败/154总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -44,6 +44,7 @@
 - [单类迁移的boat分类行、强初始化与公平对照](research_round_20260925_global/RFDETR_SINGLE_CLASS_TRANSFER_INITIALIZATION_REVIEW_20261107_01.md)
 - [canonical预测导出候选：原GT、类别与top100顺序](research_round_20260925_global/code/RFDETR_CANONICAL_EXPORT_DRAFT_20261107_01/README.md)
 - [完整训练环境实际清单、两次解析失败与离线准备](research_round_20260925_global/RFDETR_FULL_TRAIN_PREPARATION_ACTUAL_STATUS_20261107_01.md)
+- [RF-DETR 原生 CLI 首次实测与修正](research_round_20260925_global/RFDETR_CLI_CODEC_ACTUAL_RESULT_20261107_01.md)
 - [RF-DETR 官方 CLI 与编解码检查候选](research_round_20260925_global/RFDETR_CLI_CODEC_QUALIFICATION_DRAFT_20261107_01/README.md)
 - [576训练资格接口：原生加载、更新计数、EMA及canonical导出](research_round_20260925_global/RFDETR_TRAINING_QUALIFICATION_INTERFACE_DRAFT_20261107_01/README.md)
 - [完整train/CLI依赖候选与实际执行缺口](research_round_20260925_global/RFDETR_FULL_TRAIN_CLI_DEPENDENCY_READINESS_20261107_01.md)

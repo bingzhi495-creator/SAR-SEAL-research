@@ -41,4 +41,6 @@ DGX 以 pip 25.0.1 的原生解析器、仅本地目录与二进制包实际执�
 
 [CLI 与编解码合成 CPU 检查](RFDETR_CLI_CODEC_QUALIFICATION_DRAFT_20261107_01/README.md) 已完成候选源码和静态接口检查，待真实执行。检查从官方 CLI 到原生 RLE、JPEG、PNG、OpenCV 和 faster_coco_eval，合成样本与真实 SAR 指标分别报告。
 
-原 PLAIN/FULL 已各接受35,584/37,050次正式更新，下一35,584→35,840原任务已接续。研究总目标继续进行。
+[首次实际 CLI 检查的失败原因与第二版修正](RFDETR_CLI_CODEC_ACTUAL_RESULT_20261107_01.md) 已记录。首次原任务在解析阶段退出，编解码未执行。
+
+原 PLAIN/FULL 已各接受35,840/37,050次正式更新，下一35,840→36,096原任务已接续。研究总目标继续进行。

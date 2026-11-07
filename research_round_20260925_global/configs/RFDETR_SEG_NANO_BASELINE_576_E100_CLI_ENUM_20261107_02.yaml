@@ -1,0 +1,63 @@
+# UNEXECUTED CANDIDATE. Pin upstream commit in the companion plan before use.
+# A dataset placeholder and runtime/source/resource admission remain required.
+# This is project-recipe adaptation (576), not the paper's default Nano (312).
+seed_everything: 5201
+model:
+  model_config:
+    class_path: rfdetr.config.RFDETRSegNanoConfig
+    init_args:
+      num_classes: 1
+      resolution: 576
+      positional_encoding_size: 48
+      pretrain_weights: rf-detr-seg-nano.pt
+      num_queries: 100
+      num_select: 100
+      group_detr: 13
+      mask_downsample_ratio: 4
+      compile: false
+      cuda_graphs: false
+      fused_optimizer: false
+  train_config:
+    class_path: rfdetr.config.SegmentationTrainConfig
+    init_args:
+      dataset_dir: /data/REQUIRES_QUALIFIED_SAR_COCO_SPLITS
+      dataset_file: roboflow
+      output_dir: output/rfdetr_seg_nano_576_e100_s5201
+      epochs: 100
+      seed: 5201
+      batch_size: 1
+      grad_accum_steps: 4
+      num_workers: 0
+      lr: 0.0001
+      lr_encoder: 0.00015
+      weight_decay: 0.0001
+      optimizer: adamw
+      lr_scheduler: cosine
+      lr_scheduler_kwargs:
+        min_factor: 0.05
+      warmup_epochs: 3.0
+      multi_scale: "OFF"
+      expanded_scales: false
+      square_resize_div_64: true
+      scale_jitter: true
+      augmentation_backend: "TV"
+      amp_dtype: bf16
+      mask_point_sample_ratio: 16
+      mask_ce_loss_coef: 5.0
+      mask_dice_loss_coef: 5.0
+      cls_loss_coef: 1.0
+      eval_max_dets: 100
+      eval_backend: faster_coco_eval
+      eval_masks_head_resolution: false
+      early_stopping: false
+      use_ema: true
+      eval_base_model: false
+      checkpoint_interval: 1
+      tensorboard: false
+      wandb: false
+      mlflow: false
+      run_test: false
+trainer:
+  accelerator: gpu
+  devices: 1
+  max_epochs: 100
