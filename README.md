@@ -6,7 +6,7 @@
 
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**，完成内部 DEV187 的固定 50 轮整集评价。整数栅格下 FULL 相比 PLAIN 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。RF-DETR 真实数据两步 FP32、BF16 均通过。原生 BF16 首个 E1 尝试在训练启动回调退出，未产生更新、断点或 AP，已独立核验进程退出。
 
-- [RF-DETR 首个 E1 实际失败与根因](research_round_20260925_global/RFDETR_NATIVE_E1_FIRST_ATTEMPT_ACTUAL_FAILURE_20261107.md)
+- [RF-DETR E1 的两次实际退出、根因和完整指纹修正](research_round_20260925_global/RFDETR_NATIVE_E1_FIRST_ATTEMPT_ACTUAL_FAILURE_20261107.md)
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)

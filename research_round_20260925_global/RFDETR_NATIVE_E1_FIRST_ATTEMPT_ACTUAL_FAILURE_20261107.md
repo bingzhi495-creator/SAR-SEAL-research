@@ -7,3 +7,9 @@
 错误来自项目 E1 审计回调在 `on_train_start` 读取 Lightning 的构造参数。固定 Lightning 2.6.6 源码将已注册的检查点回调公开为 `checkpoint_callbacks`，该入口先于首个训练批次。修复应核对实际回调及其归档条件，并单独记录真实恢复结果。E1 的验收仍是 186 次更新、原生断点、独立资源闭合。E2 的第 187 次更新需要另行验证。E1 本身不生成模型效果指标。 [Lightning 检查点接口](https://github.com/Lightning-AI/pytorch-lightning/blob/2.6.6/src/lightning/pytorch/trainer/trainer.py#L1256) · [训练启动次序](https://github.com/Lightning-AI/pytorch-lightning/blob/2.6.6/src/lightning/pytorch/loops/fit_loop.py#L375)
 
 新候选仅将该检查改为读取实际回调列表，要求明确存在保存完整状态的回调。原训练工作体对原生 `ModelCheckpoint` 的检查仍有效。回归测试在旧版重现同类属性错误，新版通过完整归档的接受以及缺失、仅权重和类型不明的拒绝。新候选状态为本地测试通过，真实 E1 结果需独立验收。 [修正源码](code/RFDETR_NATIVE_E1_CHECKPOINT_API_RECOVERY_20261107/e1_resume.py)
+
+## 两次修正记录
+
+第一次修正绑定了新的回调，但执行入口仍记录原回调的字节长度与 SHA-256，启动时按原规则拒绝。原始退出码 1，监督器运行约 0.145 秒，无资源越限。已独立确认原进程和进程组退出。该次在模型加载前中止，完成 0 次更新，无 checkpoint、AP 或 TEST。
+
+第二次修正重新绑定入口，并在启动前检查入口内全部七条依赖指纹与完整清单一致。测试从第一次修正的实际请求复现仅回调一项不一致，新入口对同一组依赖的检查全部通过。数据、模型、初始化、学习率计划、精度和验收规则沿用原设计。新的独立请求已启动，训练和归档结果待同一请求返回后核验。原两次失败均保留。
