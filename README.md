@@ -4,7 +4,7 @@
 
 ## 当前状态（2026-11-07）
 
-主实验 PLAIN/FULL 各接受 **36608/37050次正式更新（98.81%，49轮+299图）**，各新增256次更新与563次匹配实例访问，下一段36608→36864已接续。RF-DETR 用真实SSDD完成8个微批次和2次原生FP32 AdamW更新，首步零学习率参数不动，第二步两个见证参数均移动1.788e-7，EMA计数2。完整RF-DETR训练、主实验端点评估及SAR AP待实际完成。
+主实验 PLAIN/FULL 的严格验收仍为 **36608/37050次正式更新（98.81%）**。第一份36608→36864原任务远端已每组完成256次更新及578次匹配实例访问，SSH认证后超时返回255，已闭合为无正式额度的失败。已从36608启动一次固定恢复，仍待验收。RF-DETR 真实数据两步FP32已通过，原生BF16候选等待资源空档。端点评估元数据源码已暂存，实际端点AP待运行。
 
 全局DGX账户149正常/8失败/157总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
@@ -44,6 +44,8 @@
 - [单类迁移的boat分类行、强初始化与公平对照](research_round_20260925_global/RFDETR_SINGLE_CLASS_TRANSFER_INITIALIZATION_REVIEW_20261107_01.md)
 - [canonical预测导出候选：原GT、类别与top100顺序](research_round_20260925_global/code/RFDETR_CANONICAL_EXPORT_DRAFT_20261107_01/README.md)
 - [完整训练环境实际清单、两次解析失败与离线准备](research_round_20260925_global/RFDETR_FULL_TRAIN_PREPARATION_ACTUAL_STATUS_20261107_01.md)
+- [主实验 36,864 传输失败及有界恢复](research_round_20260925_global/U57_36864_SSH_CAPTURE_FAILURE_AND_RECOVERY_20261107.md)
+- [RF-DETR 原生 BF16 两步候选](research_round_20260925_global/RFDETR_TWO_UPDATE_BF16_QUALIFICATION_DRAFT_20261107_01/README.md)
 - [RF-DETR 真实数据两步 FP32 优化器实测](research_round_20260925_global/RFDETR_NATIVE_FP32_TWO_UPDATE_ACTUAL_20261107_01.md)
 - [RF-DETR 真实数据两次 FP32 优化器更新候选](research_round_20260925_global/RFDETR_TWO_UPDATE_FP32_QUALIFICATION_DRAFT_20261107_01/README.md)
 - [RF-DETR 原生 SSDD DataModule 两样本实测](research_round_20260925_global/RFDETR_NATIVE_SSDD_DATA_ENTRY_ACTUAL_20261107_01.md)
