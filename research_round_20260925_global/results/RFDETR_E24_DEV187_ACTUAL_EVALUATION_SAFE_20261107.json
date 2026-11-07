@@ -1,0 +1,445 @@
+{
+  "schema": "sar-seal-rfdetr-e24-dev187-dual-GT-actual-safe-v1",
+  "status": "ACTUAL_RFDETR_E24_DEV187_COCO_AND_ERROR_DIAG_ACCEPTED",
+  "training": {
+    "optimizer_updates": 4464,
+    "epoch": 24,
+    "full_schedule_epochs": 100,
+    "init": "COCO native first two slots",
+    "seed": 5201,
+    "fit_images": 741,
+    "image_size": 576
+  },
+  "GPU_export": {
+    "image_count": 187,
+    "native_count_total": 18700,
+    "unmapped_slot1_total": 3266,
+    "prediction_count": 15434,
+    "zero_prediction_images": 0,
+    "codec_roundtrip_masks": 15434,
+    "nonempty_masks": 10254,
+    "all_zero_masks": 5180,
+    "tensor_precision": "float32",
+    "autocast": false,
+    "float32_matmul_precision": "high",
+    "cudnn_tf32": true,
+    "cuda_peak_allocated_bytes": 247737856,
+    "cuda_peak_reserved_bytes": 429916160,
+    "timing_seconds": {
+      "input_pack_transfer": 0.19231764087453485,
+      "jpeg_read_decode_transform": 3.232319686561823,
+      "serialization_and_optional_write": 0.06834824685938656,
+      "setup_and_strict_load": 2.271200758870691,
+      "stock_postprocess_rle_roundtrip": 173.83978916192427,
+      "synchronized_cuda_forward": 7.574769760016352,
+      "worker_elapsed": 187.2910337129142
+    },
+    "eager_model_state": {
+      "class_slots": 2,
+      "ema_updates": 4464,
+      "raw_ema_classifier_max_abs_difference": 0.003087233752012253,
+      "strict_readback_exact": true,
+      "tensors": 545
+    },
+    "GT_read": false,
+    "AP": false,
+    "TEST": false,
+    "training": false
+  },
+  "CPU_evaluation": {
+    "CPU_eval_elapsed_seconds": 2.1479867671150714,
+    "CPU_worker_elapsed_seconds": 2.3749836010392755,
+    "TEST": false,
+    "annotations": 380,
+    "diagnostics": {
+      "GT_without_mapped_candidates": 0,
+      "float_assignment_recomputed": false,
+      "integer_assigned_same_rows": {
+        "INTEGER_PRIMARY": {
+          "GT_denominator": 377,
+          "mean_IoU": 0.8324179154333946,
+          "median_IoU": 0.8500669344042838,
+          "threshold_counts": {
+            "0.50": 377,
+            "0.75": 331,
+            "0.90": 60,
+            "0.95": 1
+          },
+          "threshold_fractions": {
+            "0.50": 1.0,
+            "0.75": 0.8779840848806366,
+            "0.90": 0.15915119363395225,
+            "0.95": 0.002652519893899204
+          }
+        },
+        "LOCAL_CANDIDATE_FLOAT": {
+          "GT_denominator": 377,
+          "mean_IoU": 0.8456754458925017,
+          "median_IoU": 0.8658088235294118,
+          "threshold_counts": {
+            "0.50": 377,
+            "0.75": 341,
+            "0.90": 86,
+            "0.95": 1
+          },
+          "threshold_fractions": {
+            "0.50": 1.0,
+            "0.75": 0.9045092838196287,
+            "0.90": 0.22811671087533156,
+            "0.95": 0.002652519893899204
+          }
+        }
+      },
+      "mapped_export_only_oracle": {
+        "INTEGER_PRIMARY": {
+          "all_GT": {
+            "GT_denominator": 380,
+            "mean_IoU": 0.8478902057824855,
+            "median_IoU": 0.8689396874596409,
+            "threshold_counts": {
+              "0.50": 377,
+              "0.75": 351,
+              "0.90": 103,
+              "0.95": 1
+            },
+            "threshold_fractions": {
+              "0.50": 0.9921052631578947,
+              "0.75": 0.9236842105263158,
+              "0.90": 0.2710526315789474,
+              "0.95": 0.002631578947368421
+            }
+          },
+          "integer_assigned_nonignored": {
+            "GT_denominator": 377,
+            "mean_IoU": 0.8533277303659739,
+            "median_IoU": 0.869894099848714,
+            "threshold_counts": {
+              "0.50": 377,
+              "0.75": 351,
+              "0.90": 103,
+              "0.95": 1
+            },
+            "threshold_fractions": {
+              "0.50": 1.0,
+              "0.75": 0.9310344827586207,
+              "0.90": 0.27320954907161804,
+              "0.95": 0.002652519893899204
+            }
+          },
+          "integer_effectively_ignored": {
+            "GT_denominator": 0,
+            "mean_IoU": null,
+            "median_IoU": null,
+            "threshold_counts": {
+              "0.50": 0,
+              "0.75": 0,
+              "0.90": 0,
+              "0.95": 0
+            },
+            "threshold_fractions": {
+              "0.50": null,
+              "0.75": null,
+              "0.90": null,
+              "0.95": null
+            }
+          },
+          "integer_unmatched_nonignored": {
+            "GT_denominator": 3,
+            "mean_IoU": 0.16457461645746166,
+            "median_IoU": 0.0,
+            "threshold_counts": {
+              "0.50": 0,
+              "0.75": 0,
+              "0.90": 0,
+              "0.95": 0
+            },
+            "threshold_fractions": {
+              "0.50": 0.0,
+              "0.75": 0.0,
+              "0.90": 0.0,
+              "0.95": 0.0
+            }
+          }
+        },
+        "LOCAL_CANDIDATE_FLOAT": {
+          "all_GT": {
+            "GT_denominator": 380,
+            "mean_IoU": 0.860182849360292,
+            "median_IoU": 0.8777777777777778,
+            "threshold_counts": {
+              "0.50": 378,
+              "0.75": 358,
+              "0.90": 123,
+              "0.95": 3
+            },
+            "threshold_fractions": {
+              "0.50": 0.9947368421052631,
+              "0.75": 0.9421052631578948,
+              "0.90": 0.3236842105263158,
+              "0.95": 0.007894736842105263
+            }
+          },
+          "integer_assigned_nonignored": {
+            "GT_denominator": 377,
+            "mean_IoU": 0.8656957032194672,
+            "median_IoU": 0.8782608695652174,
+            "threshold_counts": {
+              "0.50": 377,
+              "0.75": 358,
+              "0.90": 123,
+              "0.95": 3
+            },
+            "threshold_fractions": {
+              "0.50": 1.0,
+              "0.75": 0.9496021220159151,
+              "0.90": 0.32625994694960214,
+              "0.95": 0.007957559681697613
+            }
+          },
+          "integer_effectively_ignored": {
+            "GT_denominator": 0,
+            "mean_IoU": null,
+            "median_IoU": null,
+            "threshold_counts": {
+              "0.50": 0,
+              "0.75": 0,
+              "0.90": 0,
+              "0.95": 0
+            },
+            "threshold_fractions": {
+              "0.50": null,
+              "0.75": null,
+              "0.90": null,
+              "0.95": null
+            }
+          },
+          "integer_unmatched_nonignored": {
+            "GT_denominator": 3,
+            "mean_IoU": 0.16740088105726872,
+            "median_IoU": 0.0,
+            "threshold_counts": {
+              "0.50": 1,
+              "0.75": 0,
+              "0.90": 0,
+              "0.95": 0
+            },
+            "threshold_fractions": {
+              "0.50": 0.3333333333333333,
+              "0.75": 0.0,
+              "0.90": 0.0,
+              "0.95": 0.0
+            }
+          }
+        }
+      },
+      "mask_overlap_scope": "Original COCO mask.iou with original per-GT iscrowd flags",
+      "oracle_is_AP": false,
+      "oracle_is_one_to_one_recall": false,
+      "oracle_scope": "Max overlap within the retained mapped export, independently for each GT"
+    },
+    "float_GT_scope": "Local candidate restoration sensitivity",
+    "formal_training_budget_credit": 0,
+    "images": 187,
+    "images_without_mapped_rows": 0,
+    "mapped_rows": 15434,
+    "metrics_by_GT": {
+      "INTEGER_PRIMARY": {
+        "COCO": {
+          "iouType": "segm",
+          "maxDets": [
+            1,
+            10,
+            100
+          ],
+          "metrics": {
+            "AP": 0.6744334056814277,
+            "AP50": 0.9686734655303507,
+            "AP75": 0.8538575350205851,
+            "APL": 0.7029411764705882,
+            "APM": 0.6830649441235503,
+            "APS": 0.6731170548617869,
+            "AR1": 0.36736842105263157,
+            "AR10": 0.7186842105263158,
+            "AR100": 0.7526315789473684,
+            "ARL": 0.8,
+            "ARM": 0.7619047619047619,
+            "ARS": 0.7489051094890511
+          },
+          "official_COCO_crowd_ignore_semantics": true,
+          "original_GT_preserved": true,
+          "score_filter": null,
+          "stats": [
+            0.6744334056814277,
+            0.9686734655303507,
+            0.8538575350205851,
+            0.6731170548617869,
+            0.6830649441235503,
+            0.7029411764705882,
+            0.36736842105263157,
+            0.7186842105263158,
+            0.7526315789473684,
+            0.7489051094890511,
+            0.7619047619047619,
+            0.8
+          ]
+        },
+        "per_IoU": [
+          {
+            "AP_percent": 96.86734655303508,
+            "IoU": 0.5
+          },
+          {
+            "AP_percent": 96.8110854040925,
+            "IoU": 0.55
+          },
+          {
+            "AP_percent": 95.37224765820365,
+            "IoU": 0.6
+          },
+          {
+            "AP_percent": 94.21966558975248,
+            "IoU": 0.65
+          },
+          {
+            "AP_percent": 91.61069696868061,
+            "IoU": 0.7
+          },
+          {
+            "AP_percent": 85.38575350205852,
+            "IoU": 0.75
+          },
+          {
+            "AP_percent": 67.61257133659082,
+            "IoU": 0.8
+          },
+          {
+            "AP_percent": 39.54534900294876,
+            "IoU": 0.85
+          },
+          {
+            "AP_percent": 6.678656662765143,
+            "IoU": 0.8999999999999999
+          },
+          {
+            "AP_percent": 0.33003300330033,
+            "IoU": 0.95
+          }
+        ]
+      },
+      "LOCAL_CANDIDATE_FLOAT": {
+        "COCO": {
+          "iouType": "segm",
+          "maxDets": [
+            1,
+            10,
+            100
+          ],
+          "metrics": {
+            "AP": 0.695425764509662,
+            "AP50": 0.9722619705031034,
+            "AP75": 0.8801841876489767,
+            "APL": 0.7029411764705882,
+            "APM": 0.6918777676873641,
+            "APS": 0.6992417934562417,
+            "AR1": 0.3792105263157895,
+            "AR10": 0.738421052631579,
+            "AR100": 0.7742105263157895,
+            "ARL": 0.8,
+            "ARM": 0.7714285714285714,
+            "ARS": 0.7751824817518249
+          },
+          "official_COCO_crowd_ignore_semantics": true,
+          "original_GT_preserved": true,
+          "score_filter": null,
+          "stats": [
+            0.695425764509662,
+            0.9722619705031034,
+            0.8801841876489767,
+            0.6992417934562417,
+            0.6918777676873641,
+            0.7029411764705882,
+            0.3792105263157895,
+            0.738421052631579,
+            0.7742105263157895,
+            0.7751824817518249,
+            0.7714285714285714,
+            0.8
+          ]
+        },
+        "per_IoU": [
+          {
+            "AP_percent": 97.22619705031033,
+            "IoU": 0.5
+          },
+          {
+            "AP_percent": 96.76827542140481,
+            "IoU": 0.55
+          },
+          {
+            "AP_percent": 96.11238706246155,
+            "IoU": 0.6
+          },
+          {
+            "AP_percent": 94.33820525622822,
+            "IoU": 0.65
+          },
+          {
+            "AP_percent": 92.92781365953061,
+            "IoU": 0.7
+          },
+          {
+            "AP_percent": 88.01841876489766,
+            "IoU": 0.75
+          },
+          {
+            "AP_percent": 71.2169261696532,
+            "IoU": 0.8
+          },
+          {
+            "AP_percent": 47.71679110999922,
+            "IoU": 0.85
+          },
+          {
+            "AP_percent": 10.770717011876101,
+            "IoU": 0.8999999999999999
+          },
+          {
+            "AP_percent": 0.33003300330033,
+            "IoU": 0.95
+          }
+        ]
+      }
+    },
+    "min_sampled_available_RAM_bytes": 73931243520,
+    "native_all_slot_topk_rows": 18700,
+    "new_training": false,
+    "peak_sampled_worker_RSS_bytes": 95346688,
+    "primary_GT": "INTEGER_PRIMARY",
+    "qualified": false,
+    "raw_queries": 18700,
+    "schema": "Root-RFDETR-DEV187-canonical-CPU-evaluation-v1",
+    "status": "COMPLETE_PENDING_ROOT_ACCEPTANCE",
+    "unmapped_slot1_rows": 3266
+  },
+  "original_exit": {
+    "GPU": 0,
+    "CPU": 0
+  },
+  "independent_same_boot_closure": {
+    "GPU": true,
+    "CPU": true
+  },
+  "owner_seconds": {
+    "GPU": 194.8430819059722,
+    "CPU": 2.546586318872869
+  },
+  "CPU_post_verification": {
+    "first_exit": 1,
+    "first_rejected_outer_COCO_instead_of_nested_12": true,
+    "corrected_same_result_verification_exit": 0,
+    "reran_original_evaluation": false
+  },
+  "independent_TEST": false,
+  "cross_dataset": false,
+  "paired_architecture_comparison": false
+}

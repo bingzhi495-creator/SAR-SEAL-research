@@ -4,9 +4,10 @@
 
 ## 当前状态（2026-11-07）
 
-主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**，EMA 断点已验收，固定 DEV187 评价待完成。
+主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
+- [RF-DETR E24 的真实 DEV187 双标注评价与误差诊断](research_round_20260925_global/RFDETR_E24_DEV187_ACTUAL_EVALUATION_20261107.md)
 - [RF-DETR 连续 E24 实测与原生断点](research_round_20260925_global/RFDETR_NATIVE_CONTINUOUS_E24_STATUS_20261107.md)
 - [E24 固定 DEV187 的原生导出与 CPU 评价协议](research_round_20260925_global/RFDETR_E24_DEV187_EVALUATION_CHAIN_20261107.md)
 - [HRSID 与既有像素核验的输入字节对齐及跨集重复检查](research_round_20260925_global/HRSID_U43_V04_INPUT_IDENTITY_ACTUAL_20261107.md)
