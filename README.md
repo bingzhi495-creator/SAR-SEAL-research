@@ -44,6 +44,7 @@
 - [单类迁移的boat分类行、强初始化与公平对照](research_round_20260925_global/RFDETR_SINGLE_CLASS_TRANSFER_INITIALIZATION_REVIEW_20261107_01.md)
 - [canonical预测导出候选：原GT、类别与top100顺序](research_round_20260925_global/code/RFDETR_CANONICAL_EXPORT_DRAFT_20261107_01/README.md)
 - [完整训练环境实际清单、两次解析失败与离线准备](research_round_20260925_global/RFDETR_FULL_TRAIN_PREPARATION_ACTUAL_STATUS_20261107_01.md)
+- [RF-DETR 真实数据两次 FP32 优化器更新候选](research_round_20260925_global/RFDETR_TWO_UPDATE_FP32_QUALIFICATION_DRAFT_20261107_01/README.md)
 - [RF-DETR 原生 SSDD DataModule 两样本实测](research_round_20260925_global/RFDETR_NATIVE_SSDD_DATA_ENTRY_ACTUAL_20261107_01.md)
 - [RF-DETR SSDD 原生目录实际字节验收](research_round_20260925_global/RFDETR_SSDD_NATIVE_INPUT_LAYOUT_ACTUAL_20261107_01.md)
 - [RF-DETR 原生 CLI 首次实测与修正](research_round_20260925_global/RFDETR_CLI_CODEC_ACTUAL_RESULT_20261107_01.md)
