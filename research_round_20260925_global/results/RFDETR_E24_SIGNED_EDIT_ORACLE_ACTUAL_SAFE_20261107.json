@@ -1,0 +1,1364 @@
+{
+  "actual_local_original_OS_exit": 0,
+  "first_local_diagnostic_exit": 1,
+  "first_reference_materialization_exit": 1,
+  "independent_content_verified": {
+    "checked_budgets": [
+      0,
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "cohort_images": 121,
+    "fixed_size_denominators_reconciled": true,
+    "region_mode_size_counts_checked": true,
+    "status": "INDEPENDENT_SIGNED_EDIT_CONTENT_VERIFIED",
+    "unlimited_checked": true,
+    "verified_pairs": 224,
+    "verified_raster_fingerprints": 672
+  },
+  "prior_protocol_commit": "e5ecc95a0882019a3f09888662fab653f902a1e7",
+  "root_acceptance_sha256": "9f5b7fe7e74933d16a8d777146bf6d17a4b23879bd17dac518ec5cb47dcf18cf",
+  "schema": "RFDETR-E24-signed-edit-oracle-accepted-summary-v1",
+  "status": "ACTUAL_E24_SIGNED_EDIT_ORACLE_ACCEPTED",
+  "summary": {
+    "AP_recomputed": false,
+    "COCO_matching_recomputed": false,
+    "CPU_worker_elapsed_seconds": 0.875,
+    "TEST": false,
+    "Windows_NumPy_version": "1.26.4",
+    "Windows_Python_version": "3.10.13",
+    "Windows_pycocotools_version": "2.0.11",
+    "area_partition": "Original integer COCO annotation area: [0,1024), [1024,9216), [9216,1e10]. Exact shared COCO boundaries are assigned to the larger group for disjoint totals.",
+    "budgets": [
+      0,
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "capacities": {
+      "band": {
+        "FN": 14242,
+        "FP": 10791
+      },
+      "outside": {
+        "FN": 7775,
+        "FP": 4204
+      }
+    },
+    "counts": "Newly reaches threshold within the measured cohort. The fixed denominator includes unevaluated pairs, so these counts are not a whole-population edited result.",
+    "groups": {
+      "all": {
+        "baseline_pass": {
+          "dual": 0,
+          "float": 0,
+          "integer": 0
+        },
+        "cohort_pairs": 224,
+        "fixed_pairs_denominator": 377,
+        "regions": {
+          "band": {
+            "fn_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 2,
+                  "integer": 4
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 7,
+                  "integer": 8
+                },
+                {
+                  "budget": 4,
+                  "dual": 3,
+                  "float": 18,
+                  "integer": 16
+                },
+                {
+                  "budget": 8,
+                  "dual": 16,
+                  "float": 35,
+                  "integer": 34
+                },
+                {
+                  "budget": 16,
+                  "dual": 30,
+                  "float": 59,
+                  "integer": 56
+                },
+                {
+                  "budget": 32,
+                  "dual": 54,
+                  "float": 91,
+                  "integer": 74
+                }
+              ],
+              "unlimited": {
+                "dual": 85,
+                "float": 122,
+                "integer": 103
+              }
+            },
+            "fp_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 1,
+                  "integer": 4
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 4,
+                  "integer": 6
+                },
+                {
+                  "budget": 4,
+                  "dual": 2,
+                  "float": 15,
+                  "integer": 11
+                },
+                {
+                  "budget": 8,
+                  "dual": 6,
+                  "float": 28,
+                  "integer": 21
+                },
+                {
+                  "budget": 16,
+                  "dual": 17,
+                  "float": 54,
+                  "integer": 31
+                },
+                {
+                  "budget": 32,
+                  "dual": 27,
+                  "float": 64,
+                  "integer": 41
+                }
+              ],
+              "unlimited": {
+                "dual": 53,
+                "float": 93,
+                "integer": 67
+              }
+            },
+            "joint": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 2,
+                  "integer": 4
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 7,
+                  "integer": 8
+                },
+                {
+                  "budget": 4,
+                  "dual": 4,
+                  "float": 20,
+                  "integer": 17
+                },
+                {
+                  "budget": 8,
+                  "dual": 23,
+                  "float": 50,
+                  "integer": 39
+                },
+                {
+                  "budget": 16,
+                  "dual": 53,
+                  "float": 92,
+                  "integer": 74
+                },
+                {
+                  "budget": 32,
+                  "dual": 103,
+                  "float": 140,
+                  "integer": 115
+                }
+              ],
+              "unlimited": {
+                "dual": 173,
+                "float": 200,
+                "integer": 181
+              }
+            }
+          },
+          "outside": {
+            "fn_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 1,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 1,
+                  "float": 2,
+                  "integer": 1
+                }
+              ],
+              "unlimited": {
+                "dual": 1,
+                "float": 2,
+                "integer": 2
+              }
+            },
+            "fp_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 1
+                },
+                {
+                  "budget": 16,
+                  "dual": 1,
+                  "float": 1,
+                  "integer": 1
+                },
+                {
+                  "budget": 32,
+                  "dual": 1,
+                  "float": 1,
+                  "integer": 1
+                }
+              ],
+              "unlimited": {
+                "dual": 2,
+                "float": 3,
+                "integer": 2
+              }
+            },
+            "joint": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 1
+                },
+                {
+                  "budget": 16,
+                  "dual": 1,
+                  "float": 2,
+                  "integer": 1
+                },
+                {
+                  "budget": 32,
+                  "dual": 2,
+                  "float": 3,
+                  "integer": 2
+                }
+              ],
+              "unlimited": {
+                "dual": 4,
+                "float": 7,
+                "integer": 5
+              }
+            }
+          }
+        }
+      },
+      "large": {
+        "baseline_pass": {
+          "dual": 0,
+          "float": 0,
+          "integer": 0
+        },
+        "cohort_pairs": 1,
+        "fixed_pairs_denominator": 1,
+        "regions": {
+          "band": {
+            "fn_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                }
+              ],
+              "unlimited": {
+                "dual": 0,
+                "float": 0,
+                "integer": 0
+              }
+            },
+            "fp_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                }
+              ],
+              "unlimited": {
+                "dual": 1,
+                "float": 1,
+                "integer": 1
+              }
+            },
+            "joint": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                }
+              ],
+              "unlimited": {
+                "dual": 1,
+                "float": 1,
+                "integer": 1
+              }
+            }
+          },
+          "outside": {
+            "fn_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                }
+              ],
+              "unlimited": {
+                "dual": 0,
+                "float": 0,
+                "integer": 0
+              }
+            },
+            "fp_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                }
+              ],
+              "unlimited": {
+                "dual": 1,
+                "float": 1,
+                "integer": 1
+              }
+            },
+            "joint": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                }
+              ],
+              "unlimited": {
+                "dual": 1,
+                "float": 1,
+                "integer": 1
+              }
+            }
+          }
+        }
+      },
+      "medium": {
+        "baseline_pass": {
+          "dual": 0,
+          "float": 0,
+          "integer": 0
+        },
+        "cohort_pairs": 54,
+        "fixed_pairs_denominator": 103,
+        "regions": {
+          "band": {
+            "fn_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 1,
+                  "float": 1,
+                  "integer": 2
+                },
+                {
+                  "budget": 16,
+                  "dual": 2,
+                  "float": 4,
+                  "integer": 3
+                },
+                {
+                  "budget": 32,
+                  "dual": 6,
+                  "float": 9,
+                  "integer": 7
+                }
+              ],
+              "unlimited": {
+                "dual": 25,
+                "float": 31,
+                "integer": 25
+              }
+            },
+            "fp_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 2
+                },
+                {
+                  "budget": 16,
+                  "dual": 2,
+                  "float": 4,
+                  "integer": 2
+                },
+                {
+                  "budget": 32,
+                  "dual": 3,
+                  "float": 6,
+                  "integer": 5
+                }
+              ],
+              "unlimited": {
+                "dual": 16,
+                "float": 20,
+                "integer": 19
+              }
+            },
+            "joint": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 1,
+                  "float": 1,
+                  "integer": 2
+                },
+                {
+                  "budget": 16,
+                  "dual": 2,
+                  "float": 4,
+                  "integer": 3
+                },
+                {
+                  "budget": 32,
+                  "dual": 6,
+                  "float": 9,
+                  "integer": 7
+                }
+              ],
+              "unlimited": {
+                "dual": 44,
+                "float": 45,
+                "integer": 44
+              }
+            }
+          },
+          "outside": {
+            "fn_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 1,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 1,
+                  "float": 2,
+                  "integer": 1
+                }
+              ],
+              "unlimited": {
+                "dual": 1,
+                "float": 2,
+                "integer": 2
+              }
+            },
+            "fp_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 1
+                },
+                {
+                  "budget": 16,
+                  "dual": 1,
+                  "float": 1,
+                  "integer": 1
+                },
+                {
+                  "budget": 32,
+                  "dual": 1,
+                  "float": 1,
+                  "integer": 1
+                }
+              ],
+              "unlimited": {
+                "dual": 1,
+                "float": 2,
+                "integer": 1
+              }
+            },
+            "joint": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 1
+                },
+                {
+                  "budget": 16,
+                  "dual": 1,
+                  "float": 2,
+                  "integer": 1
+                },
+                {
+                  "budget": 32,
+                  "dual": 2,
+                  "float": 3,
+                  "integer": 2
+                }
+              ],
+              "unlimited": {
+                "dual": 3,
+                "float": 6,
+                "integer": 4
+              }
+            }
+          }
+        }
+      },
+      "small": {
+        "baseline_pass": {
+          "dual": 0,
+          "float": 0,
+          "integer": 0
+        },
+        "cohort_pairs": 169,
+        "fixed_pairs_denominator": 273,
+        "regions": {
+          "band": {
+            "fn_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 2,
+                  "integer": 4
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 7,
+                  "integer": 8
+                },
+                {
+                  "budget": 4,
+                  "dual": 3,
+                  "float": 18,
+                  "integer": 16
+                },
+                {
+                  "budget": 8,
+                  "dual": 15,
+                  "float": 34,
+                  "integer": 32
+                },
+                {
+                  "budget": 16,
+                  "dual": 28,
+                  "float": 55,
+                  "integer": 53
+                },
+                {
+                  "budget": 32,
+                  "dual": 48,
+                  "float": 82,
+                  "integer": 67
+                }
+              ],
+              "unlimited": {
+                "dual": 60,
+                "float": 91,
+                "integer": 78
+              }
+            },
+            "fp_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 1,
+                  "integer": 4
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 4,
+                  "integer": 6
+                },
+                {
+                  "budget": 4,
+                  "dual": 2,
+                  "float": 15,
+                  "integer": 11
+                },
+                {
+                  "budget": 8,
+                  "dual": 6,
+                  "float": 28,
+                  "integer": 19
+                },
+                {
+                  "budget": 16,
+                  "dual": 15,
+                  "float": 50,
+                  "integer": 29
+                },
+                {
+                  "budget": 32,
+                  "dual": 24,
+                  "float": 58,
+                  "integer": 36
+                }
+              ],
+              "unlimited": {
+                "dual": 36,
+                "float": 72,
+                "integer": 47
+              }
+            },
+            "joint": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 2,
+                  "integer": 4
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 7,
+                  "integer": 8
+                },
+                {
+                  "budget": 4,
+                  "dual": 4,
+                  "float": 20,
+                  "integer": 17
+                },
+                {
+                  "budget": 8,
+                  "dual": 22,
+                  "float": 49,
+                  "integer": 37
+                },
+                {
+                  "budget": 16,
+                  "dual": 51,
+                  "float": 88,
+                  "integer": 71
+                },
+                {
+                  "budget": 32,
+                  "dual": 97,
+                  "float": 131,
+                  "integer": 108
+                }
+              ],
+              "unlimited": {
+                "dual": 128,
+                "float": 154,
+                "integer": 136
+              }
+            }
+          },
+          "outside": {
+            "fn_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                }
+              ],
+              "unlimited": {
+                "dual": 0,
+                "float": 0,
+                "integer": 0
+              }
+            },
+            "fp_only": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                }
+              ],
+              "unlimited": {
+                "dual": 0,
+                "float": 0,
+                "integer": 0
+              }
+            },
+            "joint": {
+              "curve": [
+                {
+                  "budget": 0,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 1,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 2,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 4,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 8,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 16,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                },
+                {
+                  "budget": 32,
+                  "dual": 0,
+                  "float": 0,
+                  "integer": 0
+                }
+              ],
+              "unlimited": {
+                "dual": 0,
+                "float": 0,
+                "integer": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "input_IoU_and_localization_exact": true,
+    "new_training": false,
+    "no_new_query_rank_search": true,
+    "peak_sampled_worker_RSS_bytes": 65024000,
+    "radius_pixels": 2,
+    "reference_DGX_bitmap_hashes_exact": true,
+    "reference_DGX_bitmap_rows": 224,
+    "schema": "Root-RFDETR-E24-dual-GT-signed-edit-oracle-v1",
+    "scope": {
+      "GT_instances": 380,
+      "cohort_images": 121,
+      "cohort_pairs": 224,
+      "fixed_pairs": 377,
+      "images": 187,
+      "original_unpaired_GT": 3,
+      "other_fixed_pairs_not_evaluated": 153
+    },
+    "threshold": [
+      9,
+      10
+    ]
+  }
+}
