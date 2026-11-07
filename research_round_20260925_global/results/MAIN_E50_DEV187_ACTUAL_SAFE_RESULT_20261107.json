@@ -1,0 +1,158 @@
+{
+  "AP_FRACTIONS": {
+    "FULL": {
+      "AP": 0.6825636265707139,
+      "AP50": 0.969989604793129,
+      "AP75": 0.8346616353060573,
+      "AP_large": 0.6999999999999998,
+      "AP_medium": 0.6996516960397894,
+      "AP_small": 0.67882116531564,
+      "AR1": 0.3752631578947368,
+      "AR10": 0.7328947368421053,
+      "AR100": 0.7568421052631579,
+      "AR_large": 0.7,
+      "AR_medium": 0.7514285714285713,
+      "AR_small": 0.759124087591241
+    },
+    "PLAIN": {
+      "AP": 0.6842250195147207,
+      "AP50": 0.9681662614283039,
+      "AP75": 0.8365074172825616,
+      "AP_large": 0.6999999999999998,
+      "AP_medium": 0.6957868303868145,
+      "AP_small": 0.683022769407846,
+      "AR1": 0.3744736842105263,
+      "AR10": 0.7363157894736843,
+      "AR100": 0.7605263157894736,
+      "AR_large": 0.7,
+      "AR_medium": 0.7409523809523809,
+      "AR_small": 0.7682481751824818
+    },
+    "R": {
+      "AP": 0.6809938494745545,
+      "AP50": 0.969989604793129,
+      "AP75": 0.852134677847247,
+      "AP_large": 0.6999999999999998,
+      "AP_medium": 0.6974242300663346,
+      "AP_small": 0.6774399176376944,
+      "AR1": 0.37394736842105264,
+      "AR10": 0.735,
+      "AR100": 0.7597368421052632,
+      "AR_large": 0.7,
+      "AR_medium": 0.7457142857142857,
+      "AR_small": 0.7653284671532847
+    },
+    "native_official": {
+      "AP": 0.6707105663749372,
+      "AP50": 0.9700872688674647,
+      "AP75": 0.8384266469643687,
+      "AP_large": 0.6999999999999998,
+      "AP_medium": 0.6926333148544733,
+      "AP_small": 0.6649127521447775,
+      "AR1": 0.36973684210526314,
+      "AR10": 0.726842105263158,
+      "AR100": 0.7510526315789472,
+      "AR_large": 0.7,
+      "AR_medium": 0.7533333333333333,
+      "AR_small": 0.7503649635036497
+    }
+  },
+  "D1_AP_fraction": -0.001661392944006801,
+  "DEV_GT_instances": 380,
+  "DEV_images": 187,
+  "FIT_images": 741,
+  "FULL_minus_N26_historical_AP_fraction": -0.012810042827921309,
+  "G1_AP_fraction": -0.001661392944006801,
+  "GPU_timing": {
+    "arm_seconds": {
+      "FULL": {
+        "RLE_seconds": 3.8610557168722153,
+        "cache_RGB_IO_seconds": 32.29577023279853,
+        "encode_seconds": 86.6748546550516,
+        "readout_seconds": 20.77787082293071,
+        "render_seconds": 3.4860882805660367,
+        "restore_seconds": 15.652267151046544,
+        "zero_calibration_seconds": 6.697110747685656
+      },
+      "PLAIN": {
+        "RLE_seconds": 3.8825498148798943,
+        "cache_RGB_IO_seconds": 35.35595076624304,
+        "encode_seconds": 69.12863338342868,
+        "readout_seconds": 20.827699583023787,
+        "render_seconds": 3.6723569468595088,
+        "restore_seconds": 13.838252427987754,
+        "zero_calibration_seconds": 10.58938693231903
+      }
+    },
+    "scope": "Original per-shard arm costs retained; no aggregate FPS or teacher precomputation estimate."
+  },
+  "N26_historical_fixed_R_learned_ranking_mean_AP_fraction": 0.6953736693986352,
+  "N26_historical_fixed_R_learned_ranking_sample_sd_AP_fraction": 0.0010744864652967262,
+  "automatic_training": false,
+  "coco_iouType": "segm",
+  "cross_dataset": false,
+  "dual_gt_secondary_pending": true,
+  "fixed_epoch": 50,
+  "geometry": {
+    "methods": {
+      "FULL": {
+        "fixed_pair_pass_counts": {
+          "0.90": 94,
+          "0.95": 1
+        },
+        "matched_instances": 374,
+        "mean_IoU": 0.8449317237116887,
+        "pooled_IoU": 0.8326552559793164,
+        "pooled_error_pixels": 68156
+      },
+      "PLAIN": {
+        "fixed_pair_pass_counts": {
+          "0.90": 94,
+          "0.95": 2
+        },
+        "matched_instances": 374,
+        "mean_IoU": 0.8462324094579752,
+        "pooled_IoU": 0.830311607034806,
+        "pooled_error_pixels": 68707
+      },
+      "R": {
+        "fixed_pair_pass_counts": {
+          "0.90": 92,
+          "0.95": 1
+        },
+        "matched_instances": 374,
+        "mean_IoU": 0.8446398310210218,
+        "pooled_IoU": 0.8278457473559738,
+        "pooled_error_pixels": 70173
+      },
+      "native_official": {
+        "fixed_pair_pass_counts": {
+          "0.90": 80,
+          "0.95": 1
+        },
+        "matched_instances": 374,
+        "mean_IoU": 0.8414231314153922,
+        "pooled_IoU": 0.8322219297835654,
+        "pooled_error_pixels": 68209
+      }
+    },
+    "scope": "Native IoU .50 matched GT only, same original query, no rematching",
+    "selected_GT": 374
+  },
+  "maxDets": [
+    1,
+    10,
+    100
+  ],
+  "native_R_COCO12_exact": true,
+  "official_TEST": false,
+  "paired_training_seeds": 1,
+  "queries_per_model": 18700,
+  "repeat_policy": "STOP_AUTOMATIC_EXTENSION",
+  "schema": "SAR-SEAL-E50-DEV187-ACTUAL-SAFE-RESULT-v1",
+  "seed": 202610173101,
+  "shared_fixed_S0_for_paired_arms": true,
+  "split": "internal_DEV_original_integer_polygon",
+  "status": "ACTUAL_COMPLETE_DEV187_CANONICAL_COCO",
+  "updates_per_arm": 37050
+}
