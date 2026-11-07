@@ -1,5 +1,7 @@
 # RF-DETR 1.12 full-train / CLI dependency readiness
 
+后续实际更新：[完整基础发行版清单已取得，两次在线解析失败保留，转本机取包后离线解析](RFDETR_FULL_TRAIN_PREPARATION_ACTUAL_STATUS_20261107_01.md)。下文的“未取得清单”属于早先静态准备时刻；完整依赖安装、CLI与SAR训练仍待。
+
 2026-11-07。状态为有界静态依赖准备，真实 DGX 完整 inventory、完整 train resolver 和实际 CLI parser 均待取得。目标上下文由 Root 给定为 Linux aarch64、CPython3.12.14、Torch2.10.0+cu130、torchvision0.25.0、NumPy1.26.4。本轮读取固定普通源码、候选 YAML、已关闭的基础安装结果，联网只查询官方 PyPI JSON 与官方库文档。以下版本为待 resolver 检验的候选，训练就绪须在真实检查完成后判定。
 
 ## 1. 实际入口与 extra

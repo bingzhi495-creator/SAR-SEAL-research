@@ -1,0 +1,3 @@
+# Binary dry-run 02 declared-byte boundary
+
+2026-11-07。02候选的64MiB单wheel与192MiB累计值，口径为当前返回的普通HTTP200 wheel响应之严格Content-Length预留总和，receipt已标明actual_body_byte_monitoring=False。固定pip25.0.1所带Requests可在Session.send返回前消费3xx重定向的中间响应体，allow_redirects=False时准备Response.next也可能进入该路径；这些中间body未被02同一返回后头守卫覆盖。因此，该实现只能报告已记录的声明长度界，不能宣称全网络硬字节上限、逐字节流量监控或所有被拒响应都在读body前拦截。这个静态范围缺口须与当次真实pip退出、完整report及guard事件分别判断；无安装入口、核心包下载前拒绝、模型导入与写目录约束仍按各自证据核验。冻结02与本次原始执行保留，由Root根据实际结果决定后续必要修正。[固定Requests重定向处理](https://github.com/pypa/pip/blob/25.0.1/src/pip/_vendor/requests/sessions.py#L173)、[固定Session.send响应处理](https://github.com/pypa/pip/blob/25.0.1/src/pip/_vendor/requests/sessions.py#L654)

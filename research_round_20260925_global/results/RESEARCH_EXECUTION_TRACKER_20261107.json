@@ -41,7 +41,7 @@
   "blocks": [
     {
       "id": "P0",
-      "status": "IN_PROGRESS_CORE_PACKAGES_ACTUALLY_INSTALLED_INPUT_ADMISSION_PENDING",
+      "status": "COMPLETE_BASE_INVENTORY_ACTUAL_ONLINE_FAILURES_CLOSED_OFFLINE_WHEEL_INPUTS_PENDING",
       "task": "isolated dependency and exact split/source admission"
     },
     {
@@ -73,6 +73,73 @@
   "dependency_install": true,
   "dependency_install_scope": "ACTUAL_CORE_FORWARD_PACKAGES_ONLY_PIP_CHECK_0",
   "forward": true,
+  "full_train_dependency_preparation_20261107": {
+    "AP": null,
+    "actual_CLI": false,
+    "actual_attempts": [
+      {
+        "SSH_exit": 1,
+        "attempt": 2,
+        "child_exit": 1,
+        "complete_wheel_responses": 0,
+        "full_report_generated": false,
+        "http_requests": 0,
+        "inventory_unchanged": true,
+        "local_elapsed_seconds": 19.812000000150874,
+        "package_installation": false,
+        "parent_elapsed_seconds": 0.7683201308827847,
+        "pip_exit": 2,
+        "reason": "PIP_OPTIONAL_USER_AGENT_OS_PROBE_BLOCKED_BEFORE_HTTP",
+        "resource_closed": true,
+        "scientific_execution": false,
+        "terminal_chunk": "5c8a9b",
+        "tool_exit": 1
+      },
+      {
+        "SSH_exit": 1,
+        "attempt": 3,
+        "child_exit": 1,
+        "complete_wheel_responses": 0,
+        "full_report_generated": false,
+        "http_requests": 46,
+        "inventory_unchanged": true,
+        "local_elapsed_seconds": 296.2349999998696,
+        "package_installation": false,
+        "parent_elapsed_seconds": 278.6229468579404,
+        "pip_exit": 1,
+        "reason": "ONLINE_RESOLVER_NO_AIOHTTP_CANDIDATE_EXACT_INDEX_CAUSE_UNESTABLISHED",
+        "resource_closed": true,
+        "scientific_execution": false,
+        "terminal_chunk": "3024c0",
+        "tool_exit": 1
+      }
+    ],
+    "actual_core_versions": {
+      "numpy": "1.26.4",
+      "torch": "2.10.0+cu130",
+      "torchvision": "0.25.0+cu130",
+      "triton": "3.6.0"
+    },
+    "actual_native_offline_resolver": false,
+    "baseline_metadata_unchanged": true,
+    "full_train_extras_installed": false,
+    "libc": [
+      "glibc",
+      "2.39"
+    ],
+    "local_wheel_pool_root_verified": false,
+    "machine": "aarch64",
+    "main_accepted": 34816,
+    "metadata_only_candidate_not_executed": true,
+    "official_aiohttp_3_14_5_cp312_aarch64_wheel_exists": true,
+    "online_observed_wheel_metadata_candidates": 22,
+    "protected_training_core_count": 21,
+    "python": "3.12.14",
+    "real_SAR_training": false,
+    "selected_distributions": 97,
+    "status": "COMPLETE_BASE_METADATA_OBSERVED_ONLINE_DRY_RUN_FAILURES_CLOSED_LOCAL_WHEEL_POOL_PREPARATION",
+    "visible_distributions": 100
+  },
   "full_training_dependency_install": false,
   "goal_complete": false,
   "input_bytes_ready": true,

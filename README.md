@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **34048/37050次正式更新（91.90%，45轮+703图）**，下一34048→34304原任务已运行、尚未接收；本轮相对32512每臂+1536更新/+3433匹配访问。RF-DETR已实际通过限定空schema补齐后的strict加载、544个原state Tensor等值/有限性及CPU Nano312一次合成前向；原v01失败与v02首次元数据目录定位失败均保留，资源已闭合、主段已接回。新增6项几何/拓扑/OT/等变原文源码审阅、单类boat行初始化核查及独立预测导出候选。**尚无RF-DETR SAR训练/AP、已成立核心创新或TGRS就绪结论。**
+DGX PLAIN/FULL各严格接收 **34816/37050次正式更新（93.97%，46轮+730图）**，下一34816→35072原任务已运行、尚未接收；相对34048每臂+768更新/+1721匹配访问。RF-DETR CPU兼容已通过且不重跑；完整基础环境实际清单100可见/97选中，21项核心锁定，两个真实在线依赖解析失败已闭合、无包安装或模型执行。官方有匹配aiohttp轮子，转本机取候选池后DGX离线原生解析。新增训练资格接口与实际matcher源码补录，定位已有HRSID JPG归档。**尚无RF-DETR SAR训练/AP、新核心创新或TGRS就绪结论。**
 
-全局DGX账户139正常/8失败/147总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户142正常/8失败/150总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -43,6 +43,8 @@ DGX PLAIN/FULL各严格接收 **34048/37050次正式更新（91.90%，45轮+703�
 - [形状、拓扑、OT与等变性六项原文及作者源码](research_round_20260925_global/SHAPE_TOPOLOGY_OT_EQUIVARIANCE_PRIMARY_SUPPLEMENT_20261107_01.md)
 - [单类迁移的boat分类行、强初始化与公平对照](research_round_20260925_global/RFDETR_SINGLE_CLASS_TRANSFER_INITIALIZATION_REVIEW_20261107_01.md)
 - [canonical预测导出候选：原GT、类别与top100顺序](research_round_20260925_global/code/RFDETR_CANONICAL_EXPORT_DRAFT_20261107_01/README.md)
+- [完整训练环境实际清单、两次解析失败与离线准备](research_round_20260925_global/RFDETR_FULL_TRAIN_PREPARATION_ACTUAL_STATUS_20261107_01.md)
+- [576训练资格接口：原生加载、更新计数、EMA及canonical导出](research_round_20260925_global/RFDETR_TRAINING_QUALIFICATION_INTERFACE_DRAFT_20261107_01/README.md)
 - [完整train/CLI依赖候选与实际执行缺口](research_round_20260925_global/RFDETR_FULL_TRAIN_CLI_DEPENDENCY_READINESS_20261107_01.md)
 - [RF-DETR v02空schema兼容、离线诊断与待执行真实验证](research_round_20260925_global/RFDETR_V02_CANDIDATE_STATUS_20261107_02.md)
 - [RF-DETR实际基础依赖安装、数据接口与待执行CPU探针](research_round_20260925_global/RFDETR_RUNTIME_PREPARATION_STATUS_20261107_02.md)
