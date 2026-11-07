@@ -4,7 +4,7 @@
 
 新增源码准备：[DiffSAR完整端点预测候选](U57_DIFFSAR_ENDPOINT_PREDICTION_SOURCE_STATUS_20261107.md)已形成、仅3个有限metadata/I/O测试，真实模型与AP未执行。[GLDet原始来源补核](U57_GLDET_AUTHOR_REPRODUCTION_PRIMARY_REVIEW_20261107.md)确认论文500轮/800×800等条件；本轮检查未取得可认证作者可训练实现/初值，不能扩大为空仓库即全互联网无代码。
 
-2026-11-07当前状态：主PLAIN/FULL各严格完成30976/37050（83.61%，41轮+595图），随后30976→31232原工具/SSH退出0，但严格进程后验UNKNOWN，尚未接收且未启动下一数值段；[DiffSAR正式512](U57_DIFFSAR_FORMAL_CONTINUATION512_ACTUAL_20261107.md)已从合格256完整恢复并新训256，固定目标37050，尚无AP。[原始来源查证](U57_DIFFSAR_PAPER_INITIALIZATION_PRIMARY_REVIEW_20261107.md)确认公开训练500、测试1000 proposals与COCO maxDets100应分别保留；论文初值仍未知、实际1000前向尚未执行。[HRSID版本差异](HRSID_ANNOTATION_PROTOCOL_DIFF_STATUS_20261107_05.md)已精确到split仅22/merged仅4、26图，原划分/GT保持。原健康/验证及旧数值阈值失败均另列；本轮新增N26候选浮点诊断AP，未取得完整外部方法性能优势。
+2026-11-07当前状态：主PLAIN/FULL各严格完成31232/37050（84.30%，42轮+110图），下一31232→31488已实际运行。最新段首次严格进程快照UNKNOWN保留；同算法单次独立新观察及原接受器通过，无训练重跑。DiffSAR仍正式512，无完整端点AP。下表方法AP没有因训练计数、控制接口、数据I/O或静态检查新增数值。
 
 尚未建立新FULL结构相对SAR外部完整强方法的性能优势。现有数字包含内部模块结果、一个SAMRefiner基础默认版推理结果和一个PointRend风格适配实验，不能合并成同预算SOTA排名。本轮补齐已有冻结输出的8个COCO诊断案例和候选浮点AP，没有中途主模型选型。
 
@@ -60,7 +60,7 @@ GLDet引用的是作者原PDFTable IV/VI，不代表统一数据划分、GT、�
 
 ## 当前执行和结论边界
 
-PLAIN/FULL固定目标每臂50轮/37050更新，目前严格接收30976（83.61%，41轮+595图）。随后30976→31232原工具/SSH退出0，严格进程后验因不完整数值进程项报UNKNOWN，未授训练credit、未启动下一数值段；不是数值方法/AP失败，也不把0退出当作资源闭合。自30464每臂新增512更新/1178匹配实例访问，本机2816独立。FULL约53.12M参数、PLAIN约47.20M，容量/计算控制尚缺。当前没有中途或端点AP。
+PLAIN/FULL固定目标每臂50轮/37050更新，现严格接收31232（84.30%，42轮+110图），下一31232→31488运行，尚无中途或端点AP。最新每臂+256更新/627匹配实例访问；自30464各+768/1805。本机2816独立，FULL约53.12M与PLAIN47.20M未容量匹配。[最新严格安全标量](results/U57_FORMAL31232_ACTUAL_SCALARS_20261021.json)。[原UNKNOWN及新独立观察](U57_STRICT_CENSUS_UNKNOWN_AND_FRESH_OBSERVATION_20261107.md)分开保留，不把元数据失败当方法失效。
 
 下一证据顺序：保持锁定E50至端点并按预定规则统一评价原生/R/N26/PLAIN/FULL；在公开统一数据协议和可核初始化下完成DiffSAR等完整对照，报告收敛与预算而非只对齐epoch标签；随后补容量/计算、完整训练重复种子与HRSID跨集。有限预算筛选要给两臂同预算，最终方法判断仍需充分训练依据。需要验证排序收益能否跨GT、跨种子和跨集保持，不能只选择有利的整数GT或开发集结果。
 
@@ -73,3 +73,6 @@ PLAIN/FULL固定目标每臂50轮/37050更新，目前严格接收30976（83.61%
 最新真实诊断状态：[首次原调用](N26_FROZEN_DUALGT_ATTEMPT01_FAILURE_STATUS_20261107.md)因可选bbox检查错误退出1、COCO未开始；该失败保持。独立[02最小修复](code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/README.md)完成真实8案例后原始tool/SSH/parent-child/worker均0，Root限定接收冻结输出诊断，旧失败不升级。源码/输入/库、资源、真实exec与组闭合均后核；[有限独立复核](N26_DUALGT02_LIMITED_RESULT_CLAIM_REVIEW_20261107.md)不冒称完整跨模型审计。
 
 最新研究取舍：[mask-IoU后校准/尺度折衷的直接先例](SCALE_CONDITIONED_MASK_QUALITY_PRIMARY_REVIEW_20261107_01.md)和[官方COCO排序/ignore竞争解释](COCO_SCALE_GROUP_RANKING_ALTERNATIVE_REVIEW_20261107_01.md)已补核。当前分组AP方向不足以证明一个新的尺度条件误差机制，不据此加模块。仍按[原效用与重复政策](U57_PROSPECTIVE_UTILITY_AND_REPEAT_POLICY_20261025.md)完成主固定端点；N26综合参考强制并列、固定评分G不事后改写。[单一可选后续诊断与决策](N26_POST_DUALGT_RESEARCH_DECISION_20261107_01.md)尚未执行。
+
+
+[主E50端点接口候选](MAIN_E50_ENDPOINT_RESOURCE_CLOSURE_SOURCE_STATUS_20261107.md)和[原参考数据桥](MAIN_E50_REFERENCE_ORDER_ROLE_BRIDGE_STATUS_20261107.md)补齐执行准备；前者未真实执行，后者不计算AP，均不替代外部效果对比。

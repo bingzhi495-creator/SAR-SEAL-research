@@ -1,0 +1,132 @@
+{
+  "AP": false,
+  "CPU_affinity": [
+    2,
+    3
+  ],
+  "GT_JSON_body_parsed": true,
+  "GT_annotations": 380,
+  "GT_images": 187,
+  "GT_rasterization": false,
+  "JSON_containers_parsed": 7,
+  "TEST": false,
+  "actual_E50_checkpoint_or_prediction_admitted": false,
+  "address_space_limit_MiB": 512,
+  "all_data_sources_unchanged_after": true,
+  "category_ids": [
+    1
+  ],
+  "checks": {
+    "all_three_ID_sets_exact": true,
+    "context_ID_order_equals_GT_images": true,
+    "context_and_legacy_ID_order_exact": true,
+    "context_legacy_byte_role": true,
+    "context_rows_follow_original_ID_order": true,
+    "legacy_DEV_byte_role": true,
+    "shared_original_roles_exact": true
+  },
+  "child_elapsed_seconds": 0.5495266299694777,
+  "child_peak_RSS_KiB": 83092,
+  "current_context_ID_order_equals_legacy_and_GT": true,
+  "current_context_query_field_full_int_range100_not_established": true,
+  "current_context_rows_follow_ID_order": true,
+  "current_training_changed": false,
+  "data_ref_roles_original6_plus_comparison_only1": true,
+  "date": "2026-11-07",
+  "deadline_seconds": 120,
+  "encoded_data_bytes_read": 19855242,
+  "historical_COCO_reference_shape_checks": {
+    "R": {
+      "actual_reproduction_performed": false,
+      "exact_original_seven_keys": true,
+      "stats_count": 12
+    },
+    "native_official": {
+      "actual_reproduction_performed": false,
+      "exact_original_seven_keys": true,
+      "stats_count": 12
+    }
+  },
+  "implicit_unique_query_identity_proven": false,
+  "library_ABI_verified": false,
+  "limitations": [
+    "Explicit original role bytes plus original context/legacy/GT order only",
+    "Raw GT/prediction JSON containers were actually parsed; no mask rasterization or metrics",
+    "Every prediction image has100 records; this does not prove implicit query identity or final model execution",
+    "R files have different byte refs but identical parsed ordered records; registered refs remain distinct and are never substituted",
+    "The direct-list range100 probe on context query field did not establish that representation; no assertion of invalid queries",
+    "No numeric COCO12 reproduction, E50 state restore, full four-shard prediction, library ABI or scientific result qualification",
+    "Finite IO child RSS is not an independent whole-group/supervisor or whole-machine peak",
+    "Original data, records, manifests, refs and private metadata remain private"
+  ],
+  "mask_decoded": false,
+  "model_or_tensor_loaded": false,
+  "native_credit": 0,
+  "new_training": false,
+  "nice": 19,
+  "old_reference_results_requalified": false,
+  "original_SSH_exit": 0,
+  "original_role_checks": {
+    "R_predictions": {
+      "legacy_context_pin_matches_staged": true,
+      "original_context_pin_matches_staged": true,
+      "original_context_refs_exact": true
+    },
+    "legacy_ROOT_result": {
+      "legacy_context_pin_matches_staged": true,
+      "original_context_pin_matches_staged": true,
+      "original_context_refs_exact": true
+    },
+    "native_predictions": {
+      "legacy_context_pin_matches_staged": true,
+      "original_context_pin_matches_staged": true,
+      "original_context_refs_exact": true
+    }
+  },
+  "original_tool_exit": 0,
+  "prediction_population_checks": {
+    "N26_R_comparison_only": {
+      "RLE_dimensions_match_original_GT": true,
+      "block_order_equals_context_ids": true,
+      "category_ids": [
+        1
+      ],
+      "records": 18700,
+      "records_per_image_exact100": true,
+      "unique_images": 187
+    },
+    "R_predictions": {
+      "RLE_dimensions_match_original_GT": true,
+      "block_order_equals_context_ids": true,
+      "category_ids": [
+        1
+      ],
+      "records": 18700,
+      "records_per_image_exact100": true,
+      "unique_images": 187
+    },
+    "native_predictions": {
+      "RLE_dimensions_match_original_GT": true,
+      "block_order_equals_context_ids": true,
+      "category_ids": [
+        1
+      ],
+      "records": 18700,
+      "records_per_image_exact100": true,
+      "unique_images": 187
+    }
+  },
+  "registered_main_R_vs_N26_R": {
+    "N26_R_not_substituted": true,
+    "all_non_score_fields_exact": true,
+    "all_parsed_records_and_order_exact": true,
+    "all_score_types_and_values_exact": true,
+    "original_registered_main_R_ref_preserved": true,
+    "raw_byte_refs_distinct": true
+  },
+  "schema": "Root-main-E50-reference-data-order-role-public-safe-v1",
+  "scientific_imports": false,
+  "status": "ACTUAL0_ORIGINAL_REFERENCE_CONTEXT_GT_ORDER_AND_ROLE_BRIDGE_PASSED_DATA_ONLY",
+  "total_elapsed_seconds": 1.5,
+  "training_credit": 0
+}

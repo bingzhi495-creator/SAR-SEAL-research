@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **30976/37050次正式更新（83.61%，41轮+595图）**。随后30976→31232原工具/SSH已退出0，但严格进程后验出现UNKNOWN（枚举中的数值进程项不完整），该段尚未接收、未启动下一数值段；保留原失败观察，不凭进程返回0授予训练credit。此前30464→30720→30976两段每臂新增512更新/1178匹配实例访问，原配方与完整状态恢复保持，本机2816独立。新FULL/PLAIN仍无端点AP。内部原生/R/N26及SAMRefiner基础默认版已有完整人口比较；完整SAR外部强方法对照仍缺，DiffSAR正式512而无端点AP。N26两GT排序收益及medium/AR10代价、原R跨GT反转全部保留。**不宣称新骨架有效、超越SOTA或TGRS就绪。**
+DGX PLAIN/FULL各严格接收 **31232/37050次正式更新（84.30%，42轮+110图）**，下一31232→31488已实际接续、尚未接收。最新每臂新增256更新/627匹配实例访问；自30464三个已接收段各新增768更新/1805访问，原771来源、完整状态恢复及固定配方保持，本机2816独立。最新段原tool/SSH0后，首次严格进程快照为UNKNOWN；保留旧失败，以相同冻结算法另做一次独立03观测并经原接受器接收，没有重跑训练，也没有把旧快照改成成功。主端点评价的GPU/CPU资源衔接候选已完成各12项有限合成测试与独立静态复核，未部署或真实运行。原参考数据人口/顺序/角色桥另已实际通过；最后186的普通源码合同静态允许，真实末段准备仍待。N26两GT既有排序收益、medium/AR10代价和R跨GT反转保留；DiffSAR仍正式512、无端点AP。**FULL/PLAIN最终AP、完整外部强对照、容量/成本、重复与跨集仍缺，不宣称创新成立、SOTA或TGRS就绪。**
 
-全局DGX已接收账户127正常/8失败/135总计（不含上述尚未接收段），包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户128正常/8失败/136总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -38,6 +38,10 @@ DGX PLAIN/FULL各严格接收 **30976/37050次正式更新（83.61%，41轮+595�
 - [N26结果后研究取舍：先检验排序/ignore解释，不追加尺度模块](research_round_20260925_global/N26_POST_DUALGT_RESEARCH_DECISION_20261107_01.md)
 - [质量后校准直接先例：2024 mask-IoU校准与2025折衷记录](research_round_20260925_global/SCALE_CONDITIONED_MASK_QUALITY_PRIMARY_REVIEW_20261107_01.md)
 - [官方COCO尺度分组的竞争解释：未执行的新诊断设计](research_round_20260925_global/COCO_SCALE_GROUP_RANKING_ALTERNATIVE_REVIEW_20261107_01.md)
+- [31232严格接收：旧UNKNOWN保留、新同算法观察通过，无重训](research_round_20260925_global/U57_STRICT_CENSUS_UNKNOWN_AND_FRESH_OBSERVATION_20261107.md)
+- [主E50评价资源衔接候选：有限验证完成，真实运行待](research_round_20260925_global/MAIN_E50_ENDPOINT_RESOURCE_CLOSURE_SOURCE_STATUS_20261107.md)
+- [原参考数据人口/顺序/角色桥：真实I/O通过，无新AP](research_round_20260925_global/MAIN_E50_REFERENCE_ORDER_ROLE_BRIDGE_STATUS_20261107.md)
+- [最后186次更新的普通源码静态合同核查](research_round_20260925_global/MAIN_E50_FINAL186_STATIC_CONTRACT_REVIEW_20261107.md)
 - [回答“跟其他方法比”：实测表、论文值、尚未完成的对照](research_round_20260925_global/OTHER_METHODS_COMPARISON_USER_BRIEF_20261107.md)
 - [当前与其他方法的对比：已测数字、不同预算和外部缺口](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_20261107.md)
 - [DiffSAR两次限定梯度观察：原失败保留与解释边界](research_round_20260925_global/U57_DIFFSAR_MASK_GRADIENT_DIAGNOSTICS_20261107.md)

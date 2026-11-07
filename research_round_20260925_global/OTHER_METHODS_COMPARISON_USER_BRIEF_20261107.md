@@ -31,3 +31,6 @@ PointRend风格的独立短预算对照：C条件点头两种子均值68.166 AP�
 现在可确认的是固定内部协议下局部精修/排序收益。缺少的是新结构端点效用、完整外部强对照、容量/计算控制、完整训练重复和跨集证据；这是真实实验缺口，不是写作包装能弥补的。下一决定性证据应先来自锁定E50的PLAIN/FULL统一评价，并列原生、R、N26；外部完整训练同时保留其可核初始化、数据版本与上游成本，不能只对齐epoch标签。所有方法采用相同证据标准。
 
 来源：[完整比较及协议](U57_EXTERNAL_METHOD_COMPARISON_20261107.md)、[N26两GT真实诊断](N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md)、[SAM完整评价](U57_SAMREFINER_FULL187_COMPARISON_EXECUTION_20261025.md)、[GLDet原PDF指标核查](U57_GLDET_ORIGINAL_PDF_METRICS_AUDIT_20261025.md)、[历史模型表及限制](TRAINED_METRICS_COMPARISON_20261024.md)。本页及原研究记录持续保留失败和范围限制，不宣称SOTA或TGRS就绪。
+
+
+执行状态更新：主PLAIN/FULL已严格31232/37050，下一31232→31488运行。先前31232进程快照UNKNOWN已保留；同算法单次独立新观察与原接受器通过，没有重训或新AP。该更新不改变本页任何方法性能值及外部对照缺口。
