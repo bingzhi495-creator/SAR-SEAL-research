@@ -8,6 +8,7 @@
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
 - [RF-DETR E24 的真实 DEV187 双标注评价与误差诊断](research_round_20260925_global/RFDETR_E24_DEV187_ACTUAL_EVALUATION_20261107.md)
+- [全部原始查询覆盖实测与高 IoU 缺口](research_round_20260925_global/RFDETR_E24_RAW_QUERY_GEOMETRY_ACTUAL_20261107.md)
 - [E24 原始查询诊断首次资源失败及后续核验](research_round_20260925_global/RFDETR_E24_RAW_QUERY_FIRST_ORIGINAL_FAILURE_20261107.md)
 - [RF-DETR 连续 E24 实测与原生断点](research_round_20260925_global/RFDETR_NATIVE_CONTINUOUS_E24_STATUS_20261107.md)
 - [E24 固定 DEV187 的原生导出与 CPU 评价协议](research_round_20260925_global/RFDETR_E24_DEV187_EVALUATION_CHAIN_20261107.md)

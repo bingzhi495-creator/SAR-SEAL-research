@@ -1,0 +1,111 @@
+{
+  "schema": "sar-seal-rfdetr-e24-raw-query-geometry-actual-safe-v1",
+  "status": "ACTUAL_RFDETR_E24_RAW_QUERY_GEOMETRY_377_ACCEPTED",
+  "scope": "Frozen E24 single-seed internal DEV187, 377 fixed primary pairs, both GT versions",
+  "GPU_export": {
+    "image_count": 187,
+    "raw_slot0_masks": 18700,
+    "stock_top200_rows": 37400,
+    "primary_per_image_hashes_verified": 187,
+    "primary_retained_rows_verified": 15434,
+    "worker_seconds": 19.98438427085057,
+    "cuda_peak_allocated_bytes": 291374080,
+    "cuda_peak_reserved_bytes": 723517440,
+    "strict_ema_readback": {
+      "class_slots": 2,
+      "ema_updates": 4464,
+      "raw_ema_classifier_max_abs_difference": 0.003087233752012253,
+      "strict_readback_exact": true,
+      "tensors": 545
+    },
+    "AP": false,
+    "TEST": false,
+    "GT_read": false,
+    "training": false
+  },
+  "CPU_geometry": {
+    "AP_recomputed": false,
+    "COCO_matching_recomputed": false,
+    "CPU_worker_elapsed_seconds": 0.42671324382536113,
+    "TEST": false,
+    "counts_by_GT": {
+      "INTEGER_PRIMARY": {
+        "0.75": {
+          "assigned": 331,
+          "assignment": 20,
+          "geometry": 26,
+          "pairs": 377,
+          "raw": 351,
+          "retained": 351,
+          "selection": 0
+        },
+        "0.90": {
+          "assigned": 60,
+          "assignment": 43,
+          "geometry": 273,
+          "pairs": 377,
+          "raw": 104,
+          "retained": 103,
+          "selection": 1
+        }
+      },
+      "LOCAL_CANDIDATE_FLOAT": {
+        "0.75": {
+          "assigned": 341,
+          "assignment": 17,
+          "geometry": 18,
+          "pairs": 377,
+          "raw": 359,
+          "retained": 358,
+          "selection": 1
+        },
+        "0.90": {
+          "assigned": 86,
+          "assignment": 37,
+          "geometry": 249,
+          "pairs": 377,
+          "raw": 128,
+          "retained": 123,
+          "selection": 5
+        }
+      }
+    },
+    "images": 187,
+    "images_with_pairs": 187,
+    "integer_ignored_GT": 0,
+    "integer_unmatched_nonignored_GT": 3,
+    "interpretation": "Nested one-GT maxima on fixed original assignments. No one-to-one oracle or causal attribution.",
+    "min_sampled_available_RAM_bytes": 74244354048,
+    "new_training": false,
+    "original_assigned_and_retained_overlap_exact": true,
+    "original_retained_membership_exact": true,
+    "paired_GT": 377,
+    "peak_sampled_worker_RSS_bytes": 57528320,
+    "primary_GT": "INTEGER_PRIMARY",
+    "primary_IoU_threshold": 0.9,
+    "qualified": false,
+    "raw_query_mask_records_checked": 18700,
+    "schema": "Root-RFDETR-E24-raw-query-fixed-pair-overlap-v1",
+    "secondary_IoU_threshold": 0.75,
+    "status": "GEOMETRY_COMPLETE_PENDING_ROOT_ACCEPTANCE",
+    "total_GT": 380
+  },
+  "owner_seconds": {
+    "GPU": 27.068461679155007,
+    "CPU": 0.5888675660826266
+  },
+  "original_exit": {
+    "GPU": 0,
+    "CPU": 0
+  },
+  "independent_same_boot_closure": {
+    "GPU": true,
+    "CPU": true
+  },
+  "original_primary_unchanged": true,
+  "first_raw_GPU": {
+    "exit": 1,
+    "error": "CUDA out of memory before artifact creation",
+    "exact_operation_known": false
+  }
+}
