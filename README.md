@@ -57,7 +57,7 @@
 - [RF-DETR v02空schema兼容、离线诊断与待执行真实验证](research_round_20260925_global/RFDETR_V02_CANDIDATE_STATUS_20261107_02.md)
 - [RF-DETR实际基础依赖安装、数据接口与待执行CPU探针](research_round_20260925_global/RFDETR_RUNTIME_PREPARATION_STATUS_20261107_02.md)
 - [2026-11-07数学、物理与雷达方法溯源、30条原文源码索引和后续实验](research_round_20260925_global/PRIMARY_METHODS_SOURCE_AUDIT_AND_NEXT_TEST_20261107.md)
-- [修正后首片完成真实推理和资源闭合，完整预测待传回](research_round_20260925_global/MAIN_E50_FIRST_SHARD_CORRECTED_PREDICTION_20261107.md)
+- [固定50轮验证首片已验收，第二片已启动](research_round_20260925_global/MAIN_E50_FIRST_SHARD_CORRECTED_PREDICTION_20261107.md)
 - [主线固定50轮已验收，首片原始失败和根因记录](research_round_20260925_global/MAIN_E50_ENDPOINT_AND_FIRST_SHARD_IMPORT_FAILURE_20261107.md)
 - [主线恢复段和 RF-DETR 原生BF16两步历史记录](research_round_20260925_global/U57_RECOVERY36864_AND_RFDETR_BF16_ACTUAL_20261107.md)
 - [2026-11-07研究决策：数学/物理/雷达/最新模型原始证据与RF-DETR新基线](research_round_20260925_global/RESEARCH_DECISION_20261107.md)
