@@ -43,4 +43,6 @@ DGX 以 pip 25.0.1 的原生解析器、仅本地目录与二进制包实际执�
 
 [首次实际 CLI 检查的失败原因与第二版修正](RFDETR_CLI_CODEC_ACTUAL_RESULT_20261107_01.md) 已记录。首次原任务在解析阶段退出，编解码未执行。
 
-原 PLAIN/FULL 已各接受35,840/37,050次正式更新，下一35,840→36,096原任务已接续。研究总目标继续进行。
+[第二次 CLI 实测与第三版修正](RFDETR_CLI_CODEC_ACTUAL_RESULT_20261107_01.md)和[实际原生 SSDD 布局](RFDETR_SSDD_NATIVE_INPUT_LAYOUT_ACTUAL_20261107_01.md)已记录。
+
+原 PLAIN/FULL 已各接受36,096/37,050次正式更新，下一36,096→36,352原任务已接续。研究总目标继续进行。
