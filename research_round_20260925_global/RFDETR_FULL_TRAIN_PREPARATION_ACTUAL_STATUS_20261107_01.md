@@ -39,4 +39,6 @@ DGX 以 pip 25.0.1 的原生解析器、仅本地目录与二进制包实际执�
 
 另已定位已有 HRSID JPG 两份归档及配套 train/test 标注，优先复用[已有完整 JPG 字节/CRC 准备](HRSID_JPG_INPUT_AUDIT_STATUS_20261107_04.md)与[标注差异记录](HRSID_ANNOTATION_PROTOCOL_DIFF_STATUS_20261107_05.md)。本次定位没有读取图像或 GT 正文。正式启用前仍须核像素和轮廓对齐、数据身份、跨划分相同图像及评价范围；不把 JPG 等同官方 PNG，也不把仓库许可证自动延伸到外部影像归档。[作者获取入口](https://github.com/chaozhong2010/HRSID#dataset-download-link)
 
-原 PLAIN/FULL 已各接受35,328/37,050次正式更新，下一35,328→35,584原任务已接续。研究总目标继续进行。
+[CLI 与编解码合成 CPU 检查](RFDETR_CLI_CODEC_QUALIFICATION_DRAFT_20261107_01/README.md) 已完成候选源码和静态接口检查，待真实执行。检查从官方 CLI 到原生 RLE、JPEG、PNG、OpenCV 和 faster_coco_eval，合成样本与真实 SAR 指标分别报告。
+
+原 PLAIN/FULL 已各接受35,584/37,050次正式更新，下一35,584→35,840原任务已接续。研究总目标继续进行。
