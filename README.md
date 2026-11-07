@@ -4,9 +4,9 @@
 
 ## 当前状态（2026-11-07）
 
-DGX PLAIN/FULL各严格接收 **32000/37050次正式更新（86.37%，43轮+137图）**，下一32000→32256原任务已运行、尚未接收。本轮每臂新增256更新/518匹配实例访问，原771来源、完整状态恢复与配方保持，本机2816独立。外部预训练候选179MB已实际传到DGX且两端完整SHA一致，仅输入字节阶段、未加载Tensor。新增真实加载helper和CPU完整模型factory worker候选：分别11项fake-tensor测试、6项stdlib contract测试通过，源码已冻结，尚未导入真实Torch或执行加载。有限静态复核确认作者真实属性、归一化闭包及DCN标量接口；CPU-only load与GPU/前向资格分开。原随机初值DiffSAR512不改。**主结构最终AP、完整外部公平效用、容量/计算、重复与跨集仍待，不宣称SOTA或TGRS就绪。**
+DGX PLAIN/FULL各严格接收 **32512/37050次正式更新（87.75%，43轮+649图）**，下一32512→32768原任务已运行、尚未接收；最新每臂+256更新/551匹配实例访问，完整状态恢复，未改配方。新一轮重点完成数学/雷达12族、8类基础模型/3数据及两份6项补录的原文与实际源码审阅（家族有重叠，不相加）；发现近先例、预训练重叠风险和占位/静态实现缺口。RF-DETR1.12.0完整585文件与135MB Nano权重实际取得且官方MD5一致，100轮候选配置仅静态核查，旧本机依赖不满足下限，尚未加载或训练。R101加载工程保留未执行备选，不阻挡当前主训练。**没有新RF-DETR AP、已成立核心创新或TGRS就绪结论。**
 
-全局DGX账户131正常/8失败/139总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
+全局DGX账户133正常/8失败/141总计，包含独立CPU验证，并非纯训练次数。全187包传输及U65完整CPU读取的既有范围不变；E50模型恢复、预测、校准和完整评价仍待。
 
 - [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
 - [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
@@ -38,6 +38,8 @@ DGX PLAIN/FULL各严格接收 **32000/37050次正式更新（86.37%，43轮+137�
 - [N26结果后研究取舍：先检验排序/ignore解释，不追加尺度模块](research_round_20260925_global/N26_POST_DUALGT_RESEARCH_DECISION_20261107_01.md)
 - [质量后校准直接先例：2024 mask-IoU校准与2025折衷记录](research_round_20260925_global/SCALE_CONDITIONED_MASK_QUALITY_PRIMARY_REVIEW_20261107_01.md)
 - [官方COCO尺度分组的竞争解释：未执行的新诊断设计](research_round_20260925_global/COCO_SCALE_GROUP_RANKING_ALTERNATIVE_REVIEW_20261107_01.md)
+- [2026-11-07研究决策：数学/物理/雷达/最新模型原始证据与RF-DETR新基线](research_round_20260925_global/RESEARCH_DECISION_20261107.md)
+- [RF-DETR五块公平实验计划：100轮候选、诊断和停止规则（未运行）](research_round_20260925_global/RFDETR_BASELINE_AND_DIAGNOSTIC_PLAN_20261107.md)
 - [R101真实加载与CPU模型factory候选：代码冻结，实际执行仍待](research_round_20260925_global/R101_REAL_LOADING_CANDIDATES_STATUS_20261107.md)
 - [R101逐键覆盖候选：520项完整规范、14项有限合成测试，未加载模型](research_round_20260925_global/code/R101_EXPLICIT_BACKBONE_COVERAGE_DRAFT_20261107_01/README.md)
 - [R101覆盖候选有限独立审阅：metadata通过不授真实加载资格](research_round_20260925_global/R101_BACKBONE_COVERAGE_CANDIDATE_REVIEW_20261107.md)

@@ -1,0 +1,75 @@
+{
+  "AP": null,
+  "background_service_installed": false,
+  "baseline_candidate": {
+    "CLI_seed_everything": 5201,
+    "accumulation": 4,
+    "early_stopping": false,
+    "effective_batch": 4,
+    "epochs": 100,
+    "group_detr": 13,
+    "internal_eval_backend": "faster_coco_eval_UNVERIFIED_AGAINST_CANONICAL",
+    "microbatch": 1,
+    "primary_checkpoint": "E100_ENDPOINT_EMA",
+    "primary_metric": "canonical COCO mask AP@[.50:.95], maxDets100",
+    "repeat_seeds": [
+      5202,
+      5203
+    ],
+    "resolution": 576,
+    "seed": 5201
+  },
+  "blocks": [
+    {
+      "id": "P0",
+      "status": "IN_PROGRESS_BYTES_ONLY",
+      "task": "isolated dependency and exact split/source admission"
+    },
+    {
+      "id": "P1",
+      "status": "NOT_EXECUTED",
+      "task": "finite actual compatibility/cost check then fixed100 baseline"
+    },
+    {
+      "id": "P2",
+      "status": "NOT_EXECUTED",
+      "task": "bounded coverage/gradient and error diagnosis, no mechanism assumed"
+    },
+    {
+      "id": "P3",
+      "status": "CONDITIONAL_UNSELECTED",
+      "task": "one selected minimal method and strongest simple controls"
+    },
+    {
+      "id": "P4",
+      "status": "CONDITIONAL_NOT_EXECUTED",
+      "task": "equal long budget, independent full training seeds and cross-dataset"
+    }
+  ],
+  "candidate_model": "RFDETRSegNano",
+  "current_locked_main": "CONTINUES_UNCHANGED_NO_NEW_ENDPOINT_AP",
+  "date": "2026-11-07",
+  "dependency_install": false,
+  "forward": false,
+  "goal_complete": false,
+  "input_bytes_ready": true,
+  "limited_independent_static_review": "PASS_AS_UNEXECUTED_PLAN_ONLY_NOT_RUNTIME_ADMISSION",
+  "local_existing_environment_compatible": false,
+  "novelty": "UNCONFIRMED_pending_Codex_review",
+  "official_initialization": "COCO instance segmentation",
+  "publication_scope": "Own reports/config/metadata only; no raw data, full annotations, weights, third-party full papers or operational secrets",
+  "runtime_model_load": false,
+  "sampling_actual_point_and_time_design_frozen": false,
+  "schema": "SAR-SEAL-next-research-tracker-v1",
+  "scientific_runtime_scheduled": false,
+  "stop_rules": [
+    "No coverage/gradient defect: drop sampling explanation",
+    "Correct boxes not main error: do not claim mask-only repair",
+    "HH not better than uniform: no variance-reduction utility claim",
+    "Simple controls explain benefit: no new mechanism claim",
+    "Short-budget result limited to same budget/recipe"
+  ],
+  "training": false,
+  "upstream_commit": "639eac4555ceb89ef399ccda3fde716bbcfe34cb",
+  "upstream_source_static_read": true
+}

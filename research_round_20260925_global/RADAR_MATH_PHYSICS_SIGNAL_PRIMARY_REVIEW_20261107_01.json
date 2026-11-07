@@ -1,0 +1,934 @@
+{
+  "schema_version": "1.0",
+  "review_date": "2026-11-07",
+  "language": "zh-CN",
+  "report_basename": "RADAR_MATH_PHYSICS_SIGNAL_PRIMARY_REVIEW_20261107_01.md",
+  "scope": "Task-focused primary literature/source review, not exhaustive worldwide coverage or a SOTA leaderboard",
+  "execution_status": {
+    "scientific_experiments_run": false,
+    "training_started": false,
+    "weights_loaded": false,
+    "private_data_read": false,
+    "live_source_read_or_changed": false,
+    "git_sync_performed_by_this_agent": false,
+    "publication_level_success_claimed": false
+  },
+  "data_contract": {
+    "available": [
+      "public_8bit_grayscale_JPEG_PNG_SSDD_HRSID",
+      "instance_masks"
+    ],
+    "not_verified": [
+      "linear_intensity_or_amplitude",
+      "radiometric_calibration",
+      "number_of_looks",
+      "display_or_log_transform",
+      "spatial_speckle_independence"
+    ],
+    "unavailable": [
+      "raw_echo",
+      "complex_SLC",
+      "phase",
+      "polarimetric_covariance",
+      "registered_multitemporal_stacks",
+      "target_CAD_and_acquisition_geometry"
+    ],
+    "prohibited_inferences": [
+      "FFT_of_display_image_does_not_recover_raw_phase",
+      "repeated_gray_channels_are_not_polarimetry_or_multimodality",
+      "pixel_geometry_is_not_physical_ship_length"
+    ]
+  },
+  "coverage_counts": {
+    "method_families": 12,
+    "implementation_packages_actually_read": 12,
+    "algorithmic_core_implementations_read_excluding_wrapper_and_placeholder": 10,
+    "deep_original_method_plus_author_code_pairs_at_least": 7,
+    "experimental_reproductions": 0
+  },
+  "implementation_audit": [
+    {
+      "repo": "radarsimx/radarsimpy",
+      "role": "official_third_party_classical_algorithm",
+      "commit": "5a07616212142b673643f40bada49434c5e6c0dd",
+      "read_path": "src/radarsimpy/processing.py",
+      "read_symbols": [
+        "cfar_ca_2d",
+        "os_cfar_threshold",
+        "cfar_os_2d"
+      ],
+      "source_url": "https://github.com/radarsimx/radarsimpy/blob/5a07616212142b673643f40bada49434c5e6c0dd/src/radarsimpy/processing.py",
+      "executed": false
+    },
+    {
+      "repo": "diegovalsesia/speckle2void",
+      "role": "paper_author_implementation",
+      "commit": "ca4e83e7b8c9880dd12805430d0de2fd9c990f2b",
+      "read_path": "Speckle2Void.py",
+      "read_symbols": [
+        "build_inference",
+        "loss"
+      ],
+      "source_url": "https://github.com/diegovalsesia/speckle2void/blob/ca4e83e7b8c9880dd12805430d0de2fd9c990f2b/Speckle2Void.py",
+      "executed": false
+    },
+    {
+      "repo": "hi-paris/deepdespeckling",
+      "role": "wrapper_not_original_training_source",
+      "commit": "b9bf54a013933a8dbfa63d5e02cd5b0a7acd7efc",
+      "read_path": "deepdespeckling/merlin/merlin_denoiser.py",
+      "read_symbols": [
+        "preprocess_noisy_image",
+        "denoise_image_kernel"
+      ],
+      "source_url": "https://github.com/hi-paris/deepdespeckling/blob/b9bf54a013933a8dbfa63d5e02cd5b0a7acd7efc/deepdespeckling/merlin/merlin_denoiser.py",
+      "executed": false
+    },
+    {
+      "repo": "IAPP-Group/S3DIP",
+      "role": "paper_author_implementation",
+      "commit": "ea018dab23ef44ec2106b182661d3bec921fc0d4",
+      "read_path": "s3dip_real.py",
+      "read_symbols": [
+        "global_optimization_script",
+        "hist_loss_broadcast.py:compute_h_broadcast",
+        "hist_loss_broadcast.py:histogram_loss"
+      ],
+      "source_url": "https://github.com/IAPP-Group/S3DIP/blob/ea018dab23ef44ec2106b182661d3bec921fc0d4/s3dip_real.py",
+      "executed": false
+    },
+    {
+      "repo": "YYF121/SDS-SAR",
+      "role": "paper_author_repository_placeholder_only",
+      "commit": "82541722491054b1ca6605012e0561bcf0cc1d6b",
+      "read_path": "src/models/placeholder_model.py",
+      "read_symbols": [
+        "medianBlur_placeholder"
+      ],
+      "source_url": "https://github.com/YYF121/SDS-SAR/blob/82541722491054b1ca6605012e0561bcf0cc1d6b/src/models/placeholder_model.py",
+      "executed": false
+    },
+    {
+      "repo": "LIVIAETS/boundary-loss",
+      "role": "paper_author_implementation",
+      "commit": "171c32d88a4ce59af8be46fb88b96d3637b9515b",
+      "read_path": "losses.py",
+      "read_symbols": [
+        "SurfaceLoss",
+        "GeneralizedDice",
+        "utils.py:one_hot2dist"
+      ],
+      "source_url": "https://github.com/LIVIAETS/boundary-loss/blob/171c32d88a4ce59af8be46fb88b96d3637b9515b/losses.py",
+      "executed": false
+    },
+    {
+      "repo": "jocpae/clDice",
+      "role": "paper_author_implementation",
+      "commit": "47d31a6cc4a8101b1ffe8052994821961e57af9f",
+      "read_path": "cldice_loss/pytorch/cldice.py",
+      "read_symbols": [
+        "soft_cldice",
+        "soft_skeleton.py:SoftSkeletonize"
+      ],
+      "source_url": "https://github.com/jocpae/clDice/blob/47d31a6cc4a8101b1ffe8052994821961e57af9f/cldice_loss/pytorch/cldice.py",
+      "executed": false
+    },
+    {
+      "repo": "facebookresearch/detectron2",
+      "role": "paper_author_implementation",
+      "commit": "247691a1c292654867deb35cabb27f18d75a1363",
+      "read_path": "projects/PointRend/point_rend/point_features.py",
+      "read_symbols": [
+        "point_sample",
+        "get_uncertain_point_coords_with_randomness"
+      ],
+      "source_url": "https://github.com/facebookresearch/detectron2/blob/247691a1c292654867deb35cabb27f18d75a1363/projects/PointRend/point_rend/point_features.py",
+      "executed": false
+    },
+    {
+      "repo": "facebookresearch/Mask2Former",
+      "role": "paper_author_implementation",
+      "commit": "9b0651c6c1d5b3af2e6da0589b719c514ec0d69a",
+      "read_path": "mask2former/modeling/criterion.py",
+      "read_symbols": [
+        "loss_masks",
+        "sigmoid_ce_loss",
+        "dice_loss",
+        "matcher.py:memory_efficient_forward"
+      ],
+      "source_url": "https://github.com/facebookresearch/Mask2Former/blob/9b0651c6c1d5b3af2e6da0589b719c514ec0d69a/mask2former/modeling/criterion.py",
+      "executed": false
+    },
+    {
+      "repo": "zhangyp15/OccFormer",
+      "role": "paper_author_implementation",
+      "commit": "44aee79434d6aedca0d97fe62965032505f583e7",
+      "read_path": "projects/mmdet3d_plugin/occformer/mask2former/base/mmdet_utils.py",
+      "read_symbols": [
+        "sample_valid_coords_with_frequencies",
+        "get_uncertain_point_coords_3d_with_frequency",
+        "mask2former_occ.py:loss_single"
+      ],
+      "source_url": "https://github.com/zhangyp15/OccFormer/blob/44aee79434d6aedca0d97fe62965032505f583e7/projects/mmdet3d_plugin/occformer/mask2former/base/mmdet_utils.py",
+      "executed": false
+    },
+    {
+      "repo": "jeanfeydy/geomloss",
+      "role": "paper_author_implementation",
+      "commit": "00e493f36bd6cc8471526e59afc07193a1926e47",
+      "read_path": "src/geomloss/_legacy/sinkhorn_samples.py",
+      "read_symbols": [
+        "sinkhorn_tensorized",
+        "sinkhorn_online",
+        "sinkhorn_divergence.py:sinkhorn_loop",
+        "sinkhorn_divergence.py:sinkhorn_cost",
+        "samples_loss.py:SamplesLoss"
+      ],
+      "source_url": "https://github.com/jeanfeydy/geomloss/blob/00e493f36bd6cc8471526e59afc07193a1926e47/src/geomloss/_legacy/sinkhorn_samples.py",
+      "executed": false
+    },
+    {
+      "repo": "charles_deledalle/mulog2022-python",
+      "role": "paper_author_formal_release",
+      "commit": null,
+      "version": "0.0.4",
+      "wheel_sha256": "749bc1b205fd20ba15442445c08a896bba800f90413e10a21c7a695a9ed05be4",
+      "source_url": "https://pypi.org/project/mulog/0.0.4/",
+      "author_source_url": "https://bitbucket.org/charles_deledalle/mulog2022-python/src/v0.0.4/",
+      "read_paths": [
+        "mulog/mulog_algorithm.py",
+        "mulog/prox.py",
+        "mulog/pnp_admm.py",
+        "mulog/tools.py"
+      ],
+      "read_symbols": [
+        "preset_mulog",
+        "iter_mulog",
+        "prox_fisher_tippet",
+        "prox_wishart_fisher_tippet",
+        "iter_pnp_admm",
+        "compute_fisher_tippet_noise_std",
+        "compute_fisher_tippet_noise_bias"
+      ],
+      "executed": false,
+      "installed": false
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "title": "MuLoG, or How to apply Gaussian denoisers to multi-channel SAR speckle reduction?",
+      "date": "2017",
+      "url": "https://arxiv.org/pdf/1704.05335",
+      "read_status": "method_II_IV_read"
+    },
+    {
+      "id": "S02",
+      "title": "Speckle2Void: Deep Self-Supervised SAR Despeckling with Blind-Spot CNNs",
+      "date": "2020_preprint",
+      "url": "https://arxiv.org/html/2007.02075",
+      "read_status": "method_IV_read"
+    },
+    {
+      "id": "S03",
+      "title": "A model for extremely heterogeneous clutter",
+      "date": "1997",
+      "url": "https://doi.org/10.1109/36.581981",
+      "read_status": "metadata_verified_full_original_not_obtained"
+    },
+    {
+      "id": "S04",
+      "title": "Radar CFAR Thresholding in Clutter and Multiple Target Situations",
+      "date": "1983",
+      "url": "https://doi.org/10.1109/TAES.1983.309350",
+      "read_status": "original_reference_official_implementation_verified"
+    },
+    {
+      "id": "S05",
+      "title": "CA-CFAR Soft Attention and Scatter-Aware Context Aggregation for Small Ship Detection in SAR Imagery",
+      "date": "2026-11-05",
+      "url": "https://www.mdpi.com/2072-4292/18/21/3799",
+      "read_status": "primary_publisher_method_text_read_author_source_unknown"
+    },
+    {
+      "id": "S06",
+      "title": "Digital Image Enhancement and Noise Filtering by Use of Local Statistics",
+      "date": "1980",
+      "url": "https://doi.org/10.1109/TPAMI.1980.4766994",
+      "read_status": "primary_publisher_abstract_read_author_source_unknown"
+    },
+    {
+      "id": "S07",
+      "title": "NL-SAR: a unified Non-Local framework for resolution-preserving (Pol)(In)SAR denoising",
+      "date": "2015",
+      "url": "https://www.charles-deledalle.fr/pages/nlsar.php",
+      "read_status": "author_project_and_manual_read_core_not_read"
+    },
+    {
+      "id": "S08",
+      "title": "A Nonlocal SAR Image Denoising Algorithm Based on LLMMSE Wavelet Shrinkage",
+      "date": "2012",
+      "url": "https://www.grip.unina.it/download/prog/SAR-BM3D/version_1.0/README.txt",
+      "read_status": "author_release_readme_read_core_not_read"
+    },
+    {
+      "id": "S09",
+      "title": "As if by magic: self-supervised training of deep despeckling networks with MERLIN",
+      "date": "2021",
+      "url": "https://arxiv.org/html/2110.13148",
+      "read_status": "method_II_III_and_independence_conditions_read"
+    },
+    {
+      "id": "S10",
+      "title": "SAR2SAR: a semi-supervised despeckling algorithm for SAR images",
+      "date": "2020_preprint",
+      "url": "https://arxiv.org/abs/2006.15037",
+      "read_status": "primary_paper_entry_read_wrapper_inspected"
+    },
+    {
+      "id": "S11",
+      "title": "Self-Supervised SAR Despeckling Using Deep Image Prior",
+      "date": "2025",
+      "url": "https://doi.org/10.1016/j.patrec.2025.02.021",
+      "read_status": "method_2_3_and_author_core_read"
+    },
+    {
+      "id": "S12",
+      "title": "Self-supervised despeckling based solely on SAR intensity images: A general strategy",
+      "date": "2026",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0924271625004642",
+      "read_status": "publisher_paper_text_read_author_code_placeholder"
+    },
+    {
+      "id": "S13",
+      "title": "Self-Supervised Score-Based Despeckling for SAR Imagery via Log-Domain Transformation",
+      "date": "2026-01-20",
+      "url": "https://arxiv.org/abs/2601.14334",
+      "read_status": "abstract_only_author_source_unknown"
+    },
+    {
+      "id": "S14",
+      "title": "Multi-view 3D surface reconstruction from SAR images by inverse rendering",
+      "date": "2025-02-14",
+      "url": "https://arxiv.org/html/2502.10492",
+      "read_status": "method_II_III_read_author_source_unknown"
+    },
+    {
+      "id": "S15",
+      "title": "OptiX-Based SAR Image Simulation with Residual-Learning Refinement",
+      "date": "2026",
+      "url": "https://www.mdpi.com/2072-4292/18/20/3579",
+      "read_status": "publisher_method_2_2_read_author_source_unknown"
+    },
+    {
+      "id": "S16",
+      "title": "Reinforcement Learning for SAR View Angle Inversion with Differentiable SAR Renderer",
+      "date": "2024",
+      "url": "https://arxiv.org/html/2401.01165",
+      "read_status": "method_II_read_author_source_unknown"
+    },
+    {
+      "id": "S17",
+      "title": "Boundary loss for highly unbalanced segmentation",
+      "date": "2019",
+      "url": "https://proceedings.mlr.press/v102/kervadec19a/kervadec19a.pdf",
+      "read_status": "method_2_and_author_core_read"
+    },
+    {
+      "id": "S18",
+      "title": "Speckle reducing anisotropic diffusion",
+      "date": "2002",
+      "url": "https://doi.org/10.1109/TIP.2002.804276",
+      "read_status": "paper_identified_primary_fulltext_access_gap"
+    },
+    {
+      "id": "S19",
+      "title": "clDice - A Novel Topology-Preserving Loss Function for Tubular Structure Segmentation",
+      "date": "2021_CVPR",
+      "url": "https://arxiv.org/html/2003.07311",
+      "read_status": "method_2_4_theorem_conditions_and_author_core_read"
+    },
+    {
+      "id": "S20",
+      "title": "Interpolating between Optimal Transport and MMD using Sinkhorn Divergences",
+      "date": "2019_AISTATS",
+      "url": "https://proceedings.mlr.press/v89/feydy19a.html",
+      "read_status": "original_entry_and_author_core_read"
+    },
+    {
+      "id": "S21",
+      "title": "PointRend: Image Segmentation as Rendering",
+      "date": "2020_CVPR",
+      "url": "https://arxiv.org/html/1912.08193",
+      "read_status": "method_3_1_and_author_core_read"
+    },
+    {
+      "id": "S22",
+      "title": "Masked-attention Mask Transformer for Universal Image Segmentation",
+      "date": "2022_CVPR",
+      "url": "https://arxiv.org/html/2112.01527",
+      "read_status": "method_3_3_and_author_core_read"
+    },
+    {
+      "id": "S23",
+      "title": "OccFormer: Dual-path Transformer for Vision-based 3D Semantic Occupancy Prediction",
+      "date": "2023_ICCV",
+      "url": "https://arxiv.org/html/2304.05316",
+      "read_status": "method_3_3_4_and_author_core_read"
+    },
+    {
+      "id": "S24",
+      "title": "Focal Loss for Dense Object Detection",
+      "date": "2017_ICCV",
+      "url": "https://arxiv.org/html/1708.02002",
+      "read_status": "original_objective_read"
+    },
+    {
+      "id": "S25",
+      "title": "Generalised Dice overlap as a deep learning loss function for highly unbalanced segmentations",
+      "date": "2017",
+      "url": "https://arxiv.org/html/1707.03237",
+      "read_status": "method_2_1_read"
+    },
+    {
+      "id": "S26",
+      "title": "A Generalization of Sampling Without Replacement from a Finite Universe",
+      "date": "1952",
+      "url": "https://www.tandfonline.com/doi/abs/10.1080/01621459.1952.10483446",
+      "read_status": "original_publisher_entry_and_original_pdf_read"
+    },
+    {
+      "id": "S27",
+      "title": "PartDistillation: Learning Parts from Instance Segmentation - Supplementary Material",
+      "date": "2023_CVPR",
+      "url": "https://openaccess.thecvf.com/content/CVPR2023/supplemental/Cho_PartDistillation_Learning_Parts_CVPR_2023_supplemental.pdf",
+      "read_status": "original_counterexample_equal_point_random_sampling_read"
+    },
+    {
+      "id": "S28",
+      "title": "Lightweight boundary refinement module based on point supervision for semantic segmentation",
+      "date": "2021",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0262885621000743",
+      "read_status": "publisher_method_description_read_core_unknown"
+    }
+  ],
+  "families": [
+    {
+      "id": "F01",
+      "name": "speckle_clutter_statistics",
+      "status": "PARTIAL_CONDITIONAL",
+      "objects": [
+        "I=R*S; S~Gamma(L,rate=L)",
+        "sample_covariance_complex_Wishart",
+        "Gamma_texture_K_family",
+        "inverse_Gamma_texture_G0_family"
+      ],
+      "assumptions": [
+        "linear_intensity_or_correct_transform",
+        "fully_developed_speckle_conditions",
+        "known_or_validated_looks",
+        "dependence_handled"
+      ],
+      "current_data_fit": "NOT_ESTABLISHED_FOR_DISPLAY_8BIT",
+      "references": [
+        "S01",
+        "S02",
+        "S03"
+      ],
+      "code_refs": [
+        "diegovalsesia/speckle2void",
+        "mulog"
+      ],
+      "author_core_gap": "K/G0 original author implementation not obtained",
+      "compute_risk": "local heavy-tail fitting is unstable on small or contaminated reference windows",
+      "minimal_change": "do not add physical likelihood before measurement/transform assumptions are verified",
+      "direct_prior": "multiplicative statistical models are classical; no novelty by renaming",
+      "falsification": [
+        "claimed tail/Pfa calibration fails",
+        "gain disappears under harmless display remapping"
+      ]
+    },
+    {
+      "id": "F02",
+      "name": "CFAR_robust_local_contrast",
+      "status": "P_PLUS_OFFICIAL_IMPLEMENTATION",
+      "objects": [
+        "alpha=N*(Pfa^(-1/N)-1) under exponential CA assumptions",
+        "order_statistics",
+        "local_ratio",
+        "median_MAD",
+        "local_rank"
+      ],
+      "assumptions": [
+        "target_free_reference_cells",
+        "guard_band",
+        "appropriate_linear_amplitude_or_power",
+        "homogeneity_or_robustness_validation"
+      ],
+      "current_data_fit": "EMPIRICAL_LOCAL_FEATURES_ONLY; NO_CALIBRATED_PFA",
+      "references": [
+        "S04",
+        "S05"
+      ],
+      "code_refs": [
+        "radarsimx/radarsimpy"
+      ],
+      "compute_risk": "mean windows near O(HW); sorting/MAD may be expensive; padding changes reference statistics",
+      "minimal_change": "single fixed-position residual contrast cue with same capacity controls",
+      "direct_prior": "CaSA-DETR 2026 already feature CA-CFAR soft attention plus multiscale SACA",
+      "falsification": [
+        "ordinary convolution or normalization explains gain",
+        "shore/ship contamination reverses gain",
+        "no false-alarm improvement at validation-selected operating point"
+      ]
+    },
+    {
+      "id": "F03",
+      "name": "Lee_GammaMAP",
+      "status": "PARTIAL_AUTHOR_CODE_OPEN",
+      "objects": [
+        "local_mean_variance_shrinkage",
+        "Gamma_MAP"
+      ],
+      "assumptions": [
+        "linear amplitude/intensity convention",
+        "valid local noise statistics",
+        "suitable local stationarity"
+      ],
+      "current_data_fit": "EMPIRICAL_FILTER_BASELINE_ONLY",
+      "references": [
+        "S06",
+        "S02"
+      ],
+      "code_refs": [],
+      "author_core_gap": "original author code not obtained",
+      "compute_risk": "cheap box moments but may erase tips and gaps",
+      "minimal_change": "one frozen preprocessing or residual view; no concurrent backbone change",
+      "direct_prior": "classical local adaptive denoising",
+      "falsification": [
+        "small instance recall or AP75 decreases",
+        "matched-strength median/Gaussian performs equally"
+      ]
+    },
+    {
+      "id": "F04",
+      "name": "nonlocal_NLSAR_SARBM3D",
+      "status": "PARTIAL_RELEASE_DOCS_READ_CORE_OPEN",
+      "objects": [
+        "patch_similarity",
+        "nonlocal_weighted_estimation",
+        "LLMMSE_transform_shrinkage"
+      ],
+      "assumptions": [
+        "statistical_similarity_matches_input",
+        "self_similarity",
+        "appropriate_looks"
+      ],
+      "current_data_fit": "CONDITIONAL_EMPIRICAL_PREPROCESSING",
+      "references": [
+        "S07",
+        "S08"
+      ],
+      "code_refs": [],
+      "author_core_gap": "NL-SAR v0.9 entry/manual and SARBM3D v1.0 README verified; algorithm kernels not read",
+      "compute_risk": "patch search can dominate runtime; preprocessing cost must be included",
+      "minimal_change": "one predeclared preprocessing recipe on identical segmenter",
+      "direct_prior": "established nonlocal SAR denoisers",
+      "falsification": [
+        "narrow gaps disappear",
+        "benefit matches simple smoothing",
+        "cross-dataset loss"
+      ]
+    },
+    {
+      "id": "F05",
+      "name": "MuLoG_matrix_log_PnP",
+      "status": "P_PLUS_AUTHOR_CODE",
+      "objects": [
+        "log_intensity_Fisher_Tippett",
+        "matrix_log_covariance",
+        "PnP_ADMM",
+        "Wishart_fidelity"
+      ],
+      "assumptions": [
+        "positive_linear_SAR_observations",
+        "number_looks",
+        "proper_Hermitian_covariance_for_multichannel"
+      ],
+      "current_data_fit": "MULTICHANNEL_UNAVAILABLE; SINGLE_CHANNEL_STATISTICS_UNVERIFIED",
+      "references": [
+        "S01"
+      ],
+      "code_refs": [
+        "mulog"
+      ],
+      "compute_risk": "multiple ADMM/Newton/denoiser iterations",
+      "minimal_change": "only after data preconditions, fixed-iteration single-channel preprocessing baseline",
+      "direct_prior": "MuLoG 2017 and 2022 already couple Gaussian priors with SAR statistical fidelity",
+      "falsification": [
+        "physics claim depends on arbitrary display mapping",
+        "cheap filter equals downstream result"
+      ]
+    },
+    {
+      "id": "F06",
+      "name": "MERLIN_SAR2SAR",
+      "status": "P_PLUS_WRAPPER_CODE; ORIGINAL_CORE_OPEN",
+      "objects": [
+        "SLC_real_imag_independence",
+        "temporal_noise_pair_supervision"
+      ],
+      "assumptions": [
+        "actual_complex_SLC_and_transfer_function_conditions_for_MERLIN",
+        "registered_multitemporal_change_compensation_for_SAR2SAR"
+      ],
+      "current_data_fit": "NO_INPUT_PRECONDITIONS",
+      "references": [
+        "S09",
+        "S10"
+      ],
+      "code_refs": [
+        "hi-paris/deepdespeckling"
+      ],
+      "compute_risk": "two branches/patch processing plus data acquisition and registration",
+      "minimal_change": "none on current grayscale data; separate future coherent-data branch",
+      "direct_prior": "well-established complex or multitemporal self-supervision",
+      "falsification": [
+        "synthetic phase is not independent observation",
+        "temporal changes become false denoising targets"
+      ]
+    },
+    {
+      "id": "F07",
+      "name": "blindspot_and_recent_self_supervised_despeckling",
+      "status": "MIXED_CODE_MATURITY",
+      "objects": [
+        "inverse_Gamma_conditional_prior",
+        "posterior_mean=(beta+L*y)/(alpha+L-1)",
+        "DIP_joint_clean_noise_factorization",
+        "soft_histogram",
+        "RA_SAMPLE"
+      ],
+      "assumptions": [
+        "decorrelation/blindspot validity",
+        "appropriate intensity/speckle model",
+        "known reference noise histogram for S3DIP"
+      ],
+      "current_data_fit": "DISPLAY_MODEL_UNVERIFIED; USE_ONLY_CONDITIONAL_BASELINE",
+      "references": [
+        "S02",
+        "S11",
+        "S12",
+        "S13"
+      ],
+      "code_refs": [
+        "diegovalsesia/speckle2void",
+        "IAPP-Group/S3DIP",
+        "YYF121/SDS-SAR"
+      ],
+      "author_core_gap": "SDS-SAR core placeholder; 2026 score method author code unknown",
+      "compute_risk": "DIP per-image optimization and guidance preprocessing expensive",
+      "minimal_change": "one available denoiser plus same segmenter; account full cost",
+      "direct_prior": "single-image self-supervision and statistical factorization already exist",
+      "falsification": [
+        "ENL improves by oversmoothing while segmentation degrades",
+        "loss depends on invalid Gamma transform"
+      ]
+    },
+    {
+      "id": "F08",
+      "name": "coherent_imaging_differentiable_rendering_physics",
+      "status": "PARTIAL_PAPERS; CODE_OPEN; DATA_INCOMPATIBLE",
+      "objects": [
+        "y=A_g(rho)+n",
+        "range_cell_surface_contributions",
+        "DSM_backscatter_rendering"
+      ],
+      "assumptions": [
+        "raw echo or actual coherent observations for imaging",
+        "sensor_geometry",
+        "multi_views_or_target_CAD_for_rendering"
+      ],
+      "current_data_fit": "NOT_AVAILABLE",
+      "references": [
+        "S14",
+        "S15",
+        "S16"
+      ],
+      "code_refs": [],
+      "author_core_gap": "identified original papers, no verified author kernel",
+      "compute_risk": "simulation/inversion data and compute burden; synthetic-real gap",
+      "minimal_change": "none without new legitimate observations/geometry",
+      "direct_prior": "differentiable SAR rendering is established; Fourier layer is not coherent SAR data consistency",
+      "falsification": [
+        "new inputs are fabricated from JPEG",
+        "simulated gains fail real-domain validation"
+      ]
+    },
+    {
+      "id": "F09",
+      "name": "anisotropy_PDE_levelset_SDF",
+      "status": "PARTIAL; BOUNDARY_LOSS_P_PLUS_AUTHOR_CODE",
+      "objects": [
+        "div(D*grad(u))",
+        "curvature=div(grad(phi)/norm(grad(phi)))",
+        "signed_distance_field",
+        "mean(phi_GT*p)"
+      ],
+      "assumptions": [
+        "pixel_geometry",
+        "annotation_quality",
+        "explicit_rasterization_and_spacing"
+      ],
+      "current_data_fit": "SDF_GEOMETRY_AVAILABLE; NOT_PHYSICAL_METERS",
+      "references": [
+        "S17",
+        "S18"
+      ],
+      "code_refs": [
+        "LIVIAETS/boundary-loss"
+      ],
+      "author_core_gap": "general SRAD/level-set original implementations not verified",
+      "compute_risk": "EDT O(HW) preprocessing; PDE iterations/curvature numerical risk",
+      "minimal_change": "per-instance bounded normalized narrow-band SDF auxiliary with fixed matcher and controlled points",
+      "direct_prior": "SurfaceLoss/BoundaryLoss is direct prior; bounded normalization is incremental hypothesis",
+      "falsification": [
+        "simple boundary BCE equals result",
+        "one-pixel annotation changes dominate",
+        "boundary metric increases but AP75 decreases"
+      ]
+    },
+    {
+      "id": "F10",
+      "name": "skeleton_topology_clDice",
+      "status": "P_PLUS_AUTHOR_CODE",
+      "objects": [
+        "skeleton_precision",
+        "skeleton_sensitivity",
+        "soft_morphological_skeleton"
+      ],
+      "assumptions": [
+        "appropriate foreground/background topology",
+        "per_instance_application",
+        "theorem_conditions_not_soft_training_guarantee"
+      ],
+      "current_data_fit": "ONLY_IF_SINGLE_INSTANCE_BREAKS_ARE_REAL_ERROR",
+      "references": [
+        "S19"
+      ],
+      "code_refs": [
+        "jocpae/clDice"
+      ],
+      "compute_risk": "O(iterations*HW); current code hardcodes 10 iterations despite iter_ parameter",
+      "minimal_change": "low-weight per-matched-instance topology baseline",
+      "direct_prior": "clDice is established tubular-structure method",
+      "falsification": [
+        "neighboring ships bridge",
+        "connectedness improves by merging",
+        "gain disappears under mask noise"
+      ]
+    },
+    {
+      "id": "F11",
+      "name": "OT_Sinkhorn_shape_geometry",
+      "status": "P_PLUS_AUTHOR_CODE_ENTRY",
+      "objects": [
+        "discrete_measures",
+        "entropic_OT",
+        "debiased_Sinkhorn_divergence"
+      ],
+      "assumptions": [
+        "defined_geometric_support_weights",
+        "balanced_mass_or_explicit_unbalanced_model",
+        "preserve_area_loss_if_normalizing"
+      ],
+      "current_data_fit": "PIXEL_GEOMETRY_AVAILABLE",
+      "references": [
+        "S20"
+      ],
+      "code_refs": [
+        "jeanfeydy/geomloss"
+      ],
+      "compute_risk": "tensorized O(T*K^2) time/O(K^2) memory; online avoids explicit matrix not necessarily quadratic compute",
+      "minimal_change": "few fixed boundary points per matched instance; same-point Chamfer/SDF controls",
+      "direct_prior": "OT and Sinkhorn shape comparison classical; debiased is not stochastic unbiasedness",
+      "falsification": [
+        "extra point budget explains gain",
+        "normalization loses area",
+        "cheaper SDF matches gain"
+      ]
+    },
+    {
+      "id": "F12",
+      "name": "point_sampling_stratification_importance_correction",
+      "status": "P_PLUS_AUTHOR_CODE; PROJECT_MECHANISM_UNTESTED",
+      "objects": [
+        "uncertainty_topk_plus_uniform",
+        "class_guided_multinomial",
+        "Hansen_Hurwitz_with_replacement",
+        "Horvitz_Thompson_inclusion_probabilities",
+        "BCE_estimator_bias_variance"
+      ],
+      "assumptions": [
+        "known_true_sampling_design",
+        "positive_support",
+        "stop_gradient_sampling_probabilities",
+        "exact_target_and_interpolation_convention",
+        "total_point_and_candidate_compute_control"
+      ],
+      "current_data_fit": "LIMITED_DIAGNOSTIC_CANDIDATE_ONLY",
+      "references": [
+        "S21",
+        "S22",
+        "S23",
+        "S24",
+        "S25",
+        "S26",
+        "S27",
+        "S28"
+      ],
+      "code_refs": [
+        "facebookresearch/detectron2",
+        "facebookresearch/Mask2Former",
+        "zhangyp15/OccFormer"
+      ],
+      "compute_risk": "new BCE and old Dice point sets can double total points; dense q/EDT can dominate cost",
+      "minimal_change": "diagnose coverage before training; clarify BCE-only vs shared-Dice designs and equalize costs",
+      "direct_prior": "PointRend biased sampling, OccFormer class-guided sampling, existing boundary point sampling",
+      "falsification": [
+        "no positive-boundary deficit",
+        "only uncorrected reweighted objective gains",
+        "uniform or Focal equals result",
+        "long training erases low-budget gain"
+      ],
+      "novelty_assessment": "known combination currently insufficient as TGRS core contribution"
+    }
+  ],
+  "sampling_math": {
+    "finite_grid_objective": "L=(1/N)*sum_i loss_i",
+    "with_replacement_estimator": "mean_k(loss_i_k/(N*q_i_k)); q_i>0; exact weights; stop-gradient q",
+    "without_replacement_estimator": "HT=(1/N)*sum_{distinct included i}(loss_i/pi_i), pi_i=inclusion probability",
+    "warning": "initial multinomial probabilities under replacement=False generally differ from inclusion probabilities",
+    "stratified_estimator": "sum_s (n_s/N)*mean_{i in uniform stratum sample s}(loss_i)",
+    "dice_warning": "ratio of unbiased numerator and denominator estimates is not generally unbiased",
+    "interpolation_contract": {
+      "Mask2Former_code_read": "prediction bilinear; GT bilinear",
+      "RF_DETR_1_12_0_parent_independent_audit": "prediction bilinear; GT nearest via _sample_target_masks_at_points",
+      "scope": "must preserve carrier-specific label/prediction/padding convention or explicitly declare target change"
+    },
+    "compute_contract": "native Dice/BCE share uncertain+uniform points; separate K point sets may imply up to 2K distinct points; fixed-total split changes original budget; shared candidate points also alter Dice distribution",
+    "novelty": "estimators and stratification are established mathematics; mechanism and project-specific utility untested"
+  },
+  "priority_hypotheses": [
+    {
+      "id": "H1",
+      "name": "instance_geometry_stratified_BCE_supervision",
+      "priority": 1,
+      "status": "LIMITED_DIAGNOSTIC_ONLY_NOT_TGRS_CORE_READY",
+      "hypothesis": "at fixed audited total compute, small/slender instances have insufficient effective positive-boundary coverage; explicit target/correction may improve coverage-variance tradeoff",
+      "difference_candidate": "per-instance geometric strata plus explicit BCE target relative to predictive uncertainty and class-frequency priors",
+      "required_controls": [
+        "native_uncertainty_uniform",
+        "all_uniform_equal_K",
+        "foreground_background_without_boundary",
+        "stratified_uncorrected",
+        "stratified_corrected",
+        "class_frequency_adaptation",
+        "weighted_BCE_Focal",
+        "fixed_matcher",
+        "Dice_total_point_cost_controls"
+      ],
+      "first_gate": "measure native coverage and gradient proxies before launching broad training",
+      "reject_if": [
+        "deficit_absent",
+        "only_reweighting_explains_gain",
+        "long_schedule_or_second_dataset_fails"
+      ],
+      "publication_claim": "insufficient evidence and known combination alone is not a TGRS core"
+    },
+    {
+      "id": "H2",
+      "name": "instance_scaled_bounded_narrow_band_SDF",
+      "priority": 2,
+      "status": "DESIGN_ONLY",
+      "hypothesis": "bounded normalized per-instance distances may avoid far-background/scale dominance if boundary deformation is actual error",
+      "difference_candidate": "clip(distance/instance_pixel_scale) with predeclared narrow band relative to full absolute-distance SurfaceLoss",
+      "required_controls": [
+        "original_SurfaceLoss",
+        "clip_only",
+        "scale_only",
+        "boundary_BCE",
+        "equalized_instance_loss",
+        "same_points_and_sampler",
+        "one_pixel_annotation_perturbation"
+      ],
+      "reject_if": [
+        "cheaper_control_matches",
+        "AP75_or_small_recall_decreases",
+        "boundary_style_overfit"
+      ],
+      "publication_claim": "incremental research hypothesis; no novelty or effectiveness established"
+    }
+  ],
+  "open_coverage": [
+    {
+      "name": "matched_filtering_and_pulse_compression",
+      "status": "OPEN",
+      "needs": "known waveform and complex time samples"
+    },
+    {
+      "name": "RDA_RMA_CSA_backprojection_SAR_imaging",
+      "status": "OPEN",
+      "needs": "echo/phase-history and acquisition geometry",
+      "note": "FFT utility inspection is not a full original-imaging-algorithm audit"
+    },
+    {
+      "name": "coherent_integration_STAP_MVDR_MUSIC",
+      "status": "OPEN",
+      "needs": "phase-consistent pulse/array snapshots and calibration"
+    },
+    {
+      "name": "sparse_compressed_sensing",
+      "status": "OPEN",
+      "needs": "valid forward measurement operator or explicit image-domain model"
+    },
+    {
+      "name": "low_rank_sparse_decomposition",
+      "status": "OPEN",
+      "needs": "validated stack/patch low-rank assumptions"
+    },
+    {
+      "name": "general_PDE_levelset_SRAD",
+      "status": "PARTIAL_OPEN",
+      "known": "BoundaryLoss geometric implementation read; SRAD core not verified"
+    },
+    {
+      "name": "generic_RED",
+      "status": "OPEN",
+      "known": "MuLoG PnP code read; S3DIP guidance is not RED inner optimization"
+    },
+    {
+      "name": "2025_2026_score_diffusion_core",
+      "status": "PARTIAL_OPEN",
+      "known": "primary new papers identified; newest author kernels not read"
+    },
+    {
+      "name": "spectral_graph_persistent_homology",
+      "status": "OPEN",
+      "known": "clDice/SDF covered; general latest spectral graph/topology methods not fully audited"
+    }
+  ],
+  "critical_gaps": [
+    "Current display-domain data do not establish physical Gamma/Wishart/CFAR calibration assumptions.",
+    "Several close 2025-2026 papers lack verified real author algorithmic code; SDS-SAR inspected source is placeholder.",
+    "No project measurements establish sampling mechanism or gains; dense direct prior art prevents a present novelty claim."
+  ],
+  "publication_safety": {
+    "third_party_fulltext_included": false,
+    "third_party_full_source_included": false,
+    "private_paths_included": false,
+    "secrets_included": false,
+    "raw_data_annotations_weights_included": false
+  }
+}
+

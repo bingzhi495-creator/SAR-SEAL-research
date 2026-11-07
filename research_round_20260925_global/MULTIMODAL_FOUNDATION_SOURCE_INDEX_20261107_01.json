@@ -1,0 +1,832 @@
+{
+  "schema_version": "1.0",
+  "review_date": "2026-11-07",
+  "review_scope": "Primary-source static review for public SAR ship instance segmentation; no scientific execution",
+  "source_count": 11,
+  "foundation_model_count": 8,
+  "ship_dataset_count": 3,
+  "evidence_policy": {
+    "code_read_definition": "True only when actual algorithm implementation was statically inspected; README-only dataset repositories are false.",
+    "weights_downloaded_definition": "False for every entry: no checkpoints were downloaded, loaded, copied or hashed.",
+    "unknown_values": "Explicit unknown/not_verified or null; public page visibility does not certify download success.",
+    "publication_scope": "Original metadata and analysis only; no third-party fulltext/source copies, raw images, labels, checkpoints, credentials or operational configuration."
+  },
+  "items": [
+    {
+      "id": "dinov3_sat493m",
+      "title": "DINOv3",
+      "kind": "foundation_model",
+      "paper_url": "https://arxiv.org/abs/2508.10104",
+      "official_repo": "https://github.com/facebookresearch/dinov3",
+      "pinned_commit": "6876159a11b4df116f30f667f8c9888617df0751",
+      "core_source_paths": [
+        "dinov3/hub/backbones.py",
+        "dinov3/models/vision_transformer.py"
+      ],
+      "core_functions": [
+        "_make_dinov3_vit",
+        "Weights.SAT493M",
+        "forward_features",
+        "get_intermediate_layers"
+      ],
+      "actual_inputs": {
+        "modalities": [
+          "RGB"
+        ],
+        "in_channels": 3,
+        "pretraining_dataset": "SAT-493M: Maxar RGB orthorectified imagery",
+        "pretraining_image_size": [
+          512,
+          512
+        ],
+        "pretraining_gsd_m": 0.6,
+        "patch_size": 16,
+        "required_missing_inputs_for_current_sar": [
+          "真实RGB颜色信息缺失；复制灰度只是一种输入适配"
+        ]
+      },
+      "task": [
+        "self_supervised_visual_representation",
+        "dense_feature_extraction"
+      ],
+      "code_read": true,
+      "code_read_scope": "已静态阅读实际骨干与特征输出函数；未执行",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "readable",
+        "source": "readable",
+        "weights": "gated",
+        "weights_url": "https://huggingface.co/facebook/dinov3-vitl16-pretrain-sat493m",
+        "local_access_approval": "not_verified",
+        "download_integrity": "not_verified"
+      },
+      "license_conflict": {
+        "confirmed": false,
+        "code_license": "DINOv3 custom license",
+        "weights_license": "dinov3-license",
+        "notes": "自定义许可；未取得访问条件不代表可直接下载。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "unknown",
+        "confirmed_source_overlap": [],
+        "notes": "未发现作者明确将SSDD/HRSID列为SAT493M来源；本轮没有逐样本去重证据，不能保证无重叠。"
+      },
+      "current_compatibility": {
+        "inference_condition": "SAR-only inference possible with disclosed input adaptation and instance decoder",
+        "priority": "high_candidate",
+        "limitations": [
+          "原生预训练为光学RGB，不是SAR。",
+          "密集特征输出不是原生实例掩膜。",
+          "SAT与自然图像预训练哪种更好需公平实验。"
+        ]
+      },
+      "status": "static_primary_source_review_complete_not_executed"
+    },
+    {
+      "id": "sam3_sam31",
+      "title": "SAM 3: Segment Anything with Concepts",
+      "kind": "foundation_model",
+      "paper_url": "https://arxiv.org/abs/2511.16719",
+      "official_repo": "https://github.com/facebookresearch/sam3",
+      "pinned_commit": "f1647e8d0c1d280991f4d1b7d974c2704537fe66",
+      "core_source_paths": [
+        "sam3/model/sam3_image_processor.py",
+        "RELEASE_SAM3p1.md"
+      ],
+      "core_functions": [
+        "Sam3Processor.set_image",
+        "Sam3Processor.set_text_prompt",
+        "Sam3Processor._forward_grounding"
+      ],
+      "actual_inputs": {
+        "modalities": [
+          "image",
+          "text_or_visual_prompt"
+        ],
+        "public_processor_default_resolution": 1008,
+        "prompt_example": "ship",
+        "sam31_scope": "Object Multiplex shared-memory video multi-object tracking",
+        "required_missing_inputs_for_current_sar": [],
+        "input_adaptation": "灰度到图像输入的通道适配不构成新传感器模态"
+      },
+      "task": [
+        "promptable_concept_instance_segmentation",
+        "object_detection",
+        "video_tracking"
+      ],
+      "code_read": true,
+      "code_read_scope": "已静态阅读实际图像处理、类别文本grounding和输出后处理；3.1发布说明已核",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "readable",
+        "source": "readable",
+        "weights": "gated",
+        "weights_url": "https://huggingface.co/facebook/sam3",
+        "sam31_weights_url": "https://huggingface.co/facebook/sam3.1",
+        "local_access_approval": "not_verified",
+        "download_integrity": "not_verified"
+      },
+      "license_conflict": {
+        "confirmed": false,
+        "code_license": "SAM custom license",
+        "weights_license": "SAM custom license; sam3.1 HF metadata is other",
+        "notes": "需按作者具体许可及访问条件使用，未将其推断为Apache或MIT。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "unknown",
+        "confirmed_source_overlap": [],
+        "notes": "本轮未核清全部预训练样本与SSDD/HRSID交叉；不能保证无污染。"
+      },
+      "current_compatibility": {
+        "inference_condition": "SAR image plus fixed class prompt, without test-ground-truth prompts",
+        "priority": "high_native_instance_baseline_candidate",
+        "limitations": [
+          "默认confidence_threshold=0.5会先过滤实例，COCO AP评估需核查召回截断。",
+          "分数由类别sigmoid与presence sigmoid相乘。",
+          "3.1视频改进不能自动证明静态SAR mask AP提升。"
+        ]
+      },
+      "status": "static_primary_source_review_complete_not_executed"
+    },
+    {
+      "id": "anysat",
+      "title": "AnySat: One Earth Observation Model for Many Resolutions, Scales, and Modalities",
+      "kind": "foundation_model",
+      "paper_url": "https://arxiv.org/html/2412.14123v2",
+      "official_repo": "https://github.com/gastruc/AnySat",
+      "pinned_commit": "5f6f475e1a22ce5e3a56a5b18f4ed6d24eca2a4a",
+      "core_source_paths": [
+        "hubconf.py",
+        "src/models/networks/encoder/Any_multi.py"
+      ],
+      "core_functions": [
+        "AnySat.from_pretrained",
+        "AnySat.forward",
+        "forward_release"
+      ],
+      "actual_inputs": {
+        "modalities": [
+          "aerial_or_VHR_optical",
+          "Sentinel-1",
+          "Sentinel-2",
+          "other_configured_EO_modalities"
+        ],
+        "sentinel1_s1_asc_channels": [
+          "VV",
+          "VH"
+        ],
+        "sentinel1_s1_channels": [
+          "VV",
+          "VH",
+          "ratio"
+        ],
+        "timeseries_tensor_shape": "B,T,C,H,W",
+        "timeseries_metadata": [
+          "modality_dates"
+        ],
+        "sentinel1_native_resolution_m": 10,
+        "physical_coverage_constraint": "Aligned modalities must cover the same physical footprint",
+        "required_missing_inputs_for_current_sar": [
+          "独立VV/VH及其比值未提供",
+          "原生时相/日期信息未提供",
+          "不能将单灰度复制视为完整S1输入"
+        ]
+      },
+      "task": [
+        "multimodal_self_supervised_representation",
+        "classification_features",
+        "dense_segmentation_features"
+      ],
+      "code_read": true,
+      "code_read_scope": "已读hub输入检查、预训练映射以及多模态融合与dense输出实际函数",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "readable",
+        "source": "readable",
+        "weights": "public_author_download_entry_authentication_not_executed",
+        "weights_url": "https://huggingface.co/g-astruc/AnySat",
+        "verified_pretrained_size": "base",
+        "other_pretrained_sizes": "tiny/small mappings marked coming soon in inspected hubconf",
+        "download_integrity": "not_verified"
+      },
+      "license_conflict": {
+        "confirmed": false,
+        "code_license": "MIT",
+        "weights_license": "MIT according to HF metadata",
+        "notes": "未下载权重验证文件内附许可。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "unknown",
+        "confirmed_source_overlap": [],
+        "notes": "本轮没有SSDD/HRSID逐样本预训练重叠核验。"
+      },
+      "current_compatibility": {
+        "inference_condition": "Requires disclosed SAR grayscale projector adaptation or actual compatible sensor inputs",
+        "priority": "secondary_transfer_research_candidate",
+        "limitations": [
+          "时序和极化输入不匹配。",
+          "dense接口应显式指定output_modality。",
+          "输出特征需额外实例解码器；原生地面尺度与细小船舶差异需检验。"
+        ]
+      },
+      "status": "static_primary_source_review_complete_not_executed"
+    },
+    {
+      "id": "croma",
+      "title": "CROMA: Remote Sensing Representations with Contrastive Radar-Optical Masked Autoencoders",
+      "kind": "foundation_model",
+      "paper_url": "https://papers.neurips.cc/paper_files/paper/2023/hash/11822e84689e631615199db3b75cd0e4-Abstract-Conference.html",
+      "official_repo": "https://github.com/antofuller/CROMA",
+      "pinned_commit": "59505a6bcadbf36ba20767270154bf9f3067c5e7",
+      "core_source_paths": [
+        "use_croma.py"
+      ],
+      "core_functions": [
+        "PretrainedCROMA.__init__",
+        "PretrainedCROMA.forward",
+        "BaseTransformerCrossAttn",
+        "get_2dalibi"
+      ],
+      "actual_inputs": {
+        "modalities": [
+          "Sentinel-1 SAR",
+          "multispectral optical"
+        ],
+        "sar_channels": 2,
+        "optical_channels": 12,
+        "patch_size": 8,
+        "default_image_resolution": 120,
+        "required_missing_inputs_for_current_sar": [
+          "双极化SAR未提供",
+          "12波段光学配对未提供；SAR-only接口允许不提供光学"
+        ],
+        "valid_execution_modes": [
+          "SAR_only",
+          "optical_only",
+          "both"
+        ]
+      },
+      "task": [
+        "cross_modal_self_supervised_representation",
+        "unimodal_and_multimodal_features",
+        "semantic_segmentation_transfer"
+      ],
+      "code_read": true,
+      "code_read_scope": "完整use_croma.py实际模型已静态阅读；原论文会议页及摘要可读，全文PDF请求超时",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "abstract_readable_full_pdf_timeout",
+        "source": "readable",
+        "weights": "public_author_download_entry_authentication_not_executed",
+        "weights_url": "https://huggingface.co/antofuller/CROMA",
+        "download_integrity": "not_verified"
+      },
+      "license_conflict": {
+        "confirmed": false,
+        "code_license": "MIT",
+        "weights_license": "MIT according to HF metadata",
+        "notes": "未下载权重验证文件内附许可。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "unknown",
+        "confirmed_source_overlap": [],
+        "notes": "预训练完整图像与SSDD/HRSID交叉未核。"
+      },
+      "current_compatibility": {
+        "inference_condition": "SAR-only encoder supported, but grayscale requires explicit channel/radiometric adaptation and instance head",
+        "priority": "secondary_pretraining_control",
+        "limitations": [
+          "单通道显示图与原双极化统计不同。",
+          "全局attention与2D距离矩阵随patch数量平方增长。",
+          "未执行任何大分辨率显存/速度验证。"
+        ]
+      },
+      "status": "source_read_complete_paper_fulltext_access_limited_not_executed"
+    },
+    {
+      "id": "dofa",
+      "title": "Neural Plasticity-Inspired Multimodal Foundation Model for Earth Observation",
+      "kind": "foundation_model",
+      "paper_url": "https://arxiv.org/html/2403.15356v2",
+      "official_repo": "https://github.com/zhu-xlab/DOFA",
+      "pinned_commit": "0cfb7e1099f4d4c4022946ff7862c7cd7b8411b9",
+      "core_source_paths": [
+        "dofa_v1.py",
+        "wave_dynamic_layer.py",
+        "hubconf.py"
+      ],
+      "core_functions": [
+        "OFAViT.forward_features",
+        "Dynamic_MLP_OFA.forward"
+      ],
+      "actual_inputs": {
+        "modalities": [
+          "variable_channel_EO_images"
+        ],
+        "channel_metadata": "wave_list / wvs",
+        "dynamic_projection": "wavelength-conditioned generated convolution weights",
+        "author_sentinel1_example_values": [
+          5.405,
+          5.405
+        ],
+        "metadata_units": "not_sufficiently_verified_in_this_review",
+        "required_missing_inputs_for_current_sar": [
+          "可靠逐图传感器与条件编码元数据不完整；不能编造波长"
+        ]
+      },
+      "task": [
+        "multimodal_pretraining",
+        "classification",
+        "semantic_segmentation_transfer"
+      ],
+      "code_read": true,
+      "code_read_scope": "已读OFAViT池化输出与条件化动态卷积实际实现",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "readable",
+        "source": "readable",
+        "weights": "old_official_card_readable_latest_card_inaccessible",
+        "weights_url": "https://huggingface.co/earthflow/DOFA",
+        "latest_weights_url": "https://huggingface.co/XShadow/DOFA",
+        "latest_checkpoint_access": "unknown",
+        "download_integrity": "not_verified"
+      },
+      "license_conflict": {
+        "confirmed": false,
+        "code_license": "MIT",
+        "weights_license": "CC-BY-4.0 for old earthflow/DOFA card; latest XShadow license unknown",
+        "notes": "不能将旧权重许可自动套用新权重。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "unknown",
+        "confirmed_source_overlap": [],
+        "notes": "未取得完整预训练样本与下游测试排除清单。"
+      },
+      "current_compatibility": {
+        "inference_condition": "Variable-channel input possible, but conditional metadata and version compatibility require explicit adaptation",
+        "priority": "secondary_single_channel_foundation_adapter_candidate",
+        "limitations": [
+          "简版forward_features返回pooled/CLS，实例任务需空间输出和解码器。",
+          "新权重需匹配最新wave_dynamic_layer，不能任意混用。",
+          "作者示例数值的物理单位未核清，不能作真实波长证明。"
+        ]
+      },
+      "status": "static_primary_source_review_complete_latest_weights_metadata_unknown_not_executed"
+    },
+    {
+      "id": "terramind",
+      "title": "TerraMind: Large-Scale Generative Multimodality for Earth Observation",
+      "kind": "foundation_model",
+      "paper_url": "https://openaccess.thecvf.com/content/ICCV2025/html/Jakubik_TerraMind_Large-Scale_Generative_Multimodality_for_Earth_Observation_ICCV_2025_paper.html",
+      "official_repo": "https://github.com/IBM/terramind",
+      "pinned_commit": "53d61da09213c2c3629931b6322f94cce617886a",
+      "implementation_repo": "https://github.com/torchgeo/terratorch",
+      "implementation_pinned_commit": "83c3a928416fcf97deed924cfb99a59a817730bf",
+      "core_source_paths": [
+        "terratorch/models/backbones/terramind/model/terramind_tim.py",
+        "terratorch/models/backbones/terramind/model/modality_info.py",
+        "terratorch/models/backbones/terramind/model/terramind_vit.py",
+        "docs/guide/terramind.md"
+      ],
+      "core_source_paths_repo": "https://github.com/torchgeo/terratorch",
+      "core_functions": [
+        "build_tim_modality_embeddings",
+        "TerraMindTiM.forward"
+      ],
+      "actual_inputs": {
+        "modalities": [
+          "S1GRD",
+          "S1RTC",
+          "S2L1C",
+          "S2L2A",
+          "RGB",
+          "DEM",
+          "Coordinates"
+        ],
+        "sar_channels": [
+          "VV",
+          "VH"
+        ],
+        "training_data": "TerraMesh approximately 9 million spatially/temporally aligned multimodal samples",
+        "input_sampling": "S1-compatible physical/radiometric inputs; current public grayscale differs",
+        "generated_auxiliary_modalities": "TiM predicts missing modality tokens then concatenates them into task inputs",
+        "required_missing_inputs_for_current_sar": [
+          "VV/VH双极化未提供；需新增/调整单通道stem而非冒充原S1输入"
+        ]
+      },
+      "task": [
+        "any_to_any_multimodal_generation",
+        "multimodal_representation",
+        "downstream_dense_prediction"
+      ],
+      "code_read": true,
+      "code_read_scope": "已读TiM缺失模态初始化、生成schedule、sampler、回填和token融合，以及2通道模态配置",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "readable",
+        "source": "readable",
+        "weights": "public_model_card_authentication_not_executed",
+        "weights_url": "https://huggingface.co/ibm-esa-geospatial/TerraMind-1.0-base",
+        "download_integrity": "not_verified"
+      },
+      "license_conflict": {
+        "confirmed": false,
+        "code_license": "Apache-2.0",
+        "weights_license": "Apache-2.0 according to base HF metadata",
+        "notes": "未下载权重验证文件内附许可。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "unknown",
+        "confirmed_source_overlap": [],
+        "notes": "预训练地理覆盖或图像与下游样本交叉未进行逐样本审计。"
+      },
+      "current_compatibility": {
+        "inference_condition": "SAR-only inference with generated auxiliary tokens is conceptually supported after compatible SAR input adaptation",
+        "priority": "secondary_missing_modality_research_branch",
+        "limitations": [
+          "生成光学token不是独立实测光学。",
+          "新增单通道stem不等于已预训练的S1 stem。",
+          "tokenizer、生成器成本和生成随机性需计入。",
+          "生成缺失模态再融合已是直接先例，不能作为首创主张。"
+        ]
+      },
+      "status": "static_primary_source_review_complete_not_executed"
+    },
+    {
+      "id": "prithvi_eo_20",
+      "title": "Prithvi-EO-2.0: A Versatile Multi-Temporal Foundation Model for Earth Observation Applications",
+      "kind": "foundation_model",
+      "paper_url": "https://arxiv.org/abs/2412.02732",
+      "official_repo": "https://github.com/NASA-IMPACT/Prithvi-EO-2.0",
+      "pinned_commit": "758311280f935d4775c05b26d792768bf1fda841",
+      "implementation_repo": "https://github.com/torchgeo/terratorch",
+      "implementation_pinned_commit": "83c3a928416fcf97deed924cfb99a59a817730bf",
+      "core_source_paths": [
+        "terratorch/models/backbones/prithvi_vit.py",
+        "terratorch/models/backbones/prithvi_mae.py"
+      ],
+      "core_source_paths_repo": "https://github.com/torchgeo/terratorch",
+      "core_functions": [
+        "_create_prithvi",
+        "prithvi_eo_v2_300",
+        "PatchEmbed.forward",
+        "PrithviViT.forward",
+        "PrithviViT.forward_features"
+      ],
+      "actual_inputs": {
+        "modalities": [
+          "HLS_multispectral_reflectance_timeseries"
+        ],
+        "bands": [
+          "Blue",
+          "Green",
+          "Red",
+          "Narrow NIR",
+          "SWIR 1",
+          "SWIR 2"
+        ],
+        "native_gsd_m": 30,
+        "training_samples": 4200000,
+        "patch_embedding": "Conv3d spatiotemporal patches",
+        "optional_metadata": [
+          "temporal_coords",
+          "location_coords"
+        ],
+        "required_missing_inputs_for_current_sar": [
+          "真实6波段反射率缺失；灰度复制不产生光谱观测"
+        ]
+      },
+      "task": [
+        "spatiotemporal_masked_autoencoding",
+        "EO_downstream_representation"
+      ],
+      "code_read": true,
+      "code_read_scope": "已读factory的model_bands/in_chans处理、3D patch及时空元数据可选分支",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "public_report",
+        "source": "readable",
+        "weights": "public_model_card_authentication_not_executed",
+        "weights_url": "https://huggingface.co/ibm-nasa-geospatial/Prithvi-EO-2.0-300M",
+        "download_integrity": "not_verified"
+      },
+      "license_conflict": {
+        "confirmed": false,
+        "code_license": "MIT for project repository; Apache-2.0 for TerraTorch implementation",
+        "weights_license": "Apache-2.0 according to 300M HF card",
+        "notes": "项目示例仓库、实现仓库与权重许可分别记录，不混同。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "unknown",
+        "confirmed_source_overlap": [],
+        "notes": "本轮未核全部预训练样本；没有证据将原HLS权重称为SAR船舶干净基准。"
+      },
+      "current_compatibility": {
+        "inference_condition": "Requires substantial cross-domain input adaptation and an instance decoder",
+        "priority": "low_for_fast_public_SAR_mask_improvement",
+        "limitations": [
+          "原生不是SAR模型。",
+          "可缺时间经纬度不等于解决光谱不匹配。",
+          "可修改输入通道但仍须重训/适配并做公平对照。"
+        ]
+      },
+      "status": "static_primary_source_review_complete_not_executed"
+    },
+    {
+      "id": "dofa_clip",
+      "title": "DOFA-CLIP: Multimodal Vision-Language Foundation Models for Earth Observation",
+      "kind": "foundation_model",
+      "paper_url": "https://arxiv.org/html/2503.06312v2",
+      "official_repo": "https://github.com/xiong-zhitong/DOFA-CLIP",
+      "pinned_commit": "be0f7c704eef2afbcc2adae831131e78391ceca4",
+      "core_source_paths": [
+        "dofa_clip.py",
+        "open_clip/src/open_clip/dofa_patch_embed.py",
+        "LICENSE"
+      ],
+      "core_functions": [
+        "encode_image",
+        "model.visual.trunk",
+        "dynamic_patch_embed.forward"
+      ],
+      "actual_inputs": {
+        "modalities": [
+          "RGB",
+          "SAR",
+          "multispectral",
+          "hyperspectral",
+          "infrared",
+          "elevation",
+          "text"
+        ],
+        "training_dataset": "GeoLangBind-2M",
+        "image_resolution": [
+          384,
+          384
+        ],
+        "channel_metadata": "wvs",
+        "text_supervision": "image-text captions",
+        "required_missing_inputs_for_current_sar": [
+          "需要明确单通道条件编码和预处理；不能以demo的RGB波长取代未知SAR元数据"
+        ]
+      },
+      "task": [
+        "vision_language_pretraining",
+        "zero_shot_classification",
+        "dense_feature_transfer"
+      ],
+      "code_read": true,
+      "code_read_scope": "已读实际demo、encode_image、动态patch投影和根LICENSE；未复现完整训练",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "readable",
+        "source": "readable",
+        "weights": "public_model_card_authentication_not_executed",
+        "weights_url": "https://huggingface.co/earthflow/GeoLB-ViT-14-SigLIP-so400m-384-EO",
+        "download_integrity": "not_verified"
+      },
+      "license_conflict": {
+        "confirmed": true,
+        "code_license": "Root LICENSE is Apache-2.0; README describes MIT",
+        "weights_license": "HF metadata says CC-BY-NC-4.0; card body says CC-BY-4.0",
+        "notes": "需保留冲突并向作者或权利人核清，不能自行选择更宽松条款。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "confirmed_source_dataset_overlap_unresolved_test_sample_overlap",
+        "confirmed_source_overlap": [
+          "HRSID",
+          "SSDD",
+          "AIR-SARShip-2.0"
+        ],
+        "evidence_location": "Paper appendix: SAR-ship-caption and IR-ship-caption",
+        "notes": "论文明确用这些数据生成SAR-ship-caption；未核清具体测试图是否被用。未排除前不得用作未见目标基准的干净泛化证据。"
+      },
+      "current_compatibility": {
+        "inference_condition": "Semantic prior is possible after input/interface adaptation and overlap audit",
+        "priority": "blocked_for_clean_SSDD_HRSID_generalization_claims_until_overlap_resolved",
+        "limitations": [
+          "VECT/MaKA已包含多视觉教师和模态相关蒸馏，是直接先例。",
+          "demo不是原生实例分割接口。",
+          "demo/README对trunk返回结构处理不一致，执行前需接口核验。"
+        ]
+      },
+      "status": "static_primary_source_review_complete_license_conflict_and_overlap_risk_unresolved_not_executed"
+    },
+    {
+      "id": "mos_ship",
+      "title": "A Multi-Modal Approach for Robust Oriented Ship Detection: Dataset and Methodology",
+      "kind": "ship_dataset",
+      "paper_url": "https://www.mdpi.com/2072-4292/18/2/274",
+      "official_repo": "https://github.com/yyy7777777/MOS-Ship-Dataset",
+      "pinned_commit": "9e5abe03452a0b14ca7a0e0e3d2dbf6d26f6efd5",
+      "core_source_paths": [
+        "README.md",
+        "LICENSE"
+      ],
+      "core_functions": [],
+      "actual_method_source_available_in_inspected_tree": false,
+      "actual_inputs": {
+        "modalities": [
+          "real_optical",
+          "real_SAR"
+        ],
+        "pairing": "spatially_aligned_asynchronous_sensor_pairs",
+        "resolution": "sub_meter_as_reported_by_authors",
+        "precise_gsd_per_sensor": null,
+        "temporal_offset_distribution": null,
+        "annotations": [
+          "oriented_bounding_box_four_vertices",
+          "category",
+          "difficulty"
+        ],
+        "instance_masks": "not_reported",
+        "synthetic_supplement": "cloud/fog",
+        "storage_author_claim": "PNG; optical RGB uint8 and SAR single-channel float32",
+        "storage_validation": "not_performed"
+      },
+      "task": [
+        "multimodal_oriented_ship_detection"
+      ],
+      "code_read": false,
+      "code_read_scope": "已逐读实际README/LICENSE并核查完整repo树；该commit仅这两份文件，未发现方法实现，不将说明文档称为算法源码精读",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "initial_publisher_text_available_later_requests_429",
+        "source": "metadata_only_no_method_source_in_inspected_tree",
+        "data": "author_Baidu_download_link_present_archive_not_downloaded",
+        "data_entry_url": "https://github.com/yyy7777777/MOS-Ship-Dataset",
+        "weights": "not_verified"
+      },
+      "license_conflict": {
+        "confirmed": false,
+        "code_license": "Apache-2.0 in repository LICENSE",
+        "weights_license": "unknown",
+        "dataset_license": "unknown",
+        "notes": "repo许可不能自动覆盖商业卫星影像和归档内数据；float32 PNG说法需后续格式核验。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "unknown",
+        "confirmed_source_overlap": [],
+        "notes": "未核归档内容与SSDD/HRSID是否有地理或图像交叉。"
+      },
+      "current_compatibility": {
+        "inference_condition": "True optical-SAR paired oriented detection branch",
+        "priority": "separate_detection_research_branch",
+        "limitations": [
+          "不提供已核实的实例mask。",
+          "不能当作SSDD/HRSID对应光学。",
+          "新增mask任务可能需要另行标注，不符合当前避免新增人工标注的优先路线。"
+        ]
+      },
+      "status": "paper_and_repository_metadata_review_complete_archive_and_method_source_unverified"
+    },
+    {
+      "id": "os_ship_1k",
+      "title": "OS-Ship-1K: A Pseudo-Paired Optical-SAR Dataset for Multimodal Ship Detection",
+      "kind": "ship_dataset",
+      "paper_url": null,
+      "official_repo": "https://github.com/1998Jiang/OS-Ship-1K",
+      "pinned_commit": "aafad57b7a73b5f2b870b4a7e66aa9513f0c4ec0",
+      "paper_status": "Current author README states PRCV 2026 acceptance; matching revised-title full proceedings text not independently obtained in this review",
+      "core_source_paths": [
+        "README.md"
+      ],
+      "core_functions": [],
+      "actual_method_source_available_in_inspected_tree": "not_verified",
+      "actual_inputs": {
+        "modalities": [
+          "optical",
+          "CycleGAN_generated_SAR_style"
+        ],
+        "pairing": "synthetic_pseudo_pairs_not_two_independent_sensor_observations",
+        "pair_count": 1000,
+        "classes": [
+          "Ship",
+          "Ships"
+        ],
+        "precise_gsd_per_sensor": null,
+        "annotations": [
+          "ship_detection_annotations"
+        ],
+        "instance_masks": "not_verified"
+      },
+      "task": [
+        "pseudo_paired_multimodal_ship_detection"
+      ],
+      "code_read": false,
+      "code_read_scope": "已读固定commit作者README和许可元数据；没有将CycleGAN/检测实现称为已获得或精读",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "matching_revised_full_paper_not_obtained",
+        "source": "author_dataset_description_readable",
+        "data": "author_Baidu_download_link_present_archive_not_downloaded",
+        "data_entry_url": "https://github.com/1998Jiang/OS-Ship-1K",
+        "weights": "not_verified"
+      },
+      "license_conflict": {
+        "confirmed": false,
+        "code_license": "MIT repository metadata",
+        "weights_license": "unknown",
+        "dataset_license": "unknown",
+        "notes": "数据底层来源及再分发授权未下载核验。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "unknown",
+        "confirmed_source_overlap": [],
+        "notes": "光学原图来源及合成数据与当前基准是否交叉未审计。"
+      },
+      "current_compatibility": {
+        "inference_condition": "Synthetic paired detection research only",
+        "priority": "low_for_real_sensor_instance_segmentation_claims",
+        "limitations": [
+          "不是实测SAR-光学双传感器配对。",
+          "不证明雷达物理互补。",
+          "未核实例mask、精确GSD或完整文件清单。"
+        ]
+      },
+      "status": "author_repository_claims_reviewed_matching_full_paper_and_archive_unverified"
+    },
+    {
+      "id": "hoss_reid",
+      "title": "Cross-modal Ship Re-Identification via Optical and SAR Imagery: A Novel Dataset and Method",
+      "kind": "ship_dataset",
+      "paper_url": "https://arxiv.org/html/2506.22027v1",
+      "official_repo": "https://github.com/Alioth2000/Hoss-ReID",
+      "pinned_commit": "bd9b9028e8690c0929ada06beead500acde19aca",
+      "core_source_paths": [
+        "model/backbones/vit_transoss.py",
+        "README.md"
+      ],
+      "core_functions": [
+        "TransOSS.forward_features",
+        "TransOSS.forward"
+      ],
+      "actual_inputs": {
+        "modalities": [
+          "Jilin-1_optical_RGB",
+          "TY-MINISAR_SAR_single_channel"
+        ],
+        "optical_gsd_m": 0.75,
+        "sar_gsd_m": 1,
+        "pairing": "same_ship_identity_across_time_and_view_not_pixel_registration",
+        "sequence_count": 13,
+        "source_frame_count": 43,
+        "crop_image_count": 1832,
+        "ship_identity_count": 449,
+        "gallery_distractor_object_count": 163,
+        "annotations": [
+          "ship_identity",
+          "sequence",
+          "camera",
+          "modality",
+          "bounding_box_crops"
+        ],
+        "instance_masks": "not_reported",
+        "storage": "TIF; RGB uint8 and SAR single-channel float32 as reported by authors",
+        "optional_model_metadata": [
+          "camera_id_or_modality_id",
+          "approximate_ship_dimensions"
+        ]
+      },
+      "task": [
+        "cross_modal_ship_reidentification",
+        "retrieval"
+      ],
+      "code_read": true,
+      "code_read_scope": "已读TransOSS按模态分流双patch_embed、共享Transformer及CLS返回的实际forward_features",
+      "weights_downloaded": false,
+      "access": {
+        "paper": "readable_arxiv_full_html_CVF_page_403",
+        "source": "readable",
+        "data": "public_Zenodo_record_archive_not_downloaded",
+        "data_entry_url": "https://zenodo.org/records/15860212",
+        "weights": "author_HF_entry_archive_not_downloaded",
+        "weights_url": "https://huggingface.co/Alioth2000/TransOSS"
+      },
+      "license_conflict": {
+        "confirmed": false,
+        "code_license": "MIT repository LICENSE",
+        "weights_license": "unknown",
+        "dataset_license": "unknown",
+        "notes": "Zenodo解析页license栏未给出可核条款；不得把论文CC-BY或代码MIT自动作为影像数据授权。"
+      },
+      "benchmark_overlap_risk": {
+        "status": "unknown",
+        "confirmed_source_overlap": [],
+        "notes": "作者另发SEN1-2/DFC23预训练包；本轮未审计完整样本与下游测试交叉。"
+      },
+      "current_compatibility": {
+        "inference_condition": "Identity-level cross-sensor knowledge transfer or separate retrieval branch",
+        "priority": "secondary_identity_transfer_candidate",
+        "limitations": [
+          "同一身份不等于逐像素配准。",
+          "crop身份标注不是实例mask。",
+          "检索mAP/R1不能与COCO mask AP混表。",
+          "当前公共裁片无可靠GSD时不能编造真实船体尺寸输入。"
+        ]
+      },
+      "status": "static_primary_source_and_method_review_complete_data_license_unknown_not_executed"
+    }
+  ]
+}
+
