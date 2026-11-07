@@ -7,6 +7,7 @@
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
+- [FIT 匹配状态交叉读出实测](research_round_20260925_global/RFDETR_E24_FIT_MATCH_CROSSREAD_ACTUAL_20261108.md)。秩的匹配候选独立编辑未改变 AP 或 AP75，停止判定保持。
 - [FIT 等结构选择器实测与停止判定](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_HEAD_SCOUT_ACTUAL_STOP_20261108.md)。同预算秩相对排序略好，校准后未达到锁定的 AP/AP75 门槛，停止进入 DEV。
 - [完整 FIT741 CUDA 原生采集实测](research_round_20260925_global/RFDETR_E24_FIT741_NATIVE_CUDA_CAPTURE_ACTUAL_20261108.md)。741 图已独立验收，60,881 个船舶候选、19,917,672 个带内 logits；固定匹配与等结构头协议已锁。
 - [同图 CUDA 接线验收与 FIT 主采集设备](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_WINDOWS_CUDA_ACTUAL_20261108.md)。本机实际 CUDA 原件通过独立复核，完整 CUDA 采集锁为选择器的主输入。
