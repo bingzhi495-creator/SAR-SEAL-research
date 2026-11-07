@@ -7,6 +7,7 @@
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
+- [DGX 连续 E100 已启动与等预算修边诊断方案](research_round_20260925_global/RFDETR_E100_ORIGINAL_START_AND_SIGNED_EDIT_ORACLE_PLAN_20261107.md)。E100 固定为主要端点，限额编辑上限的整数计算已通过合成穷举对照，实际数据待执行。
 - [E24 双标注边界误差定位实测](research_round_20260925_global/RFDETR_E24_BOUNDARY_LOCALIZATION_ACTUAL_20261107.md)。224 个双标注严格阈值未达标实例中，2 像素共同边界带聚集 64.69% 的漏分与 71.96% 的溢出。
 - [RF-DETR E24 的真实 DEV187 双标注评价与误差诊断](research_round_20260925_global/RFDETR_E24_DEV187_ACTUAL_EVALUATION_20261107.md)
 - [全部原始查询覆盖实测与高 IoU 缺口](research_round_20260925_global/RFDETR_E24_RAW_QUERY_GEOMETRY_ACTUAL_20261107.md)
