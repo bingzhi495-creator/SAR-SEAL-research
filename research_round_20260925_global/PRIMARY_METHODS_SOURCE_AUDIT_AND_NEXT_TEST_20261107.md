@@ -47,6 +47,10 @@
 
 ## 由误差决定先尝试哪一种机制
 
+**纯背景对照补查。** HRSID 作者另发布 400 张纯背景图。可先核对数据获取条款、字节清单和与训练源场景的重合，再用独立正样本验证集确定召回对应阈值，冻结阈值后报告每图误检与图像或场景配对区间。CaSA-DETR 对主检测划分筛选含目标切片，同时另报 ship-free 测试。其结果属于框检测和固定置信阈值，不能直接给本项目的掩膜或物理虚警率结论。检验灰度顺序信息时，以相同窗口、边缘策略和模型容量比较原灰度加并列秩、原灰度加局部均值/方差、原灰度加 median/MAD 与复制原灰度；严格递增浮点映射和重新量化分开。OS-CFAR 的参考窗边缘策略也应统一。该方案尚未运行。 [HRSID 作者发布](https://github.com/chaozhong2010/HRSID#dataset-download-link) · [CaSA-DETR 原文](https://www.mdpi.com/2072-4292/18/21/3799) · [Rohling 原文](https://doi.org/10.1109/TAES.1983.309350) · [RadarSimPy 独立源码](https://github.com/radarsimx/radarsimpy/blob/5a07616212142b673643f40bada49434c5e6c0dd/src/radarsimpy/processing.py#L397)
+
+**多模态来源补查。** DOFA-CLIP 原文明确把 SSDD、HRSID、AIR-SARShip2.0 用作船舶描述语料。作者发布可定位六份 SAR ship 训练归档及读取入口，逐图划分重合尚未知。先做范围限定的来源审计，避免把同源预训练迁移直接作为独立跨数据验证。CVPR 2026 MOS ReID 的作者实现已有生成伪模态并在查询和图库侧做特征融合的先例，任务为船舶重识别。对实例掩膜可检验的差异需要另外定义和验证。 [DOFA-CLIP 原文](https://arxiv.org/html/2503.06312v2#A2.SS2.SSS5) · [作者训练归档入口](https://huggingface.co/datasets/earthflow/GeoLangBind-2M/tree/0e278b889b6bcad50e09e9e4cd693486d968ad4a/data/SAR_ship) · [MOS ReID 原文](https://openaccess.thecvf.com/content/CVPR2026/html/Zhao_MOS_Mitigating_Optical-SAR_Modality_Gap_for_Cross-Modal_Ship_Re-Identification_CVPR_2026_paper.html) · [作者固定源码](https://github.com/yjzhao1019/MOS/tree/1265f961e876492614eab0376feee40f62846bff)
+
 1. **先冻结完整评价。** 在锁定 PLAIN、FULL、原生强基线的完整样本和相同掩膜评估规则下，记录候选覆盖、匹配实例几何质量、排序和邻船冲突。按细小、细长、近岸、相邻实例分组，保留零预测和漏检。用同一实例评估分数和形状的可达上限。GT 框、GT 匹配或 GT 掩膜只能作为诊断上限。历史整数与浮点两种栅格标注分开报告。分组按图像或可追溯场景配对统计。
 2. **若确认细窄边界因点预算或下采样丢失。** 固定匹配器、增强、分辨率、初始化和每个实例的点总数 $K$。分别对照原生不确定点、等预算前景与边界采样、等预算但保持同一全图损失的分层估计，以及尺度归一边界重加权。令离散目标格点划分为互斥非空层 $S_h$，每层均匀抽 $K_h>0$ 点。估计量 $\sum_h (|S_h|/|\Omega|)\,K_h^{-1}\sum_{x\in\mathrm{sample}(S_h)}\ell(x)$ 保持可加像素平均损失的期望。Dice 等非线性比值需要另外处理。空层、无放回可行性和随机种子提前固定。去掉层权重会改变目标函数，需要单列以区分降低方差与改变优化目标。若做高分辨率分支，增加等通道、等计算原图分支、Space-to-Depth、普通卷积或抗混叠下采样对照。Space-to-Depth 本身为重排，后续通道压缩可重新丢信息。
 3. **若确认相邻船的粘连主导。** 比较固定候选的原生输出、每像素互斥分配、固定种子图优化，再考虑学习的有符号邻接或 OT。固定原始分数、框与候选总数，禁止靠阈值变化归因给几何。若只是排序受损，先用分数回归控制组检验，报告形状完全冻结时的 AP。只有几何收益且边界指标、匹配 IoU、邻船错误方向一致时才扩大该分支。
