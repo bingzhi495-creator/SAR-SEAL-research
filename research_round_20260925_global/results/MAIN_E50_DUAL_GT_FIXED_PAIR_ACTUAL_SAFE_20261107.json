@@ -1,0 +1,339 @@
+{
+  "TEST": false,
+  "descriptive": {
+    "contrasts": {
+      "FULL_minus_PLAIN": {
+        "errors": {
+          "float_band_FN": {
+            "instance_mean_pp": -0.21770777227977509,
+            "pixel_pooled_pp": -0.12100968600208042,
+            "pixels": -463
+          },
+          "float_band_FP": {
+            "instance_mean_pp": -0.011751473601394275,
+            "pixel_pooled_pp": 0.00705672035001333,
+            "pixels": 27
+          },
+          "integer_band_FN": {
+            "instance_mean_pp": 0.011751473601394275,
+            "pixel_pooled_pp": -0.00705672035001333,
+            "pixels": -27
+          },
+          "integer_band_FP": {
+            "instance_mean_pp": 0.21770777227977509,
+            "pixel_pooled_pp": 0.12100968600208042,
+            "pixels": 463
+          },
+          "shared_background_FP": {
+            "instance_mean_pp": 0.45100728447461197,
+            "pixel_pooled_pp": 0.5005044248250194,
+            "pixels": 1915
+          },
+          "shared_foreground_FN": {
+            "instance_mean_pp": -0.4040993569770711,
+            "pixel_pooled_pp": -0.7584667576199512,
+            "pixels": -2902
+          }
+        },
+        "iou75_crossing": {
+          "float": {
+            "down": 4,
+            "unchanged": 366,
+            "up": 4
+          },
+          "integer": {
+            "down": 7,
+            "unchanged": 361,
+            "up": 6
+          }
+        },
+        "shared_error_total": {
+          "instance_mean_pp": 0.0469079274975409,
+          "pixel_pooled_pp": -0.2579623327949317,
+          "pixels": -987
+        }
+      },
+      "FULL_minus_native": {
+        "errors": {
+          "float_band_FN": {
+            "instance_mean_pp": 0.4308437293700863,
+            "pixel_pooled_pp": 0.18974736941146952,
+            "pixels": 726
+          },
+          "float_band_FP": {
+            "instance_mean_pp": 0.4010633217286576,
+            "pixel_pooled_pp": 0.18974736941146952,
+            "pixels": 726
+          },
+          "integer_band_FN": {
+            "instance_mean_pp": -0.4010633217286576,
+            "pixel_pooled_pp": -0.18974736941146952,
+            "pixels": -726
+          },
+          "integer_band_FP": {
+            "instance_mean_pp": -0.4308437293700863,
+            "pixel_pooled_pp": -0.18974736941146952,
+            "pixels": -726
+          },
+          "shared_background_FP": {
+            "instance_mean_pp": 0.3884286377694218,
+            "pixel_pooled_pp": 0.3821083389525736,
+            "pixels": 1462
+          },
+          "shared_foreground_FN": {
+            "instance_mean_pp": 0.09653187267626409,
+            "pixel_pooled_pp": -0.01646568081669777,
+            "pixels": -63
+          }
+        },
+        "iou75_crossing": {
+          "float": {
+            "down": 11,
+            "unchanged": 360,
+            "up": 3
+          },
+          "integer": {
+            "down": 6,
+            "unchanged": 363,
+            "up": 5
+          }
+        },
+        "shared_error_total": {
+          "instance_mean_pp": 0.48496051044568594,
+          "pixel_pooled_pp": 0.3656426581358758,
+          "pixels": 1399
+        }
+      },
+      "PLAIN_minus_native": {
+        "errors": {
+          "float_band_FN": {
+            "instance_mean_pp": 0.6485515016498614,
+            "pixel_pooled_pp": 0.3107570554135499,
+            "pixels": 1189
+          },
+          "float_band_FP": {
+            "instance_mean_pp": 0.4128147953300519,
+            "pixel_pooled_pp": 0.18269064906145618,
+            "pixels": 699
+          },
+          "integer_band_FN": {
+            "instance_mean_pp": -0.4128147953300519,
+            "pixel_pooled_pp": -0.18269064906145618,
+            "pixels": -699
+          },
+          "integer_band_FP": {
+            "instance_mean_pp": -0.6485515016498614,
+            "pixel_pooled_pp": -0.3107570554135499,
+            "pixels": -1189
+          },
+          "shared_background_FP": {
+            "instance_mean_pp": -0.06257864670519019,
+            "pixel_pooled_pp": -0.11839608587244586,
+            "pixels": -453
+          },
+          "shared_foreground_FN": {
+            "instance_mean_pp": 0.5006312296533352,
+            "pixel_pooled_pp": 0.7420010768032534,
+            "pixels": 2839
+          }
+        },
+        "iou75_crossing": {
+          "float": {
+            "down": 9,
+            "unchanged": 364,
+            "up": 1
+          },
+          "integer": {
+            "down": 6,
+            "unchanged": 362,
+            "up": 6
+          }
+        },
+        "shared_error_total": {
+          "instance_mean_pp": 0.43805258294814503,
+          "pixel_pooled_pp": 0.6236049909308076,
+          "pixels": 2386
+        }
+      }
+    },
+    "methods": {
+      "FULL": {
+        "band_coverage_pixels": {
+          "float_only": 4514,
+          "integer_only": 5439
+        },
+        "errors": {
+          "float_band_FN": {
+            "instance_mean_pp": 2.533991054348523,
+            "pixel_pooled_pp": 1.5846257585974377,
+            "pixels": 6063
+          },
+          "float_band_FP": {
+            "instance_mean_pp": 2.8337973506539154,
+            "pixel_pooled_pp": 1.4215371105082406,
+            "pixels": 5439
+          },
+          "integer_band_FN": {
+            "instance_mean_pp": 2.0906189831611415,
+            "pixel_pooled_pp": 1.3368564663080806,
+            "pixels": 5115
+          },
+          "integer_band_FP": {
+            "instance_mean_pp": 2.2567556437964384,
+            "pixel_pooled_pp": 1.1797790985170433,
+            "pixels": 4514
+          },
+          "shared_background_FP": {
+            "instance_mean_pp": 6.99774119635209,
+            "pixel_pooled_pp": 8.031070478341096,
+            "pixels": 30728
+          },
+          "shared_foreground_FN": {
+            "instance_mean_pp": 5.260907499215278,
+            "pixel_pooled_pp": 7.265547000371131,
+            "pixels": 27799
+          }
+        },
+        "iou75_pass": {
+          "float": 327,
+          "integer": 333
+        }
+      },
+      "PLAIN": {
+        "band_coverage_pixels": {
+          "float_only": 4051,
+          "integer_only": 5412
+        },
+        "errors": {
+          "float_band_FN": {
+            "instance_mean_pp": 2.751698826628298,
+            "pixel_pooled_pp": 1.705635444599518,
+            "pixels": 6526
+          },
+          "float_band_FP": {
+            "instance_mean_pp": 2.8455488242553097,
+            "pixel_pooled_pp": 1.4144803901582272,
+            "pixels": 5412
+          },
+          "integer_band_FN": {
+            "instance_mean_pp": 2.0788675095597475,
+            "pixel_pooled_pp": 1.343913186658094,
+            "pixels": 5142
+          },
+          "integer_band_FP": {
+            "instance_mean_pp": 2.039047871516664,
+            "pixel_pooled_pp": 1.058769412514963,
+            "pixels": 4051
+          },
+          "shared_background_FP": {
+            "instance_mean_pp": 6.546733911877478,
+            "pixel_pooled_pp": 7.530566053516076,
+            "pixels": 28813
+          },
+          "shared_foreground_FN": {
+            "instance_mean_pp": 5.665006856192349,
+            "pixel_pooled_pp": 8.024013757991082,
+            "pixels": 30701
+          }
+        },
+        "iou75_pass": {
+          "float": 327,
+          "integer": 334
+        }
+      },
+      "native": {
+        "band_coverage_pixels": {
+          "float_only": 5240,
+          "integer_only": 4713
+        },
+        "errors": {
+          "float_band_FN": {
+            "instance_mean_pp": 2.1031473249784365,
+            "pixel_pooled_pp": 1.3948783891859682,
+            "pixels": 5337
+          },
+          "float_band_FP": {
+            "instance_mean_pp": 2.432734028925258,
+            "pixel_pooled_pp": 1.231789741096771,
+            "pixels": 4713
+          },
+          "integer_band_FN": {
+            "instance_mean_pp": 2.491682304889799,
+            "pixel_pooled_pp": 1.5266038357195502,
+            "pixels": 5841
+          },
+          "integer_band_FP": {
+            "instance_mean_pp": 2.687599373166525,
+            "pixel_pooled_pp": 1.3695264679285128,
+            "pixels": 5240
+          },
+          "shared_background_FP": {
+            "instance_mean_pp": 6.609312558582667,
+            "pixel_pooled_pp": 7.648962139388522,
+            "pixels": 29266
+          },
+          "shared_foreground_FN": {
+            "instance_mean_pp": 5.164375626539014,
+            "pixel_pooled_pp": 7.282012681187829,
+            "pixels": 27862
+          }
+        },
+        "iou75_pass": {
+          "float": 335,
+          "integer": 334
+        }
+      }
+    },
+    "regions": {
+      "GT_union": 382614,
+      "float_only": 10577,
+      "integer_only": 10554,
+      "shared_background": 57598239,
+      "shared_foreground": 361483
+    }
+  },
+  "formal_training_budget_credit": 0,
+  "min_sampled_available_RAM_bytes": 74253828096,
+  "native_integer_COCO12_exact": true,
+  "new_model_AP": false,
+  "new_training": false,
+  "original_pair_identities_exact": true,
+  "paired_geometry_is_not_AP": true,
+  "peak_sampled_worker_RSS_bytes": 286248960,
+  "primary_FULL_minus_PLAIN": {
+    "CI95_pp": [
+      -0.17687702037893951,
+      0.26664265357590644
+    ],
+    "clusters": 187,
+    "clusters_with_pairs": 186,
+    "draws": 10000,
+    "draws_executed": 10000,
+    "interval_method": "percentile_2.5_97.5_linear",
+    "margin_decision": "DOES_NOT_CLEAR_MARGIN",
+    "margin_pp": 1.0,
+    "point_pp": 0.0469079274975409,
+    "sampling_unit": "image",
+    "seed": 20261107,
+    "valid_draws": 10000
+  },
+  "qualified": false,
+  "schema": "Root-E50-DEV187-dual-GT-fixed-pair-geometry-v1",
+  "scope": {
+    "ignored_GT": 0,
+    "images": 187,
+    "paired_GT": 374,
+    "total_GT": 380,
+    "unmatched_GT": 6,
+    "unpaired_GT": 6
+  },
+  "shared_background_relative_to_each_instance": true,
+  "status": "GEOMETRY_COMPLETE_PENDING_ROOT_ACCEPTANCE",
+  "subgroups": {},
+  "root_status": "ACTUAL_374_FIXED_PAIRS_ACCEPTED",
+  "owner_elapsed_seconds": 5.2392619689926505,
+  "independent_closure": true,
+  "original_SSH_exit": 0,
+  "original_worker_exit": 0,
+  "original_primary_repeat_policy": "STOP_AUTOMATIC_EXTENSION"
+}
