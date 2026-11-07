@@ -18,4 +18,6 @@
 
 下一步用同一断点走原生恢复接口，核对 E2 起点、四个微批次和第 187 次 AdamW、调度及 EMA 更新。E1 未运行验证、AP 或 TEST，恢复和不间断轨迹等价性仍待独立验证。固定 50 轮的 PLAIN/FULL 结论不使用本次训练计数。
 
+E2 候选沿用 100 轮调度和原生 `Trainer.fit(ckpt_path=...)`。观察到第四个微批次、一次实际 AdamW 返回及更新 187 后设置停止。候选要求此阶段不生成新断点，不执行验证或测试。三项合成检查通过，真实断点接续尚未执行。 [E2 候选源码](code/RFDETR_NATIVE_E2_RESUME_WORKER_CANDIDATE_20261107/e2_worker.py) · [合成检查](code/RFDETR_NATIVE_E2_RESUME_WORKER_CANDIDATE_20261107/test_e2_worker.py)
+
 [安全汇总](results/RFDETR_NATIVE_E1_ACTUAL_ACCEPTED_SAFE_20261107.json) · [长训与诊断计划](RFDETR_BASELINE_AND_DIAGNOSTIC_PLAN_20261107.md)
