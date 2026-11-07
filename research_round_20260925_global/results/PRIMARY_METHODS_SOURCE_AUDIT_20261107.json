@@ -1,0 +1,309 @@
+{
+  "schema": "SAR-SEAL-PRIMARY-SOURCE-AUDIT-v1",
+  "cutoff_utc_date": "2026-11-07",
+  "static_source_review_only": true,
+  "run_evidence_provided": false,
+  "report": "../PRIMARY_METHODS_SOURCE_AUDIT_AND_NEXT_TEST_20261107.md",
+  "records": [
+    {
+      "id": "fastsar",
+      "task": "coherent_formation",
+      "original": "https://arxiv.org/html/2610.33932v1",
+      "source": "https://github.com/saulpingerman/FastSAR/tree/98006bd76e2b9a7267cd8b94e7169d9e3969b732",
+      "source_evidence": "author_core_read",
+      "license": "MIT",
+      "required_observation": "CPHD plus geometry",
+      "entry_or_gap": "fastsar/cphd.py:form_cphd; fastsar/autofocus.py:pga"
+    },
+    {
+      "id": "pfa2rda",
+      "task": "sicd_geometry",
+      "original": "https://arxiv.org/html/2503.07889v1",
+      "source": "https://github.com/piyushrpt/PFA2RDAgeometry/blob/34916ff6438d2df56a41b2a14f96a9631f51546f/pfa2rda.py",
+      "source_evidence": "author_core_read",
+      "license": "Apache-2.0",
+      "required_observation": "focused SICD plus metadata",
+      "entry_or_gap": "sarpyOps; isce3Ops"
+    },
+    {
+      "id": "isce3",
+      "task": "official_formation",
+      "original": "https://nisar-docs.asf.alaska.edu/atbd/",
+      "source": "https://github.com/isce-framework/isce3/tree/cecf0c12b3f44875eafc150788b3b067d27e401b",
+      "source_evidence": "official_core_read",
+      "license": "Apache-2.0 with notices",
+      "required_observation": "L0B plus orbit, chirp, geometry",
+      "entry_or_gap": "python/packages/nisar/workflows/focus.py; cxx/isce3/focus/Backproject.cpp"
+    },
+    {
+      "id": "pga",
+      "task": "autofocus",
+      "original": "https://doi.org/10.1109/7.303752",
+      "source": "https://github.com/aisari/torchsar/blob/05a46610d68bc884743a483565279f361ade5384/torchsar/autofocus/phase_gradient.py",
+      "source_evidence": "independent_core_read",
+      "license": "Apache-2.0",
+      "required_observation": "coherent complex imagery",
+      "entry_or_gap": "phase_correction; pgaf_sm_1iter"
+    },
+    {
+      "id": "rafnet",
+      "task": "autofocus",
+      "original": "https://doi.org/10.3390/s26134270",
+      "source": "https://github.com/wljwdsa/sar/blob/963aeb1a2cd88da5de44d4f1e91c83f4d15129a4/RAFNET/rafnet.py",
+      "source_evidence": "author_core_read",
+      "license": "not_verified",
+      "required_observation": "coherent complex imagery",
+      "entry_or_gap": "Focuser.forward"
+    },
+    {
+      "id": "freeman_yamaguchi",
+      "task": "polarimetric_decomposition",
+      "original": "https://doi.org/10.1109/36.673687",
+      "source": "https://github.com/senbox-org/s1tbx/tree/1daae60d572e3ad0ee98c0ce3538c61ad71d7fa1/rstb/rstb-op-polarimetric-tools/src/main/java/org/csa/rstb/polarimetric/gpf/decompositions",
+      "source_evidence": "official_core_read",
+      "license": "GPL-3.0-or-later headers",
+      "required_observation": "calibrated C3/T3",
+      "entry_or_gap": "FreemanDurden.java; Yamaguchi.java"
+    },
+    {
+      "id": "nlsar",
+      "task": "nonlocal_despeckling",
+      "original": "https://perso.telecom-paristech.fr/tupin/PUB/nl_sar.pdf",
+      "source": "https://bitbucket.org/charles_deledalle/nlsar/get/v0.9.zip",
+      "source_evidence": "author_core_read",
+      "license": "CeCILL",
+      "required_observation": "compatible intensity or covariance",
+      "entry_or_gap": "algos/nlsar/nlsar.c:nlsar"
+    },
+    {
+      "id": "glcnet",
+      "task": "blindspot_despeckling",
+      "original": "https://doi.org/10.1016/j.jag.2026.105135",
+      "source": "https://github.com/yangyang12318/LGCN/blob/274af0e58d3dd565fd1f7a24d8f21105687636e7/network/all.py",
+      "source_evidence": "author_core_read_static_shape_risk",
+      "license": "GPL-3.0",
+      "required_observation": "SAR intensity and author training protocol",
+      "entry_or_gap": "MWCNN; CentralMaskedConv2d; GuidedDetailFusion"
+    },
+    {
+      "id": "cl_sar",
+      "task": "contrastive_despeckling",
+      "original": "https://doi.org/10.1016/j.isprsjprs.2024.11.003",
+      "source": "https://github.com/YangtianFang2002/CL-SAR-Despeckling/blob/b12129d1d3448750b9098b239397587eeb359857/basicsr/models/image_restoration_cl_model.py",
+      "source_evidence": "author_core_read",
+      "license": "not_verified",
+      "required_observation": "intensity inputs, specific normalization",
+      "entry_or_gap": "contrastive pair and loss"
+    },
+    {
+      "id": "wu_cfar",
+      "task": "ship_detection",
+      "original": "https://doi.org/10.20944/preprints202112.0280.v1",
+      "source": "https://github.com/Rc-W024/SAR_Ship_detection_CFAR/blob/f2e4a7794a708f9b0756c8e374897af0cbfc1b90/CAFR_ship_detection.m",
+      "source_evidence": "author_core_read",
+      "license": "MIT",
+      "required_observation": "empirical intensity/JPEG implementation",
+      "entry_or_gap": "sar_cfar_6"
+    },
+    {
+      "id": "casa_detr",
+      "task": "ship_bbox_detection",
+      "original": "https://www.mdpi.com/2072-4292/18/21/3799",
+      "source": null,
+      "source_evidence": "author_code_not_verified",
+      "license": "not_verified",
+      "required_observation": "display intensity",
+      "entry_or_gap": "CFAR-inspired feature soft gate"
+    },
+    {
+      "id": "sares_deim",
+      "task": "ship_bbox_detection",
+      "original": "https://arxiv.org/html/2604.04127v2",
+      "source": null,
+      "source_evidence": "author_code_not_verified",
+      "license": "not_verified",
+      "required_observation": "display intensity",
+      "entry_or_gap": "WTConv, FADC, Top-2 routing, Space-to-Depth"
+    },
+    {
+      "id": "wtconv",
+      "task": "wavelet_convolution",
+      "original": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/07137.pdf",
+      "source": "https://github.com/BGU-CS-VIL/WTConv/blob/4a84da2218924b3973de2235d641f2ecf969c346/wtconv/wtconv2d.py",
+      "source_evidence": "author_core_read",
+      "license": "MIT",
+      "required_observation": "feature maps",
+      "entry_or_gap": "WTConv2d"
+    },
+    {
+      "id": "fadc",
+      "task": "frequency_conditioned_convolution",
+      "original": "https://openaccess.thecvf.com/content/CVPR2024/html/Chen_Frequency-Adaptive_Dilated_Convolution_for_Semantic_Segmentation_CVPR_2024_paper.html",
+      "source": "https://github.com/Linwei-Chen/FADC/blob/923102e6344d9b90ec427cb15201efd514bf316e/models/conv_custom.py",
+      "source_evidence": "author_core_read",
+      "license": "Apache-2.0",
+      "required_observation": "feature maps",
+      "entry_or_gap": "FrequencySelection; AdaptiveDilatedConv"
+    },
+    {
+      "id": "argussar",
+      "task": "sar_bbox_detection",
+      "original": "https://doi.org/10.1109/TGRS.2026.3665807",
+      "source": "https://github.com/masurq/ArgusSAR/blob/fda9afacd4e82569333704f37f9ac2fbe9fd1bc9/ArgusSAR/models/ArgusSAR.yaml",
+      "source_evidence": "author_config_and_code_read",
+      "license": "AGPL-3.0",
+      "required_observation": "display intensity",
+      "entry_or_gap": "Detect head"
+    },
+    {
+      "id": "r_sparse_rcnn",
+      "task": "rotated_ship_bbox",
+      "original": "https://doi.org/10.1109/JSTARS.2025.3577766",
+      "source": "https://github.com/ka-mirul/R-Sparse-R-CNN/tree/4d9828be626454009000364685d9e24fe717cfcc/projects/RSparseRCNN",
+      "source_evidence": "author_core_read",
+      "license": "GPL-3.0",
+      "required_observation": "display intensity",
+      "entry_or_gap": "detector.py:RSparseRCNN; head.py:DynamicHead"
+    },
+    {
+      "id": "sdr_net",
+      "task": "rotated_ship_bbox",
+      "original": "https://www.sciencedirect.com/science/article/pii/S1051200426005038",
+      "source": "https://github.com/Ye-Blip/SDR-Net",
+      "source_evidence": "publisher_link_http_404",
+      "license": "not_verified",
+      "required_observation": "display intensity",
+      "entry_or_gap": "publisher preview only in this audit"
+    },
+    {
+      "id": "scrc_net",
+      "task": "sar_ship_classification",
+      "original": "https://doi.org/10.1016/j.patcog.2026.114294",
+      "source": "https://github.com/luwang-Lucia/SCRC-Net/tree/439cb85b6aa91e4b014c6a60e7ab7a6042d6f24e",
+      "source_evidence": "fixed_tree_no_algorithm",
+      "license": "Apache-2.0 repository",
+      "required_observation": "display intensity",
+      "entry_or_gap": "three non-algorithm files"
+    },
+    {
+      "id": "dacf_net",
+      "task": "sar_ship_instance_masks",
+      "original": "https://doi.org/10.1080/17538947.2026.2696657",
+      "source": "https://github.com/yang199809/DACF-Net/tree/479dfab0048ddb7edae1b732ff5ee4452aa82be8",
+      "source_evidence": "fixed_tree_no_algorithm",
+      "license": "Apache-2.0 repository",
+      "required_observation": "display intensity plus instance masks",
+      "entry_or_gap": "three non-algorithm files"
+    },
+    {
+      "id": "o2former",
+      "task": "sar_ship_instance_masks",
+      "original": "https://doi.org/10.1109/JSTARS.2026.3677088",
+      "source": null,
+      "source_evidence": "author_code_not_verified",
+      "license": "not_verified",
+      "required_observation": "display intensity plus instance masks",
+      "entry_or_gap": "direction-aware queries, grouped mask AP"
+    },
+    {
+      "id": "aranet",
+      "task": "sar_ship_instance_masks",
+      "original": "https://doi.org/10.1109/JSTARS.2026.3720719",
+      "source": null,
+      "source_evidence": "author_code_not_verified",
+      "license": "not_verified",
+      "required_observation": "display intensity plus instance masks",
+      "entry_or_gap": "Gabor and smoothed Laplacian edge representation"
+    },
+    {
+      "id": "max_tree_ship",
+      "task": "sar_ship_detection",
+      "original": "https://imatge.upc.edu/web/sites/default/files/pub/aSalembier18_1.pdf",
+      "source": "https://github.com/imatge-upc/Maxtree-Processing-Toolbox/tree/322b7ae16dc78078c003e607e68741d8b1328c87",
+      "source_evidence": "author_core_read",
+      "license": "not_verified",
+      "required_observation": "SAR image",
+      "entry_or_gap": "maxtree_Populate.m; maxtree_BFilter.m"
+    },
+    {
+      "id": "higra",
+      "task": "graph_morphology",
+      "original": "https://doi.org/10.1016/j.softx.2019.100335",
+      "source": "https://github.com/higra/Higra/tree/89d66c68eb5ca0378dd33c23b6242235b6c80b35",
+      "source_evidence": "author_core_read",
+      "license": "CeCILL-B",
+      "required_observation": "image or graph",
+      "entry_or_gap": "component_tree_max_tree; attribute_area; reconstruct_leaf_data"
+    },
+    {
+      "id": "point2mask",
+      "task": "point_supervised_panoptic",
+      "original": "https://openaccess.thecvf.com/content/ICCV2023/html/Li_Point2Mask_Point-supervised_Panoptic_Segmentation_via_Optimal_Transport_ICCV_2023_paper.html",
+      "source": "https://github.com/LiWentomng/Point2Mask/blob/6a44f6211422fe273b4e8ea7319052b215dcf98f/easymd/models/panformer/point2mask_head.py",
+      "source_evidence": "author_core_read",
+      "license": "Apache-2.0",
+      "required_observation": "images and point labels",
+      "entry_or_gap": "SinkhornDistance.forward"
+    },
+    {
+      "id": "phoenix",
+      "task": "general_mask_refinement",
+      "original": "https://arxiv.org/abs/2607.29059",
+      "source": "https://github.com/naver-ai/Phoenix/blob/13ee3996ef3d0292fab144316cc8e03b69c0ecfa/infer.py",
+      "source_evidence": "author_core_read_weight_entry_only",
+      "license": "Apache-2.0",
+      "required_observation": "RGB tensor and initial mask",
+      "entry_or_gap": "infer.py:main"
+    },
+    {
+      "id": "mmatr_x",
+      "task": "multimodal_pretraining",
+      "original": "https://arxiv.org/html/2604.16952v2",
+      "source": "https://github.com/scenarri/MMATR-X/tree/a3a0c13d7e54c54faf595b9d530f1c8a4aeef50d",
+      "source_evidence": "author_core_read_weight_entry_only",
+      "license": "Apache-2.0 repository",
+      "required_observation": "paired pretraining, SAR-only downstream possible",
+      "entry_or_gap": "models_itpn_mim_dual.py"
+    },
+    {
+      "id": "sarvlm",
+      "task": "sar_text_pretraining",
+      "original": "https://arxiv.org/html/2510.22665v4",
+      "source": "https://github.com/KlayMa527/SARVLM/tree/1a12791d98654340eee4c04a74a8eaf113922e7c",
+      "source_evidence": "author_components_read_weight_entry_only",
+      "license": "not_verified",
+      "required_observation": "SAR plus text pretraining",
+      "entry_or_gap": "train_sarclip.sh; eval_zeroshot.py"
+    },
+    {
+      "id": "fusar_klip",
+      "task": "sar_text_pretraining",
+      "original": "https://arxiv.org/html/2509.23927v4",
+      "source": "https://github.com/yangyifremad/FUSAR-KLIP/tree/f3f393fb2a3a51e0b67b1b094e6c2605ea7fd52e",
+      "source_evidence": "author_components_read_full_release_pending",
+      "license": "not_verified",
+      "required_observation": "SAR plus metadata-driven text",
+      "entry_or_gap": "BLIP_Pretrain.forward"
+    },
+    {
+      "id": "mm_ovseg",
+      "task": "paired_optical_sar_semantic",
+      "original": "https://openaccess.thecvf.com/content/CVPR2026/papers/Wei_MM-OVSeg_Multimodal_Optical-SAR_Fusion_for_Open-Vocabulary_Segmentation_in_Remote_Sensing_CVPR_2026_paper.pdf",
+      "source": "https://github.com/Jimmyxichen/MM-OVSeg/tree/b373e1539c769daf1d69246bbd0bd0473a13b5cd",
+      "source_evidence": "author_entry_read_core_zip_not_fully_checked",
+      "license": "not_verified",
+      "required_observation": "co-registered optical and SAR plus text at full inference",
+      "entry_or_gap": "train_net.py; configs/vitb_384.yaml"
+    },
+    {
+      "id": "ossdd",
+      "task": "dual_amplitude_data",
+      "original": "https://arxiv.org/html/2608.01963v1",
+      "source": "https://huggingface.co/datasets/sylviaHoch/OpenSARShip-Ship-Detection-Dataset",
+      "source_evidence": "author_data_card_only",
+      "license": "CC-BY-NC-SA-4.0 labels/code; imagery separate",
+      "required_observation": "32-bit VV/VH amplitude, boxes and binary masks",
+      "entry_or_gap": "archive counts and instance separability unresolved"
+    }
+  ]
+}
