@@ -1,0 +1,163 @@
+{
+  "status": "DEV187_FIXED_LOGIT_PROSPECTIVE_SCORE_COMPLETE",
+  "protocol": "f7021b0c12dc82298863fadaea69dd812f90cdab",
+  "seed": 5201,
+  "metrics": {
+    "native": {
+      "AP": 0.6744334056814277,
+      "AP75": 0.8538575350205851,
+      "AP90": 0.06678656662765144,
+      "APsmall": 0.6731170548617869,
+      "AR100": 0.7526315789473684,
+      "predictions": 15434
+    },
+    "uncertainty": {
+      "AP": 0.6731310315997776,
+      "AP75": 0.8490448430552721,
+      "AP90": 0.05457375077955052,
+      "APsmall": 0.6720820271091621,
+      "AR100": 0.7502631578947369,
+      "predictions": 15434
+    },
+    "center": {
+      "AP": 0.67837165864122,
+      "AP75": 0.8626764517873041,
+      "AP90": 0.06714679025360215,
+      "APsmall": 0.6814015405052195,
+      "AR100": 0.7449999999999999,
+      "predictions": 15434
+    },
+    "ring": {
+      "AP": 0.6745103690686421,
+      "AP75": 0.8521071431124274,
+      "AP90": 0.05762653146961122,
+      "APsmall": 0.6742021517351242,
+      "AR100": 0.7460526315789473,
+      "predictions": 15434
+    },
+    "local_logit": {
+      "AP": 0.685706459148429,
+      "AP75": 0.8724085078820677,
+      "AP90": 0.06577946493254842,
+      "APsmall": 0.6903899643567233,
+      "AR100": 0.7581578947368421,
+      "predictions": 15434
+    }
+  },
+  "geometry": {
+    "native": {
+      "matched": 377,
+      "original_strict": 60,
+      "edited_rows": 0,
+      "edited_unmatched": 0
+    },
+    "uncertainty": {
+      "matched": 377,
+      "original_strict": 60,
+      "edited_rows": 9663,
+      "edited_unmatched": 9286,
+      "fp_delta": 41,
+      "fn_delta": 41,
+      "strict_loss": 11,
+      "strict_gain": 2,
+      "both_reduced": 112
+    },
+    "center": {
+      "matched": 377,
+      "original_strict": 60,
+      "edited_rows": 9663,
+      "edited_unmatched": 9286,
+      "fp_delta": -162,
+      "fn_delta": -162,
+      "strict_loss": 10,
+      "strict_gain": 12,
+      "both_reduced": 172
+    },
+    "ring": {
+      "matched": 377,
+      "original_strict": 60,
+      "edited_rows": 9663,
+      "edited_unmatched": 9286,
+      "fp_delta": 36,
+      "fn_delta": 36,
+      "strict_loss": 10,
+      "strict_gain": 3,
+      "both_reduced": 107
+    },
+    "local_logit": {
+      "matched": 377,
+      "original_strict": 60,
+      "edited_rows": 9663,
+      "edited_unmatched": 9286,
+      "fp_delta": -330,
+      "fn_delta": -330,
+      "strict_loss": 11,
+      "strict_gain": 12,
+      "both_reduced": 214
+    }
+  },
+  "AP": true,
+  "DEV": true,
+  "TEST": false,
+  "strong_reference_E100_AP": 0.6816530127007889,
+  "primary_gain_fraction": 0.004053446447640052,
+  "quality_guard": false,
+  "decision": "STOP_NONPOSITIVE_OR_QUALITY_GUARD",
+  "original_export_terminal_sha256": "311dccdc42af1f61f1f2149100059e4cacf4db822cc155c844c9995339e6ca4c",
+  "native_predictions_sha256": "7d6239e87ccc6aed4a012e491007ce4c48edff053d9edf8f04f7177f5e138321",
+  "export_result_sha256": "770636cc9fec4d5630e58a078b27d7457b158ff81bf6eb6d1585e007536f8141",
+  "training": {
+    "images": 290,
+    "candidates": 23787,
+    "matched": 624,
+    "unmatched": 23163,
+    "used_matches": 623,
+    "points": 142170,
+    "strict_before": 167,
+    "small": 489,
+    "available_add": 73120,
+    "available_delete": 69050,
+    "true_add": 11721,
+    "true_delete": 13572,
+    "inactive": 1
+  },
+  "updates_each_learned": 96,
+  "detector_updates": 0,
+  "fit_loss": {
+    "local_logit": 0.3621605634689331,
+    "center": 0.3813364803791046,
+    "ring": 0.39656686782836914
+  },
+  "timing": {
+    "read_decode_and_native": 10.047230112133548,
+    "shared_boundary_inputs": 20.64402788388543,
+    "uncertainty": 0.926219342276454,
+    "center": 1.071690722135827,
+    "ring": 1.3056182404980063,
+    "local_logit": 1.0396743689198047
+  },
+  "fit_total_seconds": 17.078046550042927,
+  "per_head_training_seconds": {
+    "local_logit": 0.20611659507267177,
+    "center": 0.1519947920460254,
+    "ring": 0.16092673898674548
+  },
+  "cuda_peak_bytes": 305103360,
+  "images": 187,
+  "execution_verified": {
+    "export_original_OS_exit": 0,
+    "export_original_SSH_exit": 0,
+    "score_original_OS_exit": 0,
+    "score_original_SSH_exit": 0,
+    "export_original_OS_wait": true,
+    "score_original_OS_wait": true,
+    "export_elapsed_seconds": 58.14617641805671,
+    "score_elapsed_seconds": 7.647812570910901,
+    "export_peak_RSS_bytes": 3012792320,
+    "score_result_sha256": "ab4033293a0505e7bc0d51653581a6d7dc23b59731ba25c4900b6b0366856a05",
+    "score_terminal_sha256": "b16e87ba48509a99fd69978c7760bf2f56ade144acf35621930e4cd59802f8f0",
+    "all_sealed_predictions_independently_verified": true,
+    "dev_gt_read_in_export": false
+  },
+  "decision_scope": "Prelocked quality stop at seed 5201 despite positive single-seed fixed-candidate mask AP. No subsequent seeds authorized under this protocol."
+}
