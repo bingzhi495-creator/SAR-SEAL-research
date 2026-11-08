@@ -1,0 +1,177 @@
+{
+  "AP": true,
+  "DEV": false,
+  "TEST": false,
+  "all_candidate_identities_sha256": "650a7431313817b83b643715d20a917441a0c1774a9eca9ad31606e7612f5ff2",
+  "cuda_peak_bytes": 320769536,
+  "delta_vs_native": {
+    "forced_all": {
+      "AP": 0.01621148045570109,
+      "AP75": 0.027824917472480726,
+      "AP90": 0.02564650119311271,
+      "APsmall": 0.020004866785448883,
+      "AR100": 0.006849315068493178
+    },
+    "matched_only": {
+      "AP": 0.016863367050899636,
+      "AP75": 0.028896409575281723,
+      "AP90": 0.027331725665982243,
+      "APsmall": 0.02009541675074733,
+      "AR100": 0.009931506849315097
+    },
+    "other_unmatched_only": {
+      "AP": 0,
+      "AP75": 0,
+      "AP90": 0,
+      "APsmall": 0,
+      "AR100": 0
+    },
+    "overlap_unmatched_only": {
+      "AP": 0.0007967248111323544,
+      "AP75": -0.0010363146531133793,
+      "AP90": 0.0004272383241969435,
+      "APsmall": 0.0011174857063906973,
+      "AR100": 0.00205479452054802
+    },
+    "unmatched_only": {
+      "AP": 0.0007967248111323544,
+      "AP75": -0.0010363146531133793,
+      "AP90": 0.0004272383241969435,
+      "APsmall": 0.0011174857063906973,
+      "AR100": 0.00205479452054802
+    }
+  },
+  "elapsed_s": 40.95531314890832,
+  "exact_endpoints": true,
+  "full_minus_matched_minus_unmatched": {
+    "AP": -0.001448611406330902,
+    "AP75": -0.00003517744968761782,
+    "AP90": -0.0021124627970664778,
+    "APsmall": -0.001208035671689145,
+    "AR100": -0.005136986301369939
+  },
+  "geometry": {
+    "candidates": 9082,
+    "edited_rows": 5684,
+    "fn_delta": -320,
+    "fp_delta": -320,
+    "gt_overlap_unmatched": 3262,
+    "images": 111,
+    "lost_strict": 2,
+    "margin": 6080,
+    "matched_edits": 289,
+    "new_strict": 20,
+    "original_matches": 291,
+    "original_strict": 60,
+    "unmatched_edits": 5395,
+    "useful": 179
+  },
+  "matched_gate": true,
+  "metrics": {
+    "forced_all": {
+      "AP": 0.7418396375015283,
+      "AP75": 0.9313858677071005,
+      "AP90": 0.15088025719774306,
+      "APsmall": 0.7256646393436857,
+      "AR100": 0.7845890410958904,
+      "predictions": 9082
+    },
+    "matched_only": {
+      "AP": 0.7424915240967268,
+      "AP75": 0.9324573598099015,
+      "AP90": 0.1525654816706126,
+      "APsmall": 0.7257551893089842,
+      "AR100": 0.7876712328767124,
+      "predictions": 9082
+    },
+    "native": {
+      "AP": 0.7256281570458272,
+      "AP75": 0.9035609502346198,
+      "AP90": 0.12523375600463035,
+      "APsmall": 0.7056597725582369,
+      "AR100": 0.7777397260273973,
+      "predictions": 9082
+    },
+    "other_unmatched_only": {
+      "AP": 0.7256281570458272,
+      "AP75": 0.9035609502346198,
+      "AP90": 0.12523375600463035,
+      "APsmall": 0.7056597725582369,
+      "AR100": 0.7777397260273973,
+      "predictions": 9082
+    },
+    "overlap_unmatched_only": {
+      "AP": 0.7264248818569595,
+      "AP75": 0.9025246355815064,
+      "AP90": 0.1256609943288273,
+      "APsmall": 0.7067772582646276,
+      "AR100": 0.7797945205479453,
+      "predictions": 9082
+    },
+    "unmatched_only": {
+      "AP": 0.7264248818569595,
+      "AP75": 0.9025246355815064,
+      "AP90": 0.1256609943288273,
+      "APsmall": 0.7067772582646276,
+      "AR100": 0.7797945205479453,
+      "predictions": 9082
+    }
+  },
+  "optimizer_updates": {
+    "detector": 0,
+    "point_replay": 96
+  },
+  "point_fit_loss": 0.3621605634689331,
+  "protocol": "6ac2727bca51c2f04d2971d9f3c2070f2c4e4526",
+  "reference_protocol": "a7bfdf78b1ec80b76946eb7a320c3e78205d8909",
+  "status": "SSDD_FIT_FORCED_LOGIT_CROSSREAD_COMPLETE",
+  "uses_gt_for_attribution": true,
+  "execution_verified": {
+    "original_OS_exit": 0,
+    "original_OS_wait": true,
+    "original_SSH_exit": 0,
+    "resource_stop": false,
+    "result_sha256": "f59ed212e79f5032be9e0c567e5a0e9c1ef0f55f57036483f34cee891843877c",
+    "stdout_and_stderr_sha256_verified": true,
+    "seconds": 42.035651493119076,
+    "peak_rss_bytes": 2925068288,
+    "progress": [
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "point_fit",
+        "images": 100
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "point_fit",
+        "images": 200
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "point_fit",
+        "images": 290
+      },
+      {
+        "event": "FORCED_ACTION_CROSSREAD_PROGRESS",
+        "images": 25
+      },
+      {
+        "event": "FORCED_ACTION_CROSSREAD_PROGRESS",
+        "images": 50
+      },
+      {
+        "event": "FORCED_ACTION_CROSSREAD_PROGRESS",
+        "images": 75
+      },
+      {
+        "event": "FORCED_ACTION_CROSSREAD_PROGRESS",
+        "images": 100
+      },
+      {
+        "event": "FORCED_ACTION_CROSSREAD_PROGRESS",
+        "images": 111
+      }
+    ]
+  },
+  "decision": "Matched-only readout meets prespecified mechanism gate. Preserve the stopped selector. Plan a prospective full-candidate fixed-score equal-budget comparison on separate SSDD DEV187 and paired seeds before claiming method utility."
+}
