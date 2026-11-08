@@ -11,6 +11,7 @@
 - [数学、物理、雷达与近期分割方法原文源码续查](research_round_20260925_global/PRIMARY_METHODS_SOURCE_AUDIT_CONTINUATION_20261108.md)。包含可微分水岭、复极化和去斑、结构预训练、可复训分割对照，以及可证伪的候选重叠诊断。
 - [RF-DETR E24 邻船重叠实测](research_round_20260925_global/RFDETR_E24_FIT_CANDIDATE_OVERLAP_ACTUAL_20261108.md)。516 张 FIT 拟合图上，857 个低 IoU 匹配实例中有 33 个涉及邻船预测重叠，已用独立算法复算。
 - [等点数边界采样诊断协议](research_round_20260925_global/RFDETR_E24_FIT_POINT_SAMPLING_RISK_PROTOCOL_20261108.md)。先核查原生覆盖和同一均匀 BCE 目标的估计方差，达到预锁门槛后再进入真实训练式验证。
+- [等点数边界采样固定 E24 实测](research_round_20260925_global/RFDETR_E24_FIT_POINT_SAMPLING_RISK_ACTUAL_20261108.md)。96 图、178 个匹配实例。小实例 357/744 次原生采样未命中边界错分，分层方差通过门槛，进入训练式验证。
 - [FIT 匹配状态交叉读出实测](research_round_20260925_global/RFDETR_E24_FIT_MATCH_CROSSREAD_ACTUAL_20261108.md)。秩的匹配候选独立编辑未改变 AP 或 AP75，停止判定保持。
 - [FIT 等结构选择器实测与停止判定](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_HEAD_SCOUT_ACTUAL_STOP_20261108.md)。同预算秩相对排序略好，校准后未达到锁定的 AP/AP75 门槛，停止进入 DEV。
 - [完整 FIT741 CUDA 原生采集实测](research_round_20260925_global/RFDETR_E24_FIT741_NATIVE_CUDA_CAPTURE_ACTUAL_20261108.md)。741 图已独立验收，60,881 个船舶候选、19,917,672 个带内 logits；固定匹配与等结构头协议已锁。
