@@ -1,0 +1,294 @@
+{
+  "AP": true,
+  "DEV": false,
+  "TEST": false,
+  "all_candidate_identities_sha256": "650a7431313817b83b643715d20a917441a0c1774a9eca9ad31606e7612f5ff2",
+  "calibration": {
+    "count": 0,
+    "groups": 0,
+    "lost_strict": 0,
+    "margin": 0,
+    "threshold": null,
+    "unmatched": 0,
+    "useful": 0
+  },
+  "cuda_peak_bytes": 320769536,
+  "delta_vs_native": {
+    "forced_all": {
+      "AP": 0.01621148045570109,
+      "AP75": 0.027824917472480726,
+      "AP90": 0.02564650119311271,
+      "APsmall": 0.020004866785448883,
+      "AR100": 0.006849315068493178
+    },
+    "raw_equal": {
+      "AP": 0,
+      "AP75": 0,
+      "AP90": 0,
+      "APsmall": 0,
+      "AR100": 0
+    },
+    "score_equal": {
+      "AP": 0,
+      "AP75": 0,
+      "AP90": 0,
+      "APsmall": 0,
+      "AR100": 0
+    },
+    "selective": {
+      "AP": 0,
+      "AP75": 0,
+      "AP90": 0,
+      "APsmall": 0,
+      "AR100": 0
+    }
+  },
+  "diagnostics": {
+    "forced_all": {
+      "candidates": 9082,
+      "edited_pixels": 45472,
+      "edited_rows": 5684,
+      "eligible": 5684,
+      "fn_delta": -320,
+      "fp_delta": -320,
+      "gt_overlap_unmatched": 3262,
+      "images": 111,
+      "images_edited": 111,
+      "lost_strict": 2,
+      "margin": 6080,
+      "matched_edits": 289,
+      "new_strict": 20,
+      "original_matches": 291,
+      "original_strict": 60,
+      "unmatched_edits": 5395,
+      "useful": 179
+    },
+    "native": {
+      "candidates": 9082,
+      "edited_pixels": 0,
+      "edited_rows": 0,
+      "eligible": 5684,
+      "images": 111,
+      "images_edited": 0,
+      "original_matches": 291,
+      "original_strict": 60
+    },
+    "raw_equal": {
+      "candidates": 9082,
+      "edited_pixels": 0,
+      "edited_rows": 0,
+      "eligible": 5684,
+      "images": 111,
+      "images_edited": 0,
+      "original_matches": 291,
+      "original_strict": 60
+    },
+    "score_equal": {
+      "candidates": 9082,
+      "edited_pixels": 0,
+      "edited_rows": 0,
+      "eligible": 5684,
+      "images": 111,
+      "images_edited": 0,
+      "original_matches": 291,
+      "original_strict": 60
+    },
+    "selective": {
+      "candidates": 9082,
+      "edited_pixels": 0,
+      "edited_rows": 0,
+      "eligible": 5684,
+      "images": 111,
+      "images_edited": 0,
+      "original_matches": 291,
+      "original_strict": 60
+    }
+  },
+  "elapsed_s": 84.25580614595674,
+  "exact_point_input_replay": true,
+  "fixed_edited_points_per_side": 4,
+  "gate": false,
+  "gate_cal": {
+    "candidates": 7868,
+    "eligible": 4681,
+    "images": 96,
+    "matched_eligible": 165,
+    "original_matches": 165,
+    "useful": 108
+  },
+  "gate_fit": {
+    "candidates": 8174,
+    "eligible": 5144,
+    "images": 98,
+    "matched_eligible": 294,
+    "original_matches": 294,
+    "useful": 173
+  },
+  "metrics": {
+    "forced_all": {
+      "AP": 0.7418396375015283,
+      "AP75": 0.9313858677071005,
+      "AP90": 0.15088025719774306,
+      "APsmall": 0.7256646393436857,
+      "AR100": 0.7845890410958904,
+      "predictions": 9082
+    },
+    "native": {
+      "AP": 0.7256281570458272,
+      "AP75": 0.9035609502346198,
+      "AP90": 0.12523375600463035,
+      "APsmall": 0.7056597725582369,
+      "AR100": 0.7777397260273973,
+      "predictions": 9082
+    },
+    "raw_equal": {
+      "AP": 0.7256281570458272,
+      "AP75": 0.9035609502346198,
+      "AP90": 0.12523375600463035,
+      "APsmall": 0.7056597725582369,
+      "AR100": 0.7777397260273973,
+      "predictions": 9082
+    },
+    "score_equal": {
+      "AP": 0.7256281570458272,
+      "AP75": 0.9035609502346198,
+      "AP90": 0.12523375600463035,
+      "APsmall": 0.7056597725582369,
+      "AR100": 0.7777397260273973,
+      "predictions": 9082
+    },
+    "selective": {
+      "AP": 0.7256281570458272,
+      "AP75": 0.9035609502346198,
+      "AP90": 0.12523375600463035,
+      "APsmall": 0.7056597725582369,
+      "AR100": 0.7777397260273973,
+      "predictions": 9082
+    }
+  },
+  "optimizer_updates": {
+    "detector": 0,
+    "point": 96,
+    "raw_gate": 96,
+    "signed_gate": 96
+  },
+  "original_candidate_replay": true,
+  "point_fit_loss": 0.3621605634689331,
+  "point_fit_pairs": 623,
+  "point_fit_points": 142170,
+  "protocol": "a7bfdf78b1ec80b76946eb7a320c3e78205d8909",
+  "roles": {
+    "gate_cal": {
+      "encoded_groups": 95,
+      "images": 96
+    },
+    "gate_fit": {
+      "encoded_groups": 96,
+      "images": 98
+    },
+    "internal_holdout": {
+      "encoded_groups": 110,
+      "images": 111
+    },
+    "point_fit": {
+      "encoded_groups": 288,
+      "images": 290
+    }
+  },
+  "selective_minus_equal_budget_AP": {
+    "raw_equal": 0,
+    "score_equal": 0
+  },
+  "status": "SSDD_FIT_SELECTIVE_LOGIT_ACTION_COMPLETE",
+  "timing": {
+    "gate_fit_and_calibration": 37.68836502707563,
+    "holdout_five_readouts_and_COCO": 23.691279906081036,
+    "point_fit": 19.73316458403133
+  },
+  "truth_used_for_holdout_decisions": false,
+  "execution_verified": {
+    "original_OS_exit": 0,
+    "original_OS_wait": true,
+    "original_SSH_exit": 0,
+    "resource_stop": false,
+    "result_sha256": "17c79b4645e70d585d48ee1fab33048fc4f65bac0e4ed48a44fadb0bf0ec36a4",
+    "stdout_and_stderr_sha256_verified": true,
+    "seconds": 85.4674945930019,
+    "peak_rss_bytes": 2909351936,
+    "progress": [
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "point_fit",
+        "images": 100
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "point_fit",
+        "images": 200
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "point_fit",
+        "images": 290
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "gate_fit",
+        "images": 50
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "gate_fit",
+        "images": 98
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "gate_cal",
+        "images": 50
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "gate_cal",
+        "images": 96
+      },
+      {
+        "event": "SELECTIVE_ACTION_THRESHOLD_LOCKED",
+        "risk": {
+          "threshold": null,
+          "count": 0,
+          "groups": 0,
+          "useful": 0,
+          "unmatched": 0,
+          "lost_strict": 0,
+          "margin": 0
+        }
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "internal_holdout",
+        "images": 25
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "internal_holdout",
+        "images": 50
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "internal_holdout",
+        "images": 75
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "internal_holdout",
+        "images": 100
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "internal_holdout",
+        "images": 111
+      }
+    ]
+  },
+  "decision": "Stop the prelocked selective recipe due to no admissible calibration threshold. Retain the positive forced comparator as exploratory and attribute it with fixed candidate crossread before prospective promotion."
+}
