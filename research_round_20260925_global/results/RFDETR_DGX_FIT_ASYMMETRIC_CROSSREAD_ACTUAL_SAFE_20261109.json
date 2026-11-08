@@ -1,0 +1,189 @@
+{
+  "AP": true,
+  "AP_interaction": -0.0000027325099747343984,
+  "DEV": false,
+  "TEST": false,
+  "cuda_peak_bytes": 320769536,
+  "delta_vs_balanced": {
+    "native": {
+      "AP": -0.01621148045570109,
+      "AP75": -0.027824917472480726,
+      "AP90": -0.02564650119311271,
+      "APsmall": -0.020004866785448883,
+      "AR100": -0.006849315068493178
+    },
+    "signed8": {
+      "AP": -0.0017776451448826558,
+      "AP75": -0.013404253187480508,
+      "AP90": 0.00788616138200593,
+      "APsmall": -0.002855470926659054,
+      "AR100": 0.004109589041095818
+    },
+    "signed_matched_only": {
+      "AP": -0.0023645816848593126,
+      "AP75": -0.014768995839646859,
+      "AP90": 0.007614338800547377,
+      "APsmall": -0.003383623740219166,
+      "AR100": 0.00068493150684934
+    },
+    "signed_unmatched_only": {
+      "AP": 0.0005896690499513912,
+      "AP75": 0,
+      "AP90": 0.001618477590517614,
+      "APsmall": 0.0005269525640562156,
+      "AR100": 0.004452054794520488
+    }
+  },
+  "detector_updates": 0,
+  "elapsed_s": 59.57608339888975,
+  "exact_endpoints": true,
+  "geometry": {
+    "balanced": {
+      "both_reduced": 179,
+      "correct_edits": 1476,
+      "edited_rows": 5684,
+      "fn_delta": -320,
+      "fp_delta": -320,
+      "margin": 6080,
+      "matched_edits": 289,
+      "strict_gain": 20,
+      "strict_loss": 2,
+      "unmatched_edits": 5395
+    },
+    "signed8": {
+      "both_reduced": 79,
+      "correct_edits": 1459,
+      "edited_rows": 5684,
+      "fn_delta": -342,
+      "fp_delta": -264,
+      "margin": 5796,
+      "matched_edits": 289,
+      "strict_gain": 21,
+      "strict_loss": 1,
+      "unmatched_edits": 5395
+    }
+  },
+  "identity_sha256": "650a7431313817b83b643715d20a917441a0c1774a9eca9ad31606e7612f5ff2",
+  "matched_gate": false,
+  "metrics": {
+    "balanced": {
+      "AP": 0.7418396375015283,
+      "AP75": 0.9313858677071005,
+      "AP90": 0.15088025719774306,
+      "APsmall": 0.7256646393436857,
+      "AR100": 0.7845890410958904,
+      "predictions": 9082
+    },
+    "native": {
+      "AP": 0.7256281570458272,
+      "AP75": 0.9035609502346198,
+      "AP90": 0.12523375600463035,
+      "APsmall": 0.7056597725582369,
+      "AR100": 0.7777397260273973,
+      "predictions": 9082
+    },
+    "signed8": {
+      "AP": 0.7400619923566456,
+      "AP75": 0.91798161451962,
+      "AP90": 0.158766418579749,
+      "APsmall": 0.7228091684170267,
+      "AR100": 0.7886986301369863,
+      "predictions": 9082
+    },
+    "signed_matched_only": {
+      "AP": 0.739475055816669,
+      "AP75": 0.9166168718674537,
+      "AP90": 0.15849459599829044,
+      "APsmall": 0.7222810156034666,
+      "AR100": 0.7852739726027398,
+      "predictions": 9082
+    },
+    "signed_unmatched_only": {
+      "AP": 0.7424293065514797,
+      "AP75": 0.9313858677071005,
+      "AP90": 0.15249873478826068,
+      "APsmall": 0.726191591907742,
+      "AR100": 0.7890410958904109,
+      "predictions": 9082
+    }
+  },
+  "original_protocol": "1b54bb012eef19c7dfb143851f2e68cdfa9560a3",
+  "partition": {
+    "matched": {
+      "changed_ratio": 249,
+      "pure_deletion": 39,
+      "rows": 289,
+      "signed_add": 1195,
+      "signed_delete": 1117
+    },
+    "unmatched": {
+      "changed_ratio": 5374,
+      "pure_deletion": 5238,
+      "rows": 5395,
+      "signed_add": 452,
+      "signed_delete": 42708
+    }
+  },
+  "point_replay_updates": 96,
+  "protocol": "30ccc0557a7e71d731defe45f3260237068e79de",
+  "status": "SSDD_FIT_ASYMMETRIC_CROSSREAD_COMPLETE",
+  "uses_GT_for_attribution": true,
+  "execution_verified": {
+    "original_OS_exit": 0,
+    "original_OS_wait": true,
+    "original_SSH_exit": 0,
+    "resource_stop": false,
+    "result_sha256": "fb2dc82e20eb026e55a080076f96ff04e1121bf8dbbe7c9fa2c9e3bc670bd9c0",
+    "stdout_and_stderr_sha256_verified": true,
+    "seconds": 60.94709904002957,
+    "peak_rss_bytes": 2888433664,
+    "progress": [
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "point_fit",
+        "images": 100
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "point_fit",
+        "images": 200
+      },
+      {
+        "event": "SELECTIVE_ACTION_PROGRESS",
+        "role": "point_fit",
+        "images": 290
+      },
+      {
+        "event": "ASYMMETRIC_FIT_PROGRESS",
+        "role": "crossread_probability_fit",
+        "images": 50
+      },
+      {
+        "event": "ASYMMETRIC_FIT_PROGRESS",
+        "role": "crossread_probability_fit",
+        "images": 98
+      },
+      {
+        "event": "ASYMMETRIC_CROSSREAD_PROGRESS",
+        "images": 25
+      },
+      {
+        "event": "ASYMMETRIC_CROSSREAD_PROGRESS",
+        "images": 50
+      },
+      {
+        "event": "ASYMMETRIC_CROSSREAD_PROGRESS",
+        "images": 75
+      },
+      {
+        "event": "ASYMMETRIC_CROSSREAD_PROGRESS",
+        "images": 100
+      },
+      {
+        "event": "ASYMMETRIC_CROSSREAD_PROGRESS",
+        "images": 111
+      }
+    ]
+  },
+  "decision": "The matched substitution loses AP while the unmatched substitution slightly improves it. Stop the present candidate-independent probability allocation and test candidate-conditional actual action outcomes in FIT before further external scoring."
+}

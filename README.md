@@ -7,7 +7,7 @@
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
-- [HRSID 仅 COCO 初始化的原生 E24](research_round_20260925_global/HRSID_COCO_NATIVE_FIT_E24_PROTOCOL_20261109.md)。[修复版实况](research_round_20260925_global/HRSID_COCO_E24_TARGET_GUARD_RECOVERY_PROTOCOL_20261109.md) 已完成 9 轮，第 10 轮观察到 6,800/17,640 次更新。第 5 轮实际过滤 1 行增强后空掩膜并越过原停止区间。
+- [HRSID 仅 COCO 初始化的原生 E24](research_round_20260925_global/HRSID_COCO_NATIVE_FIT_E24_PROTOCOL_20261109.md)。[修复版实况](research_round_20260925_global/HRSID_COCO_E24_TARGET_GUARD_RECOVERY_PROTOCOL_20261109.md) 已完成 10 轮，第 11 轮观察到 7,600/17,640 次更新。第 5 轮实际过滤 1 行增强后空掩膜并越过原停止区间。
 - [SSDD 训练匹配的采样归因](research_round_20260925_global/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_PROTOCOL_20261109.md)。DGX 30 图精确重放，分层降幅 0.321 点，按预设门槛停止；后续诊断高 IoU 候选。
 - [SSDD 双相位掩膜几何](research_round_20260925_global/RFDETR_E24_FIT_DUAL_PHASE_MASK_GEOMETRY_PROTOCOL_20261109.md)。首组 42/55 缺严格候选，最优标量阈值双相位恢复 3/42，按门槛停线。
 - [SSDD 冻结空间基底的嵌套掩膜拟合](research_round_20260925_global/RFDETR_E24_FIT_NESTED_MASK_BASIS_ORACLE_PROTOCOL_20261109.md)。固定基底的系数拟合双相位恢复 18/42，标量对照 3/42。
@@ -20,7 +20,7 @@
 - [SSDD 边界双侧局部证据](research_round_20260925_global/RFDETR_FIT_LOCAL_SIGNED_EVIDENCE_PROTOCOL_20261109.md)。五组各 96 次实际更新。114 张历史校准图上局部 logits 的固定匹配净裕量领先，法线配方按规则停止。
 - [SSDD 局部 logits 全候选编辑与弃权](research_round_20260925_global/RFDETR_FIT_SELECTIVE_LOGIT_ACTION_PROTOCOL_20261109.md)。预设风险门未找到合格阈值。全强制次要对照较原生 +1.621 AP 点，[固定归因](research_round_20260925_global/RFDETR_FIT_FORCED_LOGIT_CROSSREAD_PROTOCOL_20261109.md)中仅原匹配 +1.686 点，进入前瞻强对照准备。
 - [SSDD DEV187 固定局部 logits 前瞻实测](research_round_20260925_global/RFDETR_DEV187_FIXED_LOGIT_PROSPECTIVE_PROTOCOL_20261109.md)。有序局部 logits 较 E24 +1.127 AP 点，较 E100 +0.405 点，固定配方停线。[严格保护诊断](research_round_20260925_global/RFDETR_DEV187_STRICT_RETENTION_CROSSREAD_PROTOCOL_20261109.md)恢复 AP90，但相对 E100 的 AP 差仍低于 1 点。
-- [SSDD 同八像素预算的补删比例](research_round_20260925_global/RFDETR_FIT_ASYMMETRIC_EDIT_PROTOCOL_20261109.md)。真值比例机会门通过，预测分配较四补四删 AP 低 0.178 点，按预锁停止。
+- [SSDD 同八像素预算的补删比例](research_round_20260925_global/RFDETR_FIT_ASYMMETRIC_EDIT_PROTOCOL_20261109.md)。真值比例机会门通过，预测分配 AP 低 0.178 点。[固定归因](research_round_20260925_global/RFDETR_FIT_ASYMMETRIC_CROSSREAD_PROTOCOL_20261109.md)显示下降主要出现在原匹配行。
 - [SSDD 原生掩膜网格诊断](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_GRID_CANCELLATION_PROTOCOL_20261109.md)。真实错分抵消下降 2.249 个百分点，低于预设 5 点准入。
 - [HRSID 原生 FIT 首轮](research_round_20260925_global/HRSID_NATIVE_FIT_FIRST_EPOCH_PROTOCOL_20261109.md)。已完成并独立验收 735 次更新和完整原生检查点。
 - [SSDD 预测轮廓的切向对应](research_round_20260925_global/RFDETR_E24_FIT_CONTOUR_CORRESPONDENCE_PROTOCOL_20261109.md)。对齐未胜出，按预设五项图像配对门槛停线。
