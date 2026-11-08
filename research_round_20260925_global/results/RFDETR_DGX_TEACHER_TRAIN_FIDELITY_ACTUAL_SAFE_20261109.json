@@ -1,0 +1,70 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT_only": true,
+  "TEST": false,
+  "cuda_peak_bytes": 304195072,
+  "fit_images": 484,
+  "fit_rows": 1082,
+  "holdout_images_used": 0,
+  "inadequate_current_target_fit": false,
+  "optimizer_updates": 0,
+  "protocol": "8b60e9d6fd99c00737d10bed6aa6dfadc1450cdd",
+  "seconds": 33.45577242295258,
+  "status": "SSDD_FIT_TEACHER_FIDELITY_COMPLETE",
+  "strata": {
+    "accepted": {
+      "fraction_of_native_regret_removed": 0.6051883500661805,
+      "fraction_percentile95": [
+        0.5835492410877295,
+        0.6245229524503952
+      ],
+      "images": 309,
+      "mean": {
+        "direct_all": 0.025164585868228687,
+        "direct_selected": 0.024799819469974366,
+        "native": 0.06808106429505906,
+        "teacher": 0.026879197323582713
+      },
+      "rows": 752,
+      "teacher_minus_selected_95": [
+        0.0017206539355160092,
+        0.002475139388658401
+      ]
+    },
+    "already_strict": {
+      "images": 239,
+      "mean": {
+        "direct_all": 0.02714232026130796,
+        "direct_selected": 0.014821975936371985,
+        "native": 1.1388137704722994e-9,
+        "teacher": 0.010381562097084298
+      },
+      "rows": 277,
+      "teacher_minus_selected_95": [
+        -0.004850824831291869,
+        -0.0040430870893738554
+      ]
+    },
+    "rejected_miss": {
+      "images": 42,
+      "mean": {
+        "direct_all": 0.04400172926842092,
+        "direct_selected": 0.0318297224159221,
+        "native": 1.1022597026837937e-9,
+        "teacher": 0.02466702589906962
+      },
+      "rows": 53,
+      "teacher_minus_selected_95": [
+        -0.008890263152039207,
+        -0.005600148077195676
+      ]
+    }
+  },
+  "original_exit": 0,
+  "original_OS_wait": true,
+  "resource_stop": false,
+  "owner_wall_seconds": 34.335248841904104,
+  "original_result_sha256": "5e396f5f157c2be94c2b20f06d50cbf7068d647571323ee6d29dcdd36fd32c6d",
+  "decision": "PARTIAL_TARGET_FIT_OBSERVED_IDENTITY_DRIFT_REQUIRES_MECHANISM_TEST"
+}
