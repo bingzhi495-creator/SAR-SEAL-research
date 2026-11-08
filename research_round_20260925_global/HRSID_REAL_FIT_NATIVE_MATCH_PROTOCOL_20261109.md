@@ -22,3 +22,9 @@ CPU 原进程退出 0，用时 11.20 秒。已按上述规则保存 0 目标裁�
 
 CPU 输入提交为 `80741886c069213c39e37f47591953a5a52b8204`，执行提交独立绑定，两侧 GPU 使用同一私有张量 SHA-256。沿用已验收 E24 在线权重。164 宽度在每组原 100 行后附加 64 行。新增参考点为零，新增查询特征用独立 CPU 随机种子 5201164。其余模型状态保持原值。每个宽度在独立进程中先跑空目标，再跑稠密输入。CPU 初始化复用 P87 入口，随后释放临时优化器与 EMA，GPU 流程只执行前向和反向并检查完整模型状态一致。匹配和扩容核验的四项合成测试通过。 [CUDA 诊断源码](code/HRSID_REAL_FIT_NATIVE_MATCH_20261109/probe_native_match.py) · [合成测试](code/HRSID_REAL_FIT_NATIVE_MATCH_20261109/test_probe_native_match.py)
 
+## 首次 CUDA 进程退出与诊断修正
+
+100 和 164 查询组均完成真实空目标的分支匹配与有限性检查，随后在预期每个分类损失严格为正的断言处退出 1。均未运行稠密反向。原版 IA-BCE 在无匹配时对负类计算 p²z − p² log sigmoid(z)，数学上等于 p² softplus(z)，BF16 两项接近时可能发生抵消。该数值解释有待对本轮实际 logits 复核。 [原退出汇总](results/HRSID_REAL_FIT_NATIVE_FIRST_CUDA_FAILURE_SAFE_20261109.json) · [作者 IA-BCE 实现](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/models/criterion.py#L686-L723)
+
+后继保持原始前向、匹配、损失、梯度和输入。空目标仍要求原生框与掩膜损失严格为零，并保留分类值与梯度的有限性检查。逐头记录原生分类损失及从同一输出计算的稳定 FP32 数值，只作诊断。空目标允许观察到零梯度，稠密组仍要求非零梯度。五项合成测试已通过。 [独立数值诊断源码](code/HRSID_REAL_FIT_NATIVE_MATCH_20261109_NUMERIC/probe_native_match.py)
+

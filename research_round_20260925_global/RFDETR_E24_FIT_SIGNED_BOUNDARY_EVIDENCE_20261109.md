@@ -8,3 +8,8 @@
 - 主读出为前十候选中原匹配小目标的混合 16 像素裕量。两个秩候选各自相对原不确定性及冻结均值头的图像配对区间下界均大于 0 才支持继续；补删读出与 K32 检查方向和预算敏感性。留出已用于历史诊断，图像区间仅反映这一组固定预测的图像差异。没有模型更新、掩膜改写、AP 或 DEV/TEST。
 
 八项合成测试通过。FIT 数值待原进程执行。 [实际读取入口](code/RFDETR_E24_FIT_SIGNED_BOUNDARY_EVIDENCE_20261109/signed_evidence.py) · [测试](code/RFDETR_E24_FIT_SIGNED_BOUNDARY_EVIDENCE_20261109/test_signed_evidence.py)
+
+## 首次真实诊断及报告修正
+
+原进程退出 0，计数与锁定范围一致。发现首版输出只有补入和移除的各自配对区间，缺少锁定主读出的合计区间。后继只补齐两方向在同一原匹配实例上的合计，再做原图像配对重采样。原排序、对照、预算、标签及适用范围均保持原设。九项合成测试通过，报告修正待原进程执行。 [报告后继源码](code/RFDETR_E24_FIT_SIGNED_BOUNDARY_EVIDENCE_20261109_02/signed_evidence.py)
+
