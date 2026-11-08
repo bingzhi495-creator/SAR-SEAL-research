@@ -7,3 +7,9 @@
 - 训练过程只使用 FIT。完成后以 E24 EMA、固定 `num_select=100` 和已独立核验的 DEV705 做一次原始 GT COCO mask 评价。4 条空栅格的有效掩膜敏感性另报并复用同一批预测。正式 TEST 与训练、筛选均隔离。该基线提供目标域公共参考，单一训练种子及项目内部 DEV 指标的适用范围单列。 [FIT 入口验收](HRSID_NATIVE_FIT_FIRST_EPOCH_PROTOCOL_20261109.md) · [DEV705 资格](HRSID_OFFICIAL_PNG_DEV705_AUDIT_PROTOCOL_20261109.md)
 
 三项合成测试通过，覆盖预锁端点、循环计数及 E100 调度。真实长训待执行。随机状态保留，精确续训需另做连续轨迹对照。 [训练源码](code/HRSID_COCO_NATIVE_FIT_E24_20261109/train_hrsid_coco_native_e24.py)
+
+
+## 运行观察
+
+原进程进入第 3 轮，已观察到第 2,100 次优化器更新。权重、EMA 和最终更新总数仍待原进程退出后验收。该阶段无 DEV705 评分。
+

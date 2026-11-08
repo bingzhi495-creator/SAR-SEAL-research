@@ -8,7 +8,7 @@
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
 - [HRSID 仅 COCO 初始化的原生 E24](research_round_20260925_global/HRSID_COCO_NATIVE_FIT_E24_PROTOCOL_20261109.md)。164 查询已从官方 COCO 初值实际启动，固定 E24 端点。
-- [SSDD 训练匹配的采样归因](research_round_20260925_global/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_PROTOCOL_20261109.md)。先分解候选、代价与有限采样的失配，再决定是否训练。
+- [SSDD 训练匹配的采样归因](research_round_20260925_global/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_PROTOCOL_20261109.md)。DGX 30 图精确重放，分层降幅 0.321 点，按预设门槛停止；后续诊断高 IoU 候选。
 - [SSDD 原生掩膜网格诊断](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_GRID_CANCELLATION_PROTOCOL_20261109.md)。真实错分抵消下降 2.249 个百分点，低于预设 5 点准入。
 - [HRSID 原生 FIT 首轮](research_round_20260925_global/HRSID_NATIVE_FIT_FIRST_EPOCH_PROTOCOL_20261109.md)。已完成并独立验收 735 次更新和完整原生检查点。
 - [SSDD 预测轮廓的切向对应](research_round_20260925_global/RFDETR_E24_FIT_CONTOUR_CORRESPONDENCE_PROTOCOL_20261109.md)。对齐未胜出，按预设五项图像配对门槛停线。
