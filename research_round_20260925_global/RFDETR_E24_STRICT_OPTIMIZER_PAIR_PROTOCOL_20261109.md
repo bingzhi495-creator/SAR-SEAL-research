@@ -7,4 +7,6 @@
 - 两个原进程真实退出后，独立核验闭合权重、同起点和数据序列、首步全梯度及更新计数。合格后在同一台 Windows 机器按原协议对独立 E24、F、S 做固定整数 DEV187 评价。S 须同时满足 IoU≥0.90 一对一保留掩膜覆盖比 F 至少多 5 个、mask AP 高于 F 且不低于 E24。固定规则决定停止或进一步复验。
 - 首步严格反向与旧 Windows CUDA 反向的梯度存在约 0.82% 到 1.00% 的相对 L2 差异。结果范围限定在本路径、单种子和内部开发集。原失败记录保留，TEST 不参与。
 
-四项固定运行时 CPU 测试通过，同一起点和学习率的依赖检查通过。两组实际训练及固定评价待执行。 [新训练入口](code/RFDETR_E24_STRICT_OPTIMIZER_PAIR_20261109/run_strict_optimizer_arm.py)
+四项固定运行时 CPU 测试通过，同一起点和学习率的依赖检查通过。已启动实际 F/S 顺序训练，F 已完成首步梯度门槛及 32 次更新。固定评价只在独立验收两组端点后启动。 [新训练入口](code/RFDETR_E24_STRICT_OPTIMIZER_PAIR_20261109/run_strict_optimizer_arm.py)
+
+固定 DEV 入口适配了新端点路径。独立 CPU 复核读取原始进程终止回执，重新计算 COCO 全 12 项和严格一对一覆盖。四项合成检查通过，尚无实际评分。 [评价入口](code/RFDETR_E24_STRICT_OPTIMIZER_PAIR_20261109/evaluate_optimizer_pair.py) · [独立核验](code/RFDETR_E24_STRICT_OPTIMIZER_PAIR_20261109/verify_optimizer_eval_cpu.py)
