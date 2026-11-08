@@ -7,6 +7,7 @@
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
+- [AdamW 配对实测及首梯度资格失败](research_round_20260925_global/RFDETR_E24_OPTIMIZER_FIRST_GRADIENT_GATE_ACTUAL_20261108.md)。每臂 372 次真实更新，首梯度差异集中在骨干，停止 DEV 评价并锁定首窗复放。
 - [固定 E24 的 AdamW 历史状态对照协议](research_round_20260925_global/RFDETR_E24_OPTIMIZER_PRESERVATION_PROTOCOL_20261108.md)。等在线权重、EMA、学习率和增强序列，预锁首梯度资格及短程停走规则。
 - [DGX 四端点保留掩膜几何实测](research_round_20260925_global/RFDETR_DGX_FOUR_ENDPOINTS_GEOMETRY_ACTUAL_20261108.md)。E100 严格覆盖较同运行 E24 净增 17 个，较独立 E24 少 19 个。
 - [DGX 连续 E100 四端点实际评分](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_FOUR_ENDPOINTS_ACTUAL_20261108.md)。同运行 E24/E50/E100 的 mask AP 为 67.866/67.729/68.165。E100 相对 E24 的 AP75 +1.648，小目标 AP −0.339。

@@ -1,0 +1,68 @@
+{
+  "AP": false,
+  "CPU": true,
+  "DEV": false,
+  "GPU": false,
+  "TEST": false,
+  "groups": {
+    "backbone": {
+      "changed_elements": 23799371,
+      "difference_l2": 0.0010085030861112,
+      "fraction_squared_difference": 0.9999993497767221,
+      "maximum_absolute_difference": 4.1847408283501863e-05,
+      "relative_l2": 0.010188095929569742,
+      "tensors": 248
+    },
+    "bbox_embed": {
+      "changed_elements": 64075,
+      "difference_l2": 4.2626578891516874e-07,
+      "fraction_squared_difference": 1.7865131272845429e-07,
+      "maximum_absolute_difference": 2.2584572434425354e-07,
+      "relative_l2": 5.730665916828106e-05,
+      "tensors": 6
+    },
+    "class_embed": {
+      "changed_elements": 514,
+      "difference_l2": 7.445639448222553e-08,
+      "fraction_squared_difference": 5.450662080202276e-09,
+      "maximum_absolute_difference": 3.14321368932724e-08,
+      "relative_l2": 5.7332514295035994e-05,
+      "tensors": 2
+    },
+    "query_feat": {
+      "changed_elements": 332800,
+      "difference_l2": 1.7909875691735236e-08,
+      "fraction_squared_difference": 3.153772758993369e-10,
+      "maximum_absolute_difference": 1.291482476517558e-09,
+      "relative_l2": 5.7317415885322586e-05,
+      "tensors": 1
+    },
+    "refpoint_embed": {
+      "changed_elements": 5200,
+      "difference_l2": 3.2549270497993596e-07,
+      "fraction_squared_difference": 1.0416642839542015e-07,
+      "maximum_absolute_difference": 1.2456439435482025e-07,
+      "relative_l2": 5.730600261589836e-05,
+      "tensors": 1
+    },
+    "segmentation_head": {
+      "changed_elements": 932972,
+      "difference_l2": 1.7113035802619036e-07,
+      "fraction_squared_difference": 2.879382577116511e-08,
+      "maximum_absolute_difference": 1.4813849702477455e-08,
+      "relative_l2": 5.731768613482209e-05,
+      "tensors": 35
+    },
+    "transformer": {
+      "changed_elements": 7149932,
+      "difference_l2": 5.818336429866395e-07,
+      "fraction_squared_difference": 3.3284567161055346e-07,
+      "maximum_absolute_difference": 9.324867278337479e-08,
+      "relative_l2": 5.732643991929978e-05,
+      "tensors": 250
+    }
+  },
+  "original_relative_l2": 0.010085034536195917,
+  "status": "ACTUAL_CPU_FIRST_GRADIENT_COMPONENT_DISCREPANCY_VERIFIED",
+  "training": false
+}
