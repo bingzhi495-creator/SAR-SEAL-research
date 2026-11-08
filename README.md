@@ -19,6 +19,7 @@
 - [分层采样 V3 批量抽样与复测协议](research_round_20260925_global/RFDETR_E24_POINT_SAMPLER_COST_V3_PROTOCOL_20261108.md)。按真值分组批量抽样，沿用 V2 时延门槛。
 - [分层采样 V3 前反向成本实测](research_round_20260925_global/RFDETR_E24_POINT_SAMPLER_COST_V3_ACTUAL_20261108.md)。同会话配对中位数通过成本门槛、Dice 完全一致。整轮训练耗时和 AP 待配对训练。
 - [E24 等目标 B/D 热启动配对训练协议](research_round_20260925_global/RFDETR_E24_EQUAL_RISK_WARM_BD_SCOUT_PROTOCOL_20261108.md)。每臂 372 次更新，固定同机 E24 和 DEV187 评价。
+- [B/D 首次导入退出与实际启动](research_round_20260925_global/RFDETR_E24_WARM_BD_IMPORT_RECOVERY_ACTUAL_20261108.md)。恢复版通过依赖检查并进入实际更新。
 - [FIT 匹配状态交叉读出实测](research_round_20260925_global/RFDETR_E24_FIT_MATCH_CROSSREAD_ACTUAL_20261108.md)。秩的匹配候选独立编辑未改变 AP 或 AP75，停止判定保持。
 - [FIT 等结构选择器实测与停止判定](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_HEAD_SCOUT_ACTUAL_STOP_20261108.md)。同预算秩相对排序略好，校准后未达到锁定的 AP/AP75 门槛，停止进入 DEV。
 - [完整 FIT741 CUDA 原生采集实测](research_round_20260925_global/RFDETR_E24_FIT741_NATIVE_CUDA_CAPTURE_ACTUAL_20261108.md)。741 图已独立验收，60,881 个船舶候选、19,917,672 个带内 logits；固定匹配与等结构头协议已锁。
