@@ -1,0 +1,147 @@
+{
+  "AP": true,
+  "DEV": false,
+  "FIT_only": true,
+  "TEST": false,
+  "cuda_peak_bytes": 306375168,
+  "delta": {
+    "AP": {
+      "full": -0.0006738003915081059,
+      "interaction": -0.0005526898358237942,
+      "matched_misses_only": 0.0026052482358380757,
+      "protected": 0.0024506272327644574,
+      "strict_edits_only": -0.002571737788448769
+    },
+    "AP75": {
+      "full": 0.006234523859969587,
+      "interaction": 0,
+      "matched_misses_only": 0.006739120972532375,
+      "protected": 0.006234523859969587,
+      "strict_edits_only": 0
+    },
+    "AP90": {
+      "full": -0.00006233055330501225,
+      "interaction": -0.0055250070224451,
+      "matched_misses_only": 0.030055456335461556,
+      "protected": 0.031243417989038597,
+      "strict_edits_only": -0.02578074151989851
+    },
+    "APsmall": {
+      "full": 0.0018327578821597523,
+      "interaction": -0.0004888544079071355,
+      "matched_misses_only": 0.0033720821041467453,
+      "protected": 0.0035138522694633245,
+      "strict_edits_only": -0.0011922399793964367
+    },
+    "AR100": {
+      "full": 0.005479452054794498,
+      "interaction": 0,
+      "matched_misses_only": 0.005136986301369828,
+      "protected": 0.005479452054794498,
+      "strict_edits_only": 0
+    }
+  },
+  "exact_endpoint_replay": true,
+  "gate": false,
+  "geometry": {
+    "matched_misses_only": {
+      "fn": 12641,
+      "fp": 14927,
+      "mask_area": 234324,
+      "small_strict": 54,
+      "strict": 76,
+      "strict_losses": 0
+    },
+    "native": {
+      "fn": 15128,
+      "fp": 12369,
+      "mask_area": 229279,
+      "small_strict": 38,
+      "strict": 60,
+      "strict_losses": 0
+    },
+    "protected": {
+      "fn": 12641,
+      "fp": 14927,
+      "mask_area": 234324,
+      "small_strict": 54,
+      "strict": 76,
+      "strict_losses": 0
+    },
+    "strict_edits_only": {
+      "fn": 14086,
+      "fp": 13497,
+      "mask_area": 231449,
+      "small_strict": 31,
+      "strict": 50,
+      "strict_losses": 10
+    },
+    "teacher": {
+      "fn": 11599,
+      "fp": 16055,
+      "mask_area": 236494,
+      "small_strict": 47,
+      "strict": 66,
+      "strict_losses": 10
+    }
+  },
+  "metrics": {
+    "matched_misses_only": {
+      "AP": 0.7282334052816652,
+      "AP75": 0.9103000712071522,
+      "AP90": 0.1552892123400919,
+      "APsmall": 0.7090318546623836,
+      "AR100": 0.7828767123287671,
+      "predictions": 9082
+    },
+    "native": {
+      "AP": 0.7256281570458272,
+      "AP75": 0.9035609502346198,
+      "AP90": 0.12523375600463035,
+      "APsmall": 0.7056597725582369,
+      "AR100": 0.7777397260273973,
+      "predictions": 9082
+    },
+    "protected": {
+      "AP": 0.7280787842785916,
+      "AP75": 0.9097954740945894,
+      "AP90": 0.15647717399366895,
+      "APsmall": 0.7091736248277002,
+      "AR100": 0.7832191780821918,
+      "predictions": 9082
+    },
+    "strict_edits_only": {
+      "AP": 0.7230564192573784,
+      "AP75": 0.9035609502346198,
+      "AP90": 0.09945301448473184,
+      "APsmall": 0.7044675325788404,
+      "AR100": 0.7777397260273973,
+      "predictions": 9082
+    },
+    "teacher": {
+      "AP": 0.7249543566543191,
+      "AP75": 0.9097954740945894,
+      "AP90": 0.12517142545132534,
+      "APsmall": 0.7074925304403966,
+      "AR100": 0.7832191780821918,
+      "predictions": 9082
+    }
+  },
+  "optimizer_updates": 0,
+  "protocol": "df8e4e747fbba1e7e49d7154cea7788d71fd34b9",
+  "scope": {
+    "images": 111,
+    "matched": 291,
+    "native_strict": 60,
+    "retained": 9082
+  },
+  "seconds": 24.8237047388684,
+  "status": "SSDD_FIT_TEACHER_STUDENT_STRICT_PROTECTION_COMPLETE",
+  "student_protocol": "fe0597119ef500d3e55afaea79b70483b404e34c",
+  "original_exit": 0,
+  "original_OS_wait": true,
+  "resource_stop": false,
+  "owner_wall_seconds": 25.931616310030222,
+  "original_result_sha256": "cb744ff527b5304144971779ad191debd3a4affa1c2a68016bc114e0d541bcd1",
+  "decision": "STOP_STRICT_PROTECTION_ROUTER_ORACLE_AP_GATE_FAILED"
+}
