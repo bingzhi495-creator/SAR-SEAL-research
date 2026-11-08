@@ -1,0 +1,179 @@
+{
+  "AP": true,
+  "DEV": false,
+  "FIT_only": true,
+  "TEST": false,
+  "adapter_archive_sha256": "42c4027f712dc4b504a3982b6d0b90aac73126f36f501cc69ae9728244b74a3b",
+  "cuda_peak_bytes": 322296320,
+  "edit_footprint": {
+    "contrast": {
+      "changed_pixels": 182684,
+      "changed_rows": 5502,
+      "unmatched_changed_pixels": 163578,
+      "unmatched_changed_rows": 5214
+    },
+    "foreground": {
+      "changed_pixels": 199001,
+      "changed_rows": 5380,
+      "unmatched_changed_pixels": 180062,
+      "unmatched_changed_rows": 5092
+    },
+    "native": {
+      "changed_pixels": 0,
+      "changed_rows": 0,
+      "unmatched_changed_pixels": 0,
+      "unmatched_changed_rows": 0
+    },
+    "query": {
+      "changed_pixels": 171718,
+      "changed_rows": 5252,
+      "unmatched_changed_pixels": 152647,
+      "unmatched_changed_rows": 4964
+    }
+  },
+  "excluded_oracle_groups": 32,
+  "fit_counts": {
+    "supervised_rows": 1082,
+    "train_visits": 484,
+    "zero_supervised_images": 0
+  },
+  "fit_encoded_groups": 479,
+  "fit_images": 484,
+  "formal": false,
+  "frozen_ema_tensors": 545,
+  "gate": false,
+  "head_parameters": 16672,
+  "holdout_encoded_groups": 110,
+  "holdout_images": 111,
+  "holdout_seconds": 18.661088950932026,
+  "loss_mean": {
+    "contrast": 0.13558415850347355,
+    "foreground": 0.13770940404169815,
+    "query": 0.13521615157966033
+  },
+  "matched_geometry": {
+    "contrast": {
+      "small_strict": 27,
+      "strict": 38
+    },
+    "foreground": {
+      "small_strict": 27,
+      "strict": 39
+    },
+    "native": {
+      "small_strict": 38,
+      "strict": 60
+    },
+    "query": {
+      "small_strict": 26,
+      "strict": 38
+    }
+  },
+  "metrics": {
+    "contrast": {
+      "AP": 0.7090236769293046,
+      "AP75": 0.9044527071837496,
+      "AP90": 0.04595659574650441,
+      "APsmall": 0.694962218027811,
+      "AR100": 0.7832191780821918,
+      "predictions": 9082
+    },
+    "foreground": {
+      "AP": 0.7068520150530213,
+      "AP75": 0.9038548398446492,
+      "AP90": 0.05127243012559224,
+      "APsmall": 0.6918841147553215,
+      "AR100": 0.7825342465753424,
+      "predictions": 9082
+    },
+    "native": {
+      "AP": 0.7256281570458272,
+      "AP75": 0.9035609502346198,
+      "AP90": 0.12523375600463035,
+      "APsmall": 0.7056597725582369,
+      "AR100": 0.7777397260273973,
+      "predictions": 9082
+    },
+    "query": {
+      "AP": 0.7091693742378832,
+      "AP75": 0.9052332983641247,
+      "AP90": 0.04948745483850117,
+      "APsmall": 0.6956228297214938,
+      "AR100": 0.7818493150684931,
+      "predictions": 9082
+    }
+  },
+  "paired_contrast": {
+    "foreground": {
+      "small_strict": {
+        "net": 0,
+        "per_group": 0,
+        "percentile95": [
+          -0.02727272727272727,
+          0.02727272727272727
+        ]
+      },
+      "strict": {
+        "net": -1,
+        "per_group": -0.00909090909090909,
+        "percentile95": [
+          -0.03636363636363636,
+          0.01818181818181818
+        ]
+      }
+    },
+    "native": {
+      "small_strict": {
+        "net": -11,
+        "per_group": -0.1,
+        "percentile95": [
+          -0.18931818181818177,
+          -0.00909090909090909
+        ]
+      },
+      "strict": {
+        "net": -22,
+        "per_group": -0.2,
+        "percentile95": [
+          -0.3,
+          -0.09090909090909091
+        ]
+      }
+    },
+    "query": {
+      "small_strict": {
+        "net": 1,
+        "per_group": 0.00909090909090909,
+        "percentile95": [
+          0,
+          0.02727272727272727
+        ]
+      },
+      "strict": {
+        "net": 0,
+        "per_group": 0,
+        "percentile95": [
+          -0.02727272727272727,
+          0.02727272727272727
+        ]
+      }
+    }
+  },
+  "protocol": "579bc7b037fe03d23bc3a670234293d9ad50e6d6",
+  "seed": 5201,
+  "status": "SSDD_FIT_FROZEN_COEFFICIENT_SCOUT_COMPLETE",
+  "total_seconds": 45.15744040091522,
+  "training_seconds": 22.48521985905245,
+  "updates": {
+    "contrast": 484,
+    "foreground": 484,
+    "query": 484
+  },
+  "original_exit": 0,
+  "original_OS_wait": true,
+  "resource_stop": false,
+  "owner_wall_seconds": 46.232319539180025,
+  "worker_peak_RSS_bytes": 2996891648,
+  "original_result_sha256": "fb985286825a3c878f66744edee99ddaeebf50edade5255ec8324b3317da3e28",
+  "decision": "STOP_FIXED_484_STEP_COEFFICIENT_SCOUT_AP_GATE_FAILED"
+}
