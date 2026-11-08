@@ -8,7 +8,7 @@
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
 - [严格掩膜排名实测与 FIT 预锁检验](research_round_20260925_global/RFDETR_FIXED_MASK_RANK_WITNESS_AND_FIT_PROTOCOL_20261109.md)。复核早期精度和候选深度，学习秩较原生 AP 低 0.217 个百分点，按规则停止。
-- [HRSID 官方 PNG FIT 审计实测](research_round_20260925_global/HRSID_OFFICIAL_PNG_FIT_PIXEL_LABEL_AUDIT_PROTOCOL_20261109.md)。2,937 图全部解码，9,265 条原始实例中 5 条为空栅格。
+- [HRSID 官方 PNG FIT 审计实测](research_round_20260925_global/HRSID_OFFICIAL_PNG_FIT_PIXEL_LABEL_AUDIT_PROTOCOL_20261109.md)。2,937 图全部解码，独立核对 5 条退化多边形，已派生 9,260 实例的训练视图。
 - [AdamW 历史状态对照实测](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_ACTUAL_20261109.md)。F/S 各 372 次更新，首梯度完全一致。S 严格覆盖净增 10，AP 低 0.573 个百分点，按规则停线。
 - [严格反向路径的 AdamW 等预算对照](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_PROTOCOL_20261109.md)。固定 F/S 首步门槛、每组 372 次更新和 DEV187 分支规则。
 - [严格反向首步实测](research_round_20260925_global/RFDETR_E24_STRICT_BACKWARD_REPLAY_ACTUAL_20261109.md)。两组真实 FIT 复验全梯度逐元素一致，允许推进同反向路径的公平优化器对照。
