@@ -11,3 +11,19 @@
 - 统一使用 2,048 次图像配对重采样和种子 5201。通过后才比较 2×2 子像素残差头与相同四个学习分支池化回原生网格的控制，保持原匹配、相同支持及 BCE/Dice。共享参数仍可能重新引入抵消，需实际训练和同容量比较。
 
 已有 DUpsampling、Mask DINO 和 RefineMask 覆盖学习上采样、高分辨率查询读出和细粒度掩膜。当前检验限于具体 SAR 错分下的同点更新方向。六项合成测试通过。模型、权重、空间张量、DEV/TEST 与 AP 均在本轮诊断范围外。 [DUpsampling](https://openaccess.thecvf.com/content_CVPR_2019/html/Tian_Decoders_Matter_for_Semantic_Segmentation_Data-Dependent_Decoding_Enables_Flexible_Feature_Aggregation_CVPR_2019_paper.html) · [Mask DINO](https://arxiv.org/abs/2206.02777) · [诊断源码](code/RFDETR_E24_FIT_NATIVE_GRID_CANCELLATION_20261109/native_grid_cancellation.py)
+
+## 实测与预设决策
+
+原进程退出 0，工作体 0.79 秒。前十原匹配小船共 229 个、90,452 个点。82 张图有入选实例，226 个实例有双向错分。固定观测的补入为 5,387 点，移除 6,324 点。下表采用同图配对的平均比率。
+
+| 诊断 | 原生 144 | 反事实 288 | 下降百分点 |
+| --- | ---: | ---: | ---: |
+| 错分 BCE 抵消 | 2.713% | 0.464% | 2.249 |
+| 全支持 BCE 抵消 | 6.916% | 3.063% | 3.853 |
+| 全 BCE 错分非有益响应 | 0.445% | 0.051% | 0.393 |
+| 补入非有益响应 | 0.859% | 0.084% | 0.775 |
+| 移除非有益响应 | 0.308% | 0.038% | 0.270 |
+| 原正确点的反向响应 | 42.802% | 35.353% | 7.448 |
+
+错分 BCE 抵消下降的 95% 图像配对区间是 [1.984, 2.549] 个百分点，低于预定 5 点。全支持下错分非有益响应下降区间 [0.267, 0.538] 个百分点。原生局部扫描线发现 55 个水平、4 个垂直的真值符号多次反转，同范围原预测均为 0。细网格方向性较好，但抵消降幅不足以准入预设的子像素残差实验。按锁定规则停线。结论适用于当前固定点支持上的理想网格 Jacobian。尚不能据此判断实际学习空间特征的收益。 [真实诊断汇总](results/RFDETR_E24_FIT_NATIVE_GRID_CANCELLATION_ACTUAL_SAFE_20261109.json)
+
