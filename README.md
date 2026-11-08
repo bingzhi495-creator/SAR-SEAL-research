@@ -7,7 +7,7 @@
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
-- [HRSID 仅 COCO 初始化的原生 E24](research_round_20260925_global/HRSID_COCO_NATIVE_FIT_E24_PROTOCOL_20261109.md)。原运行完成 4 轮，第 5 轮因增强目标断言中止，未获得 E24。
+- [HRSID 仅 COCO 初始化的原生 E24](research_round_20260925_global/HRSID_COCO_NATIVE_FIT_E24_PROTOCOL_20261109.md)。原运行第 5 轮中止。真实 FIT 重放复现 Resize 清空两条掩膜，修复待资格核验。
 - [SSDD 训练匹配的采样归因](research_round_20260925_global/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_PROTOCOL_20261109.md)。DGX 30 图精确重放，分层降幅 0.321 点，按预设门槛停止；后续诊断高 IoU 候选。
 - [SSDD 双相位掩膜几何](research_round_20260925_global/RFDETR_E24_FIT_DUAL_PHASE_MASK_GEOMETRY_PROTOCOL_20261109.md)。首组 42/55 缺严格候选，最优标量阈值双相位恢复 3/42，按门槛停线。
 - [SSDD 冻结空间基底的嵌套掩膜拟合](research_round_20260925_global/RFDETR_E24_FIT_NESTED_MASK_BASIS_ORACLE_PROTOCOL_20261109.md)。固定基底的系数拟合双相位恢复 18/42，标量对照 3/42。
