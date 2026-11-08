@@ -22,6 +22,8 @@
 - [B/D 首次导入退出与实际启动](research_round_20260925_global/RFDETR_E24_WARM_BD_IMPORT_RECOVERY_ACTUAL_20261108.md)。恢复版通过依赖检查并进入实际更新。
 - [E24 等目标 B/D 实训与 DEV187 固定评价](research_round_20260925_global/RFDETR_E24_EQUAL_RISK_WARM_BD_SCOUT_ACTUAL_20261108.md)。D 相对同预算 B 的 AP 增加 1.091 点，相对同机 E24 低 0.188 点，按预锁规则停止此短训配方扩展。
 - [E24 原生损失 A 热启动对照协议](research_round_20260925_global/RFDETR_E24_NATIVE_WARM_A_CONTROL_PROTOCOL_20261108.md)。固定原预算与数据，验证高 IoU 覆盖是否也在原生损失下回落。
+- [原生 A 实测与固定共同查询交叉](research_round_20260925_global/RFDETR_E24_NATIVE_WARM_A_CONTROL_ACTUAL_20261108.md)。A 的 AP 与 D 接近，严格覆盖也回落，预锁解释落在混合区间。
+- [全部 100 个原始查询覆盖协议](research_round_20260925_global/RFDETR_WARM_RAW100_COVERAGE_PROTOCOL_20261108.md)。区分候选筛选遗漏与原始掩膜覆盖缺失。
 - [FIT 匹配状态交叉读出实测](research_round_20260925_global/RFDETR_E24_FIT_MATCH_CROSSREAD_ACTUAL_20261108.md)。秩的匹配候选独立编辑未改变 AP 或 AP75，停止判定保持。
 - [FIT 等结构选择器实测与停止判定](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_HEAD_SCOUT_ACTUAL_STOP_20261108.md)。同预算秩相对排序略好，校准后未达到锁定的 AP/AP75 门槛，停止进入 DEV。
 - [完整 FIT741 CUDA 原生采集实测](research_round_20260925_global/RFDETR_E24_FIT741_NATIVE_CUDA_CAPTURE_ACTUAL_20261108.md)。741 图已独立验收，60,881 个船舶候选、19,917,672 个带内 logits；固定匹配与等结构头协议已锁。
