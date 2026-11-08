@@ -1,0 +1,246 @@
+{
+  "AP": false,
+  "DEV": false,
+  "TEST": false,
+  "actual_CPU_backward_routes": {
+    "F0": {
+      "bilinear_interpolate": 8,
+      "grid_sample": 36
+    },
+    "F1": {
+      "bilinear_interpolate": 8,
+      "grid_sample": 36
+    }
+  },
+  "actual_strict_backward_calls": {
+    "F0": 4,
+    "F1": 4
+  },
+  "attempts": [
+    "F0",
+    "F1"
+  ],
+  "decision": "FIRST_GRADIENT_GATE_PASS",
+  "ema_updates": 0,
+  "native_comparison_checks": {
+    "F0": {
+      "backbone_output_sha256": 4,
+      "forward_outputs": 4,
+      "input_sha256": 4,
+      "losses": 4,
+      "matcher": 4,
+      "patch_projection_output_sha256": 4,
+      "point_coords": 4,
+      "rng_after_backward_and_clip": 1,
+      "rng_after_fetch": 4,
+      "rng_after_forward": 4,
+      "rng_after_loss": 4,
+      "rng_before_fetch": 4
+    },
+    "F1": {
+      "backbone_output_sha256": 4,
+      "forward_outputs": 4,
+      "input_sha256": 4,
+      "losses": 4,
+      "matcher": 4,
+      "patch_projection_output_sha256": 4,
+      "point_coords": 4,
+      "rng_after_backward_and_clip": 1,
+      "rng_after_fetch": 4,
+      "rng_after_forward": 4,
+      "rng_after_loss": 4,
+      "rng_before_fetch": 4
+    }
+  },
+  "native_forward_and_rng_exact": true,
+  "native_vs_strict_gradient_drift": {
+    "F0": {
+      "all": {
+        "changed_elements": 32285290,
+        "cosine": 0.9999665862082159,
+        "diff_l2": 0.0008174813376103499,
+        "elements": 33882021,
+        "left_l2": 0.09999999357550927,
+        "max_abs": 3.1569041311740875e-05,
+        "rel_l2_to_left": 0.00817481390129366,
+        "right_l2": 0.09999999170836966,
+        "squared_diff_share": 1.0,
+        "tensors": 543
+      },
+      "backbone": {
+        "changed_elements": 23799695,
+        "cosine": 0.9999659586626714,
+        "diff_l2": 0.0008168045561056879,
+        "elements": 23800192,
+        "left_l2": 0.09898824064812396,
+        "max_abs": 3.1569041311740875e-05,
+        "rel_l2_to_left": 0.00825153119964223,
+        "right_l2": 0.09899269747359184,
+        "squared_diff_share": 0.998344913028569,
+        "tensors": 248
+      },
+      "non_backbone": {
+        "changed_elements": 8485595,
+        "cosine": 0.9999996607266061,
+        "diff_l2": 3.3257397165094775e-05,
+        "elements": 10081829,
+        "left_l2": 0.014188972073092379,
+        "max_abs": 8.60774889588356e-06,
+        "rel_l2_to_left": 0.002343890522426448,
+        "right_l2": 0.014157831351443773,
+        "squared_diff_share": 0.0016550869714309663,
+        "tensors": 295
+      },
+      "patch_projection_weight": {
+        "changed_elements": 165885,
+        "cosine": 0.9999655752001895,
+        "diff_l2": 0.0007604759626765395,
+        "elements": 165888,
+        "left_l2": 0.0915108846544386,
+        "max_abs": 3.1569041311740875e-05,
+        "rel_l2_to_left": 0.008310224139436878,
+        "right_l2": 0.09154981058324349,
+        "squared_diff_share": 0.8653968077753663,
+        "tensors": 1
+      }
+    },
+    "F1": {
+      "all": {
+        "changed_elements": 32285430,
+        "cosine": 0.999949794163946,
+        "diff_l2": 0.0010020561859980942,
+        "elements": 33882021,
+        "left_l2": 0.09999999622075884,
+        "max_abs": 4.2859086534008384e-05,
+        "rel_l2_to_left": 0.010020562238682154,
+        "right_l2": 0.09999999170836966,
+        "squared_diff_share": 1.0,
+        "tensors": 543
+      },
+      "backbone": {
+        "changed_elements": 23799838,
+        "cosine": 0.9999488142262593,
+        "diff_l2": 0.0010015841678692493,
+        "elements": 23800192,
+        "left_l2": 0.09898862880769374,
+        "max_abs": 4.2859086534008384e-05,
+        "rel_l2_to_left": 0.010118173975467803,
+        "right_l2": 0.09899269747359184,
+        "squared_diff_share": 0.9990581227610347,
+        "tensors": 248
+      },
+      "non_backbone": {
+        "changed_elements": 8485592,
+        "cosine": 0.9999996607188256,
+        "diff_l2": 3.075312294239692e-05,
+        "elements": 10081829,
+        "left_l2": 0.014186282491350767,
+        "max_abs": 7.860828191041946e-06,
+        "rel_l2_to_left": 0.002167807031979434,
+        "right_l2": 0.014157831351443773,
+        "squared_diff_share": 0.0009418772389652245,
+        "tensors": 295
+      },
+      "patch_projection_weight": {
+        "changed_elements": 165886,
+        "cosine": 0.9999464277258896,
+        "diff_l2": 0.0009480257353464794,
+        "elements": 165888,
+        "left_l2": 0.091517356442067,
+        "max_abs": 3.708363510668278e-05,
+        "rel_l2_to_left": 0.010358972026760909,
+        "right_l2": 0.09154981058324349,
+        "squared_diff_share": 0.895068157394652,
+        "tensors": 1
+      }
+    }
+  },
+  "optimizer_updates": 0,
+  "original_OS_waits": true,
+  "preclip_global_norm": {
+    "F0": 193.1111602783203,
+    "F1": 193.1111602783203
+  },
+  "protocol_commit": "dca8e55719146b64b234059772e83b254871ebe0",
+  "status": "ACTUAL_STRICT_BACKWARD_FIRST_GRADIENT_CPU_INDEPENDENTLY_VERIFIED",
+  "strict_backward_seconds": {
+    "F0": 2.625,
+    "F1": 2.6100000001024455
+  },
+  "strict_replay_pair_gradient": {
+    "all": {
+      "changed_elements": 0,
+      "cosine": 1.0,
+      "diff_l2": 0.0,
+      "elements": 33882021,
+      "left_l2": 0.09999999170836966,
+      "max_abs": 0.0,
+      "rel_l2_to_left": 0.0,
+      "right_l2": 0.09999999170836966,
+      "squared_diff_share": null,
+      "tensors": 543
+    },
+    "backbone": {
+      "changed_elements": 0,
+      "cosine": 1.0,
+      "diff_l2": 0.0,
+      "elements": 23800192,
+      "left_l2": 0.09899269747359184,
+      "max_abs": 0.0,
+      "rel_l2_to_left": 0.0,
+      "right_l2": 0.09899269747359184,
+      "squared_diff_share": null,
+      "tensors": 248
+    },
+    "non_backbone": {
+      "changed_elements": 0,
+      "cosine": 1.0,
+      "diff_l2": 0.0,
+      "elements": 10081829,
+      "left_l2": 0.014157831351443773,
+      "max_abs": 0.0,
+      "rel_l2_to_left": 0.0,
+      "right_l2": 0.014157831351443773,
+      "squared_diff_share": null,
+      "tensors": 295
+    },
+    "patch_projection_weight": {
+      "changed_elements": 0,
+      "cosine": 1.0000000000000002,
+      "diff_l2": 0.0,
+      "elements": 165888,
+      "left_l2": 0.09154981058324349,
+      "max_abs": 0.0,
+      "rel_l2_to_left": 0.0,
+      "right_l2": 0.09154981058324349,
+      "squared_diff_share": null,
+      "tensors": 1
+    }
+  },
+  "strict_replay_pair_stage_differences": [
+    {
+      "differing_stages": [],
+      "first_difference": null,
+      "microbatch": 1
+    },
+    {
+      "differing_stages": [],
+      "first_difference": null,
+      "microbatch": 2
+    },
+    {
+      "differing_stages": [],
+      "first_difference": null,
+      "microbatch": 3
+    },
+    {
+      "differing_stages": [],
+      "first_difference": null,
+      "microbatch": 4
+    }
+  ],
+  "worker_wall_seconds": {
+    "F0": 19.45299999997951,
+    "F1": 18.905999999959022
+  }
+}
