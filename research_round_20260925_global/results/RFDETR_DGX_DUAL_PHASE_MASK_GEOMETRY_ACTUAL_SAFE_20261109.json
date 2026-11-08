@@ -1,0 +1,138 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT_only": true,
+  "TEST": false,
+  "availability": {
+    "iou75_both_same_query_all": [
+      2,
+      25,
+      55,
+      660
+    ],
+    "iou75_both_same_query_small": [
+      1,
+      12,
+      24,
+      288
+    ],
+    "iou75_phase_a_all": [
+      2,
+      23,
+      55,
+      660
+    ],
+    "iou75_phase_a_small": [
+      1,
+      12,
+      24,
+      288
+    ],
+    "iou75_phase_b_all": [
+      1,
+      13,
+      55,
+      660
+    ],
+    "iou75_phase_b_small": [
+      0,
+      0,
+      24,
+      288
+    ],
+    "iou90_both_same_query_all": [
+      42,
+      493,
+      55,
+      660
+    ],
+    "iou90_both_same_query_small": [
+      22,
+      260,
+      24,
+      288
+    ],
+    "iou90_phase_a_all": [
+      36,
+      446,
+      55,
+      660
+    ],
+    "iou90_phase_a_small": [
+      19,
+      241,
+      24,
+      288
+    ],
+    "iou90_phase_b_all": [
+      40,
+      472,
+      55,
+      660
+    ],
+    "iou90_phase_b_small": [
+      20,
+      240,
+      24,
+      288
+    ]
+  },
+  "availability_order": [
+    "first_group_absent",
+    "other_groups_absent",
+    "first_group_targets",
+    "other_group_targets"
+  ],
+  "capture_protocol": "860c243f60ddbf2796a3ce59760fabd971ed52d6",
+  "cuda_peak_bytes": 71012352,
+  "empty_views": 2,
+  "fixed_match_threshold": {
+    "both_phases_rescued": 3,
+    "eligible": 42,
+    "eligible_images": 21,
+    "image_mean_confirmed": {
+      "iid": 0.06878306878306878,
+      "iid_minus_jitter": 0.06878306878306878,
+      "images": 21,
+      "jitter": 0,
+      "negative_images": 0,
+      "percentile95": [
+        0,
+        0.1746031746031746
+      ],
+      "positive_images": 3,
+      "tied_images": 18
+    },
+    "not_localized_without_strict": 0,
+    "phase_a_rescued": 7,
+    "screen_gate_pass": false,
+    "targets": 55
+  },
+  "optimizer_updates": 0,
+  "phase_a_reference_counts_match": true,
+  "phases": [
+    [
+      0.5,
+      0.5
+    ],
+    [
+      0.25,
+      0.75
+    ]
+  ],
+  "protocol": "ffca67c1bc08085416569ff704bdd3105772be85",
+  "seconds": 8.811925187939778,
+  "status": "SSDD_FIT_DUAL_PHASE_MASK_GEOMETRY_COMPLETE",
+  "thresholds": [
+    0.75,
+    0.9
+  ],
+  "traced_views": 30,
+  "original_exit": 0,
+  "original_OS_wait": true,
+  "resource_stop": false,
+  "owner_wall_seconds": 9.823890100000426,
+  "worker_peak_RSS_bytes": 1493614592,
+  "original_result_sha256": "48eca94a5888e776717c8804158951987876a64fd374004e2a195bd2e9614044",
+  "decision": "STOP_SCALAR_THRESHOLD_CALIBRATION_PRELOCKED_GATE_FAILED"
+}
