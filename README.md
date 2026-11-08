@@ -14,6 +14,7 @@
 - [严格掩膜排名实测与 FIT 预锁检验](research_round_20260925_global/RFDETR_FIXED_MASK_RANK_WITNESS_AND_FIT_PROTOCOL_20261109.md)。学习秩较原生 AP 低 0.217 个百分点，按规则停止。固定前缀的完美 16 像素编辑上限仅覆盖约四成小目标候选。
 - [HRSID 真实空目标与稠密 FIT 输入资格](research_round_20260925_global/HRSID_REAL_FIT_NATIVE_MATCH_PROTOCOL_20261109.md)。空目标与稠密目标的反向均通过，164 查询逐组覆盖全部 163 个实例。
 - [HRSID 原生 COCO FIT 目录资格](research_round_20260925_global/HRSID_FIT_NATIVE_COCO_LAYOUT_PROTOCOL_20261109.md)。2,937 张 FIT PNG 与 9,260 条派生标注已落盘并独立核验。
+- [HRSID DEV705 输入审计](research_round_20260925_global/HRSID_OFFICIAL_PNG_DEV705_AUDIT_PROTOCOL_20261109.md)。冻结官方训练角色内部的评分输入，保持原始浮点标注。
 - [HRSID 官方 PNG FIT 审计实测](research_round_20260925_global/HRSID_OFFICIAL_PNG_FIT_PIXEL_LABEL_AUDIT_PROTOCOL_20261109.md)。全量 FIT 固定增强后有 8,505 个非空目标和 99 个无目标视图。
 - [AdamW 历史状态对照实测](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_ACTUAL_20261109.md)。F/S 各 372 次更新，首梯度完全一致。S 严格覆盖净增 10，AP 低 0.573 个百分点，按规则停线。
 - [严格反向路径的 AdamW 等预算对照](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_PROTOCOL_20261109.md)。固定 F/S 首步门槛、每组 372 次更新和 DEV187 分支规则。

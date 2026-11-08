@@ -9,3 +9,14 @@
 - 同支持上复核原生、均值头、秩头的合计裕量分别为 −3,200、−2,943、−2,798。该范围使用过相同留出且以真值匹配身份限定，正式指标、未匹配候选收益、训练种子稳定性和跨集效用另行验证。
 
 法线采样、边界局部块和雷达次序统计都有直接先例。该对照只检验切向对应带来的条件信息。七项合成测试通过，真实 FIT 执行待核验。 [SharpContour](https://arxiv.org/abs/2203.13312) · [PointRend](https://arxiv.org/abs/1912.08193) · [边界块细化](https://arxiv.org/abs/2104.05239) · [雷达局部次序统计](https://www.sciencedirect.com/science/article/pii/0031320390900012) · [探针源码](code/RFDETR_E24_FIT_CONTOUR_CORRESPONDENCE_20261109/contour_correspondence.py)
+
+## 直接先例补查
+
+| 直接先例 | 作者方案 | 本试验的控制边界 |
+| --- | --- | --- |
+| DSR-Net，电子学报在线版 2026 | ROI 内由物理梯度驱动水平集演化，含曲率和边缘停止 | 本轮以预测查询为条件，在固定边界带上检验同一灰度邻域的切向对应。作者 SSDD 指标采用不同协议。 [原文](https://www.ejournal.org.cn/cn/article/doi/10.12263/DZXB.20260699) |
+| ARANet，IEEE JSTARS 2026 | 端到端边缘引导和多尺度表示对齐 | 保持候选、输出掩膜、像素支持和探针容量，隔离空间配对。 [原文](https://ieeexplore.ieee.org/abstract/document/11643736/) |
+| O²Former，IEEE JSTARS 2026 | 方向感知特征、极坐标编码和多尺度查询增强 | 保持查询和配对，控制几何样本重排。 [作者机构](https://pure.kfupm.edu.sa/en/publications/o2-former-direction-aware-and-multiscale-query-enhancement-for-sa/) |
+
+切向打乱会改变点对距离，即使出现正收益，也需在独立样本加入保持点对距离的整块转向控制，并与同一灰度取样的双侧对数比比较。此补查保持已锁定的 Phase A 输入、输出和通过门槛。
+
