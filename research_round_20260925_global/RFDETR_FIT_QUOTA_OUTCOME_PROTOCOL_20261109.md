@@ -1,0 +1,16 @@
+# SSDD 候选条件下的八像素动作结果估计
+
+上一轮真值在同一排序上选择补删比例可额外严格恢复 13 个配对。按分层归因，原匹配候选上的边际概率分配使 AP75 下降，未匹配候选的总体收缩没有解释该下降。本轮只检验在同一排序和八次编辑下，候选条件的真实结果监督能否改善比例选择。 [原归因](RFDETR_FIT_ASYMMETRIC_CROSSREAD_PROTOCOL_20261109.md)
+
+复现原 E24、290 图点排序、96 次实际更新和 P162 逐侧前缀、匹配及校准。98 图的原匹配候选用于拟合结果头。对每个可行比例精确计算原固定匹配的 FP/FN、IoU 0.50 至 0.95 的整数阈值计数、原严格失守。只使用原预测构成输入：比例相对 4 的偏移及绝对值、两侧原分数前缀差、两侧校准概率前缀差，乘以常量、原面积对数、候选分数、原位次及支持侧差。六乘五共 30 维，四补四删的输入锚为全零。
+
+三个等容量头对相同矩阵、权重和可行比例做无截距岭回归。两个控制目标分别是相对四补四删的面积归一化 0.90 裕量差和实际 IoU 差。主要目标是十个阈值达标数加实际 IoU、再减两倍原严格失守指示，相对四补四删的变化。所有图像编码组、其内匹配与可行动作逐级等权，特征 RMS 缩放和固定岭系数 0.05。各头每个候选仅选预测增益最大的比例，平手优先接近 4 再取较小值。保留 k=4。原生零编辑单列。
+
+96 图原阈值校准角色只检查实际选择的配对效用及机会后悔值。主全候选评分使用 114 张历史校准角色图，曾用于 P153 但与本头拟合、检查组互斥。111 张历史 FIT 留出作固定复现，原生、四补四删、单一比例、原分数前八、校准前八、有符号分配须精确复现。全量各非原生组保留同候选、分数、顺序和实际八次编辑。先预测再用真值统计配对。匹配条件训练不提供未匹配候选的校准保证。
+
+主要方法须在 114 图上比原生和所有同预算对照中最佳者 AP 至少 +0.3 点，AP75 相对平衡不降、AP90 至少 +1 点、原严格失守不增加且不超过 5%。96 图相对平衡的组配对主要效用自助区间下界须大于零。否则按该固定配方停止，保留单项收益和负结果。不读 DEV187 或正式 TEST。配对效用是固定匹配的代理，完整 AP 由 COCO 重新匹配。
+
+SAM 按预测 IoU 选择替代掩膜，Mask Scoring R-CNN 学习实例掩膜 IoU 并改变检测分数，DynaMask 学习预算约束的掩膜选择，主动框定位已有真实 IoU 动作奖励。本轮在候选和分数锁定条件下比较同容量不同真实动作目标。 [SAM](https://openaccess.thecvf.com/content/ICCV2023/html/Kirillov_Segment_Anything_ICCV_2023_paper.html) · [Mask Scoring R-CNN](https://openaccess.thecvf.com/content_CVPR_2019/html/Huang_Mask_Scoring_R-CNN_CVPR_2019_paper.html) · [DynaMask](https://openaccess.thecvf.com/content/CVPR2023/html/Li_DynaMask_Dynamic_Mask_Selection_for_Instance_Segmentation_CVPR_2023_paper.html) · [动作 IoU 奖励](https://openaccess.thecvf.com/content_iccv_2015/papers/Caicedo_Active_Object_Localization_With_Deep_Reinforcement_Learning_ICCV_2015_paper.pdf)
+
+[候选程序](code/RFDETR_FIT_QUOTA_OUTCOME_20261109/quota_outcome.py) · [精确计数和拟合](code/RFDETR_FIT_QUOTA_OUTCOME_20261109/quota_outcome_math.py)
+
