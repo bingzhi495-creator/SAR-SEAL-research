@@ -1,0 +1,835 @@
+{
+  "AP": false,
+  "CPU": true,
+  "DEV": false,
+  "GPU": false,
+  "TEST": false,
+  "all_fixed_pairs": {
+    "F0_F1": {
+      "gradient": {
+        "all": {
+          "changed_elements": 32284940,
+          "cosine": 0.9999552169728501,
+          "diff_l2": 0.00094639339157244,
+          "elements": 33882021,
+          "left_l2": 0.09999999357550927,
+          "max_abs": 5.976713146083057e-05,
+          "rel_l2_to_left": 0.009463934523733996,
+          "right_l2": 0.09999999622075884,
+          "squared_diff_share": 1.0,
+          "tensors": 543
+        },
+        "backbone": {
+          "changed_elements": 23799447,
+          "cosine": 0.9999542974001733,
+          "diff_l2": 0.000946389567642571,
+          "elements": 23800192,
+          "left_l2": 0.09898824064812396,
+          "max_abs": 5.976713146083057e-05,
+          "rel_l2_to_left": 0.009560626206164491,
+          "right_l2": 0.09898862880769374,
+          "squared_diff_share": 0.9999919189584846,
+          "tensors": 248
+        },
+        "non_backbone": {
+          "changed_elements": 8485493,
+          "cosine": 0.999999999990016,
+          "diff_l2": 2.690328844809062e-06,
+          "elements": 10081829,
+          "left_l2": 0.014188972073092379,
+          "max_abs": 7.469207048416138e-07,
+          "rel_l2_to_left": 0.00018960702938523193,
+          "right_l2": 0.014186282491350767,
+          "squared_diff_share": 8.08104151543717e-06,
+          "tensors": 295
+        },
+        "patch_projection_weight": {
+          "changed_elements": 165886,
+          "cosine": 0.9999519847203288,
+          "diff_l2": 0.0008968176522540518,
+          "elements": 165888,
+          "left_l2": 0.0915108846544386,
+          "max_abs": 4.260614514350891e-05,
+          "rel_l2_to_left": 0.009800120014581817,
+          "right_l2": 0.091517356442067,
+          "squared_diff_share": 0.8979763480088289,
+          "tensors": 1
+        }
+      },
+      "kind": "within_arm",
+      "stages": [
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 1
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 2
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 3
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 4
+        }
+      ]
+    },
+    "F0_S0": {
+      "gradient": {
+        "all": {
+          "changed_elements": 32284872,
+          "cosine": 0.9999631062611499,
+          "diff_l2": 0.0008589963716523008,
+          "elements": 33882021,
+          "left_l2": 0.09999999357550927,
+          "max_abs": 5.4120318964123726e-05,
+          "rel_l2_to_left": 0.008589964268384466,
+          "right_l2": 0.10000000498581456,
+          "squared_diff_share": 1.0,
+          "tensors": 543
+        },
+        "backbone": {
+          "changed_elements": 23799379,
+          "cosine": 0.999962351540333,
+          "diff_l2": 0.0008589541588594599,
+          "elements": 23800192,
+          "left_l2": 0.09898824064812396,
+          "max_abs": 5.4120318964123726e-05,
+          "rel_l2_to_left": 0.008677335340394686,
+          "right_l2": 0.0989870311590376,
+          "squared_diff_share": 0.9999017184308951,
+          "tensors": 248
+        },
+        "non_backbone": {
+          "changed_elements": 8485493,
+          "cosine": 0.9999999999948023,
+          "diff_l2": 8.515837589782917e-06,
+          "elements": 10081829,
+          "left_l2": 0.014188972073092379,
+          "max_abs": 2.3636966943740845e-06,
+          "rel_l2_to_left": 0.000600172975597869,
+          "right_l2": 0.014197487787726839,
+          "squared_diff_share": 9.828156910471914e-05,
+          "tensors": 295
+        },
+        "patch_projection_weight": {
+          "changed_elements": 165886,
+          "cosine": 0.9999606220471555,
+          "diff_l2": 0.0008121366824205459,
+          "elements": 165888,
+          "left_l2": 0.0915108846544386,
+          "max_abs": 3.420858411118388e-05,
+          "rel_l2_to_left": 0.00887475501397805,
+          "right_l2": 0.0914996678486394,
+          "squared_diff_share": 0.8938725389012026,
+          "tensors": 1
+        }
+      },
+      "kind": "cross_arm",
+      "stages": [
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 1
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 2
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 3
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 4
+        }
+      ]
+    },
+    "F0_S1": {
+      "gradient": {
+        "all": {
+          "changed_elements": 32285002,
+          "cosine": 0.9999631131434386,
+          "diff_l2": 0.0008589162576608709,
+          "elements": 33882021,
+          "left_l2": 0.09999999357550927,
+          "max_abs": 6.15893368376419e-05,
+          "rel_l2_to_left": 0.008589163128418698,
+          "right_l2": 0.10000000727338432,
+          "squared_diff_share": 1.0,
+          "tensors": 543
+        },
+        "backbone": {
+          "changed_elements": 23799509,
+          "cosine": 0.9999623726622786,
+          "diff_l2": 0.000858732481723175,
+          "elements": 23800192,
+          "left_l2": 0.09898824064812396,
+          "max_abs": 6.15893368376419e-05,
+          "rel_l2_to_left": 0.00867509591139955,
+          "right_l2": 0.09899079955173894,
+          "squared_diff_share": 0.9995721206218414,
+          "tensors": 248
+        },
+        "non_backbone": {
+          "changed_elements": 8485493,
+          "cosine": 0.9999999999920667,
+          "diff_l2": 1.7766893586456697e-05,
+          "elements": 10081829,
+          "left_l2": 0.014188972073092379,
+          "max_abs": 4.932284355163574e-06,
+          "rel_l2_to_left": 0.0012521621365475376,
+          "right_l2": 0.01417120526929013,
+          "squared_diff_share": 0.0004278793781585363,
+          "tensors": 295
+        },
+        "patch_projection_weight": {
+          "changed_elements": 165888,
+          "cosine": 0.9999611055159566,
+          "diff_l2": 0.0008075094672850868,
+          "elements": 165888,
+          "left_l2": 0.0915108846544386,
+          "max_abs": 4.0496932342648506e-05,
+          "rel_l2_to_left": 0.008824190371827202,
+          "right_l2": 0.09153302681893805,
+          "squared_diff_share": 0.8838805943954693,
+          "tensors": 1
+        }
+      },
+      "kind": "cross_arm",
+      "stages": [
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 1
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 2
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 3
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 4
+        }
+      ]
+    },
+    "F1_S1": {
+      "gradient": {
+        "all": {
+          "changed_elements": 32285006,
+          "cosine": 0.9999597148944275,
+          "diff_l2": 0.0008976091241311788,
+          "elements": 33882021,
+          "left_l2": 0.09999999622075884,
+          "max_abs": 4.313373938202858e-05,
+          "rel_l2_to_left": 0.008976091580539936,
+          "right_l2": 0.10000000727338432,
+          "squared_diff_share": 1.0,
+          "tensors": 543
+        },
+        "backbone": {
+          "changed_elements": 23799513,
+          "cosine": 0.9999589002396457,
+          "diff_l2": 0.000897482488003583,
+          "elements": 23800192,
+          "left_l2": 0.09898862880769374,
+          "max_abs": 4.313373938202858e-05,
+          "rel_l2_to_left": 0.009066521062203334,
+          "right_l2": 0.09899079955173894,
+          "squared_diff_share": 0.9997178567125085,
+          "tensors": 248
+        },
+        "non_backbone": {
+          "changed_elements": 8485493,
+          "cosine": 0.9999999999979471,
+          "diff_l2": 1.5077249432195533e-05,
+          "elements": 10081829,
+          "left_l2": 0.014186282491350767,
+          "max_abs": 4.1853636503219604e-06,
+          "rel_l2_to_left": 0.0010628048215864854,
+          "right_l2": 0.01417120526929013,
+          "squared_diff_share": 0.00028214328749162973,
+          "tensors": 295
+        },
+        "patch_projection_weight": {
+          "changed_elements": 165886,
+          "cosine": 0.9999566817202387,
+          "diff_l2": 0.0008520492628382141,
+          "elements": 165888,
+          "left_l2": 0.091517356442067,
+          "max_abs": 4.313373938202858e-05,
+          "rel_l2_to_left": 0.009310247760244087,
+          "right_l2": 0.09153302681893805,
+          "squared_diff_share": 0.9010624528715413,
+          "tensors": 1
+        }
+      },
+      "kind": "cross_arm",
+      "stages": [
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 1
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 2
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 3
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 4
+        }
+      ]
+    },
+    "S0_F1": {
+      "gradient": {
+        "all": {
+          "changed_elements": 32284576,
+          "cosine": 0.9999355858847511,
+          "diff_l2": 0.001135025251085785,
+          "elements": 33882021,
+          "left_l2": 0.10000000498581456,
+          "max_abs": 5.997275002300739e-05,
+          "rel_l2_to_left": 0.011350251944955337,
+          "right_l2": 0.09999999622075884,
+          "squared_diff_share": 1.0,
+          "tensors": 543
+        },
+        "backbone": {
+          "changed_elements": 23799083,
+          "cosine": 0.9999342683927104,
+          "diff_l2": 0.0011349699361142768,
+          "elements": 23800192,
+          "left_l2": 0.0989870311590376,
+          "max_abs": 5.997275002300739e-05,
+          "rel_l2_to_left": 0.011465844796282215,
+          "right_l2": 0.09898862880769374,
+          "squared_diff_share": 0.9999025332280853,
+          "tensors": 248
+        },
+        "non_backbone": {
+          "changed_elements": 8485493,
+          "cosine": 0.9999999999849754,
+          "diff_l2": 1.1205566433866424e-05,
+          "elements": 10081829,
+          "left_l2": 0.014197487787726839,
+          "max_abs": 3.1106173992156982e-06,
+          "rel_l2_to_left": 0.0007892640304683473,
+          "right_l2": 0.014186282491350767,
+          "squared_diff_share": 9.74667719146257e-05,
+          "tensors": 295
+        },
+        "patch_projection_weight": {
+          "changed_elements": 165885,
+          "cosine": 0.9999285503862272,
+          "diff_l2": 0.0010940400087263858,
+          "elements": 165888,
+          "left_l2": 0.0914996678486394,
+          "max_abs": 4.897988401353359e-05,
+          "rel_l2_to_left": 0.011956764810733182,
+          "right_l2": 0.091517356442067,
+          "squared_diff_share": 0.9290848143708101,
+          "tensors": 1
+        }
+      },
+      "kind": "cross_arm",
+      "stages": [
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 1
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 2
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 3
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 4
+        }
+      ]
+    },
+    "S0_S1": {
+      "gradient": {
+        "all": {
+          "changed_elements": 32284874,
+          "cosine": 0.9999575856734272,
+          "diff_l2": 0.0009210247746123373,
+          "elements": 33882021,
+          "left_l2": 0.10000000498581456,
+          "max_abs": 5.539122503250837e-05,
+          "rel_l2_to_left": 0.009210247286917522,
+          "right_l2": 0.10000000727338432,
+          "squared_diff_share": 1.0,
+          "tensors": 543
+        },
+        "backbone": {
+          "changed_elements": 23799381,
+          "cosine": 0.9999567507656516,
+          "diff_l2": 0.000920649694212573,
+          "elements": 23800192,
+          "left_l2": 0.0989870311590376,
+          "max_abs": 5.539122503250837e-05,
+          "rel_l2_to_left": 0.009300710238833311,
+          "right_l2": 0.09899079955173894,
+          "squared_diff_share": 0.9991856809159367,
+          "tensors": 248
+        },
+        "non_backbone": {
+          "changed_elements": 8485493,
+          "cosine": 0.9999999999870259,
+          "diff_l2": 2.628261775399217e-05,
+          "elements": 10081829,
+          "left_l2": 0.014197487787726839,
+          "max_abs": 7.295981049537659e-06,
+          "rel_l2_to_left": 0.0018512160846310037,
+          "right_l2": 0.01417120526929013,
+          "squared_diff_share": 0.0008143190840632066,
+          "tensors": 295
+        },
+        "patch_projection_weight": {
+          "changed_elements": 165887,
+          "cosine": 0.9999545916596764,
+          "diff_l2": 0.0008727682729046472,
+          "elements": 165888,
+          "left_l2": 0.0914996678486394,
+          "max_abs": 4.073302261531353e-05,
+          "rel_l2_to_left": 0.009538485695362284,
+          "right_l2": 0.09153302681893805,
+          "squared_diff_share": 0.8979564528741442,
+          "tensors": 1
+        }
+      },
+      "kind": "within_arm",
+      "stages": [
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 1
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 2
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 3
+        },
+        {
+          "differing_stages": [
+            "backbone_first_feature_grad_sha256",
+            "patch_projection_grad_out_sha256",
+            "cumulative_gradient"
+          ],
+          "first_difference": "backbone_first_feature_grad_sha256",
+          "microbatch": 4
+        }
+      ]
+    }
+  },
+  "attempts": [
+    "F0",
+    "S0",
+    "F1",
+    "S1"
+  ],
+  "clip_scale_from_norm": {
+    "F0": 0.0005189705831663307,
+    "F1": 0.0005188722166313043,
+    "S0": 0.000519282035371361,
+    "S1": 0.000518320757002608
+  },
+  "ema_updates": 0,
+  "numeric_precision": {
+    "cudnn_allow_tf32": true,
+    "deterministic_algorithms": false,
+    "float32_matmul": "high"
+  },
+  "optimizer_updates": 0,
+  "original_OS_waits_verified": true,
+  "original_comparisons": {
+    "original_F_vs_F0": {
+      "all": {
+        "changed_elements": 32285069,
+        "cosine": 0.9999699969676986,
+        "diff_l2": 0.0007746357661561226,
+        "elements": 33882021,
+        "left_l2": 0.0999999937890638,
+        "max_abs": 4.6612927690148354e-05,
+        "rel_l2_to_left": 0.007746358142682588,
+        "right_l2": 0.09999999357550927,
+        "squared_diff_share": 1.0,
+        "tensors": 543
+      },
+      "backbone": {
+        "changed_elements": 23799576,
+        "cosine": 0.9999693805214056,
+        "diff_l2": 0.0007746357541288678,
+        "elements": 23800192,
+        "left_l2": 0.09898825866273271,
+        "max_abs": 4.6612927690148354e-05,
+        "rel_l2_to_left": 0.007825531680157783,
+        "right_l2": 0.09898824064812396,
+        "squared_diff_share": 0.9999999689473292,
+        "tensors": 248
+      },
+      "non_backbone": {
+        "changed_elements": 8485493,
+        "cosine": 0.9999999999920165,
+        "diff_l2": 1.365045174734389e-07,
+        "elements": 10081829,
+        "left_l2": 0.014188847900119303,
+        "max_abs": 3.4458935260772705e-08,
+        "rel_l2_to_left": 9.620549775030792e-06,
+        "right_l2": 0.014188972073092379,
+        "squared_diff_share": 3.105267070653991e-08,
+        "tensors": 295
+      },
+      "patch_projection_weight": {
+        "changed_elements": 165887,
+        "cosine": 0.9999691055410358,
+        "diff_l2": 0.0007193345855821844,
+        "elements": 165888,
+        "left_l2": 0.09151191580041305,
+        "max_abs": 3.0670082196593285e-05,
+        "rel_l2_to_left": 0.007860556511034572,
+        "right_l2": 0.0915108846544386,
+        "squared_diff_share": 0.8623166921884018,
+        "tensors": 1
+      }
+    },
+    "original_F_vs_F1": {
+      "all": {
+        "changed_elements": 32285004,
+        "cosine": 0.99993837967316,
+        "diff_l2": 0.0011101380156025812,
+        "elements": 33882021,
+        "left_l2": 0.0999999937890638,
+        "max_abs": 7.52696068957448e-05,
+        "rel_l2_to_left": 0.011101380845525494,
+        "right_l2": 0.09999999622075884,
+        "squared_diff_share": 1.0,
+        "tensors": 543
+      },
+      "backbone": {
+        "changed_elements": 23799511,
+        "cosine": 0.9999371141995305,
+        "diff_l2": 0.0011101350510262168,
+        "elements": 23800192,
+        "left_l2": 0.09898825866273271,
+        "max_abs": 7.52696068957448e-05,
+        "rel_l2_to_left": 0.011214815433905219,
+        "right_l2": 0.09898862880769374,
+        "squared_diff_share": 0.9999946590921771,
+        "tensors": 248
+      },
+      "non_backbone": {
+        "changed_elements": 8485493,
+        "cosine": 0.9999999999978962,
+        "diff_l2": 2.5655738258544816e-06,
+        "elements": 10081829,
+        "left_l2": 0.014188847900119303,
+        "max_abs": 7.124617695808411e-07,
+        "rel_l2_to_left": 0.00018081621875958723,
+        "right_l2": 0.014186282491350767,
+        "squared_diff_share": 5.340907822950077e-06,
+        "tensors": 295
+      },
+      "patch_projection_weight": {
+        "changed_elements": 165888,
+        "cosine": 0.9999330787855316,
+        "diff_l2": 0.001058749445740138,
+        "elements": 165888,
+        "left_l2": 0.09151191580041305,
+        "max_abs": 4.1709921788424253e-05,
+        "rel_l2_to_left": 0.011569525525498389,
+        "right_l2": 0.091517356442067,
+        "squared_diff_share": 0.9095622810841836,
+        "tensors": 1
+      }
+    },
+    "original_F_vs_S": {
+      "all": {
+        "changed_elements": 32284864,
+        "cosine": 0.9999491460380422,
+        "diff_l2": 0.0010085034139874507,
+        "elements": 33882021,
+        "left_l2": 0.0999999937890638,
+        "max_abs": 4.1847408283501863e-05,
+        "rel_l2_to_left": 0.010085034766249583,
+        "right_l2": 0.09999999607020274,
+        "squared_diff_share": 1.0,
+        "tensors": 543
+      },
+      "backbone": {
+        "changed_elements": 23799371,
+        "cosine": 0.9999481012890689,
+        "diff_l2": 0.0010085030861111996,
+        "elements": 23800192,
+        "left_l2": 0.09898825866273271,
+        "max_abs": 4.1847408283501863e-05,
+        "rel_l2_to_left": 0.01018810816288137,
+        "right_l2": 0.09898837752245132,
+        "squared_diff_share": 0.9999993497767221,
+        "tensors": 248
+      },
+      "non_backbone": {
+        "changed_elements": 8485493,
+        "cosine": 0.9999999999997923,
+        "diff_l2": 8.132210828984265e-07,
+        "elements": 10081829,
+        "left_l2": 0.014188847900119303,
+        "max_abs": 2.2584572434425354e-07,
+        "rel_l2_to_left": 5.73141024995827e-05,
+        "right_l2": 0.014188034730476876,
+        "squared_diff_share": 6.502232778616952e-07,
+        "tensors": 295
+      },
+      "patch_projection_weight": {
+        "changed_elements": 165887,
+        "cosine": 0.9999444413677239,
+        "diff_l2": 0.0009646839100011763,
+        "elements": 165888,
+        "left_l2": 0.09151191580041305,
+        "max_abs": 4.1847408283501863e-05,
+        "rel_l2_to_left": 0.010541620744834435,
+        "right_l2": 0.09151668346763742,
+        "squared_diff_share": 0.9149878443607006,
+        "tensors": 1
+      }
+    },
+    "original_S_vs_S0": {
+      "all": {
+        "changed_elements": 32284678,
+        "cosine": 0.9999415931479391,
+        "diff_l2": 0.001080803892311141,
+        "elements": 33882021,
+        "left_l2": 0.09999999607020274,
+        "max_abs": 8.000613888725638e-05,
+        "rel_l2_to_left": 0.010808039347845444,
+        "right_l2": 0.10000000498581456,
+        "squared_diff_share": 1.0,
+        "tensors": 543
+      },
+      "backbone": {
+        "changed_elements": 23799185,
+        "cosine": 0.9999403970988229,
+        "diff_l2": 0.0010807625493972988,
+        "elements": 23800192,
+        "left_l2": 0.09898837752245132,
+        "max_abs": 8.000613888725638e-05,
+        "rel_l2_to_left": 0.010918075196779274,
+        "right_l2": 0.0989870311590376,
+        "squared_diff_share": 0.9999234974570099,
+        "tensors": 248
+      },
+      "non_backbone": {
+        "changed_elements": 8485493,
+        "cosine": 0.9999999999871824,
+        "diff_l2": 9.453330374208585e-06,
+        "elements": 10081829,
+        "left_l2": 0.014188034730476876,
+        "max_abs": 2.6240013539791107e-06,
+        "rel_l2_to_left": 0.0006662889225878606,
+        "right_l2": 0.014197487787726839,
+        "squared_diff_share": 7.650254299001524e-05,
+        "tensors": 295
+      },
+      "patch_projection_weight": {
+        "changed_elements": 165884,
+        "cosine": 0.9999358091317464,
+        "diff_l2": 0.0010369790749106464,
+        "elements": 165888,
+        "left_l2": 0.09151668346763742,
+        "max_abs": 4.1965991840697825e-05,
+        "rel_l2_to_left": 0.011331038621797828,
+        "right_l2": 0.0914996678486394,
+        "squared_diff_share": 0.9205474635501292,
+        "tensors": 1
+      }
+    },
+    "original_S_vs_S1": {
+      "all": {
+        "changed_elements": 32284826,
+        "cosine": 0.9999628843634096,
+        "diff_l2": 0.0008615757405797229,
+        "elements": 33882021,
+        "left_l2": 0.09999999607020274,
+        "max_abs": 4.129926674067974e-05,
+        "rel_l2_to_left": 0.008615757744379041,
+        "right_l2": 0.10000000727338432,
+        "squared_diff_share": 1.0,
+        "tensors": 543
+      },
+      "backbone": {
+        "changed_elements": 23799333,
+        "cosine": 0.9999621375494241,
+        "diff_l2": 0.0008614113569767254,
+        "elements": 23800192,
+        "left_l2": 0.09898837752245132,
+        "max_abs": 4.129926674067974e-05,
+        "rel_l2_to_left": 0.008702146439175152,
+        "right_l2": 0.09899079955173894,
+        "squared_diff_share": 0.9996184481211764,
+        "tensors": 248
+      },
+      "non_backbone": {
+        "changed_elements": 8485493,
+        "cosine": 0.9999999999998429,
+        "diff_l2": 1.6829463063768426e-05,
+        "elements": 10081829,
+        "left_l2": 0.014188034730476876,
+        "max_abs": 4.671979695558548e-06,
+        "rel_l2_to_left": 0.0011861729537225886,
+        "right_l2": 0.01417120526929013,
+        "squared_diff_share": 0.00038155187882354534,
+        "tensors": 295
+      },
+      "patch_projection_weight": {
+        "changed_elements": 165887,
+        "cosine": 0.9999600271415026,
+        "diff_l2": 0.0008185085892536139,
+        "elements": 165888,
+        "left_l2": 0.09151668346763742,
+        "max_abs": 4.129926674067974e-05,
+        "rel_l2_to_left": 0.0089438183098392,
+        "right_l2": 0.09153302681893805,
+        "squared_diff_share": 0.9025256599525346,
+        "tensors": 1
+      }
+    }
+  },
+  "preclip_global_norm": {
+    "F0": 192.68914794921875,
+    "F1": 192.72567749023438,
+    "S0": 192.57357788085938,
+    "S1": 192.93072509765625
+  },
+  "protocol_commit": "21e20c368d130cd635cf0459a46e6b53327571a8",
+  "status": "ACTUAL_FOUR_FIRST_GRADIENT_REPLAYS_CPU_COMPARED"
+}
