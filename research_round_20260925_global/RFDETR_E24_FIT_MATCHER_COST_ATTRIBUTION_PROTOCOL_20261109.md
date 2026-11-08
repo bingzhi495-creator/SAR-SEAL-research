@@ -9,3 +9,10 @@
 原生训练匹配器的均匀采样，与匹配后的不确定性损失采样是两个阶段。Mask2Former 已共享均匀点估计掩膜代价，Stable Matching 已研究层间配对稳定和位置代价。本轮隔离固定成本下的有限采样误差，只作为可训练干预的准入证据。 [Mask2Former 匹配器](https://github.com/facebookresearch/Mask2Former/blob/main/mask2former/modeling/matcher.py#L102-L137) · [Stable Matching](https://arxiv.org/abs/2304.04742)
 
 八项合成测试通过，覆盖相同点预算、保持平滑的密集积分、原生代价分解、分组求解和一对一可达性。真实样本的精确入口和执行门槛将在实际启动前单独锁定。 [数值实现](code/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_20261109/matcher_cost_math.py)
+
+## 原生匹配采集入口
+
+使用已闭合的 SSDD E24 在线权重，沿用训练模式原生增强，固定 576、BF16、13 组各 100 查询。只运行最终头前向和原生匹配，实测权重与缓冲区前后身份一致。短预检在既有 P68 编码图像组的固定顺序中选首个合格增强视图，仅用于验证真实原生代价和分配重放。后续机制试验候选预定编码哈希排序的 32 个 FIT 图像组及同一增强种子规则，逐组保留空或不合格记录。实际机制准入条件与密集重算另行锁定。 [采集源码](code/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_20261109/capture_matcher_cost.py)
+
+两项合成测试通过。远端短预检限定单独工作目录、40 GiB 可用统一内存下限、10 GiB 进程 RSS、6 GiB GPU 分配及 300 秒工作体上限。保留原进程退出和日志校验。图像、标注和原始匹配张量均只存私有设备。
+
