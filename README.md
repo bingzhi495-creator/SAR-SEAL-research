@@ -12,6 +12,7 @@
 - [SSDD 双相位掩膜几何](research_round_20260925_global/RFDETR_E24_FIT_DUAL_PHASE_MASK_GEOMETRY_PROTOCOL_20261109.md)。首组 42/55 缺严格候选，最优标量阈值双相位恢复 3/42，按门槛停线。
 - [SSDD 冻结空间基底的嵌套掩膜拟合](research_round_20260925_global/RFDETR_E24_FIT_NESTED_MASK_BASIS_ORACLE_PROTOCOL_20261109.md)。固定基底的系数拟合双相位恢复 18/42，标量对照 3/42。
 - [SSDD 原生 BF16 系数回放](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_COEFFICIENT_REPLAY_PROTOCOL_20261109.md)。保持共享偏置，仅改系数恢复 19/42，系数相对范数偏大，下一项检验有限改动。
+- [SSDD 有界系数实测](research_round_20260925_global/RFDETR_FIT_BOUNDED_COEFFICIENT_ORACLE_PROTOCOL_20261109.md)。迭代 20/42、一步 15/42、偏置 3/42，进入冻结原生推理的同预算全候选试验。
 - [SSDD 原生掩膜网格诊断](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_GRID_CANCELLATION_PROTOCOL_20261109.md)。真实错分抵消下降 2.249 个百分点，低于预设 5 点准入。
 - [HRSID 原生 FIT 首轮](research_round_20260925_global/HRSID_NATIVE_FIT_FIRST_EPOCH_PROTOCOL_20261109.md)。已完成并独立验收 735 次更新和完整原生检查点。
 - [SSDD 预测轮廓的切向对应](research_round_20260925_global/RFDETR_E24_FIT_CONTOUR_CORRESPONDENCE_PROTOCOL_20261109.md)。对齐未胜出，按预设五项图像配对门槛停线。
