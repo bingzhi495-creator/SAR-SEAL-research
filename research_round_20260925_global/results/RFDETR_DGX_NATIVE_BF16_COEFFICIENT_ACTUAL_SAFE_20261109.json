@@ -1,0 +1,239 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT_only": true,
+  "TEST": false,
+  "arms": {
+    "bf16_coefficient_only": {
+      "a_fn": 637,
+      "a_fp": 13127,
+      "b_fn": 841,
+      "b_fp": 13646,
+      "both": 19,
+      "held_a": 18,
+      "phase_a": 22,
+      "phase_b": 19
+    },
+    "bf16_joint": {
+      "a_fn": 635,
+      "a_fp": 12398,
+      "b_fn": 843,
+      "b_fp": 12799,
+      "both": 18,
+      "held_a": 15,
+      "phase_a": 19,
+      "phase_b": 18
+    },
+    "bf16_offset": {
+      "a_fn": 3204,
+      "a_fp": 9590,
+      "b_fn": 3361,
+      "b_fp": 9637,
+      "both": 3,
+      "held_a": 4,
+      "phase_a": 4,
+      "phase_b": 3
+    },
+    "coefficients": {
+      "a_fn": 635,
+      "a_fp": 12393,
+      "b_fn": 857,
+      "b_fp": 12788,
+      "both": 18,
+      "held_a": 16,
+      "phase_a": 20,
+      "phase_b": 18
+    },
+    "free_nodes": {
+      "a_fn": 763,
+      "a_fp": 15529,
+      "b_fn": 939,
+      "b_fp": 15937,
+      "both": 12,
+      "held_a": 6,
+      "phase_a": 14,
+      "phase_b": 12
+    },
+    "full_a_scalar": {
+      "a_fn": 4488,
+      "a_fp": 6927,
+      "b_fn": 4804,
+      "b_fp": 7212,
+      "both": 3,
+      "held_a": 6,
+      "phase_a": 7,
+      "phase_b": 3
+    },
+    "native_bf16": {
+      "a_fn": 4681,
+      "a_fp": 9462,
+      "b_fn": 4828,
+      "b_fp": 9576,
+      "both": 0,
+      "held_a": 5,
+      "phase_a": 3,
+      "phase_b": 1
+    },
+    "native_continuous": {
+      "a_fn": 4678,
+      "a_fp": 9453,
+      "b_fn": 4831,
+      "b_fp": 9581,
+      "both": 0,
+      "held_a": 5,
+      "phase_a": 3,
+      "phase_b": 1
+    },
+    "offset": {
+      "a_fn": 3207,
+      "a_fp": 9590,
+      "b_fn": 3363,
+      "b_fp": 9642,
+      "both": 3,
+      "held_a": 4,
+      "phase_a": 4,
+      "phase_b": 3
+    }
+  },
+  "capture_protocol": "860c243f60ddbf2796a3ce59760fabd971ed52d6",
+  "coefficient_only_iteration_limit": 42,
+  "coefficient_only_norm_relative_quantiles": [
+    2.7129403867608897,
+    7.508862618028476,
+    8.94344966204352,
+    12.743348355124613,
+    24.857364306151748
+  ],
+  "coefficients_gate": true,
+  "cuda_peak_bytes": 71012352,
+  "eligible_images": 21,
+  "empty_views": 2,
+  "exact_native_all_phase_anchor": true,
+  "free_nodes_gate": false,
+  "lattice": [
+    144,
+    144,
+    256
+  ],
+  "max_solver_iterations": 240,
+  "native_only_gate": true,
+  "native_pairs": {
+    "joint_vs_only": {
+      "first": 0.45396825396825397,
+      "first_minus_second": -0.005291005291005293,
+      "images": 21,
+      "percentile95": [
+        -0.14814814814814814,
+        0.13664021164021187
+      ],
+      "second": 0.45925925925925926
+    },
+    "only_vs_full_a_scalar": {
+      "first": 0.45925925925925926,
+      "first_minus_second": 0.3904761904761904,
+      "images": 21,
+      "percentile95": [
+        0.16666666666666666,
+        0.6044841269841269
+      ],
+      "second": 0.06878306878306878
+    },
+    "only_vs_offset": {
+      "first": 0.45925925925925926,
+      "first_minus_second": 0.3904761904761904,
+      "images": 21,
+      "percentile95": [
+        0.16666666666666666,
+        0.6044841269841269
+      ],
+      "second": 0.06878306878306878
+    }
+  },
+  "optimizer_updates": 0,
+  "paired": {
+    "coeff_vs_full_a_scalar": {
+      "first": 0.45396825396825397,
+      "first_minus_second": 0.3851851851851852,
+      "images": 21,
+      "percentile95": [
+        0.21173280423280424,
+        0.5677248677248677
+      ],
+      "second": 0.06878306878306878
+    },
+    "coeff_vs_offset": {
+      "first": 0.45396825396825397,
+      "first_minus_second": 0.3851851851851852,
+      "images": 21,
+      "percentile95": [
+        0.21173280423280424,
+        0.5677248677248677
+      ],
+      "second": 0.06878306878306878
+    },
+    "free_vs_coeff": {
+      "first": 0.3042328042328042,
+      "first_minus_second": -0.14973544973544972,
+      "images": 21,
+      "percentile95": [
+        -0.28297619047619044,
+        -0.03597883597883597
+      ],
+      "second": 0.45396825396825397
+    }
+  },
+  "phases": [
+    [
+      0.5,
+      0.5
+    ],
+    [
+      0.25,
+      0.75
+    ]
+  ],
+  "protocol": "b873ae8bbbe4318d92e63d61bb6e7e5e66eca61d",
+  "scope": {
+    "eligible": 42,
+    "fit_points": 174132,
+    "fit_positives": 38933,
+    "held_gt": 42,
+    "missing": 42,
+    "small": 22,
+    "targets": 55
+  },
+  "seconds": 27.03399674477987,
+  "shared_score_penalty": 0.002,
+  "solver": {
+    "coefficients": {
+      "gradient_inf_max": 0.0005123570348921601,
+      "mean_final_loss": 0.021577200127106812,
+      "mean_gain": 0.13744610787628422,
+      "reached_iteration_limit": 42,
+      "solver_success": 0
+    },
+    "free_nodes": {
+      "gradient_inf_max": 0.0000016181337609836902,
+      "mean_final_loss": 0.014979359870405202,
+      "mean_gain": 0.0065978402567016085,
+      "reached_iteration_limit": 0,
+      "solver_success": 42
+    },
+    "offset": {
+      "gradient_inf_max": 9.665277169064457e-8,
+      "mean_final_loss": 0.1590233080033911,
+      "mean_gain": 0.06368276659345863,
+      "reached_iteration_limit": 0,
+      "solver_success": 42
+    }
+  },
+  "status": "SSDD_FIT_NATIVE_BF16_COEFFICIENT_REPLAY_COMPLETE",
+  "traced_views": 30,
+  "original_exit": 0,
+  "original_OS_wait": true,
+  "resource_stop": false,
+  "owner_wall_seconds": 28.03441319288686,
+  "worker_peak_RSS_bytes": 1705578496,
+  "original_result_sha256": "370c9dbf2ae55104d0f8063dd1a4c8c24879782e4c6cff2d9946c45a491d447a",
+  "decision": "NATIVE_COEFFICIENT_FEASIBILITY_CONFIRMED_ADMIT_BOUNDED_INTERVENTION_DIAGNOSTIC"
+}
