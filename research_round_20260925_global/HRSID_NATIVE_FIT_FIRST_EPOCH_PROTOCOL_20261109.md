@@ -13,3 +13,12 @@
 
 由专用 FIT 数据模块保留原生训练增强、对齐、取样和批处理，物理目录无验证或测试输入。验证和评分回调从本轮 FIT 执行剥离，原生训练优化与完整模型归档保持。当前初始化和指标范围属于目标域训练适配。COCO-only 初始化及未来相同宽度、初始化与预算的方案对照需另行固定。 [原生数据模块](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/training/module_data.py) · [Lightning Trainer](https://lightning.ai/docs/pytorch/stable/core-api/trainer)
 Windows 原生训练模块加载时会导入官方 `faster-coco-eval`。在独立目录使用 PyPI 的 1.8.0 CPython 3.10 x64 wheel，SHA-256 为 `3eba19bf8e2c0365e698bcc51a88797fef8b13320d333f3accfd7684de59051d`。启动核验 wheel 和解出的全部 30 个文件。原固定环境保持原样，训练不执行评估回调。进度中返回的损失采用 Lightning 梯度累积后的缩放口径。 [官方 wheel](https://pypi.org/project/faster-coco-eval/1.8.0/#files) · [训练工作体](code/HRSID_NATIVE_FIT_E1_20261109/train_hrsid_native_e1.py) · [独立归档回读](code/HRSID_NATIVE_FIT_E1_20261109/verify_hrsid_native_fit_e1_archive.py)
+
+## 首轮实际训练与独立验收
+
+原进程退出 0，资源保护未触发。工作体含初始化和归档核验用时 940.21 秒，原进程总用时 948.41 秒。2,940 次访问覆盖全部 2,937 张 FIT 图，独立重算的 3 次原生对齐补采与实测多重集合完全一致。增强后访问累计 8,615 个目标，98 次访问为无目标，单图最多 163。峰值 GPU 分配 3.45 GiB，预留 4.89 GiB。 [实际训练聚合](results/HRSID_NATIVE_FIT_E1_ACTUAL_SAFE_20261109.json) · [访问独立读回](results/HRSID_NATIVE_FIT_E1_VISIT_READBACK_SAFE_20261109.json)
+
+735 次原生 AdamW 调用实际返回，原生 EMA 同步更新 735 次。独立 CPU 回读了 546,511,606 字节完整归档。543 个 AdamW 参数状态时钟均为 735，LambdaLR 游标为 735，28 组学习率均为基准的 1/3，EMA 和原生循环计数一致。分类参数相对初始化的最大绝对变化为 0.005451。检查点的在线与 EMA 模型均记录 13 组×164 查询。归档和逐图清单留本地。 [归档独立读回](results/HRSID_NATIVE_FIT_E1_ARCHIVE_READBACK_SAFE_20261109.json)
+
+该结果验收完整 FIT 首轮和工程成本，初始化从 SSDD E24 迁入。首轮端点处于三轮预热期，DEV、正式 TEST 和 AP 均未执行。保存了完整优化器、EMA 和调度器，未保存跨轮随机状态。后续沿用该端点时，需标注为保留时钟、重新锁定随机序列的继续训练；若比较连续轨迹，另从相同预训练状态启动并预设完整端点。 [Lightning 保存逻辑](https://github.com/Lightning-AI/pytorch-lightning/blob/2.6.6/src/lightning/pytorch/trainer/connectors/checkpoint_connector.py)
+
