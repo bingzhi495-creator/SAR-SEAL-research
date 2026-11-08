@@ -1,0 +1,158 @@
+{
+  "AP": false,
+  "TEST_member_opened": false,
+  "all_training_augmentation_seeds_qualified": false,
+  "audit_seconds": 141.61621199990623,
+  "by_native_resize_branch": {
+    "direct_resize": {
+      "augmented": {
+        "empty_mask_rows": 0,
+        "images": 1480,
+        "images_above_100_query_cap": 4,
+        "images_with_empty_mask_rows": 0,
+        "images_without_nonempty_targets": 0,
+        "max_targets_per_image": 163,
+        "min_unassigned_per_100_query_group": 110,
+        "nonempty_targets": 4692,
+        "target_rows": 4692,
+        "zero_target_images": 0
+      },
+      "converter_only": {
+        "empty_mask_rows": 0,
+        "images": 1480,
+        "images_above_100_query_cap": 4,
+        "images_with_empty_mask_rows": 0,
+        "images_without_nonempty_targets": 0,
+        "max_targets_per_image": 163,
+        "min_unassigned_per_100_query_group": 110,
+        "nonempty_targets": 4692,
+        "target_rows": 4692,
+        "zero_target_images": 0
+      }
+    },
+    "resize_crop": {
+      "augmented": {
+        "empty_mask_rows": 0,
+        "images": 1457,
+        "images_above_100_query_cap": 0,
+        "images_with_empty_mask_rows": 0,
+        "images_without_nonempty_targets": 99,
+        "max_targets_per_image": 92,
+        "min_unassigned_per_100_query_group": 0,
+        "nonempty_targets": 3813,
+        "target_rows": 3813,
+        "zero_target_images": 99
+      },
+      "converter_only": {
+        "empty_mask_rows": 0,
+        "images": 1457,
+        "images_above_100_query_cap": 1,
+        "images_with_empty_mask_rows": 0,
+        "images_without_nonempty_targets": 0,
+        "max_targets_per_image": 103,
+        "min_unassigned_per_100_query_group": 3,
+        "nonempty_targets": 4568,
+        "target_rows": 4568,
+        "zero_target_images": 0
+      }
+    }
+  },
+  "complete_FIT_images": 2937,
+  "fit_view_sha256": "c7629de9afaa398d0b943fba8e4cec75c8b65a9864fd795c1465c9b4dec3c271",
+  "five_high_density_images": {
+    "augmented": {
+      "empty_mask_rows": 0,
+      "images": 5,
+      "images_above_100_query_cap": 4,
+      "images_with_empty_mask_rows": 0,
+      "images_without_nonempty_targets": 0,
+      "max_targets_per_image": 163,
+      "min_unassigned_per_100_query_group": 110,
+      "nonempty_targets": 574,
+      "target_rows": 574,
+      "zero_target_images": 0
+    },
+    "converter_only": {
+      "empty_mask_rows": 0,
+      "images": 5,
+      "images_above_100_query_cap": 5,
+      "images_with_empty_mask_rows": 0,
+      "images_without_nonempty_targets": 0,
+      "max_targets_per_image": 163,
+      "min_unassigned_per_100_query_group": 113,
+      "nonempty_targets": 613,
+      "target_rows": 613,
+      "zero_target_images": 0
+    }
+  },
+  "horizontal_flip": true,
+  "model_executed": false,
+  "native_sources": {
+    "rfdetr.datasets._torchvision": "03c12e881f733d4f6b469f784187e461753b8775b7e35e57c1d8a6c35c46ef56",
+    "rfdetr.datasets.coco": "be64b20a178d9cde41db69e01e17e1296e36eee791e837294c3f930ae56f03b9",
+    "rfdetr.datasets.io_utils": "0e8d54c2867f8eec28aa25f650501a91bac8116ca2f7e40e9ddd4cd1332bcd65",
+    "rfdetr.datasets.transforms": "a4070434e1cfcb50040f1c84abddf13e37fb8f93953c76c035c32058f8b6d2a1",
+    "rfdetr.utilities.tensors": "122f44a151db786ef4845c5d89e5cb2209624651d3638f007e3c0867f7312827"
+  },
+  "no_empty_mask_target_gate": true,
+  "one_view_per_FIT_image": true,
+  "original_DEV_image_opened": false,
+  "original_archive_sha256": "f089fe3417a6c58f3e71f4bc35f8895ac6b136f29c58191b4a90442ab630d159",
+  "original_train_sha256": "3e240c38014526e9b93206a946105fb41c808272238932b0d4c2422978d5116f",
+  "packed_collate_block_size": 12,
+  "paired_exact_exclusions": {
+    "equal_augmented_image": 5,
+    "equal_common_target_rows": 5,
+    "images": 5,
+    "source_extra_empty_after": 1,
+    "source_extra_empty_before": 5,
+    "source_extra_labels_after": 1
+  },
+  "protocol": "81254e1503236a9fce1232067dc9282602ea8dc0",
+  "query_capacity": 100,
+  "resolution": 576,
+  "runtime": {
+    "Pillow": "12.3.0",
+    "numpy": "1.26.4",
+    "pycocotools": "2.0.11",
+    "rfdetr": "1.12.0",
+    "torch": "2.10.0+cu130",
+    "torchvision": "0.25.0+cu130"
+  },
+  "scale_jitter": true,
+  "seed_rule": "520100000 + position in ascending image ID order",
+  "source": {
+    "annotations": 9260,
+    "crowd": 0,
+    "dropped_by_native_converter": 0
+  },
+  "status": "HRSID_FIT_NATIVE_AUGMENTATION_AUDIT_COMPLETE",
+  "totals": {
+    "augmented": {
+      "empty_mask_rows": 0,
+      "images": 2937,
+      "images_above_100_query_cap": 4,
+      "images_with_empty_mask_rows": 0,
+      "images_without_nonempty_targets": 99,
+      "max_targets_per_image": 163,
+      "min_unassigned_per_100_query_group": 110,
+      "nonempty_targets": 8505,
+      "target_rows": 8505,
+      "zero_target_images": 99
+    },
+    "converter_only": {
+      "empty_mask_rows": 0,
+      "images": 2937,
+      "images_above_100_query_cap": 5,
+      "images_with_empty_mask_rows": 0,
+      "images_without_nonempty_targets": 0,
+      "max_targets_per_image": 163,
+      "min_unassigned_per_100_query_group": 113,
+      "nonempty_targets": 9260,
+      "target_rows": 9260,
+      "zero_target_images": 0
+    }
+  },
+  "training_qualification": false,
+  "visit_aggregate_sha256": "2f5b67c38eab0be3273963267147fd38e75d9bbeaa823f8cb7d4fdc5c66107b1"
+}
