@@ -7,6 +7,8 @@
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
+- [HRSID 原生 FIT 首轮](research_round_20260925_global/HRSID_NATIVE_FIT_FIRST_EPOCH_PROTOCOL_20261109.md)。固定 164 查询、100 轮调度和首轮 735 更新。
+- [SSDD 预测轮廓的切向对应](research_round_20260925_global/RFDETR_E24_FIT_CONTOUR_CORRESPONDENCE_PROTOCOL_20261109.md)。同容量比较空间对齐、打乱配对与固定轴。
 - [SSDD 小船的有符号错分诊断](research_round_20260925_global/RFDETR_E24_FIT_SIGNED_BOUNDARY_EVIDENCE_20261109.md)。两种秩候选均未过预设门槛，保留补删分项和实际覆盖。
 - [等像素预算的实例间分配](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_EDIT_ALLOCATION_PROTOCOL_20261109.md)。三组各 14,864 次翻转，估计交并比组低于原生与置信度，按规则停止。
 - [严格掩膜排名实测与 FIT 预锁检验](research_round_20260925_global/RFDETR_FIXED_MASK_RANK_WITNESS_AND_FIT_PROTOCOL_20261109.md)。学习秩较原生 AP 低 0.217 个百分点，按规则停止。固定前缀的完美 16 像素编辑上限仅覆盖约四成小目标候选。
