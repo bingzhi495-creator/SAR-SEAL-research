@@ -1,0 +1,1332 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT_microbatches": 1,
+  "TEST": false,
+  "attempt": "F0",
+  "backward_passes": 2,
+  "backward_rng_states_equal": true,
+  "backward_wall_seconds_with_hooks": [
+    1.4826759998686612,
+    0.7224916000850499
+  ],
+  "candidate_local_differences": [
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 10,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 229
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 10,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 238
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 10,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 244
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 10,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 250
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 10,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 258
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 25,
+      "operator": "UpsampleBilinear2DBackward0",
+      "ordinal": 1018
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 26,
+      "operator": "UpsampleBilinear2DBackward0",
+      "ordinal": 1035
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 28,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 1083
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 28,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 1088
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 28,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 1093
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 28,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 1098
+    }
+  ],
+  "compared_node_count": 128,
+  "ema_updates": 0,
+  "exact_boundary_gradients": {
+    "backbone_first_feature": false
+  },
+  "fixed_input_sha256": "16af72b5e47ceaaa6be24ebde8a7aad245f236e1954b10e44d1ca1750d25f219",
+  "forward_output_sha256_by_name": {
+    "aux_outputs": "e77e3992776db43803a60a416db492caf871c2784712b97e5e114f369149c07e",
+    "enc_outputs": "c0c2d06beee0fa1557544def037369c921b12f330536924704a84374367b8a20",
+    "pred_boxes": "e8847a63934849ff9e1fdc9e4d9f26a9167559a1293ca2a4998670c7b120ab4f",
+    "pred_logits": "dd80ed8769eee08e0c6b1d713aa83616654799a09eb80905940f8e6f90e0bc6b",
+    "pred_masks": "0dd085a0a2a57108f2031400af199be30f1dd4bea9402f92afd8643237baf9b1"
+  },
+  "forward_passes": 1,
+  "graph_node_count": 2659,
+  "leaf_gradient_exact": false,
+  "leaf_gradients": {
+    "all": {
+      "changed_elements": 14219694,
+      "difference_l2": 0.6986146767058388,
+      "relative_l2_to_first": 0.011582684195586132,
+      "tensors": 543
+    },
+    "backbone": {
+      "changed_elements": 14219694,
+      "difference_l2": 0.6986146767058388,
+      "relative_l2_to_first": 0.011659098281638369,
+      "tensors": 248
+    }
+  },
+  "limits": {
+    "graph_nodes": 60000,
+    "hooks": 128,
+    "pass_hash_bytes": 3221225472,
+    "tuple_hash_bytes": 134217728
+  },
+  "local_difference_count": 11,
+  "native_forward_sha256": "41ef7cd135d000ddc791e2a6c73be6e27f231d0c066c67fb82958260b2f7323c",
+  "node_comparisons": [
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 8,
+      "operator": "IndexPutBackward0",
+      "ordinal": 137
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 8,
+      "operator": "IndexBackward0",
+      "ordinal": 141
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 8,
+      "operator": "IndexPutBackward0",
+      "ordinal": 146
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 8,
+      "operator": "IndexBackward0",
+      "ordinal": 150
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 8,
+      "operator": "IndexPutBackward0",
+      "ordinal": 156
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 8,
+      "operator": "IndexBackward0",
+      "ordinal": 159
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 8,
+      "operator": "IndexPutBackward0",
+      "ordinal": 165
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 8,
+      "operator": "IndexBackward0",
+      "ordinal": 168
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 8,
+      "operator": "IndexPutBackward0",
+      "ordinal": 174
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 8,
+      "operator": "IndexBackward0",
+      "ordinal": 178
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 10,
+      "operator": "AddmmBackward0",
+      "ordinal": 223
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 10,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 229
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 10,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 238
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 10,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 244
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 10,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 250
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 10,
+      "operator": "GatherBackward0",
+      "ordinal": 252
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 10,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 258
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 14,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 371
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 14,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 372
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 14,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 373
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 14,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 374
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 15,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 429
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 15,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 432
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 15,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 433
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 15,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 434
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 15,
+      "operator": "AddmmBackward0",
+      "ordinal": 435
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 17,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 534
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 17,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 536
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 17,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 538
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 17,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 540
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 17,
+      "operator": "BmmBackward0",
+      "ordinal": 552
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 17,
+      "operator": "BmmBackward0",
+      "ordinal": 558
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 17,
+      "operator": "BmmBackward0",
+      "ordinal": 564
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 17,
+      "operator": "BmmBackward0",
+      "ordinal": 570
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 17,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 571
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 17,
+      "operator": "BmmBackward0",
+      "ordinal": 582
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 18,
+      "operator": "AddmmBackward0",
+      "ordinal": 586
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 18,
+      "operator": "AddmmBackward0",
+      "ordinal": 590
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 18,
+      "operator": "AddmmBackward0",
+      "ordinal": 594
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 18,
+      "operator": "AddmmBackward0",
+      "ordinal": 598
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 19,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 650
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 19,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 655
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 19,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 660
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 19,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 665
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 19,
+      "operator": "AddmmBackward0",
+      "ordinal": 670
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 20,
+      "operator": "AddmmBackward0",
+      "ordinal": 702
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 20,
+      "operator": "AddmmBackward0",
+      "ordinal": 709
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 20,
+      "operator": "AddmmBackward0",
+      "ordinal": 716
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 20,
+      "operator": "AddmmBackward0",
+      "ordinal": 723
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 22,
+      "operator": "AddmmBackward0",
+      "ordinal": 823
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 22,
+      "operator": "AddmmBackward0",
+      "ordinal": 829
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 22,
+      "operator": "AddmmBackward0",
+      "ordinal": 835
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 22,
+      "operator": "AddmmBackward0",
+      "ordinal": 841
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 23,
+      "operator": "AddmmBackward0",
+      "ordinal": 886
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 23,
+      "operator": "IndexBackward0",
+      "ordinal": 887
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "conv",
+      "graph_depth": 23,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 888
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 23,
+      "operator": "IndexBackward0",
+      "ordinal": 889
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "conv",
+      "graph_depth": 23,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 890
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 23,
+      "operator": "IndexBackward0",
+      "ordinal": 891
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "conv",
+      "graph_depth": 23,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 892
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 23,
+      "operator": "IndexBackward0",
+      "ordinal": 893
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "conv",
+      "graph_depth": 23,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 894
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 23,
+      "operator": "IndexBackward0",
+      "ordinal": 901
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "conv",
+      "graph_depth": 23,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 902
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 25,
+      "operator": "AddmmBackward0",
+      "ordinal": 1003
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 25,
+      "operator": "AddmmBackward0",
+      "ordinal": 1007
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 25,
+      "operator": "AddmmBackward0",
+      "ordinal": 1009
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 25,
+      "operator": "AddmmBackward0",
+      "ordinal": 1011
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 25,
+      "operator": "AddmmBackward0",
+      "ordinal": 1017
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 25,
+      "operator": "UpsampleBilinear2DBackward0",
+      "ordinal": 1018
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "attention",
+      "graph_depth": 26,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 1019
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "attention",
+      "graph_depth": 26,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 1021
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "attention",
+      "graph_depth": 26,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 1023
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "attention",
+      "graph_depth": 26,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 1025
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 26,
+      "operator": "UpsampleBilinear2DBackward0",
+      "ordinal": 1035
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "index",
+      "graph_depth": 27,
+      "operator": "GatherBackward0",
+      "ordinal": 1076
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "projector",
+      "graph_depth": 27,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 1079
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 28,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 1083
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 28,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 1088
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 28,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 1093
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": false,
+      "family": "sampling",
+      "graph_depth": 28,
+      "operator": "GridSampler2DBackward0",
+      "ordinal": 1098
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 29,
+      "operator": "AddmmBackward0",
+      "ordinal": 1165
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 29,
+      "operator": "AddmmBackward0",
+      "ordinal": 1167
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 29,
+      "operator": "AddmmBackward0",
+      "ordinal": 1169
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 29,
+      "operator": "AddmmBackward0",
+      "ordinal": 1171
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "attention",
+      "graph_depth": 30,
+      "operator": "SoftmaxBackward0",
+      "ordinal": 1183
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "attention",
+      "graph_depth": 30,
+      "operator": "SoftmaxBackward0",
+      "ordinal": 1192
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "attention",
+      "graph_depth": 30,
+      "operator": "SoftmaxBackward0",
+      "ordinal": 1201
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "attention",
+      "graph_depth": 30,
+      "operator": "SoftmaxBackward0",
+      "ordinal": 1210
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 30,
+      "operator": "AddmmBackward0",
+      "ordinal": 1211
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 30,
+      "operator": "AddmmBackward0",
+      "ordinal": 1215
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 30,
+      "operator": "AddmmBackward0",
+      "ordinal": 1219
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 30,
+      "operator": "AddmmBackward0",
+      "ordinal": 1223
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 30,
+      "operator": "AddmmBackward0",
+      "ordinal": 1227
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "projector",
+      "graph_depth": 31,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 1301
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 32,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 1341
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 32,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 1344
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 32,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 1347
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 32,
+      "operator": "NativeLayerNormBackward0",
+      "ordinal": 1350
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 34,
+      "operator": "AddmmBackward0",
+      "ordinal": 1400
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 34,
+      "operator": "AddmmBackward0",
+      "ordinal": 1404
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 34,
+      "operator": "AddmmBackward0",
+      "ordinal": 1408
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "projector",
+      "graph_depth": 34,
+      "operator": "AddmmBackward0",
+      "ordinal": 1412
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "conv",
+      "graph_depth": 34,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1426
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "conv",
+      "graph_depth": 35,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1457
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "conv",
+      "graph_depth": 35,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1460
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "conv",
+      "graph_depth": 35,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1463
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": true,
+      "exact_backward_outputs": true,
+      "family": "conv",
+      "graph_depth": 35,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1466
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "conv",
+      "graph_depth": 43,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1669
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "conv",
+      "graph_depth": 43,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1670
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "conv",
+      "graph_depth": 43,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1671
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "conv",
+      "graph_depth": 44,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1673
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "conv",
+      "graph_depth": 51,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1736
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "conv",
+      "graph_depth": 51,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1737
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "conv",
+      "graph_depth": 51,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 1738
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 60,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 1979
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 60,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 1994
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 60,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 2007
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 60,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 2020
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 62,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 2094
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "conv",
+      "graph_depth": 62,
+      "operator": "ConvolutionBackward0",
+      "ordinal": 2100
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 62,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 2109
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 62,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 2123
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 62,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 2137
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 64,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 2215
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 65,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 2294
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 65,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 2312
+    },
+    {
+      "compared": true,
+      "exact_backward_inputs": false,
+      "exact_backward_outputs": false,
+      "family": "attention",
+      "graph_depth": 65,
+      "operator": "ScaledDotProductEfficientAttentionBackward0",
+      "ordinal": 2330
+    }
+  ],
+  "observer_hashed_bytes": [
+    953621068,
+    953621068
+  ],
+  "operator_available": {
+    "attention": 20,
+    "conv": 18,
+    "index": 17,
+    "projector": 189,
+    "sampling": 11
+  },
+  "optimizer_updates": 0,
+  "peak_cuda_reserved_bytes": 1941962752,
+  "precision": "native BF16 autocast, high float32 matmul, cuDNN TF32",
+  "protocol_commit": "a0a828a1cc372a4ad9a1885023509b82a0320a27",
+  "replay_source_sha256": "b35340218f6b557a915417a352ce6ca5270a368375a94e2f6b0b3178d2545314",
+  "selected_by_family": {
+    "attention": 20,
+    "conv": 18,
+    "index": 17,
+    "projector": 62,
+    "sampling": 11
+  },
+  "selected_node_count": 128,
+  "selection_order": "BFS from loss, ordered next_functions, family-round-robin cap",
+  "status": "ACTUAL_ONE_FIT_FORWARD_TWO_BACKWARDS_NO_UPDATE"
+}

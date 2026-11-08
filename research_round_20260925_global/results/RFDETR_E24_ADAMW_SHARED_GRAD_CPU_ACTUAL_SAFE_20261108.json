@@ -1,0 +1,167 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT_data_opened": false,
+  "GPU": false,
+  "TEST": false,
+  "backend": "NATIVE_TORCH_ADAMW_CPU",
+  "cells": {
+    "FF": {
+      "adam_state_step_counts": {
+        "1": 543
+      },
+      "adam_step_seconds": 0.0779999999795109,
+      "gradient_witness": "F",
+      "mask_head_update_l2": 0.07959585829393266,
+      "optimizer_state": "F",
+      "setup_and_step_seconds": 7.109000000171363,
+      "update_l2": 0.22172154119596152
+    },
+    "FS": {
+      "adam_state_step_counts": {
+        "1": 543
+      },
+      "adam_step_seconds": 0.0779999999795109,
+      "gradient_witness": "S",
+      "mask_head_update_l2": 0.07959561957415741,
+      "optimizer_state": "F",
+      "setup_and_step_seconds": 1.9060000001918525,
+      "update_l2": 0.22172077845221447
+    },
+    "SF": {
+      "adam_state_step_counts": {
+        "4465": 543
+      },
+      "adam_step_seconds": 0.06199999991804361,
+      "gradient_witness": "F",
+      "mask_head_update_l2": 0.017031154034093995,
+      "optimizer_state": "S",
+      "setup_and_step_seconds": 1.8439999998081475,
+      "update_l2": 0.05322578123668409
+    },
+    "SS": {
+      "adam_state_step_counts": {
+        "4465": 543
+      },
+      "adam_step_seconds": 0.06199999991804361,
+      "gradient_witness": "S",
+      "mask_head_update_l2": 0.017030972348285885,
+      "optimizer_state": "S",
+      "setup_and_step_seconds": 1.8439999998081475,
+      "update_l2": 0.053225040414221866
+    }
+  },
+  "elapsed_seconds": 13.452999999979511,
+  "ema_updates": 0,
+  "gradients": {
+    "F": {
+      "archive_sha256": "258f9a271ce7b6dfd356356732639021bff396fa687fbbbb7ba944e64dbb40bd",
+      "clipped_l2": 0.0999999937890638,
+      "original_OS_exit": 0,
+      "tensor_count": 543,
+      "tensor_sha256": "86b19038d58744c51229225f26851ca34d8f5ea2f3fbb932deb035d0c4310bd1"
+    },
+    "S": {
+      "archive_sha256": "033f34557f8516ff836b50d8e70a6d4b48ae454a5797b2f8c47ab8ec3f3e6028",
+      "clipped_l2": 0.09999999607020274,
+      "original_OS_exit": 0,
+      "tensor_count": 543,
+      "tensor_sha256": "fdcad5aa8916ddddbac88ad8a35349d5fe63edfcdd98eefaedff119853162364"
+    }
+  },
+  "initialization_source_sha256": {
+    "run_state_arm.py": "f870227ecce5da591c1bdc9b975591fff720b36540e0f01818277105d3c2176c",
+    "state_preservation.py": "8dda41131a2930aacf00c51dbe8cfa4817c0a3cd4b02c6bb606948db77341678"
+  },
+  "model_forward": false,
+  "one_cpu_optimizer_update_per_cell": true,
+  "optimizer_updates_total": 4,
+  "original_AP_qualification_passed": false,
+  "original_pair_os_waits_verified": true,
+  "protocol": "fb2baedab2a5b1a9970f968ec0b98f6584744cf1",
+  "shared_gradient_state_effect": {
+    "F": {
+      "all": {
+        "cosine": 0.3802327766077256,
+        "difference_l2": 0.2074100811834397,
+        "left_l2": 0.22172154119596152,
+        "relative_difference_to_left": 0.9354530013848628,
+        "right_l2": 0.05322578123668409,
+        "right_to_left_l2": 0.2400568792260116,
+        "tensors": 544
+      },
+      "mask_head": {
+        "cosine": 0.3316810555094051,
+        "difference_l2": 0.07567232653358684,
+        "left_l2": 0.07959585829393266,
+        "relative_difference_to_left": 0.9507068351991764,
+        "right_l2": 0.017031154034093995,
+        "right_to_left_l2": 0.21397035472877393,
+        "tensors": 35
+      }
+    },
+    "S": {
+      "all": {
+        "cosine": 0.3802185511806228,
+        "difference_l2": 0.20741026063754323,
+        "left_l2": 0.22172077845221447,
+        "relative_difference_to_left": 0.935457028815387,
+        "right_l2": 0.053225040414221866,
+        "right_to_left_l2": 0.2400543638073731,
+        "tensors": 544
+      },
+      "mask_head": {
+        "cosine": 0.33166695741946217,
+        "difference_l2": 0.07567236830497451,
+        "left_l2": 0.07959561957415741,
+        "relative_difference_to_left": 0.9507102113134794,
+        "right_l2": 0.017030972348285885,
+        "right_to_left_l2": 0.21396871384886348,
+        "tensors": 35
+      }
+    }
+  },
+  "status": "ACTUAL_CPU_ADAMW_SHARED_REAL_GRADIENT_CROSS_REPLAY_COMPLETE",
+  "within_state_gradient_sensitivity": {
+    "F": {
+      "all": {
+        "cosine": 0.9999429718871771,
+        "difference_l2": 0.0023679180178405664,
+        "left_l2": 0.22172154119596152,
+        "relative_difference_to_left": 0.010679693118981873,
+        "right_l2": 0.22172077845221447,
+        "right_to_left_l2": 0.999996559902376,
+        "tensors": 544
+      },
+      "mask_head": {
+        "cosine": 0.999999999871376,
+        "difference_l2": 1.2987597581808414e-06,
+        "left_l2": 0.07959585829393266,
+        "relative_difference_to_left": 1.631692635796154e-05,
+        "right_l2": 0.07959561957415741,
+        "right_to_left_l2": 0.9999970008517984,
+        "tensors": 35
+      }
+    },
+    "S": {
+      "all": {
+        "cosine": 0.9999996167313692,
+        "difference_l2": 4.6605860464656014e-05,
+        "left_l2": 0.05322578123668409,
+        "relative_difference_to_left": 0.0008756256720293,
+        "right_l2": 0.053225040414221866,
+        "right_to_left_l2": 0.9999860815107827,
+        "tensors": 544
+      },
+      "mask_head": {
+        "cosine": 0.9999999972952972,
+        "difference_l2": 1.2657196424934392e-06,
+        "left_l2": 0.017031154034093995,
+        "relative_difference_to_left": 7.431790235468747e-05,
+        "right_l2": 0.017030972348285885,
+        "right_to_left_l2": 0.999989332149322,
+        "tensors": 35
+      }
+    }
+  }
+}
