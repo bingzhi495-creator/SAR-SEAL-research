@@ -13,3 +13,8 @@
 Group DETR 在每组内独立执行一对一匹配，RF-DETR 的训练查询表按组排列。增大查询容量用于避免已实测的训练匹配上限。用这两例可以确认具体代码路径及分组预算，后续目标域训练仍需统一输入规则和查询宽度。正式 COCO maxDets 由评估协议单独固定。 [Group DETR 原文](https://arxiv.org/abs/2207.13085) · [RF-DETR 固定版本模型](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/models/lwdetr.py#L150-L163) · [逐组匹配实现](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/models/matcher.py#L829-L851)
 
 CPU 选择逻辑的两项合成测试已通过。实际张量选择和后续 CUDA 核验分别留存原进程结果。 [输入选择源码](code/HRSID_REAL_FIT_NATIVE_MATCH_20261109/select_native_fit.py) · [选择逻辑测试](code/HRSID_REAL_FIT_NATIVE_MATCH_20261109/test_select_native_fit.py)
+
+## 真实输入已生成
+
+CPU 原进程退出 0，用时 11.20 秒。已按上述规则保存 0 目标裁剪与 163 目标直接缩放各一份真实 FIT 张量。独立重读校验了张量包 SHA-256、两组 1×3×576×576 输入和对应 0/163×576×576 掩膜张量，163 张实例掩膜逐个非空。原张量仅留本地。CUDA 模型核验另行执行。 [输入选择实测](results/HRSID_REAL_FIT_CPU_INPUTS_ACTUAL_SAFE_20261109.json)
+
