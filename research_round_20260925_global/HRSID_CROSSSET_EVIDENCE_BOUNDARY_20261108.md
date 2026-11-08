@@ -24,3 +24,9 @@ Windows 标准 HTTP 客户端实际取得两段完整 206 响应。64 MiB 边界
 | PsSAR-v1.0 | 复用 HRSID 图像和船舶实例，增加海陆背景标签。可用于近岸条件分层，仍承接 HRSID 的图像与历史测试接触。作者标记数据 GPL-3.0、基线代码 Apache-2.0。 [数据与许可](https://github.com/PerSARption/PsSAR-v1.0-Unlocking-SAR-Panoptic-Segmentation/blob/main/README_DATASET.md) |
 | OSSDD | 公开 Sentinel-1 VV/VH 图块。作者将旋转框内部栅格化成二值图，适用于检测及框形状验证，船体轮廓精度仍需真实实例标注。 [标注原文](https://arxiv.org/html/2608.01963v1#S4) · [数据卡](https://huggingface.co/datasets/sylviaHoch/OpenSARShip-Ship-Detection-Dataset#license-and-attribution) |
 | FSS-Seg / PID-SAM | IJCAI 2026 论文报告基于 FUSARShip1.0 的七类像素语义数据，以 Dice、IoU、精度与 HD95 评价。论文用点级掩膜贡献和 PPO 优化提示，可作为点条件机制的直接先例之一。作者源码入口为 ZIP，训练配置与实例 ID 发布尚未核验。 [论文](https://ijcai.org/proceedings/2026/0161.pdf) · [作者代码](https://github.com/Fm336/PID-SAM) |
+
+### 作者源码复核和后续实际传输
+
+已取得固定提交的 PID.zip，96,928 字节，Git blob 为 99c5b6d3dae18ca77617379518c768c0e085ef08，ZIP 成员 CRC 通过。实物含 5 个 Python 源文件、7 个编译缓存、训练和测试样本列表。训练入口导入的船舶 trainer、LoRA 包装和通用 trainer 在压缩包中只有缓存版本，SAM 库和数据仍依赖外部输入。固定包没有发现许可证或环境锁定文件。仅静态读取，运行复现仍待补齐。 [固定作者源码](https://github.com/Fm336/PID-SAM/blob/2764fab108304ad5da62fbb5e6c4e65aeb4ece0a/PID.zip)
+
+在先验证的 80 MiB 连续前缀上开启新的顺序传输。前 16 个完整 64 MiB 块已接收并逐块计算 SHA-256，连续归档已达 1,157,627,904 字节。既有归档和失败片段保持独立。全量接收、目录和成员 CRC 仍需在进程结束后独立核验。
