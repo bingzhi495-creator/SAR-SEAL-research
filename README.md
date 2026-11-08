@@ -7,10 +7,11 @@
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
-- [SSDD 小船的有符号错分诊断](research_round_20260925_global/RFDETR_E24_FIT_SIGNED_BOUNDARY_EVIDENCE_20261109.md)。固定原候选和像素数，比较补删证据与原生置信度。
+- [SSDD 小船的有符号错分诊断](research_round_20260925_global/RFDETR_E24_FIT_SIGNED_BOUNDARY_EVIDENCE_20261109.md)。两种秩候选均未过预设门槛，保留补删分项和实际覆盖。
 - [等像素预算的实例间分配](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_EDIT_ALLOCATION_PROTOCOL_20261109.md)。三组各 14,864 次翻转，估计交并比组低于原生与置信度，按规则停止。
 - [严格掩膜排名实测与 FIT 预锁检验](research_round_20260925_global/RFDETR_FIXED_MASK_RANK_WITNESS_AND_FIT_PROTOCOL_20261109.md)。学习秩较原生 AP 低 0.217 个百分点，按规则停止。固定前缀的完美 16 像素编辑上限仅覆盖约四成小目标候选。
-- [HRSID 真实空目标与稠密 FIT 输入资格](research_round_20260925_global/HRSID_REAL_FIT_NATIVE_MATCH_PROTOCOL_20261109.md)。0/163 目标的实际输入均已生成和重读，待 100/164 查询的 CUDA 核验。
+- [HRSID 真实空目标与稠密 FIT 输入资格](research_round_20260925_global/HRSID_REAL_FIT_NATIVE_MATCH_PROTOCOL_20261109.md)。空目标与稠密目标的反向均通过，164 查询逐组覆盖全部 163 个实例。
+- [HRSID 原生 COCO FIT 目录资格](research_round_20260925_global/HRSID_FIT_NATIVE_COCO_LAYOUT_PROTOCOL_20261109.md)。仅准备已验收的官方 PNG FIT 图和派生标注。
 - [HRSID 官方 PNG FIT 审计实测](research_round_20260925_global/HRSID_OFFICIAL_PNG_FIT_PIXEL_LABEL_AUDIT_PROTOCOL_20261109.md)。全量 FIT 固定增强后有 8,505 个非空目标和 99 个无目标视图。
 - [AdamW 历史状态对照实测](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_ACTUAL_20261109.md)。F/S 各 372 次更新，首梯度完全一致。S 严格覆盖净增 10，AP 低 0.573 个百分点，按规则停线。
 - [严格反向路径的 AdamW 等预算对照](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_PROTOCOL_20261109.md)。固定 F/S 首步门槛、每组 372 次更新和 DEV187 分支规则。
