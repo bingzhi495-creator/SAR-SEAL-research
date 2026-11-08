@@ -13,3 +13,15 @@
 针对同一个小目标、且各候选只与该 GT 有 IoU≥0.50 的明确对应，比较 IoU≥0.90 候选和 0.50≤IoU<0.90 候选的相对得分。并列计半，先按 GT 汇总再等权平均。进入后续阶段需至少覆盖 20 个 GT、15 张图，秩相对原分数和学习均值中较强者的一致率至少高 2 个百分点，全候选 mask AP 相对两者至少高 0.1 个百分点，AP75 不低于原生且 AP90 不低于两者。任何门不满足即停止此固定配方。评分头的相同参数规模和同支持不代表两种标量相同，正结果只支持本特征的边际作用。
 
 质量回归乘分已有 Mask Scoring R-CNN 直接先例。MCG 已用面积、紧致度、轮廓强度估计候选 IoU，SAM 已用阈值稳定性筛选掩膜。 Girón 等已使用非参数两侧秩统计检测 SAR 边缘。 [SAR 非参数边缘原文](https://arxiv.org/abs/1207.1915)项目自身 N26 也已在固定 R 掩膜上证实通用学习质量排序的效用。这里的可检验差异只在相同支持下秩统计相对普通均值的附加信息。 [Mask Scoring R-CNN](https://openaccess.thecvf.com/content_CVPR_2019/papers/Huang_Mask_Scoring_R-CNN_CVPR_2019_paper.pdf) · [MCG 作者训练源码](https://github.com/jponttuset/mcg/blob/e72031d793abf8921e39a8ef3c20de2198c8b26f/full/scripts_training/rank_training.m#L110-L127) · [SAM 稳定性源码](https://github.com/facebookresearch/segment-anything/blob/dca509fe793f601edb92606367a655c15ac00fdf/segment_anything/utils/amg.py#L156-L176) · [N26 历史证据](N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md)
+
+## FIT 实测与停线判定
+
+原进程退出 0，实际执行 31.77 秒。原生不编辑 AP 与 AP75 精确复现，两个学习头均用同一 42,481 个拟合候选执行 128 次更新，固定留出保留 9,083 个候选与 292 个 GT。
+
+| 评分 | Mask AP (%) | AP75 (%) | AP90 (%) | APs (%) | 同小目标配对一致率 (%) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 原生 | 72.473 | 90.163 | 12.791 | 70.472 | 58.104 |
+| 学习灰度均值 | 71.411 | 89.289 | 8.345 | 69.650 | 63.792 |
+| 学习灰度秩 | 72.257 | 90.033 | 11.959 | 70.533 | 63.138 |
+
+同目标严格与中等 IoU 对照覆盖 61 个小目标、45 张图。秩比原分数提高约 5.034 个百分点的配对一致率，但比学习均值低 0.654 个百分点，Mask AP 同时比原生低 0.217 个百分点。三组 AR100 均为 77.740%。配对比较只包含同一真实实例内明确关联的候选，完整 AP 同时反映图内竞争和全局真阳性／假阳性排序。结果拒绝本固定配方的准入，保留均值与秩各自的局部收益。原 SSDD DEV 和正式 TEST 未参与本轮头部拟合及评价。 [完整实测](results/RFDETR_FIT_BILATERAL_QUALITY_SCOUT_ACTUAL_SAFE_20261109.json)
