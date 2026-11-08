@@ -1,0 +1,402 @@
+{
+  "AP": false,
+  "DEV": false,
+  "TEST": false,
+  "actual_routes": {
+    "F0": {
+      "bilinear_interpolate": {
+        "cpu_backward_calls": 8,
+        "cpu_backward_seconds": 0.04272389970719814,
+        "cpu_input_bytes": 169869312,
+        "cpu_kernel_seconds": 0.016145299887284636,
+        "observed_shapes": [
+          {
+            "align_corners": false,
+            "cpu_backward_calls": 8,
+            "effective_dtype": "torch.float32",
+            "effective_scales": [
+              null,
+              null
+            ],
+            "input_dtype": "torch.float32",
+            "input_shape": [
+              1,
+              256,
+              48,
+              48
+            ],
+            "output_shape": [
+              1,
+              256,
+              144,
+              144
+            ],
+            "recompute_scale_factor": null,
+            "routed_forward_calls": 8
+          }
+        ],
+        "returned_gradient_bytes": 18874368,
+        "routed_forward_calls": 8,
+        "unchanged_calls": 0,
+        "unchanged_cuda_bilinear_antialias_calls": 0
+      },
+      "grid_sample": {
+        "cpu_backward_calls": 36,
+        "cpu_backward_seconds": 0.16589299961924553,
+        "cpu_input_bytes": 136889856,
+        "cpu_kernel_seconds": 0.13766690017655492,
+        "observed_shapes": [
+          {
+            "align_corners": false,
+            "cpu_backward_calls": 16,
+            "effective_dtype": "torch.float32",
+            "grid_dtype": "torch.float32",
+            "grid_shape": [
+              16,
+              1300,
+              2,
+              2
+            ],
+            "input_dtype": "torch.bfloat16",
+            "input_shape": [
+              16,
+              16,
+              48,
+              48
+            ],
+            "padding_mode": "zeros",
+            "routed_forward_calls": 16
+          },
+          {
+            "align_corners": false,
+            "cpu_backward_calls": 5,
+            "effective_dtype": "torch.float32",
+            "grid_dtype": "torch.float32",
+            "grid_shape": [
+              39,
+              1296,
+              1,
+              2
+            ],
+            "input_dtype": "torch.float32",
+            "input_shape": [
+              39,
+              1,
+              144,
+              144
+            ],
+            "padding_mode": "border",
+            "routed_forward_calls": 5
+          },
+          {
+            "align_corners": false,
+            "cpu_backward_calls": 10,
+            "effective_dtype": "torch.float32",
+            "grid_dtype": "torch.float32",
+            "grid_shape": [
+              26,
+              1296,
+              1,
+              2
+            ],
+            "input_dtype": "torch.float32",
+            "input_shape": [
+              26,
+              1,
+              144,
+              144
+            ],
+            "padding_mode": "border",
+            "routed_forward_calls": 10
+          },
+          {
+            "align_corners": false,
+            "cpu_backward_calls": 5,
+            "effective_dtype": "torch.float32",
+            "grid_dtype": "torch.float32",
+            "grid_shape": [
+              13,
+              1296,
+              1,
+              2
+            ],
+            "input_dtype": "torch.float32",
+            "input_shape": [
+              13,
+              1,
+              144,
+              144
+            ],
+            "padding_mode": "border",
+            "routed_forward_calls": 5
+          }
+        ],
+        "returned_gradient_bytes": 67330048,
+        "routed_forward_calls": 36,
+        "unchanged_calls": 79,
+        "unchanged_differentiable_cuda_bilinear_calls": 0
+      }
+    },
+    "F1": {
+      "bilinear_interpolate": {
+        "cpu_backward_calls": 8,
+        "cpu_backward_seconds": 0.0435851002112031,
+        "cpu_input_bytes": 169869312,
+        "cpu_kernel_seconds": 0.01638359995558858,
+        "observed_shapes": [
+          {
+            "align_corners": false,
+            "cpu_backward_calls": 8,
+            "effective_dtype": "torch.float32",
+            "effective_scales": [
+              null,
+              null
+            ],
+            "input_dtype": "torch.float32",
+            "input_shape": [
+              1,
+              256,
+              48,
+              48
+            ],
+            "output_shape": [
+              1,
+              256,
+              144,
+              144
+            ],
+            "recompute_scale_factor": null,
+            "routed_forward_calls": 8
+          }
+        ],
+        "returned_gradient_bytes": 18874368,
+        "routed_forward_calls": 8,
+        "unchanged_calls": 0,
+        "unchanged_cuda_bilinear_antialias_calls": 0
+      },
+      "grid_sample": {
+        "cpu_backward_calls": 36,
+        "cpu_backward_seconds": 0.16791390045545995,
+        "cpu_input_bytes": 136889856,
+        "cpu_kernel_seconds": 0.13844290026463568,
+        "observed_shapes": [
+          {
+            "align_corners": false,
+            "cpu_backward_calls": 16,
+            "effective_dtype": "torch.float32",
+            "grid_dtype": "torch.float32",
+            "grid_shape": [
+              16,
+              1300,
+              2,
+              2
+            ],
+            "input_dtype": "torch.bfloat16",
+            "input_shape": [
+              16,
+              16,
+              48,
+              48
+            ],
+            "padding_mode": "zeros",
+            "routed_forward_calls": 16
+          },
+          {
+            "align_corners": false,
+            "cpu_backward_calls": 5,
+            "effective_dtype": "torch.float32",
+            "grid_dtype": "torch.float32",
+            "grid_shape": [
+              39,
+              1296,
+              1,
+              2
+            ],
+            "input_dtype": "torch.float32",
+            "input_shape": [
+              39,
+              1,
+              144,
+              144
+            ],
+            "padding_mode": "border",
+            "routed_forward_calls": 5
+          },
+          {
+            "align_corners": false,
+            "cpu_backward_calls": 10,
+            "effective_dtype": "torch.float32",
+            "grid_dtype": "torch.float32",
+            "grid_shape": [
+              26,
+              1296,
+              1,
+              2
+            ],
+            "input_dtype": "torch.float32",
+            "input_shape": [
+              26,
+              1,
+              144,
+              144
+            ],
+            "padding_mode": "border",
+            "routed_forward_calls": 10
+          },
+          {
+            "align_corners": false,
+            "cpu_backward_calls": 5,
+            "effective_dtype": "torch.float32",
+            "grid_dtype": "torch.float32",
+            "grid_shape": [
+              13,
+              1296,
+              1,
+              2
+            ],
+            "input_dtype": "torch.float32",
+            "input_shape": [
+              13,
+              1,
+              144,
+              144
+            ],
+            "padding_mode": "border",
+            "routed_forward_calls": 5
+          }
+        ],
+        "returned_gradient_bytes": 67330048,
+        "routed_forward_calls": 36,
+        "unchanged_calls": 79,
+        "unchanged_differentiable_cuda_bilinear_calls": 0
+      }
+    }
+  },
+  "attempts": [
+    "F0",
+    "F1"
+  ],
+  "clip_norms": {
+    "F0": 192.74615478515625,
+    "F1": 192.4467010498047
+  },
+  "clipped_gradient_comparison": {
+    "all": {
+      "changed_elements": 32284061,
+      "cosine": 0.9999320991840887,
+      "diff_l2": 0.0011653395781559472,
+      "elements": 33882021,
+      "left_l2": 0.10000000173074176,
+      "max_abs": 5.144253373146057e-05,
+      "rel_l2_to_left": 0.011653395579869288,
+      "right_l2": 0.0999999993137052,
+      "squared_diff_share": 1.0,
+      "tensors": 543
+    },
+    "backbone": {
+      "changed_elements": 23798568,
+      "cosine": 0.9999307280307456,
+      "diff_l2": 0.0011651305360507523,
+      "elements": 23800192,
+      "left_l2": 0.09898882376020995,
+      "max_abs": 5.144253373146057e-05,
+      "rel_l2_to_left": 0.011770324080960482,
+      "right_l2": 0.0989856559422343,
+      "squared_diff_share": 0.9996412661857307,
+      "tensors": 248
+    },
+    "non_backbone": {
+      "changed_elements": 8485493,
+      "cosine": 0.9999999999999993,
+      "diff_l2": 2.2071845839616812e-05,
+      "elements": 10081829,
+      "left_l2": 0.014184960934681764,
+      "max_abs": 6.127171218395233e-06,
+      "rel_l2_to_left": 0.0015560032869496223,
+      "right_l2": 0.01420703278051607,
+      "squared_diff_share": 0.00035873381426927665,
+      "tensors": 295
+    },
+    "patch_projection_weight": {
+      "changed_elements": 165887,
+      "cosine": 0.9999245635354336,
+      "diff_l2": 0.0011241514024724647,
+      "elements": 165888,
+      "left_l2": 0.09151042762194238,
+      "max_abs": 4.372181138023734e-05,
+      "rel_l2_to_left": 0.01228440770833985,
+      "right_l2": 0.09148535219927954,
+      "squared_diff_share": 0.9305605135336934,
+      "tensors": 1
+    }
+  },
+  "decision": "COMBINED_SAMPLING_BACKWARD_FIRST_GRADIENT_GATE_FAILED",
+  "ema_updates": 0,
+  "first_backbone_and_later_differences": [
+    {
+      "differing_stages": [
+        "patch_projection_grad_out_sha256",
+        "cumulative_gradient"
+      ],
+      "first_difference": "patch_projection_grad_out_sha256",
+      "microbatch": 1
+    },
+    {
+      "differing_stages": [
+        "patch_projection_grad_out_sha256",
+        "cumulative_gradient"
+      ],
+      "first_difference": "patch_projection_grad_out_sha256",
+      "microbatch": 2
+    },
+    {
+      "differing_stages": [
+        "patch_projection_grad_out_sha256",
+        "cumulative_gradient"
+      ],
+      "first_difference": "patch_projection_grad_out_sha256",
+      "microbatch": 3
+    },
+    {
+      "differing_stages": [
+        "patch_projection_grad_out_sha256",
+        "cumulative_gradient"
+      ],
+      "first_difference": "patch_projection_grad_out_sha256",
+      "microbatch": 4
+    }
+  ],
+  "forward_checks": {
+    "F0": {
+      "backbone_output_sha256": 4,
+      "forward_outputs": 4,
+      "input_sha256": 4,
+      "losses": 4,
+      "matcher": 4,
+      "patch_projection_output_sha256": 4,
+      "point_coords": 4,
+      "rng_after_fetch": 4,
+      "rng_after_forward": 4,
+      "rng_after_loss": 4,
+      "rng_before_fetch": 4
+    },
+    "F1": {
+      "backbone_output_sha256": 4,
+      "forward_outputs": 4,
+      "input_sha256": 4,
+      "losses": 4,
+      "matcher": 4,
+      "patch_projection_output_sha256": 4,
+      "point_coords": 4,
+      "rng_after_fetch": 4,
+      "rng_after_forward": 4,
+      "rng_after_loss": 4,
+      "rng_before_fetch": 4
+    }
+  },
+  "native_cuda_forward_exact": true,
+  "optimizer_updates": 0,
+  "original_OS_waits": true,
+  "protocol_commit": "0ad7bb370d0e797a203bb78ca87a05b7d7d4b856",
+  "status": "ACTUAL_COMBINED_SAMPLING_BACKWARD_FIXED_PROBE_CPU_INDEPENDENTLY_VERIFIED"
+}
