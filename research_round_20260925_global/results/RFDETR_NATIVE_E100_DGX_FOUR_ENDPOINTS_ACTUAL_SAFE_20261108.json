@@ -1,0 +1,182 @@
+{
+  "AP_point_delta_vs_run_e24": {
+    "E100": 0.299366785448707,
+    "E24": 0.0,
+    "E50": -0.13692361512771534,
+    "INDEPENDENT_E24": -0.4225939164874126
+  },
+  "GT_instances": 380,
+  "TEST": false,
+  "backend": "DGX_eager_FP32",
+  "cases": {
+    "E100": {
+      "AP": 0.6816530127007889,
+      "AP75": 0.8667030602853443,
+      "APs": 0.6700032067402302,
+      "AR100": 0.7407894736842106,
+      "all12": [
+        0.6816530127007889,
+        0.9728738501922984,
+        0.8667030602853443,
+        0.6700032067402302,
+        0.7080025915697528,
+        0.7999999999999999,
+        0.3768421052631579,
+        0.7194736842105262,
+        0.7407894736842106,
+        0.7346715328467154,
+        0.7561904761904762,
+        0.8
+      ],
+      "checkpoint_sha256": "3d7c0d3f2b8af684e24b55dc17ce78b576620d95482aefd65e080d34a0921bc8",
+      "cuda_peak_reserved_bytes": 429916160,
+      "epoch": 100,
+      "mapped_rows": 11588,
+      "optimizer_updates": 18600,
+      "predictions_sha256": "39c7a33d3c9b553861e107265344108cb3e51510553d7fc38e69b6c8eae0af75",
+      "strict_ema_tensors": 545,
+      "timing_seconds": {
+        "input_pack_transfer": 0.18555746763013303,
+        "jpeg_read_decode_transform": 1.519090509507805,
+        "serialization_and_optional_write": 0.059161519864574075,
+        "setup_and_strict_load": 2.0095689159352332,
+        "stock_postprocess_rle_roundtrip": 134.7971225536894,
+        "synchronized_cuda_forward": 7.409787353128195,
+        "worker_elapsed": 146.08359236293472
+      }
+    },
+    "E24": {
+      "AP": 0.6786593448463019,
+      "AP75": 0.8502191734562555,
+      "APs": 0.6733940865153343,
+      "AR100": 0.7344736842105264,
+      "all12": [
+        0.6786593448463019,
+        0.9769477073620405,
+        0.8502191734562555,
+        0.6733940865153343,
+        0.6881452467645808,
+        0.7999999999999999,
+        0.3684210526315789,
+        0.716842105263158,
+        0.7344736842105264,
+        0.7291970802919708,
+        0.7476190476190476,
+        0.8
+      ],
+      "checkpoint_sha256": "5c3e7dfae8bae88e2ec2eb2bce36b8bff515de7dde2889fa0ad12d6084b8035b",
+      "cuda_peak_reserved_bytes": 429916160,
+      "epoch": 24,
+      "mapped_rows": 13671,
+      "optimizer_updates": 4464,
+      "predictions_sha256": "2a4cabf924b221d074ad15b261e1e5bb970679510d95874f8bddeaa1e2dc0d69",
+      "strict_ema_tensors": 545,
+      "timing_seconds": {
+        "input_pack_transfer": 0.1963654609862715,
+        "jpeg_read_decode_transform": 1.5545997938606888,
+        "serialization_and_optional_write": 0.06132767838425934,
+        "setup_and_strict_load": 2.0969789158552885,
+        "stock_postprocess_rle_roundtrip": 156.75176854780875,
+        "synchronized_cuda_forward": 7.4267298264894634,
+        "worker_elapsed": 168.1926444079727
+      }
+    },
+    "E50": {
+      "AP": 0.6772901086950247,
+      "AP75": 0.8607292611624378,
+      "APs": 0.6708265619590198,
+      "AR100": 0.7413157894736842,
+      "all12": [
+        0.6772901086950247,
+        0.9628450850085053,
+        0.8607292611624378,
+        0.6708265619590198,
+        0.689745386825899,
+        0.7142857142857142,
+        0.37210526315789466,
+        0.7157894736842105,
+        0.7413157894736842,
+        0.735036496350365,
+        0.7571428571428571,
+        0.8
+      ],
+      "checkpoint_sha256": "9f04d553007d66b9d2fd0a84e2db8bce2f885d08c91b1ba2ad7728df57e8f073",
+      "cuda_peak_reserved_bytes": 429916160,
+      "epoch": 50,
+      "mapped_rows": 14665,
+      "optimizer_updates": 9300,
+      "predictions_sha256": "279241c598305d9f5acdb8d808a06eab8f85f7315ec355881ba631814478d6bb",
+      "strict_ema_tensors": 545,
+      "timing_seconds": {
+        "input_pack_transfer": 0.18644431419670582,
+        "jpeg_read_decode_transform": 1.5285925508942455,
+        "serialization_and_optional_write": 0.07097656815312803,
+        "setup_and_strict_load": 2.0159265950787812,
+        "stock_postprocess_rle_roundtrip": 166.250675376039,
+        "synchronized_cuda_forward": 7.407182784983888,
+        "worker_elapsed": 177.56807875004597
+      }
+    },
+    "INDEPENDENT_E24": {
+      "AP": 0.6744334056814277,
+      "AP75": 0.8538575350205851,
+      "APs": 0.6731170548617869,
+      "AR100": 0.7526315789473684,
+      "all12": [
+        0.6744334056814277,
+        0.9686734655303507,
+        0.8538575350205851,
+        0.6731170548617869,
+        0.6830649441235503,
+        0.7029411764705882,
+        0.36736842105263157,
+        0.7186842105263158,
+        0.7526315789473684,
+        0.7489051094890511,
+        0.7619047619047619,
+        0.8
+      ],
+      "checkpoint_sha256": "30d6b22104122e6a38f8ec7127e30ab1ae46117d898a1131c202bc5b673530b5",
+      "cuda_peak_reserved_bytes": 429916160,
+      "epoch": 24,
+      "mapped_rows": 15434,
+      "optimizer_updates": 4464,
+      "predictions_sha256": "7d6239e87ccc6aed4a012e491007ce4c48edff053d9edf8f04f7177f5e138321",
+      "strict_ema_tensors": 545,
+      "timing_seconds": {
+        "input_pack_transfer": 0.19085134798660874,
+        "jpeg_read_decode_transform": 3.227302636252716,
+        "serialization_and_optional_write": 0.07790629053488374,
+        "setup_and_strict_load": 2.0617305219639093,
+        "stock_postprocess_rle_roundtrip": 174.26722987322137,
+        "synchronized_cuda_forward": 7.432454276131466,
+        "worker_elapsed": 187.36829587817192
+      }
+    }
+  },
+  "category_ids": [
+    1
+  ],
+  "images": 187,
+  "independent_e24_prediction_bytes_reproduced": true,
+  "iou_type": "segm",
+  "max_dets": [
+    1,
+    10,
+    100
+  ],
+  "new_evaluation_original_owner_and_child_closed": true,
+  "official_coco_version": "2.0.11",
+  "original_training_SSH_wait_observed": false,
+  "population": "INTERNAL_DEV187_ALREADY_USED_FOR_DEVELOPMENT_NOT_OFFICIAL_TEST",
+  "precision": {
+    "autocast": false,
+    "cudnn_tf32": true,
+    "dtype": "float32",
+    "matmul": "high"
+  },
+  "primary_long_endpoint": "E100",
+  "scientific_status": "SAME_DGX_FIXED_AP_ACCEPTED",
+  "status": "DGX_FOUR_CLOSED_NATIVE_ENDPOINTS_FIXED_DEV187_OFFICIAL_COCO_SCORED",
+  "training": false
+}
