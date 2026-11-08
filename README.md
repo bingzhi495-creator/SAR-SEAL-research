@@ -8,6 +8,7 @@
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
 - [FIT 冻结教师边界诊断实测](research_round_20260925_global/RFDETR_FIT_TEACHER_BOUNDARY_ACTUAL_20261108.md)。3/26 符合可配对几何回落，净改善见于 2 个图组，依预注册规则停止固定软教师分支。
+- [DGX 评估资源预检与重新准入](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_ALT_EVAL_RESOURCE_ADMISSION_20261108.md)。首次预检退出 1，未前向。新运行按长期服务共存与更低资源上限准入。
 - [连续端点 DGX 同机补充评估协议](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_ALT_EVAL_PROTOCOL_20261108.md)。受限于归档传输速率，四个端点另用同一 DGX 数值路径，端点选择不变。
 - [DGX 连续 E100 闭合与三端点评估协议](research_round_20260925_global/RFDETR_NATIVE_E100_REMOTE_CLOSED_EVAL_PROTOCOL_20261108.md)。已完成 18,600 次更新。远端 OS 退出与归档通过独立核对，保留本机原 SSH 回执缺口。
 - [FIT 增强图冻结教师边界可行性协议](research_round_20260925_global/RFDETR_FIT_TEACHER_BOUNDARY_PROTOCOL_20261108.md)。预锁真实增强、掩膜配对和继续门槛。
