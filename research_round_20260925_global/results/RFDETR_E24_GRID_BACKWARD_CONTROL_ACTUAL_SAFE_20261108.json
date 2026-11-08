@@ -1,0 +1,328 @@
+{
+  "AP": false,
+  "DEV": false,
+  "TEST": false,
+  "actual_routes": {
+    "F0": {
+      "cpu_backward_calls": 36,
+      "cpu_backward_seconds": 0.18118159961886704,
+      "cpu_input_bytes": 136889856,
+      "cpu_kernel_seconds": 0.14497570088133216,
+      "observed_shapes": [
+        {
+          "align_corners": false,
+          "cpu_backward_calls": 16,
+          "effective_dtype": "torch.float32",
+          "grid_dtype": "torch.float32",
+          "grid_shape": [
+            16,
+            1300,
+            2,
+            2
+          ],
+          "input_dtype": "torch.bfloat16",
+          "input_shape": [
+            16,
+            16,
+            48,
+            48
+          ],
+          "padding_mode": "zeros",
+          "routed_forward_calls": 16
+        },
+        {
+          "align_corners": false,
+          "cpu_backward_calls": 5,
+          "effective_dtype": "torch.float32",
+          "grid_dtype": "torch.float32",
+          "grid_shape": [
+            39,
+            1296,
+            1,
+            2
+          ],
+          "input_dtype": "torch.float32",
+          "input_shape": [
+            39,
+            1,
+            144,
+            144
+          ],
+          "padding_mode": "border",
+          "routed_forward_calls": 5
+        },
+        {
+          "align_corners": false,
+          "cpu_backward_calls": 10,
+          "effective_dtype": "torch.float32",
+          "grid_dtype": "torch.float32",
+          "grid_shape": [
+            26,
+            1296,
+            1,
+            2
+          ],
+          "input_dtype": "torch.float32",
+          "input_shape": [
+            26,
+            1,
+            144,
+            144
+          ],
+          "padding_mode": "border",
+          "routed_forward_calls": 10
+        },
+        {
+          "align_corners": false,
+          "cpu_backward_calls": 5,
+          "effective_dtype": "torch.float32",
+          "grid_dtype": "torch.float32",
+          "grid_shape": [
+            13,
+            1296,
+            1,
+            2
+          ],
+          "input_dtype": "torch.float32",
+          "input_shape": [
+            13,
+            1,
+            144,
+            144
+          ],
+          "padding_mode": "border",
+          "routed_forward_calls": 5
+        }
+      ],
+      "returned_gradient_bytes": 67330048,
+      "routed_forward_calls": 36,
+      "unchanged_calls": 79
+    },
+    "F1": {
+      "cpu_backward_calls": 36,
+      "cpu_backward_seconds": 0.17102069966495037,
+      "cpu_input_bytes": 136889856,
+      "cpu_kernel_seconds": 0.13943569990806282,
+      "observed_shapes": [
+        {
+          "align_corners": false,
+          "cpu_backward_calls": 16,
+          "effective_dtype": "torch.float32",
+          "grid_dtype": "torch.float32",
+          "grid_shape": [
+            16,
+            1300,
+            2,
+            2
+          ],
+          "input_dtype": "torch.bfloat16",
+          "input_shape": [
+            16,
+            16,
+            48,
+            48
+          ],
+          "padding_mode": "zeros",
+          "routed_forward_calls": 16
+        },
+        {
+          "align_corners": false,
+          "cpu_backward_calls": 5,
+          "effective_dtype": "torch.float32",
+          "grid_dtype": "torch.float32",
+          "grid_shape": [
+            39,
+            1296,
+            1,
+            2
+          ],
+          "input_dtype": "torch.float32",
+          "input_shape": [
+            39,
+            1,
+            144,
+            144
+          ],
+          "padding_mode": "border",
+          "routed_forward_calls": 5
+        },
+        {
+          "align_corners": false,
+          "cpu_backward_calls": 10,
+          "effective_dtype": "torch.float32",
+          "grid_dtype": "torch.float32",
+          "grid_shape": [
+            26,
+            1296,
+            1,
+            2
+          ],
+          "input_dtype": "torch.float32",
+          "input_shape": [
+            26,
+            1,
+            144,
+            144
+          ],
+          "padding_mode": "border",
+          "routed_forward_calls": 10
+        },
+        {
+          "align_corners": false,
+          "cpu_backward_calls": 5,
+          "effective_dtype": "torch.float32",
+          "grid_dtype": "torch.float32",
+          "grid_shape": [
+            13,
+            1296,
+            1,
+            2
+          ],
+          "input_dtype": "torch.float32",
+          "input_shape": [
+            13,
+            1,
+            144,
+            144
+          ],
+          "padding_mode": "border",
+          "routed_forward_calls": 5
+        }
+      ],
+      "returned_gradient_bytes": 67330048,
+      "routed_forward_calls": 36,
+      "unchanged_calls": 79
+    }
+  },
+  "attempts": [
+    "F0",
+    "F1"
+  ],
+  "clip_norms": {
+    "F0": 192.63308715820312,
+    "F1": 192.3920440673828
+  },
+  "clipped_gradient_comparison": {
+    "all": {
+      "changed_elements": 32284335,
+      "cosine": 0.9999399173141781,
+      "diff_l2": 0.0010961997223292827,
+      "elements": 33882021,
+      "left_l2": 0.10000000532004077,
+      "max_abs": 4.39623836427927e-05,
+      "rel_l2_to_left": 0.010961996640110137,
+      "right_l2": 0.10000000423313646,
+      "squared_diff_share": 1.0,
+      "tensors": 543
+    },
+    "backbone": {
+      "changed_elements": 23798842,
+      "cosine": 0.9999386969543039,
+      "diff_l2": 0.0010960554996178955,
+      "elements": 23800192,
+      "left_l2": 0.09898763385390721,
+      "max_abs": 4.39623836427927e-05,
+      "rel_l2_to_left": 0.01107265076398866,
+      "right_l2": 0.09898508157063438,
+      "squared_diff_share": 0.9997368851295243,
+      "tensors": 248
+    },
+    "non_backbone": {
+      "changed_elements": 8485493,
+      "cosine": 0.9999999999999993,
+      "diff_l2": 1.778125395358164e-05,
+      "elements": 10081829,
+      "left_l2": 0.014193287427970462,
+      "max_abs": 4.936009645462036e-06,
+      "rel_l2_to_left": 0.001252793198462284,
+      "right_l2": 0.014211068681917245,
+      "squared_diff_share": 0.00026311487047552565,
+      "tensors": 295
+    },
+    "patch_projection_weight": {
+      "changed_elements": 165887,
+      "cosine": 0.9999332805300896,
+      "diff_l2": 0.0010569669487268559,
+      "elements": 165888,
+      "left_l2": 0.09149955888596677,
+      "max_abs": 4.39623836427927e-05,
+      "rel_l2_to_left": 0.011551607041560965,
+      "right_l2": 0.09148689610586935,
+      "squared_diff_share": 0.9297013013747627,
+      "tensors": 1
+    }
+  },
+  "decision": "TARGETED_GRID_BACKWARD_ALONE_INSUFFICIENT",
+  "ema_updates": 0,
+  "first_backbone_and_later_differences": [
+    {
+      "differing_stages": [
+        "backbone_first_feature_grad_sha256",
+        "patch_projection_grad_out_sha256",
+        "cumulative_gradient"
+      ],
+      "first_difference": "backbone_first_feature_grad_sha256",
+      "microbatch": 1
+    },
+    {
+      "differing_stages": [
+        "backbone_first_feature_grad_sha256",
+        "patch_projection_grad_out_sha256",
+        "cumulative_gradient"
+      ],
+      "first_difference": "backbone_first_feature_grad_sha256",
+      "microbatch": 2
+    },
+    {
+      "differing_stages": [
+        "backbone_first_feature_grad_sha256",
+        "patch_projection_grad_out_sha256",
+        "cumulative_gradient"
+      ],
+      "first_difference": "backbone_first_feature_grad_sha256",
+      "microbatch": 3
+    },
+    {
+      "differing_stages": [
+        "backbone_first_feature_grad_sha256",
+        "patch_projection_grad_out_sha256",
+        "cumulative_gradient"
+      ],
+      "first_difference": "backbone_first_feature_grad_sha256",
+      "microbatch": 4
+    }
+  ],
+  "forward_checks": {
+    "F0": {
+      "backbone_output_sha256": 4,
+      "forward_outputs": 4,
+      "input_sha256": 4,
+      "losses": 4,
+      "matcher": 4,
+      "patch_projection_output_sha256": 4,
+      "point_coords": 4,
+      "rng_after_fetch": 4,
+      "rng_after_forward": 4,
+      "rng_after_loss": 4,
+      "rng_before_fetch": 4
+    },
+    "F1": {
+      "backbone_output_sha256": 4,
+      "forward_outputs": 4,
+      "input_sha256": 4,
+      "losses": 4,
+      "matcher": 4,
+      "patch_projection_output_sha256": 4,
+      "point_coords": 4,
+      "rng_after_fetch": 4,
+      "rng_after_forward": 4,
+      "rng_after_loss": 4,
+      "rng_before_fetch": 4
+    }
+  },
+  "native_cuda_forward_exact": true,
+  "optimizer_updates": 0,
+  "original_OS_waits": true,
+  "protocol_commit": "fad7e16be8a2fb9da3615e35b4dba372644bedf8",
+  "status": "ACTUAL_GRID_BACKWARD_FIXED_PROBE_CPU_INDEPENDENTLY_VERIFIED"
+}
