@@ -7,6 +7,7 @@
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
+- [优化器状态分支的原文及源码](research_round_20260925_global/RFDETR_OPTIMIZER_STATE_PRIMARY_PRIOR_20261108.md)。固定检查点保留与重置已有先例，可用于排查短热启动的几何回落。
 - [FIT 冻结教师边界诊断实测](research_round_20260925_global/RFDETR_FIT_TEACHER_BOUNDARY_ACTUAL_20261108.md)。3/26 符合可配对几何回落，净改善见于 2 个图组，依预注册规则停止固定软教师分支。
 - [DGX 评估资源预检与重新准入](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_ALT_EVAL_RESOURCE_ADMISSION_20261108.md)。首次预检退出 1，未前向。新运行按长期服务共存与更低资源上限准入。
 - [连续端点 DGX 同机补充评估协议](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_ALT_EVAL_PROTOCOL_20261108.md)。受限于归档传输速率，四个端点另用同一 DGX 数值路径，端点选择不变。
