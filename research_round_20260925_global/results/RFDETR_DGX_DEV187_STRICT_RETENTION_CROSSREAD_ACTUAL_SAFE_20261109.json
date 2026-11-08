@@ -1,0 +1,169 @@
+{
+  "status": "DEV187_STRICT_RETENTION_FIXED_CROSSREAD_COMPLETE",
+  "protocol": "6dc4235729f231635ca75a7def7d5419a798b5f1",
+  "original_protocol": "f7021b0c12dc82298863fadaea69dd812f90cdab",
+  "metrics": {
+    "native": {
+      "AP": 0.6744334056814277,
+      "AP75": 0.8538575350205851,
+      "AP90": 0.06678656662765144,
+      "APsmall": 0.6731170548617869,
+      "AR100": 0.7526315789473684,
+      "predictions": 15434
+    },
+    "local_logit": {
+      "AP": 0.685706459148429,
+      "AP75": 0.8724085078820677,
+      "AP90": 0.06577946493254842,
+      "APsmall": 0.6903899643567233,
+      "AR100": 0.7581578947368421,
+      "predictions": 15434
+    },
+    "protected": {
+      "AP": 0.6869384500787084,
+      "AP75": 0.8724085078820677,
+      "AP90": 0.07809937423534165,
+      "APsmall": 0.6924324509867814,
+      "AR100": 0.7586842105263158,
+      "predictions": 15434
+    },
+    "strict_only": {
+      "AP": 0.6733232860174349,
+      "AP75": 0.8538575350205851,
+      "AP90": 0.05568536998772102,
+      "APsmall": 0.671524872750862,
+      "AR100": 0.7523684210526316,
+      "predictions": 15434
+    },
+    "matched_nonstrict_only": {
+      "AP": 0.6857734579026221,
+      "AP75": 0.8717524226354434,
+      "AP90": 0.07850203286116447,
+      "APsmall": 0.6912389101994064,
+      "AR100": 0.7576315789473684,
+      "predictions": 15434
+    },
+    "unmatched_only": {
+      "AP": 0.6762936389058358,
+      "AP75": 0.8570224383902778,
+      "AP90": 0.06712549157076585,
+      "APsmall": 0.6752274083890436,
+      "AR100": 0.756578947368421,
+      "predictions": 15434
+    }
+  },
+  "geometry": {
+    "native": {
+      "edited_rows": 0,
+      "matched": 377,
+      "original_strict": 60
+    },
+    "local_logit": {
+      "edited_rows": 9663,
+      "matched": 377,
+      "original_strict": 60,
+      "strict_loss": 11,
+      "strict_gain": 12,
+      "fp_delta": -330,
+      "fn_delta": -330
+    },
+    "protected": {
+      "edited_rows": 9603,
+      "matched": 377,
+      "original_strict": 60,
+      "strict_loss": 0,
+      "strict_gain": 12,
+      "fp_delta": -315,
+      "fn_delta": -315
+    },
+    "strict_only": {
+      "edited_rows": 60,
+      "matched": 377,
+      "original_strict": 60,
+      "strict_loss": 11,
+      "strict_gain": 0,
+      "fp_delta": -15,
+      "fn_delta": -15
+    },
+    "matched_nonstrict_only": {
+      "edited_rows": 317,
+      "matched": 377,
+      "original_strict": 60,
+      "strict_loss": 0,
+      "strict_gain": 12,
+      "fp_delta": -315,
+      "fn_delta": -315
+    },
+    "unmatched_only": {
+      "edited_rows": 9286,
+      "matched": 377,
+      "original_strict": 60
+    }
+  },
+  "delta_vs_native": {
+    "local_logit": {
+      "AP": 0.011273053467001248,
+      "AP75": 0.01855097286148255,
+      "AP90": -0.0010071016951030132,
+      "APsmall": 0.017272909494936428,
+      "AR100": 0.0055263157894737125
+    },
+    "protected": {
+      "AP": 0.012505044397280618,
+      "AP75": 0.01855097286148255,
+      "AP90": 0.011312807607690212,
+      "APsmall": 0.019315396124994555,
+      "AR100": 0.0060526315789474205
+    },
+    "strict_only": {
+      "AP": -0.0011101196639928812,
+      "AP75": 0,
+      "AP90": -0.011101196639930415,
+      "APsmall": -0.0015921821109248224,
+      "AR100": -0.000263157894736854
+    },
+    "matched_nonstrict_only": {
+      "AP": 0.011340052221194385,
+      "AP75": 0.017894887614858246,
+      "AP90": 0.011715466233513036,
+      "APsmall": 0.018121855337619563,
+      "AR100": 0.0050000000000000044
+    },
+    "unmatched_only": {
+      "AP": 0.0018602332244080921,
+      "AP75": 0.003164903369692662,
+      "AP90": 0.00033892494311441035,
+      "APsmall": 0.0021103535272567475,
+      "AR100": 0.003947368421052588
+    }
+  },
+  "protected_minus_E100_AP": 0.005285437377919422,
+  "mechanism_gate": false,
+  "loss_rows": {
+    "count": 11,
+    "small": 11,
+    "slack_bins": {
+      "19": 6,
+      "38": 4,
+      "76": 1
+    },
+    "slack_median": 17,
+    "added_signed_cost_median": 38
+  },
+  "elapsed_s": 2.7832599331159145,
+  "AP": true,
+  "DEV": true,
+  "TEST": false,
+  "uses_GT_for_substitution": true,
+  "optimizer_updates": 0,
+  "execution_verified": {
+    "original_OS_exit": 0,
+    "original_OS_wait": true,
+    "original_SSH_exit": 0,
+    "resource_stop": false,
+    "result_sha256": "1b2a3eb705c6d900a6cffc2c98672cd6ad082d2d1b31ecb42d86d263ad1bda42",
+    "stdout_and_stderr_sha256_verified": true,
+    "seconds": 2.8772428759839386
+  },
+  "decision": "GT protection repairs strict endpoint quality but clears only +0.529 AP points above E100. Stop protection-only continuation under the prelocked mechanism gate."
+}
