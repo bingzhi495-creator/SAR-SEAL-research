@@ -6,6 +6,8 @@
 
 ## 下一项确定性反向定位控制
 
-Windows 运行时实际为 PyTorch 2.10.0+cu130，Git 源码 `449b1768`。作者源码中，高效注意力 CUDA 反向在严格确定性模式下将键分块数设为 1。仅警告模式沿用原分块。 [PyTorch 固定源码](https://github.com/pytorch/pytorch/blob/449b1768410104d3ed79d3bcfe4ba1d65c7f22c0/aten/src/ATen/native/transformers/cuda/attention_backward.cu#L853-L865)
+Windows 运行时实际为 PyTorch 2.10.0+cu130，Git 源码 `449b1768`。作者源码中，高效注意力 CUDA 反向在严格确定性模式下将键分块数设为 1。仅警告模式沿用原分块。 [PyTorch 固定源码](https://github.com/pytorch/pytorch/blob/449b1768410104d3ed79d3bcfe4ba1d65c7f22c0/aten/src/ATen/native/transformers/cuda/attention_backward.cu#L894-L905)
 
-仍保留已验证的网格采样和普通双线性上采样 CPU 反向。F0/F1 固定各四个真实增强 FIT 微批次，进程启动时设 cuBLAS 工作区，原生 CUDA 前向期间保持原确定性模式，严格模式只包围实际反向并在退出时恢复。遇到不支持的算子保留失败，暂不更换实现或放宽条件。严格核对原有前向、匹配和损失摘要、真实两类路由计数、四次严格反向以及零更新。只在全梯度相对 L2≤10⁻⁵、余弦≥0.999999且其余范围匹配时，通过新的数值控制资格。前述失败 F/S 的端点仍封存。
+仍保留已验证的网格采样和普通双线性上采样 CPU 反向。F0/F1 固定各四个真实增强 FIT 微批次，原样继承 Windows 的 cuBLAS 环境，确认工作区覆盖变量为空缺，原生 CUDA 前向期间保持原确定性模式，严格模式只包围实际反向并在退出时恢复。遇到不支持的算子保留失败，暂不更换实现或放宽条件。严格核对原有前向、匹配和损失摘要、真实两类路由计数、四次严格反向以及零更新。只在全梯度相对 L2≤10⁻⁵、余弦≥0.999999且其余范围匹配时，通过新的数值控制资格。前述失败 F/S 的端点仍封存。
+
+首次发布后、任何实际执行前，撤回拟设的工作区覆盖值。实际 PyTorch 固定构建为每个句柄和流提供工作区，原环境没有设置覆盖变量，保持它可减少额外算子选择变化。严格模式覆盖完整反向，支持确定性实现的其他算子也可能改变路径。完整梯度一致只验证本运行路径的可复现性。 [固定 cuBLAS 工作区实现](https://github.com/pytorch/pytorch/blob/449b1768410104d3ed79d3bcfe4ba1d65c7f22c0/aten/src/ATen/cuda/CublasHandlePool.cpp#L244-L272) · [CUDA 13.0 可复现性说明](https://docs.nvidia.com/cuda/archive/13.0.0/cublas/index.html#results-reproducibility) · [本次执行源码](code/RFDETR_E24_DETERMINISTIC_BACKWARD_REPLAY_20261108_02/deterministic_sampling_replay.py)

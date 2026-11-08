@@ -7,7 +7,7 @@
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
-- [DINO 高效注意力反向实测与确定性控制](research_round_20260925_global/RFDETR_E24_EFFICIENT_ATTENTION_BACKWARD_ACTUAL_20261108.md)。骨干外部反向边界精确一致，内部高效注意力节点局部复现分歧。
+- [DINO 高效注意力反向实测与确定性控制](research_round_20260925_global/RFDETR_E24_EFFICIENT_ATTENTION_BACKWARD_ACTUAL_20261108.md)。骨干外部反向边界精确一致，内部高效注意力节点局部复现分歧。 首次严格反向复验维持原 cuBLAS 环境。
 - [HRSID 跨数据集证据范围](research_round_20260925_global/HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md)。记录可核验 JPG、官方 PNG 缺口、空栅格和历史测试接触。
 - [双算子联合反向控制实测](research_round_20260925_global/RFDETR_E24_COMBINED_SAMPLING_BACKWARD_CONTROL_ACTUAL_20261108.md)。已观测骨干首特征边界逐字节稳定，patch 入梯度仍分叉，完整配对暂缓。
 - [同图反向节点及同梯度 AdamW 首步实测](research_round_20260925_global/RFDETR_E24_SAME_GRAPH_NODE_AND_ADAMW_STEP_ACTUAL_20261108.md)。定位 9 个网格采样和 2 个双线性上采样分叉。固定梯度后历史状态改变首步幅度和方向。
