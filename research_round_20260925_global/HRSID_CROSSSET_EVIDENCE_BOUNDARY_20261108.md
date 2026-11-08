@@ -12,3 +12,15 @@
 历史结果和新测试应单列。保持主协议的完整测试总体，空掩膜和跨划分重复的处理须在新输出前固定。冻结 SSDD 配方后，可以先执行 JPG 的零目标调参迁移。固定目标域训练是另一项可移植性验证，需要先完成 FIT-only 的栅格及真实增强核验。原始 FIT 中至少五张超过 100 个实例，最大 163。RF-DETR 的 13 个查询组分别匹配，默认每组 100 仍不足以对这些图实施全实例配对。若目标实验要求全配对，应在比较臂统一设定足够查询容量、明确成本并固定 COCO maxDets=100。 [历史测试使用披露](https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/d2b38d430302153c55a2e5330cea296a9324dcdb/paper_tgrs/revision_tgrs_20260905/sec_exp.tex#L21) · [RF-DETR 原生分组匹配](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/models/matcher.py#L747-L771)
 
 本次只核对既有普通来源与已闭合汇总，未打开 TEST 图像或标注正文。正式跨数据集效用还取决于已冻结的 SSDD 方法和公平对照。
+
+## 2026-11-09 官方 PNG 续取及其他数据来源
+
+作者页面把 JPG 近岸和离岸更新包与 PNG 包分列。PNG 的 Drive 文件 ID 为 `1xgXi8KC3MDWuu7Yp4n2J-LOPYLRszHAc`，归档总长 5,698,302,315 字节。备用百度网盘页面仅核到提取入口，文件身份尚未核实。 [作者下载说明](https://github.com/chaozhong2010/HRSID#dataset-download-link) · [官方 PNG](https://drive.google.com/file/d/1xgXi8KC3MDWuu7Yp4n2J-LOPYLRszHAc/view)
+
+Windows 标准 HTTP 客户端实际取得两段完整 206 响应。64 MiB 边界后的首 1 MiB 用时 2.00 秒。另一个请求覆盖旧前缀末 4 KiB 及其后 16 MiB，用时 7.40 秒，旧末尾与新首 1 MiB 分别逐字节核对一致，版本时间和总长一致。已连续取得 80 MiB。完整归档及全成员 CRC 待核，未打开 ZIP 成员或评价模型。历史失败原件独立保留。 [实际传输记录](results/HRSID_PNG_STANDARD_HTTP_RESUME_PROBES_ACTUAL_SAFE_20261109.json)
+
+| 核查来源 | 适用范围 |
+| --- | --- |
+| PsSAR-v1.0 | 复用 HRSID 图像和船舶实例，增加海陆背景标签。可用于近岸条件分层，仍承接 HRSID 的图像与历史测试接触。作者标记数据 GPL-3.0、基线代码 Apache-2.0。 [数据与许可](https://github.com/PerSARption/PsSAR-v1.0-Unlocking-SAR-Panoptic-Segmentation/blob/main/README_DATASET.md) |
+| OSSDD | 公开 Sentinel-1 VV/VH 图块。作者将旋转框内部栅格化成二值图，适用于检测及框形状验证，船体轮廓精度仍需真实实例标注。 [标注原文](https://arxiv.org/html/2608.01963v1#S4) · [数据卡](https://huggingface.co/datasets/sylviaHoch/OpenSARShip-Ship-Detection-Dataset#license-and-attribution) |
+| FSS-Seg / PID-SAM | IJCAI 2026 论文报告基于 FUSARShip1.0 的七类像素语义数据，以 Dice、IoU、精度与 HD95 评价。论文用点级掩膜贡献和 PPO 优化提示，可作为点条件机制的直接先例之一。作者源码入口为 ZIP，训练配置与实例 ID 发布尚未核验。 [论文](https://ijcai.org/proceedings/2026/0161.pdf) · [作者代码](https://github.com/Fm336/PID-SAM) |
