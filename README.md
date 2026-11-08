@@ -7,6 +7,7 @@
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
+- [DGX 连续 E100 闭合与三端点评估协议](research_round_20260925_global/RFDETR_NATIVE_E100_REMOTE_CLOSED_EVAL_PROTOCOL_20261108.md)。已完成 18,600 次更新。远端 OS 退出与归档通过独立核对，保留本机原 SSH 回执缺口。
 - [FIT 增强图冻结教师边界可行性协议](research_round_20260925_global/RFDETR_FIT_TEACHER_BOUNDARY_PROTOCOL_20261108.md)。预锁真实增强、掩膜配对和继续门槛，结果待实测。
 - [DGX 首次 E100 闭合及新 E100 启动](research_round_20260925_global/RFDETR_NATIVE_E100_FAILURE_RECOVERY_ACTUAL_20261108.md)。首次运行最后记录 E32，已独立闭合。修复进程扫描后，从相同初始权重新启动并核对 GPU 进程。
 - [数学、物理、雷达与近期分割方法原文源码续查](research_round_20260925_global/PRIMARY_METHODS_SOURCE_AUDIT_CONTINUATION_20261108.md)。包含可微分水岭、复极化和去斑、结构预训练、可复训分割对照，以及可证伪的候选重叠诊断。
