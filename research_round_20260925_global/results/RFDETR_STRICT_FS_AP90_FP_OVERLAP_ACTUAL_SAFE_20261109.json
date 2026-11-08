@@ -1,0 +1,101 @@
+{
+  "DEV": true,
+  "GT_instances": 380,
+  "IoU": 0.9,
+  "TEST": false,
+  "area_range": "all",
+  "arms": {
+    "E24": {
+      "10": {
+        "FP_before_required_TP": 89,
+        "FP_max_IoU_ge_050_lt_090": 88,
+        "FP_max_IoU_ge_090": 0,
+        "FP_max_IoU_lt_050": 1,
+        "rank_of_required_TP": 127,
+        "required_TP": 38
+      },
+      "20": {
+        "FP_before_required_TP": 2367,
+        "FP_max_IoU_ge_050_lt_090": 1034,
+        "FP_max_IoU_ge_090": 61,
+        "FP_max_IoU_lt_050": 1272,
+        "rank_of_required_TP": 2443,
+        "required_TP": 76
+      },
+      "5": {
+        "FP_before_required_TP": 24,
+        "FP_max_IoU_ge_050_lt_090": 23,
+        "FP_max_IoU_ge_090": 0,
+        "FP_max_IoU_lt_050": 1,
+        "rank_of_required_TP": 43,
+        "required_TP": 19
+      }
+    },
+    "F": {
+      "10": {
+        "FP_before_required_TP": 84,
+        "FP_max_IoU_ge_050_lt_090": 83,
+        "FP_max_IoU_ge_090": 0,
+        "FP_max_IoU_lt_050": 1,
+        "rank_of_required_TP": 122,
+        "required_TP": 38
+      },
+      "20": {
+        "FP_before_required_TP": 7978,
+        "FP_max_IoU_ge_050_lt_090": 3038,
+        "FP_max_IoU_ge_090": 210,
+        "FP_max_IoU_lt_050": 4730,
+        "rank_of_required_TP": 8054,
+        "required_TP": 76
+      },
+      "5": {
+        "FP_before_required_TP": 24,
+        "FP_max_IoU_ge_050_lt_090": 23,
+        "FP_max_IoU_ge_090": 0,
+        "FP_max_IoU_lt_050": 1,
+        "rank_of_required_TP": 43,
+        "required_TP": 19
+      }
+    },
+    "S": {
+      "10": {
+        "FP_before_required_TP": 107,
+        "FP_max_IoU_ge_050_lt_090": 105,
+        "FP_max_IoU_ge_090": 0,
+        "FP_max_IoU_lt_050": 2,
+        "rank_of_required_TP": 145,
+        "required_TP": 38
+      },
+      "20": {
+        "FP_before_required_TP": 4413,
+        "FP_max_IoU_ge_050_lt_090": 1829,
+        "FP_max_IoU_ge_090": 108,
+        "FP_max_IoU_lt_050": 2476,
+        "rank_of_required_TP": 4489,
+        "required_TP": 76
+      },
+      "5": {
+        "FP_before_required_TP": 31,
+        "FP_max_IoU_ge_050_lt_090": 30,
+        "FP_max_IoU_ge_090": 0,
+        "FP_max_IoU_lt_050": 1,
+        "rank_of_required_TP": 50,
+        "required_TP": 19
+      }
+    }
+  },
+  "fixed_recall_percent": [
+    5,
+    10,
+    20
+  ],
+  "images": 187,
+  "maxDets": 100,
+  "max_iou": "Maximum ordinary segmentation IoU over original same-image GT, or zero for no GT.",
+  "official_metrics_unchanged": true,
+  "original_ap90_readout_sha256": "6bd8ece649a38dcec30aeb39411c02da6a63f3677ed2a17a2a470eecb8118db8",
+  "protocol_commit": "5c0d26c34483a002d0534241d665c7cbb8e5aa0d",
+  "scope": "FP status from original COCO greedy matching. Bins are geometric overlap categories and do not certify object absence or identify a score cause.",
+  "source_commit": "4d2954ebce27f73cde209fedfdf188a3c40bf07b",
+  "status": "EXPLORATORY_P101_CLOSED_DEV187_AP90_FP_OVERLAP"
+}
