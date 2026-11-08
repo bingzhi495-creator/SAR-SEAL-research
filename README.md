@@ -9,6 +9,7 @@
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
 - [等像素预算的实例间分配](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_EDIT_ALLOCATION_PROTOCOL_20261109.md)。三组各 14,864 次翻转，估计交并比组低于原生与置信度，按规则停止。
 - [严格掩膜排名实测与 FIT 预锁检验](research_round_20260925_global/RFDETR_FIXED_MASK_RANK_WITNESS_AND_FIT_PROTOCOL_20261109.md)。学习秩较原生 AP 低 0.217 个百分点，按规则停止。固定前缀的完美 16 像素编辑上限仅覆盖约四成小目标候选。
+- [HRSID 真实空目标与稠密 FIT 输入资格](research_round_20260925_global/HRSID_REAL_FIT_NATIVE_MATCH_PROTOCOL_20261109.md)。固定同一对实际输入，验证 100/164 查询和原生分割损失。
 - [HRSID 官方 PNG FIT 审计实测](research_round_20260925_global/HRSID_OFFICIAL_PNG_FIT_PIXEL_LABEL_AUDIT_PROTOCOL_20261109.md)。全量 FIT 固定增强后有 8,505 个非空目标和 99 个无目标视图。
 - [AdamW 历史状态对照实测](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_ACTUAL_20261109.md)。F/S 各 372 次更新，首梯度完全一致。S 严格覆盖净增 10，AP 低 0.573 个百分点，按规则停线。
 - [严格反向路径的 AdamW 等预算对照](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_PROTOCOL_20261109.md)。固定 F/S 首步门槛、每组 372 次更新和 DEV187 分支规则。

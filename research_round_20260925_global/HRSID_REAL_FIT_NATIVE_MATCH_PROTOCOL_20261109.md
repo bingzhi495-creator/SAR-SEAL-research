@@ -1,0 +1,15 @@
+# HRSID 真实空目标与稠密 FIT 输入资格
+
+从上一轮独立验收的 2,937 张官方 PNG FIT 及派生训练标注中，预先固定两张实际模型输入。沿用 576 分辨率、原生 scale jitter、水平翻转和 block 12 packed collate。按 image ID 升序，以 520100000 加零起始序号取种子。无目标组取首个被裁为空的 FIT 视图，稠密组取首个经原生直接缩放且完整保留 163 个实例的 FIT 视图。两个查询宽度复用同一份只存本地的张量。 [全量输入审计](HRSID_OFFICIAL_PNG_FIT_PIXEL_LABEL_AUDIT_PROTOCOL_20261109.md)
+
+| 验证对象 | 固定条件和通过条件 |
+| --- | --- |
+| 图像与标注来源 | P109 核验后的官方 PNG 归档、9,260 条有效 FIT 训练标注和相同原生增强。CPU 选择记录 0/163 个目标。 |
+| 查询对照 | 100 与 164 个查询每组，共 13 个训练组。固定 E24 初始化。164 组每一组内精确保持原有前 100 个参考点和查询特征，新增槽位按固定规则初始化。其它权重完全相同。 |
+| 无目标损失 | 两个宽度均用批大小 1、原生训练模式 BF16。最后一层、辅助层和编码器分支均返回 0 个匹配，分类损失有限，框 L1、GIoU、掩膜 BCE 和 Dice 为 0，合成损失及梯度有限。 |
+| 稠密匹配 | 使用同一 163 目标 FIT 视图。记录每个分支及匹配组的查询数、匹配数和未分配目标数。若两侧候选足量，100 组每组匹配 100 个，164 组每组匹配 163 个。两侧损失和梯度均有限。 |
+| 执行与边界 | 两宽度分别以原生前向、匹配、损失和反向核验。每进程 GPU 分配上限 6 GiB，批大小 1，不创建或调用优化器，无 EMA 更新。无 DEV、TEST 或 AP。异常保留原退出，修复后另锁。 |
+
+Group DETR 在每组内独立执行一对一匹配，RF-DETR 的训练查询表按组排列。增大查询容量用于避免已实测的训练匹配上限。用这两例可以确认具体代码路径及分组预算，后续目标域训练仍需统一输入规则和查询宽度。正式 COCO maxDets 由评估协议单独固定。 [Group DETR 原文](https://arxiv.org/abs/2207.13085) · [RF-DETR 固定版本模型](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/models/lwdetr.py#L150-L163) · [逐组匹配实现](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/models/matcher.py#L829-L851)
+
+CPU 选择逻辑的两项合成测试已通过。实际张量选择和后续 CUDA 核验分别留存原进程结果。 [输入选择源码](code/HRSID_REAL_FIT_NATIVE_MATCH_20261109/select_native_fit.py) · [选择逻辑测试](code/HRSID_REAL_FIT_NATIVE_MATCH_20261109/test_select_native_fit.py)
