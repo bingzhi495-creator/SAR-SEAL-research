@@ -1,0 +1,95 @@
+{
+  "AP": false,
+  "annotations": 1782,
+  "best_iou_bins": [
+    26,
+    118,
+    481,
+    1049,
+    104
+  ],
+  "best_iou_bins_by_coco_area": {
+    "non_small": [
+      0,
+      14,
+      22,
+      146,
+      27
+    ],
+    "small": [
+      26,
+      104,
+      459,
+      903,
+      77
+    ]
+  },
+  "bin_labels": [
+    "zero",
+    "(0,.50)",
+    "[.50,.75)",
+    "[.75,.90)",
+    "[.90,1]"
+  ],
+  "elapsed_seconds": 0.6208747001364827,
+  "eligible_gt": 1778,
+  "empty_predictions": 23662,
+  "exclusions": {
+    "crowd": 0,
+    "empty": 4,
+    "ignore": 0
+  },
+  "forward_calls": 0,
+  "gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+  "images": 705,
+  "images_with_multiple_eligible_gt": 353,
+  "images_without_candidates": 0,
+  "official_test_opened": false,
+  "predictions": 62536,
+  "predictions_sha256": "0f2221de4883c71e0349eb4dc4d8f4001d123fc339630e0664ccb9872e7b0aa7",
+  "status": "ACTUAL_HRSID_DEV705_NATIVE_CANDIDATE_COVERAGE",
+  "thresholds": {
+    "0.50": {
+      "candidate_quality_gap": 144,
+      "independent": 1634,
+      "maximum_one_to_one": 1634,
+      "native_greedy": 1634,
+      "rank_or_assignment_gap": 0,
+      "shared_candidate_gap": 0
+    },
+    "0.75": {
+      "candidate_quality_gap": 625,
+      "independent": 1153,
+      "maximum_one_to_one": 1153,
+      "native_greedy": 1153,
+      "rank_or_assignment_gap": 0,
+      "shared_candidate_gap": 0
+    },
+    "0.90": {
+      "candidate_quality_gap": 1674,
+      "independent": 104,
+      "maximum_one_to_one": 104,
+      "native_greedy": 104,
+      "rank_or_assignment_gap": 0,
+      "shared_candidate_gap": 0
+    }
+  },
+  "prelocked_protocol_commit": "4206d2fafb5df24f65c58f23913b211ec3eb6b5d",
+  "original_process_exit": 0,
+  "original_stdout_sha256": "f3f15c5dc280ea6529bc37b91c61ede4512e3a32edb0bb3bd5da307382edb48b",
+  "source_sha256": "de18b2d993af7549e437add80c72b20633a3e596170f6b4789188539c7cc25fa",
+  "runtime": {
+    "python": "3.10.13",
+    "numpy": "1.26.4",
+    "pycocotools": "2.0.11",
+    "scipy": "1.15.3",
+    "device": "CPU"
+  },
+  "synthetic_tests_passed": 2,
+  "independent_recomputation": {
+    "exit": 0,
+    "algorithm": "Per-GT alternating augmenting DFS",
+    "exact_population_bins_and_all_threshold_counts": true,
+    "images_with_no_valid_gt": 0
+  }
+}
