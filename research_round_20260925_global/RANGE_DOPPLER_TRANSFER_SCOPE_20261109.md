@@ -36,6 +36,8 @@ RD 属于另一个验证问题。已有海面公开入口提供真实回波和�
 | KuRALS-PD | 海面子集按论文表 4 有 2 条序列、203 帧，含船艇。官方下载页可访问并列出 `KuRALS_PD.zip`，发布说明另提供 FFT 后复数 RD。论文用 GPS 投影、CA-CFAR 与局部峰修正构造位置标注。所核对版本的 `rdDense` 在峰值中心周围生成固定 3 个多普勒格点 × 5 个距离格点的窗口，边界裁剪。已核对入口、原文和生成源码，实际压缩包内容待核。 [论文](https://doi.org/10.3390/rs18010173) · [下载入口](https://github.com/lihua199710/KuRALS#prepare-the-kurals-dataset) · [固定窗口生成源码](https://github.com/lihua199710/KuRALS/blob/abc63a685402178568c29031a3e65c8a95e98109/kurals/dataset_process/kuralspd_processing.py#L43-L67) | 验证 RD 输入、船艇定位及固定虚警下的检出率。作者像素指标描述对发布标注的拟合。判断真实回波边界需要独立的回波级标注。 |
 | OpenSAR Insight 船舶数据 | 15 景 Sentinel-1，发布方说明同一地理区域配有 L0 RAW、距离压缩中间量、L1 SLC 和 GRD，含船位与框 XML。作者报告部分框有偏移或偏小，并列出人工筛选子集。 [发布页](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset) · [标注模式](https://opensarinsightweb.web.uah.es/dark_vessel.html) · [作者模型](https://huggingface.co/opensar-insight/vessel-detection-model) | 用同景配对验证星载 SAR 从聚焦图向成像前表示的迁移。先评估切片级船舶存在，再在独立核对坐标映射后评估定位。成像前数据存在维度和成像几何差异，地理共址只提供关联入口。 |
 
+OpenSAR Insight 固定发布版的三个 XML 压缩包也已核对。训练、验证、测试分别含 2,671、311、1,065 个 XML，对应 10、2、3 个互不重叠的 SAR 产品。船舶行分别为 2,980、340、1,626，具备全局和局部距离压缩框的分别为 2,952、338、1,617。这个核验只支持场景产品隔离。船舶跨场景身份与空标签裁块中的完整目标覆盖待核。距离压缩框可用于同域定位，进入方位 FFT 后需要单独建立 RD 真值。 [固定发布版](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset/tree/e90a0c0465cfb8484b4f356ef968d976054f453a) · [成像前坐标转换说明](https://github.com/ESA-PhiLab/OpenSARInsight/blob/main/backend/dataset_generation_scripts/SLC_to_FullRaw/README.md#L136)
+
 ### 实验决策
 
 - 如果输入是海面监视雷达 RD，第一轮用单通道功率和独立 RD 输出头，保留距离与多普勒原始轴及单位。以同骨干、同头、同数据、同训练预算比较通用预训练和 HRSID 预训练。库中 RF-DETR 若需要方形输入，优先固定原格点分辨率后按距离切片或填充，并记录输出逆映射。CFAR 与作者 KuRALS-Net 在相同留出数据上重评。按完整采集序列留出，两个海面序列只够做初步方向检验。无独立完整真值时，显式记录未核实目标区及背景区，避免将未知目标计为虚警。
