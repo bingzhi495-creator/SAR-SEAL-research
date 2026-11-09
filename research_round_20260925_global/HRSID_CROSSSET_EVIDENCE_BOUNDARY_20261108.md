@@ -66,3 +66,13 @@ PSeg-SSDD 仍是当前配方重训的优先跨库路线。Instance-RSDD 的实�
 新增 12 张均在已有 QA 家族且与 18 个预留外测家族零交集。原 QA50、108 张预留图与 139 个候选船体的名单保持冻结。全库旧标注计数核对到 515 图均有 class 0、514 图兼有 class 1，无无标注图。该发布总体富集正例，空海面的虚警仍需别处验证。作者说明 SAR 船体多边形用于方位偏移估计，AIS 参与标注。这支持类语义解释，逐实例勾绘来源和图内标注完整性仍未核准。 [作者技术论文](https://doi.org/10.1109/MetroAeroSpace64938.2025.11114590)
 
 本次限于缺失成员的文件头和产品目录，未解码 TIFF 像素、未读取原 QA50 或预留成员字节、未打开标签或执行模型。 [实际恢复汇总](results/UEIKAP_MISSING_TIFF_HEADER_RECOVERY_ACTUAL_SAFE_20261110.json) · [目录复查汇总](results/UEIKAP_MISSING_TIFF_CATALOGUE_READBACK_ACTUAL_SAFE_20261110.json)
+
+### UEIKAP 十张未归组裁块的双目录复核协议
+
+只用旧回执中仍未归组的 10 张裁块的 UTC 时间戳与 WGS84 足迹。原 18 个预留采集家族与 QA50 名单固定。按 QA50 编号升序取首个已有唯一归组的质检记录作为正对照。先确认两个公开目录都能按原规则复现正对照。该样本只校验查询与产品名归并。
+
+Copernicus 和 ASF 分别检索同一卫星的 IW GRDH 产品，候选时间窗为裁块文件名时间前后各 120 秒。ASF 空间请求范围外扩 0.001 度，实际交集仍用原足迹。拒绝截断、未完成或无法解释的匹配产品结果。产品名解析出卫星、绝对轨道和 datatake；原始与 COG 表示去重。主规则保持原有精确起始时间和单产品覆盖至少 95%。两目录有相同的唯一标准化产品才列作新的精确匹配证据。查询失败与有效零命中分开。
+
+扩展诊断在每个目录内按物理采集家族取足迹并集，在原裁块上计算覆盖率。历史单产品门槛沿用经纬度平面面积，并集门槛使用球面面积。只允许同卫星、同绝对轨道、同 datatake 且处于固定时间窗的产品相并。分别报告至少 95% 的并集候选与来自预留家族的正面积交叠、仅边界接触。并集候选只提供来源线索。预留家族如有任何接触，应单列复核，其余无命中也限于这两套目录与预先声明的查询范围。名单原件保持冻结，本轮不打开图像、实例标注或模型结果。 [Copernicus OData](https://documentation.dataspace.copernicus.eu/APIs/OData.html) · [ASF 查询](https://docs.asf.alaska.edu/api/keywords/) · [产品命名与切片](https://sentiwiki.copernicus.eu/web/s1-products)
+
+[固定几何实现](code/UEIKAP_ACQUISITION_METADATA_20261110/ueikap_acquisition_footprint.py)
