@@ -33,7 +33,7 @@ SOURCE_PINS = {
     "phase_train.py": "8550b43791a6cb6f53736dc7e64b9c5c6204723cf4c07c3b112491ba1bd74043",
     "phase_repeat_train.py": "42a174573a04c529dfbae943bcc88ef4ed5d793d7eda6766511396034fda321f",
     "common_mask_supervision.py": "59ea82e24353eeb4a14115058d5115333a4e7ea517a0abef581bee137a9a3a57",
-    "paired_fit_transform.py": "24b73e758c2dfc5abbcf9052adbf845d7839e87e1ceedd5b5ef8a6facb8d2d98",
+    "paired_fit_transform.py": "64f3f63c6ac89b66578f0ada42fa3eb8b4db3b2f1ae2ea9113debe6ab9b270e0",
 }
 SOURCES = set(SOURCE_PINS) | {SELF, "common_fit_binding.py"}
 PRIVATE = Path("D:/SAR_SEAL_private_execution_20261021_01")

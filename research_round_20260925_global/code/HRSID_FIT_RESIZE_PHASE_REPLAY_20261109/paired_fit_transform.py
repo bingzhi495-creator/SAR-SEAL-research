@@ -53,6 +53,14 @@ def _tensor_digest(items):
     return digest.hexdigest()
 
 
+def _training_mask_digest(masks):
+    # Match the frozen phase trainer's tensor digest for the selected batch mask.
+    header = repr((str(masks.dtype), tuple(masks.shape))).encode()
+    digest = sha256(header)
+    digest.update(memoryview(_tensor_bytes(masks).numpy()))
+    return digest.hexdigest()
+
+
 def _prepare(image, raw):
     if not isinstance(image, Image.Image) or image.mode != "RGB":
         raise ValueError("Expected a CPU RGB PIL image")
@@ -122,8 +130,8 @@ def _metadata(image, trace, raw, targets, projected, entry, after):
         rng_before_sha256=sha256(_rng_bytes(entry)).hexdigest(), rng_after_sha256=sha256(_rng_bytes(after)).hexdigest(),
         common_row_ids_sha256=_tensor_digest(((ROW_ID, shared_a[ROW_ID]),)),
         common_nonmask_sha256=_tensor_digest((key, shared_a[key]) for key in sorted(PREPARED_FIELDS - {"masks"})),
-        native_common_masks_sha256=_tensor_digest((("masks", shared_a["masks"]),)),
-        center_common_masks_sha256=_tensor_digest((("masks", shared_b["masks"]),)),
+        native_common_masks_sha256=_training_mask_digest(shared_a["masks"]),
+        center_common_masks_sha256=_training_mask_digest(shared_b["masks"]),
     )
 
 

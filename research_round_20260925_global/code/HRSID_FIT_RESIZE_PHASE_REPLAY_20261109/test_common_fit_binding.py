@@ -1,3 +1,4 @@
+from hashlib import sha256
 import io
 import json
 import random
@@ -149,6 +150,11 @@ class ConsumedFitLedgerTests(unittest.TestCase):
             self.assertEqual(*ledgers)
             self.assertFalse(torch.equal(targets[0]["masks"], targets[1]["masks"]))
             self.assertTrue(torch.equal(targets[0]["boxes"], targets[1]["boxes"]))
+            for row, target, mode in zip(ledgers, targets, ("native", "center"), strict=True):
+                masks = target["masks"].detach().contiguous().cpu()
+                header = repr((str(masks.dtype), tuple(masks.shape))).encode()
+                digest = sha256(header + masks.numpy().tobytes(order="C")).hexdigest()
+                self.assertEqual(json.loads(row)[f"{mode}_common_masks_sha256"], digest)
 
 
 if __name__ == "__main__":
