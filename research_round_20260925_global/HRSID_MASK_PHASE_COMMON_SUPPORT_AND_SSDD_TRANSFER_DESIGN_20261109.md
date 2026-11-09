@@ -28,6 +28,14 @@ Aᶜ 与 Bᶜ 使用相同的图像、增强轨迹、原标注 ID、监督行顺
 3. 两臂分别重新初始化，按同一 E100 调度完成 E24，各 70,560 次访问、17,640 次 AdamW 和 EMA 更新。保留 E1、E8、E24 固定档案，使用同一 DEV705 原始 GT 和现有固定主评价。预设主要差值为 Bᶜ 减 Aᶜ 的 mask AP。+1 点是实用门槛。可独立分组时按组配对估计差值区间，同时报告 AP75、共有匹配的几何、FP/FN 与目标保留。
 4. 共同行有正向收益时，可以说明在该监督集合和种子下，改变掩膜像素足以产生收益。它仍包含形状、面积与训练匹配的共同影响。区间宽或估计较小应保留不确定性。若要单独识别目标保留的作用，需要另做固定掩膜值、改变监督行集合的对照。
 
+### E24 验收和评分准入
+
+独立验收逐条比对两臂各 70,560 次已消费的共同行访问，并将图像 ID、保留实例数与两份原生训练账本逐批对齐。核对完整随机和增强摘要、共同行、选臂掩膜摘要与零未消费预取。原生长训账本记录 ID 和计数，模型实际收到的掩膜逐批摘要由真实短窗资格核对。三个固定档案逐一核对共同行标记、种子 5202、实际更新、优化器状态、EMA 和独立原进程关闭。DEV705 准入使用同一原始 GT，固定 E24 的 `checkpoint_23.ckpt`，并单独验证两臂的权重来源。 只在导出和 COCO 评分进程独立关闭后复用原配对几何评分，交叉检查两臂权重、预测摘要、原始标注和指标协议。 [长训账本](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/common_fit_e24_ledger.py) · [独立验收](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/common_fit_e24_acceptance.py) · [评分准入](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/common_fit_eval_admission.py) · [配对几何入口](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/common_fit_score_pair.py)
+
+端到端合成测试使用完整 70,560 次访问、两份合成关闭回执和六个合成档案，通过原验收及评分准入。第 8 轮标记不一致时会在访问 E24 档案前拒收。真实训练和评分均待预设门槛。
+
+另从固定的 DEV705 图像清单独立重建了 705 个图像 ID 到 28 个 P 前缀代理组的映射。每组 3 至 45 图，中位数 26.5，规范映射 SHA-256 为 `9f45d673649d2aa65bb38fc2a29b27981e0b51f2a879c3f9d309b9da28e511be`。使用同一组抽样同时复算两臂的固定原始 GT COCO AP，才能检验已训练模型对代理组构成的敏感性。前缀组能否对应彼此独立的真实母场景尚待证实，区间仅针对固定模型与代理组构成。当前已复算映射，AP 重采样待执行。 [原图像审计](HRSID_OFFICIAL_PNG_DEV705_AUDIT_PROTOCOL_20261109.md)
+
 ## 可反转的方向对照
 
 设纵向输入高为 n、输出高为 m，输出索引为 j。理想算术下，旧最近邻取 floor(jn/m)，中心采样取 floor((j+½)n/m)。在原掩膜上纵向翻转，用同一个旧最近邻核缩放，再在输出上翻回，得到索引 n−1−floor((m−1−j)n/m)。这个构造只反转纵向核相位，图像、框、横向核和真实增强翻转均沿用原设置。以输入像素中心为坐标时，采样坐标误差满足反射后的误差等于镜像位置原误差的相反数。单个实例的输出质心仍受离散支持和面积影响，须实测。 [PyTorch 2.10 的采样内核](https://github.com/pytorch/pytorch/blob/v2.10.0/aten/src/ATen/native/UpSample.h#L296-L343)
@@ -58,5 +66,7 @@ Aᶜ 与 Bᶜ 使用相同的图像、增强轨迹、原标注 ID、监督行顺
 现有项目整数版 PSeg-SSDD 的公开训练人口按字节代理分成 FIT741／1,661 实例与 DEV187／380 实例，无相同图像 ID 或 JPEG 摘要跨组。相同场景仍可能通过不同裁块跨组。已有同载体原生历史 E24 与 DEV187 固定评分。历史原生固定平移在 SSDD 上未显示 HRSID 的净收益方向，这使重新训练的跨库配对有判别力。 [原生输入核验](RFDETR_SSDD_NATIVE_INPUT_LAYOUT_ACTUAL_20261107_01.md) · [原生 E24](RFDETR_NATIVE_CONTINUOUS_E24_STATUS_20261107.md) · [历史平移](SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)
 
 先在 SSDD FIT 上重放实际尺寸、直缩与裁剪链，核对共同实例、旧核偏差、改变相位后的几何及 100 查询容量。正式前验证 FIT-only 数据入口、无目标行保护、同机两臂各 32 次真实访问及 8 次 AdamW 和 EMA 更新。若资格通过，两臂从同一 COCO 初始张量重新训练。候选预算为 Seg Nano 1.12.0、576 输入、100 查询、batch 1、累积 4，保留 E100 调度，每臂 E24 共 17,856 次访问、4,464 次更新。两臂使用相同精度、TF32、数据顺序、保护和评价规则。若新配方与历史配置有差异，历史 AP 只作背景。主指标用固定原整数 DEV187 的 COCO mask AP，候选浮点 GT 用相同预测另报。历史 E24 的两种 GT AP 相差 2.10 点。 [DEV187 固定评价](RFDETR_E24_DEV187_ACTUAL_EVALUATION_20261107.md)
+
+另已核对 SSDD 历史训练入口的边界。即使关闭在线验证，数据模块仍构造 DEV，历史完成条件还检查 187 个验证条目。拟复用的训练入口应只允许物理隔离的 FIT，另以同一 100 查询配置重新核对两臂完整 COCO 初始化摘要。评分由独立的 DEV187 入口执行。 [历史 E100 入口](code/RFDETR_NATIVE_UNINTERRUPTED_E100_WORKER_CANDIDATE_20261107/e100_worker.py) · [历史 DEV187 导出](code/RFDETR_NATIVE_E24_DEV_EXPORT_WORKER_CANDIDATE_20261107/e24_dev_export_worker.py)
 
 作者官方 PSeg 划分为 928／232，项目旧稿记录过该测试集参与模型选择。冻结后仍可报告官方测试，但需披露接触历史并核验原始标注版本。这里的目标库重新训练检验配方可移植性，另一个独立留出域仍需要确认。当前只是待锁定设计，尚无 SSDD 相位配对效用或正式 TEST 结果。 [作者数据论文](https://www.mdpi.com/2072-4292/13/18/3690) · [测试使用记录](https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/d2b38d430302153c55a2e5330cea296a9324dcdb/paper_tgrs/revision_tgrs_20260905/sec_exp.tex#L203)
