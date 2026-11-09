@@ -66,6 +66,14 @@ Aᶜ 与 Bᶜ 使用相同的图像、增强轨迹、原标注 ID、监督行顺
 
 等量后仍有严格匹配净增，说明完整候选池数量变化不足以解释全部覆盖差异。每臂仍保留自身原生分数筛选、成员和排序。几何、候选筛选与跨图置信度对 COCO AP 的各自贡献待验证。 [实测汇总](results/HRSID_DEV705_PAIRED_CANDIDATE_COVERAGE_ACTUAL_SAFE_20261110.json)
 
+### 等量候选的跨图分数排序对照
+
+在已封存的 5201 与 5202 DEV705 预测上，用前节固定的逐图等量非空前缀。原始真值、类别映射、输入网格和标准 COCO 掩膜评价保持一致。令 `P_{g,s}` 表示来自模型 `g` 的有序掩膜候选，按同一图像、同一前缀行次序使用模型 `s` 的分数。两模型候选数量逐图相同，因此使用同一分数供体时，全图的分数值和分数并列规则均相同。保留各候选池自己的图内顺序与成员，核验供体更换前后该池的图内匹配和忽略规则一致。预测掩膜行不进行实例或查询身份匹配。
+
+每个种子报告四个评分单元。固定两种分数模板分别比较 `P_{B,A}-P_{A,A}` 与 `P_{B,B}-P_{A,B}`，衡量选中候选内容与图内排序的组合差异。固定候选池分别比较 `P_{A,B}-P_{A,A}` 与 `P_{B,B}-P_{B,A}`，衡量跨图分数排序的影响。AP、AP75 为主要描述指标，另报 AP50、AP90、APs 和 IoU 0.75、0.90 的最大召回。两种分数模板下 AP 和 AP75 若在两个种子中均保持正差，则两条实测全局排序均支持候选内容及图内排序的组合收益。若方向或幅度受模板显著影响，按单元完整报告。
+
+这是一项固定模型、固定已入选候选的事后诊断。前缀按原始分数选出，掩膜和图内排序仍可共同变化。交叉模板用于量化评分敏感性，无新增模型推理、正式测试、真实校准学习或唯一因果贡献分解。原始完整池的正式 DEV 端点 AP 单列，交叉模板的分数不得用于选模。 [COCO 匹配与汇总实现](https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocotools/cocoeval.py) · [对照入口](code/HRSID_MASK_PHASE_REPEAT_DEV705_20261109/dev705_score_template.py)
+
 ## 可反转的方向对照
 
 设纵向输入高为 n、输出高为 m，输出索引为 j。理想算术下，旧最近邻取 floor(jn/m)，中心采样取 floor((j+½)n/m)。在原掩膜上纵向翻转，用同一个旧最近邻核缩放，再在输出上翻回，得到索引 n−1−floor((m−1−j)n/m)。这个构造只反转纵向核相位，图像、框、横向核和真实增强翻转均沿用原设置。以输入像素中心为坐标时，采样坐标误差满足反射后的误差等于镜像位置原误差的相反数。单个实例的输出质心仍受离散支持和面积影响，须实测。 [PyTorch 2.10 的采样内核](https://github.com/pytorch/pytorch/blob/v2.10.0/aten/src/ATen/native/UpSample.h#L296-L343)
@@ -89,6 +97,7 @@ Aᶜ 与 Bᶜ 使用相同的图像、增强轨迹、原标注 ID、监督行顺
 - PyTorch 已实现中心最近邻，TorchVision 的修复允许对 Mask 显式请求该插值。RF-DETR 1.12.0 的原生掩膜调用未传此选项。HRSID 原配对利用已有原语，研究对象是固定训练流水线的标签误差与实际效用。 [PyTorch 原实现](https://github.com/pytorch/pytorch/pull/64501) · [TorchVision 修复](https://github.com/pytorch/vision/pull/9497) · [RF-DETR 原生 Resize](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/datasets/_torchvision.py#L390-L419)
 - RSI4EO 的 HRSID 半像素修正在框裁剪后的掩膜精修环节，作者内部留出 AP 为 56.4→60.7。公开论文和仓库仍不足以确定该修正的精确采样式及训练条件，不能和当前 DEV705 分数直接排名。LFG-Net 作者训练配置使用 800×800 保比例缩放，原图已为 800×800 的图像在该环节为等尺寸，和 576 输入的增强风险不同。 [RSI4EO 附录](https://arxiv.org/html/2610.18845v2#A1.SS3) · [LFG-Net 作者配置](https://github.com/Evarray/LFG-Net/blob/master/configs/lfgnet/mask_rcnn_r50_lfcp_hrfim_1x_coco.py#L21-L30)
 - CoFailMed 附录 B.3 在四项医学语义分割任务中复训冻结编码器的 1×1 头，旧最近邻与中心最近邻的前景质心平均绝对差约为 0.47 个输出像素。训练与测试共用各自的缩放口径，报告的是模型组间逐例 Dice 相关差的敏感性。它已覆盖半像素偏移和等协议重训。当前 HRSID 问题进一步固定原始评价 GT 与训练监督行，检验整模型的船舶实例 AP。 [CoFailMed 原文表 B.2](https://arxiv.org/pdf/2610.41790v1#page=23)
+- MatchDown 预印本已在 BBBC038 与 BBBC039 比较固定整数输出步幅的跨格采样。用同一折、种子初值、裁剪和增强复训，输出回全分辨率评分。BBBC038 的 8 倍步幅星凸头在作者按计数误差选阈值时，cell center 相对 strided 的 Acc50 为 0.770 对 0.728。这里的 cell center 取格内索引 floor((f−1)/2)，偶数倍下比 PyTorch nearest-exact 的 f/2 提前一格。作者另在 COCO 仅进行标签层的 nearest-exact 比较，并验证了软标签和全分辨率损失替代方案。其 Acc50 是固定操作点的一对一实例计数指标。MatchDown 主方法是离线的单区域单格分配，RF-DETR 使用可重叠的逐实例二值掩膜和动态非整数增强尺寸，无法直接套用它的一格一实例约束。中心取样、标签存活和固定输出网格评价已有训练先例。当前差异应限于真实增强链上可反转的方向偏差、共同行训练和原始网格高 IoU 实例效应，待正式证据支持。作者实现入口尚未核实。 [MatchDown 原文第 4.3 节](https://arxiv.org/html/2610.39880v1#S4.SS3) · [配对训练细节](https://arxiv.org/html/2610.39880v1#A3)
 - 组合空间变换后一次重采样已有 MONAI Lazy Resampling 的方法与训练证据。当前 HRSID 的一次中心采样只用作几何参考。若将来检验裁剪链的一次采样收益，需在相同监督行和随机轨迹下比较逐步中心与一次中心，明确引用该先例。 [Murray 等原文](https://doi.org/10.1016/j.cmpb.2024.108422) · [作者复现实验代码](https://github.com/KCL-BMEIS/LazyResampling)
 
 ## SSDD 预案及开放条件
