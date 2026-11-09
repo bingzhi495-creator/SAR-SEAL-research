@@ -1,0 +1,217 @@
+{
+  "AP_recomputed": true,
+  "core_sha256": "65388e3f32388f8aea10b022e1a9c229848f10b19401fcecc292e410a48e5ee4",
+  "elapsed_seconds": 20.339308300055563,
+  "forward_calls": 0,
+  "image_manifest_sha256": "39a40d089d4a54448fe6efca8ea5cc98ad1eb7c0587815f3dd9a3b097173e78f",
+  "implementation_commit": "f7534d718b9087f00b04a8858eec7dbd510e6b57",
+  "model_executed": false,
+  "numeric_runtime": {
+    "numpy": "1.26.4",
+    "pycocotools": "2.0.11",
+    "scipy": "1.15.3"
+  },
+  "official_TEST_opened": false,
+  "original_dev_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+  "per_arm_provenance": {
+    "5201": {
+      "arms": {
+        "center": {
+          "checkpoint_sha256": "b95f1a41ab599b7eb27ed3f25029300838cf1b9da74d7bd0c3ccaaef449485db",
+          "export_report_sha256": "5372f681ab8d1ab3db35d1566a04194247e5cfcacc500b849e78c257ddc2a432",
+          "predictions_sha256": "6fb2734d9209b1165e2b777640fc2f78f4ce7570010a454acb03068ec3066f79",
+          "score_report_sha256": "2a255918e82460cd2d699dd27069189248e5cc570e98d6629d1da37a661be12d"
+        },
+        "native": {
+          "checkpoint_sha256": "198bc09cb93019e719342914965dffb31160bb284003a17b334f998c1f540c56",
+          "export_report_sha256": "468935d7e26b60ea863956c12e2970064e690df1d8babd505e4af9a849062717",
+          "predictions_sha256": "6780fd2bb3e71e2f4b148f7b523d9f76f341d82b0dbd5d8868cb2cf20fbb3bf6",
+          "score_report_sha256": "9c536a51f1d4d6eb373213c24ad6c7b6ababec70e1018764e6e61f3afd8ab983"
+        }
+      },
+      "independent_acceptance_sha256": "b0967bb977b312d5654cdb245755fd37db1a9f54a84b53d87b0a83e3a34c7691",
+      "original_export_pair_sha256": "233d93ccb20fd7e55e98445d42393f32844dc52a046db9200291f39a7f1255a0"
+    },
+    "5202": {
+      "arms": {
+        "center": {
+          "checkpoint_sha256": "84402a6cf29a6ae428853d3049a7759f97e342defa31ab719b74667ce932ef3a",
+          "export_report_sha256": "eeb5608a55e632e6fe12293c293acbf17cf1703904062f8890b037ac999057e3",
+          "predictions_sha256": "81bc56cc4eda5b63ad9ec56bf2f3a772c7648f350352f3c4df6c7b13f40d8485",
+          "score_report_sha256": "74016746e3cb35aa54b1f6b5815daa0483a9f717522c0877630c945d9d4f1ac8"
+        },
+        "native": {
+          "checkpoint_sha256": "1ef686c8449621ff3179150f12ba21c81340a8da4e553b23105746c403709909",
+          "export_report_sha256": "3bace2e676916e24b3035c718a12bc3eb9cae5e40ccf662f1399db097fb61608",
+          "predictions_sha256": "e585c3f004c8e7c0c01df2265d7d319d9922fd7b510336135d9b62f6e21d33d8",
+          "score_report_sha256": "4475f315c8062c8d35983f3cbf9b7d5c03d9111f6d16e4751097da0e5672f038"
+        }
+      },
+      "independent_acceptance_sha256": "7c7a13644cef240e320fada3d4c9cf611651f6a15124836bbb68bb02ec3bbfde",
+      "original_export_pair_sha256": "73f9800b71814c167759ef5fb5558a7a98729a76334f39ff9a89672d88b854e8"
+    }
+  },
+  "seeds": {
+    "5201": {
+      "annotations": 1782,
+      "cells": {
+        "center": {
+          "center": {
+            "AP": 0.5557553344826147,
+            "AP50": 0.8918092331731701,
+            "AP75": 0.6425575253668947,
+            "AP90": 0.02911447318601101,
+            "APs": 0.5493706758475149,
+            "recall75": 0.7351290684624018,
+            "recall90": 0.11503928170594838
+          },
+          "native": {
+            "AP": 0.5527785379490187,
+            "AP50": 0.8900764492803763,
+            "AP75": 0.6370654279878641,
+            "AP90": 0.024670058454893704,
+            "APs": 0.5479029274748363,
+            "recall75": 0.7351290684624018,
+            "recall90": 0.11503928170594838
+          }
+        },
+        "native": {
+          "center": {
+            "AP": 0.5051360583798578,
+            "AP50": 0.8793893842673314,
+            "AP75": 0.5322975943627538,
+            "AP90": 0.017298418806200148,
+            "APs": 0.49209075888638115,
+            "recall75": 0.6548821548821548,
+            "recall90": 0.06004489337822671
+          },
+          "native": {
+            "AP": 0.5046284008507438,
+            "AP50": 0.8812327979040291,
+            "AP75": 0.5306336853125182,
+            "AP90": 0.013843239345912618,
+            "APs": 0.49305609033671216,
+            "recall75": 0.6548821548821548,
+            "recall90": 0.06004489337822671
+          }
+        }
+      },
+      "contrasts_points": {
+        "geometry_with_center_scores": {
+          "AP": 5.061927610275696,
+          "AP50": 1.2419848905838693,
+          "AP75": 11.02599310041409,
+          "AP90": 1.1816054379810863,
+          "APs": 5.727991696113372
+        },
+        "geometry_with_native_scores": {
+          "AP": 4.815013709827487,
+          "AP50": 0.8843651376347239,
+          "AP75": 10.643174267534594,
+          "AP90": 1.0826819108981085,
+          "APs": 5.4846837138124105
+        },
+        "score_on_center_geometry": {
+          "AP": 0.297679653359606,
+          "AP50": 0.17327838927937433,
+          "AP75": 0.5492097379030558,
+          "AP90": 0.44444147311173066,
+          "APs": 0.14677483726786011
+        },
+        "score_on_native_geometry": {
+          "AP": 0.050765752911396955,
+          "AP50": -0.18434136366977105,
+          "AP75": 0.16639090502356124,
+          "AP90": 0.34551794602875296,
+          "APs": -0.09653314503310084
+        }
+      },
+      "images": 705,
+      "images_with_prefix_rows": 705,
+      "images_without_prefix_rows": 0,
+      "retained_prefix_rows": 36834,
+      "status": "HRSID_DEV705_EQUAL_NONEMPTY_SCORE_TEMPLATE_DIAGNOSTIC_COMPLETE"
+    },
+    "5202": {
+      "annotations": 1782,
+      "cells": {
+        "center": {
+          "center": {
+            "AP": 0.5614041435366599,
+            "AP50": 0.9012279128985444,
+            "AP75": 0.6539179774174231,
+            "AP90": 0.022568232278821064,
+            "APs": 0.556697333713583,
+            "recall75": 0.7413019079685746,
+            "recall90": 0.10493827160493827
+          },
+          "native": {
+            "AP": 0.5589698215691994,
+            "AP50": 0.8981071533322809,
+            "AP75": 0.6501633565046004,
+            "AP90": 0.023168278302147384,
+            "APs": 0.554535163126489,
+            "recall75": 0.7413019079685746,
+            "recall90": 0.10493827160493827
+          }
+        },
+        "native": {
+          "center": {
+            "AP": 0.5134019883953885,
+            "AP50": 0.8876903549366645,
+            "AP75": 0.5791869070083205,
+            "AP90": 0.014933284531685196,
+            "APs": 0.5041347314853303,
+            "recall75": 0.6778900112233446,
+            "recall90": 0.06565656565656566
+          },
+          "native": {
+            "AP": 0.5137100044792617,
+            "AP50": 0.8892807517848614,
+            "AP75": 0.5819084805487031,
+            "AP90": 0.013415910986634264,
+            "APs": 0.5048155879436855,
+            "recall75": 0.6778900112233446,
+            "recall90": 0.06565656565656566
+          }
+        }
+      },
+      "contrasts_points": {
+        "geometry_with_center_scores": {
+          "AP": 4.800215514127137,
+          "AP50": 1.3537557961879942,
+          "AP75": 7.473107040910254,
+          "AP90": 0.7634947747135868,
+          "APs": 5.25626022282527
+        },
+        "geometry_with_native_scores": {
+          "AP": 4.525981708993765,
+          "AP50": 0.8826401547419427,
+          "AP75": 6.825487595589729,
+          "AP90": 0.9752367315513121,
+          "APs": 4.9719575182803455
+        },
+        "score_on_center_geometry": {
+          "AP": 0.24343219674605177,
+          "AP50": 0.31207595662635645,
+          "AP75": 0.3754620912822637,
+          "AP90": -0.060004602332631995,
+          "APs": 0.21621705870940033
+        },
+        "score_on_native_geometry": {
+          "AP": -0.030801608387320822,
+          "AP50": -0.1590396848196951,
+          "AP75": -0.27215735403826047,
+          "AP90": 0.1517373545050932,
+          "APs": -0.06808564583552501
+        }
+      },
+      "images": 705,
+      "images_with_prefix_rows": 705,
+      "images_without_prefix_rows": 0,
+      "retained_prefix_rows": 29941,
+      "status": "HRSID_DEV705_EQUAL_NONEMPTY_SCORE_TEMPLATE_DIAGNOSTIC_COMPLETE"
+    }
+  },
+  "status": "ACTUAL_CLOSED_DEV705_SCORE_TEMPLATE_V1"
+}
