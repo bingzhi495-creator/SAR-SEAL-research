@@ -12,6 +12,7 @@
 - [HRSID FIT 固定查询轮廓几何](research_round_20260925_global/HRSID_FIT_FIXED_CONTOUR_GEOMETRY_PROTOCOL_20261109.md)。主层放宽整体恢复 51/234，局部同预算恢复 37/234，密集层分别为 0/59 与 19/59。按预设门槛优先验证整体平移的预测信号。
 - [HRSID 同一查询的框掩膜中心偏差](research_round_20260925_global/HRSID_FIT_BOX_SHIFT_PROTOCOL_20261109.md)。实测框差、掩膜差与常量的严格匹配均为 51，原生为 37；拟合组均失守 15/37，框差未过门。原生掩膜重采样有合成像素中心偏移证据，真实增强重放待检验。
 - [HRSID FIT 训练标签采样相位](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_REPLAY_PROTOCOL_20261109.md)。114 图、456 个配对视图实测，小目标纵向偏差 +0.876→−0.120 原图像素，参考 IoU 0.795→0.952。保留行变动 3 失 1 增，独立复算通过，进入配对训练资格。
+- [HRSID 训练掩膜相位的配对训练](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_PAIRED_TRAIN_PROTOCOL_20261109.md)。已锁定真实短窗资格、同机 E24 端点和固定评分。
 - [SSDD 训练匹配的采样归因](research_round_20260925_global/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_PROTOCOL_20261109.md)。DGX 30 图精确重放，分层降幅 0.321 点，按预设门槛停止；后续诊断高 IoU 候选。
 - [SSDD 双相位掩膜几何](research_round_20260925_global/RFDETR_E24_FIT_DUAL_PHASE_MASK_GEOMETRY_PROTOCOL_20261109.md)。首组 42/55 缺严格候选，最优标量阈值双相位恢复 3/42，按门槛停线。
 - [SSDD 冻结空间基底的嵌套掩膜拟合](research_round_20260925_global/RFDETR_E24_FIT_NESTED_MASK_BASIS_ORACLE_PROTOCOL_20261109.md)。固定基底的系数拟合双相位恢复 18/42，标量对照 3/42。
