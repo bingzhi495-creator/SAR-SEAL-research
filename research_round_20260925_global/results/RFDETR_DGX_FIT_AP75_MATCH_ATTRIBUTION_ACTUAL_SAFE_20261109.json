@@ -1,0 +1,80 @@
+{
+  "DEV": false,
+  "TEST": false,
+  "closed_prefix_protocol": "4ba3a5ad4e9b6abaa96c35198b55a0c9475e560b",
+  "gate": false,
+  "primary114": {
+    "AP75": {
+      "bce_bce": 0.9637179587607123,
+      "bce_prefix": 0.9637179587607123,
+      "prefix_bce": 0.958149418264529,
+      "prefix_prefix": 0.958149418264529
+    },
+    "actual_delta": -0.005568540496183272,
+    "eligibility_effect": -0.005568540496183272,
+    "exact_own_endpoint_match_and_precision": true,
+    "interaction": 0,
+    "precision_grid": {
+      "equal": 94,
+      "higher": 0,
+      "lower": 7
+    },
+    "priority_effect": 0,
+    "transitions": {
+      "changed_images": 3,
+      "counts": {
+        "FP_to_TP": 2,
+        "TP_gain_rematch": 2,
+        "TP_loss_direct_edge": 3,
+        "TP_to_FP": 3,
+        "eligible_edges_gained": 27,
+        "eligible_edges_lost": 27
+      }
+    }
+  },
+  "protocol": "4a3cba9abba2c8f7dc1e2b0058729f77f52c9a47",
+  "secondary111": {
+    "AP75": {
+      "bce_bce": 0.9313858677071005,
+      "bce_prefix": 0.9313858677071005,
+      "prefix_bce": 0.9384874458336353,
+      "prefix_prefix": 0.9384874458336353
+    },
+    "actual_delta": 0.00710157812653478,
+    "eligibility_effect": 0.00710157812653478,
+    "exact_own_endpoint_match_and_precision": true,
+    "interaction": 0,
+    "precision_grid": {
+      "equal": 85,
+      "higher": 16,
+      "lower": 0
+    },
+    "priority_effect": 0,
+    "transitions": {
+      "changed_images": 3,
+      "counts": {
+        "FP_to_TP": 4,
+        "TP_gain_direct_edge": 3,
+        "TP_gain_rematch": 1,
+        "TP_loss_direct_edge": 2,
+        "TP_to_FP": 2,
+        "eligible_edges_gained": 41,
+        "eligible_edges_lost": 28
+      }
+    }
+  },
+  "status": "HISTORICAL_FIT_AP75_MATCH_ATTRIBUTION_COMPLETE",
+  "synthetic_mixes_diagnostic_only": true,
+  "closed_original": {
+    "original_OS_wait": true,
+    "original_SSH_exit": 0,
+    "resource_stop": false,
+    "peak_RSS_bytes": 3006959616,
+    "seconds": 65.84841221920215,
+    "terminal_sha256": "198c73404db28695f1b641006588c7d459738e3fa627378cf7f5e93a4a272a7f",
+    "result_sha256": "94a6db0f44df783683041b03c41ba2bb88732acb1713cff448659dc8dbbcd2e8"
+  },
+  "interpretation": "THRESHOLD_ELIGIBILITY_EXPLAINS_OBSERVED_AP75_DELTA_UNDER_FIXED_CANONICAL_REPLAY",
+  "historical_roles_only": true,
+  "prospective_expansion": false
+}
