@@ -5,7 +5,7 @@
 ## 当前状态（2026-11-09）
 
 - [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。
-- [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md)。新增 KuRALS-PD 实测船艇和 OpenSAR Insight 同景配对入口，已核对标注生成规则。
+- [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md)。新增 KuRALS-PD 实测船艇和 OpenSAR Insight 同景配对入口，已核对标注生成规则。 补充零多普勒格点合成核验和两项独立迁移对照。
 
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
@@ -17,6 +17,7 @@
 - [HRSID FIT 固定查询轮廓几何](research_round_20260925_global/HRSID_FIT_FIXED_CONTOUR_GEOMETRY_PROTOCOL_20261109.md)。主层放宽整体恢复 51/234，局部同预算恢复 37/234，密集层分别为 0/59 与 19/59。按预设门槛优先验证整体平移的预测信号。
 - [HRSID 同一查询的框掩膜中心偏差](research_round_20260925_global/HRSID_FIT_BOX_SHIFT_PROTOCOL_20261109.md)。实测框差、掩膜差与常量的严格匹配均为 51，原生为 37；拟合组均失守 15/37，框差未过门。原生掩膜重采样有合成像素中心偏移证据，真实增强重放待检验。
 - [HRSID FIT 训练标签采样相位](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_REPLAY_PROTOCOL_20261109.md)。114 图、456 个配对视图实测，小目标纵向偏差 +0.876→−0.120 原图像素，参考 IoU 0.795→0.952。保留行变动 3 失 1 增，独立复算通过，进入配对训练资格。
+- [HRSID DEV705 等量候选覆盖实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#关闭模型的候选覆盖与图内分配诊断)。逐图非空候选等量后，两种子的 IoU 0.90 最大匹配数仍分别增加 98、70。原覆盖入口复现全部 36 个阈值行。
 - [HRSID 训练掩膜相位的配对训练](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_PAIRED_TRAIN_PROTOCOL_20261109.md)。同机两臂各通过 32 次访问、8 次 AdamW 和 EMA 的真实资格。图像与框配对一致，29 批掩膜不同。首组两臂各通过 24 轮、17,640 次 AdamW 和 EMA 更新及 E1/E8/E24 档案验收。DEV705 原始 GT 的 mask AP 为 A **50.434**、B **55.551**，相对较强原生参考 **+5.117 点**，独立复算通过。[后续种子 5202、5203 已预锁](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_REPEAT_SEEDS_PROTOCOL_20261109.md)，四个真实短窗已通过独立验收。5202 两臂均独立验收 E24，访问顺序相同。固定 DEV705 的 A 为 **51.333**、B 为 **56.131**，首个确认种子提升 **+4.799 点**，正式 TEST 未开启。 首组与首个确认组均为正，5203 的中心 B 已按预锁顺序启动。三种子汇总规则的 9 项合成测试通过。 [共同行对照、方向合成实测及 SSDD 预案](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md)。 共同行训练、短窗与 E24 验收、DEV705 准入及配对几何入口通过 56 项合成测试。真实 FIT 资格待三种子门槛。 [DEV705 组构成敏感性实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#dev705-文件名前缀组敏感性实测)显示，5201 与 5202 的 AP 和 AP75 在全部 2,048 次抽样与逐一移除 28 组时均为正。 [纵向三臂 FIT 实测](research_round_20260925_global/HRSID_FIT_VERTICAL_DIRECTION_REPLAY_PROTOCOL_20261109.md)通过方向门槛，原生与反射相对纵向中心分别为 +0.988 与 −0.718 原图像素。
 - [SSDD 相位迁移入口和 Q100 初始化实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-迁移入口与-q100-初始化实测)。已核验完整初始张量，FIT741 隔离目录实际完成并独立读回。长训验收、导出和评分候选已联测，真实增强回放、短窗和 E24 待执行。
 - [SSDD 训练匹配的采样归因](research_round_20260925_global/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_PROTOCOL_20261109.md)。DGX 30 图精确重放，分层降幅 0.321 点，按预设门槛停止；后续诊断高 IoU 候选。
