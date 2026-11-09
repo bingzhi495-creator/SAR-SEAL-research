@@ -8,6 +8,7 @@
 
 - [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
 - [HRSID 原生 E24 训练与 DEV705 实测](research_round_20260925_global/HRSID_COCO_E24_DEV705_NATIVE_EVALUATION_PROTOCOL_20261109.md)。原训练独立验收 24 轮、17,640 次 AdamW 和 EMA 更新，三处固定归档通过。固定 DEV705 的 mask AP **50.427**、AP75 **54.466**、AP90 **1.466**。HRSID 官方 TEST 继续隔离。[固定候选误差普查](research_round_20260925_global/HRSID_DEV705_NATIVE_CANDIDATE_COVERAGE_PROTOCOL_20261109.md)独立复算确认 1,778 个有效 GT 仅 104 个有 0.90 达标候选，原顺序达到最大一对一匹配数。
+- [HRSID FIT 的原生 164 查询与候选保留对照](research_round_20260925_global/HRSID_FIT_NATIVE_QUERY_RETENTION_PROTOCOL_20261109.md)。已锁定母景代理主样本、密图压力层和等量筛选门槛，真实推理待执行。
 - [SSDD 训练匹配的采样归因](research_round_20260925_global/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_PROTOCOL_20261109.md)。DGX 30 图精确重放，分层降幅 0.321 点，按预设门槛停止；后续诊断高 IoU 候选。
 - [SSDD 双相位掩膜几何](research_round_20260925_global/RFDETR_E24_FIT_DUAL_PHASE_MASK_GEOMETRY_PROTOCOL_20261109.md)。首组 42/55 缺严格候选，最优标量阈值双相位恢复 3/42，按门槛停线。
 - [SSDD 冻结空间基底的嵌套掩膜拟合](research_round_20260925_global/RFDETR_E24_FIT_NESTED_MASK_BASIS_ORACLE_PROTOCOL_20261109.md)。固定基底的系数拟合双相位恢复 18/42，标量对照 3/42。
