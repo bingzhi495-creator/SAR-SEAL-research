@@ -80,4 +80,13 @@ Aᶜ 与 Bᶜ 使用相同的图像、增强轨迹、原标注 ID、监督行顺
 
 另已核对 SSDD 历史训练入口的边界。即使关闭在线验证，数据模块仍构造 DEV，历史完成条件还检查 187 个验证条目。拟复用的训练入口应只允许物理隔离的 FIT，另以同一 100 查询配置重新核对两臂完整 COCO 初始化摘要。评分由独立的 DEV187 入口执行。 [历史 E100 入口](code/RFDETR_NATIVE_UNINTERRUPTED_E100_WORKER_CANDIDATE_20261107/e100_worker.py) · [历史 DEV187 导出](code/RFDETR_NATIVE_E24_DEV_EXPORT_WORKER_CANDIDATE_20261107/e24_dev_export_worker.py)
 
-作者官方 PSeg 划分为 928／232，项目旧稿记录过该测试集参与模型选择。冻结后仍可报告官方测试，但需披露接触历史并核验原始标注版本。这里的目标库重新训练检验配方可移植性，另一个独立留出域仍需要确认。当前只是待锁定设计，尚无 SSDD 相位配对效用或正式 TEST 结果。 [作者数据论文](https://www.mdpi.com/2072-4292/13/18/3690) · [测试使用记录](https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/d2b38d430302153c55a2e5330cea296a9324dcdb/paper_tgrs/revision_tgrs_20260905/sec_exp.tex#L203)
+### SSDD 迁移入口与 Q100 初始化实测
+
+- 从官方 COCO Seg Nano 资产在锁定 Windows CPU 环境中原生初始化。实测 100 查询、13 组、2 个类别槽及 545 个模型状态张量。完整初始摘要 `40524fc63797d2fcab7b50b6ee1f041f9429df73e505cb9e647a5a8cdf6f2e2f` 与此前独立核验的原始宽度参考完全一致。初始化过程没有接触 FIT、DEV 或 TEST。 [初始化入口](code/SSDD_MASK_PHASE_TRANSFER_20261110/ssdd_phase_init.py) · [实测回执](results/SSDD_PHASE_Q100_CPU_INITIALIZATION_ACTUAL_SAFE_20261110.json)
+- FIT-only 构建器复用原始归档逐文件校验，只写独立 `train`，保留 741 个逻辑样本和同字节副本。训练加载器复用原始 RF-DETR 加载和排序，拒绝验证、测试与预测入口，每轮检查 744 次访问和 3 个对齐补齐样本。启动前须从已封存的本机 FIT 输入包重新核验原始归档 SHA 和输出字节。 [隔离构建](code/SSDD_MASK_PHASE_TRANSFER_20261110/ssdd_fit_stage.py) · [原生加载入口](code/SSDD_MASK_PHASE_TRANSFER_20261110/ssdd_fit_only.py)
+- CPU 回放按原生索引为每个 FIT 样本固定一条视图，随机种子为 5311 加索引。它比较同一图像、增强路径和共同非空原标注行，分别汇总直缩、裁剪及小目标几何，并核对两种采样的 100 查询容量。真实 FIT 回放为短窗之前的先行资格。 [回放入口](code/SSDD_MASK_PHASE_TRANSFER_20261110/ssdd_phase_fit_replay.py)
+- 短窗与 E24 复用同一原生引擎与空掩膜保护。短窗各 32 次访问、8 次 AdamW 和 EMA，验收核对原进程闭合、实际影像和随机状态，并要求至少一次观测到同类别、同框、同数量的非空掩膜变化。另记录裁剪和空掩膜保护造成的自然目标保留差异。E24 固定各 17,856 次访问、4,464 次 AdamW 和 EMA，使用 18,600 次 E100 调度、558 次预热，固定第 24 轮的 `checkpoint_23.ckpt`，保留原生端点及相位来源标记。 [训练入口](code/SSDD_MASK_PHASE_TRANSFER_20261110/ssdd_phase_train.py) · [短窗验收](code/SSDD_MASK_PHASE_TRANSFER_20261110/ssdd_phase_qualification.py) · [原生依赖绑定](code/SSDD_MASK_PHASE_TRANSFER_20261110/ssdd_phase_dependencies.py)
+
+固定 CPU 环境 31 项合成测试通过。真实 FIT 回放、GPU 短窗、E24 两臂和 DEV187 评分均待正式执行。完成后将按两臂独立闭合的端点资格复用原生导出和固定整数 GT 评分。
+
+作者官方 PSeg 划分为 928／232，项目旧稿记录过该测试集参与模型选择。冻结后仍可报告官方测试，但需披露接触历史并核验原始标注版本。这里的目标库重新训练检验配方可移植性，另一个独立留出域仍需要确认。当前已确认 Q100 初值，真实 SSDD 相位配对效用与正式 TEST 待验。 [作者数据论文](https://www.mdpi.com/2072-4292/13/18/3690) · [测试使用记录](https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/d2b38d430302153c55a2e5330cea296a9324dcdb/paper_tgrs/revision_tgrs_20260905/sec_exp.tex#L203)
