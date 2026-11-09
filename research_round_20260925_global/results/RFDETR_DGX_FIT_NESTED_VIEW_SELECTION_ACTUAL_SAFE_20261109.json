@@ -1,0 +1,474 @@
+{
+  "AP": false,
+  "DEV": false,
+  "TEST": false,
+  "actual_nested_fit": true,
+  "analytic_safety_feasible": true,
+  "bound": {
+    "correct_flip_gain_loss": {
+      "changed_high_passes": {
+        "negative": 63,
+        "net": 5,
+        "positive": 68,
+        "rows": 78
+      },
+      "unchanged_high_passes": {
+        "negative": 359,
+        "net": 112,
+        "positive": 471,
+        "rows": 1004
+      }
+    },
+    "different_actions": 1052,
+    "gained_over_raw": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      4,
+      5,
+      13,
+      24,
+      1
+    ],
+    "high_gain_over_raw": 38,
+    "high_loss_by_flip": 40,
+    "high_total": 1161,
+    "label_support": {
+      "gain": {
+        "folds": 5,
+        "groups": 32,
+        "largest_group_rows": 3,
+        "rows": 38
+      },
+      "loss": {
+        "folds": 5,
+        "groups": 34,
+        "largest_group_rows": 3,
+        "rows": 40
+      },
+      "ties": 1004
+    },
+    "lost_by_flip": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      10,
+      22,
+      16,
+      2
+    ],
+    "maximum_passed": [
+      1082,
+      1082,
+      1082,
+      1080,
+      1078,
+      1056,
+      993,
+      799,
+      347,
+      15
+    ],
+    "minimum_native_ap90_losses": 13
+  },
+  "exact_original_actions": true,
+  "fit_content_groups": 479,
+  "fit_images": 484,
+  "fit_matches": 1082,
+  "fold_reports": [
+    {
+      "eligible_held": 239,
+      "fold": 0,
+      "switched": {
+        "same_rate_hash": 140,
+        "selector": 140,
+        "sham_selector": 138
+      },
+      "training_groups": 380,
+      "training_rows": 815,
+      "training_support": {
+        "gain": {
+          "folds": 4,
+          "groups": 29,
+          "largest_group_rows": 2,
+          "rows": 32
+        },
+        "loss": {
+          "folds": 4,
+          "groups": 24,
+          "largest_group_rows": 3,
+          "rows": 28
+        },
+        "ties": 755
+      }
+    },
+    {
+      "eligible_held": 188,
+      "fold": 1,
+      "switched": {
+        "same_rate_hash": 90,
+        "selector": 90,
+        "sham_selector": 87
+      },
+      "training_groups": 383,
+      "training_rows": 871,
+      "training_support": {
+        "gain": {
+          "folds": 4,
+          "groups": 26,
+          "largest_group_rows": 2,
+          "rows": 27
+        },
+        "loss": {
+          "folds": 4,
+          "groups": 25,
+          "largest_group_rows": 4,
+          "rows": 30
+        },
+        "ties": 814
+      }
+    },
+    {
+      "eligible_held": 243,
+      "fold": 2,
+      "switched": {
+        "same_rate_hash": 143,
+        "selector": 143,
+        "sham_selector": 138
+      },
+      "training_groups": 381,
+      "training_rows": 815,
+      "training_support": {
+        "gain": {
+          "folds": 4,
+          "groups": 29,
+          "largest_group_rows": 3,
+          "rows": 35
+        },
+        "loss": {
+          "folds": 4,
+          "groups": 21,
+          "largest_group_rows": 3,
+          "rows": 27
+        },
+        "ties": 753
+      }
+    },
+    {
+      "eligible_held": 168,
+      "fold": 3,
+      "switched": {
+        "same_rate_hash": 64,
+        "selector": 64,
+        "sham_selector": 62
+      },
+      "training_groups": 383,
+      "training_rows": 888,
+      "training_support": {
+        "gain": {
+          "folds": 4,
+          "groups": 31,
+          "largest_group_rows": 3,
+          "rows": 40
+        },
+        "loss": {
+          "folds": 4,
+          "groups": 29,
+          "largest_group_rows": 3,
+          "rows": 36
+        },
+        "ties": 812
+      }
+    },
+    {
+      "eligible_held": 214,
+      "fold": 4,
+      "switched": {
+        "same_rate_hash": 117,
+        "selector": 117,
+        "sham_selector": 123
+      },
+      "training_groups": 381,
+      "training_rows": 828,
+      "training_support": {
+        "gain": {
+          "folds": 4,
+          "groups": 25,
+          "largest_group_rows": 3,
+          "rows": 34
+        },
+        "loss": {
+          "folds": 4,
+          "groups": 29,
+          "largest_group_rows": 3,
+          "rows": 34
+        },
+        "ties": 760
+      }
+    }
+  ],
+  "gate": false,
+  "native_ap90_total": 277,
+  "protocol": "bb6c365a7fe97437e538c93d3328e821d1990f70",
+  "selector": {
+    "gate": false,
+    "gate_checks": {
+      "fixed_ap75_nondecrease": true,
+      "group_interval_positive_vs_all": false,
+      "high_micro_ge_0_01_vs_all": false,
+      "native_ap90_loss_at_most_5_percent": false
+    },
+    "metrics": {
+      "aligned": {
+        "added_vs_raw": [
+          0,
+          0,
+          0,
+          1,
+          1,
+          4,
+          5,
+          13,
+          24,
+          1
+        ],
+        "lost_vs_raw": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          10,
+          22,
+          16,
+          2
+        ],
+        "native_90_lost": 15,
+        "passed": [
+          1082,
+          1082,
+          1082,
+          1080,
+          1078,
+          1054,
+          983,
+          777,
+          331,
+          13
+        ]
+      },
+      "raw38": {
+        "added_vs_raw": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "lost_vs_raw": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "native_90_lost": 20,
+        "passed": [
+          1082,
+          1082,
+          1082,
+          1079,
+          1077,
+          1052,
+          988,
+          786,
+          323,
+          14
+        ]
+      },
+      "same_rate_hash": {
+        "added_vs_raw": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          4,
+          12,
+          0
+        ],
+        "lost_vs_raw": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          8,
+          15,
+          10,
+          1
+        ],
+        "native_90_lost": 18,
+        "passed": [
+          1082,
+          1082,
+          1082,
+          1079,
+          1077,
+          1051,
+          983,
+          775,
+          325,
+          13
+        ]
+      },
+      "selector": {
+        "added_vs_raw": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          2,
+          9,
+          1
+        ],
+        "lost_vs_raw": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          8,
+          7,
+          1
+        ],
+        "native_90_lost": 20,
+        "passed": [
+          1082,
+          1082,
+          1082,
+          1079,
+          1077,
+          1053,
+          989,
+          780,
+          325,
+          14
+        ]
+      },
+      "sham_selector": {
+        "added_vs_raw": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          3,
+          5,
+          9,
+          1
+        ],
+        "lost_vs_raw": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          7,
+          10,
+          0
+        ],
+        "native_90_lost": 21,
+        "passed": [
+          1082,
+          1082,
+          1082,
+          1079,
+          1077,
+          1052,
+          989,
+          784,
+          322,
+          15
+        ]
+      }
+    },
+    "paired": {
+      "aligned": {
+        "group_mean": -0.0013074376331161292,
+        "group_percentile95": [
+          -0.01439923767950908,
+          0.011180120621665516
+        ],
+        "groups": 479,
+        "micro": -0.0018484288354898336
+      },
+      "raw38": {
+        "group_mean": -0.0012901909039696098,
+        "group_percentile95": [
+          -0.010558257417599796,
+          0.008503539345136424
+        ],
+        "groups": 479,
+        "micro": -0.0036968576709796672
+      },
+      "same_rate_hash": {
+        "group_mean": 0.008007528310242299,
+        "group_percentile95": [
+          -0.0026035010860167435,
+          0.01904500379578668
+        ],
+        "groups": 479,
+        "micro": 0.005545286506469501
+      },
+      "sham_selector": {
+        "group_mean": -0.0022059495441541376,
+        "group_percentile95": [
+          -0.009058803061934585,
+          0.003921034457307943
+        ],
+        "groups": 479,
+        "micro": -0.0018484288354898336
+      }
+    }
+  },
+  "status": "HISTORICAL_FIT_NESTED_VIEW_SELECTION_COMPLETE",
+  "closed_original": {
+    "original_OS_wait": true,
+    "original_SSH_exit": 0,
+    "resource_stop": false,
+    "peak_RSS_bytes": 2898120704,
+    "seconds": 117.69218023796566,
+    "terminal_sha256": "a82ee34d4c16139e18124c896e13d181c03eb96845ae740a6ff1ef597ffb471e",
+    "result_sha256": "1b5cbcbea8f72b62a2e4c4eccbde1c2aa005ab64362d3201b6e55d3beaa53cc1"
+  },
+  "interpretation": "TWO_ACTION_ORACLE_HAS_ZERO_SAFETY_HEADROOM_NESTED_SELECTOR_UNSUPPORTED",
+  "next": "STOP_CURRENT_TWO_ACTION_SELECTOR_ACCEPT_HRSID_NATIVE_BASELINE_AND_REASSESS_BOTTLENECK"
+}
