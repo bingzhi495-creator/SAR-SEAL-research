@@ -58,3 +58,11 @@ Instance-RSDD 作者报告从 RSDD 选择 3,555 幅真实 SAR 图逐船标注像
 Schwegmann 数据已实际从固定 GitLab 源取得首段 4 MiB。HTTP 206 声明完整正样本 JSON 为 289,068,441 字节，前缀 SHA-256 为 `b517a9442f5a1a7c89d45093c34fb2fb27705eba4420974cd42f09bd3b952411`。解出 23 条完整记录，覆盖两个产品字符串。全部包含配对的 101×101 与 21×21 有限数值影像和二值参考，前景面积均为 14–41 像素，两个尺寸下逐条面积相同。首轮读取 1 MiB 时按单层 JSON 列表解析失败。随后按实际双层列表解析四 MiB 前缀。未读取全包或执行模型。 [固定作者 JSON 入口](https://gitlab.com/sarmaps/sar-ship-dataset/-/raw/9decec2a18b9d7d6fd2d057a435808ca67d2bad1/json/ship_positives.json)
 
 PSeg-SSDD 仍是当前配方重训的优先跨库路线。Instance-RSDD 的实际掩膜与许可待核，其 RSDD 源含 TerraSAR-X，须与 HRSID 的具体采集来源核对。第三套数据的质量核验与模型选择相互隔离。 [原始 RSDD 发布](https://github.com/makabakasu/RSDD-SAR-OPEN)
+
+### UEIKAP 旧缺失文件头补齐
+
+按原作者 ZIP 中央目录摘要和 515 张 TIFF 成员清单，从 12 个原 HTTP 429 成员分别取得 8,192 个压缩字节。共 14 次 HTTP 206 请求，含目录共 591,461 字节。原文件头 503／515 补至 515／515。按原 Copernicus 产品开始时间及 95% 足迹覆盖规则，12 张均唯一归入已有五个采集家族。重新向官方目录发起六次查询，12 张的归组完全复现。旧唯一归组覆盖 493／515 增至 505／515，仍有 10 张未唯一归组。32 个已映射家族中跨作者芯片划分的仍为 25 个。 [Copernicus OData 官方说明](https://documentation.dataspace.copernicus.eu/APIs/OData.html)
+
+新增 12 张均在已有 QA 家族且与 18 个预留外测家族零交集。原 QA50、108 张预留图与 139 个候选船体的名单保持冻结。全库旧标注计数核对到 515 图均有 class 0、514 图兼有 class 1，无无标注图。该发布总体富集正例，空海面的虚警仍需别处验证。作者说明 SAR 船体多边形用于方位偏移估计，AIS 参与标注。这支持类语义解释，逐实例勾绘来源和图内标注完整性仍未核准。 [作者技术论文](https://doi.org/10.1109/MetroAeroSpace64938.2025.11114590)
+
+本次限于缺失成员的文件头和产品目录，未解码 TIFF 像素、未读取原 QA50 或预留成员字节、未打开标签或执行模型。 [实际恢复汇总](results/UEIKAP_MISSING_TIFF_HEADER_RECOVERY_ACTUAL_SAFE_20261110.json) · [目录复查汇总](results/UEIKAP_MISSING_TIFF_CATALOGUE_READBACK_ACTUAL_SAFE_20261110.json)
