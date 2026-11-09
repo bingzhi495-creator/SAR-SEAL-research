@@ -1,0 +1,170 @@
+{
+  "DEV": false,
+  "TEST": false,
+  "folds": [
+    {
+      "fold": 0,
+      "held_groups": 58,
+      "held_rows": 134,
+      "train_rows": 489,
+      "updates": 96
+    },
+    {
+      "fold": 1,
+      "held_groups": 58,
+      "held_rows": 109,
+      "train_rows": 514,
+      "updates": 96
+    },
+    {
+      "fold": 2,
+      "held_groups": 58,
+      "held_rows": 145,
+      "train_rows": 478,
+      "updates": 96
+    },
+    {
+      "fold": 3,
+      "held_groups": 57,
+      "held_rows": 102,
+      "train_rows": 521,
+      "updates": 96
+    },
+    {
+      "fold": 4,
+      "held_groups": 57,
+      "held_rows": 133,
+      "train_rows": 490,
+      "updates": 96
+    }
+  ],
+  "model_selection": false,
+  "origins": {
+    "primary114": {
+      "bce_only_pass": 3,
+      "lost_edges": 3,
+      "native_pass": 0,
+      "needed_hits_from_native": {
+        "5": 2,
+        "8": 1
+      }
+    },
+    "secondary111": {
+      "bce_only_pass": 2,
+      "lost_edges": 2,
+      "native_pass": 0,
+      "needed_hits_from_native": {
+        "7": 2
+      }
+    }
+  },
+  "p170_gate": false,
+  "p174_source": "4a3cba9abba2c8f7dc1e2b0058729f77f52c9a47",
+  "protocol": "1a0a4c346df3cf002158e724e87e3c9972888e2e",
+  "status": "HISTORICAL_FIT_AP75_ANCHOR_CENSUS_COMPLETE",
+  "train_census": {
+    "anchor_statuses": {
+      "native": {
+        "all_actions_pass": 557,
+        "choice_matters": 44
+      },
+      "oof_bce": {
+        "all_actions_pass": 557,
+        "choice_matters": 48
+      },
+      "oof_bce_only": {
+        "choice_matters": 7
+      }
+    },
+    "oof_bce_vulnerable_hit_margin": {
+      "0": 5,
+      "1": 8,
+      "2": 7,
+      "3": 9,
+      "4": 11,
+      "5": 4,
+      "6": 4
+    },
+    "role_counts": [
+      {
+        "eligible": 134,
+        "native_vulnerable": 10,
+        "oof_bce_only_vulnerable": 2,
+        "oof_bce_vulnerable": 12
+      },
+      {
+        "eligible": 109,
+        "native_vulnerable": 2,
+        "oof_bce_vulnerable": 2
+      },
+      {
+        "eligible": 145,
+        "native_vulnerable": 15,
+        "oof_bce_vulnerable": 14
+      },
+      {
+        "eligible": 102,
+        "native_vulnerable": 4,
+        "oof_bce_only_vulnerable": 4,
+        "oof_bce_vulnerable": 8
+      },
+      {
+        "eligible": 133,
+        "native_vulnerable": 13,
+        "oof_bce_only_vulnerable": 1,
+        "oof_bce_vulnerable": 12
+      }
+    ],
+    "totals": {
+      "eligible": 623,
+      "native_pass": 601,
+      "oof_bce_only_pass": 7,
+      "oof_bce_pass": 605
+    },
+    "vulnerable": {
+      "native": {
+        "cases": 44,
+        "groups": 31,
+        "needed_hits": {
+          "1": 12,
+          "2": 13,
+          "3": 13,
+          "4": 6
+        }
+      },
+      "oof_bce": {
+        "cases": 48,
+        "groups": 32,
+        "needed_hits": {
+          "1": 12,
+          "2": 13,
+          "3": 11,
+          "4": 5,
+          "5": 5,
+          "6": 1,
+          "7": 1
+        }
+      },
+      "oof_bce_only": {
+        "cases": 7,
+        "groups": 4,
+        "needed_hits": {
+          "5": 5,
+          "6": 1,
+          "7": 1
+        }
+      }
+    }
+  },
+  "closed_original": {
+    "original_OS_wait": true,
+    "original_SSH_exit": 0,
+    "resource_stop": false,
+    "peak_RSS_bytes": 3010744320,
+    "seconds": 80.55844016210176,
+    "terminal_sha256": "4012422b4b7b78fd39e8753e6faf5f6182ab9ffa5a99b9995835bdf16238808f",
+    "result_sha256": "317d813bb8d462ff75fa5b868658cfc0c35f3ed66a5113cf9d00054ef4baf488"
+  },
+  "interpretation": "OBSERVED_DIRECT_LOSSES_ALL_BCE_CREATED_CURRENT_TRAINING_SUPPORT_THIN",
+  "prospective_expansion": false
+}
