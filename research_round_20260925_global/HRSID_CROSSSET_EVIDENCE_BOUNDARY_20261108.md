@@ -46,3 +46,15 @@ Instance-RSDD 作者报告从 RSDD 选择 3,555 幅真实 SAR 图逐船标注像
 已用作者公开提取码在未登录浏览器中打开分享，并读取完整的 `readme.txt` 预览。HTTP 200 的 UTF-8 预览正文与清单同为 1,145 字节，SHA-256 为 `9bb26c196be254fb1a15ed5dd599ee9dc113bd96be82a645b9f01c5a433bb8e6`。说明确认原图来自 RSDD-SAR，并给出两篇引用。说明未提供数据许可、逐图映射或划分细节。 [作者分享](https://pan.baidu.com/s/1_hIyZKErRDvvceiKDhRmvA) · [原始影像论文](https://doi.org/10.12000/JR22007) · [实例标注论文第 4.1.2 节](https://www.mdpi.com/2072-4292/15/5/1324#sec4dot1dot2-remotesensing-15-01324)
 
 `annotation_coco` 的清单列出 `train.json` 1,933,970 字节及 `test.json` 540,834 字节。只选择训练标注尝试普通下载，服务要求登录，未取得训练标注字节。测试标注只核对清单，未打开。现有证据可确认作者分享入口与文件名，不能验证 COCO 字段、逐船多边形、图像对应或独立性。 [作者发布说明](https://github.com/XIDIAN212Lab/SRNet/blob/master/readme.md#the-instance-rsdd-dataset)
+
+## 2026-11-10 独立外部数据入口与标签边界
+
+| 来源 | 已核对内容 | 可采用的评价范围 |
+| --- | --- | --- |
+| Schwegmann SAR 船舶数据 | 作者说明以 MIT 发布船舶、疑似目标和海杂波裁块。数据论文第 IV 节报告 43 个 Sentinel-1 极化影像和 3 个 RADARSAT-2 影像，共 1,596 个船记录，像元间距 25 或 40 米。二值参考仅对应裁块中央的船，论文未明确逐像素描绘流程。发布库未含整景原始影像。 | 可用于冻结的中心船形状辅助检验。需要按采集分组处理跨极化重复，并采用适配目标窗口的评价。裁块其他船的完整标注与高分辨率船体真值未获支持。 [作者数据说明](https://gitlab.com/sarmaps/sar-ship-dataset/-/raw/9decec2a18b9d7d6fd2d057a435808ca67d2bad1/README.md) · [作者数据论文](https://sarmaps.gitlab.io/data/dataset_paper.pdf) |
+| UEIKAP SAR | Zenodo 发布 Sentinel-1 SAR 包，许可标为 CC BY 4.0。作者会议记录确认项目使用船体与尾迹多边形。旧预检核对 515 张 TIFF 与 515 份 YOLO 多边形，class 0 有 760 个候选船体。class 1 与 COCO wake 对齐，class 0 的文字类名、逐实例绘制流程及完整性仍待核。32 个已映射采集家族中，25 个跨作者芯片划分。 | 旧记录按来源预留 18 个家族、108 图、139 个 class 0 候选，与另取的 QA50 家族分离。核对现有 QA50 v2 包仍在本地，179,666,088 字节。仅在公开标签语义、完整性及分组核验通过后，才以预留家族为单位做外测。官方芯片划分保留作作者口径。 [Zenodo 发布](https://zenodo.org/records/18391027) · [作者会议记录](https://www.iris.unina.it/handle/11588/1071901) |
+| AIR-SARShip 与 LFG-Net | AIR-SARShip-1.0 发布论文明确为 31 幅 GF-3 影像与 VOC 矩形框。LFG-Net 作者报告的 AirSARShip 掩膜指标另有标注前提，公开仓库未定位可复用的实例掩膜与生成说明。 | 原始发布支持检测。按独立实例掩膜评价仍须另核数据。 [数据论文](https://doi.org/10.12000/JR19097) · [LFG-Net 作者仓库](https://github.com/Evarray/LFG-Net) |
+
+Schwegmann 数据已实际从固定 GitLab 源取得首段 4 MiB。HTTP 206 声明完整正样本 JSON 为 289,068,441 字节，前缀 SHA-256 为 `b517a9442f5a1a7c89d45093c34fb2fb27705eba4420974cd42f09bd3b952411`。解出 23 条完整记录，覆盖两个产品字符串。全部包含配对的 101×101 与 21×21 有限数值影像和二值参考，前景面积均为 14–41 像素，两个尺寸下逐条面积相同。首轮读取 1 MiB 时按单层 JSON 列表解析失败。随后按实际双层列表解析四 MiB 前缀。未读取全包或执行模型。 [固定作者 JSON 入口](https://gitlab.com/sarmaps/sar-ship-dataset/-/raw/9decec2a18b9d7d6fd2d057a435808ca67d2bad1/json/ship_positives.json)
+
+PSeg-SSDD 仍是当前配方重训的优先跨库路线。Instance-RSDD 的实际掩膜与许可待核，其 RSDD 源含 TerraSAR-X，须与 HRSID 的具体采集来源核对。第三套数据的质量核验与模型选择相互隔离。 [原始 RSDD 发布](https://github.com/makabakasu/RSDD-SAR-OPEN)
