@@ -106,3 +106,7 @@
 
 
 同一修复版原工作进程完成第 22 轮，累计 16,170 次 AdamW 与 EMA 更新、64,680 次 FIT 访问，543 个参数时钟一致。第 22 轮无新增过滤，全程仍为两行。第 23 轮观察到 16,300 次优化更新。独立端点验收入口已完成合成核对，真实验收与固定 DEV705 评分等待原进程闭合。 [终止验收协议](HRSID_COCO_E24_FILTERED_TERMINAL_ACCEPTANCE_PROTOCOL_20261109.md)
+
+## 完整端点已通过独立验收
+
+原训练退出 0，E24 实际完成 17,640 次 AdamW 和 EMA 更新及 70,560 次 FIT 访问。24 轮共过滤两行，原失败记录保留。详见[独立终止验收](HRSID_COCO_E24_FILTERED_TERMINAL_ACCEPTANCE_PROTOCOL_20261109.md)和[固定 DEV705 评分](HRSID_COCO_E24_DEV705_NATIVE_EVALUATION_PROTOCOL_20261109.md)。

@@ -1,0 +1,150 @@
+{
+  "acceptance": {
+    "checkpoint_sha256": "7824943afc7856cceb247b281f0c2d71dc087d96906d0aed0f28b6f0e34840e1",
+    "completed_epochs": 24,
+    "ema_updates": 17640,
+    "filtered_empty_rows_total": 2,
+    "optimizer_updates": 17640,
+    "original_os_exit": 0,
+    "original_os_wait": true,
+    "resource_stop": false,
+    "status": "HRSID_FILTERED_E24_DEV705_READY_V1",
+    "target_filter_sha256": "3b164cbf8c104539eabee8775c8e1f297d9a1607e37473c4d7a4a9b561f93471",
+    "training_protocol": "cff45e6e91975e571278a0cf689f180e6b2a652e"
+  },
+  "export": {
+    "AP": false,
+    "GT_opened": false,
+    "checkpoint_ema_updates": 17640,
+    "checkpoint_sha256": "7824943afc7856cceb247b281f0c2d71dc087d96906d0aed0f28b6f0e34840e1",
+    "elapsed_seconds": 82.80480379983783,
+    "image_manifest_sha256": "39a40d089d4a54448fe6efca8ea5cc98ad1eb7c0587815f3dd9a3b097173e78f",
+    "images": 705,
+    "initialization": "official_COCO_only",
+    "mapped_rows": 62536,
+    "native_top_rows": 70500,
+    "num_select": 100,
+    "official_TEST_opened": false,
+    "peak_allocated": 315464704,
+    "precision": "FP32_TF32_disabled",
+    "predictions_sha256": "0f2221de4883c71e0349eb4dc4d8f4001d123fc339630e0664ccb9872e7b0aa7",
+    "protocol": "60484e403f287e96734eeca7baa0ba1c0db90750",
+    "query_width": 164,
+    "raw_queries": 115620,
+    "status": "HRSID_DEV705_E24_NATIVE_EXPORT_COMPLETE",
+    "training_protocol": "cff45e6e91975e571278a0cf689f180e6b2a652e",
+    "unmapped_slot1_rows": 7964
+  },
+  "interpretation": "Single COCO-only target-domain FIT E24 baseline on internal official-TRAIN DEV705; no method comparison, repeat, official TEST or transfer.",
+  "official_test_opened": false,
+  "original_owner_session_exit": 0,
+  "phases": {
+    "EXPORT_CONTROL": {
+      "exact_worker_closed": true,
+      "exit": 0,
+      "original_os_wait": true,
+      "peak_worker_rss_bytes": 2244358144,
+      "resource_stop": false,
+      "stdout_sha256": "96d88fdc2f567ef53b3fb9d815c10b9ce5f9e6cd71bef43f57a8ea7062df6032",
+      "terminal_sha256": "9f563d9a59c38cf998bffa2934c626033dc04246d2f6b43a0378efef82f23c1c",
+      "wall_seconds": 102.90600000019185
+    },
+    "SCORE_CONTROL": {
+      "exact_worker_closed": true,
+      "exit": 0,
+      "original_os_wait": true,
+      "peak_worker_rss_bytes": 239054848,
+      "resource_stop": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "terminal_sha256": "3b1b00858c87e4450926a6f41d882c967b057b1349f0b954044c906356c9e8d2",
+      "wall_seconds": 7.843000000109896
+    }
+  },
+  "predictions_bytes": 9801628,
+  "score": {
+    "checkpoint_sha256": "7824943afc7856cceb247b281f0c2d71dc087d96906d0aed0f28b6f0e34840e1",
+    "excluded_empty_gt_sensitivity": 4,
+    "images": 705,
+    "initialization": "official_COCO_only",
+    "max_dets": [
+      1,
+      10,
+      100
+    ],
+    "official_TEST_AP": false,
+    "official_TEST_opened": false,
+    "original_dev_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+    "predictions_sha256": "0f2221de4883c71e0349eb4dc4d8f4001d123fc339630e0664ccb9872e7b0aa7",
+    "primary": {
+      "AP": 0.5042744492075145,
+      "AP75": 0.5446637981486351,
+      "AP90": 0.014657372172745946,
+      "APs": 0.4941252980751899,
+      "AR100": 0.5719977553310887,
+      "all12": [
+        0.5042744492075145,
+        0.8751301130969648,
+        0.5446637981486351,
+        0.4941252980751899,
+        0.5927889749305668,
+        0.5124884559145285,
+        0.2633557800224467,
+        0.5291245791245791,
+        0.5719977553310887,
+        0.5602670057215512,
+        0.6611398963730569,
+        0.65
+      ],
+      "annotations": 1782
+    },
+    "protocol": "60484e403f287e96734eeca7baa0ba1c0db90750",
+    "sensitivity": {
+      "AP": 0.5053987579057565,
+      "AP75": 0.546244725692701,
+      "AP90": 0.014877613977146166,
+      "APs": 0.4951666575621697,
+      "AR100": 0.5732845894263217,
+      "all12": [
+        0.5053987579057565,
+        0.8766704475034118,
+        0.546244725692701,
+        0.4951666575621697,
+        0.5927889749305668,
+        0.5124884559145285,
+        0.2639482564679415,
+        0.5303149606299212,
+        0.5732845894263217,
+        0.5616953473550031,
+        0.6611398963730569,
+        0.65
+      ],
+      "annotations": 1778
+    },
+    "status": "HRSID_DEV705_E24_NATIVE_COCO_COMPLETE",
+    "training_protocol": "cff45e6e91975e571278a0cf689f180e6b2a652e",
+    "units": "fraction"
+  },
+  "status": "HRSID_FILTERED_NATIVE_E24_DEV705_INDEPENDENTLY_ACCEPTED",
+  "training": {
+    "elapsed_seconds": 19405.295086799888,
+    "gpu_peak_allocated_bytes": 3711597056,
+    "gpu_peak_reserved_bytes": 5112856576,
+    "query_groups": 13,
+    "query_width": 164,
+    "scheduled_epochs": 100,
+    "scheduled_updates": 73500,
+    "total_visits": 70560,
+    "visited_fit_images": 2937,
+    "warmup_updates": 2205
+  },
+  "training_closure": {
+    "original_os_exit": 0,
+    "original_os_wait": true,
+    "owner_closed": true,
+    "resource_stop": false,
+    "stdout_sha256": "b9fba8a8e288dfd2b2216342ea2cc6be43a1fcc9e78fc9ec74ed2a29960acd35",
+    "terminal_sha256": "beafb56cb0f9b6254b60fab023709386c84f5e18ec8fbc1f29d6874403c2ca6d",
+    "worker_closed": true
+  },
+  "validation_bridge_sha256": "1af57a267fd594d506aee7244c6dc8a10414abad9c525d2d5dbed6380a22ba3c"
+}
