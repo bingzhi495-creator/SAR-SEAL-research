@@ -28,3 +28,15 @@
 主层原生 1,843 个非空保留行中，中心臂少 3 行（0.163%），另增 1 行。压力层原生 2,302 个非空保留行，中心臂不丢行，新增 2 行；共同小目标 y 偏移由 +0.819 到 −0.069，参考 IoU 由 0.737 到 0.952。两臂在这 456 个视图中均无最终空掩膜。各自独有行单独统计，不进入共有行偏移均值。此结果不外推到原 E24 全程增强或其它比例。
 
 预设几何和保留行门槛均通过，进入同配方训练资格。先核对实际训练输入、原空掩膜保护、同初值及至少一个同种子有效更新，再把原生与中心采样从相同 COCO 初值在同机器和同 24 轮预算下配对。记录逐臂保留行，固定 EMA 端点和评价入口。只有模型评价才能判定相位修正是否改变已学轮廓或 AP。旧插值相位、TorchVision 分发修复和 HRSID 框裁剪细化有已知先例，本轮仅支持这条训练数据链的机制诊断。 [TorchVision 上游修复](https://github.com/pytorch/vision/pull/9497) · [HRSID 半像素修正近邻先例](https://arxiv.org/html/2610.18845v2#A1.SS3)
+
+## 公开实现与 HRSID 直接先例核对
+
+| 来源 | 改动位置和可核对行为 | 对当前配对试验的约束 |
+| --- | --- | --- |
+| PyTorch 2.10 与 TorchVision | 显式输出大小时，普通最近邻按输出索引乘尺度下取整，中心对齐最近邻先加半个输出像素再乘尺度下取整。TorchVision v0.25 的 Mask 内核固定转发旧最近邻。PR #9497 于 2026-05-26 合并，v0.28 的掩膜接口允许显式请求 `NEAREST_EXACT`。v0.28 与截至 2026-11-09 的正式版 v0.29.2 均保留旧默认行为。 | 采样原语已有上游实现。本项目直接在普通布尔掩膜张量的处理路径调用已有算子。 |
+| RF-DETR 1.12.0 与官方 develop 快照 | 1.12.0 对应 `639eac4`。`Resize` 分开处理图像、框和掩膜，`tv_tensors.Mask` 的 Resize 调用未传插值参数。官方 `70bf217` 快照中该文件与标签版一致。 | 单独升级到已修复的 TorchVision 仍保留这条默认最近邻调用。两臂差异落在明确选择训练掩膜插值，其他阶段沿用配对协议。 |
+| RSI4EO v2 | 作者在 HRSID 的检测框裁剪与预测掩膜精修流程中报告半像素偏移修正。本地留出的 mask AP 从 56.4 升至 60.7。官方测试的 68.7 属于完整系统。 | 这是同任务的坐标对齐先例。论文未披露偏移轴向、坐标公式或该消融是否重新训练。官方仓库主分支 `dee72f4` 的五个公开提交未找到可运行的修正源码或权重，复现所需的操作细节仍缺。 |
+
+已从两个 TorchVision 标签的公开源码提取掩膜函数，用调用探针复核转发参数。v0.25 默认转发 `nearest`，函数入口缺少显式插值参数。v0.28 默认转发 `nearest`，显式请求时转发 `nearest-exact`。该核对验证调用选择，实际 HRSID 增强仍以本协议的冻结回放和两臂实测为证。 [PyTorch 插值定义](https://docs.pytorch.org/docs/2.10/generated/torch.nn.functional.interpolate.html) · [TorchVision v0.25 源码](https://github.com/pytorch/vision/blob/v0.25.0/torchvision/transforms/v2/functional/_geometry.py#L377-L395) · [TorchVision v0.28 源码](https://github.com/pytorch/vision/blob/v0.28.0/torchvision/transforms/v2/functional/_geometry.py#L399-L434) · [v0.29.2 默认分发](https://github.com/pytorch/vision/blob/v0.29.2/torchvision/transforms/v2/functional/_geometry.py#L399-L435) · [合并记录](https://github.com/pytorch/vision/pull/9497)
+
+RF-DETR 与 RSI4EO 的可核对差异是改动所在环节。本试验改变训练增强的真值掩膜采样，正式评价用同一原生导出。重放的几何参考按中心采样定义，说明与该坐标约定的一致性。裁剪之后的实例保留也可能随掩膜变化。若正式 AP 与几何同步改善，可用固定共同监督行与保留原生行的对照检验两种来源的影响。历史固定平移在 HRSID 和 SSDD 上净值方向相反，为上述机制检验提供边界。 [RF-DETR 1.12.0](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/datasets/_torchvision.py#L390-L419) · [官方 develop 快照](https://github.com/roboflow/rf-detr/blob/70bf21767a3dc49ed53c8b031ee640d8d995409a/src/rfdetr/datasets/_torchvision.py#L416-L419) · [RSI4EO 附录 A.3](https://arxiv.org/html/2610.18845v2#A1.SS3) · [作者仓库提交历史](https://github.com/Yokoya-Lab-UTokyo/RSI4EO/commits/dee72f4082f0527d9521cfa984b009875aecbfea/) · [两库历史误差对照](SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)
