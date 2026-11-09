@@ -36,3 +36,9 @@ Windows 标准 HTTP 客户端实际取得两段完整 206 响应。64 MiB 边界
 本轮从已核验的 80 MiB 前缀续取 84 块新数据，实际接收 5,614,416,235 字节。传输及最终目录核对耗时 637.69 秒。独立回读逐块核对范围和 SHA-256，完整归档为 5,698,302,315 字节，中央目录与此前确认的官方目录精确一致。ZIP 含 5,604 个 PNG、5 个 JSON 和 3 个目录条目，全部成员 CRC 通过。 [独立安全汇总](results/HRSID_OFFICIAL_PNG_FULL_ARCHIVE_INTEGRITY_ACTUAL_SAFE_20261109.json)
 
 已确认配套编码归档的完整性。后续仍需实际像素与标注对齐、固定空栅格处理及评估协议。历史测试接触范围沿用既有记录。
+
+## 第三套实例轮廓验证的新增查证
+
+SARShipRES 的 IEEE 作者稿第三节 A 说明，使用 COCO API 从 HRSID 和 SSDD 取影像和实例，新增文本指代及散射属性，组成 6,764 个表达与掩膜配对。它可用于语言引导分割研究，和两套源数据共享影像及标签，无法提供独立场景盲测。 [IEEE 作者稿](https://xplorestaging.ieee.org/ielx8/4609443/4609444/11739338.pdf?arnumber=11739338)
+
+Instance-RSDD 作者报告从 RSDD 选择 3,555 幅真实 SAR 图逐船标注像素轮廓，2,840 幅用于训练，715 幅用于评价。作者的公开说明链接到网盘，项目仅核对到 COCO 标注目录和说明文件入口。还需取得实际标注、图像对应关系及许可，核对官方评价成员、同母景裁块与 HRSID/SSDD 交集。原始 RSDD 公开的是旋转框，须使用作者额外标注的实例掩膜。只有上述证据通过后，才纳入冻结 A/B 模型的零调参直接迁移。 [原文](https://doi.org/10.3390/rs15051324) · [Instance-RSDD 作者入口](https://github.com/XIDIAN212Lab/SRNet/blob/master/readme.md#the-instance-rsdd-dataset) · [原始 RSDD](https://github.com/makabakasu/RSDD-SAR-OPEN)

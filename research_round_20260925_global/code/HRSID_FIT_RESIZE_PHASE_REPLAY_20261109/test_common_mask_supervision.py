@@ -36,6 +36,15 @@ class CommonMaskSupervisionTest(unittest.TestCase):
         self.assertEqual(center[ROW_ID].tolist(), [1, 2, 3, 4])
 
 
+    def test_three_arms_use_one_joint_intersection(self):
+        a, b, c = common_targets(
+            target([0, 1, 2], [0, 1, 2]),
+            target([0, 1, 2], [1, None, 0]),
+            target([1, 2, 3], [2, 1, 0]),
+        )
+        self.assertEqual([arm[ROW_ID].tolist() for arm in (a, b, c)], [[2], [2], [2]])
+        self.assertEqual([int(arm["masks"][0, 0].nonzero().item()) for arm in (a, b, c)], [2, 0, 1])
+
     def test_disjoint_nonempty_rows_are_valid_empty_targets(self):
         a, b = common_targets(target([0], [0]), target([1], [1]))
         for arm in (a, b):

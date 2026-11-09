@@ -1,4 +1,4 @@
-"""Project two augmented RF-DETR targets onto the same nonempty source rows."""
+"""Project augmented RF-DETR targets onto the same nonempty source rows."""
 
 import torch
 
@@ -36,21 +36,29 @@ def _live_rows(target):
     return ids, masks.flatten(1).any(dim=1)
 
 
-def common_targets(native, center):
-    """Keep the same ordered, nonempty annotation IDs in both arm outputs.
+def common_targets(native, center, *other_arms):
+    """Keep the same ordered, nonempty annotation IDs across all arm outputs.
 
     Each output preserves its own mask bytes and shares all other selected
     supervision fields. Original row IDs remain available to the caller for
     auditing and can be removed before handing the target to the model.
     """
-    a_ids, a_live = _live_rows(native)
-    b_ids, b_live = _live_rows(center)
-    if any(not _same(native[key], center[key]) for key in IMAGE_FIELDS):
-        raise ValueError("The paired targets describe different images or canvases")
-    a_keep = a_live & torch.isin(a_ids, b_ids[b_live])
-    b_keep = b_live & torch.isin(b_ids, a_ids[a_live])
-    a = {**native, **{key: native[key][a_keep] for key in ROW_FIELDS}}
-    b = {**center, **{key: center[key][b_keep] for key in ROW_FIELDS}}
-    if any(not _same(a[key], b[key]) for key in ROW_FIELDS if key != "masks"):
-        raise ValueError("Common supervision IDs, order or nonmask fields differ")
-    return a, b
+    targets = (native, center, *other_arms)
+    live_rows = []
+    for target in targets:
+        ids, nonempty = _live_rows(target)
+        if any(not _same(native[key], target[key]) for key in IMAGE_FIELDS):
+            raise ValueError("The paired targets describe different images or canvases")
+        live_rows.append(ids[nonempty])
+    shared = live_rows[0]
+    for rows in live_rows[1:]:
+        shared = shared[torch.isin(shared, rows)]
+    projected = []
+    for target in targets:
+        keep = torch.isin(target[ROW_ID], shared)
+        selected = {**target, **{key: target[key][keep] for key in ROW_FIELDS}}
+        if projected and any(not _same(projected[0][key], selected[key])
+                             for key in ROW_FIELDS if key != "masks"):
+            raise ValueError("Common supervision IDs, order or nonmask fields differ")
+        projected.append(selected)
+    return tuple(projected)
