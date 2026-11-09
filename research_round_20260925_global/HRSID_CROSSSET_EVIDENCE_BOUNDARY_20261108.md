@@ -76,3 +76,7 @@ Copernicus 和 ASF 分别检索同一卫星的 IW GRDH 产品，候选时间窗�
 扩展诊断在每个目录内按物理采集家族取足迹并集，在原裁块上计算覆盖率。历史单产品门槛沿用经纬度平面面积，并集门槛使用球面面积。只允许同卫星、同绝对轨道、同 datatake 且处于固定时间窗的产品相并。分别报告至少 95% 的并集候选与来自预留家族的正面积交叠、仅边界接触。并集候选只提供来源线索。预留家族如有任何接触，应单列复核，其余无命中也限于这两套目录与预先声明的查询范围。名单原件保持冻结，本轮不打开图像、实例标注或模型结果。 [Copernicus OData](https://documentation.dataspace.copernicus.eu/APIs/OData.html) · [ASF 查询](https://docs.asf.alaska.edu/api/keywords/) · [产品命名与切片](https://sentiwiki.copernicus.eu/web/s1-products)
 
 [固定几何实现](code/UEIKAP_ACQUISITION_METADATA_20261110/ueikap_acquisition_footprint.py)
+
+两个目录均复现冻结 QA50 正对照的已知采集家族，至少有一个精确标准化产品一致。随后 10 张未决裁块的 20 项目录查询全部完成，无截断。精确时间且单产品覆盖至少 95% 的新增候选为零。扩展规则下，Copernicus 为 10 张、ASF 为 8 张，两边共同支持同一家族的为 8 张，另两张仅有 Copernicus 支持。达标的家族足迹均有多个产品参与，涉及六个既有采集家族，其中四个属于 QA50。上述证据仍需独立的裁块产品映射才能用于确认具体来源。
+
+两目录返回的足迹与 18 个预留家族均无正面积交叠或边界接触。严格口径仍为 505／515，十张继续隔离，未移动预留成员。该无命中只覆盖固定时间窗和目录检索规则，外测标注的船体语义和图内完整性仍须另核。本次用时 20.54 秒，只使用历史裁块时间和足迹，以及公开目录元数据。 [实测汇总](results/UEIKAP_TEN_DUAL_CATALOGUE_ACTUAL_SAFE_20261110.json) · [独立计数复核](results/UEIKAP_TEN_DUAL_CATALOGUE_READBACK_SAFE_20261110.json)
