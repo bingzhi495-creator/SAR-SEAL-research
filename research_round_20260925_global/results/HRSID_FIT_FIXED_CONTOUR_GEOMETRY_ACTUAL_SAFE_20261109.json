@@ -1,0 +1,417 @@
+{
+  "report": {
+    "AP": false,
+    "DEV": false,
+    "FIT": true,
+    "TEST": false,
+    "cohort_sha256": "70e9a0e8fb30f5ba70b48b9067c1b95d07bfec23d6b248d92c5983727acceb6e",
+    "core": {
+      "active_groups": 88,
+      "band_error_pixels": 35705,
+      "band_only_impossible": 0,
+      "budget_impossible": 197,
+      "bulk_gate": true,
+      "contrasts": {
+        "local_vs_joint": {
+          "delta": 0.1581196581196581,
+          "interval": [
+            0.11252029220779221,
+            0.21226415094339623
+          ]
+        },
+        "local_vs_joint_free": {
+          "delta": -0.05982905982905983,
+          "interval": [
+            -0.13349236641221374,
+            0.008285895545420254
+          ]
+        }
+      },
+      "decision": "PRIORITIZE_GLOBAL_DISPLACEMENT_AND_THICKNESS_CONTROL",
+      "groups": 109,
+      "local_gate": false,
+      "mean_budget": 15.478632478632479,
+      "methods": {
+        "baseline": {
+          "edits": 0,
+          "fn": 17612,
+          "fp": 21108,
+          "groups_recovered": 0,
+          "mean_iou": 0.8214916079392807,
+          "recovered": 0,
+          "recovered_pair_edits": 0,
+          "tp": 204197
+        },
+        "joint": {
+          "edits": 12,
+          "fn": 17610,
+          "fp": 21106,
+          "groups_recovered": 0,
+          "mean_iou": 0.8215420358500182,
+          "recovered": 0,
+          "recovered_pair_edits": 0,
+          "tp": 204199
+        },
+        "joint_free": {
+          "edits": 26761,
+          "fn": 13007,
+          "fp": 15892,
+          "groups_recovered": 40,
+          "mean_iou": 0.8685056141567437,
+          "recovered": 51,
+          "recovered_pair_edits": 5416,
+          "tp": 208802
+        },
+        "local_any": {
+          "edits": 3622,
+          "fn": 14135,
+          "fp": 20963,
+          "groups_recovered": 30,
+          "mean_iou": 0.8596101605264523,
+          "recovered": 37,
+          "recovered_pair_edits": 564,
+          "tp": 207674
+        },
+        "local_band": {
+          "edits": 3622,
+          "fn": 14135,
+          "fp": 20963,
+          "groups_recovered": 30,
+          "mean_iou": 0.8596101605264523,
+          "recovered": 37,
+          "recovered_pair_edits": 564,
+          "tp": 207674
+        },
+        "thickness": {
+          "edits": 0,
+          "fn": 17612,
+          "fp": 21108,
+          "groups_recovered": 0,
+          "mean_iou": 0.8214916079392807,
+          "recovered": 0,
+          "recovered_pair_edits": 0,
+          "tp": 204197
+        },
+        "translation": {
+          "edits": 12,
+          "fn": 17610,
+          "fp": 21106,
+          "groups_recovered": 0,
+          "mean_iou": 0.8215420358500182,
+          "recovered": 0,
+          "recovered_pair_edits": 0,
+          "tp": 204199
+        }
+      },
+      "pairs": 234,
+      "pairs_with_band_errors": 234,
+      "pairs_with_budgeted_bulk_move": 2,
+      "strata_by_area": {
+        "non_small": {
+          "pairs": 33,
+          "recovered": {
+            "baseline": 0,
+            "joint": 0,
+            "joint_free": 9,
+            "local_any": 4,
+            "local_band": 4,
+            "thickness": 0,
+            "translation": 0
+          }
+        },
+        "small": {
+          "pairs": 201,
+          "recovered": {
+            "baseline": 0,
+            "joint": 0,
+            "joint_free": 42,
+            "local_any": 33,
+            "local_band": 33,
+            "thickness": 0,
+            "translation": 0
+          }
+        }
+      },
+      "strata_by_iou": {
+        "0.75-0.80": {
+          "pairs": 83,
+          "recovered": {
+            "baseline": 0,
+            "joint": 0,
+            "joint_free": 11,
+            "local_any": 0,
+            "local_band": 0,
+            "thickness": 0,
+            "translation": 0
+          }
+        },
+        "0.80-0.85": {
+          "pairs": 84,
+          "recovered": {
+            "baseline": 0,
+            "joint": 0,
+            "joint_free": 13,
+            "local_any": 9,
+            "local_band": 9,
+            "thickness": 0,
+            "translation": 0
+          }
+        },
+        "0.85-0.90": {
+          "pairs": 67,
+          "recovered": {
+            "baseline": 0,
+            "joint": 0,
+            "joint_free": 27,
+            "local_any": 28,
+            "local_band": 28,
+            "thickness": 0,
+            "translation": 0
+          }
+        }
+      }
+    },
+    "elapsed_seconds": 0.9059764000121504,
+    "fit_index_sha256": "e95cf26cc60a2c6fb651e907541380a256f2df7b1e153244a6c0f803b0b19f8f",
+    "forward_calls": 0,
+    "native": {
+      "core": {
+        "at50": 453,
+        "at75": 271,
+        "at90": 37,
+        "images": 109,
+        "targets": 496
+      },
+      "stress": {
+        "at50": 374,
+        "at75": 59,
+        "at90": 0,
+        "images": 5,
+        "targets": 613
+      }
+    },
+    "optimizer_updates": 0,
+    "predictions_sha256": "23c4ab97a3459f77936a95d0d09965db339e7af54e2a4a1b9d0d9f787f8690f7",
+    "previous_public_result_sha256": "8f61e4e4f43974d4da2a7443233ff6005569e6213c3de55c84ef5312fffbd102",
+    "protocol": "fd8e23b029d886d98387595d7f8a872c83c5ae09",
+    "status": "ACTUAL_HRSID_FIT_FIXED_CONTOUR_GEOMETRY",
+    "stress": {
+      "active_groups": 5,
+      "band_error_pixels": 1940,
+      "band_only_impossible": 0,
+      "budget_impossible": 40,
+      "groups": 5,
+      "mean_budget": 13.508474576271187,
+      "methods": {
+        "baseline": {
+          "edits": 0,
+          "fn": 1214,
+          "fp": 728,
+          "groups_recovered": 0,
+          "mean_iou": 0.791679249633474,
+          "recovered": 0,
+          "recovered_pair_edits": 0,
+          "tp": 7360
+        },
+        "joint": {
+          "edits": 26,
+          "fn": 1207,
+          "fp": 721,
+          "groups_recovered": 0,
+          "mean_iou": 0.7931645963640843,
+          "recovered": 0,
+          "recovered_pair_edits": 0,
+          "tp": 7367
+        },
+        "joint_free": {
+          "edits": 1578,
+          "fn": 796,
+          "fp": 842,
+          "groups_recovered": 0,
+          "mean_iou": 0.8218698175402025,
+          "recovered": 0,
+          "recovered_pair_edits": 0,
+          "tp": 7778
+        },
+        "local_any": {
+          "edits": 797,
+          "fn": 484,
+          "fp": 661,
+          "groups_recovered": 5,
+          "mean_iou": 0.8805632702200755,
+          "recovered": 19,
+          "recovered_pair_edits": 253,
+          "tp": 8090
+        },
+        "local_band": {
+          "edits": 797,
+          "fn": 484,
+          "fp": 661,
+          "groups_recovered": 5,
+          "mean_iou": 0.8805632702200755,
+          "recovered": 19,
+          "recovered_pair_edits": 253,
+          "tp": 8090
+        },
+        "thickness": {
+          "edits": 0,
+          "fn": 1214,
+          "fp": 728,
+          "groups_recovered": 0,
+          "mean_iou": 0.791679249633474,
+          "recovered": 0,
+          "recovered_pair_edits": 0,
+          "tp": 7360
+        },
+        "translation": {
+          "edits": 26,
+          "fn": 1207,
+          "fp": 721,
+          "groups_recovered": 0,
+          "mean_iou": 0.7931645963640843,
+          "recovered": 0,
+          "recovered_pair_edits": 0,
+          "tp": 7367
+        }
+      },
+      "pairs": 59,
+      "pairs_with_band_errors": 59,
+      "pairs_with_budgeted_bulk_move": 2,
+      "strata_by_area": {
+        "non_small": {
+          "pairs": 0,
+          "recovered": {
+            "baseline": 0,
+            "joint": 0,
+            "joint_free": 0,
+            "local_any": 0,
+            "local_band": 0,
+            "thickness": 0,
+            "translation": 0
+          }
+        },
+        "small": {
+          "pairs": 59,
+          "recovered": {
+            "baseline": 0,
+            "joint": 0,
+            "joint_free": 0,
+            "local_any": 19,
+            "local_band": 19,
+            "thickness": 0,
+            "translation": 0
+          }
+        }
+      },
+      "strata_by_iou": {
+        "0.75-0.80": {
+          "pairs": 36,
+          "recovered": {
+            "baseline": 0,
+            "joint": 0,
+            "joint_free": 0,
+            "local_any": 0,
+            "local_band": 0,
+            "thickness": 0,
+            "translation": 0
+          }
+        },
+        "0.80-0.85": {
+          "pairs": 20,
+          "recovered": {
+            "baseline": 0,
+            "joint": 0,
+            "joint_free": 0,
+            "local_any": 16,
+            "local_band": 16,
+            "thickness": 0,
+            "translation": 0
+          }
+        },
+        "0.85-0.90": {
+          "pairs": 3,
+          "recovered": {
+            "baseline": 0,
+            "joint": 0,
+            "joint_free": 0,
+            "local_any": 3,
+            "local_band": 3,
+            "thickness": 0,
+            "translation": 0
+          }
+        }
+      }
+    }
+  },
+  "proof": {
+    "original_owner_closed": true,
+    "original_worker_closed": true,
+    "original_os_wait": true,
+    "exit": 0,
+    "resource_stop": false,
+    "wall_seconds": 1.4370000001508743,
+    "peak_rss_bytes": 142434304,
+    "stdout_sha256": "45bc39439ea2d5a3ce06bb4ad09ba2d40790610172d891f249c97dd213bc6aae",
+    "terminal_sha256": "6dedc6d97ce3840d68e316f60bdb6636ae312b8dbac43c29fcf78ab42196cfdb",
+    "report_sha256": "961ec9e73c5488aca9829217da51171917a3e51526ae017730f1ed1af0531bfa",
+    "score_source_sha256": "7ce70b1c8ef35cf3464559f20c90cd6c2bb360cfcb9625b63e510ff5aaaa3c8a",
+    "geometry_source_sha256": "6acc9f96542b9cecb2441c9b43eb248caddd39f126726e3d4d2951459f957405"
+  },
+  "synthetic_tests_passed": 7,
+  "independent_recomputation": {
+    "exit": 0,
+    "algorithm": "Cropped SciPy binary morphology and coordinate translation",
+    "input_hashes_verified": true,
+    "paired_counts_and_primary_bootstrap_identical": true,
+    "stress_scene_prefix_groups": 4,
+    "stress_image_units": 5
+  },
+  "posthoc_secondary": {
+    "core_unrestricted_translation_recovered": 50,
+    "core_unrestricted_thickness_recovered": 0,
+    "core_joint_requiring_composition": 1,
+    "core_joint_and_local_recovered": 15,
+    "core_joint_only": 36,
+    "core_local_only": 22,
+    "core_min_edits_to_strict_success": {
+      "joint_median": 84,
+      "translation_median": 83,
+      "translation_range": [
+        26,
+        206
+      ],
+      "translation_min_at_radius1": 46,
+      "translation_min_at_radius2": 4,
+      "local_median": 8,
+      "local_range": [
+        2,
+        16
+      ]
+    },
+    "stress_min_local_edits_median": 12,
+    "stress_min_local_edits_range": [
+      5,
+      16
+    ],
+    "core_shared_success_min_edits": {
+      "pairs": 15,
+      "joint_median": 60,
+      "joint_range": [
+        26,
+        194
+      ],
+      "local_median": 8,
+      "local_range": [
+        2,
+        15
+      ],
+      "paired_joint_minus_local_median": 53,
+      "paired_joint_minus_local_range": [
+        16,
+        186
+      ]
+    }
+  },
+  "reporting_units": "Stress report groups fields are image units; five images represent four distinct P-prefix proxies. Main 109 image units correspond one-to-one to 109 proxy groups.",
+  "scope": "Fixed-query, GT-assisted FIT geometry. No new forward, training, AP, DEV or official TEST."
+}

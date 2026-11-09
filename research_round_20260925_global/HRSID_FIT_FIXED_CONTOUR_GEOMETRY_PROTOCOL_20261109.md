@@ -19,3 +19,29 @@
 决策以 109 个主图组为单位做 4,096 次配对重采样，固定种子 5213，报告按合格配对数归一化的恢复率差区间。只有局部带至少恢复 20% 且覆盖至少 15 个图组、比预算内联合整体至少多恢复 10 个百分点、比放宽预算的联合整体至少多恢复 5 个百分点且配对区间下界大于零，才继续检验预测侧局部变形。若未通过且放宽的联合整体恢复至少 20% 并覆盖至少 15 组，优先把全局位移及厚度作为对照；若两类均不足，按全图上限区分预算和可编辑位置后重新检查误差机制。压力层独立报告，不参与主决策。所有上限依赖 GT。算子家族有限，结果只能约束本轮平移及方形结构元，不能排除旋转、方向尺度、亚像素重采样等其他整体解释。
 
 Deep Snake 和 SharpContour 已学习轮廓位移，Boundary Patch Refinement 已学习局部边界修复，TIDE 已使用真值干预诊断掩膜误差。SSDD 早先的固定 16 点上限主要检查点前缀的可达性，本轮新增整体与局部家族在同一 HRSID 配对上的预算对照。若局部上限成立，后续仍须同监督、同候选、同编辑成本学习对照，才能判断能否转化为 AP。 [Deep Snake](https://openaccess.thecvf.com/content_CVPR_2020/html/Peng_Deep_Snake_for_Real-Time_Instance_Segmentation_CVPR_2020_paper.html) · [SharpContour](https://openaccess.thecvf.com/content/CVPR2022/html/Zhu_SharpContour_A_Contour-Based_Boundary_Refinement_Approach_for_Efficient_and_Accurate_Instance_Segmentation_CVPR_2022_paper.html) · [Boundary Patch Refinement](https://openaccess.thecvf.com/content/CVPR2021/html/Tang_Look_Closer_To_Segment_Better_Boundary_Patch_Refinement_for_Instance_CVPR_2021_paper.html) · [TIDE](https://dbolya.com/tide/) · [SSDD 固定前缀](RFDETR_FIXED_MASK_RANK_WITNESS_AND_FIT_PROTOCOL_20261109.md)
+
+## 真实结果与停走判断
+
+原所有者和 CPU 工作进程均已闭合，原进程退出 0，无资源中止，实际计算 0.91 秒。重新核对原生三个阈值的匹配计数，确认主层 234 个近严格配对来自 88 个非空图组，压力层为 59 对。独立进程使用二值形态学与坐标平移复算恢复数和主层配对区间，结果一致。七项合成测试通过。原报告的压力层 `groups` 按图像计数。五张压力图实际对应四个不同 P 前缀，压力层不参与图组自助区间。 [真实安全结果](results/HRSID_FIT_FIXED_CONTOUR_GEOMETRY_ACTUAL_SAFE_20261109.json) · [诊断实现](code/HRSID_FIT_FIXED_CONTOUR_GEOMETRY_20261109/geometry.py)
+
+| 规则 | 主层恢复 / 234 | 主层总编辑像素 | 压力层恢复 / 59 | 压力层总编辑像素 |
+| --- | ---: | ---: | ---: | ---: |
+| 原样 | 0 | 0 | 0 | 0 |
+| 预算内平移 | 0 | 12 | 0 | 26 |
+| 预算内厚度 | 0 | 0 | 0 | 0 |
+| 预算内联合整体 | 0 | 12 | 0 | 26 |
+| 放宽预算的联合整体 | 51 | 26761 | 0 | 1578 |
+| 局部边界上限 | 37 | 3622 | 19 | 797 |
+| 全图编辑上限 | 37 | 3622 | 19 | 797 |
+
+主层只有 2 对能容纳至少一个预算内整体动作，因而局部带比预算内联合整体多恢复 15.81 个百分点，配对区间为 [11.25, 21.23] 点。放宽预算的联合整体在 40 个图组恢复 51/234（21.79%），局部带在 30 个图组恢复 37/234（15.81%）。局部带相对放宽整体的差为 −5.98 点，区间 [−13.35, 0.83] 点。局部与全图上限在两个层的所有聚合相同。主层 197 对即使允许在整图自由选择编辑位置也无法在本轮预算内恢复，主要限制来自编辑数。压力层的局部带恢复 19/59（32.20%），放宽整体为零，仅描述这五张稠密图。
+
+结果依照预锁门槛优先整体几何对照，局部变形未取得主样本准入。观察到的整体操作收益依赖每个固定配对的真值选择，且改变像素明显更多。比较的是两种修复上限，未评价部署收益、模型 AP 或跨数据集效果。
+
+### 次要复算与下一项
+
+独立复算在看过主结果后分解了放宽整体的成功来源。单独平移可恢复 50 个，单独厚度调整为 0 个，只有 1 个联合成功需要组合。整体与局部都成功的有 15 个，整体独有 36 个，局部独有 22 个。遍历同一操作集合后取达到 0.90 的最小编辑数，平移成功的 50 对中位数为 83（26–206），其中 46 对的最小编辑可在单轴最大偏移不超过 1 像素的方形网格内达到。局部成功的 37 对最小编辑数中位数为 8（2–16）。这些最低成本统计与表内最大 IoU 动作的实际编辑量是不同量。
+
+次要最小编辑数使用整数缺口 D = 9U − 10I。对局部带，先取 a = min(带内 FN, ceil(D / 10))，再取 r = max(0, ceil((D − 10a) / 9))。只有 r 不超过带内 FP 且 a + r 不超过预算时可达标，最低编辑数为 a + r。对整体家族遍历同一允许操作，在 10I' ≥ 9U' 的动作中取最小异或像素数。共同恢复的 15 对中，整体最低编辑数中位数为 60，局部为 8，逐对差值中位数为 53。
+
+下一项先检验可观测的全局平移信号。比较同一查询的预测框中心与二值掩膜包围盒中心，检验两者的偏差能否在图组留出时预测应当执行的位移。采用原候选和分数，设置恒等、全局常量偏移及同容量的掩膜自身几何对照，同时保留原严格配对和候选总数。已有联合框与掩膜预测、框监督和轮廓细化方法。若预测框的偏差无法胜过这些对照或引起严格失守，保留真值上限，停止这一预测信号。 [Mask DINO 联合框与掩膜](https://openaccess.thecvf.com/content/CVPR2023/html/Li_Mask_DINO_Towards_a_Unified_Transformer-Based_Framework_for_Object_Detection_CVPR_2023_paper.html) · [BoxInst 框监督](https://openaccess.thecvf.com/content/CVPR2021/html/Tian_BoxInst_High-Performance_Instance_Segmentation_With_Box_Annotations_CVPR_2021_paper.html)
