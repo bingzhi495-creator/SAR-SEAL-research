@@ -496,3 +496,11 @@ B/C 的逐臂评分准入适配器通过 3 项合成测试。它核对同一 B/C
 2026-11-10 公开 RF-DETR develop 解析到 `d442ce0fbc8611b508d8bd98f76afdfb5508e90d`。从作者固定提交直接取得 `datasets/_torchvision.py` 与 `datasets/coco.py`，分别为 26,058、83,772 字节，SHA-256 为 `03c12e881f733d4f6b469f784187e461753b8775b7e35e57c1d8a6c35c46ef56` 和 `be64b20a178d9cde41db69e01e17e1296e36eee791e837294c3f930ae56f03b9`，逐字节摘要与实验中两份原生源码的固定运行时摘要一致。该 torchvision 路径将布尔实例掩膜交给 `tv_tensors.Mask` 的最近邻分发。当前证据适用于相同的增强路径与运行时，不外推到 Albumentations、Kornia 或其他版本，也不改变长训原始环境。DACF-Net 作者 main 仍在旧已审阅提交，代码可用性判断保留。 [固定 torchvision 增强源码](https://raw.githubusercontent.com/roboflow/rf-detr/d442ce0fbc8611b508d8bd98f76afdfb5508e90d/src/rfdetr/datasets/_torchvision.py) · [固定 COCO 入口](https://raw.githubusercontent.com/roboflow/rf-detr/d442ce0fbc8611b508d8bd98f76afdfb5508e90d/src/rfdetr/datasets/coco.py) · [DACF-Net 作者固定仓库](https://github.com/yang199809/DACF-Net/tree/479dfab0048ddb7edae1b732ff5ee4452aa82be8)
 
 B/C 的配对评分与几何验收适配器另过 5 项合成测试。它先核对独立 B/C E24 训练回执，再读取独立协调器确认的两臂导出与评分四份原进程闭合，逐一绑定协议、臂别、档案、预测、原整数标注和原报告。旧几何驱动的两个位置仅在独立内存中映射，结果保留真实 B/C 标识和 C−B 方向。测试覆盖互换臂、复用终态、重放旧协议、所有者未关闭及错误真值。实际协调器仍须提交原始等待、日志、档案和关闭证据，合成结果不能作为真实评分。 [B/C 配对验收](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_score_pair.py) · [测试](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/test_one_pass_common_score_pair.py)
+
+## 固定监督点的目标值试点
+
+在真实完整训练前，检验同一组像素监督点改用单次复合硬标签是否改变冻结模型的轮廓更新。复用已验收 5201 原生 E24 EMA、封存 FIT114 及上轮固定的 8 个更新裁剪视图和 8 个与本次优化互斥的 FIT 源图组。留出组各有一个裁剪和一个直缩视图。原冻结模型已用过这些 FIT 数据。匹配、候选、增强轨迹、共同非空实例与模型前向按旧方案。更新人口仍为 31 条共同小目标行和 487 个监督点。点集使用 P253 已冻结的分层随机索引。候选带由原 C 边界定义，各臂共用该带、索引、行数和原始 logits。
+
+三臂分别用逐步中心硬值 B、单次复合中心硬值 C 和连续源像元面积占比。每臂从同一原生查询投影拷贝开始，更新原 65,792 个参数，各 8 次 AdamW，学习率和权重衰减均为 0.0001。所有臂使用逐实例等权 BCE，参数外的载体冻结。连续值臂应重放旧 P253 随机臂的参数、预算、各更新损失和留出指标，作为真实链路校验。报告固定点上 B 到 C 的标签变更方向和数量。无更新原投影保留为同输入参照。
+
+主读数为留出裁剪组按源图等权的连续源多边形 IoU。C 相对 B 须至少提高 0.005、至少五个源图为正、相对无更新参照方向非负，且硬 C IoU 相对 B、无更新参照和连续值臂中的最高值下降不超过 0.002。连续值对照另报，保留全组差值、直缩负对照、连续源栅格足迹 IoU 和固定边界 BCE。任何差异只解释本次固定点和单一冻结头的 8 次更新。完整 B/C 训练效用、跨库重训和正式测试各自按其原门槛推进。 [固定候选与更新先例试点](#同预算更新实际结果)
