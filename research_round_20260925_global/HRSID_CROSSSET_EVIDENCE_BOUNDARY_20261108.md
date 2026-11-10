@@ -130,3 +130,7 @@ SISS-YOLO 作者报告在 OpenSARShip 2.0 的 Sentinel-1A 船舶裁块上重新�
 实际通过 32 次 HTTP 206 请求读回 434,888 字节，历史正对照三份成员 SHA-256 逐一复现，四个原定家族各匹配一份 TXT、COCO 和 AIS。四例共有 6 条 TXT 类别 1 掩膜，全部与 COCO 中显式命名为 wake 的 6 条掩膜逐值一致。TXT 类别 0 共 9 条非空多边形，与尾迹有 1 个正 IoU 配对。四条单点 AIS 采用原 GeoTIFF 头部边界近似映射，1 条落入类别 0、1 条落入尾迹、2 条落在两者之外。所有时间差按原文件约定核对，仍缺明确时区与船舶运动校正。 [实测安全汇总](results/UEIKAP_FOUR_TRAIN_FAMILY_LABEL_METADATA_ACTUAL_SAFE_20261111.json) · [质检入口](code/UEIKAP_TRAIN_LABEL_METADATA_QA_20261111/ueikap_train_label_metadata_qa.py)
 
 此证据确认四个非预留训练家族的尾迹类别编码和配套数据关联，并补充类别 0 船体候选的有限证据。整图实例 AP 仍需作者的明确类别定义及独立的全船标注完整性依据。未读原始影像、官方 TEST 或 18 个预留外测家族的成员，未运行模型。 [作者船体与尾迹多边形说明](https://www.iris.unina.it/handle/11588/1071901)
+
+### UEIKAP 船体标注用途与发布范围复核
+
+Cristofano 等在 2025 年的作者全文第 III.B–C 节和 IV.A 节说明，AIS 参与数据构建和标注，Sentinel-1 船体多边形用于估计方位向偏移。结合四个固定训练家族的六条尾迹逐值匹配，TXT 类别 0 可作为待核船体候选。原文的船体多边形用途与整图可见船舶覆盖是两个证据要求。固定作者 ZIP 的 2,615 项中央目录未找到独立类别表或训练 YAML。四个已核样本各有一条 AIS，合计九条 TXT 类别 0 多边形，AIS 无法独立认证图内完整性。整图实例 AP 资格继续取决于明确的类别映射及完整性依据。 [作者全文](https://www.researchgate.net/publication/394893583_A_Deep_Learning-based_Multi-Modal_Approach_for_Wake_Detection) · [IEEE 论文](https://doi.org/10.1109/MetroAeroSpace64938.2025.11114590) · [作者归档](https://zenodo.org/records/18391027)
