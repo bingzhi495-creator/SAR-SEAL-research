@@ -859,3 +859,22 @@ DGX 的独立 CPU 进程先复现已封存的仅位置修正结果，再读取�
 两个单轴的恢复样本可以重叠，分别有 14 和 5 个在任一单轴上都可独立恢复。二维独有分别为 15 和 3 个。原生失败方向的二维最优平均 IoU 由 0.8636 到 0.8940。面积比不足的 17 个无法通过任何保持面积的平移达到 0.90。其余 89 个只证明在当前 ±2 范围内未恢复，仍可包含更大平移、旋转、面积或局部轮廓误差。两个方向独立选位移，恢复数无法解释整个模型的 AP 差值。
 
 原 CPU 进程退出 0，耗时 12.964 秒，峰值 RSS 177,500,160 字节。独立进程改用真值前景坐标反向查找预测，所有 219 个掩膜的聚合结果逐值一致，退出 0。该诊断使用已关闭预测和开发集真值。模型前向、新 AP 和正式测试均未执行。后续对照优先测量对齐后的 FP/FN 到边界的距离，再判断固定局部边界修正能否覆盖剩余误差，保留按目标大小比较。
+
+## 一像素边界带的固定编辑预算
+
+复用已经验收的 219 个严格覆盖转移实例、同一真值和失败臂的固定最佳候选。完整复现前节 P312 结果后，对原掩膜和最佳二维 ±2 像素平移后的掩膜分别计算编辑上界。最优位移并列时依次取更小的平方位移和按纵、横轴的确定顺序。半径为 1、2、4 个原图像素，使用切比雪夫距离。漏分编辑限预测外部膨胀带，误分编辑限预测内部腐蚀带。带的位置由预测决定，允许正确补删的像素由真值识别。越界预测保留为误分，编辑限于原图内。每对共用先前预算 `K=min(16,floor(原始并集面积/10))`，位移的像素异或量另记。 [前节平移](#共同行严格覆盖转移的平移上界) · [实现](code/HRSID_COMMON_DEV705_CONTOUR_RESIDUAL_20261111/strict_switch_contour.py) · [完整实测](results/HRSID_COMMON_5202_DEV705_CONTOUR_RESIDUAL_ACTUAL_SAFE_20261111.json)
+
+| 失败臂 | 原掩膜数 | 原掩膜一像素带同 K 恢复 | 平移后仍未达标 | 平移后同 K 一像素带恢复 | 平移后同 K 整图恢复 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 原生 A，仅中心达标 | 178 | 68 | 106 | 74 | 74 |
+| 中心 B，仅原生达标 | 41 | 24 | 23 | 16 | 16 |
+
+1、2、4 像素带的上述恢复数相同。平移后 129 个失败中有 90 个在固定 K 下可达到 0.90，其中 87 个为小目标、3 个为中目标。其余 39 个在同预算下允许编辑整图也无法达到 0.90。解除 K 后，一像素带在该批固定掩膜上可将全部 129 个推进到阈值。两臂平移后最少编辑的中位数分别为 11 和 9 像素。达到阈值只需要正确改变部分错误像素，两臂均仍有落在一像素带外的误分与漏分。位移由真值辅助，且不计入 K。对模型精修应先检验原掩膜的候选边界，不能以 90／129 代替真实推理效果。
+
+原工作进程退出 0，耗时 13.464 秒，峰值 RSS 194,850,816 字节。独立进程用棋盘距离变换和整数配额搜索复算，219 对的全部聚合逐值一致，退出 0。诊断仅复用关闭的开发集预测。后续若检验有符号局部编辑，应使用预测掩膜定义区域与编辑预算，以同预算局部 logit 和简单几何操作为直接控制，允许零编辑，并同时检查既有严格目标的失守。已有 PointRend、Boundary Patch Refinement 和 SharpContour 可作为边界采样、局部补丁与法线修复先例。 [PointRend](https://openaccess.thecvf.com/content_CVPR_2020/html/Kirillov_PointRend_Image_Segmentation_As_Rendering_CVPR_2020_paper.html) · [Boundary Patch Refinement](https://openaccess.thecvf.com/content/CVPR2021/html/Tang_Look_Closer_To_Segment_Better_Boundary_Patch_Refinement_for_Instance_CVPR_2021_paper.html) · [SharpContour](https://openaccess.thecvf.com/content/CVPR2022/html/Zhu_SharpContour_A_Contour-Based_Boundary_Refinement_Approach_for_Efficient_and_Accurate_Instance_Segmentation_CVPR_2022_paper.html)
+
+### 外部固定候选对照
+
+Phoenix 使用原图和粗掩膜做后置修正。固定作者评估源码保留候选顺序、检测分数、类别与框，重算掩膜面积。COCO 默认只细化面积比例大于 1% 的候选，800×800 对应 6,400 像素。首轮对照应固定原候选，分别报告该默认规则和 LVIS 式全非空适配，并记录真正接受修正的候选比例、既有严格匹配失守与新增达标。该对照的外部预训练、图像编码和迭代成本需要单列。DSR-Net 的曲率与边缘停止 PDE 是更接近 SAR 局部轮廓的先例。 [Phoenix 原文](https://arxiv.org/html/2607.29059v1) · [固定作者评估](https://github.com/naver-ai/Phoenix/blob/13ee3996ef3d0292fab144316cc8e03b69c0ecfa/phoenix/eval/evaluators.py#L96-L156) · [DSR-Net](https://www.ejournal.org.cn/cn/article/doi/10.12263/DZXB.20260699)
+
+首个 Git 下载在读取引用时连接重置，改按固定提交逐件读取并核对 46 份官方源码的 Git blob 摘要，共 259,179 字节。作者 EfficientViT-XL1 权重的固定条目已核对，本机读取连接超时。CPU API 的实际前向及 SAR 评分待执行。 [源码核验汇总](results/PHOENIX_AUTHOR_SOURCE_ACQUISITION_SAFE_20261111.json) · [作者固定权重](https://huggingface.co/naver-iv/phoenix-weights/blob/8a0eaf4f3396ee6c4bce9197d07b64efff23a174/phoenix_efficientvit_xl1.pt)

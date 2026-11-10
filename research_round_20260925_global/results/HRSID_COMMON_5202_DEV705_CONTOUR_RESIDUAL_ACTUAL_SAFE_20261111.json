@@ -1,0 +1,4461 @@
+{
+  "COCO_AP": false,
+  "closed_predictions_only": true,
+  "descriptive_fp_near_gt_scope": "distance to GT foreground, including off-canvas FP, does not define edit support",
+  "device": "CPU",
+  "distance": "Chebyshev",
+  "equal_nonempty_prefix_rows_per_arm": 41482,
+  "fixed_edit_budget": "K=min(16,floor(original unshifted union/10)); same K in both scopes",
+  "model_forward_calls": 0,
+  "off_canvas_policy": "translated off-canvas foreground remains FP and cannot be edited",
+  "official_TEST_opened": false,
+  "original_p312_reproduced": true,
+  "p311_result_sha256": "280ae9abe55e67d1e85c0e3a22406e5489cf295f1a37c81068644d21ea8c7e7d",
+  "p312_result_sha256": "0aec5ab8ddf6f21259e7787482ef25ae725f5bd3f9409534ea61c832bf5445dd",
+  "p312_source_sha256": "ef819eb9c81a30845a400839bbba1ebde4541aeff7e30d96a8d2565505f9c40d",
+  "post_translation_scope": "truth-selected translations and still-failing masks form an oracle diagnostic",
+  "primary_radius_original_pixels": 2,
+  "provenance": {
+    "arms": {
+      "center": {
+        "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+        "export_report_sha256": "05c5c11274f7800504b5ab1fb1dcb8db39c60316f51dc732e3f20ee063078c19",
+        "predictions_sha256": "da55f2d3f9bbf08b26d5fae76606b2496a5b482c5fb61f4fab53c23172e5c06e",
+        "score_report_sha256": "f980babe7cc6b3e701885ec136fb359fa2e2514e49fc08d3faf14995602270fa"
+      },
+      "native": {
+        "checkpoint_sha256": "d2d7c584c75a4bd4397f523ce9d7c827ae7d0aaf9bec61f5ee02eaf33c718c03",
+        "export_report_sha256": "689490c8dbd2f3e0f950fa88d9890d65ab4d1ad5655d1986c26114341d4bca02",
+        "predictions_sha256": "28acdc3a98f1d91381d3d57141b811e261a40f1535fa883deced2e1ee0fddf1a",
+        "score_report_sha256": "74211a55dce14c9f76fbb2f30638956b3b64bc4c64437fc12e2736155cd6a245"
+      }
+    },
+    "closed_export_pair_sha256": "d080a27ade36369a8fc8d2cb003c37cc3670d75860e83b30e365bd47e77543c0",
+    "evaluation_protocol": "91728d38a359e4a207e3f741490f09060c46663f",
+    "original_dev_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+    "support_policy": "ordered_common_nonempty_prepared_rows_v1",
+    "training_pair_receipt_sha256": "ec6c36973a763344d0f063727e7e07c697a132573e6235eaa8525482e8d8da9f",
+    "training_protocol": "04308c52bd2b4730f1474335c6316f6b8a11762e",
+    "training_seed": 5202
+  },
+  "radii_original_pixels": [
+    1,
+    2,
+    4
+  ],
+  "status": "P313_HRSID_COMMON_STRICT_CONTOUR_RESIDUAL_COMPLETE_PENDING_INDEPENDENT_ACCEPTANCE",
+  "strata": {
+    "all": {
+      "center_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "already_recovered_by_translation": 1,
+            "best_translation_remaining": {
+              "K_median": 16,
+              "K_total": 16,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 13,
+                  "editable_fp_pixels": 10,
+                  "fp_near_gt_pixels_including_off_canvas": 9,
+                  "min_edits_at_most": {
+                    "16": 1,
+                    "32": 1,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 7,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 1,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 14,
+                  "editable_fp_pixels": 10,
+                  "fp_near_gt_pixels_including_off_canvas": 10,
+                  "min_edits_at_most": {
+                    "16": 1,
+                    "32": 1,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 7,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 1,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 14,
+                  "editable_fp_pixels": 10,
+                  "fp_near_gt_pixels_including_off_canvas": 10,
+                  "min_edits_at_most": {
+                    "16": 1,
+                    "32": 1,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 7,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 1,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 1,
+              "targets": 1,
+              "total_fn": 14,
+              "total_fp": 10,
+              "unrestricted_in_canvas_reachable": 1
+            },
+            "best_translation_xor_pixels_total": 152,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": 16.0,
+              "K_total": 32,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 65,
+                  "editable_fp_pixels": 73,
+                  "fp_near_gt_pixels_including_off_canvas": 70,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 51.0,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 77,
+                  "editable_fp_pixels": 75,
+                  "fp_near_gt_pixels_including_off_canvas": 75,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 50.5,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 79,
+                  "editable_fp_pixels": 75,
+                  "fp_near_gt_pixels_including_off_canvas": 75,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 50.5,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 2,
+              "total_fn": 79,
+              "total_fp": 75,
+              "unrestricted_in_canvas_reachable": 2
+            },
+            "remaining_translation_xor_pixels_total": 50
+          },
+          "075_to_090": {
+            "already_recovered_by_translation": 71,
+            "best_translation_remaining": {
+              "K_median": 16,
+              "K_total": 1680,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 4756,
+                  "editable_fp_pixels": 3853,
+                  "fp_near_gt_pixels_including_off_canvas": 3769,
+                  "min_edits_at_most": {
+                    "16": 73,
+                    "32": 96,
+                    "4": 26,
+                    "8": 42
+                  },
+                  "min_edits_median": 11,
+                  "recoverable": 105,
+                  "recoverable_of_original_area_impossible": 17,
+                  "same_K_recoverable": 73,
+                  "same_K_recoverable_of_original_area_impossible": 5
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 5723,
+                  "editable_fp_pixels": 4509,
+                  "fp_near_gt_pixels_including_off_canvas": 4435,
+                  "min_edits_at_most": {
+                    "16": 73,
+                    "32": 96,
+                    "4": 26,
+                    "8": 42
+                  },
+                  "min_edits_median": 11,
+                  "recoverable": 105,
+                  "recoverable_of_original_area_impossible": 17,
+                  "same_K_recoverable": 73,
+                  "same_K_recoverable_of_original_area_impossible": 5
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 6368,
+                  "editable_fp_pixels": 4913,
+                  "fp_near_gt_pixels_including_off_canvas": 4827,
+                  "min_edits_at_most": {
+                    "16": 73,
+                    "32": 96,
+                    "4": 26,
+                    "8": 42
+                  },
+                  "min_edits_median": 11,
+                  "recoverable": 105,
+                  "recoverable_of_original_area_impossible": 17,
+                  "same_K_recoverable": 73,
+                  "same_K_recoverable_of_original_area_impossible": 5
+                }
+              },
+              "masks_with_off_canvas_fp": 1,
+              "off_canvas_fp_pixels": 16,
+              "originally_area_impossible_targets": 17,
+              "same_K_unrestricted_in_canvas_recoverable": 73,
+              "targets": 105,
+              "total_fn": 6678,
+              "total_fp": 5041,
+              "unrestricted_in_canvas_reachable": 105
+            },
+            "best_translation_xor_pixels_total": 13758,
+            "identity_chosen_as_best_translation": 28,
+            "raw": {
+              "K_median": 16.0,
+              "K_total": 2816,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 8677,
+                  "editable_fp_pixels": 7941,
+                  "fp_near_gt_pixels_including_off_canvas": 7768,
+                  "min_edits_at_most": {
+                    "16": 68,
+                    "32": 128,
+                    "4": 14,
+                    "8": 36
+                  },
+                  "min_edits_median": 20.5,
+                  "recoverable": 176,
+                  "recoverable_of_original_area_impossible": 17,
+                  "same_K_recoverable": 68,
+                  "same_K_recoverable_of_original_area_impossible": 3
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 10266,
+                  "editable_fp_pixels": 9238,
+                  "fp_near_gt_pixels_including_off_canvas": 9096,
+                  "min_edits_at_most": {
+                    "16": 68,
+                    "32": 128,
+                    "4": 14,
+                    "8": 36
+                  },
+                  "min_edits_median": 20.5,
+                  "recoverable": 176,
+                  "recoverable_of_original_area_impossible": 17,
+                  "same_K_recoverable": 68,
+                  "same_K_recoverable_of_original_area_impossible": 3
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 10958,
+                  "editable_fp_pixels": 9741,
+                  "fp_near_gt_pixels_including_off_canvas": 9618,
+                  "min_edits_at_most": {
+                    "16": 68,
+                    "32": 128,
+                    "4": 14,
+                    "8": 36
+                  },
+                  "min_edits_median": 20.5,
+                  "recoverable": 176,
+                  "recoverable_of_original_area_impossible": 17,
+                  "same_K_recoverable": 68,
+                  "same_K_recoverable_of_original_area_impossible": 3
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 17,
+              "same_K_unrestricted_in_canvas_recoverable": 68,
+              "targets": 176,
+              "total_fn": 11267,
+              "total_fp": 9859,
+              "unrestricted_in_canvas_reachable": 176
+            },
+            "remaining_translation_xor_pixels_total": 6608
+          },
+          "below_050": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          }
+        },
+        "failing_arm": "native",
+        "totals": {
+          "already_recovered_by_translation": 72,
+          "best_translation_remaining": {
+            "K_median": 16.0,
+            "K_total": 1696,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 4769,
+                "editable_fp_pixels": 3863,
+                "fp_near_gt_pixels_including_off_canvas": 3778,
+                "min_edits_at_most": {
+                  "16": 74,
+                  "32": 97,
+                  "4": 26,
+                  "8": 43
+                },
+                "min_edits_median": 11.0,
+                "recoverable": 106,
+                "recoverable_of_original_area_impossible": 17,
+                "same_K_recoverable": 74,
+                "same_K_recoverable_of_original_area_impossible": 5
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 5737,
+                "editable_fp_pixels": 4519,
+                "fp_near_gt_pixels_including_off_canvas": 4445,
+                "min_edits_at_most": {
+                  "16": 74,
+                  "32": 97,
+                  "4": 26,
+                  "8": 43
+                },
+                "min_edits_median": 11.0,
+                "recoverable": 106,
+                "recoverable_of_original_area_impossible": 17,
+                "same_K_recoverable": 74,
+                "same_K_recoverable_of_original_area_impossible": 5
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 6382,
+                "editable_fp_pixels": 4923,
+                "fp_near_gt_pixels_including_off_canvas": 4837,
+                "min_edits_at_most": {
+                  "16": 74,
+                  "32": 97,
+                  "4": 26,
+                  "8": 43
+                },
+                "min_edits_median": 11.0,
+                "recoverable": 106,
+                "recoverable_of_original_area_impossible": 17,
+                "same_K_recoverable": 74,
+                "same_K_recoverable_of_original_area_impossible": 5
+              }
+            },
+            "masks_with_off_canvas_fp": 1,
+            "off_canvas_fp_pixels": 16,
+            "originally_area_impossible_targets": 17,
+            "same_K_unrestricted_in_canvas_recoverable": 74,
+            "targets": 106,
+            "total_fn": 6692,
+            "total_fp": 5051,
+            "unrestricted_in_canvas_reachable": 106
+          },
+          "best_translation_xor_pixels_total": 13910,
+          "identity_chosen_as_best_translation": 28,
+          "raw": {
+            "K_median": 16.0,
+            "K_total": 2848,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 8742,
+                "editable_fp_pixels": 8014,
+                "fp_near_gt_pixels_including_off_canvas": 7838,
+                "min_edits_at_most": {
+                  "16": 68,
+                  "32": 128,
+                  "4": 14,
+                  "8": 36
+                },
+                "min_edits_median": 21.0,
+                "recoverable": 178,
+                "recoverable_of_original_area_impossible": 17,
+                "same_K_recoverable": 68,
+                "same_K_recoverable_of_original_area_impossible": 3
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 10343,
+                "editable_fp_pixels": 9313,
+                "fp_near_gt_pixels_including_off_canvas": 9171,
+                "min_edits_at_most": {
+                  "16": 68,
+                  "32": 128,
+                  "4": 14,
+                  "8": 36
+                },
+                "min_edits_median": 21.0,
+                "recoverable": 178,
+                "recoverable_of_original_area_impossible": 17,
+                "same_K_recoverable": 68,
+                "same_K_recoverable_of_original_area_impossible": 3
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 11037,
+                "editable_fp_pixels": 9816,
+                "fp_near_gt_pixels_including_off_canvas": 9693,
+                "min_edits_at_most": {
+                  "16": 68,
+                  "32": 128,
+                  "4": 14,
+                  "8": 36
+                },
+                "min_edits_median": 21.0,
+                "recoverable": 178,
+                "recoverable_of_original_area_impossible": 17,
+                "same_K_recoverable": 68,
+                "same_K_recoverable_of_original_area_impossible": 3
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 17,
+            "same_K_unrestricted_in_canvas_recoverable": 68,
+            "targets": 178,
+            "total_fn": 11346,
+            "total_fp": 9934,
+            "unrestricted_in_canvas_reachable": 178
+          },
+          "remaining_translation_xor_pixels_total": 6658
+        }
+      },
+      "native_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          },
+          "075_to_090": {
+            "already_recovered_by_translation": 18,
+            "best_translation_remaining": {
+              "K_median": 16,
+              "K_total": 368,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1697,
+                  "editable_fp_pixels": 1395,
+                  "fp_near_gt_pixels_including_off_canvas": 1403,
+                  "min_edits_at_most": {
+                    "16": 16,
+                    "32": 19,
+                    "4": 6,
+                    "8": 11
+                  },
+                  "min_edits_median": 9,
+                  "recoverable": 23,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 16,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 2576,
+                  "editable_fp_pixels": 1701,
+                  "fp_near_gt_pixels_including_off_canvas": 1715,
+                  "min_edits_at_most": {
+                    "16": 16,
+                    "32": 19,
+                    "4": 6,
+                    "8": 11
+                  },
+                  "min_edits_median": 9,
+                  "recoverable": 23,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 16,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 3602,
+                  "editable_fp_pixels": 2019,
+                  "fp_near_gt_pixels_including_off_canvas": 2028,
+                  "min_edits_at_most": {
+                    "16": 16,
+                    "32": 19,
+                    "4": 6,
+                    "8": 11
+                  },
+                  "min_edits_median": 9,
+                  "recoverable": 23,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 16,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 2,
+              "same_K_unrestricted_in_canvas_recoverable": 16,
+              "targets": 23,
+              "total_fn": 4375,
+              "total_fp": 2366,
+              "unrestricted_in_canvas_reachable": 23
+            },
+            "best_translation_xor_pixels_total": 3800,
+            "identity_chosen_as_best_translation": 11,
+            "raw": {
+              "K_median": 16,
+              "K_total": 656,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 2537,
+                  "editable_fp_pixels": 2412,
+                  "fp_near_gt_pixels_including_off_canvas": 2416,
+                  "min_edits_at_most": {
+                    "16": 24,
+                    "32": 33,
+                    "4": 6,
+                    "8": 16
+                  },
+                  "min_edits_median": 11,
+                  "recoverable": 41,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 24,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 3561,
+                  "editable_fp_pixels": 2839,
+                  "fp_near_gt_pixels_including_off_canvas": 2854,
+                  "min_edits_at_most": {
+                    "16": 24,
+                    "32": 33,
+                    "4": 6,
+                    "8": 16
+                  },
+                  "min_edits_median": 11,
+                  "recoverable": 41,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 24,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 4795,
+                  "editable_fp_pixels": 3158,
+                  "fp_near_gt_pixels_including_off_canvas": 3160,
+                  "min_edits_at_most": {
+                    "16": 24,
+                    "32": 33,
+                    "4": 6,
+                    "8": 16
+                  },
+                  "min_edits_median": 11,
+                  "recoverable": 41,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 24,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 2,
+              "same_K_unrestricted_in_canvas_recoverable": 24,
+              "targets": 41,
+              "total_fn": 5769,
+              "total_fp": 3515,
+              "unrestricted_in_canvas_reachable": 41
+            },
+            "remaining_translation_xor_pixels_total": 2358
+          },
+          "below_050": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          }
+        },
+        "failing_arm": "center",
+        "totals": {
+          "already_recovered_by_translation": 18,
+          "best_translation_remaining": {
+            "K_median": 16,
+            "K_total": 368,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 1697,
+                "editable_fp_pixels": 1395,
+                "fp_near_gt_pixels_including_off_canvas": 1403,
+                "min_edits_at_most": {
+                  "16": 16,
+                  "32": 19,
+                  "4": 6,
+                  "8": 11
+                },
+                "min_edits_median": 9,
+                "recoverable": 23,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 16,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 2576,
+                "editable_fp_pixels": 1701,
+                "fp_near_gt_pixels_including_off_canvas": 1715,
+                "min_edits_at_most": {
+                  "16": 16,
+                  "32": 19,
+                  "4": 6,
+                  "8": 11
+                },
+                "min_edits_median": 9,
+                "recoverable": 23,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 16,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 3602,
+                "editable_fp_pixels": 2019,
+                "fp_near_gt_pixels_including_off_canvas": 2028,
+                "min_edits_at_most": {
+                  "16": 16,
+                  "32": 19,
+                  "4": 6,
+                  "8": 11
+                },
+                "min_edits_median": 9,
+                "recoverable": 23,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 16,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 2,
+            "same_K_unrestricted_in_canvas_recoverable": 16,
+            "targets": 23,
+            "total_fn": 4375,
+            "total_fp": 2366,
+            "unrestricted_in_canvas_reachable": 23
+          },
+          "best_translation_xor_pixels_total": 3800,
+          "identity_chosen_as_best_translation": 11,
+          "raw": {
+            "K_median": 16,
+            "K_total": 656,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 2537,
+                "editable_fp_pixels": 2412,
+                "fp_near_gt_pixels_including_off_canvas": 2416,
+                "min_edits_at_most": {
+                  "16": 24,
+                  "32": 33,
+                  "4": 6,
+                  "8": 16
+                },
+                "min_edits_median": 11,
+                "recoverable": 41,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 24,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 3561,
+                "editable_fp_pixels": 2839,
+                "fp_near_gt_pixels_including_off_canvas": 2854,
+                "min_edits_at_most": {
+                  "16": 24,
+                  "32": 33,
+                  "4": 6,
+                  "8": 16
+                },
+                "min_edits_median": 11,
+                "recoverable": 41,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 24,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 4795,
+                "editable_fp_pixels": 3158,
+                "fp_near_gt_pixels_including_off_canvas": 3160,
+                "min_edits_at_most": {
+                  "16": 24,
+                  "32": 33,
+                  "4": 6,
+                  "8": 16
+                },
+                "min_edits_median": 11,
+                "recoverable": 41,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 24,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 2,
+            "same_K_unrestricted_in_canvas_recoverable": 24,
+            "targets": 41,
+            "total_fn": 5769,
+            "total_fp": 3515,
+            "unrestricted_in_canvas_reachable": 41
+          },
+          "remaining_translation_xor_pixels_total": 2358
+        }
+      }
+    },
+    "large": {
+      "center_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          },
+          "075_to_090": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": 16,
+              "K_total": 16,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 400,
+                  "editable_fp_pixels": 94,
+                  "fp_near_gt_pixels_including_off_canvas": 58,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 266,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 669,
+                  "editable_fp_pixels": 171,
+                  "fp_near_gt_pixels_including_off_canvas": 109,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 266,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1072,
+                  "editable_fp_pixels": 287,
+                  "fp_near_gt_pixels_including_off_canvas": 189,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 266,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 1,
+              "total_fn": 1364,
+              "total_fp": 387,
+              "unrestricted_in_canvas_reachable": 1
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 1,
+            "raw": {
+              "K_median": 16,
+              "K_total": 16,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 400,
+                  "editable_fp_pixels": 94,
+                  "fp_near_gt_pixels_including_off_canvas": 58,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 266,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 669,
+                  "editable_fp_pixels": 171,
+                  "fp_near_gt_pixels_including_off_canvas": 109,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 266,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1072,
+                  "editable_fp_pixels": 287,
+                  "fp_near_gt_pixels_including_off_canvas": 189,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 266,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 1,
+              "total_fn": 1364,
+              "total_fp": 387,
+              "unrestricted_in_canvas_reachable": 1
+            },
+            "remaining_translation_xor_pixels_total": 0
+          },
+          "below_050": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          }
+        },
+        "failing_arm": "native",
+        "totals": {
+          "already_recovered_by_translation": 0,
+          "best_translation_remaining": {
+            "K_median": 16,
+            "K_total": 16,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 400,
+                "editable_fp_pixels": 94,
+                "fp_near_gt_pixels_including_off_canvas": 58,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 266,
+                "recoverable": 1,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 669,
+                "editable_fp_pixels": 171,
+                "fp_near_gt_pixels_including_off_canvas": 109,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 266,
+                "recoverable": 1,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 1072,
+                "editable_fp_pixels": 287,
+                "fp_near_gt_pixels_including_off_canvas": 189,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 266,
+                "recoverable": 1,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 0,
+            "same_K_unrestricted_in_canvas_recoverable": 0,
+            "targets": 1,
+            "total_fn": 1364,
+            "total_fp": 387,
+            "unrestricted_in_canvas_reachable": 1
+          },
+          "best_translation_xor_pixels_total": 0,
+          "identity_chosen_as_best_translation": 1,
+          "raw": {
+            "K_median": 16,
+            "K_total": 16,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 400,
+                "editable_fp_pixels": 94,
+                "fp_near_gt_pixels_including_off_canvas": 58,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 266,
+                "recoverable": 1,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 669,
+                "editable_fp_pixels": 171,
+                "fp_near_gt_pixels_including_off_canvas": 109,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 266,
+                "recoverable": 1,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 1072,
+                "editable_fp_pixels": 287,
+                "fp_near_gt_pixels_including_off_canvas": 189,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 266,
+                "recoverable": 1,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 0,
+            "same_K_unrestricted_in_canvas_recoverable": 0,
+            "targets": 1,
+            "total_fn": 1364,
+            "total_fp": 387,
+            "unrestricted_in_canvas_reachable": 1
+          },
+          "remaining_translation_xor_pixels_total": 0
+        }
+      },
+      "native_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          },
+          "075_to_090": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": 16.0,
+              "K_total": 32,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1046,
+                  "editable_fp_pixels": 435,
+                  "fp_near_gt_pixels_including_off_canvas": 428,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 277.0,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1770,
+                  "editable_fp_pixels": 641,
+                  "fp_near_gt_pixels_including_off_canvas": 634,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 277.0,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 2747,
+                  "editable_fp_pixels": 897,
+                  "fp_near_gt_pixels_including_off_canvas": 894,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 277.0,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 2,
+              "total_fn": 3519,
+              "total_fp": 1228,
+              "unrestricted_in_canvas_reachable": 2
+            },
+            "best_translation_xor_pixels_total": 1734,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": 16.0,
+              "K_total": 32,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 964,
+                  "editable_fp_pixels": 670,
+                  "fp_near_gt_pixels_including_off_canvas": 667,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 552.5,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1736,
+                  "editable_fp_pixels": 915,
+                  "fp_near_gt_pixels_including_off_canvas": 909,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 545.5,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 2862,
+                  "editable_fp_pixels": 1170,
+                  "fp_near_gt_pixels_including_off_canvas": 1160,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 545.5,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 2,
+              "total_fn": 3802,
+              "total_fp": 1511,
+              "unrestricted_in_canvas_reachable": 2
+            },
+            "remaining_translation_xor_pixels_total": 1734
+          },
+          "below_050": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          }
+        },
+        "failing_arm": "center",
+        "totals": {
+          "already_recovered_by_translation": 0,
+          "best_translation_remaining": {
+            "K_median": 16.0,
+            "K_total": 32,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 1046,
+                "editable_fp_pixels": 435,
+                "fp_near_gt_pixels_including_off_canvas": 428,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 277.0,
+                "recoverable": 2,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 1770,
+                "editable_fp_pixels": 641,
+                "fp_near_gt_pixels_including_off_canvas": 634,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 277.0,
+                "recoverable": 2,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 2747,
+                "editable_fp_pixels": 897,
+                "fp_near_gt_pixels_including_off_canvas": 894,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 277.0,
+                "recoverable": 2,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 0,
+            "same_K_unrestricted_in_canvas_recoverable": 0,
+            "targets": 2,
+            "total_fn": 3519,
+            "total_fp": 1228,
+            "unrestricted_in_canvas_reachable": 2
+          },
+          "best_translation_xor_pixels_total": 1734,
+          "identity_chosen_as_best_translation": 0,
+          "raw": {
+            "K_median": 16.0,
+            "K_total": 32,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 964,
+                "editable_fp_pixels": 670,
+                "fp_near_gt_pixels_including_off_canvas": 667,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 552.5,
+                "recoverable": 2,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 1736,
+                "editable_fp_pixels": 915,
+                "fp_near_gt_pixels_including_off_canvas": 909,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 545.5,
+                "recoverable": 2,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 2862,
+                "editable_fp_pixels": 1170,
+                "fp_near_gt_pixels_including_off_canvas": 1160,
+                "min_edits_at_most": {
+                  "16": 0,
+                  "32": 0,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 545.5,
+                "recoverable": 2,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 0,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 0,
+            "same_K_unrestricted_in_canvas_recoverable": 0,
+            "targets": 2,
+            "total_fn": 3802,
+            "total_fp": 1511,
+            "unrestricted_in_canvas_reachable": 2
+          },
+          "remaining_translation_xor_pixels_total": 1734
+        }
+      }
+    },
+    "medium": {
+      "center_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          },
+          "075_to_090": {
+            "already_recovered_by_translation": 11,
+            "best_translation_remaining": {
+              "K_median": 16,
+              "K_total": 176,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 939,
+                  "editable_fp_pixels": 1101,
+                  "fp_near_gt_pixels_including_off_canvas": 1074,
+                  "min_edits_at_most": {
+                    "16": 2,
+                    "32": 7,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 27,
+                  "recoverable": 11,
+                  "recoverable_of_original_area_impossible": 5,
+                  "same_K_recoverable": 2,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1332,
+                  "editable_fp_pixels": 1538,
+                  "fp_near_gt_pixels_including_off_canvas": 1514,
+                  "min_edits_at_most": {
+                    "16": 2,
+                    "32": 7,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 27,
+                  "recoverable": 11,
+                  "recoverable_of_original_area_impossible": 5,
+                  "same_K_recoverable": 2,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1523,
+                  "editable_fp_pixels": 1826,
+                  "fp_near_gt_pixels_including_off_canvas": 1822,
+                  "min_edits_at_most": {
+                    "16": 2,
+                    "32": 7,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 27,
+                  "recoverable": 11,
+                  "recoverable_of_original_area_impossible": 5,
+                  "same_K_recoverable": 2,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 5,
+              "same_K_unrestricted_in_canvas_recoverable": 2,
+              "targets": 11,
+              "total_fn": 1531,
+              "total_fp": 1838,
+              "unrestricted_in_canvas_reachable": 11
+            },
+            "best_translation_xor_pixels_total": 3190,
+            "identity_chosen_as_best_translation": 2,
+            "raw": {
+              "K_median": 16.0,
+              "K_total": 352,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1934,
+                  "editable_fp_pixels": 2216,
+                  "fp_near_gt_pixels_including_off_canvas": 2164,
+                  "min_edits_at_most": {
+                    "16": 6,
+                    "32": 11,
+                    "4": 2,
+                    "8": 3
+                  },
+                  "min_edits_median": 38.0,
+                  "recoverable": 22,
+                  "recoverable_of_original_area_impossible": 5,
+                  "same_K_recoverable": 6,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 2604,
+                  "editable_fp_pixels": 2917,
+                  "fp_near_gt_pixels_including_off_canvas": 2871,
+                  "min_edits_at_most": {
+                    "16": 6,
+                    "32": 11,
+                    "4": 2,
+                    "8": 3
+                  },
+                  "min_edits_median": 37.5,
+                  "recoverable": 22,
+                  "recoverable_of_original_area_impossible": 5,
+                  "same_K_recoverable": 6,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 2827,
+                  "editable_fp_pixels": 3276,
+                  "fp_near_gt_pixels_including_off_canvas": 3252,
+                  "min_edits_at_most": {
+                    "16": 6,
+                    "32": 11,
+                    "4": 2,
+                    "8": 3
+                  },
+                  "min_edits_median": 37.5,
+                  "recoverable": 22,
+                  "recoverable_of_original_area_impossible": 5,
+                  "same_K_recoverable": 6,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 5,
+              "same_K_unrestricted_in_canvas_recoverable": 6,
+              "targets": 22,
+              "total_fn": 2831,
+              "total_fp": 3294,
+              "unrestricted_in_canvas_reachable": 22
+            },
+            "remaining_translation_xor_pixels_total": 1242
+          },
+          "below_050": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          }
+        },
+        "failing_arm": "native",
+        "totals": {
+          "already_recovered_by_translation": 11,
+          "best_translation_remaining": {
+            "K_median": 16,
+            "K_total": 176,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 939,
+                "editable_fp_pixels": 1101,
+                "fp_near_gt_pixels_including_off_canvas": 1074,
+                "min_edits_at_most": {
+                  "16": 2,
+                  "32": 7,
+                  "4": 0,
+                  "8": 1
+                },
+                "min_edits_median": 27,
+                "recoverable": 11,
+                "recoverable_of_original_area_impossible": 5,
+                "same_K_recoverable": 2,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 1332,
+                "editable_fp_pixels": 1538,
+                "fp_near_gt_pixels_including_off_canvas": 1514,
+                "min_edits_at_most": {
+                  "16": 2,
+                  "32": 7,
+                  "4": 0,
+                  "8": 1
+                },
+                "min_edits_median": 27,
+                "recoverable": 11,
+                "recoverable_of_original_area_impossible": 5,
+                "same_K_recoverable": 2,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 1523,
+                "editable_fp_pixels": 1826,
+                "fp_near_gt_pixels_including_off_canvas": 1822,
+                "min_edits_at_most": {
+                  "16": 2,
+                  "32": 7,
+                  "4": 0,
+                  "8": 1
+                },
+                "min_edits_median": 27,
+                "recoverable": 11,
+                "recoverable_of_original_area_impossible": 5,
+                "same_K_recoverable": 2,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 5,
+            "same_K_unrestricted_in_canvas_recoverable": 2,
+            "targets": 11,
+            "total_fn": 1531,
+            "total_fp": 1838,
+            "unrestricted_in_canvas_reachable": 11
+          },
+          "best_translation_xor_pixels_total": 3190,
+          "identity_chosen_as_best_translation": 2,
+          "raw": {
+            "K_median": 16.0,
+            "K_total": 352,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 1934,
+                "editable_fp_pixels": 2216,
+                "fp_near_gt_pixels_including_off_canvas": 2164,
+                "min_edits_at_most": {
+                  "16": 6,
+                  "32": 11,
+                  "4": 2,
+                  "8": 3
+                },
+                "min_edits_median": 38.0,
+                "recoverable": 22,
+                "recoverable_of_original_area_impossible": 5,
+                "same_K_recoverable": 6,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 2604,
+                "editable_fp_pixels": 2917,
+                "fp_near_gt_pixels_including_off_canvas": 2871,
+                "min_edits_at_most": {
+                  "16": 6,
+                  "32": 11,
+                  "4": 2,
+                  "8": 3
+                },
+                "min_edits_median": 37.5,
+                "recoverable": 22,
+                "recoverable_of_original_area_impossible": 5,
+                "same_K_recoverable": 6,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 2827,
+                "editable_fp_pixels": 3276,
+                "fp_near_gt_pixels_including_off_canvas": 3252,
+                "min_edits_at_most": {
+                  "16": 6,
+                  "32": 11,
+                  "4": 2,
+                  "8": 3
+                },
+                "min_edits_median": 37.5,
+                "recoverable": 22,
+                "recoverable_of_original_area_impossible": 5,
+                "same_K_recoverable": 6,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 5,
+            "same_K_unrestricted_in_canvas_recoverable": 6,
+            "targets": 22,
+            "total_fn": 2831,
+            "total_fp": 3294,
+            "unrestricted_in_canvas_reachable": 22
+          },
+          "remaining_translation_xor_pixels_total": 1242
+        }
+      },
+      "native_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          },
+          "075_to_090": {
+            "already_recovered_by_translation": 3,
+            "best_translation_remaining": {
+              "K_median": 16.0,
+              "K_total": 32,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 263,
+                  "editable_fp_pixels": 228,
+                  "fp_near_gt_pixels_including_off_canvas": 246,
+                  "min_edits_at_most": {
+                    "16": 1,
+                    "32": 1,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 36.0,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 1,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 374,
+                  "editable_fp_pixels": 301,
+                  "fp_near_gt_pixels_including_off_canvas": 323,
+                  "min_edits_at_most": {
+                    "16": 1,
+                    "32": 1,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 36.0,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 1,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 417,
+                  "editable_fp_pixels": 363,
+                  "fp_near_gt_pixels_including_off_canvas": 375,
+                  "min_edits_at_most": {
+                    "16": 1,
+                    "32": 1,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 36.0,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 1,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 1,
+              "targets": 2,
+              "total_fn": 418,
+              "total_fp": 379,
+              "unrestricted_in_canvas_reachable": 2
+            },
+            "best_translation_xor_pixels_total": 352,
+            "identity_chosen_as_best_translation": 2,
+            "raw": {
+              "K_median": 16,
+              "K_total": 80,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 577,
+                  "editable_fp_pixels": 441,
+                  "fp_near_gt_pixels_including_off_canvas": 458,
+                  "min_edits_at_most": {
+                    "16": 3,
+                    "32": 3,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 14,
+                  "recoverable": 5,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 3,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 738,
+                  "editable_fp_pixels": 556,
+                  "fp_near_gt_pixels_including_off_canvas": 578,
+                  "min_edits_at_most": {
+                    "16": 3,
+                    "32": 3,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 14,
+                  "recoverable": 5,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 3,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 839,
+                  "editable_fp_pixels": 618,
+                  "fp_near_gt_pixels_including_off_canvas": 630,
+                  "min_edits_at_most": {
+                    "16": 3,
+                    "32": 3,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 14,
+                  "recoverable": 5,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 3,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 3,
+              "targets": 5,
+              "total_fn": 872,
+              "total_fp": 634,
+              "unrestricted_in_canvas_reachable": 5
+            },
+            "remaining_translation_xor_pixels_total": 0
+          },
+          "below_050": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          }
+        },
+        "failing_arm": "center",
+        "totals": {
+          "already_recovered_by_translation": 3,
+          "best_translation_remaining": {
+            "K_median": 16.0,
+            "K_total": 32,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 263,
+                "editable_fp_pixels": 228,
+                "fp_near_gt_pixels_including_off_canvas": 246,
+                "min_edits_at_most": {
+                  "16": 1,
+                  "32": 1,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 36.0,
+                "recoverable": 2,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 1,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 374,
+                "editable_fp_pixels": 301,
+                "fp_near_gt_pixels_including_off_canvas": 323,
+                "min_edits_at_most": {
+                  "16": 1,
+                  "32": 1,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 36.0,
+                "recoverable": 2,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 1,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 417,
+                "editable_fp_pixels": 363,
+                "fp_near_gt_pixels_including_off_canvas": 375,
+                "min_edits_at_most": {
+                  "16": 1,
+                  "32": 1,
+                  "4": 0,
+                  "8": 0
+                },
+                "min_edits_median": 36.0,
+                "recoverable": 2,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 1,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 0,
+            "same_K_unrestricted_in_canvas_recoverable": 1,
+            "targets": 2,
+            "total_fn": 418,
+            "total_fp": 379,
+            "unrestricted_in_canvas_reachable": 2
+          },
+          "best_translation_xor_pixels_total": 352,
+          "identity_chosen_as_best_translation": 2,
+          "raw": {
+            "K_median": 16,
+            "K_total": 80,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 577,
+                "editable_fp_pixels": 441,
+                "fp_near_gt_pixels_including_off_canvas": 458,
+                "min_edits_at_most": {
+                  "16": 3,
+                  "32": 3,
+                  "4": 0,
+                  "8": 1
+                },
+                "min_edits_median": 14,
+                "recoverable": 5,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 3,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 738,
+                "editable_fp_pixels": 556,
+                "fp_near_gt_pixels_including_off_canvas": 578,
+                "min_edits_at_most": {
+                  "16": 3,
+                  "32": 3,
+                  "4": 0,
+                  "8": 1
+                },
+                "min_edits_median": 14,
+                "recoverable": 5,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 3,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 839,
+                "editable_fp_pixels": 618,
+                "fp_near_gt_pixels_including_off_canvas": 630,
+                "min_edits_at_most": {
+                  "16": 3,
+                  "32": 3,
+                  "4": 0,
+                  "8": 1
+                },
+                "min_edits_median": 14,
+                "recoverable": 5,
+                "recoverable_of_original_area_impossible": 0,
+                "same_K_recoverable": 3,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 0,
+            "same_K_unrestricted_in_canvas_recoverable": 3,
+            "targets": 5,
+            "total_fn": 872,
+            "total_fp": 634,
+            "unrestricted_in_canvas_reachable": 5
+          },
+          "remaining_translation_xor_pixels_total": 0
+        }
+      }
+    },
+    "small": {
+      "center_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "already_recovered_by_translation": 1,
+            "best_translation_remaining": {
+              "K_median": 16,
+              "K_total": 16,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 13,
+                  "editable_fp_pixels": 10,
+                  "fp_near_gt_pixels_including_off_canvas": 9,
+                  "min_edits_at_most": {
+                    "16": 1,
+                    "32": 1,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 7,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 1,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 14,
+                  "editable_fp_pixels": 10,
+                  "fp_near_gt_pixels_including_off_canvas": 10,
+                  "min_edits_at_most": {
+                    "16": 1,
+                    "32": 1,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 7,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 1,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 14,
+                  "editable_fp_pixels": 10,
+                  "fp_near_gt_pixels_including_off_canvas": 10,
+                  "min_edits_at_most": {
+                    "16": 1,
+                    "32": 1,
+                    "4": 0,
+                    "8": 1
+                  },
+                  "min_edits_median": 7,
+                  "recoverable": 1,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 1,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 1,
+              "targets": 1,
+              "total_fn": 14,
+              "total_fp": 10,
+              "unrestricted_in_canvas_reachable": 1
+            },
+            "best_translation_xor_pixels_total": 152,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": 16.0,
+              "K_total": 32,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 65,
+                  "editable_fp_pixels": 73,
+                  "fp_near_gt_pixels_including_off_canvas": 70,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 51.0,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 77,
+                  "editable_fp_pixels": 75,
+                  "fp_near_gt_pixels_including_off_canvas": 75,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 50.5,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 79,
+                  "editable_fp_pixels": 75,
+                  "fp_near_gt_pixels_including_off_canvas": 75,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": 50.5,
+                  "recoverable": 2,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 2,
+              "total_fn": 79,
+              "total_fp": 75,
+              "unrestricted_in_canvas_reachable": 2
+            },
+            "remaining_translation_xor_pixels_total": 50
+          },
+          "075_to_090": {
+            "already_recovered_by_translation": 60,
+            "best_translation_remaining": {
+              "K_median": 16,
+              "K_total": 1488,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 3417,
+                  "editable_fp_pixels": 2658,
+                  "fp_near_gt_pixels_including_off_canvas": 2637,
+                  "min_edits_at_most": {
+                    "16": 71,
+                    "32": 89,
+                    "4": 26,
+                    "8": 41
+                  },
+                  "min_edits_median": 10,
+                  "recoverable": 93,
+                  "recoverable_of_original_area_impossible": 12,
+                  "same_K_recoverable": 71,
+                  "same_K_recoverable_of_original_area_impossible": 5
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 3722,
+                  "editable_fp_pixels": 2800,
+                  "fp_near_gt_pixels_including_off_canvas": 2812,
+                  "min_edits_at_most": {
+                    "16": 71,
+                    "32": 89,
+                    "4": 26,
+                    "8": 41
+                  },
+                  "min_edits_median": 10,
+                  "recoverable": 93,
+                  "recoverable_of_original_area_impossible": 12,
+                  "same_K_recoverable": 71,
+                  "same_K_recoverable_of_original_area_impossible": 5
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 3773,
+                  "editable_fp_pixels": 2800,
+                  "fp_near_gt_pixels_including_off_canvas": 2816,
+                  "min_edits_at_most": {
+                    "16": 71,
+                    "32": 89,
+                    "4": 26,
+                    "8": 41
+                  },
+                  "min_edits_median": 10,
+                  "recoverable": 93,
+                  "recoverable_of_original_area_impossible": 12,
+                  "same_K_recoverable": 71,
+                  "same_K_recoverable_of_original_area_impossible": 5
+                }
+              },
+              "masks_with_off_canvas_fp": 1,
+              "off_canvas_fp_pixels": 16,
+              "originally_area_impossible_targets": 12,
+              "same_K_unrestricted_in_canvas_recoverable": 71,
+              "targets": 93,
+              "total_fn": 3783,
+              "total_fp": 2816,
+              "unrestricted_in_canvas_reachable": 93
+            },
+            "best_translation_xor_pixels_total": 10568,
+            "identity_chosen_as_best_translation": 25,
+            "raw": {
+              "K_median": 16,
+              "K_total": 2448,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 6343,
+                  "editable_fp_pixels": 5631,
+                  "fp_near_gt_pixels_including_off_canvas": 5546,
+                  "min_edits_at_most": {
+                    "16": 62,
+                    "32": 117,
+                    "4": 12,
+                    "8": 33
+                  },
+                  "min_edits_median": 20,
+                  "recoverable": 153,
+                  "recoverable_of_original_area_impossible": 12,
+                  "same_K_recoverable": 62,
+                  "same_K_recoverable_of_original_area_impossible": 3
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 6993,
+                  "editable_fp_pixels": 6150,
+                  "fp_near_gt_pixels_including_off_canvas": 6116,
+                  "min_edits_at_most": {
+                    "16": 62,
+                    "32": 117,
+                    "4": 12,
+                    "8": 33
+                  },
+                  "min_edits_median": 20,
+                  "recoverable": 153,
+                  "recoverable_of_original_area_impossible": 12,
+                  "same_K_recoverable": 62,
+                  "same_K_recoverable_of_original_area_impossible": 3
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 7059,
+                  "editable_fp_pixels": 6178,
+                  "fp_near_gt_pixels_including_off_canvas": 6177,
+                  "min_edits_at_most": {
+                    "16": 62,
+                    "32": 117,
+                    "4": 12,
+                    "8": 33
+                  },
+                  "min_edits_median": 20,
+                  "recoverable": 153,
+                  "recoverable_of_original_area_impossible": 12,
+                  "same_K_recoverable": 62,
+                  "same_K_recoverable_of_original_area_impossible": 3
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 12,
+              "same_K_unrestricted_in_canvas_recoverable": 62,
+              "targets": 153,
+              "total_fn": 7072,
+              "total_fp": 6178,
+              "unrestricted_in_canvas_reachable": 153
+            },
+            "remaining_translation_xor_pixels_total": 5366
+          },
+          "below_050": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          }
+        },
+        "failing_arm": "native",
+        "totals": {
+          "already_recovered_by_translation": 61,
+          "best_translation_remaining": {
+            "K_median": 16.0,
+            "K_total": 1504,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 3430,
+                "editable_fp_pixels": 2668,
+                "fp_near_gt_pixels_including_off_canvas": 2646,
+                "min_edits_at_most": {
+                  "16": 72,
+                  "32": 90,
+                  "4": 26,
+                  "8": 42
+                },
+                "min_edits_median": 10.0,
+                "recoverable": 94,
+                "recoverable_of_original_area_impossible": 12,
+                "same_K_recoverable": 72,
+                "same_K_recoverable_of_original_area_impossible": 5
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 3736,
+                "editable_fp_pixels": 2810,
+                "fp_near_gt_pixels_including_off_canvas": 2822,
+                "min_edits_at_most": {
+                  "16": 72,
+                  "32": 90,
+                  "4": 26,
+                  "8": 42
+                },
+                "min_edits_median": 10.0,
+                "recoverable": 94,
+                "recoverable_of_original_area_impossible": 12,
+                "same_K_recoverable": 72,
+                "same_K_recoverable_of_original_area_impossible": 5
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 3787,
+                "editable_fp_pixels": 2810,
+                "fp_near_gt_pixels_including_off_canvas": 2826,
+                "min_edits_at_most": {
+                  "16": 72,
+                  "32": 90,
+                  "4": 26,
+                  "8": 42
+                },
+                "min_edits_median": 10.0,
+                "recoverable": 94,
+                "recoverable_of_original_area_impossible": 12,
+                "same_K_recoverable": 72,
+                "same_K_recoverable_of_original_area_impossible": 5
+              }
+            },
+            "masks_with_off_canvas_fp": 1,
+            "off_canvas_fp_pixels": 16,
+            "originally_area_impossible_targets": 12,
+            "same_K_unrestricted_in_canvas_recoverable": 72,
+            "targets": 94,
+            "total_fn": 3797,
+            "total_fp": 2826,
+            "unrestricted_in_canvas_reachable": 94
+          },
+          "best_translation_xor_pixels_total": 10720,
+          "identity_chosen_as_best_translation": 25,
+          "raw": {
+            "K_median": 16,
+            "K_total": 2480,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 6408,
+                "editable_fp_pixels": 5704,
+                "fp_near_gt_pixels_including_off_canvas": 5616,
+                "min_edits_at_most": {
+                  "16": 62,
+                  "32": 117,
+                  "4": 12,
+                  "8": 33
+                },
+                "min_edits_median": 20,
+                "recoverable": 155,
+                "recoverable_of_original_area_impossible": 12,
+                "same_K_recoverable": 62,
+                "same_K_recoverable_of_original_area_impossible": 3
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 7070,
+                "editable_fp_pixels": 6225,
+                "fp_near_gt_pixels_including_off_canvas": 6191,
+                "min_edits_at_most": {
+                  "16": 62,
+                  "32": 117,
+                  "4": 12,
+                  "8": 33
+                },
+                "min_edits_median": 20,
+                "recoverable": 155,
+                "recoverable_of_original_area_impossible": 12,
+                "same_K_recoverable": 62,
+                "same_K_recoverable_of_original_area_impossible": 3
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 7138,
+                "editable_fp_pixels": 6253,
+                "fp_near_gt_pixels_including_off_canvas": 6252,
+                "min_edits_at_most": {
+                  "16": 62,
+                  "32": 117,
+                  "4": 12,
+                  "8": 33
+                },
+                "min_edits_median": 20,
+                "recoverable": 155,
+                "recoverable_of_original_area_impossible": 12,
+                "same_K_recoverable": 62,
+                "same_K_recoverable_of_original_area_impossible": 3
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 12,
+            "same_K_unrestricted_in_canvas_recoverable": 62,
+            "targets": 155,
+            "total_fn": 7151,
+            "total_fp": 6253,
+            "unrestricted_in_canvas_reachable": 155
+          },
+          "remaining_translation_xor_pixels_total": 5416
+        }
+      },
+      "native_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          },
+          "075_to_090": {
+            "already_recovered_by_translation": 15,
+            "best_translation_remaining": {
+              "K_median": 16,
+              "K_total": 304,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 388,
+                  "editable_fp_pixels": 732,
+                  "fp_near_gt_pixels_including_off_canvas": 729,
+                  "min_edits_at_most": {
+                    "16": 15,
+                    "32": 18,
+                    "4": 6,
+                    "8": 11
+                  },
+                  "min_edits_median": 7,
+                  "recoverable": 19,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 15,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 432,
+                  "editable_fp_pixels": 759,
+                  "fp_near_gt_pixels_including_off_canvas": 758,
+                  "min_edits_at_most": {
+                    "16": 15,
+                    "32": 18,
+                    "4": 6,
+                    "8": 11
+                  },
+                  "min_edits_median": 7,
+                  "recoverable": 19,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 15,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 438,
+                  "editable_fp_pixels": 759,
+                  "fp_near_gt_pixels_including_off_canvas": 759,
+                  "min_edits_at_most": {
+                    "16": 15,
+                    "32": 18,
+                    "4": 6,
+                    "8": 11
+                  },
+                  "min_edits_median": 7,
+                  "recoverable": 19,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 15,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 2,
+              "same_K_unrestricted_in_canvas_recoverable": 15,
+              "targets": 19,
+              "total_fn": 438,
+              "total_fp": 759,
+              "unrestricted_in_canvas_reachable": 19
+            },
+            "best_translation_xor_pixels_total": 1714,
+            "identity_chosen_as_best_translation": 9,
+            "raw": {
+              "K_median": 16.0,
+              "K_total": 544,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 996,
+                  "editable_fp_pixels": 1301,
+                  "fp_near_gt_pixels_including_off_canvas": 1291,
+                  "min_edits_at_most": {
+                    "16": 21,
+                    "32": 30,
+                    "4": 6,
+                    "8": 15
+                  },
+                  "min_edits_median": 9.5,
+                  "recoverable": 34,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 21,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1087,
+                  "editable_fp_pixels": 1368,
+                  "fp_near_gt_pixels_including_off_canvas": 1367,
+                  "min_edits_at_most": {
+                    "16": 21,
+                    "32": 30,
+                    "4": 6,
+                    "8": 15
+                  },
+                  "min_edits_median": 9.5,
+                  "recoverable": 34,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 21,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 1094,
+                  "editable_fp_pixels": 1370,
+                  "fp_near_gt_pixels_including_off_canvas": 1370,
+                  "min_edits_at_most": {
+                    "16": 21,
+                    "32": 30,
+                    "4": 6,
+                    "8": 15
+                  },
+                  "min_edits_median": 9.5,
+                  "recoverable": 34,
+                  "recoverable_of_original_area_impossible": 2,
+                  "same_K_recoverable": 21,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 2,
+              "same_K_unrestricted_in_canvas_recoverable": 21,
+              "targets": 34,
+              "total_fn": 1095,
+              "total_fp": 1370,
+              "unrestricted_in_canvas_reachable": 34
+            },
+            "remaining_translation_xor_pixels_total": 624
+          },
+          "below_050": {
+            "already_recovered_by_translation": 0,
+            "best_translation_remaining": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "best_translation_xor_pixels_total": 0,
+            "identity_chosen_as_best_translation": 0,
+            "raw": {
+              "K_median": null,
+              "K_total": 0,
+              "by_radius": {
+                "1": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "2": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                },
+                "4": {
+                  "blocked": 0,
+                  "editable_fn_pixels": 0,
+                  "editable_fp_pixels": 0,
+                  "fp_near_gt_pixels_including_off_canvas": 0,
+                  "min_edits_at_most": {
+                    "16": 0,
+                    "32": 0,
+                    "4": 0,
+                    "8": 0
+                  },
+                  "min_edits_median": null,
+                  "recoverable": 0,
+                  "recoverable_of_original_area_impossible": 0,
+                  "same_K_recoverable": 0,
+                  "same_K_recoverable_of_original_area_impossible": 0
+                }
+              },
+              "masks_with_off_canvas_fp": 0,
+              "off_canvas_fp_pixels": 0,
+              "originally_area_impossible_targets": 0,
+              "same_K_unrestricted_in_canvas_recoverable": 0,
+              "targets": 0,
+              "total_fn": 0,
+              "total_fp": 0,
+              "unrestricted_in_canvas_reachable": 0
+            },
+            "remaining_translation_xor_pixels_total": 0
+          }
+        },
+        "failing_arm": "center",
+        "totals": {
+          "already_recovered_by_translation": 15,
+          "best_translation_remaining": {
+            "K_median": 16,
+            "K_total": 304,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 388,
+                "editable_fp_pixels": 732,
+                "fp_near_gt_pixels_including_off_canvas": 729,
+                "min_edits_at_most": {
+                  "16": 15,
+                  "32": 18,
+                  "4": 6,
+                  "8": 11
+                },
+                "min_edits_median": 7,
+                "recoverable": 19,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 15,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 432,
+                "editable_fp_pixels": 759,
+                "fp_near_gt_pixels_including_off_canvas": 758,
+                "min_edits_at_most": {
+                  "16": 15,
+                  "32": 18,
+                  "4": 6,
+                  "8": 11
+                },
+                "min_edits_median": 7,
+                "recoverable": 19,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 15,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 438,
+                "editable_fp_pixels": 759,
+                "fp_near_gt_pixels_including_off_canvas": 759,
+                "min_edits_at_most": {
+                  "16": 15,
+                  "32": 18,
+                  "4": 6,
+                  "8": 11
+                },
+                "min_edits_median": 7,
+                "recoverable": 19,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 15,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 2,
+            "same_K_unrestricted_in_canvas_recoverable": 15,
+            "targets": 19,
+            "total_fn": 438,
+            "total_fp": 759,
+            "unrestricted_in_canvas_reachable": 19
+          },
+          "best_translation_xor_pixels_total": 1714,
+          "identity_chosen_as_best_translation": 9,
+          "raw": {
+            "K_median": 16.0,
+            "K_total": 544,
+            "by_radius": {
+              "1": {
+                "blocked": 0,
+                "editable_fn_pixels": 996,
+                "editable_fp_pixels": 1301,
+                "fp_near_gt_pixels_including_off_canvas": 1291,
+                "min_edits_at_most": {
+                  "16": 21,
+                  "32": 30,
+                  "4": 6,
+                  "8": 15
+                },
+                "min_edits_median": 9.5,
+                "recoverable": 34,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 21,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "2": {
+                "blocked": 0,
+                "editable_fn_pixels": 1087,
+                "editable_fp_pixels": 1368,
+                "fp_near_gt_pixels_including_off_canvas": 1367,
+                "min_edits_at_most": {
+                  "16": 21,
+                  "32": 30,
+                  "4": 6,
+                  "8": 15
+                },
+                "min_edits_median": 9.5,
+                "recoverable": 34,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 21,
+                "same_K_recoverable_of_original_area_impossible": 0
+              },
+              "4": {
+                "blocked": 0,
+                "editable_fn_pixels": 1094,
+                "editable_fp_pixels": 1370,
+                "fp_near_gt_pixels_including_off_canvas": 1370,
+                "min_edits_at_most": {
+                  "16": 21,
+                  "32": 30,
+                  "4": 6,
+                  "8": 15
+                },
+                "min_edits_median": 9.5,
+                "recoverable": 34,
+                "recoverable_of_original_area_impossible": 2,
+                "same_K_recoverable": 21,
+                "same_K_recoverable_of_original_area_impossible": 0
+              }
+            },
+            "masks_with_off_canvas_fp": 0,
+            "off_canvas_fp_pixels": 0,
+            "originally_area_impossible_targets": 2,
+            "same_K_unrestricted_in_canvas_recoverable": 21,
+            "targets": 34,
+            "total_fn": 1095,
+            "total_fp": 1370,
+            "unrestricted_in_canvas_reachable": 34
+          },
+          "remaining_translation_xor_pixels_total": 624
+        }
+      }
+    }
+  },
+  "support": "in-canvas prediction exterior dilation for FN and prediction interior erosion band for FP",
+  "training": false,
+  "training_seed": 5202,
+  "transitions": {
+    "both": 93,
+    "center_only": 178,
+    "native_only": 41,
+    "neither": 1466
+  },
+  "translation_budget_scope": "translation is outside the edit quota; its whole-mask XOR pixel count is separate",
+  "translation_tie_rule": "maximum integer intersection, then minimum squared movement, then signed dy, dx",
+  "truth_assistance": "ground truth identifies correct edits inside a prediction-defined pixel set"
+}
