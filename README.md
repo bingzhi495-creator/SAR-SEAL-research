@@ -2,9 +2,10 @@
 
 <!-- U57_U60_ACTUAL_20261021_01 -->
 
-## 当前状态（2026-11-10）
+## 当前状态（2026-11-11）
 
 - [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。
+- [HRSID 固定共同行 E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行-e24-的固定-dev705-实测)。固定同序监督实例的种子 5202 通过独立验收，DEV705 mask AP **51.434→56.072（+4.638 点）**，AP75 +9.314 点，大目标 AP −6.672 点。正式 TEST 继续隔离。
 - [HRSID E24 冻结模型到 SSDD DEV187 的跨库诊断](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md)。六臂评分与独立复算已完成。固定 SSDD DEV187 上三组平均 +0.376 mask AP 点，未达到预设跨库支持门槛。 等量候选的 IoU 0.75 最大覆盖三组增加 5、20、22 个，IoU 0.90 增加 1、0、0 个。 固定共同匹配的 IoU 平均 +0.519 点，纵向方向组合仅两组通过。 [海陆分层](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#sl-ssdd-海陆分层复算)中，31 张含陆地图的平均 AP −0.686、AP75 +4.578，三组总 AP 均下降。 [同量候选 AP50 复算](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#含陆地图-ap50-的候选与评分对照)仍下降 4.535 点，固定候选和固定分数的对照均定位到负向影响。
 - [Schwegmann 中心船散射掩膜辅助验证](research_round_20260925_global/HRSID_TO_SCHWEGMANN_CENTRAL_SHIP_PROTOCOL_20261110.md)。32 张图、16 个采集组的六臂评分与独立复算完成。中心船平均 IoU +3.906 点，采集数低于预设门槛，保留为描述性结果。
 - [Mask RT-DETR 掩膜取样的真实 FIT 复算](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md)。96 个固定视图的小目标纵向绝对质心误差 0.914→0.191 像素，连续栅格 IoU +8.890 点，3／581 条中心输出变空。[原始多边形复核](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_POLYGON_AND_SUPPORT_PROTOCOL_20261111.md)的 IoU +6.874 点，三条空行在当前网格的最高连续 IoU 均低于 0.5。实际模型 AP 待验证。
