@@ -20,7 +20,8 @@ def run(args):
     here = Path(__file__).resolve().parent
     support = args.support_code
     sys.path[:0] = [str(here), str(support / "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109"),
-                   str(support / "SSDD_MASK_PHASE_TRANSFER_20261110")]
+                   str(support / "SSDD_MASK_PHASE_TRANSFER_20261110"),
+                   str(support / "HRSID_FIT_NATIVE_QUERY_RETENTION_20261109")]
     from run_continuous_fit_dgx import (
         AUDIT, AUDIT_SHA, BASE_SEED, COHORT_SHA, HISTORY_SHA, REPEATS, digest, file_digest, pinned_read, require,
     )
