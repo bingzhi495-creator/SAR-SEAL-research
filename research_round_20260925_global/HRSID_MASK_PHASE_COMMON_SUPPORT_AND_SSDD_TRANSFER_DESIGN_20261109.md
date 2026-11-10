@@ -878,3 +878,9 @@ DGX 的独立 CPU 进程先复现已封存的仅位置修正结果，再读取�
 Phoenix 使用原图和粗掩膜做后置修正。固定作者评估源码保留候选顺序、检测分数、类别与框，重算掩膜面积。COCO 默认只细化面积比例大于 1% 的候选，800×800 对应 6,400 像素。首轮对照应固定原候选，分别报告该默认规则和 LVIS 式全非空适配，并记录真正接受修正的候选比例、既有严格匹配失守与新增达标。该对照的外部预训练、图像编码和迭代成本需要单列。DSR-Net 的曲率与边缘停止 PDE 是更接近 SAR 局部轮廓的先例。 [Phoenix 原文](https://arxiv.org/html/2607.29059v1) · [固定作者评估](https://github.com/naver-ai/Phoenix/blob/13ee3996ef3d0292fab144316cc8e03b69c0ecfa/phoenix/eval/evaluators.py#L96-L156) · [DSR-Net](https://www.ejournal.org.cn/cn/article/doi/10.12263/DZXB.20260699)
 
 首个 Git 下载在读取引用时连接重置，改按固定提交逐件读取并核对 46 份官方源码的 Git blob 摘要，共 259,179 字节。作者 EfficientViT-XL1 权重的固定条目已核对，本机读取连接超时。CPU API 的实际前向及 SAR 评分待执行。 [源码核验汇总](results/PHOENIX_AUTHOR_SOURCE_ACQUISITION_SAFE_20261111.json) · [作者固定权重](https://huggingface.co/naver-iv/phoenix-weights/blob/8a0eaf4f3396ee6c4bce9197d07b64efff23a174/phoenix_efficientvit_xl1.pt)
+
+### Phoenix 官方样例的 CPU 编码实测
+
+本机首次权重连接超时，DGX 无代理直连探测也超时。本机固定发布 URL 的 4,096 字节 HTTP 206 验证成功，随后以同一固定版本读完 **814,868,059 字节**，SHA-256 与官方条目一致。作者示例图和粗掩膜也按固定 Git blob 核验。源码、权重和示例保存在独立实验目录。 [权重版本](https://huggingface.co/naver-iv/phoenix-weights/blob/8a0eaf4f3396ee6c4bce9197d07b64efff23a174/phoenix_efficientvit_xl1.pt) · [作者示例](https://github.com/naver-ai/Phoenix/tree/13ee3996ef3d0292fab144316cc8e03b69c0ecfa/assets/examples/instance)
+
+在 Windows 上以 PyTorch 2.10.0+cu130 隐藏 GPU，离线运行作者构造器，严格加载 719 个状态项。对 640×426 的作者 RGB 示例调用原 `set_image`，得到全有限的 CPU FP32 特征 `[1,256,64,64]`。图像编码耗时 3.324 秒，工作进程退出 0，墙钟 9.383 秒，峰值 RSS 2,510,843,904 字节。本机隔离解释器缺少 FastGeodis。后续使用已有算子验证的环境接续作者提示生成和五轮解码，再接入固定 FIT 候选。当前执行范围为真实权重加载与图像编码，掩膜细化和 SAR 指标待实测。 [复现入口](code/PHOENIX_AUTHOR_XL1_CPU_ENCODER_20261111/phoenix_author_cpu_encoder.py) · [编码实测](results/PHOENIX_AUTHOR_XL1_CPU_ENCODER_ACTUAL_SAFE_20261111.json) · [作者编码入口](https://github.com/naver-ai/Phoenix/blob/13ee3996ef3d0292fab144316cc8e03b69c0ecfa/phoenix/predictor.py#L97-L119)
