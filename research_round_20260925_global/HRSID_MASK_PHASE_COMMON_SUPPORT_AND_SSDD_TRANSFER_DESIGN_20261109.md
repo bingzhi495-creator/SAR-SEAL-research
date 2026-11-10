@@ -729,3 +729,11 @@ DGX 上复用原 COCO 初始化和种子 5201 的 13 组查询扩展，未执行
 已用先前独立验收的 Windows COCO 初始位置张量执行单变量复核。DGX 原始 Q100 的其余 544 个张量逐项保持相同，完整 Q100 恢复到 Windows 摘要 `40524fc6…`。在原查询扩展代码、原种子 5201164 下，Q164 完整摘要为 `ce447ecc…`，与 Windows 的 `63ff93af…` 不同。Q164 的非查询张量、各组原 100 行和参考点零尾部保持原约定。剩余差异定位到 `query_feat.weight` 的 13 组新增 64 行。原进程按判据退出 4，无模型前向或优化器更新。 [单张量复核实测](results/HRSID_DGX_Q164_POSITION_ONLY_ACTUAL_SAFE_20261111.json) · [校验入口](code/HRSID_DGX_Q164_INIT_20261111/hrsid_dgx_q164_position_parity.py)
 
 下一项只重建 Windows 原 COCO 初始化的新增查询行。Windows 端必须先复现原 Q100 和 Q164 完整摘要，再保存 `13×64×256` 的小端 float32 尾部作为私有参考。DGX 端先逐项复现本次单张量结果，只以已核验参考替换该尾部，并要求其他张量和每组原 100 行不变。最终按完整 Q100 与 Q164 摘要判断。此操作是跨平台复现条件，实际 B/C 两臂须共享同一复现初值、数据与更新预算。
+
+## DGX 复现完整 Q164 初值
+
+Windows 的独立 CPU 进程按原 COCO 初始化和查询扩展重建了完整 Q100、Q164。两份完整摘要与历史参考一致后，仅保存了 `13×64×256` 个新增查询值，共 851,968 字节。参考与位置张量保存在两台用户设备的私有存储。 [Windows 安全回执](results/HRSID_WINDOWS_Q164_QUERY_TAIL_REFERENCE_ACTUAL_SAFE_20261111.json)
+
+DGX 的独立 CPU 进程先复现已封存的仅位置修正结果，再读取固定查询尾部。先在副本核对完整摘要，匹配后只更新注册的 `query_feat.weight` 每组第 100 至 163 行。复核确认其余 544 个张量和每组原前 100 行逐位相同。位置阶段的 Q100 完整摘要为 `40524fc6…`，查询尾部对齐后的 Q164 为 `63ff93af…`，均与 Windows 的原 COCO 初值相同。两端原进程均退出 0，无模型前向、训练更新或 DEV、TEST 访问。 [DGX 安全回执](results/HRSID_DGX_Q164_CANONICAL_INIT_ACTUAL_SAFE_20261111.json) · [复现校验入口](code/HRSID_DGX_Q164_INIT_20261111/hrsid_dgx_q164_query_tail_parity.py)
+
+该证据核实了初值一致性。B/C 仍须在同一张 DGX 上从该初值分别启动，保留共同实例与相同训练配置。完整 FIT 传输、解码与真实短训须独立验收。
