@@ -319,3 +319,19 @@ DGX CPU 审计 SSDD 的 741 个历史 FIT 视图及 HRSID 的 456 个历史 FIT 
 下一项学习对照只比较 Bᶜ 与 Cᶜ。每次真实访问先生成 B，再在 B 的有序实例上重建 C，取两者最终都非空的共同实例。先验收实际短窗每臂 32 次访问和 8 次更新，以及入训直缩掩膜逐值一致与裁剪出现差异。通过后采用同初始化、同 E24 预算与固定原始 DEV 评分，另报 AP75、AP90 及预定义尺寸和贴边分层。自然 C 的保留策略由另一个干预检验。现有 HRSID Aᶜ/Bᶜ 配对和 SSDD A/B GPU 资格是各自已预锁的实验。
 
 已新增 Bᶜ/Cᶜ 的共同行加载变换。每次只执行一遍原生逐步中心图像增强，在 B 裁剪后有序行上重建 C，再投影到共同非空实例。直缩必须逐值一致，测试覆盖有实例被单次移除及自然单次另行保留的情形。Windows 固定 RF-DETR 运行时以隔离的测试依赖补齐 faster-coco-eval 1.8.0 后，24 项合成和回归测试全部通过，含旧原生训练数据入口回归。新变换尚未接入正式训练器，实际更新与 AP 仍待验收。 [加载变换](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_pair_transform.py) · [测试](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/test_one_pass_common_pair_transform.py)
+
+### 固定支持加载器的真实 FIT 冒烟与短训入口
+
+预先按旧账本顺序选取 HRSID 主层和压力层中逐步中心存在非空目标的首个直缩与首个裁剪视图。选择只依赖旧 B 支持。DGX CPU 实际运行在封存的 PNG FIT114 包上，分别对同一四个视图调用 Bᶜ 和 Cᶜ。每臂每视图只执行一次原生增强。初次运行在读取数据前因 FIT 查询模块路径缺失退出，补齐路径后用独立运行目录、同一选样规则和固定候选重新执行，原进程退出码为 0，安全回执已独立读回。 [预先固定的冒烟入口](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/smoke_one_pass_common_fit114.py) · [实际回执](results/HRSID_MATCHED_ONE_PASS_REAL_FIT_SMOKE_ACTUAL_SAFE_20261110.json)
+
+| 真实 FIT 视图 | 共同非空实例 | 不同掩膜 |
+| --- | ---: | ---: |
+| 主层直缩 | 13 | 0 |
+| 主层裁剪 | 12 | 12 |
+| 压力层直缩 | 113 | 0 |
+| 压力层裁剪 | 108 | 108 |
+
+两臂返回的图像、非掩膜字段和审计记录逐值相同。原始实例顺序、随机状态和轨迹与闭合的大样本审计一致。两臂各自实际返回的掩膜分别匹配已独立验收的 B 和 C|B 摘要。该试验检查的是加载变换返回内容，前向与优化器更新均为零。
+
+训练接入复用原生 RF-DETR 的 FIT 数据构建、初始化、AdamW、EMA 与旧窗口控制。新绑定在原生空掩膜保护前后核对实际批次掩膜，另为每个选臂记录已消费掩膜流的独立摘要，共同行账本继续用于跨臂逐项对照。新入口只接受资格阶段、种子 5202 与两种明确的采样模式，锁定旧训练引擎和新增依赖。Windows 固定环境下 34 项测试通过。实际资格须先完成每臂 32 次访问、8 次 AdamW 和 EMA 更新，再独立复核原生后处理摘要。现有 Aᶜ/Bᶜ 训练仍占用 Windows 科学执行所有权，SSDD GPU 短训另受 DGX 可用显存门槛约束。 [批次绑定](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_binding.py) · [资格入口](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_qualification.py)
+
