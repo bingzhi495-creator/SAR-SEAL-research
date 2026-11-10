@@ -1,0 +1,4452 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "actual_view_audit_sha256": "68c393d2864a6506938a74881b05fedc299f2adaf6b5572a151ac31ecc154420",
+  "area_threshold": 1024,
+  "bootstrap": {
+    "all_scopes_same_draws": true,
+    "cluster": "original source image",
+    "replicates": 4096,
+    "seed": 251114,
+    "tie_tolerance": 1e-10,
+    "total_clusters": 114
+  },
+  "cohort_sha256": "70e9a0e8fb30f5ba70b48b9067c1b95d07bfec23d6b248d92c5983727acceb6e",
+  "fit_bundle_sha256": "af12a4e86ea36e9d7fe6ac47b17c684a4812baba6aa9be019f889f833e0f577c",
+  "geos_version": "3.11.2",
+  "historical_views_sha256": "318408a43f2c107b329638b8be3132717f7d366b046e98aa2190318f3aaca053",
+  "images": 114,
+  "max_polygon_run_area_error": 1.1368683772161603e-13,
+  "metrics": {
+    "combined": {
+      "crop": {
+        "all": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8753054452934529,
+                "rows": 1366,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8036905560548104,
+                "rows": 1366,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6847101148549802,
+                "rows": 1366,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8700473107047656,
+                "rows": 1366,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.043558401306748866,
+                  0.05446600082240265
+                ],
+                "image_equal_mean_delta": 0.04889870923837794,
+                "losses": 8,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1366,
+                "row_weighted_image_cluster_percentile95": [
+                  0.059390604855762585,
+                  0.08286450731551463
+                ],
+                "row_weighted_mean_delta": 0.0716148892386424,
+                "source_images": 99,
+                "ties": 4,
+                "undefined_draws": 0,
+                "wins": 1354
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.09329718131516898,
+                  0.11697173543743765
+                ],
+                "image_equal_mean_delta": 0.10504281736281743,
+                "losses": 41,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1366,
+                "row_weighted_image_cluster_percentile95": [
+                  0.10304317372068085,
+                  0.13362781610519925
+                ],
+                "row_weighted_mean_delta": 0.11898044119983021,
+                "source_images": 99,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 1325
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.0036528661348704675,
+                  -0.0024016677043732426
+                ],
+                "image_equal_mean_delta": -0.003012179350205332,
+                "losses": 1000,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1366,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.007067595412266071,
+                  -0.003242924948836709
+                ],
+                "row_weighted_mean_delta": -0.005258134588687288,
+                "source_images": 99,
+                "ties": 42,
+                "undefined_draws": 0,
+                "wins": 324
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8651341786376989,
+                "rows": 1366,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.7953703296160524,
+                "rows": 1366,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6962699863438251,
+                "rows": 1366,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8878957606684879,
+                "rows": 1366,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0434942080743285,
+                  0.055611266075870455
+                ],
+                "image_equal_mean_delta": 0.049442200715225426,
+                "losses": 18,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1366,
+                "row_weighted_image_cluster_percentile95": [
+                  0.05638977569280207,
+                  0.08277549468367415
+                ],
+                "row_weighted_mean_delta": 0.06976384902164659,
+                "source_images": 99,
+                "ties": 4,
+                "undefined_draws": 0,
+                "wins": 1344
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.07389040516405969,
+                  0.09415824879349691
+                ],
+                "image_equal_mean_delta": 0.08390210822604208,
+                "losses": 88,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1366,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0811101002357328,
+                  0.11392673930290254
+                ],
+                "row_weighted_mean_delta": 0.09910034327222736,
+                "source_images": 99,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 1278
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.013960909160221996,
+                  0.017334638878962007
+                ],
+                "image_equal_mean_delta": 0.015584688402444905,
+                "losses": 2,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1366,
+                "row_weighted_image_cluster_percentile95": [
+                  0.01857898891543283,
+                  0.025995147279854143
+                ],
+                "row_weighted_mean_delta": 0.02276158203078888,
+                "source_images": 99,
+                "ties": 42,
+                "undefined_draws": 0,
+                "wins": 1322
+              }
+            }
+          },
+          "eligible_rows": 1366,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9427546631261605,
+                "rows": 1366,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8266847303916643,
+                "rows": 1366,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7019158033774064,
+                "rows": 1366,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.07399775133432411,
+                  0.09198717206315153
+                ],
+                "image_equal_mean_delta": 0.08302695554011606,
+                "losses": 21,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1366,
+                "row_weighted_image_cluster_percentile95": [
+                  0.09809977392679867,
+                  0.13279053123320864
+                ],
+                "row_weighted_mean_delta": 0.11606993273449615,
+                "source_images": 99,
+                "ties": 8,
+                "undefined_draws": 0,
+                "wins": 1337
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.08963207189975453,
+                  0.11477386417197498
+                ],
+                "image_equal_mean_delta": 0.10212021168466402,
+                "losses": 83,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1366,
+                "row_weighted_image_cluster_percentile95": [
+                  0.10492553933663738,
+                  0.13936431830944934
+                ],
+                "row_weighted_mean_delta": 0.12476892701425792,
+                "source_images": 99,
+                "ties": 5,
+                "undefined_draws": 0,
+                "wins": 1278
+              }
+            }
+          }
+        },
+        "other": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9512585381580421,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9235911004845435,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.8702445998461953,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.9495105743079292,
+                "rows": 92,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.023011404463436805,
+                  0.03755573902137156
+                ],
+                "image_equal_mean_delta": 0.02961604778843283,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.021203063698448706,
+                  0.03453351293925119
+                ],
+                "row_weighted_mean_delta": 0.027667437673498427,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 92
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.04398505616943716,
+                  0.06620514700584436
+                ],
+                "image_equal_mean_delta": 0.05521475630428051,
+                "losses": 4,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.03903588068660335,
+                  0.0657655157112208
+                ],
+                "row_weighted_mean_delta": 0.05334650063834841,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 88
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.002491874801307596,
+                  -0.0011102768753177908
+                ],
+                "image_equal_mean_delta": -0.0017285114270475096,
+                "losses": 80,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.002242557345474327,
+                  -0.0011381012530890043
+                ],
+                "row_weighted_mean_delta": -0.0017479638501128494,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 12
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9470514210195498,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.919262122177447,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.877846052919992,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.9574640839548145,
+                "rows": 92,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.022405529632891386,
+                  0.03893402140358326
+                ],
+                "image_equal_mean_delta": 0.029929156162983382,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.020949077688502293,
+                  0.03548072922003208
+                ],
+                "row_weighted_mean_delta": 0.027789298842102697,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 92
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.032361468686792606,
+                  0.053847930058513016
+                ],
+                "image_equal_mean_delta": 0.04330259947529076,
+                "losses": 6,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.028808982484895967,
+                  0.05251404633266603
+                ],
+                "row_weighted_mean_delta": 0.04141606925745495,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 86
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.008365112901559205,
+                  0.01165968257372475
+                ],
+                "image_equal_mean_delta": 0.009941564082394683,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.008087822483848907,
+                  0.012236880227840821
+                ],
+                "row_weighted_mean_delta": 0.01041266293526487,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 92
+              }
+            }
+          },
+          "eligible_rows": 92,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9769550761975899,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9310431832294487,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.8798347155626204,
+                "rows": 92,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.03912652113747062,
+                  0.059375942711558036
+                ],
+                "image_equal_mean_delta": 0.04858526116790872,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.03582944905955706,
+                  0.05577429602426919
+                ],
+                "row_weighted_mean_delta": 0.045911892968141264,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 92
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.041319298666560624,
+                  0.06665386789663905
+                ],
+                "image_equal_mean_delta": 0.05424177791570273,
+                "losses": 5,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.036499868636951566,
+                  0.06410333708577129
+                ],
+                "row_weighted_mean_delta": 0.051208467666828336,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 87
+              }
+            }
+          }
+        },
+        "representation_by_area": {
+          "other": {
+            "polygon_list": {
+              "fixed_common": 92,
+              "one_pass_center_empty": 0,
+              "one_pass_center_present": 92,
+              "prepared": 107,
+              "prepared_empty": 0,
+              "stepwise_center_empty": 0,
+              "stepwise_center_present": 92,
+              "stock_empty": 0,
+              "stock_present": 92,
+              "vector_eligible": 92,
+              "vector_final_empty": 0,
+              "vector_ineligible": 0
+            }
+          },
+          "small": {
+            "polygon_list": {
+              "fixed_common": 1280,
+              "one_pass_center_empty": 0,
+              "one_pass_center_present": 1283,
+              "prepared": 1559,
+              "prepared_empty": 0,
+              "stepwise_center_empty": 0,
+              "stepwise_center_present": 1283,
+              "stock_empty": 0,
+              "stock_present": 1283,
+              "vector_eligible": 1274,
+              "vector_final_empty": 0,
+              "vector_ineligible": 6
+            }
+          }
+        },
+        "small": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.869820606562258,
+                "rows": 1274,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.7950321179955205,
+                "rows": 1274,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6713120201774356,
+                "rows": 1274,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8643089902561855,
+                "rows": 1274,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.04915238369333956,
+                  0.060923860724531154
+                ],
+                "image_equal_mean_delta": 0.05490368598864031,
+                "losses": 8,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1274,
+                "row_weighted_image_cluster_percentile95": [
+                  0.06297154020035836,
+                  0.08646198540198373
+                ],
+                "row_weighted_mean_delta": 0.07478848856673757,
+                "source_images": 83,
+                "ties": 4,
+                "undefined_draws": 0,
+                "wins": 1262
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.10336215189051913,
+                  0.12929905217672297
+                ],
+                "image_equal_mean_delta": 0.1162918391322539,
+                "losses": 37,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1274,
+                "row_weighted_image_cluster_percentile95": [
+                  0.10788625488712875,
+                  0.1401995500087447
+                ],
+                "row_weighted_mean_delta": 0.12372009781808478,
+                "source_images": 83,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 1237
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.003959206714570164,
+                  -0.0025477818665533107
+                ],
+                "image_equal_mean_delta": -0.003238285506919203,
+                "losses": 920,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1274,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.0073783671654732595,
+                  -0.0034378565353609548
+                ],
+                "row_weighted_mean_delta": -0.00551161630607257,
+                "source_images": 83,
+                "ties": 42,
+                "undefined_draws": 0,
+                "wins": 312
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.859218647790658,
+                "rows": 1274,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.7864236695566739,
+                "rows": 1274,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6831577429176026,
+                "rows": 1274,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8828719885002445,
+                "rows": 1274,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.049097163554209615,
+                  0.06266661587652027
+                ],
+                "image_equal_mean_delta": 0.05571317017800859,
+                "losses": 18,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1274,
+                "row_weighted_image_cluster_percentile95": [
+                  0.059090866105422836,
+                  0.0866017295959994
+                ],
+                "row_weighted_mean_delta": 0.07279497823398415,
+                "source_images": 83,
+                "ties": 4,
+                "undefined_draws": 0,
+                "wins": 1252
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.080799380235188,
+                  0.10364026080551235
+                ],
+                "image_equal_mean_delta": 0.09240529518287395,
+                "losses": 82,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1274,
+                "row_weighted_image_cluster_percentile95": [
+                  0.08468344794766444,
+                  0.11909625795363525
+                ],
+                "row_weighted_mean_delta": 0.1032659266390712,
+                "source_images": 83,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 1192
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.01519913912601326,
+                  0.01890957634572266
+                ],
+                "image_equal_mean_delta": 0.017040679552213247,
+                "losses": 2,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1274,
+                "row_weighted_image_cluster_percentile95": [
+                  0.01965019461380644,
+                  0.026949595887538084
+                ],
+                "row_weighted_mean_delta": 0.02365334070958653,
+                "source_images": 83,
+                "ties": 42,
+                "undefined_draws": 0,
+                "wins": 1230
+              }
+            }
+          },
+          "eligible_rows": 1274,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.940284931569982,
+                "rows": 1274,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.819148641175749,
+                "rows": 1274,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6890676558726657,
+                "rows": 1274,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0839509723607344,
+                  0.10334970619434529
+                ],
+                "image_equal_mean_delta": 0.09342612514187777,
+                "losses": 21,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1274,
+                "row_weighted_image_cluster_percentile95": [
+                  0.10390262707826392,
+                  0.13810352935599896
+                ],
+                "row_weighted_mean_delta": 0.1211362903942329,
+                "source_images": 83,
+                "ties": 8,
+                "undefined_draws": 0,
+                "wins": 1245
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.09805677030362364,
+                  0.12660497075950997
+                ],
+                "image_equal_mean_delta": 0.1125838129135422,
+                "losses": 78,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1274,
+                "row_weighted_image_cluster_percentile95": [
+                  0.11099138970229726,
+                  0.1456739106257257
+                ],
+                "row_weighted_mean_delta": 0.1300809853030833,
+                "source_images": 83,
+                "ties": 5,
+                "undefined_draws": 0,
+                "wins": 1191
+              }
+            }
+          }
+        },
+        "vector_skip_reasons": {
+          "invalid or zero-area polygon component": 6
+        },
+        "views": 208
+      },
+      "direct": {
+        "all": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8574149616120189,
+                "rows": 2761,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8574149616120189,
+                "rows": 2761,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7747906409826074,
+                "rows": 2761,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8547390619340024,
+                "rows": 2761,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2761,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 109,
+                "ties": 2761,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.059584371757695695,
+                  0.07170592757331168
+                ],
+                "image_equal_mean_delta": 0.06554194768255214,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2761,
+                "row_weighted_image_cluster_percentile95": [
+                  0.07585954564095426,
+                  0.0887686651096561
+                ],
+                "row_weighted_mean_delta": 0.08262432062941148,
+                "source_images": 109,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 2761
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.002383885220946158,
+                  -0.001456093751579291
+                ],
+                "image_equal_mean_delta": -0.0019100647630155994,
+                "losses": 1725,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2761,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.002972361662699312,
+                  -0.002190994955005818
+                ],
+                "row_weighted_mean_delta": -0.0026758996780164514,
+                "source_images": 109,
+                "ties": 94,
+                "undefined_draws": 0,
+                "wins": 942
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8505748603242266,
+                "rows": 2761,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8505748603242266,
+                "rows": 2761,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7869810918515813,
+                "rows": 2761,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.871108843626332,
+                "rows": 2761,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2761,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 109,
+                "ties": 2761,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.042865316284844183,
+                  0.05206493451817527
+                ],
+                "image_equal_mean_delta": 0.04733425681260943,
+                "losses": 30,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2761,
+                "row_weighted_image_cluster_percentile95": [
+                  0.05773708157143764,
+                  0.06837741869859813
+                ],
+                "row_weighted_mean_delta": 0.06359376847264546,
+                "source_images": 109,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 2731
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.011847193065600416,
+                  0.014318666177843324
+                ],
+                "image_equal_mean_delta": 0.013042151264399563,
+                "losses": 12,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2761,
+                "row_weighted_image_cluster_percentile95": [
+                  0.01722088951545749,
+                  0.022314800330844743
+                ],
+                "row_weighted_mean_delta": 0.020533983302105364,
+                "source_images": 109,
+                "ties": 94,
+                "undefined_draws": 0,
+                "wins": 2655
+              }
+            }
+          },
+          "eligible_rows": 2761,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9443524302784101,
+                "rows": 2761,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9443524302784101,
+                "rows": 2761,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.8023388202779622,
+                "rows": 2761,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2761,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 109,
+                "ties": 2761,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.09638869547584357,
+                  0.1145953094191262
+                ],
+                "image_equal_mean_delta": 0.105376598194212,
+                "losses": 20,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2761,
+                "row_weighted_image_cluster_percentile95": [
+                  0.13001763083319315,
+                  0.15098651530550725
+                ],
+                "row_weighted_mean_delta": 0.1420136100004478,
+                "source_images": 109,
+                "ties": 6,
+                "undefined_draws": 0,
+                "wins": 2735
+              }
+            }
+          }
+        },
+        "other": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9521769632900609,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9521769632900609,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.9172539111281129,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.9509122593527405,
+                "rows": 117,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 29,
+                "ties": 117,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.029824907586246757,
+                  0.04694768068973708
+                ],
+                "image_equal_mean_delta": 0.037957419990942695,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.026439583510231734,
+                  0.04457046497372249
+                ],
+                "row_weighted_mean_delta": 0.03492305216194791,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 117
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.0018067172062053568,
+                  -0.0008807607117400695
+                ],
+                "image_equal_mean_delta": -0.0013394716537405043,
+                "losses": 94,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.001719600876797509,
+                  -0.0008003723431548443
+                ],
+                "row_weighted_mean_delta": -0.001264703937320313,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 23
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9491534457460038,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9491534457460038,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.9251477197317357,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.9569848834234544,
+                "rows": 117,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 29,
+                "ties": 117,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0216967332537349,
+                  0.03463544951011661
+                ],
+                "image_equal_mean_delta": 0.027742831090130052,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.018068344131188845,
+                  0.0314860687420627
+                ],
+                "row_weighted_mean_delta": 0.024005726014268165,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 117
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0065552092379660976,
+                  0.008774640727526817
+                ],
+                "image_equal_mean_delta": 0.007658713365075504,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.006055260001242599,
+                  0.009469691258591656
+                ],
+                "row_weighted_mean_delta": 0.007831437677450662,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 117
+              }
+            }
+          },
+          "eligible_rows": 117,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9804610420670845,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9804610420670845,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.9291589482194333,
+                "rows": 117,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 29,
+                "ties": 117,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.04742478065490351,
+                  0.06993590056583414
+                ],
+                "image_equal_mean_delta": 0.05824374946024011,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.03974510617358173,
+                  0.06605487974532802
+                ],
+                "row_weighted_mean_delta": 0.0513020938476511,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 117
+              }
+            }
+          }
+        },
+        "representation_by_area": {
+          "other": {
+            "polygon_list": {
+              "fixed_common": 117,
+              "one_pass_center_empty": 0,
+              "one_pass_center_present": 117,
+              "prepared": 117,
+              "prepared_empty": 0,
+              "stepwise_center_empty": 0,
+              "stepwise_center_present": 117,
+              "stock_empty": 0,
+              "stock_present": 117,
+              "vector_eligible": 117,
+              "vector_final_empty": 0,
+              "vector_ineligible": 0
+            }
+          },
+          "small": {
+            "polygon_list": {
+              "fixed_common": 2653,
+              "one_pass_center_empty": 0,
+              "one_pass_center_present": 2653,
+              "prepared": 2653,
+              "prepared_empty": 0,
+              "stepwise_center_empty": 0,
+              "stepwise_center_present": 2653,
+              "stock_empty": 0,
+              "stock_present": 2653,
+              "vector_eligible": 2644,
+              "vector_final_empty": 0,
+              "vector_ineligible": 9
+            }
+          }
+        },
+        "small": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8532216355165837,
+                "rows": 2644,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8532216355165837,
+                "rows": 2644,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.768486479633506,
+                "rows": 2644,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8504832888258359,
+                "rows": 2644,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2644,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 94,
+                "ties": 2644,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.06556233702447416,
+                  0.07820439756260351
+                ],
+                "image_equal_mean_delta": 0.0717356151767318,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2644,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0784024843955211,
+                  0.09145624653647717
+                ],
+                "row_weighted_mean_delta": 0.08473515588307762,
+                "source_images": 94,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 2644
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.0025421519950912922,
+                  -0.0014484154120390487
+                ],
+                "image_equal_mean_delta": -0.001992841663977808,
+                "losses": 1631,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2644,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.0030362370457927964,
+                  -0.0022622413504849617
+                ],
+                "row_weighted_mean_delta": -0.00273834669074771,
+                "source_images": 94,
+                "ties": 94,
+                "undefined_draws": 0,
+                "wins": 919
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8462126460676653,
+                "rows": 2644,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8462126460676653,
+                "rows": 2644,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.780867061797883,
+                "rows": 2644,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.867308731426535,
+                "rows": 2644,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2644,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 94,
+                "ties": 2644,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.046423767713038036,
+                  0.056537432072230144
+                ],
+                "image_equal_mean_delta": 0.051458032565761314,
+                "losses": 30,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2644,
+                "row_weighted_image_cluster_percentile95": [
+                  0.060086806084251,
+                  0.07040726387699177
+                ],
+                "row_weighted_mean_delta": 0.06534558426978243,
+                "source_images": 94,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 2614
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.013006130412800706,
+                  0.015611190368149832
+                ],
+                "image_equal_mean_delta": 0.01429046504308539,
+                "losses": 12,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2644,
+                "row_weighted_image_cluster_percentile95": [
+                  0.018050728735804634,
+                  0.022784311430764308
+                ],
+                "row_weighted_mean_delta": 0.021096085358869584,
+                "source_images": 94,
+                "ties": 94,
+                "undefined_draws": 0,
+                "wins": 2538
+              }
+            }
+          },
+          "eligible_rows": 2644,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9427545832363242,
+                "rows": 2644,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9427545832363242,
+                "rows": 2644,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7967268857207943,
+                "rows": 2644,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2644,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 94,
+                "ties": 2644,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.10635676519437741,
+                  0.12518605858273826
+                ],
+                "image_equal_mean_delta": 0.1157041029948102,
+                "losses": 20,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 2644,
+                "row_weighted_image_cluster_percentile95": [
+                  0.13589622865104317,
+                  0.1552864869713796
+                ],
+                "row_weighted_mean_delta": 0.14602769751552994,
+                "source_images": 94,
+                "ties": 6,
+                "undefined_draws": 0,
+                "wins": 2618
+              }
+            }
+          }
+        },
+        "vector_skip_reasons": {
+          "invalid or zero-area polygon component": 9
+        },
+        "views": 248
+      }
+    },
+    "core": {
+      "crop": {
+        "all": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8927161877494176,
+                "rows": 631,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.830065216720718,
+                "rows": 631,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7136329643554861,
+                "rows": 631,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8895725305856558,
+                "rows": 631,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.04223187868160789,
+                  0.053340042314460975
+                ],
+                "image_equal_mean_delta": 0.047638178672013365,
+                "losses": 4,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 631,
+                "row_weighted_image_cluster_percentile95": [
+                  0.05110217771075016,
+                  0.07216391484176499
+                ],
+                "row_weighted_mean_delta": 0.06265097102869986,
+                "source_images": 95,
+                "ties": 2,
+                "undefined_draws": 0,
+                "wins": 625
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.09230303295813498,
+                  0.11673847737829501
+                ],
+                "image_equal_mean_delta": 0.10436591848327967,
+                "losses": 27,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 631,
+                "row_weighted_image_cluster_percentile95": [
+                  0.09520084162711932,
+                  0.1401042305980583
+                ],
+                "row_weighted_mean_delta": 0.11643225236523178,
+                "source_images": 95,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 604
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.0034504833801127835,
+                  -0.002238594176660152
+                ],
+                "image_equal_mean_delta": -0.0028283088387980005,
+                "losses": 468,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 631,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.004013178713943547,
+                  -0.0023846999085450583
+                ],
+                "row_weighted_mean_delta": -0.003143657163762016,
+                "source_images": 95,
+                "ties": 13,
+                "undefined_draws": 0,
+                "wins": 150
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8849409330915201,
+                "rows": 631,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8204331353830758,
+                "rows": 631,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7307480123792153,
+                "rows": 631,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.9036739275767242,
+                "rows": 631,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.042299543083227295,
+                  0.05476797690876484
+                ],
+                "image_equal_mean_delta": 0.04842780980071161,
+                "losses": 8,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 631,
+                "row_weighted_image_cluster_percentile95": [
+                  0.052021124988120414,
+                  0.07467658968573537
+                ],
+                "row_weighted_mean_delta": 0.06450779770844424,
+                "source_images": 95,
+                "ties": 2,
+                "undefined_draws": 0,
+                "wins": 621
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.07244709130903579,
+                  0.09365755246784692
+                ],
+                "image_equal_mean_delta": 0.08289254819943798,
+                "losses": 52,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 631,
+                "row_weighted_image_cluster_percentile95": [
+                  0.07018327273696713,
+                  0.1110639899277026
+                ],
+                "row_weighted_mean_delta": 0.08968512300386051,
+                "source_images": 95,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 579
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.013522689637553681,
+                  0.01682261150234458
+                ],
+                "image_equal_mean_delta": 0.015108672750689991,
+                "losses": 0,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 631,
+                "row_weighted_image_cluster_percentile95": [
+                  0.01565855553445731,
+                  0.02184445973951217
+                ],
+                "row_weighted_mean_delta": 0.01873299448520409,
+                "source_images": 95,
+                "ties": 13,
+                "undefined_draws": 0,
+                "wins": 618
+              }
+            }
+          },
+          "eligible_rows": 631,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9518900094682069,
+                "rows": 631,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8469072448871974,
+                "rows": 631,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7338905370692816,
+                "rows": 631,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.07218180130844491,
+                  0.09051817514405157
+                ],
+                "image_equal_mean_delta": 0.08126906160738118,
+                "losses": 4,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 631,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0876402263521119,
+                  0.11825622723658319
+                ],
+                "row_weighted_mean_delta": 0.10498276458100954,
+                "source_images": 95,
+                "ties": 2,
+                "undefined_draws": 0,
+                "wins": 625
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.08785468862365872,
+                  0.11398393616631129
+                ],
+                "image_equal_mean_delta": 0.10078740323969632,
+                "losses": 52,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 631,
+                "row_weighted_image_cluster_percentile95": [
+                  0.08718936836614403,
+                  0.13773702550577568
+                ],
+                "row_weighted_mean_delta": 0.11301670781791576,
+                "source_images": 95,
+                "ties": 3,
+                "undefined_draws": 0,
+                "wins": 576
+              }
+            }
+          }
+        },
+        "other": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9512585381580421,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9235911004845435,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.8702445998461953,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.9495105743079292,
+                "rows": 92,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.023011404463436805,
+                  0.03755573902137156
+                ],
+                "image_equal_mean_delta": 0.02961604778843283,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.021203063698448706,
+                  0.03453351293925119
+                ],
+                "row_weighted_mean_delta": 0.027667437673498427,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 92
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.04398505616943716,
+                  0.06620514700584436
+                ],
+                "image_equal_mean_delta": 0.05521475630428051,
+                "losses": 4,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.03903588068660335,
+                  0.0657655157112208
+                ],
+                "row_weighted_mean_delta": 0.05334650063834841,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 88
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.002491874801307596,
+                  -0.0011102768753177908
+                ],
+                "image_equal_mean_delta": -0.0017285114270475096,
+                "losses": 80,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.002242557345474327,
+                  -0.0011381012530890043
+                ],
+                "row_weighted_mean_delta": -0.0017479638501128494,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 12
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9470514210195498,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.919262122177447,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.877846052919992,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.9574640839548145,
+                "rows": 92,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.022405529632891386,
+                  0.03893402140358326
+                ],
+                "image_equal_mean_delta": 0.029929156162983382,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.020949077688502293,
+                  0.03548072922003208
+                ],
+                "row_weighted_mean_delta": 0.027789298842102697,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 92
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.032361468686792606,
+                  0.053847930058513016
+                ],
+                "image_equal_mean_delta": 0.04330259947529076,
+                "losses": 6,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.028808982484895967,
+                  0.05251404633266603
+                ],
+                "row_weighted_mean_delta": 0.04141606925745495,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 86
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.008365112901559205,
+                  0.01165968257372475
+                ],
+                "image_equal_mean_delta": 0.009941564082394683,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.008087822483848907,
+                  0.012236880227840821
+                ],
+                "row_weighted_mean_delta": 0.01041266293526487,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 92
+              }
+            }
+          },
+          "eligible_rows": 92,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9769550761975899,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9310431832294487,
+                "rows": 92,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.8798347155626204,
+                "rows": 92,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.03912652113747062,
+                  0.059375942711558036
+                ],
+                "image_equal_mean_delta": 0.04858526116790872,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.03582944905955706,
+                  0.05577429602426919
+                ],
+                "row_weighted_mean_delta": 0.045911892968141264,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 92
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.041319298666560624,
+                  0.06665386789663905
+                ],
+                "image_equal_mean_delta": 0.05424177791570273,
+                "losses": 5,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 92,
+                "row_weighted_image_cluster_percentile95": [
+                  0.036499868636951566,
+                  0.06410333708577129
+                ],
+                "row_weighted_mean_delta": 0.051208467666828336,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 87
+              }
+            }
+          }
+        },
+        "representation_by_area": {
+          "other": {
+            "polygon_list": {
+              "fixed_common": 92,
+              "one_pass_center_empty": 0,
+              "one_pass_center_present": 92,
+              "prepared": 107,
+              "prepared_empty": 0,
+              "stepwise_center_empty": 0,
+              "stepwise_center_present": 92,
+              "stock_empty": 0,
+              "stock_present": 92,
+              "vector_eligible": 92,
+              "vector_final_empty": 0,
+              "vector_ineligible": 0
+            }
+          },
+          "small": {
+            "polygon_list": {
+              "fixed_common": 545,
+              "one_pass_center_empty": 0,
+              "one_pass_center_present": 546,
+              "prepared": 674,
+              "prepared_empty": 0,
+              "stepwise_center_empty": 0,
+              "stepwise_center_present": 546,
+              "stock_empty": 0,
+              "stock_present": 548,
+              "vector_eligible": 539,
+              "vector_final_empty": 0,
+              "vector_ineligible": 6
+            }
+          }
+        },
+        "small": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8827238014087991,
+                "rows": 539,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8141016150393228,
+                "rows": 539,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6869014792624523,
+                "rows": 539,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8793419182991081,
+                "rows": 539,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.04788711567761692,
+                  0.05987361270620528
+                ],
+                "image_equal_mean_delta": 0.05369190754808862,
+                "losses": 4,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 539,
+                "row_weighted_image_cluster_percentile95": [
+                  0.056583662377220637,
+                  0.07804251132711687
+                ],
+                "row_weighted_mean_delta": 0.06862218636947637,
+                "source_images": 79,
+                "ties": 2,
+                "undefined_draws": 0,
+                "wins": 533
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.10235866573172385,
+                  0.12965896648921404
+                ],
+                "image_equal_mean_delta": 0.11604741753126223,
+                "losses": 23,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 539,
+                "row_weighted_image_cluster_percentile95": [
+                  0.10384917960747539,
+                  0.15452591487698397
+                ],
+                "row_weighted_mean_delta": 0.1272001357768705,
+                "source_images": 79,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 516
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.0037472899308002624,
+                  -0.002341703010934403
+                ],
+                "image_equal_mean_delta": -0.0030286238112629867,
+                "losses": 388,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 539,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.004388128626304294,
+                  -0.0025287423698244433
+                ],
+                "row_weighted_mean_delta": -0.0033818831096910015,
+                "source_images": 79,
+                "ties": 13,
+                "undefined_draws": 0,
+                "wins": 138
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8743395140017636,
+                "rows": 539,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8035643658374688,
+                "rows": 539,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7056403690958174,
+                "rows": 539,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.894492676395306,
+                "rows": 539,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.04803678100373794,
+                  0.06193525990723715
+                ],
+                "image_equal_mean_delta": 0.054810850443480996,
+                "losses": 8,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 539,
+                "row_weighted_image_cluster_percentile95": [
+                  0.057731052657953044,
+                  0.08089725568348516
+                ],
+                "row_weighted_mean_delta": 0.07077514816429473,
+                "source_images": 79,
+                "ties": 2,
+                "undefined_draws": 0,
+                "wins": 529
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.07950233697731747,
+                  0.1033139819875268
+                ],
+                "image_equal_mean_delta": 0.09162180841451871,
+                "losses": 46,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 539,
+                "row_weighted_image_cluster_percentile95": [
+                  0.07626574792257082,
+                  0.12259848199088762
+                ],
+                "row_weighted_mean_delta": 0.09792399674165145,
+                "source_images": 79,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 493
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.01471386160829473,
+                  0.018415403240533257
+                ],
+                "image_equal_mean_delta": 0.016541976738065865,
+                "losses": 0,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 539,
+                "row_weighted_image_cluster_percentile95": [
+                  0.016826762650277202,
+                  0.02345692302537685
+                ],
+                "row_weighted_mean_delta": 0.020153162393542513,
+                "source_images": 79,
+                "ties": 13,
+                "undefined_draws": 0,
+                "wins": 526
+              }
+            }
+          },
+          "eligible_rows": 539,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9476117420487205,
+                "rows": 539,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8325463797156072,
+                "rows": 539,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7089798424099362,
+                "rows": 539,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.08178015047117043,
+                  0.10203691438492776
+                ],
+                "image_equal_mean_delta": 0.09183874229120984,
+                "losses": 4,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 539,
+                "row_weighted_image_cluster_percentile95": [
+                  0.09861340869785279,
+                  0.12705900758397368
+                ],
+                "row_weighted_mean_delta": 0.11506536233311322,
+                "source_images": 79,
+                "ties": 2,
+                "undefined_draws": 0,
+                "wins": 533
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.09642102242487577,
+                  0.12621989476230772
+                ],
+                "image_equal_mean_delta": 0.11151087117485335,
+                "losses": 47,
+                "max_rows_per_contributing_image": 80,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 539,
+                "row_weighted_image_cluster_percentile95": [
+                  0.09518663298023877,
+                  0.15152733554908446
+                ],
+                "row_weighted_mean_delta": 0.12356653730567095,
+                "source_images": 79,
+                "ties": 3,
+                "undefined_draws": 0,
+                "wins": 489
+              }
+            }
+          }
+        },
+        "vector_skip_reasons": {
+          "invalid or zero-area polygon component": 6
+        },
+        "views": 201
+      },
+      "direct": {
+        "all": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8761434544861597,
+                "rows": 1198,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8761434544861597,
+                "rows": 1198,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7976774263178062,
+                "rows": 1198,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.873769725977853,
+                "rows": 1198,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1198,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 104,
+                "ties": 1198,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0582836435552942,
+                  0.07085971501485137
+                ],
+                "image_equal_mean_delta": 0.06450483321576711,
+                "losses": 0,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1198,
+                "row_weighted_image_cluster_percentile95": [
+                  0.07019613843837991,
+                  0.0855602782067552
+                ],
+                "row_weighted_mean_delta": 0.0784660281683534,
+                "source_images": 104,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 1198
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.0023618282065224943,
+                  -0.0013958501044759695
+                ],
+                "image_equal_mean_delta": -0.0018649648046234662,
+                "losses": 776,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1198,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.0029283761604383157,
+                  -0.0015487195900431466
+                ],
+                "row_weighted_mean_delta": -0.0023737285083066735,
+                "source_images": 104,
+                "ties": 33,
+                "undefined_draws": 0,
+                "wins": 389
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8697148093640434,
+                "rows": 1198,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8697148093640434,
+                "rows": 1198,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.8121446034766491,
+                "rows": 1198,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8872051656970343,
+                "rows": 1198,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1198,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 104,
+                "ties": 1198,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.04171396978644769,
+                  0.05106011489655988
+                ],
+                "image_equal_mean_delta": 0.04624188932588394,
+                "losses": 9,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1198,
+                "row_weighted_image_cluster_percentile95": [
+                  0.050026824033949785,
+                  0.0631757523071268
+                ],
+                "row_weighted_mean_delta": 0.05757020588739425,
+                "source_images": 104,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 1189
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.011464167630954807,
+                  0.013849804449277008
+                ],
+                "image_equal_mean_delta": 0.012606400215453702,
+                "losses": 0,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1198,
+                "row_weighted_image_cluster_percentile95": [
+                  0.013423692863705858,
+                  0.020028997835486673
+                ],
+                "row_weighted_mean_delta": 0.017490356332990894,
+                "source_images": 104,
+                "ties": 33,
+                "undefined_draws": 0,
+                "wins": 1165
+              }
+            }
+          },
+          "eligible_rows": 1198,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9535609131032067,
+                "rows": 1198,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9535609131032067,
+                "rows": 1198,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.8230893082564559,
+                "rows": 1198,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1198,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 104,
+                "ties": 1198,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.09399555421586857,
+                  0.11254162040814984
+                ],
+                "image_equal_mean_delta": 0.10306290760226,
+                "losses": 4,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1198,
+                "row_weighted_image_cluster_percentile95": [
+                  0.11408971507008273,
+                  0.14100014151951434
+                ],
+                "row_weighted_mean_delta": 0.1304716048467509,
+                "source_images": 104,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 1194
+              }
+            }
+          }
+        },
+        "other": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9521769632900609,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9521769632900609,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.9172539111281129,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.9509122593527405,
+                "rows": 117,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 29,
+                "ties": 117,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.029824907586246757,
+                  0.04694768068973708
+                ],
+                "image_equal_mean_delta": 0.037957419990942695,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.026439583510231734,
+                  0.04457046497372249
+                ],
+                "row_weighted_mean_delta": 0.03492305216194791,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 117
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.0018067172062053568,
+                  -0.0008807607117400695
+                ],
+                "image_equal_mean_delta": -0.0013394716537405043,
+                "losses": 94,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.001719600876797509,
+                  -0.0008003723431548443
+                ],
+                "row_weighted_mean_delta": -0.001264703937320313,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 23
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9491534457460038,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9491534457460038,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.9251477197317357,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.9569848834234544,
+                "rows": 117,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 29,
+                "ties": 117,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0216967332537349,
+                  0.03463544951011661
+                ],
+                "image_equal_mean_delta": 0.027742831090130052,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.018068344131188845,
+                  0.0314860687420627
+                ],
+                "row_weighted_mean_delta": 0.024005726014268165,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 117
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0065552092379660976,
+                  0.008774640727526817
+                ],
+                "image_equal_mean_delta": 0.007658713365075504,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.006055260001242599,
+                  0.009469691258591656
+                ],
+                "row_weighted_mean_delta": 0.007831437677450662,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 117
+              }
+            }
+          },
+          "eligible_rows": 117,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9804610420670845,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9804610420670845,
+                "rows": 117,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.9291589482194333,
+                "rows": 117,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 29,
+                "ties": 117,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.04742478065490351,
+                  0.06993590056583414
+                ],
+                "image_equal_mean_delta": 0.05824374946024011,
+                "losses": 0,
+                "max_rows_per_contributing_image": 16,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 117,
+                "row_weighted_image_cluster_percentile95": [
+                  0.03974510617358173,
+                  0.06605487974532802
+                ],
+                "row_weighted_mean_delta": 0.0513020938476511,
+                "source_images": 29,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 117
+              }
+            }
+          }
+        },
+        "representation_by_area": {
+          "other": {
+            "polygon_list": {
+              "fixed_common": 117,
+              "one_pass_center_empty": 0,
+              "one_pass_center_present": 117,
+              "prepared": 117,
+              "prepared_empty": 0,
+              "stepwise_center_empty": 0,
+              "stepwise_center_present": 117,
+              "stock_empty": 0,
+              "stock_present": 117,
+              "vector_eligible": 117,
+              "vector_final_empty": 0,
+              "vector_ineligible": 0
+            }
+          },
+          "small": {
+            "polygon_list": {
+              "fixed_common": 1086,
+              "one_pass_center_empty": 0,
+              "one_pass_center_present": 1086,
+              "prepared": 1086,
+              "prepared_empty": 0,
+              "stepwise_center_empty": 0,
+              "stepwise_center_present": 1086,
+              "stock_empty": 0,
+              "stock_present": 1086,
+              "vector_eligible": 1081,
+              "vector_final_empty": 0,
+              "vector_ineligible": 5
+            }
+          }
+        },
+        "small": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8679141107950806,
+                "rows": 1081,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8679141107950806,
+                "rows": 1081,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7847352905890311,
+                "rows": 1081,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.86542034910009,
+                "rows": 1081,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1081,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 89,
+                "ties": 1081,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.06447288300188887,
+                  0.0775605436286758
+                ],
+                "image_equal_mean_delta": 0.07087166498488073,
+                "losses": 0,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1081,
+                "row_weighted_image_cluster_percentile95": [
+                  0.07627117551063144,
+                  0.09117654521150878
+                ],
+                "row_weighted_mean_delta": 0.08317882020604946,
+                "source_images": 89,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 1081
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.0025266853156092183,
+                  -0.0013733993209667531
+                ],
+                "image_equal_mean_delta": -0.001944790976697237,
+                "losses": 682,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1081,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.003075292450927459,
+                  -0.0016030539117818671
+                ],
+                "row_weighted_mean_delta": -0.0024937616949906737,
+                "source_images": 89,
+                "ties": 33,
+                "undefined_draws": 0,
+                "wins": 366
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8611169180997609,
+                "rows": 1081,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8611169180997609,
+                "rows": 1081,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7999139239189755,
+                "rows": 1081,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8796526893103634,
+                "rows": 1081,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1081,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 89,
+                "ties": 1081,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.045321023539964124,
+                  0.05571454593698247
+                ],
+                "image_equal_mean_delta": 0.050413230994371505,
+                "losses": 9,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1081,
+                "row_weighted_image_cluster_percentile95": [
+                  0.05478976921952507,
+                  0.06694039589324767
+                ],
+                "row_weighted_mean_delta": 0.061202994180785314,
+                "source_images": 89,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 1072
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.012580645680235612,
+                  0.015148682817216869
+                ],
+                "image_equal_mean_delta": 0.013851402793681567,
+                "losses": 0,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1081,
+                "row_weighted_image_cluster_percentile95": [
+                  0.01446137341576236,
+                  0.020838593966726125
+                ],
+                "row_weighted_mean_delta": 0.01853577121060256,
+                "source_images": 89,
+                "ties": 33,
+                "undefined_draws": 0,
+                "wins": 1048
+              }
+            }
+          },
+          "eligible_rows": 1081,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9506494282847298,
+                "rows": 1081,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9506494282847298,
+                "rows": 1081,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.8116090604528774,
+                "rows": 1081,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1081,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 89,
+                "ties": 1081,
+                "undefined_draws": 0,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.10406480423796363,
+                  0.12350152552178703
+                ],
+                "image_equal_mean_delta": 0.11358066144919204,
+                "losses": 4,
+                "max_rows_per_contributing_image": 312,
+                "min_rows_per_contributing_image": 1,
+                "paired_rows": 1081,
+                "row_weighted_image_cluster_percentile95": [
+                  0.12621732220509158,
+                  0.14839296768417332
+                ],
+                "row_weighted_mean_delta": 0.13904036783185236,
+                "source_images": 89,
+                "ties": 0,
+                "undefined_draws": 0,
+                "wins": 1077
+              }
+            }
+          }
+        },
+        "vector_skip_reasons": {
+          "invalid or zero-area polygon component": 5
+        },
+        "views": 235
+      }
+    },
+    "stress": {
+      "crop": {
+        "all": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8603582636747946,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.7810478201633988,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6598797501817569,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.853284843024709,
+                "rows": 735,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.06073097840331094,
+                  0.1041783760403091
+                ],
+                "image_equal_mean_delta": 0.07883631018953623,
+                "losses": 4,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.060730978403310945,
+                  0.1041783760403091
+                ],
+                "row_weighted_mean_delta": 0.07931044351139578,
+                "source_images": 4,
+                "ties": 2,
+                "undefined_draws": 74,
+                "wins": 729
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.09687780425393525,
+                  0.14031928687302178
+                ],
+                "image_equal_mean_delta": 0.1211191657518387,
+                "losses": 14,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.09687780425393525,
+                  0.14031928687302178
+                ],
+                "row_weighted_mean_delta": 0.12116806998164192,
+                "source_images": 4,
+                "ties": 0,
+                "undefined_draws": 74,
+                "wins": 721
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.010982691404796453,
+                  -0.003916726542151599
+                ],
+                "image_equal_mean_delta": -0.007379103996129449,
+                "losses": 532,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.010982691404796453,
+                  -0.003916726542151599
+                ],
+                "row_weighted_mean_delta": -0.00707342065008572,
+                "source_images": 4,
+                "ties": 29,
+                "undefined_draws": 74,
+                "wins": 174
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8481300125691805,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.7738538256174241,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6666704837202451,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8743501507105327,
+                "rows": 735,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.05162874605750994,
+                  0.10386775950399327
+                ],
+                "image_equal_mean_delta": 0.07353398493492896,
+                "losses": 10,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.05162874605750994,
+                  0.10386775950399327
+                ],
+                "row_weighted_mean_delta": 0.07427618695175638,
+                "source_images": 4,
+                "ties": 2,
+                "undefined_draws": 74,
+                "wins": 723
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.07713551800898262,
+                  0.12834079102882467
+                ],
+                "image_equal_mean_delta": 0.10787915885789008,
+                "losses": 36,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.07713551800898262,
+                  0.12834079102882467
+                ],
+                "row_weighted_mean_delta": 0.10718334189717904,
+                "source_images": 4,
+                "ties": 0,
+                "undefined_draws": 74,
+                "wins": 699
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.021130751878983767,
+                  0.03394167849471558
+                ],
+                "image_equal_mean_delta": 0.026890060131623986,
+                "losses": 2,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.021130751878983767,
+                  0.03394167849471558
+                ],
+                "row_weighted_mean_delta": 0.026220138141352142,
+                "source_images": 4,
+                "ties": 29,
+                "undefined_draws": 74,
+                "wins": 704
+              }
+            }
+          },
+          "eligible_rows": 735,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9349119372189072,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8093236329131865,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6744653857453341,
+                "rows": 735,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0973026075857502,
+                  0.16291773816835664
+                ],
+                "image_equal_mean_delta": 0.12477693644256949,
+                "losses": 17,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0973026075857502,
+                  0.16291773816835664
+                ],
+                "row_weighted_mean_delta": 0.12558830430572068,
+                "source_images": 4,
+                "ties": 6,
+                "undefined_draws": 74,
+                "wins": 712
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.11137824351172772,
+                  0.1531655972240196
+                ],
+                "image_equal_mean_delta": 0.13377441225264683,
+                "losses": 31,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.11137824351172772,
+                  0.1531655972240196
+                ],
+                "row_weighted_mean_delta": 0.13485824716785227,
+                "source_images": 4,
+                "ties": 2,
+                "undefined_draws": 74,
+                "wins": 702
+              }
+            }
+          }
+        },
+        "other": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              }
+            }
+          },
+          "eligible_rows": 0,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              }
+            }
+          }
+        },
+        "representation_by_area": {
+          "other": {
+            "polygon_list": {
+              "vector_eligible": 0,
+              "vector_final_empty": 0,
+              "vector_ineligible": 0
+            }
+          },
+          "small": {
+            "polygon_list": {
+              "fixed_common": 735,
+              "one_pass_center_empty": 0,
+              "one_pass_center_present": 737,
+              "prepared": 885,
+              "prepared_empty": 0,
+              "stepwise_center_empty": 0,
+              "stepwise_center_present": 737,
+              "stock_empty": 0,
+              "stock_present": 735,
+              "vector_eligible": 735,
+              "vector_final_empty": 0,
+              "vector_ineligible": 0
+            }
+          }
+        },
+        "small": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8603582636747946,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.7810478201633988,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6598797501817569,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.853284843024709,
+                "rows": 735,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.06073097840331094,
+                  0.1041783760403091
+                ],
+                "image_equal_mean_delta": 0.07883631018953623,
+                "losses": 4,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.060730978403310945,
+                  0.1041783760403091
+                ],
+                "row_weighted_mean_delta": 0.07931044351139578,
+                "source_images": 4,
+                "ties": 2,
+                "undefined_draws": 74,
+                "wins": 729
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.09687780425393525,
+                  0.14031928687302178
+                ],
+                "image_equal_mean_delta": 0.1211191657518387,
+                "losses": 14,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.09687780425393525,
+                  0.14031928687302178
+                ],
+                "row_weighted_mean_delta": 0.12116806998164192,
+                "source_images": 4,
+                "ties": 0,
+                "undefined_draws": 74,
+                "wins": 721
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.010982691404796453,
+                  -0.003916726542151599
+                ],
+                "image_equal_mean_delta": -0.007379103996129449,
+                "losses": 532,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.010982691404796453,
+                  -0.003916726542151599
+                ],
+                "row_weighted_mean_delta": -0.00707342065008572,
+                "source_images": 4,
+                "ties": 29,
+                "undefined_draws": 74,
+                "wins": 174
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8481300125691805,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.7738538256174241,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6666704837202451,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8743501507105327,
+                "rows": 735,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.05162874605750994,
+                  0.10386775950399327
+                ],
+                "image_equal_mean_delta": 0.07353398493492896,
+                "losses": 10,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.05162874605750994,
+                  0.10386775950399327
+                ],
+                "row_weighted_mean_delta": 0.07427618695175638,
+                "source_images": 4,
+                "ties": 2,
+                "undefined_draws": 74,
+                "wins": 723
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.07713551800898262,
+                  0.12834079102882467
+                ],
+                "image_equal_mean_delta": 0.10787915885789008,
+                "losses": 36,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.07713551800898262,
+                  0.12834079102882467
+                ],
+                "row_weighted_mean_delta": 0.10718334189717904,
+                "source_images": 4,
+                "ties": 0,
+                "undefined_draws": 74,
+                "wins": 699
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.021130751878983767,
+                  0.03394167849471558
+                ],
+                "image_equal_mean_delta": 0.026890060131623986,
+                "losses": 2,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.021130751878983767,
+                  0.03394167849471558
+                ],
+                "row_weighted_mean_delta": 0.026220138141352142,
+                "source_images": 4,
+                "ties": 29,
+                "undefined_draws": 74,
+                "wins": 704
+              }
+            }
+          },
+          "eligible_rows": 735,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9349119372189072,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8093236329131865,
+                "rows": 735,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.6744653857453341,
+                "rows": 735,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0973026075857502,
+                  0.16291773816835664
+                ],
+                "image_equal_mean_delta": 0.12477693644256949,
+                "losses": 17,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0973026075857502,
+                  0.16291773816835664
+                ],
+                "row_weighted_mean_delta": 0.12558830430572068,
+                "source_images": 4,
+                "ties": 6,
+                "undefined_draws": 74,
+                "wins": 712
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.11137824351172772,
+                  0.1531655972240196
+                ],
+                "image_equal_mean_delta": 0.13377441225264683,
+                "losses": 31,
+                "max_rows_per_contributing_image": 267,
+                "min_rows_per_contributing_image": 85,
+                "paired_rows": 735,
+                "row_weighted_image_cluster_percentile95": [
+                  0.11137824351172772,
+                  0.1531655972240196
+                ],
+                "row_weighted_mean_delta": 0.13485824716785227,
+                "source_images": 4,
+                "ties": 2,
+                "undefined_draws": 74,
+                "wins": 702
+              }
+            }
+          }
+        },
+        "vector_skip_reasons": {},
+        "views": 7
+      },
+      "direct": {
+        "all": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8430600451288324,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8430600451288324,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7572484984160252,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8401525388856769,
+                "rows": 1563,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 5,
+                "ties": 1563,
+                "undefined_draws": 30,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0757239001511687,
+                  0.09847269958309476
+                ],
+                "image_equal_mean_delta": 0.08711392859168074,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.07490676428544535,
+                  0.09782385469104009
+                ],
+                "row_weighted_mean_delta": 0.08581154671280727,
+                "source_images": 5,
+                "ties": 0,
+                "undefined_draws": 30,
+                "wins": 1563
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.003288949940256411,
+                  -0.0024753242433491487
+                ],
+                "image_equal_mean_delta": -0.002848143897571975,
+                "losses": 949,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.003294191073937546,
+                  -0.0024706771887642084
+                ],
+                "row_weighted_mean_delta": -0.0029075062431554877,
+                "source_images": 5,
+                "ties": 61,
+                "undefined_draws": 30,
+                "wins": 553
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8359045730883339,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8359045730883339,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7676938961210429,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8587714195439895,
+                "rows": 1563,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 5,
+                "ties": 1563,
+                "undefined_draws": 30,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.06097713553727385,
+                  0.07983365031922145
+                ],
+                "image_equal_mean_delta": 0.07005550053649959,
+                "losses": 21,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.06070232605554813,
+                  0.0800616408507688
+                ],
+                "row_weighted_mean_delta": 0.068210676967291,
+                "source_images": 5,
+                "ties": 0,
+                "undefined_draws": 30,
+                "wins": 1542
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.018927869254054146,
+                  0.025239462665714977
+                ],
+                "image_equal_mean_delta": 0.022105773082473357,
+                "losses": 12,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.01893233955417604,
+                  0.025244108188039904
+                ],
+                "row_weighted_mean_delta": 0.022866846455655673,
+                "source_images": 5,
+                "ties": 61,
+                "undefined_draws": 30,
+                "wins": 1490
+              }
+            }
+          },
+          "eligible_rows": 1563,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9372943609091801,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9372943609091801,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7864340956469736,
+                "rows": 1563,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 5,
+                "ties": 1563,
+                "undefined_draws": 30,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.13609742738280242,
+                  0.1710099870126984
+                ],
+                "image_equal_mean_delta": 0.1535013625068134,
+                "losses": 16,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.1354619793448332,
+                  0.16946852503051718
+                ],
+                "row_weighted_mean_delta": 0.1508602652622065,
+                "source_images": 5,
+                "ties": 6,
+                "undefined_draws": 30,
+                "wins": 1541
+              }
+            }
+          }
+        },
+        "other": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              }
+            }
+          },
+          "eligible_rows": 0,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": null,
+                "rows": 0,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": null,
+                "image_equal_mean_delta": null,
+                "losses": 0,
+                "max_rows_per_contributing_image": null,
+                "min_rows_per_contributing_image": null,
+                "paired_rows": 0,
+                "row_weighted_image_cluster_percentile95": null,
+                "row_weighted_mean_delta": null,
+                "source_images": 0,
+                "ties": 0,
+                "undefined_draws": 4096,
+                "wins": 0
+              }
+            }
+          }
+        },
+        "representation_by_area": {
+          "other": {
+            "polygon_list": {
+              "vector_eligible": 0,
+              "vector_final_empty": 0,
+              "vector_ineligible": 0
+            }
+          },
+          "small": {
+            "polygon_list": {
+              "fixed_common": 1567,
+              "one_pass_center_empty": 0,
+              "one_pass_center_present": 1567,
+              "prepared": 1567,
+              "prepared_empty": 0,
+              "stepwise_center_empty": 0,
+              "stepwise_center_present": 1567,
+              "stock_empty": 0,
+              "stock_present": 1567,
+              "vector_eligible": 1563,
+              "vector_final_empty": 0,
+              "vector_ineligible": 4
+            }
+          }
+        },
+        "small": {
+          "continuous_source_pixel_footprints": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8430600451288324,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8430600451288324,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7572484984160252,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8401525388856769,
+                "rows": 1563,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 5,
+                "ties": 1563,
+                "undefined_draws": 30,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0757239001511687,
+                  0.09847269958309476
+                ],
+                "image_equal_mean_delta": 0.08711392859168074,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.07490676428544535,
+                  0.09782385469104009
+                ],
+                "row_weighted_mean_delta": 0.08581154671280727,
+                "source_images": 5,
+                "ties": 0,
+                "undefined_draws": 30,
+                "wins": 1563
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  -0.003288949940256411,
+                  -0.0024753242433491487
+                ],
+                "image_equal_mean_delta": -0.002848143897571975,
+                "losses": 949,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  -0.003294191073937546,
+                  -0.0024706771887642084
+                ],
+                "row_weighted_mean_delta": -0.0029075062431554877,
+                "source_images": 5,
+                "ties": 61,
+                "undefined_draws": 30,
+                "wins": 553
+              }
+            }
+          },
+          "continuous_vector": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.8359045730883339,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.8359045730883339,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7676938961210429,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "vector_first": {
+                "mean_iou": 0.8587714195439895,
+                "rows": 1563,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 5,
+                "ties": 1563,
+                "undefined_draws": 30,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.06097713553727385,
+                  0.07983365031922145
+                ],
+                "image_equal_mean_delta": 0.07005550053649959,
+                "losses": 21,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.06070232605554813,
+                  0.0800616408507688
+                ],
+                "row_weighted_mean_delta": 0.068210676967291,
+                "source_images": 5,
+                "ties": 0,
+                "undefined_draws": 30,
+                "wins": 1542
+              },
+              "vector_first_minus_one_pass_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.018927869254054146,
+                  0.025239462665714977
+                ],
+                "image_equal_mean_delta": 0.022105773082473357,
+                "losses": 12,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.01893233955417604,
+                  0.025244108188039904
+                ],
+                "row_weighted_mean_delta": 0.022866846455655673,
+                "source_images": 5,
+                "ties": 61,
+                "undefined_draws": 30,
+                "wins": 1490
+              }
+            }
+          },
+          "eligible_rows": 1563,
+          "vector_final_empty": 0,
+          "vector_raster": {
+            "arms": {
+              "one_pass_center": {
+                "mean_iou": 0.9372943609091801,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stepwise_center": {
+                "mean_iou": 0.9372943609091801,
+                "rows": 1563,
+                "undefined_rows": 0
+              },
+              "stock": {
+                "mean_iou": 0.7864340956469736,
+                "rows": 1563,
+                "undefined_rows": 0
+              }
+            },
+            "paired_effects": {
+              "one_pass_center_minus_stepwise_center": {
+                "image_equal_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "image_equal_mean_delta": 0.0,
+                "losses": 0,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.0,
+                  0.0
+                ],
+                "row_weighted_mean_delta": 0.0,
+                "source_images": 5,
+                "ties": 1563,
+                "undefined_draws": 30,
+                "wins": 0
+              },
+              "stepwise_center_minus_stock": {
+                "image_equal_image_cluster_percentile95": [
+                  0.13609742738280242,
+                  0.1710099870126984
+                ],
+                "image_equal_mean_delta": 0.1535013625068134,
+                "losses": 16,
+                "max_rows_per_contributing_image": 424,
+                "min_rows_per_contributing_image": 206,
+                "paired_rows": 1563,
+                "row_weighted_image_cluster_percentile95": [
+                  0.1354619793448332,
+                  0.16946852503051718
+                ],
+                "row_weighted_mean_delta": 0.1508602652622065,
+                "source_images": 5,
+                "ties": 6,
+                "undefined_draws": 30,
+                "wins": 1541
+              }
+            }
+          }
+        },
+        "vector_skip_reasons": {
+          "invalid or zero-area polygon component": 4
+        },
+        "views": 13
+      }
+    }
+  },
+  "model_forward_calls": 0,
+  "optimizer_updates": 0,
+  "pilot_sha256": "0b9726556a27dcca40ca9571390a8d04bb6c0dea7f4d982c29235283791858d9",
+  "polygon_unit_cell_witness_rows": 49,
+  "population_math_sha256": "0821d2cc3b6ca793d33fdfe35b634f3678aad072fc55b86352fa2501e969fc7e",
+  "population_runner_sha256": "e3e7c947e08b5caa6b042cb14c71bb4600ebb0bc8de0d3980f4b97bc7e3718af",
+  "shapely_version": "2.0.2",
+  "source_annotation_representation_counts": {
+    "core": {
+      "polygon_list": 496
+    },
+    "stress": {
+      "polygon_list": 613
+    }
+  },
+  "status": "HRSID_FIT114_VECTOR_FIRST_COMPLETE_POPULATION_GEOMETRY",
+  "stock_source_sha256": {
+    "HRSID_FIT_NATIVE_QUERY_RETENTION_20261109/fit_query_export.py": "6a2d7e38d69b82ef3df790a5c359c408b1e74778c39672b47a62c4dc86cabbf5",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/common_mask_supervision.py": "59ea82e24353eeb4a14115058d5115333a4e7ea517a0abef581bee137a9a3a57",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_fit_transform.py": "05cad566f9b5cc761e91b5283585a5392a7450c42c3133349e6dc21e8bf7496d",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/paired_fit_transform.py": "64f3f63c6ac89b66578f0ada42fa3eb8b4db3b2f1ae2ea9113debe6ab9b270e0",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/reference_resize.py": "3ca1d4a6400324c13c777cb4d5f7627713bc625580195d8e05363950872cc8df",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/replay_fit.py": "4f95f1b5b84fcf89b005f999cfb8c5fd647a7b262aedd2622860cf8785a14157",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/trace_resize.py": "902a0e3640a319ba729172847f49ce582f3c0e3954593862ed94971727dc309f",
+    "HRSID_PNG_FIT_NATIVE_AUG_AUDIT_20261109/audit_hrsid_fit_native_aug.py": "6d1b1b94c14cc8f6c3cf7d5eb70ea8db83a6c0f4c0219c68b4dbf24d773aca14",
+    "SSDD_MASK_PHASE_TRANSFER_20261110/ssdd_pixel_footprint.py": "cd688be9937a2c3429eafb540157b1b5b99d319c7236cfe3a5891e25fd7e7913"
+  },
+  "subset_sha256": "6f25f80ed0e0b9c3f0c57ab6cc3b25e947a102353757a33bca4d3823df3d547d",
+  "support": "fixed ordered nonempty A intersection B intersection B-conditioned C",
+  "vector_helper_sha256": "4877c48d38a03e58e97163381ba544df3c90a78dde85c9141085fa0b92da3b09",
+  "views": 456,
+  "wall_seconds": 194.26563260005787
+}
