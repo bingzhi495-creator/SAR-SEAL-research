@@ -9,6 +9,7 @@
 - [Schwegmann 中心船散射掩膜辅助验证](research_round_20260925_global/HRSID_TO_SCHWEGMANN_CENTRAL_SHIP_PROTOCOL_20261110.md)。32 张图、16 个采集组的六臂评分与独立复算完成。中心船平均 IoU +3.906 点，采集数低于预设门槛，保留为描述性结果。
 - [Mask RT-DETR 掩膜取样的真实 FIT 复算](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md)。96 个固定视图的小目标纵向绝对质心误差 0.914→0.191 像素，连续栅格 IoU +8.890 点，3／581 条中心输出变空。[原始多边形复核](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_POLYGON_AND_SUPPORT_PROTOCOL_20261111.md)的 IoU +6.874 点，三条空行在当前网格的最高连续 IoU 均低于 0.5。实际模型 AP 待验证。
 - [同一 Mask RT-DETR 算子的 SSDD FIT 几何复验](research_round_20260925_global/MASK_RTDETR_PSEG_SSDD_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md)。96 个固定视图，99 条小目标均在两臂非空。连续整数多边形 IoU +4.961 点，栅格参考纵向质心误差减少 0.344 像素。模型 AP 待同预算训练。
+- [Mask RT-DETR 原生 Windows CPU 资格](research_round_20260925_global/MASK_RTDETR_AUTHOR_CPU_FIT_QUALIFICATION_PROTOCOL_20261111.md)。官方读取器实际通过 8 张 SSDD FIT 图，646 个官方 COCO 张量逐值加载，一次前向输出 100 个候选。两步训练在首批前向后受资源保护停止，终点档案与更新次数待验收。
 - [FIT114 输入位移实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-冻结模型的输入位移实测)。单种子 8 个来源组、26 个目标、48 次冻结前向。三个位置相对真值的 IoU 均改善，+1 配准改善受一个来源组影响，−1 配准基本持平。
 - [固定点目标值试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定监督点目标值试点实测)。同一 487 点、三臂各 8 次真实更新，单次复合中心相对逐步中心在裁剪留出上 +0.065 IoU 点，低于预设 0.5 点。连续值对照精确复现。
 - [冻结模型的点监督分配试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#冻结模型点监督诊断预锁)。固定八张源图上的分歧富集为同配额随机期望的 1.87 倍。随后同预算 8 次原生投影更新的轮廓指标未达到晋级门槛。

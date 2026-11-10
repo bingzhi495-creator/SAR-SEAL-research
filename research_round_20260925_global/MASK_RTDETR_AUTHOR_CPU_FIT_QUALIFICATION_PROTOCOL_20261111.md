@@ -17,3 +17,9 @@
 复用同一 8 图、16 条原始标注、原作者四图批次与固定种子 20261111。目标为单类模型，采用作者 S 配方指定的 ImageNet PPHGNetV2 B1 骨干资产，25,457,962 字节，MD5 `91eee8263a2992db5b068587f336aa18`，SHA-256 `a37a27dfab3fe923ee4d1095f2f84c48d67af836d4dab2596eadeba6a1213408`。以作者匹配逻辑核对实际从骨干加载的张量，任务头保留同种子原生初始化。输入、初始化和训练预算与前述 80 类前向资格分别记录。 [作者训练配置](https://github.com/PaddlePaddle/PaddleDetection/blob/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/mask_rtdetr/mask_rtdetr_hgnetv2_s_6x_coco.yml)
 
 CPU FP32 单线程，实际观察启动器和子进程树，设可用主存至少 16 GiB、进程树 RSS 不超过 6 GiB、墙钟不超过 300 秒。只改为一个自然结束的训练轮、FIT 路径、单类别及 Windows 读取资源配置。增强、匹配、损失、AdamW、学习率预热和 EMA 走原训练器。两步结束须核对各次真实样本、前反向更新与 EMA 计数、有限损失和终点档案。两步均在 2,000 步预热段，只能验收训练路径。尚待执行。
+
+## 两步训练的资源停止
+
+真实原训练器解析了 8 个合格 FIT 图块并加载作者 B1 ImageNet 骨干。已观察到第一批原生模型前向，损失为 259.0564。随后原进程在 118.015 秒受控退出，退出码 70，作业容器已清空。资源回执为 `EXCLUSIVE_RESERVATION_CHANGED`。运行耗时小于 300 秒，现有回执未区分树 RSS 超限或宿主内存低于下限。没有生成 E1 检查点，也没有完成优化器或 EMA 次数验收。保留本次终态，作为资源中断归档。原生读取器和先前 COCO 推理的资格仍由其独立关闭回执支持。 [训练停止记录](results/MASK_RTDETR_S_NATIVE_CPU_FIT8_TWO_UPDATE_RESOURCE_STOP_SAFE_20261111.json) · [实际训练入口](code/MASK_RTDETR_AUTHOR_CPU_QUALIFICATION_20261111/train_two_steps.py)
+
+进一步资格需在独立资源条件下重新准入，并分别记录资源保护触发分支。验收时应逐项核对掩膜预测头的实际可训练张量，避免以掩膜相关缓冲区代替参数更新。优化器读回应核对 AdamW 张量和调度器状态，EMA 与在线归档分开。两步资格与充分训练的模型基线仍分别记录。
