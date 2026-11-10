@@ -1,0 +1,444 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "device": "cpu",
+  "fit_bundle_sha256": "af12a4e86ea36e9d7fe6ac47b17c684a4812baba6aa9be019f889f833e0f577c",
+  "images": 8,
+  "model_forward_calls": 16,
+  "optimizer_updates": 0,
+  "private_row_audit_sha256": "aac0aef3457563a84f020912562bc26bad2e61b1a2f56d2cf2908cbd58770e16",
+  "skipped": {
+    "invalid or zero-area polygon component": 1
+  },
+  "source_checkpoint_sha256": "198bc09cb93019e719342914965dffb31160bb284003a17b334f998c1f540c56",
+  "status": "P252_FIT_FROZEN_POINT_SUPERVISION_PROBE_COMPLETE",
+  "summary": {
+    "by_path": {
+      "crop": {
+        "cells": 7784,
+        "effective_proxy_rows": 31,
+        "image_equal_loss_readback": {
+          "phase": {
+            "hard_c": {
+              "dice_loss": 0.18003053438981836,
+              "mean_abs_bce_gradient": 0.17076997268806723,
+              "mean_bce": 1.4920672956016952
+            },
+            "polygon": {
+              "dice_loss": 0.1804984080035721,
+              "mean_abs_bce_gradient": 0.1488649255113725,
+              "mean_bce": 1.5537211425182926
+            },
+            "raster": {
+              "dice_loss": 0.19779264870157792,
+              "mean_abs_bce_gradient": 0.17125343739549276,
+              "mean_bce": 1.8928926212579618
+            }
+          },
+          "random": {
+            "hard_c": {
+              "dice_loss": 0.21303114251204902,
+              "mean_abs_bce_gradient": 0.20588321984523525,
+              "mean_bce": 1.6396630861009052
+            },
+            "polygon": {
+              "dice_loss": 0.19172100388452834,
+              "mean_abs_bce_gradient": 0.17609994235103263,
+              "mean_bce": 1.383513909575547
+            },
+            "raster": {
+              "dice_loss": 0.19943942810862952,
+              "mean_abs_bce_gradient": 0.18461648378847134,
+              "mean_bce": 1.5347926612021547
+            }
+          },
+          "random_expected": {
+            "hard_c": {
+              "dice_loss": null,
+              "mean_abs_bce_gradient": 0.1660019287575498,
+              "mean_bce": 1.5530682342304332
+            },
+            "polygon": {
+              "dice_loss": null,
+              "mean_abs_bce_gradient": 0.15344338359747572,
+              "mean_bce": 1.4900722810968081
+            },
+            "raster": {
+              "dice_loss": null,
+              "mean_abs_bce_gradient": 0.1669001012807115,
+              "mean_bce": 1.684891911515973
+            }
+          },
+          "uncertainty": {
+            "hard_c": {
+              "dice_loss": 0.35047327000235645,
+              "mean_abs_bce_gradient": 0.3591331923434111,
+              "mean_bce": 0.718957732691547
+            },
+            "polygon": {
+              "dice_loss": 0.34733338344724907,
+              "mean_abs_bce_gradient": 0.30514594523103933,
+              "mean_bce": 0.7424449780613362
+            },
+            "raster": {
+              "dice_loss": 0.3511249851242167,
+              "mean_abs_bce_gradient": 0.31022588894679964,
+              "mean_bce": 0.7379866729818748
+            }
+          }
+        },
+        "image_equal_target_difference": {
+          "phase": {
+            "mean_abs_polygon_minus_hard_c": 0.1277247669077502,
+            "mean_abs_polygon_minus_raster": 0.05309131498138395,
+            "mean_abs_raster_minus_hard_c": 0.12211041108587281
+          },
+          "random": {
+            "mean_abs_polygon_minus_hard_c": 0.06384707134087687,
+            "mean_abs_polygon_minus_raster": 0.02406402414351845,
+            "mean_abs_raster_minus_hard_c": 0.050740928697670815
+          },
+          "random_expected": {
+            "mean_abs_polygon_minus_hard_c": 0.06294030322329512,
+            "mean_abs_polygon_minus_raster": 0.028359767960091646,
+            "mean_abs_raster_minus_hard_c": 0.057647130411298084
+          },
+          "uncertainty": {
+            "mean_abs_polygon_minus_hard_c": 0.08171868966210716,
+            "mean_abs_polygon_minus_raster": 0.031180688252952855,
+            "mean_abs_raster_minus_hard_c": 0.06309432384748083
+          }
+        },
+        "images": 8,
+        "per_image_effect": [
+          {
+            "ordinal": 0,
+            "phase_minus_expected": 0.015665599111202747,
+            "phase_minus_uncertainty": 0.010968175329913215,
+            "rows": 12
+          },
+          {
+            "ordinal": 1,
+            "phase_minus_expected": 0.006396339538623449,
+            "phase_minus_uncertainty": 0.001871232480406937,
+            "rows": 11
+          },
+          {
+            "ordinal": 2,
+            "phase_minus_expected": 0.06034467061313295,
+            "phase_minus_uncertainty": 0.0656008813940195,
+            "rows": 1
+          },
+          {
+            "ordinal": 3,
+            "phase_minus_expected": 0.046349967370953274,
+            "phase_minus_uncertainty": 0.0296543267938707,
+            "rows": 1
+          },
+          {
+            "ordinal": 4,
+            "phase_minus_expected": 0.0212845956864237,
+            "phase_minus_uncertainty": 0.03660501121615236,
+            "rows": 2
+          },
+          {
+            "ordinal": 6,
+            "phase_minus_expected": 0.028454265527382908,
+            "phase_minus_uncertainty": 0.005693331134287327,
+            "rows": 1
+          },
+          {
+            "ordinal": 8,
+            "phase_minus_expected": 0.010391545675794485,
+            "phase_minus_uncertainty": 0.02149205547879817,
+            "rows": 1
+          },
+          {
+            "ordinal": 9,
+            "phase_minus_expected": 0.008965392646824898,
+            "phase_minus_uncertainty": 0.0034000000000005207,
+            "rows": 2
+          }
+        ],
+        "phase_minus_expected": 0.0247315470212923,
+        "phase_minus_uncertainty": 0.021910626728431092,
+        "phase_over_expected": 1.872064505467568,
+        "positive_images": 8,
+        "rows": 31,
+        "selected_points": 487
+      },
+      "direct": {
+        "cells": 8521,
+        "effective_proxy_rows": 0,
+        "image_equal_loss_readback": {
+          "phase": {
+            "hard_c": {
+              "dice_loss": 0.1653213727230882,
+              "mean_abs_bce_gradient": 0.15570304557439443,
+              "mean_bce": 1.4057361386682417
+            },
+            "polygon": {
+              "dice_loss": 0.1525791662279963,
+              "mean_abs_bce_gradient": 0.13310336003382772,
+              "mean_bce": 1.306520182236418
+            },
+            "raster": {
+              "dice_loss": 0.17220196727334533,
+              "mean_abs_bce_gradient": 0.15318827792478146,
+              "mean_bce": 1.5248043630375738
+            }
+          },
+          "random": {
+            "hard_c": {
+              "dice_loss": 0.15713865847611785,
+              "mean_abs_bce_gradient": 0.1495362934245325,
+              "mean_bce": 1.4555621692274545
+            },
+            "polygon": {
+              "dice_loss": 0.14940982286091356,
+              "mean_abs_bce_gradient": 0.13882400493475666,
+              "mean_bce": 1.4638342705464835
+            },
+            "raster": {
+              "dice_loss": 0.1644487534936025,
+              "mean_abs_bce_gradient": 0.15634889843644317,
+              "mean_bce": 1.6507971113437137
+            }
+          },
+          "random_expected": {
+            "hard_c": {
+              "dice_loss": null,
+              "mean_abs_bce_gradient": 0.13239039717078527,
+              "mean_bce": 1.2826621158659726
+            },
+            "polygon": {
+              "dice_loss": null,
+              "mean_abs_bce_gradient": 0.12644788785397792,
+              "mean_bce": 1.2796320906351326
+            },
+            "raster": {
+              "dice_loss": null,
+              "mean_abs_bce_gradient": 0.1356371445654904,
+              "mean_bce": 1.4360821119506681
+            }
+          },
+          "uncertainty": {
+            "hard_c": {
+              "dice_loss": 0.3002163247319432,
+              "mean_abs_bce_gradient": 0.3271118328096354,
+              "mean_bce": 0.7464396572079612
+            },
+            "polygon": {
+              "dice_loss": 0.3068225054241174,
+              "mean_abs_bce_gradient": 0.27229836551579806,
+              "mean_bce": 0.7532659041632639
+            },
+            "raster": {
+              "dice_loss": 0.30175023387076216,
+              "mean_abs_bce_gradient": 0.2642603681814367,
+              "mean_bce": 0.7490676834197256
+            }
+          }
+        },
+        "image_equal_target_difference": {
+          "phase": {
+            "mean_abs_polygon_minus_hard_c": 0.06497360511252137,
+            "mean_abs_polygon_minus_raster": 0.03483508738156318,
+            "mean_abs_raster_minus_hard_c": 0.06394958707958708
+          },
+          "random": {
+            "mean_abs_polygon_minus_hard_c": 0.06546194502351257,
+            "mean_abs_polygon_minus_raster": 0.031751817151281815,
+            "mean_abs_raster_minus_hard_c": 0.0606169955044955
+          },
+          "random_expected": {
+            "mean_abs_polygon_minus_hard_c": 0.05894269355982457,
+            "mean_abs_polygon_minus_raster": 0.02710814949097407,
+            "mean_abs_raster_minus_hard_c": 0.05532468878888436
+          },
+          "uncertainty": {
+            "mean_abs_polygon_minus_hard_c": 0.09821899347451006,
+            "mean_abs_polygon_minus_raster": 0.0412859794851424,
+            "mean_abs_raster_minus_hard_c": 0.08331985347985349
+          }
+        },
+        "images": 8,
+        "per_image_effect": [
+          {
+            "ordinal": 0,
+            "phase_minus_expected": 0.008652602451252489,
+            "phase_minus_uncertainty": 0.008865877909719336,
+            "rows": 13
+          },
+          {
+            "ordinal": 1,
+            "phase_minus_expected": 0.0003914264214783039,
+            "phase_minus_uncertainty": 0.010176985261644546,
+            "rows": 11
+          },
+          {
+            "ordinal": 2,
+            "phase_minus_expected": 0.021487228607917224,
+            "phase_minus_uncertainty": -0.022599999999998392,
+            "rows": 1
+          },
+          {
+            "ordinal": 3,
+            "phase_minus_expected": -0.01212554775767095,
+            "phase_minus_uncertainty": -0.055499999999994803,
+            "rows": 3
+          },
+          {
+            "ordinal": 4,
+            "phase_minus_expected": 0.017277348484847667,
+            "phase_minus_uncertainty": 0.01987500000000095,
+            "rows": 2
+          },
+          {
+            "ordinal": 6,
+            "phase_minus_expected": 0.007707497000973333,
+            "phase_minus_uncertainty": -0.0007000000000028789,
+            "rows": 2
+          },
+          {
+            "ordinal": 8,
+            "phase_minus_expected": 0.002709555269091439,
+            "phase_minus_uncertainty": -0.01835000000000131,
+            "rows": 1
+          },
+          {
+            "ordinal": 9,
+            "phase_minus_expected": 0.015715392646823385,
+            "phase_minus_uncertainty": 0.006624999999998792,
+            "rows": 2
+          }
+        ],
+        "phase_minus_expected": 0.007726937890589109,
+        "phase_minus_uncertainty": -0.006450892103579221,
+        "phase_over_expected": 1.2850411420802395,
+        "positive_images": 7,
+        "rows": 35,
+        "selected_points": 548
+      }
+    },
+    "crop_minus_direct_phase_effect": 0.01700460913070319,
+    "descriptive_gate": true
+  },
+  "views": [
+    {
+      "common_rows": 12,
+      "cursor": 2,
+      "eligible": 12,
+      "ordinal": 0,
+      "path": "crop"
+    },
+    {
+      "common_rows": 13,
+      "cursor": 0,
+      "eligible": 13,
+      "ordinal": 0,
+      "path": "direct"
+    },
+    {
+      "common_rows": 11,
+      "cursor": 5,
+      "eligible": 11,
+      "ordinal": 1,
+      "path": "crop"
+    },
+    {
+      "common_rows": 11,
+      "cursor": 4,
+      "eligible": 11,
+      "ordinal": 1,
+      "path": "direct"
+    },
+    {
+      "common_rows": 1,
+      "cursor": 9,
+      "eligible": 1,
+      "ordinal": 2,
+      "path": "crop"
+    },
+    {
+      "common_rows": 1,
+      "cursor": 8,
+      "eligible": 1,
+      "ordinal": 2,
+      "path": "direct"
+    },
+    {
+      "common_rows": 1,
+      "cursor": 12,
+      "eligible": 1,
+      "ordinal": 3,
+      "path": "crop"
+    },
+    {
+      "common_rows": 3,
+      "cursor": 14,
+      "eligible": 3,
+      "ordinal": 3,
+      "path": "direct"
+    },
+    {
+      "common_rows": 2,
+      "cursor": 16,
+      "eligible": 2,
+      "ordinal": 4,
+      "path": "crop"
+    },
+    {
+      "common_rows": 2,
+      "cursor": 17,
+      "eligible": 2,
+      "ordinal": 4,
+      "path": "direct"
+    },
+    {
+      "common_rows": 1,
+      "cursor": 26,
+      "eligible": 1,
+      "ordinal": 6,
+      "path": "crop"
+    },
+    {
+      "common_rows": 2,
+      "cursor": 24,
+      "eligible": 2,
+      "ordinal": 6,
+      "path": "direct"
+    },
+    {
+      "common_rows": 1,
+      "cursor": 32,
+      "eligible": 1,
+      "ordinal": 8,
+      "path": "crop"
+    },
+    {
+      "common_rows": 2,
+      "cursor": 34,
+      "eligible": 1,
+      "ordinal": 8,
+      "path": "direct"
+    },
+    {
+      "common_rows": 2,
+      "cursor": 36,
+      "eligible": 2,
+      "ordinal": 9,
+      "path": "crop"
+    },
+    {
+      "common_rows": 2,
+      "cursor": 38,
+      "eligible": 2,
+      "ordinal": 9,
+      "path": "direct"
+    }
+  ],
+  "wall_seconds": 94.4166111999657
+}
