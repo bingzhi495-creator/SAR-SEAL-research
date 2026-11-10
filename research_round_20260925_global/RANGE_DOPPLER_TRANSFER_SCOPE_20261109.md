@@ -96,3 +96,17 @@ HRSID 三组同预算 E24 配对在固定 DEV705 上的平均 mask AP 为 50.809
 若目标仍是输出空间船体轮廓，优先采用同景配准后由聚焦 SAR 提供空间位置、由成像前数据提供补充特征的设计，统一在空间掩膜上比较空间单支与融合支。OpenSAR Insight 提供同景关联和检测框入口，方位 FFT 后的真值和逐船空间轮廓需要另外核验。 [作者数据处理与模型](https://github.com/ESA-PhiLab/OpenSARInsight)
 
 本节新增证据为发布元数据、固定源码和原始论文核对。真实海面 RD 训练尚未执行。
+
+## 复数训练样本读回与迁移选型
+
+对 OpenSAR Insight 固定发布版，只读取训练归档的有限字节。在距离压缩重标定包的首个 6 MiB 内完整读回训练块 1778 的 VH 数组，形状为 634×512，数据类型为 complex64，全部值有限。训练标注包中存在一个同编号 XML。聚焦和 RAW 训练归档各读取首个 2 MiB，分别确认 TIFF 与 DAT 成员头。仅复数距离压缩数组完成了完整成员读回，三个前缀读出的首成员并非同一地理块。 [固定数据版本](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset/tree/e90a0c0465cfb8484b4f356ef968d976054f453a)
+
+作者的处理源码以方位线、距离采样排列距离压缩数组。按第 0 轴对上述样本做正交归一化 FFT 和频轴移位，生成的 634×512 复数频谱数值均有限，零频索引为 317，相对能量差为 5.58×10⁻¹⁴，逆变换相对误差为 6.07×10⁻¹⁶。本项证明公开训练样本可接入方位 FFT。尚未校准该块的 PRF、TOPS 波束扫描与多普勒中心，也未把 XML 中的距离压缩框映射到频域。数据保持在内存，记录只保留格式与数值核验。 [固定作者处理源码](https://github.com/ESA-PhiLab/OpenSARInsight/blob/192ded687391b536180af29d59c07ace9cb0344f/backend/dataset_generation_scripts/l0_to_range_compressed/l0_to_range_compressed/scripts/range_compressed.py) · [Sentinel-1 官方处理流程](https://sentiwiki.copernicus.eu/web/s1-processing)
+
+RCShip-1.0 可用于距离压缩域的框检测对照。其原论文采用方位时间域，公开后续研究也说明测试样本由 Sentinel-1 场景逆处理重建。真正的 SAR RD 检测已有 DLR 在实测机载数据上的 CFAR 与 Faster R-CNN，星载原始回波的船位预测也已有 U-Net 先例。比较时先区分采集域、轴定义与真值语义。 [RCShip 原文](https://doi.org/10.1109/LGRS.2024.3366749) · [FM-DETR 原文](https://doi.org/10.3390/rs18213669) · [DLR CFAR](https://elib.dlr.de/127354/) · [DLR Faster R-CNN](https://elib.dlr.de/189078/) · [ESA 原始回波方法](https://doi.org/10.1109/JSTARS.2024.3399021)
+
+- **独立海面监视 RD**。多尺度编码和 UNet++ 嵌套跳连可以作为待验证的骨架选项。原方案的船体长条方向卷积与依赖 SAR 教师的残差掩膜头分别对应空间形状与原候选，优先从新定位头开始。固定目标域输入、样本、更新预算和评估，分别比较通用、HRSID 原生、HRSID 中心对齐的骨干初始化，并报告额外的源域训练。先验效用在完整序列留出上用固定虚警下的检出率和距离、径向速度误差验证。原生频谱须保留有效格点及近零速度目标的评估机会。
+- **沿用空间船体掩膜任务**。把同次采集的局部多普勒特征配准回聚焦 SAR 的候选区域，重点检验独立定义的运动失焦场景。比较空间单支、常规物理重聚焦后接同一分割器、真实配对融合、同条件错配且同容量的融合。固定空间真值与评估规则，先验证输入配准，后比较整集和预先定义失焦组的 mask AP75/AP90 与虚警。OpenSAR Insight 现成标签支持船位或框核验。逐船轮廓以及重聚焦所需元数据需另行落实。多普勒参数融合和重聚焦已有先例，研究问题是经校准的同景信息对空间掩膜边界的独立增益。 [D-MFPN](https://doi.org/10.3390/rs15030626) · [SLC 重聚焦](https://doi.org/10.1049/joe.2019.0447)
+
+本次更新的证据包括公开训练样本读回、单样本方位 FFT 数值核验及方法对照。真实 RD 模型训练与跨域效用待实测。
+
