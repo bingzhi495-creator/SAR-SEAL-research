@@ -1,0 +1,1753 @@
+{
+  "reference": "output center, exact integer arithmetic, tie to larger index",
+  "results": {
+    "opencv4": {
+      "numpy": "1.26.4",
+      "opencv": "4.5.5",
+      "runs": {
+        "exact_optimized_False": {
+          "binary_outputs_sha256": "ae6a671e597d7657915902de51b14f8a035de7a1791672f1768380c2807ef7bc",
+          "binary_pixels_different": 11197,
+          "binary_pixels_different_by_shape": {
+            "13x18->17x5": 0,
+            "16x16->8x8": 26,
+            "1x5->1x2": 0,
+            "457x601->576x576": 327,
+            "512x640->576x576": 10515,
+            "575x577->576x576": 329,
+            "5x1->2x1": 0,
+            "640x640->512x512": 0,
+            "7x11->4x8": 0,
+            "800x800->512x512": 0,
+            "800x800->576x576": 0,
+            "800x800->640x640": 0
+          },
+          "binary_shapes": 12,
+          "binary_shapes_different": 4,
+          "grid_outputs_sha256": "6752a476c18fd5f5ca3bcfcbd396d24d5a5e54d284600dbbb65e29b6d33da68e",
+          "grid_positions": 145248,
+          "grid_positions_different": 2963,
+          "grid_positions_different_from_floor_jN_div_M": 55487,
+          "grid_shapes": 4115,
+          "grid_shapes_different": 877,
+          "non_tie_differences": 13,
+          "selected_grids": {
+            "10->1920": {
+              "different": 9,
+              "first": 0,
+              "last": 9,
+              "tie": 0
+            },
+            "101->576": {
+              "different": 1,
+              "first": 0,
+              "last": 100,
+              "tie": 0
+            },
+            "1024->512": {
+              "different": 512,
+              "first": 0,
+              "last": 1022,
+              "tie": 512
+            },
+            "2->1": {
+              "actual": [
+                0
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 0,
+              "tie": 1
+            },
+            "2->5": {
+              "actual": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 1,
+              "tie": 1
+            },
+            "4->2": {
+              "actual": [
+                0,
+                2
+              ],
+              "different": 2,
+              "first": 0,
+              "last": 2,
+              "tie": 2
+            },
+            "457->576": {
+              "different": 0,
+              "first": 0,
+              "last": 456,
+              "tie": 0
+            },
+            "5->2": {
+              "actual": [
+                1,
+                3
+              ],
+              "different": 0,
+              "first": 1,
+              "last": 3,
+              "tie": 0
+            },
+            "512->576": {
+              "different": 64,
+              "first": 0,
+              "last": 511,
+              "tie": 64
+            },
+            "513->576": {
+              "different": 0,
+              "first": 0,
+              "last": 512,
+              "tie": 0
+            },
+            "575->576": {
+              "different": 1,
+              "first": 0,
+              "last": 574,
+              "tie": 0
+            },
+            "576->457": {
+              "different": 1,
+              "first": 0,
+              "last": 575,
+              "tie": 1
+            },
+            "576->640": {
+              "different": 0,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "577->576": {
+              "different": 1,
+              "first": 0,
+              "last": 576,
+              "tie": 0
+            },
+            "599->640": {
+              "different": 1,
+              "first": 0,
+              "last": 598,
+              "tie": 0
+            },
+            "6->5": {
+              "actual": [
+                0,
+                1,
+                2,
+                4,
+                5
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 5,
+              "tie": 1
+            },
+            "601->512": {
+              "different": 0,
+              "first": 0,
+              "last": 600,
+              "tie": 0
+            },
+            "640->512": {
+              "different": 0,
+              "first": 0,
+              "last": 639,
+              "tie": 0
+            },
+            "640->576": {
+              "different": 0,
+              "first": 0,
+              "last": 639,
+              "tie": 0
+            },
+            "640->599": {
+              "different": 0,
+              "first": 0,
+              "last": 639,
+              "tie": 0
+            },
+            "768->576": {
+              "different": 192,
+              "first": 0,
+              "last": 767,
+              "tie": 192
+            },
+            "8->7": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                5,
+                6,
+                7
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 7,
+              "tie": 1
+            },
+            "800->512": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            },
+            "800->576": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            },
+            "800->640": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            }
+          },
+          "tie_differences": 2950
+        },
+        "exact_optimized_True": {
+          "binary_outputs_sha256": "ae6a671e597d7657915902de51b14f8a035de7a1791672f1768380c2807ef7bc",
+          "binary_pixels_different": 11197,
+          "binary_pixels_different_by_shape": {
+            "13x18->17x5": 0,
+            "16x16->8x8": 26,
+            "1x5->1x2": 0,
+            "457x601->576x576": 327,
+            "512x640->576x576": 10515,
+            "575x577->576x576": 329,
+            "5x1->2x1": 0,
+            "640x640->512x512": 0,
+            "7x11->4x8": 0,
+            "800x800->512x512": 0,
+            "800x800->576x576": 0,
+            "800x800->640x640": 0
+          },
+          "binary_shapes": 12,
+          "binary_shapes_different": 4,
+          "grid_outputs_sha256": "6752a476c18fd5f5ca3bcfcbd396d24d5a5e54d284600dbbb65e29b6d33da68e",
+          "grid_positions": 145248,
+          "grid_positions_different": 2963,
+          "grid_positions_different_from_floor_jN_div_M": 55487,
+          "grid_shapes": 4115,
+          "grid_shapes_different": 877,
+          "non_tie_differences": 13,
+          "selected_grids": {
+            "10->1920": {
+              "different": 9,
+              "first": 0,
+              "last": 9,
+              "tie": 0
+            },
+            "101->576": {
+              "different": 1,
+              "first": 0,
+              "last": 100,
+              "tie": 0
+            },
+            "1024->512": {
+              "different": 512,
+              "first": 0,
+              "last": 1022,
+              "tie": 512
+            },
+            "2->1": {
+              "actual": [
+                0
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 0,
+              "tie": 1
+            },
+            "2->5": {
+              "actual": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 1,
+              "tie": 1
+            },
+            "4->2": {
+              "actual": [
+                0,
+                2
+              ],
+              "different": 2,
+              "first": 0,
+              "last": 2,
+              "tie": 2
+            },
+            "457->576": {
+              "different": 0,
+              "first": 0,
+              "last": 456,
+              "tie": 0
+            },
+            "5->2": {
+              "actual": [
+                1,
+                3
+              ],
+              "different": 0,
+              "first": 1,
+              "last": 3,
+              "tie": 0
+            },
+            "512->576": {
+              "different": 64,
+              "first": 0,
+              "last": 511,
+              "tie": 64
+            },
+            "513->576": {
+              "different": 0,
+              "first": 0,
+              "last": 512,
+              "tie": 0
+            },
+            "575->576": {
+              "different": 1,
+              "first": 0,
+              "last": 574,
+              "tie": 0
+            },
+            "576->457": {
+              "different": 1,
+              "first": 0,
+              "last": 575,
+              "tie": 1
+            },
+            "576->640": {
+              "different": 0,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "577->576": {
+              "different": 1,
+              "first": 0,
+              "last": 576,
+              "tie": 0
+            },
+            "599->640": {
+              "different": 1,
+              "first": 0,
+              "last": 598,
+              "tie": 0
+            },
+            "6->5": {
+              "actual": [
+                0,
+                1,
+                2,
+                4,
+                5
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 5,
+              "tie": 1
+            },
+            "601->512": {
+              "different": 0,
+              "first": 0,
+              "last": 600,
+              "tie": 0
+            },
+            "640->512": {
+              "different": 0,
+              "first": 0,
+              "last": 639,
+              "tie": 0
+            },
+            "640->576": {
+              "different": 0,
+              "first": 0,
+              "last": 639,
+              "tie": 0
+            },
+            "640->599": {
+              "different": 0,
+              "first": 0,
+              "last": 639,
+              "tie": 0
+            },
+            "768->576": {
+              "different": 192,
+              "first": 0,
+              "last": 767,
+              "tie": 192
+            },
+            "8->7": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                5,
+                6,
+                7
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 7,
+              "tie": 1
+            },
+            "800->512": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            },
+            "800->576": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            },
+            "800->640": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            }
+          },
+          "tie_differences": 2950
+        },
+        "stock_optimized_False": {
+          "binary_outputs_sha256": "41c2ccdb7cd628fd02054ba1cb3e12116d8e2579055852a993aaeee38d8e34a9",
+          "binary_pixels_different": 511549,
+          "binary_pixels_different_by_shape": {
+            "13x18->17x5": 27,
+            "16x16->8x8": 26,
+            "1x5->1x2": 0,
+            "457x601->576x576": 67596,
+            "512x640->576x576": 71626,
+            "575x577->576x576": 71259,
+            "5x1->2x1": 0,
+            "640x640->512x512": 56760,
+            "7x11->4x8": 16,
+            "800x800->512x512": 70799,
+            "800x800->576x576": 84939,
+            "800x800->640x640": 88501
+          },
+          "binary_shapes": 12,
+          "binary_shapes_different": 10,
+          "grid_outputs_sha256": "11fbb7ab911a1ce155f39611f073a5a2d7448903c0a33752bb6eb7c9bbef84b9",
+          "grid_positions": 145248,
+          "grid_positions_different": 58037,
+          "grid_positions_different_from_floor_jN_div_M": 186,
+          "grid_shapes": 4115,
+          "grid_shapes_different": 3834,
+          "non_tie_differences": 53857,
+          "selected_grids": {
+            "10->1920": {
+              "different": 0,
+              "first": 0,
+              "last": 9,
+              "tie": 0
+            },
+            "101->576": {
+              "different": 50,
+              "first": 0,
+              "last": 100,
+              "tie": 0
+            },
+            "1024->512": {
+              "different": 512,
+              "first": 0,
+              "last": 1022,
+              "tie": 512
+            },
+            "2->1": {
+              "actual": [
+                0
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 0,
+              "tie": 1
+            },
+            "2->5": {
+              "actual": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 1,
+              "tie": 1
+            },
+            "4->2": {
+              "actual": [
+                0,
+                2
+              ],
+              "different": 2,
+              "first": 0,
+              "last": 2,
+              "tie": 2
+            },
+            "457->576": {
+              "different": 228,
+              "first": 0,
+              "last": 456,
+              "tie": 0
+            },
+            "5->2": {
+              "actual": [
+                0,
+                2
+              ],
+              "different": 2,
+              "first": 0,
+              "last": 2,
+              "tie": 0
+            },
+            "512->576": {
+              "different": 256,
+              "first": 0,
+              "last": 511,
+              "tie": 64
+            },
+            "513->576": {
+              "different": 252,
+              "first": 0,
+              "last": 512,
+              "tie": 0
+            },
+            "575->576": {
+              "different": 287,
+              "first": 0,
+              "last": 574,
+              "tie": 0
+            },
+            "576->457": {
+              "different": 288,
+              "first": 0,
+              "last": 574,
+              "tie": 1
+            },
+            "576->640": {
+              "different": 302,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "577->576": {
+              "different": 288,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "599->640": {
+              "different": 299,
+              "first": 0,
+              "last": 598,
+              "tie": 0
+            },
+            "6->5": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "different": 3,
+              "first": 0,
+              "last": 4,
+              "tie": 1
+            },
+            "601->512": {
+              "different": 300,
+              "first": 0,
+              "last": 599,
+              "tie": 0
+            },
+            "640->512": {
+              "different": 256,
+              "first": 0,
+              "last": 638,
+              "tie": 0
+            },
+            "640->576": {
+              "different": 320,
+              "first": 0,
+              "last": 638,
+              "tie": 64
+            },
+            "640->599": {
+              "different": 320,
+              "first": 0,
+              "last": 638,
+              "tie": 1
+            },
+            "768->576": {
+              "different": 384,
+              "first": 0,
+              "last": 766,
+              "tie": 192
+            },
+            "8->7": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "different": 4,
+              "first": 0,
+              "last": 6,
+              "tie": 1
+            },
+            "800->512": {
+              "different": 384,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            },
+            "800->576": {
+              "different": 384,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            },
+            "800->640": {
+              "different": 320,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            }
+          },
+          "tie_differences": 4180
+        },
+        "stock_optimized_True": {
+          "binary_outputs_sha256": "41c2ccdb7cd628fd02054ba1cb3e12116d8e2579055852a993aaeee38d8e34a9",
+          "binary_pixels_different": 511549,
+          "binary_pixels_different_by_shape": {
+            "13x18->17x5": 27,
+            "16x16->8x8": 26,
+            "1x5->1x2": 0,
+            "457x601->576x576": 67596,
+            "512x640->576x576": 71626,
+            "575x577->576x576": 71259,
+            "5x1->2x1": 0,
+            "640x640->512x512": 56760,
+            "7x11->4x8": 16,
+            "800x800->512x512": 70799,
+            "800x800->576x576": 84939,
+            "800x800->640x640": 88501
+          },
+          "binary_shapes": 12,
+          "binary_shapes_different": 10,
+          "grid_outputs_sha256": "11fbb7ab911a1ce155f39611f073a5a2d7448903c0a33752bb6eb7c9bbef84b9",
+          "grid_positions": 145248,
+          "grid_positions_different": 58037,
+          "grid_positions_different_from_floor_jN_div_M": 186,
+          "grid_shapes": 4115,
+          "grid_shapes_different": 3834,
+          "non_tie_differences": 53857,
+          "selected_grids": {
+            "10->1920": {
+              "different": 0,
+              "first": 0,
+              "last": 9,
+              "tie": 0
+            },
+            "101->576": {
+              "different": 50,
+              "first": 0,
+              "last": 100,
+              "tie": 0
+            },
+            "1024->512": {
+              "different": 512,
+              "first": 0,
+              "last": 1022,
+              "tie": 512
+            },
+            "2->1": {
+              "actual": [
+                0
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 0,
+              "tie": 1
+            },
+            "2->5": {
+              "actual": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 1,
+              "tie": 1
+            },
+            "4->2": {
+              "actual": [
+                0,
+                2
+              ],
+              "different": 2,
+              "first": 0,
+              "last": 2,
+              "tie": 2
+            },
+            "457->576": {
+              "different": 228,
+              "first": 0,
+              "last": 456,
+              "tie": 0
+            },
+            "5->2": {
+              "actual": [
+                0,
+                2
+              ],
+              "different": 2,
+              "first": 0,
+              "last": 2,
+              "tie": 0
+            },
+            "512->576": {
+              "different": 256,
+              "first": 0,
+              "last": 511,
+              "tie": 64
+            },
+            "513->576": {
+              "different": 252,
+              "first": 0,
+              "last": 512,
+              "tie": 0
+            },
+            "575->576": {
+              "different": 287,
+              "first": 0,
+              "last": 574,
+              "tie": 0
+            },
+            "576->457": {
+              "different": 288,
+              "first": 0,
+              "last": 574,
+              "tie": 1
+            },
+            "576->640": {
+              "different": 302,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "577->576": {
+              "different": 288,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "599->640": {
+              "different": 299,
+              "first": 0,
+              "last": 598,
+              "tie": 0
+            },
+            "6->5": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "different": 3,
+              "first": 0,
+              "last": 4,
+              "tie": 1
+            },
+            "601->512": {
+              "different": 300,
+              "first": 0,
+              "last": 599,
+              "tie": 0
+            },
+            "640->512": {
+              "different": 256,
+              "first": 0,
+              "last": 638,
+              "tie": 0
+            },
+            "640->576": {
+              "different": 320,
+              "first": 0,
+              "last": 638,
+              "tie": 64
+            },
+            "640->599": {
+              "different": 320,
+              "first": 0,
+              "last": 638,
+              "tie": 1
+            },
+            "768->576": {
+              "different": 384,
+              "first": 0,
+              "last": 766,
+              "tie": 192
+            },
+            "8->7": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "different": 4,
+              "first": 0,
+              "last": 6,
+              "tie": 1
+            },
+            "800->512": {
+              "different": 384,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            },
+            "800->576": {
+              "different": 384,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            },
+            "800->640": {
+              "different": 320,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            }
+          },
+          "tie_differences": 4180
+        }
+      }
+    },
+    "opencv5": {
+      "numpy": "2.2.6",
+      "opencv": "5.0.0",
+      "runs": {
+        "exact_optimized_False": {
+          "binary_outputs_sha256": "ef7c098ad69f575fae4002f9ed1875eef833ea273770d8f8976a8fe811f6560e",
+          "binary_pixels_different": 10845,
+          "binary_pixels_different_by_shape": {
+            "13x18->17x5": 0,
+            "16x16->8x8": 0,
+            "1x5->1x2": 0,
+            "457x601->576x576": 0,
+            "512x640->576x576": 10845,
+            "575x577->576x576": 0,
+            "5x1->2x1": 0,
+            "640x640->512x512": 0,
+            "7x11->4x8": 0,
+            "800x800->512x512": 0,
+            "800x800->576x576": 0,
+            "800x800->640x640": 0
+          },
+          "binary_shapes": 12,
+          "binary_shapes_different": 1,
+          "grid_outputs_sha256": "1774d2106d3bb44ef172899ab4651a696b798108ed431e38641e4f90042d0c1b",
+          "grid_positions": 145248,
+          "grid_positions_different": 1090,
+          "grid_positions_different_from_floor_jN_div_M": 56883,
+          "grid_shapes": 4115,
+          "grid_shapes_different": 628,
+          "non_tie_differences": 0,
+          "selected_grids": {
+            "10->1920": {
+              "different": 0,
+              "first": 0,
+              "last": 9,
+              "tie": 0
+            },
+            "101->576": {
+              "different": 0,
+              "first": 0,
+              "last": 100,
+              "tie": 0
+            },
+            "1024->512": {
+              "different": 0,
+              "first": 1,
+              "last": 1023,
+              "tie": 0
+            },
+            "2->1": {
+              "actual": [
+                1
+              ],
+              "different": 0,
+              "first": 1,
+              "last": 1,
+              "tie": 0
+            },
+            "2->5": {
+              "actual": [
+                0,
+                0,
+                1,
+                1,
+                1
+              ],
+              "different": 0,
+              "first": 0,
+              "last": 1,
+              "tie": 0
+            },
+            "4->2": {
+              "actual": [
+                1,
+                3
+              ],
+              "different": 0,
+              "first": 1,
+              "last": 3,
+              "tie": 0
+            },
+            "457->576": {
+              "different": 0,
+              "first": 0,
+              "last": 456,
+              "tie": 0
+            },
+            "5->2": {
+              "actual": [
+                1,
+                3
+              ],
+              "different": 0,
+              "first": 1,
+              "last": 3,
+              "tie": 0
+            },
+            "512->576": {
+              "different": 30,
+              "first": 0,
+              "last": 511,
+              "tie": 30
+            },
+            "513->576": {
+              "different": 0,
+              "first": 0,
+              "last": 512,
+              "tie": 0
+            },
+            "575->576": {
+              "different": 0,
+              "first": 0,
+              "last": 574,
+              "tie": 0
+            },
+            "576->457": {
+              "different": 0,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "576->640": {
+              "different": 0,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "577->576": {
+              "different": 0,
+              "first": 0,
+              "last": 576,
+              "tie": 0
+            },
+            "599->640": {
+              "different": 0,
+              "first": 0,
+              "last": 598,
+              "tie": 0
+            },
+            "6->5": {
+              "actual": [
+                0,
+                1,
+                3,
+                4,
+                5
+              ],
+              "different": 0,
+              "first": 0,
+              "last": 5,
+              "tie": 0
+            },
+            "601->512": {
+              "different": 0,
+              "first": 0,
+              "last": 600,
+              "tie": 0
+            },
+            "640->512": {
+              "different": 0,
+              "first": 0,
+              "last": 639,
+              "tie": 0
+            },
+            "640->576": {
+              "different": 38,
+              "first": 0,
+              "last": 639,
+              "tie": 38
+            },
+            "640->599": {
+              "different": 1,
+              "first": 0,
+              "last": 639,
+              "tie": 1
+            },
+            "768->576": {
+              "different": 99,
+              "first": 0,
+              "last": 767,
+              "tie": 99
+            },
+            "8->7": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                5,
+                6,
+                7
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 7,
+              "tie": 1
+            },
+            "800->512": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            },
+            "800->576": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            },
+            "800->640": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            }
+          },
+          "tie_differences": 1090
+        },
+        "exact_optimized_True": {
+          "binary_outputs_sha256": "ef7c098ad69f575fae4002f9ed1875eef833ea273770d8f8976a8fe811f6560e",
+          "binary_pixels_different": 10845,
+          "binary_pixels_different_by_shape": {
+            "13x18->17x5": 0,
+            "16x16->8x8": 0,
+            "1x5->1x2": 0,
+            "457x601->576x576": 0,
+            "512x640->576x576": 10845,
+            "575x577->576x576": 0,
+            "5x1->2x1": 0,
+            "640x640->512x512": 0,
+            "7x11->4x8": 0,
+            "800x800->512x512": 0,
+            "800x800->576x576": 0,
+            "800x800->640x640": 0
+          },
+          "binary_shapes": 12,
+          "binary_shapes_different": 1,
+          "grid_outputs_sha256": "1774d2106d3bb44ef172899ab4651a696b798108ed431e38641e4f90042d0c1b",
+          "grid_positions": 145248,
+          "grid_positions_different": 1090,
+          "grid_positions_different_from_floor_jN_div_M": 56883,
+          "grid_shapes": 4115,
+          "grid_shapes_different": 628,
+          "non_tie_differences": 0,
+          "selected_grids": {
+            "10->1920": {
+              "different": 0,
+              "first": 0,
+              "last": 9,
+              "tie": 0
+            },
+            "101->576": {
+              "different": 0,
+              "first": 0,
+              "last": 100,
+              "tie": 0
+            },
+            "1024->512": {
+              "different": 0,
+              "first": 1,
+              "last": 1023,
+              "tie": 0
+            },
+            "2->1": {
+              "actual": [
+                1
+              ],
+              "different": 0,
+              "first": 1,
+              "last": 1,
+              "tie": 0
+            },
+            "2->5": {
+              "actual": [
+                0,
+                0,
+                1,
+                1,
+                1
+              ],
+              "different": 0,
+              "first": 0,
+              "last": 1,
+              "tie": 0
+            },
+            "4->2": {
+              "actual": [
+                1,
+                3
+              ],
+              "different": 0,
+              "first": 1,
+              "last": 3,
+              "tie": 0
+            },
+            "457->576": {
+              "different": 0,
+              "first": 0,
+              "last": 456,
+              "tie": 0
+            },
+            "5->2": {
+              "actual": [
+                1,
+                3
+              ],
+              "different": 0,
+              "first": 1,
+              "last": 3,
+              "tie": 0
+            },
+            "512->576": {
+              "different": 30,
+              "first": 0,
+              "last": 511,
+              "tie": 30
+            },
+            "513->576": {
+              "different": 0,
+              "first": 0,
+              "last": 512,
+              "tie": 0
+            },
+            "575->576": {
+              "different": 0,
+              "first": 0,
+              "last": 574,
+              "tie": 0
+            },
+            "576->457": {
+              "different": 0,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "576->640": {
+              "different": 0,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "577->576": {
+              "different": 0,
+              "first": 0,
+              "last": 576,
+              "tie": 0
+            },
+            "599->640": {
+              "different": 0,
+              "first": 0,
+              "last": 598,
+              "tie": 0
+            },
+            "6->5": {
+              "actual": [
+                0,
+                1,
+                3,
+                4,
+                5
+              ],
+              "different": 0,
+              "first": 0,
+              "last": 5,
+              "tie": 0
+            },
+            "601->512": {
+              "different": 0,
+              "first": 0,
+              "last": 600,
+              "tie": 0
+            },
+            "640->512": {
+              "different": 0,
+              "first": 0,
+              "last": 639,
+              "tie": 0
+            },
+            "640->576": {
+              "different": 38,
+              "first": 0,
+              "last": 639,
+              "tie": 38
+            },
+            "640->599": {
+              "different": 1,
+              "first": 0,
+              "last": 639,
+              "tie": 1
+            },
+            "768->576": {
+              "different": 99,
+              "first": 0,
+              "last": 767,
+              "tie": 99
+            },
+            "8->7": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                5,
+                6,
+                7
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 7,
+              "tie": 1
+            },
+            "800->512": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            },
+            "800->576": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            },
+            "800->640": {
+              "different": 0,
+              "first": 0,
+              "last": 799,
+              "tie": 0
+            }
+          },
+          "tie_differences": 1090
+        },
+        "stock_optimized_False": {
+          "binary_outputs_sha256": "41c2ccdb7cd628fd02054ba1cb3e12116d8e2579055852a993aaeee38d8e34a9",
+          "binary_pixels_different": 511549,
+          "binary_pixels_different_by_shape": {
+            "13x18->17x5": 27,
+            "16x16->8x8": 26,
+            "1x5->1x2": 0,
+            "457x601->576x576": 67596,
+            "512x640->576x576": 71626,
+            "575x577->576x576": 71259,
+            "5x1->2x1": 0,
+            "640x640->512x512": 56760,
+            "7x11->4x8": 16,
+            "800x800->512x512": 70799,
+            "800x800->576x576": 84939,
+            "800x800->640x640": 88501
+          },
+          "binary_shapes": 12,
+          "binary_shapes_different": 10,
+          "grid_outputs_sha256": "11fbb7ab911a1ce155f39611f073a5a2d7448903c0a33752bb6eb7c9bbef84b9",
+          "grid_positions": 145248,
+          "grid_positions_different": 58037,
+          "grid_positions_different_from_floor_jN_div_M": 186,
+          "grid_shapes": 4115,
+          "grid_shapes_different": 3834,
+          "non_tie_differences": 53857,
+          "selected_grids": {
+            "10->1920": {
+              "different": 0,
+              "first": 0,
+              "last": 9,
+              "tie": 0
+            },
+            "101->576": {
+              "different": 50,
+              "first": 0,
+              "last": 100,
+              "tie": 0
+            },
+            "1024->512": {
+              "different": 512,
+              "first": 0,
+              "last": 1022,
+              "tie": 512
+            },
+            "2->1": {
+              "actual": [
+                0
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 0,
+              "tie": 1
+            },
+            "2->5": {
+              "actual": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 1,
+              "tie": 1
+            },
+            "4->2": {
+              "actual": [
+                0,
+                2
+              ],
+              "different": 2,
+              "first": 0,
+              "last": 2,
+              "tie": 2
+            },
+            "457->576": {
+              "different": 228,
+              "first": 0,
+              "last": 456,
+              "tie": 0
+            },
+            "5->2": {
+              "actual": [
+                0,
+                2
+              ],
+              "different": 2,
+              "first": 0,
+              "last": 2,
+              "tie": 0
+            },
+            "512->576": {
+              "different": 256,
+              "first": 0,
+              "last": 511,
+              "tie": 64
+            },
+            "513->576": {
+              "different": 252,
+              "first": 0,
+              "last": 512,
+              "tie": 0
+            },
+            "575->576": {
+              "different": 287,
+              "first": 0,
+              "last": 574,
+              "tie": 0
+            },
+            "576->457": {
+              "different": 288,
+              "first": 0,
+              "last": 574,
+              "tie": 1
+            },
+            "576->640": {
+              "different": 302,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "577->576": {
+              "different": 288,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "599->640": {
+              "different": 299,
+              "first": 0,
+              "last": 598,
+              "tie": 0
+            },
+            "6->5": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "different": 3,
+              "first": 0,
+              "last": 4,
+              "tie": 1
+            },
+            "601->512": {
+              "different": 300,
+              "first": 0,
+              "last": 599,
+              "tie": 0
+            },
+            "640->512": {
+              "different": 256,
+              "first": 0,
+              "last": 638,
+              "tie": 0
+            },
+            "640->576": {
+              "different": 320,
+              "first": 0,
+              "last": 638,
+              "tie": 64
+            },
+            "640->599": {
+              "different": 320,
+              "first": 0,
+              "last": 638,
+              "tie": 1
+            },
+            "768->576": {
+              "different": 384,
+              "first": 0,
+              "last": 766,
+              "tie": 192
+            },
+            "8->7": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "different": 4,
+              "first": 0,
+              "last": 6,
+              "tie": 1
+            },
+            "800->512": {
+              "different": 384,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            },
+            "800->576": {
+              "different": 384,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            },
+            "800->640": {
+              "different": 320,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            }
+          },
+          "tie_differences": 4180
+        },
+        "stock_optimized_True": {
+          "binary_outputs_sha256": "41c2ccdb7cd628fd02054ba1cb3e12116d8e2579055852a993aaeee38d8e34a9",
+          "binary_pixels_different": 511549,
+          "binary_pixels_different_by_shape": {
+            "13x18->17x5": 27,
+            "16x16->8x8": 26,
+            "1x5->1x2": 0,
+            "457x601->576x576": 67596,
+            "512x640->576x576": 71626,
+            "575x577->576x576": 71259,
+            "5x1->2x1": 0,
+            "640x640->512x512": 56760,
+            "7x11->4x8": 16,
+            "800x800->512x512": 70799,
+            "800x800->576x576": 84939,
+            "800x800->640x640": 88501
+          },
+          "binary_shapes": 12,
+          "binary_shapes_different": 10,
+          "grid_outputs_sha256": "11fbb7ab911a1ce155f39611f073a5a2d7448903c0a33752bb6eb7c9bbef84b9",
+          "grid_positions": 145248,
+          "grid_positions_different": 58037,
+          "grid_positions_different_from_floor_jN_div_M": 186,
+          "grid_shapes": 4115,
+          "grid_shapes_different": 3834,
+          "non_tie_differences": 53857,
+          "selected_grids": {
+            "10->1920": {
+              "different": 0,
+              "first": 0,
+              "last": 9,
+              "tie": 0
+            },
+            "101->576": {
+              "different": 50,
+              "first": 0,
+              "last": 100,
+              "tie": 0
+            },
+            "1024->512": {
+              "different": 512,
+              "first": 0,
+              "last": 1022,
+              "tie": 512
+            },
+            "2->1": {
+              "actual": [
+                0
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 0,
+              "tie": 1
+            },
+            "2->5": {
+              "actual": [
+                0,
+                0,
+                0,
+                1,
+                1
+              ],
+              "different": 1,
+              "first": 0,
+              "last": 1,
+              "tie": 1
+            },
+            "4->2": {
+              "actual": [
+                0,
+                2
+              ],
+              "different": 2,
+              "first": 0,
+              "last": 2,
+              "tie": 2
+            },
+            "457->576": {
+              "different": 228,
+              "first": 0,
+              "last": 456,
+              "tie": 0
+            },
+            "5->2": {
+              "actual": [
+                0,
+                2
+              ],
+              "different": 2,
+              "first": 0,
+              "last": 2,
+              "tie": 0
+            },
+            "512->576": {
+              "different": 256,
+              "first": 0,
+              "last": 511,
+              "tie": 64
+            },
+            "513->576": {
+              "different": 252,
+              "first": 0,
+              "last": 512,
+              "tie": 0
+            },
+            "575->576": {
+              "different": 287,
+              "first": 0,
+              "last": 574,
+              "tie": 0
+            },
+            "576->457": {
+              "different": 288,
+              "first": 0,
+              "last": 574,
+              "tie": 1
+            },
+            "576->640": {
+              "different": 302,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "577->576": {
+              "different": 288,
+              "first": 0,
+              "last": 575,
+              "tie": 0
+            },
+            "599->640": {
+              "different": 299,
+              "first": 0,
+              "last": 598,
+              "tie": 0
+            },
+            "6->5": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "different": 3,
+              "first": 0,
+              "last": 4,
+              "tie": 1
+            },
+            "601->512": {
+              "different": 300,
+              "first": 0,
+              "last": 599,
+              "tie": 0
+            },
+            "640->512": {
+              "different": 256,
+              "first": 0,
+              "last": 638,
+              "tie": 0
+            },
+            "640->576": {
+              "different": 320,
+              "first": 0,
+              "last": 638,
+              "tie": 64
+            },
+            "640->599": {
+              "different": 320,
+              "first": 0,
+              "last": 638,
+              "tie": 1
+            },
+            "768->576": {
+              "different": 384,
+              "first": 0,
+              "last": 766,
+              "tie": 192
+            },
+            "8->7": {
+              "actual": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "different": 4,
+              "first": 0,
+              "last": 6,
+              "tie": 1
+            },
+            "800->512": {
+              "different": 384,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            },
+            "800->576": {
+              "different": 384,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            },
+            "800->640": {
+              "different": 320,
+              "first": 0,
+              "last": 798,
+              "tie": 0
+            }
+          },
+          "tie_differences": 4180
+        }
+      }
+    }
+  },
+  "schema": "opencv_nearest_synthetic_v1",
+  "wheels": {
+    "numpy2": [
+      "numpy",
+      "2.2.6",
+      "cp310-cp310-win_amd64",
+      12904620,
+      "f0fd6321b839904e15c46e0d257fdd101dd7f530fe03fd6359c1ea63738703f3"
+    ],
+    "opencv4": [
+      "opencv-python",
+      "4.5.5.64",
+      "cp36-abi3-win_amd64",
+      35383167,
+      "408d5332550287aa797fd06bef47b2dfed163c6787668cc82ef9123a9484b56a"
+    ],
+    "opencv5": [
+      "opencv-python-headless",
+      "5.0.0.93",
+      "cp37-abi3-win_amd64",
+      43825962,
+      "829717b6a95554f273e49e357cee3b3a2a26b6f4842fbc1bed2b45bdd8f87e0e"
+    ]
+  }
+}
