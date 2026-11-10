@@ -1,0 +1,81 @@
+{
+  "AP_evaluated": false,
+  "actual_parameter_or_buffer_changes": 472,
+  "actual_python_peak_rss_bytes": 10419064832,
+  "author_backbone_sha256": "a37a27dfab3fe923ee4d1095f2f84c48d67af836d4dab2596eadeba6a1213408",
+  "backbone_tensors_loaded": 210,
+  "changed_trainable_class_tensors": 1,
+  "changed_trainable_mask_tensors": 6,
+  "checkpoint_epoch": 1,
+  "checkpoint_files": {
+    ".pdema": {
+      "bytes": 58575075,
+      "sha256": "d7ae77862b50d996ec237658e79c875ac18404df7778c4ba1fd8d0165f1cbcc0"
+    },
+    ".pdopt": {
+      "bytes": 116693731,
+      "sha256": "4e952df831997461b2e07681fe28d492bbc49510e5f54e310c868046b667284b"
+    },
+    ".pdparams": {
+      "bytes": 58566677,
+      "sha256": "86c3adbfd61c85f8ed0c5b9568ea829e5b62e57cfd210a03ba78ea5bfe8a4ebd"
+    }
+  },
+  "class_slots": [
+    0
+  ],
+  "completed_epochs": 1,
+  "counts": {
+    "ema": 2,
+    "lr": 2,
+    "optimizer": 2
+  },
+  "elapsed_seconds": 124.37760179117322,
+  "ema_updates_from_native_counter": 2,
+  "fit_manifest_sha256": "8a0099846bdb530f2250d8c8473014b934a9107bc82f6fd053074b71a77a746a",
+  "fit_visits": 8,
+  "lr_steps_since_initial": 2,
+  "model_state_tensors": 646,
+  "native_attention_modules": [
+    "ppdet.modeling.transformers.utils"
+  ],
+  "official_DEV_opened": false,
+  "official_TEST_opened": false,
+  "online_ema_different_tensors": 557,
+  "optimizer_state_fields": 1470,
+  "optimizer_tensor_fields": 1468,
+  "protocol_commit": "799d164213d1a08c2975d2d2e1b710bcd107209b",
+  "runtime": {
+    "numpy": "1.26.4",
+    "opencv-python": "4.5.5.64",
+    "paddlepaddle": "2.6.2",
+    "pycocotools": "2.0.8"
+  },
+  "seed": 20261111,
+  "status": "MASK_RTDETR_S_NATIVE_ARM_CPU_FIT8_TWO_UPDATE_TRAIN_QUALIFICATION_V1",
+  "train_batches": [
+    {
+      "empty_masks": 0,
+      "gt_rows": 10,
+      "loss": 256.946044921875,
+      "size": [
+        4,
+        3,
+        512,
+        512
+      ]
+    },
+    {
+      "empty_masks": 0,
+      "gt_rows": 5,
+      "loss": 255.1535186767578,
+      "size": [
+        4,
+        3,
+        672,
+        672
+      ]
+    }
+  ],
+  "upstream_commit": "b25522a0f4bde8c80603f3ba5e3472059972e3b5"
+}
