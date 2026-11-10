@@ -126,3 +126,11 @@ RCShip-1.0 可用于距离压缩域的框检测对照。其原论文采用方位
 原论文优先保留空间船体轮廓任务。先用 OpenSAR Insight 的框和成像参数试验空间候选到局部回波窗口的配准。候选在所有比较臂共用，窗口由候选与传感器几何决定，目标真值只进入训练监督和独立评分。先在按采集隔离的验证侧核对配准误差、时间和频率标定，再决定是否进入分割比较。分割阶段需要同景复数数据、原生空间实例掩膜和足够多独立场景。最小模型是空间候选加局部多普勒特征，在原空间格点细化轮廓。对照包括空间单支、常规物理重聚焦、真实配对融合和同容量错配融合。错配控制在相近传感器、距离与杂波条件下打乱配对，排除同一实例及重叠窗口。固定原空间候选与分数的几何复算可进一步区分轮廓改进和候选变化。以整集及事先定义的运动失焦子组的 AP75/AP90、匹配轮廓质量及代价判断效用。已有多普勒融合和未聚焦 RD 检测先例，待检验的新增主张是同景回波信息对空间轮廓边界的独立收益。 [OpenSAR Insight 发布](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset/tree/e90a0c0465cfb8484b4f356ef968d976054f453a) · [D-MFPN](https://doi.org/10.3390/rs15030626) · [DLR 未聚焦 RD 检测](https://elib.dlr.de/189078/)
 
 海面 RD 的独立探索优先用 KuRALS-PD 验证数据接入与定位，并以独立同步航迹数据补充检验。只有经核对的背景与独立参考位置才支持固定虚警下的检出率，近零速度目标和同格目标分列。发布矩形只支持相应弱标签的性能表述。已有一份 OpenSAR Insight 训练复数数组通过 FFT 数值核验。RD 模型训练、真实定位收益与空间分割收益均待实测。 [KuRALS 原文](https://doi.org/10.3390/rs18010173) · [MTDSP](https://doi.org/10.12000/JR25001)
+
+## 同源多普勒分支的信号来源对照
+
+同一聚焦幅度图的频谱可以改变网络的表示和归纳偏置。由于频谱由该幅度图确定，它没有增加输入观测。利用同景复数数据时，仍应记录频域分支来自聚焦 SLC 还是成像前复数回波，以及它保留的相位、慢时间或方位频率信息。先验主张是这些信息有助于识别运动失焦下的轮廓误差，效用与机理均待实验。使用同次采集的两种表示时，记为同源多表示融合。 [Sentinel-1 聚焦流程](https://sentiwiki.copernicus.eu/web/s1-processing) · [多普勒特征船舶检测先例](https://www.mdpi.com/2072-4292/15/3/626)
+
+先用已核对的空间候选关联局部回波，在统一空间网格上比较空间单支、常规重聚焦、真实配对融合和同容量错配融合。若真实配对有收益，再加等容量的幅度图派生频谱对照，并在同景复数 SLC 可用时加复数空间分支。两个补充对照分别检验空间幅度的重新表达和复数信息本身能否解释收益。输入谱源、配准容差、候选、失焦分组和评价规则在留出场景评分前固定。OpenSAR Insight 的公开框可用来做关联试点，独立实例掩膜及同景元数据核验通过后才进入轮廓实验。Copernicus 另发布 65 个未做星上 FDBAQ 压缩的 Sentinel-1C/D L0 产品，部分含船，适合作为工程数据候选。该发布需 CDSE S3 访问，逐船标签资格待核。 [OpenSAR Insight 数据](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset) · [Copernicus 数据公告](https://sentinels.copernicus.eu/web/sentinel/-/copernicus-sentinel-1-sar-dataset-acquired-without-onboard-fdbaq-compression)
+
+KuRALS-PD 报告的 203 帧是海面场景总数，需从归档核对船艇帧、非船帧及目标 ID。作者代码还包含海面 UAV 路径。海面分支按目标选择波束，两条海面序列只作所选波束内的定位试点。要衡量全域检出率与虚警，需具备可独立判断漏检及虚警的未筛选场景和真值。 [KuRALS 原文](https://www.mdpi.com/2072-4292/18/1/173) · [作者处理源码](https://github.com/lihua199710/KuRALS/blob/abc63a685402178568c29031a3e65c8a95e98109/kurals/dataset_process/kuralspd_processing.py)
