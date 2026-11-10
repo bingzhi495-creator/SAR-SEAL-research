@@ -335,3 +335,4 @@ DGX CPU 审计 SSDD 的 741 个历史 FIT 视图及 HRSID 的 456 个历史 FIT 
 
 训练接入复用原生 RF-DETR 的 FIT 数据构建、初始化、AdamW、EMA 与旧窗口控制。新绑定在原生空掩膜保护前后核对实际批次掩膜，另为每个选臂记录已消费掩膜流的独立摘要，共同行账本继续用于跨臂逐项对照。新入口只接受资格阶段、种子 5202 与两种明确的采样模式，锁定旧训练引擎和新增依赖。Windows 固定环境下 34 项测试通过。实际资格须先完成每臂 32 次访问、8 次 AdamW 和 EMA 更新，再独立复核原生后处理摘要。现有 Aᶜ/Bᶜ 训练仍占用 Windows 科学执行所有权，SSDD GPU 短训另受 DGX 可用显存门槛约束。 [批次绑定](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_binding.py) · [资格入口](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_qualification.py)
 
+独立短训验收器已就绪。它用原生批次记录逐次重算两条选臂掩膜流，核对 32 次真实访问、8 次 AdamW 和 EMA、相同学习率轨迹与已关闭的执行回执。资格要求直缩存在非空一致样本，裁剪共同掩膜确有变化。6 项针对性测试与 12 项既有回归通过，覆盖错误掩膜摘要、不同共同行账本、重复终止回执与旧协议复用。真实短训回执和正式 E24 准入待完成。 [独立验收器](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_short_receipt.py)
