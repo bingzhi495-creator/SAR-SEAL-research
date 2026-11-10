@@ -110,3 +110,11 @@ Hammer 等发布的 OSSDD 来自 41 个 Sentinel-1 GRD 场景，提供 VV、VH �
 首次直连请求超时。Windows HTTP 客户端成功取得精确范围后，最初的简化成员解析不符合归档布局，改用标准 tar 成员解析后完成。模型执行及 SAR 图像像素解码均为零。仅审计训练分片。原始影像、框和掩膜在内存处理，提交只含审计代码与聚合结果。OSSDD 适用于另行锁定的检测或框派生掩膜诊断。船体轮廓的跨库主验证优先推进 PSeg-SSDD 同预算重训。 [作者数据许可与格式](https://huggingface.co/datasets/sylviaHoch/OpenSARShip-Ship-Detection-Dataset/blob/46cee3d9e4ff8b4716e2ea5bbe2934e13cb36460/README.md)
 
 MariSat 作者列出的图像来自 Google Maps 卫星图与航拍图，流程使用光学色彩过滤和人工多边形修正。可作为光学形状的补充对照，跨 SAR 结论继续依赖 SAR 采集与实例标注。 [MariSat 原文](https://arxiv.org/html/2608.29852v1#S2.SS1)
+
+## SARShip-4i 及实例外测资格复核
+
+SARShip-4i 作者将自采实测影像的人工像素标注与 HRSID 多边形派生标注合在一起，报告 139 幅源图和 6,961 个 512×512 裁块。固定作者加载器逐图读取一张 RGB 掩膜，将标签映射后取船舶类二值前景。可用的加载与评分接口属于语义分割。作者专利前版将青岛、香港、上海、伊斯坦布尔四幅自采原图和 HRSID 分开列出，前版总源图数为 140。正式论文为 139，且同一城市在表中可含不同传感器和采集条件。单凭城市名无法判定成员所属来源。需要稳定原图标识和真实影像、标签清单后，再评估自采组能否用于独立语义轮廓诊断。 [原论文第 4.1 节](https://www.mdpi.com/2072-4292/15/13/3304#sec4dot1-remotesensing-15-03304) · [固定作者加载器](https://github.com/imiuupload/MSG-FN/blob/2e2a35eca3a6d38ba017250484540875c6c162b5/dataset.py#L58-L112) · [作者专利说明](https://patents.google.com/patent/CN113610097B/zh)
+
+作者 Google Drive 的匿名查看和预览接口返回 401，标准下载入口转到登录页面。尚无可核对的归档清单、范围读取或逐船身份，未取得训练或测试成员。Instance-RSDD 的作者分享能打开提取码页面，尚无可核验的训练标注字节。DRSNet 论文使用 Instance-RSDD，作者与发布论文部分重合，本轮未找到独立的作者托管归档。另一个名为 RSDD 的公开版本仅标示 25 张训练图，缺少与 3,555 图作者发布版的对应证据。正式跨库优先使用 PSeg-SSDD。 [SARShip-4i 作者数据入口](https://drive.google.com/file/d/15Q-5A_GQBAQTOp9rHXedbU7S1Dti-tR9/view?usp=share_link) · [Instance-RSDD 作者入口](https://github.com/XIDIAN212Lab/SRNet/blob/master/readme.md#the-instance-rsdd-dataset) · [DRSNet 原文](https://doi.org/10.1109/LGRS.2024.3420251) · [25 图版本说明](https://universe.roboflow.com/fzu-kmle9/rsdd-3cmje/dataset/1)
+
+Instance-RSDD 作者较早提交另有一个分享。使用作者公布的提取方式，匿名浏览器可打开历史文件夹，训练标注清单仍为同名 1,933,970 字节，服务方提供的文件标识也与当前分享一致。历史分享通过正常界面生成训练标注的下载链接，但同一会话的有界字节请求在官方存储返回 403，无有效 Content-Range 或可验证 COCO 字节。作者历史入口与当前入口均保留，独立实例掩膜资格仍待实际训练标注与来源授权。 [作者历史提交](https://github.com/XIDIAN212Lab/SRNet/blob/e7b3390b9248445a14e4b491e067eb51a48fdd63/readme.md#the-instance-rsdd-dataset)
