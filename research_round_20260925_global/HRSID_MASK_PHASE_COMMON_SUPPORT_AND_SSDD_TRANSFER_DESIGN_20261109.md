@@ -539,3 +539,11 @@ B/C 的配对评分与几何验收适配器另过 5 项合成测试。它先核�
 DGX 现场读取的 CUDA 即时可用量约 5.36 GiB。对自有且已关闭的 187 份旧 DEV 输入、32 份已验收的历史中间档案和 6 份冻结迁移检查点副本逐文件核对归属、字节长度、原关闭和页驻留。两个旧档案组共约 35.3 GB，已无驻留页。六份冻结迁移副本共约 2.48 GiB 驻留，未看到当前所有者打开或映射。即使这些页全部释放，也不足以达到原 CUDA 12 GiB 门槛。没有发出缓存释放建议，也没有操作其他进程。DGX 宿主内存门槛与 CUDA 即时空闲分开核对。 [历史独立定向缓存观察](U57_CUDA_INIT_FAILURE_AND_TARGETED_CACHE_OBSERVATION_20261021.md) · [NVIDIA Spark 内存说明](https://docs.nvidia.com/dgx/dgx-spark/known-issues.html#guidance-for-reporting-memory-resources-with-unified-memory-architecture)
 
 Windows 备选保留原 SSDD FIT741、原 COCO Q100、同两臂采样和固定整数 DEV187 协议，独立锁定 Windows 平台与运行时。CPU 回放复用原生 JPEG 解码、COCO 目标生成和固定的每图一视图规则，独立核对 741 逻辑图、1,661 原标注、原 FIT 索引和 100 查询容量。先取得正常关闭并独立验收的 Windows CPU 回放，GPU 资格还需原 HRSID 作业交接、当前机器资源与新两臂的原进程退出。每臂真实短窗仍为 32 次访问、8 次 AdamW 和 EMA，后续 E24 各 17,856 次访问及 4,464 次更新。Windows 本地配方与 DGX 先前锁定配方分开记录，不混合硬件内配对。 [原 FIT 入口核验](results/SSDD_PHASE_FIT741_ONLY_STAGE_ACTUAL_SAFE_20261110.json)
+
+Windows 独立入口已通过 5 项合成测试及一次仅加载依赖的真实 CPU 预检。预先固定 CPython 3.10.13、Torch 与 torchvision、JPEG 与 COCO 编解码模块、原 FIT741 包和 Windows 依赖摘要。每图固定种子为 5311 加索引，与 DGX 旧回放一致。每次仅运行一个 CPU 线程，核对原始图像、目标和回放后布局。原进程关闭、作用域、计数与几何差异另行报告。短训入口独立要求原生单 GPU BF16、Windows 宿主可用至少 16 GiB、CUDA 即时可用至少 12 GiB、分配上限 6 GiB、工作进程 RSS 上限 10 GiB、每臂最长 300 秒。宿主上限依据已经关闭的 Windows 资格保护来源。 [Windows 回放与短训入口](code/SSDD_MASK_PHASE_TRANSFER_20261110/ssdd_windows_phase_entry.py) · [测试](code/SSDD_MASK_PHASE_TRANSFER_20261110/test_ssdd_windows_phase_entry.py)
+
+## 中心臂原始进程中断
+
+2026-11-10 15:15 UTC 后重新核对，原配对协调器、中心 B 所有者及原工作进程都已不在。工作日志最后写入于 12:12:57 UTC，最后进度为第 22 轮、16,100 次优化器更新。独立核对 21 个完整轮次的原日志与训练账本，确认 61,740 次已完成轮次的访问，以及各 15,435 次 AdamW 和 EMA 更新。共同行账本有 64,576 条完整访问记录，第 22 轮保留 2,836 条访问。第 22 轮的账本与进度日志有不同写入时点，部分记录无法证明相应优化器更新完成。共同账本 SHA-256 为 `30974a1e5855c276f807ea0179ccc97992ddcec04eb1b79bba96f884cdbec198`。
+
+只有第 1 和第 8 轮归档，缺少原进程退出回执、E24 档案和最终训练汇总。主机启动时间早于该任务，现有记录无法确认中断原因。保留这次运行及其部分预算。原训练入口从新初始化开始，旧档案没有已核验的连续重启轨迹，E8 因此不能替代原定的 E24 配对。恢复候选为保留已验收的原生 A，在独立目录从相同 COCO 初值、种子和配方重新运行中心 B，然后独立核对两臂全部账本及各自原关闭证据。实际新启动和固定 DEV705 评分仍待准入。
