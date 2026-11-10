@@ -5,7 +5,8 @@
 ## 当前状态（2026-11-09）
 
 - [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。
-- [HRSID E24 冻结模型到 SSDD DEV187 的跨库诊断](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md)。已完成 4/6 臂的原始导出，首组通过独立闭合读回。最后一组正在推理，指标待六臂评分。
+- [HRSID E24 冻结模型到 SSDD DEV187 的跨库诊断](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md)。已完成 5/6 臂的原始导出，末臂运行中。首组已独立闭合，跨库指标待六臂评分。
+- [Schwegmann 中心船散射掩膜辅助验证](research_round_20260925_global/HRSID_TO_SCHWEGMANN_CENTRAL_SHIP_PROTOCOL_20261110.md)。已核验公开原始文件和 16 个采集组，固定 32 张图，等待六臂同协议推理。
 - [冻结模型的点监督分配试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#冻结模型点监督诊断预锁)。固定八张源图上的分歧富集为同配额随机期望的 1.87 倍。随后同预算 8 次原生投影更新的轮廓指标未达到晋级门槛。
 - [HRSID 训练标签的多边形优先对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#hrsid-fit-only-多边形优先对照)。456 个固定训练视图已完成。核心裁剪中单次中心相对逐步中心在两种参考下提升 +6.45、+6.27 个几何 IoU 点。模型效用待同预算实测。
 - [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md)。已验证一份 OpenSAR Insight 训练复数样本可接入方位 FFT，并核对 Maya4 成像链入口。论文候选试验以同景 RD 辅助空间轮廓，海面 RD 船艇定位单独评价。真实 RD 模型效用待实测。
