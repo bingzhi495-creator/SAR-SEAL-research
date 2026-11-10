@@ -47,6 +47,12 @@ Instance-RSDD 作者报告从 RSDD 选择 3,555 幅真实 SAR 图逐船标注像
 
 `annotation_coco` 的清单列出 `train.json` 1,933,970 字节及 `test.json` 540,834 字节。只选择训练标注尝试普通下载，服务要求登录，未取得训练标注字节。测试标注只核对清单，未打开。现有证据可确认作者分享入口与文件名，不能验证 COCO 字段、逐船多边形、图像对应或独立性。 [作者发布说明](https://github.com/XIDIAN212Lab/SRNet/blob/master/readme.md#the-instance-rsdd-dataset)
 
+### Instance-RSDD 加载器与母景映射核对
+
+固定作者实现按类别名读取 `ship`，保留 COCO 的图像文件名和实例 `segmentation`。训练旋转框由掩膜多边形顶点的最小面积矩形推导，长宽各加 2 像素。作者加载器支持 COCO `segm` 评价，并采用不同于本项目的最大候选数。该实现核对确认了预期文件接口。标注档案实际字节与许可仍待取得。 [固定作者加载器](https://github.com/XIDIAN212Lab/SRNet/blob/2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6/mmrotate/datasets/RSDD.py#L88-L136) · [作者训练和评价配置](https://github.com/XIDIAN212Lab/SRNet/blob/2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6/configs/_base_/datasets/RSDD.py#L40-L60)
+
+原始 RSDD 论文第 2.2 节定义 512×512 裁块的源图编号、行和列命名，附表记录来源传感器、日期和极化。取得 Instance-RSDD 训练标注后，应先用 `file_name` 实测能否精确连接到原始裁块，再决定按母景分组以及是否可单列 GF-3。原始切片经过检测预筛与人工校正，评价需要保留这一总体选择条件。新一次匿名核对中，作者分享列出了 1,933,970 字节的训练标注和 540,834 字节的测试标注。仅尝试训练文件，存储请求返回 HTTP 403 和过期错误，随后出现登录提示。未取得标注字节。 [原始数据论文第 2.2 节及附表](https://doi.org/10.12000/JR22007) · [作者发布入口](https://github.com/XIDIAN212Lab/SRNet/blob/master/readme.md#the-instance-rsdd-dataset)
+
 ## 2026-11-10 独立外部数据入口与标签边界
 
 | 来源 | 已核对内容 | 可采用的评价范围 |
