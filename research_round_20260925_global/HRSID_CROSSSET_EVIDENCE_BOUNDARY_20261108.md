@@ -100,3 +100,13 @@ Copernicus 和 ASF 分别检索同一卫星的 IW GRDH 产品，候选时间窗�
 作者 COCO 仅有一个显式命名的类别 wake，编号为 0。两条 COCO 尾迹在 512×512 原栅格上与 TXT 类别 1 的两条轮廓一一相同，栅格 IoU 各 1.000。两条 COCO 尾迹与 TXT 类别 0 的两条轮廓均无交叠。结合作者对船体与尾迹多边形的描述，证据支持将 TXT 类别 0 作为待核船体候选。COCO 和 TXT 的类别编号需各自解读。 [作者会议方法](https://lps25.esa.int/lps25-presentations/poster/Advancing%20Maritime%20Surveillance%20Integrated%20AI-Based%20Wake%20Detection%20in%20Earth.pdf)
 
 同裁块的单条 AIS 记录与文件名时间差为 0 秒，两者未显式注明时区。采用 EPSG:4326 头部边界近似北向像元映射，未校正船舶运动。该点落入一条已知尾迹，离最近 TXT 类别 0 多边形约 65.6 像素。现有 AIS 观测不能独立确认该类别的船体语义。作者文献用 AIS 构建和验证样本，并研究 SAR 船体方位向位移。仍缺明确 TXT 类别表、船体绘制及图内所有船舶的覆盖规则。所获证据只开放已标注目标的质检与潜在辅助评价，整图 AP 资格继续待核。18 个原预留外测采集家族未参与。 [作者 2026 正刊](https://doi.org/10.1016/j.apor.2026.105245)
+
+## OSSDD 训练分片的实际标签读回
+
+Hammer 等发布的 OSSDD 来自 41 个 Sentinel-1 GRD 场景，提供 VV、VH 幅度、水平框、旋转框和二值掩膜。作者描述按源场景分组。第 4.1 节说明，基于候选连通分量拟合旋转框后生成二值掩膜。第 5 节说明验证和测试裁剪保留被截断的二值掩膜与水平框，同时删除有顶点出界的旋转框。作者正文与统计表的部分样本计数存在差异。其检测 AP 的 IoU 阈值范围为 0.10–0.95，论文分数与本项目 COCO mask AP 分开。 [作者论文](https://arxiv.org/pdf/2608.01963) · [固定数据版本](https://huggingface.co/datasets/sylviaHoch/OpenSARShip-Ship-Detection-Dataset/tree/46cee3d9e4ff8b4716e2ea5bbe2934e13cb36460)
+
+固定版本首个训练分片的前 16 MiB 通过 HTTP 206 读回。得到三个完整训练样本和一个不完整前缀，三个完整样本各有 700×700 二值掩膜，框记录共四条，三张的水平框与旋转框 ID 集合一致。对发布旋转框四角求并集，以三个明确的栅格规则重建标签。整数坐标中心、半格坐标中心、Pillow 多边形填充的逐图平均 IoU 依次为 0.7478、0.8443、0.7503，差异像素合计分别为 237、137、241。三个规则均无逐值相同的样本。三张图用于发布格式核验，不能估计全数据集的栅格差异分布。缺作者实际栅格生成实现及坐标精度说明，偏差来源待核。 [复现代码](code/OSSDD_TRAIN_LABEL_AUDIT_20261110/ossdd_train_prefix_label_audit.py) · [实测汇总](results/OSSDD_TRAIN_PREFIX_LABEL_REPRESENTATION_ACTUAL_SAFE_20261110.json)
+
+首次直连请求超时。Windows HTTP 客户端成功取得精确范围后，最初的简化成员解析不符合归档布局，改用标准 tar 成员解析后完成。模型执行及 SAR 图像像素解码均为零。仅审计训练分片。原始影像、框和掩膜在内存处理，提交只含审计代码与聚合结果。OSSDD 适用于另行锁定的检测或框派生掩膜诊断。船体轮廓的跨库主验证优先推进 PSeg-SSDD 同预算重训。 [作者数据许可与格式](https://huggingface.co/datasets/sylviaHoch/OpenSARShip-Ship-Detection-Dataset/blob/46cee3d9e4ff8b4716e2ea5bbe2934e13cb36460/README.md)
+
+MariSat 作者列出的图像来自 Google Maps 卫星图与航拍图，流程使用光学色彩过滤和人工多边形修正。可作为光学形状的补充对照，跨 SAR 结论继续依赖 SAR 采集与实例标注。 [MariSat 原文](https://arxiv.org/html/2608.29852v1#S2.SS1)

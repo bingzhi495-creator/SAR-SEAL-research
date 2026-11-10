@@ -555,3 +555,11 @@ Windows 独立入口已通过 5 项合成测试及一次仅加载依赖的真实
 ## SSDD Windows CPU 回放实测
 
 原始工作进程正常退出，耗时 68.648 秒。独立读回和 GPU 短窗入口的回放验收函数均通过。使用原 FIT741 与固定视图种子，354 个直缩、387 个裁剪，两种规则保留相同的 1,445 条非空监督。Windows 与 DGX 两份结果的 21 个共享字段数值一致。小目标裁剪组共 495 行，相对单次复合参考的几何 IoU 为 0.8449→0.9425，绝对纵向偏差为 0.5821→0.1225 原图像素。共同行参考用于核验训练标签几何。模型前向、优化器更新均为零，未执行 DEV、TEST 或 AP 评分。Windows 真实 GPU 短窗仍需等 HRSID 资源交接并执行独立原始退出验收。 [Windows 回放实测](results/SSDD_FIT741_WINDOWS_CPU_REPLAY_ACTUAL_SAFE_20261110.json) · [DGX 回放实测](results/SSDD_FIT741_DGX_CPU_REPLAY_ACTUAL_SAFE_20261110.json)
+
+## 重跑首轮与机制先例复核
+
+新中心臂第 1 轮闭合日志记录 2,940 次访问和各 735 次 AdamW 与 EMA 更新。543 个 AdamW 参数时钟均为 735，第 2 轮累计更新已观察到 900 次。原执行仍在运行。新旧协调器的验收适配目前只通过合成测试。真实 P240 科学验收须等待新中心臂全部档案和原始退出回执，固定 DEV705 评价随后执行。
+
+DGX 再次实测 GB10 单卡具备原生 BF16，CUDA 即时可用 4,517,445,632 字节，宿主可用 57,530,306,560 字节。SSDD 原协议要求 CUDA 可用至少 12 GiB，本次未启动 SSDD GPU 短窗。跨库模型验证仍需原资格通过后进行。
+
+Detectron2 v0.6 的实例多边形分支将坐标平移缩放到 RoI 网格，再栅格化一次。FCOS 的 `center sampling` 指按框中心邻域分配正样本。本文采用像素中心对齐掩膜重采样的措辞。与 MONAI 一次复合重采样、MatchDown 粗网格实例存活、RSI4EO 的 HRSID 精修偏移修正分开报告。当前可证伪的主张是固定真实增强、训练实例、初始化和训练量后，复合采样偏差能否解释高 IoU 实例收益。直接缩放 B/C 一致路径可检验零效应，裁剪 B/C 差异路径用于测量复合变换作用。真实长训及跨库效用仍待验。 [Detectron2 v0.6](https://github.com/facebookresearch/detectron2/blob/v0.6/detectron2/structures/masks.py) · [FCOS 实现](https://github.com/tianzhi0549/FCOS/blob/master/fcos_core/modeling/rpn/fcos/loss.py#L166-L173) · [MONAI](https://doi.org/10.1016/j.cmpb.2024.108422) · [MatchDown](https://arxiv.org/html/2610.39880v1#S4.SS3) · [RSI4EO](https://arxiv.org/html/2610.18845v2#A1.SS3)
