@@ -16,7 +16,6 @@ import sys
 
 PAIRS = 8
 PILOT_SHA = "0b9726556a27dcca40ca9571390a8d04bb6c0dea7f4d982c29235283791858d9"
-BASE_SHA = "1ce0eaa2106fe52452129fad534d0fc11bb8ad5fc4611f70858dbdf6f87a5ec3"
 CHECKPOINT_SHA = "198bc09cb93019e719342914965dffb31160bb284003a17b334f998c1f540c56"
 TRAIN_PROTOCOL = "d66baf3c57fafdba4242ad1b55e08cf76bfd77f7"
 EXTRA_RUNTIME = {
@@ -152,13 +151,33 @@ def analysis_summary(rows):
                                   and crop["phase_over_expected"] >= 1.25 and crop["positive_images"] >= 5))
 
 
+def accepted_phase_evaluator(code, receipts):
+    phase = module(code / "HRSID_MASK_PHASE_E24_DEV705_20261109/hrsid_mask_phase_dev705.py",
+                   "488f9ed73943cc842162c0d45822b6bac42aecabf37c8ecf0d4dde8e96c0959b", "_p252_frozen_phase")
+    arm = phase.read_pair(
+        receipts / "PAIR_READY_PRIVATE.json",
+        "3e8720e8fad83d6a4b313ee8b38e261cabb4f1a2a3eefe3a5e33e83d574ac1a1",
+        native_path=receipts / "native/ARM_E24_ACCEPTED_PRIVATE.json",
+        center_path=receipts / "center/ARM_E24_ACCEPTED_PRIVATE.json",
+        mode="native",
+    )
+    require(phase.TRAINING_PROTOCOL == TRAIN_PROTOCOL and arm["checkpoint_sha256"] == CHECKPOINT_SHA,
+            "Exact accepted phase checkpoint and training protocol required")
+    filtered, base = phase.load_evaluator(
+        code / "HRSID_COCO_E24_FILTERED_DEV705_NATIVE_EVAL_20261109/hrsid_native_dev705_filtered.py",
+        code / "HRSID_COCO_E24_DEV705_NATIVE_EVAL_20261109/hrsid_native_dev705.py",
+    )
+    phase.bind_evaluator(base, filtered, arm)
+    return base
+
+
 def run(args):
     begin = perf_counter()
     require(sys.version_info[:3] == (3, 10, 13) and sys.flags.isolated == sys.flags.utf8_mode == 1
             and sys.dont_write_bytecode and os.environ.get("CUDA_VISIBLE_DEVICES") == "-1",
             "Exact isolated Windows CPU profile required")
     code = args.code
-    for path in (code, args.bundle, args.checkpoint, args.shapely_site):
+    for path in (code, args.bundle, args.checkpoint, args.shapely_site, args.receipts):
         require(path.is_absolute() and path.resolve(strict=True) == path, "Canonical sealed inputs required")
     require(args.output.is_absolute() and args.output.parent.resolve(strict=True) == args.output.parent
             and not args.output.exists() and not args.output.is_symlink(), "Fresh output required")
@@ -174,7 +193,7 @@ def run(args):
     from rfdetr.utilities.tensors import nested_tensor_from_tensor_list
     from vector_label_geometry import UnsupportedPolygon, polygon_raster, polygon_rings
 
-    base = module(code / "HRSID_COCO_E24_DEV705_NATIVE_EVAL_20261109/hrsid_native_dev705.py", BASE_SHA, "_p252_native_model")
+    base = accepted_phase_evaluator(code, args.receipts)
     base.RECIPE = code.parent / "configs/RFDETR_SEG_NANO_BASELINE_576_E100_20261107.yaml"
     base.FIT_AUDIT = code / "HRSID_OFFICIAL_PNG_FIT_AUDIT_20261109/hrsid_png_fit_audit.py"
     for name, expected in dict(base.MODEL_SOURCES, **EXTRA_RUNTIME).items():
@@ -295,6 +314,6 @@ def run(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__, allow_abbrev=False)
-    for name in ("code", "bundle", "checkpoint", "shapely-site", "output"):
+    for name in ("code", "bundle", "checkpoint", "shapely-site", "receipts", "output"):
         parser.add_argument("--"+name, type=Path, required=True)
     run(parser.parse_args())
