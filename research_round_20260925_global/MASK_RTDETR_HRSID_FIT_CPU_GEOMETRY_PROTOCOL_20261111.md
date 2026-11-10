@@ -29,3 +29,5 @@
 ## 复现入口
 
 在独立 CPU 环境中固定 Python 3.10、NumPy 1.26.4、OpenCV 4.5.5.64、pycocotools 2.0.8、Pillow 12.3.0、PyYAML 6.0.3。将官方三个源文件下载到单独目录，保留文件名。源码加载时逐一核对摘要。使用已授权取得的相同封存 FIT114 子包，调用 `scope.zip_digest`、`scope.read_catalog` 和 `scope.make_plan`，以 `scope.canonical` 写出私有预锁清单。然后以 `CUDA_VISIBLE_DEVICES=-1` 和单线程运行 `replay.py --bundle <FIT114包> --plan <清单> --upstream <作者源码目录> --output <新结果> --protocol-commit <预锁提交> --plan-sha256 <清单摘要>`。合成测试读取同代码目录下的 `UPSTREAM`。数据、原始清单与外部作者代码未随结果发布。 [回放代码和测试](code/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_20261111/) · [作者算子](https://github.com/PaddlePaddle/PaddleDetection/blob/b25522a0f4bde8c80603f3ba5e3472059972e3b5/ppdet/data/transform/operators.py) · [作者批次算子](https://github.com/PaddlePaddle/PaddleDetection/blob/b25522a0f4bde8c80603f3ba5e3472059972e3b5/ppdet/data/transform/batch_operators.py)
+
+[同视图的原始多边形参考复核](MASK_RTDETR_HRSID_FIT_POLYGON_AND_SUPPORT_PROTOCOL_20261111.md#实际结果)保留方向。连续多边形 IoU 提高 6.874 点，纵向绝对质心误差减少 0.424 像素。三条新增空行仍有可见面积，当前二值输出网格下各自最高连续 IoU 为 0.289、0.344、0.335。

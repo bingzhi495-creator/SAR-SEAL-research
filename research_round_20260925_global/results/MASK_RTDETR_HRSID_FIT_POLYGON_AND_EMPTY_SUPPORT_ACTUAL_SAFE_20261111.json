@@ -1,0 +1,226 @@
+{
+  "AP_evaluated": false,
+  "center_empty_batch_blocks": 1,
+  "center_empty_distinct_source_instances": 3,
+  "center_empty_source_groups": 1,
+  "code_source_sha256": {
+    "footprint.py": "060a9101ca428ed48d74648bd04b049a969b028f71bbaa0b3db6e56fe78967ff",
+    "paddle_geometry.py": "9508c2b1e852b0d0fb35c81e58399e162ae9d5fdda04b9c2f0d37b9cc4ab5240",
+    "replay.py": "58ffa34c705e9fdb295ae25ef596ecaabebf495c6695697ad6346d30839cc834",
+    "scope.py": "9ce6427b5123849a055874165af57fe913f48520f0e7d06e5c25c3a9ddd933c7",
+    "vector_label_geometry.py": "4877c48d38a03e58e97163381ba544df3c90a78dde85c9141085fa0b92da3b09",
+    "vector_population_math.py": "0821d2cc3b6ca793d33fdfe35b634f3678aad072fc55b86352fa2501e969fc7e"
+  },
+  "counts": {
+    "invalid_polygon": 2,
+    "old_small_rows": 581,
+    "positive_polygon": 579,
+    "witnessed_traces": 96
+  },
+  "direction_corroborates_raster": true,
+  "followup_protocol_commit": "ce6786d372744c9f6ab89cfc5e6077fbc44256b2",
+  "geos_version": "3.13.1",
+  "known_center_empty_cases": [
+    {
+      "cropped": true,
+      "image_nearest": true,
+      "native_pixel_count": 1,
+      "polygon": {
+        "area": 0.5819540106415699,
+        "contains_half_cell": false,
+        "highest_cell_coverage": 0.3542362916335495,
+        "positive_overlap_cells": 6,
+        "strict_polygon_center_cells": 0
+      },
+      "polygon_iou": {
+        "empty_center": 0.0,
+        "native": 0.05307074071171534,
+        "one_cell": 0.2885323606144316
+      },
+      "raster": {
+        "area": 0.525635880579486,
+        "contains_half_cell": false,
+        "highest_cell_coverage": 0.31463080327411,
+        "positive_overlap_cells": 4
+      },
+      "raster_empty_center_iou": 0.0,
+      "raster_native_iou": 0.04319416002922407,
+      "raster_one_cell_iou": 0.25980964834119785,
+      "rescue_pixel_in_stock_native": false
+    },
+    {
+      "cropped": true,
+      "image_nearest": true,
+      "native_pixel_count": 2,
+      "polygon": {
+        "area": 1.03249905113825,
+        "contains_half_cell": true,
+        "highest_cell_coverage": 0.5204660522339305,
+        "positive_overlap_cells": 6,
+        "strict_polygon_center_cells": 0
+      },
+      "polygon_iou": {
+        "empty_center": 0.0,
+        "native": 0.22285277986979743,
+        "one_cell": 0.3442160671169752
+      },
+      "raster": {
+        "area": 1.01372634111758,
+        "contains_half_cell": false,
+        "highest_cell_coverage": 0.4805101653525827,
+        "positive_overlap_cells": 6
+      },
+      "raster_empty_center_iou": 0.0,
+      "raster_native_iou": 0.1971575428819538,
+      "raster_one_cell_iou": 0.313400140794121,
+      "rescue_pixel_in_stock_native": true
+    },
+    {
+      "cropped": true,
+      "image_nearest": true,
+      "native_pixel_count": 1,
+      "polygon": {
+        "area": 0.8823173709726693,
+        "contains_half_cell": false,
+        "highest_cell_coverage": 0.3821181458167555,
+        "positive_overlap_cells": 4,
+        "strict_polygon_center_cells": 0
+      },
+      "polygon_iou": {
+        "empty_center": 0.0,
+        "native": 0.03779725134158055,
+        "one_cell": 0.254711600572279
+      },
+      "raster": {
+        "area": 0.9010900809934045,
+        "contains_half_cell": false,
+        "highest_cell_coverage": 0.40683065861745477,
+        "positive_overlap_cells": 4
+      },
+      "raster_empty_center_iou": 0.0,
+      "raster_native_iou": 0.03405835409862539,
+      "raster_one_cell_iou": 0.2722624013777684,
+      "rescue_pixel_in_stock_native": false
+    }
+  ],
+  "leave_one_fixed_batch_block": [
+    {
+      "block": 1,
+      "polygon_iou_gain": 0.06654922990993783,
+      "valid_polygon_groups": 20,
+      "vertical_abs_improvement_px": 0.4512226814184582
+    },
+    {
+      "block": 2,
+      "polygon_iou_gain": 0.07103093644024736,
+      "valid_polygon_groups": 20,
+      "vertical_abs_improvement_px": 0.4452013755918949
+    },
+    {
+      "block": 3,
+      "polygon_iou_gain": 0.0719937707473913,
+      "valid_polygon_groups": 20,
+      "vertical_abs_improvement_px": 0.4458406780220175
+    },
+    {
+      "block": 4,
+      "polygon_iou_gain": 0.06816113715394702,
+      "valid_polygon_groups": 20,
+      "vertical_abs_improvement_px": 0.4034503263069188
+    },
+    {
+      "block": 5,
+      "polygon_iou_gain": 0.07096899055968814,
+      "valid_polygon_groups": 20,
+      "vertical_abs_improvement_px": 0.4306615181990979
+    },
+    {
+      "block": 6,
+      "polygon_iou_gain": 0.06376377531290359,
+      "valid_polygon_groups": 20,
+      "vertical_abs_improvement_px": 0.36794872260361333
+    }
+  ],
+  "model_executed": false,
+  "official_DEV_opened": false,
+  "official_TEST_opened": false,
+  "optimizer_updates": 0,
+  "original_raster_replay_exact_except_elapsed": true,
+  "original_raster_sha256": "da102a21ac7a81316061e2812c97db5761a8cad1b4af21558e7481141c7bfb88",
+  "plan_sha256": "3d78297dd49a99be208a91f4bf45d2d56a5d0f1ae55b80328dbb4a42de6102ed",
+  "polygon_group_stats": {
+    "groups": 24,
+    "iou": {
+      "center": 0.8687870698007174,
+      "favorable_delta": 0.06874464002068588,
+      "groups": 24,
+      "interval95": [
+        0.05559297340767277,
+        0.08087131836012636
+      ],
+      "native": 0.8000424297800316,
+      "positive_groups": 24
+    },
+    "retain": {
+      "center": 0.9995993589743589,
+      "favorable_delta": -0.0004006410256410242,
+      "groups": 24,
+      "interval95": [
+        -0.0012019230769230727,
+        0.0
+      ],
+      "native": 1.0,
+      "positive_groups": 0
+    },
+    "support": {
+      "both": 576,
+      "native_only": 3
+    },
+    "x_absolute": {
+      "center": 0.27310011341825735,
+      "favorable_delta": 0.7135669968637602,
+      "groups": 24,
+      "interval95": [
+        0.5713807109870938,
+        0.8563931578374948
+      ],
+      "native": 0.9866671102820176,
+      "positive_groups": 23
+    },
+    "x_signed": {
+      "center": 0.02464844102968687,
+      "favorable_delta": -0.9578711980778815,
+      "groups": 24,
+      "interval95": [
+        -1.1205809396007684,
+        -0.7903403188216825
+      ],
+      "native": 0.9825196391075682,
+      "positive_groups": 0
+    },
+    "y_absolute": {
+      "center": 0.29358221307879534,
+      "favorable_delta": 0.42405421702366675,
+      "groups": 24,
+      "interval95": [
+        0.30263188354827164,
+        0.5508617729193053
+      ],
+      "native": 0.7176364301024621,
+      "positive_groups": 22
+    },
+    "y_signed": {
+      "center": -0.19990396783024167,
+      "favorable_delta": -0.9080145509584668,
+      "groups": 24,
+      "interval95": [
+        -1.0547568894729555,
+        -0.7651067334707891
+      ],
+      "native": 0.708110583128225,
+      "positive_groups": 0
+    }
+  },
+  "shapely_version": "2.1.2",
+  "status": "MASK_RTDETR_HRSID_FIT_POLYGON_AND_EMPTY_SUPPORT_COMPLETE_V1"
+}
