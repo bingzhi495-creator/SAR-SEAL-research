@@ -1,0 +1,909 @@
+{
+  "closure": {
+    "original_os_exit": 0,
+    "original_os_wait": true,
+    "peak_rss_bytes": 1015476224,
+    "resource_stop": false,
+    "seconds": 41.045724076917395,
+    "worker_closed": true
+  },
+  "mode": "footprint",
+  "protocol": "2652117144e7d2ad58d01658b983515ba164117a",
+  "result": {
+    "AP": false,
+    "DEV": false,
+    "FIT": true,
+    "TEST": false,
+    "cuda_initialized": false,
+    "exact_original_replay_aggregate": true,
+    "fit_index_sha256": "62966857c78cea1e3b060700c62a7b896942686c2e674d3eb09f516a92250bc1",
+    "forward_calls": 0,
+    "optimizer_updates": 0,
+    "oracle": "clipped_original_boolean_pixel_squares",
+    "ordered_fit_ids_sha256": "42b93cbf2424e1c1ffa45c9dc4b32c3537fca6fe3a224e81762fcc339276e4cd",
+    "platform": "Linux_aarch64_DGX_CPU",
+    "populations": {
+      "crop_other": {
+        "arms": {
+          "center": {
+            "abs_source_y_error": {
+              "count": 149,
+              "mean": 0.10197417834710887
+            },
+            "area_signed_error": {
+              "count": 149,
+              "mean": -0.9433637490010823
+            },
+            "fn": {
+              "count": 149,
+              "mean": 27.854025560659085
+            },
+            "fp": {
+              "count": 149,
+              "mean": 26.910661811658017
+            },
+            "iou": {
+              "count": 149,
+              "mean": 0.971269383197898
+            },
+            "nonempty": {
+              "count": 149,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 149,
+              "mean": 0.011077417539826056
+            }
+          },
+          "native": {
+            "abs_source_y_error": {
+              "count": 149,
+              "mean": 0.6425731723870777
+            },
+            "area_signed_error": {
+              "count": 149,
+              "mean": 0.04117305809750155
+            },
+            "fn": {
+              "count": 149,
+              "mean": 69.44165385384748
+            },
+            "fp": {
+              "count": 149,
+              "mean": 69.48282691194501
+            },
+            "iou": {
+              "count": 149,
+              "mean": 0.927710505006927
+            },
+            "nonempty": {
+              "count": 149,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 149,
+              "mean": 0.6381368808572363
+            }
+          },
+          "one_pass_center": {
+            "abs_source_y_error": {
+              "count": 149,
+              "mean": 0.04768865940550483
+            },
+            "area_signed_error": {
+              "count": 149,
+              "mean": -0.9411724907226443
+            },
+            "fn": {
+              "count": 149,
+              "mean": 18.018034021590715
+            },
+            "fp": {
+              "count": 149,
+              "mean": 17.07686153086807
+            },
+            "iou": {
+              "count": 149,
+              "mean": 0.9813748171528694
+            },
+            "nonempty": {
+              "count": 149,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 149,
+              "mean": -0.011102596659517839
+            }
+          }
+        },
+        "census": {
+          "crop_truncated": 50,
+          "original_edge": 0,
+          "positive_truth": 149,
+          "rows": 149,
+          "truth_empty": 0
+        },
+        "pairwise_iou": {
+          "center_vs_native_losses": 0,
+          "center_vs_native_ties": 0,
+          "center_vs_native_wins": 149,
+          "one_pass_vs_center_losses": 0,
+          "one_pass_vs_center_ties": 2,
+          "one_pass_vs_center_wins": 147
+        }
+      },
+      "crop_other_cropped_support": {
+        "arms": {
+          "center": {
+            "abs_source_y_error": {
+              "count": 50,
+              "mean": 0.11667444862095294
+            },
+            "area_signed_error": {
+              "count": 50,
+              "mean": 1.030969670021867
+            },
+            "fn": {
+              "count": 50,
+              "mean": 18.48700292032707
+            },
+            "fp": {
+              "count": 50,
+              "mean": 19.517972590348933
+            },
+            "iou": {
+              "count": 50,
+              "mean": 0.9705973801126281
+            },
+            "nonempty": {
+              "count": 50,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 50,
+              "mean": 0.05754864155472205
+            }
+          },
+          "native": {
+            "abs_source_y_error": {
+              "count": 50,
+              "mean": 0.6289228708069078
+            },
+            "area_signed_error": {
+              "count": 50,
+              "mean": 1.4423230999459562
+            },
+            "fn": {
+              "count": 50,
+              "mean": 49.67112340956076
+            },
+            "fp": {
+              "count": 50,
+              "mean": 51.11344650950672
+            },
+            "iou": {
+              "count": 50,
+              "mean": 0.9250747806952948
+            },
+            "nonempty": {
+              "count": 50,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 50,
+              "mean": 0.6157027220479807
+            }
+          },
+          "one_pass_center": {
+            "abs_source_y_error": {
+              "count": 50,
+              "mean": 0.060293804306811014
+            },
+            "area_signed_error": {
+              "count": 50,
+              "mean": -0.6530249897752478
+            },
+            "fn": {
+              "count": 50,
+              "mean": 12.7151007003708
+            },
+            "fp": {
+              "count": 50,
+              "mean": 12.062075710595558
+            },
+            "iou": {
+              "count": 50,
+              "mean": 0.9804489498304113
+            },
+            "nonempty": {
+              "count": 50,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 50,
+              "mean": -0.03380955849799193
+            }
+          }
+        },
+        "census": {
+          "crop_truncated": 50,
+          "original_edge": 0,
+          "positive_truth": 50,
+          "rows": 50,
+          "truth_empty": 0
+        },
+        "pairwise_iou": {
+          "center_vs_native_losses": 0,
+          "center_vs_native_ties": 0,
+          "center_vs_native_wins": 50,
+          "one_pass_vs_center_losses": 0,
+          "one_pass_vs_center_ties": 0,
+          "one_pass_vs_center_wins": 50
+        }
+      },
+      "crop_other_intact_support": {
+        "arms": {
+          "center": {
+            "abs_source_y_error": {
+              "count": 99,
+              "mean": 0.09454979942092501
+            },
+            "area_signed_error": {
+              "count": 99,
+              "mean": -1.9405018394167122
+            },
+            "fn": {
+              "count": 99,
+              "mean": 32.5848450759783
+            },
+            "fp": {
+              "count": 99,
+              "mean": 30.644343236561575
+            },
+            "iou": {
+              "count": 99,
+              "mean": 0.971608778695509
+            },
+            "nonempty": {
+              "count": 99,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 99,
+              "mean": -0.012392897619212325
+            }
+          },
+          "native": {
+            "abs_source_y_error": {
+              "count": 99,
+              "mean": 0.6494672640942342
+            },
+            "area_signed_error": {
+              "count": 99,
+              "mean": -0.6664784781895962
+            },
+            "fn": {
+              "count": 99,
+              "mean": 79.42677023985085
+            },
+            "fp": {
+              "count": 99,
+              "mean": 78.76029176166126
+            },
+            "iou": {
+              "count": 99,
+              "mean": 0.9290416789016911
+            },
+            "nonempty": {
+              "count": 99,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 99,
+              "mean": 0.6494672640942342
+            }
+          },
+          "one_pass_center": {
+            "abs_source_y_error": {
+              "count": 99,
+              "mean": 0.041322424606865346
+            },
+            "area_signed_error": {
+              "count": 99,
+              "mean": -1.0867015316051676
+            },
+            "fn": {
+              "count": 99,
+              "mean": 20.69628317372199
+            },
+            "fp": {
+              "count": 99,
+              "mean": 19.60958164211682
+            },
+            "iou": {
+              "count": 99,
+              "mean": 0.9818424269116856
+            },
+            "nonempty": {
+              "count": 99,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 99,
+              "mean": 0.0003655658851660463
+            }
+          }
+        },
+        "census": {
+          "crop_truncated": 0,
+          "original_edge": 0,
+          "positive_truth": 99,
+          "rows": 99,
+          "truth_empty": 0
+        },
+        "pairwise_iou": {
+          "center_vs_native_losses": 0,
+          "center_vs_native_ties": 0,
+          "center_vs_native_wins": 99,
+          "one_pass_vs_center_losses": 0,
+          "one_pass_vs_center_ties": 2,
+          "one_pass_vs_center_wins": 97
+        }
+      },
+      "crop_small": {
+        "arms": {
+          "center": {
+            "abs_source_y_error": {
+              "count": 495,
+              "mean": 0.10242018654781493
+            },
+            "area_signed_error": {
+              "count": 495,
+              "mean": 0.5908526624593442
+            },
+            "fn": {
+              "count": 495,
+              "mean": 8.84999950899336
+            },
+            "fp": {
+              "count": 495,
+              "mean": 9.440852171452702
+            },
+            "iou": {
+              "count": 495,
+              "mean": 0.9325958650555187
+            },
+            "nonempty": {
+              "count": 495,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 495,
+              "mean": -0.019703752285845907
+            }
+          },
+          "native": {
+            "abs_source_y_error": {
+              "count": 495,
+              "mean": 0.5890497535551403
+            },
+            "area_signed_error": {
+              "count": 495,
+              "mean": -0.3894323441695404
+            },
+            "fn": {
+              "count": 495,
+              "mean": 22.882783332471245
+            },
+            "fp": {
+              "count": 495,
+              "mean": 22.493350988301685
+            },
+            "iou": {
+              "count": 495,
+              "mean": 0.8447827950358515
+            },
+            "nonempty": {
+              "count": 495,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 495,
+              "mean": 0.5880782104486298
+            }
+          },
+          "one_pass_center": {
+            "abs_source_y_error": {
+              "count": 495,
+              "mean": 0.060492359754276
+            },
+            "area_signed_error": {
+              "count": 495,
+              "mean": 0.014860223705643938
+            },
+            "fn": {
+              "count": 495,
+              "mean": 6.010665711365208
+            },
+            "fp": {
+              "count": 495,
+              "mean": 6.02552593507085
+            },
+            "iou": {
+              "count": 495,
+              "mean": 0.95479953921047
+            },
+            "nonempty": {
+              "count": 495,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 495,
+              "mean": 0.006182270890082701
+            }
+          }
+        },
+        "census": {
+          "crop_truncated": 70,
+          "original_edge": 1,
+          "positive_truth": 495,
+          "rows": 495,
+          "truth_empty": 0
+        },
+        "pairwise_iou": {
+          "center_vs_native_losses": 0,
+          "center_vs_native_ties": 1,
+          "center_vs_native_wins": 494,
+          "one_pass_vs_center_losses": 0,
+          "one_pass_vs_center_ties": 3,
+          "one_pass_vs_center_wins": 492
+        }
+      },
+      "crop_small_cropped_support": {
+        "arms": {
+          "center": {
+            "abs_source_y_error": {
+              "count": 70,
+              "mean": 0.08986328963808461
+            },
+            "area_signed_error": {
+              "count": 70,
+              "mean": 0.16758180555306282
+            },
+            "fn": {
+              "count": 70,
+              "mean": 4.751572887362324
+            },
+            "fp": {
+              "count": 70,
+              "mean": 4.919154692915385
+            },
+            "iou": {
+              "count": 70,
+              "mean": 0.9137002350150148
+            },
+            "nonempty": {
+              "count": 70,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 70,
+              "mean": -0.016875145520040543
+            }
+          },
+          "native": {
+            "abs_source_y_error": {
+              "count": 70,
+              "mean": 0.48079599423247543
+            },
+            "area_signed_error": {
+              "count": 70,
+              "mean": -1.3255241791797026
+            },
+            "fn": {
+              "count": 70,
+              "mean": 13.168710254627715
+            },
+            "fp": {
+              "count": 70,
+              "mean": 11.843186075448015
+            },
+            "iou": {
+              "count": 70,
+              "mean": 0.8166725594701988
+            },
+            "nonempty": {
+              "count": 70,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 70,
+              "mean": 0.4739257965507224
+            }
+          },
+          "one_pass_center": {
+            "abs_source_y_error": {
+              "count": 70,
+              "mean": 0.06378544453293668
+            },
+            "area_signed_error": {
+              "count": 70,
+              "mean": -0.3697657572775483
+            },
+            "fn": {
+              "count": 70,
+              "mean": 3.5729873732083575
+            },
+            "fp": {
+              "count": 70,
+              "mean": 3.203221615930809
+            },
+            "iou": {
+              "count": 70,
+              "mean": 0.9394687461727157
+            },
+            "nonempty": {
+              "count": 70,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 70,
+              "mean": -0.0026820544378618597
+            }
+          }
+        },
+        "census": {
+          "crop_truncated": 70,
+          "original_edge": 1,
+          "positive_truth": 70,
+          "rows": 70,
+          "truth_empty": 0
+        },
+        "pairwise_iou": {
+          "center_vs_native_losses": 0,
+          "center_vs_native_ties": 1,
+          "center_vs_native_wins": 69,
+          "one_pass_vs_center_losses": 0,
+          "one_pass_vs_center_ties": 2,
+          "one_pass_vs_center_wins": 68
+        }
+      },
+      "crop_small_intact_support": {
+        "arms": {
+          "center": {
+            "abs_source_y_error": {
+              "count": 425,
+              "mean": 0.104488381332947
+            },
+            "area_signed_error": {
+              "count": 425,
+              "mean": 0.6605678624203787
+            },
+            "fn": {
+              "count": 425,
+              "mean": 9.525034481967884
+            },
+            "fp": {
+              "count": 425,
+              "mean": 10.18560234438827
+            },
+            "iou": {
+              "count": 425,
+              "mean": 0.9357080864739545
+            },
+            "nonempty": {
+              "count": 425,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 425,
+              "mean": -0.02016964045903738
+            }
+          },
+          "native": {
+            "abs_source_y_error": {
+              "count": 425,
+              "mean": 0.606879784502403
+            },
+            "area_signed_error": {
+              "count": 425,
+              "mean": -0.23525251252080773
+            },
+            "fn": {
+              "count": 425,
+              "mean": 24.48274830999841
+            },
+            "fp": {
+              "count": 425,
+              "mean": 24.247495797477598
+            },
+            "iou": {
+              "count": 425,
+              "mean": 0.8494127161878406
+            },
+            "nonempty": {
+              "count": 425,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 425,
+              "mean": 0.606879784502403
+            }
+          },
+          "one_pass_center": {
+            "abs_source_y_error": {
+              "count": 425,
+              "mean": 0.05994996932014365
+            },
+            "area_signed_error": {
+              "count": 425,
+              "mean": 0.07821038527934604
+            },
+            "fn": {
+              "count": 425,
+              "mean": 6.412165672943983
+            },
+            "fp": {
+              "count": 425,
+              "mean": 6.490376058223334
+            },
+            "iou": {
+              "count": 425,
+              "mean": 0.9573246110049236
+            },
+            "nonempty": {
+              "count": 425,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 425,
+              "mean": 0.007642277414685335
+            }
+          }
+        },
+        "census": {
+          "crop_truncated": 0,
+          "original_edge": 0,
+          "positive_truth": 425,
+          "rows": 425,
+          "truth_empty": 0
+        },
+        "pairwise_iou": {
+          "center_vs_native_losses": 0,
+          "center_vs_native_ties": 0,
+          "center_vs_native_wins": 425,
+          "one_pass_vs_center_losses": 0,
+          "one_pass_vs_center_ties": 1,
+          "one_pass_vs_center_wins": 424
+        }
+      },
+      "direct_other": {
+        "arms": {
+          "center": {
+            "abs_source_y_error": {
+              "count": 163,
+              "mean": 0.05253172446680239
+            },
+            "area_signed_error": {
+              "count": 163,
+              "mean": -0.008893002093510917
+            },
+            "fn": {
+              "count": 163,
+              "mean": 26.491466191395894
+            },
+            "fp": {
+              "count": 163,
+              "mean": 26.482573189302386
+            },
+            "iou": {
+              "count": 163,
+              "mean": 0.9760467290418559
+            },
+            "nonempty": {
+              "count": 163,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 163,
+              "mean": -0.002741569549915821
+            }
+          },
+          "native": {
+            "abs_source_y_error": {
+              "count": 163,
+              "mean": 0.29225442259895057
+            },
+            "area_signed_error": {
+              "count": 163,
+              "mean": 0.536439194838531
+            },
+            "fn": {
+              "count": 163,
+              "mean": 49.23299658458305
+            },
+            "fp": {
+              "count": 163,
+              "mean": 49.76943577942158
+            },
+            "iou": {
+              "count": 163,
+              "mean": 0.9555416010496345
+            },
+            "nonempty": {
+              "count": 163,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 163,
+              "mean": 0.29225442259895057
+            }
+          },
+          "one_pass_center": {
+            "abs_source_y_error": {
+              "count": 163,
+              "mean": 0.05253172446680239
+            },
+            "area_signed_error": {
+              "count": 163,
+              "mean": -0.008893002093510917
+            },
+            "fn": {
+              "count": 163,
+              "mean": 26.491466191395894
+            },
+            "fp": {
+              "count": 163,
+              "mean": 26.482573189302386
+            },
+            "iou": {
+              "count": 163,
+              "mean": 0.9760467290418559
+            },
+            "nonempty": {
+              "count": 163,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 163,
+              "mean": -0.002741569549915821
+            }
+          }
+        },
+        "census": {
+          "crop_truncated": 0,
+          "original_edge": 0,
+          "positive_truth": 163,
+          "rows": 163,
+          "truth_empty": 0
+        },
+        "pairwise_iou": {
+          "center_vs_native_losses": 0,
+          "center_vs_native_ties": 0,
+          "center_vs_native_wins": 163,
+          "one_pass_vs_center_losses": 0,
+          "one_pass_vs_center_ties": 163,
+          "one_pass_vs_center_wins": 0
+        }
+      },
+      "direct_small": {
+        "arms": {
+          "center": {
+            "abs_source_y_error": {
+              "count": 638,
+              "mean": 0.08107167184079536
+            },
+            "area_signed_error": {
+              "count": 638,
+              "mean": 0.04793174746900281
+            },
+            "fn": {
+              "count": 638,
+              "mean": 8.552561329855966
+            },
+            "fp": {
+              "count": 638,
+              "mean": 8.600493077324977
+            },
+            "iou": {
+              "count": 638,
+              "mean": 0.9395309807598061
+            },
+            "nonempty": {
+              "count": 638,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 638,
+              "mean": -0.0028467699132837657
+            }
+          },
+          "native": {
+            "abs_source_y_error": {
+              "count": 638,
+              "mean": 0.2791671806401887
+            },
+            "area_signed_error": {
+              "count": 638,
+              "mean": -0.036849634848243044
+            },
+            "fn": {
+              "count": 638,
+              "mean": 15.627751988953836
+            },
+            "fp": {
+              "count": 638,
+              "mean": 15.590902354105596
+            },
+            "iou": {
+              "count": 638,
+              "mean": 0.8941581236532512
+            },
+            "nonempty": {
+              "count": 638,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 638,
+              "mean": 0.2748576796802945
+            }
+          },
+          "one_pass_center": {
+            "abs_source_y_error": {
+              "count": 638,
+              "mean": 0.08107167184079536
+            },
+            "area_signed_error": {
+              "count": 638,
+              "mean": 0.04793174746900281
+            },
+            "fn": {
+              "count": 638,
+              "mean": 8.552561329855966
+            },
+            "fp": {
+              "count": 638,
+              "mean": 8.600493077324977
+            },
+            "iou": {
+              "count": 638,
+              "mean": 0.9395309807598061
+            },
+            "nonempty": {
+              "count": 638,
+              "mean": 1
+            },
+            "source_y_error": {
+              "count": 638,
+              "mean": -0.0028467699132837657
+            }
+          }
+        },
+        "census": {
+          "crop_truncated": 0,
+          "original_edge": 2,
+          "positive_truth": 638,
+          "rows": 638,
+          "truth_empty": 0
+        },
+        "pairwise_iou": {
+          "center_vs_native_losses": 0,
+          "center_vs_native_ties": 0,
+          "center_vs_native_wins": 638,
+          "one_pass_vs_center_losses": 0,
+          "one_pass_vs_center_ties": 638,
+          "one_pass_vs_center_wins": 0
+        }
+      }
+    },
+    "primary": "crop_small",
+    "protocol_reference_input_sha256": "fc3a895226e0005f46ab9c6fe4d912dfcc2a4463ad52775a6cdacc22d1f774e4",
+    "status": "SSDD_FIT741_CONTINUOUS_PIXEL_FOOTPRINT_REPLAY_COMPLETE",
+    "views": 741,
+    "weighting": "common nonempty A/B annotation rows"
+  },
+  "result_sha256": "9ee4b9d38fa5899415570d15022531da7fabf6634f89e751ef79b791b30795e3",
+  "source_commit": "ecb6c8526fac859d775263ef64985138336aa516",
+  "status": "SSDD_GEOMETRY_INDEPENDENTLY_RECOMPUTED",
+  "original_ssh_exit": 0
+}
