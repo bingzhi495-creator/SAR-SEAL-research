@@ -134,3 +134,13 @@ RCShip-1.0 可用于距离压缩域的框检测对照。其原论文采用方位
 先用已核对的空间候选关联局部回波，在统一空间网格上比较空间单支、常规重聚焦、真实配对融合和同容量错配融合。若真实配对有收益，再加等容量的幅度图派生频谱对照，并在同景复数 SLC 可用时加复数空间分支。两个补充对照分别检验空间幅度的重新表达和复数信息本身能否解释收益。输入谱源、配准容差、候选、失焦分组和评价规则在留出场景评分前固定。OpenSAR Insight 的公开框可用来做关联试点，独立实例掩膜及同景元数据核验通过后才进入轮廓实验。Copernicus 另发布 65 个未做星上 FDBAQ 压缩的 Sentinel-1C/D L0 产品，部分含船，适合作为工程数据候选。该发布需 CDSE S3 访问，逐船标签资格待核。 [OpenSAR Insight 数据](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset) · [Copernicus 数据公告](https://sentinels.copernicus.eu/web/sentinel/-/copernicus-sentinel-1-sar-dataset-acquired-without-onboard-fdbaq-compression)
 
 KuRALS-PD 报告的 203 帧是海面场景总数，需从归档核对船艇帧、非船帧及目标 ID。作者代码还包含海面 UAV 路径。海面分支按目标选择波束，两条海面序列只作所选波束内的定位试点。要衡量全域检出率与虚警，需具备可独立判断漏检及虚警的未筛选场景和真值。 [KuRALS 原文](https://www.mdpi.com/2072-4292/18/1/173) · [作者处理源码](https://github.com/lihua199710/KuRALS/blob/abc63a685402178568c29031a3e65c8a95e98109/kurals/dataset_process/kuralspd_processing.py)
+
+## 2026-11-11 有限训练样本读回与直接先例
+
+固定 OpenSAR Insight 的公开发布版本。训练侧实际 HTTP 206 读回聚焦归档头部 24 MiB、距离压缩归档头部 12 MiB 和完整训练 XML 归档 466,628 字节。前两个 TAR.ZST 前缀只能枚举其完整成员。聚焦归档前缀含 196 个 GRD 成员，覆盖 98 个块编号。距离压缩前缀含同一 SAR 产品的 6 个 VH complex64 块，均有同编号训练 XML，6 个 XML 均未列船舶。其中最早一块包含前轮试点样本。两个归档的已读块编号交集为 0，未取得可供配准的完整阳性同景对。缺少船舶条目的 XML 也只表示发布侧未列标签，不能充当经核验的负样本。此次仅限训练侧，未读验证或测试归档。 [发布数据](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset/tree/e90a0c0465cfb8484b4f356ef968d976054f453a) · [安全汇总](results/OPEN_SAR_RD_BOUNDED_TRAIN_INTAKE_ACTUAL_SAFE_20261111.json)
+
+按作者的数组方向，对 6 个块各做第 0 轴的正交归一化 FFT、移位和逆变换。全部输入和输出有限，最大相对能量差 9.04×10⁻¹⁴，最大相对逆变换误差 6.08×10⁻¹⁶。数值结果仅支持输入可读及 FFT 实现，尚未核准 PRF、方位频率原点、目标回波关联或任何模型效用。六块来自同一产品，不能作为六次独立采集。 [作者处理流程](https://github.com/ESA-PhiLab/OpenSARInsight/tree/192ded687391b536180af29d59c07ace9cb0344f/backend/dataset_generation_scripts/l0_to_range_compressed)
+
+Qiang 等于 2026 年已从候选区提取局部多普勒信息，联合聚焦强度在运动失焦条件下做船舶框检测，并在 50 景真实 GF-3 场景上评估。这里的待检验主张应进一步限定为**在真实留出场景上，经标定的同景局部回波能否改善固定候选的空间实例轮廓**。对同一批候选比较聚焦单支、物理重聚焦接同一掩膜头、等容量错配及真实配对。真实配对首先用同编号船舶阳性块确认原始产品、极化、坐标方向、距离门和方位窗口。可用轻量残差投影把局部多普勒特征接到原掩膜头，初始状态等价于聚焦单支。若配准或独立掩膜资格未通过，结论停留在输入和检测定位。 [Qiang 等，2026](https://doi.org/10.3390/rs18081166)
+
+独立海面监视 RD 优先做回波定位。复用骨干，输入为保留原生距离与速度格点的对数功率，输出为新的回波定位头。用同一头和训练预算比较通用、HRSID 原生和 HRSID 中心对齐初始化，再以 CFAR 作为同场物理基线。用 KuRALS-PD 做两条海面序列的工程小试，用具备同步航迹和可核验背景的采集进行更完整的检出率及虚警评估。若要求零样本，须预先固定输入映射、权重及后处理，任何使用目标标注的拟合和阈值选择单独记为适配。 [KuRALS 原文](https://doi.org/10.3390/rs18010173) · [MTDSP](https://doi.org/10.12000/JR25001)
