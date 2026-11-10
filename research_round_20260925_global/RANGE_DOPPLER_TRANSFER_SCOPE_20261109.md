@@ -168,3 +168,24 @@ Qiang 等于 2026 年已从候选区提取局部多普勒信息，联合聚焦�
 **KuRALS-PD 先做受控定位。** 论文报告的 203 帧覆盖两条海面采集序列。作者扫描处理通过目标字段选择波束，原始目录映射中船和无人机的派生序列可来自同一采集目录。按原采集目录分组，避免把同一采集拆到训练与验证。发布版仅用于目标波束已选条件下的定位对照，固定窗口标签只用于评估对弱标签的拟合。若要检验独立海面搜索，先取得由固定规则选取或完整扫描的波束及可核验的负帧，统一给 CFAR 和学习模型。用同步航迹的距离、径向速度及预定容差独立匹配，在相同评估区域上报告检出率、每帧虚警和定位误差。少数采集的互换留出用于试点。 [KuRALS 表 4](https://www.mdpi.com/2072-4292/18/1/173) · [扫描波束选择](https://github.com/lihua199710/KuRALS/blob/abc63a685402178568c29031a3e65c8a95e98109/kurals/dataset_process/kuralspd_processing.py#L258-L273) · [采集目录映射](https://github.com/lihua199710/KuRALS/blob/abc63a685402178568c29031a3e65c8a95e98109/kurals/dataset_process/kuralspd_processing.py#L421-L441)
 
 **保留空间船体轮廓的论文路线。** 优先核对 OpenSAR Insight 同编号阳性训练对的产品、burst、极化、物理轴和候选窗口的映射。具备独立空间轮廓后，再用固定候选比较空间单支、物理重聚焦、等容量错配和真实配对融合。RD 特征只修改原空间掩膜查询，评价固定候选的轮廓质量与留出采集上的 AP75／AP90。此前完成的是六个复数块的 FFT 数值核验。尚无 RD 模型训练、零样本泛化或定位与轮廓增益结果。 [公开配对数据说明](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset) · [已核验范围](results/OPEN_SAR_RD_BOUNDED_TRAIN_INTAKE_ACTUAL_SAFE_20261111.json) · [运动失焦船舶框检测先例](https://www.mdpi.com/2072-4292/18/8/1166)
+
+## 海面实测输入与首轮迁移对照
+
+把 RD 按距离与频率或径向速度解释。若来自聚焦后的 NISAR RSLC，其第二轴为零多普勒方位时间，仍按空间复图处理。真正的海面监视 RD 测到的是相对径向速度。在实际分辨单元内相互重叠的回波可能无法从单帧功率图分开。单个 FFT 格点与实际分辨单元需要分别核对。近零速度、速度折叠和疑似多目标重叠在评分前标记。径向参考速度由同步航迹与雷达相对运动投影得到。若存在模糊，按传感器配置单列或先独立解模糊。 [TI 雷达处理说明](https://www.ti.com/lit/an/swra553a/swra553a.pdf) · [NISAR 栅格定义](https://nisar-docs.asf.alaska.edu/rslc/)
+
+海面 RD 的第一项学习对照优先用 HRSID 种子 5202 已验收的固定共同监督配对作为来源。原生和中心两份权重的源监督实例、训练预算相同，适合检验中心监督是否改善可迁移特征。加同版本通用预训练组和同输入的 CFAR，三组学习模型共用原生格点对数功率、初始化相同的 RD 定位头、训练样本、预算和阈值选择规则。按整次采集分组，能确认的同船重复采集及重叠窗口放在同组。匹配容差在评分前由实际分辨率及航迹误差确定，用独立位置一对一匹配。主报固定虚警水平下的检出率、距离及径向速度误差。目标标注用于训练定位头或校准阈值时，结果记为适配。KuRALS-PD 的目标条件选波束仅支持受控定位。独立监视须核对同一波束规则及背景真值。 [HRSID 共同行实测](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行-e24-的固定-dev705-实测) · [KuRALS](https://doi.org/10.3390/rs18010173) · [MTDSP](https://doi.org/10.12000/JR25001)
+
+若原论文继续输出空间船体轮廓，优先验证同景多普勒对运动失焦的作用。在同一批空间候选上使用按候选与几何选取的局部复数窗口，把多普勒特征接到现有 RF-DETR 掩膜查询的零初始化残差投影。用空间单支、物理重聚焦接同一头、同容量错配和真实配对四组，在独立逐船空间轮廓上比较高 IoU 的 AP 与边界质量。已有方法在同类输入上做船舶框检测。这个设计的待验证问题是同景信号能否改善固定候选的空间轮廓。公开训练块的方位 FFT 已核验。配对阳性数组、独立空间轮廓和真实 RD 模型分数仍待取得。 [查询投影入口](code/HRSID_FIT_NATIVE_POINT_UPDATE_20261110/cached_final_query.py#L29-L36) · [直接检测先例](https://www.mdpi.com/2072-4292/18/8/1166)
+
+
+St Andrews 公开了十份原始 FMCW 文件。对三份附件的 4 KiB 前缀探测均返回 HTTP 403，未读取雷达数据。最小附件为水池海狮试验，最小海试附件对应海杂波与静止礁石。论文给出采集参数，当前仍缺少可核对的二进制格式与文件级船舶标签。此入口暂作为补充。 [公开文件](https://doi.org/10.17630/2bb28a35-11a7-4d86-8464-75288e6b66ce) · [作者论文](https://doi.org/10.1049/rsn2.12518)
+
+### 岸基真实回波的输入核验
+
+从 McMaster 官方目录取得 Dartmouth 第 18 号 CDF（15,732,284 字节）。读取首个 512 样本的 HH 复数窗，按文件的单极化 PRF 1,000 Hz 做慢时间 FFT，得到 512×14 的频率×距离矩阵。零频索引为 256，频轴为 −500 至 498.046875 Hz，频率采样间隔为 1.953125 Hz。距离门近边为 2,574 至 2,769 m，名义采样间距为 15 m，作者给出的距离分辨率为 30 m。矩形窗原始 IQ 的逐门能量最大相对误差为 9.73×10⁻¹⁶。以复指数矩阵直接计算 DFT，矩形窗和去均值 Hann 窗的总谱能量与 FFT 分别相差 6.66×10⁻¹⁶ 和 2.22×10⁻¹⁶，频轴和第 9 门峰索引一致。 [作者样本及使用条件](https://soma.ece.mcmaster.ca/ipix/dartmouth/datasets.html) · [作者读取说明](https://soma.ece.mcmaster.ca/ipix/dartmouth/cdfhowto.html) · [执行脚本](code/IPIX_DARTMOUTH_RD_AXIS_20261111/ipix_dartmouth_18_hh.py) · [结果摘要](results/IPIX_DARTMOUTH_RD_AXIS_ACTUAL_SAFE_20261111.json)
+
+目录第 9 门的目标为直径 1 m、包覆金属网的泡沫浮球。当前核验覆盖一个岸基采集窗口和真实海杂波，幅度标定、径向速度符号、独立速度真值、船舶标签和模型表现未验证。可按官方条件获取 CDF 与 `ipixload.m`，向脚本传入 `--cdf`、`--official-loader` 和新的 `--output` 路径。执行环境为 NumPy 1.26.4 与 SciPy 1.15.3。
+
+### 阳性同景配对的获取路径
+
+从固定发布版的训练 XML 核对 395 号候选对应 Sentinel‑1A L1 SLC 产品 `S1A_IW_SLC__1SDV_20200407T052956_20200407T053026_032017_03B2E2_18FA`、IW2、VH、L1 burst 9。作者转换器明确以零起点编号，ASF 单 burst 接口也使用零起点索引。官方 CDSE 目录已核对同名母产品在线。ASF 公开搜索进一步唯一匹配 `S1_202951_IW2_20200407T053022_VH_18FA-BURST`，时间覆盖 05:30:23 至 05:30:26 UTC，目录给出的单 burst TIFF 为 146,884,012 字节。若已有 Earthdata 访问，可按同名产品、IW2、VH、索引 9 请求单 burst 元数据和复数影像。下载后仍需独立核对方位时标及框坐标。该路径可得到聚焦复数空间图及其派生局部频谱。OpenSAR Insight 对应的 L0 距离压缩数组另需作者发布成员或官方原始处理链，阳性配对数组仍待取得。 [固定训练标签目录](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset/tree/e90a0c0465cfb8484b4f356ef968d976054f453a/train) · [作者零起点定义](https://github.com/ESA-PhiLab/OpenSARInsight/blob/192ded687391b536180af29d59c07ace9cb0344f/backend/dataset_generation_scripts/L0_preparation/main/slc2raw-main/slc2raw/raw_data_params.py#L44) · [ASF 接口](https://sentinel1-burst-documentation.asf.alaska.edu/) · [ASF 精确目录行](https://api.daac.asf.alaska.edu/services/search/param?granule_list=S1_202951_IW2_20200407T053022_VH_18FA-BURST&output=geojson) · [CDSE 目录记录](https://catalogue.dataspace.copernicus.eu/odata/v1/Products(884ad94b-1595-5b26-a50f-7e97afd39ab9))
