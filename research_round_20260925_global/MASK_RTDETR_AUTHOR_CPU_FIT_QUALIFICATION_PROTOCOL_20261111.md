@@ -1,0 +1,7 @@
+# Mask RT-DETR 官方 CPU 读取与前向资格
+
+本项资格用于将先前的隔离几何算子复验接到完整官方 Mask RT-DETR-S。源码为 PaddleDetection v2.9.0 固定提交 `b25522a0f4bde8c80603f3ba5e3472059972e3b5`，采用官方 S 配置、原生 Dataset、TrainReader、TestReader 和 DETR。首先验证 Windows CPython 3.10.13 的 PaddlePaddle 2.6.2 官方 CPU wheel。这是一项实际兼容性测试。公开导出报告与运行本试验是不同的证据。CPU 限制单线程、隐藏 CUDA、子进程低优先级、可用主存至少 16 GiB。正式 HRSID 的 GPU 原进程具有优先权。 [官方模型说明](https://github.com/PaddlePaddle/PaddleDetection/blob/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/mask_rtdetr/README.md) · [CPU wheel](https://pypi.org/project/paddlepaddle/2.6.2/)
+
+- 固定沿用前轮 SSDD 几何清单中最前的 8 个不同 JPEG 内容组，16 条项目整数实例标注。输入清单 SHA-256 为 `8a0099846bdb530f2250d8c8473014b934a9107bc82f6fd053074b71a77a746a`。保留 JPEG 原字节、原生图像高宽、整数多边形和类别 ID 1。由官方 COCO Dataset 映射为单类槽位 0。训练读取器保留作者的四图批次、原始随机增强和两批预算。Windows worker 为 0，共享内存关闭。需实际观察每张恰一次、掩膜图框尺寸和类槽位。
+- 另在首张固定 FIT 图上使用官方无标签 TestReader 的 640×640 输入、80 类 S 模型及作者完整 COCO 权重。权重 58,728,806 字节，MD5 `110e973d6d533cdf48f3d848f8372791`，SHA-256 `d71ea6590442d1c3d6118fe0558b4a9fe84283a4832b12dc6d7b5c8cf3e09d9f`。核对原生模型和权重的键、张量形状及值，以及可变形注意力的 Paddle CPU 路径。原生后处理输出最多 100 个候选和原图网格掩膜。仅验证前向和张量契约，评价不读标签。 [官方 S 权重](https://paddledet.bj.bcebos.com/models/mask_rtdetr_hgnetv2_s_6x_coco.pdparams) · [CPU 回退实现](https://github.com/PaddlePaddle/PaddleDetection/blob/b25522a0f4bde8c80603f3ba5e3472059972e3b5/ppdet/modeling/transformers/deformable_transformer.py#L61-L74)
+- 资格范围为 FIT 输入与原生 CPU 前向。原进程退出、输入校验、读取器与前向输出分别记录。后续如进入两步训练，单类初始化、官方骨干预训练来源和优化器及 EMA 的真实计数另外锁定。完整目标域基线仍须统一训练预算、固定开发集和独立评价。
