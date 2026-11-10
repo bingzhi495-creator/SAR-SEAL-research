@@ -318,3 +318,4 @@ DGX CPU 审计 SSDD 的 741 个历史 FIT 视图及 HRSID 的 456 个历史 FIT 
 
 下一项学习对照只比较 Bᶜ 与 Cᶜ。每次真实访问先生成 B，再在 B 的有序实例上重建 C，取两者最终都非空的共同实例。先验收实际短窗每臂 32 次访问和 8 次更新，以及入训直缩掩膜逐值一致与裁剪出现差异。通过后采用同初始化、同 E24 预算与固定原始 DEV 评分，另报 AP75、AP90 及预定义尺寸和贴边分层。自然 C 的保留策略由另一个干预检验。现有 HRSID Aᶜ/Bᶜ 配对和 SSDD A/B GPU 资格是各自已预锁的实验。
 
+已新增 Bᶜ/Cᶜ 的共同行加载变换。每次只执行一遍原生逐步中心图像增强，在 B 裁剪后有序行上重建 C，再投影到共同非空实例。直缩必须逐值一致，测试覆盖有实例被单次移除及自然单次另行保留的情形。Windows 固定 RF-DETR 运行时以隔离的测试依赖补齐 faster-coco-eval 1.8.0 后，24 项合成和回归测试全部通过，含旧原生训练数据入口回归。新变换尚未接入正式训练器，实际更新与 AP 仍待验收。 [加载变换](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_pair_transform.py) · [测试](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/test_one_pass_common_pair_transform.py)
