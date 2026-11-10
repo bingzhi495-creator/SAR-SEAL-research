@@ -1,0 +1,71 @@
+{
+  "AP_evaluated": false,
+  "coco_weights_sha256": "d71ea6590442d1c3d6118fe0558b4a9fe84283a4832b12dc6d7b5c8cf3e09d9f",
+  "elapsed_seconds": 15.781788599910215,
+  "fit_manifest_sha256": "8a0099846bdb530f2250d8c8473014b934a9107bc82f6fd053074b71a77a746a",
+  "forward": {
+    "boxes_shape": [
+      100,
+      6
+    ],
+    "input_shape": [
+      1,
+      3,
+      640,
+      640
+    ],
+    "masks_shape": [
+      100,
+      319,
+      503
+    ],
+    "model_forward_calls": 1,
+    "native_attention_modules": [
+      "ppdet.modeling.transformers.utils"
+    ],
+    "native_nonempty_masks": 100,
+    "native_top_predictions": 100,
+    "optimizer_updates": 0,
+    "weight_tensors_loaded": 646
+  },
+  "official_DEV_opened": false,
+  "official_TEST_opened": false,
+  "protocol_commit": "27a2eb583944a231b23d3a2dbc4bb48c280b5ce2",
+  "reader": {
+    "batches": [
+      {
+        "images": 4,
+        "nonempty_masks": 10,
+        "output_hw": [
+          512,
+          512
+        ],
+        "retained_rows": 10
+      },
+      {
+        "images": 4,
+        "nonempty_masks": 5,
+        "output_hw": [
+          672,
+          672
+        ],
+        "retained_rows": 5
+      }
+    ],
+    "class_slots": [
+      0
+    ],
+    "distinct_fit_visits": 8,
+    "fit_visits": 8
+  },
+  "runtime": {
+    "numpy": "1.26.4",
+    "opencv-python": "4.5.5.64",
+    "paddlepaddle": "2.6.2",
+    "protobuf": "3.20.2",
+    "pycocotools": "2.0.8"
+  },
+  "seed": 20261111,
+  "status": "MASK_RTDETR_S_NATIVE_CPU_FIT_COCO_FORWARD_COMPLETE_V1",
+  "upstream_commit": "b25522a0f4bde8c80603f3ba5e3472059972e3b5"
+}
