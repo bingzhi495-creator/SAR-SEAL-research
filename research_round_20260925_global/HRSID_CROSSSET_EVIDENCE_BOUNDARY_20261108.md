@@ -92,3 +92,11 @@ Copernicus 和 ASF 分别检索同一卫星的 IW GRDH 产品，候选时间窗�
 对 IJCAI 2026 PID-SAM 作者固定提交 `2764fab108304ad5da62fbb5e6c4e65aeb4ece0a` 做内存读回。ZIP 为 96,928 字节，Git blob `99c5b6d3dae18ca77617379518c768c0e085ef08`，SHA-256 `eacde376035547d021983abe2a9c15b24106137a6142de37b9d12f187acd36b5`。官方论文报告 9,470 张训练和 2,387 张测试语义分割图。两份发布清单恰有对应数量的不同完整相对路径，跨组路径交集为零。按上游文件名约定抽取 `Ship_C[数字]S[数字]N[数字]`，训练和测试分别可抽取 3,700、1,015 个路径，对应 1,324、594 个不同编号，交集为 314。另有 312 个同名 basename。这是可能的上游样本复用线索，像素重复和独立采集仍待查证。 [IJCAI 原文](https://ijcai.org/proceedings/2026/0161.pdf) · [固定代码包](https://github.com/Fm336/PID-SAM/blob/2764fab108304ad5da62fbb5e6c4e65aeb4ece0a/PID.zip) · [FUSAR-Ship 原始说明](https://emwlab.fudan.edu.cn/resources/list.htm)
 
 代码按图读取一张灰度掩膜，未核到逐实例身份、全图其他船舶标注完整性、实际 FSS 掩膜、明确掩膜生成流程或独立数据许可。原始 FUSARShip 为高分三号居中裁片，若能核实标签和来源，可考虑作为中心船辅助外测。当前只将 PID-SAM 用于相关方法比较。跨库正式实例分割优先采用 SSDD 的同预算目标域重训。 [上游数据论文](https://doi.org/10.1007/s11432-019-2772-5)
+
+### UEIKAP 训练质检样本的标签与 AIS 对照
+
+仅选旧 12 个已恢复头部、与 18 个预留外测采集家族零交集的一个训练裁块。对作者 ZIP 的固定中央目录及三份匹配成员做有界 HTTP Range 读回。中央目录 SHA-256 为 `e7a969a39b4f6723d9293acdc9297e917d2830fcba54eeac3dd22b26b4f56610`。三份成员解压长度分别为 TXT 408、COCO JSON 2,404、AIS CSV 196 字节，均通过原 ZIP CRC。相应 SHA-256 为 `699d355ac1ea749545a19c6664f0255f3733f07fd0c87d258637b4a841de7c15`、`c94fd3885645f323c2eb540efa0c271f78581d459e13ec020d5c352c1f3143e2`、`5e6ae66b035ff0fe578732ab0bd8ef2576f20eff3407a5f990fb2c7f831d91bc`。读取已有 GeoTIFF 头部摘要，未解码图像或运行模型。 [固定作者数据 API](https://zenodo.org/api/records/18391027/files/UEIKAP_SAR.zip/content) · [发布 README](https://zenodo.org/api/records/18391027/files/README_UEIKAP.md/content)
+
+作者 COCO 仅有一个显式命名的类别 wake，编号为 0。两条 COCO 尾迹在 512×512 原栅格上与 TXT 类别 1 的两条轮廓一一相同，栅格 IoU 各 1.000。两条 COCO 尾迹与 TXT 类别 0 的两条轮廓均无交叠。结合作者对船体与尾迹多边形的描述，证据支持将 TXT 类别 0 作为待核船体候选。COCO 和 TXT 的类别编号需各自解读。 [作者会议方法](https://lps25.esa.int/lps25-presentations/poster/Advancing%20Maritime%20Surveillance%20Integrated%20AI-Based%20Wake%20Detection%20in%20Earth.pdf)
+
+同裁块的单条 AIS 记录与文件名时间差为 0 秒，两者未显式注明时区。采用 EPSG:4326 头部边界近似北向像元映射，未校正船舶运动。该点落入一条已知尾迹，离最近 TXT 类别 0 多边形约 65.6 像素。现有 AIS 观测不能独立确认该类别的船体语义。作者文献用 AIS 构建和验证样本，并研究 SAR 船体方位向位移。仍缺明确 TXT 类别表、船体绘制及图内所有船舶的覆盖规则。所获证据只开放已标注目标的质检与潜在辅助评价，整图 AP 资格继续待核。18 个原预留外测采集家族未参与。 [作者 2026 正刊](https://doi.org/10.1016/j.apor.2026.105245)
