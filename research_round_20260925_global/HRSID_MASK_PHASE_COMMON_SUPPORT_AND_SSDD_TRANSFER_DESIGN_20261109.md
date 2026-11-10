@@ -788,3 +788,11 @@ DGX 的独立 CPU 进程先复现已封存的仅位置修正结果，再读取�
 固定共同行、种子 5202 的逐步中心和单次复合中心在同一张 Windows GPU 上串行完成。两臂分别从同一 COCO Q164 完整初值启动，各消费 32 次 FIT 访问、71 条监督、8 次 AdamW 与 EMA 更新。两份共同账本逐字节一致，实际图像、增强随机状态、实例顺序和非掩膜监督一致。16 次直缩的掩膜逐值相同，16 次裁剪中有 13 次消费的掩膜不同。各臂的选中掩膜摘要与实际模型批次一致。两臂原进程和原协调器均正常退出，任务容器清空且资源保护未触发。独立验收复算同一配对回执。 [配对回执](results/HRSID_BC_WINDOWS_SHORT_5202_PAIR_ACTUAL_SAFE_20261111.json) · [独立验收](results/HRSID_BC_WINDOWS_SHORT_5202_INDEPENDENT_ACCEPTANCE_SAFE_20261111.json)
 
 该短窗确认对照可执行，未形成检查点或评分。正式 B/C 从相同初值重新开始，两臂各 70,560 次 FIT 访问、17,640 次更新，按预先固定的实用与机制门槛评价。DGX 独立完成 FIT 接收，当次可用资源不足以开同配方 GPU 短窗。正式 TEST 保持隔离。
+
+## Windows B/C 固定 E24 启动
+
+两个真实短臂独立验收后，使用预锁的实用门槛与原 E24 入口。Windows 原协调器已通过独占准入并启动逐步中心 B。原工作进程已记录实际训练启动与下游种子 5202。B 正常关闭后由同一协调器启动 C。各臂同一完整 COCO Q164 初值、E100 调度截断到 E24、70,560 次 FIT 访问和 17,640 次 AdamW／EMA 更新，使用同一个 B∩C 监督顺序。阶段受宿主内存与 GPU 分配资源保护。训练闭合和原始 DEV705 评分待完成，正式 TEST 保持隔离。 [原 E24 入口](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_e24.py) · [短窗独立验收](results/HRSID_BC_WINDOWS_SHORT_5202_INDEPENDENT_ACCEPTANCE_SAFE_20261111.json)
+
+## DGX 的 B/C 短窗适配
+
+新的 DGX 工作进程复用原有 16 个科学源文件和原训练引擎。启动时核对 FIT 原生索引、完整清单、编码与解码回执、Q164 初始化和固定运行时。两臂保留同一短窗输出格式，可在原始退出后调用既有独立验收器。Linux 协调器串行启动，每臂单独进程组及原始等待，沿用 40 GiB 宿主可用内存、12 GiB 即时 CUDA 可用、6 GiB 分配器、8 GiB 进程树 RSS 和 300 秒资源边界。Python 工作进程的 5 项合成检查通过，DGX 上实际完成 3 项 Linux 协调器合成检查。当前仅为待实机验证的源码，DGX 本轮未启动实际训练。 [DGX 工作入口](code/HRSID_BC_DGX_SHORT_PLATFORM_20261111/hrsid_dgx_bc_short.py) · [协调器](code/HRSID_BC_DGX_SHORT_PLATFORM_20261111/linux_bc_short_owner.py)
