@@ -811,3 +811,7 @@ DGX 的独立 CPU 进程先复现已封存的仅位置修正结果，再读取�
 ## DGX B/C 原训练入口的 CPU 初值实测
 
 实际将已公开的固定科学源码、依赖源码和解码回执运送到 DGX，并逐件校验。首次 CPU 调用在环境准入时发现缺少 PyTorch Lightning，原进程退出 1，未进入模型初始化，保留原失败。确认完整训练环境的全部 11 项固定依赖版本后，在新目录用相同代码重跑。P297 的真实初始化入口通过 Q100 和 Q164 完整摘要核验，545 个 Q164 张量全部在 CPU，位置和查询尾部两项见证与先前独立参考一致。原进程退出 0，独立读回核对两份摘要与原日志。该检查覆盖完整训练环境与初始化接线，FIT、DEV、TEST、CUDA、模型前向和优化更新均未发生。GPU 短窗仍须实机资源准入和独立配对验收。 [安全实测](results/HRSID_BC_DGX_CPU_INITIALIZATION_ACTUAL_SAFE_20261111.json) · [实测入口](code/HRSID_BC_DGX_SHORT_PLATFORM_20261111/p304_bc_cpu_init.py)
+
+### DGX 原生直缩、裁剪和入训绑定合成实测
+
+在通过 CPU 初始化的同一 DGX ARM 运行时，复用原 RF-DETR COCO 加载器和固定 B/C 科学源码。首个夹具入口遗漏位于独立目录的 `fit_query_export`，原进程退出 1，三个测试均未真正进入。新独立目录按原训练入口的固定加载顺序装入相同源码后，三个测试全部通过。核对了裁剪后共同非空掩膜、直缩时一致的掩膜及恢复后的随机状态，以及入训绑定前后的逐臂掩膜摘要。原进程退出 0，独立读回核对日志和三个固定夹具的摘要。仅合成图像与标注，实际 FIT、DEV、TEST、CUDA、模型前向和训练更新均未发生。DGX 的真实 GPU 短窗仍待准入。 [安全实测](results/HRSID_BC_DGX_STOCK_SYNTHETIC_TRANSFORM_BINDING_ACTUAL_SAFE_20261111.json) · [直缩与裁剪夹具](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/test_one_pass_common_pair_transform.py) · [入训绑定夹具](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/test_one_pass_common_binding.py)

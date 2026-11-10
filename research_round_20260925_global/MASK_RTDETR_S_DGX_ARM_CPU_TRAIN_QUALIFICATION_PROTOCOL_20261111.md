@@ -17,3 +17,9 @@ DGX 原生训练器完整运行一轮，包含 8 个固定 FIT 访问，每张�
 训练后 1 个可训练分类头张量和 6 个可训练掩膜头张量发生变化，保存后的在线模型与训练器恢复的在线状态逐值一致。在线与 EMA 各有 646 个有限状态张量，557 项不同。优化器归档的 1,468 个张量有限，原调度器相对初始推进两步，完成轮次为 1。线上 `.pdema`、EMA `.pdparams` 与 AdamW `.pdopt` 三个端点在原进程结束后另行逐字节摘要核对。原进程实际等待退出 0，进程组已清空。墙钟 125.401 秒，监督抽样树 RSS 峰值 9.35 GiB，进程自身峰值 9.70 GiB，主机最少可用 43.59 GiB。未触发预锁资源保护。 [原关闭与独立读回](results/MASK_RTDETR_S_NATIVE_ARM_CPU_FIT8_ORIGINAL_CLOSURE_SAFE_20261111.json)
 
 该端点通过 ARM CPU 两步训练资格，支持完整官方读取、前反向、优化和档案流程可用。Windows 资源中断原记录单列。当前 ARM 执行尚无开发集 AP 或跨域模型比较。正式 HRSID 原训练及同预算 SSDD RF-DETR 复验优先级更高。 [ARM 训练入口](code/MASK_RTDETR_AUTHOR_CPU_QUALIFICATION_20261111/arm_two_steps.py) · [ARM 环境边界](code/MASK_RTDETR_AUTHOR_CPU_QUALIFICATION_20261111/arm_runtime.py)
+
+## 第二载体的配对短窗预锁
+
+两臂分别从同一份 ImageNet B1 权重和种子 20261111 重新初始化，使用固定 PSeg-SSDD FIT 的 8 个 JPEG 内容组及原整数多边形。原生 A 保留作者 `BatchRandomResize` 中的位图最近邻，中心 B 只把同一次缩放的位图改为中心取样。两臂均沿用原训练器、四图批次、匹配、损失、调度、AdamW 及 EMA。要求各完成 8 次实际访问、2 次优化器／调度／EMA 返回。比较全状态初值、同序样本、实际图像张量、框、类别、裁剪保留的有序标注及增强随机状态。需观察到共同掩膜改变。任一臂出现空掩膜则保留证据并拒绝短窗验收，另行设计共同非空条件。基于位图差异引起的匹配或损失变化属于此次训练干预的一部分。 [作者批次缩放](https://github.com/PaddlePaddle/PaddleDetection/blob/b25522a0f4bde8c80603f3ba5e3472059972e3b5/ppdet/data/transform/batch_operators.py#L137-L150) · [配对入口](code/MASK_RTDETR_PAIRED_SHORT_20261111/paired_short.py)
+
+配对入口已通过三项合成测试，尚未运行真实配对。实际 CPU 作业沿用至少 52 GiB 启动可用主存、40 GiB 运行下限、12 GiB 进程树 RSS 和 420 秒墙钟。每臂单独原始退出后再复核。后续如正式扩展，先固定同一平台上的 FIT741 及作者四图批次、尾批处理、E24 更新次数、固定原始整数 DEV187 和作者推理设置。两步的损失、合成几何及短窗资格不作为 AP 效用结果。
