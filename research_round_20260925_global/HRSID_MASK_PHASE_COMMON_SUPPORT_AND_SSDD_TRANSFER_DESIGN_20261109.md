@@ -415,3 +415,9 @@ Windows 原进程退出 0，完整等待用时 195.70 秒，峰值 RSS 2,239,721
 表内数值为逐行均值的 IoU 百分点差。按源图等权，核心裁剪 C−B 为 +4.84、+4.76 点。合并小目标在 83 张有配对行的源图上分别为 +5.57、+5.49 点，源图聚类重采样的 95% 区间为 [4.91, 6.27]、[4.92, 6.09]。压力层仅 5 张源图，但含 613 个原始标注。核心层和源图等权的结果一并报告。2,761 条合格直缩行的 B/C 几何值完全一致。独立验收复算了视图、有效行、均值及胜负计数的一致性，并复算重采样的未定义次数。区间端点来自原完整运行。
 
 单次中心相对逐步中心的裁剪几何改善在两种源表示下保持。多边形优先与单次中心的顺序随参考改变，两个参考均由原标注构成。模型效用待同预算训练。若在固定共同监督下比较 C 与 D，优先设置只在有效多边形裁剪上替换为 D 的受控臂，直缩和无效多边形沿用 C，以控制有效监督行和变化位置。模型前向及优化器更新均为零。 [全量实测安全汇总](results/HRSID_FIT114_VECTOR_FIRST_FULL_POPULATION_GEOMETRY_ACTUAL_SAFE_20261110.json)
+
+#### 点监督候选与直接先例
+
+Detectron2 已实现保留多边形到框内再栅格化。MONAI 已实现合并空间变换后再重采样。PointRend 和 Mask2Former 已实现采样点上的掩膜监督。项目锁定的 RF-DETR 在匹配实例后也对栅格标签进行归一化坐标的最近邻点取样。因此，多边形优先、合并变换、解析面积和点监督分别已有先例。对固定预测 logit，标准 BCE 对目标值是线性的，格点占用比例的 BCE 等于该足迹内二值监督 BCE 的期望。 [Detectron2 多边形栅格化](https://detectron2.readthedocs.io/en/stable/_modules/detectron2/structures/masks.html) · [MONAI](https://monai.readthedocs.io/en/stable/lazy_resampling.html) · [PointRend](https://arxiv.org/abs/1912.08193) · [Mask2Former 监督入口](https://github.com/facebookresearch/Mask2Former/blob/main/mask2former/modeling/criterion.py) · [RF-DETR 固定损失源码](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/models/criterion.py#L325-L347) · [解析覆盖积分](https://people.engr.tamu.edu/schaefer/research/scanline.pdf)
+
+待检验的是复合裁剪中源多边形与栅格足迹不一致处的监督分配。最小机制对照使用共同的冻结前向、匹配实例和采样点，分别比较中心硬标签、栅格足迹软标签、多边形足迹软标签。进一步测试只在预设不一致区域改变监督分配时，加入等量随机或固定分配对照。训练阶段若使用预测驱动采样，点位置和匹配可能随权重改变，需记录实际差异。机制与模型效果均待实测。
