@@ -1,0 +1,133 @@
+{
+  "COCO_AP": true,
+  "accepted_result_sha256": "581a0ca8fc9966388dd6cb07a729f51726932c81bd5c037887b25c0b303dff56",
+  "annotations": 1782,
+  "arm": "center",
+  "build_including_admission_seconds": 25.218834300059825,
+  "cap": "min(16,floor(original predicted foreground pixels/10)); zero padding at image borders",
+  "closed_predictions_only": true,
+  "deltas_vs_identity_points": {
+    "morphology": {
+      "AP": 0.002628684433259032,
+      "AP75": 0.0,
+      "AP90": 0.00028086907133233197,
+      "APs": 0.005029100890074911
+    },
+    "sham": {
+      "AP": -0.007202030555231165,
+      "AP75": 0.0,
+      "AP90": 0.00028086907133233197,
+      "APs": -0.008830866863096531
+    }
+  },
+  "gt_used_for_prediction_edits": false,
+  "images": 705,
+  "metrics": {
+    "identity": {
+      "AP": 0.5607175557236392,
+      "AP50": 0.8933860912557013,
+      "AP75": 0.6543270055410144,
+      "AP90": 0.024852087496618522,
+      "APs": 0.5555150922118945,
+      "recall75": 0.7519640852974186,
+      "recall90": 0.15881032547699214
+    },
+    "morphology": {
+      "AP": 0.5607438425679718,
+      "AP50": 0.8933860912557013,
+      "AP75": 0.6543270055410144,
+      "AP90": 0.024854896187331846,
+      "APs": 0.5555653832207953,
+      "recall75": 0.7519640852974186,
+      "recall90": 0.15881032547699214
+    },
+    "sham": {
+      "AP": 0.5606455354180869,
+      "AP50": 0.8933860912557013,
+      "AP75": 0.6543270055410144,
+      "AP90": 0.024854896187331846,
+      "APs": 0.5554267835432636,
+      "recall75": 0.7519640852974186,
+      "recall90": 0.15881032547699214
+    }
+  },
+  "model_forward_calls": 0,
+  "official_TEST_opened": false,
+  "original_rows_edited": {
+    "add": 31,
+    "cap_zero_rows": 18220,
+    "delete": 1323,
+    "empty_rows": 15114,
+    "mapped_rows": 67386,
+    "rows_with_edits": 1233,
+    "sham_same_rle_as_morphology_on_edited_rows": 30,
+    "total_cap": 691825
+  },
+  "policy": "fill background with 8 foreground neighbors; remove foreground with zero foreground neighbors",
+  "prediction_sha256s": {
+    "identity": "4725ee563ed92288c6719615bd510e8444ec56f38a4ad2696859dcede42ec48a",
+    "morphology": "466d7870a7aede7f062e6bd50c0816dd23fb3fc084ae1f606d8b4e34c1115b52",
+    "sham": "866f4eef379f90e315f898389622a0fc82d495d771871bfbb2438b0e22dcf155"
+  },
+  "prediction_streams_frozen_before_coco_scoring": true,
+  "provenance": {
+    "arms": {
+      "center": {
+        "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+        "export_report_sha256": "05c5c11274f7800504b5ab1fb1dcb8db39c60316f51dc732e3f20ee063078c19",
+        "predictions_sha256": "da55f2d3f9bbf08b26d5fae76606b2496a5b482c5fb61f4fab53c23172e5c06e",
+        "score_report_sha256": "f980babe7cc6b3e701885ec136fb359fa2e2514e49fc08d3faf14995602270fa"
+      },
+      "native": {
+        "checkpoint_sha256": "d2d7c584c75a4bd4397f523ce9d7c827ae7d0aaf9bec61f5ee02eaf33c718c03",
+        "export_report_sha256": "689490c8dbd2f3e0f950fa88d9890d65ab4d1ad5655d1986c26114341d4bca02",
+        "predictions_sha256": "28acdc3a98f1d91381d3d57141b811e261a40f1535fa883deced2e1ee0fddf1a",
+        "score_report_sha256": "74211a55dce14c9f76fbb2f30638956b3b64bc4c64437fc12e2736155cd6a245"
+      }
+    },
+    "closed_export_pair_sha256": "d080a27ade36369a8fc8d2cb003c37cc3670d75860e83b30e365bd47e77543c0",
+    "evaluation_protocol": "91728d38a359e4a207e3f741490f09060c46663f",
+    "original_dev_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+    "support_policy": "ordered_common_nonempty_prepared_rows_v1",
+    "training_pair_receipt_sha256": "ec6c36973a763344d0f063727e7e07c697a132573e6235eaa8525482e8d8da9f",
+    "training_protocol": "04308c52bd2b4730f1474335c6316f6b8a11762e",
+    "training_seed": 5202
+  },
+  "sham": "fixed keyed sampling within the same original one-pixel side, with exact rule add/delete counts",
+  "source_sha256": {
+    "morphology_baseline.py": "d1897599606b046c4f637607a565ad94564c47382f744f95100f169f8f2b6c6b",
+    "strict_residual.py": "6fbefd4e62e7715518c1e460db9b0c32f5c407f11adef8de6cd5737b65346b54"
+  },
+  "status": "HRSID_COMMON_E24_DEV705_RLE_MORPHOLOGY_BASELINE_COMPLETE_V1",
+  "strict_on_fixed_original_matches": {
+    "original_050_matches": 1664,
+    "variants": {
+      "identity": {
+        "kept": 155,
+        "lost": 0,
+        "net": 0,
+        "original_strict": 155,
+        "recovered": 0,
+        "still_below": 1509
+      },
+      "morphology": {
+        "kept": 155,
+        "lost": 0,
+        "net": 0,
+        "original_strict": 155,
+        "recovered": 0,
+        "still_below": 1509
+      },
+      "sham": {
+        "kept": 155,
+        "lost": 0,
+        "net": 0,
+        "original_strict": 155,
+        "recovered": 0,
+        "still_below": 1509
+      }
+    }
+  },
+  "total_seconds": 36.42684320011176,
+  "training": false
+}
