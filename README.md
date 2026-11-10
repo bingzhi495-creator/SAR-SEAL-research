@@ -6,7 +6,7 @@
 
 - [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。
 - [HRSID 固定共同行 E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行-e24-的固定-dev705-实测)。固定同序监督实例的种子 5202 通过独立验收，DEV705 mask AP **51.434→56.072（+4.638 点）**，AP75 +9.314 点，大目标 AP −6.672 点。正式 TEST 继续隔离。
-- [HRSID FIT 大目标标签机制预锁](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit-全量大目标计数与标签足迹检验预锁)。完整 FIT 有 50 条大目标标注，来自 28 张图、4 个前缀。锁定全部 28 图的原生与中心采样足迹比较。
+- [HRSID FIT 大目标标签机制预锁](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit-全量大目标计数与标签足迹检验预锁)。完整 FIT 有 50 条大目标标注，来自 28 张图、4 个前缀。已完成全部 28 图的 112 视图回放。共同大目标的标签 FN 下降 0.845 点，足迹 IoU 提高 1.829 点，未支持标签收缩解释。
 - [HRSID 共同行大目标复算](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#大目标退化及配对组敏感性)。大目标 16 条集中在 3 个前缀组，逐组剔除 APl 差值 −8.958 至 +0.109 点，整体 AP 始终为正。等量候选并固定分数模板后，大目标仍下降。
 - [HRSID E24 冻结模型到 SSDD DEV187 的跨库诊断](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md)。六臂评分与独立复算已完成。固定 SSDD DEV187 上三组平均 +0.376 mask AP 点，未达到预设跨库支持门槛。 等量候选的 IoU 0.75 最大覆盖三组增加 5、20、22 个，IoU 0.90 增加 1、0、0 个。 固定共同匹配的 IoU 平均 +0.519 点，纵向方向组合仅两组通过。 [海陆分层](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#sl-ssdd-海陆分层复算)中，31 张含陆地图的平均 AP −0.686、AP75 +4.578，三组总 AP 均下降。 [同量候选 AP50 复算](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#含陆地图-ap50-的候选与评分对照)仍下降 4.535 点，固定候选和固定分数的对照均定位到负向影响。
 - [Schwegmann 中心船散射掩膜辅助验证](research_round_20260925_global/HRSID_TO_SCHWEGMANN_CENTRAL_SHIP_PROTOCOL_20261110.md)。32 张图、16 个采集组的六臂评分与独立复算完成。中心船平均 IoU +3.906 点，采集数低于预设门槛，保留为描述性结果。
