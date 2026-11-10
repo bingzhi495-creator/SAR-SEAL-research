@@ -421,3 +421,11 @@ Windows 原进程退出 0，完整等待用时 195.70 秒，峰值 RSS 2,239,721
 Detectron2 已实现保留多边形到框内再栅格化。MONAI 已实现合并空间变换后再重采样。PointRend 和 Mask2Former 已实现采样点上的掩膜监督。项目锁定的 RF-DETR 在匹配实例后也对栅格标签进行归一化坐标的最近邻点取样。因此，多边形优先、合并变换、解析面积和点监督分别已有先例。对固定预测 logit，标准 BCE 对目标值是线性的，格点占用比例的 BCE 等于该足迹内二值监督 BCE 的期望。 [Detectron2 多边形栅格化](https://detectron2.readthedocs.io/en/stable/_modules/detectron2/structures/masks.html) · [MONAI](https://monai.readthedocs.io/en/stable/lazy_resampling.html) · [PointRend](https://arxiv.org/abs/1912.08193) · [Mask2Former 监督入口](https://github.com/facebookresearch/Mask2Former/blob/main/mask2former/modeling/criterion.py) · [RF-DETR 固定损失源码](https://github.com/roboflow/rf-detr/blob/639eac4555ceb89ef399ccda3fde716bbcfe34cb/src/rfdetr/models/criterion.py#L325-L347) · [解析覆盖积分](https://people.engr.tamu.edu/schaefer/research/scanline.pdf)
 
 待检验的是复合裁剪中源多边形与栅格足迹不一致处的监督分配。最小机制对照使用共同的冻结前向、匹配实例和采样点，分别比较中心硬标签、栅格足迹软标签、多边形足迹软标签。进一步测试只在预设不一致区域改变监督分配时，加入等量随机或固定分配对照。训练阶段若使用预测驱动采样，点位置和匹配可能随权重改变，需记录实际差异。机制与模型效果均待实测。
+
+## 冻结模型点监督诊断预锁
+
+从封存 FIT114 取最早具有裁剪与直缩视图的八张核心源图，每张各取两种路径最早的视图。先前关闭的几何账本核对到 16 个视图、裁剪 31 条及直缩 35 条共同有效小目标行，有一条直缩行因无效多边形排除。两路径共享源图，匹配行可因裁剪可见范围改变。使用已验收的 HRSID 5201 原生 E24 EMA。每个视图只前向一次，使用同一原生单组 Hungarian 匹配及共同单次中心 C 目标。记录固定匹配的掩膜 logits，模型参数冻结，CPU 单线程。仅开放 FIT。
+
+候选点为 C 边界两侧的两个棋盘距离像元环，按前景和背景分四层，每层取最多四点。比较优先选择逐步中心 B 和 C 二值不同的点、优先选择低绝对 logit 的点、以及同层等量随机选择。并列和随机均固定种子。三者可见同一候选池和匹配 logits。源栅格足迹 R 与源多边形足迹 P 只用于读取选点效应。另算完全相同配额的随机期望。主指标为按源图等权的 `abs(P−R)`，同时报告相对硬 C 的两个偏差和固定 logits 下的损失。参考共享同一份标注，因此这个差值描述离散化敏感性。
+
+裁剪初筛要求相对随机期望绝对富集至少 0.01、倍数至少 1.25 且八图中至少五图方向为正。优先推进分歧选点还需超过低绝对 logit 对照。直缩作为 B/C 一致的机制参照。试点阈值为工程判断，后续仍需同预算训练、重复种子与真实原图评价。正负结果均保留。最接近的已有证据包括按多预测方差选实例标注点，以及同源 COCO 多边形和位图的框内栅格化差异检验。 [APIS 原文](https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136880599.pdf) · [Detectron2 同源表示测试](https://github.com/facebookresearch/detectron2/blob/main/tests/layers/test_mask_ops.py#L62-L125) · [诊断源码](code/HRSID_FIT_FROZEN_POINT_PROBE_20261110/run_fit_point_probe.py)
