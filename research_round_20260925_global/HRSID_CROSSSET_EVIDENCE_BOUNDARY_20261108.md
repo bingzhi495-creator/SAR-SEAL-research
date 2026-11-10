@@ -118,3 +118,7 @@ SARShip-4i 作者将自采实测影像的人工像素标注与 HRSID 多边形�
 作者 Google Drive 的匿名查看和预览接口返回 401，标准下载入口转到登录页面。尚无可核对的归档清单、范围读取或逐船身份，未取得训练或测试成员。Instance-RSDD 的作者分享能打开提取码页面，尚无可核验的训练标注字节。DRSNet 论文使用 Instance-RSDD，作者与发布论文部分重合，本轮未找到独立的作者托管归档。另一个名为 RSDD 的公开版本仅标示 25 张训练图，缺少与 3,555 图作者发布版的对应证据。正式跨库优先使用 PSeg-SSDD。 [SARShip-4i 作者数据入口](https://drive.google.com/file/d/15Q-5A_GQBAQTOp9rHXedbU7S1Dti-tR9/view?usp=share_link) · [Instance-RSDD 作者入口](https://github.com/XIDIAN212Lab/SRNet/blob/master/readme.md#the-instance-rsdd-dataset) · [DRSNet 原文](https://doi.org/10.1109/LGRS.2024.3420251) · [25 图版本说明](https://universe.roboflow.com/fzu-kmle9/rsdd-3cmje/dataset/1)
 
 Instance-RSDD 作者较早提交另有一个分享。使用作者公布的提取方式，匿名浏览器可打开历史文件夹，训练标注清单仍为同名 1,933,970 字节，服务方提供的文件标识也与当前分享一致。历史分享通过正常界面生成训练标注的下载链接，但同一会话的有界字节请求在官方存储返回 403，无有效 Content-Range 或可验证 COCO 字节。作者历史入口与当前入口均保留，独立实例掩膜资格仍待实际训练标注与来源授权。 [作者历史提交](https://github.com/XIDIAN212Lab/SRNet/blob/e7b3390b9248445a14e4b491e067eb51a48fdd63/readme.md#the-instance-rsdd-dataset)
+
+### OpenSARShip 2.0 派生实例标注候选
+
+SISS-YOLO 作者报告在 OpenSARShip 2.0 的 Sentinel-1A 船舶裁块上重新绘制 LabelMe 逐船多边形。论文的数据可用性指向原始 OpenSARShip 2.0，原始裁块发布缺少该研究重新绘制的实例掩膜。当前未核实独立的多边形下载包、母景级隔离清单或图内全部船舶的标注规则。若后续取得作者正式发布的多边形，可先按母景核对裁块与标注并判断是否能做独立外测。当前保留为候选来源。 [SISS-YOLO 原文第 3.1 节及数据声明](https://www.mdpi.com/2072-4292/17/17/3118) · [OpenSARShip 2.0 原始发布](https://doi.org/10.1109/BIGSARDATA.2017.8124929)

@@ -1,0 +1,435 @@
+{
+  "status": "SSDD_RETRAINED_DEV187_FIXED_SEA_LAND_INDEPENDENTLY_READBACK",
+  "original_worker_exit": 0,
+  "original_worker_wait": true,
+  "original_stderr_empty": true,
+  "independent_readback": {
+    "status": "P302_CLOSED_INDEPENDENT_ARITHMETIC_VERIFIED",
+    "original_result_sha256": "49051458e0692736c8d1c0fd6fd674cab3407b9545577ea7df774ed94679fdfa",
+    "terminal_sha256": "b98b76ecbc2a55375b29383b758a86041582769b71034ba62a6d8fabda6623c7",
+    "source_sha256": "f18c0e2c57e628a275150a46ea2cd631a4b81a909a45d2ef1091800928fc8390",
+    "raw_contrasts": 10,
+    "fixed_donor_contrasts": 50,
+    "total_prefix_per_arm": 9024,
+    "TEST": false
+  },
+  "report": {
+    "AP": true,
+    "DEV": true,
+    "FIT": false,
+    "TEST": false,
+    "accepted_p295_sha256": "97c53f1df007ddfc2cc0c200041a5b6246a40b4130c50e90151483e113d70a62",
+    "annotations": 380,
+    "author_TEST_mask_members_read": 0,
+    "author_TRAIN_mask_members_read": 187,
+    "candidate_effect_scope": "selected mask content and within-image order at equal candidate counts",
+    "device": "CPU",
+    "donor_effect_scope": "cross-image score ordering at fixed masks, within-image order and COCO matches",
+    "evaluation_protocol": "02d65ce5f01d2239a68c55bd84bf8e8739c11f29",
+    "full_primary_scores_exact": true,
+    "group_label_limit": "external author sea-land labels consult SSDD ship GT during annotation",
+    "group_rule": "any original land pixel versus all original pixels water; no prediction used",
+    "image_manifest_sha256": "18df007e15e3e838e607f178f14e7a26f2b37b992ee39bf091e0b74cf084fb13",
+    "images": 187,
+    "integer_gt_sha256": "5657600d6ea198f79bd5d557d2a1aadce5bec031d2ecf72a98716248d1183a55",
+    "jpeg_alias_census": {
+      "cross_stratum_same_byte_alias_groups": 0,
+      "distinct_jpeg": 183,
+      "same_byte_alias_groups": 4
+    },
+    "mask_census": {
+      "all_land": 0,
+      "all_water": 156,
+      "land_containing": 31
+    },
+    "model_forward_calls": 0,
+    "official_TEST_opened": false,
+    "package_versions": {
+      "numpy": "1.26.4",
+      "pycocotools": "2.0.11",
+      "scipy": "1.15.3"
+    },
+    "posthoc_development_diagnostic": true,
+    "prediction_sha256": {
+      "center": "5928a6c2c2d44d58d095c79452624d249c7b72c98a84889fa6de4f71b2a78d6c",
+      "native": "480af387cc954b1bc9699ada0df6aa520add6c0e0155cb25499a3f86f02b5c72"
+    },
+    "primary_GT": "INTEGER_PRIMARY",
+    "prior_p299_sha256": "c96087f644e13f8199fc956f52af503bb726da0c003c064385c732dc074dc98d",
+    "source_commit": "e9b3ffd35c72067206af95239447aebbdbca3c77",
+    "source_git_blob": "14ae89d4793b2a00a8d72443fc4c38e750327a63",
+    "source_zip_sha256": "da66b1807ea91a1f593cd62d4987f9d2ce4b410ede8ea97e231ad6f5f9455989",
+    "status": "P302_SSDD_RETRAINED_DEV187_SHORE_DIAGNOSTIC_COMPLETE_PENDING_INDEPENDENT_ACCEPTANCE",
+    "strata": {
+      "all_water": {
+        "annotations": 294,
+        "equal_nonempty": {
+          "cells": {
+            "center": {
+              "center": {
+                "AP": 0.7213147442286916,
+                "AP50": 0.999111040377734,
+                "AP75": 0.9274761427339502,
+                "AP90": 0.07573215152792592,
+                "APs": 0.7137901526089835,
+                "recall75": 0.9727891156462585,
+                "recall90": 0.2789115646258503
+              },
+              "native": {
+                "AP": 0.7267881012948539,
+                "AP50": 0.9986207340173924,
+                "AP75": 0.9309550165265599,
+                "AP90": 0.09207358775297639,
+                "APs": 0.7202481701623362,
+                "recall75": 0.9727891156462585,
+                "recall90": 0.2789115646258503
+              }
+            },
+            "native": {
+              "center": {
+                "AP": 0.7044100095411656,
+                "AP50": 0.998853207732409,
+                "AP75": 0.9085705894778701,
+                "AP90": 0.048876950080178144,
+                "APs": 0.6906249174275269,
+                "recall75": 0.9625850340136054,
+                "recall90": 0.22448979591836735
+              },
+              "native": {
+                "AP": 0.7108934433861067,
+                "AP50": 0.9971522084242943,
+                "AP75": 0.9194141430974458,
+                "AP90": 0.06269756604959258,
+                "APs": 0.6987264193029895,
+                "recall75": 0.9625850340136054,
+                "recall90": 0.22448979591836735
+              }
+            }
+          },
+          "contrasts_points": {
+            "geometry_with_center_scores": {
+              "AP": 1.6904734687525957,
+              "AP50": 0.025783264532497352,
+              "AP75": 1.890555325608012,
+              "AP90": 2.685520144774778,
+              "APs": 2.3165235181456634
+            },
+            "geometry_with_native_scores": {
+              "AP": 1.5894657908747223,
+              "AP50": 0.1468525593098069,
+              "AP75": 1.154087342911403,
+              "AP90": 2.9376021703383812,
+              "APs": 2.152175085934671
+            },
+            "own_scores_center_minus_native": {
+              "AP": 1.0421300842584857,
+              "AP50": 0.19588319534397103,
+              "AP75": 0.8061999636504336,
+              "AP90": 1.3034585478333347,
+              "APs": 1.5063733305993976
+            },
+            "score_on_center_geometry": {
+              "AP": -0.5473357066162365,
+              "AP50": 0.04903063603416413,
+              "AP75": -0.34788737926096935,
+              "AP90": -1.6341436225050465,
+              "APs": -0.6458017553352735
+            },
+            "score_on_native_geometry": {
+              "AP": -0.64834338449411,
+              "AP50": 0.17009993081147368,
+              "AP75": -1.0843553619575785,
+              "AP90": -1.3820615969414431,
+              "APs": -0.8101501875462658
+            }
+          },
+          "matching_witness": {
+            "center": {
+              "all_area_detection_rows": 7051,
+              "all_area_dt_ignore_cells": 70510,
+              "all_area_dt_matches_cells": 70510,
+              "all_area_image_records": 156,
+              "all_area_nonnull_records": 156,
+              "all_area_ranges_records": 624,
+              "exact_across_score_donors": true
+            },
+            "native": {
+              "all_area_detection_rows": 7051,
+              "all_area_dt_ignore_cells": 70510,
+              "all_area_dt_matches_cells": 70510,
+              "all_area_image_records": 156,
+              "all_area_nonnull_records": 156,
+              "all_area_ranges_records": 624,
+              "exact_across_score_donors": true
+            }
+          },
+          "prefix_counts": {
+            "center": {
+              "discarded_nonempty_after_count_matching": 253,
+              "mapped": 11507,
+              "mapped_empty": 4203,
+              "nonempty": 7304
+            },
+            "images_with_prefix": 156,
+            "images_without_prefix": 0,
+            "native": {
+              "discarded_nonempty_after_count_matching": 1598,
+              "mapped": 12453,
+              "mapped_empty": 3804,
+              "nonempty": 8649
+            },
+            "retained_per_arm": 7051
+          },
+          "score_blind_coverage": {
+            "arms": {
+              "center": {
+                "0.75": {
+                  "any_candidate": 286,
+                  "maximum_one_to_one": 286,
+                  "maximum_recall": 0.9727891156462585
+                },
+                "0.90": {
+                  "any_candidate": 82,
+                  "maximum_one_to_one": 82,
+                  "maximum_recall": 0.2789115646258503
+                }
+              },
+              "native": {
+                "0.75": {
+                  "any_candidate": 283,
+                  "maximum_one_to_one": 283,
+                  "maximum_recall": 0.9625850340136054
+                },
+                "0.90": {
+                  "any_candidate": 66,
+                  "maximum_one_to_one": 66,
+                  "maximum_recall": 0.22448979591836735
+                }
+              }
+            },
+            "eligible_gt": 294,
+            "excluded_gt": {
+              "crowd": 0,
+              "empty": 0,
+              "ignore": 0
+            }
+          }
+        },
+        "images": 156,
+        "raw_arm_metrics": {
+          "center": {
+            "AP": 0.7208033056867543,
+            "AP50": 0.999111040377734,
+            "AP75": 0.9267560988412943,
+            "AP90": 0.07527862376760104,
+            "APs": 0.7133001986242524,
+            "recall75": 0.9727891156462585,
+            "recall90": 0.2789115646258503
+          },
+          "native": {
+            "AP": 0.7107742870800724,
+            "AP50": 0.9971522084242943,
+            "AP75": 0.919058392296264,
+            "AP90": 0.06258701372781317,
+            "APs": 0.6985097331008068,
+            "recall75": 0.9625850340136054,
+            "recall90": 0.23129251700680273
+          }
+        },
+        "raw_center_minus_native_points": {
+          "AP": 1.0029018606681928,
+          "AP50": 0.19588319534397103,
+          "AP75": 0.7697706545030325,
+          "AP90": 1.2691610039787873,
+          "APs": 1.479046552344565
+        }
+      },
+      "land_containing": {
+        "annotations": 86,
+        "equal_nonempty": {
+          "cells": {
+            "center": {
+              "center": {
+                "AP": 0.5917863879310643,
+                "AP50": 0.8598065167858765,
+                "AP75": 0.7043625720912717,
+                "AP90": 0.15744828512839515,
+                "APs": 0.5919100600268775,
+                "recall75": 0.7906976744186046,
+                "recall90": 0.2558139534883721
+              },
+              "native": {
+                "AP": 0.5629013680362555,
+                "AP50": 0.821592453758005,
+                "AP75": 0.664773996047207,
+                "AP90": 0.1330289200109277,
+                "APs": 0.5767605873366133,
+                "recall75": 0.7906976744186046,
+                "recall90": 0.2558139534883721
+              }
+            },
+            "native": {
+              "center": {
+                "AP": 0.5705780140086092,
+                "AP50": 0.8531348597392544,
+                "AP75": 0.6976112298140168,
+                "AP90": 0.050917158487765075,
+                "APs": 0.570529114543938,
+                "recall75": 0.8023255813953488,
+                "recall90": 0.1744186046511628
+              },
+              "native": {
+                "AP": 0.5566532911639933,
+                "AP50": 0.8322388850456832,
+                "AP75": 0.6760226796519109,
+                "AP90": 0.05590118087883825,
+                "APs": 0.5617159762013358,
+                "recall75": 0.8023255813953488,
+                "recall90": 0.1744186046511628
+              }
+            }
+          },
+          "contrasts_points": {
+            "geometry_with_center_scores": {
+              "AP": 2.1208373922455115,
+              "AP50": 0.6671657046622093,
+              "AP75": 0.6751342277254935,
+              "AP90": 10.653112664063007,
+              "APs": 2.138094548293956
+            },
+            "geometry_with_native_scores": {
+              "AP": 0.6248076872262143,
+              "AP50": -1.064643128767817,
+              "AP75": -1.124868360470388,
+              "AP90": 7.712773913208945,
+              "APs": 1.5044611135277441
+            },
+            "own_scores_center_minus_native": {
+              "AP": 3.5133096767070993,
+              "AP50": 2.7567631740193277,
+              "AP75": 2.833989243936086,
+              "AP90": 10.15471042495569,
+              "APs": 3.0194083825541673
+            },
+            "score_on_center_geometry": {
+              "AP": 2.888501989480885,
+              "AP50": 3.8214063027871448,
+              "AP75": 3.958857604406474,
+              "AP90": 2.441936511746745,
+              "APs": 1.5149472690264232
+            },
+            "score_on_native_geometry": {
+              "AP": 1.3924722844615878,
+              "AP50": 2.0895974693571184,
+              "AP75": 2.1588550162105924,
+              "AP90": -0.4984022391073172,
+              "APs": 0.8813138342602111
+            }
+          },
+          "matching_witness": {
+            "center": {
+              "all_area_detection_rows": 1973,
+              "all_area_dt_ignore_cells": 19730,
+              "all_area_dt_matches_cells": 19730,
+              "all_area_image_records": 31,
+              "all_area_nonnull_records": 31,
+              "all_area_ranges_records": 124,
+              "exact_across_score_donors": true
+            },
+            "native": {
+              "all_area_detection_rows": 1973,
+              "all_area_dt_ignore_cells": 19730,
+              "all_area_dt_matches_cells": 19730,
+              "all_area_image_records": 31,
+              "all_area_nonnull_records": 31,
+              "all_area_ranges_records": 124,
+              "exact_across_score_donors": true
+            }
+          },
+          "prefix_counts": {
+            "center": {
+              "discarded_nonempty_after_count_matching": 200,
+              "mapped": 2521,
+              "mapped_empty": 348,
+              "nonempty": 2173
+            },
+            "images_with_prefix": 31,
+            "images_without_prefix": 0,
+            "native": {
+              "discarded_nonempty_after_count_matching": 86,
+              "mapped": 2554,
+              "mapped_empty": 495,
+              "nonempty": 2059
+            },
+            "retained_per_arm": 1973
+          },
+          "score_blind_coverage": {
+            "arms": {
+              "center": {
+                "0.75": {
+                  "any_candidate": 68,
+                  "maximum_one_to_one": 68,
+                  "maximum_recall": 0.7906976744186046
+                },
+                "0.90": {
+                  "any_candidate": 22,
+                  "maximum_one_to_one": 22,
+                  "maximum_recall": 0.2558139534883721
+                }
+              },
+              "native": {
+                "0.75": {
+                  "any_candidate": 69,
+                  "maximum_one_to_one": 69,
+                  "maximum_recall": 0.8023255813953488
+                },
+                "0.90": {
+                  "any_candidate": 15,
+                  "maximum_one_to_one": 15,
+                  "maximum_recall": 0.1744186046511628
+                }
+              }
+            },
+            "eligible_gt": 86,
+            "excluded_gt": {
+              "crowd": 0,
+              "empty": 0,
+              "ignore": 0
+            }
+          }
+        },
+        "images": 31,
+        "raw_arm_metrics": {
+          "center": {
+            "AP": 0.5917877698562661,
+            "AP50": 0.8597454857976121,
+            "AP75": 0.7045383000314605,
+            "AP90": 0.15741096634759447,
+            "APs": 0.5918151924875348,
+            "recall75": 0.8023255813953488,
+            "recall90": 0.2558139534883721
+          },
+          "native": {
+            "AP": 0.5565182126192458,
+            "AP50": 0.8321502199549077,
+            "AP75": 0.675832169498196,
+            "AP90": 0.05583781085161752,
+            "APs": 0.5616125384687878,
+            "recall75": 0.8023255813953488,
+            "recall90": 0.1744186046511628
+          }
+        },
+        "raw_center_minus_native_points": {
+          "AP": 3.52695572370203,
+          "AP50": 2.759526584270444,
+          "AP75": 2.870613053326443,
+          "AP90": 10.157315549597696,
+          "APs": 3.0202654018747
+        }
+      }
+    },
+    "training": false,
+    "training_protocol": "22e4976a4536c908921b4756d928c5ba9b2f1ffd",
+    "training_seed": 5201
+  }
+}
