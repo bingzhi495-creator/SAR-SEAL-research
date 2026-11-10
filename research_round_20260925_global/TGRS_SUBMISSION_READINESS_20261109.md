@@ -25,6 +25,6 @@
 ## 2026-11-11 证据更新
 
 - **源域效用已过预设开发门槛。** 三组同预算 E24 在固定 HRSID DEV705 的平均提升为 +4.888 个 mask AP 点。三组共用初始化方案，全部在开发集。固定共同行的种子 5202 已独立验收，两组使用同序监督实例，mask AP 提升 +4.638 点，AP75 提升 +9.314 点，大目标 AP 下降 6.672 点。该对照支持保留实例掩膜像素变化在固定配方下的效用。 [三种子结果](HRSID_FIT_RESIZE_PHASE_REPEAT_SEEDS_PROTOCOL_20261109.md) · [共同行对照](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md)
-- **新方法与外推两项仍待证据。** 单次复合中心已改善真实裁剪标签几何，冻结头短窗只提高 0.065 IoU 点，低于预设 0.5 点。需同一 B∩C 监督人口、初始化和完整训练预算下比较逐步中心 B 与单次复合中心 C。固定源模型转到 SSDD DEV187 的平均 mask AP 提升 +0.376 点，未通过预锁门槛。含陆地图总 AP 三组下降，等候选数量后 AP50 仍下降，候选和跨图排序均有影响。正式 HRSID 评价、SSDD 同预算目标域重训和独立外部船体标签验证仍待完成。 [B/C 训练协议](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#逐步中心与单次复合中心的正式-e24-入口) · [SSDD 失败范围](HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#含陆地图-ap50-的候选与评分对照)
+- **外推结果按训练方式区分。** SSDD 目标域同预算 E24 重训的首个配对已独立验收，固定整数 DEV187 的 mask AP **67.819→69.500（+1.680 点）**，AP75 +1.533、AP90 +3.411。该配对为单种子、历史接触开发集和自然目标保留。冻结源模型转到 SSDD DEV187 的三组平均提升仍为 +0.376 点，未通过预锁门槛。含陆地图三组总 AP 下降，等候选数量后 AP50 仍下降。后续需重复 SSDD 种子、做固定候选及共同监督机制核验，并完成正式 HRSID 评价及独立外部验证。单次复合中心已改善真实裁剪标签几何，冻结头短窗仅 +0.065 IoU 点，低于预设 0.5 点，完整 B/C 训练仍待验证。 [SSDD 目标域验收](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-目标域同预算-e24-实测) · [冻结迁移分层](HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#含陆地图-ap50-的候选与评分对照) · [B/C 训练协议](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#逐步中心与单次复合中心的正式-e24-入口)
 
 表中 45／100 是 2026-11-09 的历史阶段估计。当前证据可以写入结果与失败分析，投稿判定仍取决于技术差异及机制拆分、同预算跨库和正式评价。
