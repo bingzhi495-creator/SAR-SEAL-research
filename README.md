@@ -2,14 +2,14 @@
 
 <!-- U57_U60_ACTUAL_20261021_01 -->
 
-## 当前状态（2026-11-09）
+## 当前状态（2026-11-10）
 
 - [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。
-- [HRSID E24 冻结模型到 SSDD DEV187 的跨库诊断](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md)。已完成 5/6 臂的原始导出，末臂运行中。首组已独立闭合，跨库指标待六臂评分。
+- [HRSID E24 冻结模型到 SSDD DEV187 的跨库诊断](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md)。六臂评分与独立复算已完成。固定 SSDD DEV187 上三组平均 +0.376 mask AP 点，未达到预设跨库支持门槛。
 - [Schwegmann 中心船散射掩膜辅助验证](research_round_20260925_global/HRSID_TO_SCHWEGMANN_CENTRAL_SHIP_PROTOCOL_20261110.md)。已核验公开原始文件和 16 个采集组，固定 32 张图，等待六臂同协议推理。
 - [冻结模型的点监督分配试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#冻结模型点监督诊断预锁)。固定八张源图上的分歧富集为同配额随机期望的 1.87 倍。随后同预算 8 次原生投影更新的轮廓指标未达到晋级门槛。
 - [HRSID 训练标签的多边形优先对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#hrsid-fit-only-多边形优先对照)。456 个固定训练视图已完成。核心裁剪中单次中心相对逐步中心在两种参考下提升 +6.45、+6.27 个几何 IoU 点。模型效用待同预算实测。
-- [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md)。已验证一份 OpenSAR Insight 训练复数样本可接入方位 FFT，并核对 Maya4 成像链入口。论文候选试验以同景 RD 辅助空间轮廓，海面 RD 船艇定位单独评价。真实 RD 模型效用待实测。
+- [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md)。已验证一份公开复数训练样本可接入方位 FFT。先识别方位时间、方位频率与径向速度轴。论文候选以同景局部多普勒特征辅助空间轮廓，海面 RD 船艇定位单独评价。模型收益待实测。
 
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
