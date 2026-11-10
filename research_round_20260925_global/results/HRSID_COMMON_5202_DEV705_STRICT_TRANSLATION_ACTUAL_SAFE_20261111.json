@@ -1,0 +1,1004 @@
+{
+  "COCO_AP": false,
+  "annotations": 1782,
+  "area_policy": "original whole mask area including translated pixels outside the canvas",
+  "closed_predictions_only": true,
+  "device": "CPU",
+  "eligible_gt": 1778,
+  "equal_nonempty_prefix_rows_per_arm": 41482,
+  "exclusions": {
+    "crowd": 0,
+    "empty": 4,
+    "ignore": 0
+  },
+  "images": 705,
+  "model_forward_calls": 0,
+  "official_TEST_opened": false,
+  "p311_result_sha256": "280ae9abe55e67d1e85c0e3a22406e5489cf295f1a37c81068644d21ea8c7e7d",
+  "p311_source_sha256": "6fbefd4e62e7715518c1e460db9b0c32f5c407f11adef8de6cd5737b65346b54",
+  "population_scope": "earliest native-rank maximum-IoU failing mask on exactly one-arm strict GT transitions",
+  "provenance": {
+    "arms": {
+      "center": {
+        "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+        "export_report_sha256": "05c5c11274f7800504b5ab1fb1dcb8db39c60316f51dc732e3f20ee063078c19",
+        "predictions_sha256": "da55f2d3f9bbf08b26d5fae76606b2496a5b482c5fb61f4fab53c23172e5c06e",
+        "score_report_sha256": "f980babe7cc6b3e701885ec136fb359fa2e2514e49fc08d3faf14995602270fa"
+      },
+      "native": {
+        "checkpoint_sha256": "d2d7c584c75a4bd4397f523ce9d7c827ae7d0aaf9bec61f5ee02eaf33c718c03",
+        "export_report_sha256": "689490c8dbd2f3e0f950fa88d9890d65ab4d1ad5655d1986c26114341d4bca02",
+        "predictions_sha256": "28acdc3a98f1d91381d3d57141b811e261a40f1535fa883deced2e1ee0fddf1a",
+        "score_report_sha256": "74211a55dce14c9f76fbb2f30638956b3b64bc4c64437fc12e2736155cd6a245"
+      }
+    },
+    "closed_export_pair_sha256": "d080a27ade36369a8fc8d2cb003c37cc3670d75860e83b30e365bd47e77543c0",
+    "evaluation_protocol": "91728d38a359e4a207e3f741490f09060c46663f",
+    "original_dev_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+    "support_policy": "ordered_common_nonempty_prepared_rows_v1",
+    "training_pair_receipt_sha256": "ec6c36973a763344d0f063727e7e07c697a132573e6235eaa8525482e8d8da9f",
+    "training_protocol": "04308c52bd2b4730f1474335c6316f6b8a11762e",
+    "training_seed": 5202
+  },
+  "radius_original_pixels": 2,
+  "status": "P312_HRSID_COMMON_STRICT_SWITCH_TRANSLATION_COMPLETE_PENDING_INDEPENDENT_ACCEPTANCE",
+  "strata": {
+    "all": {
+      "center_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "area_feasible": 2,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 2,
+                "mean_best_iou": 0.7927961209882244,
+                "mean_gain_iou_points": 6.550779146877361,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 1,
+                "mean_best_iou": 0.8805491990846682,
+                "mean_gain_iou_points": 15.32608695652174,
+                "recovered": 1
+              },
+              "vertical": {
+                "feasible_not_recovered": 1,
+                "mean_best_iou": 0.8805491990846682,
+                "mean_gain_iou_points": 15.32608695652174,
+                "recovered": 1
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": 0.7272883295194508,
+            "targets": 2
+          },
+          "075_to_090": {
+            "area_feasible": 159,
+            "area_impossible": 17,
+            "both_axes_individually_recovered": 14,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 138,
+                "mean_best_iou": 0.8773996011851002,
+                "mean_gain_iou_points": 1.2242944222323509,
+                "recovered": 21
+              },
+              "joint": {
+                "feasible_not_recovered": 88,
+                "mean_best_iou": 0.8941501598649252,
+                "mean_gain_iou_points": 2.899350290214848,
+                "recovered": 71
+              },
+              "vertical": {
+                "feasible_not_recovered": 110,
+                "mean_best_iou": 0.8863729218423998,
+                "mean_gain_iou_points": 2.1216264879623132,
+                "recovered": 49
+              }
+            },
+            "joint_only_recovered": 15,
+            "mean_raw_iou": 0.8651566569627767,
+            "targets": 176
+          },
+          "below_050": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          }
+        },
+        "failing_arm": "native",
+        "totals": {
+          "area_feasible": 161,
+          "area_impossible": 17,
+          "both_axes_individually_recovered": 14,
+          "by_family": {
+            "horizontal": {
+              "feasible_not_recovered": 140,
+              "mean_best_iou": 0.8764490002840116,
+              "mean_gain_iou_points": 1.2841425652058904,
+              "recovered": 21
+            },
+            "joint": {
+              "feasible_not_recovered": 89,
+              "mean_best_iou": 0.8939973400808773,
+              "mean_gain_iou_points": 3.0389765448924533,
+              "recovered": 72
+            },
+            "vertical": {
+              "feasible_not_recovered": 111,
+              "mean_best_iou": 0.8863074867552343,
+              "mean_gain_iou_points": 2.2699912123281494,
+              "recovered": 50
+            }
+          },
+          "joint_only_recovered": 15,
+          "mean_raw_iou": 0.8636075746319528,
+          "targets": 178
+        }
+      },
+      "native_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          },
+          "075_to_090": {
+            "area_feasible": 39,
+            "area_impossible": 2,
+            "both_axes_individually_recovered": 5,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 30,
+                "mean_best_iou": 0.8867731605727454,
+                "mean_gain_iou_points": 1.1889217418806834,
+                "recovered": 9
+              },
+              "joint": {
+                "feasible_not_recovered": 21,
+                "mean_best_iou": 0.8954201621613638,
+                "mean_gain_iou_points": 2.053621900742531,
+                "recovered": 18
+              },
+              "vertical": {
+                "feasible_not_recovered": 28,
+                "mean_best_iou": 0.8895392753517745,
+                "mean_gain_iou_points": 1.465533219783595,
+                "recovered": 11
+              }
+            },
+            "joint_only_recovered": 3,
+            "mean_raw_iou": 0.8748839431539385,
+            "targets": 41
+          },
+          "below_050": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          }
+        },
+        "failing_arm": "center",
+        "totals": {
+          "area_feasible": 39,
+          "area_impossible": 2,
+          "both_axes_individually_recovered": 5,
+          "by_family": {
+            "horizontal": {
+              "feasible_not_recovered": 30,
+              "mean_best_iou": 0.8867731605727454,
+              "mean_gain_iou_points": 1.1889217418806834,
+              "recovered": 9
+            },
+            "joint": {
+              "feasible_not_recovered": 21,
+              "mean_best_iou": 0.8954201621613638,
+              "mean_gain_iou_points": 2.053621900742531,
+              "recovered": 18
+            },
+            "vertical": {
+              "feasible_not_recovered": 28,
+              "mean_best_iou": 0.8895392753517745,
+              "mean_gain_iou_points": 1.465533219783595,
+              "recovered": 11
+            }
+          },
+          "joint_only_recovered": 3,
+          "mean_raw_iou": 0.8748839431539385,
+          "targets": 41
+        }
+      }
+    },
+    "large": {
+      "center_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          },
+          "075_to_090": {
+            "area_feasible": 1,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 1,
+                "mean_best_iou": 0.882103420414759,
+                "mean_gain_iou_points": 0.0,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 1,
+                "mean_best_iou": 0.882103420414759,
+                "mean_gain_iou_points": 0.0,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 1,
+                "mean_best_iou": 0.882103420414759,
+                "mean_gain_iou_points": 0.0,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": 0.882103420414759,
+            "targets": 1
+          },
+          "below_050": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          }
+        },
+        "failing_arm": "native",
+        "totals": {
+          "area_feasible": 1,
+          "area_impossible": 0,
+          "both_axes_individually_recovered": 0,
+          "by_family": {
+            "horizontal": {
+              "feasible_not_recovered": 1,
+              "mean_best_iou": 0.882103420414759,
+              "mean_gain_iou_points": 0.0,
+              "recovered": 0
+            },
+            "joint": {
+              "feasible_not_recovered": 1,
+              "mean_best_iou": 0.882103420414759,
+              "mean_gain_iou_points": 0.0,
+              "recovered": 0
+            },
+            "vertical": {
+              "feasible_not_recovered": 1,
+              "mean_best_iou": 0.882103420414759,
+              "mean_gain_iou_points": 0.0,
+              "recovered": 0
+            }
+          },
+          "joint_only_recovered": 0,
+          "mean_raw_iou": 0.882103420414759,
+          "targets": 1
+        }
+      },
+      "native_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          },
+          "075_to_090": {
+            "area_feasible": 2,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 2,
+                "mean_best_iou": 0.8843043944471112,
+                "mean_gain_iou_points": 0.9362548901200751,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 2,
+                "mean_best_iou": 0.8874809226459401,
+                "mean_gain_iou_points": 1.2539077100029716,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 2,
+                "mean_best_iou": 0.8815909345383788,
+                "mean_gain_iou_points": 0.664908899246841,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": 0.8749418455459104,
+            "targets": 2
+          },
+          "below_050": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          }
+        },
+        "failing_arm": "center",
+        "totals": {
+          "area_feasible": 2,
+          "area_impossible": 0,
+          "both_axes_individually_recovered": 0,
+          "by_family": {
+            "horizontal": {
+              "feasible_not_recovered": 2,
+              "mean_best_iou": 0.8843043944471112,
+              "mean_gain_iou_points": 0.9362548901200751,
+              "recovered": 0
+            },
+            "joint": {
+              "feasible_not_recovered": 2,
+              "mean_best_iou": 0.8874809226459401,
+              "mean_gain_iou_points": 1.2539077100029716,
+              "recovered": 0
+            },
+            "vertical": {
+              "feasible_not_recovered": 2,
+              "mean_best_iou": 0.8815909345383788,
+              "mean_gain_iou_points": 0.664908899246841,
+              "recovered": 0
+            }
+          },
+          "joint_only_recovered": 0,
+          "mean_raw_iou": 0.8749418455459104,
+          "targets": 2
+        }
+      }
+    },
+    "medium": {
+      "center_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          },
+          "075_to_090": {
+            "area_feasible": 17,
+            "area_impossible": 5,
+            "both_axes_individually_recovered": 3,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 13,
+                "mean_best_iou": 0.8786192892192344,
+                "mean_gain_iou_points": 0.8084916187856678,
+                "recovered": 4
+              },
+              "joint": {
+                "feasible_not_recovered": 6,
+                "mean_best_iou": 0.8942841293655931,
+                "mean_gain_iou_points": 2.3749756334215433,
+                "recovered": 11
+              },
+              "vertical": {
+                "feasible_not_recovered": 9,
+                "mean_best_iou": 0.8906137073559279,
+                "mean_gain_iou_points": 2.007933432455026,
+                "recovered": 8
+              }
+            },
+            "joint_only_recovered": 2,
+            "mean_raw_iou": 0.8705343730313777,
+            "targets": 22
+          },
+          "below_050": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          }
+        },
+        "failing_arm": "native",
+        "totals": {
+          "area_feasible": 17,
+          "area_impossible": 5,
+          "both_axes_individually_recovered": 3,
+          "by_family": {
+            "horizontal": {
+              "feasible_not_recovered": 13,
+              "mean_best_iou": 0.8786192892192344,
+              "mean_gain_iou_points": 0.8084916187856678,
+              "recovered": 4
+            },
+            "joint": {
+              "feasible_not_recovered": 6,
+              "mean_best_iou": 0.8942841293655931,
+              "mean_gain_iou_points": 2.3749756334215433,
+              "recovered": 11
+            },
+            "vertical": {
+              "feasible_not_recovered": 9,
+              "mean_best_iou": 0.8906137073559279,
+              "mean_gain_iou_points": 2.007933432455026,
+              "recovered": 8
+            }
+          },
+          "joint_only_recovered": 2,
+          "mean_raw_iou": 0.8705343730313777,
+          "targets": 22
+        }
+      },
+      "native_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          },
+          "075_to_090": {
+            "area_feasible": 5,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 1,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 3,
+                "mean_best_iou": 0.8981385870698272,
+                "mean_gain_iou_points": 0.9496373924287727,
+                "recovered": 2
+              },
+              "joint": {
+                "feasible_not_recovered": 2,
+                "mean_best_iou": 0.9044169075957739,
+                "mean_gain_iou_points": 1.5774694450234383,
+                "recovered": 3
+              },
+              "vertical": {
+                "feasible_not_recovered": 3,
+                "mean_best_iou": 0.8978437317586557,
+                "mean_gain_iou_points": 0.9201518613116244,
+                "recovered": 2
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": 0.8886422131455395,
+            "targets": 5
+          },
+          "below_050": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          }
+        },
+        "failing_arm": "center",
+        "totals": {
+          "area_feasible": 5,
+          "area_impossible": 0,
+          "both_axes_individually_recovered": 1,
+          "by_family": {
+            "horizontal": {
+              "feasible_not_recovered": 3,
+              "mean_best_iou": 0.8981385870698272,
+              "mean_gain_iou_points": 0.9496373924287727,
+              "recovered": 2
+            },
+            "joint": {
+              "feasible_not_recovered": 2,
+              "mean_best_iou": 0.9044169075957739,
+              "mean_gain_iou_points": 1.5774694450234383,
+              "recovered": 3
+            },
+            "vertical": {
+              "feasible_not_recovered": 3,
+              "mean_best_iou": 0.8978437317586557,
+              "mean_gain_iou_points": 0.9201518613116244,
+              "recovered": 2
+            }
+          },
+          "joint_only_recovered": 0,
+          "mean_raw_iou": 0.8886422131455395,
+          "targets": 5
+        }
+      }
+    },
+    "small": {
+      "center_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "area_feasible": 2,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 2,
+                "mean_best_iou": 0.7927961209882244,
+                "mean_gain_iou_points": 6.550779146877361,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 1,
+                "mean_best_iou": 0.8805491990846682,
+                "mean_gain_iou_points": 15.32608695652174,
+                "recovered": 1
+              },
+              "vertical": {
+                "feasible_not_recovered": 1,
+                "mean_best_iou": 0.8805491990846682,
+                "mean_gain_iou_points": 15.32608695652174,
+                "recovered": 1
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": 0.7272883295194508,
+            "targets": 2
+          },
+          "075_to_090": {
+            "area_feasible": 141,
+            "area_impossible": 12,
+            "both_axes_individually_recovered": 11,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 124,
+                "mean_best_iou": 0.877193477289802,
+                "mean_gain_iou_points": 1.2920849849647653,
+                "recovered": 17
+              },
+              "joint": {
+                "feasible_not_recovered": 81,
+                "mean_best_iou": 0.8942096331357452,
+                "mean_gain_iou_points": 2.99370056955908,
+                "recovered": 60
+              },
+              "vertical": {
+                "feasible_not_recovered": 100,
+                "mean_best_iou": 0.8857910409282169,
+                "mean_gain_iou_points": 2.151841348806252,
+                "recovered": 41
+              }
+            },
+            "joint_only_recovered": 13,
+            "mean_raw_iou": 0.8642726274401544,
+            "targets": 153
+          },
+          "below_050": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          }
+        },
+        "failing_arm": "native",
+        "totals": {
+          "area_feasible": 143,
+          "area_impossible": 12,
+          "both_axes_individually_recovered": 11,
+          "by_family": {
+            "horizontal": {
+              "feasible_not_recovered": 126,
+              "mean_best_iou": 0.8761044791439753,
+              "mean_gain_iou_points": 1.3599391031829924,
+              "recovered": 17
+            },
+            "joint": {
+              "feasible_not_recovered": 82,
+              "mean_best_iou": 0.89403336947057,
+              "mean_gain_iou_points": 3.1528281358424692,
+              "recovered": 61
+            },
+            "vertical": {
+              "feasible_not_recovered": 101,
+              "mean_best_iou": 0.8857234042592679,
+              "mean_gain_iou_points": 2.321831614712258,
+              "recovered": 42
+            }
+          },
+          "joint_only_recovered": 13,
+          "mean_raw_iou": 0.8625050881121453,
+          "targets": 155
+        }
+      },
+      "native_only": {
+        "by_failing_raw_iou_band": {
+          "050_to_075": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          },
+          "075_to_090": {
+            "area_feasible": 32,
+            "area_impossible": 2,
+            "both_axes_individually_recovered": 4,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 25,
+                "mean_best_iou": 0.8852469958599765,
+                "mean_gain_iou_points": 1.2389733727860002,
+                "recovered": 7
+              },
+              "joint": {
+                "feasible_not_recovered": 17,
+                "mean_best_iou": 0.8945641254513285,
+                "mean_gain_iou_points": 2.170686331921195,
+                "recovered": 15
+              },
+              "vertical": {
+                "feasible_not_recovered": 23,
+                "mean_best_iou": 0.8887855812221387,
+                "mean_gain_iou_points": 1.5928319090022232,
+                "recovered": 9
+              }
+            },
+            "joint_only_recovered": 3,
+            "mean_raw_iou": 0.8728572621321165,
+            "targets": 34
+          },
+          "below_050": {
+            "area_feasible": 0,
+            "area_impossible": 0,
+            "both_axes_individually_recovered": 0,
+            "by_family": {
+              "horizontal": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "joint": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              },
+              "vertical": {
+                "feasible_not_recovered": 0,
+                "mean_best_iou": null,
+                "mean_gain_iou_points": null,
+                "recovered": 0
+              }
+            },
+            "joint_only_recovered": 0,
+            "mean_raw_iou": null,
+            "targets": 0
+          }
+        },
+        "failing_arm": "center",
+        "totals": {
+          "area_feasible": 32,
+          "area_impossible": 2,
+          "both_axes_individually_recovered": 4,
+          "by_family": {
+            "horizontal": {
+              "feasible_not_recovered": 25,
+              "mean_best_iou": 0.8852469958599765,
+              "mean_gain_iou_points": 1.2389733727860002,
+              "recovered": 7
+            },
+            "joint": {
+              "feasible_not_recovered": 17,
+              "mean_best_iou": 0.8945641254513285,
+              "mean_gain_iou_points": 2.170686331921195,
+              "recovered": 15
+            },
+            "vertical": {
+              "feasible_not_recovered": 23,
+              "mean_best_iou": 0.8887855812221387,
+              "mean_gain_iou_points": 1.5928319090022232,
+              "recovered": 9
+            }
+          },
+          "joint_only_recovered": 3,
+          "mean_raw_iou": 0.8728572621321165,
+          "targets": 34
+        }
+      }
+    }
+  },
+  "training": false,
+  "training_seed": 5202,
+  "transitions": {
+    "both": 93,
+    "center_only": 178,
+    "native_only": 41,
+    "neither": 1466
+  },
+  "translation_families": [
+    "vertical",
+    "horizontal",
+    "joint"
+  ]
+}
