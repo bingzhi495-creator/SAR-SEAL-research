@@ -1,0 +1,702 @@
+{
+  "AP": true,
+  "DEV": true,
+  "TEST": false,
+  "author_TEST_mask_members_read": 0,
+  "author_TRAIN_mask_members_read": 187,
+  "author_commit": "e9b3ffd35c72067206af95239447aebbdbca3c77",
+  "author_git_blob": "14ae89d4793b2a00a8d72443fc4c38e750327a63",
+  "author_zip_sha256": "da66b1807ea91a1f593cd62d4987f9d2ce4b410ede8ea97e231ad6f5f9455989",
+  "by_seed": {
+    "5201": {
+      "all_water": {
+        "annotations": 294,
+        "center_minus_native_points": {
+          "AP": -0.5911110501195249,
+          "AP50": -0.4268008045437255,
+          "AP75": -2.613724767096817,
+          "AP90": -0.049958513590384904,
+          "APs": -0.5335953034322549
+        },
+        "false_positive_burden": {
+          "center": {
+            "available_pixels_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 24377245
+            },
+            "evaluated_predictions": 11403,
+            "false_positive_masks": 11116,
+            "false_positive_pixel_mass_over_all_pixels": 0.23080331678169538,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.22666591663158173,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": null,
+              "shore_4px": null,
+              "water_interior": 0.23080331678169538
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 5626349
+            },
+            "pixels_total": 5626349
+          },
+          "native": {
+            "available_pixels_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 24377245
+            },
+            "evaluated_predictions": 11403,
+            "false_positive_masks": 11116,
+            "false_positive_pixel_mass_over_all_pixels": 0.21472167999296066,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.208537282798058,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": null,
+              "shore_4px": null,
+              "water_interior": 0.21472167999296066
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 5234323
+            },
+            "pixels_total": 5234323
+          }
+        },
+        "images": 156,
+        "raw_arm_metrics": {
+          "center": {
+            "AP": 0.3842351151437038,
+            "AP50": 0.9115787089275476,
+            "AP75": 0.22475287869564378,
+            "AP90": 0.0004005048730970512,
+            "APs": 0.3712392490967497,
+            "recall75": 0.5680272108843537,
+            "recall90": 0.013605442176870748
+          },
+          "native": {
+            "AP": 0.39014622564489904,
+            "AP50": 0.9158467169729848,
+            "AP75": 0.25089012636661195,
+            "AP90": 0.0009000900090009002,
+            "APs": 0.37657520213107226,
+            "recall75": 0.5714285714285714,
+            "recall90": 0.006802721088435374
+          }
+        },
+        "score_blind_coverage": {
+          "arms": {
+            "center": {
+              "0.75": {
+                "any_candidate": 165,
+                "maximum_one_to_one": 165,
+                "maximum_recall": 0.5612244897959183
+              },
+              "0.90": {
+                "any_candidate": 3,
+                "maximum_one_to_one": 3,
+                "maximum_recall": 0.01020408163265306
+              }
+            },
+            "native": {
+              "0.75": {
+                "any_candidate": 168,
+                "maximum_one_to_one": 168,
+                "maximum_recall": 0.5714285714285714
+              },
+              "0.90": {
+                "any_candidate": 2,
+                "maximum_one_to_one": 2,
+                "maximum_recall": 0.006802721088435374
+              }
+            }
+          },
+          "eligible_gt": 294,
+          "excluded_gt": {
+            "crowd": 0,
+            "empty": 0,
+            "ignore": 0
+          }
+        }
+      },
+      "land_containing": {
+        "annotations": 86,
+        "center_minus_native_points": {
+          "AP": -0.7093920462429792,
+          "AP50": -6.813622255620022,
+          "AP75": 3.355106734314978,
+          "AP90": 0.10608203677510611,
+          "APs": 0.1797883292525726
+        },
+        "false_positive_burden": {
+          "center": {
+            "available_pixels_by_zone": {
+              "land_interior": 1263307,
+              "shore_4px": 166381,
+              "water_interior": 3598007
+            },
+            "evaluated_predictions": 2836,
+            "false_positive_masks": 2758,
+            "false_positive_pixel_mass_over_all_pixels": 0.7001806991076428,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.6941029506238074,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": 1.5436216216644094,
+              "shore_4px": 1.7374399721122002,
+              "water_interior": 0.3560721254850255
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 1950068,
+              "shore_4px": 289077,
+              "water_interior": 1281150
+            },
+            "pixels_total": 3520295
+          },
+          "native": {
+            "available_pixels_by_zone": {
+              "land_interior": 1263307,
+              "shore_4px": 166381,
+              "water_interior": 3598007
+            },
+            "evaluated_predictions": 2836,
+            "false_positive_masks": 2753,
+            "false_positive_pixel_mass_over_all_pixels": 0.8602510693269978,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.8320988617572785,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": 2.1753983790163436,
+              "shore_4px": 1.5885227279557161,
+              "water_interior": 0.36480862877698683
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 2748196,
+              "shore_4px": 264300,
+              "water_interior": 1312584
+            },
+            "pixels_total": 4325080
+          }
+        },
+        "images": 31,
+        "raw_arm_metrics": {
+          "center": {
+            "AP": 0.3612913901175996,
+            "AP50": 0.6412128139171483,
+            "AP75": 0.39403418445769706,
+            "AP90": 0.0024752475247524753,
+            "APs": 0.3308418443331899,
+            "recall75": 0.6046511627906976,
+            "recall90": 0.011627906976744186
+          },
+          "native": {
+            "AP": 0.3683853105800294,
+            "AP50": 0.7093490364733486,
+            "AP75": 0.3604831171145473,
+            "AP90": 0.0014144271570014143,
+            "APs": 0.3290439610406642,
+            "recall75": 0.5116279069767442,
+            "recall90": 0.011627906976744186
+          }
+        },
+        "score_blind_coverage": {
+          "arms": {
+            "center": {
+              "0.75": {
+                "any_candidate": 52,
+                "maximum_one_to_one": 52,
+                "maximum_recall": 0.6046511627906976
+              },
+              "0.90": {
+                "any_candidate": 1,
+                "maximum_one_to_one": 1,
+                "maximum_recall": 0.011627906976744186
+              }
+            },
+            "native": {
+              "0.75": {
+                "any_candidate": 44,
+                "maximum_one_to_one": 44,
+                "maximum_recall": 0.5116279069767442
+              },
+              "0.90": {
+                "any_candidate": 1,
+                "maximum_one_to_one": 1,
+                "maximum_recall": 0.011627906976744186
+              }
+            }
+          },
+          "eligible_gt": 86,
+          "excluded_gt": {
+            "crowd": 0,
+            "empty": 0,
+            "ignore": 0
+          }
+        }
+      }
+    },
+    "5202": {
+      "all_water": {
+        "annotations": 294,
+        "center_minus_native_points": {
+          "AP": 0.44912498884817076,
+          "AP50": -0.17905637996139534,
+          "AP75": 2.328273051151725,
+          "AP90": 0.0661199944293978,
+          "APs": 1.1300358439611913
+        },
+        "false_positive_burden": {
+          "center": {
+            "available_pixels_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 24377245
+            },
+            "evaluated_predictions": 10779,
+            "false_positive_masks": 10490,
+            "false_positive_pixel_mass_over_all_pixels": 0.21391572345439364,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.20893535785210915,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": null,
+              "shore_4px": null,
+              "water_interior": 0.21391572345439364
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 5214676
+            },
+            "pixels_total": 5214676
+          },
+          "native": {
+            "available_pixels_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 24377245
+            },
+            "evaluated_predictions": 10779,
+            "false_positive_masks": 10492,
+            "false_positive_pixel_mass_over_all_pixels": 0.21666747001147996,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.21085873601385785,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": null,
+              "shore_4px": null,
+              "water_interior": 0.21666747001147996
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 5281756
+            },
+            "pixels_total": 5281756
+          }
+        },
+        "images": 156,
+        "raw_arm_metrics": {
+          "center": {
+            "AP": 0.3927143095378199,
+            "AP50": 0.9031597374290039,
+            "AP75": 0.2433463809024584,
+            "AP90": 0.0006641171482123663,
+            "APs": 0.3803036258758802,
+            "recall75": 0.5714285714285714,
+            "recall90": 0.013605442176870748
+          },
+          "native": {
+            "AP": 0.3882230596493382,
+            "AP50": 0.9049503012286179,
+            "AP75": 0.22006365039094114,
+            "AP90": 2.917203918388303e-06,
+            "APs": 0.36900326743626827,
+            "recall75": 0.5102040816326531,
+            "recall90": 0.003401360544217687
+          }
+        },
+        "score_blind_coverage": {
+          "arms": {
+            "center": {
+              "0.75": {
+                "any_candidate": 166,
+                "maximum_one_to_one": 166,
+                "maximum_recall": 0.564625850340136
+              },
+              "0.90": {
+                "any_candidate": 3,
+                "maximum_one_to_one": 3,
+                "maximum_recall": 0.01020408163265306
+              }
+            },
+            "native": {
+              "0.75": {
+                "any_candidate": 150,
+                "maximum_one_to_one": 150,
+                "maximum_recall": 0.5102040816326531
+              },
+              "0.90": {
+                "any_candidate": 1,
+                "maximum_one_to_one": 1,
+                "maximum_recall": 0.003401360544217687
+              }
+            }
+          },
+          "eligible_gt": 294,
+          "excluded_gt": {
+            "crowd": 0,
+            "empty": 0,
+            "ignore": 0
+          }
+        }
+      },
+      "land_containing": {
+        "annotations": 86,
+        "center_minus_native_points": {
+          "AP": -0.6387701481914032,
+          "AP50": -7.168402187326572,
+          "AP75": 10.711905796326548,
+          "AP90": 0.060579147615758173,
+          "APs": 2.7214979026722377
+        },
+        "false_positive_burden": {
+          "center": {
+            "available_pixels_by_zone": {
+              "land_interior": 1263307,
+              "shore_4px": 166381,
+              "water_interior": 3598007
+            },
+            "evaluated_predictions": 2754,
+            "false_positive_masks": 2676,
+            "false_positive_pixel_mass_over_all_pixels": 0.6642157091868143,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.6460700259186172,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": 1.5747629040288702,
+              "shore_4px": 2.000595019864047,
+              "water_interior": 0.28271317982427496
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 1989409,
+              "shore_4px": 332861,
+              "water_interior": 1017204
+            },
+            "pixels_total": 3339474
+          },
+          "native": {
+            "available_pixels_by_zone": {
+              "land_interior": 1263307,
+              "shore_4px": 166381,
+              "water_interior": 3598007
+            },
+            "evaluated_predictions": 2754,
+            "false_positive_masks": 2674,
+            "false_positive_pixel_mass_over_all_pixels": 0.8279804164731552,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.8201947496047913,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": 1.9198128404259613,
+              "shore_4px": 2.1939884962826284,
+              "water_interior": 0.38145617837875245
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 2425313,
+              "shore_4px": 365038,
+              "water_interior": 1372482
+            },
+            "pixels_total": 4162833
+          }
+        },
+        "images": 31,
+        "raw_arm_metrics": {
+          "center": {
+            "AP": 0.3614484309987436,
+            "AP50": 0.6306671362446561,
+            "AP75": 0.42627245631853367,
+            "AP90": 0.009075907590759075,
+            "APs": 0.31853547513986796,
+            "recall75": 0.5813953488372093,
+            "recall90": 0.023255813953488372
+          },
+          "native": {
+            "AP": 0.3678361324806576,
+            "AP50": 0.7023511581179218,
+            "AP75": 0.3191533983552682,
+            "AP90": 0.008470116114601493,
+            "APs": 0.2913204961131456,
+            "recall75": 0.5348837209302325,
+            "recall90": 0.046511627906976744
+          }
+        },
+        "score_blind_coverage": {
+          "arms": {
+            "center": {
+              "0.75": {
+                "any_candidate": 50,
+                "maximum_one_to_one": 50,
+                "maximum_recall": 0.5813953488372093
+              },
+              "0.90": {
+                "any_candidate": 2,
+                "maximum_one_to_one": 2,
+                "maximum_recall": 0.023255813953488372
+              }
+            },
+            "native": {
+              "0.75": {
+                "any_candidate": 46,
+                "maximum_one_to_one": 46,
+                "maximum_recall": 0.5348837209302325
+              },
+              "0.90": {
+                "any_candidate": 4,
+                "maximum_one_to_one": 4,
+                "maximum_recall": 0.046511627906976744
+              }
+            }
+          },
+          "eligible_gt": 86,
+          "excluded_gt": {
+            "crowd": 0,
+            "empty": 0,
+            "ignore": 0
+          }
+        }
+      }
+    },
+    "5203": {
+      "all_water": {
+        "annotations": 294,
+        "center_minus_native_points": {
+          "AP": 1.3846142868257916,
+          "AP50": 2.296176760874735,
+          "AP75": 1.0832526863642777,
+          "AP90": -0.0003329436633090294,
+          "APs": 0.5900242937588895
+        },
+        "false_positive_burden": {
+          "center": {
+            "available_pixels_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 24377245
+            },
+            "evaluated_predictions": 11710,
+            "false_positive_masks": 11420,
+            "false_positive_pixel_mass_over_all_pixels": 0.359165443018684,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.350460705821983,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": null,
+              "shore_4px": null,
+              "water_interior": 0.359165443018684
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 8755464
+            },
+            "pixels_total": 8755464
+          },
+          "native": {
+            "available_pixels_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 24377245
+            },
+            "evaluated_predictions": 11710,
+            "false_positive_masks": 11425,
+            "false_positive_pixel_mass_over_all_pixels": 0.1983495673936903,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.19394753847618995,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": null,
+              "shore_4px": null,
+              "water_interior": 0.1983495673936903
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 0,
+              "shore_4px": 0,
+              "water_interior": 4835216
+            },
+            "pixels_total": 4835216
+          }
+        },
+        "images": 156,
+        "raw_arm_metrics": {
+          "center": {
+            "AP": 0.3874991709997749,
+            "AP50": 0.9199216596577141,
+            "AP75": 0.23635906949088922,
+            "AP90": 1.271395197304642e-06,
+            "APs": 0.3719794365629655,
+            "recall75": 0.6054421768707483,
+            "recall90": 0.006802721088435374
+          },
+          "native": {
+            "AP": 0.37365302813151696,
+            "AP50": 0.8969598920489668,
+            "AP75": 0.22552654262724645,
+            "AP90": 4.600831830394936e-06,
+            "APs": 0.3660791936253766,
+            "recall75": 0.5340136054421769,
+            "recall90": 0.006802721088435374
+          }
+        },
+        "score_blind_coverage": {
+          "arms": {
+            "center": {
+              "0.75": {
+                "any_candidate": 173,
+                "maximum_one_to_one": 173,
+                "maximum_recall": 0.5884353741496599
+              },
+              "0.90": {
+                "any_candidate": 0,
+                "maximum_one_to_one": 0,
+                "maximum_recall": 0.0
+              }
+            },
+            "native": {
+              "0.75": {
+                "any_candidate": 157,
+                "maximum_one_to_one": 157,
+                "maximum_recall": 0.5340136054421769
+              },
+              "0.90": {
+                "any_candidate": 2,
+                "maximum_one_to_one": 2,
+                "maximum_recall": 0.006802721088435374
+              }
+            }
+          },
+          "eligible_gt": 294,
+          "excluded_gt": {
+            "crowd": 0,
+            "empty": 0,
+            "ignore": 0
+          }
+        }
+      },
+      "land_containing": {
+        "annotations": 86,
+        "center_minus_native_points": {
+          "AP": -0.7096749854801299,
+          "AP50": 0.377318735734411,
+          "AP75": -0.33285633019436434,
+          "AP90": -0.44265586296047543,
+          "APs": -1.504027090856641
+        },
+        "false_positive_burden": {
+          "center": {
+            "available_pixels_by_zone": {
+              "land_interior": 1263307,
+              "shore_4px": 166381,
+              "water_interior": 3598007
+            },
+            "evaluated_predictions": 2832,
+            "false_positive_masks": 2754,
+            "false_positive_pixel_mass_over_all_pixels": 0.9707094404095714,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 0.9336427677688378,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": 1.7948542990737801,
+              "shore_4px": 2.6059646233644465,
+              "water_interior": 0.6057231128232936
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 2267452,
+              "shore_4px": 433583,
+              "water_interior": 2179396
+            },
+            "pixels_total": 4880431
+          },
+          "native": {
+            "available_pixels_by_zone": {
+              "land_interior": 1263307,
+              "shore_4px": 166381,
+              "water_interior": 3598007
+            },
+            "evaluated_predictions": 2832,
+            "false_positive_masks": 2759,
+            "false_positive_pixel_mass_over_all_pixels": 1.061782586254735,
+            "image_mean_false_positive_pixel_mass_over_image_pixels": 1.0493254343315852,
+            "mass_by_zone_over_available_pixels": {
+              "land_interior": 2.327016315115803,
+              "shore_4px": 2.512221948419591,
+              "water_interior": 0.5504705799627405
+            },
+            "pixel_mass_by_zone": {
+              "land_interior": 2939736,
+              "shore_4px": 417986,
+              "water_interior": 1980597
+            },
+            "pixels_total": 5338319
+          }
+        },
+        "images": 31,
+        "raw_arm_metrics": {
+          "center": {
+            "AP": 0.3482489944921249,
+            "AP50": 0.6702197918049183,
+            "AP75": 0.35705120471756274,
+            "AP90": 0.003164200446302836,
+            "APs": 0.2980648147848918,
+            "recall75": 0.5813953488372093,
+            "recall90": 0.046511627906976744
+          },
+          "native": {
+            "AP": 0.3553457443469262,
+            "AP50": 0.6664466044475742,
+            "AP75": 0.3603797680195064,
+            "AP90": 0.00759075907590759,
+            "APs": 0.3131050856934582,
+            "recall75": 0.4883720930232558,
+            "recall90": 0.023255813953488372
+          }
+        },
+        "score_blind_coverage": {
+          "arms": {
+            "center": {
+              "0.75": {
+                "any_candidate": 48,
+                "maximum_one_to_one": 48,
+                "maximum_recall": 0.5581395348837209
+              },
+              "0.90": {
+                "any_candidate": 4,
+                "maximum_one_to_one": 4,
+                "maximum_recall": 0.046511627906976744
+              }
+            },
+            "native": {
+              "0.75": {
+                "any_candidate": 42,
+                "maximum_one_to_one": 42,
+                "maximum_recall": 0.4883720930232558
+              },
+              "0.90": {
+                "any_candidate": 2,
+                "maximum_one_to_one": 2,
+                "maximum_recall": 0.023255813953488372
+              }
+            }
+          },
+          "eligible_gt": 86,
+          "excluded_gt": {
+            "crowd": 0,
+            "empty": 0,
+            "ignore": 0
+          }
+        }
+      }
+    }
+  },
+  "image_manifest_sha256": "18df007e15e3e838e607f178f14e7a26f2b37b992ee39bf091e0b74cf084fb13",
+  "images": 187,
+  "integer_gt_sha256": "5657600d6ea198f79bd5d557d2a1aadce5bec031d2ecf72a98716248d1183a55",
+  "model_forward_calls": 0,
+  "official_TEST_opened": false,
+  "p250_accepted_sha256": "5c703c813647b6f7d2f3e21d653500a46d26db4b46b59022b2b642ebeb99d15d",
+  "p250_plan_sha256": "fc7ac31ba4d121f4329a6536ebca2be4f22552c140cf9af47b8f5ae60d8a4256",
+  "p255_result_sha256": "f51f68cf67ce36e4105999c40f842bdf9c0b8a7deebb291f4af6d55ecb6f488e",
+  "primary_score_reproduced": true,
+  "shore_grid_distance": "Chebyshev",
+  "shore_radius_original_pixels": 4,
+  "status": "SLSSDD_P250_DEV187_SHORE_DIAGNOSTIC_COMPLETE_V1",
+  "strata_census": {
+    "all_land": 0,
+    "all_water": 156,
+    "land_containing": 31
+  },
+  "training": false
+}
