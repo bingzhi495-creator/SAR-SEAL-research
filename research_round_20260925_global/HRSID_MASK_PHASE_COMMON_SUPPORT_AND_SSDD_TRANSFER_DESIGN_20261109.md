@@ -488,3 +488,9 @@ HRSID 三种子的等量候选 IoU 0.90 最大覆盖差分别为 +98、+70、+11
 训练入口复用已固定的 RF-DETR 长训引擎、同一个 COCO 初值、种子 5202、E100 调度和 E24 端点。两臂分别从初值启动。每臂 70,560 次访问、17,640 次 AdamW 及 EMA 更新，逐次使用 B 和 C 都非空的有序实例。正式准入须读取真实的独立 B/C 短窗回执，并绑定独立长训协议、代码版本、固定初始化与新输出。此前原生 A 与逐步中心 B 的共同行采用 A∩B，不能替代此处 B∩C 的参照。
 
 独立验收读取同一共享账本及每臂选中掩膜流摘要，并核对原生访问顺序、保留行计数、E1/E8/E24 的优化器与 EMA 时钟和档案标记。固定环境中的 9 项合成测试已通过，其中一项按两臂各 70,560 次合成访问和六个合成档案测试完整读回。B/C 真实短窗、长训、DEV705 准入和模型效用仍待实际执行。当前 Windows A/B 正式原生臂已完成 18 轮和 13,230 次更新，并进入第 19 轮。DGX 实测可用 CUDA 5.41 GiB，SSDD 的 12 GiB 资格门槛待达到。 [E24 训练入口](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_e24.py) · [独立训练验收](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_e24_acceptance.py)
+
+### 固定 DEV705 评分准入与上游代码核对
+
+B/C 的逐臂评分准入适配器通过 3 项合成测试。它核对同一 B/C E24 配对、两个独立关闭回执、原生 E24 档案、共同行政策及精确训练来源。通过后复用原有固定 DEV705 导出与 COCO 评分。实际导出沿用原评估器要求的私有路径布局和至少 6 GiB CUDA 可用量。原始进程等待、两臂完整评分与几何总闭合待真实执行。 [B/C 逐臂准入](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_common_eval_admission.py) · [测试](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/test_one_pass_common_eval_admission.py)
+
+2026-11-10 公开 RF-DETR develop 解析到 `d442ce0fbc8611b508d8bd98f76afdfb5508e90d`。从作者固定提交直接取得 `datasets/_torchvision.py` 与 `datasets/coco.py`，分别为 26,058、83,772 字节，SHA-256 为 `03c12e881f733d4f6b469f784187e461753b8775b7e35e57c1d8a6c35c46ef56` 和 `be64b20a178d9cde41db69e01e17e1296e36eee791e837294c3f930ae56f03b9`，逐字节摘要与实验中两份原生源码的固定运行时摘要一致。该 torchvision 路径将布尔实例掩膜交给 `tv_tensors.Mask` 的最近邻分发。当前证据适用于相同的增强路径与运行时，不外推到 Albumentations、Kornia 或其他版本，也不改变长训原始环境。DACF-Net 作者 main 仍在旧已审阅提交，代码可用性判断保留。 [固定 torchvision 增强源码](https://raw.githubusercontent.com/roboflow/rf-detr/d442ce0fbc8611b508d8bd98f76afdfb5508e90d/src/rfdetr/datasets/_torchvision.py) · [固定 COCO 入口](https://raw.githubusercontent.com/roboflow/rf-detr/d442ce0fbc8611b508d8bd98f76afdfb5508e90d/src/rfdetr/datasets/coco.py) · [DACF-Net 作者固定仓库](https://github.com/yang199809/DACF-Net/tree/479dfab0048ddb7edae1b732ff5ee4452aa82be8)
