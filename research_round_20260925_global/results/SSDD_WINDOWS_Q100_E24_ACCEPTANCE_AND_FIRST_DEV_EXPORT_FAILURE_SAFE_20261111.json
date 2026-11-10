@@ -1,0 +1,75 @@
+{
+  "status": "SSDD_WINDOWS_Q100_E24_ACCEPTED_DEV_EXPORT_FAILED_BEFORE_FORWARD_V1",
+  "FIT": true,
+  "DEV_images_prepared": true,
+  "TEST": false,
+  "AP": false,
+  "training": {
+    "protocol": "22e4976a4536c908921b4756d928c5ba9b2f1ffd",
+    "pair_sha256": "6219e40d8bc57743cc70258910737d1af055247aac75768c001402065fd65379",
+    "epochs_per_arm": 24,
+    "visits_per_arm": 17856,
+    "adamw_updates_per_arm": 4464,
+    "ema_updates_per_arm": 4464,
+    "fit_images": 741,
+    "ordered_fit_visits_sha256": "7f4ae23c1b2d24dd9272e0e37387f1195961d91a804bbc577115aeec18f798f4",
+    "native_retained_targets": 34822,
+    "center_retained_targets": 34814,
+    "native_zero_target_visits": 1086,
+    "center_zero_target_visits": 1093,
+    "differing_target_count_visits": 20,
+    "original_coordinator_exit": 0,
+    "independent_cpu_exit": 0,
+    "authority_accepted": true
+  },
+  "dev_image_preparation": {
+    "AP": false,
+    "DEV": true,
+    "FIT": false,
+    "GT_read": false,
+    "TEST": false,
+    "distinct_jpeg_sha256": 183,
+    "image_aliases": 4,
+    "images": 187,
+    "logical_encoded_bytes": 7274234,
+    "manifest_bytes": 49477,
+    "manifest_sha256": "18df007e15e3e838e607f178f14e7a26f2b37b992ee39bf091e0b74cf084fb13",
+    "model_execution": false,
+    "status": "P287_SSDD_DEV187_IMAGE_ONLY_STAGE_READY_V1",
+    "unique_encoded_bytes": 7118253
+  },
+  "first_export": {
+    "stage": "EXPORT_NATIVE",
+    "coordinator_exit": 5,
+    "original_worker_exit": 1,
+    "job_assigned": true,
+    "empty_job_after_wait": true,
+    "worker_rss_peak_bytes": 1294114816,
+    "original_resource_stop": false,
+    "ema_readback_complete": true,
+    "ema_updates": 4464,
+    "ema_tensors": 545,
+    "model_forward_calls": 0,
+    "predictions_written": false,
+    "score_started": false,
+    "error_operation": "torch.cuda.reset_peak_memory_stats(torch.device('cuda:0'))",
+    "error": "Invalid device argument",
+    "cause": "CUDA allocator not initialized before peak reset",
+    "synthetic_reproduction": {
+      "status": "WINDOWS_DEV_EXPORT_CUDA_ALLOCATOR_LAZY_INIT_PROBE",
+      "before": {
+        "available": true,
+        "count": 1,
+        "initialized": false,
+        "reset_error": "Invalid device argument "
+      },
+      "after": {
+        "initialized": true,
+        "reset_after_init_passed": true,
+        "allocated_peak_bytes": 1024
+      },
+      "no_model_or_data": true
+    },
+    "corrected_worker_sha256": "a491f847fab5411240967172792c73cc47574120be07367a3cf931b998aa0be0"
+  }
+}
