@@ -1,0 +1,460 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "cohort_sha256": "70e9a0e8fb30f5ba70b48b9067c1b95d07bfec23d6b248d92c5983727acceb6e",
+  "fit_bundle_sha256": "af12a4e86ea36e9d7fe6ac47b17c684a4812baba6aa9be019f889f833e0f577c",
+  "geos_version": "3.11.2",
+  "history_sha256": "318408a43f2c107b329638b8be3132717f7d366b046e98aa2190318f3aaca053",
+  "images": 2,
+  "metrics": {
+    "crop": {
+      "all": {
+        "continuous_source_pixel_footprints": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.8495679035660154,
+              "rows": 23
+            },
+            "stepwise_center": {
+              "mean_iou": 0.7451355348105023,
+              "rows": 23
+            },
+            "stock": {
+              "mean_iou": 0.5538534602228635,
+              "rows": 23
+            },
+            "vector_first": {
+              "mean_iou": 0.8451211093411863,
+              "rows": 23
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 1,
+              "mean_iou_delta": 0.10443236875551318,
+              "ties": 0,
+              "wins": 22
+            },
+            "vector_first_minus_one_pass_center": {
+              "losses": 14,
+              "mean_iou_delta": -0.004446794224829269,
+              "ties": 3,
+              "wins": 6
+            }
+          }
+        },
+        "continuous_vector": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.8401167669919749,
+              "rows": 23
+            },
+            "stepwise_center": {
+              "mean_iou": 0.7307224429890187,
+              "rows": 23
+            },
+            "stock": {
+              "mean_iou": 0.5722855879924521,
+              "rows": 23
+            },
+            "vector_first": {
+              "mean_iou": 0.8612557829321154,
+              "rows": 23
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 1,
+              "mean_iou_delta": 0.1093943240029562,
+              "ties": 0,
+              "wins": 22
+            },
+            "vector_first_minus_one_pass_center": {
+              "losses": 0,
+              "mean_iou_delta": 0.021139015940140362,
+              "ties": 3,
+              "wins": 20
+            }
+          }
+        },
+        "polygon_rows": 23,
+        "vector_empty": 0,
+        "vector_raster": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.9385841221826215,
+              "rows": 23
+            },
+            "stepwise_center": {
+              "mean_iou": 0.7733214006502142,
+              "rows": 23
+            },
+            "stock": {
+              "mean_iou": 0.5576933714540724,
+              "rows": 23
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 1,
+              "mean_iou_delta": 0.16526272153240745,
+              "ties": 0,
+              "wins": 22
+            }
+          }
+        }
+      },
+      "small": {
+        "continuous_source_pixel_footprints": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.8495679035660154,
+              "rows": 23
+            },
+            "stepwise_center": {
+              "mean_iou": 0.7451355348105023,
+              "rows": 23
+            },
+            "stock": {
+              "mean_iou": 0.5538534602228635,
+              "rows": 23
+            },
+            "vector_first": {
+              "mean_iou": 0.8451211093411863,
+              "rows": 23
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 1,
+              "mean_iou_delta": 0.10443236875551318,
+              "ties": 0,
+              "wins": 22
+            },
+            "vector_first_minus_one_pass_center": {
+              "losses": 14,
+              "mean_iou_delta": -0.004446794224829269,
+              "ties": 3,
+              "wins": 6
+            }
+          }
+        },
+        "continuous_vector": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.8401167669919749,
+              "rows": 23
+            },
+            "stepwise_center": {
+              "mean_iou": 0.7307224429890187,
+              "rows": 23
+            },
+            "stock": {
+              "mean_iou": 0.5722855879924521,
+              "rows": 23
+            },
+            "vector_first": {
+              "mean_iou": 0.8612557829321154,
+              "rows": 23
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 1,
+              "mean_iou_delta": 0.1093943240029562,
+              "ties": 0,
+              "wins": 22
+            },
+            "vector_first_minus_one_pass_center": {
+              "losses": 0,
+              "mean_iou_delta": 0.021139015940140362,
+              "ties": 3,
+              "wins": 20
+            }
+          }
+        },
+        "polygon_rows": 23,
+        "vector_empty": 0,
+        "vector_raster": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.9385841221826215,
+              "rows": 23
+            },
+            "stepwise_center": {
+              "mean_iou": 0.7733214006502142,
+              "rows": 23
+            },
+            "stock": {
+              "mean_iou": 0.5576933714540724,
+              "rows": 23
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 1,
+              "mean_iou_delta": 0.16526272153240745,
+              "ties": 0,
+              "wins": 22
+            }
+          }
+        }
+      }
+    },
+    "direct": {
+      "all": {
+        "continuous_source_pixel_footprints": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.8483721256633641,
+              "rows": 26
+            },
+            "stepwise_center": {
+              "mean_iou": 0.8483721256633641,
+              "rows": 26
+            },
+            "stock": {
+              "mean_iou": 0.7253097578652284,
+              "rows": 26
+            },
+            "vector_first": {
+              "mean_iou": 0.8455083260665484,
+              "rows": 26
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 0,
+              "mean_iou_delta": 0.0,
+              "ties": 26,
+              "wins": 0
+            },
+            "vector_first_minus_one_pass_center": {
+              "losses": 14,
+              "mean_iou_delta": -0.002863799596815768,
+              "ties": 4,
+              "wins": 8
+            }
+          }
+        },
+        "continuous_vector": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.8462214057186863,
+              "rows": 26
+            },
+            "stepwise_center": {
+              "mean_iou": 0.8462214057186863,
+              "rows": 26
+            },
+            "stock": {
+              "mean_iou": 0.7344613499328846,
+              "rows": 26
+            },
+            "vector_first": {
+              "mean_iou": 0.8578871150045286,
+              "rows": 26
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 0,
+              "mean_iou_delta": 0.0,
+              "ties": 26,
+              "wins": 0
+            },
+            "vector_first_minus_one_pass_center": {
+              "losses": 0,
+              "mean_iou_delta": 0.011665709285842386,
+              "ties": 4,
+              "wins": 22
+            }
+          }
+        },
+        "polygon_rows": 26,
+        "vector_empty": 0,
+        "vector_raster": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.9594688865878727,
+              "rows": 26
+            },
+            "stepwise_center": {
+              "mean_iou": 0.9594688865878727,
+              "rows": 26
+            },
+            "stock": {
+              "mean_iou": 0.7498303908639502,
+              "rows": 26
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 0,
+              "mean_iou_delta": 0.0,
+              "ties": 26,
+              "wins": 0
+            }
+          }
+        }
+      },
+      "small": {
+        "continuous_source_pixel_footprints": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.8483721256633641,
+              "rows": 26
+            },
+            "stepwise_center": {
+              "mean_iou": 0.8483721256633641,
+              "rows": 26
+            },
+            "stock": {
+              "mean_iou": 0.7253097578652284,
+              "rows": 26
+            },
+            "vector_first": {
+              "mean_iou": 0.8455083260665484,
+              "rows": 26
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 0,
+              "mean_iou_delta": 0.0,
+              "ties": 26,
+              "wins": 0
+            },
+            "vector_first_minus_one_pass_center": {
+              "losses": 14,
+              "mean_iou_delta": -0.002863799596815768,
+              "ties": 4,
+              "wins": 8
+            }
+          }
+        },
+        "continuous_vector": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.8462214057186863,
+              "rows": 26
+            },
+            "stepwise_center": {
+              "mean_iou": 0.8462214057186863,
+              "rows": 26
+            },
+            "stock": {
+              "mean_iou": 0.7344613499328846,
+              "rows": 26
+            },
+            "vector_first": {
+              "mean_iou": 0.8578871150045286,
+              "rows": 26
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 0,
+              "mean_iou_delta": 0.0,
+              "ties": 26,
+              "wins": 0
+            },
+            "vector_first_minus_one_pass_center": {
+              "losses": 0,
+              "mean_iou_delta": 0.011665709285842386,
+              "ties": 4,
+              "wins": 22
+            }
+          }
+        },
+        "polygon_rows": 26,
+        "vector_empty": 0,
+        "vector_raster": {
+          "arms": {
+            "one_pass_center": {
+              "mean_iou": 0.9594688865878727,
+              "rows": 26
+            },
+            "stepwise_center": {
+              "mean_iou": 0.9594688865878727,
+              "rows": 26
+            },
+            "stock": {
+              "mean_iou": 0.7498303908639502,
+              "rows": 26
+            }
+          },
+          "comparisons": {
+            "one_pass_center_minus_stepwise_center": {
+              "losses": 0,
+              "mean_iou_delta": 0.0,
+              "ties": 26,
+              "wins": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "model_forward_calls": 0,
+  "optimizer_updates": 0,
+  "runner_sha256": "0b9726556a27dcca40ca9571390a8d04bb6c0dea7f4d982c29235283791858d9",
+  "selection": "first_two_core_B_nonempty_views_per_historical_path",
+  "shapely_extension_sha256": "83041e406679e86b26ceaf3da71db89e1afb67eb62521c1a10cae0a0afc02b44",
+  "shapely_version": "2.0.2",
+  "source_sha256": {
+    "HRSID_FIT_NATIVE_QUERY_RETENTION_20261109/fit_query_export.py": "6a2d7e38d69b82ef3df790a5c359c408b1e74778c39672b47a62c4dc86cabbf5",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/common_mask_supervision.py": "59ea82e24353eeb4a14115058d5115333a4e7ea517a0abef581bee137a9a3a57",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/one_pass_fit_transform.py": "05cad566f9b5cc761e91b5283585a5392a7450c42c3133349e6dc21e8bf7496d",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/paired_fit_transform.py": "64f3f63c6ac89b66578f0ada42fa3eb8b4db3b2f1ae2ea9113debe6ab9b270e0",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/reference_resize.py": "3ca1d4a6400324c13c777cb4d5f7627713bc625580195d8e05363950872cc8df",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/replay_fit.py": "4f95f1b5b84fcf89b005f999cfb8c5fd647a7b262aedd2622860cf8785a14157",
+    "HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/trace_resize.py": "902a0e3640a319ba729172847f49ce582f3c0e3954593862ed94971727dc309f",
+    "HRSID_PNG_FIT_NATIVE_AUG_AUDIT_20261109/audit_hrsid_fit_native_aug.py": "6d1b1b94c14cc8f6c3cf7d5eb70ea8db83a6c0f4c0219c68b4dbf24d773aca14",
+    "SSDD_MASK_PHASE_TRANSFER_20261110/ssdd_pixel_footprint.py": "cd688be9937a2c3429eafb540157b1b5b99d319c7236cfe3a5891e25fd7e7913"
+  },
+  "status": "HRSID_FIT114_VECTOR_FIRST_FOUR_VIEW_GEOMETRY_COMPLETE",
+  "subset_sha256": "6f25f80ed0e0b9c3f0c57ab6cc3b25e947a102353757a33bca4d3823df3d547d",
+  "vector_helper_sha256": "4877c48d38a03e58e97163381ba544df3c90a78dde85c9141085fa0b92da3b09",
+  "views": [
+    {
+      "common": 13,
+      "flip": false,
+      "historical_cursor": 0,
+      "path": "direct",
+      "polygon_eligible": 13,
+      "skipped": {},
+      "stock_and_stepwise_common": 13
+    },
+    {
+      "common": 13,
+      "flip": false,
+      "historical_cursor": 1,
+      "path": "direct",
+      "polygon_eligible": 13,
+      "skipped": {},
+      "stock_and_stepwise_common": 13
+    },
+    {
+      "common": 12,
+      "flip": false,
+      "historical_cursor": 2,
+      "path": "crop",
+      "polygon_eligible": 12,
+      "skipped": {},
+      "stock_and_stepwise_common": 12
+    },
+    {
+      "common": 11,
+      "flip": true,
+      "historical_cursor": 5,
+      "path": "crop",
+      "polygon_eligible": 11,
+      "skipped": {},
+      "stock_and_stepwise_common": 11
+    }
+  ],
+  "wall_seconds": 14.423388600116596
+}
