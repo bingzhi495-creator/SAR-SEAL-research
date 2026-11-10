@@ -7,6 +7,7 @@
 - [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。
 - [HRSID 固定共同行 E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行-e24-的固定-dev705-实测)。固定同序监督实例的种子 5202 通过独立验收，DEV705 mask AP **51.434→56.072（+4.638 点）**，AP75 +9.314 点，大目标 AP −6.672 点。正式 TEST 继续隔离。
 - [PSeg-SSDD 目标域同预算 E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-目标域同预算-e24-实测)。独立验收通过，固定整数 DEV187 的 mask AP **67.819→69.500（+1.680 点）**，AP75 +1.533、AP90 +3.411。当前为单种子开发集结果，正式 TEST 继续隔离。
+- [PSeg-SSDD 等量候选与轮廓诊断](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-重训后的等量候选和轮廓复算)。逐图等量后，各臂 9,024 个非空候选。IoU 0.90 最大一对一覆盖 81→104，两种固定分数下 AP90 均提高，共同匹配 IoU +0.922 点。
 - [DGX 的 HRSID Q164 初始化及 FIT2937 解码](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#dgx-完整-fit2937-接收及独立解码)。DGX 已逐位复现完整 Q164 初值。2,937 张训练图全部通过原编码与 RF-DETR 原生解码字节核验，B/C 实际训练资格仍待完成。
 - [HRSID FIT 大目标标签机制预锁](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit-全量大目标计数与标签足迹检验预锁)。完整 FIT 有 50 条大目标标注，来自 28 张图、4 个前缀。已完成全部 28 图的 112 视图回放。共同大目标的标签 FN 下降 0.845 点，足迹 IoU 提高 1.829 点，未支持标签收缩解释。
 - [HRSID 共同行大目标复算](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#大目标退化及配对组敏感性)。大目标 16 条集中在 3 个前缀组，逐组剔除 APl 差值 −8.958 至 +0.109 点，整体 AP 始终为正。等量候选并固定分数模板后，大目标仍下降。
