@@ -1,0 +1,168 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "arms": {
+    "midpoint": {
+      "active_cells": 42,
+      "at_90": 2,
+      "candidates_changed": 13,
+      "lose_90": 0,
+      "margin_gain_90": 460,
+      "mean_fixed_iou": 0.8545022683021626,
+      "pixels_flipped": 49,
+      "recover_90": 1
+    },
+    "raw": {
+      "active_cells": 0,
+      "at_90": 1,
+      "candidates_changed": 0,
+      "lose_90": 0,
+      "margin_gain_90": 0,
+      "mean_fixed_iou": 0.8495506864047956,
+      "pixels_flipped": 0,
+      "recover_90": 0
+    },
+    "x_quarter": {
+      "active_cells": 38,
+      "at_90": 2,
+      "candidates_changed": 13,
+      "lose_90": 0,
+      "margin_gain_90": 417,
+      "mean_fixed_iou": 0.8539372079583457,
+      "pixels_flipped": 44,
+      "recover_90": 1
+    },
+    "x_three_quarters": {
+      "active_cells": 39,
+      "at_90": 2,
+      "candidates_changed": 12,
+      "lose_90": 0,
+      "margin_gain_90": 413,
+      "mean_fixed_iou": 0.853785049739382,
+      "pixels_flipped": 44,
+      "recover_90": 1
+    },
+    "y_quarter": {
+      "active_cells": 37,
+      "at_90": 2,
+      "candidates_changed": 13,
+      "lose_90": 0,
+      "margin_gain_90": 378,
+      "mean_fixed_iou": 0.8534870819118023,
+      "pixels_flipped": 40,
+      "recover_90": 1
+    },
+    "y_three_quarters": {
+      "active_cells": 37,
+      "at_90": 2,
+      "candidates_changed": 13,
+      "lose_90": 0,
+      "margin_gain_90": 395,
+      "mean_fixed_iou": 0.8537268966584809,
+      "pixels_flipped": 42,
+      "recover_90": 1
+    }
+  },
+  "census": {
+    "eligible_gt": 39,
+    "images": 16,
+    "original_all_candidates": 1391,
+    "original_all_fixed_matches": 38,
+    "original_at_75": 14,
+    "original_at_90": 1,
+    "original_grid_pixels_routed": 3946,
+    "original_grid_pixels_routed_matched": 3446,
+    "routed_cells": 128,
+    "selected_fixed_matches": 14,
+    "selected_unmatched": 2
+  },
+  "gt_assisted": true,
+  "gt_assisted_unmatched_actions": 0,
+  "midpoint_vs_control": {
+    "x_quarter": {
+      "control_only_at_90": 0,
+      "midpoint_margin_loss": 2,
+      "midpoint_margin_tie": 7,
+      "midpoint_margin_win": 5,
+      "midpoint_minus_control_margin": 43,
+      "midpoint_only_at_90": 0
+    },
+    "x_three_quarters": {
+      "control_only_at_90": 0,
+      "midpoint_margin_loss": 2,
+      "midpoint_margin_tie": 6,
+      "midpoint_margin_win": 6,
+      "midpoint_minus_control_margin": 47,
+      "midpoint_only_at_90": 0
+    },
+    "y_quarter": {
+      "control_only_at_90": 0,
+      "midpoint_margin_loss": 1,
+      "midpoint_margin_tie": 7,
+      "midpoint_margin_win": 6,
+      "midpoint_minus_control_margin": 82,
+      "midpoint_only_at_90": 0
+    },
+    "y_three_quarters": {
+      "control_only_at_90": 0,
+      "midpoint_margin_loss": 2,
+      "midpoint_margin_tie": 7,
+      "midpoint_margin_win": 5,
+      "midpoint_minus_control_margin": 65,
+      "midpoint_only_at_90": 0
+    }
+  },
+  "model_forward_calls": 0,
+  "optimizer_updates": 0,
+  "policy": {
+    "cells_per_candidate_limit": 8,
+    "coefficient_bounds": [
+      -2,
+      2
+    ],
+    "exact_real_baseline_sign_on_routed_pixels_verified_against_stock_FP32": true,
+    "exact_real_breakpoints": true,
+    "fixed_original_match_iou": "0.50",
+    "hat_centers_xy": {
+      "midpoint": [
+        "1/2",
+        "1/2"
+      ],
+      "x_quarter": [
+        "1/4",
+        "1/2"
+      ],
+      "x_three_quarters": [
+        "3/4",
+        "1/2"
+      ],
+      "y_quarter": [
+        "1/2",
+        "1/4"
+      ],
+      "y_three_quarters": [
+        "1/2",
+        "3/4"
+      ]
+    },
+    "optimized_coefficients_replayed_in_FP32": false,
+    "output_masks_saved": false,
+    "output_scores_or_matching_changed": false,
+    "primary_threshold": "0.90",
+    "same_gt_free_routed_cells": true
+  },
+  "provenance": {
+    "capture_report_sha256": "eaef04477c8c07f7a3ea202979676e7c3b7aaf66323b4fd2279efa3a037d37b8",
+    "capture_terminal_sha256": "7a85b9cea0c5a4ac7507a567eaa8304fb507ee235f9b063a4a8579bb3f523a9f",
+    "capture_worker_sha256": "c9ab9ce011bdbdb97c785cca84afe663f277cbb59bea432c9427ab1ff82dbf68",
+    "dense_grid_sha256": "712eae1ee2fcc8911e951fd9f603c0eaa65bb0f678eab076bf28b8f84d433cc4",
+    "fit_bundle_sha256": "af12a4e86ea36e9d7fe6ac47b17c684a4812baba6aa9be019f889f833e0f577c",
+    "p316_candidate_stream_sha256": "4b5574f3b32dba4c2963c57a4637eaa3695f1118a75cc3b7a36ec92bd0c60319",
+    "p327_result_sha256": "e324a7daeab45b81761f2eb7c4a3ddc38ba324a89f78d1c5a932d9012c82bcd5",
+    "route_sha256": "5e381f0adaca84bb25677c15fd69ffdf043e034c67cbb463a2bbc250c2802661"
+  },
+  "status": "HRSID_FIXED_QUERY_CELL_RESIDUAL_FIT_ORACLE_COMPLETE",
+  "training": false
+}
