@@ -134,3 +134,7 @@ SISS-YOLO 作者报告在 OpenSARShip 2.0 的 Sentinel-1A 船舶裁块上重新�
 ### UEIKAP 船体标注用途与发布范围复核
 
 Cristofano 等在 2025 年的作者全文第 III.B–C 节和 IV.A 节说明，AIS 参与数据构建和标注，Sentinel-1 船体多边形用于估计方位向偏移。结合四个固定训练家族的六条尾迹逐值匹配，TXT 类别 0 可作为待核船体候选。原文的船体多边形用途与整图可见船舶覆盖是两个证据要求。固定作者 ZIP 的 2,615 项中央目录未找到独立类别表或训练 YAML。四个已核样本各有一条 AIS，合计九条 TXT 类别 0 多边形，AIS 无法独立认证图内完整性。整图实例 AP 资格继续取决于明确的类别映射及完整性依据。 [作者全文](https://www.researchgate.net/publication/394893583_A_Deep_Learning-based_Multi-Modal_Approach_for_Wake_Detection) · [IEEE 论文](https://doi.org/10.1109/MetroAeroSpace64938.2025.11114590) · [作者归档](https://zenodo.org/records/18391027)
+
+### 补充独立轮廓来源的适用范围
+
+Wu 等用香港近海的三幅高分三号全极化影像及专家／AIS 信息建立船舶轮廓裁块，论文报告 139 个目标。数据声明仅提供向作者申请的入口。当前缺可取得的标签档案、许可及完整图像标注清单。该候选适合在资料齐备时做独立目标条件轮廓验证。UEIKAP 的 2026 项目论文继续指向同一尾迹数据发布，当前仍需独立证据确认类别 0 及所有可见船的标注覆盖。 [Wu 等原文 §4.1 与数据声明](https://www.mdpi.com/2072-4292/16/19/3669#sec4dot1) · [UEIKAP 项目论文](https://www.sciencedirect.com/science/article/pii/S0141118726003287)

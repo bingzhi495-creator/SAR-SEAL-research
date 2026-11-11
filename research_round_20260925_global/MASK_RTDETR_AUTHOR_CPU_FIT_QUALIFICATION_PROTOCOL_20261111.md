@@ -23,3 +23,9 @@ CPU FP32 单线程，实际观察启动器和子进程树，设可用主存至�
 真实原训练器解析了 8 个合格 FIT 图块并加载作者 B1 ImageNet 骨干。已观察到第一批原生模型前向，损失为 259.0564。随后原进程在 118.015 秒受控退出，退出码 70，作业容器已清空。资源回执为 `EXCLUSIVE_RESERVATION_CHANGED`。运行耗时小于 300 秒，现有回执未区分树 RSS 超限或宿主内存低于下限。没有生成 E1 检查点，也没有完成优化器或 EMA 次数验收。保留本次终态，作为资源中断归档。原生读取器和先前 COCO 推理的资格仍由其独立关闭回执支持。 [训练停止记录](results/MASK_RTDETR_S_NATIVE_CPU_FIT8_TWO_UPDATE_RESOURCE_STOP_SAFE_20261111.json) · [实际训练入口](code/MASK_RTDETR_AUTHOR_CPU_QUALIFICATION_20261111/train_two_steps.py)
 
 进一步资格需在独立资源条件下重新准入，并分别记录资源保护触发分支。验收时应逐项核对掩膜预测头的实际可训练张量，避免以掩膜相关缓冲区代替参数更新。优化器读回应核对 AdamW 张量和调度器状态，EMA 与在线归档分开。两步资格与充分训练的模型基线仍分别记录。
+
+## Windows CUDA 环境的算子实测
+
+本机独立 Python 3.10.13 环境安装 PaddlePaddle GPU 2.6.2。官方 wheel 两次传输超时，镜像取得的完整 477,407,829 字节与 PyPI 发布 SHA-256 完全一致。依赖检查通过。首次实际 GPU 卷积到达 RTX 3090 Ti 和 cuDNN 后，因进程找不到 `zlibwapi.dll` 终止。新的隔离进程只加入本机既有 x64 DLL 的精确副本，不改系统环境。
+
+复测在 RTX 3090 Ti 上完成卷积前向和反传，四个输出为 45、54、81、90，输入与卷积核的梯度和为 36 与 270，均在 GPU 上逐值通过。Paddle 构建报告 CUDA 11.8、cuDNN 8.6，进程加载报告 cuDNN 8.9。原复测退出 0。本次只有算子测试，未读 FIT、DEV 或 TEST，未训练作者模型。 [官方 wheel](https://pypi.org/project/paddlepaddle-gpu/2.6.2/) · [cuDNN 8 Windows 依赖](https://docs.nvidia.com/deeplearning/cudnn/archives/cudnn-893/install-guide/index.html) · [GPU 算子实测](results/MASK_RTDETR_WINDOWS_PADDLE_CUDA_SMOKE_ACTUAL_SAFE_20261111.json)
