@@ -1,0 +1,88 @@
+{
+  "status": "SRNET_FIT_AUTHOR_THRESHOLDS_CPU_PREFLIGHT_ACTUAL_SAFE",
+  "scientific_result": {
+    "AP": false,
+    "DEV": false,
+    "FIT": true,
+    "TEST": false,
+    "arms": {
+      "low_threshold": {
+        "candidates": 242,
+        "elapsed_seconds": 7.329612700035796,
+        "nonempty": 242,
+        "original_rle_roundtrips": 242,
+        "score_threshold": 0.001
+      },
+      "stock": {
+        "candidates": 242,
+        "elapsed_seconds": 8.20084449998103,
+        "nonempty": 242,
+        "original_rle_roundtrips": 242,
+        "score_threshold": 0.3
+      }
+    },
+    "author_commit": "2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6",
+    "inference_device": "cpu",
+    "initialization_seed": 5201,
+    "mask_threshold": 0.5,
+    "max_per_img": 2000,
+    "model_forward_calls": 2,
+    "model_input_hw": [
+      608,
+      608
+    ],
+    "nms_iou": 0.1,
+    "nms_pre": 2000,
+    "optimizer_updates": 0,
+    "original_hw": [
+      317,
+      501
+    ],
+    "r50_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+    "selection": "first preselected FIT image under original P335 selection",
+    "status": "SRNET_FIT_AUTHOR_THRESHOLDS_CPU_PREFLIGHT_COMPLETE",
+    "task_heads": "untrained author initialization"
+  },
+  "original_wait": {
+    "elapsed_seconds": 21.766000000061467,
+    "memory_limit_bytes": 5368709120,
+    "original_os_exit": 0,
+    "original_os_wait": true,
+    "peak_job_commit_bytes": 3160854528,
+    "process_group_closed": true,
+    "result": {
+      "bytes": 865,
+      "sha256": "44cecb679b8c8318316da8ab501bec63fbb0e78234fdc65c0d6c6e5b5462eade"
+    },
+    "sampled_peak_tree_rss_bytes": 3070980096,
+    "status": "SRNET_FIT_THRESHOLD_CPU_ORIGINAL_WAIT",
+    "stderr": {
+      "bytes": 51498,
+      "sha256": "16899c1493795b4ebf725ca44a9b9e2a0910226805a04c44bc97d26a36c0bcac"
+    },
+    "stdout": {
+      "bytes": 862,
+      "sha256": "26aa2af5d8d56eaf116238dfdcabce02a0d74c322bde210dcfdf76ebc8a36445"
+    },
+    "stop_reason": null,
+    "worker_sha256": "c863ecbd72c546381552db17b2993097fcc9a2939b96ac9412b0ec39f8d12c22"
+  },
+  "outer_exit_code": 0,
+  "author_source_postclose": {
+    "detector_sha256": "7fad564a8c2fb6f34f9e7dc197c7cafc643fe72b16817846fe173e52fe74a40a",
+    "mask_head_sha256": "144552cf27b5970c46ff4e3af1b4e0f59b1b273daa0aadf89cdcc513c8e2dba1",
+    "sampling_sha256": "7d9210f7619fa31ad4bfacfc30e380cb1b4fce5d77e7217de15c4c14b5632c7f",
+    "tracked_source_clean": true
+  },
+  "cpu_packages_postclose": {
+    "torch": "1.12.0+cpu",
+    "torchvision": "0.13.0+cpu",
+    "mmcv-full": "1.6.0",
+    "mmdet": "2.28.2",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "pycocotools": "2.0.11",
+    "Pillow": "9.5.0",
+    "e2cnn": "0.2.3"
+  }
+}
