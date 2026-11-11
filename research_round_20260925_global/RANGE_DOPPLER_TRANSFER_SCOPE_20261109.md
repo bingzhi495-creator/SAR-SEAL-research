@@ -301,4 +301,4 @@ PeakConv 已在车载 RD 分割中学习以回波峰为中心的感受野，MARS
 
 补查的 HAXR 包含港口雷达与 AIS，雷达数组按距离、方位组织，适用于位置或跟踪。CSIR Fynmeet 的实测小船和海杂波有作者报告，官方页面列出的原始 MAT 数据需向机构申请。目前两个入口均未确认提供独立逐船 RD 回波轮廓。 [HAXR 官方数据](https://zenodo.org/records/19824555) · [CSIR 官方报告](https://researchspace.csir.co.za/items/c72f2882-3afc-4e57-aeb8-8e5bf4963529/full)
 
-伯明翰大学的 STREAM Portsmouth 海试公开了一部分 76–81 GHz 实测数据。作者说明列有复数距离谱、固定凝视下的移动船只和海杂波记录，部分采集带时间标记的立体相机视频。它提供慢时间 FFT 构建真实 RD 的第二个候选，并可先检查视频覆盖与时间误差。发布资料未给出逐船 RD 像素掩膜。当前只核对发布说明，未下载或评分雷达数组。 [官方数据](https://edata.bham.ac.uk/626/) · [采集和格式说明](https://edata.bham.ac.uk/626/1/stream_sea_radar_dataset_1_description.pdf)
+伯明翰大学的 STREAM Portsmouth 海试公开了一部分 76–81 GHz 实测数据。公开包的说明明确列出扫描样例 `sea_4` 和固定凝视样例 `stare_4`，两项提供复数距离谱与 ZED 参考视频。完整采集表中另列有专门的海杂波凝视，需另向作者询问。它提供慢时间 FFT 构建真实 RD 的第二个候选，并可先检查视频覆盖与时间误差。发布资料未给出逐船 RD 像素掩膜。当前只核对发布说明，未下载或评分雷达数组。 [官方数据](https://edata.bham.ac.uk/626/) · [采集和格式说明](https://edata.bham.ac.uk/626/1/stream_sea_radar_dataset_1_description.pdf)
