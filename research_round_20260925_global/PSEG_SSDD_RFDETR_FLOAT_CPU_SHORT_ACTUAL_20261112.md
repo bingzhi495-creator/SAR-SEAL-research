@@ -22,3 +22,7 @@ DGX 原 CUDA BF16 短训适配已完成代码和读取验收。以单个数据�
 ## DGX 原训练请求实际预检
 
 已部署 GitHub 固定版本的 CUDA 入口和本次训练请求。原 DGX CPU 预检正常退出，核对原训练器绑定、全部 FIT 图像与输入目录、741 个样本、1,661 条实例及 1,606 条小数顶点变更。预检未创建训练输出目录。随后同一固定环境测得 CUDA 即时可用 2.91 GiB，主机可用约 44.74 GiB。未达到原训练入口的 12 GiB CUDA 可用条件。探针报告 GB10 原生 BF16 可用，当前 PyTorch 构建的架构表未直接列出 sm_121，实际训练算子有待验证。原服务保持运行，未启动 CUDA 配对。 [实际预检与资源回执](results/SSDD_DGX_FLOAT_SOURCE_FIT_PREFLIGHT_ACTUAL_SAFE_20261112.json)
+
+## Windows 原生 CUDA 备用入口
+
+在本机为同一小数标签方案准备新请求，复用已验收的 Windows 原生 RF-DETR BF16 训练器、配对共同实例和原作业管理器。独立 CPU 预检核对 741 张图、1,661 条标注、原 JPEG 清单和精确小数覆盖，以及已闭合的相关训练资格回执。三项保护测试通过。首次私有请求有一处历史摘要漏写一位，按原规则拒收。新目录修正后实际通过，原失败保留。已通过的私有预检和发布源码分别有各自身份。当前未启动 CUDA 两臂，待现有 HRSID GPU 作业和固定评分交接后，以原入口完成 32 次访问、8 次 AdamW 和 8 次 EMA 的实测。 [Windows 入口与说明](code/SSDD_WINDOWS_FLOAT_COMMON_SHORT_20261112/README.md) · [预检回执](code/SSDD_WINDOWS_FLOAT_COMMON_SHORT_20261112/PREFLIGHT_RESULT_SAFE.json)

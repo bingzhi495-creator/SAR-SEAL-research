@@ -26,3 +26,9 @@ Schwegmann 的正样本 101×101 图块只标注中心船的散射像元。21×2
 | 均值 | 39.844% | 43.751% | +3.906 |  |
 
 均值差的采集组重采样区间为 −0.482 至 +8.644 点。Dice 平均差为 +6.112 点，区间 +1.022 至 +11.847 点，为次要读数。两臂共同选中非空候选时，三组 IoU 分别变化 −4.223、−1.661、+7.464 点。IoU 0.75 达标数为 4→1、6→1、4→4，0.90 为 0→0、1→0、2→1。主 IoU 与非空候选数在三组都增加，高阈值恢复未改善。组数 16 低于预锁的 20，保留原判定 `INSUFFICIENT_PHYSICAL_ACQUISITIONS`。现有结果限于中心已知的船舶散射掩膜描述性比较，完整场景 AP、虚警和强外推仍未验证。
+
+## 同采集海杂波与疑似目标的实际获取
+
+为区分正样本轮廓收益与虚警代价，按原 16 个采集组预锁中心窗口和原产品／极化匹配。32 个原正例的 51×51 中心裁剪保留完整原掩膜。海杂波和 CFAR 疑似目标分别以作者标注的裁块中心解释。外围可能有船，后续如凑齐数据需限定中心窗口。 [作者海杂波说明](https://gitlab.com/sarmaps/sar-ship-dataset/-/raw/9decec2a18b9d7d6fd2d057a435808ca67d2bad1/true_negatives.md) · [作者疑似目标说明](https://gitlab.com/sarmaps/sar-ship-dataset/-/raw/9decec2a18b9d7d6fd2d057a435808ca67d2bad1/false_positives.md)
+
+每类计划 63 个不重复的有限字节窗口。每类各有一个通过来源和范围核验，分别实际取得 262,144 字节及 5 条完整作者记录。按产品与极化匹配保留海杂波 2 条、疑似目标 3 条，覆盖 4 个采集组。16 组没有一组两类均齐备。其余窗口未通过，实际失败包括 HTTP 429 及范围或来源头不符合预锁条件。原任务退出 0，结果保留为获取范围核验。未开启后续重试、模型前向、外部评分或正式 TEST。 [独立聚合回执](results/SCHWEGMANN_MATCHED_BACKGROUND_INTAKE_SAFE_20261112.json) · [获取方案](code/SCHWEGMANN_MATCHED_BACKGROUND_INTAKE_20261112/PROTOCOL.md) · [获取入口](code/SCHWEGMANN_MATCHED_BACKGROUND_INTAKE_20261112/intake.py)
