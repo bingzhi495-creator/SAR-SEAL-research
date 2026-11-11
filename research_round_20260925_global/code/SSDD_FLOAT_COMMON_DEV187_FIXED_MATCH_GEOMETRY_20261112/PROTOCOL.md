@@ -1,0 +1,7 @@
+# SSDD float-common 5201 fixed native matches
+
+Lock before opening predictions or labels for this assay. Reuse the independently accepted original float/common E24 scoring pair, exact official-source floating GT and image roster, 187 images and 380 annotations. Validate the original score and both export closures and complete candidate order. Recompute all 12 native COCO metrics and AP90 against the accepted result for each arm before retaining original nonignored, all-area IoU .50 matches. No new candidate choice, score calibration, score reranking or rematching after the original matching. Keep empties and all original rows.
+
+Report both, native-only, center-only and neither for all annotations and original COCO size bins. On the jointly matched cohort, use exact unit pixel cells for prediction masks and clipped source polygons for truth. Compute continuous IoU and pixel FP and FN divided by reference vector area. Predeclare thin as aspect >=2 and native minimum-rectangle short side <=8 px. Report long/short centroid offsets for aspect >=2. Use identical 4,096 fixed-seed bootstrap chip resamples for descriptive paired intervals. The dataset has one large annotation, so only its count and descriptive metrics apply. Recheck eight dense intersections and centroids per arm independently.
+
+This is a post-primary, one-seed, fixed matched DEV diagnostic. Scoring and mask geometry effects are not uniquely decomposed. No FIT images, held-out official TEST, model forwards or training. Publish only aggregate records.
