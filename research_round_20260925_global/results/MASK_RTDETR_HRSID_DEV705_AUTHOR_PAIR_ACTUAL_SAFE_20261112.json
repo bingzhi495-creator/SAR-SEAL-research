@@ -1,0 +1,156 @@
+{
+  "status": "MASK_RTDETR_DEV705_E24_AUTHOR_PAIR_ORIGINAL_SCORE_INDEPENDENTLY_CLOSED",
+  "scope": {
+    "dataset": "HRSID fixed DEV705",
+    "images": 705,
+    "primary_annotations": 1782,
+    "empty_mask_sensitivity_annotations": 1778,
+    "max_dets": [
+      1,
+      10,
+      100
+    ],
+    "candidate_rows_per_arm": 70500,
+    "official_TEST_opened": false,
+    "official_TEST_AP": false
+  },
+  "protocol_commit": "437fa55f14644eab15156dc96092903bfde147da",
+  "paired_training_receipt_sha256": "f6f4d8f50976b63f3aefc544d50f6de64c1927bbcaa261767fd5032beae28e84",
+  "fixed_image_manifest_sha256": "39a40d089d4a54448fe6efca8ea5cc98ad1eb7c0587815f3dd9a3b097173e78f",
+  "fixed_original_GT_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+  "owner_source_sha256": "9144aaac8f13065f34cc9d8fc1c135705fbffb425498c66d3c2cbf509b1c4d16",
+  "original_cpu_scoring_source_sha256": "b64b9c4d9ceb90a53fa8b84a05fc95690ab60b67214eb7ba5ab2cc42af5a4c43",
+  "training": {
+    "same_training_seed": 20261111,
+    "epochs_per_arm": 24,
+    "fit_visits_per_arm": 70560,
+    "optimizer_updates_per_arm": 17640,
+    "original_wall_seconds": {
+      "center": 8022.8279999999795,
+      "native": 8015.843999999808
+    }
+  },
+  "timing_and_export": {
+    "A_native": {
+      "nonempty_masks": 23448,
+      "forward_seconds": 22.12307520257309,
+      "export_seconds": 136.57770889997482,
+      "child_wall_seconds": 146.39000000013039
+    },
+    "B_center": {
+      "nonempty_masks": 39281,
+      "forward_seconds": 21.998199900146574,
+      "export_seconds": 136.41857490013354,
+      "child_wall_seconds": 142.65599999995902
+    }
+  },
+  "closure": {
+    "original_cuda_owner_exit": 0,
+    "all_four_original_windows_child_jobs_drained": true,
+    "original_cuda_owner_wait_sha256": "48f1a828bc554e43154e11d3c03b9b8616cbebd3accd418af5899d37cf361ac7",
+    "original_cuda_owner_summary_sha256": "a37f5ac2de150736514e4bd32392863db140f8e432ae8284f279bb663f8136f9",
+    "original_cpu_score_outer_exit": 0,
+    "original_cpu_score_outer_wait_sha256": "008403e77abb68015498f74d904046cac14d3a5dea6d8437cbf22ac50d05a1a2",
+    "original_cpu_score_inner_exit": 0,
+    "original_cpu_score_terminal_sha256": "3dc8327d949b017ce622923f4a78b5ccad9582ccad31fe7f685e227208c42fa8",
+    "native_closed_export_ref_sha256": "2ba7bbcc8e867f15e532b3649f6c7fe2ef543a028eba9ad9407cf74021ade562",
+    "center_closed_export_ref_sha256": "6047fd94d40e4b82af63f3bdcedd69de493c3ae22047edbb03fb07253b75f661",
+    "original_score_result_sha256": "a6f71845ab7e0488e9ef7899005f1baf78ea6f2360f1fcc15a0e61f98d184e58",
+    "original_score_stdout_sha256": "c6c4bb61f4294d18bc3e93639c1ae9ed35e3f9d1f7caf3d080587f6484239d4e",
+    "original_score_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "metric_units": "percentage points for A and B, B minus A in percentage points",
+  "metrics": {
+    "primary": {
+      "annotations": 1782,
+      "metrics": {
+        "AP": {
+          "A_native": 50.304028440041535,
+          "B_center": 56.0426203287582,
+          "B_minus_A_pp": 5.73859188871666
+        },
+        "AP50": {
+          "A_native": 88.53044580855435,
+          "B_center": 89.53645017383323,
+          "B_minus_A_pp": 1.0060043652788786
+        },
+        "AP75": {
+          "A_native": 55.37288227797424,
+          "B_center": 65.71672753268057,
+          "B_minus_A_pp": 10.343845254706318
+        },
+        "AP90": {
+          "A_native": 0.4314527751213525,
+          "B_center": 2.345583861043687,
+          "B_minus_A_pp": 1.9141310859223346
+        },
+        "APs": {
+          "A_native": 49.41428614867166,
+          "B_center": 55.759501930894864,
+          "B_minus_A_pp": 6.345215782223201
+        },
+        "APm": {
+          "A_native": 58.5263973255642,
+          "B_center": 59.80429217972664,
+          "B_minus_A_pp": 1.2778948541624424
+        },
+        "APl": {
+          "A_native": 47.032734054958425,
+          "B_center": 32.99498747804243,
+          "B_minus_A_pp": -14.037746576915994
+        },
+        "AR100": {
+          "A_native": 56.638608305274964,
+          "B_center": 61.509539842873174,
+          "B_minus_A_pp": 4.870931537598211
+        }
+      }
+    },
+    "sensitivity": {
+      "annotations": 1778,
+      "metrics": {
+        "AP": {
+          "A_native": 50.42870187925806,
+          "B_center": 56.18040008814936,
+          "B_minus_A_pp": 5.751698208891309
+        },
+        "AP50": {
+          "A_native": 88.76637477714131,
+          "B_center": 89.77024450619082,
+          "B_minus_A_pp": 1.0038697290495113
+        },
+        "AP75": {
+          "A_native": 55.45628978794635,
+          "B_center": 65.89901652350675,
+          "B_minus_A_pp": 10.442726735560392
+        },
+        "AP90": {
+          "A_native": 0.4314527751213525,
+          "B_center": 2.345583861043687,
+          "B_minus_A_pp": 1.9141310859223346
+        },
+        "APs": {
+          "A_native": 49.520081064086256,
+          "B_center": 55.9033853616907,
+          "B_minus_A_pp": 6.383304297604448
+        },
+        "APm": {
+          "A_native": 58.5263973255642,
+          "B_center": 59.80429217972664,
+          "B_minus_A_pp": 1.2778948541624424
+        },
+        "APl": {
+          "A_native": 47.032734054958425,
+          "B_center": 32.99498747804243,
+          "B_minus_A_pp": -14.037746576915994
+        },
+        "AR100": {
+          "A_native": 56.76602924634421,
+          "B_center": 61.64791901012373,
+          "B_minus_A_pp": 4.881889763779523
+        }
+      }
+    }
+  },
+  "interpretation_scope": "One prelocked paired training seed and one fixed development population. APl decreases; official TEST and formal cross-seed claims remain out of this result."
+}

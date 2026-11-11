@@ -1,0 +1,40 @@
+{
+  "status": "P392_FIRST_TWO_ORIGINAL_ATTEMPTS_RETAINED",
+  "scientific_protocol_changed": false,
+  "original_attempts": [
+    {
+      "original_owner_exit": 5,
+      "owner_summary_sha256": "43b08bf9a52e3917be5a9376ee9b54cd229509766086aae4bd5655b02ac3e8c6",
+      "stage": "fit_smoke",
+      "original_child_exit": 1,
+      "job_drained": true,
+      "resource_stop": false,
+      "child_terminal_sha256": "7a0c881f965235639842ef69b44b40d56d0a337b8a017a978e20b8ac7673c317",
+      "stderr_sha256": "6b407e19862aec56bff5350a1e81fb271e8a236fa7afdcd397af3193e01c6dd9",
+      "failure": "Author TestReader FP32 image-only batch did not satisfy original gpu:0 input place witness. Stopped before the first model forward.",
+      "fix_confirmed_by_followup": "Original reader returned pinned host. Exact dtype/shape/no-GT and all six moved tensor bytes preserved by blocking typed CUDA transport."
+    },
+    {
+      "original_owner_exit": 5,
+      "owner_summary_sha256": "249718c9f9ca320654039b79419f9ff06db7abeec52bf5a92fad04b5b8c38e71",
+      "stage": "image_stage",
+      "original_child_exit": 1,
+      "job_drained": true,
+      "resource_stop": false,
+      "closed_fit_report_sha256": "2f4da1cadc286682df19cbf1717444c2e28fefa8f336d8851dd260497f747f33",
+      "fit_smoke_images": 1,
+      "fit_smoke_native_rows": 100,
+      "fit_smoke_nonempty_masks": 27,
+      "fit_smoke_forward_seconds": 0.22154720011167228,
+      "fit_smoke_bitwise_tensor_checks": 6,
+      "fit_smoke_bitwise_bytes": 4915228,
+      "stderr_sha256": "053dabde0b530c03d117272e5182cc689b89f3bf49926b9cab342e4d7f77fc78",
+      "failure": "Case-insensitive Windows data staging path aliased the image JobObject control stage. Original image archive metadata matched and no archive image members were decoded.",
+      "fix_confirmed_by_followup": "Use disjoint data and JobObject control folder names with unchanged 705-image roster."
+    }
+  ],
+  "original_attempts_DEV_image_members_decoded": 0,
+  "original_attempts_GT_opened": false,
+  "original_attempts_AP_computed": false,
+  "official_TEST_opened": false
+}

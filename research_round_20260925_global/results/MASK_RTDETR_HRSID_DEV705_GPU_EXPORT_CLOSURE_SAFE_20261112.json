@@ -1,0 +1,167 @@
+{
+  "status": "P392_MASK_RTDETR_DEV705_ORIGINAL_CUDA_EXPORTS_CLOSED_VERIFIED",
+  "protocol_commit": "437fa55f14644eab15156dc96092903bfde147da",
+  "source_sha256": "9144aaac8f13065f34cc9d8fc1c135705fbffb425498c66d3c2cbf509b1c4d16",
+  "paired_training_receipt_sha256": "f6f4d8f50976b63f3aefc544d50f6de64c1927bbcaa261767fd5032beae28e84",
+  "fixed_image_manifest_sha256": "39a40d089d4a54448fe6efca8ea5cc98ad1eb7c0587815f3dd9a3b097173e78f",
+  "training": {
+    "epochs_per_arm": 24,
+    "optimizer_updates_per_arm": 17640,
+    "fit_visits_per_arm": 70560,
+    "original_wall_seconds": {
+      "center": 8022.8279999999795,
+      "native": 8015.843999999808
+    }
+  },
+  "original_owner": {
+    "tool_exit": 0,
+    "summary_sha256": "a37f5ac2de150736514e4bd32392863db140f8e432ae8284f279bb663f8136f9",
+    "wait_sha256": "48f1a828bc554e43154e11d3c03b9b8616cbebd3accd418af5899d37cf361ac7",
+    "four_original_jobs_drained": true,
+    "shared_gpu_released": true
+  },
+  "stages": {
+    "fit_smoke": {
+      "report_sha256": "4c7593f5f35a67be74bce84d3ba9aab9d5e78cda0383ac5db54043efb7c34ce8",
+      "terminal_sha256": "56e9322b04e07223d4924daa5abee61e73b40e141889da5687c0935c3513679d",
+      "resource_sha256": "f4887311f4cdc08b8f1fb9c825b1622f3e28ee1704c9e519c1749d82b3ed492c",
+      "images": 1,
+      "rows": 100,
+      "nonempty_masks": 27,
+      "forward_seconds": 0.22177850012667477,
+      "export_elapsed_seconds": 0.42498419992625713,
+      "original_child_wall_seconds": 5.2649999998975545,
+      "original_child_exit": 0,
+      "job_empty": true,
+      "resource_guard": null,
+      "peak_worker_tree_rss_bytes": 1123147776,
+      "initial_cuda_free_mib": 22348,
+      "predictions_sha256": "77710ce6869747bee1737fe2707c177199b1a8e3f587010e837371a4ee5ab94b",
+      "image_stage_sha256": null,
+      "checkpoint_sha256": "7a2225d24bc0721fe029c6b5d5d2185d59f8b5344e24ff116c1894de0edfe173",
+      "batch_transport": {
+        "fit_after": {
+          "gt_fields": [],
+          "image_dtype": "paddle.float32",
+          "image_place": "Place(gpu:0)",
+          "image_shape": [
+            1,
+            3,
+            640,
+            640
+          ]
+        },
+        "fit_before": {
+          "gt_fields": [],
+          "image_dtype": "paddle.float32",
+          "image_place": "Place(gpu_pinned)",
+          "image_shape": [
+            1,
+            3,
+            640,
+            640
+          ]
+        },
+        "fit_before_image_host": true,
+        "fit_transfer_byte_checks": 6,
+        "fit_transfer_bytes": 4915228,
+        "host_to_cuda_batches": 1,
+        "host_to_cuda_tensors": 6,
+        "stock_gpu_batches": 0,
+        "verified_cuda_batches": 1
+      },
+      "attention_calls": {
+        "author_paddle_grid_sample": 6
+      },
+      "encoded_and_rgb_verified": null
+    },
+    "image_stage": {
+      "report_sha256": "5c3ac9932c4838110112048f801284485d3cb12d86aa5faf3f145b9aca7e7309",
+      "terminal_sha256": "0f869ec6da98cd13a693373c4d526a41228a81958ea573f7889c97fc25a9723b",
+      "resource_sha256": "09b35259e246e89e54f093d847dd450f83dcc70cac36ca3685e60bf5403c27e8",
+      "images": 705,
+      "rows": null,
+      "nonempty_masks": null,
+      "forward_seconds": null,
+      "export_elapsed_seconds": null,
+      "original_child_wall_seconds": 14.609000000171363,
+      "original_child_exit": 0,
+      "job_empty": true,
+      "resource_guard": null,
+      "peak_worker_tree_rss_bytes": 71151616,
+      "initial_cuda_free_mib": null,
+      "predictions_sha256": null,
+      "image_stage_sha256": null,
+      "checkpoint_sha256": null,
+      "batch_transport": null,
+      "attention_calls": null,
+      "encoded_and_rgb_verified": 705
+    },
+    "native": {
+      "report_sha256": "e024ad89f06e2025bc6eaeced0071922a6c43fc7a3d26516bd14bfd6f2cefffe",
+      "terminal_sha256": "d978f7a3ec95592628b89802ae50e08e85a52737aaab346ea536775f2ba7ce01",
+      "resource_sha256": "713873f360c68b3e3cd7fefe647c82857fae7a52a3faf119b3cdd6e6af1d10e3",
+      "images": 705,
+      "rows": 70500,
+      "nonempty_masks": 23448,
+      "forward_seconds": 22.12307520257309,
+      "export_elapsed_seconds": 136.57770889997482,
+      "original_child_wall_seconds": 146.39000000013039,
+      "original_child_exit": 0,
+      "job_empty": true,
+      "resource_guard": null,
+      "peak_worker_tree_rss_bytes": 1602531328,
+      "initial_cuda_free_mib": 22348,
+      "predictions_sha256": "bbd29ba0a9ed4c6762eaf0481e1239ee69229338a2a21301667a18dbadcccf04",
+      "image_stage_sha256": "5c3ac9932c4838110112048f801284485d3cb12d86aa5faf3f145b9aca7e7309",
+      "checkpoint_sha256": "7a2225d24bc0721fe029c6b5d5d2185d59f8b5344e24ff116c1894de0edfe173",
+      "batch_transport": {
+        "fit_transfer_byte_checks": 0,
+        "fit_transfer_bytes": 0,
+        "host_to_cuda_batches": 705,
+        "host_to_cuda_tensors": 4230,
+        "stock_gpu_batches": 0,
+        "verified_cuda_batches": 705
+      },
+      "attention_calls": {
+        "author_paddle_grid_sample": 4230
+      },
+      "encoded_and_rgb_verified": null
+    },
+    "center": {
+      "report_sha256": "bcfba41fdfc7e009d9e1069db01fcf7184271a1464b6f19046585d6063a2ab60",
+      "terminal_sha256": "94fba4cc0aa31a8e8a322bbae1956529dc5df05bc3f77920950bebea14aa77ba",
+      "resource_sha256": "0356d599e8d9bb8c842e861690f6fe78c913943e0348f5072fbf197805bd96b6",
+      "images": 705,
+      "rows": 70500,
+      "nonempty_masks": 39281,
+      "forward_seconds": 21.998199900146574,
+      "export_elapsed_seconds": 136.41857490013354,
+      "original_child_wall_seconds": 142.65599999995902,
+      "original_child_exit": 0,
+      "job_empty": true,
+      "resource_guard": null,
+      "peak_worker_tree_rss_bytes": 1633861632,
+      "initial_cuda_free_mib": 22350,
+      "predictions_sha256": "a807669ed9616227f38da4a943fedf6f1c8848d30de13063c7b43826c25a4499",
+      "image_stage_sha256": "5c3ac9932c4838110112048f801284485d3cb12d86aa5faf3f145b9aca7e7309",
+      "checkpoint_sha256": "2d9774be87e65232c6b119c87b21265dca5198262599a98adaca1f22fb44e14f",
+      "batch_transport": {
+        "fit_transfer_byte_checks": 0,
+        "fit_transfer_bytes": 0,
+        "host_to_cuda_batches": 705,
+        "host_to_cuda_tensors": 4230,
+        "stock_gpu_batches": 0,
+        "verified_cuda_batches": 705
+      },
+      "attention_calls": {
+        "author_paddle_grid_sample": 4230
+      },
+      "encoded_and_rgb_verified": null
+    }
+  },
+  "DEV_images": 705,
+  "GT_opened_by_export": false,
+  "official_TEST_opened": false,
+  "AP_computed_by_export": false
+}
