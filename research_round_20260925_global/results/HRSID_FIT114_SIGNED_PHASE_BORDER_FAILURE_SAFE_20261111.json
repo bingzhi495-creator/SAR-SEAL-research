@@ -1,0 +1,20 @@
+{
+  "status": "P317_ORIGINAL_VALIDATION_CLOSED_BEFORE_FIT",
+  "original_worker_exit": 1,
+  "resource_stop": false,
+  "source_sha256": "b4107bdf7f209d4c8712eb6724ab4356a4a72de3983402dd8cbc158d3455eef5",
+  "stderr_sha256": "3b99e5e3ec8938d9f117982119e2e43952de9eaf3cdfe53d4c94823803b26f98",
+  "candidate_stream_sha256": "4b5574f3b32dba4c2963c57a4637eaa3695f1118a75cc3b7a36ec92bd0c60319",
+  "diagnosis": {
+    "points_checked": 414942,
+    "opposite_neighbor_guard_rejects": 4380,
+    "valid_inside_canvas_border": 4380,
+    "other_rejects": 0,
+    "duplicate": 0,
+    "outside_grid": 0,
+    "nonfinite": 0,
+    "center_sign_mismatch": 0,
+    "cause": "The capture builds the binary band with outside-canvas background and clamps neighboring logit coordinates to the canvas. The scorer required an opposite-sign clamped neighbor even on inside canvas-border points."
+  },
+  "fit_or_scores_emitted": false
+}

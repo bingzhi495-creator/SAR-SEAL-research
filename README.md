@@ -20,6 +20,7 @@
 - [HRSID 高 IoU 转移的平移上界](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行严格覆盖转移的平移上界)。178 个仅中心达标的真值中，原生掩膜经真值辅助二维 ±2 平移恢复 72 个。17 个受面积比限制，89 个仍未恢复。原进程和独立复算均完成。
 - [HRSID 一像素边界带的编辑上界](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#一像素边界带的固定编辑预算)。最佳平移后 129 个失败掩膜中，同预算真值辅助可恢复 90 个，一像素带与整图恢复数一致，其中 87 个为小目标。独立复算完成。
 - [HRSID 一像素形态基线实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#一像素二值形态规则的真实评分)。固定中心臂 67,386 条候选，补孔和去孤点的 mask AP 变化 +0.00263 点，AP90 与同编辑量随机臂一致，原固定匹配无严格新增或失守。
+- [HRSID FIT114 边界分数与采样相位实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-冻结边界分数与采样相位对照)。独立核对 414,942 个边界点。55 张留出图上真实相位仅改 4 像素，严格达标净变化为 0，与同编辑量的有序 logits 和打乱相位的总裕量相同。
 - [Phoenix 外部细化对照的 CPU 编码实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#phoenix-官方样例的-cpu-编码实测)。官方 EfficientViT-XL1 权重已核验，作者示例完成图像编码。提示生成、五轮解码与 SAR 固定候选评分待执行。
 - [Phoenix DGX 完整推理和 HRSID FIT 试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#phoenix-完整推理与固定-fit-候选试点)。作者样例的单掩膜与批量结果逐像素一致。两图 145 条原候选中，官方 1% 门槛激活 0 条；全非空适配改动 39 条，两个固定配对的平均 IoU 0.848→0.768。
 - [OpenCV 新旧最近邻复算](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md#opencv-5-原生与精确最近邻实测)。Windows 4.5.5 与 5.0.0 默认输出相同。5.0.0 显式精确模式与整数参考的差异集中于半格平局。
