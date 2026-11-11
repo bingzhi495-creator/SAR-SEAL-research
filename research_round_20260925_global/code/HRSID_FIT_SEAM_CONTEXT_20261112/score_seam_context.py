@@ -40,7 +40,7 @@ def module(path, digest, name):
 
 
 def summarize(rows):
-    both=[r for r in rows if r["near"]>0 and r["far"]>0]
+    both=[r for r in rows if r["near_matched"] and r["far_matched"]]
     near=mean(r["near"] for r in rows)*100
     far=mean(r["far"] for r in rows)*100
     nf_abs=mean(abs(r["far"]-r["near"]) for r in rows)*100
@@ -52,10 +52,13 @@ def summarize(rows):
                 strict_far_minus_near=strict["far"]-strict["near"],
                 far_gains=sum(r["far"]>r["near"] for r in rows),
                 near_gains=sum(r["near"]>r["far"] for r in rows),
-                matched_both=len(both),far_only_matches=sum(r["far"]>0 and r["near"]==0 for r in rows),
-                near_only_matches=sum(r["near"]>0 and r["far"]==0 for r in rows),
-                neither_matches=sum(r["near"]==0 and r["far"]==0 for r in rows),
-                interior_matched_both=sum(r["inside_a"]>0 and r["inside_b"]>0 for r in rows),
+                matched_both=len(both),far_only_matches=sum(r["far_matched"] and not r["near_matched"] for r in rows),
+                near_only_matches=sum(r["near_matched"] and not r["far_matched"] for r in rows),
+                neither_matches=sum(not r["near_matched"] and not r["far_matched"] for r in rows),
+                interior_matched_both=sum(r["inside_a_matched"] and r["inside_b_matched"] for r in rows),
+                interior_a_only=sum(r["inside_a_matched"] and not r["inside_b_matched"] for r in rows),
+                interior_b_only=sum(r["inside_b_matched"] and not r["inside_a_matched"] for r in rows),
+                interior_neither=sum(not r["inside_a_matched"] and not r["inside_b_matched"] for r in rows),
                 paired_matched_only_delta_points=100*mean(r["far"]-r["near"] for r in both) if both else None)
 
 
@@ -138,7 +141,7 @@ def run(args):
             pool,matched,rows=mappings[name]
             need(truth_id in rows and truth_id not in neutral and truth_id in targets,"Exact valid selected GT identity")
             rank=matched.get(truth_id)
-            score.append(0. if rank is None else geometry_score(pool[rank]["rle"],targets[truth_id][0],geom))
+            score.append((False,0.) if rank is None else (True,geometry_score(pool[rank]["rle"],targets[truth_id][0],geom)))
         return score
 
     out_rows=[]
@@ -150,15 +153,23 @@ def run(args):
         ab=pair_values(seam)
         near_index=0 if seam["margins"][0]<seam["margins"][1] else 1
         c,d=pair_values(interior)
-        out_rows.append(dict(offset=offset,near=ab[near_index],far=ab[1-near_index],inside_a=c,inside_b=d))
+        selected=dict(near=ab[near_index],far=ab[1-near_index],inside_a=c,inside_b=d)
+        out_rows.append(dict(offset=offset,**{k:v[1] for k,v in selected.items()},
+                             **{k+"_matched":v[0] for k,v in selected.items()}))
     summary=summarize(out_rows)
     offsets=sorted({r["offset"] for r in out_rows})
     strata={",".join(map(str,s)):summarize([r for r in out_rows if r["offset"]==s]) for s in offsets}
+    axes = {}
+    for axis, pred in (("row",lambda y,x:y>0 and x==0),("col",lambda y,x:y==0 and x>0),
+                       ("mixed",lambda y,x:y>0 and x>0)):
+        group = [r for r in out_rows if pred(*r["offset"])]
+        if group:
+            axes[axis] = summarize(group)
     lead=(summary["far_minus_near_points"]>=1.5 and summary["strict_far_minus_near"]>=5 and
           summary["disagreement_excess_points"]>=.5)
     result=dict(status="HRSID_FIT_SEAM_CONTEXT_SCORE_ACTUAL",FIT=True,DEV=False,TEST=False,GT_opened=True,AP=False,
                 model_forwards=0,optimizer_updates=0,mask_edits=0,target_pairs=80,
-                gate="SEAM_CONTEXT_LEAD" if lead else "NO_SEAM_CONTEXT_LEAD",summary=summary,strata=strata,
+                gate="SEAM_CONTEXT_LEAD" if lead else "NO_SEAM_CONTEXT_LEAD",summary=summary,strata=strata,axes=axes,
                 capture_sha256=args.capture_sha,witness_sha256=args.witness_sha,protocol_sha256=PROTOCOL_SHA,
                 selected_sha256=ROSTER_SHA,fit_index_sha256=FIT_SHA,worker_seconds=perf_counter()-started)
     data=(json.dumps(result,sort_keys=True,allow_nan=False,indent=2)+"\n").encode()
