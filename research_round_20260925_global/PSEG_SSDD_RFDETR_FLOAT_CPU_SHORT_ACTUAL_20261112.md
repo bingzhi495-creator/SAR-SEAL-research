@@ -36,3 +36,11 @@ DGX 原 CUDA BF16 短训适配已完成代码和读取验收。以单个数据�
 固定 DGX 的 PyTorch 2.10.0+cu130 和 RF-DETR 1.12.0，实际运行 32×32 BF16 矩阵乘及 RF-DETR 采用的双线性 grid_sample 和反向。BF16 矩阵乘与 CPU FP32 参考逐值一致。grid_sample 在 BF16 autocast 下实际输出 FP32，前向和输入梯度与 CPU 参考逐值一致，采样坐标梯度最大绝对差为 2.384×10⁻⁷。峰值分配约 8.53 MB，保留约 23.07 MB。原探针退出 0，退出后的独立查询确认其 CUDA 上下文清除。
 
 本轮即时可用 CUDA 内存为 2.68 GiB，低于原训练入口的 12 GiB 条件。当前 PyTorch 的 GB10 架构警告仍存在，两项算子已在该环境中实际通过。完整 RF-DETR 模型、优化器及 CUDA 资格仍待合适资源。发布副本改用显式参数，CLI 检查通过。 [探针及范围](code/SSDD_DGX_GB10_STOCK_OPERATOR_PROBE_20261112/README.md) · [实际回执](code/SSDD_DGX_GB10_STOCK_OPERATOR_PROBE_20261112/RESULT_SAFE.json)
+
+
+## Windows 原生 CUDA 两臂实测
+
+固定发布入口和原 741 图、1,661 条小数标注输入。原任务两臂自然退出 0，作业树已排空，各实际 32 次 FIT 访问和 8 次 AdamW、8 次 EMA。独立验收核对 543 组 AdamW 参数计数均为 8，56 条保留共同监督，1 次空访问，31 次访问仅掩膜改变。两臂图像顺序、像素和前向前 CPU 随机状态一致，框、类别、实例数一致，两臂终点分类张量各自发生更新。原等待 16.875／17.390 秒。此次覆盖原生 BF16 CUDA 短窗，正式 E24 和 AP 待实际验证。 [原短窗独立验收](results/SSDD_WINDOWS_FLOAT_COMMON_SHORT_PAIR_ACCEPTED_SAFE_20261112.json) · [E24 预锁](PSEG_SSDD_OFFICIAL_FLOAT_COMMON_TRAIN_PROTOCOL_20261111.md)
+
+首次验收在读取已闭合的有序访问数组时被对象专用 JSON 入口拒绝。修正后的独立验收按原序列读取 JSON 数组，继续校验行数、ID、访问序号、配对及检查点约束，原训练、文件字节和计数保持不变。保留原验收失败，原任务没有重跑。可移植解析器的三项检查通过。 [修正解析器](code/SSDD_WINDOWS_FLOAT_CLOSED_VISIT_ARRAY_20261112/visit_array.py) · [解析检查](code/SSDD_WINDOWS_FLOAT_CLOSED_VISIT_ARRAY_20261112/test_visit_array.py)
+

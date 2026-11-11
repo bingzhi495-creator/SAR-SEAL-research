@@ -1,0 +1,282 @@
+{
+  "DEV": true,
+  "FIT": false,
+  "delta_points": {
+    "continuous_minus_raster_common_effect_points": {
+      "AP": -2.1317795994769018,
+      "AP50": -0.5770352938528345,
+      "AP75": -4.105932817234427,
+      "AP90": -0.6840227948789335,
+      "APl": 0.0,
+      "APm": -0.34897638719072477,
+      "APs": -2.408440114186721,
+      "AR100": -1.822827938671201
+    },
+    "original_full_raster": {
+      "AP": 5.73859188871666,
+      "AP50": 1.0060043652788786,
+      "AP75": 10.343845254706318,
+      "AP90": 1.9141310859223346,
+      "APl": -14.037746576915994,
+      "APm": 1.2778948541624424,
+      "APs": 6.345215782223201,
+      "AR100": 4.870931537598211
+    },
+    "shared_support_continuous": {
+      "AP": 3.625358247990196,
+      "AP50": 0.3948173212881878,
+      "AP75": 6.329657654071285,
+      "AP90": 1.2358033442828127,
+      "APl": -14.037746576915994,
+      "APm": 0.9289184669717176,
+      "APs": 4.0318473565866935,
+      "AR100": 3.0607609312890527
+    },
+    "shared_support_raster": {
+      "AP": 5.757137847467098,
+      "AP50": 0.9718526151410223,
+      "AP75": 10.435590471305712,
+      "AP90": 1.9198261391617462,
+      "APl": -14.037746576915994,
+      "APm": 1.2778948541624424,
+      "APs": 6.440287470773415,
+      "AR100": 4.883588869960254
+    }
+  },
+  "elapsed_seconds": 53.002815400017425,
+  "geometry_audits": {
+    "center": {
+      "continuous_pairs_computed": 11902,
+      "dense_geometry_spots": 16,
+      "independent_dense_max_abs_iou_error": 0.0,
+      "neutral_original_overlap_pairs": 2100,
+      "provably_below_half_pairs": 164198,
+      "pruned_dense_spots": 8,
+      "supported_pairs": 176100
+    },
+    "native": {
+      "continuous_pairs_computed": 6924,
+      "dense_geometry_spots": 16,
+      "independent_dense_max_abs_iou_error": 0.0,
+      "neutral_original_overlap_pairs": 2100,
+      "provably_below_half_pairs": 169176,
+      "pruned_dense_spots": 8,
+      "supported_pairs": 176100
+    }
+  },
+  "image_manifest_sha256": "39a40d089d4a54448fe6efca8ea5cc98ad1eb7c0587815f3dd9a3b097173e78f",
+  "images": 705,
+  "model_forward_calls": 0,
+  "neutral_unique_annotations": 21,
+  "official_TEST_AP": false,
+  "official_TEST_opened": false,
+  "optimizer_updates": 0,
+  "original_export_wait_sha256": "48f1a828bc554e43154e11d3c03b9b8616cbebd3accd418af5899d37cf361ac7",
+  "original_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+  "original_order_unchanged": true,
+  "original_score_sha256": "a6f71845ab7e0488e9ef7899005f1baf78ea6f2360f1fcc15a0e61f98d184e58",
+  "original_score_terminal_sha256": "3dc8327d949b017ce622923f4a78b5ccad9582ccad31fe7f685e227208c42fa8",
+  "original_unique_annotations": 1782,
+  "paired_receipt_sha256": "f6f4d8f50976b63f3aefc544d50f6de64c1927bbcaa261767fd5032beae28e84",
+  "policy": {
+    "area": "original annotation and prediction pixel area fields, original stock bins",
+    "matching": "unchanged COCOeval sorting, matching, ignores, accumulation, IoU thresholds and maxDets",
+    "neutral": "invalid, empty, unsupported, and crowd rows retained as ignored with original raster overlap in both arms",
+    "pair_pruning": "noncrowd area and bbox overlap bound provably below .50 with conservative relative tolerance",
+    "population": "705 original DEV images, identical full raw prediction streams",
+    "positive_support": "valid finite noncrowd source polygon union clipped to canvas; exact original rerasterization",
+    "scope": "same annotation source; no official TEST, image opening, model inference or tuning"
+  },
+  "primary_p392_raster_unchanged": true,
+  "provenance_by_arm": {
+    "center": {
+      "checkpoint_sha256": "2d9774be87e65232c6b119c87b21265dca5198262599a98adaca1f22fb44e14f",
+      "closure_sha256": "6047fd94d40e4b82af63f3bdcedd69de493c3ae22047edbb03fb07253b75f661",
+      "export_report_sha256": "bcfba41fdfc7e009d9e1069db01fcf7184271a1464b6f19046585d6063a2ab60",
+      "predictions_sha256": "a807669ed9616227f38da4a943fedf6f1c8848d30de13063c7b43826c25a4499"
+    },
+    "native": {
+      "checkpoint_sha256": "7a2225d24bc0721fe029c6b5d5d2185d59f8b5344e24ff116c1894de0edfe173",
+      "closure_sha256": "2ba7bbcc8e867f15e532b3649f6c7fe2ef543a028eba9ad9407cf74021ade562",
+      "export_report_sha256": "e024ad89f06e2025bc6eaeced0071922a6c43fc7a3d26516bd14bfd6f2cefffe",
+      "predictions_sha256": "bbd29ba0a9ed4c6762eaf0481e1239ee69229338a2a21301667a18dbadcccf04"
+    }
+  },
+  "raw_prediction_rows": {
+    "center": 70500,
+    "native": 70500
+  },
+  "results": {
+    "center": {
+      "original_full_raster": {
+        "AP": 0.560426203287582,
+        "AP50": 0.8953645017383323,
+        "AP75": 0.6571672753268056,
+        "AP90": 0.02345583861043687,
+        "APl": 0.3299498747804243,
+        "APm": 0.5980429217972664,
+        "APs": 0.5575950193089486,
+        "AR100": 0.6150953984287317,
+        "all12": [
+          0.560426203287582,
+          0.8953645017383323,
+          0.6571672753268056,
+          0.5575950193089486,
+          0.5980429217972664,
+          0.3299498747804243,
+          0.2823793490460157,
+          0.5676767676767677,
+          0.6150953984287317,
+          0.6116338207247298,
+          0.6507772020725389,
+          0.525
+        ]
+      },
+      "shared_support_continuous": {
+        "AP": 0.549184711039536,
+        "AP50": 0.8960298927533308,
+        "AP75": 0.6411322196138175,
+        "AP90": 0.01367129750264243,
+        "APl": 0.3299498747804243,
+        "APm": 0.5912824749111532,
+        "APs": 0.5454323868572232,
+        "AR100": 0.6034071550255538,
+        "all12": [
+          0.549184711039536,
+          0.8960298927533308,
+          0.6411322196138175,
+          0.5454323868572232,
+          0.5912824749111532,
+          0.3299498747804243,
+          0.27808063600227145,
+          0.556785917092561,
+          0.6034071550255538,
+          0.5989690721649484,
+          0.6455958549222798,
+          0.525
+        ]
+      },
+      "shared_support_raster": {
+        "AP": 0.5625223681518523,
+        "AP50": 0.8978611253812472,
+        "AP75": 0.6604940445659973,
+        "AP90": 0.023512789142830986,
+        "APl": 0.3299498747804243,
+        "APm": 0.5980429217972664,
+        "APs": 0.5602291960247227,
+        "AR100": 0.6174332765474163,
+        "all12": [
+          0.5625223681518523,
+          0.8978611253812472,
+          0.6604940445659973,
+          0.5602291960247227,
+          0.5980429217972664,
+          0.3299498747804243,
+          0.28449744463373083,
+          0.5697898921067576,
+          0.6174332765474163,
+          0.6142396907216494,
+          0.6507772020725389,
+          0.525
+        ]
+      }
+    },
+    "native": {
+      "original_full_raster": {
+        "AP": 0.5030402844004154,
+        "AP50": 0.8853044580855435,
+        "AP75": 0.5537288227797424,
+        "AP90": 0.004314527751213525,
+        "APl": 0.47032734054958425,
+        "APm": 0.585263973255642,
+        "APs": 0.4941428614867166,
+        "AR100": 0.5663860830527496,
+        "all12": [
+          0.5030402844004154,
+          0.8853044580855435,
+          0.5537288227797424,
+          0.4941428614867166,
+          0.585263973255642,
+          0.47032734054958425,
+          0.2639169472502806,
+          0.5249719416386083,
+          0.5663860830527496,
+          0.5574062301335029,
+          0.6357512953367876,
+          0.6125
+        ]
+      },
+      "shared_support_continuous": {
+        "AP": 0.5129311285596341,
+        "AP50": 0.8920817195404489,
+        "AP75": 0.5778356430731046,
+        "AP90": 0.0013132640598143052,
+        "APl": 0.47032734054958425,
+        "APm": 0.581993290241436,
+        "APs": 0.5051139132913562,
+        "AR100": 0.5727995457126632,
+        "all12": [
+          0.5129311285596341,
+          0.8920817195404489,
+          0.5778356430731046,
+          0.5051139132913562,
+          0.581993290241436,
+          0.47032734054958425,
+          0.2668938103350369,
+          0.5297558205565019,
+          0.5727995457126632,
+          0.565270618556701,
+          0.6300518134715026,
+          0.6125
+        ]
+      },
+      "shared_support_raster": {
+        "AP": 0.5049509896771813,
+        "AP50": 0.888142599229837,
+        "AP75": 0.5561381398529401,
+        "AP90": 0.004314527751213525,
+        "APl": 0.47032734054958425,
+        "APm": 0.585263973255642,
+        "APs": 0.4958263213169885,
+        "AR100": 0.5685973878478138,
+        "all12": [
+          0.5049509896771813,
+          0.888142599229837,
+          0.5561381398529401,
+          0.4958263213169885,
+          0.585263973255642,
+          0.47032734054958425,
+          0.26643952299829643,
+          0.5269165247018739,
+          0.5685973878478138,
+          0.5597938144329897,
+          0.6357512953367876,
+          0.6125
+        ]
+      }
+    }
+  },
+  "status": "MASK_RTDETR_DEV705_E24_AUTHOR_PAIR_CONTINUOUS_SENSITIVITY_COMPLETE",
+  "support": {
+    "excluded": [
+      {
+        "reason": "empty_original_raster",
+        "size": "small",
+        "unique_instances": 4
+      },
+      {
+        "reason": "invalid_or_unsupported_source_components",
+        "size": "small",
+        "unique_instances": 17
+      }
+    ],
+    "supported_by_size": {
+      "large": 16,
+      "medium": 193,
+      "small": 1552
+    }
+  },
+  "supported_unique_annotations": 1761,
+  "training_protocol": "437fa55f14644eab15156dc96092903bfde147da",
+  "verified_original_raster_scores": true
+}
