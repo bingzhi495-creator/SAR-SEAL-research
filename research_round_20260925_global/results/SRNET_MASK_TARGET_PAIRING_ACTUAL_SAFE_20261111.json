@@ -1,0 +1,53 @@
+{
+  "ap": false,
+  "author_commit": "2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6",
+  "coarse_loss_skipped": true,
+  "coarse_refine_forward_and_refine_loss_stock": true,
+  "dev": false,
+  "device_literal_change_in_mask_loss": "cuda to cpu; other author operations unchanged",
+  "elapsed_seconds": 54.86017220001668,
+  "fit": true,
+  "fit_index_sha256": "62966857c78cea1e3b060700c62a7b896942686c2e674d3eb09f516a92250bc1",
+  "mixed_gt_scale_candidate_images": 3,
+  "model_initialized_seed": 5201,
+  "optimizer_updates": 0,
+  "prospectively_selected_visits": 11,
+  "source_checkpoint_scope": "official ImageNet backbone plus author initialized task heads",
+  "source_pins": {
+    "mmrotate/models/dense_heads/SRNet_head.py": "144552cf27b5970c46ff4e3af1b4e0f59b1b273daa0aadf89cdcc513c8e2dba1",
+    "mmrotate/models/dense_heads/SRNet_utils.py": "7d9210f7619fa31ad4bfacfc30e380cb1b4fce5d77e7217de15c4c14b5632c7f",
+    "mmrotate/models/detectors/SRNet.py": "7fad564a8c2fb6f34f9e7dc197c7cafc643fe72b16817846fe173e52fe74a40a"
+  },
+  "status": "SRNET_AUTHOR_REFINE_POSITIVE_MASK_TARGET_TRACE_COMPLETE",
+  "strata": {
+    "hash_core": {
+      "images": 8,
+      "images_with_wrong_identity": 0,
+      "level_positive_counts": {
+        "0": 23
+      },
+      "mixed_levels": 0,
+      "positives": 23,
+      "pyramid_groups": 8,
+      "wrong_identity": 0
+    },
+    "mixed_gt_scale_stress": {
+      "changed_sampled_masks": 1,
+      "changed_sampled_pixels": 297,
+      "corrected_minus_stock_BCE_sum": -29.5784912109375,
+      "images": 3,
+      "images_with_wrong_identity": 1,
+      "legacy_empty_corrected_nonempty": 1,
+      "level_positive_counts": {
+        "0": 6,
+        "1": 5
+      },
+      "mixed_levels": 1,
+      "positives": 11,
+      "pyramid_groups": 4,
+      "wrong_identity": 1
+    }
+  },
+  "test": false,
+  "training_mode_forward_only": true
+}

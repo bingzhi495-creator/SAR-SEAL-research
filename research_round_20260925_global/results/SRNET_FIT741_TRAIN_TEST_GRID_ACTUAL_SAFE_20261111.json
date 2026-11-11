@@ -1,0 +1,365 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "author_commit": "2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6",
+  "author_pins": {
+    "mmrotate/core/bbox/transforms.py": "899315d58f3004da58b639df9d369ce01de3e8ca33076100ed99a704ab6308d2",
+    "mmrotate/models/dense_heads/SRNet_head.py": "144552cf27b5970c46ff4e3af1b4e0f59b1b273daa0aadf89cdcc513c8e2dba1",
+    "mmrotate/models/dense_heads/SRNet_utils.py": "7d9210f7619fa31ad4bfacfc30e380cb1b4fce5d77e7217de15c4c14b5632c7f"
+  },
+  "elapsed_seconds": 6.085411400068551,
+  "fit_archive_sha256": "1c8f9b75e79fbc02c983ccd283a70082fcd5ab0d6538c777e8b286dbfdb78100",
+  "fit_index_sha256": "62966857c78cea1e3b060700c62a7b896942686c2e674d3eb09f516a92250bc1",
+  "geometry_images": 741,
+  "geometry_targets": 1661,
+  "model_forward_calls": 0,
+  "optimizer_updates": 0,
+  "oracle_images": 8,
+  "oracle_scope": "original COCO polygon bitmap, original parsed GT box, identical stock square paste; paired grid-only diagnostic with GT information; no fitted quality inference",
+  "oracle_targets": 20,
+  "p335_original_terminal_sha256": "931f56b9017ed7656938ba3f9247cfdbe61e3e1db80dd0d02a0644d772632f3d",
+  "p335_result_sha256": "81c6f27647f19cdad1013f36620be457887b49713fe9fec425911df005102f68",
+  "p335_source_sha256": "c078c51822ceabf107426d32fc500ccacef19cfe857b4c11cc2a6455be58c077",
+  "package_versions": {
+    "mmcv-full": "1.6.0",
+    "mmdet": "2.28.2",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "pycocotools": "2.0.11",
+    "torch": "1.12.0+cpu",
+    "torchvision": "0.13.0+cpu"
+  },
+  "sizes": {
+    "28": {
+      "geometry": {
+        "all": {
+          "max_displacement_px": 6.611621604449528,
+          "mean_per_target_node_displacement_px": 0.4745239907751936,
+          "mean_per_target_rms_displacement_px": 0.5283838181915296,
+          "median_per_target_max_displacement_px": 0.662527912948922,
+          "p90_per_target_max_displacement_px": 1.7715632559003134,
+          "targets": 1661,
+          "targets_max_displacement_gt_half_px": 1121,
+          "targets_max_displacement_gt_one_px": 464
+        },
+        "other": {
+          "max_displacement_px": 6.611621604449528,
+          "mean_per_target_node_displacement_px": 1.0360503142141884,
+          "mean_per_target_rms_displacement_px": 1.162114866182918,
+          "median_per_target_max_displacement_px": 1.7648166123533209,
+          "p90_per_target_max_displacement_px": 2.834904171459106,
+          "targets": 337,
+          "targets_max_displacement_gt_half_px": 337,
+          "targets_max_displacement_gt_one_px": 334
+        },
+        "other_aspect": {
+          "max_displacement_px": 4.07406835116135,
+          "mean_per_target_node_displacement_px": 0.33610075201105494,
+          "mean_per_target_rms_displacement_px": 0.3685830066036489,
+          "median_per_target_max_displacement_px": 0.49126121426485647,
+          "p90_per_target_max_displacement_px": 1.1043925721983965,
+          "targets": 944,
+          "targets_max_displacement_gt_half_px": 457,
+          "targets_max_displacement_gt_one_px": 126
+        },
+        "small": {
+          "max_displacement_px": 1.900931842831563,
+          "mean_per_target_node_displacement_px": 0.3315977286914012,
+          "mean_per_target_rms_displacement_px": 0.36707916322695416,
+          "median_per_target_max_displacement_px": 0.5513717887109073,
+          "p90_per_target_max_displacement_px": 0.9925413156939381,
+          "targets": 1324,
+          "targets_max_displacement_gt_half_px": 784,
+          "targets_max_displacement_gt_one_px": 130
+        },
+        "small_thin": {
+          "max_displacement_px": 1.900931842831563,
+          "mean_per_target_node_displacement_px": 0.4281473033662358,
+          "mean_per_target_rms_displacement_px": 0.4799143136040828,
+          "median_per_target_max_displacement_px": 0.8064661333736616,
+          "p90_per_target_max_displacement_px": 1.149824369909908,
+          "targets": 477,
+          "targets_max_displacement_gt_half_px": 424,
+          "targets_max_displacement_gt_one_px": 98
+        },
+        "thin": {
+          "max_displacement_px": 6.611621604449528,
+          "mean_per_target_node_displacement_px": 0.6567716022024558,
+          "mean_per_target_rms_displacement_px": 0.738777076404862,
+          "median_per_target_max_displacement_px": 0.957774956549434,
+          "p90_per_target_max_displacement_px": 2.257852545163196,
+          "targets": 717,
+          "targets_max_displacement_gt_half_px": 664,
+          "targets_max_displacement_gt_one_px": 338
+        }
+      },
+      "original_polygon_raster_oracle": {
+        "all": {
+          "empty_truth": 0,
+          "targets": 20,
+          "targets_with_changed_sampled_binary_nodes": 20,
+          "test_ge_075": 20,
+          "test_ge_090": 20,
+          "test_minus_train_mean_iou": 0.027520065844915186,
+          "test_minus_train_median_iou": 0.028138429752066152,
+          "test_node_mean_iou": 0.9937129231306765,
+          "test_wins": 19,
+          "ties": 1,
+          "train_ge_075": 20,
+          "train_ge_090": 20,
+          "train_node_mean_iou": 0.9661928572857612,
+          "train_wins": 0,
+          "valid": 20
+        },
+        "other": {
+          "empty_truth": 0,
+          "targets": 0,
+          "valid": 0
+        },
+        "other_aspect": {
+          "empty_truth": 0,
+          "targets": 8,
+          "targets_with_changed_sampled_binary_nodes": 8,
+          "test_ge_075": 8,
+          "test_ge_090": 8,
+          "test_minus_train_mean_iou": 0.030748887436609848,
+          "test_minus_train_median_iou": 0.029779142228739064,
+          "test_node_mean_iou": 0.9985414521644803,
+          "test_wins": 8,
+          "ties": 0,
+          "train_ge_075": 8,
+          "train_ge_090": 8,
+          "train_node_mean_iou": 0.9677925647278705,
+          "train_wins": 0,
+          "valid": 8
+        },
+        "small": {
+          "empty_truth": 0,
+          "targets": 20,
+          "targets_with_changed_sampled_binary_nodes": 20,
+          "test_ge_075": 20,
+          "test_ge_090": 20,
+          "test_minus_train_mean_iou": 0.027520065844915186,
+          "test_minus_train_median_iou": 0.028138429752066152,
+          "test_node_mean_iou": 0.9937129231306765,
+          "test_wins": 19,
+          "ties": 1,
+          "train_ge_075": 20,
+          "train_ge_090": 20,
+          "train_node_mean_iou": 0.9661928572857612,
+          "train_wins": 0,
+          "valid": 20
+        },
+        "small_thin": {
+          "empty_truth": 0,
+          "targets": 12,
+          "targets_with_changed_sampled_binary_nodes": 12,
+          "test_ge_075": 12,
+          "test_ge_090": 12,
+          "test_minus_train_mean_iou": 0.025367518117118747,
+          "test_minus_train_median_iou": 0.026625940094944178,
+          "test_node_mean_iou": 0.990493903774807,
+          "test_wins": 11,
+          "ties": 1,
+          "train_ge_075": 12,
+          "train_ge_090": 12,
+          "train_node_mean_iou": 0.9651263856576883,
+          "train_wins": 0,
+          "valid": 12
+        },
+        "thin": {
+          "empty_truth": 0,
+          "targets": 12,
+          "targets_with_changed_sampled_binary_nodes": 12,
+          "test_ge_075": 12,
+          "test_ge_090": 12,
+          "test_minus_train_mean_iou": 0.025367518117118747,
+          "test_minus_train_median_iou": 0.026625940094944178,
+          "test_node_mean_iou": 0.990493903774807,
+          "test_wins": 11,
+          "ties": 1,
+          "train_ge_075": 12,
+          "train_ge_090": 12,
+          "train_node_mean_iou": 0.9651263856576883,
+          "train_wins": 0,
+          "valid": 12
+        }
+      },
+      "stock_vs_independent_max_abs_coordinate_error_px": {
+        "test": 5.1908945238210435e-05,
+        "train": 4.4026738464708615e-05,
+        "train_minus_test": 6.361119559628037e-05
+      },
+      "used_in_author_head": true
+    },
+    "56": {
+      "geometry": {
+        "all": {
+          "max_displacement_px": 3.426097333809948,
+          "mean_per_target_node_displacement_px": 0.24150082499325853,
+          "mean_per_target_rms_displacement_px": 0.2689555392460547,
+          "median_per_target_max_displacement_px": 0.3433263349558247,
+          "p90_per_target_max_displacement_px": 0.9180134747140936,
+          "targets": 1661,
+          "targets_max_displacement_gt_half_px": 489,
+          "targets_max_displacement_gt_one_px": 121
+        },
+        "other": {
+          "max_displacement_px": 3.426097333809948,
+          "mean_per_target_node_displacement_px": 0.5272747610369656,
+          "mean_per_target_rms_displacement_px": 0.5915343546159492,
+          "median_per_target_max_displacement_px": 0.91450948823747,
+          "p90_per_target_max_displacement_px": 1.469029783765448,
+          "targets": 337,
+          "targets_max_displacement_gt_half_px": 335,
+          "targets_max_displacement_gt_one_px": 121
+        },
+        "other_aspect": {
+          "max_displacement_px": 2.1111541084368075,
+          "mean_per_target_node_displacement_px": 0.17105599075501332,
+          "mean_per_target_rms_displacement_px": 0.1876144501374374,
+          "median_per_target_max_displacement_px": 0.25456798236465084,
+          "p90_per_target_max_displacement_px": 0.5722847030003259,
+          "targets": 944,
+          "targets_max_displacement_gt_half_px": 136,
+          "targets_max_displacement_gt_one_px": 23
+        },
+        "small": {
+          "max_displacement_px": 0.9850480403575446,
+          "mean_per_target_node_displacement_px": 0.16876229293379533,
+          "mean_per_target_rms_displacement_px": 0.18684899787169337,
+          "median_per_target_max_displacement_px": 0.2857203491515054,
+          "p90_per_target_max_displacement_px": 0.5143378029066432,
+          "targets": 1324,
+          "targets_max_displacement_gt_half_px": 154,
+          "targets_max_displacement_gt_one_px": 0
+        },
+        "small_thin": {
+          "max_displacement_px": 0.9850480403575446,
+          "mean_per_target_node_displacement_px": 0.21789666240620342,
+          "mean_per_target_rms_displacement_px": 0.24428384105931883,
+          "median_per_target_max_displacement_px": 0.41791440067818125,
+          "p90_per_target_max_displacement_px": 0.5958326708084513,
+          "targets": 477,
+          "targets_max_displacement_gt_half_px": 113,
+          "targets_max_displacement_gt_one_px": 0
+        },
+        "thin": {
+          "max_displacement_px": 3.426097333809948,
+          "mean_per_target_node_displacement_px": 0.33424827760260795,
+          "mean_per_target_rms_displacement_px": 0.37604896758431794,
+          "median_per_target_max_displacement_px": 0.4962979662797214,
+          "p90_per_target_max_displacement_px": 1.170022408140392,
+          "targets": 717,
+          "targets_max_displacement_gt_half_px": 353,
+          "targets_max_displacement_gt_one_px": 98
+        }
+      },
+      "original_polygon_raster_oracle": {
+        "all": {
+          "empty_truth": 0,
+          "targets": 20,
+          "targets_with_changed_sampled_binary_nodes": 20,
+          "test_ge_075": 20,
+          "test_ge_090": 20,
+          "test_minus_train_mean_iou": 0.0035313589033643456,
+          "test_minus_train_median_iou": 0.0,
+          "test_node_mean_iou": 0.9994495807196614,
+          "test_wins": 8,
+          "ties": 12,
+          "train_ge_075": 20,
+          "train_ge_090": 20,
+          "train_node_mean_iou": 0.9959182218162969,
+          "train_wins": 0,
+          "valid": 20
+        },
+        "other": {
+          "empty_truth": 0,
+          "targets": 0,
+          "valid": 0
+        },
+        "other_aspect": {
+          "empty_truth": 0,
+          "targets": 8,
+          "targets_with_changed_sampled_binary_nodes": 8,
+          "test_ge_075": 8,
+          "test_ge_090": 8,
+          "test_minus_train_mean_iou": 0.000403225806451607,
+          "test_minus_train_median_iou": 0.0,
+          "test_node_mean_iou": 1.0,
+          "test_wins": 1,
+          "ties": 7,
+          "train_ge_075": 8,
+          "train_ge_090": 8,
+          "train_node_mean_iou": 0.9995967741935484,
+          "train_wins": 0,
+          "valid": 8
+        },
+        "small": {
+          "empty_truth": 0,
+          "targets": 20,
+          "targets_with_changed_sampled_binary_nodes": 20,
+          "test_ge_075": 20,
+          "test_ge_090": 20,
+          "test_minus_train_mean_iou": 0.0035313589033643456,
+          "test_minus_train_median_iou": 0.0,
+          "test_node_mean_iou": 0.9994495807196614,
+          "test_wins": 8,
+          "ties": 12,
+          "train_ge_075": 20,
+          "train_ge_090": 20,
+          "train_node_mean_iou": 0.9959182218162969,
+          "train_wins": 0,
+          "valid": 20
+        },
+        "small_thin": {
+          "empty_truth": 0,
+          "targets": 12,
+          "targets_with_changed_sampled_binary_nodes": 12,
+          "test_ge_075": 12,
+          "test_ge_090": 12,
+          "test_minus_train_mean_iou": 0.005616780967972838,
+          "test_minus_train_median_iou": 0.005558412176059235,
+          "test_node_mean_iou": 0.999082634532769,
+          "test_wins": 7,
+          "ties": 5,
+          "train_ge_075": 12,
+          "train_ge_090": 12,
+          "train_node_mean_iou": 0.9934658535647961,
+          "train_wins": 0,
+          "valid": 12
+        },
+        "thin": {
+          "empty_truth": 0,
+          "targets": 12,
+          "targets_with_changed_sampled_binary_nodes": 12,
+          "test_ge_075": 12,
+          "test_ge_090": 12,
+          "test_minus_train_mean_iou": 0.005616780967972838,
+          "test_minus_train_median_iou": 0.005558412176059235,
+          "test_node_mean_iou": 0.999082634532769,
+          "test_wins": 7,
+          "ties": 5,
+          "train_ge_075": 12,
+          "train_ge_090": 12,
+          "train_node_mean_iou": 0.9934658535647961,
+          "train_wins": 0,
+          "valid": 12
+        }
+      },
+      "stock_vs_independent_max_abs_coordinate_error_px": {
+        "test": 5.1982439572384465e-05,
+        "train": 4.946850549458759e-05,
+        "train_minus_test": 7.489059258780628e-05
+      },
+      "used_in_author_head": false
+    }
+  },
+  "status": "P338_SRNET_FIT741_TRAIN_TEST_GRID_GEOMETRY_COMPLETE_V1",
+  "strata_definition": {
+    "small": "original COCO annotation area < 1024",
+    "thin": "author original le90 max side / min side >= 3"
+  }
+}

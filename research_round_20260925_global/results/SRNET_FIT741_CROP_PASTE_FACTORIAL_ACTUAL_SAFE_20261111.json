@@ -1,0 +1,1957 @@
+{
+  "ap": false,
+  "author_pins": {
+    "mmrotate/core/bbox/transforms.py": "899315d58f3004da58b639df9d369ce01de3e8ca33076100ed99a704ab6308d2",
+    "mmrotate/models/dense_heads/SRNet_head.py": "144552cf27b5970c46ff4e3af1b4e0f59b1b273daa0aadf89cdcc513c8e2dba1",
+    "mmrotate/models/dense_heads/SRNet_utils.py": "7d9210f7619fa31ad4bfacfc30e380cb1b4fce5d77e7217de15c4c14b5632c7f"
+  },
+  "definitions": {
+    "comparisons": "same original target and same bitmap truth in all four crop/paste cells",
+    "inference": "no statistical confidence or learned AP inferred from target-level descriptive means",
+    "mask_boundary": "at least one foreground pixel on first/last source image row or column",
+    "mean_iou": "equal target weight among defined union>0; undefined and source/predicted empties retained",
+    "oracle": "GT bitmap binary node samples at >=.5; stock bilinear paste then >.5; GT original boxes",
+    "roi_boundary": "at least one original le90 vertex outside continuous [0,width]x[0,height]",
+    "sizes": "original COCO area <1024; [1024,9216); >=9216",
+    "thin": "original author le90 max(width,height)/min(width,height)>=3",
+    "thresholds": "IoU>=.75 / >=.90 by exact integer cross-product"
+  },
+  "dev": false,
+  "elapsed_seconds": 50.12710709986277,
+  "fit": true,
+  "fit_archive_sha256": "1c8f9b75e79fbc02c983ccd283a70082fcd5ab0d6538c777e8b286dbfdb78100",
+  "fit_index_sha256": "62966857c78cea1e3b060700c62a7b896942686c2e674d3eb09f516a92250bc1",
+  "grid_size": 28,
+  "groups": {
+    "all": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 1661,
+          "at_90": 1661,
+          "empty_prediction": 0,
+          "false_negative_pixels": 80903,
+          "false_positive_pixels": 1445,
+          "intersection_pixels": 1257945,
+          "mean_iou": 0.9530958840019277,
+          "undefined_iou": 0,
+          "valid_iou": 1661
+        },
+        "center_full": {
+          "at_75": 1661,
+          "at_90": 1661,
+          "empty_prediction": 0,
+          "false_negative_pixels": 14993,
+          "false_positive_pixels": 17584,
+          "intersection_pixels": 1323855,
+          "mean_iou": 0.9873566825048897,
+          "undefined_iou": 0,
+          "valid_iou": 1661
+        },
+        "interior_contracted": {
+          "at_75": 1661,
+          "at_90": 1661,
+          "empty_prediction": 0,
+          "false_negative_pixels": 28714,
+          "false_positive_pixels": 11275,
+          "intersection_pixels": 1310134,
+          "mean_iou": 0.9798817298498583,
+          "undefined_iou": 0,
+          "valid_iou": 1661
+        },
+        "interior_full": {
+          "at_75": 1661,
+          "at_90": 1661,
+          "empty_prediction": 0,
+          "false_negative_pixels": 1896,
+          "false_positive_pixels": 70622,
+          "intersection_pixels": 1336952,
+          "mean_iou": 0.9641425804099336,
+          "undefined_iou": 0,
+          "valid_iou": 1661
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 1468,
+          "mean": -0.026785845847932935,
+          "ties": 193,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 1,
+          "mean": 0.03426079850296279,
+          "ties": 121,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 1539
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 207,
+          "mean": 0.007474952655029921,
+          "ties": 271,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 1183
+        },
+        "center_full_minus_interior_full": {
+          "losses": 2,
+          "mean": 0.023214102094956685,
+          "ties": 205,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 1454
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 227,
+          "mean": 0.015739149439926735,
+          "ties": 130,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 1304
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 197,
+          "mean": 0.011046696408006193,
+          "ties": 98,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 1366
+        }
+      },
+      "targets": 1661
+    },
+    "empty_truth": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 0,
+          "at_90": 0,
+          "empty_prediction": 0,
+          "false_negative_pixels": 0,
+          "false_positive_pixels": 0,
+          "intersection_pixels": 0,
+          "mean_iou": null,
+          "undefined_iou": 0,
+          "valid_iou": 0
+        },
+        "center_full": {
+          "at_75": 0,
+          "at_90": 0,
+          "empty_prediction": 0,
+          "false_negative_pixels": 0,
+          "false_positive_pixels": 0,
+          "intersection_pixels": 0,
+          "mean_iou": null,
+          "undefined_iou": 0,
+          "valid_iou": 0
+        },
+        "interior_contracted": {
+          "at_75": 0,
+          "at_90": 0,
+          "empty_prediction": 0,
+          "false_negative_pixels": 0,
+          "false_positive_pixels": 0,
+          "intersection_pixels": 0,
+          "mean_iou": null,
+          "undefined_iou": 0,
+          "valid_iou": 0
+        },
+        "interior_full": {
+          "at_75": 0,
+          "at_90": 0,
+          "empty_prediction": 0,
+          "false_negative_pixels": 0,
+          "false_positive_pixels": 0,
+          "intersection_pixels": 0,
+          "mean_iou": null,
+          "undefined_iou": 0,
+          "valid_iou": 0
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 0,
+          "mean": null,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 0,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": null,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 0,
+          "wins": 0
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 0,
+          "mean": null,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 0,
+          "wins": 0
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": null,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 0,
+          "wins": 0
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 0,
+          "mean": null,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 0,
+          "wins": 0
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": null,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 0,
+          "wins": 0
+        }
+      },
+      "targets": 0
+    },
+    "mask_inside_canvas": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 1657,
+          "at_90": 1657,
+          "empty_prediction": 0,
+          "false_negative_pixels": 80813,
+          "false_positive_pixels": 1445,
+          "intersection_pixels": 1256365,
+          "mean_iou": 0.953068542977633,
+          "undefined_iou": 0,
+          "valid_iou": 1657
+        },
+        "center_full": {
+          "at_75": 1657,
+          "at_90": 1657,
+          "empty_prediction": 0,
+          "false_negative_pixels": 14976,
+          "false_positive_pixels": 17567,
+          "intersection_pixels": 1322202,
+          "mean_iou": 0.9873529570474169,
+          "undefined_iou": 0,
+          "valid_iou": 1657
+        },
+        "interior_contracted": {
+          "at_75": 1657,
+          "at_90": 1657,
+          "empty_prediction": 0,
+          "false_negative_pixels": 28695,
+          "false_positive_pixels": 11268,
+          "intersection_pixels": 1308483,
+          "mean_iou": 0.9798628164254318,
+          "undefined_iou": 0,
+          "valid_iou": 1657
+        },
+        "interior_full": {
+          "at_75": 1657,
+          "at_90": 1657,
+          "empty_prediction": 0,
+          "false_negative_pixels": 1896,
+          "false_positive_pixels": 70548,
+          "intersection_pixels": 1335282,
+          "mean_iou": 0.9641139893386467,
+          "undefined_iou": 0,
+          "valid_iou": 1657
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 1466,
+          "mean": -0.026794273447800894,
+          "ties": 191,
+          "undefined_pairs": 0,
+          "valid_pairs": 1657,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 1,
+          "mean": 0.03428441406978466,
+          "ties": 120,
+          "undefined_pairs": 0,
+          "valid_pairs": 1657,
+          "wins": 1536
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 205,
+          "mean": 0.0074901406219838275,
+          "ties": 270,
+          "undefined_pairs": 0,
+          "valid_pairs": 1657,
+          "wins": 1182
+        },
+        "center_full_minus_interior_full": {
+          "losses": 2,
+          "mean": 0.023238967708770986,
+          "ties": 203,
+          "undefined_pairs": 0,
+          "valid_pairs": 1657,
+          "wins": 1452
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 226,
+          "mean": 0.015748827086787136,
+          "ties": 129,
+          "undefined_pairs": 0,
+          "valid_pairs": 1657,
+          "wins": 1302
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 197,
+          "mean": 0.011045446361013754,
+          "ties": 97,
+          "undefined_pairs": 0,
+          "valid_pairs": 1657,
+          "wins": 1363
+        }
+      },
+      "targets": 1657
+    },
+    "mask_touches_canvas": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 4,
+          "at_90": 4,
+          "empty_prediction": 0,
+          "false_negative_pixels": 90,
+          "false_positive_pixels": 0,
+          "intersection_pixels": 1580,
+          "mean_iou": 0.9644219033159553,
+          "undefined_iou": 0,
+          "valid_iou": 4
+        },
+        "center_full": {
+          "at_75": 4,
+          "at_90": 4,
+          "empty_prediction": 0,
+          "false_negative_pixels": 17,
+          "false_positive_pixels": 17,
+          "intersection_pixels": 1653,
+          "mean_iou": 0.9888999532629611,
+          "undefined_iou": 0,
+          "valid_iou": 4
+        },
+        "interior_contracted": {
+          "at_75": 4,
+          "at_90": 4,
+          "empty_prediction": 0,
+          "false_negative_pixels": 19,
+          "false_positive_pixels": 7,
+          "intersection_pixels": 1651,
+          "mean_iou": 0.9877166159185864,
+          "undefined_iou": 0,
+          "valid_iou": 4
+        },
+        "interior_full": {
+          "at_75": 4,
+          "at_90": 4,
+          "empty_prediction": 0,
+          "false_negative_pixels": 0,
+          "false_positive_pixels": 74,
+          "intersection_pixels": 1670,
+          "mean_iou": 0.9759864316905802,
+          "undefined_iou": 0,
+          "valid_iou": 4
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 2,
+          "mean": -0.023294712602630968,
+          "ties": 2,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.024478049947005753,
+          "ties": 1,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 3
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 2,
+          "mean": 0.0011833373443747852,
+          "ties": 1,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 1
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.01291352157238096,
+          "ties": 2,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 2
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 1,
+          "mean": 0.011730184228006174,
+          "ties": 1,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 2
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.011564528374624794,
+          "ties": 1,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 3
+        }
+      },
+      "targets": 4
+    },
+    "nonempty_truth": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 1661,
+          "at_90": 1661,
+          "empty_prediction": 0,
+          "false_negative_pixels": 80903,
+          "false_positive_pixels": 1445,
+          "intersection_pixels": 1257945,
+          "mean_iou": 0.9530958840019277,
+          "undefined_iou": 0,
+          "valid_iou": 1661
+        },
+        "center_full": {
+          "at_75": 1661,
+          "at_90": 1661,
+          "empty_prediction": 0,
+          "false_negative_pixels": 14993,
+          "false_positive_pixels": 17584,
+          "intersection_pixels": 1323855,
+          "mean_iou": 0.9873566825048897,
+          "undefined_iou": 0,
+          "valid_iou": 1661
+        },
+        "interior_contracted": {
+          "at_75": 1661,
+          "at_90": 1661,
+          "empty_prediction": 0,
+          "false_negative_pixels": 28714,
+          "false_positive_pixels": 11275,
+          "intersection_pixels": 1310134,
+          "mean_iou": 0.9798817298498583,
+          "undefined_iou": 0,
+          "valid_iou": 1661
+        },
+        "interior_full": {
+          "at_75": 1661,
+          "at_90": 1661,
+          "empty_prediction": 0,
+          "false_negative_pixels": 1896,
+          "false_positive_pixels": 70622,
+          "intersection_pixels": 1336952,
+          "mean_iou": 0.9641425804099336,
+          "undefined_iou": 0,
+          "valid_iou": 1661
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 1468,
+          "mean": -0.026785845847932935,
+          "ties": 193,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 1,
+          "mean": 0.03426079850296279,
+          "ties": 121,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 1539
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 207,
+          "mean": 0.007474952655029921,
+          "ties": 271,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 1183
+        },
+        "center_full_minus_interior_full": {
+          "losses": 2,
+          "mean": 0.023214102094956685,
+          "ties": 205,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 1454
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 227,
+          "mean": 0.015739149439926735,
+          "ties": 130,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 1304
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 197,
+          "mean": 0.011046696408006193,
+          "ties": 98,
+          "undefined_pairs": 0,
+          "valid_pairs": 1661,
+          "wins": 1366
+        }
+      },
+      "targets": 1661
+    },
+    "other_aspect": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 944,
+          "at_90": 944,
+          "empty_prediction": 0,
+          "false_negative_pixels": 27240,
+          "false_positive_pixels": 559,
+          "intersection_pixels": 444273,
+          "mean_iou": 0.9590839506906871,
+          "undefined_iou": 0,
+          "valid_iou": 944
+        },
+        "center_full": {
+          "at_75": 944,
+          "at_90": 944,
+          "empty_prediction": 0,
+          "false_negative_pixels": 4519,
+          "false_positive_pixels": 5131,
+          "intersection_pixels": 466994,
+          "mean_iou": 0.9921060442433042,
+          "undefined_iou": 0,
+          "valid_iou": 944
+        },
+        "interior_contracted": {
+          "at_75": 944,
+          "at_90": 944,
+          "empty_prediction": 0,
+          "false_negative_pixels": 8984,
+          "false_positive_pixels": 3511,
+          "intersection_pixels": 462529,
+          "mean_iou": 0.9838410689934106,
+          "undefined_iou": 0,
+          "valid_iou": 944
+        },
+        "interior_full": {
+          "at_75": 944,
+          "at_90": 944,
+          "empty_prediction": 0,
+          "false_negative_pixels": 722,
+          "false_positive_pixels": 23900,
+          "intersection_pixels": 470791,
+          "mean_iou": 0.9697775118803894,
+          "undefined_iou": 0,
+          "valid_iou": 944
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 760,
+          "mean": -0.024757118302722387,
+          "ties": 184,
+          "undefined_pairs": 0,
+          "valid_pairs": 944,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.033022093552616955,
+          "ties": 112,
+          "undefined_pairs": 0,
+          "valid_pairs": 944,
+          "wins": 832
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 77,
+          "mean": 0.008264975249894523,
+          "ties": 236,
+          "undefined_pairs": 0,
+          "valid_pairs": 944,
+          "wins": 631
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.02232853236291513,
+          "ties": 193,
+          "undefined_pairs": 0,
+          "valid_pairs": 944,
+          "wins": 751
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 164,
+          "mean": 0.014063557113020646,
+          "ties": 118,
+          "undefined_pairs": 0,
+          "valid_pairs": 944,
+          "wins": 662
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 121,
+          "mean": 0.01069356118970178,
+          "ties": 93,
+          "undefined_pairs": 0,
+          "valid_pairs": 944,
+          "wins": 730
+        }
+      },
+      "targets": 944
+    },
+    "roi_extends_off_canvas": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 11,
+          "at_90": 11,
+          "empty_prediction": 0,
+          "false_negative_pixels": 485,
+          "false_positive_pixels": 5,
+          "intersection_pixels": 7239,
+          "mean_iou": 0.9448670870472324,
+          "undefined_iou": 0,
+          "valid_iou": 11
+        },
+        "center_full": {
+          "at_75": 11,
+          "at_90": 11,
+          "empty_prediction": 0,
+          "false_negative_pixels": 86,
+          "false_positive_pixels": 79,
+          "intersection_pixels": 7638,
+          "mean_iou": 0.9854723871526067,
+          "undefined_iou": 0,
+          "valid_iou": 11
+        },
+        "interior_contracted": {
+          "at_75": 11,
+          "at_90": 11,
+          "empty_prediction": 0,
+          "false_negative_pixels": 132,
+          "false_positive_pixels": 60,
+          "intersection_pixels": 7592,
+          "mean_iou": 0.9776956695591335,
+          "undefined_iou": 0,
+          "valid_iou": 11
+        },
+        "interior_full": {
+          "at_75": 11,
+          "at_90": 11,
+          "empty_prediction": 0,
+          "false_negative_pixels": 4,
+          "false_positive_pixels": 409,
+          "intersection_pixels": 7720,
+          "mean_iou": 0.9597944223375229,
+          "undefined_iou": 0,
+          "valid_iou": 11
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 10,
+          "mean": -0.03282858251190102,
+          "ties": 1,
+          "undefined_pairs": 0,
+          "valid_pairs": 11,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.04060530010537424,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 11,
+          "wins": 11
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 3,
+          "mean": 0.0077767175934732235,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 11,
+          "wins": 8
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.025677964815083887,
+          "ties": 1,
+          "undefined_pairs": 0,
+          "valid_pairs": 11,
+          "wins": 10
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 3,
+          "mean": 0.017901247221610662,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 11,
+          "wins": 8
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.014927335290290354,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 11,
+          "wins": 11
+        }
+      },
+      "targets": 11
+    },
+    "roi_inside_canvas": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 1650,
+          "at_90": 1650,
+          "empty_prediction": 0,
+          "false_negative_pixels": 80418,
+          "false_positive_pixels": 1440,
+          "intersection_pixels": 1250706,
+          "mean_iou": 0.9531507426482921,
+          "undefined_iou": 0,
+          "valid_iou": 1650
+        },
+        "center_full": {
+          "at_75": 1650,
+          "at_90": 1650,
+          "empty_prediction": 0,
+          "false_negative_pixels": 14907,
+          "false_positive_pixels": 17505,
+          "intersection_pixels": 1316217,
+          "mean_iou": 0.9873692444739048,
+          "undefined_iou": 0,
+          "valid_iou": 1650
+        },
+        "interior_contracted": {
+          "at_75": 1650,
+          "at_90": 1650,
+          "empty_prediction": 0,
+          "false_negative_pixels": 28582,
+          "false_positive_pixels": 11215,
+          "intersection_pixels": 1302542,
+          "mean_iou": 0.9798963035851302,
+          "undefined_iou": 0,
+          "valid_iou": 1650
+        },
+        "interior_full": {
+          "at_75": 1650,
+          "at_90": 1650,
+          "empty_prediction": 0,
+          "false_negative_pixels": 1892,
+          "false_positive_pixels": 70213,
+          "intersection_pixels": 1329232,
+          "mean_iou": 0.9641715681304164,
+          "undefined_iou": 0,
+          "valid_iou": 1650
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 1458,
+          "mean": -0.0267455609368398,
+          "ties": 192,
+          "undefined_pairs": 0,
+          "valid_pairs": 1650,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 1,
+          "mean": 0.03421850182561338,
+          "ties": 121,
+          "undefined_pairs": 0,
+          "valid_pairs": 1650,
+          "wins": 1528
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 204,
+          "mean": 0.007472940888773633,
+          "ties": 271,
+          "undefined_pairs": 0,
+          "valid_pairs": 1650,
+          "wins": 1175
+        },
+        "center_full_minus_interior_full": {
+          "losses": 2,
+          "mean": 0.023197676343489168,
+          "ties": 204,
+          "undefined_pairs": 0,
+          "valid_pairs": 1650,
+          "wins": 1444
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 224,
+          "mean": 0.01572473545471551,
+          "ties": 130,
+          "undefined_pairs": 0,
+          "valid_pairs": 1650,
+          "wins": 1296
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 197,
+          "mean": 0.011020825482124297,
+          "ties": 98,
+          "undefined_pairs": 0,
+          "valid_pairs": 1650,
+          "wins": 1355
+        }
+      },
+      "targets": 1650
+    },
+    "size_large": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 5,
+          "at_90": 5,
+          "empty_prediction": 0,
+          "false_negative_pixels": 5474,
+          "false_positive_pixels": 42,
+          "intersection_pixels": 78375,
+          "mean_iou": 0.9345384388772505,
+          "undefined_iou": 0,
+          "valid_iou": 5
+        },
+        "center_full": {
+          "at_75": 5,
+          "at_90": 5,
+          "empty_prediction": 0,
+          "false_negative_pixels": 1062,
+          "false_positive_pixels": 1300,
+          "intersection_pixels": 82787,
+          "mean_iou": 0.9721530113220915,
+          "undefined_iou": 0,
+          "valid_iou": 5
+        },
+        "interior_contracted": {
+          "at_75": 5,
+          "at_90": 5,
+          "empty_prediction": 0,
+          "false_negative_pixels": 2155,
+          "false_positive_pixels": 815,
+          "intersection_pixels": 81694,
+          "mean_iou": 0.9646167378497508,
+          "undefined_iou": 0,
+          "valid_iou": 5
+        },
+        "interior_full": {
+          "at_75": 5,
+          "at_90": 5,
+          "empty_prediction": 0,
+          "false_negative_pixels": 42,
+          "false_positive_pixels": 4706,
+          "intersection_pixels": 83807,
+          "mean_iou": 0.9475179316481214,
+          "undefined_iou": 0,
+          "valid_iou": 5
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 5,
+          "mean": -0.03007829897250014,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 5,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.03761457244484088,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 5,
+          "wins": 5
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 0,
+          "mean": 0.007536273472340737,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 5,
+          "wins": 5
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.02463507967397005,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 5,
+          "wins": 5
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.01709880620162931,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 5,
+          "wins": 5
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.012979492770870826,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 5,
+          "wins": 5
+        }
+      },
+      "targets": 5
+    },
+    "size_large_other_aspect": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 1,
+          "at_90": 1,
+          "empty_prediction": 0,
+          "false_negative_pixels": 1049,
+          "false_positive_pixels": 0,
+          "intersection_pixels": 14716,
+          "mean_iou": 0.9334601966381224,
+          "undefined_iou": 0,
+          "valid_iou": 1
+        },
+        "center_full": {
+          "at_75": 1,
+          "at_90": 1,
+          "empty_prediction": 0,
+          "false_negative_pixels": 180,
+          "false_positive_pixels": 197,
+          "intersection_pixels": 15585,
+          "mean_iou": 0.9763814058388673,
+          "undefined_iou": 0,
+          "valid_iou": 1
+        },
+        "interior_contracted": {
+          "at_75": 1,
+          "at_90": 1,
+          "empty_prediction": 0,
+          "false_negative_pixels": 388,
+          "false_positive_pixels": 130,
+          "intersection_pixels": 15377,
+          "mean_iou": 0.9674111355772256,
+          "undefined_iou": 0,
+          "valid_iou": 1
+        },
+        "interior_full": {
+          "at_75": 1,
+          "at_90": 1,
+          "empty_prediction": 0,
+          "false_negative_pixels": 0,
+          "false_positive_pixels": 878,
+          "intersection_pixels": 15765,
+          "mean_iou": 0.9472450880249955,
+          "undefined_iou": 0,
+          "valid_iou": 1
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 1,
+          "mean": -0.03395093893910317,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 1,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.042921209200744936,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 1,
+          "wins": 1
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 0,
+          "mean": 0.008970270261641766,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 1,
+          "wins": 1
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.029136317813871826,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 1,
+          "wins": 1
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.02016604755223006,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 1,
+          "wins": 1
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.01378489138687311,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 1,
+          "wins": 1
+        }
+      },
+      "targets": 1
+    },
+    "size_large_thin": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 4,
+          "at_90": 4,
+          "empty_prediction": 0,
+          "false_negative_pixels": 4425,
+          "false_positive_pixels": 42,
+          "intersection_pixels": 63659,
+          "mean_iou": 0.9348079994370326,
+          "undefined_iou": 0,
+          "valid_iou": 4
+        },
+        "center_full": {
+          "at_75": 4,
+          "at_90": 4,
+          "empty_prediction": 0,
+          "false_negative_pixels": 882,
+          "false_positive_pixels": 1103,
+          "intersection_pixels": 67202,
+          "mean_iou": 0.9710959126928975,
+          "undefined_iou": 0,
+          "valid_iou": 4
+        },
+        "interior_contracted": {
+          "at_75": 4,
+          "at_90": 4,
+          "empty_prediction": 0,
+          "false_negative_pixels": 1767,
+          "false_positive_pixels": 685,
+          "intersection_pixels": 66317,
+          "mean_iou": 0.9639181384178821,
+          "undefined_iou": 0,
+          "valid_iou": 4
+        },
+        "interior_full": {
+          "at_75": 4,
+          "at_90": 4,
+          "empty_prediction": 0,
+          "false_negative_pixels": 42,
+          "false_positive_pixels": 3828,
+          "intersection_pixels": 68042,
+          "mean_iou": 0.9475861425539028,
+          "undefined_iou": 0,
+          "valid_iou": 4
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 4,
+          "mean": -0.02911013898084938,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.03628791325586486,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 4
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 0,
+          "mean": 0.0071777742750154805,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 4
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.023509770138994607,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 4
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.016331995863979126,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 4
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.012778143116870255,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 4,
+          "wins": 4
+        }
+      },
+      "targets": 4
+    },
+    "size_mid": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 332,
+          "at_90": 332,
+          "empty_prediction": 0,
+          "false_negative_pixels": 51178,
+          "false_positive_pixels": 1106,
+          "intersection_pixels": 736373,
+          "mean_iou": 0.9342793676298063,
+          "undefined_iou": 0,
+          "valid_iou": 332
+        },
+        "center_full": {
+          "at_75": 332,
+          "at_90": 332,
+          "empty_prediction": 0,
+          "false_negative_pixels": 10458,
+          "false_positive_pixels": 13003,
+          "intersection_pixels": 777093,
+          "mean_iou": 0.9721677839477605,
+          "undefined_iou": 0,
+          "valid_iou": 332
+        },
+        "interior_contracted": {
+          "at_75": 332,
+          "at_90": 332,
+          "empty_prediction": 0,
+          "false_negative_pixels": 18534,
+          "false_positive_pixels": 8383,
+          "intersection_pixels": 769017,
+          "mean_iou": 0.9673100740849461,
+          "undefined_iou": 0,
+          "valid_iou": 332
+        },
+        "interior_full": {
+          "at_75": 332,
+          "at_90": 332,
+          "empty_prediction": 0,
+          "false_negative_pixels": 1276,
+          "false_positive_pixels": 46544,
+          "intersection_pixels": 786275,
+          "mean_iou": 0.9437930105068754,
+          "undefined_iou": 0,
+          "valid_iou": 332
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 332,
+          "mean": -0.033030706455138066,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 332,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.037888416317954435,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 332,
+          "wins": 332
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 68,
+          "mean": 0.004857709862816377,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 332,
+          "wins": 264
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.028374773440885893,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 332,
+          "wins": 332
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 2,
+          "mean": 0.02351706357806948,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 332,
+          "wins": 330
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 32,
+          "mean": 0.009513642877068547,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 332,
+          "wins": 300
+        }
+      },
+      "targets": 332
+    },
+    "size_mid_other_aspect": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 96,
+          "at_90": 96,
+          "empty_prediction": 0,
+          "false_negative_pixels": 13476,
+          "false_positive_pixels": 429,
+          "intersection_pixels": 190209,
+          "mean_iou": 0.9327377984762869,
+          "undefined_iou": 0,
+          "valid_iou": 96
+        },
+        "center_full": {
+          "at_75": 96,
+          "at_90": 96,
+          "empty_prediction": 0,
+          "false_negative_pixels": 2958,
+          "false_positive_pixels": 3603,
+          "intersection_pixels": 200727,
+          "mean_iou": 0.97141394610132,
+          "undefined_iou": 0,
+          "valid_iou": 96
+        },
+        "interior_contracted": {
+          "at_75": 96,
+          "at_90": 96,
+          "empty_prediction": 0,
+          "false_negative_pixels": 4724,
+          "false_positive_pixels": 2544,
+          "intersection_pixels": 198961,
+          "mean_iou": 0.9672346947917436,
+          "undefined_iou": 0,
+          "valid_iou": 96
+        },
+        "interior_full": {
+          "at_75": 96,
+          "at_90": 96,
+          "empty_prediction": 0,
+          "false_negative_pixels": 450,
+          "false_positive_pixels": 12801,
+          "intersection_pixels": 203235,
+          "mean_iou": 0.9404484415542033,
+          "undefined_iou": 0,
+          "valid_iou": 96
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 96,
+          "mean": -0.03449689631545709,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 96,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.03867614762503301,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 96,
+          "wins": 96
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 23,
+          "mean": 0.004179251309575925,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 96,
+          "wins": 73
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.03096550454711634,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 96,
+          "wins": 96
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.026786253237540414,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 96,
+          "wins": 96
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 13,
+          "mean": 0.0077106430779166875,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 96,
+          "wins": 83
+        }
+      },
+      "targets": 96
+    },
+    "size_mid_thin": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 236,
+          "at_90": 236,
+          "empty_prediction": 0,
+          "false_negative_pixels": 37702,
+          "false_positive_pixels": 677,
+          "intersection_pixels": 546164,
+          "mean_iou": 0.9349064466075102,
+          "undefined_iou": 0,
+          "valid_iou": 236
+        },
+        "center_full": {
+          "at_75": 236,
+          "at_90": 236,
+          "empty_prediction": 0,
+          "false_negative_pixels": 7500,
+          "false_positive_pixels": 9400,
+          "intersection_pixels": 576366,
+          "mean_iou": 0.9724744298513995,
+          "undefined_iou": 0,
+          "valid_iou": 236
+        },
+        "interior_contracted": {
+          "at_75": 236,
+          "at_90": 236,
+          "empty_prediction": 0,
+          "false_negative_pixels": 13810,
+          "false_positive_pixels": 5839,
+          "intersection_pixels": 570056,
+          "mean_iou": 0.9673407368482818,
+          "undefined_iou": 0,
+          "valid_iou": 236
+        },
+        "interior_full": {
+          "at_75": 236,
+          "at_90": 236,
+          "empty_prediction": 0,
+          "false_negative_pixels": 826,
+          "false_positive_pixels": 33743,
+          "intersection_pixels": 583040,
+          "mean_iou": 0.9451535131316907,
+          "undefined_iou": 0,
+          "valid_iou": 236
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 236,
+          "mean": -0.03243429024077101,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 236,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.03756798324388858,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 236,
+          "wins": 236
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 45,
+          "mean": 0.005133693003117578,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 236,
+          "wins": 191
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.02732091671970742,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 236,
+          "wins": 236
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 2,
+          "mean": 0.022187223716589814,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 236,
+          "wins": 234
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 19,
+          "mean": 0.010247066524181166,
+          "ties": 0,
+          "undefined_pairs": 0,
+          "valid_pairs": 236,
+          "wins": 217
+        }
+      },
+      "targets": 236
+    },
+    "size_small": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 1324,
+          "at_90": 1324,
+          "empty_prediction": 0,
+          "false_negative_pixels": 24251,
+          "false_positive_pixels": 297,
+          "intersection_pixels": 443197,
+          "mean_iou": 0.9578843059514472,
+          "undefined_iou": 0,
+          "valid_iou": 1324
+        },
+        "center_full": {
+          "at_75": 1324,
+          "at_90": 1324,
+          "empty_prediction": 0,
+          "false_negative_pixels": 3473,
+          "false_positive_pixels": 3281,
+          "intersection_pixels": 463975,
+          "mean_iou": 0.9912227947986041,
+          "undefined_iou": 0,
+          "valid_iou": 1324
+        },
+        "interior_contracted": {
+          "at_75": 1324,
+          "at_90": 1324,
+          "empty_prediction": 0,
+          "false_negative_pixels": 8025,
+          "false_positive_pixels": 2077,
+          "intersection_pixels": 459423,
+          "mean_iou": 0.9830917862501247,
+          "undefined_iou": 0,
+          "valid_iou": 1324
+        },
+        "interior_full": {
+          "at_75": 1324,
+          "at_90": 1324,
+          "empty_prediction": 0,
+          "false_negative_pixels": 578,
+          "false_positive_pixels": 19372,
+          "intersection_pixels": 466870,
+          "mean_iou": 0.969308124557684,
+          "undefined_iou": 0,
+          "valid_iou": 1324
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 1131,
+          "mean": -0.02520748029867693,
+          "ties": 193,
+          "undefined_pairs": 0,
+          "valid_pairs": 1324,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 1,
+          "mean": 0.03333848884715727,
+          "ties": 121,
+          "undefined_pairs": 0,
+          "valid_pairs": 1324,
+          "wins": 1202
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 139,
+          "mean": 0.008131008548480338,
+          "ties": 271,
+          "undefined_pairs": 0,
+          "valid_pairs": 1324,
+          "wins": 914
+        },
+        "center_full_minus_interior_full": {
+          "losses": 2,
+          "mean": 0.02191467024092073,
+          "ties": 205,
+          "undefined_pairs": 0,
+          "valid_pairs": 1324,
+          "wins": 1117
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 225,
+          "mean": 0.013783661692440404,
+          "ties": 130,
+          "undefined_pairs": 0,
+          "valid_pairs": 1324,
+          "wins": 969
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 165,
+          "mean": 0.011423818606236516,
+          "ties": 98,
+          "undefined_pairs": 0,
+          "valid_pairs": 1324,
+          "wins": 1061
+        }
+      },
+      "targets": 1324
+    },
+    "size_small_other_aspect": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 847,
+          "at_90": 847,
+          "empty_prediction": 0,
+          "false_negative_pixels": 12715,
+          "false_positive_pixels": 130,
+          "intersection_pixels": 239348,
+          "mean_iou": 0.9621003076760889,
+          "undefined_iou": 0,
+          "valid_iou": 847
+        },
+        "center_full": {
+          "at_75": 847,
+          "at_90": 847,
+          "empty_prediction": 0,
+          "false_negative_pixels": 1381,
+          "false_positive_pixels": 1331,
+          "intersection_pixels": 250682,
+          "mean_iou": 0.9944698766636526,
+          "undefined_iou": 0,
+          "valid_iou": 847
+        },
+        "interior_contracted": {
+          "at_75": 847,
+          "at_90": 847,
+          "empty_prediction": 0,
+          "false_negative_pixels": 3872,
+          "false_positive_pixels": 837,
+          "intersection_pixels": 248191,
+          "mean_iou": 0.9857426532398997,
+          "undefined_iou": 0,
+          "valid_iou": 847
+        },
+        "interior_full": {
+          "at_75": 847,
+          "at_90": 847,
+          "empty_prediction": 0,
+          "false_negative_pixels": 272,
+          "false_positive_pixels": 10221,
+          "intersection_pixels": 251791,
+          "mean_iou": 0.9731283066562677,
+          "undefined_iou": 0,
+          "valid_iou": 847
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 663,
+          "mean": -0.023642345563809865,
+          "ties": 184,
+          "undefined_pairs": 0,
+          "valid_pairs": 847,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 0,
+          "mean": 0.03236956898756374,
+          "ties": 112,
+          "undefined_pairs": 0,
+          "valid_pairs": 847,
+          "wins": 735
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 54,
+          "mean": 0.008727223423753837,
+          "ties": 236,
+          "undefined_pairs": 0,
+          "valid_pairs": 847,
+          "wins": 557
+        },
+        "center_full_minus_interior_full": {
+          "losses": 0,
+          "mean": 0.021341570007384708,
+          "ties": 193,
+          "undefined_pairs": 0,
+          "valid_pairs": 847,
+          "wins": 654
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 164,
+          "mean": 0.012614346583630897,
+          "ties": 118,
+          "undefined_pairs": 0,
+          "valid_pairs": 847,
+          "wins": 565
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 108,
+          "mean": 0.01102799898017899,
+          "ties": 93,
+          "undefined_pairs": 0,
+          "valid_pairs": 847,
+          "wins": 646
+        }
+      },
+      "targets": 847
+    },
+    "size_small_thin": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 477,
+          "at_90": 477,
+          "empty_prediction": 0,
+          "false_negative_pixels": 11536,
+          "false_positive_pixels": 167,
+          "intersection_pixels": 203849,
+          "mean_iou": 0.950398030352344,
+          "undefined_iou": 0,
+          "valid_iou": 477
+        },
+        "center_full": {
+          "at_75": 477,
+          "at_90": 477,
+          "empty_prediction": 0,
+          "false_negative_pixels": 2092,
+          "false_positive_pixels": 1950,
+          "intersection_pixels": 213293,
+          "mean_iou": 0.9854570121158038,
+          "undefined_iou": 0,
+          "valid_iou": 477
+        },
+        "interior_contracted": {
+          "at_75": 477,
+          "at_90": 477,
+          "empty_prediction": 0,
+          "false_negative_pixels": 4153,
+          "false_positive_pixels": 1240,
+          "intersection_pixels": 211232,
+          "mean_iou": 0.9783846911970007,
+          "undefined_iou": 0,
+          "valid_iou": 477
+        },
+        "interior_full": {
+          "at_75": 477,
+          "at_90": 477,
+          "empty_prediction": 0,
+          "false_negative_pixels": 306,
+          "false_positive_pixels": 9151,
+          "intersection_pixels": 215079,
+          "mean_iou": 0.9625246984832577,
+          "undefined_iou": 0,
+          "valid_iou": 477
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 468,
+          "mean": -0.027986660844656747,
+          "ties": 9,
+          "undefined_pairs": 0,
+          "valid_pairs": 477,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 1,
+          "mean": 0.035058981763458584,
+          "ties": 9,
+          "undefined_pairs": 0,
+          "valid_pairs": 477,
+          "wins": 467
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 85,
+          "mean": 0.007072320918801845,
+          "ties": 35,
+          "undefined_pairs": 0,
+          "valid_pairs": 477,
+          "wins": 357
+        },
+        "center_full_minus_interior_full": {
+          "losses": 2,
+          "mean": 0.022932313632545515,
+          "ties": 12,
+          "undefined_pairs": 0,
+          "valid_pairs": 477,
+          "wins": 463
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 61,
+          "mean": 0.01585999271374368,
+          "ties": 12,
+          "undefined_pairs": 0,
+          "valid_pairs": 477,
+          "wins": 404
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 57,
+          "mean": 0.012126668130913107,
+          "ties": 5,
+          "undefined_pairs": 0,
+          "valid_pairs": 477,
+          "wins": 415
+        }
+      },
+      "targets": 477
+    },
+    "thin": {
+      "arms": {
+        "center_contracted": {
+          "at_75": 717,
+          "at_90": 717,
+          "empty_prediction": 0,
+          "false_negative_pixels": 53663,
+          "false_positive_pixels": 886,
+          "intersection_pixels": 813672,
+          "mean_iou": 0.9452120137729281,
+          "undefined_iou": 0,
+          "valid_iou": 717
+        },
+        "center_full": {
+          "at_75": 717,
+          "at_90": 717,
+          "empty_prediction": 0,
+          "false_negative_pixels": 10474,
+          "false_positive_pixels": 12453,
+          "intersection_pixels": 856861,
+          "mean_iou": 0.9811036874127469,
+          "undefined_iou": 0,
+          "valid_iou": 717
+        },
+        "interior_contracted": {
+          "at_75": 717,
+          "at_90": 717,
+          "empty_prediction": 0,
+          "false_negative_pixels": 19730,
+          "false_positive_pixels": 7764,
+          "intersection_pixels": 847605,
+          "mean_iou": 0.9746688760820588,
+          "undefined_iou": 0,
+          "valid_iou": 717
+        },
+        "interior_full": {
+          "at_75": 717,
+          "at_90": 717,
+          "empty_prediction": 0,
+          "false_negative_pixels": 1174,
+          "false_positive_pixels": 46722,
+          "intersection_pixels": 866161,
+          "mean_iou": 0.956723646925814,
+          "undefined_iou": 0,
+          "valid_iou": 717
+        }
+      },
+      "empty_truth": 0,
+      "paired_differences": {
+        "center_contracted_minus_interior_contracted": {
+          "losses": 708,
+          "mean": -0.02945686230913063,
+          "ties": 9,
+          "undefined_pairs": 0,
+          "valid_pairs": 717,
+          "wins": 0
+        },
+        "center_full_minus_center_contracted": {
+          "losses": 1,
+          "mean": 0.03589167363981999,
+          "ties": 9,
+          "undefined_pairs": 0,
+          "valid_pairs": 717,
+          "wins": 707
+        },
+        "center_full_minus_interior_contracted": {
+          "losses": 130,
+          "mean": 0.0064348113306893955,
+          "ties": 35,
+          "undefined_pairs": 0,
+          "valid_pairs": 717,
+          "wins": 552
+        },
+        "center_full_minus_interior_full": {
+          "losses": 2,
+          "mean": 0.024380040486933204,
+          "ties": 12,
+          "undefined_pairs": 0,
+          "valid_pairs": 717,
+          "wins": 703
+        },
+        "interior_contracted_minus_interior_full": {
+          "losses": 63,
+          "mean": 0.017945229156243872,
+          "ties": 12,
+          "undefined_pairs": 0,
+          "valid_pairs": 717,
+          "wins": 642
+        },
+        "interior_full_minus_center_contracted": {
+          "losses": 76,
+          "mean": 0.011511633152886726,
+          "ties": 5,
+          "undefined_pairs": 0,
+          "valid_pairs": 717,
+          "wins": 636
+        }
+      },
+      "targets": 717
+    }
+  },
+  "images": 741,
+  "independent_analytic_max_abs_coordinate_error": 6.361119559628037e-05,
+  "intraop_threads": 1,
+  "matched_inverse_scale": 0.9655172413793104,
+  "max_abs_coordinate_error": 6.103515625e-05,
+  "max_square_canvas_side": 653,
+  "model_forward_calls": 0,
+  "optimizer_updates": 0,
+  "original_annotations": 1661,
+  "original_images": 741,
+  "p335_original_terminal_sha256": "931f56b9017ed7656938ba3f9247cfdbe61e3e1db80dd0d02a0644d772632f3d",
+  "p335_result_sha256": "81c6f27647f19cdad1013f36620be457887b49713fe9fec425911df005102f68",
+  "p335_source_sha256": "c078c51822ceabf107426d32fc500ccacef19cfe857b4c11cc2a6455be58c077",
+  "p338_source_sha256": "2809a86664716dc8193184534eccb986ee8763e7fe4166f39dea0fe324969cad",
+  "p341_result_sha256": "5f877128215af689eaf61c74704c24db95a6c311e36060719c98e2c5c3c832cc",
+  "p341_source_sha256": "adb7b489050c8b7f4c206ead9e007b77d6d010dfb3499b41636ea6ceb7e7a4a1",
+  "package_versions": {
+    "mmcv-full": "1.6.0",
+    "mmdet": "2.28.2",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "pycocotools": "2.0.11",
+    "torch": "1.12.0+cpu",
+    "torchvision": "0.13.0+cpu"
+  },
+  "prior_cohort": {
+    "arms": {
+      "center_contracted": {
+        "at_75": 20,
+        "at_90": 20,
+        "empty_prediction": 0,
+        "false_negative_pixels": 315,
+        "false_positive_pixels": 3,
+        "intersection_pixels": 6391,
+        "mean_iou": 0.958558756633187,
+        "undefined_iou": 0,
+        "valid_iou": 20
+      },
+      "center_full": {
+        "at_75": 20,
+        "at_90": 20,
+        "empty_prediction": 0,
+        "false_negative_pixels": 38,
+        "false_positive_pixels": 29,
+        "intersection_pixels": 6668,
+        "mean_iou": 0.9937129231306765,
+        "undefined_iou": 0,
+        "valid_iou": 20
+      },
+      "interior_contracted": {
+        "at_75": 20,
+        "at_90": 20,
+        "empty_prediction": 0,
+        "false_negative_pixels": 96,
+        "false_positive_pixels": 29,
+        "intersection_pixels": 6610,
+        "mean_iou": 0.9864392200947648,
+        "undefined_iou": 0,
+        "valid_iou": 20
+      },
+      "interior_full": {
+        "at_75": 20,
+        "at_90": 20,
+        "empty_prediction": 0,
+        "false_negative_pixels": 4,
+        "false_positive_pixels": 262,
+        "intersection_pixels": 6702,
+        "mean_iou": 0.9661928572857612,
+        "undefined_iou": 0,
+        "valid_iou": 20
+      }
+    },
+    "empty_truth": 0,
+    "paired_differences": {
+      "center_contracted_minus_interior_contracted": {
+        "losses": 18,
+        "mean": -0.027880463461577902,
+        "ties": 2,
+        "undefined_pairs": 0,
+        "valid_pairs": 20,
+        "wins": 0
+      },
+      "center_full_minus_center_contracted": {
+        "losses": 0,
+        "mean": 0.0351541664974893,
+        "ties": 2,
+        "undefined_pairs": 0,
+        "valid_pairs": 20,
+        "wins": 18
+      },
+      "center_full_minus_interior_contracted": {
+        "losses": 2,
+        "mean": 0.0072737030359114,
+        "ties": 5,
+        "undefined_pairs": 0,
+        "valid_pairs": 20,
+        "wins": 13
+      },
+      "center_full_minus_interior_full": {
+        "losses": 0,
+        "mean": 0.027520065844915186,
+        "ties": 1,
+        "undefined_pairs": 0,
+        "valid_pairs": 20,
+        "wins": 19
+      },
+      "interior_contracted_minus_interior_full": {
+        "losses": 2,
+        "mean": 0.020246362809003788,
+        "ties": 1,
+        "undefined_pairs": 0,
+        "valid_pairs": 20,
+        "wins": 17
+      },
+      "interior_full_minus_center_contracted": {
+        "losses": 6,
+        "mean": 0.007634100652574116,
+        "ties": 1,
+        "undefined_pairs": 0,
+        "valid_pairs": 20,
+        "wins": 13
+      }
+    },
+    "targets": 20
+  },
+  "prior_fixed_8_images_20_targets_regression_exact": true,
+  "source_commit": "2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6",
+  "status": "P342_SRNET_FIT741_CROP_PASTE_FACTORIAL_ORACLE_COMPLETE_V1",
+  "targets": 1661,
+  "test": false
+}
