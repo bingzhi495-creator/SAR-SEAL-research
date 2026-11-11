@@ -1,0 +1,228 @@
+{
+  "AP_recomputed": false,
+  "DEV": true,
+  "FIT": false,
+  "TEST": false,
+  "annotations": 380,
+  "counts": {
+    "rfdetr_A": {
+      "all_candidates": 13597,
+      "all_nonempty": 10076,
+      "images_with_over_100_candidates": 0,
+      "native_top100_candidates": 13597,
+      "native_top100_nonempty": 10076,
+      "native_top100_zero_nonempty_images": 0,
+      "zero_candidate_images": 0,
+      "zero_nonempty_images": 0
+    },
+    "rfdetr_B": {
+      "all_candidates": 14313,
+      "all_nonempty": 10538,
+      "images_with_over_100_candidates": 0,
+      "native_top100_candidates": 14313,
+      "native_top100_nonempty": 10538,
+      "native_top100_zero_nonempty_images": 0,
+      "zero_candidate_images": 0,
+      "zero_nonempty_images": 0
+    },
+    "srnet_low": {
+      "all_candidates": 24155,
+      "all_nonempty": 15212,
+      "images_with_over_100_candidates": 133,
+      "native_top100_candidates": 18053,
+      "native_top100_nonempty": 12093,
+      "native_top100_zero_nonempty_images": 0,
+      "zero_candidate_images": 0,
+      "zero_nonempty_images": 0
+    },
+    "srnet_stock": {
+      "all_candidates": 384,
+      "all_nonempty": 384,
+      "images_with_over_100_candidates": 0,
+      "native_top100_candidates": 384,
+      "native_top100_nonempty": 384,
+      "native_top100_zero_nonempty_images": 2,
+      "zero_candidate_images": 2,
+      "zero_nonempty_images": 2
+    }
+  },
+  "equal_nonempty_coverage": {
+    "arms": {
+      "rfdetr_A": {
+        "0.50": {
+          "any_candidate": 356,
+          "maximum_one_to_one": 356,
+          "maximum_recall": 0.9368421052631579
+        },
+        "0.75": {
+          "any_candidate": 324,
+          "maximum_one_to_one": 324,
+          "maximum_recall": 0.8526315789473684
+        },
+        "0.90": {
+          "any_candidate": 67,
+          "maximum_one_to_one": 67,
+          "maximum_recall": 0.1763157894736842
+        }
+      },
+      "rfdetr_B": {
+        "0.50": {
+          "any_candidate": 352,
+          "maximum_one_to_one": 352,
+          "maximum_recall": 0.9263157894736842
+        },
+        "0.75": {
+          "any_candidate": 326,
+          "maximum_one_to_one": 326,
+          "maximum_recall": 0.8578947368421053
+        },
+        "0.90": {
+          "any_candidate": 69,
+          "maximum_one_to_one": 69,
+          "maximum_recall": 0.18157894736842106
+        }
+      },
+      "srnet_low": {
+        "0.50": {
+          "any_candidate": 352,
+          "maximum_one_to_one": 352,
+          "maximum_recall": 0.9263157894736842
+        },
+        "0.75": {
+          "any_candidate": 301,
+          "maximum_one_to_one": 301,
+          "maximum_recall": 0.7921052631578948
+        },
+        "0.90": {
+          "any_candidate": 20,
+          "maximum_one_to_one": 20,
+          "maximum_recall": 0.05263157894736842
+        }
+      },
+      "srnet_stock": {
+        "0.50": {
+          "any_candidate": 352,
+          "maximum_one_to_one": 352,
+          "maximum_recall": 0.9263157894736842
+        },
+        "0.75": {
+          "any_candidate": 301,
+          "maximum_one_to_one": 301,
+          "maximum_recall": 0.7921052631578948
+        },
+        "0.90": {
+          "any_candidate": 20,
+          "maximum_one_to_one": 20,
+          "maximum_recall": 0.05263157894736842
+        }
+      }
+    },
+    "eligible_gt": 380,
+    "excluded_gt": {
+      "crowd": 0,
+      "empty": 0,
+      "ignore": 0
+    }
+  },
+  "equal_per_arm": 384,
+  "equal_quota_arms": [
+    "srnet_stock",
+    "rfdetr_A",
+    "rfdetr_B"
+  ],
+  "equal_zero_images": 2,
+  "images": 187,
+  "model_forward_calls": 0,
+  "native_top100_nonempty_coverage": {
+    "arms": {
+      "rfdetr_A": {
+        "0.50": {
+          "any_candidate": 376,
+          "maximum_one_to_one": 376,
+          "maximum_recall": 0.9894736842105263
+        },
+        "0.75": {
+          "any_candidate": 350,
+          "maximum_one_to_one": 350,
+          "maximum_recall": 0.9210526315789473
+        },
+        "0.90": {
+          "any_candidate": 90,
+          "maximum_one_to_one": 90,
+          "maximum_recall": 0.23684210526315788
+        }
+      },
+      "rfdetr_B": {
+        "0.50": {
+          "any_candidate": 375,
+          "maximum_one_to_one": 375,
+          "maximum_recall": 0.9868421052631579
+        },
+        "0.75": {
+          "any_candidate": 349,
+          "maximum_one_to_one": 349,
+          "maximum_recall": 0.9184210526315789
+        },
+        "0.90": {
+          "any_candidate": 109,
+          "maximum_one_to_one": 109,
+          "maximum_recall": 0.2868421052631579
+        }
+      },
+      "srnet_low": {
+        "0.50": {
+          "any_candidate": 359,
+          "maximum_one_to_one": 359,
+          "maximum_recall": 0.9447368421052632
+        },
+        "0.75": {
+          "any_candidate": 305,
+          "maximum_one_to_one": 305,
+          "maximum_recall": 0.8026315789473685
+        },
+        "0.90": {
+          "any_candidate": 20,
+          "maximum_one_to_one": 20,
+          "maximum_recall": 0.05263157894736842
+        }
+      },
+      "srnet_stock": {
+        "0.50": {
+          "any_candidate": 352,
+          "maximum_one_to_one": 352,
+          "maximum_recall": 0.9263157894736842
+        },
+        "0.75": {
+          "any_candidate": 301,
+          "maximum_one_to_one": 301,
+          "maximum_recall": 0.7921052631578948
+        },
+        "0.90": {
+          "any_candidate": 20,
+          "maximum_one_to_one": 20,
+          "maximum_recall": 0.05263157894736842
+        }
+      }
+    },
+    "eligible_gt": 380,
+    "excluded_gt": {
+      "crowd": 0,
+      "empty": 0,
+      "ignore": 0
+    }
+  },
+  "native_top100_order": "stable descending score with original ties, then remove empty masks",
+  "primary_srnet_score_sha256": "61d76b94e7484718008707bc9c6306c9e23e5c5da419fcd6149ec6ef732263bf",
+  "rf_acceptance_sha256": "38c83b96f74f11f9511ac48566d76279faae8d4d1a2cec2b42ba76da2e8408eb",
+  "scope": "fixed integer DEV187; one-to-one maximum matching, no scores used after candidate selection",
+  "status": "P377_SRNET_RFDETR_FIXED_DEV187_COVERAGE_COMPLETE",
+  "threshold_identity": {
+    "all_images_exact_ordered_score_rle": true,
+    "low_scores_equal_cutoff": 0,
+    "low_strict_high": 384,
+    "mismatched_images": 0,
+    "native_strict_score_gt_float32_cutoff": 0.30000001192092896,
+    "stock": 384,
+    "stock_scores_equal_cutoff": 0
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "AP": true,
+  "DEV": true,
+  "FIT": false,
+  "TEST": false,
+  "annotations": 380,
+  "arms": {
+    "low_threshold": {
+      "candidates": 24155,
+      "inference_seconds": 635.241286699893,
+      "metrics": {
+        "AP": 0.6113380441957461,
+        "AP50": 0.931955661296487,
+        "AP75": 0.7730907320086581,
+        "AP90": 0.005562618158803952,
+        "APs": 0.6276192029025087,
+        "AR100": 0.648157894736842,
+        "all12": [
+          0.6113380441957461,
+          0.931955661296487,
+          0.7730907320086581,
+          0.6276192029025087,
+          0.5696519935399265,
+          0.49999999999999994,
+          0.3513157894736842,
+          0.6436842105263157,
+          0.648157894736842,
+          0.6638686131386862,
+          0.6085714285714285,
+          0.5
+        ]
+      },
+      "predictions_sha256": "c56f624609618f754c2dcd4ba80bc1a52b6b66a0004957dd5fe2602d2957deb6",
+      "score_threshold": 0.001,
+      "zero_candidate_images": 0
+    },
+    "stock": {
+      "candidates": 384,
+      "inference_seconds": 466.6179491998628,
+      "metrics": {
+        "AP": 0.6053986709690674,
+        "AP50": 0.9157890469791715,
+        "AP75": 0.76723489350652,
+        "AP90": 0.005562618158803952,
+        "APs": 0.6224096872586868,
+        "AR100": 0.6397368421052632,
+        "all12": [
+          0.6053986709690674,
+          0.9157890469791715,
+          0.76723489350652,
+          0.6224096872586868,
+          0.5589761823493128,
+          0.49999999999999994,
+          0.3484210526315789,
+          0.6373684210526316,
+          0.6397368421052632,
+          0.6576642335766423,
+          0.5942857142857142,
+          0.5
+        ]
+      },
+      "predictions_sha256": "259809ff4b6b04fd6950d59ebe1acc15405bf3c05284c7cd16948305f1b939db",
+      "score_threshold": 0.3,
+      "zero_candidate_images": 2
+    }
+  },
+  "author_commit": "2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6",
+  "checkpoint_sha256": "8998d0f6c11082250a46af48ec0c5455fb7606de8b6bb6a00ad2956046ea95ea",
+  "images": 187,
+  "integer_gt_sha256": "5657600d6ea198f79bd5d557d2a1aadce5bec031d2ecf72a98716248d1183a55",
+  "manifest_sha256": "18df007e15e3e838e607f178f14e7a26f2b37b992ee39bf091e0b74cf084fb13",
+  "max_dets": [
+    1,
+    10,
+    100
+  ],
+  "original_export_wait_sha256s": {
+    "low_threshold": "a0bc7a092edeed7e3cc0256022b5abced96db5ba99afb3219e81af8d70d1b7ac",
+    "stock": "84f7d21a479de3e4f7088347f858d4305331223b7d9dc159ab72bfff6154b2a3"
+  },
+  "primary_arm": "stock",
+  "sensitivity_arm": "low_threshold",
+  "status": "SRNET_FIXED_DEV187_ORIGINAL_EXPORTS_SCORED",
+  "training_report_sha256": "6f8551a15b28d0184e76199cec415b46bcb7a688eaff72640ba6347ccd9ea447"
+}

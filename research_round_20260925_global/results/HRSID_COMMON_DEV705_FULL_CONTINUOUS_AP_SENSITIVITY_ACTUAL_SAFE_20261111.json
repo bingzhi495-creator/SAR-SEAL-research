@@ -1,0 +1,283 @@
+{
+  "DEV": true,
+  "FIT": false,
+  "delta_points": {
+    "continuous_minus_raster_common_effect_points": {
+      "AP": -2.005454834372178,
+      "AP50": -0.5834106608390566,
+      "AP75": -4.918124795669909,
+      "AP90": -0.7579171159851934,
+      "APl": 0.0002857981780008956,
+      "APm": -0.66097496407721,
+      "APs": -2.168636090677201,
+      "AR100": -1.9647927314026092
+    },
+    "original_full_raster": {
+      "AP": 4.637953835479125,
+      "AP50": 0.707705858924923,
+      "AP75": 9.313906529617267,
+      "AP90": 0.5216178260958524,
+      "APl": -6.672155525691514,
+      "APm": 1.557748510419843,
+      "APs": 5.205024841061934,
+      "AR100": 5.521885521885517
+    },
+    "shared_support_continuous": {
+      "AP": 2.6732200552116003,
+      "AP50": 0.15114814891927786,
+      "AP75": 4.489199180709324,
+      "AP90": -0.22828475464357537,
+      "APl": -6.6718697275135135,
+      "APm": 0.896773546342633,
+      "APs": 3.0538882159523384,
+      "AR100": 3.611584327086892
+    },
+    "shared_support_raster": {
+      "AP": 4.678674889583778,
+      "AP50": 0.7345588097583344,
+      "AP75": 9.407323976379233,
+      "AP90": 0.5296323613416181,
+      "APl": -6.672155525691514,
+      "APm": 1.557748510419843,
+      "APs": 5.2225243066295395,
+      "AR100": 5.576377058489501
+    }
+  },
+  "elapsed_seconds": 98.47442009998485,
+  "geometry_audits": {
+    "center": {
+      "continuous_pairs_computed": 34258,
+      "dense_geometry_spots": 16,
+      "independent_dense_max_abs_iou_error": 0.0,
+      "neutral_original_overlap_pairs": 2084,
+      "provably_below_half_pairs": 138470,
+      "pruned_dense_spots": 8,
+      "supported_pairs": 172728
+    },
+    "native": {
+      "continuous_pairs_computed": 19978,
+      "dense_geometry_spots": 16,
+      "independent_dense_max_abs_iou_error": 0.0,
+      "neutral_original_overlap_pairs": 2072,
+      "provably_below_half_pairs": 153990,
+      "pruned_dense_spots": 8,
+      "supported_pairs": 173968
+    }
+  },
+  "images": 705,
+  "model_forward_calls": 0,
+  "neutral_unique_annotations": 21,
+  "official_TEST_opened": false,
+  "optimizer_updates": 0,
+  "original_order_unchanged": true,
+  "original_unique_annotations": 1782,
+  "policy": {
+    "area": "original annotation and prediction pixel area fields, original stock bins",
+    "matching": "unchanged COCOeval sorting, matching, ignores, accumulation, IoU thresholds and maxDets",
+    "neutral": "invalid, empty, unsupported, and crowd rows retained as ignored with original raster overlap in both arms",
+    "pair_pruning": "noncrowd area and bbox overlap bound provably below .50 with conservative relative tolerance",
+    "population": "705 original DEV images, identical full raw prediction streams",
+    "positive_support": "valid finite noncrowd source polygon union clipped to canvas; exact original rerasterization",
+    "scope": "same annotation source; no official TEST, image opening, model inference or tuning"
+  },
+  "provenance": {
+    "arms": {
+      "center": {
+        "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+        "export_report_sha256": "05c5c11274f7800504b5ab1fb1dcb8db39c60316f51dc732e3f20ee063078c19",
+        "predictions_sha256": "da55f2d3f9bbf08b26d5fae76606b2496a5b482c5fb61f4fab53c23172e5c06e",
+        "score_report_sha256": "f980babe7cc6b3e701885ec136fb359fa2e2514e49fc08d3faf14995602270fa"
+      },
+      "native": {
+        "checkpoint_sha256": "d2d7c584c75a4bd4397f523ce9d7c827ae7d0aaf9bec61f5ee02eaf33c718c03",
+        "export_report_sha256": "689490c8dbd2f3e0f950fa88d9890d65ab4d1ad5655d1986c26114341d4bca02",
+        "predictions_sha256": "28acdc3a98f1d91381d3d57141b811e261a40f1535fa883deced2e1ee0fddf1a",
+        "score_report_sha256": "74211a55dce14c9f76fbb2f30638956b3b64bc4c64437fc12e2736155cd6a245"
+      }
+    },
+    "closed_export_pair_sha256": "d080a27ade36369a8fc8d2cb003c37cc3670d75860e83b30e365bd47e77543c0",
+    "evaluation_protocol": "91728d38a359e4a207e3f741490f09060c46663f",
+    "original_dev_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+    "support_policy": "ordered_common_nonempty_prepared_rows_v1",
+    "training_pair_receipt_sha256": "ec6c36973a763344d0f063727e7e07c697a132573e6235eaa8525482e8d8da9f",
+    "training_protocol": "04308c52bd2b4730f1474335c6316f6b8a11762e",
+    "training_seed": 5202
+  },
+  "raw_prediction_rows": {
+    "center": 67386,
+    "native": 68507
+  },
+  "results": {
+    "center": {
+      "original_full_raster": {
+        "AP": 0.5607175557236392,
+        "AP50": 0.8933860912557013,
+        "AP75": 0.6543270055410144,
+        "AP90": 0.024852087496618522,
+        "APl": 0.39193585735062436,
+        "APm": 0.619497833607883,
+        "APs": 0.5555150922118945,
+        "AR100": 0.6445566778900111,
+        "all12": [
+          0.5607175557236392,
+          0.8933860912557013,
+          0.6543270055410144,
+          0.5555150922118945,
+          0.619497833607883,
+          0.39193585735062436,
+          0.2831088664421998,
+          0.5808641975308642,
+          0.6445566778900111,
+          0.6357914812460267,
+          0.7176165803108808,
+          0.625
+        ]
+      },
+      "shared_support_continuous": {
+        "AP": 0.5550606853383505,
+        "AP50": 0.8945855525232029,
+        "AP75": 0.6487639699031766,
+        "AP90": 0.014008446738553825,
+        "APl": 0.39150996249833436,
+        "APm": 0.6139445843674174,
+        "APs": 0.5495777819379312,
+        "AR100": 0.6357183418512209,
+        "all12": [
+          0.5550606853383505,
+          0.8945855525232029,
+          0.6487639699031766,
+          0.5495777819379312,
+          0.6139445843674174,
+          0.39150996249833436,
+          0.2819420783645656,
+          0.5753549119818284,
+          0.6357183418512209,
+          0.6265463917525773,
+          0.7103626943005181,
+          0.625
+        ]
+      },
+      "shared_support_raster": {
+        "AP": 0.562551527063468,
+        "AP50": 0.8956380650770429,
+        "AP75": 0.6572609719299339,
+        "AP90": 0.025020794884021626,
+        "APl": 0.39193585735062436,
+        "APm": 0.619497833607883,
+        "APs": 0.5573425867311076,
+        "AR100": 0.6468483816013629,
+        "all12": [
+          0.562551527063468,
+          0.8956380650770429,
+          0.6572609719299339,
+          0.5573425867311076,
+          0.619497833607883,
+          0.39193585735062436,
+          0.2852924474730267,
+          0.5827938671209539,
+          0.6468483816013629,
+          0.6382731958762886,
+          0.7176165803108808,
+          0.625
+        ]
+      }
+    },
+    "native": {
+      "original_full_raster": {
+        "AP": 0.514338017368848,
+        "AP50": 0.8863090326664521,
+        "AP75": 0.5611879402448418,
+        "AP90": 0.01963590923566,
+        "APl": 0.4586574126075395,
+        "APm": 0.6039203485036846,
+        "APs": 0.5034648438012752,
+        "AR100": 0.589337822671156,
+        "all12": [
+          0.514338017368848,
+          0.8863090326664521,
+          0.5611879402448418,
+          0.5034648438012752,
+          0.6039203485036846,
+          0.4586574126075395,
+          0.2671156004489338,
+          0.5395061728395062,
+          0.589337822671156,
+          0.5775588048315321,
+          0.678238341968912,
+          0.675
+        ]
+      },
+      "shared_support_continuous": {
+        "AP": 0.5283284847862345,
+        "AP50": 0.8930740710340102,
+        "AP75": 0.6038719780960834,
+        "AP90": 0.01629129428498958,
+        "APl": 0.4582286597734695,
+        "APm": 0.6049768489039911,
+        "APs": 0.5190388997784078,
+        "AR100": 0.599602498580352,
+        "all12": [
+          0.5283284847862345,
+          0.8930740710340102,
+          0.6038719780960834,
+          0.5190388997784078,
+          0.6049768489039911,
+          0.4582286597734695,
+          0.2721749006246451,
+          0.548892674616695,
+          0.599602498580352,
+          0.5891108247422681,
+          0.677720207253886,
+          0.675
+        ]
+      },
+      "shared_support_raster": {
+        "AP": 0.5157647781676302,
+        "AP50": 0.8882924769794596,
+        "AP75": 0.5631877321661416,
+        "AP90": 0.019724471270605445,
+        "APl": 0.4586574126075395,
+        "APm": 0.6039203485036846,
+        "APs": 0.5051173436648122,
+        "AR100": 0.5910846110164679,
+        "all12": [
+          0.5157647781676302,
+          0.8882924769794596,
+          0.5631877321661416,
+          0.5051173436648122,
+          0.6039203485036846,
+          0.4586574126075395,
+          0.2695059625212948,
+          0.5411130039750142,
+          0.5910846110164679,
+          0.5793814432989691,
+          0.678238341968912,
+          0.675
+        ]
+      }
+    }
+  },
+  "status": "HRSID_COMMON_DEV705_FULL_CONTINUOUS_AP_SENSITIVITY_ACTUAL_V1",
+  "support": {
+    "excluded": [
+      {
+        "reason": "empty_original_raster",
+        "size": "small",
+        "unique_instances": 4
+      },
+      {
+        "reason": "invalid_or_unsupported_source_components",
+        "size": "small",
+        "unique_instances": 17
+      }
+    ],
+    "supported_by_size": {
+      "large": 16,
+      "medium": 193,
+      "small": 1552
+    }
+  },
+  "supported_unique_annotations": 1761,
+  "training_seed": 5202,
+  "verified_original_raster_scores": true
+}
