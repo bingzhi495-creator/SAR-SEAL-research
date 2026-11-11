@@ -255,3 +255,15 @@ ASF 和 Copernicus 同一母产品的十个 IW2／VH 目录足迹独立核对一
 机载 X 波段的直接检测先例采用距离压缩回波的方位 FFT，并用 AIS 与 CFAR 联合构造检测框。这支持把 RD 定位列为可行任务，也说明定位评估需要单列与候选生成独立的参考真值。已有同景多普勒辅助失焦船舶框检测，以及船载地波雷达回波实例分割。与这些先例的比较应落到空间轮廓、同景回波的增量及相应对照。 [机载 RD 检测原文](https://elib.dlr.de/189078/1/Ship_Detection_Based_on_Faster_R-CNN_Using_Range-Compressed_Airborne_Radar_Data.pdf) · [失焦船舶框检测](https://www.mdpi.com/2072-4292/18/8/1166) · [海面回波实例分割](https://www.ams-journal.org.cn/website/cn/article/doi/10.12362/j.issn.1671-6647.20231226001)
 
 美国佛罗里达海峡 SeaSonde 档案另提供实测多普勒交叉谱和用于天线方向图检查的 AIS 位置记录，可作为独立海杂波与航迹对齐的候选。其海洋流场用途和 AIS 来源尚不足以确认逐帧目标覆盖。需要核对谱窗口时间、速度投影、覆盖及匹配率后，才能确定适用的评分范围。本轮仅核对发布目录与字段。当前优先使用已读回的同景配对试验空间候选几何，现有证据停留在数据链和公开先例层面。 [SeaSonde 数据目录](https://data.griidc.org/data/U1.x843.000%3A0001) · [同景配对实测](results/OPEN_SAR_TRAIN395_PAIR_READBACK_ACTUAL_SAFE_20261111.json)
+
+
+## 少标注迁移的对照与论文决策
+
+如果 RD 指距离–多普勒图，直接复用主干结构、使用 SAR 权重初始化，以及让同景多普勒信息改善原空间掩膜，是三个不同实验。普通监视雷达 RD 的像素代表距离和频率或径向速度。两艘船在同一分辨单元内重叠时，单帧功率图的可分性受限。成像过程中的 SAR RD 则需要按具体产品识别方位多普勒的含义及聚焦映射。沿用调过的 UNet++ 时，可检验嵌套跳连和多尺度特征能否支持 RD 定位。只有目标域实际发生同类掩膜栅格变换，才检验训练掩膜的采样修正。 [HRSID 原始任务](https://github.com/chaozhong2010/HRSID) · [TI 距离与速度测量](https://www.ti.com/lit/an/swra553a/swra553a.pdf) · [Sentinel-1 聚焦](https://sentiwiki.copernicus.eu/web/s1-processing#slc-processing-algorithms)
+
+**RD 权重迁移已有对照先例。** RiCL 在 CARRADA 的 RD 训练序列上预训练，再用 RADDet 标注微调 FCOS。其表 I 报告，使用全部 RADDet 训练标注时，框 mAP@0.5 从 39.7 到 41.0，使用 20% 时从 18.8 到 25.9。Qian 等表 IV 的 3D RAD 检测 AP@0.3 分别为随机初始化 0.311、CARRADA 预训练 0.337、UWCR 预训练 0.361、RADDet 同域预训练 0.391。两项研究均有目标域监督，数据来自车载雷达。RiCL 比较随机初始化，Qian 等在下游保留的是 RA 特征提取器。它们支持把目标域或相近 RD 预训练作为较强对照，也支持优先检验少标注下的迁移价值。 [RiCL 表 I](https://arxiv.org/html/2402.08427#S4.T1) · [Qian 等表 IV](https://magus.ink/homepage_static/paper/ieee26-qianql.pdf#page=4)
+
+**首轮训练要能判别收益来自哪里。** 若要在海面 RD 做定位，用同一原生格点输入和同一新定位头，比对通用初始化、HRSID 原生初始化及 HRSID 同实例中心监督初始化。目标域采集数允许时，预先锁定少标注和全标注两档。按完整采集抽取训练子集，同档次使用相同训练序列、步骤、阈值校准数据和留出集。记录绝对分数与同档配对差值，分别报告冻结主干和微调。若扩大验证，再加入同任务 RD 预训练的同架构对照，避免把通常的雷达预训练收益归给 SAR 特定改动。KuRALS-PD 只先用于已选波束下的定位试点。CARRADA 的逐实例 ID 关联稀疏点及其扩张稠密区域，适合做道路 RD 流程对照。 [KuRALS 原文](https://doi.org/10.3390/rs18010173) · [CARRADA 标注构造](https://arxiv.org/html/2005.01456#S4.SS3)
+
+**当前论文优先验证同景多普勒辅助船体轮廓。** 现有一对阳性数据可先检查空间候选与回波窗口能否可靠对应。通过几何核验且取得独立空间轮廓后，固定候选和分数，比较聚焦单支、常规重聚焦、等容量错配与真实配对，按预先划定的失焦组和独立采集报告轮廓 IoU、mask AP75 和 AP90。直接先例已经用同景多普勒做运动失焦船舶框检测。本项目要检验的增量是空间轮廓是否改善。当前已核验同景数组和 FFT，完整配准、RD 训练及模型收益仍待实测。 [阳性同景实测](results/OPEN_SAR_TRAIN395_PAIR_READBACK_ACTUAL_SAFE_20261111.json) · [失焦船舶框检测先例](https://doi.org/10.3390/rs18081166)
+
