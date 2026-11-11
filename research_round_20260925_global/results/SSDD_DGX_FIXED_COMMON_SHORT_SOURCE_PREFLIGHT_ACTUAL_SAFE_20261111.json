@@ -1,0 +1,27 @@
+{
+  "status": "P340_DGX_STATIC_STAGE_ACTUAL_TOOL_READBACK_V1",
+  "original_readback_sha256": "036e7c7b6db31bec442249172c3d3b13a9aead318f023853fa94053f6bb217e7",
+  "verified_staged_file_count": 10,
+  "request_sha256": "37765bdb95a505227b223d7aa8e2554fe9a90f217fcfab9be00672d54d40db29",
+  "training_protocol_file_sha1": "68502085c9bed69fc626b26e2786226c43cf4fcc",
+  "protocol_file_sha256": "057a7ba0c5e7c4871e2982cb74daa223222d6f9c89069d4635f13cd5e6e0d684",
+  "original_transport_exit": 0,
+  "original_source_check_exit": 0,
+  "original_resource_query_exit": 0,
+  "source_check": {
+    "authority": "P340_SSDD_DGX_FIXED_COMMON_SHORT_5201",
+    "source_manifest_sha256": "bced2ad2d4e543437850783a1e6144dd438ffe9d5bf44dc2b45e97d79fd279b4",
+    "status": "P340_DGX_FIXED_COMMON_SOURCE_PREFLIGHT_PASSED"
+  },
+  "resource_query": {
+    "cuda_free_bytes": 3024928768,
+    "cuda_meets_12_gib": false,
+    "cuda_total_bytes": 130660978688,
+    "host_available_bytes": 48976637952,
+    "model_forward_calls": 0,
+    "optimizer_updates": 0,
+    "status": "P340_RESOURCE_QUERY_ONLY"
+  },
+  "torch_cuda_capability_warning": "GB10 reports capability 12.1 and the installed torch wheel lists up to 12.0",
+  "training_launched": false
+}
