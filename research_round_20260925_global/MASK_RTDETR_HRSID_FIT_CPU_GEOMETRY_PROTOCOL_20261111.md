@@ -37,3 +37,17 @@
 在独立 Windows x64 CPU 进程中核对 PyPI 的 OpenCV 4.5.5.64 和 5.0.0.93 wheel，分别使用 NumPy 1.26.4、2.2.6。按整数像素中心规则 `floor((2j+1)N/(2M))`，精确半格取较大索引。实际比较 4,115 组一维尺寸、145,248 个坐标位置和 12 组二维合成二值掩膜。尺寸含 800→576、800→512、800→640 和 640→576。关闭 OpenCL，分别开启和关闭 CPU 优化，所有对应输出摘要相同。 [复现脚本](code/OPENCV_NEAREST_VERSION_CPU_20261111/qualify_nearest.py) · [合成实测结果](results/OPENCV_NEAREST_VERSION_CPU_ACTUAL_SAFE_20261111.json)
 
 两个版本的默认 `INTER_NEAREST` 在全部测试输出逐字节一致，均有 58,037 个坐标位置偏离整数参考，53,857 个不在半格平局位置。800→576 的 384 个偏离全部为非平局。固定版本迁移说明对默认模式的描述与所测 wheel 表现存在出入，5.0.0 源码的两个入口仍分别派发。显式 `INTER_NEAREST_EXACT` 在 OpenCV 5 所测非平局位置全部与参考一致，半格位置仍有 1,090 个差异。OpenCV 4 精确路径有 2,950 个半格和 13 个非半格差异。合成结果支持把 OpenCV 5 显式精确模式纳入后续同输入比较，原生默认、显式精确和整数规则各作为独立对照。实际掩膜与模型指标仍需同条件评估。 [固定迁移说明](https://github.com/opencv/opencv/wiki/OpenCV-4-to-5-migration/8ea769425c7697403a1483ac5e7afba2990e726e#nearest-neighbor-resize) · [5.0.0 默认与精确派发](https://github.com/opencv/opencv/blob/5.0.0/modules/imgproc/src/resize.cpp#L4002-L4011) · [5.0.0 精确取样实现](https://github.com/opencv/opencv/blob/5.0.0/modules/imgproc/src/resize.cpp#L1266-L1277)
+
+## OpenCV 5 在真实 FIT 栅格上的直接对照
+
+按此前固定的 24 个来源代理组和 96 个 FIT 视图重跑 OpenCV 4.5.5.64 原增强。24 个原批次全部完成，原报告的所有非计时字段一致。把同一预缩放栅格送给独立进程中的 OpenCV 5.0.0.93。图像、框、类别、增强轨迹和监督行均沿用已核对的原回放。5.0.0.93 和 NumPy 2.2.6 的 Windows wheel 摘要与 PyPI 发布相符。 [OpenCV 5.0.0.93](https://pypi.org/project/opencv-python/5.0.0.93/) · [NumPy 2.2.6](https://pypi.org/project/numpy/2.2.6/)
+
+| 同一预缩放输入的比较 | 不同掩膜数，合计 615 条 | 不同像素数 |
+| --- | ---: | ---: |
+| OpenCV 5 默认最近邻与 OpenCV 4 默认最近邻 | 0 | 0 |
+| OpenCV 5 显式精确最近邻与整数中心 | 0 | 0 |
+| OpenCV 5 显式精确最近邻与 OpenCV 4 默认最近邻 | 594 | 未汇总 |
+
+581 条小目标行的组等权连续足迹 IoU 为 0.7850、0.8739、0.8739，顺序为旧版默认、5.0.0 显式精确、整数中心。三臂共同非空行的组等权绝对纵向误差分别为 0.9140、0.1907、0.1907 个预缩放像素。新版显式精确与整数中心之间的新增空行和挽回空行均为 0，两者共享此前相对原生的三条新增空行。合成半格的差异仍需按其原测试范围报告。 [实测与原等待摘要](results/MASK_RTDETR_CV5_FIT96_COMPARISON_ACTUAL_SAFE_20261111.json)
+
+两个独立 CPU 进程均退出 0，作业树清空，整段耗时 26.09 秒和 6.11 秒。此耗时分别包含原增强与保存、读回与算子比较，各阶段工作量不同。数据仅来自原锁定 FIT，模型前向、优化器更新、AP、DEV 和 TEST 均未执行。单次掩膜缩放在本组真实输入的几何收益可由库内显式精确模式复现，应纳入直接对照。裁剪与多步变换统一后再单次栅格化的额外价值，继续用已锁定的 B/C 同预算长训与固定 DEV705 检验。 [实际比较源码](code/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_20261111/real_cv5_mask_compare.py)
