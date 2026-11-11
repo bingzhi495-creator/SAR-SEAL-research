@@ -1,0 +1,293 @@
+{
+  "status": "HRSID_BC_E24_DEV705_SEED5202_CLOSED_REVIEWED",
+  "decision": "STOP_CURRENT_COMPOSITE_RECIPE_EXPANSION",
+  "training_seed": 5202,
+  "arms": {
+    "stepwise_center": {
+      "primary": {
+        "annotations": 1782,
+        "AP": 0.5588146035468488,
+        "AP75": 0.6541051694078344,
+        "AP90": 0.02369183131493191,
+        "APs": 0.5522326136345163,
+        "AR100": 0.6351851851851852,
+        "all12": [
+          0.5588146035468488,
+          0.8973852132499572,
+          0.6541051694078344,
+          0.5522326136345163,
+          0.6223402758926628,
+          0.4710522017010585,
+          0.2810325476992144,
+          0.5735690235690235,
+          0.6351851851851852,
+          0.6270820089001907,
+          0.6979274611398963,
+          0.675
+        ]
+      },
+      "sensitivity": {
+        "annotations": 1778,
+        "AP": 0.5601067998556672,
+        "AP75": 0.6553698470537503,
+        "AP90": 0.02369222572834707,
+        "APs": 0.553667894276248,
+        "AR100": 0.6366141732283465,
+        "all12": [
+          0.5601067998556672,
+          0.8991181706339241,
+          0.6553698470537503,
+          0.553667894276248,
+          0.6223402758926628,
+          0.4710522017010585,
+          0.28166479190101235,
+          0.574859392575928,
+          0.6366141732283465,
+          0.6286806883365201,
+          0.6979274611398963,
+          0.675
+        ]
+      },
+      "export_seconds": 78.2500122000929,
+      "export_peak_allocated_bytes": 315464704,
+      "training_seconds": 12837.06934070005,
+      "training_peak_allocated_bytes": 3720998400
+    },
+    "one_pass": {
+      "primary": {
+        "annotations": 1782,
+        "AP": 0.5582826183832096,
+        "AP75": 0.6439692851990372,
+        "AP90": 0.021015749194845636,
+        "APs": 0.5517711480910469,
+        "AR100": 0.6221661054994387,
+        "all12": [
+          0.5582826183832096,
+          0.8948045388176226,
+          0.6439692851990372,
+          0.5517711480910469,
+          0.6155150762397672,
+          0.5076554180701403,
+          0.2835016835016836,
+          0.5718855218855219,
+          0.6221661054994387,
+          0.6149396058486969,
+          0.6766839378238341,
+          0.675
+        ]
+      },
+      "sensitivity": {
+        "annotations": 1778,
+        "AP": 0.5595950209378872,
+        "AP75": 0.6453382016507995,
+        "AP90": 0.021015749194845636,
+        "APs": 0.5532603184832626,
+        "AR100": 0.6235658042744656,
+        "all12": [
+          0.5595950209378872,
+          0.8976925461263585,
+          0.6453382016507995,
+          0.5532603184832626,
+          0.6155150762397672,
+          0.5076554180701403,
+          0.28413948256467936,
+          0.5731721034870642,
+          0.6235658042744656,
+          0.6165073295092416,
+          0.6766839378238341,
+          0.675
+        ]
+      },
+      "export_seconds": 78.1914615998976,
+      "export_peak_allocated_bytes": 315464704,
+      "training_seconds": 16351.568507499993,
+      "training_peak_allocated_bytes": 3717646336
+    }
+  },
+  "old_natural_stepwise_reference_AP": 0.5613141946683075,
+  "common_pair_AP_delta_points": -0.05319851636391704,
+  "utility_AP_delta_points": -0.303157628509787,
+  "training_ledger_stats": {
+    "changed_crop_visits": 32699,
+    "common_changed_masks_total": 95400,
+    "completed_epochs": 24,
+    "consumed_crop_visits": 35374,
+    "consumed_direct_visits": 35186,
+    "ema_updates_per_arm": 17640,
+    "ledger": {
+      "changed_mask_visits": 32699,
+      "common_empty_visits": 2584,
+      "common_targets_total": 206030,
+      "consumed_visits": 70560,
+      "fetched_visits": 70560,
+      "prefetched_unconsumed": 0,
+      "unconsumed_prefetch_sha256": null
+    },
+    "one_pass_only_nonempty_total": 8,
+    "one_pass_selected_mask_stream_sha256": "01718d6d1a32a98d2543c6e0896693c007d247f8a0afb3267e79bc35c0b539c8",
+    "one_pass_visit_ledger_sha256": "3babd5a28ecc62bb1f6e88eb0ed434bdc87d37a97f891e0f787bb12f7d04b969",
+    "optimizer_updates_per_arm": 17640,
+    "ordered_common_fit_visits_match": true,
+    "shared_consumed_ledger_bytes": 69296186,
+    "shared_consumed_ledger_sha256": "0bffe664e718d93bef15787793543b00f7f2e962b1d810e1601b2f55b160c98f",
+    "stepwise_center_only_nonempty_total": 2,
+    "stepwise_center_selected_mask_stream_sha256": "3f6d4b53d56de622ae0e7c75622b394e9842e086bae7bfc78a59315d4df29b17",
+    "stepwise_center_visit_ledger_sha256": "3babd5a28ecc62bb1f6e88eb0ed434bdc87d37a97f891e0f787bb12f7d04b969",
+    "support_disagreement_visits": 10,
+    "visits_per_arm": 70560
+  },
+  "independent_geometry": {
+    "COCO_AP": false,
+    "arms": {
+      "one_pass": {
+        "checkpoint_sha256": "053ae013102d71ba923421cda8901eb7345f9f486ba244646ef1f94a7150b2c4",
+        "export_report_sha256": "0e9eae23a3f63ef837c9c5128686aa87dd88751ea2c176fe128596c270919bc0",
+        "predictions_sha256": "aaefe46951bf33e0ae6b50508a1e73f90be67974dc1a3ed498100fb73c054c4c"
+      },
+      "stepwise_center": {
+        "checkpoint_sha256": "eaafb4b010220f968edc4ec529bb51a30b69c8eead55e26bb226a9fbad16b593",
+        "export_report_sha256": "e1c54de449d73373f7d69f341b5f27c308e83af957bd6fbb1482e67758c8b060",
+        "predictions_sha256": "b4cfefa99de3b15cf9e1ba3564a7a6d2df1e4c20e943066f85aedab7f603c277"
+      }
+    },
+    "closed_export_pair_sha256": "6d6fd7a3f3f2dae65b6cc8b83ed1b689d9c0c6c34ae9b75fd59ee5d6e318db51",
+    "geometry_core_sha256": "d8e3703ae4439e384cfa0c8cdb5dfc388e73b08b8ddf0903ede98151947e4f91",
+    "geometry_driver_positional_inputs": {
+      "center": "one_pass",
+      "native": "stepwise_center"
+    },
+    "metrics": {
+      "annotations": 1782,
+      "candidates": {
+        "one_pass": {
+          "empty": 29549,
+          "mapped": 63207
+        },
+        "stepwise_center": {
+          "empty": 20781,
+          "mapped": 65380
+        }
+      },
+      "common_pair_geometry": {
+        "count": 1635,
+        "one_pass": {
+          "fn_pixels": 157509,
+          "fp_pixels": 208597,
+          "mean_abs_dx_pixels": 1.1365556613445391,
+          "mean_abs_dy_pixels": 1.0282181389281335,
+          "mean_centroid_distance_pixels": 1.7440136919516511,
+          "mean_dx_pixels": 0.319446940043925,
+          "mean_dy_pixels": -0.19233542081109636,
+          "mean_fn_pixels": 96.33577981651376,
+          "mean_fp_pixels": 127.58226299694189,
+          "mean_iou": 0.8004725764101184
+        },
+        "one_pass_minus_stepwise_center": {
+          "fn_pixels": -86534,
+          "fp_pixels": 14656,
+          "mean_abs_dx_pixels": -0.08448197590699502,
+          "mean_abs_dy_pixels": 0.03140599014535683,
+          "mean_centroid_distance_pixels": -0.030689858030491513,
+          "mean_dx_pixels": 0.1352024557706778,
+          "mean_dy_pixels": -0.0062211157681481555,
+          "mean_fn_pixels": -52.925993883792046,
+          "mean_fp_pixels": 8.963914373088684,
+          "mean_iou": -4.7281394501053065E-05
+        },
+        "stepwise_center": {
+          "fn_pixels": 244043,
+          "fp_pixels": 193941,
+          "mean_abs_dx_pixels": 1.2210376372515341,
+          "mean_abs_dy_pixels": 0.9968121487827767,
+          "mean_centroid_distance_pixels": 1.7747035499821426,
+          "mean_dx_pixels": 0.1842444842732472,
+          "mean_dy_pixels": -0.1861143050429482,
+          "mean_fn_pixels": 149.2617737003058,
+          "mean_fp_pixels": 118.61834862385321,
+          "mean_iou": 0.8005198578046194
+        }
+      },
+      "eligible_gt": 1778,
+      "exclusions": {
+        "crowd": 0,
+        "empty": 4,
+        "ignore": 0
+      },
+      "images": 705,
+      "point_five": {
+        "both_matched": 1635,
+        "both_unmatched": 92,
+        "one_pass_only": 21,
+        "stepwise_center_only": 30
+      },
+      "strict": {
+        "0.75": {
+          "matched_below": {
+            "matched_below": 325,
+            "strict": 74,
+            "unmatched": 29
+          },
+          "strict": {
+            "matched_below": 84,
+            "strict": 1152,
+            "unmatched": 1
+          },
+          "unmatched": {
+            "matched_below": 21,
+            "strict": 0,
+            "unmatched": 92
+          }
+        },
+        "0.90": {
+          "matched_below": {
+            "matched_below": 1427,
+            "strict": 58,
+            "unmatched": 30
+          },
+          "strict": {
+            "matched_below": 56,
+            "strict": 94,
+            "unmatched": 0
+          },
+          "unmatched": {
+            "matched_below": 21,
+            "strict": 0,
+            "unmatched": 92
+          }
+        }
+      },
+      "strict_transition_axes": {
+        "column": "one_pass",
+        "row": "stepwise_center"
+      }
+    },
+    "official_TEST_opened": false,
+    "original_COCO_score_reports_verified": true,
+    "original_dev_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+    "original_stage_terminal_sha256s": {
+      "one_pass": {
+        "export": "6ad1aed482309141fb3a7647dff01e2173b3d4ffdc9dda1afb2d83f69f2df863",
+        "score": "7b125876e0cea80bf2849ed5560695855740c2b7ca8e8cbd9599bcc19600b738"
+      },
+      "stepwise_center": {
+        "export": "c0af8781921a1385f13a5b896f84ef8d5bc26b324494b27e481d510f214b85a6",
+        "score": "a606580dac4c6db0dee0b656728a53b4c9ade89b709b639f08b91b174bd0cac1"
+      }
+    },
+    "protocol": "00298b33bfa74af45d2625832c1667c0360ddebe",
+    "qualification_pair_sha256": "3cd0909ed94458af81c380df4f7c951d70e0d4fd7d7f2ae4a8dbdc46f768c793",
+    "score_report_sha256s": {
+      "one_pass": "951bf96184a65cd6e8d0c10ddae2ca016c098dff8b57344f2fe76f6fbb9fbf01",
+      "stepwise_center": "88291d953b2b1cc87d85088ada59e18377c3affe61e091ae297a27c421243742"
+    },
+    "status": "HRSID_ONE_PASS_COMMON_FIT_E24_DEV705_PAIRED_GEOMETRY_COMPLETE",
+    "support_policy": "one_pass_on_stepwise_common_nonempty_rows_v1",
+    "terminal_proof_scope": "external independently verified original OS closure",
+    "training_implementation_commit": "cc6c827852bdffdcd9e5b934c70cae4f3541d9ee",
+    "training_pair_receipt_sha256": "682a6349d4500c54e9e00f56fdd1d6c8280d8dac2f37dcd8bb06dedda4a9c802",
+    "training_protocol": "ebb76a1740c770f218c90e03b1e5fc9eb8416524",
+    "training_seed": 5202
+  },
+  "independent_original_wait_seconds": 11.391000000061467,
+  "official_TEST_opened": false
+}
