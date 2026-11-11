@@ -1,0 +1,158 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "first_interpreter_import_exit": 1,
+  "first_interpreter_model_forward_calls": 0,
+  "group_weighting": "eight held FIT source groups per path, equal weight",
+  "held_comparison": {
+    "crop": {
+      "feasibility_gate": false,
+      "gate_checks": {
+        "hard_center_iou_guard_at_least_minus_002": true,
+        "paired_iou_at_least_005": false,
+        "positive_sources_at_least_5": false,
+        "versus_anchor_nonnegative": true
+      },
+      "hard_center_iou_guard": -0.00045799626236342483,
+      "means": {
+        "anchor": {
+          "center_iou": 0.80906350112379,
+          "polygon_iou": 0.8158265182121552,
+          "raster_iou": 0.8029383130474125,
+          "ring_bce": 1.153399497270584
+        },
+        "composed_hard": {
+          "center_iou": 0.8102380648257499,
+          "polygon_iou": 0.8168779455300138,
+          "raster_iou": 0.8039704759032826,
+          "ring_bce": 1.1141485497355461
+        },
+        "raster_occupancy": {
+          "center_iou": 0.810050232626654,
+          "polygon_iou": 0.8166754180758069,
+          "raster_iou": 0.8037736012633586,
+          "ring_bce": 1.115627221763134
+        },
+        "stepwise_hard": {
+          "center_iou": 0.8094155647727499,
+          "polygon_iou": 0.8162275220768487,
+          "raster_iou": 0.8033406112546276,
+          "ring_bce": 1.1085300967097282
+        },
+        "vector_occupancy": {
+          "center_iou": 0.8097800685633865,
+          "polygon_iou": 0.8163990301461209,
+          "raster_iou": 0.8035084478837977,
+          "ring_bce": 1.1201691329479218
+        }
+      },
+      "vector_minus": {
+        "anchor": {
+          "mean": 0.0005725119339657081,
+          "negative": 1,
+          "positive": 4,
+          "tied": 3
+        },
+        "composed_hard": {
+          "mean": -0.0004789153838928445,
+          "negative": 2,
+          "positive": 0,
+          "tied": 6
+        },
+        "raster_occupancy": {
+          "mean": -0.00027638792968590065,
+          "negative": 1,
+          "positive": 0,
+          "tied": 7
+        },
+        "stepwise_hard": {
+          "mean": 0.00017150806927225537,
+          "negative": 2,
+          "positive": 4,
+          "tied": 2
+        }
+      }
+    },
+    "direct": {
+      "means": {
+        "anchor": {
+          "center_iou": 0.8536189221567728,
+          "polygon_iou": 0.8545393063891084,
+          "raster_iou": 0.8452082020431282,
+          "ring_bce": 0.811116449534893
+        },
+        "composed_hard": {
+          "center_iou": 0.8536098108289607,
+          "polygon_iou": 0.8548715702717509,
+          "raster_iou": 0.845539117193978,
+          "ring_bce": 0.7879641465842724
+        },
+        "raster_occupancy": {
+          "center_iou": 0.8539956132980965,
+          "polygon_iou": 0.8551863891037014,
+          "raster_iou": 0.8456954955323251,
+          "ring_bce": 0.7886339984834194
+        },
+        "stepwise_hard": {
+          "center_iou": 0.8551655815460266,
+          "polygon_iou": 0.8559435060612821,
+          "raster_iou": 0.846204616746467,
+          "ring_bce": 0.7820645831525326
+        },
+        "vector_occupancy": {
+          "center_iou": 0.8539956132980965,
+          "polygon_iou": 0.8551863891037014,
+          "raster_iou": 0.8456954955323251,
+          "ring_bce": 0.7912747152149677
+        }
+      },
+      "vector_minus": {
+        "anchor": {
+          "mean": 0.0006470827145930308,
+          "negative": 2,
+          "positive": 4,
+          "tied": 2
+        },
+        "composed_hard": {
+          "mean": 0.000314818831950503,
+          "negative": 0,
+          "positive": 1,
+          "tied": 7
+        },
+        "raster_occupancy": {
+          "mean": 0.0,
+          "negative": 0,
+          "positive": 0,
+          "tied": 8
+        },
+        "stepwise_hard": {
+          "mean": -0.0007571169575806974,
+          "negative": 5,
+          "positive": 2,
+          "tied": 1
+        }
+      }
+    }
+  },
+  "held_groups_seen_by_source_backbone": true,
+  "model_forward_calls": 24,
+  "old_three_arms_update_events_parameters_archives_and_held_metrics_exact": true,
+  "optimizer_updates_per_arm": 8,
+  "original_child_exit": 0,
+  "original_result_sha256": "d0c13432257a374c010e6bdecbfdb621a0b61d2756a2440842205c0f934f18e1",
+  "original_terminal_sha256": "292d925e39571f2cec99de8bc5d4ca122cc58c104fbe7bd5978971ee4b9ad281",
+  "original_tool_exit": 0,
+  "original_wait_seconds": 60.1631934,
+  "prelock_sha256": "aa13fb2deac73ee873648b016efd0ca80981338fbfda49a13ca98f99c9f546ee",
+  "status": "HRSID_FIT_FROZEN_VECTOR_OCCUPANCY_INDEPENDENT_ACCEPTED_SAFE",
+  "units": "fraction",
+  "vector_targets": {
+    "different_from_raster": 106,
+    "empty_visible_vector_rows": 0,
+    "fractional_targets": 124,
+    "points": 487
+  },
+  "worker_source_sha256": "b7d218ac22c562d7d4e6ece664d5bb9aeb7a23242100a42ea04e968863682e06"
+}
