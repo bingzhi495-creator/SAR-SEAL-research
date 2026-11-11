@@ -63,3 +63,11 @@ Windows CPython 3.10.13 隔离环境使用 PyTorch 1.12.0 CPU、torchvision 0.13
 固定 DEV187 以作者原始推理设置为主，框分数阈值为 0.3、旋转 NMS 阈值 0.1，并用相同整数真值和 COCO `maxDets=[1,10,100]` 评分。作者阈值会在 NMS 前截去低分框，预先单列阈值 0.001 的敏感性结果，保留其他设置与固定 E24 权重。映射保存原图 RLE、逻辑图像身份、作者分数和同分顺序，旋转框另存旁证。三个合成检查已通过，实际权重导出与评分待执行。 [固定评分接线](code/SRNET_SSDD_FIT741_BASELINE_NATIVE_20261111/srnet_dev187_mapping.py)
 
 2026-11-11 11:06（UTC+8）核对同一原 HRSID 协调器仍在训练，SRNet 原生批量 4 的 E24 独立原进程已到第 1 轮第 100 批。完整计划为 24 轮、17,856 次访问与 4,464 次 SGD 更新，最终权重和 DEV187 评分待训练闭合。并行状态下保留宿主内存和显存保护，本次运行耗时受并行负载影响。
+
+## 批量 4 长训的显存分配中断
+
+原版批量 4 长训完成前 3 轮，在第 4 轮完成第 112 批后中止。原训练账本记录连续 670 次 SGD 更新和 2,680 次访问。下一批在原作者掩膜目标采样的 `grid_sample` 前向中申请 2.00 MiB 失败。PyTorch 报告进程分配 4.37 GiB、保留和允许各 6.00 GiB，当时 CUDA 报告设备可用 15.36 GiB。原工人退出 1、原所有者退出 5，进程树已清空，外部资源保护未触发，未写最终检查点。该记录支持进程配额下的分配问题，保留为训练中断。 [实测中断与计数](results/SRNET_AUTHOR_BATCH4_E24_ALLOCATOR_OOM_ACTUAL_SAFE_20261111.json)
+
+下一次重跑从同一初始化开始，保留原 FP32 批量 4 配方、训练数据与优化器预算。仅在新进程给原 CUDA 分配器设置 `max_split_size_mb:128`。在当前 Torch 1.12.0+cu116 上实际读到 `max_split_size=134217728`，该探测没有模型前向或优化器更新。当前并行的 HRSID 与 SSDD 训练仍在消费 GPU，资源允许时再运行完整重试，验证能否越过第 4 轮原失败批。 [PyTorch 1.12 CUDA 分配器](https://github.com/pytorch/pytorch/blob/v1.12.0/docs/source/notes/cuda.rst#memory-management)
+
+DEV187 的作者原生 CPU FP32 导出已完成 4 项合成核对，含原输出形状、权重闭合约束和两种预锁阈值。固定作者 NMS 创建 CPU 标签，CPU 路径保留作者实现，推理耗时以实际设备记录。待验收的同一 E24 权重分别用于 0.3 主结果和 0.001 敏感性。 [原生导出入口](code/SRNET_SSDD_FIT741_BASELINE_NATIVE_20261111/srnet_dev187_export.py)
