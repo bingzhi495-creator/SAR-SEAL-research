@@ -28,3 +28,9 @@
 - **外推结果按训练方式区分。** SSDD 目标域同预算 E24 重训的首个配对已独立验收，固定整数 DEV187 的 mask AP **67.819→69.500（+1.680 点）**，AP75 +1.533、AP90 +3.411。该配对为单种子、历史接触开发集和自然目标保留。冻结源模型转到 SSDD DEV187 的三组平均提升仍为 +0.376 点，未通过预锁门槛。含陆地图三组总 AP 下降，等候选数量后 AP50 仍下降。后续需重复 SSDD 种子、做固定候选及共同监督机制核验，并完成正式 HRSID 评价及独立外部验证。单次复合中心已改善真实裁剪标签几何，冻结头短窗仅 +0.065 IoU 点，低于预设 0.5 点，完整 B/C 训练仍待验证。 [SSDD 目标域验收](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-目标域同预算-e24-实测) · [冻结迁移分层](HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#含陆地图-ap50-的候选与评分对照) · [B/C 训练协议](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#逐步中心与单次复合中心的正式-e24-入口)
 
 表中 45／100 是 2026-11-09 的历史阶段估计。当前证据可以写入结果与失败分析，投稿判定仍取决于技术差异及机制拆分、同预算跨库和正式评价。
+
+### 2026-11-11 复合重采样的直接先例
+
+MONAI 已验证对图像和语义标签推迟空间变换并合并重采样可以减小标签信息损失，其示例允许在后续旋转时保留先前裁剪外的原始数据。IDALib 在二维训练增强中已经按顺序合并仿射，并对离散掩膜执行单次最近邻。当前 RF-DETR 实现覆盖缩放、图内裁剪和水平翻转，保持原图像分支、框、随机轨迹和共同非空实例，精确计算输出像素中心。对这三类变换，最终像素中心在各级有效域内。裁剪有效域本身不足以构成区别于正确通用复合变换的新原语。 [MONAI 原文](https://pmc.ncbi.nlm.nih.gov/articles/PMC11873007/) · [MONAI 裁剪语义](https://monai.readthedocs.io/en/stable/lazy_resampling.html) · [IDALib 原文](https://nvblanco.github.io/assets/pdf/conferences/2022_euvip.pdf) · [IDALib 变换源码](https://github.com/nvblanco/ida_lib/blob/master/ida_lib/core/pipeline.py#L38-L83)
+
+下一项直接对照是在相同真实增强轨迹上使用通用复合仿射，固定中心及半格取整约定，逐值检查与单次整数参考的监督差。若输出一致，两种写法共享同一几何机制，无需重复训练来证明实现差异。已锁定的 B/C 同预算长训继续回答相对逐步中心的实际效用。可主张的科学证据取决于固定实例后的高 IoU 改善、直缩阴性对照、裁剪分层及跨数据集复现。只有进一步解决可测失败并胜过可复现的常规复合对照，才能主张新增方法。 [真实 OpenCV 5 对照](MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md#opencv-5-在真实-fit-栅格上的直接对照) · [B/C 同预算入口](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#逐步中心与单次复合中心的正式-e24-入口)
