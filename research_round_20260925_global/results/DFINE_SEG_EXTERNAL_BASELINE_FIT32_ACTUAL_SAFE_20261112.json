@@ -1,0 +1,417 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "actual_training_forwards": 8,
+  "author_synthetic_warmup_calls": 1,
+  "ema_state_sha256": "126c13f24c3299e252b0171b0608def743af95f865c7d55e245c9ecc1c8ffd0d",
+  "ema_updates": 8,
+  "fit_annotations_opened": true,
+  "initial_free_cuda_bytes": 24445452288,
+  "initial_mask_tensor_count": 21,
+  "initial_state_sha256": "261c6b73525d29bee9e0d1a095b21ea67ca3d3fbbe2149e077996c0c85fd34a2",
+  "initialized_from_coco_tensors": 806,
+  "installed_exact_author_files": 70,
+  "mask_threshold": 0.5,
+  "max_cuda_allocator_bytes": 10737418240,
+  "nms_iou": 0.7,
+  "no_validation_loader": true,
+  "nonempty_training_targets": 86,
+  "online_state_sha256": "eb7793c89e14444399be022277dcc8d1faf300a316d7454c82f6e09b1411b496",
+  "optimizer_class": "MuonWithAuxAdam",
+  "optimizer_updated": true,
+  "optimizer_updates": 8,
+  "peak_cuda_allocated_bytes": 4738208768,
+  "peak_cuda_reserved_bytes": 5316280320,
+  "physical_batch_size": 4,
+  "posttrain_classes": 1,
+  "posttrain_confidence": 0.0,
+  "posttrain_mask_dtype": "uint8",
+  "posttrain_native_masks_shape": [
+    261,
+    800,
+    800
+  ],
+  "posttrain_nonempty_masks": 261,
+  "posttrain_real_fit_forward_calls": 1,
+  "posttrain_score_range": [
+    0.0008747726678848267,
+    0.02050553448498249
+  ],
+  "prelock_sha256": "0e291848338786edd854b32d39af530ce7e59bbd3b98bb4aaf9d9e15fe0772e6",
+  "raw_polygon_targets": 86,
+  "retained_training_targets": 86,
+  "reused_roots": {
+    "backbone": 312,
+    "decoder": 140,
+    "encoder": 354
+  },
+  "sampler_sha256": "8b43018f1e3ad81809ec67e9764f7d04fbd942ec9d167d694e67bae2c857d93f",
+  "seed": 42,
+  "seeded_new_tensor_names": [
+    "decoder.denoising_class_embed.weight",
+    "decoder.enc_score_head.weight",
+    "decoder.enc_score_head.bias",
+    "decoder.dec_score_head.0.weight",
+    "decoder.dec_score_head.0.bias",
+    "decoder.dec_score_head.1.weight",
+    "decoder.dec_score_head.1.bias",
+    "decoder.dec_score_head.2.weight",
+    "decoder.dec_score_head.2.bias"
+  ],
+  "seeded_new_tensors": 9,
+  "source_checkpoint_sha256": "07500e13824b82c9ee7422fd98736259e3bafcad65bf63f48d0c386a4ba987c1",
+  "source_commit": "b782ece206487792f36c165ca65548154cd12094",
+  "status": "DFINE_SEG_S_HRSID_FIT32_NATIVE_CUDA_QUAL_COMPLETE_V1",
+  "steps": [
+    {
+      "ema_update": 1,
+      "gradient_norm_before_clip": 681.5645141601562,
+      "image_ids": [
+        1888,
+        2472,
+        601,
+        3574
+      ],
+      "loss": 35.57940673828125,
+      "lrs": [
+        9.999999999999983e-05,
+        9.999999999999983e-05,
+        9.999999999999983e-05,
+        9.999999999999983e-05,
+        0.00019999999999999966
+      ],
+      "mask_bce": 0.5012489557266235,
+      "mask_dice": 0.2799960672855377,
+      "native_adam_aux_clock": 1,
+      "nonempty_targets": [
+        1,
+        2,
+        2,
+        1
+      ],
+      "optimizer_returns": 1,
+      "peak_cuda_allocated_bytes": 4388215296,
+      "peak_cuda_reserved_bytes": 5268045824,
+      "retained_targets": [
+        1,
+        2,
+        2,
+        1
+      ],
+      "scheduler_return": 1,
+      "step": 1,
+      "step_seconds": 1.3146894997917116,
+      "tracked_ema_after_sha256": "1dcceccf53d454f6b69ae33a64c237ddc1d158a9df775cfb880c8869f43041ba",
+      "tracked_mask_after_sha256": "9aa169a5813f3821a7f36b8c4ba1161911bd81c44e0f11357cdcf98804cbccf7",
+      "tracked_mask_before_sha256": "c9ff523bd05ede7a3a867f5b1a5ed750a46949c050fdb93222d7762d55fb69f0"
+    },
+    {
+      "ema_update": 2,
+      "gradient_norm_before_clip": 257.20233154296875,
+      "image_ids": [
+        1828,
+        2047,
+        2231,
+        1070
+      ],
+      "loss": 36.601139068603516,
+      "lrs": [
+        0.00010000036254824516,
+        0.00010000036254824516,
+        0.00010000036254824516,
+        0.00010000036254824516,
+        0.00020000072509649032
+      ],
+      "mask_bce": 0.5049619674682617,
+      "mask_dice": 0.3209168016910553,
+      "native_adam_aux_clock": 2,
+      "nonempty_targets": [
+        2,
+        2,
+        1,
+        2
+      ],
+      "optimizer_returns": 2,
+      "peak_cuda_allocated_bytes": 4634652672,
+      "peak_cuda_reserved_bytes": 5316280320,
+      "retained_targets": [
+        2,
+        2,
+        1,
+        2
+      ],
+      "scheduler_return": 2,
+      "step": 2,
+      "step_seconds": 0.3919531998690218,
+      "tracked_ema_after_sha256": "3fd0a729c39e4e2e378c5369f8020d5d152ccf2029390f26ba3dd63971498dc8",
+      "tracked_mask_after_sha256": "2b0fe63dda1782a60aa3f9b0f414a3170fb5ebd1e16bca5e9ec30f8be931447a",
+      "tracked_mask_before_sha256": "9aa169a5813f3821a7f36b8c4ba1161911bd81c44e0f11357cdcf98804cbccf7"
+    },
+    {
+      "ema_update": 3,
+      "gradient_norm_before_clip": 221.0446014404297,
+      "image_ids": [
+        1585,
+        1568,
+        1367,
+        1815
+      ],
+      "loss": 33.509525299072266,
+      "lrs": [
+        0.00010000145019276258,
+        0.00010000145019276258,
+        0.00010000145019276258,
+        0.00010000145019276258,
+        0.00020000290038552516
+      ],
+      "mask_bce": 0.3749719560146332,
+      "mask_dice": 0.3107987344264984,
+      "native_adam_aux_clock": 3,
+      "nonempty_targets": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "optimizer_returns": 3,
+      "peak_cuda_allocated_bytes": 4634652672,
+      "peak_cuda_reserved_bytes": 5316280320,
+      "retained_targets": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "scheduler_return": 3,
+      "step": 3,
+      "step_seconds": 0.38579199998639524,
+      "tracked_ema_after_sha256": "6362da7653e40d3a601b438f460a05e486d968f6c6aaf22229de92bc7921b9d5",
+      "tracked_mask_after_sha256": "e0628da44467189743f3130c0fd307def48029b5e8d5c522f09fbf642d61e61a",
+      "tracked_mask_before_sha256": "2b0fe63dda1782a60aa3f9b0f414a3170fb5ebd1e16bca5e9ec30f8be931447a"
+    },
+    {
+      "ema_update": 4,
+      "gradient_norm_before_clip": 398.1623840332031,
+      "image_ids": [
+        3425,
+        2091,
+        3226,
+        395
+      ],
+      "loss": 34.99639892578125,
+      "lrs": [
+        0.00010000326293289376,
+        0.00010000326293289376,
+        0.00010000326293289376,
+        0.00010000326293289376,
+        0.00020000652586578752
+      ],
+      "mask_bce": 0.7156977653503418,
+      "mask_dice": 0.3253057897090912,
+      "native_adam_aux_clock": 4,
+      "nonempty_targets": [
+        3,
+        1,
+        5,
+        2
+      ],
+      "optimizer_returns": 4,
+      "peak_cuda_allocated_bytes": 4634652672,
+      "peak_cuda_reserved_bytes": 5316280320,
+      "retained_targets": [
+        3,
+        1,
+        5,
+        2
+      ],
+      "scheduler_return": 4,
+      "step": 4,
+      "step_seconds": 0.3850871999748051,
+      "tracked_ema_after_sha256": "ea1f54fa2d1574a43e7dca9d094bb062d805149cf8d7d7583c0ad2dd681040f7",
+      "tracked_mask_after_sha256": "9b44f12d7bec8f1fd27494eebbd25271989072cb61c54a5709cebeb77c3afebb",
+      "tracked_mask_before_sha256": "e0628da44467189743f3130c0fd307def48029b5e8d5c522f09fbf642d61e61a"
+    },
+    {
+      "ema_update": 5,
+      "gradient_norm_before_clip": 208.70950317382812,
+      "image_ids": [
+        3204,
+        3049,
+        111,
+        1877
+      ],
+      "loss": 37.63930130004883,
+      "lrs": [
+        0.00010000580076754495,
+        0.00010000580076754495,
+        0.00010000580076754495,
+        0.00010000580076754495,
+        0.0002000116015350899
+      ],
+      "mask_bce": 0.5681942105293274,
+      "mask_dice": 0.47305727005004883,
+      "native_adam_aux_clock": 5,
+      "nonempty_targets": [
+        2,
+        31,
+        1,
+        2
+      ],
+      "optimizer_returns": 5,
+      "peak_cuda_allocated_bytes": 4634652672,
+      "peak_cuda_reserved_bytes": 5316280320,
+      "retained_targets": [
+        2,
+        31,
+        1,
+        2
+      ],
+      "scheduler_return": 5,
+      "step": 5,
+      "step_seconds": 0.4344111999962479,
+      "tracked_ema_after_sha256": "2017b32069de68b92dc0badfceb859355ce4c32a19fe6e526ce6c7f78b2efcd7",
+      "tracked_mask_after_sha256": "513a26afb993243f536673e550739f30adb148e6653f7cd406263a239f3f6b87",
+      "tracked_mask_before_sha256": "9b44f12d7bec8f1fd27494eebbd25271989072cb61c54a5709cebeb77c3afebb"
+    },
+    {
+      "ema_update": 6,
+      "gradient_norm_before_clip": 388.0075378417969,
+      "image_ids": [
+        1678,
+        1634,
+        1069,
+        2232
+      ],
+      "loss": 36.09026336669922,
+      "lrs": [
+        0.00010000906369518094,
+        0.00010000906369518094,
+        0.00010000906369518094,
+        0.00010000906369518094,
+        0.00020001812739036187
+      ],
+      "mask_bce": 0.3718235492706299,
+      "mask_dice": 0.22284922003746033,
+      "native_adam_aux_clock": 6,
+      "nonempty_targets": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "optimizer_returns": 6,
+      "peak_cuda_allocated_bytes": 4738208768,
+      "peak_cuda_reserved_bytes": 5316280320,
+      "retained_targets": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "scheduler_return": 6,
+      "step": 6,
+      "step_seconds": 0.38542570010758936,
+      "tracked_ema_after_sha256": "51545179d17aa9c89262e245c2b2f8e6a0574e7af23fe0b3c48265180904a871",
+      "tracked_mask_after_sha256": "d3ed41a764366ab1c0638ecb110f0dd6aefa01b38305dd544ec823b13b6813f1",
+      "tracked_mask_before_sha256": "513a26afb993243f536673e550739f30adb148e6653f7cd406263a239f3f6b87"
+    },
+    {
+      "ema_update": 7,
+      "gradient_norm_before_clip": 313.4255065917969,
+      "image_ids": [
+        3208,
+        1037,
+        2994,
+        1524
+      ],
+      "loss": 37.49873733520508,
+      "lrs": [
+        0.00010001305171383149,
+        0.00010001305171383149,
+        0.00010001305171383149,
+        0.00010001305171383149,
+        0.00020002610342766299
+      ],
+      "mask_bce": 0.5570180416107178,
+      "mask_dice": 0.2884860932826996,
+      "native_adam_aux_clock": 7,
+      "nonempty_targets": [
+        3,
+        3,
+        1,
+        1
+      ],
+      "optimizer_returns": 7,
+      "peak_cuda_allocated_bytes": 4738208768,
+      "peak_cuda_reserved_bytes": 5316280320,
+      "retained_targets": [
+        3,
+        3,
+        1,
+        1
+      ],
+      "scheduler_return": 7,
+      "step": 7,
+      "step_seconds": 0.3824169000145048,
+      "tracked_ema_after_sha256": "de67e1fa14fa122f9bc2c18271fbb1f23f99b27429c3fbf6438f882822b889ff",
+      "tracked_mask_after_sha256": "50cc4eca97148f239282d89201fc644b8b0affd8338ec0efb1d1295e7a6224bb",
+      "tracked_mask_before_sha256": "d3ed41a764366ab1c0638ecb110f0dd6aefa01b38305dd544ec823b13b6813f1"
+    },
+    {
+      "ema_update": 8,
+      "gradient_norm_before_clip": 240.72158813476562,
+      "image_ids": [
+        3155,
+        2745,
+        1077,
+        1094
+      ],
+      "loss": 35.10612487792969,
+      "lrs": [
+        0.00010001776482108666,
+        0.00010001776482108666,
+        0.00010001776482108666,
+        0.00010001776482108666,
+        0.00020003552964217332
+      ],
+      "mask_bce": 0.39467355608940125,
+      "mask_dice": 0.23954373598098755,
+      "native_adam_aux_clock": 8,
+      "nonempty_targets": [
+        2,
+        1,
+        2,
+        4
+      ],
+      "optimizer_returns": 8,
+      "peak_cuda_allocated_bytes": 4738208768,
+      "peak_cuda_reserved_bytes": 5316280320,
+      "retained_targets": [
+        2,
+        1,
+        2,
+        4
+      ],
+      "scheduler_return": 8,
+      "step": 8,
+      "step_seconds": 0.3819911000318825,
+      "tracked_ema_after_sha256": "2bc4ed8c63441873222ba56fc0f91df2616208380efff4eaaa313fc2bd3a0fd9",
+      "tracked_mask_after_sha256": "3efd925115249d931df52f828d3dabaf2e378f3e4f9dd0eeaf0e065cd3dc5e63",
+      "tracked_mask_before_sha256": "50cc4eca97148f239282d89201fc644b8b0affd8338ec0efb1d1295e7a6224bb"
+    }
+  ],
+  "total_worker_model_seconds": 34.604086600011215,
+  "tracked_mask_name": "decoder.mask_decoder.lateral.0.weight",
+  "training_visits": 32,
+  "training_wall_seconds": 4.061766799772158,
+  "updated_checkpoint_bytes": 47721839,
+  "updated_checkpoint_sha256": "57e4aa3cbd632e17d7abff98bd091cb6315d7345808efefb3186734a306d5f1c",
+  "versions": {
+    "albumentations": "2.0.8",
+    "dfine-seg": "0.7.0",
+    "torch": "2.13.0+cu130",
+    "torchvision": "0.28.0+cu130"
+  }
+}

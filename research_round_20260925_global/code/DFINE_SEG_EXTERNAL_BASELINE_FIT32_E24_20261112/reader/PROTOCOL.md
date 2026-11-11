@@ -1,0 +1,3 @@
+# D-FINE-seg-S full FIT reader qualification
+
+Qualify only the official v0.7.0 one-class COCO polygon reader on the exact closed native HRSID FIT2937 index and layout manifest. No image decode, model construction, optimizer, AP, DEV or TEST. Verify the running author dataset module is byte-identical to the pinned source. Independently compare every accepted filename, class, box and polygon part in the native FIT order, keep ignore/crowd, multipart, finite, empty and warning counts. Failure is data or reader qualification, not model performance. Scientific role is full data admission for the later E24 baseline. A later run must independently lock realized image order, batch padding and the evaluation procedure.
