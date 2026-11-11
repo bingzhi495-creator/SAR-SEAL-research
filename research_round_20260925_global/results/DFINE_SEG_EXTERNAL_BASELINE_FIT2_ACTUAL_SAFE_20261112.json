@@ -1,0 +1,116 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "actual_training_forwards": 2,
+  "author_synthetic_warmup_calls": 1,
+  "ema_state_sha256": "e9078e7d1312e61f9cc20d99dfa12eb6502905158822925dd9b3f5e73d984bd7",
+  "ema_updates": 2,
+  "fit_annotations_opened": true,
+  "initial_mask_tensor_count": 21,
+  "initial_state_sha256": "261c6b73525d29bee9e0d1a095b21ea67ca3d3fbbe2149e077996c0c85fd34a2",
+  "initialized_from_coco_tensors": 806,
+  "installed_exact_author_files": 70,
+  "mask_threshold": 0.5,
+  "nms_iou": 0.7,
+  "no_validation_loader": true,
+  "online_state_sha256": "584418059d837cccffc647cf02a72b358fa062a0583c2b5ddef1fdee4b20aa19",
+  "optimizer_class": "MuonWithAuxAdam",
+  "optimizer_updated": true,
+  "optimizer_updates": 2,
+  "posttrain_classes": 1,
+  "posttrain_confidence": 0.0,
+  "posttrain_mask_dtype": "uint8",
+  "posttrain_native_masks_shape": [
+    281,
+    800,
+    800
+  ],
+  "posttrain_nonempty_masks": 281,
+  "posttrain_real_fit_forward_calls": 1,
+  "posttrain_score_range": [
+    0.001042403862811625,
+    0.022212909534573555
+  ],
+  "prelock_sha256": "55605cb27e08068d8700112bacd0741631ea8aeecd1212ffd4921190e9f8838c",
+  "reused_roots": {
+    "backbone": 312,
+    "decoder": 140,
+    "encoder": 354
+  },
+  "seed": 42,
+  "seeded_new_tensor_names": [
+    "decoder.denoising_class_embed.weight",
+    "decoder.enc_score_head.weight",
+    "decoder.enc_score_head.bias",
+    "decoder.dec_score_head.0.weight",
+    "decoder.dec_score_head.0.bias",
+    "decoder.dec_score_head.1.weight",
+    "decoder.dec_score_head.1.bias",
+    "decoder.dec_score_head.2.weight",
+    "decoder.dec_score_head.2.bias"
+  ],
+  "seeded_new_tensors": 9,
+  "source_checkpoint_sha256": "07500e13824b82c9ee7422fd98736259e3bafcad65bf63f48d0c386a4ba987c1",
+  "source_commit": "b782ece206487792f36c165ca65548154cd12094",
+  "status": "DFINE_SEG_S_HRSID_FIT2_NATIVE_CPU_QUAL_COMPLETE_V1",
+  "steps": [
+    {
+      "ema_update": 1,
+      "gradient_norm_before_clip": 231.7129669189453,
+      "image_id": 0,
+      "loss": 36.9317741394043,
+      "lrs": [
+        9.999999999999983e-05,
+        9.999999999999983e-05,
+        9.999999999999983e-05,
+        9.999999999999983e-05,
+        0.00019999999999999966
+      ],
+      "mask_bce": 0.5935474038124084,
+      "mask_dice": 0.5957507491111755,
+      "native_adam_aux_clock": 1,
+      "optimizer_returns": 1,
+      "retained_targets": 13,
+      "scheduler_return": 1,
+      "step": 1,
+      "tracked_ema_after_sha256": "4aeaa1ce8e6d2d4a6410873990a27445489bf9e58506bbf77c18e87716b9a7e9",
+      "tracked_mask_after_sha256": "d9e04661c3fae92097dab4454be12a2d0aec623c4744a722a67b0b621871faff",
+      "tracked_mask_before_sha256": "c9ff523bd05ede7a3a867f5b1a5ed750a46949c050fdb93222d7762d55fb69f0"
+    },
+    {
+      "ema_update": 2,
+      "gradient_norm_before_clip": 367.3880920410156,
+      "image_id": 1,
+      "loss": 35.1633415222168,
+      "lrs": [
+        0.00010000002269715865,
+        0.00010000002269715865,
+        0.00010000002269715865,
+        0.00010000002269715865,
+        0.0002000000453943173
+      ],
+      "mask_bce": 0.5477252006530762,
+      "mask_dice": 0.32215651869773865,
+      "native_adam_aux_clock": 2,
+      "optimizer_returns": 2,
+      "retained_targets": 4,
+      "scheduler_return": 2,
+      "step": 2,
+      "tracked_ema_after_sha256": "84badb026ca2d71a8c3085b36d2fa4c88d67cca7dda6e72f45d053b4e2bb9770",
+      "tracked_mask_after_sha256": "e5ad47135140803b3aa03bce0c2cdb229afcaaba5cbe9474c91d719ca42a7284",
+      "tracked_mask_before_sha256": "d9e04661c3fae92097dab4454be12a2d0aec623c4744a722a67b0b621871faff"
+    }
+  ],
+  "tracked_mask_name": "decoder.mask_decoder.lateral.0.weight",
+  "training_visits": 2,
+  "updated_checkpoint_bytes": 47762132,
+  "updated_checkpoint_sha256": "7f180e6a9eae818d220e24ea56b74aebf816c9a148d087833991ed3739f7b3d8",
+  "versions": {
+    "albumentations": "2.0.8",
+    "dfine-seg": "0.7.0",
+    "torch": "2.13.0+cpu",
+    "torchvision": "0.28.0+cpu"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "archive": "after_step2_author_ema",
+  "author_config_sha256": "a94606169aa20d097b9d88290c50a054f2d7ba5b0a5a6df3728191c3f9f13fdb",
+  "batch_size": 1,
+  "coco_checkpoint_sha256": "07500e13824b82c9ee7422fd98736259e3bafcad65bf63f48d0c386a4ba987c1",
+  "ema_updates": 2,
+  "image_selection": "first_two_sorted_closed_fit_ids",
+  "input_hw": [
+    640,
+    640
+  ],
+  "keep_ratio": false,
+  "mosaic_probability": 0.0,
+  "multiscale_probability": 0.0,
+  "native_fit_index_sha256": "e95cf26cc60a2c6fb651e907541380a256f2df7b1e153244a6c0f803b0b19f8f",
+  "native_fit_manifest_sha256": "a7e4d2a7ff9e8ff238adbf94a1d0397553d8746e2558c316db4e417f86f8fec9",
+  "optimizer": "author_MuonWithAuxAdam_with_Adan_auxiliary_groups",
+  "optimizer_updates": 2,
+  "ordered_training_visits": 2,
+  "other_train_augs": "author_cfg_seeded",
+  "posttrain_confidence": 0.0,
+  "posttrain_fit_image_id": 0,
+  "precision": "FP32_forward_backward",
+  "scheduler": {
+    "name": "author_OneCycleLR",
+    "nominal_fit_steps_per_epoch": 2937,
+    "pct_start": 0.1,
+    "planned_epochs": 55,
+    "total_steps": 161535,
+    "updates_to_observe": 2
+  },
+  "seed": 42,
+  "selected": [
+    {
+      "annotation_count": 13,
+      "decoded_rgb_sha256": "2494243d1817c78b21eed4fd33ea2cecb2743bfb5100f756b38b19c253808ccb",
+      "image_id": 0,
+      "png_bytes": 1769250,
+      "png_sha256": "83a09088ce3c695fa4e7d40f9573a4b292c81be2423d9dbb0584fbb161c70010"
+    },
+    {
+      "annotation_count": 5,
+      "decoded_rgb_sha256": "3942da5c6b1f53c0c0d39c47ed666e4e33e0b56bb6096a3c30f0cdf7d61d51d5",
+      "image_id": 1,
+      "png_bytes": 1516922,
+      "png_sha256": "0e3abec67c4c7986c705ff01e246a1b5cc5d635b80f9c3426981fd88d41ca12d"
+    }
+  ],
+  "source_commit": "b782ece206487792f36c165ca65548154cd12094",
+  "status": "DFINE_SEG_S_HRSID_FIT2_TRAIN_PRELOCK_V1",
+  "torch_threads": 1
+}
