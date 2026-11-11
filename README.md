@@ -22,6 +22,7 @@
 - [HRSID 一像素形态基线实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#一像素二值形态规则的真实评分)。固定中心臂 67,386 条候选，补孔和去孤点的 mask AP 变化 +0.00263 点，AP90 与同编辑量随机臂一致，原固定匹配无严格新增或失守。
 - [HRSID FIT114 边界分数与采样相位实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-冻结边界分数与采样相位对照)。独立核对 414,942 个边界点。55 张留出图上真实相位仅改 4 像素，严格达标净变化为 0，与同编辑量的有序 logits 和打乱相位的总裕量相同。
 - [HRSID FIT114 局部强度五折实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-渲染强度与等编辑量的五折实测)。真实强度在等预算下胜过有序 logits 和置换强度的裕量，弱于绝对 logit 与原掩膜。当前编辑规则止于 FIT。
+- [HRSID 输出网格实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-输出网格的误差下界与可表达性实测)。496 条 FIT 标注上，距离场构造达到 IoU 0.90 的数量为 228→437，净增全部在小目标。粗网格有 3 条不可达证书，未测模型 AP。
 - [Phoenix 外部细化对照的 CPU 编码实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#phoenix-官方样例的-cpu-编码实测)。官方 EfficientViT-XL1 权重已核验，作者示例完成图像编码。提示生成、五轮解码与 SAR 固定候选评分待执行。
 - [Phoenix DGX 完整推理和 HRSID FIT 试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#phoenix-完整推理与固定-fit-候选试点)。作者样例的单掩膜与批量结果逐像素一致。两图 145 条原候选中，官方 1% 门槛激活 0 条；全非空适配改动 39 条，两个固定配对的平均 IoU 0.848→0.768。
 - [OpenCV 新旧最近邻复算](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md#opencv-5-原生与精确最近邻实测)。Windows 4.5.5 与 5.0.0 默认输出相同。5.0.0 显式精确模式与整数参考的差异集中于半格平局。
@@ -36,7 +37,7 @@
 - [固定点目标值试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定监督点目标值试点实测)。同一 487 点、三臂各 8 次真实更新，单次复合中心相对逐步中心在裁剪留出上 +0.065 IoU 点，低于预设 0.5 点。连续值对照精确复现。
 - [冻结模型的点监督分配试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#冻结模型点监督诊断预锁)。固定八张源图上的分歧富集为同配额随机期望的 1.87 倍。随后同预算 8 次原生投影更新的轮廓指标未达到晋级门槛。
 - [HRSID 训练标签的多边形优先对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#hrsid-fit-only-多边形优先对照)。456 个固定训练视图已完成。核心裁剪中单次中心相对逐步中心在两种参考下提升 +6.45、+6.27 个几何 IoU 点。模型效用待同预算实测。
-- [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#海面实测输入与首轮迁移对照)。IPIX 真实浮球回波和六份星载复数训练块通过 FFT 核验。一对阳性 SLC 与 RAW 源产品已核对，配对数组待取得。KuRALS-PD 用于受控定位，另补核 LSS-PR-1.0 的快艇、客轮与杂波标签范围。RD 模型收益待实测。
+- [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#train-395-阳性同景数组的实测读回)。已取得同编号有船样本的 VH 聚焦 SLC、复数距压及 GRD，FFT 和标注距离列通过复算。ASF 和 Copernicus 足迹将外部 burst 候选从 9 更正为 5，完整配准及模型收益待测。
 
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 

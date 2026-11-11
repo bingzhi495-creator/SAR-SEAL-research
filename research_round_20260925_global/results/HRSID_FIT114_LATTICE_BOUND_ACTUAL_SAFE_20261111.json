@@ -1,0 +1,265 @@
+{
+  "fit_bundle_sha256": "af12a4e86ea36e9d7fe6ac47b17c684a4812baba6aa9be019f889f833e0f577c",
+  "fit_cohort_sha256": "70e9a0e8fb30f5ba70b48b9067c1b95d07bfec23d6b248d92c5983727acceb6e",
+  "fit_index_sha256": "6f25f80ed0e0b9c3f0c57ab6cc3b25e947a102353757a33bca4d3823df3d547d",
+  "fit_role_sha256": "ce308cf07c8b0d1e0db09f051f1a3a6699fc5a06b383029acda966bacfdbbfb6",
+  "geometry": {
+    "align_corners": false,
+    "arithmetic": "exact_coordinate_real_logit_relaxation",
+    "input_axes": [
+      144,
+      288
+    ],
+    "mode": "bilinear",
+    "output_shape": [
+      800,
+      800
+    ],
+    "per_threshold_fn_fp_weights": {
+      "75": [
+        4,
+        3
+      ],
+      "90": [
+        10,
+        9
+      ]
+    },
+    "size_bins": "decoded_foreground_area_at_32_squared_and_96_squared"
+  },
+  "loader_sha256": "261f533956651b6cd3868ebfa91624ed5a6b8efa7b40b69cb26254d3b09dd05d",
+  "population": {
+    "core_images": 109,
+    "core_source_groups": 109,
+    "stress_images_excluded": 5
+  },
+  "scope": {
+    "AP": false,
+    "DEV": false,
+    "FIT": true,
+    "TEST": false,
+    "detector_optimizer_updates": 0,
+    "image_members_decoded": false,
+    "model_forward_calls": 0,
+    "predictions": false
+  },
+  "status": "HRSID_FIT114_BILINEAR_LATTICE_CAPACITY_LOWER_BOUND_COMPLETE_V1",
+  "strata": {
+    "all": {
+      "144": {
+        "75": {
+          "bound_over_area_max": 0.8823529411764706,
+          "bound_over_area_mean": 0.03204800327824074,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 335
+        },
+        "90": {
+          "bound_over_area_max": 2.6470588235294117,
+          "bound_over_area_mean": 0.09448972928640151,
+          "certified_below_threshold": 3,
+          "groups_with_certificate": 3,
+          "positive_cost_lower_bound": 335
+        }
+      },
+      "288": {
+        "75": {
+          "bound_over_area_max": 0.12,
+          "bound_over_area_mean": 0.0022654423136969433,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 48
+        },
+        "90": {
+          "bound_over_area_max": 0.36,
+          "bound_over_area_mean": 0.006796326941090829,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 48
+        }
+      },
+      "instances": 496,
+      "paired_288_vs_144": {
+        "75": {
+          "bound_equal": 162,
+          "bound_increased": 7,
+          "bound_reduced": 327,
+          "certified_144_only": 0,
+          "certified_288_only": 0,
+          "certified_both": 0
+        },
+        "90": {
+          "bound_equal": 162,
+          "bound_increased": 7,
+          "bound_reduced": 327,
+          "certified_144_only": 3,
+          "certified_288_only": 0,
+          "certified_both": 0
+        }
+      },
+      "source_groups": 109
+    },
+    "large": {
+      "144": {
+        "75": {
+          "bound_over_area_max": 0.00025148797049207814,
+          "bound_over_area_mean": 8.989998244101809e-05,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 3
+        },
+        "90": {
+          "bound_over_area_max": 0.0007544639114762344,
+          "bound_over_area_mean": 0.00026969994732305424,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 3
+        }
+      },
+      "288": {
+        "75": {
+          "bound_over_area_max": 0.0,
+          "bound_over_area_mean": 0.0,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 0
+        },
+        "90": {
+          "bound_over_area_max": 0.0,
+          "bound_over_area_mean": 0.0,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 0
+        }
+      },
+      "instances": 7,
+      "paired_288_vs_144": {
+        "75": {
+          "bound_equal": 4,
+          "bound_increased": 0,
+          "bound_reduced": 3,
+          "certified_144_only": 0,
+          "certified_288_only": 0,
+          "certified_both": 0
+        },
+        "90": {
+          "bound_equal": 4,
+          "bound_increased": 0,
+          "bound_reduced": 3,
+          "certified_144_only": 0,
+          "certified_288_only": 0,
+          "certified_both": 0
+        }
+      },
+      "source_groups": 2
+    },
+    "medium": {
+      "144": {
+        "75": {
+          "bound_over_area_max": 0.018260869565217393,
+          "bound_over_area_mean": 0.0023433353980379843,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 30
+        },
+        "90": {
+          "bound_over_area_max": 0.05478260869565217,
+          "bound_over_area_mean": 0.006845766310161393,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 30
+        }
+      },
+      "288": {
+        "75": {
+          "bound_over_area_max": 0.002835538752362949,
+          "bound_over_area_mean": 0.0001636271043275202,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 3
+        },
+        "90": {
+          "bound_over_area_max": 0.008506616257088847,
+          "bound_over_area_mean": 0.0004908813129825606,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 3
+        }
+      },
+      "instances": 42,
+      "paired_288_vs_144": {
+        "75": {
+          "bound_equal": 12,
+          "bound_increased": 0,
+          "bound_reduced": 30,
+          "certified_144_only": 0,
+          "certified_288_only": 0,
+          "certified_both": 0
+        },
+        "90": {
+          "bound_equal": 12,
+          "bound_increased": 0,
+          "bound_reduced": 30,
+          "certified_144_only": 0,
+          "certified_288_only": 0,
+          "certified_both": 0
+        }
+      },
+      "source_groups": 25
+    },
+    "small": {
+      "144": {
+        "75": {
+          "bound_over_area_max": 0.8823529411764706,
+          "bound_over_area_mean": 0.035339508365576575,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 302
+        },
+        "90": {
+          "bound_over_area_max": 2.6470588235294117,
+          "bound_over_area_mean": 0.10420021396285707,
+          "certified_below_threshold": 3,
+          "groups_with_certificate": 3,
+          "positive_cost_lower_bound": 302
+        }
+      },
+      "288": {
+        "75": {
+          "bound_over_area_max": 0.12,
+          "bound_over_area_mean": 0.002498405031794022,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 45
+        },
+        "90": {
+          "bound_over_area_max": 0.36,
+          "bound_over_area_mean": 0.007495215095382067,
+          "certified_below_threshold": 0,
+          "groups_with_certificate": 0,
+          "positive_cost_lower_bound": 45
+        }
+      },
+      "instances": 447,
+      "paired_288_vs_144": {
+        "75": {
+          "bound_equal": 146,
+          "bound_increased": 7,
+          "bound_reduced": 294,
+          "certified_144_only": 0,
+          "certified_288_only": 0,
+          "certified_both": 0
+        },
+        "90": {
+          "bound_equal": 146,
+          "bound_increased": 7,
+          "bound_reduced": 294,
+          "certified_144_only": 3,
+          "certified_288_only": 0,
+          "certified_both": 0
+        }
+      },
+      "source_groups": 94
+    }
+  }
+}
