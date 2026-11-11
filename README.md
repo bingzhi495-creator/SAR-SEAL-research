@@ -51,6 +51,7 @@
 - [HRSID 原生 E24 训练与 DEV705 实测](research_round_20260925_global/HRSID_COCO_E24_DEV705_NATIVE_EVALUATION_PROTOCOL_20261109.md)。原训练独立验收 24 轮、17,640 次 AdamW 和 EMA 更新，三处固定归档通过。固定 DEV705 的 mask AP **50.427**、AP75 **54.466**、AP90 **1.466**。HRSID 官方 TEST 继续隔离。[固定候选误差普查](research_round_20260925_global/HRSID_DEV705_NATIVE_CANDIDATE_COVERAGE_PROTOCOL_20261109.md)独立复算确认 1,778 个有效 GT 仅 104 个有 0.90 达标候选，原顺序达到最大一对一匹配数。
 - [HRSID 历史 DEV705 固定掩膜平移](research_round_20260925_global/HRSID_DEV705_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。1,049 个近严格配对中，±2 像素真值辅助平移恢复 159 个，361 个受面积比限制。固定上移新增 82 个并损失 48 个既有严格配对。
 - [RD 原生格点及输入核验](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#原生-rd-网格与模型接入核验)。64×800 合成图的裁补往返逐格一致，核查了 RF-DETR 默认缩放与补边影响的验证条件。公开母幅目录未提供所需的逐行注释，真实 RD 模型分数待测。
+- [D-FINE-seg-S 外部对照入口](research_round_20260925_global/DFINE_SEG_EXTERNAL_BASELINE_FIT1_20261112.md)已验证作者源码、官方 COCO 初值和 HRSID 单图原生掩膜，SAR 训练与评分待执行。
 - [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移，用真实配对、错配和重聚焦对照检验空间轮廓收益。真实 RD 模型分数待测。
 - [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。
 - [HRSID FIT 的原生 164 查询与候选保留对照](research_round_20260925_global/HRSID_FIT_NATIVE_QUERY_RETENTION_PROTOCOL_20261109.md)。实测全查询严格匹配 37→39，等量非空保持 37。密集压力图在 0.50 多 36 个，0.90 仍为零。独立复算后按预设门槛停止筛选分支。

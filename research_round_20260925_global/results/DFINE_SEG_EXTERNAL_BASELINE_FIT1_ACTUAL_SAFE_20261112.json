@@ -1,0 +1,72 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "GT_opened": false,
+  "TEST": false,
+  "actual_native_forward_calls": 2,
+  "author_code_config_files_exact": 70,
+  "author_commit": "b782ece206487792f36c165ca65548154cd12094",
+  "author_postprocessing": {
+    "keep_ratio": false,
+    "mask_threshold": 0.5,
+    "nms": true,
+    "nms_iou": 0.7,
+    "real_probe_confidence": 0.0,
+    "top_queries": 300,
+    "wrapper_default_confidence": 0.5
+  },
+  "boxes_shape": [
+    84,
+    4
+  ],
+  "checkpoint_bytes": 48119167,
+  "checkpoint_sha256": "07500e13824b82c9ee7422fd98736259e3bafcad65bf63f48d0c386a4ba987c1",
+  "cuda_compiled": false,
+  "cuda_initialized": false,
+  "decoded_rgb_sha256": "2494243d1817c78b21eed4fd33ea2cecb2743bfb5100f756b38b19c253808ccb",
+  "encoded_image_sha256": "83a09088ce3c695fa4e7d40f9573a4b292c81be2423d9dbb0584fbb161c70010",
+  "fit_png_forward_calls": 1,
+  "input_image_lock_sha256": "7fa942c8197b3ca225609e3d91250def81d917ef7d14507d340244e6e87010cc",
+  "mask_dtype": "uint8",
+  "masks_shape": [
+    84,
+    800,
+    800
+  ],
+  "model_size": "s",
+  "network_input_hw": [
+    640,
+    640
+  ],
+  "nonempty_masks": 84,
+  "optimizer_updates": 0,
+  "original_hw": [
+    800,
+    800
+  ],
+  "prediction_tensor_sha256": {
+    "boxes": "5ab4d28524001fdc014ed2837552bf2c7040e15a96e7d870a9e3f2f94ac7e724",
+    "labels": "c39b511e2a92ce2226b3ab8f5a1d8352e2895420f7b3568b4053e1af1e2df244",
+    "masks": "264fdadb73240078981991524b80e1526a774c3f12ee5fa5d9b9291255737006",
+    "scores": "f51e9b0d82cba2267d9c2de228f621da92fc649dfbf004c71439a383eaa7d752"
+  },
+  "prior_closed_wait_sha256": "89c1b6477a732a95e6e9371a8971041ca760fa053c616361c56106a5a7a32b63",
+  "real_fit_forward_and_postprocess_seconds": 0.8744523001369089,
+  "runtime": {
+    "dfine-seg": "0.7.0",
+    "numpy": "2.4.6",
+    "opencv-python-headless": "5.0.0.93",
+    "torch": "2.13.0+cpu",
+    "torchvision": "0.28.0+cpu"
+  },
+  "score_max": 0.32844269275665283,
+  "score_min": 0.07715559750795364,
+  "scores_nonincreasing": true,
+  "status": "DFINE_SEG_AUTHOR_CPU_HRSID_FIT1_NATIVE_MASK_PROBE_COMPLETE_V1",
+  "stock_classes": 80,
+  "synthetic_author_warmup_forwards": 1,
+  "torch_cpu_threads": 1,
+  "total_model_and_real_seconds": 1.7417111000977457,
+  "training": false
+}
