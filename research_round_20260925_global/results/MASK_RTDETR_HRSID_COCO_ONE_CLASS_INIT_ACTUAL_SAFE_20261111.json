@@ -1,0 +1,74 @@
+{
+  "AP": false,
+  "DEV": false,
+  "GPU": false,
+  "TEST": false,
+  "asset_sha256": "d71ea6590442d1c3d6118fe0558b4a9fe84283a4832b12dc6d7b5c8cf3e09d9f",
+  "cpu_paddle": "2.6.2",
+  "dataset_opened": false,
+  "dtype_mismatches": 0,
+  "elapsed_seconds": 4.835342500125989,
+  "exact_loaded_tensors": 643,
+  "loaded_parameter_tensors_by_module": {
+    "backbone": 210,
+    "neck": 264,
+    "transformer": 169
+  },
+  "loaded_source_names_remapped": 0,
+  "loaded_tensors_by_module": {
+    "backbone": 210,
+    "neck": 264,
+    "transformer": 169
+  },
+  "loaded_trainable_parameter_tensors_by_module": {
+    "backbone": 37,
+    "neck": 164,
+    "transformer": 163
+  },
+  "model_forward_calls": 0,
+  "native_loader": "ppdet.utils.checkpoint.load_pretrain_weight",
+  "optimizer_updates": 0,
+  "seed": 20261111,
+  "source_tensors": 646,
+  "status": "MASK_RTDETR_S_NATIVE_COCO_TO_ONE_SHIP_CLASS_INITIALIZATION_VERIFIED_V1",
+  "stock_parameter_tensors": 646,
+  "stock_target_tensors": 646,
+  "stock_trainable_parameter_tensors": 367,
+  "untouched_seeded_mismatches": [
+    {
+      "name": "transformer.denoising_class_embed.weight",
+      "source_shape": [
+        80,
+        256
+      ],
+      "target_shape": [
+        1,
+        256
+      ],
+      "trainable": true
+    },
+    {
+      "name": "transformer.score_head.bias",
+      "source_shape": [
+        80
+      ],
+      "target_shape": [
+        1
+      ],
+      "trainable": true
+    },
+    {
+      "name": "transformer.score_head.weight",
+      "source_shape": [
+        256,
+        80
+      ],
+      "target_shape": [
+        256,
+        1
+      ],
+      "trainable": true
+    }
+  ],
+  "upstream_commit": "b25522a0f4bde8c80603f3ba5e3472059972e3b5"
+}
