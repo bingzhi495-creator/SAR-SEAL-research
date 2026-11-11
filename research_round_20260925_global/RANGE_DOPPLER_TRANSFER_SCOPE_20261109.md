@@ -274,3 +274,19 @@ ASF 和 Copernicus 同一母产品的十个 IW2／VH 目录足迹独立核对一
 同景轮廓试验加入已知配准偏移，检验候选边界改进是否随错位加重而衰减。先用独立物理定位参考估计配准残差，在留出评分前按原生格点固定可接受残差和偏移阶梯。推理时保持候选与分数相同，分别沿斜距与方位改变真实回波窗位置，保留同条件错配和常规重聚焦对照。主报固定候选的逐实例 IoU 差值和正式 mask AP75/AP90，按采集统计。现有 395 样本的近船距离剖面相关约 −0.045，这一项只比较原生剖面，独立配准仍待验证。 [同景数组实测](results/OPEN_SAR_TRAIN395_PAIR_READBACK_ACTUAL_SAFE_20261111.json) · [多普勒船舶框检测先例](https://doi.org/10.3390/rs18081166)
 
 PeakConv 已在车载 RD 分割中学习以回波峰为中心的感受野，MARSS 在 CARRADA 使用多尺度和方向建模。自研 UNet++ 的双方向模块若改用于 RD，须先与同架构普通卷积比较，固定物理坐标和算力预算。这两项先例可用于道路任务比较，海面迁移效用须在独立采集上验证。 [PeakConv，CVPR 2023](https://openaccess.thecvf.com/content/CVPR2023/html/Zhang_PeakConv_Learning_Peak_Receptive_Field_for_Radar_Semantic_Segmentation_CVPR_2023_paper.html) · [MARSS，CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/html/Chen_MARSS_Radar_Semantic_Segmentation_via_Modular_Attention_and_State_Space_CVPR_2026_paper.html)
+
+
+## 从空间模型迁移到 RD 的首轮验收
+
+2026-11-12 复核。现有自定义 UNet++ 的多尺度特征提取和嵌套跳连可作为可复用结构。现有 RF-DETR 的中心采样是训练监督干预。优先用已完成对照的同架构检查点检验权重迁移，待确定目标域确有同类格点变换后，再单独检验采样规则。当前没有真实 RD 模型分数。 [自定义 UNet++ 模块核查](UNETPP_MODULE_MODIFICATIONS_CONFIRMED_20261017.md) · [固定共同监督的训练对照](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行-e24-的固定-dev705-实测)
+
+| 输入及目标 | 第一项可判别的验证 |
+| --- | --- |
+| 海面雷达的距离 × 径向速度 | 保留原生格点，先用功率输入、新定位头与原轴坐标回归。冻结主干比较通用预训练、HRSID 原生权重、HRSID 同实例中心监督权重，再按相同预算微调。只有把同一初始化、同一头和预算下的自定义 UNet++ 与普通 UNet++ 比较，才可将差值归于结构改动。按采集整段留出，独立航迹支持距离与速度误差，未筛选搜索域和经核对背景支持固定虚警下的检出率。 [KuRALS-PD 论文](https://doi.org/10.3390/rs18010173) |
+| 同景 SAR 成像前复数数据与已聚焦图 | 沿用现有空间候选和掩膜头。按采集几何取局部回波，在聚焦图上细化边界。先用现有框和传感器元数据验配准，再取得独立空间实例掩膜。第一轮比较空间单支、常规重聚焦、同容量错配和真实配对。统一候选、分数和评价，检验预定义失焦组的固定候选 IoU 和整体 mask AP75／AP90。 [OpenSAR Insight 数据卡](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset) · [失焦船舶框检测先例](https://doi.org/10.3390/rs18081166) |
+
+**配准精度的数量级。** 对高宽为 $h,w$ 的理想矩形，保持形状和面积，沿两轴平移 $(d_x,d_y)$ 时，交集面积为 $(w-|d_x|)_+(h-|d_y|)_+$，再除以两矩形并集面积得到 IoU。仅沿短轴平移时，要达到 IoU $t$，平移绝对值上限为 $w(1-t)/(1+t)$，其中 $w$ 为短轴宽度。在原生空间掩膜格点上，3 像素宽目标对应 IoU 0.75 和 0.90 的单轴上限分别约 0.429、0.158 像素，5 像素宽时约 0.714、0.263 像素。四个值已代回公式复算。该算例只用于设定错位敏感性试验的量级，实际残差预算须在训练侧按船宽和原生轮廓复算，联合考虑两轴偏差及参考点误差。配准评分使用独立参考坐标，并报告原生格点和物理单位。 [项目的固定匹配位移复算](HRSID_DEV705_CONTINUOUS_AP_SENSITIVITY_20261111.md#hrsid-与-ssdd-的固定匹配对称位移)
+
+**公开数据的使用范围。** CARRADA 可核验带实例 ID 的 RD 加载与分割流程，场景为道路，密掩膜由稀疏回波点膨胀。KuRALS-PD 的两条海面序列共 203 帧，可做已选波束内定位试点，发布矩形来自外部位置与 CFAR 峰值处理，适用于弱标签评价。RADIal 发布原始 ADC 和车辆位置字段，K-Radar 发布 4D 雷达张量和道路 3D 框，WaterScenes 发布雷达点云与图像实例标注，这三者的官方标注说明均未提供船舶 RD 像素轮廓。FM-DETR 的 RCShip-1.0 为距压方位时间域的单类框检测，测试数据由独立 Sentinel-1 场景逆处理重建，可作为另一项距压检测对照。 [CARRADA](https://arxiv.org/html/2005.01456#S4.SS3) · [KuRALS-PD](https://doi.org/10.3390/rs18010173) · [RADIal 标注](https://github.com/valeoai/RADIal#labels) · [K-Radar](https://arxiv.org/abs/2206.08171) · [WaterScenes](https://github.com/WaterScenes/WaterScenes) · [FM-DETR §2.1](https://www.mdpi.com/2072-4292/18/21/3669)
+
+**当前执行决策。** 论文优先采用同景配准及空间轮廓路径。已有一对训练样本通过复数数组与 FFT 数值核验，完整配准和独立空间轮廓待落实。首轮先核对已有样本的逐行有效区、PRF 和频率原点，再验证空间候选窗口。海面 RD 定位可作为独立少标注适配试点。单一采集带标签微调只能报告该条件下的适配效果，跨采集与跨传感器各需独立数据验证。 [阳性同景读回](results/OPEN_SAR_TRAIN395_PAIR_READBACK_ACTUAL_SAFE_20261111.json) · [ESA SLC 处理](https://sentiwiki.copernicus.eu/web/s1-processing)
