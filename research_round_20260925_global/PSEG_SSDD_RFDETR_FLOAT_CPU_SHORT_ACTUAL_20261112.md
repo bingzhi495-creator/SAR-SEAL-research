@@ -26,3 +26,7 @@ DGX 原 CUDA BF16 短训适配已完成代码和读取验收。以单个数据�
 ## Windows 原生 CUDA 备用入口
 
 在本机为同一小数标签方案准备新请求，复用已验收的 Windows 原生 RF-DETR BF16 训练器、配对共同实例和原作业管理器。独立 CPU 预检核对 741 张图、1,661 条标注、原 JPEG 清单和精确小数覆盖，以及已闭合的相关训练资格回执。三项保护测试通过。首次私有请求有一处历史摘要漏写一位，按原规则拒收。新目录修正后实际通过，原失败保留。已通过的私有预检和发布源码分别有各自身份。当前未启动 CUDA 两臂，待现有 HRSID GPU 作业和固定评分交接后，以原入口完成 32 次访问、8 次 AdamW 和 8 次 EMA 的实测。 [Windows 入口与说明](code/SSDD_WINDOWS_FLOAT_COMMON_SHORT_20261112/README.md) · [预检回执](code/SSDD_WINDOWS_FLOAT_COMMON_SHORT_20261112/PREFLIGHT_RESULT_SAFE.json)
+
+## 已发布 Windows 入口的实际请求预检
+
+在独立目录重新绑定 GitHub 提交 34970d65187eee421f6994a9d884dfeb78d2118d。通过提交寻址读取的工作脚本与预锁协议已核对 Git 对象及 SHA-256，与本地执行副本逐字节相同。新请求的原 CPU 预检退出 0，核对了 FIT741 和 1,661 条标注，以及已闭合的输入和短训资格。该请求已具备后续按原条件执行的输入身份。当前仍在等待 HRSID 原 GPU 训练及评分交接。 [发布源码读回](results/SSDD_WINDOWS_FLOAT_PUBLISHED_SOURCE_READBACK_SAFE_20261112.json) · [实际预检](results/SSDD_WINDOWS_FLOAT_PUBLISHED_PREFLIGHT_ACTUAL_SAFE_20261112.json)
