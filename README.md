@@ -35,7 +35,7 @@
 - [固定点目标值试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定监督点目标值试点实测)。同一 487 点、三臂各 8 次真实更新，单次复合中心相对逐步中心在裁剪留出上 +0.065 IoU 点，低于预设 0.5 点。连续值对照精确复现。
 - [冻结模型的点监督分配试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#冻结模型点监督诊断预锁)。固定八张源图上的分歧富集为同配额随机期望的 1.87 倍。随后同预算 8 次原生投影更新的轮廓指标未达到晋级门槛。
 - [HRSID 训练标签的多边形优先对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#hrsid-fit-only-多边形优先对照)。456 个固定训练视图已完成。核心裁剪中单次中心相对逐步中心在两种参考下提升 +6.45、+6.27 个几何 IoU 点。模型效用待同预算实测。
-- [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#海面实测输入与首轮迁移对照)。新增 IPIX 岸基实测回波的 512×14 RD 输入复算，目标为浮球。六份公开星载复数训练块通过方位 FFT 核验，一对阳性训练样本的 SLC 与 RAW 源产品已核对，配对数组待取得。KuRALS-PD 先用于受控定位，独立海面搜索须核对波束与背景真值。RD 模型收益待实测。
+- [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#海面实测输入与首轮迁移对照)。IPIX 真实浮球回波和六份星载复数训练块通过 FFT 核验。一对阳性 SLC 与 RAW 源产品已核对，配对数组待取得。KuRALS-PD 用于受控定位，另补核 LSS-PR-1.0 的快艇、客轮与杂波标签范围。RD 模型收益待实测。
 
 主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
 
