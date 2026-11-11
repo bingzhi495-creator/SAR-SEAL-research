@@ -1,0 +1,61 @@
+{
+  "status": "SSDD_DGX_FLOAT_ACTUAL_SOURCE_AND_FIT_PREFLIGHT_CLOSED_GPU_RESOURCE_NOT_ADMITTED",
+  "implementation_commit": "70b5172bf477f7153d8807feecee32aabf44da60",
+  "training_protocol": "0cf70c678b8095c6256cd678e03994408a86e56b",
+  "request_sha256": "8cbe83d529e5d5cc21da63fee513e2f78524a0b44f9180d845c43caab5fb91c9",
+  "source_manifest_sha256": "b5ed1d6e9d4ed682607b243e2b35df9b8ce0b8f545fd99d8d26af28817cfe887",
+  "actual_dgx_source_and_fit_cpu_preflight": {
+    "AP": false,
+    "DEV": false,
+    "FIT": true,
+    "TEST": false,
+    "actual_work_root_created": false,
+    "changed_polygon_rows": 1606,
+    "fit_images": 741,
+    "fit_rows": 1661,
+    "implementation_commit": "70b5172bf477f7153d8807feecee32aabf44da60",
+    "label_binding": {
+      "fit_float_sha256": "97162d23a33b9387fe0b47a117f7e5b1f9dde7471033f244ab336cee1ca9039b",
+      "fixed_view_input_admission_sha256": "c5841463f15a3062d8d99899c2034dc8a1c9b97ce05961a20403e61c8776d285",
+      "policy": "official_source_float_polygon_only_v1",
+      "stock_integer_fit_sha256": "62966857c78cea1e3b060700c62a7b896942686c2e674d3eb09f516a92250bc1"
+    },
+    "model_forward_calls": 0,
+    "optimizer_updates": 0,
+    "request_sha256": "8cbe83d529e5d5cc21da63fee513e2f78524a0b44f9180d845c43caab5fb91c9",
+    "source_manifest_sha256": "b5ed1d6e9d4ed682607b243e2b35df9b8ce0b8f545fd99d8d26af28817cfe887",
+    "status": "SSDD_DGX_FLOAT_FULL_CPU_PREFLIGHT_PASSED",
+    "stock_binding_verified": true,
+    "stock_fit_archive_layout_verified": true,
+    "torch_imported": false,
+    "training_protocol": "0cf70c678b8095c6256cd678e03994408a86e56b"
+  },
+  "resources": {
+    "capability": [
+      12,
+      1
+    ],
+    "cuda_free_bytes": 3124686848,
+    "cuda_total_bytes": 130660978688,
+    "exact_arch_listed": false,
+    "host_available_bytes": 48035532800,
+    "model_forward_calls": 0,
+    "native_bf16": true,
+    "optimizer_updates": 0,
+    "rfdetr": "1.12.0",
+    "status": "SSDD_DGX_FLOAT_CUDA_RESOURCE_OBSERVATION",
+    "stock_kernel_executed": false,
+    "stock_resource_floor_passed": false,
+    "torch": "2.10.0+cu130",
+    "torch_arch_list": [
+      "sm_80",
+      "sm_90",
+      "sm_100",
+      "sm_110",
+      "sm_120",
+      "compute_120"
+    ]
+  },
+  "gpu_qualification_started": false,
+  "actual_optimizer_updates": 0
+}

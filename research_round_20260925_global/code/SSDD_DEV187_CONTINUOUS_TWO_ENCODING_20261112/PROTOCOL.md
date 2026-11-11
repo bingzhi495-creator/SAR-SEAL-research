@@ -1,0 +1,5 @@
+# SSDD DEV187 continuous-overlap sensitivity with two authenticated label encodings
+
+Freeze all four already independently accepted prediction streams (seeds 5201/5202, native/center), images and scores. Require exact P370 integer and official-float raster scores before the new comparison. Use only its 187 DEV images and 380 GT rows. Official TEST, inference and training are outside scope.
+
+Reuse the accepted P374 continuous rectangle intersection engine. Separate the two authenticated vertex encodings and compare ordinary mask IoU to intersection of the same RLE pixel cells and the polygon union in the same image coordinate frame. Ignore any annotation invalid in either encoding across all common-support cells. Retain original per-encoding boxes and area fields, COCO threshold/sort/ignore/maxDets rules, and candidate bytes. Preserve AP/AP75/AP90 and all12, plus checks against independent dense overlap. The question is whether center-minus-native reverses by label source when GT is never rasterized for the overlap. Treat this as overlap sensitivity, not an official score or a result of floating-label training.
