@@ -15,3 +15,9 @@ D-FINE-seg-S 是通用实例分割模型，拟作为独立架构对照。锁定�
 两次真实优化器、EMA 和调度器均返回并计数，原进程自然退出 0。总损失分别 36.9318、35.1633，掩膜 BCE 0.5935、0.5477，掩膜 Dice 损失 0.5958、0.3222。每次都有有限非零的掩膜梯度和实际权重变化。两次使用不同训练图，损失只作为执行依据。另一个进程重新载入更新后归档，验证全部 815 个 EMA 张量的摘要和掩膜权重更新轨迹。 [实测汇总](results/DFINE_SEG_EXTERNAL_BASELINE_FIT2_ACTUAL_SAFE_20261112.json) · [独立验收](results/DFINE_SEG_EXTERNAL_BASELINE_FIT2_INDEPENDENT_SAFE_20261112.json)
 
 用该归档原生导出第一张 FIT 图，得到 281 个非空的 800×800 uint8 二值掩膜，模型已是单类。置信度门槛设为 0，仅检验训练到导出的链路。没有使用 DEV／TEST 或计算 AP，也没有记录可与正式训练比较的单步耗时。下一个正式资格是独立 CUDA 环境及固定预算端点验证。 [原执行程序](code/DFINE_SEG_EXTERNAL_BASELINE_FIT2_20261112/run_author_fit2.py)
+
+## 独立 CUDA 算子核验
+
+沿用已核验的 Python 3.11.15 解释器新建独立环境，安装官方 Torch 2.13.0+cu130 与 torchvision 0.28.0+cu130。主 Torch wheel 1,915,488,103 字节，与官方索引摘要一致。torchvision 官方索引未给出摘要，两个官方端点的下载逐字节一致。原 CUDA 进程在本机 RTX 3090 Ti 上自然退出 0，另完成只读核验。
+
+在同一合成输入上，作者原生可变形注意力相对 CPU 的前向最大绝对差为 5.96×10⁻⁸，梯度最大绝对差为 2.38×10⁻⁷。CUDA 张量乘法与参考一致，作者依赖的 CUDA NMS 保留了预定索引。此步骤没有打开权重、图像或标注，没有训练。训练级显存峰值和吞吐仍待实际批次核验。 [CUDA 实测](results/DFINE_SEG_EXTERNAL_BASELINE_CUDA_ACTUAL_SAFE_20261112.json) · [独立读回](results/DFINE_SEG_EXTERNAL_BASELINE_CUDA_INDEPENDENT_SAFE_20261112.json) · [核验源码](code/DFINE_SEG_EXTERNAL_BASELINE_CUDA_20261112/probe_dfine_cuda_ops.py) · [官方 Torch wheel 索引](https://download.pytorch.org/whl/cu130/torch/)
