@@ -1,0 +1,558 @@
+{
+  "all_gate_conditions": false,
+  "exact_closed_pair_sha256": "d080a27ade36369a8fc8d2cb003c37cc3670d75860e83b30e365bd47e77543c0",
+  "gate": {
+    "fixed_shift_excess_positive": false,
+    "footprint_matched_excess_positive": true,
+    "main_bootstrap_lower_positive": true,
+    "main_excess_at_least_point05": true
+  },
+  "matched_support": {
+    "center": 1664,
+    "eligible": 1778,
+    "native": 1645,
+    "shared": 1620
+  },
+  "original_dev_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+  "provenance": {
+    "accepted_result_sha256": "581a0ca8fc9966388dd6cb07a729f51726932c81bd5c037887b25c0b303dff56",
+    "group_map_sha256": "9f45d673649d2aa65bb38fc2a29b27981e0b51f2a879c3f9d309b9da28e511be",
+    "p282_result_sha256": "2b1286203dae3ffc2ce11153619bc4b387f83ac338c4ff2855d1275ba4bc7012",
+    "p360_source_sha256": "224dd916d4d5672d8aaa9707f8b9233926d4590043ab754ff151b25ce5546acc"
+  },
+  "scope": {
+    "COCO_AP": false,
+    "DEV": true,
+    "FIT": false,
+    "TEST": false,
+    "edited_predictions_saved": false,
+    "model_forward_calls": 0,
+    "optimizer_updates": 0,
+    "unmatched_used_for_phase": false
+  },
+  "status": "HRSID_COMMON_DEV705_SIGNED_VIRTUAL_LABEL_PHASE_ACTUAL",
+  "strata": {
+    "all": {
+      "fixed_a_up_one": {
+        "group_bootstrap_95": [
+          -0.05938912747198492,
+          -0.013312310651871705
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.01217915223786691,
+        "group_equal_correct_excess_per_positive_pixel": -0.05845148881218354,
+        "group_equal_signed_excess_per_exposed_pixel": -0.03750662399651184,
+        "groups": 28,
+        "groups_with_exposure": 28,
+        "groups_with_positive_excess": 5,
+        "leave_one_group_out_range": [
+          -0.04395665667436513,
+          -0.03295572035490893
+        ],
+        "pooled_signed_excess_per_exposed_pixel": -0.03937675372625194,
+        "totals": {
+          "correct_expected": -16375.64295325657,
+          "correct_observed": -22037,
+          "exchangeable_exposed": 125179,
+          "exposed": 125917,
+          "exposed_negative": 34440,
+          "exposed_positive": 91477,
+          "harmful_expected": 10231.154347794965,
+          "harmful_observed": 9528,
+          "instances": 1572,
+          "pixels": 974033,
+          "prediction_flips": 110647,
+          "signed_expected": -26606.797301051534,
+          "signed_observed": -31565
+        }
+      },
+      "footprint_matched": {
+        "group_bootstrap_95": [
+          0.17866320148875636,
+          0.2244050621667409
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.13663348387513086,
+        "group_equal_correct_excess_per_positive_pixel": 0.22615524946883195,
+        "group_equal_signed_excess_per_exposed_pixel": 0.20126947100196477,
+        "groups": 28,
+        "groups_with_exposure": 28,
+        "groups_with_positive_excess": 28,
+        "leave_one_group_out_range": [
+          0.1958143300113288,
+          0.20505979896369006
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.2018769836989244,
+        "totals": {
+          "correct_expected": 118520.66492895236,
+          "correct_observed": 139707,
+          "exchangeable_exposed": 91668,
+          "exposed": 128823,
+          "exposed_negative": 35282,
+          "exposed_positive": 93541,
+          "harmful_expected": -24315.936400001043,
+          "harmful_observed": -29136,
+          "instances": 1620,
+          "pixels": 997144,
+          "prediction_flips": 130070,
+          "signed_expected": 142836.60132895346,
+          "signed_observed": 168843
+        }
+      },
+      "no_clip_original": {
+        "group_bootstrap_95": [
+          0.2245621394829679,
+          0.28502416908841566
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.2168905826664124,
+        "group_equal_correct_excess_per_positive_pixel": 0.2688737857647826,
+        "group_equal_signed_excess_per_exposed_pixel": 0.2543967388583282,
+        "groups": 28,
+        "groups_with_exposure": 28,
+        "groups_with_positive_excess": 28,
+        "leave_one_group_out_range": [
+          0.24838674093431448,
+          0.2611958455836387
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.26240699123640054,
+        "totals": {
+          "correct_expected": 111803.61100756259,
+          "correct_observed": 137210,
+          "exchangeable_exposed": 125179,
+          "exposed": 125917,
+          "exposed_negative": 34440,
+          "exposed_positive": 91477,
+          "harmful_expected": -20909.88787692357,
+          "harmful_observed": -28545,
+          "instances": 1572,
+          "pixels": 974033,
+          "prediction_flips": 126775,
+          "signed_expected": 132713.49888448615,
+          "signed_observed": 165755
+        }
+      },
+      "primary": {
+        "group_bootstrap_95": [
+          0.22106683609719335,
+          0.2822899231898668
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.21235759786737068,
+        "group_equal_correct_excess_per_positive_pixel": 0.2665591004561846,
+        "group_equal_signed_excess_per_exposed_pixel": 0.25151129587723153,
+        "groups": 28,
+        "groups_with_exposure": 28,
+        "groups_with_positive_excess": 28,
+        "leave_one_group_out_range": [
+          0.2452776772682528,
+          0.25824355253411024
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.25925704666520494,
+        "totals": {
+          "correct_expected": 113999.1729482653,
+          "correct_observed": 139707,
+          "exchangeable_exposed": 128066,
+          "exposed": 128823,
+          "exposed_negative": 35282,
+          "exposed_positive": 93541,
+          "harmful_expected": -21445.556529183028,
+          "harmful_observed": -29136,
+          "instances": 1620,
+          "pixels": 997144,
+          "prediction_flips": 130070,
+          "signed_expected": 135444.7294774483,
+          "signed_observed": 168843
+        }
+      },
+      "rational_legacy": {
+        "group_bootstrap_95": [
+          0.22199155536843573,
+          0.2841600828272179
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.21251283640435553,
+        "group_equal_correct_excess_per_positive_pixel": 0.26843565834982214,
+        "group_equal_signed_excess_per_exposed_pixel": 0.2528948348112654,
+        "groups": 28,
+        "groups_with_exposure": 28,
+        "groups_with_positive_excess": 28,
+        "leave_one_group_out_range": [
+          0.24699205587622874,
+          0.2596196847689354
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.26057194676023127,
+        "totals": {
+          "correct_expected": 111502.13703370282,
+          "correct_observed": 137032,
+          "exchangeable_exposed": 126818,
+          "exposed": 127566,
+          "exposed_negative": 35338,
+          "exposed_positive": 92228,
+          "harmful_expected": -21404.74200588156,
+          "harmful_observed": -29115,
+          "instances": 1620,
+          "pixels": 997144,
+          "prediction_flips": 130070,
+          "signed_expected": 132906.87903958434,
+          "signed_observed": 166147
+        }
+      }
+    },
+    "non_small": {
+      "fixed_a_up_one": {
+        "group_bootstrap_95": [
+          -0.10979795943780522,
+          0.07342505392578913
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.04849919462808585,
+        "group_equal_correct_excess_per_positive_pixel": -0.05293891380539795,
+        "group_equal_signed_excess_per_exposed_pixel": -0.019644726836476556,
+        "groups": 24,
+        "groups_with_exposure": 24,
+        "groups_with_positive_excess": 11,
+        "leave_one_group_out_range": [
+          -0.04802102967085868,
+          0.00030631356990085606
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.016409368172252792,
+        "totals": {
+          "correct_expected": -1031.8468054830516,
+          "correct_observed": -1513,
+          "exchangeable_exposed": 28818,
+          "exposed": 28854,
+          "exposed_negative": 8589,
+          "exposed_positive": 20265,
+          "harmful_expected": 745.6291037591302,
+          "harmful_observed": -209,
+          "instances": 193,
+          "pixels": 254459,
+          "prediction_flips": 43719,
+          "signed_expected": -1777.475909242182,
+          "signed_observed": -1304
+        }
+      },
+      "footprint_matched": {
+        "group_bootstrap_95": [
+          0.15076606512509108,
+          0.347911819878466
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.14513722394259432,
+        "group_equal_correct_excess_per_positive_pixel": 0.2806470653119421,
+        "group_equal_signed_excess_per_exposed_pixel": 0.23944550324404879,
+        "groups": 24,
+        "groups_with_exposure": 24,
+        "groups_with_positive_excess": 22,
+        "leave_one_group_out_range": [
+          0.20268513057055432,
+          0.26066880096833445
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.20729447698788145,
+        "totals": {
+          "correct_expected": 13176.361477216413,
+          "correct_observed": 18350,
+          "exchangeable_exposed": 24436,
+          "exposed": 29767,
+          "exposed_negative": 8869,
+          "exposed_positive": 20898,
+          "harmful_expected": -3330.1038262853212,
+          "harmful_observed": -4327,
+          "instances": 196,
+          "pixels": 261227,
+          "prediction_flips": 44658,
+          "signed_expected": 16506.465303501733,
+          "signed_observed": 22677
+        }
+      },
+      "no_clip_original": {
+        "group_bootstrap_95": [
+          0.19043272725900937,
+          0.39500653953175463
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.20767555365417875,
+        "group_equal_correct_excess_per_positive_pixel": 0.3126946563277028,
+        "group_equal_signed_excess_per_exposed_pixel": 0.2825285328874531,
+        "groups": 24,
+        "groups_with_exposure": 24,
+        "groups_with_positive_excess": 23,
+        "leave_one_group_out_range": [
+          0.24434781656810153,
+          0.30707637488086736
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.2367556537827854,
+        "totals": {
+          "correct_expected": 12900.537057484973,
+          "correct_observed": 18171,
+          "exchangeable_exposed": 28818,
+          "exposed": 28854,
+          "exposed_negative": 8589,
+          "exposed_positive": 20265,
+          "harmful_expected": -2654.115308266537,
+          "harmful_observed": -4215,
+          "instances": 193,
+          "pixels": 254459,
+          "prediction_flips": 43348,
+          "signed_expected": 15554.65236575151,
+          "signed_observed": 22386
+        }
+      },
+      "primary": {
+        "group_bootstrap_95": [
+          0.19009347521581782,
+          0.394476828469551
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.20752076287067422,
+        "group_equal_correct_excess_per_positive_pixel": 0.3122364832260804,
+        "group_equal_signed_excess_per_exposed_pixel": 0.28215772934629235,
+        "groups": 24,
+        "groups_with_exposure": 24,
+        "groups_with_positive_excess": 23,
+        "leave_one_group_out_range": [
+          0.2439608911338468,
+          0.30668944944661264
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.23346086486610276,
+        "totals": {
+          "correct_expected": 13007.310717641274,
+          "correct_observed": 18350,
+          "exchangeable_exposed": 29731,
+          "exposed": 29767,
+          "exposed_negative": 8869,
+          "exposed_positive": 20898,
+          "harmful_expected": -2720.259717889446,
+          "harmful_observed": -4327,
+          "instances": 196,
+          "pixels": 261227,
+          "prediction_flips": 44658,
+          "signed_expected": 15727.570435530719,
+          "signed_observed": 22677
+        }
+      },
+      "rational_legacy": {
+        "group_bootstrap_95": [
+          0.1866856683871868,
+          0.3881512246311488
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.20686330682201245,
+        "group_equal_correct_excess_per_positive_pixel": 0.30575399919215784,
+        "group_equal_signed_excess_per_exposed_pixel": 0.27753502588135465,
+        "groups": 24,
+        "groups_with_exposure": 24,
+        "groups_with_positive_excess": 23,
+        "leave_one_group_out_range": [
+          0.2391372005617379,
+          0.30040592129219346
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.2281693882753471,
+        "totals": {
+          "correct_expected": 12794.603186934233,
+          "correct_observed": 17968,
+          "exchangeable_exposed": 29586,
+          "exposed": 29622,
+          "exposed_negative": 8892,
+          "exposed_positive": 20730,
+          "harmful_expected": -2700.5631935734405,
+          "harmful_observed": -4286,
+          "instances": 196,
+          "pixels": 261227,
+          "prediction_flips": 44658,
+          "signed_expected": 15495.166380507668,
+          "signed_observed": 22254
+        }
+      }
+    },
+    "small": {
+      "fixed_a_up_one": {
+        "group_bootstrap_95": [
+          -0.08113547238860828,
+          -0.02920201364271794
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": 0.005064926606769608,
+        "group_equal_correct_excess_per_positive_pixel": -0.07397481474974722,
+        "group_equal_signed_excess_per_exposed_pixel": -0.05472431015563819,
+        "groups": 27,
+        "groups_with_exposure": 27,
+        "groups_with_positive_excess": 5,
+        "leave_one_group_out_range": [
+          -0.0598877067971362,
+          -0.048021303685136275
+        ],
+        "pooled_signed_excess_per_exposed_pixel": -0.055960341306065614,
+        "totals": {
+          "correct_expected": -15343.796147773519,
+          "correct_observed": -20524,
+          "exchangeable_exposed": 96361,
+          "exposed": 97063,
+          "exposed_negative": 25851,
+          "exposed_positive": 71212,
+          "harmful_expected": 9485.525244035836,
+          "harmful_observed": 9737,
+          "instances": 1379,
+          "pixels": 719574,
+          "prediction_flips": 66928,
+          "signed_expected": -24829.321391809353,
+          "signed_observed": -30261
+        }
+      },
+      "footprint_matched": {
+        "group_bootstrap_95": [
+          0.16613757247542893,
+          0.216262787885088
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.14181114761497088,
+        "group_equal_correct_excess_per_positive_pixel": 0.20895495529469438,
+        "group_equal_signed_excess_per_exposed_pixel": 0.19065092854043403,
+        "groups": 27,
+        "groups_with_exposure": 27,
+        "groups_with_positive_excess": 27,
+        "leave_one_group_out_range": [
+          0.18430043951597755,
+          0.19419317524522628
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.20024899021309484,
+        "totals": {
+          "correct_expected": 105344.30345173595,
+          "correct_observed": 121357,
+          "exchangeable_exposed": 67232,
+          "exposed": 99056,
+          "exposed_negative": 26413,
+          "exposed_positive": 72643,
+          "harmful_expected": -20985.83257371573,
+          "harmful_observed": -24809,
+          "instances": 1424,
+          "pixels": 735917,
+          "prediction_flips": 85412,
+          "signed_expected": 126330.13602545168,
+          "signed_observed": 146166
+        }
+      },
+      "no_clip_original": {
+        "group_bootstrap_95": [
+          0.21279379145707653,
+          0.28061803326602974
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.2286106512777511,
+        "group_equal_correct_excess_per_positive_pixel": 0.2559652582794892,
+        "group_equal_signed_excess_per_exposed_pixel": 0.2473694454826346,
+        "groups": 27,
+        "groups_with_exposure": 27,
+        "groups_with_positive_excess": 27,
+        "leave_one_group_out_range": [
+          0.2403018940834792,
+          0.25447174692104413
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.27003238598915474,
+        "totals": {
+          "correct_expected": 98903.07395007767,
+          "correct_observed": 119039,
+          "exchangeable_exposed": 96361,
+          "exposed": 97063,
+          "exposed_negative": 25851,
+          "exposed_positive": 71212,
+          "harmful_expected": -18255.772568657045,
+          "harmful_observed": -24330,
+          "instances": 1379,
+          "pixels": 719574,
+          "prediction_flips": 83427,
+          "signed_expected": 117158.84651873467,
+          "signed_observed": 143369
+        }
+      },
+      "primary": {
+        "group_bootstrap_95": [
+          0.20567569916480166,
+          0.27713925730859595
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.21244058202870578,
+        "group_equal_correct_excess_per_positive_pixel": 0.2544126188351957,
+        "group_equal_signed_excess_per_exposed_pixel": 0.24221130861513615,
+        "groups": 27,
+        "groups_with_exposure": 27,
+        "groups_with_positive_excess": 27,
+        "leave_one_group_out_range": [
+          0.23483181572338083,
+          0.2511661470744573
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.2670089742981989,
+        "totals": {
+          "correct_expected": 100991.86223062403,
+          "correct_observed": 121357,
+          "exchangeable_exposed": 98335,
+          "exposed": 99056,
+          "exposed_negative": 26413,
+          "exposed_positive": 72643,
+          "harmful_expected": -18725.296811293578,
+          "harmful_observed": -24809,
+          "instances": 1424,
+          "pixels": 735917,
+          "prediction_flips": 85412,
+          "signed_expected": 119717.1590419176,
+          "signed_observed": 146166
+        }
+      },
+      "rational_legacy": {
+        "group_bootstrap_95": [
+          0.20899571384850812,
+          0.2814656256159642
+        ],
+        "group_equal_actual_margin_excess_per_harmful_pixel": -0.21261096415682595,
+        "group_equal_correct_excess_per_positive_pixel": 0.25986225552017045,
+        "group_equal_signed_excess_per_exposed_pixel": 0.24611497125736,
+        "groups": 27,
+        "groups_with_exposure": 27,
+        "groups_with_positive_excess": 27,
+        "leave_one_group_out_range": [
+          0.23892359674286404,
+          0.25513993439360744
+        ],
+        "pooled_signed_excess_per_exposed_pixel": 0.270371715887888,
+        "totals": {
+          "correct_expected": 98707.53384676861,
+          "correct_observed": 119064,
+          "exchangeable_exposed": 97232,
+          "exposed": 97944,
+          "exposed_negative": 26446,
+          "exposed_positive": 71498,
+          "harmful_expected": -18704.178812308117,
+          "harmful_observed": -24829,
+          "instances": 1424,
+          "pixels": 735917,
+          "prediction_flips": 85412,
+          "signed_expected": 117411.7126590767,
+          "signed_observed": 143893
+        }
+      }
+    }
+  },
+  "test_design": {
+    "bootstrap_draws": 4096,
+    "bootstrap_seed": 3645202,
+    "direct_label_size": 576,
+    "equal_prefix_per_arm": 41482,
+    "evidence": "descriptive mechanism diagnostic",
+    "fixed_up_one_refers_to_native_prediction": true,
+    "footprint_quantized_strata": [
+      0,
+      1,
+      157,
+      313,
+      469,
+      625
+    ],
+    "gt_band_chebyshev_rings": [
+      1,
+      2
+    ],
+    "original_match_iou": 0.5,
+    "primary_legacy_direct_cpu_axis_ties_below_integer": [
+      90,
+      162,
+      180,
+      306,
+      324,
+      342,
+      360
+    ],
+    "primary_legacy_uses_independently_verified_stock_bool_cpu_axis_corrections": true,
+    "runtime_training_label_replay": false,
+    "same_label_phase_inverse": true,
+    "signed_normals": "nearest opposite EDT, outward direction by integer sign pair",
+    "source_size": 800,
+    "virtual_integer_label_phase": true
+  }
+}
