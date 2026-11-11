@@ -59,3 +59,13 @@ README指向[Google Drive文件](https://drive.google.com/file/d/1glNJUGotrbEyk4
 **本轮固定主实验继续使用原整数转换标签，模型、数据、主评价和重复停止规则不改。** 浮点到整数的几何差异是否改变栅格mask或AP尚未计算，不声称已发现AP虚增或方法失效。外部方法必须采用明确、共同的标注版本；不能拿不同标签版本的自报分数直接排名。新增的[冻结端点标签敏感性规则](U57_PROSPECTIVE_ANNOTATION_SENSITIVITY_POLICY_20261025.md)在首个E50 AP前明确，属于新增次要分析，不追溯伪称原启动时已预注册。
 
 [可发布的聚合来源摘要](results/U57_LOCAL_PSEG_INTEGER_CONVERSION_PROVENANCE_20261025.json)保留证据范围及初次断言失败；不含原始路径、逐图标注或归档内容。原始工具实际退出已由Root外部观察，源几何比较和确定性转换检查均在合法停止窗口完成，之后已接续固定训练。
+
+## 候选归档划分与测试图像重复审计
+
+作者仓库仍指向 Google Drive 的 `Official-SSDD-OPEN.rar`。只读文件元数据再次返回 1,043,241,197 字节及 RAR 类型，请求的校验和字段未返回。匿名 HTTP 探测超时，连接器对原文件流式获取返回 413，标明 256 MiB 大小上限。实际本地同名候选完整摘要为 SHA-256 `daf79e022dffd50382cfd22ce7b5cfa677ebd0477a33971c1bc5f59f24f23ad9`。两份来源的整包字节身份仍待远端校验和或完整下载复核。 [作者仓库](https://github.com/TianwenZhang0825/Official-SSDD) · [作者发布入口](https://drive.google.com/file/d/1glNJUGotrbEyk43twwB9556AdngJsynZ/view)
+
+归档头的 COCO 与 VOC 同名 JPEG 的长度和 CRC32 逐一相同，训练 928 图、测试 232 图无文件名交集，合并恰好覆盖 1,160 图。测试末位为 1 或 9，近岸 46 图和离岸 186 图互斥且完整覆盖。COCO 的测试总表和近离岸分表均存在，核对到归档成员长度和 CRC，未打开测试标注。 [作者划分与近离岸统计](https://www.mdpi.com/2072-4292/13/18/3690)
+
+归档头发现 10 个跨划分的长度／CRC 候选键，涉及 12 张训练 JPEG 和 10 张测试 JPEG。只对这 22 份编码流计算 SHA-256，同时复核长度和 CRC。10 个候选键均确认是跨划分同字节。再与原 FIT741 影像和固定 DEV187 清单逐项比对，12 张训练侧副本均在 FIT741，涉及的 10 张测试图均有训练侧同字节副本。没有解码测试像素、打开测试标注、运行模型或计算 AP。结果和代码只保存聚合，未发布成员名单。 [归档角色与重复聚合](results/PSEG_SSDD_CANDIDATE_ARCHIVE_ROLES_AND_EXACT_OVERLAP_SAFE_20261111.json) · [角色核验入口](code/PSEG_SSDD_ARCHIVE_ROLE_AUDIT_20261111/attribute_pseg_overlap_roles.py)
+
+正式基准保留原 TEST232 总体，并在同一模型、同一推理参数下预先锁定排除 FIT 同字节副本的敏感性口径。按当前候选归档计，敏感性人口为 222 图。两者均须使用已确认的共同标注版本，报告图像、实例、空掩膜和忽略计数。历史选型接触和可能的母景近重复仍限制独立性，单独留出证据继续另行核验。 [历史测试使用记录](HISTORICAL_TEST_USE_LEDGER_TEXT_EVIDENCE_20261016.md)
