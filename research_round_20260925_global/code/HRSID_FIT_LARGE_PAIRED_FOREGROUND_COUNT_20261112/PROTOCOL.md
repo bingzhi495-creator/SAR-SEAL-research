@@ -1,0 +1,7 @@
+# HRSID FIT large masks with paired foreground counts
+
+Frozen before opening any feature packet for this diagnostic. Use the closed P378/P380/P381 CPU FP32, original seed-5202 native and center E24 EMA, 28 FIT images, exactly 50 large annotations and four prefix groups. Keep each arm's original COCO matched query, score and box. No model forward, parameter update, threshold calibration, DEV, TEST or AP.
+
+Replay author bilinear upsampling to the native 800 grid and verify the stock >0 masks against the original matched masks for every row. Use each arm's logit ranking with each of the two original foreground counts, making a fixed 2x2 table. Ties use row-major raster order. The donor counts come only from original predictions. All other evaluation rules are identical. Add signed differences in IoU, FP/GT area, FN/GT area, per-image and four-prefix macro summaries, and leave-one-prefix sensitivities. No use of true area for editing.
+
+Primary contrast is B minus A at each common predicted count. Prespecify descriptive labels: a persistent ranking deficit requires both four-prefix mean IoU contrasts <= -0.50 points, three or more negative prefixes per contrast and every leave-one-prefix contrast below zero. Threshold/count sensitivity compatible requires original B minus A <= -0.50, both fixed-count macro absolute differences <= 0.25 points. All other results remain mixed. These are FIT diagnostics, no generalization or causal training statement. Preserve exact producer/child closure and FIT-only aggregates.
