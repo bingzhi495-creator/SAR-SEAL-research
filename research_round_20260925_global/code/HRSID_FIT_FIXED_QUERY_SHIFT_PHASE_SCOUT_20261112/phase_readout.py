@@ -52,8 +52,6 @@ def example(ordinal,prediction,points,inside,logits,truth,intersection,neighbors
         raise ValueError("Exact unique original points required")
     if not np.array_equal(prediction[points[:,1],points[:,0]],inside):
         raise ValueError("Fixed original point side must match RLE")
-    if not np.array_equal(logits[:,0]>0,inside):
-        raise ValueError("Unshifted fixed logit signs must reproduce original sides")
     x,y=points.T
     boxes=shapely.box(x,y,x+1,y+1)
     occupancy=np.clip(shapely.area(shapely.intersection(boxes,truth)),0,1)

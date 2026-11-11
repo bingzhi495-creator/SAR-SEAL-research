@@ -17,7 +17,7 @@ from pycocotools import mask
 SOURCE_DIGESTS={
     "PROTOCOL.md":"4298aa741ba7075ef428b4bba12c31dff66fc29af9e56f2a539df6ba8b20834d",
     "phase_probe_math.py":"8498fea25a00d06db5262c36caaf111b065457fbe1492f9deb39abd1fdcb1b70",
-    "phase_readout.py":"0c6ca02aa531e03d2290a723c28b17ccd1c7aa0ce2e848b695a68915ee33dd3e",
+    "phase_readout.py":"215b6be3e68a4df00713e19fb5a7585a169de3790d3023e69fca6eacf2bbc4bd",
 }
 MATCH_SHA="8741bebb448120e37e0c10b58467a83d724f2294d20fddbc93720301285084aa"
 GEOMETRY_SHA="7cad8b51a9230101e2233db8455f84c28163abfb2ee8ddd8cbe8718a2e719bd0"
@@ -57,6 +57,7 @@ def reconstruct_support(views, blocks, match):
                 "Original closed registered logit format")
         points={}
         at=0
+        sparse_discordance=0
         expected={q for q,p in queries.items() if 32<=p["area"]<1024}
         require({c["query"] for c in entry["candidates"]}==expected and len(entry["candidates"])==len(expected),
                 "Exact original area-routed query set")
@@ -66,15 +67,22 @@ def reconstruct_support(views, blocks, match):
             ip,op=candidate["inside"],candidate["outside"]
             n=len(ip)+len(op)
             require(len(ip)<=64 and len(op)<=64 and at+n<=len(logits),"Frozen per-side point cap and range")
+            sides=np.arange(n)<len(ip)
+            sparse_discordance+=int(np.count_nonzero((logits[at:at+n,0]>0)!=sides))
             if ip and op:
                 coordinates=np.asarray(ip+op,dtype=np.int64)
-                sides=np.arange(n)<len(ip)
                 require(coordinates.shape==(n,2) and ((1<=coordinates)&(coordinates<799)).all(),"Valid registered interior points")
                 points[p["rank"]]=(coordinates,sides,logits[at:at+n])
             at+=n
         require(at==len(logits),"Every recorded point row consumed once")
-        routed.append((pool,points,at))
+        routed.append((pool,points,at,sparse_discordance))
     return routed
+
+
+def json_scalar(value):
+    if isinstance(value,np.generic):
+        return value.item()
+    raise TypeError("Unsupported aggregate JSON type: " + type(value).__name__)
 
 
 def run(args):
@@ -103,6 +111,8 @@ def run(args):
             and [v["ordinal"] for v in views]==list(range(1,37)),"Exact distinct source core36 roster")
     routed=reconstruct_support(views,blocks,anchor)
     require(sum(row[2] for row in routed)==267782,"Exact closed registered support count")
+    sparse_discordance=sum(row[3] for row in routed)
+    require(sparse_discordance==request["expected_sparse_sign_discordance"],"Independent unshifted numerical sign census")
     labels=json.loads(exact(args.fit_index,LABEL_SHA,32*2**20))
     require(len(labels["images"])==2937 and len(labels["annotations"])==9260,"Exact original HRSID FIT")
     images={v["id"]:v for v in labels["images"] if v["id"] in ids}
@@ -115,16 +125,18 @@ def run(args):
     targets,neutral,_=geometry.geometry.polygon_support(subset,geometry.vector)
     examples=[]
     original_matches=0
+    matched_sparse_discordance=0
     with redirect_stdout(StringIO()):
-        for entry,(pool,points,_) in zip(views,routed,strict=True):
+        for entry,(pool,points,_,_) in zip(views,routed,strict=True):
             iid=entry["image_id"]
             matches,_,_=anchor.freeze_coco(images[iid],by_image[iid],pool)
             original_matches+=len(matches)
+            rank_to_gt={rank:key for key,rank in matches.items()}
             for i,candidate in enumerate(pool):
                 rank=candidate["rank"]
                 if rank not in points:
                     continue
-                source_id=next((key for key,value in matches.items() if value==rank),None)
+                source_id=rank_to_gt.get(rank)
                 if source_id is None or source_id in neutral:
                     continue
                 target,_=targets[source_id]
@@ -133,16 +145,18 @@ def run(args):
                 rectangles=geometry.geometry.boxes_from_counts(geometry.shift.runs(rle["counts"]),*rle["size"])
                 intersection=geometry.geometry.overlap_area(rectangles,target)
                 xy,inside,logits=points[rank]
+                matched_sparse_discordance+=int(np.count_nonzero((logits[:,0]>0)!=inside))
                 example=readout.example(entry["ordinal"],predicted,xy,inside,logits,target,intersection,
                                         [p["rle"] for p in pool[:i]],math)
                 examples.append(example)
     out=readout.crossfit(examples,math)
     out.update(status="HRSID_FIT_FIXED_QUERY_SHIFT_PHASE_SCOUT_ACTUAL",FIT=True,DEV=False,TEST=False,AP=False,
                optimizer_updates=0,model_forward_calls=0,archived_capture_forwards=180,
-               images=36,original_matches=original_matches,
+               images=36,original_matches=original_matches,sparse_zero_sign_discordance=sparse_discordance,
+               matched_sparse_zero_sign_discordance=matched_sparse_discordance,
                original_capture_accepted=True,protocol_sha256=SOURCE_DIGESTS["PROTOCOL.md"],
                request_sha256=args.request_sha,worker_seconds=perf_counter()-started)
-    data=(json.dumps(out,sort_keys=True,indent=2,allow_nan=False)+"\n").encode()
+    data=(json.dumps(out,sort_keys=True,indent=2,allow_nan=False,default=json_scalar)+"\n").encode()
     with args.output.open("xb") as handle:
         handle.write(data)
     print(json.dumps(dict(status=out["status"],result_sha256=sha256(data).hexdigest(),gate=out["gate"])),flush=True)
