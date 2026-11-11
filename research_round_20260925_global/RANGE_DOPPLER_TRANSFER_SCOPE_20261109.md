@@ -267,3 +267,10 @@ ASF 和 Copernicus 同一母产品的十个 IW2／VH 目录足迹独立核对一
 
 **当前论文优先验证同景多普勒辅助船体轮廓。** 现有一对阳性数据可先检查空间候选与回波窗口能否可靠对应。通过几何核验且取得独立空间轮廓后，固定候选和分数，比较聚焦单支、常规重聚焦、等容量错配与真实配对，按预先划定的失焦组和独立采集报告轮廓 IoU、mask AP75 和 AP90。直接先例已经用同景多普勒做运动失焦船舶框检测。本项目要检验的增量是空间轮廓是否改善。当前已核验同景数组和 FFT，完整配准、RD 训练及模型收益仍待实测。 [阳性同景实测](results/OPEN_SAR_TRAIN395_PAIR_READBACK_ACTUAL_SAFE_20261111.json) · [失焦船舶框检测先例](https://doi.org/10.3390/rs18081166)
 
+## 坐标核验与轮廓收益的判别试验
+
+先根据数据轴确认任务。零多普勒地理定位的 Sentinel-1 SLC 仍是已聚焦的斜距–方位图。若数据轴确实是距离–径向速度，船舶实例对应回波簇，现有空间掩膜头的输出定义随之改变。试点先记录两个轴的名称与单位、采样间隔、数组来源、是否保存复数以及独立真值类型。 [Copernicus SLC 规范](https://sentiwiki.copernicus.eu/web/s1-processing)
+
+同景轮廓试验加入已知配准偏移，检验候选边界改进是否随错位加重而衰减。先用独立物理定位参考估计配准残差，在留出评分前按原生格点固定可接受残差和偏移阶梯。推理时保持候选与分数相同，分别沿斜距与方位改变真实回波窗位置，保留同条件错配和常规重聚焦对照。主报固定候选的逐实例 IoU 差值和正式 mask AP75/AP90，按采集统计。现有 395 样本的近船距离剖面相关约 −0.045，这一项只比较原生剖面，独立配准仍待验证。 [同景数组实测](results/OPEN_SAR_TRAIN395_PAIR_READBACK_ACTUAL_SAFE_20261111.json) · [多普勒船舶框检测先例](https://doi.org/10.3390/rs18081166)
+
+PeakConv 已在车载 RD 分割中学习以回波峰为中心的感受野，MARSS 在 CARRADA 使用多尺度和方向建模。自研 UNet++ 的双方向模块若改用于 RD，须先与同架构普通卷积比较，固定物理坐标和算力预算。这两项先例可用于道路任务比较，海面迁移效用须在独立采集上验证。 [PeakConv，CVPR 2023](https://openaccess.thecvf.com/content/CVPR2023/html/Zhang_PeakConv_Learning_Peak_Receptive_Field_for_Radar_Semantic_Segmentation_CVPR_2023_paper.html) · [MARSS，CVPR 2026](https://openaccess.thecvf.com/content/CVPR2026/html/Chen_MARSS_Radar_Semantic_Segmentation_via_Modular_Attention_and_State_Space_CVPR_2026_paper.html)
