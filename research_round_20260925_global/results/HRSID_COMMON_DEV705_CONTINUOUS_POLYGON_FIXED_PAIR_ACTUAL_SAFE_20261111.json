@@ -1,0 +1,3746 @@
+{
+  "COCO_AP": false,
+  "DEV": true,
+  "FIT": false,
+  "association": "unchanged official raster IoU .50 all-area matches at equal nonempty prefix, both arms",
+  "clustered_bootstrap": {
+    "cluster": "historical source proxy prefix",
+    "replicates": 4096,
+    "seed": 363705,
+    "units": "fraction for IoU and error rates"
+  },
+  "eligible_pairs": 1605,
+  "equal_nonempty_prefix_rows_per_arm": 41482,
+  "excluded_pair_reasons": {
+    "polygon_list: invalid or zero-area polygon component": 15
+  },
+  "geometry": "union of original source polygon components clipped to canvas versus predicted unit pixel squares",
+  "geometry_runtime": {
+    "geos": "3.11.2",
+    "shapely": "2.0.2"
+  },
+  "image_manifest_sha256": "39a40d089d4a54448fe6efca8ea5cc98ad1eb7c0587815f3dd9a3b097173e78f",
+  "model_forward_calls": 0,
+  "official_TEST_opened": false,
+  "optimizer_updates": 0,
+  "original_source_proxy_groups": 28,
+  "paired_gt": 1620,
+  "predictions_edited": false,
+  "primary_accepted_sha256": "581a0ca8fc9966388dd6cb07a729f51726932c81bd5c037887b25c0b303dff56",
+  "prior_diagnostic_sha256": "2b1286203dae3ffc2ce11153619bc4b387f83ac338c4ff2855d1275ba4bc7012",
+  "provenance": {
+    "arms": {
+      "center": {
+        "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+        "export_report_sha256": "05c5c11274f7800504b5ab1fb1dcb8db39c60316f51dc732e3f20ee063078c19",
+        "predictions_sha256": "da55f2d3f9bbf08b26d5fae76606b2496a5b482c5fb61f4fab53c23172e5c06e",
+        "score_report_sha256": "f980babe7cc6b3e701885ec136fb359fa2e2514e49fc08d3faf14995602270fa"
+      },
+      "native": {
+        "checkpoint_sha256": "d2d7c584c75a4bd4397f523ce9d7c827ae7d0aaf9bec61f5ee02eaf33c718c03",
+        "export_report_sha256": "689490c8dbd2f3e0f950fa88d9890d65ab4d1ad5655d1986c26114341d4bca02",
+        "predictions_sha256": "28acdc3a98f1d91381d3d57141b811e261a40f1535fa883deced2e1ee0fddf1a",
+        "score_report_sha256": "74211a55dce14c9f76fbb2f30638956b3b64bc4c64437fc12e2736155cd6a245"
+      }
+    },
+    "closed_export_pair_sha256": "d080a27ade36369a8fc8d2cb003c37cc3670d75860e83b30e365bd47e77543c0",
+    "evaluation_protocol": "91728d38a359e4a207e3f741490f09060c46663f",
+    "original_dev_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+    "support_policy": "ordered_common_nonempty_prepared_rows_v1",
+    "training_pair_receipt_sha256": "ec6c36973a763344d0f063727e7e07c697a132573e6235eaa8525482e8d8da9f",
+    "training_protocol": "04308c52bd2b4730f1474335c6316f6b8a11762e",
+    "training_seed": 5202
+  },
+  "re_rasterized_exact_pairs": 1605,
+  "source_annotation_shared_across_representations": true,
+  "source_representation_counts": {
+    "polygon_list": 1620
+  },
+  "source_sha256": {
+    "p360": "224dd916d4d5672d8aaa9707f8b9233926d4590043ab754ff151b25ce5546acc",
+    "vector_label_geometry": "4877c48d38a03e58e97163381ba544df3c90a78dde85c9141085fa0b92da3b09",
+    "vector_population_math": "0821d2cc3b6ca793d33fdfe35b634f3678aad072fc55b86352fa2501e969fc7e"
+  },
+  "status": "HRSID_COMMON_DEV705_CONTINUOUS_POLYGON_FIXED_PAIR_ACTUAL_V1",
+  "stock_common_matches_by_stratum": {
+    "large_edge": 4,
+    "large_interior": 11,
+    "medium_edge": 4,
+    "medium_interior": 177,
+    "small_edge": 97,
+    "small_interior": 1327
+  },
+  "strata": {
+    "all": {
+      "arms": {
+        "center": {
+          "polygon_fn_rate": 0.10351525146565096,
+          "polygon_fp_rate": 0.1324486378333131,
+          "polygon_iou": 0.7973582677682856,
+          "polygon_margin90": -1115.3615621270349,
+          "raster_fn_rate": 0.10067307734406628,
+          "raster_fp_rate": 0.1287059868129418,
+          "raster_iou": 0.8026726080273681,
+          "raster_margin90": -1082.4305295950155
+        },
+        "native": {
+          "polygon_fn_rate": 0.11054116582093801,
+          "polygon_fp_rate": 0.13896975366667544,
+          "polygon_iou": 0.7873000738220244,
+          "polygon_margin90": -1093.568098733401,
+          "raster_fn_rate": 0.1144536401381241,
+          "raster_fp_rate": 0.14199014566062412,
+          "raster_iou": 0.782266430781376,
+          "raster_margin90": -1116.018691588785
+        }
+      },
+      "margin_attribution_max_residual": 7.09405867382884e-11,
+      "paired_center_minus_native": {
+        "fn_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.009698651391735945,
+              0.005006736418454953
+            ],
+            "group_equal_mean": -0.003101573311021485,
+            "group_signs": [
+              7,
+              0,
+              21
+            ],
+            "object_bootstrap_95": [
+              -0.011060223117930017,
+              -0.0020162529278008796
+            ],
+            "object_leave_one_group_range": [
+              -0.008041729642184811,
+              -0.006292712906123777
+            ],
+            "object_mean": -0.007025914355287038
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.00487930301627374,
+              0.007309934945761831
+            ],
+            "group_equal_mean": 0.006078212645975689,
+            "group_signs": [
+              28,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.005116491711638742,
+              0.00846087936912896
+            ],
+            "object_leave_one_group_range": [
+              0.005957307404888959,
+              0.006948173286698601
+            ],
+            "object_mean": 0.006754648438770771
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.016501237067942633,
+              -0.00037797386737703904
+            ],
+            "group_equal_mean": -0.009179785956997175,
+            "group_signs": [
+              4,
+              0,
+              24
+            ],
+            "object_bootstrap_95": [
+              -0.018487589628775423,
+              -0.00796418219431655
+            ],
+            "object_leave_one_group_range": [
+              -0.014866655180848391,
+              -0.012330918035289223
+            ],
+            "object_mean": -0.013780562794057807
+          }
+        },
+        "fp_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.021926193385066312,
+              -0.002682047093673638
+            ],
+            "group_equal_mean": -0.011602618042853083,
+            "group_signs": [
+              11,
+              0,
+              17
+            ],
+            "object_bootstrap_95": [
+              -0.01225829715488131,
+              -0.0009820869512691603
+            ],
+            "object_leave_one_group_range": [
+              -0.007576180060300225,
+              -0.005513143938035613
+            ],
+            "object_mean": -0.006521115833362358
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.004889836174101863,
+              0.007309831558134948
+            ],
+            "group_equal_mean": 0.006082752327527817,
+            "group_signs": [
+              28,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.005133823477557631,
+              0.008466847526437943
+            ],
+            "object_leave_one_group_range": [
+              0.0059567125292025085,
+              0.006958053327267352
+            ],
+            "object_mean": 0.006763043014319953
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.027765969599466894,
+              -0.008830604392491136
+            ],
+            "group_equal_mean": -0.017685370370380902,
+            "group_signs": [
+              5,
+              0,
+              23
+            ],
+            "object_bootstrap_95": [
+              -0.019806975554726214,
+              -0.0066810483289795235
+            ],
+            "object_leave_one_group_range": [
+              -0.014523443955058196,
+              -0.011748985907967519
+            ],
+            "object_mean": -0.013284158847682307
+          }
+        },
+        "iou": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              0.0046976932012473055,
+              0.01484610418198771
+            ],
+            "group_equal_mean": 0.009797558655138322,
+            "group_signs": [
+              23,
+              0,
+              5
+            ],
+            "object_bootstrap_95": [
+              0.005860409929346623,
+              0.013978677428769922
+            ],
+            "object_leave_one_group_range": [
+              0.0089393990661286,
+              0.010861815257649461
+            ],
+            "object_mean": 0.010058193946261276
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.011195923379071687,
+              -0.007450271956840321
+            ],
+            "group_equal_mean": -0.009334332921253815,
+            "group_signs": [
+              0,
+              0,
+              28
+            ],
+            "object_bootstrap_95": [
+              -0.012745261175092807,
+              -0.007914248932837162
+            ],
+            "object_leave_one_group_range": [
+              -0.01065474267177632,
+              -0.009281507681006015
+            ],
+            "object_mean": -0.010347983299730927
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              0.01278387331698136,
+              0.025203409851528753
+            ],
+            "group_equal_mean": 0.01913189157639214,
+            "group_signs": [
+              25,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              0.01418539100216064,
+              0.026261197671949427
+            ],
+            "object_leave_one_group_range": [
+              0.01822090674713461,
+              0.021508249730925636
+            ],
+            "object_mean": 0.020406177245992203
+          }
+        },
+        "margin90": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -463.0192953813984,
+              1157.6308579696438
+            ],
+            "group_equal_mean": 226.4957702299501,
+            "group_signs": [
+              22,
+              0,
+              6
+            ],
+            "object_bootstrap_95": [
+              -204.62068947112797,
+              102.13528665314053
+            ],
+            "object_leave_one_group_range": [
+              -41.856640488069516,
+              43.29062467634096
+            ],
+            "object_mean": -21.793463393633907
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -152.23156727467415,
+              -47.970081614007775
+            ],
+            "group_equal_mean": -86.02486046308574,
+            "group_signs": [
+              0,
+              0,
+              28
+            ],
+            "object_bootstrap_95": [
+              -64.7854869313444,
+              -46.85773286174975
+            ],
+            "object_leave_one_group_range": [
+              -57.03042952907866,
+              -53.65115077746369
+            ],
+            "object_mean": -55.38162538740337
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -410.63150579254153,
+              1308.4208267198376
+            ],
+            "group_equal_mean": 312.5206306930358,
+            "group_signs": [
+              24,
+              0,
+              4
+            ],
+            "object_bootstrap_95": [
+              -149.3542280559326,
+              161.69357704505248
+            ],
+            "object_leave_one_group_range": [
+              11.882022471910112,
+              99.01958307012002
+            ],
+            "object_mean": 33.58816199376947
+          }
+        }
+      },
+      "pairs": 1605,
+      "raster_against_source_polygon": {
+        "mean_iou": 0.9548012104452838,
+        "median_iou": 0.9576719576719577
+      },
+      "source_proxy_groups": 28,
+      "thresholds": {
+        "0.5": {
+          "polygon": {
+            "both": 1601,
+            "center_at": 1602,
+            "gain": 1,
+            "loss": 3,
+            "native_at": 1604,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 1,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 1605,
+            "center_at": 1605,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 1605,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 1605
+        },
+        "0.75": {
+          "polygon": {
+            "both": 1065,
+            "center_at": 1208,
+            "gain": 143,
+            "loss": 95,
+            "native_at": 1160,
+            "neither": 302,
+            "numerically_ambiguous": {
+              "center": 2,
+              "native": 2
+            }
+          },
+          "raster": {
+            "both": 1036,
+            "center_at": 1222,
+            "gain": 186,
+            "loss": 84,
+            "native_at": 1120,
+            "neither": 299,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 1605
+        },
+        "0.9": {
+          "polygon": {
+            "both": 46,
+            "center_at": 117,
+            "gain": 71,
+            "loss": 42,
+            "native_at": 88,
+            "neither": 1446,
+            "numerically_ambiguous": {
+              "center": 1,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 53,
+            "center_at": 155,
+            "gain": 102,
+            "loss": 44,
+            "native_at": 97,
+            "neither": 1406,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 1568
+        }
+      }
+    },
+    "large": {
+      "arms": {
+        "center": {
+          "polygon_fn_rate": 0.19102228799190746,
+          "polygon_fp_rate": 0.13302071913224148,
+          "polygon_iou": 0.722946363632959,
+          "polygon_margin90": -55484.65242522441,
+          "raster_fn_rate": 0.1904823386866499,
+          "raster_fp_rate": 0.13228810523082585,
+          "raster_iou": 0.7239838999016092,
+          "raster_margin90": -55077.933333333334
+        },
+        "native": {
+          "polygon_fn_rate": 0.11663196296589239,
+          "polygon_fp_rate": 0.13247566049038884,
+          "polygon_iou": 0.7847163028077825,
+          "polygon_margin90": -43291.58901697744,
+          "raster_fn_rate": 0.11669844008536644,
+          "raster_fp_rate": 0.1323548264799966,
+          "raster_iou": 0.7848432034460919,
+          "raster_margin90": -43186.4
+        }
+      },
+      "margin_attribution_max_residual": 7.09405867382884e-11,
+      "paired_center_minus_native": {
+        "fn_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              0.0466320912198764,
+              0.10087764808850723
+            ],
+            "group_equal_mean": 0.07082304501136409,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.0466320912198764,
+              0.10087764808850722
+            ],
+            "object_leave_one_group_range": [
+              0.05121391734633446,
+              0.09289581423010754
+            ],
+            "object_mean": 0.07439032502601509
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.0003759444791729464,
+              0.0012956735197718547
+            ],
+            "group_equal_mean": 0.0007723969983827241,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.00037594447917294646,
+              0.0012956735197718547
+            ],
+            "object_leave_one_group_range": [
+              0.0005003884101100656,
+              0.0008080981270954923
+            ],
+            "object_mean": 0.0006064264247316375
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              0.04598651822367303,
+              0.10050170360933429
+            ],
+            "group_equal_mean": 0.07005064801298136,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.04598651822367303,
+              0.10050170360933428
+            ],
+            "object_leave_one_group_range": [
+              0.050405819219238965,
+              0.0923154855196904
+            ],
+            "object_mean": 0.07378389860128345
+          }
+        },
+        "fp_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.11840982976127297,
+              0.03844061043365678
+            ],
+            "group_equal_mean": -0.027994669436164393,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -0.11840982976127297,
+              0.03844061043365678
+            ],
+            "object_leave_one_group_range": [
+              -0.03261354917597596,
+              0.018845810703871976
+            ],
+            "object_mean": 0.000545058641852647
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.0003494608535130322,
+              0.0012383628167809413
+            ],
+            "group_equal_mean": 0.00076559382105343,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.0003494608535130322,
+              0.0012383628167809413
+            ],
+            "object_leave_one_group_range": [
+              0.0005153825178299327,
+              0.0008413090488449727
+            ],
+            "object_mean": 0.0006117798910234005
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.11964819257805392,
+              0.03809114958014374
+            ],
+            "group_equal_mean": -0.02876026325721782,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -0.11964819257805392,
+              0.03809114958014374
+            ],
+            "object_leave_one_group_range": [
+              -0.033454858224820944,
+              0.01833042818604204
+            ],
+            "object_mean": -6.672124917075361e-05
+          }
+        },
+        "iou": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.1067200655286988,
+              0.022177913248172643
+            ],
+            "group_equal_mean": -0.04061763161672019,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -0.10672006552869881,
+              0.022177913248172643
+            ],
+            "object_leave_one_group_range": [
+              -0.0780760702449496,
+              -0.02243857861518264
+            ],
+            "object_mean": -0.06176993917482352
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.001691662925367099,
+              -0.0004915956351869223
+            ],
+            "group_equal_mean": -0.0011074772511882568,
+            "group_signs": [
+              0,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              -0.001691662925367099,
+              -0.0004915956351869223
+            ],
+            "object_leave_one_group_range": [
+              -0.0012772956260998364,
+              -0.0007582772552269615
+            ],
+            "object_mean": -0.0009106356303404765
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.10622846989351188,
+              0.02386957617353974
+            ],
+            "group_equal_mean": -0.03951015436553193,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -0.1062284698935119,
+              0.02386957617353974
+            ],
+            "object_leave_one_group_range": [
+              -0.07731779298972263,
+              -0.021161282989082805
+            ],
+            "object_mean": -0.06085930354448303
+          }
+        },
+        "margin90": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -23154.32100453782,
+              13919.0
+            ],
+            "group_equal_mean": -5781.423895509263,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -23154.321004537822,
+              13919.0
+            ],
+            "object_leave_one_group_range": [
+              -16210.30393259266,
+              -2601.9630114924803
+            ],
+            "object_mean": -12193.063408246971
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -1396.5,
+              -104.74957596639122
+            ],
+            "group_equal_mean": -555.7889748743438,
+            "group_signs": [
+              0,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              -1396.5,
+              -104.74957596639122
+            ],
+            "object_leave_one_group_range": [
+              -473.7130114924803,
+              -133.07316336189083
+            ],
+            "object_mean": -301.5300749136387
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -23049.57142857143,
+              15315.5
+            ],
+            "group_equal_mean": -5225.63492063492,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -23049.571428571428,
+              15315.5
+            ],
+            "object_leave_one_group_range": [
+              -16077.23076923077,
+              -2128.25
+            ],
+            "object_mean": -11891.533333333333
+          }
+        }
+      },
+      "pairs": 15,
+      "raster_against_source_polygon": {
+        "mean_iou": 0.993553107179073,
+        "median_iou": 0.9935047579802018
+      },
+      "source_proxy_groups": 3,
+      "thresholds": {
+        "0.5": {
+          "polygon": {
+            "both": 15,
+            "center_at": 15,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 15,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 15,
+            "center_at": 15,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 15,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 15
+        },
+        "0.75": {
+          "polygon": {
+            "both": 6,
+            "center_at": 7,
+            "gain": 1,
+            "loss": 3,
+            "native_at": 9,
+            "neither": 5,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 6,
+            "center_at": 7,
+            "gain": 1,
+            "loss": 3,
+            "native_at": 9,
+            "neither": 5,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 15
+        },
+        "0.9": {
+          "polygon": {
+            "both": 1,
+            "center_at": 1,
+            "gain": 0,
+            "loss": 1,
+            "native_at": 2,
+            "neither": 13,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 1,
+            "center_at": 1,
+            "gain": 0,
+            "loss": 1,
+            "native_at": 2,
+            "neither": 13,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 15
+        }
+      }
+    },
+    "large_edge": {
+      "arms": {
+        "center": {
+          "polygon_fn_rate": 0.14851005548137777,
+          "polygon_fp_rate": 0.04973597652319686,
+          "polygon_iou": 0.8135859972412695,
+          "polygon_margin90": -23470.94161378841,
+          "raster_fn_rate": 0.1479896423397837,
+          "raster_fp_rate": 0.04935902263307655,
+          "raster_iou": 0.8143276249941245,
+          "raster_margin90": -23280.0
+        },
+        "native": {
+          "polygon_fn_rate": 0.08529758482934292,
+          "polygon_fp_rate": 0.11408130211157944,
+          "polygon_iou": 0.8269013829165229,
+          "polygon_margin90": -30102.95998557392,
+          "raster_fn_rate": 0.08525153828938362,
+          "raster_fp_rate": 0.11418426696889791,
+          "raster_iou": 0.827035092945519,
+          "raster_margin90": -30345.0
+        }
+      },
+      "margin_attribution_max_residual": 7.275957614183426e-12,
+      "paired_center_minus_native": {
+        "fn_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              0.003898426952999544,
+              0.1461851811075636
+            ],
+            "group_equal_mean": 0.06715558177811708,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.003898426952999544,
+              0.1461851811075636
+            ],
+            "object_leave_one_group_range": [
+              0.035554900500191916,
+              0.08298381855171326
+            ],
+            "object_mean": 0.06321247065203484
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -5.45311458314407e-05,
+              0.0020606709151627656
+            ],
+            "group_equal_mean": 0.0006506658507901322,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -5.45311458314407e-05,
+              0.0020606709151627656
+            ],
+            "object_leave_one_group_range": [
+              -5.440150287460329e-05,
+              0.0010032643491009186
+            ],
+            "object_mean": 0.0004743666016347389
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              0.003952569169960472,
+              0.14412451019240083
+            ],
+            "group_equal_mean": 0.06650491592732695,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.003952569169960472,
+              0.14412451019240083
+            ],
+            "object_leave_one_group_range": [
+              0.03560930200306653,
+              0.08233328234387997
+            ],
+            "object_mean": 0.0627381040504001
+          }
+        },
+        "fp_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.2736320598921061,
+              0.023942260875226492
+            ],
+            "group_equal_mean": -0.08451185022840164,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -0.2736320598921061,
+              0.023942260875226492
+            ],
+            "object_leave_one_group_range": [
+              -0.12484489950843979,
+              0.005416919179525266
+            ],
+            "object_mean": -0.06434532558838257
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -4.1124935720115996e-05,
+              0.0019590113006028864
+            ],
+            "group_equal_mean": 0.0006395935591063137,
+            "group_signs": [
+              2,
+              0,
+              1
+            ],
+            "object_bootstrap_95": [
+              -4.1124935720115996e-05,
+              0.0019590113006028864
+            ],
+            "object_leave_one_group_range": [
+              -1.3112103615924887e-05,
+              0.0009589431824413852
+            ],
+            "object_mean": 0.00047991874743877794
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.275591071192709,
+              0.023983385810946608
+            ],
+            "group_equal_mean": -0.08515144378750795,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -0.275591071192709,
+              0.023983385810946608
+            ],
+            "object_leave_one_group_range": [
+              -0.12580384269088118,
+              0.005430031283141179
+            ],
+            "object_mean": -0.06482524433582136
+          }
+        },
+        "iou": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.039372397569099604,
+              0.05103646566768183
+            ],
+            "group_equal_mean": -0.0046297150439714345,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -0.039372397569099604,
+              0.05103646566768183
+            ],
+            "object_leave_one_group_range": [
+              -0.034766002789565244,
+              0.01274162621859265
+            ],
+            "object_mean": -0.013315385675253477
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.002772535213159566,
+              0.00012271440185973592
+            ],
+            "group_equal_mean": -0.0008514617657651528,
+            "group_signs": [
+              2,
+              0,
+              1
+            ],
+            "object_bootstrap_95": [
+              -0.002772535213159566,
+              0.00012271440185973592
+            ],
+            "object_leave_one_group_range": [
+              -0.0013385498495775972,
+              0.00011362143924128117
+            ],
+            "object_mean": -0.0006079177238589306
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.03949511197095934,
+              0.053809000880841396
+            ],
+            "group_equal_mean": -0.003778253278206282,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -0.03949511197095934,
+              0.053809000880841396
+            ],
+            "object_leave_one_group_range": [
+              -0.03487962422880653,
+              0.014080176068170247
+            ],
+            "object_mean": -0.012707467951394547
+          }
+        },
+        "margin90": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -7564.5,
+              45453.0
+            ],
+            "group_equal_mean": 11364.19116238068,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -7564.5,
+              45453.0
+            ],
+            "object_leave_one_group_range": [
+              -6308.308837619319,
+              20828.53674357102
+            ],
+            "object_mean": 6632.018371785511
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -1748.0,
+              16.073487142042723
+            ],
+            "group_equal_mean": -577.3088376193191,
+            "group_signs": [
+              1,
+              1,
+              1
+            ],
+            "object_bootstrap_95": [
+              -1748.0,
+              16.073487142042723
+            ],
+            "object_leave_one_group_range": [
+              -865.9632564289786,
+              5.3578290473475745
+            ],
+            "object_mean": -432.9816282144893
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -7564.5,
+              47201.0
+            ],
+            "group_equal_mean": 11941.5,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -7564.5,
+              47201.0
+            ],
+            "object_leave_one_group_range": [
+              -6313.666666666667,
+              21694.5
+            ],
+            "object_mean": 7065.0
+          }
+        }
+      },
+      "pairs": 4,
+      "raster_against_source_polygon": {
+        "mean_iou": 0.9952821959327359,
+        "median_iou": 0.9960209849983872
+      },
+      "source_proxy_groups": 3,
+      "thresholds": {
+        "0.5": {
+          "polygon": {
+            "both": 4,
+            "center_at": 4,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 4,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 4,
+            "center_at": 4,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 4,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 4
+        },
+        "0.75": {
+          "polygon": {
+            "both": 2,
+            "center_at": 3,
+            "gain": 1,
+            "loss": 1,
+            "native_at": 3,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 2,
+            "center_at": 3,
+            "gain": 1,
+            "loss": 1,
+            "native_at": 3,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 4
+        },
+        "0.9": {
+          "polygon": {
+            "both": 1,
+            "center_at": 1,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 1,
+            "neither": 3,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 1,
+            "center_at": 1,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 1,
+            "neither": 3,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 4
+        }
+      }
+    },
+    "large_interior": {
+      "arms": {
+        "center": {
+          "polygon_fn_rate": 0.20648128163210008,
+          "polygon_fp_rate": 0.163306080080985,
+          "polygon_iou": 0.6899864968663008,
+          "polygon_margin90": -67126.00181120115,
+          "raster_fn_rate": 0.2059342282673285,
+          "raster_fp_rate": 0.16244413526637103,
+          "raster_iou": 0.6911316362316033,
+          "raster_margin90": -66640.81818181818
+        },
+        "native": {
+          "polygon_fn_rate": 0.128026282288274,
+          "polygon_fp_rate": 0.13916451808268315,
+          "polygon_iou": 0.7693762736773316,
+          "polygon_margin90": -48087.45411930599,
+          "raster_fn_rate": 0.12813367710208748,
+          "raster_fp_rate": 0.13896230266585066,
+          "raster_iou": 0.769500698173573,
+          "raster_margin90": -47856.0
+        }
+      },
+      "margin_attribution_max_residual": 7.09405867382884e-11,
+      "paired_center_minus_native": {
+        "fn_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.016266389656146338,
+              0.12067545241439488
+            ],
+            "group_equal_mean": 0.053195962277166775,
+            "group_signs": [
+              2,
+              0,
+              1
+            ],
+            "object_bootstrap_95": [
+              -0.016266389656146338,
+              0.12067545241439488
+            ],
+            "object_leave_one_group_range": [
+              0.04327128845168541,
+              0.09785181206930467
+            ],
+            "object_mean": 0.07845499934382608
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.0005306761243809438,
+              0.0007855160388362314
+            ],
+            "group_equal_mean": 0.0006214422974639588,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.0005306761243809438,
+              0.0007855160388362314
+            ],
+            "object_leave_one_group_range": [
+              0.0005452249617090751,
+              0.0007430427197603501
+            ],
+            "object_mean": 0.0006544481785850552
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.01679706578052728,
+              0.12012731768522018
+            ],
+            "group_equal_mean": 0.05257451997970281,
+            "group_signs": [
+              2,
+              0,
+              1
+            ],
+            "object_bootstrap_95": [
+              -0.01679706578052728,
+              0.12012731768522018
+            ],
+            "object_leave_one_group_range": [
+              0.04252824573192506,
+              0.0973065871075956
+            ],
+            "object_mean": 0.07780055116524102
+          }
+        },
+        "fp_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.00960619895209765,
+              0.05535515527444964
+            ],
+            "group_equal_mean": 0.02752045223063737,
+            "group_signs": [
+              2,
+              0,
+              1
+            ],
+            "object_bootstrap_95": [
+              -0.009606198952097652,
+              0.05535515527444963
+            ],
+            "object_leave_one_group_range": [
+              -0.001869765731821349,
+              0.05226469612363472
+            ],
+            "object_mean": 0.02414156199830182
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.0004888874699437767,
+              0.0008589743385836029
+            ],
+            "group_equal_mean": 0.000621858713828792,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.0004888874699437767,
+              0.0008589743385836029
+            ],
+            "object_leave_one_group_range": [
+              0.00049369194711298,
+              0.0008020976709795018
+            ],
+            "object_mean": 0.0006597293977814449
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.010465173290681256,
+              0.054866267804505854
+            ],
+            "group_equal_mean": 0.026898593516808577,
+            "group_signs": [
+              2,
+              0,
+              1
+            ],
+            "object_bootstrap_95": [
+              -0.010465173290681255,
+              0.054866267804505854
+            ],
+            "object_leave_one_group_range": [
+              -0.002671863402800854,
+              0.05177100417652173
+            ],
+            "object_mean": 0.02348183260052037
+          }
+        },
+        "iou": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.1336591327125385,
+              -0.006680639171336544
+            ],
+            "group_equal_mean": -0.060000673440445663,
+            "group_signs": [
+              0,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              -0.1336591327125385,
+              -0.006680639171336544
+            ],
+            "object_leave_one_group_range": [
+              -0.1124960504556715,
+              -0.0341653135597744
+            ],
+            "object_mean": -0.07938977681103081
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.001386094934413773,
+              -0.0006107906375746319
+            ],
+            "group_equal_mean": -0.0009114017406646634,
+            "group_signs": [
+              0,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              -0.001386094934413773,
+              -0.0006107906375746319
+            ],
+            "object_leave_one_group_range": [
+              -0.0012568775516072495,
+              -0.0007162314812670934
+            ],
+            "object_mean": -0.0010207148690610387
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.1329218130625329,
+              -0.006069848533761912
+            ],
+            "group_equal_mean": -0.05908927169978101,
+            "group_signs": [
+              0,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              -0.1329218130625329,
+              -0.006069848533761912
+            ],
+            "object_leave_one_group_range": [
+              -0.11177981897440441,
+              -0.032908436008167154
+            ],
+            "object_mean": -0.07836906194196977
+          }
+        },
+        "margin90": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -29390.24940635295,
+              -8971.555515816377
+            ],
+            "group_equal_mean": -18658.93497405644,
+            "group_signs": [
+              0,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              -29390.24940635295,
+              -8971.555515816377
+            ],
+            "object_leave_one_group_range": [
+              -27427.707838627455,
+              -10412.129596513647
+            ],
+            "object_mean": -19038.547691895146
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -1045.0,
+              -146.6494063529477
+            ],
+            "group_equal_mean": -464.73497405644156,
+            "group_signs": [
+              0,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              -1045.0,
+              -146.6494063529477
+            ],
+            "object_leave_one_group_range": [
+              -342.96292984698084,
+              -174.60246108466237
+            ],
+            "object_mean": -253.72951007696577
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -29243.599999999995,
+              -8769.0
+            ],
+            "group_equal_mean": -18194.2,
+            "group_signs": [
+              0,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              -29243.6,
+              -8769.0
+            ],
+            "object_leave_one_group_range": [
+              -27131.333333333332,
+              -10069.166666666666
+            ],
+            "object_mean": -18784.81818181818
+          }
+        }
+      },
+      "pairs": 11,
+      "raster_against_source_polygon": {
+        "mean_iou": 0.9929243476322864,
+        "median_iou": 0.9928219916622262
+      },
+      "source_proxy_groups": 3,
+      "thresholds": {
+        "0.5": {
+          "polygon": {
+            "both": 11,
+            "center_at": 11,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 11,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 11,
+            "center_at": 11,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 11,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 11
+        },
+        "0.75": {
+          "polygon": {
+            "both": 4,
+            "center_at": 4,
+            "gain": 0,
+            "loss": 2,
+            "native_at": 6,
+            "neither": 5,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 4,
+            "center_at": 4,
+            "gain": 0,
+            "loss": 2,
+            "native_at": 6,
+            "neither": 5,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 11
+        },
+        "0.9": {
+          "polygon": {
+            "both": 0,
+            "center_at": 0,
+            "gain": 0,
+            "loss": 1,
+            "native_at": 1,
+            "neither": 10,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 0,
+            "center_at": 0,
+            "gain": 0,
+            "loss": 1,
+            "native_at": 1,
+            "neither": 10,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 11
+        }
+      }
+    },
+    "medium": {
+      "arms": {
+        "center": {
+          "polygon_fn_rate": 0.09950413234652898,
+          "polygon_fp_rate": 0.10540454416320369,
+          "polygon_iou": 0.8195384940575103,
+          "polygon_margin90": -1977.309168023269,
+          "raster_fn_rate": 0.09825247995536325,
+          "raster_fp_rate": 0.10342120218140063,
+          "raster_iou": 0.8222423974906117,
+          "raster_margin90": -1934.7624309392265
+        },
+        "native": {
+          "polygon_fn_rate": 0.09643891728307409,
+          "polygon_fp_rate": 0.11868381079796919,
+          "polygon_iou": 0.8140899937684813,
+          "polygon_margin90": -2431.3243268332044,
+          "raster_fn_rate": 0.09672664972350971,
+          "raster_fp_rate": 0.1181964795203804,
+          "raster_iou": 0.8141673625078932,
+          "raster_margin90": -2422.049723756906
+        }
+      },
+      "margin_attribution_max_residual": 4.547473508864641e-11,
+      "paired_center_minus_native": {
+        "fn_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.007479533447045087,
+              0.020245164492018148
+            ],
+            "group_equal_mean": 0.004753809402538997,
+            "group_signs": [
+              11,
+              0,
+              13
+            ],
+            "object_bootstrap_95": [
+              -0.006699544199100356,
+              0.01717191188641551
+            ],
+            "object_leave_one_group_range": [
+              -0.0004927086310617158,
+              0.005815967725379492
+            ],
+            "object_mean": 0.003065215063454885
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.0017697260003703376,
+              0.004184383076280229
+            ],
+            "group_equal_mean": 0.002859778291245221,
+            "group_signs": [
+              21,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              0.000804992496731986,
+              0.0026803023436048337
+            ],
+            "object_leave_one_group_range": [
+              0.0013592588657297764,
+              0.0018780111483284651
+            ],
+            "object_mean": 0.0015393848316013216
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.010536121812430868,
+              0.017390590586095007
+            ],
+            "group_equal_mean": 0.0018940311112937772,
+            "group_signs": [
+              11,
+              0,
+              13
+            ],
+            "object_bootstrap_95": [
+              -0.008535285226048388,
+              0.015571131634012064
+            ],
+            "object_leave_one_group_range": [
+              -0.002122426324636092,
+              0.004088671119837289
+            ],
+            "object_mean": 0.0015258302318535628
+          }
+        },
+        "fp_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.041038783694740996,
+              -0.004587169461185271
+            ],
+            "group_equal_mean": -0.02083618149529908,
+            "group_signs": [
+              9,
+              1,
+              14
+            ],
+            "object_bootstrap_95": [
+              -0.0432590512081871,
+              0.0067737893802036495
+            ],
+            "object_leave_one_group_range": [
+              -0.022209912901601035,
+              -0.004058306615527177
+            ],
+            "object_mean": -0.013279266634765498
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.001670159215844875,
+              0.004120843888495954
+            ],
+            "group_equal_mean": 0.0027781294908873957,
+            "group_signs": [
+              20,
+              0,
+              4
+            ],
+            "object_bootstrap_95": [
+              0.0007626719227676698,
+              0.0026321767838043547
+            ],
+            "object_leave_one_group_range": [
+              0.0013139563870738548,
+              0.0018327734434151516
+            ],
+            "object_mean": 0.0014960107042142551
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.043676169951564855,
+              -0.007334954195669587
+            ],
+            "group_equal_mean": -0.023614310986186476,
+            "group_signs": [
+              8,
+              0,
+              16
+            ],
+            "object_bootstrap_95": [
+              -0.04497948575802413,
+              0.005356697097490037
+            ],
+            "object_leave_one_group_range": [
+              -0.023897716098084044,
+              -0.005646248428370696
+            ],
+            "object_mean": -0.014775277338979756
+          }
+        },
+        "iou": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.002377070559599171,
+              0.019443733121811854
+            ],
+            "group_equal_mean": 0.008701917153073087,
+            "group_signs": [
+              15,
+              0,
+              9
+            ],
+            "object_bootstrap_95": [
+              -0.002412899601124354,
+              0.015726279304978937
+            ],
+            "object_leave_one_group_range": [
+              0.0025039160665270626,
+              0.008361915788225325
+            ],
+            "object_mean": 0.005448500289029101
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.007285920971555921,
+              -0.0030054436934044623
+            ],
+            "group_equal_mean": -0.0049181690786724835,
+            "group_signs": [
+              3,
+              0,
+              21
+            ],
+            "object_bootstrap_95": [
+              -0.004586755676764392,
+              -0.0014107206281435715
+            ],
+            "object_leave_one_group_range": [
+              -0.0031677529941643535,
+              -0.002305677949098486
+            ],
+            "object_mean": -0.0026265346936890427
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              0.002369027940083055,
+              0.024582194049403663
+            ],
+            "group_equal_mean": 0.01362008623174557,
+            "group_signs": [
+              18,
+              0,
+              6
+            ],
+            "object_bootstrap_95": [
+              -0.00026420912010316814,
+              0.0192759549201377
+            ],
+            "object_leave_one_group_range": [
+              0.005198944283183971,
+              0.011338981843779372
+            ],
+            "object_mean": 0.008075034982718143
+          }
+        },
+        "margin90": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              5.503641940970836,
+              1241.982521114173
+            ],
+            "group_equal_mean": 526.1351463535336,
+            "group_signs": [
+              17,
+              0,
+              7
+            ],
+            "object_bootstrap_95": [
+              -21.826404035158088,
+              1341.7912360767168
+            ],
+            "object_leave_one_group_range": [
+              121.22900708379098,
+              592.6151011556462
+            ],
+            "object_mean": 454.0151588099358
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -86.80727698136029,
+              -35.60341889453459
+            ],
+            "group_equal_mean": -59.52298301762735,
+            "group_signs": [
+              3,
+              0,
+              21
+            ],
+            "object_bootstrap_95": [
+              -59.82583651254758,
+              -11.009609734266473
+            ],
+            "object_leave_one_group_range": [
+              -42.654404157570475,
+              -27.885180317340506
+            ],
+            "object_mean": -33.272134007743766
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              73.92063114813295,
+              1286.906986844706
+            ],
+            "group_equal_mean": 585.658129371161,
+            "group_signs": [
+              20,
+              0,
+              4
+            ],
+            "object_bootstrap_95": [
+              16.74029696795241,
+              1372.996500965251
+            ],
+            "object_leave_one_group_range": [
+              158.4825581395349,
+              631.2565789473684
+            ],
+            "object_mean": 487.28729281767954
+          }
+        }
+      },
+      "pairs": 181,
+      "raster_against_source_polygon": {
+        "mean_iou": 0.9722316220298525,
+        "median_iou": 0.9716981132075472
+      },
+      "source_proxy_groups": 24,
+      "thresholds": {
+        "0.5": {
+          "polygon": {
+            "both": 181,
+            "center_at": 181,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 181,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 181,
+            "center_at": 181,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 181,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 181
+        },
+        "0.75": {
+          "polygon": {
+            "both": 137,
+            "center_at": 146,
+            "gain": 9,
+            "loss": 11,
+            "native_at": 148,
+            "neither": 24,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 138,
+            "center_at": 147,
+            "gain": 9,
+            "loss": 10,
+            "native_at": 148,
+            "neither": 24,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 181
+        },
+        "0.9": {
+          "polygon": {
+            "both": 20,
+            "center_at": 32,
+            "gain": 12,
+            "loss": 7,
+            "native_at": 27,
+            "neither": 142,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 18,
+            "center_at": 32,
+            "gain": 14,
+            "loss": 7,
+            "native_at": 25,
+            "neither": 142,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 181
+        }
+      }
+    },
+    "medium_edge": {
+      "arms": {
+        "center": {
+          "polygon_fn_rate": 0.09476338102174955,
+          "polygon_fp_rate": 0.0774823137279656,
+          "polygon_iou": 0.8426122943278112,
+          "polygon_margin90": -6317.639294457975,
+          "raster_fn_rate": 0.09462611439940874,
+          "raster_fp_rate": 0.07766630646899297,
+          "raster_iou": 0.842795822205636,
+          "raster_margin90": -6411.5
+        },
+        "native": {
+          "polygon_fn_rate": 0.04569934080167013,
+          "polygon_fp_rate": 0.18210910588424278,
+          "polygon_iou": 0.821337125891351,
+          "polygon_margin90": -9496.56916985489,
+          "raster_fn_rate": 0.046260397651579174,
+          "raster_fp_rate": 0.18307540105192877,
+          "raster_iou": 0.8201267822071093,
+          "raster_margin90": -9552.5
+        }
+      },
+      "margin_attribution_max_residual": 4.547473508864641e-11,
+      "paired_center_minus_native": {
+        "fn_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.0272108843537415,
+              0.10896166760636862
+            ],
+            "group_equal_mean": 0.029098164424649697,
+            "group_signs": [
+              2,
+              0,
+              1
+            ],
+            "object_bootstrap_95": [
+              -0.0272108843537415,
+              0.10896166760636862
+            ],
+            "object_leave_one_group_range": [
+              -0.010833587166209774,
+              0.07448901507801974
+            ],
+            "object_mean": 0.04906404022007942
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.0009267258982523976,
+              0.002988343752156715
+            ],
+            "group_equal_mean": 0.0012400065957506106,
+            "group_signs": [
+              2,
+              0,
+              1
+            ],
+            "object_bootstrap_95": [
+              -0.0009267258982523976,
+              0.002988343752156715
+            ],
+            "object_leave_one_group_range": [
+              -6.501662105242699e-05,
+              0.002323372842752115
+            ],
+            "object_mean": 0.0006983234722498586
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.028869286287089013,
+              0.10988839350462103
+            ],
+            "group_equal_mean": 0.027858157828899086,
+            "group_signs": [
+              2,
+              0,
+              1
+            ],
+            "object_bootstrap_95": [
+              -0.028869286287089013,
+              0.10988839350462103
+            ],
+            "object_leave_one_group_range": [
+              -0.013156960008961882,
+              0.0741107177594691
+            ],
+            "object_mean": 0.04836571674782957
+          }
+        },
+        "fp_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.2036017713485628,
+              -0.0032012805122048817
+            ],
+            "group_equal_mean": -0.0716351324255153,
+            "group_signs": [
+              0,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              -0.2036017713485628,
+              -0.0032012805122048817
+            ],
+            "object_leave_one_group_range": [
+              -0.1384352960376346,
+              -0.005651812963991559
+            ],
+            "object_mean": -0.10462679215627715
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.0007259829564733589,
+              0.0029709084172711564
+            ],
+            "group_equal_mean": 0.001285064221035917,
+            "group_signs": [
+              2,
+              0,
+              1
+            ],
+            "object_bootstrap_95": [
+              -0.0007259829564733589,
+              0.0029709084172711564
+            ],
+            "object_leave_one_group_range": [
+              5.276709645441203e-05,
+              0.002290587809790555
+            ],
+            "object_mean": 0.0007823024266585981
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.20287578839208942,
+              -0.0048115477145148355
+            ],
+            "group_equal_mean": -0.07292019664655122,
+            "group_signs": [
+              0,
+              0,
+              3
+            ],
+            "object_bootstrap_95": [
+              -0.20287578839208942,
+              -0.0048115477145148355
+            ],
+            "object_leave_one_group_range": [
+              -0.13894161020574272,
+              -0.00794240077378211
+            ],
+            "object_mean": -0.10540909458293576
+          }
+        },
+        "iou": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              0.001942754433760907,
+              0.02985848637006283
+            ],
+            "group_equal_mean": 0.019483652424944042,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.001942754433760907,
+              0.02985848637006283
+            ],
+            "object_leave_one_group_range": [
+              0.01590062040191187,
+              0.02771930643735987
+            ],
+            "object_mean": 0.02127516843646013
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.005507526042025979,
+              0.001468837842194759
+            ],
+            "group_equal_mean": -0.002348108030153543,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -0.005507526042025979,
+              0.001468837842194759
+            ],
+            "object_leave_one_group_range": [
+              -0.004256580966327694,
+              -2.2653402079964025e-05
+            ],
+            "object_mean": -0.0013938715620664677
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              0.007450280475786886,
+              0.03286412226069224
+            ],
+            "group_equal_mean": 0.021831760455097587,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.007450280475786886,
+              0.03286412226069224
+            ],
+            "object_leave_one_group_range": [
+              0.019270679244471383,
+              0.027741959839439834
+            ],
+            "object_mean": 0.022669039998526597
+          }
+        },
+        "margin90": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              20.5,
+              6159.609750793832
+            ],
+            "group_equal_mean": 2185.369916931277,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              20.5,
+              6159.609750793832
+            ],
+            "object_leave_one_group_range": [
+              198.25,
+              4231.739833862554
+            ],
+            "object_mean": 3178.929875396916
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -66.5,
+              128.10975079383206
+            ],
+            "group_equal_mean": 7.869916931277355,
+            "group_signs": [
+              1,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              -66.5,
+              128.10975079383206
+            ],
+            "object_leave_one_group_range": [
+              -52.25,
+              72.7398338625547
+            ],
+            "object_mean": 37.92987539691603
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              87.0,
+              6031.5
+            ],
+            "group_equal_mean": 2177.5,
+            "group_signs": [
+              3,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              87.0,
+              6031.5
+            ],
+            "object_leave_one_group_range": [
+              250.5,
+              4159.0
+            ],
+            "object_mean": 3141.0
+          }
+        }
+      },
+      "pairs": 4,
+      "raster_against_source_polygon": {
+        "mean_iou": 0.987247651393572,
+        "median_iou": 0.9863473595523136
+      },
+      "source_proxy_groups": 3,
+      "thresholds": {
+        "0.5": {
+          "polygon": {
+            "both": 4,
+            "center_at": 4,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 4,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 4,
+            "center_at": 4,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 4,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 4
+        },
+        "0.75": {
+          "polygon": {
+            "both": 3,
+            "center_at": 3,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 3,
+            "neither": 1,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 3,
+            "center_at": 3,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 3,
+            "neither": 1,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 4
+        },
+        "0.9": {
+          "polygon": {
+            "both": 1,
+            "center_at": 2,
+            "gain": 1,
+            "loss": 0,
+            "native_at": 1,
+            "neither": 2,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 1,
+            "center_at": 2,
+            "gain": 1,
+            "loss": 0,
+            "native_at": 1,
+            "neither": 2,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 4
+        }
+      }
+    },
+    "medium_interior": {
+      "arms": {
+        "center": {
+          "polygon_fn_rate": 0.09961126796968783,
+          "polygon_fp_rate": 0.1060355550204972,
+          "polygon_iou": 0.8190170522434921,
+          "polygon_margin90": -1879.2226114936707,
+          "raster_fn_rate": 0.09833443171933964,
+          "raster_fp_rate": 0.104003233722924,
+          "raster_iou": 0.8217779133162606,
+          "raster_margin90": -1833.593220338983
+        },
+        "native": {
+          "polygon_fn_rate": 0.09758557437869905,
+          "polygon_fp_rate": 0.1172504707960195,
+          "polygon_iou": 0.8139262167713542,
+          "polygon_margin90": -2271.6577767084204,
+          "raster_fn_rate": 0.09786712999632169,
+          "raster_fp_rate": 0.11673028920328325,
+          "raster_iou": 0.8140326863564988,
+          "raster_margin90": -2260.909604519774
+        }
+      },
+      "margin_attribution_max_residual": 1.000444171950221e-11,
+      "paired_center_minus_native": {
+        "fn_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.0076066606218162846,
+              0.01930567543868992
+            ],
+            "group_equal_mean": 0.004327134947485592,
+            "group_signs": [
+              11,
+              0,
+              13
+            ],
+            "object_bootstrap_95": [
+              -0.006926227025478266,
+              0.015112755838900047
+            ],
+            "object_leave_one_group_range": [
+              -0.0007685760298540004,
+              0.004647100901198411
+            ],
+            "object_mean": 0.0020256935909887933
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.0017429953672766412,
+              0.004162184791508089
+            ],
+            "group_equal_mean": 0.0028407909794029066,
+            "group_signs": [
+              22,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              0.0008133038641597635,
+              0.002724745467019538
+            ],
+            "object_leave_one_group_range": [
+              0.0013749954227173938,
+              0.0019090555608568497
+            ],
+            "object_mean": 0.0015583918679708464
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.010659645350761105,
+              0.016721826024651342
+            ],
+            "group_equal_mean": 0.0014863439680826856,
+            "group_signs": [
+              11,
+              0,
+              13
+            ],
+            "object_bootstrap_95": [
+              -0.008716479258150145,
+              0.013373497688384542
+            ],
+            "object_leave_one_group_range": [
+              -0.0022890042445933545,
+              0.0029015292303375246
+            ],
+            "object_mean": 0.0004673017230179459
+          }
+        },
+        "fp_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.04050266654902501,
+              -0.004269452603204725
+            ],
+            "group_equal_mean": -0.02048425689285789,
+            "group_signs": [
+              9,
+              1,
+              14
+            ],
+            "object_bootstrap_95": [
+              -0.03781888736577149,
+              0.007219926470638846
+            ],
+            "object_leave_one_group_range": [
+              -0.01998242967850168,
+              -0.00403955948201583
+            ],
+            "object_mean": -0.011214915775522298
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.0016468155765544871,
+              0.004098393753115193
+            ],
+            "group_equal_mean": 0.002756030355626087,
+            "group_signs": [
+              20,
+              0,
+              4
+            ],
+            "object_bootstrap_95": [
+              0.0007687730275015907,
+              0.0026724138870987723
+            ],
+            "object_leave_one_group_range": [
+              0.0013266148147027892,
+              0.0018604174175403238
+            ],
+            "object_mean": 0.0015121397048369818
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.04300261839397454,
+              -0.006983279736009471
+            ],
+            "group_equal_mean": -0.02324028724848398,
+            "group_signs": [
+              8,
+              0,
+              16
+            ],
+            "object_bootstrap_95": [
+              -0.03939539768896445,
+              0.005649475192674339
+            ],
+            "object_leave_one_group_range": [
+              -0.02169470586876373,
+              -0.005619234871365856
+            ],
+            "object_mean": -0.012727055480359283
+          }
+        },
+        "iou": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.0025926594552520364,
+              0.019359088179906142
+            ],
+            "group_equal_mean": 0.0085856904662913,
+            "group_signs": [
+              14,
+              0,
+              10
+            ],
+            "object_bootstrap_95": [
+              -0.002773468889745119,
+              0.015546423295154115
+            ],
+            "object_leave_one_group_range": [
+              0.0020131643705811,
+              0.008012908959894654
+            ],
+            "object_mean": 0.005090835472138004
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.007276175853644358,
+              -0.002969112732319049
+            ],
+            "group_equal_mean": -0.004880176567945045,
+            "group_signs": [
+              2,
+              0,
+              22
+            ],
+            "object_bootstrap_95": [
+              -0.004643341967429179,
+              -0.0014264583142447047
+            ],
+            "object_leave_one_group_range": [
+              -0.003214434084482719,
+              -0.0023273876249802006
+            ],
+            "object_mean": -0.002654391487624016
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              0.0023004281771669857,
+              0.024399156330751938
+            ],
+            "group_equal_mean": 0.013465867034236348,
+            "group_signs": [
+              18,
+              0,
+              6
+            ],
+            "object_bootstrap_95": [
+              -0.0006138326617516269,
+              0.0191241484314813
+            ],
+            "object_leave_one_group_range": [
+              0.00474220975467828,
+              0.011032764055813231
+            ],
+            "object_mean": 0.007745226959762021
+          }
+        },
+        "margin90": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              3.4747319338194727,
+              1260.7567783585152
+            ],
+            "group_equal_mean": 531.690960579305,
+            "group_signs": [
+              16,
+              0,
+              8
+            ],
+            "object_bootstrap_95": [
+              -24.87043300277751,
+              1162.1375124781307
+            ],
+            "object_leave_one_group_range": [
+              120.32287775536508,
+              522.7147018518282
+            ],
+            "object_mean": 392.4351652147499
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -86.9857726165665,
+              -36.74124746244979
+            ],
+            "group_equal_mean": -59.95361059079763,
+            "group_signs": [
+              3,
+              0,
+              21
+            ],
+            "object_bootstrap_95": [
+              -62.109370066313296,
+              -13.019069876608784
+            ],
+            "object_leave_one_group_range": [
+              -44.775043093214855,
+              -29.64024846972068
+            ],
+            "object_mean": -34.88121896604117
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              71.63691763782461,
+              1309.6770538089916
+            ],
+            "group_equal_mean": 591.6445711701027,
+            "group_signs": [
+              20,
+              0,
+              4
+            ],
+            "object_bootstrap_95": [
+              11.815020161290322,
+              1198.0650024151996
+            ],
+            "object_leave_one_group_range": [
+              157.4,
+              563.4256756756756
+            ],
+            "object_mean": 427.316384180791
+          }
+        }
+      },
+      "pairs": 177,
+      "raster_against_source_polygon": {
+        "mean_iou": 0.9718922767334972,
+        "median_iou": 0.9716659855605503
+      },
+      "source_proxy_groups": 24,
+      "thresholds": {
+        "0.5": {
+          "polygon": {
+            "both": 177,
+            "center_at": 177,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 177,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 177,
+            "center_at": 177,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 177,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 177
+        },
+        "0.75": {
+          "polygon": {
+            "both": 134,
+            "center_at": 143,
+            "gain": 9,
+            "loss": 11,
+            "native_at": 145,
+            "neither": 23,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 135,
+            "center_at": 144,
+            "gain": 9,
+            "loss": 10,
+            "native_at": 145,
+            "neither": 23,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 177
+        },
+        "0.9": {
+          "polygon": {
+            "both": 19,
+            "center_at": 30,
+            "gain": 11,
+            "loss": 7,
+            "native_at": 26,
+            "neither": 140,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 17,
+            "center_at": 30,
+            "gain": 13,
+            "loss": 7,
+            "native_at": 24,
+            "neither": 140,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 177
+        }
+      }
+    },
+    "small": {
+      "arms": {
+        "center": {
+          "polygon_fn_rate": 0.10309893280892081,
+          "polygon_fp_rate": 0.13591662912842015,
+          "polygon_iou": 0.7953011759327143,
+          "polygon_margin90": -425.8286454388312,
+          "raster_fn_rate": 0.10002793128815181,
+          "raster_fp_rate": 0.13191593304575988,
+          "raster_iou": 0.8009963828528042,
+          "raster_margin90": -398.11213626685594
+        },
+        "native": {
+          "polygon_fn_rate": 0.11228789756556472,
+          "polygon_fp_rate": 0.1416448190015797,
+          "polygon_iou": 0.7838861498013748,
+          "polygon_margin90": -472.48634496496584,
+          "raster_fn_rate": 0.11670694976611314,
+          "raster_fp_rate": 0.14514925379340873,
+          "raster_iou": 0.7781410083310777,
+          "raster_margin90": -500.3711852377573
+        }
+      },
+      "margin_attribution_max_residual": 4.547473508864641e-12,
+      "paired_center_minus_native": {
+        "fn_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.011321105243037751,
+              -0.001974068690991522
+            ],
+            "group_equal_mean": -0.0067424589211692205,
+            "group_signs": [
+              7,
+              0,
+              20
+            ],
+            "object_bootstrap_95": [
+              -0.012524977326878755,
+              -0.0051991328246953055
+            ],
+            "object_leave_one_group_range": [
+              -0.009910094874633502,
+              -0.00844090136559144
+            ],
+            "object_mean": -0.0091889647566439
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.005806283378801487,
+              0.008001699283830377
+            ],
+            "group_equal_mean": 0.006895624115991271,
+            "group_signs": [
+              27,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.005884337937874472,
+              0.009072689665589086
+            ],
+            "object_leave_one_group_range": [
+              0.006674428187665992,
+              0.0077196829339910905
+            ],
+            "object_mean": 0.007490053721317441
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.01872547619277971,
+              -0.008459525329989987
+            ],
+            "group_equal_mean": -0.01363808303716049,
+            "group_signs": [
+              5,
+              0,
+              22
+            ],
+            "object_bootstrap_95": [
+              -0.02051240952424729,
+              -0.012042417425034172
+            ],
+            "object_leave_one_group_range": [
+              -0.017328534734948182,
+              -0.015427734405217037
+            ],
+            "object_mean": -0.01667901847796134
+          }
+        },
+        "fp_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.011370867684635941,
+              0.001075937069437716
+            ],
+            "group_equal_mean": -0.005190045649917425,
+            "group_signs": [
+              10,
+              0,
+              17
+            ],
+            "object_bootstrap_95": [
+              -0.010870319177671648,
+              -0.00028184651047308794
+            ],
+            "object_leave_one_group_range": [
+              -0.006853859630543335,
+              -0.004749472260574707
+            ],
+            "object_mean": -0.005728189873159558
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.005852129934210517,
+              0.00806491753327151
+            ],
+            "group_equal_mean": 0.006934407828986628,
+            "group_signs": [
+              27,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.005903087060053877,
+              0.009093234417612714
+            ],
+            "object_leave_one_group_range": [
+              0.006680071143624318,
+              0.007736031724095137
+            ],
+            "object_mean": 0.007505130874489277
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.01837003196750324,
+              -0.005757273765039003
+            ],
+            "group_equal_mean": -0.012124453478904054,
+            "group_signs": [
+              6,
+              0,
+              21
+            ],
+            "object_bootstrap_95": [
+              -0.019197979228938195,
+              -0.006652288969669247
+            ],
+            "object_leave_one_group_range": [
+              -0.014589891354638479,
+              -0.01144537973100643
+            ],
+            "object_mean": -0.013233320747648837
+          }
+        },
+        "iou": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              0.0029308980442727286,
+              0.0138915984472646
+            ],
+            "group_equal_mean": 0.008616304348254004,
+            "group_signs": [
+              22,
+              0,
+              5
+            ],
+            "object_bootstrap_95": [
+              0.007201462505017099,
+              0.015040020242307349
+            ],
+            "object_leave_one_group_range": [
+              0.010318773762354589,
+              0.01206694791868801
+            ],
+            "object_mean": 0.011415026131339554
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.01213335352484664,
+              -0.008784402640428781
+            ],
+            "group_equal_mean": -0.010439459378631354,
+            "group_signs": [
+              0,
+              0,
+              27
+            ],
+            "object_bootstrap_95": [
+              -0.013565680755779772,
+              -0.009139230532643663
+            ],
+            "object_leave_one_group_range": [
+              -0.011773345783965218,
+              -0.010365544511865311
+            ],
+            "object_mean": -0.011440348390387023
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              0.012480814617938332,
+              0.025492669410787795
+            ],
+            "group_equal_mean": 0.019055763726885357,
+            "group_signs": [
+              25,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              0.01685931796256494,
+              0.028083323578797215
+            ],
+            "object_leave_one_group_range": [
+              0.020684318274219907,
+              0.023725935744888526
+            ],
+            "object_mean": 0.022855374521726573
+          }
+        },
+        "margin90": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -24.45528301985794,
+              65.97175660501988
+            ],
+            "group_equal_mean": 25.448243188653244,
+            "group_signs": [
+              20,
+              0,
+              7
+            ],
+            "object_bootstrap_95": [
+              23.406819667636398,
+              70.0694537974842
+            ],
+            "object_leave_one_group_range": [
+              40.99573236318621,
+              51.60238552248899
+            ],
+            "object_mean": 46.6576995261347
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -64.74203037444575,
+              -47.29576987571566
+            ],
+            "group_equal_mean": -55.974722790447395,
+            "group_signs": [
+              0,
+              0,
+              27
+            ],
+            "object_bootstrap_95": [
+              -64.35750169881746,
+              -47.74731586058659
+            ],
+            "object_leave_one_group_range": [
+              -56.857586146474475,
+              -53.76781685571814
+            ],
+            "object_mean": -55.60134944476663
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              29.013651738717833,
+              126.73966106394722
+            ],
+            "group_equal_mean": 81.42296597910064,
+            "group_signs": [
+              23,
+              0,
+              4
+            ],
+            "object_bootstrap_95": [
+              74.0570232648905,
+              131.45560799784866
+            ],
+            "object_leave_one_group_range": [
+              95.87767133382461,
+              108.06051660516606
+            ],
+            "object_mean": 102.25904897090135
+          }
+        }
+      },
+      "pairs": 1409,
+      "raster_against_source_polygon": {
+        "mean_iou": 0.9521495546980774,
+        "median_iou": 0.9549723363044825
+      },
+      "source_proxy_groups": 27,
+      "thresholds": {
+        "0.5": {
+          "polygon": {
+            "both": 1405,
+            "center_at": 1406,
+            "gain": 1,
+            "loss": 3,
+            "native_at": 1408,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 1,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 1409,
+            "center_at": 1409,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 1409,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 1409
+        },
+        "0.75": {
+          "polygon": {
+            "both": 922,
+            "center_at": 1055,
+            "gain": 133,
+            "loss": 81,
+            "native_at": 1003,
+            "neither": 273,
+            "numerically_ambiguous": {
+              "center": 2,
+              "native": 2
+            }
+          },
+          "raster": {
+            "both": 892,
+            "center_at": 1068,
+            "gain": 176,
+            "loss": 71,
+            "native_at": 963,
+            "neither": 270,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 1409
+        },
+        "0.9": {
+          "polygon": {
+            "both": 25,
+            "center_at": 84,
+            "gain": 59,
+            "loss": 34,
+            "native_at": 59,
+            "neither": 1291,
+            "numerically_ambiguous": {
+              "center": 1,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 34,
+            "center_at": 122,
+            "gain": 88,
+            "loss": 36,
+            "native_at": 70,
+            "neither": 1251,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 1372
+        }
+      }
+    },
+    "small_edge": {
+      "arms": {
+        "center": {
+          "polygon_fn_rate": 0.11240846394978353,
+          "polygon_fp_rate": 0.11530246195690082,
+          "polygon_iou": 0.7993726163439332,
+          "polygon_margin90": -315.91872056365133,
+          "raster_fn_rate": 0.10650003876152338,
+          "raster_fp_rate": 0.11385690936302514,
+          "raster_iou": 0.8060442464144995,
+          "raster_margin90": -286.1111111111111
+        },
+        "native": {
+          "polygon_fn_rate": 0.1105626801661521,
+          "polygon_fp_rate": 0.1328151821121605,
+          "polygon_iou": 0.7904242713772786,
+          "polygon_margin90": -318.5136111095614,
+          "raster_fn_rate": 0.10985051429931571,
+          "raster_fp_rate": 0.13680355731683577,
+          "raster_iou": 0.7886765182710002,
+          "raster_margin90": -321.24444444444447
+        }
+      },
+      "margin_attribution_max_residual": 1.0800249583553523e-12,
+      "paired_center_minus_native": {
+        "fn_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.02567734456877118,
+              0.0313257842765846
+            ],
+            "group_equal_mean": 0.0013199229246571146,
+            "group_signs": [
+              12,
+              0,
+              11
+            ],
+            "object_bootstrap_95": [
+              -0.01114959524404859,
+              0.013194434866234216
+            ],
+            "object_leave_one_group_range": [
+              -0.0008970985491227629,
+              0.005272246803784799
+            ],
+            "object_mean": 0.0018457837836314095
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.0035196354081943044,
+              0.006798952787726922
+            ],
+            "group_equal_mean": 0.005145296380496003,
+            "group_signs": [
+              21,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              0.003561097613057908,
+              0.006868906001002433
+            ],
+            "object_leave_one_group_range": [
+              0.0047834363167166575,
+              0.005558653651006163
+            ],
+            "object_mean": 0.005196259321423725
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.03092636978182505,
+              0.02693664991472217
+            ],
+            "group_equal_mean": -0.003825373455838888,
+            "group_signs": [
+              10,
+              0,
+              13
+            ],
+            "object_bootstrap_95": [
+              -0.01612440648932427,
+              0.008205675642286175
+            ],
+            "object_leave_one_group_range": [
+              -0.006174493437681389,
+              -2.941093569618345e-05
+            ],
+            "object_mean": -0.003350475537792317
+          }
+        },
+        "fp_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.038668582156447154,
+              0.001898016368422466
+            ],
+            "group_equal_mean": -0.0173613211564602,
+            "group_signs": [
+              10,
+              0,
+              13
+            ],
+            "object_bootstrap_95": [
+              -0.03606610790743792,
+              -0.0006200750537197475
+            ],
+            "object_leave_one_group_range": [
+              -0.021235086550172467,
+              -0.013874414324021502
+            ],
+            "object_mean": -0.017512720155259693
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.0038669464699875593,
+              0.007194518218994908
+            ],
+            "group_equal_mean": 0.0055196466467899346,
+            "group_signs": [
+              21,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              0.003780685242837893,
+              0.007127778593733638
+            ],
+            "object_leave_one_group_range": [
+              0.005006160292772861,
+              0.005794723614945092
+            ],
+            "object_mean": 0.005433927798550952
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.04401546083719432,
+              -0.0035781118785770676
+            ],
+            "group_equal_mean": -0.022880967803250135,
+            "group_signs": [
+              7,
+              1,
+              15
+            ],
+            "object_bootstrap_95": [
+              -0.04186779984403585,
+              -0.005629679064060113
+            ],
+            "object_leave_one_group_range": [
+              -0.026973050157494276,
+              -0.018900714601398305
+            ],
+            "object_mean": -0.022946647953810642
+          }
+        },
+        "iou": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.01967117430039134,
+              0.03322654874626202
+            ],
+            "group_equal_mean": 0.008264181306338002,
+            "group_signs": [
+              12,
+              0,
+              11
+            ],
+            "object_bootstrap_95": [
+              -0.005343395441326693,
+              0.024658054567578334
+            ],
+            "object_leave_one_group_range": [
+              0.006007066160826787,
+              0.012749602927477942
+            ],
+            "object_mean": 0.008948344966654793
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.011087951004358635,
+              -0.006033759913804783
+            ],
+            "group_equal_mean": -0.008572539303229898,
+            "group_signs": [
+              2,
+              0,
+              21
+            ],
+            "object_bootstrap_95": [
+              -0.010669947246826187,
+              -0.006136525763445818
+            ],
+            "object_leave_one_group_range": [
+              -0.008977484601076918,
+              -0.007914476177500721
+            ],
+            "object_mean": -0.008419383176844568
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.012152443795835346,
+              0.04242143795848004
+            ],
+            "group_equal_mean": 0.016836720609567896,
+            "group_signs": [
+              17,
+              0,
+              6
+            ],
+            "object_bootstrap_95": [
+              0.0025900348079468676,
+              0.033197778011558626
+            ],
+            "object_leave_one_group_range": [
+              0.014223388606290206,
+              0.02166643571090661
+            ],
+            "object_mean": 0.01736772814349936
+          }
+        },
+        "margin90": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -167.99575053675287,
+              61.761908315929865
+            ],
+            "group_equal_mean": -31.555694859530632,
+            "group_signs": [
+              12,
+              0,
+              11
+            ],
+            "object_bootstrap_95": [
+              -50.50241854727717,
+              55.107579200674245
+            ],
+            "object_leave_one_group_range": [
+              -7.429765707768532,
+              17.305040021655646
+            ],
+            "object_mean": 2.594890545910069
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -45.53317795499581,
+              -22.62630449515428
+            ],
+            "group_equal_mean": -33.49989775808135,
+            "group_signs": [
+              2,
+              0,
+              21
+            ],
+            "object_bootstrap_95": [
+              -42.988882307503175,
+              -23.316233020847005
+            ],
+            "object_leave_one_group_range": [
+              -35.05373314298908,
+              -30.20541001021287
+            ],
+            "object_mean": -32.538442787423264
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -139.43357919254657,
+              97.40213509316771
+            ],
+            "group_equal_mean": 1.944202898550716,
+            "group_signs": [
+              16,
+              0,
+              7
+            ],
+            "object_bootstrap_95": [
+              -19.79574579831933,
+              90.08032631925036
+            ],
+            "object_leave_one_group_range": [
+              24.188235294117646,
+              50.40449438202247
+            ],
+            "object_mean": 35.13333333333333
+          }
+        }
+      },
+      "pairs": 90,
+      "raster_against_source_polygon": {
+        "mean_iou": 0.9595420846559656,
+        "median_iou": 0.9593366618920574
+      },
+      "source_proxy_groups": 23,
+      "thresholds": {
+        "0.5": {
+          "polygon": {
+            "both": 90,
+            "center_at": 90,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 90,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 90,
+            "center_at": 90,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 90,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 90
+        },
+        "0.75": {
+          "polygon": {
+            "both": 63,
+            "center_at": 69,
+            "gain": 6,
+            "loss": 7,
+            "native_at": 70,
+            "neither": 14,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 2
+            }
+          },
+          "raster": {
+            "both": 60,
+            "center_at": 69,
+            "gain": 9,
+            "loss": 7,
+            "native_at": 67,
+            "neither": 14,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 90
+        },
+        "0.9": {
+          "polygon": {
+            "both": 4,
+            "center_at": 9,
+            "gain": 5,
+            "loss": 3,
+            "native_at": 7,
+            "neither": 78,
+            "numerically_ambiguous": {
+              "center": 0,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 2,
+            "center_at": 11,
+            "gain": 9,
+            "loss": 3,
+            "native_at": 5,
+            "neither": 76,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 90
+        }
+      }
+    },
+    "small_interior": {
+      "arms": {
+        "center": {
+          "polygon_fn_rate": 0.10246371082053746,
+          "polygon_fp_rate": 0.13732320611510454,
+          "polygon_iou": 0.7950233672617443,
+          "polygon_margin90": -433.32818542273264,
+          "raster_fn_rate": 0.09958631667662529,
+          "raster_fp_rate": 0.13314816362305038,
+          "raster_iou": 0.8006519494028022,
+          "raster_margin90": -405.7543593631539
+        },
+        "native": {
+          "polygon_fn_rate": 0.11240561520464518,
+          "polygon_fp_rate": 0.14224729612064546,
+          "polygon_iou": 0.7834400308159076,
+          "polygon_margin90": -482.9924450764036,
+          "raster_fn_rate": 0.11717478842571265,
+          "raster_fp_rate": 0.1457187099593614,
+          "raster_iou": 0.7774221335057606,
+          "raster_margin90": -512.5936315390447
+        }
+      },
+      "margin_attribution_max_residual": 4.547473508864641e-12,
+      "paired_center_minus_native": {
+        "fn_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.012249161211110767,
+              -0.002948770286320513
+            ],
+            "group_equal_mean": -0.007677332486701675,
+            "group_signs": [
+              7,
+              0,
+              20
+            ],
+            "object_bootstrap_95": [
+              -0.013483767661193354,
+              -0.0059094208819932765
+            ],
+            "object_leave_one_group_range": [
+              -0.010682266772016934,
+              -0.009128083047490541
+            ],
+            "object_mean": -0.00994190438410772
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.005908383081631232,
+              0.008146548463304861
+            ],
+            "group_equal_mean": 0.0070163002606841475,
+            "group_signs": [
+              27,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.006007128697022128,
+              0.009241432085410882
+            ],
+            "object_leave_one_group_range": [
+              0.006806319512579635,
+              0.007863663872401836
+            ],
+            "object_mean": 0.007646567364979634
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.01979150239145743,
+              -0.009537578793145974
+            ],
+            "group_equal_mean": -0.01469363274738582,
+            "group_signs": [
+              4,
+              0,
+              23
+            ],
+            "object_bootstrap_95": [
+              -0.021633405568531508,
+              -0.012822123203781068
+            ],
+            "object_leave_one_group_range": [
+              -0.018305262473879882,
+              -0.01622268194563889
+            ],
+            "object_mean": -0.017588471749087356
+          }
+        },
+        "fp_rate": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -0.010274362392312393,
+              0.0026660710510552285
+            ],
+            "group_equal_mean": -0.003952534146565584,
+            "group_signs": [
+              12,
+              0,
+              15
+            ],
+            "object_bootstrap_95": [
+              -0.01004136069337603,
+              0.0005056574507393506
+            ],
+            "object_leave_one_group_range": [
+              -0.006091458493987656,
+              -0.0037755974537870256
+            ],
+            "object_mean": -0.0049240900055409
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              0.005932838653404301,
+              0.00817022646363672
+            ],
+            "group_equal_mean": 0.007040730670798321,
+            "group_signs": [
+              27,
+              0,
+              0
+            ],
+            "object_bootstrap_95": [
+              0.006003114361422434,
+              0.009262499008027088
+            ],
+            "object_leave_one_group_range": [
+              0.006796821682480568,
+              0.007864318804556488
+            ],
+            "object_mean": 0.007646456330770134
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              -0.01734124621291317,
+              -0.0042915992014610225
+            ],
+            "group_equal_mean": -0.010993264817363903,
+            "group_signs": [
+              7,
+              0,
+              20
+            ],
+            "object_bootstrap_95": [
+              -0.018551100373390732,
+              -0.005969487136671075
+            ],
+            "object_leave_one_group_range": [
+              -0.01395577729854414,
+              -0.010741424289492787
+            ],
+            "object_mean": -0.012570546336311033
+          }
+        },
+        "iou": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              0.003352917536739441,
+              0.013909125724916219
+            ],
+            "group_equal_mean": 0.008746750444023945,
+            "group_signs": [
+              23,
+              0,
+              4
+            ],
+            "object_bootstrap_95": [
+              0.007336262853263939,
+              0.015266564363632069
+            ],
+            "object_leave_one_group_range": [
+              0.01038990300061116,
+              0.012214637902976836
+            ],
+            "object_mean": 0.01158333644583662
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -0.012347212747396915,
+              -0.008912392091575396
+            ],
+            "group_equal_mean": -0.01059097360496997,
+            "group_signs": [
+              0,
+              0,
+              27
+            ],
+            "object_bootstrap_95": [
+              -0.013820964855566368,
+              -0.009311758282552545
+            ],
+            "object_leave_one_group_range": [
+              -0.011958104126465,
+              -0.01053649958313747
+            ],
+            "object_mean": -0.01164647945120493
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              0.01289643649639083,
+              0.025552151511898574
+            ],
+            "group_equal_mean": 0.019337724048993917,
+            "group_signs": [
+              25,
+              0,
+              2
+            ],
+            "object_bootstrap_95": [
+              0.01702300772538937,
+              0.028662786390166846
+            ],
+            "object_leave_one_group_range": [
+              0.020926402583748636,
+              0.02393982843372023
+            ],
+            "object_mean": 0.023229815897041553
+          }
+        },
+        "margin90": {
+          "polygon": {
+            "group_equal_bootstrap_95": [
+              -21.33609397530485,
+              69.43326228230202
+            ],
+            "group_equal_mean": 28.93078019235674,
+            "group_signs": [
+              20,
+              0,
+              7
+            ],
+            "object_bootstrap_95": [
+              26.206544848053888,
+              73.20342026559862
+            ],
+            "object_leave_one_group_range": [
+              43.526486516445644,
+              54.122920381010495
+            ],
+            "object_mean": 49.66425965367089
+          },
+          "polygon_minus_raster": {
+            "group_equal_bootstrap_95": [
+              -66.43267876252425,
+              -48.40334310129249
+            ],
+            "group_equal_mean": -57.361471301946494,
+            "group_signs": [
+              0,
+              0,
+              27
+            ],
+            "object_bootstrap_95": [
+              -66.11952837728192,
+              -49.16007428062041
+            ],
+            "object_leave_one_group_range": [
+              -58.48877678783164,
+              -55.3847790515879
+            ],
+            "object_mean": -57.17501252221994
+          },
+          "raster": {
+            "group_equal_bootstrap_95": [
+              33.96958593933102,
+              131.72487855612263
+            ],
+            "group_equal_mean": 86.29225149430323,
+            "group_signs": [
+              23,
+              0,
+              4
+            ],
+            "object_bootstrap_95": [
+              78.62045208356528,
+              136.7411245170616
+            ],
+            "object_leave_one_group_range": [
+              99.96614173228346,
+              112.06446540880503
+            ],
+            "object_mean": 106.83927217589083
+          }
+        }
+      },
+      "pairs": 1319,
+      "raster_against_source_polygon": {
+        "mean_iou": 0.951645136429533,
+        "median_iou": 0.9546218487394958
+      },
+      "source_proxy_groups": 27,
+      "thresholds": {
+        "0.5": {
+          "polygon": {
+            "both": 1315,
+            "center_at": 1316,
+            "gain": 1,
+            "loss": 3,
+            "native_at": 1318,
+            "neither": 0,
+            "numerically_ambiguous": {
+              "center": 1,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 1319,
+            "center_at": 1319,
+            "gain": 0,
+            "loss": 0,
+            "native_at": 1319,
+            "neither": 0,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 1319
+        },
+        "0.75": {
+          "polygon": {
+            "both": 859,
+            "center_at": 986,
+            "gain": 127,
+            "loss": 74,
+            "native_at": 933,
+            "neither": 259,
+            "numerically_ambiguous": {
+              "center": 2,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 832,
+            "center_at": 999,
+            "gain": 167,
+            "loss": 64,
+            "native_at": 896,
+            "neither": 256,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 1319
+        },
+        "0.9": {
+          "polygon": {
+            "both": 21,
+            "center_at": 75,
+            "gain": 54,
+            "loss": 31,
+            "native_at": 52,
+            "neither": 1213,
+            "numerically_ambiguous": {
+              "center": 1,
+              "native": 0
+            }
+          },
+          "raster": {
+            "both": 32,
+            "center_at": 111,
+            "gain": 79,
+            "loss": 33,
+            "native_at": 65,
+            "neither": 1175,
+            "numerically_ambiguous": {}
+          },
+          "source_raster_vs_polygon_at": 1282
+        }
+      }
+    }
+  },
+  "training_seed": 5202
+}
