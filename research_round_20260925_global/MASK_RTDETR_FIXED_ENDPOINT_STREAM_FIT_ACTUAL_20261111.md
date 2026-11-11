@@ -13,3 +13,9 @@
 ## 固定 DEV705 运行边界
 
 正式开发评价只使用预锁的 HRSID DEV705 图像清单和原标注。两臂都必须先独立验收原 E24 退出、完整计数和 EMA，导出阶段保持标注隔离。每臂保留全部 70,500 条作者候选。两个导出会话分别验收后，CPU 使用已有公共 COCO 评分函数，主口径保留 1,782 条原始标注，敏感性只排除预登记四条空栅格。报告每臂前向、导出和训练实测成本。固定 E24 对照使用 Paddle CUDA FP32，当前真实验证仅涉及 CPU FIT，本机 CUDA 导出与 CPU 双臂评分入口已通过语法和字段核对，CUDA 前向及开发集端点评价待实际运行。 [预锁正式评价](MASK_RTDETR_HRSID_FIT2937_E24_AUTHOR_PROTOCOL_20261111.md) · [评价接口前序资格](MASK_RTDETR_HRSID_NATIVE_ENDPOINT_EVAL_FIT_QUALIFICATION_20261111.md)
+
+## Windows 实际 CUDA 导出的统一入口
+
+统一入口固定顺序为一张 FIT 的 CUDA 核验、DEV705 图像暂存、A 臂导出、B 臂导出。B 原训练及完整 A/B 训练配对均独立验收后才接入。原生推理用固定 E24 EMA、640² 输入、800² 掩膜和每图 100 条原候选。已用历史原所有者辅助函数核对独占交接和原源码。独立 CPU 评分核对外层实际等待、四个子进程正常退出、作业清空及两臂来源，随后调用原评分体。
+
+源码预检和两项验收测试通过。首次源码预检因一处摘要抄录错误退出，修正副本通过。实测仍待训练闭合后的 CUDA FIT1、两臂完整导出及固定评分。 [运行入口与说明](code/MASK_RTDETR_DEV705_WINDOWS_OWNER_20261112/README.md) · [源码核验](code/MASK_RTDETR_DEV705_WINDOWS_OWNER_20261112/SOURCE_CHECK_SAFE.json)
