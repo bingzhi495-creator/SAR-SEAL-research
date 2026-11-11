@@ -45,3 +45,11 @@ Windows CPython 3.10.13 隔离环境使用 PyTorch 1.12.0 CPU、torchvision 0.13
 同预算候选配方使用作者批量 4，将训练数据重复次数设为 1，运行 24 轮。若原生加载保留 FIT741，作者分组采样每轮补齐到 744 次访问，共 17,856 次访问、4,464 次更新。保留作者 SGD，拟将 36 轮的学习率下降点按比例移到 16、22 轮，预热设为 112 次更新，作为明确标注的同预算适配。先进行真实全损失两步短训，再锁定长训端点。三项必要对照依次为原版、仅修复按层目标、修复目标并同时改特征与掩膜的训练采样位置，使用相同初始化、顺序、增强和配方。原版训练后的冻结回贴校准也需比较。RF-DETR 与 SRNet 的骨干、初值、优化器、EMA 和输入处理不同，跨架构结果需同时报告这些条件。 [作者数据配置](https://github.com/XIDIAN212Lab/SRNet/blob/2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6/configs/_base_/datasets/SSDD.py#L40-L50) · [分组采样器](https://github.com/open-mmlab/mmdetection/blob/v2.28.2/mmdet/datasets/samplers/group_sampler.py)
 
 原版 CUDA 两步入口已完成。它预选两张真实 FIT 图，使用作者完整 `forward_train` 的粗阶段 SATSS、精化与掩膜五组损失，计划执行两次原生 SGD 更新，保存各组损失、有限梯度和参数变化。一个 CPU 合成回归已在拟执行的 PyTorch 1.12.0+cu116 环境中通过。该回归验证损失聚合和更新辅助逻辑，真实 CUDA 反传仍待运行。当前 HRSID 原所有者持有本机 GPU 预留，按原接续规则进入该短训。 [两步草稿](code/SRNET_SSDD_FIT741_BASELINE_NATIVE_20261111/srnet_author_gpu_short.py) · [回归](code/SRNET_SSDD_FIT741_BASELINE_NATIVE_20261111/test_srnet_author_gpu_short.py) · [CUDA 环境离线导入](results/SRNET_CUDA116_ENV_OFFLINE_IMPORT_ACTUAL_SAFE_20261111.json)
+
+## 作者原版 CUDA 两步实测
+
+2026-11-11 在 RTX 3090 Ti 上运行原作者 SRNet，使用已核验的 ImageNet R50 初始化和两张预选 FIT 图。输入 608×608，批量 1，两个实际批次分别含 10 和 1 个目标。两次前向与反向均执行粗阶段 SATSS、粗分类与回归、精化分类与回归及掩膜损失。五项损失和全部观测梯度有限，完成两次 SGD 更新，三个任务头的抽查参数均改变。原进程退出 0，进程树清空，资源保护未触发。CUDA 峰值分配 1.798 GiB，峰值保留 1.924 GiB。并行运行的端到端耗时为 22.33 秒。 [实际结果与原进程核验摘要](results/SRNET_AUTHOR_CUDA_TWO_UPDATE_ACTUAL_SAFE_20261111.json)
+
+独立进程在 HRSID 原协调器仍训练时运行。启动可用显存 16,753 MiB，观测最低 13,984 MiB，宿主可用内存最低 25,344,385,024 字节。复核同一 HRSID 协调器继续运行，单次复合中心推进到第 10 轮。此前等待 GPU 预约释放的判断适用于需要改写同一 HRSID／SSDD 账本的运行。此次用独立的 Windows 进程树和资源保护接入 SRNet。
+
+本次确认原版算子、五项损失和两步更新可执行，范围为批量 1 的 FIT 短窗。作者批量 4 的原生加载器与优化器预算、完整 E24 训练和固定 DEV187 AP 仍待实测。 [实测入口](code/SRNET_SSDD_FIT741_BASELINE_NATIVE_20261111/srnet_author_gpu_short.py)

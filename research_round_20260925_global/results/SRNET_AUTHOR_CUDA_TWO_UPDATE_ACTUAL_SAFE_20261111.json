@@ -1,0 +1,120 @@
+{
+  "status": "P344_SRNET_AUTHOR_FULL_LOSS_CUDA_TWO_UPDATE_COMPLETE",
+  "author_commit": "2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6",
+  "worker_source_sha256": "1c4216c1716aee97669ff49041f06bedfb23b49748eb024c0a9eefb9be2e7d04",
+  "original_result_sha256": "29d049853c9ab50f785516263b9d83eea1818de7ecc6c99a6dc96bae8b3aed72",
+  "original_wait_sha256": "e319ce4dc89035e9d092633b2fb0b9cc596b4d4904643dbf3fbb51857da18c67",
+  "original_stdout_sha256": "80c0ee9ca4ffd6d69aeb3051b9d12fc70c6dd9be2608b16e363a0712e1e5742a",
+  "original_os_wait": true,
+  "original_os_exit": 0,
+  "job_assigned": true,
+  "job_active_after_wait": 0,
+  "resource_stop": null,
+  "execution_context": "Independent bounded Windows CUDA job during HRSID training",
+  "gpu": "GeForce RTX 3090 Ti",
+  "original_wall_seconds": 22.32799999997951,
+  "FIT": true,
+  "DEV": false,
+  "TEST": false,
+  "AP": false,
+  "stock_S0": true,
+  "fit_index_sha256": "62966857c78cea1e3b060700c62a7b896942686c2e674d3eb09f516a92250bc1",
+  "fit_archive_sha256": "1c8f9b75e79fbc02c983ccd283a70082fcd5ab0d6538c777e8b286dbfdb78100",
+  "package_versions": {
+    "mmcv-full": "1.6.0",
+    "mmdet": "2.28.2",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "pycocotools": "2.0.11",
+    "torch": "1.12.0+cu116",
+    "torchvision": "0.13.0+cu116"
+  },
+  "python_version": "3.10.13",
+  "source_initializer_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+  "selected_images": 2,
+  "actual_batch_size": 1,
+  "author_config_batch_size": 4,
+  "initialization_seed": 5201,
+  "optimizer": "SGD",
+  "optimizer_updates": 2,
+  "model_forward_calls": 2,
+  "completed_forward_calls": 2,
+  "completed_backward_calls": 2,
+  "complete_loss_keys": [
+    "coarse.loss_cls",
+    "coarse.loss_bbox",
+    "refine.loss_cls",
+    "refine.loss_bbox",
+    "mask.masks_loss"
+  ],
+  "original_coarse_satss_loss_executed": true,
+  "head_parameter_max_abs_changes": {
+    "coarse_head": 2.2026943042874336E-06,
+    "mask_head": 2.0489096641540527E-07,
+    "refine_head": 0.00048152171075344086
+  },
+  "cuda_peak_allocated_bytes": 1930051072,
+  "cuda_peak_reserved_bytes": 2065694720,
+  "elapsed_seconds": 21.323509800015017,
+  "trained_detection_checkpoint_loaded": false,
+  "updates": [
+    {
+      "actual_batch_size": 1,
+      "augmentation_seed": 5201,
+      "gradient_norm_before_clip": 2822.446533203125,
+      "gradient_norms": {
+        "coarse_head": 60.892367833574795,
+        "mask_head": 1.504384487447173,
+        "refine_head": 2661.5217816078452
+      },
+      "gradient_tensors": 192,
+      "gt_mask_container": "BitmapMasks",
+      "input_hw": [
+        608,
+        608
+      ],
+      "learning_rates": [
+        0.0008333333333333332
+      ],
+      "losses": {
+        "coarse.loss_bbox": 1.5093339681625366,
+        "coarse.loss_cls": 1.023182988166809,
+        "mask.masks_loss": 0.7049633264541626,
+        "refine.loss_bbox": 1.0990132093429565,
+        "refine.loss_cls": 109.32142639160156
+      },
+      "targets": 10,
+      "total_loss": 113.65792083740234,
+      "update": 1
+    },
+    {
+      "actual_batch_size": 1,
+      "augmentation_seed": 5202,
+      "gradient_norm_before_clip": 7586.48095703125,
+      "gradient_norms": {
+        "coarse_head": 72.66313535849146,
+        "mask_head": 3.0088733252679276,
+        "refine_head": 6934.2629127851405
+      },
+      "gradient_tensors": 192,
+      "gt_mask_container": "BitmapMasks",
+      "input_hw": [
+        608,
+        608
+      ],
+      "learning_rates": [
+        0.0008366666666666664
+      ],
+      "losses": {
+        "coarse.loss_bbox": 1.6026434898376465,
+        "coarse.loss_cls": 1.0004487037658691,
+        "mask.masks_loss": 0.7040069103240967,
+        "refine.loss_bbox": 2.104215145111084,
+        "refine.loss_cls": 825.1732788085938
+      },
+      "targets": 1,
+      "total_loss": 830.5845336914062,
+      "update": 2
+    }
+  ]
+}
