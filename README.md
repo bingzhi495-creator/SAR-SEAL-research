@@ -23,6 +23,7 @@
 - [HRSID FIT114 边界分数与采样相位实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-冻结边界分数与采样相位对照)。独立核对 414,942 个边界点。55 张留出图上真实相位仅改 4 像素，严格达标净变化为 0，与同编辑量的有序 logits 和打乱相位的总裕量相同。
 - [HRSID FIT114 局部强度五折实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-渲染强度与等编辑量的五折实测)。真实强度在等预算下胜过有序 logits 和置换强度的裕量，弱于绝对 logit 与原掩膜。当前编辑规则止于 FIT。
 - [HRSID 输出网格实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-输出网格的误差下界与可表达性实测)。496 条 FIT 标注上，距离场构造达到 IoU 0.90 的数量为 228→437，净增全部在小目标。粗网格有 3 条不可达证书，未测模型 AP。
+- [HRSID FIT 固定查询裁块对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit-固定查询的原生裁块与低通裁块实测)。16 图的原生与低通裁块按同配额都净增 1 个 IoU 0.90 达标，配对 2 胜 10 平 2 负。直接替换符号时两组 IoU 均下降。
 - [Phoenix 外部细化对照的 CPU 编码实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#phoenix-官方样例的-cpu-编码实测)。官方 EfficientViT-XL1 权重已核验，作者示例完成图像编码。提示生成、五轮解码与 SAR 固定候选评分待执行。
 - [Phoenix DGX 完整推理和 HRSID FIT 试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#phoenix-完整推理与固定-fit-候选试点)。作者样例的单掩膜与批量结果逐像素一致。两图 145 条原候选中，官方 1% 门槛激活 0 条；全非空适配改动 39 条，两个固定配对的平均 IoU 0.848→0.768。
 - [OpenCV 新旧最近邻复算](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md#opencv-5-原生与精确最近邻实测)。Windows 4.5.5 与 5.0.0 默认输出相同。5.0.0 显式精确模式与整数参考的差异集中于半格平局。
