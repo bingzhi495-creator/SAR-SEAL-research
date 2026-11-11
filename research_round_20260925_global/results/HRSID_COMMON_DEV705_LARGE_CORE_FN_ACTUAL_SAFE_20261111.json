@@ -1,0 +1,424 @@
+{
+  "status": "HRSID_COMMON_DEV705_LARGE_CORE_FN_ACTUAL_SAFE",
+  "scientific_result": {
+    "COCO_AP": false,
+    "aligned_groups": [
+      {
+        "area": {
+          "band_area": 11138,
+          "core_area": 97146,
+          "gt_area": 108284
+        },
+        "center": {
+          "band_fn": 5764,
+          "core_fn": 8991,
+          "fn": 14755,
+          "fp": 6983
+        },
+        "center_minus_native": {
+          "band_fn": 1357,
+          "core_fn": 3527,
+          "fn": 4884,
+          "fp": -1339
+        },
+        "center_minus_native_band_rate": 0.12183515891542467,
+        "center_minus_native_core_rate": 0.03630617832952463,
+        "native": {
+          "band_fn": 4407,
+          "core_fn": 5464,
+          "fn": 9871,
+          "fp": 8322
+        },
+        "pairs": 6,
+        "pairs_with_excess_core": 5
+      },
+      {
+        "area": {
+          "band_area": 11042,
+          "core_area": 107633,
+          "gt_area": 118675
+        },
+        "center": {
+          "band_fn": 6272,
+          "core_fn": 21972,
+          "fn": 28244,
+          "fp": 15513
+        },
+        "center_minus_native": {
+          "band_fn": 938,
+          "core_fn": 9860,
+          "fn": 10798,
+          "fp": 3941
+        },
+        "center_minus_native_band_rate": 0.08494837891686288,
+        "center_minus_native_core_rate": 0.09160759246699432,
+        "native": {
+          "band_fn": 5334,
+          "core_fn": 12112,
+          "fn": 17446,
+          "fp": 11572
+        },
+        "pairs": 7,
+        "pairs_with_excess_core": 6
+      },
+      {
+        "area": {
+          "band_area": 7412,
+          "core_area": 142437,
+          "gt_area": 149849
+        },
+        "center": {
+          "band_fn": 3168,
+          "core_fn": 10006,
+          "fn": 13174,
+          "fp": 40001
+        },
+        "center_minus_native": {
+          "band_fn": 1015,
+          "core_fn": 3236,
+          "fn": 4251,
+          "fp": -9271
+        },
+        "center_minus_native_band_rate": 0.13694009713977334,
+        "center_minus_native_core_rate": 0.022718816037967663,
+        "native": {
+          "band_fn": 2153,
+          "core_fn": 6770,
+          "fn": 8923,
+          "fp": 49272
+        },
+        "pairs": 2,
+        "pairs_with_excess_core": 1
+      }
+    ],
+    "aligned_leave_one_group_out": [
+      {
+        "area": {
+          "band_area": 18454,
+          "core_area": 250070,
+          "gt_area": 268524
+        },
+        "center": {
+          "band_fn": 9440,
+          "core_fn": 31978,
+          "fn": 41418,
+          "fp": 55514
+        },
+        "center_minus_native": {
+          "band_fn": 1953,
+          "core_fn": 13096,
+          "fn": 15049,
+          "fp": -5330
+        },
+        "center_minus_native_band_rate": 0.10583071420830173,
+        "center_minus_native_core_rate": 0.05236933658575599,
+        "native": {
+          "band_fn": 7487,
+          "core_fn": 18882,
+          "fn": 26369,
+          "fp": 60844
+        },
+        "pairs": 9,
+        "pairs_with_excess_core": 7
+      },
+      {
+        "area": {
+          "band_area": 18550,
+          "core_area": 239583,
+          "gt_area": 258133
+        },
+        "center": {
+          "band_fn": 8932,
+          "core_fn": 18997,
+          "fn": 27929,
+          "fp": 46984
+        },
+        "center_minus_native": {
+          "band_fn": 2372,
+          "core_fn": 6763,
+          "fn": 9135,
+          "fp": -10610
+        },
+        "center_minus_native_band_rate": 0.12787061994609164,
+        "center_minus_native_core_rate": 0.028228213187079215,
+        "native": {
+          "band_fn": 6560,
+          "core_fn": 12234,
+          "fn": 18794,
+          "fp": 57594
+        },
+        "pairs": 8,
+        "pairs_with_excess_core": 6
+      },
+      {
+        "area": {
+          "band_area": 22180,
+          "core_area": 204779,
+          "gt_area": 226959
+        },
+        "center": {
+          "band_fn": 12036,
+          "core_fn": 30963,
+          "fn": 42999,
+          "fp": 22496
+        },
+        "center_minus_native": {
+          "band_fn": 2295,
+          "core_fn": 13387,
+          "fn": 15682,
+          "fp": 2602
+        },
+        "center_minus_native_band_rate": 0.10347159603246167,
+        "center_minus_native_core_rate": 0.06537291421483649,
+        "native": {
+          "band_fn": 9741,
+          "core_fn": 17576,
+          "fn": 27317,
+          "fp": 19894
+        },
+        "pairs": 13,
+        "pairs_with_excess_core": 11
+      }
+    ],
+    "core_chebyshev_erosion_radius": 2,
+    "core_sampler_candidate_passes": false,
+    "fixed_original_matching": true,
+    "gate": {
+      "core_at_least_half_net_excess": true,
+      "core_rate_excess_at_least_band_rate": false,
+      "excess_after_translation": true,
+      "positive_after_omitting_any_group": true
+    },
+    "mask_edits_for_deployment": false,
+    "model_forward_calls": 0,
+    "off_canvas_shifts_forbidden": true,
+    "official_TEST_opened": false,
+    "per_arm_translation_limit_px": 2,
+    "proxy_group_count": 3,
+    "shifted_pairs_by_arm": {
+      "center": 14,
+      "native": 12
+    },
+    "status": "HRSID_COMMON_DEV705_LARGE_CORE_FN_ACTUAL",
+    "strata": {
+      "all": {
+        "aligned": {
+          "area": {
+            "band_area": 29592,
+            "core_area": 347216,
+            "gt_area": 376808
+          },
+          "center": {
+            "band_fn": 15204,
+            "core_fn": 40969,
+            "fn": 56173,
+            "fp": 62497
+          },
+          "center_minus_native": {
+            "band_fn": 3310,
+            "core_fn": 16623,
+            "fn": 19933,
+            "fp": -6669
+          },
+          "center_minus_native_band_rate": 0.11185455528521222,
+          "center_minus_native_core_rate": 0.04787509792175476,
+          "native": {
+            "band_fn": 11894,
+            "core_fn": 24346,
+            "fn": 36240,
+            "fp": 69166
+          },
+          "pairs": 15,
+          "pairs_with_excess_core": 12
+        },
+        "raw": {
+          "area": {
+            "band_area": 29592,
+            "core_area": 347216,
+            "gt_area": 376808
+          },
+          "center": {
+            "band_fn": 15048,
+            "core_fn": 45271,
+            "fn": 60319,
+            "fp": 66643
+          },
+          "center_minus_native": {
+            "band_fn": 2446,
+            "core_fn": 19543,
+            "fn": 21989,
+            "fp": -4613
+          },
+          "center_minus_native_band_rate": 0.08265747499324141,
+          "center_minus_native_core_rate": 0.05628484862448735,
+          "native": {
+            "band_fn": 12602,
+            "core_fn": 25728,
+            "fn": 38330,
+            "fp": 71256
+          },
+          "pairs": 15,
+          "pairs_with_excess_core": 12
+        }
+      },
+      "large_edge": {
+        "aligned": {
+          "area": {
+            "band_area": 6722,
+            "core_area": 83170,
+            "gt_area": 89892
+          },
+          "center": {
+            "band_fn": 3518,
+            "core_fn": 9895,
+            "fn": 13413,
+            "fp": 4038
+          },
+          "center_minus_native": {
+            "band_fn": 1040,
+            "core_fn": 7236,
+            "fn": 8276,
+            "fp": -12230
+          },
+          "center_minus_native_band_rate": 0.1547158583754835,
+          "center_minus_native_core_rate": 0.08700252494889985,
+          "native": {
+            "band_fn": 2478,
+            "core_fn": 2659,
+            "fn": 5137,
+            "fp": 16268
+          },
+          "pairs": 4,
+          "pairs_with_excess_core": 3
+        },
+        "raw": {
+          "area": {
+            "band_area": 6722,
+            "core_area": 83170,
+            "gt_area": 89892
+          },
+          "center": {
+            "band_fn": 3438,
+            "core_fn": 10635,
+            "fn": 14073,
+            "fp": 4698
+          },
+          "center_minus_native": {
+            "band_fn": 696,
+            "core_fn": 7530,
+            "fn": 8226,
+            "fp": -12280
+          },
+          "center_minus_native_band_rate": 0.10354061291282357,
+          "center_minus_native_core_rate": 0.09053745340868101,
+          "native": {
+            "band_fn": 2742,
+            "core_fn": 3105,
+            "fn": 5847,
+            "fp": 16978
+          },
+          "pairs": 4,
+          "pairs_with_excess_core": 3
+        }
+      },
+      "large_interior": {
+        "aligned": {
+          "area": {
+            "band_area": 22870,
+            "core_area": 264046,
+            "gt_area": 286916
+          },
+          "center": {
+            "band_fn": 11686,
+            "core_fn": 31074,
+            "fn": 42760,
+            "fp": 58459
+          },
+          "center_minus_native": {
+            "band_fn": 2270,
+            "core_fn": 9387,
+            "fn": 11657,
+            "fp": 5561
+          },
+          "center_minus_native_band_rate": 0.09925666812418014,
+          "center_minus_native_core_rate": 0.03555062375495179,
+          "native": {
+            "band_fn": 9416,
+            "core_fn": 21687,
+            "fn": 31103,
+            "fp": 52898
+          },
+          "pairs": 11,
+          "pairs_with_excess_core": 9
+        },
+        "raw": {
+          "area": {
+            "band_area": 22870,
+            "core_area": 264046,
+            "gt_area": 286916
+          },
+          "center": {
+            "band_fn": 11610,
+            "core_fn": 34636,
+            "fn": 46246,
+            "fp": 61945
+          },
+          "center_minus_native": {
+            "band_fn": 1750,
+            "core_fn": 12013,
+            "fn": 13763,
+            "fp": 7667
+          },
+          "center_minus_native_band_rate": 0.0765194578049847,
+          "center_minus_native_core_rate": 0.04549586056974921,
+          "native": {
+            "band_fn": 9860,
+            "core_fn": 22623,
+            "fn": 32483,
+            "fp": 54278
+          },
+          "pairs": 11,
+          "pairs_with_excess_core": 9
+        }
+      }
+    },
+    "support": {
+      "center": 16,
+      "common": 15,
+      "eligible": 16,
+      "native": 15
+    }
+  },
+  "original_wait": {
+    "elapsed_seconds": 18.093999999808148,
+    "memory_limit_bytes": 5368709120,
+    "original_os_exit": 0,
+    "original_os_wait": true,
+    "peak_job_commit_bytes": 280281088,
+    "process_group_closed": true,
+    "result": {
+      "bytes": 6246,
+      "sha256": "cbae01effb8f4af5e9845692ee9ff7ebfb22c886463943cd2ecffa5712ed8bb6"
+    },
+    "sampled_peak_tree_rss_bytes": 299978752,
+    "status": "BOUNDED_CPU_FIT_ORIGINAL_WAIT",
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 134,
+      "sha256": "94b33f904cbd23ffaf31a19d3b5d3d3ea1127d7056432f3faa97fad21fb940a2"
+    },
+    "stop_reason": null,
+    "worker_sha256": "224dd916d4d5672d8aaa9707f8b9233926d4590043ab754ff151b25ce5546acc"
+  },
+  "outer_exit_code": 0,
+  "unit_tests_passed": 2,
+  "scope": "Closed DEV705 fixed .50 match records",
+  "runtime": {
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "pycocotools": "2.0.11"
+  }
+}
