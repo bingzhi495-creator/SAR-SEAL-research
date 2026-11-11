@@ -1,0 +1,68 @@
+{
+  "status": "GB10_STOCK_TORCH_CUDA_OPERATOR_PROBE_REPRODUCTION_PROTOCOL",
+  "scope": {
+    "model_forward_calls": 0,
+    "optimizer_updates": 0,
+    "FIT": false,
+    "DEV": false,
+    "TEST": false,
+    "AP": false
+  },
+  "runtime": {
+    "torch": "2.10.0+cu130",
+    "rfdetr_distribution": "1.12.0",
+    "torch_threads": 1,
+    "device": "NVIDIA GB10",
+    "compute_capability": [
+      12,
+      1
+    ]
+  },
+  "limits": {
+    "host_available_min_bytes": 42949672960,
+    "probe_cuda_free_min_bytes": 1073741824,
+    "torch_allocator_cap_bytes": 268435456,
+    "full_training_cuda_free_min_bytes_unchanged": 12884901888,
+    "external_process_timeout_seconds": 45
+  },
+  "admission": {
+    "read_only_competing_compute_check": true,
+    "project_lease_files_checked": 2,
+    "leases_acquired": 0,
+    "skip_unclassified_existing_compute": true
+  },
+  "operators": [
+    {
+      "name": "bf16_gemm",
+      "shape": [
+        32,
+        32
+      ],
+      "max_cpu_float32_abs_error": 0.01
+    },
+    {
+      "name": "grid_sample_forward_backward",
+      "input_shape": [
+        1,
+        1,
+        4,
+        4
+      ],
+      "grid_shape": [
+        1,
+        2,
+        2,
+        2
+      ],
+      "mode": "bilinear",
+      "padding_mode": "zeros",
+      "align_corners": false,
+      "autocast": "bfloat16",
+      "input_dtype": "float32",
+      "expected_report_actual_dtype": true,
+      "forward_input_grad_grid_grad_cpu_float32_max_abs_error": 0.00001
+    }
+  ],
+  "executed_private_source_sha256": "e308cdf629fb5cdc83f5b90778e8e98115c6f40cacb1c053b25fb2ef1fea4399",
+  "portable_variant_change": "Replaces fixed operational paths and service names with explicit caller arguments. Same operator body. Portable variant validated without CUDA."
+}

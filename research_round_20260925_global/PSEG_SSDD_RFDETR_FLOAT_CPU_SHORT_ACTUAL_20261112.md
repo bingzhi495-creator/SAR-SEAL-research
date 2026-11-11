@@ -30,3 +30,9 @@ DGX 原 CUDA BF16 短训适配已完成代码和读取验收。以单个数据�
 ## 已发布 Windows 入口的实际请求预检
 
 在独立目录重新绑定 GitHub 提交 34970d65187eee421f6994a9d884dfeb78d2118d。通过提交寻址读取的工作脚本与预锁协议已核对 Git 对象及 SHA-256，与本地执行副本逐字节相同。新请求的原 CPU 预检退出 0，核对了 FIT741 和 1,661 条标注，以及已闭合的输入和短训资格。该请求已具备后续按原条件执行的输入身份。当前仍在等待 HRSID 原 GPU 训练及评分交接。 [发布源码读回](results/SSDD_WINDOWS_FLOAT_PUBLISHED_SOURCE_READBACK_SAFE_20261112.json) · [实际预检](results/SSDD_WINDOWS_FLOAT_PUBLISHED_PREFLIGHT_ACTUAL_SAFE_20261112.json)
+
+## DGX GB10 的实际 CUDA 算子核验
+
+固定 DGX 的 PyTorch 2.10.0+cu130 和 RF-DETR 1.12.0，实际运行 32×32 BF16 矩阵乘及 RF-DETR 采用的双线性 grid_sample 和反向。BF16 矩阵乘与 CPU FP32 参考逐值一致。grid_sample 在 BF16 autocast 下实际输出 FP32，前向和输入梯度与 CPU 参考逐值一致，采样坐标梯度最大绝对差为 2.384×10⁻⁷。峰值分配约 8.53 MB，保留约 23.07 MB。原探针退出 0，退出后的独立查询确认其 CUDA 上下文清除。
+
+本轮即时可用 CUDA 内存为 2.68 GiB，低于原训练入口的 12 GiB 条件。当前 PyTorch 的 GB10 架构警告仍存在，两项算子已在该环境中实际通过。完整 RF-DETR 模型、优化器及 CUDA 资格仍待合适资源。发布副本改用显式参数，CLI 检查通过。 [探针及范围](code/SSDD_DGX_GB10_STOCK_OPERATOR_PROBE_20261112/README.md) · [实际回执](code/SSDD_DGX_GB10_STOCK_OPERATOR_PROBE_20261112/RESULT_SAFE.json)

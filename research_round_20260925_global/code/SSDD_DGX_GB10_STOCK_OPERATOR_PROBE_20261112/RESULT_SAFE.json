@@ -1,0 +1,83 @@
+{
+  "status": "GB10_STOCK_TORCH_CUDA_OPERATOR_PROBE_ORIGINAL_CLOSED_ACTUAL",
+  "observed": {
+    "allocator_cap_bytes": 268435456,
+    "competition": {
+      "checked_project_lease_files": 2,
+      "held_project_leases": 0,
+      "known_display_contexts": 1,
+      "known_llama_contexts": 1,
+      "other_compute_contexts": 0
+    },
+    "cuda_free_bytes": 2875277312,
+    "cuda_total_bytes": 130660978688,
+    "device_capability": [
+      12,
+      1
+    ],
+    "device_name": "NVIDIA GB10",
+    "exact_sm121_listed": false,
+    "full_training_cuda_floor_bytes": 12884901888,
+    "full_training_cuda_headroom_admitted": false,
+    "host_available_bytes": 48940929024,
+    "host_floor_bytes": 42949672960,
+    "lease_acquired": false,
+    "model_forward_calls": 0,
+    "native_bf16": true,
+    "operators": {
+      "bf16_gemm": {
+        "dtype": "torch.bfloat16",
+        "max_abs_error_vs_fp32_cpu": 0,
+        "passed": true,
+        "shape": [
+          32,
+          32
+        ]
+      },
+      "grid_sample_forward_backward": {
+        "autocast": "bfloat16",
+        "cpu_reference_dtype": "torch.float32",
+        "forward_max_abs_error": 0,
+        "grid_gradient_max_abs_error": 2.384185791015625e-7,
+        "input_gradient_max_abs_error": 0,
+        "output_dtype": "torch.float32",
+        "passed": true,
+        "shape": [
+          1,
+          1,
+          2,
+          2
+        ]
+      }
+    },
+    "optimizer_updates": 0,
+    "peak_allocated_bytes": 8529920,
+    "peak_reserved_bytes": 23068672,
+    "probe_cuda_floor_bytes": 1073741824,
+    "rfdetr": "1.12.0",
+    "service_changed": false,
+    "status": "GB10_STOCK_TORCH_OPERATOR_PROBE_COMPLETE",
+    "torch": "2.10.0+cu130",
+    "torch_arch_list": [
+      "sm_80",
+      "sm_90",
+      "sm_100",
+      "sm_110",
+      "sm_120",
+      "compute_120"
+    ],
+    "torch_build_cuda": "13.0",
+    "torch_threads": 1,
+    "training_started": false
+  },
+  "original_ssh_wait_exit": 0,
+  "independent_process_readback_exit": 0,
+  "probe_cuda_context_present_after_exit": false,
+  "architecture_range_warning_observed": true,
+  "first_precheck_skipped_before_cuda": "unclassified_existing_context_later_confirmed_as_desktop_service",
+  "complete_rf_detr_training_admitted": false,
+  "FIT": false,
+  "DEV": false,
+  "TEST": false,
+  "AP": false
+}
