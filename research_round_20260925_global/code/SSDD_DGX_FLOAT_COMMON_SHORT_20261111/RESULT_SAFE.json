@@ -1,0 +1,49 @@
+{
+  "status": "SSDD_DGX_FLOAT_COMMON_DRAFT_CHECKS_ACTUAL",
+  "frozen_owner_sha256": "3c9b34eee76a6d01d38877b6659618b3be326563b9076d6645f850ff690d8c56",
+  "frozen_protocol_sha1": "0cf70c678b8095c6256cd678e03994408a86e56b",
+  "frozen_protocol_sha256": "0ce3681c184cd1c36e777fa74bb1740583a8527e3b28e2ced77294ff374dac8c",
+  "local_tests_passed": 3,
+  "local_pinned_source_preflight_passed": true,
+  "exact_windows_native_target_load": {
+    "AP": false,
+    "DEV": false,
+    "FIT": true,
+    "TEST": false,
+    "actual_stock_prepared_images": 32,
+    "actual_stock_prepared_rows": 43,
+    "changed_polygon_rows": 1606,
+    "cuda_initialized": false,
+    "exact_nonmask_and_order": true,
+    "image_decode": false,
+    "images": 741,
+    "images_without_rows": 0,
+    "label_binding": {
+      "fit_float_sha256": "97162d23a33b9387fe0b47a117f7e5b1f9dde7471033f244ab336cee1ca9039b",
+      "fixed_view_input_admission_sha256": "c5841463f15a3062d8d99899c2034dc8a1c9b97ce05961a20403e61c8776d285",
+      "policy": "official_source_float_polygon_only_v1",
+      "stock_integer_fit_sha256": "62966857c78cea1e3b060700c62a7b896942686c2e674d3eb09f516a92250bc1"
+    },
+    "optimizer_updates": 0,
+    "restored_original_loader": true,
+    "rfdetr": "1.12.0",
+    "rows": 1661,
+    "status": "SSDD_FLOAT_STOCK_TARGET_LOAD_ACTUAL",
+    "stock_float_target_tensor_parity": true
+  },
+  "prior_attempts": [
+    {
+      "result": "windows_venv_shim_failed_at_torch_DLL_import",
+      "exit_code": 1,
+      "model_or_optimizer_started": false
+    },
+    {
+      "result": "integer_coordinate_type_validation_failed_on_integral_JSON_floats",
+      "exit_code": 1,
+      "model_or_optimizer_started": false
+    }
+  ],
+  "dgx_run_started": false,
+  "actual_dgx_optimizer_updates": 0,
+  "actual_gpu_owner_wait_verified": false
+}

@@ -1,0 +1,55 @@
+{
+  "status": "SSDD_DGX_FLOAT_COMMON_SHORT_PROTOCOL_FROZEN",
+  "stage": "qualification",
+  "FIT": true,
+  "DEV": false,
+  "TEST": false,
+  "AP": false,
+  "question": "Can both float-polygon sampling arms complete the unchanged DGX RF-DETR short optimizer on identical common instance support?",
+  "ordered_arms": [
+    "native",
+    "center"
+  ],
+  "target_policy": "intersection_of_ordered_nonempty_native_center_target_rows_v1",
+  "label_binding": {
+    "policy": "official_source_float_polygon_only_v1",
+    "stock_integer_fit_sha256": "62966857c78cea1e3b060700c62a7b896942686c2e674d3eb09f516a92250bc1",
+    "fit_float_sha256": "97162d23a33b9387fe0b47a117f7e5b1f9dde7471033f244ab336cee1ca9039b",
+    "fixed_view_input_admission_sha256": "c5841463f15a3062d8d99899c2034dc8a1c9b97ce05961a20403e61c8776d285"
+  },
+  "fit_population": {
+    "images": 741,
+    "annotation_rows": 1661,
+    "stock_epoch_visits": 744
+  },
+  "q100_initial_sha256": "40524fc63797d2fcab7b50b6ee1f041f9429df73e505cb9e647a5a8cdf6f2e2f",
+  "initialization_seed": 5201,
+  "training_seed": 5201,
+  "stock_recipe_sha256": "ba9508d9acab5ff68b10db8a1aff5d9001868d6dda00e39f299d6f5cc1b8011b",
+  "precision": "bf16-mixed",
+  "batch_size": 1,
+  "gradient_accumulation": 4,
+  "data_workers": 0,
+  "actual_visits_per_arm": 32,
+  "adamw_updates_per_arm": 8,
+  "ema_updates_per_arm": 8,
+  "warmup_updates": 558,
+  "stock_scheduled_updates": 18600,
+  "completed_epochs_per_arm": 0,
+  "checkpoint_saved": false,
+  "require_equal_actual_common_rows_image_nonmask_trace_rng": true,
+  "require_differing_selected_masks": true,
+  "original_empty_guard_removals": 0,
+  "require_independent_original_owner_wait": true,
+  "resource_profile": {
+    "cuda_free_floor_gib": 12,
+    "host_available_floor_gib": 40,
+    "cuda_allocator_limit_gib": 6,
+    "worker_rss_limit_gib": 8,
+    "worker_deadline_seconds": 300,
+    "cpu_cores": [
+      0,
+      1
+    ]
+  }
+}
