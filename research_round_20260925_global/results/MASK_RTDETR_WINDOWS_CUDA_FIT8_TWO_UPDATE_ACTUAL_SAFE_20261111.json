@@ -1,0 +1,97 @@
+{
+  "AP_evaluated": false,
+  "actual_parameter_or_buffer_changes": 472,
+  "actual_python_peak_rss_bytes": 1682665472,
+  "attention_calls": {
+    "author_paddle_grid_sample": 12
+  },
+  "author_backbone_sha256": "a37a27dfab3fe923ee4d1095f2f84c48d67af836d4dab2596eadeba6a1213408",
+  "backbone_tensors_loaded": 210,
+  "changed_trainable_class_tensors": 1,
+  "changed_trainable_mask_tensors": 6,
+  "checkpoint_epoch": 1,
+  "checkpoint_files": {
+    ".pdema": {
+      "bytes": 58575075,
+      "sha256": "1bd10711a354bee75b27acd054a3e32645b70e51675027ffe3b0ad526fa881b1"
+    },
+    ".pdopt": {
+      "bytes": 116693731,
+      "sha256": "fc22cb9d148b5b9224c5bb01f3bc72448730b4c9c1502e24544ea7f6afb4bd46"
+    },
+    ".pdparams": {
+      "bytes": 58566677,
+      "sha256": "d6566f8539890f113a58cdddad21ba669ba436c42b8ff61cd21a237f120ebb32"
+    }
+  },
+  "class_slots": [
+    0
+  ],
+  "completed_epochs": 1,
+  "counts": {
+    "ema": 2,
+    "lr": 2,
+    "optimizer": 2
+  },
+  "cuda_compile": "11.8",
+  "cuda_device": "gpu:0",
+  "cuda_name": "NVIDIA GeForce RTX 3090 Ti",
+  "cudnn_compile": "8.6.0",
+  "elapsed_seconds": 12.808089799946174,
+  "ema_updates_from_native_counter": 2,
+  "fit_manifest_sha256": "8a0099846bdb530f2250d8c8473014b934a9107bc82f6fd053074b71a77a746a",
+  "fit_visits": 8,
+  "lr_steps_since_initial": 2,
+  "model_state_tensors": 646,
+  "native_attention_modules": [
+    "ppdet.modeling.transformers.utils"
+  ],
+  "official_DEV_opened": false,
+  "official_TEST_opened": false,
+  "online_ema_different_tensors": 557,
+  "optimizer_state_fields": 1470,
+  "optimizer_tensor_fields": 1468,
+  "parameter_places": [
+    "Place(gpu:0)"
+  ],
+  "protocol_commit": "d245d17cd74d35230c487af22a9fca42dd7cdddc",
+  "runtime": {
+    "numpy": "1.26.4",
+    "opencv-python": "4.5.5.64",
+    "paddlepaddle-gpu": "2.6.2",
+    "pycocotools": "2.0.8"
+  },
+  "seed": 20261111,
+  "status": "MASK_RTDETR_S_NATIVE_WINDOWS_CUDA_FIT8_TWO_UPDATE_TRAIN_QUALIFICATION_V1",
+  "train_batches": [
+    {
+      "cumulative_attention_calls": 6,
+      "empty_masks": 0,
+      "gt_rows": 10,
+      "image_place": "Place(gpu:0)",
+      "loss": 257.9868469238281,
+      "loss_place": "Place(gpu:0)",
+      "size": [
+        4,
+        3,
+        512,
+        512
+      ]
+    },
+    {
+      "cumulative_attention_calls": 12,
+      "empty_masks": 0,
+      "gt_rows": 5,
+      "image_place": "Place(gpu:0)",
+      "loss": 254.78280639648438,
+      "loss_place": "Place(gpu:0)",
+      "size": [
+        4,
+        3,
+        672,
+        672
+      ]
+    }
+  ],
+  "upstream_commit": "b25522a0f4bde8c80603f3ba5e3472059972e3b5"
+}

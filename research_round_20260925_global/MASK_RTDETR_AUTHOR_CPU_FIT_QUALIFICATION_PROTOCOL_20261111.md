@@ -29,3 +29,15 @@ CPU FP32 单线程，实际观察启动器和子进程树，设可用主存至�
 本机独立 Python 3.10.13 环境安装 PaddlePaddle GPU 2.6.2。官方 wheel 两次传输超时，镜像取得的完整 477,407,829 字节与 PyPI 发布 SHA-256 完全一致。依赖检查通过。首次实际 GPU 卷积到达 RTX 3090 Ti 和 cuDNN 后，因进程找不到 `zlibwapi.dll` 终止。新的隔离进程只加入本机既有 x64 DLL 的精确副本，不改系统环境。
 
 复测在 RTX 3090 Ti 上完成卷积前向和反传，四个输出为 45、54、81、90，输入与卷积核的梯度和为 36 与 270，均在 GPU 上逐值通过。Paddle 构建报告 CUDA 11.8、cuDNN 8.6，进程加载报告 cuDNN 8.9。原复测退出 0。本次只有算子测试，未读 FIT、DEV 或 TEST，未训练作者模型。 [官方 wheel](https://pypi.org/project/paddlepaddle-gpu/2.6.2/) · [cuDNN 8 Windows 依赖](https://docs.nvidia.com/deeplearning/cudnn/archives/cudnn-893/install-guide/index.html) · [GPU 算子实测](results/MASK_RTDETR_WINDOWS_PADDLE_CUDA_SMOKE_ACTUAL_SAFE_20261111.json)
+
+## Windows CUDA 原作者两次 FIT 更新
+
+独立 GPU 环境使用已核验的作者源码、官方 B1 ImageNet 骨干和既有 8 张 FIT 图。原训练器实际消费两批各四张图，网格 512²、672²，16 条源标注经增强保留 15 条且无空掩膜。有限损失为 257.98685、254.78281。原生 AdamW、调度及 EMA 均返回两次。CUDAPlace 0 的实际参数、输入和损失已核对。作者 Paddle 可变形注意力回退的 `grid_sample` 路径在两批各执行 6 次，输入及输出均在 GPU。 [GPU 训练实测](results/MASK_RTDETR_WINDOWS_CUDA_FIT8_TWO_UPDATE_ACTUAL_SAFE_20261111.json)
+
+作者骨干载入 210 个张量，原生在线与 EMA 各有 646 个有限状态张量。在线归档中 1 个可训练分类头张量和 6 个掩膜头张量发生变化，EMA 与在线端点有 557 个不同张量，原 AdamW 归档有 1,468 个有限张量字段。原进程退出 0、作业树清空，档案摘要经独立核对。作业等待 13.625 秒，包含资格记录与档案写入，适用范围为该机器上的两步训练资格。该次主对照未保存两臂比较所需的完整图像、框、类别与随机状态见证。随后使用同一运行入口执行两个锁定臂，结果见下节。未执行 DEV、TEST 或 AP。
+
+## 固定实例的原生与中心 CUDA 两步配对
+
+在新的配对进程中从同一骨干与种子分别初始化两臂。独立核对 646 个初始状态张量、实际图像、框、类别、实例顺序、非掩膜输入及前向前的 CPU 与 CUDA 随机状态。两臂均实际消费 8 张图、保留同样的 15 条实例，每臂各返回两次 AdamW、调度及 EMA。15 条掩膜全部因取样规则而变，缩放前和两种取样后均无空掩膜。两臂各执行 12 次作者的 GPU `grid_sample` 回退。原进程均正常退出，作业树清空。 [固定实例配对汇总](results/MASK_RTDETR_WINDOWS_CUDA_FIT8_PAIRED_TWO_UPDATE_ACTUAL_SAFE_20261111.json)
+
+配对原生第二批损失 254.7762，与单臂先导的 254.7828 有约 0.0066 的差别。当前采用原生 CUDA 算术默认设置、FP32 张量及关闭 AMP 的配方。结果证明固定实例的掩膜干预可通过另一训练载体的实际更新。两步损失用于有限性核验，模型效用、逐位复现及正式 AP 仍待验证。
