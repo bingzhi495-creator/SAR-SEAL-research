@@ -1,0 +1,65 @@
+{
+  "status": "P392_HRSID_DEV705_EQUAL_NONEMPTY_MATCH_AND_SCORE_TEMPLATE_PROTOCOL_FROZEN",
+  "scientific_scope": "score-conditioned fixed shortlist from a previously closed single-seed author A/B pair; no new inference or causal decomposition",
+  "input_binding": {
+    "primary_result_sha256": "a6f71845ab7e0488e9ef7899005f1baf78ea6f2360f1fcc15a0e61f98d184e58",
+    "original_export_wait_sha256": "48f1a828bc554e43154e11d3c03b9b8616cbebd3accd418af5899d37cf361ac7",
+    "original_score_wait_sha256": "008403e77abb68015498f74d904046cac14d3a5dea6d8437cbf22ac50d05a1a2",
+    "original_score_terminal_sha256": "3dc8327d949b017ce622923f4a78b5ccad9582ccad31fe7f685e227208c42fa8",
+    "training_pair_sha256": "f6f4d8f50976b63f3aefc544d50f6de64c1927bbcaa261767fd5032beae28e84",
+    "original_native_closure_sha256": "2ba7bbcc8e867f15e532b3649f6c7fe2ef543a028eba9ad9407cf74021ade562",
+    "original_center_closure_sha256": "6047fd94d40e4b82af63f3bdcedd69de493c3ae22047edbb03fb07253b75f661",
+    "native_stream_sha256": "bbd29ba0a9ed4c6762eaf0481e1239ee69229338a2a21301667a18dbadcccf04",
+    "center_stream_sha256": "a807669ed9616227f38da4a943fedf6f1c8848d30de13063c7b43826c25a4499",
+    "dev_manifest_sha256": "39a40d089d4a54448fe6efca8ea5cc98ad1eb7c0587815f3dd9a3b097173e78f",
+    "original_gt_sha256": "393b3da233991dc5fafc98b4ddeaa341b042d9571434ef8ce53c3f2fdada5628",
+    "prelocked_empty_raster_findings_sha256": "f3f2d644b2e0ce475b4a46b382ec7ec51f2efa4609c8f85b4f8f552ff57d5889"
+  },
+  "shortlist": {
+    "images": 705,
+    "native_rows_per_image_per_arm": 100,
+    "k_per_image": "min(count of nonempty native masks in A, count of nonempty native masks in B)",
+    "order": "filter empty RLE masks and take first k in original native per-image order, preserving ties and including images with k=0",
+    "rle_only_for_segmentation": true
+  },
+  "coverage": {
+    "original_nonempty_gt": 1778,
+    "exclude_prelocked_empty_rasters": 4,
+    "expected_additional_exclusions": 0,
+    "IoU": [
+      0.5,
+      0.75,
+      0.9
+    ],
+    "comparison": "original 800x800 raster mask IoU with inclusive threshold; score-blind maximum-cardinality matching per image and threshold on the fixed shortlist",
+    "matching": "SciPy 1.15.3 maximum_bipartite_matching with lexicographic RLE candidate counts and numeric GT ID order; no score or secondary IoU objective after shortlist",
+    "size_partition": "official annotation area, small <1024, medium [1024,9216), large >=9216; tabulate a single image-global assignment at each threshold and retain exact area-boundary census"
+  },
+  "score_templates": {
+    "original_GT_annotations": 1782,
+    "COCO_max_dets": [
+      1,
+      10,
+      100
+    ],
+    "same_order_and_exact_ties": true,
+    "cells": "A masks/B masks crossed with A/B original ranked score donors at corresponding image and rank; boxes excluded",
+    "checks": "same donor has identical COCO score-rank layout across candidate masks; same candidate masks have identical within-image matching and recalls across donors",
+    "reported": "four cells full COCO summaries and AP90 with four directional differences; original primary and empty-sensitivity endpoint APs separately"
+  },
+  "runtime": {
+    "platform": "Windows",
+    "python": "3.10.13",
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "pycocotools": "2.0.11",
+    "CPU_workers": 1,
+    "priority": "below-normal",
+    "logical_cpus": 1,
+    "thread_limits": 1,
+    "CUDA": false
+  },
+  "new_model_forwards": 0,
+  "new_training_updates": 0,
+  "official_TEST_opened": false
+}
