@@ -34,3 +34,17 @@
 MONAI 已验证对图像和语义标签推迟空间变换并合并重采样可以减小标签信息损失，其示例允许在后续旋转时保留先前裁剪外的原始数据。IDALib 在二维训练增强中已经按顺序合并仿射，并对离散掩膜执行单次最近邻。当前 RF-DETR 实现覆盖缩放、图内裁剪和水平翻转，保持原图像分支、框、随机轨迹和共同非空实例，精确计算输出像素中心。对这三类变换，最终像素中心在各级有效域内。裁剪有效域本身不足以构成区别于正确通用复合变换的新原语。 [MONAI 原文](https://pmc.ncbi.nlm.nih.gov/articles/PMC11873007/) · [MONAI 裁剪语义](https://monai.readthedocs.io/en/stable/lazy_resampling.html) · [IDALib 原文](https://nvblanco.github.io/assets/pdf/conferences/2022_euvip.pdf) · [IDALib 变换源码](https://github.com/nvblanco/ida_lib/blob/master/ida_lib/core/pipeline.py#L38-L83)
 
 下一项直接对照是在相同真实增强轨迹上使用通用复合仿射，固定中心及半格取整约定，逐值检查与单次整数参考的监督差。若输出一致，两种写法共享同一几何机制，无需重复训练来证明实现差异。已锁定的 B/C 同预算长训继续回答相对逐步中心的实际效用。可主张的科学证据取决于固定实例后的高 IoU 改善、直缩阴性对照、裁剪分层及跨数据集复现。只有进一步解决可测失败并胜过可复现的常规复合对照，才能主张新增方法。 [真实 OpenCV 5 对照](MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md#opencv-5-在真实-fit-栅格上的直接对照) · [B/C 同预算入口](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#逐步中心与单次复合中心的正式-e24-入口)
+
+### 通用复合仿射的真实 FIT 对照
+
+固定原 HRSID FIT114 的 114 张图、456 条增强轨迹和逐步中心的 4,145 条有序监督行。比较三个实现与原单次中心参考。通用仿射先构造正向齐次矩阵再求逆，用 float64 映射像素中心。第一个实现直接取整，第二个对距整数边界不超过 10⁻¹⁰ 的坐标按同一等距规则处理。实测这个容差在全部轨迹上只选中有理数核对的精确边界。另用 IDALib 源码调用的 Kornia 仿射路径作近邻算子对照。使用官方 Kornia 0.3.1 wheel、Torch 2.10.0 CPU FP64、零填充和显式 `align_corners=True` 来匹配当前像素坐标，范围为适配后的原算子。 [IDALib 固定源码](https://github.com/nvblanco/ida_lib/blob/4002e39417edfd62448b503196da9692a245e79d/ida_lib/operations/geometry_ops_functional.py#L312-L336) · [Kornia 固定源码](https://github.com/kornia/kornia/blob/v0.3.1/kornia/geometry/transform/imgwarp.py#L90-L147)
+
+| 对照相对原单次中心 | 源像素索引变化位置 | 变化的监督掩膜 | 掩膜异或像素 |
+| --- | ---: | ---: | ---: |
+| 通用复合仿射直接取整 | 12,096 | 0 | 0 |
+| 通用复合仿射匹配等距取整 | 0 | 0 | 0 |
+| Kornia 0.3.1 对齐坐标的最近邻 | 1,424,066 | 46 | 822 |
+
+三个对照在 248 条直缩轨迹的 2,770 条掩膜和源索引上均逐值一致。全部差异位于 208 条裁剪轨迹中的部分视图，Kornia 改动其中 14 条视图的 46 个掩膜。每个有差异的像素位置至少一轴恰在等距边界，未观察到两个轴都远离该边界的差异。49 条掩膜另直接通过 Kornia 算子，验证用唯一像素编号探测再回取掩膜的结果。没有新增空掩膜。 [实测、代码与原进程证据](results/HRSID_FIT114_COMPOSED_AFFINE_CONTROL_ACTUAL_SAFE_20261111.json) · [对照源码](code/HRSID_FIT_RESIZE_PHASE_REPLAY_20261109/affine_control_fit114_v2.py)
+
+首个工人在零保留行的裁剪视图触发空张量统计形状错误，原进程退出 1 并清空作业树。修正只为统计传入显式画布面积，三个回归通过。相同数据与轨迹的修正版原进程退出 0，耗时 72.33 秒，作业树清空。本次模型前向、AP 评分与 DEV／TEST 均未执行。通用实现与原单次中心在固定样本上逐坐标一致，因此本项目的单次实现没有独立于通用复合仿射的算子证据。接续已锁定的 B/C 长训评价，检验该机制在 SAR 中相对逐步中心的效用与失败范围。

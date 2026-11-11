@@ -1,0 +1,129 @@
+{
+  "status": "HRSID_FIT114_COMPOSED_AFFINE_CONTROL_ACTUAL_SAFE",
+  "scientific_result": {
+    "AP": false,
+    "DEV": false,
+    "FIT": true,
+    "TEST": false,
+    "counts": {
+      "crop": {
+        "direct_kernel_mask_witnesses": 23,
+        "exact_tie_locations": 1776754,
+        "float_floor_index_differences": 12096,
+        "float_floor_lost_nonempty": 0,
+        "float_floor_mask_rows_changed": 0,
+        "float_floor_mask_xor": 0,
+        "float_floor_non_tie_index_differences": 0,
+        "float_floor_non_tie_mask_xor": 0,
+        "float_floor_views_changed": 0,
+        "float_match_ties_index_differences": 0,
+        "float_match_ties_lost_nonempty": 0,
+        "float_match_ties_mask_rows_changed": 0,
+        "float_match_ties_mask_xor": 0,
+        "float_match_ties_non_tie_index_differences": 0,
+        "float_match_ties_non_tie_mask_xor": 0,
+        "float_match_ties_views_changed": 0,
+        "kornia031_aligned_index_differences": 1424066,
+        "kornia031_aligned_lost_nonempty": 0,
+        "kornia031_aligned_mask_rows_changed": 46,
+        "kornia031_aligned_mask_xor": 822,
+        "kornia031_aligned_non_tie_index_differences": 0,
+        "kornia031_aligned_non_tie_mask_xor": 0,
+        "kornia031_aligned_views_changed": 14,
+        "rows": 1375,
+        "views": 208
+      },
+      "direct": {
+        "direct_kernel_mask_witnesses": 26,
+        "exact_tie_locations": 0,
+        "float_floor_index_differences": 0,
+        "float_floor_lost_nonempty": 0,
+        "float_floor_mask_rows_changed": 0,
+        "float_floor_mask_xor": 0,
+        "float_floor_non_tie_index_differences": 0,
+        "float_floor_non_tie_mask_xor": 0,
+        "float_floor_views_changed": 0,
+        "float_match_ties_index_differences": 0,
+        "float_match_ties_lost_nonempty": 0,
+        "float_match_ties_mask_rows_changed": 0,
+        "float_match_ties_mask_xor": 0,
+        "float_match_ties_non_tie_index_differences": 0,
+        "float_match_ties_non_tie_mask_xor": 0,
+        "float_match_ties_views_changed": 0,
+        "kornia031_aligned_index_differences": 0,
+        "kornia031_aligned_lost_nonempty": 0,
+        "kornia031_aligned_mask_rows_changed": 0,
+        "kornia031_aligned_mask_xor": 0,
+        "kornia031_aligned_non_tie_index_differences": 0,
+        "kornia031_aligned_non_tie_mask_xor": 0,
+        "kornia031_aligned_views_changed": 0,
+        "rows": 2770,
+        "views": 248
+      }
+    },
+    "kornia": "0.3.1",
+    "kornia_cpu_dtype": "float64",
+    "kornia_explicit_align_corners": true,
+    "model_forward_calls": 0,
+    "optimizer_updates": 0,
+    "scope": "B-conditioned FIT masks",
+    "source_images": 114,
+    "status": "HRSID_FIT114_COMPOSED_AFFINE_CONTROL_ACTUAL",
+    "tie_tolerance": 1E-10,
+    "trace_and_b_row_census_match": true,
+    "views": 456
+  },
+  "original_failed_wait": {
+    "elapsed_seconds": 16.82799999997951,
+    "memory_limit_bytes": 5368709120,
+    "original_os_exit": 1,
+    "original_os_wait": true,
+    "peak_job_commit_bytes": 1364467712,
+    "process_group_closed": true,
+    "result": null,
+    "sampled_peak_tree_rss_bytes": 909127680,
+    "status": "BOUNDED_CPU_FIT_ORIGINAL_WAIT",
+    "stderr": {
+      "bytes": 1635,
+      "sha256": "2a622eeb756fb8c36327f651abc44ae9b282bbce3242a3204eae9d3709d06108"
+    },
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stop_reason": null,
+    "worker_sha256": "37716114313d8b5f6aae76ff427be9e5a5174fe34da09145f31d259a93220983"
+  },
+  "failed_outer_exit": 5,
+  "first_failure": "Empty B row set hit an inferred-dimension reshape; the corrected attempt supplies explicit output area.",
+  "original_success_wait": {
+    "elapsed_seconds": 72.32799999997951,
+    "memory_limit_bytes": 5368709120,
+    "original_os_exit": 0,
+    "original_os_wait": true,
+    "peak_job_commit_bytes": 2721349632,
+    "process_group_closed": true,
+    "result": {
+      "bytes": 2226,
+      "sha256": "8e42be68fe1a8c4715aaff2f0c91418dc6171cf5508f94fad414cd899983c8e4"
+    },
+    "sampled_peak_tree_rss_bytes": 2240626688,
+    "status": "BOUNDED_CPU_FIT_ORIGINAL_WAIT",
+    "stderr": {
+      "bytes": 630,
+      "sha256": "8e730709a013ab56ce7271264f46dbd4c1db8e9238ac1126cd43934f7f9e8abf"
+    },
+    "stdout": {
+      "bytes": 498,
+      "sha256": "deacd41a1eceea106f50f584c0bf4d8c9355e30b6280c7838f8ecb1ac4589737"
+    },
+    "stop_reason": null,
+    "worker_sha256": "9faa22eb8a7d7d2556ed57a2de1354b4bfbbf8c6cd8077dd2855b58efad23e6a"
+  },
+  "success_outer_exit": 0,
+  "regression_tests": 3,
+  "kornia_wheel_sha256": "e6fb8a6eae2e09284b7d9c3b8d1a0f3bc857cd4c2f009bb56f3790953adf43e4",
+  "kornia_runtime_torch": "2.10.0+cu130",
+  "cpu_only": true,
+  "idalib_full_package_executed": false
+}

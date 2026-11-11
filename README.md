@@ -4,7 +4,7 @@
 
 ## 当前状态（2026-11-11）
 
-- [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。
+- [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。 [通用复合仿射实测](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md#通用复合仿射的真实-fit-对照)在相同等距取整下，与单次中心的 4,145 条训练掩膜及源像素索引逐值一致。
 - [HRSID 固定共同行 E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行-e24-的固定-dev705-实测)。固定同序监督实例的种子 5202 通过独立验收，DEV705 mask AP **51.434→56.072（+4.638 点）**，AP75 +9.314 点，大目标 AP −6.672 点。正式 TEST 继续隔离。
 - [PSeg-SSDD 目标域同预算 E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-目标域同预算-e24-实测)。独立验收通过，固定整数 DEV187 的 mask AP **67.819→69.500（+1.680 点）**，AP75 +1.533、AP90 +3.411。当前为单种子开发集结果，正式 TEST 继续隔离。
 - [PSeg-SSDD 重复图像敏感性与共同行实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-精确重复敏感性与固定共同监督实测)。FIT／DEV 精确像素交集为零，DEV 内五组像素副本的 32 种代表选择均保留增益，AP +1.702 至 +1.885 点。真实原生加载 32 视图的 62 条共同监督通过两臂核对。
