@@ -1,0 +1,91 @@
+{
+  "capture_sha256": "582d11542c3ec777fb2309493459045d51b51edc500a888970ccb03d2b57b3ac",
+  "checks": {
+    "all_method_counts_and_offsets_match": true,
+    "flow_min_cut_certificates": 108,
+    "flow_witnesses_valid": true,
+    "images": 36,
+    "methods": 14,
+    "rank_greedy_and_reciprocal_pairs": true,
+    "representative_identities": true
+  },
+  "coverage": {
+    "nms85": {
+      "both_edges": 704,
+      "eligible": 1403,
+      "first": 435,
+      "flow": 466,
+      "original_on_reps": 47,
+      "reciprocal_groups": 22,
+      "reciprocal_margin": 88,
+      "reciprocal_no_margin": 214,
+      "reciprocal_nonzero_groups": 11
+    },
+    "nms90": {
+      "both_edges": 911,
+      "eligible": 1642,
+      "first": 540,
+      "flow": 575,
+      "original_on_reps": 47,
+      "reciprocal_groups": 4,
+      "reciprocal_margin": 55,
+      "reciprocal_no_margin": 217,
+      "reciprocal_nonzero_groups": 4
+    },
+    "raw": {
+      "both_edges": 1414,
+      "eligible": 2181,
+      "first": 840,
+      "flow": 887,
+      "reciprocal_groups": 4,
+      "reciprocal_margin": 47,
+      "reciprocal_no_margin": 208,
+      "reciprocal_nonzero_groups": 3
+    }
+  },
+  "independent_rle_decoder_source_sha256": "2fb790afa6efc5852222cbfd046bb154380741add9ab33b0b7d96410de03fe20",
+  "interpretation": {
+    "identity_or_neighbor_safety_verified": false,
+    "nms85_does_not_meet_strict_nonzero_group_cutoff": true,
+    "nms90_does_not_expand_strict_covered_group_count": true,
+    "nms90_first_below_exact_maximum": 35,
+    "raw_anchors_lacking_both_edges": 767,
+    "raw_common_flow_loss_from_no_reuse": 527,
+    "raw_first_below_exact_maximum": 47
+  },
+  "original_tool_terminal": {
+    "chunk_id": "1e4cda",
+    "exit_code": 0,
+    "stdout": {
+      "both_edge_nms90": 911,
+      "both_edge_raw": 1414,
+      "images": 36,
+      "methods_checked": 14,
+      "minimum_cut_certificates": 108,
+      "result_sha": "ade28b44d1ef5701e8986be93624663bfd054e60f75b6eef1cef8c1acd6199ad",
+      "status": "INDEPENDENT_STRUCTURE_VERIFIED"
+    },
+    "wall_time_seconds": 2.2189351
+  },
+  "result_sha256": "ade28b44d1ef5701e8986be93624663bfd054e60f75b6eef1cef8c1acd6199ad",
+  "scopes": {
+    "AP": false,
+    "DEV": false,
+    "FIT": true,
+    "GT_opened": false,
+    "TEST": false,
+    "mask_edits": 0,
+    "model_forwards": 0,
+    "optimizer_updates": 0
+  },
+  "source": {
+    "exact_source_sha256": "c8186d7444f0cddc127016b450174499aca213c19b15ad126e735079b056660e",
+    "exact_tool_stdin_saved": true,
+    "portability_change": "Replace the original closed execution base path with the first CLI argument. All verification logic is identical.",
+    "portable_source_sha256": "abc8947f41bd7a3f60f27938f1ebbb9235dbac3809d0bb75faf54c7228001b5f",
+    "portable_source_was_executed": false,
+    "portable_usage": "python -B verify_structure.py <closed_execution_base>"
+  },
+  "status": "HRSID_FIT_ASSOC_STRUCTURE_INDEPENDENT_READBACK",
+  "witness_sha256": "795884c58ed6573fd0b33a50331c831d26d597f79c872bd1fc802e7a26bd4818"
+}
