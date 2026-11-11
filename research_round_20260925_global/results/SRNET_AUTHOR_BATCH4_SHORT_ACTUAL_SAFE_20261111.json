@@ -1,0 +1,110 @@
+{
+  "original_result_sha256": "dc6026a9bbfe1fddd53af148a4a2df186da1f30524f9b4ad0dada537b2d8b5ca",
+  "original_wait_sha256": "024942eab3a180e0f098712e871510e33ff81eb9657b284d5d78b5ffc5b61631",
+  "original_stdout_sha256": "a8a750c8e30619344369687dd34163de0db582bcd7e1c769e3ca39899c89acdc",
+  "original_os_exit": 0,
+  "original_os_wait": true,
+  "job_active_after_wait": 0,
+  "resource_stop": null,
+  "original_wall_seconds": 20.70299999997951,
+  "gpu": "GeForce RTX 3090 Ti",
+  "execution_context": "Independent bounded Windows CUDA job during HRSID training",
+  "recorded_update_events": [
+    {
+      "batch_size": 4,
+      "event": "P346_SRNET_BATCH4_SGD_UPDATE",
+      "gradient_norm": 5474.82275390625,
+      "losses": {
+        "coarse.loss_bbox": 1.4243054389953613,
+        "coarse.loss_cls": 1.036855697631836,
+        "loss": 360.9998779296875,
+        "mask.masks_loss": 2.8039026260375977,
+        "refine.loss_bbox": 1.4693968296051025,
+        "refine.loss_cls": 354.26544189453125
+      },
+      "rejected_attempts": 0,
+      "update": 1
+    },
+    {
+      "batch_size": 4,
+      "event": "P346_SRNET_BATCH4_SGD_UPDATE",
+      "gradient_norm": 6074.77685546875,
+      "losses": {
+        "coarse.loss_bbox": 1.728356957435608,
+        "coarse.loss_cls": 1.0192830562591553,
+        "loss": 646.0986328125,
+        "mask.masks_loss": 2.714171886444092,
+        "refine.loss_bbox": 1.4446427822113037,
+        "refine.loss_cls": 639.1921997070312
+      },
+      "rejected_attempts": 0,
+      "update": 2
+    }
+  ],
+  "status": "P346_SRNET_AUTHOR_BATCH4_MATCHED_TRAIN_COMPLETE_V1",
+  "stage": "short",
+  "FIT": true,
+  "DEV": false,
+  "TEST": false,
+  "AP": false,
+  "author_commit": "2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6",
+  "worker_source_sha256": "0794b921ef6e7f4686d3a223cbd565588d8196435a7666dddf76e3d785f5f709",
+  "actual_batch_size": 4,
+  "completed_epochs": 0,
+  "consumed_visits": 8,
+  "fit_images": 741,
+  "fit_index_sha256": "62966857c78cea1e3b060700c62a7b896942686c2e674d3eb09f516a92250bc1",
+  "fit_archive_sha256": "1c8f9b75e79fbc02c983ccd283a70082fcd5ab0d6538c777e8b286dbfdb78100",
+  "optimizer_updates": 2,
+  "model_forward_calls": 2,
+  "source_initializer_sha256": "0676ba61b6795bbe1773cffd859882e5e297624d384b6993f7c9e683e722fb8a",
+  "complete_loss_keys": [
+    "coarse.loss_cls",
+    "coarse.loss_bbox",
+    "refine.loss_cls",
+    "refine.loss_bbox",
+    "mask.masks_loss"
+  ],
+  "recipe": {
+    "anomaly_detection": false,
+    "epoch_decay_milestones": [
+      16,
+      22
+    ],
+    "epochs": 24,
+    "gradient_clip_norm": 35,
+    "gradient_clip_norm_type": 2,
+    "init_seed": 5201,
+    "learning_rate": 0.0025,
+    "momentum": 0.9,
+    "optimizer": "SGD",
+    "precision": "fp32",
+    "repeat_times": 1,
+    "sampler": "stock_non_distributed_GroupSampler",
+    "samples_per_gpu": 4,
+    "training_seed": 5201,
+    "warmup_iterations": 112,
+    "warmup_ratio": 0.3333333333333333,
+    "weight_decay": 0.0001,
+    "workers_per_gpu": 0
+  },
+  "package_versions": {
+    "mmcv-full": "1.6.0",
+    "mmdet": "2.28.2",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "pycocotools": "2.0.11",
+    "torch": "1.12.0+cu116",
+    "torchvision": "0.13.0+cu116"
+  },
+  "rejected_augmentation_attempts": 0,
+  "head_parameter_max_abs_changes": {
+    "coarse_head": 7.2503462433815E-07,
+    "mask_head": 6.078621481719892E-07,
+    "refine_head": 0.0004763244651257992
+  },
+  "cuda_peak_allocated_bytes": 5605254144,
+  "cuda_peak_reserved_bytes": 5907677184,
+  "elapsed_seconds": 18.20174970012158,
+  "checkpoint": null
+}

@@ -1027,3 +1027,7 @@ DEV187 内有四对字节完全相同的图像。另有一对字节不同但解�
 DGX 固定共同实例的 Linux 短窗草稿已完成三个本地合成测试。它拟复用相同 Q100 初值和 FIT741，顺序运行原生与中心两臂，各 32 次访问、8 次 AdamW 和 EMA 更新，并独立核对实际共同监督。当前只形成源码与测试，尚无可直接执行的真实请求、远端接线或 Linux 训练记录。短窗的固定首轮绑定还需扩展逐轮账本后，才能用于共同监督 E24。 [Linux 短窗草稿](code/SSDD_DEV187_ALIAS_AND_COMMON_FIT_20261111/dgx_fixed_common_short.py) · [本地测试](code/SSDD_DEV187_ALIAS_AND_COMMON_FIT_20261111/test_dgx_fixed_common_short.py)
 
 2026-11-11 DGX 恢复连接。8 个静态材料和两个预锁请求文件已部署，远端逐项核对 10 个文件的摘要与字节数，原传输与源码预检退出均为 0。独立 CUDA 查询返回可用 3,024,928,768 字节（2.82 GiB），宿主可用 48,976,637,952 字节，CUDA 低于短窗准入的 12 GiB。安装的 PyTorch 对 GB10 计算能力发出架构范围提示。此查询只读取资源，训练与算子验证待执行。 [原传输、预检与资源摘要](results/SSDD_DGX_FIXED_COMMON_SHORT_SOURCE_PREFLIGHT_ACTUAL_SAFE_20261111.json)
+
+## SSDD 自然保留的第二种子首次短窗
+
+在固定 COCO Q100 初值、初始化种子 5201 和原训练配方下，实际执行下游种子 5202 的原生短臂。该臂完成 32 次 FIT 访问、8 次 AdamW 和 8 次 EMA 更新，原进程退出 0。中心臂的原进程在 Windows 作业挂载确认阶段退出 70，未发出训练启动或结果记录。外层退出 5，两个作业树均已清空。首次运行未通过配对验收，保留这一原始失败。接续修复先挂载再恢复启动的顺序，使用新目录重跑同一科学配方。 [首次短窗原进程摘要](results/SSDD_WINDOWS_REPEAT5202_SHORT_ORIGINAL_ATTACH_FAILURE_SAFE_20261111.json)
