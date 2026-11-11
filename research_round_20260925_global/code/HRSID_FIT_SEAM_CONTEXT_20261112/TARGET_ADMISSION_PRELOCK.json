@@ -1,0 +1,37 @@
+{
+  "status": "HRSID_FIT_OVERLAP_TARGET_ADMISSION_PRELOCK",
+  "FIT": true,
+  "DEV": false,
+  "TEST": false,
+  "GT_opened": false,
+  "model_forwards": 0,
+  "pair_lock_sha256": "1ba947c401098e92737300d8715d523a890c414fc2e1795e7443530149b81024",
+  "rgb_result_sha256": "622481efd470b5c2549dc07f11acb0e584b14d6cc8eb45399bdf9379b8a6cbb8",
+  "labels_sha256": "e95cf26cc60a2c6fb651e907541380a256f2df7b1e153244a6c0f803b0b19f8f",
+  "selection": "Exact prior 36 source-distinct RGB-verified pairs, no additions or replacement.",
+  "geometry": "Validate each non-crowd/non-ignored polygon component before union in Shapely 2.0.2 / GEOS 3.11.2. Clip with exact 800x800 canvas. Reject source geometry that is invalid, empty, clipped, or not strictly inside the shared viewport with positive margin. Compute continuous overlap in common mother coordinates. Only same-category reciprocal best at IoU >= 0.95 and both row and column second-best gaps >= 0.10. Stable input order is used for ties, which fail the positive gap. Count reasons on each view endpoint. Use the union of the matched A/B shapes for edge distances to both respective crop canvases.",
+  "near_px_inclusive": 16,
+  "far_px_inclusive": 64,
+  "minimum_continuous_iou": 0.95,
+  "minimum_reciprocal_iou_margin": 0.1,
+  "categories": {
+    "seam_asymmetric": "one union-hull margin <=16 and the other >=64",
+    "both_interior": "both union-hull margins >=64",
+    "other": "all remaining full-hull matches"
+  },
+  "lattices": {
+    "native_side": 800,
+    "resize_input_side": 576,
+    "mask_side": 144,
+    "backbone_patch_size": 12,
+    "backbone_num_windows": 1,
+    "qualification": "Reported separately from physical scene equivalence or absolute positional encoding."
+  },
+  "admission": {
+    "full_hull_min": 40,
+    "full_hull_source_groups_min": 12,
+    "seam_asymmetric_min": 10,
+    "seam_asymmetric_groups_min": 8
+  },
+  "scope": "Label-only FIT admission. No PNG access, model forward, training, development scoring or formal test. Passing counts only establishes cohort availability."
+}

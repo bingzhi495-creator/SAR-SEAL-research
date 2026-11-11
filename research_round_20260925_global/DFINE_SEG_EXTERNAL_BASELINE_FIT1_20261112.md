@@ -29,3 +29,7 @@ D-FINE-seg-S 是通用实例分割模型，拟作为独立架构对照。锁定�
 全量原生 FIT 标签经过作者 COCO 读取器和独立逐记录核对。2,937 张图、9,260 个原多边形均成功读取，类别、框和所有 float32 多边形顶点一致，未跳过目标。该阶段未解码图像。第一次读取器核验因人为设置的 16 MiB 上限退出。第二次只改用已知精确字节数和原摘要，按同一读取规则正常结束。 [全量读取器验收](results/DFINE_SEG_EXTERNAL_BASELINE_FIT2937_READER_SAFE_20261112.json)
 
 固定 E24 使用 RF-DETR 原生种子 5202 的实际图像访问序列。原账本独立复算通过，各轮 2,937 张唯一图加 3 次原补采，按原顺序分成 735 个四图批次，共 70,560 次访问和 17,640 次计划更新。D-FINE 保留作者四图物理批次、640 输入和原掩膜栅格化，使用 BF16 前向、FP32 损失、原 Muon 加 Adan、作者 OneCycle 名义 55 轮时钟，固定第 24 轮 EMA。与 RF-DETR 的单图累计、增强、栅格化和优化器不同。此处只锁定访问顺序和训练预算，不把跨架构比较当作因果消融。固定 DEV705 评价须等原 E24 独立验收。 [访问账本核验](results/DFINE_SEG_EXTERNAL_BASELINE_E24_REPLAY_ACTUAL_SAFE_20261112.json) · [独立读回](results/DFINE_SEG_EXTERNAL_BASELINE_E24_REPLAY_INDEPENDENT_SAFE_20261112.json) · [E24 预锁](code/DFINE_SEG_EXTERNAL_BASELINE_FIT32_E24_20261112/e24/PROTOCOL.md)
+
+## 固定 E24 已启动并通过首轮计数
+
+同一原进程从官方 COCO 单类初值启动，重新核对全部 2,937 张训练图。前 8 个实际 BF16 前向、FP32 损失、优化器和 EMA 均返回，32 次访问按已接受的 RF-DETR 顺序。掩膜梯度有限非零，调度与两个独立参数时钟一致。E1 已从原进程输出确认 2,940 次访问和 735 次优化器、EMA、调度更新，9,296 条保留的非空监督，耗时 261.740 秒，CUDA 峰值分配 4,032,860,160 字节、保留 4,812,963,840 字节。原进程已进入 E2。此时仍在训练，E24 独立验收及固定 DEV705 尚未开始。 [固定训练源码](code/DFINE_SEG_EXTERNAL_BASELINE_FIT32_E24_20261112/e24/dfine_e24_worker.py) · [闭合验收入口](code/DFINE_SEG_EXTERNAL_BASELINE_FIT32_E24_20261112/e24/accept_dfine_e24.py)

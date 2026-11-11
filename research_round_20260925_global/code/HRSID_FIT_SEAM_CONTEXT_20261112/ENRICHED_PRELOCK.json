@@ -1,0 +1,25 @@
+{
+  "status": "HRSID_FIT_OVERLAP_ENRICHED_FEASIBILITY_PRELOCK",
+  "FIT": true,
+  "DEV": false,
+  "TEST": false,
+  "GT_opened": false,
+  "PNG_opened": false,
+  "model_forwards": 0,
+  "native_layout_sha256": "a7e4d2a7ff9e8ff238adbf94a1d0397553d8746e2558c316db4e417f86f8fec9",
+  "labels_sha256": "e95cf26cc60a2c6fb651e907541380a256f2df7b1e153244a6c0f803b0b19f8f",
+  "original_lock_sha256": "1ba947c401098e92737300d8715d523a890c414fc2e1795e7443530149b81024",
+  "original_admission_sha256": "12fae2b7265884ef552eb3ef54a81cef737bca50c15554156a8065263536942d",
+  "metadata_pair_pool_size": 4112,
+  "phase": "Each offset is nonzero, shares positive original-grid area, and lands on 576-input, 144-mask and 48-patch lattices.",
+  "polygon_admission": "Same prior method, Shapely 2.0.2 / GEOS 3.11.2, valid noncrowd nonignored polygons strictly within both windows, continuous same-mother reciprocal IoU >=.95 and both second gaps >=.10. Edge margin from union of two admitted polygons.",
+  "freshness": "Exclude all 36 original tested source prefixes from selection. No fallback or replacement.",
+  "selection_salt": "HRSID-fit-overlap-enriched-v1|",
+  "selection": "Select at most one near/far hull witness per fresh positive source, ordered by SHA-256 of salt + source tag + prefix. Within source, prefer near/far candidates that have a same-source, same absolute native crop-offset (dy,dx) both-interior control, then rank by SHA-256 of salt + row tag + sorted basenames and endpoint label IDs. Select one matched control by same rank per source when available. Near margin <=16, far margin >=64, both-interior margins >=64. Both witness types can share a crop pair and use different hulls.",
+  "pixel_verification": "After the label-derived roster closes, decode and verify only its selected crop endpoints against native PNG and decoded RGB SHA. Check exact RGB in shared region. A failed pair remains failed with no replacement. Same-stratum control counts only if its source's selected near/far pair also passes.",
+  "gate": {
+    "minimum_exact_near_far_source_groups": 12,
+    "minimum_exact_matched_control_source_groups": 8
+  },
+  "scope": "Geometry-enriched FIT feasibility only, no model forward or optimization, no DEV or TEST, original random 36-pair stop retained, no effect or method claim."
+}
