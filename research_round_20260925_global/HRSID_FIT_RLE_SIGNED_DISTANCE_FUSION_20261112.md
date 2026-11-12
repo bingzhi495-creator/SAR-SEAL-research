@@ -18,3 +18,7 @@
 完整两像素带在这一定义下应与任一供体异议区给出相同选择。原多数分歧集合已经容纳每个候选的固定增删数，其中每个像素的定向分数至少为 2−√8。三个掩膜都同意原状态的位置定向分数至多为 −3。因此后者无法在排名中挤掉两供体分歧像素。此不变量在 464 个已编辑候选中逐像素通过。没有将同一掩膜重复计为独立效用证据。
 
 按预锁门槛停止这一扩大支持的距离排序。保留 +0.362 点为首批 FIT 内的普通排序对照收益。该轮只复用既有输出，无新前向、训练、DEV 或正式 TEST。原 CPU 进程退出 0，工作体 5.421 秒。 三项合成测试通过，其中 80 组矩形测试逐像素核对原生裁剪、供体顺序和完整带不变量。 [评分源码](code/HRSID_FIT_RLE_SIGNED_DISTANCE_FUSION_20261112/score_distance_fusion.py) · [同预算和贴边测试](code/HRSID_FIT_RLE_SIGNED_DISTANCE_FUSION_20261112/test_score_distance_fusion.py)
+
+## 单供体选点的原匹配核验
+
+独立重放原 COCO 0.50 匹配和 464 条编辑的逐候选增删数。两种距离规则有 59 条掩膜不同，其中 58 条在原匹配中未匹配，1 条属于固定的有效小船匹配。该条候选仅替换一个新增位置，保持面积，并且与真值的二值和连续交集均完全一致。因此两组固定几何指标一致。COCO AP 可以因未匹配候选改动后重新匹配而变化，本复核未计算 AP。 [独立汇总](results/HRSID_FIT_SIGNED_DISTANCE_MEMBERSHIP_ACTUAL_SAFE_20261112.json) · [标签前回执](results/HRSID_FIT_SIGNED_DISTANCE_MEMBERSHIP_PRELABEL_SAFE_20261112.json) · [核验源码](code/HRSID_FIT_RLE_SIGNED_DISTANCE_FUSION_20261112/membership/verify_membership.py)
