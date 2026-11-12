@@ -1,0 +1,212 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "GT_opened": true,
+  "TEST": false,
+  "adds": 350,
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 5202,
+  "bridge_prelab_sha256": "1f547c630e5b26a66ba51b558bdd76946c762313be7dcc6485b12c19df0fec12",
+  "bridge_result_sha256": "f331abcc0a3b2aa1ccac19be41d07b4e47dbf610a180f8469a66d2757aaff3f6",
+  "candidate_associations": 468,
+  "candidate_rows": 2620,
+  "cap_bound_matches": 40,
+  "contrasts": {
+    "oracle_any_donor_minus_oracle_disagreement": {
+      "ci95_points": [
+        0.42874873073036696,
+        0.9040513547146405
+      ],
+      "group_equal_delta_points": 0.6586075425891258,
+      "negative_rows": 0,
+      "positive_rows": 38
+    },
+    "oracle_disagreement_minus_vote": {
+      "ci95_points": [
+        0.3370519271394817,
+        0.8701943407017431
+      ],
+      "group_equal_delta_points": 0.5869011869412021,
+      "negative_rows": 0,
+      "positive_rows": 29
+    },
+    "oracle_full_band_minus_oracle_any_donor": {
+      "ci95_points": [
+        0.02683378289575434,
+        0.22306509151596368
+      ],
+      "group_equal_delta_points": 0.11339120747041312,
+      "negative_rows": 0,
+      "positive_rows": 8
+    },
+    "oracle_full_band_minus_oracle_disagreement": {
+      "ci95_points": [
+        0.5062590606158437,
+        1.0510370051682008
+      ],
+      "group_equal_delta_points": 0.771998750059539,
+      "negative_rows": 0,
+      "positive_rows": 38
+    },
+    "oracle_full_band_minus_raw": {
+      "ci95_points": [
+        1.8404375848756171,
+        2.7018145627097736
+      ],
+      "group_equal_delta_points": 2.2359850484111603,
+      "negative_rows": 1,
+      "positive_rows": 67
+    },
+    "vote_minus_raw": {
+      "ci95_points": [
+        0.4748281975769159,
+        1.3543137492489095
+      ],
+      "group_equal_delta_points": 0.8770851114104188,
+      "negative_rows": 17,
+      "positive_rows": 51
+    }
+  },
+  "coreless_supported_matches": 1,
+  "drops": 525,
+  "edited_groups": 31,
+  "edited_matches": 68,
+  "groups": 31,
+  "images": 36,
+  "logit_planes_opened": false,
+  "matches": 69,
+  "model_forwards": 0,
+  "modes": {
+    "oracle_any_donor": {
+      "add_precision": 0.9485714285714286,
+      "at75": {
+        "gains": 3,
+        "hits": 64,
+        "losses": 0
+      },
+      "at90": {
+        "gains": 11,
+        "hits": 27,
+        "losses": 0
+      },
+      "drop_precision": 0.9580952380952381,
+      "edit_precision": 0.9542857142857143,
+      "edited_only_pooled_iou_points": 87.26031259622467,
+      "group_equal_iou_points": 89.04119903636631,
+      "helpful_adds": 332,
+      "helpful_drops": 503,
+      "mean_fn_per_truth_points": 5.659861446559841,
+      "mean_fp_per_truth_points": 6.28198356500637,
+      "pooled_iou_points": 86.72030806584459
+    },
+    "oracle_disagreement": {
+      "add_precision": 0.7942857142857143,
+      "at75": {
+        "gains": 3,
+        "hits": 64,
+        "losses": 0
+      },
+      "at90": {
+        "gains": 8,
+        "hits": 24,
+        "losses": 0
+      },
+      "drop_precision": 0.820952380952381,
+      "edit_precision": 0.8102857142857143,
+      "edited_only_pooled_iou_points": 86.42429611266115,
+      "group_equal_iou_points": 88.38259149377718,
+      "helpful_adds": 278,
+      "helpful_drops": 431,
+      "mean_fn_per_truth_points": 6.0268263844795245,
+      "mean_fp_per_truth_points": 6.648948502926053,
+      "pooled_iou_points": 85.8964077632023
+    },
+    "oracle_full_band": {
+      "add_precision": 0.9857142857142858,
+      "at75": {
+        "gains": 4,
+        "hits": 65,
+        "losses": 0
+      },
+      "at90": {
+        "gains": 11,
+        "hits": 27,
+        "losses": 0
+      },
+      "drop_precision": 0.9733333333333334,
+      "edit_precision": 0.9782857142857143,
+      "edited_only_pooled_iou_points": 87.49354355611325,
+      "group_equal_iou_points": 89.15459024383672,
+      "helpful_adds": 345,
+      "helpful_drops": 511,
+      "mean_fn_per_truth_points": 5.593292777260608,
+      "mean_fp_per_truth_points": 6.215414895707136,
+      "pooled_iou_points": 86.95015886689423
+    },
+    "raw": {
+      "at75": {
+        "gains": 0,
+        "hits": 61,
+        "losses": 0
+      },
+      "at90": {
+        "gains": 0,
+        "hits": 16,
+        "losses": 0
+      },
+      "edited_only_pooled_iou_points": 84.90165147807964,
+      "group_equal_iou_points": 86.91860519542557,
+      "helpful_adds": 0,
+      "helpful_drops": 0,
+      "mean_fn_per_truth_points": 6.7316991430978925,
+      "mean_fp_per_truth_points": 7.66232114118891,
+      "pooled_iou_points": 84.39583044216545
+    },
+    "vote": {
+      "add_precision": 0.6085714285714285,
+      "at75": {
+        "gains": 2,
+        "hits": 63,
+        "losses": 0
+      },
+      "at90": {
+        "gains": 6,
+        "hits": 21,
+        "losses": 1
+      },
+      "drop_precision": 0.7180952380952381,
+      "edit_precision": 0.6742857142857143,
+      "edited_only_pooled_iou_points": 85.87088425617715,
+      "group_equal_iou_points": 87.79569030683598,
+      "helpful_adds": 213,
+      "helpful_drops": 377,
+      "mean_fn_per_truth_points": 6.357689412563553,
+      "mean_fp_per_truth_points": 6.97981153101008,
+      "pooled_iou_points": 85.35101636840646
+    }
+  },
+  "nested_gap": {
+    "any_donor_increment_points": 0.6586075425891258,
+    "fraction_any_donor": 0.8531199597646134,
+    "remaining_points": 0.11339120747041312,
+    "total_points": 0.771998750059539
+  },
+  "optimizer_updates": 0,
+  "prior_modes_verified": true,
+  "prior_result_sha256": "c2d06ecb71569b8358363233da73e85cfb82a8c0cc652322209028759f271945",
+  "protocol_sha256": "3886058af6aae8d15217fb29921eacf2ffcacedc0af146f09602ebf226760936",
+  "source_sha256": "b8fce6b99fefa52e789696f43d621403f9daa5af24b21dcc52de720fb7826629",
+  "status": "HRSID_FIT_RLE_VOTE_NESTED_SUPPORT_ACTUAL",
+  "support_totals": {
+    "disputed_helpful_add_sites": 462,
+    "disputed_helpful_drop_sites": 620,
+    "disputed_pixels": 1633,
+    "full_band_pixels": 36098,
+    "full_helpful_add_sites": 2095,
+    "full_helpful_drop_sites": 2676
+  },
+  "supported_matches": 68,
+  "variants_sha256": "c887a5880d1025bc287e06db1ef7dbed7bbc1371d9b78d521897d15ae2463817",
+  "worker_seconds": 0.968669299967587
+}
