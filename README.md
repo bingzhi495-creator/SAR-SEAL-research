@@ -59,7 +59,7 @@
 - [HRSID 三种子轮廓复验](research_round_20260925_global/HRSID_FIT_CONSENSUS_CONTOUR_REPEAT_20261112.md)。来源不重叠的另 36 张 FIT 裁片，mask AP 59.073→60.831；同补删量单模型 59.708，多数投票 60.807。 [单前向内部候选对照](research_round_20260925_global/HRSID_FIT_SINGLE_FORWARD_QUERY_FUSION_20261112.md)在首批裁片未达到门槛。
 - [HRSID 纯二值规则同源实测](research_round_20260925_global/HRSID_FIT_RLE_VOTE_SOURCE_BRIDGE_20261112.md)。在首批 FIT36 中，纯二值多数票 mask AP 74.236，原概率排序多数票 74.241，原掩膜 73.019。[SSDD 同规则冻结诊断](research_round_20260925_global/HRSID_TO_SSDD_DEV187_RLE_VOTE_20261112.md)由 37.979 到 38.044，低于 +0.50 点门槛。
 - [HRSID 与 SSDD 固定增删数的边界余量](research_round_20260925_global/HRSID_FIT_RLE_VOTE_HEADROOM_20261112.md)。SSDD 原分歧区真值上界比投票高 0.147 IoU 点，完整边界带再高 0.864；其中至少一份供体提出异议的位置占 67.7% 的额外余量。严格 0.90 最多 2 个。
-- [D-FINE-seg-S 外部对照入口](research_round_20260925_global/DFINE_SEG_EXTERNAL_BASELINE_FIT1_20261112.md)已验收 32 图 GPU 短训并启动同 RF-DETR 访问顺序的固定 E24，原进程已完成第 22 轮、16,170 次更新并继续训练。Windows 固定导出入口已通过无数据预检。
+- [D-FINE-seg-S 外部对照入口](research_round_20260925_global/DFINE_SEG_EXTERNAL_BASELINE_FIT1_20261112.md)固定 E24 训练与独立验收完成，17,640 次实际更新。DEV705 mask AP 48.160，AP75 51.507，原始导出及评分均已闭合。
 - [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
 - [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移，用真实配对、错配和重聚焦对照检验空间轮廓收益。真实 RD 模型分数待测。
 - [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。
