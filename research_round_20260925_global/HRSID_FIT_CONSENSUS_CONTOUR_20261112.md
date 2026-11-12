@@ -24,3 +24,5 @@
 ## 复验与低成本对照
 
 另一个来源前缀无重叠的 FIT36 复验通过，三种子均值相对原样 +1.758、相对同量单模型 +1.124 mask AP 点。多数投票与概率均值几乎相同。首批的单次前向内部候选融合为 −0.113 AP 点，未通过门槛。后续单模型比较需包含同实例标准软标签蒸馏。同像素、同权的多教师 BCE 平均等价于对教师平均概率的 BCE，增加教师数量本身不足以证明新机制。已经有同真值查询匹配的掩膜蒸馏和单前向像素不确定性蒸馏先例。 [复验](HRSID_FIT_CONSENSUS_CONTOUR_REPEAT_20261112.md) · [单前向对照](HRSID_FIT_SINGLE_FORWARD_QUERY_FUSION_20261112.md) · [查询蒸馏](https://openaccess.thecvf.com/content/CVPR2024W/Vision4Ag/papers/Li_Knowledge_Distillation_for_Efficient_Instance_Semantic_Segmentation_with_Transformers_CVPRW_2024_paper.pdf) · [DUDES](https://doi.org/10.1007/s41064-024-00280-4)
+
+[纯二值规则的源域同源实测](HRSID_FIT_RLE_VOTE_SOURCE_BRIDGE_20261112.md)显示，不用 logits 排序仍从 73.019 提至 74.236 mask AP 点，原多数票为 74.241。固定原增删数时单改排序下降 0.246 AP 点。完整二值规则改变了补删比例与位置。源域同批 AP 接近，保留对两种实现的独立描述。
