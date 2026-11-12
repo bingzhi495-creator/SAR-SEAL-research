@@ -59,6 +59,8 @@
 - [HRSID 三种子轮廓复验](research_round_20260925_global/HRSID_FIT_CONSENSUS_CONTOUR_REPEAT_20261112.md)。来源不重叠的另 36 张 FIT 裁片，mask AP 59.073→60.831；同补删量单模型 59.708，多数投票 60.807。 [单前向内部候选对照](research_round_20260925_global/HRSID_FIT_SINGLE_FORWARD_QUERY_FUSION_20261112.md)在首批裁片未达到门槛。
 - [HRSID 纯二值规则同源实测](research_round_20260925_global/HRSID_FIT_RLE_VOTE_SOURCE_BRIDGE_20261112.md)。在首批 FIT36 中，纯二值多数票 mask AP 74.236，原概率排序多数票 74.241，原掩膜 73.019。[SSDD 同规则冻结诊断](research_round_20260925_global/HRSID_TO_SSDD_DEV187_RLE_VOTE_20261112.md)由 37.979 到 38.044，低于 +0.50 点门槛。
 - [HRSID 与 SSDD 固定增删数的边界余量](research_round_20260925_global/HRSID_FIT_RLE_VOTE_HEADROOM_20261112.md)。SSDD 原分歧区真值上界比投票高 0.147 IoU 点，完整边界带再高 0.864；其中至少一份供体提出异议的位置占 67.7% 的额外余量。严格 0.90 最多 2 个。
+- [HRSID 有符号距离同预算实测](research_round_20260925_global/HRSID_FIT_RLE_SIGNED_DISTANCE_FUSION_20261112.md)。比二值投票 +0.362 AP 点，扩大到任一供体异议与双供体版本指标相同，未过预锁门槛。
+- [D-FINE 严格候选覆盖](research_round_20260925_global/DFINE_E24_DEV705_CANDIDATE_COVERAGE_20261112.md)。全部后 NMS 候选将 IoU 0.90 覆盖从 19 增至 21，仍有 1,757 个实例缺少合格掩膜。
 - [D-FINE-seg-S 外部对照入口](research_round_20260925_global/DFINE_SEG_EXTERNAL_BASELINE_FIT1_20261112.md)固定 E24 训练与独立验收完成，17,640 次实际更新。DEV705 mask AP 48.160，AP75 51.507，原始导出及评分均已闭合。
 - [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
 - [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移，用真实配对、错配和重聚焦对照检验空间轮廓收益。真实 RD 模型分数待测。

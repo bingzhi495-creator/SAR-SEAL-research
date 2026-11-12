@@ -32,3 +32,5 @@ HRSID 的原 69 对有效小候选中，68 对有编辑，未覆盖者保持原�
 | 至少一份供体异议所覆盖的全带额外余量 | 85.3% | 67.7% |
 
 源域原两供体上限有 24 个匹配达到 0.90，扩大到至少一份供体后为 27，等于完整带。目标为 1→2→2。这证明在相同预算内，存在一些由单供体指出的可用位置。能否在没有真值时识别这些位置仍待检验。两项都未评估新规则的 AP。 [源域扩展协议](code/HRSID_FIT_RLE_VOTE_HEADROOM_NESTED_20261112/PROTOCOL.md) · [源域实测](results/HRSID_FIT_RLE_VOTE_HEADROOM_NESTED_ACTUAL_SAFE_20261112.json) · [目标域实测](HRSID_TO_SSDD_DEV187_RLE_HEADROOM_NESTED_20261112.md)
+
+进一步用无真值的常规有符号距离排序验证。首批 FIT 上扩大到任一供体异议相对双供体范围没有提高 AP 或固定 IoU。原先的真值辅助余量仍然有效，此排序未找到可转化为分数的编辑。 [实际距离对照](HRSID_FIT_RLE_SIGNED_DISTANCE_FUSION_20261112.md)
