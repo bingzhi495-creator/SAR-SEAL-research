@@ -67,3 +67,5 @@ D-FINE DEV705 的框内两像素带最多 16 次编辑，真值等量增删和�
 直接监督交换收益相对原样 +0.815 AP，较同点头 BCE／Brier +0.097／+0.067，共同交换量下低于两个对照，原严格失守 2 个。固定相同端点，真值配对限制下严格达标 11 个，等量自由重选 27 个，自由增删 38 个。停止直接损失配方，检验动作配对限制。 [直接监督](DFINE_E24_FIT109_DIRECT_UTILITY_20261112.md) · [同端点上界](DFINE_E24_FIT109_PAIR_SUPPORT_ORACLE_20261112.md)
 
 同一 BCE 点头、固定端点与逐候选交换量下，解除固定配对使 AP 50.043→51.619，固定来源等权 IoU +0.615 点。采用自然正收益量时，AP 53.294，原掩膜 49.325，固定 IoU +1.405 点，原 7 个严格匹配均保留。预设 FIT 门槛通过。端点排序属于固定面积下的后验排序，当前增量是量化该数据上的配对限制。冻结后才进入已使用的 DEV705 来源组复验。 [独立选点实测](DFINE_E24_FIT109_FREE_ENDPOINT_PAIRING_20261112.md)
+
+用于开发集复验的单一点头已按固定种子在 FIT109 重训并独立复现。1,321 个参数，93 个有监督来源、13,076 个唯一点对，200 次优化更新，每次 64 对。此次仅冻结部署头及归一化，尚无 DEV705 点修正结果。 [重训协议](code/DFINE_SEG_EXTERNAL_BASELINE_FIT32_E24_20261112/e24/fit109_final_refit/PROTOCOL.md) · [实际训练](results/DFINE_E24_FIT109_FINAL_BCE_REFIT_ACTUAL_SAFE_20261112.json) · [独立复跑](results/DFINE_E24_FIT109_FINAL_BCE_REFIT_INDEPENDENT_SAFE_20261112.json)
