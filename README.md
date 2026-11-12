@@ -79,6 +79,7 @@
 - [D-FINE FIT109 固定端点几何上界](research_round_20260925_global/DFINE_E24_FIT109_PAIR_SUPPORT_ORACLE_20261112.md)。固定配对、等量重选、自由增删的严格达标上界为 11／27／38 个。
 - [D-FINE FIT109 独立边界端点选择](research_round_20260925_global/DFINE_E24_FIT109_FREE_ENDPOINT_PAIRING_20261112.md)。等量相对固定配对 +1.577 AP，按正收益独立选择相对原掩膜 +3.969 AP，7 个原严格匹配全保留，训练侧门槛通过。
 - [D-FINE 点头全 FIT 冻结重训](research_round_20260925_global/results/DFINE_E24_FIT109_FINAL_BCE_REFIT_INDEPENDENT_SAFE_20261112.json)。实际 200 次更新并由独立执行复现，用于后续 DEV705 原模型对照。
+- [D-FINE DEV705 裁剪前概率捕获](research_round_20260925_global/DFINE_E24_DEV705_PROBABILITY_CAPTURE_20261112.md)。705 次原前向和 70,500 份原二值复现均已验收。此次捕获未读取标签。
 - [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
 - [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移。新增局部复数 RD 的失焦轮廓修正方案，包含运动补偿重聚焦、同容量和错配对照。真实 RD 模型分数待测。
 - [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。
