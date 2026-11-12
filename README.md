@@ -62,8 +62,9 @@
 - [HRSID 有符号距离同预算实测](research_round_20260925_global/HRSID_FIT_RLE_SIGNED_DISTANCE_FUSION_20261112.md)。比二值投票 +0.362 AP 点，扩大到任一供体异议与双供体版本指标相同，未过预锁门槛。
 - [D-FINE 严格候选覆盖](research_round_20260925_global/DFINE_E24_DEV705_CANDIDATE_COVERAGE_20261112.md)。全部后 NMS 候选将 IoU 0.90 覆盖从 19 增至 21，仍有 1,757 个实例缺少合格掩膜。 [细长小船的真值平移上界](research_round_20260925_global/DFINE_E24_DEV705_AXIS_ORACLE_20261112.md)在 1,425 个标注上将严格达标从 2 增至 11。
 - [D-FINE-seg-S 外部对照入口](research_round_20260925_global/DFINE_SEG_EXTERNAL_BASELINE_FIT1_20261112.md)固定 E24 训练与独立验收完成，17,640 次实际更新。DEV705 mask AP 48.160，AP75 51.507，原始导出及评分均已闭合。
+- [D-FINE E24 FIT114 原生捕获](research_round_20260925_global/DFINE_E24_HRSID_FIT114_CAPTURE_20261112.md)。109 张核心图和 5 张压力图各做一次原生前向，11,400 个概率平面逐像素复现原掩膜，独立读取验收通过。面积修正未拟合或评分。
 - [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
-- [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移，用真实配对、错配和重聚焦对照检验空间轮廓收益。真实 RD 模型分数待测。
+- [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移。新增局部复数 RD 的失焦轮廓修正方案，包含运动补偿重聚焦、同容量和错配对照。真实 RD 模型分数待测。
 - [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。
 - [HRSID FIT 的原生 164 查询与候选保留对照](research_round_20260925_global/HRSID_FIT_NATIVE_QUERY_RETENTION_PROTOCOL_20261109.md)。实测全查询严格匹配 37→39，等量非空保持 37。密集压力图在 0.50 多 36 个，0.90 仍为零。独立复算后按预设门槛停止筛选分支。
 - [HRSID FIT 固定查询轮廓几何](research_round_20260925_global/HRSID_FIT_FIXED_CONTOUR_GEOMETRY_PROTOCOL_20261109.md)。主层放宽整体恢复 51/234，局部同预算恢复 37/234，密集层分别为 0/59 与 19/59。按预设门槛优先验证整体平移的预测信号。
