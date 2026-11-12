@@ -54,7 +54,8 @@
 - [RD 原生格点及输入核验](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#原生-rd-网格与模型接入核验)。64×800 合成图的裁补往返逐格一致，核查了 RF-DETR 默认缩放与补边影响的验证条件。公开母幅目录未提供所需的逐行注释，真实 RD 模型分数待测。
 - [SSDD 第二种子短轴复验](research_round_20260925_global/SSDD_FLOAT_COMMON_DEV187_HULL_COCENTER_REPEAT5202_ACTUAL_20261112.md)。233 个细长小船相对当前原生臂的连续 IoU 差为 +1.356 点，真值短轴对齐后 +0.134，长轴对齐后 +1.279。历史强参考对照中未见相同的短轴差值收窄。
 - [HRSID 短轴完整投影质量的真实复算](research_round_20260925_global/HRSID_FIT_HULL_CDF_20261112.md)。262 个固定匹配、39 个来源。相对最好的简单摘要增益 +0.080 连续 IoU 点，低于预锁门槛，停止该损失分支进入训练。
-- [D-FINE-seg-S 外部对照入口](research_round_20260925_global/DFINE_SEG_EXTERNAL_BASELINE_FIT1_20261112.md)已验收 32 图 GPU 短训并启动同 RF-DETR 访问顺序的固定 E24，原进程已完成第 8 轮、5,880 次更新并继续训练。
+- [HRSID 双船共享像素实测](research_round_20260925_global/HRSID_FIT_SHARED_PIXEL_OWNERSHIP_20261112.md)。357 个有效匹配仅 6 对满足条件。真值归属与两项同预算简单规则的连续 IoU 相同，155 个近严格锚无新增 0.90 达标，停止此分支。
+- [D-FINE-seg-S 外部对照入口](research_round_20260925_global/DFINE_SEG_EXTERNAL_BASELINE_FIT1_20261112.md)已验收 32 图 GPU 短训并启动同 RF-DETR 访问顺序的固定 E24，原进程已完成第 10 轮、7,350 次更新并继续训练。
 - [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
 - [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移，用真实配对、错配和重聚焦对照检验空间轮廓收益。真实 RD 模型分数待测。
 - [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。
