@@ -63,6 +63,7 @@
 - [D-FINE 严格候选覆盖](research_round_20260925_global/DFINE_E24_DEV705_CANDIDATE_COVERAGE_20261112.md)。全部后 NMS 候选将 IoU 0.90 覆盖从 19 增至 21，仍有 1,757 个实例缺少合格掩膜。 [细长小船的真值平移上界](research_round_20260925_global/DFINE_E24_DEV705_AXIS_ORACLE_20261112.md)在 1,425 个标注上将严格达标从 2 增至 11。
 - [D-FINE-seg-S 外部对照入口](research_round_20260925_global/DFINE_SEG_EXTERNAL_BASELINE_FIT1_20261112.md)固定 E24 训练与独立验收完成，17,640 次实际更新。DEV705 mask AP 48.160，AP75 51.507，原始导出及评分均已闭合。
 - [D-FINE E24 FIT114 原生捕获](research_round_20260925_global/DFINE_E24_HRSID_FIT114_CAPTURE_20261112.md)。109 张核心图和 5 张压力图各做一次原生前向，11,400 个概率平面逐像素复现原掩膜，独立读取验收通过。面积修正未拟合或评分。
+- [D-FINE 定额面积校准](research_round_20260925_global/DFINE_DEV705_BOX_MASK_AREA_CALIBRATION_20261112.md)。开发集五折诊断中框比例校准降低面积误差但损伤轮廓 IoU，四项推进条件均未通过。
 - [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
 - [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移。新增局部复数 RD 的失焦轮廓修正方案，包含运动补偿重聚焦、同容量和错配对照。真实 RD 模型分数待测。
 - [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。
