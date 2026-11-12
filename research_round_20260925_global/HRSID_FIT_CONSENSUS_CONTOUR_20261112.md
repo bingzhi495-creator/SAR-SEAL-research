@@ -20,3 +20,7 @@
 原尝试因误写既有核验脚本的摘要在数据读取前停止。随后两次在 PyTorch 导入触发 Windows 本机系统查询时受离线审计拦截。最终在加载科学输入前完成 CPU-only Torch 初始化，保持评分执行期离线审计。预锁协议、候选和所有指标不变，前三次未开启标注或产生分数。最终有 3 份原始平面的解析插值符号触发精确 Torch 回放，原生符号核对通过。 独立复核重新计算了四项门槛、各来源折和加减面积不变量，并用 256 个合成样例穷举核对选择规则。实测复核基于汇总和标签前回执。 [执行源码](code/HRSID_FIT_CONSENSUS_CONTOUR_20261112/score_consensus.py) · [相同预算测试](code/HRSID_FIT_CONSENSUS_CONTOUR_20261112/test_score_consensus.py)
 
 达到预设复验门槛。本轮证据支持两份额外预测具有超出编辑面积的边界位置价值。普通多数投票已解释大部分收益，因此概率均值作为实用基线，保留多数票为同成本强对照。当前 36 图属于训练侧探索、三份模型共享训练数据和初始化，未做独立开发集或正式测试。下一步在不重叠裁片的来源组上预锁复验，比较普通多数票和概率均值并保留全部候选。若有效，再比较一次前向的同结构学生和标准软标签蒸馏控制，同时报告与三前向教师的差距及成本。
+
+## 复验与低成本对照
+
+另一个来源前缀无重叠的 FIT36 复验通过，三种子均值相对原样 +1.758、相对同量单模型 +1.124 mask AP 点。多数投票与概率均值几乎相同。首批的单次前向内部候选融合为 −0.113 AP 点，未通过门槛。后续单模型比较需包含同实例标准软标签蒸馏。同像素、同权的多教师 BCE 平均等价于对教师平均概率的 BCE，增加教师数量本身不足以证明新机制。已经有同真值查询匹配的掩膜蒸馏和单前向像素不确定性蒸馏先例。 [复验](HRSID_FIT_CONSENSUS_CONTOUR_REPEAT_20261112.md) · [单前向对照](HRSID_FIT_SINGLE_FORWARD_QUERY_FUSION_20261112.md) · [查询蒸馏](https://openaccess.thecvf.com/content/CVPR2024W/Vision4Ag/papers/Li_Knowledge_Distillation_for_Efficient_Instance_Semantic_Segmentation_with_Transformers_CVPRW_2024_paper.pdf) · [DUDES](https://doi.org/10.1007/s41064-024-00280-4)
