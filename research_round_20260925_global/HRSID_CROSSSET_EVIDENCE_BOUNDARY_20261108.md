@@ -144,3 +144,10 @@ Wu 等用香港近海的三幅高分三号全极化影像及专家／AIS 信息�
 作者最新版报告 1,092 组配准多模态裁片，其中 795 组训练、297 组测试，并描述 SAR 轮廓多边形及每条标注的顶点统计。第一版写明学术使用需申请。当前未取得训练侧标注字节、母景清单或公开许可。作者的目标中心裁片适合检验靠泊船舶，若用于独立实例评估，还须核对 SAR 轮廓是否按该模态独立描绘、同一母景是否跨划分、裁片其他船舶是否完整标注，以及与 HRSID 和 PSeg-SSDD 的采集交集。 [作者最新版数据说明](https://arxiv.org/html/2508.02384v2#S3) · [作者初版获取条件](https://arxiv.org/html/2508.02384v1)
 
 另核 SISS-YOLO 的 Sentinel-1A 派生数据。论文报告作者在 OpenSARShip 2.0 裁片上手工增加 LabelMe 轮廓。数据声明链接上游影像发布，上游项目公开清单未列出这些派生轮廓。两条线目前均保持为获取候选。 [SISS-YOLO 标注说明](https://www.mdpi.com/2072-4292/17/17/3118#sec3dot1) · [OpenSARShip 官方数据清单](https://opensar.sjtu.edu.cn/DataAndCodes.html)
+
+## HRSID 框内点头后续验证的来源组复核
+
+两份既有图像清单的精确摘要分别为 DEV705 的 39a40d089d4a54448fe6efca8ea5cc98ad1eb7c0587815f3dd9a3b097173e78f 和 FIT2937 的 a7e4d2a7ff9e8ff238adbf94a1d0397553d8746e2558c316db4e417f86f8fec9。按图像主名的 P 数字前缀计算，两组分别有 28 和 109 个来源代理，交集为零。原文件编码及解码 RGB 内容的精确摘要交集也为零，705 张 DEV 图在这两种口径均唯一。FIT109 逐行来自该 FIT 布局。28 是全量图像来源数，固定匹配子组的 27 是另一统计口径。前缀只能作采集代理，实际场景隔离仍需源产品证据。 [开发图像核验](results/HRSID_OFFICIAL_PNG_DEV705_AUDIT_ACTUAL_SAFE_20261109.json) · [独立读回](results/HRSID_OFFICIAL_PNG_DEV705_AUDIT_READBACK_SAFE_20261109.json) · [FIT 捕获](DFINE_E24_HRSID_FIT114_CAPTURE_20261112.md)
+
+两组均来自 HRSID 原官方训练划分。DEV705 已用于多次历史开发评分。它支持将规则预先冻结后的开发集复验，证据应按历史开发集报告。本次复核只读取图像成员元数据和已有摘要，未开启像元、候选、标注或官方 TEST。若后续复验需要 D-FINE 原解码器连续概率，既有 DEV705 导出只有 RLE、分数与框，须复跑同一冻结检查点并核对新旧候选。 [DEV705 原导出](DFINE_E24_HRSID_DEV705_ACTUAL_20261112.md)
+
