@@ -70,6 +70,8 @@
 - [D-FINE 检测框截断的原生几何上界](research_round_20260925_global/DFINE_DEV705_NATIVE_BOX_CEILING_20261112.md)。0.90 的 206 个框内排除中，176 个只受框限制，扩 2 像素有 134 个理论可达。
 - [D-FINE 固定原掩膜的框外补全上界](research_round_20260925_global/DFINE_DEV705_FIXED_STOCK_COLLAR_20261112.md)。扩框内自由重选像元的 134 个严格可达样本中，只补框外为 0。
 - [D-FINE FIT109 框外概率补点](research_round_20260925_global/DFINE_E24_FIT109_BOX_COLLAR_20261112.md)。连通补点 AP 49.325→45.176，固定连续 IoU −1.709 点，停止单独扩框配方。
+- [D-FINE 框内同预算编辑上界](research_round_20260925_global/DFINE_DEV705_INSIDE_EDIT_MENUS_20261112.md)。同一 1,329 个固定匹配，等量增删和自由增删的 IoU 0.90 上界分别为 58 与 68 个，原掩膜 2 个。
+- [D-FINE FIT109 成对边界头训练](research_round_20260925_global/DFINE_E24_FIT109_PAIRED_POINT_20261112.md)。五折实际训练，AP 49.325→50.124，独立点与打乱对照 50.043／50.077，真实配对未过增量门槛。
 - [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
 - [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移。新增局部复数 RD 的失焦轮廓修正方案，包含运动补偿重聚焦、同容量和错配对照。真实 RD 模型分数待测。
 - [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。
