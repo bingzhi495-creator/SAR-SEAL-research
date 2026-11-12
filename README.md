@@ -75,6 +75,8 @@
 - [D-FINE FIT109 灰度消融](research_round_20260925_global/DFINE_E24_FIT109_GRAY_ABLATION_20261112.md)。原位置灰度相对灰度均值和同层置换分别 +0.580／+0.545 AP 点，固定严格匹配 7→6，未通过完整推进门槛。
 - [D-FINE FIT109 等量灰度比较](research_round_20260925_global/DFINE_E24_FIT109_GRAY_EQUAL_COUNT_20261112.md)。逐候选共用 6,664 次交换，原位置灰度相对两对照仅 +0.027／+0.023 AP 点，未过门槛。
 - [D-FINE FIT109 严格匹配保留试验](research_round_20260925_global/DFINE_E24_FIT109_STRICT_GUARD_20261112.md)。保住 7 个原严格匹配，保留 34／4,406 个候选编辑，AP +0.074 点，按预设停止。
+- [D-FINE FIT109 直接交换收益监督](research_round_20260925_global/DFINE_E24_FIT109_DIRECT_UTILITY_20261112.md)。直接损失 AP 50.140，等量时低于同头 BCE 与 Brier，原严格失守 2 个。
+- [D-FINE FIT109 固定端点几何上界](research_round_20260925_global/DFINE_E24_FIT109_PAIR_SUPPORT_ORACLE_20261112.md)。固定配对、等量重选、自由增删的严格达标上界为 11／27／38 个。
 - [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
 - [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移。新增局部复数 RD 的失焦轮廓修正方案，包含运动补偿重聚焦、同容量和错配对照。真实 RD 模型分数待测。
 - [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。
