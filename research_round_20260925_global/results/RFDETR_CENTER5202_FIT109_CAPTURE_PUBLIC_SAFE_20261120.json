@@ -1,0 +1,55 @@
+{
+  "schema": "RFDETR_CENTER5202_FIT109_FULL_CAPTURE_PUBLIC_SUMMARY_V1",
+  "status": "ACTUAL_FULL_FIT109_CAPTURE_INDEPENDENTLY_ACCEPTED",
+  "FIT": true,
+  "DEV": false,
+  "TEST": false,
+  "GT_opened": false,
+  "AP": false,
+  "images": 109,
+  "model_forwards": 73,
+  "accepted_cache_images": 36,
+  "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+  "native_joint_rows": 10900,
+  "native_mapped_rows": 10488,
+  "raw_logit_rows": 6738,
+  "raw_logit_files": 109,
+  "raw_logit_bytes": 558890624,
+  "same_device_binary_replay": 6738,
+  "independent_cpu_binary_disagreement_rows": 0,
+  "independent_cpu_binary_disagreement_pixels": 0,
+  "capture_worker_seconds": 533.681027300001,
+  "independent_cpu_readback_seconds": 41.851411600000574,
+  "worker_sha256": "97449f58d1ad1a62c52c6f100fc872690e51d465e85e241660befba7a9690a71",
+  "protocol_sha256": "88ca3cbc403809bcadb1a208e0cace13e4467326e6dc03d713009cf0e087f141",
+  "capture_result_sha256": "c66a3afc19f8307d09c42563a2af4d7bf2deedf02f260bd62604ef1b69759f0b",
+  "independent_result_sha256": "7f3f6dd112d287623360c8e3a174bae3a12a039c7f5505e4bf7c5d76b2e5ed6f",
+  "stock_predictions_sha256": "eecbed34d336916d750a5487b19149d5e3302b5886b26b655457d0652f0db19b",
+  "queries_sha256": "62737cefda8d04fe44069e0e9e515fb1081038ebea78ccbfcbad491c80e3da15",
+  "image_manifest_sha256": "41282ae1b08d8d0331b5542b251a5583890e84c7d30889dacb40d8546437013a",
+  "precision": "FP32_TF32_disabled",
+  "source_checkpoint_role": "HRSID center seed5202 E24",
+  "native_input": [
+    576,
+    576
+  ],
+  "native_mask": [
+    800,
+    800
+  ],
+  "eligibility_area": [
+    32,
+    1024
+  ],
+  "raw_logit_shape": [
+    144,
+    144
+  ],
+  "cpu_cache_source": "previously independently accepted CORE36",
+  "new_cpu_images": 73,
+  "native_rank_and_class_mapping": "original joint164x2 top100 with class0 mapping and native rank gaps",
+  "mask_rule": "bilinear(raw_logits,align_corners=False)>0",
+  "feature_probability_rule": "sigmoid(bilinear(raw_logits,align_corners=False))",
+  "closed_readback_correction": "first reader rejected nested JSON field order in73 fresh rows, exact all109 stock fields verified, corrected reader retained sealed stock digest and independently verified all masks",
+  "limits": "FIT-only carrier export, no AP or downstream head efficacy measured"
+}
