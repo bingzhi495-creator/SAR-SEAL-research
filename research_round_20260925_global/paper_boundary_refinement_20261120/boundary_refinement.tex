@@ -1,0 +1,103 @@
+\documentclass[journal]{IEEEtran}
+\usepackage{amsmath,amssymb,booktabs,cite}
+\usepackage[hidelinks]{hyperref}
+\begin{document}
+\title{Area-Preserving Boundary Refinement for SAR Ship Instance Segmentation}
+\author{Author~Details~Pending\thanks{Internal review draft. Author affiliations and submission metadata are pending.}}
+\maketitle
+
+\begin{abstract}
+Small ship masks in synthetic aperture radar (SAR) images are sensitive to boundary errors. We study whether a frozen instance detector can correct such errors on the native image grid through a small number of area-preserving pixel exchanges. A 1,321-parameter point predictor estimates fractional foreground occupancy near a candidate boundary. The refinement chooses pixels to add and remove independently under a shared count and retains the original mask when the estimated gain is nonpositive. On 705 HRSID development images, mask average precision (AP) increases from 48.160 to 50.715, and AP at 0.75 intersection over union (IoU) increases from 51.507 to 57.760. With each candidate's exchange count held fixed, independent selection improves AP by 0.811 points and source-group mean continuous IoU by 0.529 points over distance-based fixed pairing. The results concern one frozen detector checkpoint on a previously used development population.
+\end{abstract}
+\begin{IEEEkeywords}
+Synthetic aperture radar, ship instance segmentation, boundary refinement, native image grid.
+\end{IEEEkeywords}
+
+\section{Introduction}
+Instance segmentation in SAR imagery requires locating a vessel and delineating its image footprint. A high-confidence mask can include nearby clutter or omit part of the hull. On a narrow target, moving a boundary by one native pixel can change a substantial fraction of the foreground. Candidate generation, mask rasterization and mask decoding can each contribute to these errors.
+
+We study a fixed-candidate refinement problem on HRSID~\cite{hrsid}. A geometry analysis motivates two-sided edits. At IoU 0.90, expanding the detector box by two pixels permits an ideal binary mask for 134 previously excluded cases in a fixed subset. Adding pixels only outside the original box while retaining all original foreground reaches 0.90 in none of these cases. Expansion removes a support constraint, while incorrect interior foreground and missing interior pixels still limit achievable overlap.
+
+We learn fractional occupancy on native-grid boundary points and independently select pixels on the two sides of the mask. The original confidence, candidate identity and foreground area are preserved. We quantify the effect of location choice by comparing independent selection with distance-based fixed pairing at the same per-candidate exchange count. The contributions are an error analysis using continuous polygons, a bounded post-processing refinement for a frozen SAR detector, and a matched-budget evaluation of the effect of endpoint pairing.
+
+\begin{table*}[t]
+\centering
+\caption{Frozen HRSID DEV705 evaluation. Scores and IoU are scaled by 100. Continuous IoU is source-group equal over 1,447 original valid matches. All arms use the same 70,500 candidates, ranks, scores and areas.}
+\label{tab:dev}
+\begin{tabular}{lrrrrrr}
+\toprule
+Mask policy & AP & AP75 & AP90 & Small AP & AR100 & Continuous IoU\\
+\midrule
+Raw D-FINE E24 & 48.160 & 51.507 & 0.145 & 47.196 & 54.018 & 75.798\\
+Same head, fixed pairing & 48.916 & 53.453 & 0.146 & 48.017 & 54.792 & 76.258\\
+Independent selection, fixed-policy count & 49.726 & 55.285 & 0.200 & 48.923 & 55.617 & 76.787\\
+Independent selection, natural positive gains & \textbf{50.715} & \textbf{57.760} & \textbf{0.223} & \textbf{50.034} & \textbf{56.695} & \textbf{77.217}\\
+Native decoder ranking, natural-policy count & 47.951 & 50.616 & 0.126 & 46.927 & 53.765 & 75.652\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Related Work}
+PointRend~\cite{pointrend} chooses uncertain points during iterative mask upsampling and predicts their labels from coarse and fine features. SharpContour~\cite{sharpcontour} uses an instance-aware point classifier to move contour vertices. Our intervention edits an existing binary mask on the input raster while keeping the candidate roster, scores and area fixed. RankSEG~\cite{rankseg} studies posterior sorting and foreground-volume selection for IoU and Dice. The endpoint optimization here is a special case of separable top-\(k\) selection within two disjoint supports. We use this solution to test whether spatial pre-pairing constrains SAR boundary repair.
+
+HRSID~\cite{hrsid} and PSeg-SSDD~\cite{ssdd} provide public SAR ship instance annotations. Their polygon geometry and image-grid conventions matter for vessels that occupy few pixels. In controlled HRSID development experiments, changing the target-mask resize sampling convention increased AP from 51.434 to 56.072 for RF-DETR and from 50.304 to 56.043 for Mask RT-DETR. The point refinement reported here is a separate intervention on a frozen model. D-FINE-seg~\cite{dfine} supplies the segmentation carrier and pre-crop decoder probabilities.
+
+\section{Method}
+\subsection{Candidate and Point Support}
+Each retained candidate has a box, class score, binary mask \(M\), and decoder probability plane. We interpolate the plane at native sample positions and determine sign from the original binary mask. Editable points lie inside the box and within a two-pixel Chebyshev boundary band. Candidate mask area \(P\) must satisfy \(32\le P<1024\). Up to 32 points per side are retained closest to the decoder's 0.50 threshold, with a common count limited by the smaller side. Ties are resolved in row-major order. The fixed-pair control assigns background points to foreground points by minimizing their summed squared distances. Both policies use the same endpoint sets.
+
+\subsection{Fractional Occupancy Predictor}
+The 14 point features include decoder probability, original mask state, boundary layer and distance, box-relative coordinates, candidate area, fill ratio and score, rendered intensity, two local means and two centered finite differences. The intensity describes the decoded imagery. Training statistics standardize the inputs. The independent point predictor duplicates the point vector at the input of a two-layer, 24-unit-per-layer ReLU network. Its scalar output is a residual added to the clipped decoder logit. We denote the resulting predicted occupancy by \(\widehat q\).
+
+At each original valid mask match at raster IoU 0.50, the training target is the fractional intersection of the corresponding source polygon with the native unit cell. Binary cross-entropy supervises these fractional values. The final frozen head uses 200 AdamW updates, 64 sampled pairs per step, learning rate 0.002 and weight decay 0.01. Sampling weights the training source groups equally. The detector parameters stay fixed.
+
+\subsection{Area-Preserving Edit}
+Each exchange adds one background pixel and removes one foreground pixel. Let \(T\) be the truth area, \(I\) the original intersection, and \(U=P+T-I\). For disjoint edits with intersection change \(\Delta\), the continuous IoU change is
+\begin{equation}
+\frac{I+\Delta}{U-\Delta}-\frac{I}{U}
+=\frac{(P+T)\Delta}{U(U-\Delta)}.
+\label{eq:gain}
+\end{equation}
+At fixed \(P,T,I\), the change increases monotonically in \(\Delta\). With \(A\) and \(D\) chosen from the sampled background and foreground sets, respectively, the estimated overlap gain at count \(k\) is
+\begin{equation}
+ \sum_{a\in A}\widehat q(a)-\sum_{d\in D}\widehat q(d),
+ \qquad |A|=|D|=k.
+\end{equation}
+The maximizing choice takes the \(k\) largest background occupancies and the \(k\) smallest foreground occupancies. The resulting marginal gains are nonincreasing. The natural policy accepts strictly positive margins up to the smaller of eight, \(\lfloor P/10\rfloor\), and the available side count. Zero is a feasible count. The equal-count control obtains \(k\) from the fixed-pair policy, then varies only edit locations. Equation~\eqref{eq:gain} applies to the true overlap. The point predictor estimates these occupancies and can make errors.
+
+\section{Evaluation}
+\subsection{Data and Metrics}
+The D-FINE E24 detector was trained on 2,937 HRSID images from the official training split. The point head was developed with five-fold source-prefix cross-fitting on FIT109 within that population, then refitted and frozen before target evaluation. DEV705 comprises 705 images with zero exact encoded or RGB-content overlap and no filename-source-prefix overlap with FIT. The filenames are proxies for acquisition groups, and DEV705 has prior development exposure.
+
+We use standard COCO mask AP over the original candidate pool. Fixed geometry uses the original match identity and exact overlap of the predicted native cells with the source polygon. Bootstrap intervals are paired across the source groups of the fixed predictions. Original and newly recovered strict matches are counted at continuous IoU 0.90. These match counts and COCO AP90 measure different endpoints.
+
+\subsection{Mechanism and Development Effect}
+The natural policy increases mask AP by 2.555 points and small-object AP by 2.838 points over raw D-FINE (Table~\ref{tab:dev}). Group-equal continuous IoU increases by 1.419 points, with paired 95\% interval \([1.265,1.587]\). All three original valid strict matches are retained, and 12 additional matches reach 0.90. COCO AP90 remains low in absolute terms.
+
+The equal-count control retains 83,059 swaps across the same 20,741 candidates. Independent selection adds 0.811 AP and 0.529 continuous IoU points over fixed pairing, with IoU interval \([0.455,0.597]\). The earlier five-fold FIT109 study found a 1.576 AP and 0.615 IoU-point gain under the corresponding same-count control. The complete natural policy applies 194,052 swaps, so its larger AP gain includes coverage and edit-count changes. Native decoder ranking at that count forces swaps with nonpositive native marginal scores and serves as a position-ordering diagnostic at a specified count.
+
+The same-endpoint truth-only analysis on FIT109 reaches continuous IoU 0.90 for 11 matches with fixed pairing, 27 with independent endpoint selection at equal sign counts and 38 with free add and delete counts. These counts establish feasible geometry in the existing support. Previous studies in this project found limited added utility for partner features and direct difference supervision under matched edit counts. Those findings motivated the simpler occupancy head and the change in the feasible edit sets.
+
+\subsection{Transfer and Direct Comparison}
+The frozen PSeg-SSDD evaluation addresses transfer to native images with different dimensions and decimal polygon annotations. The detector, point parameters, feature scaler, candidate semantics and edit rules are specified from HRSID. Target scoring is pending for this draft. DEV187 is a previously used development partition. Confirmatory evaluation also requires the official-test overlap and exposure histories.
+
+The current D-FINE result is below the strongest internal HRSID reference of 56.072 AP. A same-protocol test on a stronger carrier and a capacity- and budget-matched point-refinement baseline remain necessary to judge broader method usefulness. Cross-fit folds share the underlying detector and measure variation across source groups under that detector.
+
+\section{Limitations and Reproducibility}
+The edit support is local and box-constrained. Missed detections and severe area bias can remain because the candidate set and foreground count are fixed. Area preservation provides no topology constraint. The evidence covers focused SAR image chips and rendered image features.
+
+The frozen detector used 24 epochs and 17,640 optimizer steps. The new head has 1,321 parameters and used 200 optimizer steps in the final refit. The DEV705 offline refinement took about 179 seconds, including input reading, verification and output materialization. Online detector and refinement costs require separate measurement. The public release contains configurations, verified aggregate results and recorded negative branches. Original dataset distribution terms apply to imagery and annotations.
+
+\section{Conclusion}
+On HRSID development data, same-count controls indicate that distance-based fixed pairing constrains useful boundary edits. Independently choosing the add and remove locations improves AP and continuous overlap while preserving the original scores and mask areas. A frozen cross-dataset evaluation and a same-protocol comparison on a stronger carrier will test the scope of these gains.
+
+\begin{thebibliography}{6}
+\bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, \emph{HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation}, IEEE Access, vol. 8, 2020. \href{https://doi.org/10.1109/ACCESS.2020.3005861}{10.1109/ACCESS.2020.3005861}.
+\bibitem{pointrend} A. Kirillov, Y. Wu, K. He, and R. Girshick, \emph{PointRend: Image segmentation as rendering}, in Proc. CVPR, 2020. \href{https://arxiv.org/abs/1912.08193}{Preprint}.
+\bibitem{sharpcontour} C. Zhu, X. Zhang, Y. Li, L. Qiu, K. Han, and X. Han, \emph{SharpContour: A contour-based boundary refinement approach for efficient and accurate instance segmentation}, in Proc. CVPR, 2022. \href{https://arxiv.org/abs/2203.13312}{Preprint}.
+\bibitem{rankseg} B. Dai and C. Li, \emph{RankSEG: A consistent ranking-based framework for segmentation}, J. Mach. Learn. Res., vol. 24, no. 224, pp. 1--50, 2023. \href{https://www.jmlr.org/papers/v24/22-0712.html}{Journal article}.
+\bibitem{ssdd} T. Zhang \emph{et al.}, \emph{SAR Ship Detection Dataset (SSDD): Official release and comprehensive data analysis}, Remote Sens., vol. 13, no. 18, Art. no. 3690, 2021. \href{https://doi.org/10.3390/rs13183690}{10.3390/rs13183690}.
+\bibitem{dfine} A. Saakyan and D. Solntsev, \emph{D-FINE-seg: Object detection and instance segmentation framework with multi-backend deployment}, arXiv:2602.23043, 2026. \href{https://arxiv.org/abs/2602.23043}{Preprint}.
+\end{thebibliography}
+\end{document}
+
