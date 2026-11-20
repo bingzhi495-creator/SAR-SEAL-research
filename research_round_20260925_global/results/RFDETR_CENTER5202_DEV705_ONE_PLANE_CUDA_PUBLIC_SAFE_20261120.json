@@ -1,0 +1,36 @@
+{
+  "schema": "RFDETR_CENTER5202_DEV705_SINGLE_NATIVE_RENDER_REPAIR_SUMMARY_V1",
+  "status": "ACTUAL_SINGLE_NATIVE_CUDA_PROBABILITY_PATCH_INDEPENDENTLY_ACCEPTED",
+  "capture_acceptance_sha256": "77ef95b694f74324229507ee79dea015323acff3b716052c3aefa4438105e844",
+  "capture_result_sha256": "ccfab7913513ece3c186349f12d720b0fa09b4a7412b0754294b5470fcf9b0d7",
+  "query_stream_sha256": "3533d397589a0e615d93ccf92a4bc8f6beea711dfcf08912ec654968c756ed70",
+  "patch_receipt_sha256": "ce2b27263769278fd9c4b8b41e0f1b036223771119499b83c1d49b20242cf2d7",
+  "original_cuda_render_result_sha256": "429ce1f13ae2b74e048a8ff0b621403cd1231ff1910828885ed4cec588ccb2b0",
+  "renderer_source_sha256": "6a6b32803fbffb489a1623acc65e713dc21700426745642e5175570365151f67",
+  "cpu_disagreement_rows": 1,
+  "cpu_disagreement_pixels": 1,
+  "raw_planes_rendered_on_cuda": 1,
+  "raw_plane_shape": [
+    144,
+    144
+  ],
+  "native_probability_shape": [
+    800,
+    800
+  ],
+  "native_probability_dtype": "FP32 little-endian",
+  "native_operator": "sigmoid(bilinear_interpolate(raw_FP32_logits,800x800,align_corners=False))",
+  "strict_cuda_logit_sign_original_RLE_exact": true,
+  "independent_probability_file_shape_range_and_tensor_hash_readback_exact": true,
+  "native_probability_file_and_tensor_hashes_bound_in_private_patch": true,
+  "original_cuda_natural_exit": 0,
+  "independent_cpu_readback_exit": 0,
+  "cuda_operation_wall_seconds": 2.9352536000000002,
+  "model_forward_calls": 0,
+  "GT_opened": false,
+  "FIT": false,
+  "DEV": true,
+  "TEST": false,
+  "AP": false,
+  "scope": "Single numerical rendering discrepancy in historical HRSID DEV705. Original GPU mask, candidate and score stream retained."
+}
