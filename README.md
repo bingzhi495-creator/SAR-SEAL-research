@@ -83,7 +83,7 @@
 - [D-FINE DEV705 冻结端点评估](research_round_20260925_global/DFINE_E24_DEV705_FREE_ENDPOINT_20261120.md)。原掩膜 AP 48.160，独立选点 50.715，预锁门槛通过，复算逐项一致。
 - [TGRS 投稿评议与剩余实验](research_round_20260925_global/SAR_SHIP_TGRS_SUBMISSION_REVIEW_20261120.md)。记录可写的三项贡献、主对照、跨库验证和稿件修订重点。
 - [边界修正论文审阅稿 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX 源码](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.tex)。保留作者占位，收录 HRSID 同量机制和 PSeg-SSDD 冻结复验。
-- [PSeg-SSDD 冻结跨库实测](research_round_20260925_global/DFINE_HRSID_TO_PSEG_SSDD_DEV187_FROZEN_TRANSFER_20261120.md)。浮点 mask AP 17.897→18.234，较同头固定配对 +0.278 点，低于预设推进门槛。[RF-DETR 强载体同量对照计划](research_round_20260925_global/paper_boundary_refinement_20261120/RFDETR_MATCHED_POINT_REFINEMENT_PLAN.md)已形成，待执行。
+- [PSeg-SSDD 冻结跨库实测](research_round_20260925_global/DFINE_HRSID_TO_PSEG_SSDD_DEV187_FROZEN_TRANSFER_20261120.md)。浮点 mask AP 17.897→18.234，较同头固定配对 +0.278 点，低于预设推进门槛。[RF-DETR 强载体同量对照计划](research_round_20260925_global/paper_boundary_refinement_20261120/RFDETR_MATCHED_POINT_REFINEMENT_PLAN.md)和[初版对照源码](research_round_20260925_global/code/RFDETR_MATCHED_POINT_REFINEMENT_20261120/README.md)已完成。CPU 合成测试覆盖原掩膜阈值和逐候选实际编辑数量，真实 FIT 接入与模型评分待完成。
 - [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
 - [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移。新增局部复数 RD 的失焦轮廓修正方案，包含运动补偿重聚焦、同容量和错配对照。真实 RD 模型分数待测。
 - [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。

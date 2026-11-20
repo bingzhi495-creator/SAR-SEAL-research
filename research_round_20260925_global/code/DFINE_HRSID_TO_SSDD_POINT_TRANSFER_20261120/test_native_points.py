@@ -1,17 +1,22 @@
 """Native canvas interpolation must preserve exact 800-square features."""
+import os
+from pathlib import Path
 import unittest
-from types import SimpleNamespace
 
 import numpy as np
 
-from native_points import make_native
+from native_points import load_old, make_native
 
 
 class NativeTest(unittest.TestCase):
+    def setUp(self):
+        e24 = Path(__file__).resolve().parent.parent / "DFINE_SEG_EXTERNAL_BASELINE_FIT32_E24_20261112" / "e24"
+        pair = Path(os.getenv("POINT_PAIR_SOURCE", str(e24 / "fit109_paired_point" / "pair_math.py")))
+        rank = Path(os.getenv("POINT_RANK_SOURCE", str(e24 / "fit109_probability_rank" / "rank_math.py")))
+        self.old, self.rank = load_old(pair, rank)
+
     def test_800_square_is_exact_original(self):
-        from pathlib import Path
-        from native_points import load_old
-        old,rank=load_old(Path(PAIR),Path(RANK))
+        old,rank=self.old,self.rank
         native,adapted=make_native(old,rank,800,800)
         plane=np.random.default_rng(1).random((160,160),dtype=np.float32)
         coords=np.array([0,1,799,800,10000,639999],dtype=np.int64)
@@ -27,9 +32,7 @@ class NativeTest(unittest.TestCase):
             np.testing.assert_array_equal(x,y)
 
     def test_native_endpoints_and_interpolation_bounds(self):
-        from pathlib import Path
-        from native_points import load_old
-        old,rank=load_old(Path(PAIR),Path(RANK))
+        old,rank=self.old,self.rank
         native,adapted=make_native(old,rank,193,214)
         plane=np.full((160,160),.25,dtype=np.float32)
         np.testing.assert_array_equal(adapted.sample_probability(plane,np.array([0,214*193-1]),214),
@@ -38,7 +41,4 @@ class NativeTest(unittest.TestCase):
 
 
 if __name__=="__main__":
-    import os
-    PAIR=os.environ["POINT_PAIR_SOURCE"]
-    RANK=os.environ["POINT_RANK_SOURCE"]
     unittest.main()
