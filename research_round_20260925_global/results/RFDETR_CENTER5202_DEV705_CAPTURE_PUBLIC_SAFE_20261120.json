@@ -1,0 +1,50 @@
+{
+  "schema": "RFDETR_CENTER5202_DEV705_FULL_CAPTURE_PUBLIC_SUMMARY_V1",
+  "status": "ACTUAL_FULL_DEV705_CAPTURE_INDEPENDENTLY_ACCEPTED",
+  "FIT": false,
+  "DEV": true,
+  "TEST": false,
+  "GT_opened": false,
+  "AP": false,
+  "images": 705,
+  "model_forwards": 705,
+  "native_joint_rows": 70500,
+  "native_mapped_rows": 67386,
+  "source_checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+  "worker_sha256": "97449f58d1ad1a62c52c6f100fc872690e51d465e85e241660befba7a9690a71",
+  "protocol_sha256": "88ca3cbc403809bcadb1a208e0cace13e4467326e6dc03d713009cf0e087f141",
+  "capture_result_sha256": "ccfab7913513ece3c186349f12d720b0fa09b4a7412b0754294b5470fcf9b0d7",
+  "independent_result_sha256": "77ef95b694f74324229507ee79dea015323acff3b716052c3aefa4438105e844",
+  "stock_predictions_sha256": "da55f2d3f9bbf08b26d5fae76606b2496a5b482c5fb61f4fab53c23172e5c06e",
+  "historical_native_stock_byte_parity": true,
+  "queries_sha256": "3533d397589a0e615d93ccf92a4bc8f6beea711dfcf08912ec654968c756ed70",
+  "image_manifest_sha256": "e41e77d470a27988e3b831ed7d74845053e6ef87232425688463b79996bcc697",
+  "raw_logit_rows": 42325,
+  "raw_logit_files": 705,
+  "raw_logit_bytes": 3510695040,
+  "same_device_cuda_raster_exact": 42325,
+  "independent_cpu_raster_disagree_rows": 1,
+  "independent_cpu_raster_disagree_pixels": 1,
+  "capture_worker_seconds": 352.8052860000025,
+  "independent_cpu_readback_seconds": 260.4236020000026,
+  "mode": "original CUDA FP32 / TF32 disabled",
+  "eligible_area": [
+    32,
+    1024
+  ],
+  "raw_logit_shape": [
+    144,
+    144
+  ],
+  "native_input": [
+    576,
+    576
+  ],
+  "native_mask": [
+    800,
+    800
+  ],
+  "native_mask_rule": "bilinear(raw_logits,align_corners=False)>0",
+  "feature_probability_rule": "sigmoid(bilinear(raw_logits,align_corners=False))",
+  "limits": "Historical DEV705, original GPU binary masks retained. Independent CPU interpolation differs at one pixel in one eligible row. Downstream readout must preserve the frozen native mask and document its feature-rendering convention."
+}
