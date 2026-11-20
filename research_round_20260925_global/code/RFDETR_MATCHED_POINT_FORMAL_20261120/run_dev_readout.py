@@ -62,16 +62,20 @@ def mapped_identity_sha256(pool):
     return sha256(json.dumps(identity,sort_keys=True,separators=(",",":"),allow_nan=False).encode()).hexdigest()
 
 
-def validate_capture_receipt(r):
+def validate_capture_receipt(r,repair=None):
     need(r["status"]=="RF_CENTER5202_FULL_CAPTURE_INDEPENDENTLY_ACCEPTED_V1" and r["mode"]=="dev" and
          r["images"]==r["raw_logit_files"]==705 and r["native_mapped_rows"]==67386 and
          r["source_checkpoint_sha256"]==CHECKPOINT and r["stock_predictions_sha256"]==STOCK and
          r["same_device_raster_exact"]==r["raw_logit_rows"] and r["model_forwards"]==0 and
          r["original_os_exit"]==0 and r["job_drained"] is True and r["DEV"] is True and
          all(r[k] is False for k in ("FIT","TEST","GT_opened","AP")),"Exact closed center DEV capture")
-    need(r["independent_CPU_raster_disagree_rows"]==r["independent_CPU_raster_disagree_pixels"]==0,
-         "CPU native raster differs from original stock; separate renderer required")
-
+    if repair is None:
+        need(r["independent_CPU_raster_disagree_rows"]==r["independent_CPU_raster_disagree_pixels"]==0,
+             "CPU native raster differs from original stock; separate renderer required")
+    else:
+        need(r["independent_CPU_raster_disagree_rows"]==r["independent_CPU_raster_disagree_pixels"]==1 and
+             repair["capture_result_sha256"]==r["capture_result_sha256"] and repair["queries_sha256"]==r["queries_sha256"],
+             "Exactly one qualified and bound original CPU discrepancy")
 
 def validated_refits(result,accepted,result_sha):
     need(accepted["status"]=="RFDETR_MATCHED_POINTS_FIT109_INDEPENDENT_ACCEPTED" and
@@ -109,9 +113,85 @@ def legacy_stock_bytes(image_id,candidates):
         row["segmentation"]=dict(size=original["size"],counts=original["counts"])
     return (json.dumps(block,separators=(",",":"),ensure_ascii=False,allow_nan=False)+"\n").encode()
 
+
+
+def read_probability_repair(args):
+    path=getattr(args,"probability_repair",None)
+    digest=getattr(args,"probability_repair_sha",None)
+    need((path is None)==(digest is None),"Supply both probability repair path and digest")
+    if path is None:
+        return None
+    repair=json.loads(pin(path,digest))
+    need(repair["status"]=="RF_CENTER5202_DEV705_SINGLE_NATIVE_CUDA_PROBABILITY_PATCH_ACCEPTED_V1" and
+         repair["capture_acceptance_sha256"]==args.capture_accepted_sha and
+         repair["cpu_disagreement_rows"]==repair["cpu_disagreement_pixels"]==1 and
+         repair["original_hw"]==[800,800] and repair["strict_cuda_logit_sign_RLE_exact"] is True and
+         repair["original_os_exit"]==0 and repair["original_os_wait"] is True and repair["job_drained"] is True and
+         repair["resource_closed"] is True and repair["DEV"] is True and repair["model_forward_calls"]==0 and
+         all(repair[k] is False for k in ("FIT","TEST","GT_opened","AP")),
+         "Exact independently closed one-row same-CUDA probability repair")
+    for key in ("original_tool_wait_sha256","capture_result_sha256","queries_sha256","source_raw_plane_sha256",
+                "stock_rle_sha256","strict_cuda_logit_sign_tensor_sha256","native_probability_tensor_sha256"):
+        value=repair[key]
+        need(type(value) is str and len(value)==64 and all(c in "0123456789abcdef" for c in value),
+             "Exact repair content digests")
+    for key in ("sigmoid_half_ties_positive_logit_pixels","sigmoid_half_ties_negative_logit_pixels"):
+        need(type(repair[key]) is int and repair[key]>=0,"Named GPU sigmoid rounding ties")
+    ref=repair["native_probability_ref"]
+    need(ref["shape"]==[800,800] and ref["dtype"]=="<f4" and type(ref["bytes"]) is int and
+         2560000<=ref["bytes"]<3*MIB and Path(ref["path"]).is_absolute(),"Native probability tensor schema")
+    repair["_receipt_sha256"]=digest
+    repair["_consumed"]=0
+    return repair
+
+
+def repaired_probability(np,torch,raw,stock,rle,identity,source_ref,repair):
+    need(repair["_consumed"]==0 and all(identity[k]==repair[k] for k in
+         ("ordinal","image_id","query_id","native_rank","logit_row")),"Exact single repair candidate")
+    ref=repair["source_logit_ref"]
+    need(all(ref[k]==source_ref[k] for k in ("relative_path","bytes","sha256")) and
+         Path(ref["path"]).resolve(strict=True)==Path(source_ref["path"]).resolve(strict=True) and
+         sha256(np.ascontiguousarray(raw,dtype="<f4").tobytes()).hexdigest()==repair["source_raw_plane_sha256"] and
+         sha256(encoded(rle)).hexdigest()==repair["stock_rle_sha256"] and
+         sha256(stock.astype(np.uint8).tobytes(order="C")).hexdigest()==repair["strict_cuda_logit_sign_tensor_sha256"],
+         "Exact original raw sidecar, row and GPU strict sign stock binding")
+    plane=torch.from_numpy(np.array(raw,dtype=np.float32,copy=True))[None,None]
+    cpu=(torch.nn.functional.interpolate(plane,size=(800,800),mode="bilinear",align_corners=False)>0)[0,0].numpy()
+    need(np.count_nonzero(cpu!=stock)==1,"Original one-pixel CPU mismatch reproduced only at repaired row")
+    out=repair["native_probability_ref"]
+    payload=pin(Path(out["path"]),out["sha256"],3*MIB)
+    need(len(payload)==out["bytes"],"Exact GPU probability file")
+    stream=BytesIO(payload)
+    probability=np.load(stream,allow_pickle=False)
+    need(not stream.read(1) and probability.shape==(800,800) and probability.dtype==np.dtype("<f4") and
+         np.isfinite(probability).all() and probability.min()>=0 and probability.max()<=1 and
+         sha256(probability.tobytes(order="C")).hexdigest()==repair["native_probability_tensor_sha256"],
+         "Exact accepted FP32 native sigmoid probability")
+    repair["_consumed"]+=1
+    return probability
+
+
+def probability_with_repair(np,torch,feature,posterior,raw,stock,rle,identity,source_ref,repair):
+    if repair is not None and all(identity[k]==repair[k] for k in
+                                  ("ordinal","image_id","query_id","native_rank","logit_row")):
+        return repaired_probability(np,torch,raw,stock,rle,identity,source_ref,repair)
+    return feature.render_posterior(torch,np,posterior,raw,stock)
+
+
+def repair_summary(capture,repair):
+    used=0 if repair is None else repair["_consumed"]
+    need(used==(0 if repair is None else 1),"Same-CUDA repair consumed precisely once")
+    original_rows=capture["independent_CPU_raster_disagree_rows"]
+    original_pixels=capture["independent_CPU_raster_disagree_pixels"]
+    need(original_rows-used==original_pixels-used==0,"No unresolved original CPU raster differences")
+    return dict(probability_repair_sha256=None if repair is None else repair["_receipt_sha256"],
+                probability_repair_consumed=used,original_CPU_disagree_rows=original_rows,
+                original_CPU_disagree_pixels=original_pixels,effective_unresolved_CPU_disagree_rows=0,
+                effective_unresolved_CPU_disagree_pixels=0)
+
 def original_population(a,spot):
     accepted=json.loads(pin(a.capture_accepted,a.capture_accepted_sha))
-    validate_capture_receipt(accepted)
+    validate_capture_receipt(accepted,read_probability_repair(a))
     report=json.loads(pin(a.capture/"RESULT_SAFE.json",accepted["capture_result_sha256"]))
     need(report["status"]=="RFDETR_CENTER5202_FULL_CAPTURE_COMPLETE_V1" and report["mode"]=="dev" and
          report["historical_CUDA_stock_exact"] is True and report["stock_predictions_sha256"]==STOCK and
@@ -147,6 +227,10 @@ def sparse_edit(edit):
 
 
 def validate_sparse(np,stock,edit,feat,codec,original):
+    if edit["edits"]==0:
+        need(len(edit["flipped"])==0 and all(edit[k]==0 for k in ("adds","drops","area_delta","actions")),
+             "An unchanged arm uses the exact original RLE")
+        return
     mask=feat.apply_sparse(np,stock,edit)
     xor=int(np.count_nonzero(mask!=stock))
     delta=int(mask.sum())-int(stock.sum())
@@ -158,7 +242,8 @@ def validate_sparse(np,stock,edit,feat,codec,original):
 
 def emit_candidate(np,stock,record,refits,fit_step,feat,codec,budgets):
     result={str(s):{} for s in SEEDS}
-    cap=min(8,int(stock.sum())//10,len(record["coordinates"]))
+    verified=set()
+    cap=min(8,int(codec.area(record["rle"]))//10,len(record["coordinates"]))
     for seed,(heads,center,scale) in refits.items():
         small=fit_step.predict(heads["S"],record["features"],center,scale)
         large=fit_step.predict(heads["L"],record["features"],center,scale)
@@ -167,7 +252,11 @@ def emit_candidate(np,stock,record,refits,fit_step,feat,codec,budgets):
              all(edits[k]["edits"]==edits["SU"]["edits"] for k in ("LF=S","LU=S","LW=S","NP=S")),
              "Exact per-candidate common edit budgets")
         for arm,edit in edits.items():
-            validate_sparse(np,stock,edit,feat,codec,record["rle"])
+            signature=(tuple(sorted(edit["flipped"].tolist())),edit["edits"],edit["adds"],edit["drops"],
+                       edit["area_delta"],edit["actions"])
+            if signature not in verified:
+                validate_sparse(np,stock,edit,feat,codec,record["rle"])
+                verified.add(signature)
             need(arm=="LW=S" or edit["area_delta"]==0,"Balanced arm native area")
             budgets[seed][arm].update(verified=1,edited=int(edit["edits"]>0))
             for k in ("edits","adds","drops","area_delta","nonpositive_actions","nonpositive_flips"):
@@ -184,12 +273,15 @@ def main():
         parser.add_argument("--"+key,type=Path,required=True)
     for key in ("capture-accepted-sha","fit-result-sha","fit-accepted-sha"):
         parser.add_argument("--"+key,required=True)
+    parser.add_argument("--probability-repair",type=Path)
+    parser.add_argument("--probability-repair-sha")
     a=parser.parse_args()
     need(os.environ.get("CUDA_VISIBLE_DEVICES")=="-1" and sys.flags.isolated and sys.dont_write_bytecode,
          "Isolated CPU-only fixed readout")
     started=perf_counter()
     spot=load(a.spot_source/"run_spot.py",PINS["run_spot.py"],"_original_spot")
     images,blocks,capture=original_population(a,spot)
+    repair=read_probability_repair(a)
     fit=json.loads(pin(a.fit_result,a.fit_result_sha,8*MIB))
     witness=json.loads(pin(a.fit_accepted,a.fit_accepted_sha))
     bundles=validated_refits(fit,witness,a.fit_result_sha)
@@ -215,6 +307,7 @@ def main():
     pre=write(a.output/"PRELABEL_SAFE.json",dict(status="RFDETR_MATCHED_POINTS_DEV705_READOUT_STARTED",
               capture_accepted_sha256=a.capture_accepted_sha,fit_result_sha256=a.fit_result_sha,
               fit_accepted_sha256=a.fit_accepted_sha,stock_predictions_sha256=STOCK,images=705,
+              probability_repair_sha256=getattr(a,"probability_repair_sha",None),
               FIT=False,DEV=True,TEST=False,GT_opened=False,AP=False))
     counts=Counter()
     budgets={seed:{arm:Counter() for arm in ARMS} for seed in SEEDS}
@@ -247,7 +340,10 @@ def main():
                     need((proof["logit_row"],proof["query_id"],proof["native_rank"],proof["score"],proof["predicted_area"])==
                          (i,query,cand["rank"],cand["score"],cand["area"]),"Original query/rank plane identity")
                     stock=codec.decode(cand["rle"]).astype(bool)
-                    probability=feat.render_posterior(torch,np,posterior,plane,stock)
+                    identity=dict(ordinal=ordinal,image_id=item["image_id"],query_id=query,native_rank=cand["rank"],logit_row=i)
+                    source_ref=dict(relative_path=ref["relative_path"],path=str((a.capture/ref["relative_path"]).resolve()),
+                                    bytes=ref["bytes"],sha256=ref["sha256"])
+                    probability=probability_with_repair(np,torch,feat,posterior,plane,stock,cand["rle"],identity,source_ref,repair)
                     counts["exact_original_masks"]+=1
                     record=None
                     if spot.has_author_support(boxes[query]):
@@ -279,7 +375,8 @@ def main():
     need(counts["images"]==705 and counts["mapped"]==67386 and
          counts["eligible"]==capture["raw_logit_rows"]==counts["exact_original_masks"]==
          counts["supported"]+counts["unsupported"] and not torch.cuda.is_initialized(),"Full fixed population readout")
-    result=dict(status=STATUS,capture_accepted_sha256=a.capture_accepted_sha,fit_result_sha256=a.fit_result_sha,
+    correction=repair_summary(capture,repair)
+    result=dict(status=STATUS,**correction,capture_accepted_sha256=a.capture_accepted_sha,fit_result_sha256=a.fit_result_sha,
                 fit_accepted_sha256=a.fit_accepted_sha,prelabel_sha256=pre,
                 worker_sha256=sha256(Path(__file__).read_bytes()).hexdigest(),edits_sha256=digest.hexdigest(),
                 stock_predictions_sha256=STOCK,counts=dict(counts),seeds=list(SEEDS),arms=list(ARMS),
