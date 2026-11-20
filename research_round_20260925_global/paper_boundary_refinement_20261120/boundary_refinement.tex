@@ -7,7 +7,7 @@
 \maketitle
 
 \begin{abstract}
-Small ship masks in synthetic aperture radar (SAR) images are sensitive to boundary errors. We study whether a frozen instance detector can correct such errors on the native image grid through a small number of area-preserving pixel exchanges. A 1,321-parameter point predictor estimates fractional foreground occupancy near a candidate boundary. The refinement chooses pixels to add and remove independently under a shared count and retains the original mask when the estimated gain is nonpositive. On 705 HRSID development images, mask average precision (AP) increases from 48.160 to 50.715, and AP at 0.75 intersection over union (IoU) increases from 51.507 to 57.760. With each candidate's exchange count held fixed, independent selection improves AP by 0.811 points and source-group mean continuous IoU by 0.529 points over distance-based fixed pairing. The results concern one frozen detector checkpoint on a previously used development population.
+Small ship masks in synthetic aperture radar (SAR) images are sensitive to boundary errors. We study whether a frozen instance detector can correct such errors on the native image grid through a small number of area-preserving pixel exchanges. A 1,321-parameter point predictor estimates fractional foreground occupancy near a candidate boundary. The refinement chooses pixels to add and remove independently under a shared count and retains the original mask when the estimated gain is nonpositive. On 705 HRSID development images, mask average precision (AP) increases from 48.160 to 50.715, and AP at 0.75 intersection over union (IoU) increases from 51.507 to 57.760. With each candidate's exchange count held fixed, independent selection improves AP by 0.811 points and source-group mean continuous IoU by 0.529 points over distance-based fixed pairing. In frozen transfer to 187 PSeg-SSDD development images, floating-polygon AP increases from 17.897 to 18.234, below the prespecified advancement margin. The experiments establish a controlled development-set effect and quantify its decline across datasets.
 \end{abstract}
 \begin{IEEEkeywords}
 Synthetic aperture radar, ship instance segmentation, boundary refinement, native image grid.
@@ -41,6 +41,8 @@ Native decoder ranking, natural-policy count & 47.951 & 50.616 & 0.126 & 46.927 
 PointRend~\cite{pointrend} chooses uncertain points during iterative mask upsampling and predicts their labels from coarse and fine features. SharpContour~\cite{sharpcontour} uses an instance-aware point classifier to move contour vertices. Our intervention edits an existing binary mask on the input raster while keeping the candidate roster, scores and area fixed. RankSEG~\cite{rankseg} studies posterior sorting and foreground-volume selection for IoU and Dice. The endpoint optimization here is a special case of separable top-\(k\) selection within two disjoint supports. We use this solution to test whether spatial pre-pairing constrains SAR boundary repair.
 
 HRSID~\cite{hrsid} and PSeg-SSDD~\cite{ssdd} provide public SAR ship instance annotations. Their polygon geometry and image-grid conventions matter for vessels that occupy few pixels. In controlled HRSID development experiments, changing the target-mask resize sampling convention increased AP from 51.434 to 56.072 for RF-DETR and from 50.304 to 56.043 for Mask RT-DETR. The point refinement reported here is a separate intervention on a frozen model. D-FINE-seg~\cite{dfine} supplies the segmentation carrier and pre-crop decoder probabilities.
+
+In SAR ship instance segmentation, DACF-Net~\cite{dacf} models multiscale shape and context in the feature pyramid and region proposals. GCIE-Net~\cite{gcie} adds a segmentation branch to DEIM and improves global context and cross-scale feature fusion. Both evaluate HRSID and PSeg-SSDD. Those trainable architectures address feature and candidate formation, while our fixed-candidate design measures the contribution of the last boundary-edit decision.
 
 \section{Method}
 \subsection{Candidate and Point Support}
@@ -79,7 +81,27 @@ The equal-count control retains 83,059 swaps across the same 20,741 candidates. 
 The same-endpoint truth-only analysis on FIT109 reaches continuous IoU 0.90 for 11 matches with fixed pairing, 27 with independent endpoint selection at equal sign counts and 38 with free add and delete counts. These counts establish feasible geometry in the existing support. Previous studies in this project found limited added utility for partner features and direct difference supervision under matched edit counts. Those findings motivated the simpler occupancy head and the change in the feasible edit sets.
 
 \subsection{Transfer and Direct Comparison}
-The frozen PSeg-SSDD evaluation addresses transfer to native images with different dimensions and decimal polygon annotations. The detector, point parameters, feature scaler, candidate semantics and edit rules are specified from HRSID. Target scoring is pending for this draft. DEV187 is a previously used development partition. Confirmatory evaluation also requires the official-test overlap and exposure histories.
+The HRSID detector, point head, feature scaler, thresholds and exchange budgets are frozen for PSeg-SSDD DEV187. The target uses native image dimensions and contains 182 unique decoded RGB identities. A single export fixes the 18,700 top candidates, including empty masks, for all five arms. Table~\ref{tab:ssdd} reports COCO mask AP with the decimal polygons as the primary reference and the historical integer polygons and decoded-identity deduplication as sensitivities.
+
+\begin{table}[t]
+\centering
+\caption{Frozen HRSID-to-PSeg-SSDD DEV187 mask AP. Float and integer score all 187 images. Dedup.\ uses 182 decoded RGB identities scored with float polygons. All entries use the same target export.}
+\label{tab:ssdd}
+\footnotesize
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Mask policy & Float & Integer & Dedup. \\
+\midrule
+Raw D-FINE E24 & 17.897 & 16.804 & 18.261 \\
+Same head, fixed pairing & 17.956 & 16.877 & 18.329 \\
+Independent, fixed-policy count & 18.028 & 17.173 & 18.393 \\
+Independent, natural count & \textbf{18.234} & \textbf{17.557} & \textbf{18.620} \\
+Native ranks, natural-policy count & 17.942 & 16.757 & 18.309 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On the primary reference, the natural policy improves AP75 from 12.014 to 12.550. Its AP gain is 0.336 points over the raw mask and 0.278 over the fixed pairing. These fall below the prespecified 0.50- and 0.30-point margins. Among 209 eligible original matches grouped into 111 decoded-image identities, the respective group-equal continuous IoU gains are 0.214 and 0.200 points, with paired 95\% intervals \([0.080,0.342]\) and \([0.083,0.315]\). There are no original eligible matches at continuous IoU 0.90. The positive direction survives removal of decoded duplicates. This is transfer to a historical development population, with a much lower absolute baseline than on HRSID. The result shows limited transfer at the frozen settings and does not advance this recipe. The official tests were excluded. Acquisition identities were not verified across the source and target datasets.
 
 The current D-FINE result is below the strongest internal HRSID reference of 56.072 AP. A same-protocol test on a stronger carrier and a capacity- and budget-matched point-refinement baseline remain necessary to judge broader method usefulness. Cross-fit folds share the underlying detector and measure variation across source groups under that detector.
 
@@ -89,15 +111,17 @@ The edit support is local and box-constrained. Missed detections and severe area
 The frozen detector used 24 epochs and 17,640 optimizer steps. The new head has 1,321 parameters and used 200 optimizer steps in the final refit. The DEV705 offline refinement took about 179 seconds, including input reading, verification and output materialization. Online detector and refinement costs require separate measurement. The public release contains configurations, verified aggregate results and recorded negative branches. Original dataset distribution terms apply to imagery and annotations.
 
 \section{Conclusion}
-On HRSID development data, same-count controls indicate that distance-based fixed pairing constrains useful boundary edits. Independently choosing the add and remove locations improves AP and continuous overlap while preserving the original scores and mask areas. A frozen cross-dataset evaluation and a same-protocol comparison on a stronger carrier will test the scope of these gains.
+On HRSID development data, same-count controls indicate that distance-based fixed pairing constrains useful boundary edits. Independently choosing the add and remove locations improves AP and continuous overlap while preserving the original scores and mask areas. Frozen transfer to PSeg-SSDD shows a smaller gain and falls below the prespecified advancement margin. A matched comparison on a stronger carrier and repeated point-head training remain necessary to determine the practical range of the method.
 
-\begin{thebibliography}{6}
+\begin{thebibliography}{8}
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, \emph{HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation}, IEEE Access, vol. 8, 2020. \href{https://doi.org/10.1109/ACCESS.2020.3005861}{10.1109/ACCESS.2020.3005861}.
 \bibitem{pointrend} A. Kirillov, Y. Wu, K. He, and R. Girshick, \emph{PointRend: Image segmentation as rendering}, in Proc. CVPR, 2020. \href{https://arxiv.org/abs/1912.08193}{Preprint}.
 \bibitem{sharpcontour} C. Zhu, X. Zhang, Y. Li, L. Qiu, K. Han, and X. Han, \emph{SharpContour: A contour-based boundary refinement approach for efficient and accurate instance segmentation}, in Proc. CVPR, 2022. \href{https://arxiv.org/abs/2203.13312}{Preprint}.
 \bibitem{rankseg} B. Dai and C. Li, \emph{RankSEG: A consistent ranking-based framework for segmentation}, J. Mach. Learn. Res., vol. 24, no. 224, pp. 1--50, 2023. \href{https://www.jmlr.org/papers/v24/22-0712.html}{Journal article}.
 \bibitem{ssdd} T. Zhang \emph{et al.}, \emph{SAR Ship Detection Dataset (SSDD): Official release and comprehensive data analysis}, Remote Sens., vol. 13, no. 18, Art. no. 3690, 2021. \href{https://doi.org/10.3390/rs13183690}{10.3390/rs13183690}.
 \bibitem{dfine} A. Saakyan and D. Solntsev, \emph{D-FINE-seg: Object detection and instance segmentation framework with multi-backend deployment}, arXiv:2602.23043, 2026. \href{https://arxiv.org/abs/2602.23043}{Preprint}.
+\bibitem{dacf} S. Yang \emph{et al.}, \emph{DACF-net: A dynamic attention and context fusion network with geometry-aware multi-scale refinement for SAR ship instance segmentation}, Int. J. Digit. Earth, vol. 19, no. 2, Art. no. 2696657, 2026. \href{https://doi.org/10.1080/17538947.2026.2696657}{10.1080/17538947.2026.2696657}.
+\bibitem{gcie} W. Luo, J. Lan, Y. Zeng, and W. Xiong, \emph{GCIE-Net: A global and channel information-enhanced network for ship instance segmentation in SAR images}, Remote Sens., vol. 18, no. 15, Art. no. 2512, 2026. \href{https://doi.org/10.3390/rs18152512}{10.3390/rs18152512}.
 \end{thebibliography}
 \end{document}
 
