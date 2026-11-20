@@ -44,24 +44,50 @@ def verify_points(np,stock,box,coords,pair,rank):
     return False
 
 
-def verify_masks(np,codec,stock,source_rle,coords,arms,get_edit,feature,seed,rank):
+def verify_masks(np,codec,stock,source_rle,coords,arms,get_edit,feature,seed,rank,cache=None):
+    # The caller supplies one cache per original candidate, shared across seed/arm views.
+    if cache is None:
+        cache={}
+    area=int(codec.area(source_rle))
+    cap=min(8,area//10,len(coords))
     counts={}
     for arm in arms:
         edit=get_edit(seed,rank,arm)
-        indices=np.asarray(edit["flipped"],dtype=np.int32)
-        need(np.isin(indices,coords.reshape(-1)).all(),"Every changed pixel lies on sealed support")
-        changed=feature.apply_sparse(np,stock,dict(edit,flipped=indices))
-        xor=int(np.count_nonzero(changed!=stock))
-        add=int(np.count_nonzero(changed & ~stock))
-        drop=int(np.count_nonzero(stock & ~changed))
-        delta=int(changed.sum())-int(stock.sum())
-        packed=codec.encode(np.asfortranarray(changed,dtype=np.uint8))
-        rle=dict(size=packed["size"],counts=packed["counts"].decode())
-        need(xor==edit["edits"]==add+drop and add==edit["adds"] and drop==edit["drops"] and
-             delta==add-drop==edit["area_delta"] and int(codec.area(rle))==int(stock.sum())+delta and
-             (xor or rle==source_rle),"Actual independent XOR, sign, area, RLE and zero-edit stock identity")
+        indices=np.asarray(edit["flipped"])
+        if indices.size==0:
+            indices=np.empty(0,dtype=np.int32)
+        need(indices.ndim==1 and indices.dtype.kind in "iu" and len(np.unique(indices))==len(indices) and
+             np.isin(indices,coords.reshape(-1)).all(),"Unique edited pixels on sealed support")
+        y,x=np.divmod(indices,stock.shape[1])
+        drops=int(np.count_nonzero(stock[y,x]))
+        adds=len(indices)-drops
+        expected_kind="flip" if arm=="LW=S" else "swap"
+        expected_actions=len(indices) if expected_kind=="flip" else adds
+        need(all(type(edit[k]) is int for k in ("edits","adds","drops","area_delta","actions",
+                                               "nonpositive_actions","nonpositive_flips")) and
+             edit["edits"]==len(indices)==adds+drops<=2*cap and edit["adds"]==adds and edit["drops"]==drops and
+             edit["area_delta"]==adds-drops and (arm=="LW=S" or adds==drops) and
+             edit["action_kind"]==expected_kind and edit["actions"]==expected_actions and
+             0<=edit["nonpositive_actions"]<=expected_actions and 0<=edit["nonpositive_flips"]<=len(indices) and
+             np.isfinite(edit["predicted_gain_sum"]) and (arm!="N" or len(indices)==0),
+             "Per-arm declarations and cap agree with every original sparse set")
+        key=tuple(sorted(indices.tolist()))
+        if key not in cache:
+            changed=feature.apply_sparse(np,stock,dict(edit,flipped=indices))
+            xor=int(np.count_nonzero(changed!=stock))
+            add=int(np.count_nonzero(changed & ~stock))
+            drop=int(np.count_nonzero(stock & ~changed))
+            delta=int(changed.sum())-area
+            packed=codec.encode(np.asfortranarray(changed,dtype=np.uint8))
+            rle=dict(size=packed["size"],counts=packed["counts"].decode())
+            need(xor==add+drop and delta==add-drop and int(codec.area(rle))==area+delta and
+                 (xor or rle==source_rle),"Actual independent XOR, sign, area, RLE and zero-edit stock identity")
+            cache[key]=(xor,add,drop,delta)
+        xor,add,drop,delta=cache[key]
+        need((xor,add,drop,delta)==(edit["edits"],edit["adds"],edit["drops"],edit["area_delta"]),
+             "Cached actual mask witness agrees with this arm's declarations")
         counts[arm]=dict(edited=int(xor>0),edits=xor,adds=add,drops=drop,area_delta=delta,
-                         nonpositive_actions=edit["nonpositive_actions"],nonpositive_flips=edit["nonpositive_flips"])
+                        nonpositive_actions=edit["nonpositive_actions"],nonpositive_flips=edit["nonpositive_flips"])
     return counts
 
 
@@ -72,6 +98,8 @@ def main():
         p.add_argument("--"+key,type=Path,required=True)
     for key in ("readout-result-sha","readout-source-sha","score-source-sha","capture-accepted-sha","wait-sha"):
         p.add_argument("--"+key,required=True)
+    p.add_argument("--probability-repair",type=Path)
+    p.add_argument("--probability-repair-sha")
     a=p.parse_args()
     need(sys.flags.isolated and sys.dont_write_bytecode and os.environ.get("CUDA_VISIBLE_DEVICES")=="-1",
          "Independent isolated CPU readback")
@@ -95,7 +123,8 @@ def main():
     feature=reader.load(a.spot_source/"feature_adapter.py",reader.PINS["feature_adapter.py"],"_original_sparse_apply")
     fit=reader.load(a.spot_source/"fit_step.py",reader.PINS["fit_step.py"],"_original_points")
     args=SimpleNamespace(capture_accepted=a.capture_accepted,capture_accepted_sha=a.capture_accepted_sha,
-                         capture=a.capture,image_manifest=a.image_manifest)
+                         capture=a.capture,image_manifest=a.image_manifest,
+                         probability_repair=a.probability_repair,probability_repair_sha=a.probability_repair_sha)
     images,queries,accepted=reader.original_population(args,spot)
     raw=reader.pin(a.readout/"SPARSE_EDITS_PRIVATE.jsonl",result["edits_sha256"],512*reader.MIB)
     sparse=[json.loads(line) for line in raw.splitlines()]
@@ -113,6 +142,35 @@ def main():
             cand["area"]=int(codec.area(cand["rle"]))
         capture_rows.append(dict(native_block=reader.stock_block(item["image_id"],pool),pool=pool,
                                  source_prefix=block["source_prefix"]))
+
+    repair=reader.read_probability_repair(a)
+    if repair is not None:
+        ordinal=repair["ordinal"]
+        need(type(ordinal) is int and 1<=ordinal<=705,"Exact repair image ordinal")
+        block=queries[ordinal-1]
+        pool=capture_rows[ordinal-1]["pool"]
+        cand=next((r for r in pool if r["rank"]==repair["native_rank"]),None)
+        need(cand is not None and block["image_id"]==repair["image_id"] and cand["query_id"]==repair["query_id"] and
+             32<=cand["area"]<1024,"Repair is an original eligible mapped candidate")
+        ref=block["logit_capture"]
+        i=repair["logit_row"]
+        proof=ref["candidates"][i]
+        need((proof["logit_row"],proof["query_id"],proof["native_rank"])==
+             (i,cand["query_id"],cand["rank"]),"Independent raw plane repair identity")
+        payload=reader.pin(a.capture/ref["relative_path"],ref["sha256"],9*reader.MIB)
+        from io import BytesIO
+        planes=np.load(BytesIO(payload),allow_pickle=False)
+        need(planes.dtype==np.dtype("<f4") and list(planes.shape)==ref["shape"] and len(payload)==ref["bytes"],
+             "Original exact raw candidate sidecar")
+        source_ref=dict(relative_path=ref["relative_path"],path=str((a.capture/ref["relative_path"]).resolve()),
+                        bytes=ref["bytes"],sha256=ref["sha256"])
+        identity={key:repair[key] for key in ("ordinal","image_id","query_id","native_rank","logit_row")}
+        stock=codec.decode(cand["rle"]).astype(bool)
+        reader.repaired_probability(np,torch,planes[i],stock,cand["rle"],identity,source_ref,repair)
+    correction=reader.repair_summary(accepted,repair)
+    need(all(result[key]==value for key,value in correction.items()),
+         "Accepted same-CUDA repair consumed once and original differences retained")
+
     prepared=score.prepare_reconstruction(np,codec,capture_rows,sparse)
     base=a.code/"DFINE_SEG_EXTERNAL_BASELINE_FIT32_E24_20261112/e24"
     pair=fit.load(base/"fit109_paired_point/pair_math.py",spot.PAIR_SHA,"_independent_point_pairs")
@@ -135,9 +193,10 @@ def main():
             totals["supported" if len(coords) else "unsupported"]+=1
             if not len(coords):
                 continue
+            mask_cache={}
             for seed in reader.SEEDS:
                 read=lambda s,r,arm:score.get_edit(original,s,r,arm)
-                observed=verify_masks(np,codec,stock,cand["rle"],coords,reader.ARMS,read,feature,seed,native_rank)
+                observed=verify_masks(np,codec,stock,cand["rle"],coords,reader.ARMS,read,feature,seed,native_rank,cache=mask_cache)
                 for arm,values in observed.items():
                     budgets[str(seed)][arm].update(verified=1,**values)
     totals["exact_original_masks"]=totals["eligible"]
@@ -149,7 +208,7 @@ def main():
             values["unchanged"]=67386-values["edited"]
             need(dict(values)==result["budgets"][seed][arm],"All independently reconstructed realized arm budgets")
     a.output.mkdir()
-    witness=dict(status=STATUS,readout_result_sha256=a.readout_result_sha,readout_source_sha256=a.readout_source_sha,
+    witness=dict(status=STATUS,**correction,readout_result_sha256=a.readout_result_sha,readout_source_sha256=a.readout_source_sha,
                  capture_accepted_sha256=a.capture_accepted_sha,original_tool_wait_sha256=a.wait_sha,
                  original_exit=0,images=705,native_mapped_rows=67386,edits_sha256=result["edits_sha256"],
                  stock_predictions_sha256=reader.STOCK,exact_candidate_identity=True,exact_native_support=True,

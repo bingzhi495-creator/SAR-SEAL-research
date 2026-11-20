@@ -32,3 +32,11 @@
 冻结检测器在 705 张原开发图上产生 67,386 个映射候选，整个原生输出逐字节匹配历史强基线。所有 42,325 个有连续平面的候选在原 CUDA 后处理恢复相同掩膜。独立 CPU 插值仅有 1 个候选的 1 个像素在零阈值另一侧。将只为该候选补算同设备概率，再完成八组掩膜和标签前复核。旧掩膜和历史基线保持为冻结原值。AP 比较尚未执行。 [DEV 捕获实测](results/RFDETR_CENTER5202_DEV705_CAPTURE_PUBLIC_SAFE_20261120.json)
 
 单候选数值修复已实际验收。只在原 CUDA 上重算那个候选的连续概率，原二值掩膜再次精确复现。重算耗时 2.94 秒，未运行检测器或读取标注。全量标签前读出已启动，等待三种子八策略的逐候选实际写回、独立回读和固定 AP 评分。 [单候选校验摘要](results/RFDETR_CENTER5202_DEV705_ONE_PLANE_CUDA_PUBLIC_SAFE_20261120.json)
+
+## 方法先例与后续官方评价边界
+
+边界补丁细化可在现有实例掩膜上做后处理。Yan 等进一步提出细粒度数据筛选与多分支特征融合，仍属于此前已有的后处理范式。显式面积约束也已有优化先例。本轮检验的是在固定 SAR 分割候选、置信度和实际编辑数下，独立选择增删位置能否超过同一紧凑头的固定配对，以及更大头的固定配对与常规逐点写回。范围仍取决于预注册的效用和几何对照。 [唐等，CVPR 2021](https://openaccess.thecvf.com/content/CVPR2021/html/Tang_Look_Closer_To_Segment_Better_Boundary_Patch_Refinement_for_Instance_CVPR_2021_paper.html) · [Yan 等，2026](https://doi.org/10.1016/j.image.2026.117490) · [显式面积约束](https://pmc.ncbi.nlm.nih.gov/articles/PMC3656501/)
+
+若预定强对照成立，优先对冻结策略做 HRSID 官方 PNG TEST 复验。官方主口径为原始 test2017 的 1,962 图、5,922 标注。历史项目曾使用官方测试指标选择模型与融合方式，应将结果表述为开发后的官方评价。开始前须按当前渲染器核验测试成员、空栅格规则及与实际 FIT 和 DEV 图像的重复关系。旧 JPG 重复统计只用于定位，PNG 测试敏感性人口以新核验为准。 [HRSID 官方来源](https://github.com/chaozhong2010/HRSID) · [历史暴露与跨集边界](HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md) · [标注版本差异](HRSID_ANNOTATION_PROTOCOL_DIFF_STATUS_20261107_05.md)
+
+PSeg-SSDD 官方测试可保留 232 图主口径和候选去重复的 222 图敏感性口径，须先认证全部 TEST 图像和多边形标签。此前远端记录认证仅覆盖 TRAIN。PSeg 内部 FIT 与 TEST 重复不直接构成当前 HRSID 模型的训练重叠，实际跨域重复应另核。两套官方评价均应保留历史使用信息。目前仍缺已验收的全新的公共实例掩膜验证人口。 [PSeg 训练来源与编码](PSEG_SSDD_OFFICIAL_TRAIN_PROVENANCE_AND_ENCODINGS_20261111.md) · [数据设计与历史 TEST 暴露](HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md)
