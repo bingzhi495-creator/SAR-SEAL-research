@@ -8,6 +8,10 @@
 
 - [PointRend 同载体实测](research_round_20260925_global/RFDETR_POINTREND_FIT109_ACTUAL_20261121.md)已完成五折训练、六臂比较及独立复算。同头同量下，独立选点较固定配对 +1.047 mask AP 点，较自由增删 +0.938 点。自由增删对照的连续 IoU 增益只有 +0.084 点，区间跨零，未通过预锁条件。
 
+- [AP 与连续边界效应](research_round_20260925_global/FIT109_POINTREND_AP_GEOMETRY_AND_IOU_WRITER_20261121.md)定位了阈值收益，并完成估计 IoU 的等量写回试验。新规则较固定偏置 +0.354 AP，低于等量增删和原生对照，按预锁停止。
+
+- [PSeg-SSDD TEST232 输入核验](research_round_20260925_global/code/PSEG_SSDD_OFFICIAL_TEST232_INPUT_20261121/README.md)在本地独立复核 232 图、546 个非空原始实例。作者远端区间认证因直连超时待续，已保留历史测试接触和训练重叠说明。
+
 - [更新后的英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)补充了同头同编辑量的改善与退步实例。两例各增删八个像素，独立选点相对固定配对的连续 IoU 分别变化 +0.732 和 −0.316 点。[可编辑图件与绘图数据](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md)
 
 - [FIT109 四臂整合实验](research_round_20260925_global/RFDETR_QUERY_CHANNEL_FIT109_ACTUAL_20261121.md)已结束且独立复算一致。查询条件特征相对普通空间特征 +0.352 AP 点，未超过置换或零填充对照，按原判据停止扩展。

@@ -1,0 +1,30 @@
+{
+  "protocol": "FIT109_MATCHED_IOU_WRITER_20261121_V1",
+  "scope": "New source-only policy comparison motivated by closed FIT109 diagnostics. Existing head and fold unchanged.",
+  "seed": 5217,
+  "source_result_sha256": "31aaf615621911e82c8f32c5230ebb662b1de303f5c10a8f93283918ab3ea052",
+  "diagnostic_sha256": "e479e3005d27d2729f79ebd2e3415eb933c85c19dfb651fc59ef1c573dac1420",
+  "images": 109,
+  "mapped": 10488,
+  "area_eligible": 6738,
+  "swaps_per_matched_policy": 48982,
+  "arms": {
+    "N": "Stock",
+    "B": "Old balanced",
+    "J": "Old joint cutoff 0.5",
+    "T": "Fixed cutoff 3/7, chosen to correspond to IoU .75",
+    "R": "Maximize ratio of expected intersection to expected union over all attainable sign counts at locked edits"
+  },
+  "pseudo_label": "Foreground probability from the same learned PointRend RoI, fixed paste crop plus 1px halo and zero outside, no target data read. Candidate P0 keeps full original area; I0 sums posterior over stock pixels, T sums posterior over crop, all endpoint posterior mass in same support.",
+  "preconditions": "Verify byte-identical old matched edit choices before new evaluation. Every non-stock policy keeps the same candidate order, scores, endpoints and exact 2k edits.",
+  "advance": {
+    "AP_gain_vs_all": 0.3,
+    "minimum_continuous_IoU_gain_vs_B_and_T": 0.2,
+    "paired_IoU_lower_bound_positive_vs_B_and_T": true,
+    "AP75_at_least_B_and_T": true,
+    "strict90_losses_at_most_B_and_T": true
+  },
+  "FIT": true,
+  "DEV": false,
+  "TEST": false
+}

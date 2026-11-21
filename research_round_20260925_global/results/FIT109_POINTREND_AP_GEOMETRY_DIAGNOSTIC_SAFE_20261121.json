@@ -1,0 +1,240 @@
+{
+  "AP": true,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "contributing_source_groups": 92,
+  "counts": {
+    "B_nonpositive_flips": 34526,
+    "F_nonpositive_flips": 50685,
+    "J_nonpositive_flips": 6720,
+    "joint_area_error_better": 193,
+    "joint_area_error_equal": 19,
+    "joint_area_error_worse": 180,
+    "joint_balanced": 484,
+    "joint_net_add": 2096,
+    "joint_net_drop": 4158
+  },
+  "mapped_candidates": 10488,
+  "model_forward_calls": 0,
+  "original_fixed_matches": 392,
+  "original_independent_report_sha256": "c791b3eb637acf5e30341768a53fa1acb8a3c8db5d6153717474b0b6958fc319",
+  "original_result_sha256": "31aaf615621911e82c8f32c5230ebb662b1de303f5c10a8f93283918ab3ea052",
+  "phase": "FIT_ONLY",
+  "point_head_updates": 0,
+  "separation": "The paired area and intersection terms sum exactly. They are algebraic, not causal, and AP threshold differences use original COCO matching.",
+  "source_group_equal_geometry": {
+    "J_minus_B_abs_area_error_per_truth_area": {
+      "ci95": [
+        -0.8436016074828896,
+        -0.02930146247265381
+      ],
+      "points": -0.43401285834042347
+    },
+    "intersection_term": {
+      "ci95": [
+        1.194248709639808,
+        2.0338014194727996
+      ],
+      "points": 1.6016835928072086
+    },
+    "observed_IoU": {
+      "ci95": [
+        -0.03917322920242346,
+        0.20166370582402654
+      ],
+      "points": 0.08358255676567773
+    },
+    "predicted_area_term": {
+      "ci95": [
+        -1.9068170471299797,
+        -1.1472400417805892
+      ],
+      "points": -1.518101036041531
+    }
+  },
+  "source_sha256": "c5abb2ed1fb262bbc4fb64acaed9fabdd6d685570c65dab01ce87c8250019307",
+  "status": "FIT109_AP_GEOMETRY_POSTHOC_DIAGNOSTIC_COMPLETE",
+  "thresholds": [
+    {
+      "B": 89.70137297190426,
+      "B_minus_F": 0.10516183909085441,
+      "B_minus_J": 2.0710284015556653,
+      "F": 89.59621113281341,
+      "J": 87.6303445703486,
+      "N": 88.97494246372571,
+      "iou_threshold": 0.5,
+      "match_transitions_B_relative_J": {
+        "FP_to_TP": 10,
+        "TP_to_FP": 3
+      },
+      "net_FP_TP_changes_by_original_rank": {
+        "01-10": 1,
+        "11-30": 7,
+        "31-100": -1
+      }
+    },
+    {
+      "B": 85.61395136724445,
+      "B_minus_F": 0.39788350986799514,
+      "B_minus_J": 1.1959585812388411,
+      "F": 85.21606785737646,
+      "J": 84.41799278600561,
+      "N": 85.92490547766936,
+      "iou_threshold": 0.55,
+      "match_transitions_B_relative_J": {
+        "FP_to_TP": 8,
+        "TP_to_FP": 4
+      },
+      "net_FP_TP_changes_by_original_rank": {
+        "01-10": 0,
+        "11-30": 2,
+        "31-100": 2
+      }
+    },
+    {
+      "B": 82.35849008439313,
+      "B_minus_F": -0.11097319709033115,
+      "B_minus_J": 2.613473235490474,
+      "F": 82.46946328148346,
+      "J": 79.74501684890265,
+      "N": 82.94537047273577,
+      "iou_threshold": 0.6,
+      "match_transitions_B_relative_J": {
+        "FP_to_TP": 16,
+        "TP_to_FP": 5
+      },
+      "net_FP_TP_changes_by_original_rank": {
+        "01-10": 3,
+        "11-30": 5,
+        "31-100": 3
+      }
+    },
+    {
+      "B": 76.42264165919077,
+      "B_minus_F": 0.2970502114589664,
+      "B_minus_J": 1.4289019351562047,
+      "F": 76.12559144773181,
+      "J": 74.99373972403457,
+      "N": 78.41059409751797,
+      "iou_threshold": 0.65,
+      "match_transitions_B_relative_J": {
+        "FP_to_TP": 15,
+        "TP_to_FP": 6
+      },
+      "net_FP_TP_changes_by_original_rank": {
+        "01-10": -1,
+        "11-30": 1,
+        "31-100": 9
+      }
+    },
+    {
+      "B": 66.65123485312293,
+      "B_minus_F": 1.6813798416019665,
+      "B_minus_J": 0.721644501144084,
+      "F": 64.96985501152096,
+      "J": 65.92959035197885,
+      "N": 67.08213925045814,
+      "iou_threshold": 0.7,
+      "match_transitions_B_relative_J": {
+        "FP_to_TP": 19,
+        "TP_to_FP": 16
+      },
+      "net_FP_TP_changes_by_original_rank": {
+        "01-10": 1,
+        "11-30": -2,
+        "31-100": 4
+      }
+    },
+    {
+      "B": 57.72939036151053,
+      "B_minus_F": 3.0189914740204884,
+      "B_minus_J": 0.0313124869175212,
+      "F": 54.710398887490044,
+      "J": 57.69807787459301,
+      "N": 58.829938108644505,
+      "iou_threshold": 0.75,
+      "match_transitions_B_relative_J": {
+        "FP_to_TP": 17,
+        "TP_to_FP": 15
+      },
+      "net_FP_TP_changes_by_original_rank": {
+        "01-10": 0,
+        "11-30": 0,
+        "31-100": 2
+      }
+    },
+    {
+      "B": 47.85522929153726,
+      "B_minus_F": 1.7299142256145927,
+      "B_minus_J": 0.814521706552334,
+      "F": 46.12531506592267,
+      "J": 47.04070758498493,
+      "N": 48.66002425180114,
+      "iou_threshold": 0.8,
+      "match_transitions_B_relative_J": {
+        "FP_to_TP": 20,
+        "TP_to_FP": 17
+      },
+      "net_FP_TP_changes_by_original_rank": {
+        "01-10": 2,
+        "11-30": 2,
+        "31-100": -1
+      }
+    },
+    {
+      "B": 30.181420022081017,
+      "B_minus_F": 2.0867862525406657,
+      "B_minus_J": 0.2353848226301558,
+      "F": 28.09463376954035,
+      "J": 29.94603519945086,
+      "N": 30.885606096454204,
+      "iou_threshold": 0.85,
+      "match_transitions_B_relative_J": {
+        "FP_to_TP": 27,
+        "TP_to_FP": 25
+      },
+      "net_FP_TP_changes_by_original_rank": {
+        "01-10": 2,
+        "11-30": 2,
+        "31-100": -2
+      }
+    },
+    {
+      "B": 7.318629624023333,
+      "B_minus_F": 1.2658288631206034,
+      "B_minus_J": 0.2699191232778384,
+      "F": 6.05280076090273,
+      "J": 7.048710500745495,
+      "N": 6.5560492033846565,
+      "iou_threshold": 0.9,
+      "match_transitions_B_relative_J": {
+        "FP_to_TP": 15,
+        "TP_to_FP": 16
+      },
+      "net_FP_TP_changes_by_original_rank": {
+        "01-10": 2,
+        "11-30": -2,
+        "31-100": -1
+      }
+    },
+    {
+      "B": 0.16612316969401858,
+      "B_minus_F": 0.0001743714243611083,
+      "B_minus_J": 0.0001743714243611083,
+      "F": 0.16594879826965747,
+      "J": 0.16594879826965747,
+      "N": 0.16595572600738334,
+      "iou_threshold": 0.95,
+      "match_transitions_B_relative_J": {
+        "FP_to_TP": 2,
+        "TP_to_FP": 2
+      },
+      "net_FP_TP_changes_by_original_rank": {
+        "01-10": 0,
+        "11-30": 1,
+        "31-100": -1
+      }
+    }
+  ]
+}
