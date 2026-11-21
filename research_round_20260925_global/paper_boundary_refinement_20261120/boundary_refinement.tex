@@ -77,6 +77,8 @@ The maximizing choice takes the \(k\) largest background occupancies and the \(k
 \subsection{Data and Metrics}
 The D-FINE E24 detector was trained on 2,937 HRSID images from the official training split. The point head was developed with five-fold source-prefix cross-fitting on FIT109 within that population, then refitted and frozen before target evaluation. DEV705 comprises 705 images with zero exact encoded or RGB-content overlap and no filename-source-prefix overlap with FIT. The filenames are proxies for acquisition groups, and DEV705 has prior development exposure.
 
+An input audit of the official HRSID PNG test split verified 1,962 images and 5,922 original annotations. Four annotations rasterize to empty masks. Two test images match the FIT training pool exactly, and one pair of images within the test set is identical. The audit also froze sensitivity populations for empty annotations and exact image duplicates before any new test scoring. Historical model selection used this test split. The refinement results in this paper use development splits.
+
 We use standard COCO mask AP over the original candidate pool. Fixed geometry uses the original match identity and exact overlap of the predicted native cells with the source polygon. Bootstrap intervals are paired across the source groups of the fixed predictions. Strict matches have continuous IoU above 0.90. These match counts and COCO AP90 measure different endpoints.
 
 \subsection{Mechanism and Development Effect}
@@ -174,7 +176,6 @@ On HRSID development data, distance-based fixed pairing constrains useful bounda
 \section*{Acknowledgment}
 OpenAI Codex assisted in drafting and revising the English manuscript. The layout of Fig.~\ref{fig:native-boundary} was based on a concept preview generated with OpenAI image generation and redrawn as an editable vector illustration. Figures~\ref{fig:dev-cases} and~\ref{fig:fit-query} plot measured experiment outputs.
 
-\IEEEtriggeratref{4}
 \begin{thebibliography}{11}
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, 2020. \href{https://doi.org/10.1109/ACCESS.2020.3005861}{10.1109/ACCESS.2020.3005861}.
 \bibitem{pointrend} A. Kirillov, Y. Wu, K. He, and R. Girshick, ``PointRend: Image segmentation as rendering,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2020, pp. 9799--9808.

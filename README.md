@@ -4,6 +4,10 @@
 
 ## 当前状态（2026-11-21）
 
+- [HRSID 官方 PNG 输入审计](research_round_20260925_global/HRSID_OFFICIAL_PNG_TEST_INPUT_ACTUAL_20261121.md)已完成实测和独立复核。1,962 图、5,922 条原标注保留为正式评分主口径。发现 4 条空栅格、2 张与 FIT 完全相同的图及 1 组 TEST 内重复，已按图像身份冻结敏感性口径。此阶段只验证输入。
+
+- [PointRend 同载体适配](research_round_20260925_global/code/RFDETR_POINTREND_SUBDIVISION_20261121/README.md)已实现作者式逐级不确定点选择、RoI 采样、二分类点头与等编辑量对照，14 项 CPU 合成测试通过。真实 FIT 对照待测。
+
 - [更新后的英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)补充了同头同编辑量的改善与退步实例。两例各增删八个像素，独立选点相对固定配对的连续 IoU 分别变化 +0.732 和 −0.316 点。[可编辑图件与绘图数据](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md)
 
 - [FIT109 四臂整合实验](research_round_20260925_global/RFDETR_QUERY_CHANNEL_FIT109_ACTUAL_20261121.md)已结束且独立复算一致。查询条件特征相对普通空间特征 +0.352 AP 点，未超过置换或零填充对照，按原判据停止扩展。

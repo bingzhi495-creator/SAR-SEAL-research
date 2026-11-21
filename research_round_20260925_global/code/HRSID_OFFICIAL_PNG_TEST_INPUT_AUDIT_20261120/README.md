@@ -1,9 +1,15 @@
-# HRSID official PNG TEST input audit: source and synthetic qualification only
+# HRSID official PNG TEST input audit
+
+The original input-only audit and independent readback completed on 2026-11-21.
+See the [closed result and prespecified scoring cohorts](../../HRSID_OFFICIAL_PNG_TEST_INPUT_ACTUAL_20261121.md).
+Use `independent_readback.py --help` for a separate audit of closed outputs and
+`freeze_score_cohorts.py --help` for the exact official and sensitivity populations.
+Both tools operate on explicit, pinned input-audit artifacts.
 
 This entry does not load models, generate candidates, train or calculate AP. It
 can support a frozen center baseline independently of the pending point-refiner
-development decision. No original TEST data have been opened by this source
-preparation or its tests. Actual execution requires Root's endpoint freeze,
+development decision. The original source preparation and synthetic tests used
+artificial data. Actual execution requires Root's endpoint freeze,
 separate admission and original process/independent readback ownership.
 
 ## Reused official-input tools
