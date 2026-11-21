@@ -1,0 +1,53 @@
+{
+  "protocol": "RFDETR_POINTREND_FIT109_20261121_V1",
+  "phase": "FIT_ONLY",
+  "seed": 5217,
+  "frozen_checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+  "prior_oof_support_sha256": "1cea85eb8c30b11bfa847292c55d2231fb4d16dd2a551c3da52ddffdd8d3830e",
+  "prior_oof_budget_sha256": "f886d74a4b721d2c30f8f3bfde30c4ef87aec276b0a8112ec303663f95697781",
+  "data": {
+    "images": 109,
+    "annotations": 496,
+    "mapped_candidates": 10488,
+    "area_eligible_candidates": 6738,
+    "supervised_matches": 392,
+    "source_folds": 5
+  },
+  "optimization": {
+    "steps_per_fold": 200,
+    "rois_per_step": 1,
+    "points_per_roi": 196,
+    "lr": 0.002,
+    "weight_decay": 0.01,
+    "trainable": "binary 3x256 point head"
+  },
+  "supervision": "Stock nonignored .50 fixed matches and the original bitmask bilinearly sampled. The shared detector has training exposure to FIT.",
+  "subdivision": {
+    "coarse_roi": 7,
+    "target_roi": 224,
+    "max_points_per_step": 784,
+    "point_evaluations_per_valid_roi": 3136
+  },
+  "arms": {
+    "N": "Stock mask",
+    "C": "Coarse paste",
+    "P": "Natural learned PointRend-style paste",
+    "F": "Learned posterior fixed pair, k",
+    "B": "Same posterior independent balanced, k",
+    "J": "Same posterior joint writes, 2k"
+  },
+  "matched_swaps_per_arm": 48982,
+  "gate": {
+    "advance_if": "B must exceed both F and J",
+    "ap_min_points": 0.3,
+    "geometry_min_points": 0.2,
+    "positive_paired_ci_lower": true,
+    "same_or_better_AP75": true,
+    "no_more_original_strict90_losses": true
+  },
+  "natural_outputs": "Unrestricted natural paste and coarse paste, with original candidates and scores, serve as descriptives.",
+  "precision_scope": "One seed with point-head source holdout. DEV and TEST play no role.",
+  "FIT": true,
+  "DEV": false,
+  "TEST": false
+}
