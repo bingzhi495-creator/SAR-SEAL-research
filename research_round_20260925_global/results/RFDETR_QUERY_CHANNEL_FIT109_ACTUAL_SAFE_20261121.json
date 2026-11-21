@@ -1,0 +1,235 @@
+{
+  "schema": "RFDETR-FIT109-query-feature-result-public-v1",
+  "status": "RAN_AND_INDEPENDENTLY_REPRODUCED_NO_GO",
+  "scope": "FIT only. Point-head source-held-out. Detector training exposed to FIT.",
+  "original_exit": 0,
+  "independent_exit": 0,
+  "original_result_sha256": "7311c19a1fc187665e4f38ed616cf5c007a9818606a1b910520259ec74df270d",
+  "independent_score_sha256": "4fbfea6f681342fac77518f47e43245324c1ccd18f48bb8e92fac52f1b6917ed",
+  "complete_metrics_exact": true,
+  "seed": 5217,
+  "point_head_folds": 5,
+  "head_updates": 4000,
+  "replay_swaps_each": 48982,
+  "metrics": {
+    "arms": {
+      "F": {
+        "AP": 0.5537904872895367,
+        "AP75": 0.5914852092588493,
+        "all12": [
+          0.5537904872895367,
+          0.9000649968987742,
+          0.5914852092588493,
+          0.5274074863071606,
+          0.775128686882857,
+          0.6232084721117227,
+          0.1752016129032258,
+          0.4608870967741935,
+          0.6084677419354838,
+          0.5831818181818181,
+          0.8224489795918366,
+          0.7000000000000001
+        ],
+        "edits": 97964,
+        "small_slender": {
+          "mean_abs_short_px": 0.6037140436195942,
+          "stock_mean_abs_short_px": 0.6197045399808189,
+          "valid_instances": 332,
+          "worse_than_F": 0,
+          "worse_than_F_fraction": 0,
+          "worse_than_stock": 144,
+          "worse_than_stock_fraction": 0.43373493975903615
+        },
+        "source_equal_iou_points": 84.38445731783435,
+        "strict90": {
+          "clean_retained": 0,
+          "edited_retained": 26,
+          "lost": 4,
+          "new": 5,
+          "stable_miss": 357
+        }
+      },
+      "Q": {
+        "AP": 0.5573101500947895,
+        "AP75": 0.6057716704783968,
+        "all12": [
+          0.5573101500947895,
+          0.9010990688502264,
+          0.6057716704783968,
+          0.5311260811210312,
+          0.775128686882857,
+          0.6232084721117227,
+          0.175,
+          0.4637096774193548,
+          0.6110887096774194,
+          0.5861363636363637,
+          0.8224489795918366,
+          0.7000000000000001
+        ],
+        "edits": 97964,
+        "small_slender": {
+          "mean_abs_short_px": 0.6024206613901767,
+          "stock_mean_abs_short_px": 0.6197045399808189,
+          "valid_instances": 332,
+          "worse_than_F": 144,
+          "worse_than_F_fraction": 0.43373493975903615,
+          "worse_than_stock": 142,
+          "worse_than_stock_fraction": 0.42771084337349397
+        },
+        "source_equal_iou_points": 84.45726089457469,
+        "strict90": {
+          "clean_retained": 0,
+          "edited_retained": 25,
+          "lost": 5,
+          "new": 10,
+          "stable_miss": 352
+        }
+      },
+      "QP": {
+        "AP": 0.558438919777091,
+        "AP75": 0.6018627965785049,
+        "all12": [
+          0.558438919777091,
+          0.9062378013426973,
+          0.6018627965785049,
+          0.532182092787667,
+          0.775128686882857,
+          0.6232084721117227,
+          0.1752016129032258,
+          0.4641129032258065,
+          0.6118951612903226,
+          0.5870454545454545,
+          0.8224489795918366,
+          0.7000000000000001
+        ],
+        "edits": 97964,
+        "small_slender": {
+          "mean_abs_short_px": 0.6052872985000913,
+          "stock_mean_abs_short_px": 0.6197045399808189,
+          "valid_instances": 332,
+          "worse_than_F": 152,
+          "worse_than_F_fraction": 0.4578313253012048,
+          "worse_than_stock": 132,
+          "worse_than_stock_fraction": 0.39759036144578314
+        },
+        "source_equal_iou_points": 84.46053001875318,
+        "strict90": {
+          "clean_retained": 0,
+          "edited_retained": 25,
+          "lost": 5,
+          "new": 7,
+          "stable_miss": 355
+        }
+      },
+      "Z": {
+        "AP": 0.5575240873316315,
+        "AP75": 0.6000798380578767,
+        "all12": [
+          0.5575240873316315,
+          0.9061992942906676,
+          0.6000798380578767,
+          0.5313290182275764,
+          0.775128686882857,
+          0.6232084721117227,
+          0.175,
+          0.4627016129032258,
+          0.6110887096774194,
+          0.5861363636363637,
+          0.8224489795918366,
+          0.7000000000000001
+        ],
+        "edits": 97964,
+        "small_slender": {
+          "mean_abs_short_px": 0.6002239347156508,
+          "stock_mean_abs_short_px": 0.6197045399808189,
+          "valid_instances": 332,
+          "worse_than_F": 142,
+          "worse_than_F_fraction": 0.42771084337349397,
+          "worse_than_stock": 137,
+          "worse_than_stock_fraction": 0.4126506024096386
+        },
+        "source_equal_iou_points": 84.41823864232228,
+        "strict90": {
+          "clean_retained": 0,
+          "edited_retained": 26,
+          "lost": 4,
+          "new": 10,
+          "stable_miss": 352
+        }
+      }
+    },
+    "bootstrap": {
+      "draws": 4096,
+      "seed": 5217,
+      "unit": "original contributing source prefix"
+    },
+    "comparisons": {
+      "Q_minus_F": {
+        "AP_delta_points": 0.35196628052527323,
+        "geometry_ci95_points": [
+          -0.019289465831842295,
+          0.1716044087733218
+        ],
+        "geometry_delta_points": 0.07280357674035465
+      },
+      "Q_minus_QP": {
+        "AP_delta_points": -0.1128769682301578,
+        "geometry_ci95_points": [
+          -0.06603637236052465,
+          0.057889679022893076
+        ],
+        "geometry_delta_points": -0.003269124178478346
+      },
+      "Q_minus_Z": {
+        "AP_delta_points": -0.021393723684204335,
+        "geometry_ci95_points": [
+          -0.013975286905107829,
+          0.09504364451564935
+        ],
+        "geometry_delta_points": 0.03902225225241953
+      }
+    },
+    "counts": {
+      "annotations": 496,
+      "eligible": 6738,
+      "images": 109,
+      "mapped_candidates": 10488,
+      "neutral": 4,
+      "source_groups_with_valid": 92,
+      "unmatched": 6342,
+      "unsupported": 317,
+      "valid": 392,
+      "valid_unsupported_noop": 0,
+      "zero_budget": 317
+    },
+    "gate": {
+      "advance": false,
+      "checks": {
+        "AP75_vs_F": true,
+        "AP_vs_F": true,
+        "AP_vs_QP": false,
+        "AP_vs_Z": false,
+        "geometry_vs_F": false,
+        "geometry_vs_QP": false,
+        "geometry_vs_Z": false,
+        "original_strict90_loss_vs_F": false
+      }
+    },
+    "schema": "RFDETR-FIT109-query-position-score-v1"
+  },
+  "permutation": {
+    "endpoints": 407806,
+    "moved_ids": 407001,
+    "moved_values": 406587
+  },
+  "fit_seconds": 25.869869799999833,
+  "source_capture": {
+    "result_sha256": "0a6112ad17d15a3846b6eca28a100455958dd28db4f195cd3ceeeac29a0c3657",
+    "independent_sha256": "fc759d9cf1982f3970f3b75627f8eccbca0b474c97ecb141ae487ba7dacc3e94",
+    "actual_4_reused": 4,
+    "actual_new_105": 105,
+    "seconds": 421.93716960000006,
+    "original_feature_digest_exact": true,
+    "detector_forward_during_training": 0
+  }
+}

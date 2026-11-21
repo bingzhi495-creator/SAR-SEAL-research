@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-21）
 
+- [FIT109 四臂整合实验](research_round_20260925_global/RFDETR_QUERY_CHANNEL_FIT109_ACTUAL_20261121.md)已结束且独立复算一致。查询条件特征相对普通空间特征 +0.352 AP 点，未超过置换或零填充对照，按原判据停止扩展。
+
 - [论文收尾计划](research_round_20260925_global/PAPER_CLOSEOUT_PLAN_20261121.md)。最后一轮整合实验封板后完成英文稿、可编辑图源和复现核验。审阅交付截止为北京时间 11 月 24 日 22:00。
 
 - [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。 [通用复合仿射实测](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md#通用复合仿射的真实-fit-对照)在相同等距取整下，与单次中心的 4,145 条训练掩膜及源像素索引逐值一致。
