@@ -1,0 +1,22 @@
+{
+  "status": "FIT109_QUERY_LOGIT_ORDER_CONTEXT_PREREG",
+  "FIT": true,
+  "DEV": false,
+  "TEST": false,
+  "seed": 5217,
+  "updates_per_head": 200,
+  "candidate_rows_per_step": 16,
+  "lr": 0.002,
+  "weight_decay": 0.01,
+  "prior_rank_result_sha256": "347ba4417a4a7602b2cb4f9f09224def517214690aad8a9129860456022d8b62",
+  "prior_ordering_evidence": "SSDD DEV187 RFDETR_DEV187_FIXED_LOGIT_PROSPECTIVE_PROTOCOL_20261109.md. Directional context improved AP but that setup failed its strict-retention criterion.",
+  "capture_readback_sha256": "19393564375cde464d6ab3a51966b8861f28f02f2dc33a08fde14de38f13dd38",
+  "arms": {
+    "zero": "32 zero slots",
+    "radial": "same samples sorted independently within each radius",
+    "ordered": "oriented row-major samples within each radius"
+  },
+  "features": "14 original native features plus two square rings of author-pre-resize query logits. Radius 1 (8 samples) and 3 (24) in 144×144 cells. Native centers in 800×800 with bilinear align_corners=False and border padding. Coordinate system shared by all arms.",
+  "design": "Freeze ordered and radial arrays before attaching the held label data. This probe changes only the appended 32 features. All three arms have the same 46-dimensional paired head, objective BCE + 0.25 ordinary pairwise, shared 5217 initialization and batch schedule. Existing first-layer weights mapped to unchanged channels, and appended weights shared across arms. Same endpoint support, fixed per-candidate k and same all-candidate scoring.",
+  "advance": "Ordered must improve at least 0.30 AP over both controls, with AP75 and AP90 non-decreasing, at least 0.20 paired continuous IoU points with positive 95% interval lower bounds, and no increase in strict-.90 losses. One seed FIT-exposed development only."
+}

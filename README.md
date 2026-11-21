@@ -4,6 +4,10 @@
 
 ## 当前状态（2026-11-21）
 
+- [HRSID 官方划分原生基线实测](research_round_20260925_global/HRSID_OFFICIAL_CENTER5202_E24_NATIVE_SCORE_ACTUAL_20261121.md)覆盖 1,962 图，原生 RF-DETR 的 mask AP / AP75 / AR100 为 54.433 / 62.190 / 61.694。两套评分程序的 39 项指标逐值一致。此结果是历史参与过项目选型的官方划分上的固定原生基线，边界修正的官方划分效果仍待实测。
+
+- [FIT109 三种子排序与邻域方向对照](research_round_20260925_global/code/FIT109_QUERY_LOGIT_ORDER_CONTEXT_20261121/CONTEXT_NOTE.md)。相同编辑预算下，普通成对损失较 BCE 平均 +0.078 AP 点，三个种子中有一个小幅下降。保留角度的邻域读出较环内排序低 0.437 AP 点，未达预锁条件。数据与英文审阅稿已更新。
+
 - [HRSID 官方 PNG 输入审计](research_round_20260925_global/HRSID_OFFICIAL_PNG_TEST_INPUT_ACTUAL_20261121.md)已完成实测和独立复核。1,962 图、5,922 条原标注保留为正式评分主口径。发现 4 条空栅格、2 张与 FIT 完全相同的图及 1 组 TEST 内重复，已冻结两套敏感性口径。[原生基线评分源码与合成核验](research_round_20260925_global/code/HRSID_OFFICIAL_BASELINE_SCORE_20261121/README.md)
 
 - [PointRend 同载体实测](research_round_20260925_global/RFDETR_POINTREND_FIT109_ACTUAL_20261121.md)已完成五折训练、六臂比较及独立复算。同头同量下，独立选点较固定配对 +1.047 mask AP 点，较自由增删 +0.938 点。自由增删对照的连续 IoU 增益只有 +0.084 点，区间跨零，未通过预锁条件。
@@ -14,7 +18,7 @@
 
 - [PSeg-SSDD TEST232 输入核验](research_round_20260925_global/code/PSEG_SSDD_OFFICIAL_TEST232_INPUT_20261121/README.md)在本地独立复核 232 图、546 个非空原始实例。作者 Drive 的文件名和大小已核对，未提供校验和，远端字节认证待续。 [作者元数据记录](research_round_20260925_global/results/PSEG_SSDD_AUTHOR_METADATA_SAFE_20261121.json)
 
-- [更新后的英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)补充了同头同编辑量的改善与退步实例。两例各增删八个像素，独立选点相对固定配对的连续 IoU 分别变化 +0.732 和 −0.316 点。[可编辑图件与绘图数据](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md)
+- [更新后的英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)收录了 HRSID 官方划分的已核验原生基线、FIT109 排序复验和同头同编辑量的改善与退步实例。两例各增删八个像素，独立选点相对固定配对的连续 IoU 分别变化 +0.732 和 −0.316 点。[可编辑图件与绘图数据](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md)
 
 - [FIT109 四臂整合实验](research_round_20260925_global/RFDETR_QUERY_CHANNEL_FIT109_ACTUAL_20261121.md)已结束且独立复算一致。查询条件特征相对普通空间特征 +0.352 AP 点，未超过置换或零填充对照，按原判据停止扩展。
 

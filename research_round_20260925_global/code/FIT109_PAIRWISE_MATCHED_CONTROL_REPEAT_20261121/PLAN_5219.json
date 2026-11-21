@@ -1,0 +1,25 @@
+{
+  "status": "FIT109_PAIRWISE_MATCHED_CONTROL_REPETITION_LOCKED",
+  "FIT": true,
+  "DEV": false,
+  "TEST": false,
+  "seed": 5219,
+  "num_folds": 5,
+  "original_fit_5217_sha256": "1e8a31d3187cb3eaee92730342615220990ed2b8a1fd06b61687cdce6d68ad84",
+  "prior_rank_result_sha256": "347ba4417a4a7602b2cb4f9f09224def517214690aad8a9129860456022d8b62",
+  "arm_names": [
+    "bce",
+    "pairwise"
+  ],
+  "regularizer": 0.25,
+  "updates_per_head": 200,
+  "candidate_rows_per_step": 16,
+  "lr": 0.002,
+  "weight_decay": 0.01,
+  "ordered_repeats": [
+    5218,
+    5219
+  ],
+  "comparison": "Repeat the established ordinary pairwise control only. No promotion of this control to the primary proposed method. Preserve original five folds, exact per-candidate budget, continuous labels and both objectives from seed 5217; independent initialization and candidate draws for each new seed.",
+  "decision": "Report both seed results and the observed three-seed mean and spread versus raw and same-budget BCE. The original failed decision-focused variant remains stopped."
+}

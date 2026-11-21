@@ -1,0 +1,13 @@
+# Independent recomputation of the frozen HRSID native scores
+
+`verify_score.py` checks the observed CPU score process, its final footer and output digest, the root score admission, and the independent full-prediction readback. Scorer exit evidence identifies either its worker PID or its original tool handle. The export phase has a separate process chain. Its interrupted session 88756 keeps an unknown exit, and its resumed worker supplied the successful complete export.
+
+The readback pins the original GT, the three frozen cohorts, the evaluator identity and all prediction bytes. It reconstructs each image/annotation population, checks the four removed zero-area rasters, and recomputes populations, row counts and ordered prediction fingerprints. It runs stock pycocotools matching and accumulation for segmentation and computes the twelve COCO summary statistics and AP90 from the precision and recall tensors. Score values, including undefined values of −1, must match the closed score exactly on all three views. The production readback imports neither the original project scorer nor its adapter.
+
+Run after successful original scorer termination using the scoring CPU environment (Python 3.8.17, NumPy 1.23.5 and pycocotools 2.0.7). Set `CUDA_VISIBLE_DEVICES=-1`. Outputs use a fresh exclusive path. Root supplies the SHA-256 of the observed scorer terminal receipt. The receipt carries `status=HRSID_OFFICIAL_TEST_NATIVE_SCORE_TERMINAL`, `actual_process_terminal=true`, `actual_exit=0`, the successful original score `footer_status`, `output_sha256`, `admission_sha256`, `score_source_sha256`, and the score process identity.
+
+```text
+python -I -B -X utf8 verify_score.py --terminal SCORE_PROCESS_RECEIPT --terminal-sha256 RECEIPT_SHA --admission SCORE_ADMISSION --result CLOSED_SCORE_JSON --export-readback ACCEPTED_NATIVE_EXPORT_CLOSURE --cohorts SCORE_COHORTS_FROZEN_PRIVATE.json --gt TEST_ORIGINAL_ANNOTATIONS_PRIVATE.json --predictions CLOSED_NATIVE_JSONL --output FRESH_READBACK_JSON
+```
+
+Seven tests passed using generated fixtures in the scoring environment. Tests check all 39 values against the original scorer, an entirely empty prediction stream, false positives on an unannotated image, full and per-cohort byte identities, population counts, negative provenance cases and deliberately altered metric reports. For test discovery, set `TEST_ORIGINAL_SCORE_DIR` to the ordinary `HRSID_OFFICIAL_BASELINE_SCORE_20261121` source directory and `NATIVE_SCORE_ADAPTER` to the ordinary `DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/worker.py` path. Then run `python -I -B -X utf8 -m unittest discover -s . -v`. Protocol scope and historical test-selection exposure apply to all three views.
