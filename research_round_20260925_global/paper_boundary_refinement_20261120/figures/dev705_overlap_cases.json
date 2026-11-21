@@ -1,0 +1,94 @@
+{
+  "seed": 5217,
+  "tie_tolerance": 1e-12,
+  "counts": {
+    "valid": 1461,
+    "positive": 1012,
+    "negative": 252,
+    "within_tolerance": 197,
+    "zero_edits": 43,
+    "negative_distinct_image_pool": 252
+  },
+  "cases": [
+    {
+      "sign": "positive",
+      "arms": {
+        "N": {
+          "P": 513,
+          "T": 606,
+          "I": 499,
+          "iou": 0.8048387096774193,
+          "edits": 0,
+          "adds": 0,
+          "drops": 0,
+          "add_overlap": 0,
+          "drop_overlap": 0
+        },
+        "SF": {
+          "P": 513,
+          "T": 606,
+          "I": 499.5,
+          "iou": 0.8062953995157385,
+          "edits": 16,
+          "adds": 8,
+          "drops": 8,
+          "add_overlap": 7,
+          "drop_overlap": 6.5
+        },
+        "SU=F": {
+          "P": 513,
+          "T": 606,
+          "I": 502,
+          "iou": 0.813614262560778,
+          "edits": 16,
+          "adds": 8,
+          "drops": 8,
+          "add_overlap": 8,
+          "drop_overlap": 5
+        }
+      },
+      "delta_iou": 0.007318863045039481
+    },
+    {
+      "sign": "negative",
+      "arms": {
+        "N": {
+          "P": 554,
+          "T": 426.5,
+          "I": 424.5,
+          "iou": 0.7634892086330936,
+          "edits": 0,
+          "adds": 0,
+          "drops": 0,
+          "add_overlap": 0,
+          "drop_overlap": 0
+        },
+        "SF": {
+          "P": 554,
+          "T": 426.5,
+          "I": 424,
+          "iou": 0.7619047619047619,
+          "edits": 16,
+          "adds": 8,
+          "drops": 8,
+          "add_overlap": 0,
+          "drop_overlap": 0.5
+        },
+        "SU=F": {
+          "P": 554,
+          "T": 426.5,
+          "I": 423,
+          "iou": 0.758744394618834,
+          "edits": 16,
+          "adds": 8,
+          "drops": 8,
+          "add_overlap": 0,
+          "drop_overlap": 1.5
+        }
+      },
+      "delta_iou": -0.0031603672859278342
+    }
+  ],
+  "criterion": "Observed nearest signed median; positive first; exclude its image from negative pool; identity breaks ties.",
+  "scope": "Two descriptive examples of valid original fixed matches on HRSID DEV705, one locked seed."
+}
