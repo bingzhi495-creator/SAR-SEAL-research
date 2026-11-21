@@ -30,7 +30,7 @@
 
 - [更新后的英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)补入 Atkinson 的遥感像元交换先例，把核心贡献聚焦在冻结 SAR 实例上对配对限制的同量检验。独立复核后修订了摘要中的 PSeg-SSDD 对照、点占据率定义和固定配对计数。 [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md)
 
-- [同量经典空间吸引力对照](research_round_20260925_global/code/FIT109_CLASSICAL_ATTRACTION_20261121/PROTOCOL.md)已预设规则和来源。比较真实交换数匹配时学习占据率与几何吸引力的效果，当前只完成合成验证。
+- [同量经典空间吸引力对照实测](research_round_20260925_global/FIT109_CLASSICAL_ATTRACTION_ACTUAL_20261121.md)已完成。同一 FIT109 端点和逐候选实际编辑数下，学习占据率较动态吸引力 +5.192 mask AP 点、+1.104 连续 IoU 点，AP90 −0.164 点。已核对原进程、全部等量计数和原匹配阈值记录。
 
 - [FIT109 四臂整合实验](research_round_20260925_global/RFDETR_QUERY_CHANNEL_FIT109_ACTUAL_20261121.md)已结束且独立复算一致。查询条件特征相对普通空间特征 +0.352 AP 点，未超过置换或零填充对照，按原判据停止扩展。
 
