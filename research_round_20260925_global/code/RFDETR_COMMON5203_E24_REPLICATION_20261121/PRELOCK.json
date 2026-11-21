@@ -1,0 +1,18 @@
+{
+  "study": "One additional RF-DETR Seg Nano center/common-retention E24 detector",
+  "comparator_training_protocol": "04308c52bd2b4730f1474335c6316f6b8a11762e",
+  "comparator_checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+  "comparator_training_seed": 5202,
+  "replicate_training_seed": 5203,
+  "initialization_seed": 5201,
+  "original_coco_segnano_sha256": "a44613a4ecd6b5ba61a62002c600b0b6cb7a9da2936a45317ec4b62c635fb99b",
+  "expanded_q164_initial_state_sha256": "63ff93afdd977ba79b5b5a46ba8b4839ef6c40eb0722b29e4667d4932404fbc2",
+  "original_fit2937_index_sha256": "e95cf26cc60a2c6fb651e907541380a256f2df7b1e153244a6c0f803b0b19f8f",
+  "original_recipe_sha256": "ba9508d9acab5ff68b10db8a1aff5d9001868d6dda00e39f299d6f5cc1b8011b",
+  "seed_timing": "Keep native initialization and Q100-to-Q164 expansion. Apply seed 5203 immediately before Lightning fit so data ordering, training RNG and augmentations follow the new seed. Preserve the original shared-RNG native/center augmentation replay inside each visit.",
+  "qualification": "Run both original native and center common-row views, separately from fresh identical initial state, 32 consumed visits and 8 AdamW/EMA updates per view. Verify original ordered rows, RNG and per-batch mask digests with the original short-pair verifier.",
+  "training": "Restart center from the same COCO Q164 initialization. Common ordered nonempty rows, stepwise two-axis center resize, original BF16 576 square training recipe, batch one, gradient accumulation four, E100 cosine schedule, E24 fixed termination, 70560 visits, 17640 AdamW and EMA updates, checkpoints at E1/E8/E24.",
+  "training_artifact": "Accept exactly checkpoint_0.ckpt, checkpoint_7.ckpt and checkpoint_23.ckpt after both owner and worker original zero exits, checking common-support and phase markers, validation of optimizer/EMA clocks and all consumed row identities. The accepted E24 EMA supplies the downstream carrier.",
+  "evaluation_scope": "Subsequent independent DEV705 image-only continuous capture with this detector, author query IDs, native ranks/scores/RLE, original predicted boxes and raw mask planes. Fix the existing main-carrier heads and scalers for head seeds 5217, 5218 and 5219. Preserve N, SF, SU=F, SU and LW=S. Use the original DEV705 population of 705 images and 1782 annotations including four empty. Pair comparisons by head seed and image. This training command has FIT-only scope.",
+  "primary_refinement_comparison": "Freeze the same head and scaler across carriers. Apply the existing matched-count SU=F minus SF comparison using the original metric definitions. Report SU minus SF and the other frozen controls as secondary. Report each detector's paired within-carrier effect and their difference. A single extra carrier gives two point estimates."
+}
