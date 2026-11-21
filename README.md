@@ -6,7 +6,7 @@
 
 - [HRSID 官方划分原生基线实测](research_round_20260925_global/HRSID_OFFICIAL_CENTER5202_E24_NATIVE_SCORE_ACTUAL_20261121.md)覆盖 1,962 图，原生 RF-DETR 的 mask AP / AP75 / AR100 为 54.433 / 62.190 / 61.694。两套评分程序的 39 项指标逐值一致。此结果是历史参与过项目选型的官方划分上的固定原生基线，边界修正的官方划分效果仍待实测。
 
-- [PSeg-SSDD 完整划分冻结跨库评分](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md)覆盖 232 图和 546 条浮点原标注。mask AP 17.974→18.319（+0.344），去除 10 张历史重复图后仍 +0.389。相同点头和逐候选编辑量下，独立选点较固定配对 +0.081 AP 点、+0.106 连续 IoU 点。自然选点阶段单线程 CPU 平均每图增加 181.2 毫秒，同量原生概率对照出现的新增孔洞更少。
+- [PSeg-SSDD 完整划分冻结跨库评分](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md)覆盖 232 图和 546 条浮点原标注。mask AP 17.974→18.319（+0.344），去除 10 张历史重复图后仍 +0.389。相同点头和逐候选编辑量下，独立选点较固定配对 +0.081 AP 点、+0.106 连续 IoU 点。同轮逐图配对中，等价取样将 CPU 精修均值由 158.8 降到 104.3 毫秒，最终掩膜与分数完全一致。同量原生概率对照出现的新增孔洞更少。
 
 - [HRSID 冻结边界修正复验](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_PRELOCK_20261121.md)已启动。三个 HRSID FIT 点头沿用原特征、模型、阈值和编辑预算，对每张测试图重放并核对原候选，再计算四种修正策略。第一批原生实现的一致性核验已通过，修正效果须等待全量独立回读和评分。[评分方案与合成测试](research_round_20260925_global/code/HRSID_OFFICIAL_FROZEN_REFINEMENT_SCORE_20261121/README.md)
 

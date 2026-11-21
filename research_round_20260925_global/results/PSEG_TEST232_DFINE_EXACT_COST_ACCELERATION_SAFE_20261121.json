@@ -1,0 +1,96 @@
+{
+  "status": "PSEG_TEST232_EXACT_SPARSE_SAMPLER_TIMING_COMPLETE",
+  "images": 232,
+  "counts": {
+    "sample_calls": 22418,
+    "sampled_values": 3297531,
+    "candidates": 23200,
+    "edited_candidates": 10466,
+    "swaps": 55040
+  },
+  "all_warm_sample_uint16_bits_equal": true,
+  "all_complete_candidate_records_exact": true,
+  "warm_and_measured_parity_passes_per_arm": 696,
+  "measured_pairs_per_image": 2,
+  "stage_summary": {
+    "wall_original": {
+      "mean_ms": 158.81235237068964,
+      "median_ms": 151.558725,
+      "p95_ms": 325.5356225,
+      "summed_seconds": 36.84446575
+    },
+    "wall_optimized": {
+      "mean_ms": 104.30796745689653,
+      "median_ms": 112.367375,
+      "p95_ms": 180.81918,
+      "summed_seconds": 24.199448449999995
+    },
+    "wall_saving": {
+      "mean_ms": 54.5043849137931,
+      "median_ms": 37.120825,
+      "p95_ms": 155.07197499999998,
+      "summed_seconds": 12.6450173
+    },
+    "process_cpu_original": {
+      "mean_ms": 154.93669181034483,
+      "median_ms": 148.4375,
+      "p95_ms": 312.5,
+      "summed_seconds": 35.9453125
+    },
+    "process_cpu_optimized": {
+      "mean_ms": 102.03394396551724,
+      "median_ms": 109.375,
+      "p95_ms": 179.6875,
+      "summed_seconds": 23.671875
+    },
+    "process_cpu_saving": {
+      "mean_ms": 52.90274784482759,
+      "median_ms": 39.0625,
+      "p95_ms": 148.4375,
+      "summed_seconds": 12.2734375
+    }
+  },
+  "faster_images": 231,
+  "slower_images": 1,
+  "tied_images": 0,
+  "mean_wall_saving_percent": 34.319990920210316,
+  "ratio_original_over_optimized": 1.5225332852575821,
+  "repetition_totals_wall_seconds": {
+    "original": [
+      36.910092899999995,
+      36.778838599999986
+    ],
+    "optimized": [
+      24.251976700000014,
+      24.146920199999993
+    ],
+    "saving": [
+      12.658116199999998,
+      12.631918399999998
+    ]
+  },
+  "capture_loading_and_rgb_seconds": 6.044991199989454,
+  "elapsed_body_seconds": 204.32975380000062,
+  "paired_times_sha256": "b9c1ac9f78dd3788f4b9fff53e2fa6025e403e769112ee700dda5a484b6aa53e",
+  "input_refs_sha256": {
+    "profile_stage.py": "efabce4b654d5df149ba9e1adcd79953e4fe2f9ef85a915275a89bb5cb500b27",
+    "compare.py": "b8b1dda53e68cee07c83e8dd7a1d4e0743d63cc92ce7d68010269b6c6207f526",
+    "sparse_sampling.py": "be8b32dbd9f400419819eebc9e20a71b35413dde6a553c651836402cabb17714",
+    "PROFILE_SAFE.json": "c0c88cdd9398e925e9a89d64299c800d823e2780126e531ccb7f9587189e5278",
+    "PROTOCOL.md": "a4be927734aefe407b59943a5cee7dd18ea0cf06c56c8da018677c6df3538b84"
+  },
+  "legacy_natural_worker_sha256": "410e4f456c081ab27e5acf8af8d1c6a789e206e4d36b52d7bc8c7232d5f4595e",
+  "prior_replay_readback_sha256": "e99d0f2bbd9e1839e260a88075f6af187e05ffc2b86abaf6cc33b788372b7b71",
+  "python": "3.10.13",
+  "torch": "2.10.0+cu130",
+  "numpy": "1.26.4",
+  "torch_intra_threads": 1,
+  "torch_interop_threads": 1,
+  "cpu": "Intel Core i7-13700KF",
+  "concurrent_HRSID_CPU_context": true,
+  "detector_forwards": 0,
+  "optimizer_steps": 0,
+  "GT_opened": false,
+  "AP": false,
+  "cuda_initialized": false
+}
