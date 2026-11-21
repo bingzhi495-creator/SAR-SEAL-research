@@ -1,0 +1,31 @@
+{
+  "status": "FIT109_EXPECTED_INTERSECTION_SHARED_CAPACITY_PREREG",
+  "FIT": true,
+  "DEV": false,
+  "TEST": false,
+  "seed": 5217,
+  "num_folds": 5,
+  "prior_rank_result_sha256": "347ba4417a4a7602b2cb4f9f09224def517214690aad8a9129860456022d8b62",
+  "input": "Same original native ordered 14 features and early decoder offset; shared PointHead(14) routes same paired partner input to all arms, with continuous occupancy targets. No new carrier forwards.",
+  "arm_names": [
+    "bce",
+    "pairwise",
+    "spo"
+  ],
+  "regularizer": 0.25,
+  "updates_per_head": 200,
+  "candidate_rows_per_step": 16,
+  "optimizer": "AdamW",
+  "lr": 0.002,
+  "weight_decay": 0.01,
+  "schedule": "Equal source-group sampling, then one valid matched row per sampled group. Same start, batches and k across arms. Train k from independent uniform on [1, min(n, 8)] without using OOF test-time edit budget. Held inference uses the already frozen original k and fixed side quota.",
+  "evaluation": "Compare complete pooled stock and equal-budget controls. Preserve every original candidate, score and ordering. Fixed-match source equal continuous IoU and strict >0.90. Historical fixed budget comparator Z 55.752 AP / 84.418 continuous IoU shown as competing observed evidence; head fitting uses development FIT109 only.",
+  "gate": {
+    "advancement_AP_gain_vs_each_current_and_prior": 0.3,
+    "AP75_non_decreasing": true,
+    "min_iou_gain_vs_bce_and_pairwise": 0.2,
+    "paired_interval_lower_positive": true,
+    "no_extra_strict_losses": true,
+    "eventual_practical_AP_gain_points": 1
+  }
+}

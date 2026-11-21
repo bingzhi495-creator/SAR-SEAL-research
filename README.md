@@ -10,7 +10,9 @@
 
 - [AP 与连续边界效应](research_round_20260925_global/FIT109_POINTREND_AP_GEOMETRY_AND_IOU_WRITER_20261121.md)定位了阈值收益，并完成估计 IoU 的等量写回试验。新规则较固定偏置 +0.354 AP，低于等量增删和原生对照，按预锁停止。
 
-- [PSeg-SSDD TEST232 输入核验](research_round_20260925_global/code/PSEG_SSDD_OFFICIAL_TEST232_INPUT_20261121/README.md)在本地独立复核 232 图、546 个非空原始实例。作者远端区间认证因直连超时待续，已保留历史测试接触和训练重叠说明。
+- [固定预算的点排序上界和训练对照](research_round_20260925_global/FIT109_POINT_RANKING_AND_DECISION_SUPERVISION_20261121.md)。同预算理想排序还有 3.013 个连续 IoU 点的空间。普通同侧成对排序较原生 +1.068 AP；共享容量的 SPO+ 略低于 BCE 与普通排序，两次实测逐值核验一致。
+
+- [PSeg-SSDD TEST232 输入核验](research_round_20260925_global/code/PSEG_SSDD_OFFICIAL_TEST232_INPUT_20261121/README.md)在本地独立复核 232 图、546 个非空原始实例。作者 Drive 的文件名和大小已核对，未提供校验和，远端字节认证待续。 [作者元数据记录](research_round_20260925_global/results/PSEG_SSDD_AUTHOR_METADATA_SAFE_20261121.json)
 
 - [更新后的英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)补充了同头同编辑量的改善与退步实例。两例各增删八个像素，独立选点相对固定配对的连续 IoU 分别变化 +0.732 和 −0.316 点。[可编辑图件与绘图数据](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md)
 
