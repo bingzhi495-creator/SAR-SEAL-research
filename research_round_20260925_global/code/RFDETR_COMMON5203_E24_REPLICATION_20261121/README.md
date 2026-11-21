@@ -6,6 +6,8 @@ This owner trains one additional center detector on Windows. It reconstructs the
 
 Set `SAR_SEAL_RUNTIME_ROOT` to the private execution directory that contains the historical RF-DETR Windows runtime. Set `SAR_SEAL_OWNER_PYTHON` to the original Anaconda coordinator interpreter and `SAR_SEAL_PROTOCOL_COMMIT` to the 40-character Git commit containing this `replicate.py` and `PRELOCK.json`. Run from this directory. The output must be a fresh direct child of the private execution directory with a name starting with `RFDETR_COMMON5203_E24_`. The historical runtime may be checked against the original host paths in the pinned workers.
 
+On a release mirror without Git metadata, the run owner can verify the commit, its root tree and the two intended blobs through the GitHub API. Supply the saved JSON proof and its independently recorded SHA-256 to `prepare`. The proof has `status` equal to `GITHUB_API_COMMIT_TREE_AND_BLOBS_VERIFIED`, `source` equal to `github_api`, `repository` equal to `bingzhi495-creator/SAR-SEAL-research`, the full `commit` and root `tree` SHA-1 values, and a two-entry `files` list. Each file record contains its full repository-relative `path`, Git `git_blob_sha`, and ordinary `sha256` of the exact blob payload. The intended directory is `research_round_20260925_global/code/RFDETR_COMMON5203_E24_REPLICATION_20261121`. The owner vouches for the remote commit-to-tree lookup. The local check verifies the file paths, both file hashes, and the owner-supplied proof digest. Preparation saves the proof bytes for subsequent stages.
+
 ```powershell
 $privateRoot = $env:SAR_SEAL_RUNTIME_ROOT
 $sciencePython = Join-Path $privateRoot 'RFDETR_WINDOWS_112_RUNTIME_PRIVATE_20261108_01/PYTHON_HOST_31013/python.exe'
@@ -13,7 +15,12 @@ $ownerPython = $env:SAR_SEAL_OWNER_PYTHON
 $runPath = Join-Path $privateRoot 'RFDETR_COMMON5203_E24_ACTUAL_PRIVATE_20261121_01'
 $commit = $env:SAR_SEAL_PROTOCOL_COMMIT
 
-& $ownerPython -I -B -X utf8 .\replicate.py prepare --work $runPath --commit $commit
+$proofArguments = @()
+if ($env:SAR_SEAL_PUBLICATION_PROOF) {
+    $proofArguments = @('--publication-proof', $env:SAR_SEAL_PUBLICATION_PROOF,
+                        '--publication-proof-sha256', $env:SAR_SEAL_PUBLICATION_PROOF_SHA256)
+}
+& $ownerPython -I -B -X utf8 .\replicate.py prepare --work $runPath --commit $commit @proofArguments
 if ($LASTEXITCODE -ne 0) { throw 'Preparation failed' }
 & $ownerPython -I -B -X utf8 .\replicate.py qualify --work $runPath
 if ($LASTEXITCODE -ne 0) { throw 'Qualification failed' }

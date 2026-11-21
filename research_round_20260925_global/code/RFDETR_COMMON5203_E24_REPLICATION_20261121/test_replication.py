@@ -3,10 +3,12 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import subprocess
 import sys
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 
 
 HERE = Path(__file__).resolve().parent
@@ -46,6 +48,52 @@ class ReplicaTests(unittest.TestCase):
             replica.worker_bytes(b"TRAINING_SEED = 5202")
         with self.assertRaisesRegex(ValueError, "single center"):
             replica.arm_paths(SimpleNamespace(work=Path(self.temp.name)), "e24", "native")
+
+    def test_owner_bound_api_proof_and_rejection_paths(self):
+        commit = "a" * 40
+        paths = (replica.SELF, replica.PRELOCK)
+        files = [dict(path=replica.PUBLISHED_DIR + "/" + p.name, git_blob_sha=replica.git_blob_sha(p.read_bytes()),
+                      sha256=replica.digest(p.read_bytes())) for p in paths]
+        document = dict(status="GITHUB_API_COMMIT_TREE_AND_BLOBS_VERIFIED", source="github_api",
+                        repository=replica.REPOSITORY, commit=commit, tree="b" * 40, files=files)
+        proof = Path(self.temp.name) / "api-proof.json"
+        mirror = Path(self.temp.name) / "no-git"
+        def verify(value, expected=None, given_commit=commit):
+            raw = replica.canonical(value)
+            proof.write_bytes(raw)
+            return replica.verify_git(mirror, given_commit, proof=proof, proof_sha=expected or replica.digest(raw))
+        with patch.object(replica.subprocess, "check_output", side_effect=AssertionError("API proof invoked Git")):
+            publication, raw = verify(document)
+            self.assertEqual(publication["tree"], document["tree"])
+            self.assertEqual(publication["proof_sha256"], replica.digest(raw))
+            for key, value in (("repository", "other/repository"), ("source", "local_guess"),
+                               ("tree", "bad"), ("commit", "c" * 40), ("status", "pending")):
+                with self.assertRaises(ValueError):
+                    verify(dict(document, **{key: value}))
+            for key, value in (("path", "wrong/replicate.py"), ("git_blob_sha", "d" * 40), ("sha256", "e" * 64)):
+                with self.assertRaises(ValueError):
+                    verify(dict(document, files=[dict(files[0], **{key: value}), files[1]]))
+            with self.assertRaises(ValueError):
+                verify(dict(document, files=files[:1] * 2))
+            with self.assertRaises(ValueError):
+                verify(document, expected="0" * 64)
+
+    def test_local_git_resolves_exact_file_paths(self):
+        repo = Path(self.temp.name) / "synthetic_git"
+        repo.mkdir()
+        def git(*args):
+            return subprocess.check_output(["git", "-C", str(repo), *args], text=True).strip()
+        git("init", "--quiet")
+        destination = repo / replica.PUBLISHED_DIR
+        destination.mkdir(parents=True)
+        for path in (replica.SELF, replica.PRELOCK):
+            (destination / path.name).write_bytes(path.read_bytes())
+        git("-c", "core.autocrlf=false", "add", "--", replica.PUBLISHED_DIR)
+        git("-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", "-c", "commit.gpgsign=false",
+            "commit", "--quiet", "-m", "Generated fixture")
+        commit = git("rev-parse", "HEAD")
+        publication, raw = replica.verify_git(repo, commit)
+        self.assertEqual((publication["source"], publication["tree"], raw), ("local_git", git("rev-parse", "HEAD^{tree}"), None))
 
     def test_historical_source_manifest_without_training_inputs(self):
         work = Path(os.environ["SAR_SEAL_RUNTIME_ROOT"]) / "RFDETR_COMMON5203_E24_SYNTHETIC"

@@ -1,6 +1,6 @@
 """Own the single center/common-retention 5203 replication on the historical Windows runtime."""
 import argparse
-from hashlib import sha256
+from hashlib import sha1, sha256
 from io import BytesIO
 import inspect
 import json
@@ -22,6 +22,9 @@ LEDGER = "b35188724345316284ee9f4a03a7c1da8d8c4c4e9b4d7727c13baaea5c9a8143"
 ACCEPT = "89b98e67a9b7596cae58ee14dc9aa028ac2c35109bdf3fd633915f83eec706b6"
 SELF = Path(__file__).resolve()
 PRELOCK = SELF.with_name("PRELOCK.json")
+REPOSITORY = "bingzhi495-creator/SAR-SEAL-research"
+PUBLISHED_DIR = "research_round_20260925_global/code/RFDETR_COMMON5203_E24_REPLICATION_20261121"
+PROOF_NAME = "PUBLICATION_PROOF_PRIVATE.json"
 QUALIFIED = "SHORT_PAIR_ACCEPTED_SAFE.json"
 COMPLETE = "CENTER_E24_ACCEPTED_PRIVATE.json"
 STAGES = (("qualification", "native"), ("qualification", "center"), ("e24", "center"))
@@ -98,38 +101,84 @@ def context(work, *, needs_containment):
                            hashes={**hashes, base.SELF: digest(derived)})
 
 
-def verify_git(release, commit):
+def git_blob_sha(data):
+    return sha1(b"blob " + str(len(data)).encode("ascii") + b"\x00" + data).hexdigest()
+
+
+def verify_proof(path, expected_sha, commit):
+    need(re.fullmatch("[0-9a-f]{64}", expected_sha or "") is not None, "Owner must supply proof file SHA256")
+    with path.open("rb") as stream:
+        raw = stream.read(65537)
+    need(0 < len(raw) <= 65536 and digest(raw) == expected_sha, "Owner-bound publication proof differs")
+    def unique(pairs):
+        obj = dict(pairs)
+        need(len(obj) == len(pairs), "Duplicate publication proof key")
+        return obj
+    record = json.loads(raw, object_pairs_hook=unique)
+    need(isinstance(record, dict) and set(record) == {"status", "source", "repository", "commit", "tree", "files"}
+         and record["status"] == "GITHUB_API_COMMIT_TREE_AND_BLOBS_VERIFIED" and record["source"] == "github_api"
+         and record["repository"] == REPOSITORY and record["commit"] == commit
+         and isinstance(record["tree"], str) and re.fullmatch("[0-9a-f]{40}", record["tree"]) is not None,
+         "Expected owner-verified repository, commit and root tree")
+    files = record["files"]
+    need(isinstance(files, list) and len(files) == 2 and all(isinstance(row, dict) for row in files),
+         "Proof must identify the two exact intended files")
+    expected = []
+    for file in (SELF, PRELOCK):
+        data = file.read_bytes()
+        expected.append(dict(path=PUBLISHED_DIR + "/" + file.name, git_blob_sha=git_blob_sha(data), sha256=digest(data)))
+    need(all(set(row) == {"path", "git_blob_sha", "sha256"} and isinstance(row["path"], str) for row in files)
+         and sorted(files, key=lambda row: row["path"]) == sorted(expected, key=lambda row: row["path"]),
+         "Published paths, Git blob identities or exact file SHA256 differ")
+    return dict(source="github_api_owner_proof", repository=REPOSITORY, tree=record["tree"], proof_sha256=expected_sha), raw
+
+
+def verify_git(release, commit, *, proof=None, proof_sha=None):
     need(re.fullmatch("[0-9a-f]{40}", commit) is not None, "Full prospective Git commit required")
+    need((proof is None) == (proof_sha is None), "Supply the publication proof path and its owner-bound SHA256 together")
+    if proof is not None:
+        return verify_proof(proof, proof_sha, commit)
     found = subprocess.check_output(["git", "-C", str(release), "rev-parse", "--verify", commit + "^{commit}"],
                                     text=True).strip()
     need(found == commit, "Unavailable prospective protocol commit")
-    blobs = set(subprocess.check_output(["git", "-C", str(release), "ls-tree", "-r", "--format=%(objectname)",
-                                         commit], text=True).splitlines())
+    tree = subprocess.check_output(["git", "-C", str(release), "rev-parse", commit + "^{tree}"], text=True).strip()
     for path in (SELF, PRELOCK):
-        data = path.read_bytes().replace(b"\r\n", b"\n")
-        oid = subprocess.check_output(["git", "-C", str(release), "hash-object", "--stdin"], input=data)
-        need(oid.decode().strip() in blobs, "Commit must contain exact " + path.name)
+        data = path.read_bytes()
+        oid = subprocess.check_output(["git", "-C", str(release), "rev-parse",
+                                       commit + ":" + PUBLISHED_DIR + "/" + path.name], text=True).strip()
+        need(oid in {git_blob_sha(data), git_blob_sha(data.replace(b"\r\n", b"\n"))},
+             "Commit must contain exact " + path.name)
+    return dict(source="local_git", repository=REPOSITORY, tree=tree, proof_sha256=None), None
 
 
-def header(ctx, commit):
+def header(ctx, commit, publication):
     return dict(status="RFDETR_COMMON5203_CENTER_PREPARED", commit=commit, training_seed=5203,
                 initialization_seed=5201, initial_expanded_sha256=ctx.base.INITIAL_EXPANDED_SHA,
                 fit_index_sha256=ctx.base.FIT_INDEX_SHA, owner_sha256=digest(SELF.read_bytes()),
-                prelock_sha256=digest(PRELOCK.read_bytes()), source_sha256s=ctx.hashes)
+                prelock_sha256=digest(PRELOCK.read_bytes()), source_sha256s=ctx.hashes, publication=publication)
 
 
-def prepare(ctx, commit):
-    verify_git(ctx.short.ROOT / "github_release_20261011", commit)
+def prepare(ctx, commit, *, proof=None, proof_sha=None):
+    publication, raw = verify_git(ctx.short.ROOT / "github_release_20261011", commit, proof=proof, proof_sha=proof_sha)
     ctx.work.mkdir()
     ctx.worker_path.parent.mkdir()
     write(ctx.worker_path, ctx.derived)
-    write(ctx.work / "PREPARED.json", canonical(header(ctx, commit)))
+    if raw is not None:
+        write(ctx.work / PROOF_NAME, raw)
+    write(ctx.work / "PREPARED.json", canonical(header(ctx, commit, publication)))
 
 
 def bind(ctx):
     record = json.loads((ctx.work / "PREPARED.json").read_bytes())
     ctx.commit = record["commit"]
-    need(record == header(ctx, ctx.commit), "Prepared sources or protocol changed")
+    publication = record["publication"]
+    if publication["source"] == "github_api_owner_proof":
+        publication, _ = verify_proof(ctx.work / PROOF_NAME, publication["proof_sha256"], ctx.commit)
+    else:
+        need(publication["source"] == "local_git" and publication["repository"] == REPOSITORY
+             and publication["proof_sha256"] is None and re.fullmatch("[0-9a-f]{40}", publication["tree"])
+             and not (ctx.work / PROOF_NAME).exists(), "Expected recorded local Git commit verification")
+    need(record == header(ctx, ctx.commit, publication), "Prepared sources or protocol changed")
     ctx.worker = pinned(ctx.worker_path, ctx.hashes[ctx.base.SELF], "common_fit_train")
     need(ctx.worker.TRAINING_SEED == 5203 and ctx.worker.INITIALIZATION_SEED == 5201, "Exact 5203/5201 split")
     ctx.refs = {name: ctx.owner.ref(ctx.worker_path if name == ctx.base.SELF else path)
@@ -315,15 +364,18 @@ def main(argv=None):
     parser.add_argument("action", choices=("prepare", "qualify", "train", "accept", "inner"))
     parser.add_argument("--work", required=True, type=Path)
     parser.add_argument("--commit")
+    parser.add_argument("--publication-proof", type=Path)
+    parser.add_argument("--publication-proof-sha256")
     parser.add_argument("--stage", choices=("qualification", "e24"))
     parser.add_argument("--mode", choices=("native", "center"))
     args = parser.parse_args(argv)
     ctx = context(args.work, needs_containment=args.action in ("qualify", "train", "inner"))
     if args.action == "prepare":
         need(args.commit is not None and args.stage is args.mode is None, "Prepare requires the prospective commit")
-        prepare(ctx, args.commit)
+        prepare(ctx, args.commit, proof=args.publication_proof, proof_sha=args.publication_proof_sha256)
     else:
-        need(args.commit is None, "Existing immutable preparation supplies the commit")
+        need(args.commit is args.publication_proof is args.publication_proof_sha256 is None,
+             "Existing immutable preparation supplies the commit and publication evidence")
         bind(ctx)
         if args.action == "inner":
             arm = arm_paths(ctx, args.stage, args.mode)
