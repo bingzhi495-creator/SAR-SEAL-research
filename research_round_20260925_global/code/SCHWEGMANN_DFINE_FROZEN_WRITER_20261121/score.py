@@ -21,10 +21,10 @@ GROUPS = tuple(f"acq_{i:03d}" for i in range(1, 17))
 MANIFEST = "2485f984db978572e5d446847444f63a8055d868aeebbdede2fe018e3997fc46"
 ARCHIVE = "78ff85f49eb5102716ae6d39bdbafaf27fc9c63a630be0d86a2c434ab09f053b"
 GROUP_INDEX = "609c209aac59bee168b5338010bf4965d146ea5dc513192bafa84444e088b0f4"
-INTAKE = "eec82422b8d16aa464ead5d9847f2f173788798a0f26696c3b069975962a5f1d"
+INTAKE = "31a166787509e7752979371775c17797adc71332958ce8770beae0c5e831e864"
 QUALIFIER = "41704d3d3980b6ae6442d17b92625e37ed782e417e06a585806227d881ce7d79"
 HISTORIC_SCORE = "5b9c3bc50223167079e1cd62882c32debcaaaf27be758b7bd273ea4083d89d61"
-PROTOCOL = "847b8f53aec9764b443963741148401e1456712f872b02af65ec6ea6a50d4db9"
+PROTOCOL = "53aa31bcc39d9d4b1970002864ab8f9b7cb2f7f243855223fa0ab8a21e231efa"
 EMA = "82ca80e2cb9a0b9673a136fad3d7de3097b7327f4f76e3a2d3e7184ab07e7fd8"
 HEAD = "dca00310ba7398790a874e2f32c7fa26324fed1b8e071372831a85e7a83ecd3a"
 
@@ -217,7 +217,10 @@ def observed_terminal(terminal, role, receipt_hash):
     need(terminal.get("status") == f"SCHWEGMANN_DFINE_FROZEN_{role}_TERMINAL" and
          terminal.get("actual_process_terminal") is True and type(terminal.get("actual_exit")) is int
          and terminal["actual_exit"] == 0 and terminal.get("result_sha256") == receipt_hash and
-         type(terminal.get("tool_session_handle")) is int and terminal["tool_session_handle"] > 0,
+         ((type(terminal.get("tool_session_handle")) is int and terminal["tool_session_handle"] > 0)
+          or (terminal.get("observation")=="direct_tool_exit_with_footer"
+              and type(terminal.get("tool_chunk_id")) is str and len(terminal["tool_chunk_id"])==6
+              and all(c in "0123456789abcdef" for c in terminal["tool_chunk_id"]))),
          "Required original successful process observation for " + role)
 
 

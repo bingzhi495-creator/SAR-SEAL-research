@@ -10,3 +10,25 @@ Report acquisition-equal IoU, Dice, 0.50 and 0.75 recovery, exact candidate and 
 
 
 The exact image intake retained 750 unique decoded 101-pixel crops after excluding the 32 previously scored inputs. A second readback reconstructed every PNG and verified the acquisition counts and original image digests. The source and split were fixed before detector inference. [Image-only aggregate](results/SCHWEGMANN_DFINE_IMAGESET_SAFE_20261121.json)
+
+
+## Frozen panel outcome
+
+The frozen D-FINE selects a ranked center candidate on 572 of 750 crops. Among these, 465 masks are empty and 107 contain 1–31 native pixels. The other 178 have no selected candidate. The minimum edit area is 32 pixels. No candidate meets it. All five arms produce identical masks, with zero added or removed pixels.
+
+| Quantity | Result |
+| --- | ---: |
+| Images / conservative acquisition groups | 750 / 16 |
+| Nonempty selected masks / area-eligible masks | 107 / 0 |
+| Acquisition-equal IoU, scaled by 100 | 0.9222 |
+| Acquisition-equal Dice, scaled by 100 | 1.3835 |
+| Original IoU of at least 0.50 / 0.75 | 3 / 1 |
+
+The capture, writer and original scoring process each exited 0. A separate reader reproduced all image and capture counts, the original reference masks, mask selection, the 16 group summaries and all paired intervals. The missing, empty and too-small masks localize the failure to upstream coverage. The zero paired effect describes the frozen recipe on this evaluation panel. The effect on eligible center candidates remains open.
+
+The 32 previous scoring images are excluded. The 16 acquisition groups were previously sampled in another detector comparison. The center-only annotations measure the selected scatter support inside each crop. These results characterize center-mask overlap.
+
+- [Exact frozen protocol](code/SCHWEGMANN_DFINE_FROZEN_WRITER_20261121/PROTOCOL.md)
+- [Original score](results/SCHWEGMANN_DFINE_FROZEN_CENTER_SCORE_SAFE_20261121.json)
+- [Independent actual recomputation](results/SCHWEGMANN_DFINE_FROZEN_CENTER_INDEPENDENT_20261121.json)
+- [Author accession](https://sarmaps.gitlab.io/analysis_data.html)
