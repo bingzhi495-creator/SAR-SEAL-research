@@ -2,7 +2,9 @@
 
 <!-- U57_U60_ACTUAL_20261021_01 -->
 
-## 当前状态（2026-11-11）
+## 当前状态（2026-11-21）
+
+- [论文收尾计划](research_round_20260925_global/PAPER_CLOSEOUT_PLAN_20261121.md)。最后一轮整合实验封板后完成英文稿、可编辑图源和复现核验。审阅交付截止为北京时间 11 月 24 日 22:00。
 
 - [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。 [通用复合仿射实测](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md#通用复合仿射的真实-fit-对照)在相同等距取整下，与单次中心的 4,145 条训练掩膜及源像素索引逐值一致。
 - [HRSID 中心模型的双侧边缘筛选](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md)。36 张 FIT 图实际前向，在 109 个固定匹配上仅有 2 个有效编辑，与普通对照同向，未过门槛。[等预算真值上界](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#同一位移菜单的真值上界)短轴 +1.549、长轴 +1.029 点，两轴差区间跨零。[同编辑预算局部上界](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#同编辑预算的局部轮廓上界)较最佳平移 +4.777 点，严格匹配 11→32。[固定查询位移试点](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#固定查询的配准位移试点实测)完成 180 次 CPU 前向。评分纳入 166 个固定匹配，法向读出较不编辑 −0.575 IoU 点，未通过预锁门槛。 [同次数的补删比例上界](research_round_20260925_global/HRSID_FIT_AREA_FLEX_ORACLE_ACTUAL_20261112.md)在相同 1,718 次翻转下较等量补删多 +0.766 连续 IoU 点，严格达标 24→26。动作由真值选择。 [三种子候选关联试点](research_round_20260925_global/HRSID_FIT_SEED_CONSENSUS_20261112.md)完成 108 次前向，双供体仅 47 个候选、4 个来源组，覆盖门槛未通过。 [关联与身份风险复算](research_round_20260925_global/HRSID_FIT_ASSOC_STRUCTURE_20261112.md)普通贪心确认 131 艘船、35 个来源组，保留全部未决关系。 [新图组面积确认](research_round_20260925_global/HRSID_FIT_SEED_AREA_CONFIRM_20261112.md)均值校准减小 0.934 点面积误差，中位数未超过普通均值，按门槛停止。
