@@ -1,0 +1,104 @@
+{
+  "schema": "PSEG_TEST232_DFINE_FROZEN_NATURAL_CPU_COST_V1",
+  "status": "PAIRED_CPU_STAGE_TIMINGS_COMPLETE",
+  "prelock_sha256": "906f3ca07bfa133dd963ed87556b010534574c440084573c76f543a73088fc3c",
+  "worker_sha256": "410e4f456c081ab27e5acf8af8d1c6a789e206e4d36b52d7bc8c7232d5f4595e",
+  "independent_replay_sha256": "e99d0f2bbd9e1839e260a88075f6af187e05ffc2b86abaf6cc33b788372b7b71",
+  "original_replay_sha256": "531b979c316c58f608e48205a2f86e66e666eae61c1029de59c8229a941c937e",
+  "original_approved_capture_sha256": "dc48e18c0b988fda3eada68dc06b1404fd5c3806502e32d455a08a2e96d0121c",
+  "source_endpoint_sha256": "82ca80e2cb9a0b9673a136fad3d7de3097b7327f4f76e3a2d3e7184ab07e7fd8",
+  "source_head_acceptance_sha256": "dca00310ba7398790a874e2f32c7fa26324fed1b8e071372831a85e7a83ecd3a",
+  "images": 232,
+  "warmup_pairs_per_image": 1,
+  "measured_pairs_per_image": 2,
+  "per_image_order": "alternating AB/BA",
+  "complete_rle_score_rank_parity": true,
+  "raw_natural_output_checks_per_arm": 696,
+  "output_latency_includes": "native size adapter setup, 5 image features, eligible proposals and occupancy, natural selection and edited COCO RLE",
+  "timings": {
+    "wall_raw": {
+      "mean_ms": 0.002002155172413793,
+      "median_ms": 0.0017499999999999998,
+      "p95_ms": 0.00275,
+      "summed_seconds": 0.0004645
+    },
+    "wall_natural": {
+      "mean_ms": 181.2452228448276,
+      "median_ms": 186.52949999999998,
+      "p95_ms": 331.36961749999995,
+      "summed_seconds": 42.0488917
+    },
+    "wall_incremental": {
+      "mean_ms": 181.24322068965517,
+      "median_ms": 186.527425,
+      "p95_ms": 331.3677124999999,
+      "summed_seconds": 42.0484272
+    },
+    "process_cpu_raw": {
+      "mean_ms": 0.033674568965517244,
+      "median_ms": 0.0,
+      "p95_ms": 0.0,
+      "summed_seconds": 0.0078125
+    },
+    "process_cpu_natural": {
+      "mean_ms": 177.19558189655172,
+      "median_ms": 179.6875,
+      "p95_ms": 323.8281249999999,
+      "summed_seconds": 41.109375
+    },
+    "process_cpu_incremental": {
+      "mean_ms": 177.16190732758622,
+      "median_ms": 179.6875,
+      "p95_ms": 323.8281249999999,
+      "summed_seconds": 41.1015625
+    }
+  },
+  "aggregate_incremental_wall_seconds_per_repetition": [
+    41.99533630000003,
+    42.10151810000002
+  ],
+  "original_capture": {
+    "export_result_sha256": "6107389d36848d8d0e24db2cc82518f73494cd990a9f71fe18e473da0f1201c9",
+    "images": 232,
+    "forward_postprocess_seconds": 11.736538499988455,
+    "total_capture_seconds": 18.829707200000485,
+    "model_precision": "FP32_TF32_disabled",
+    "mask_resize_precision": "author_CUDA_FP16"
+  },
+  "stage_counts_and_input_times": {
+    "capture_stream_read_parse_validate_seconds": 6.942745999989711,
+    "jpeg_read_and_encoded_digest_seconds": 1.5110252000158653,
+    "jpeg_decode_orient_rgb_seconds": 0.35892180000882945,
+    "edited_candidates": 10466,
+    "swaps": 55040,
+    "candidates": 23200
+  },
+  "startup_and_source_verification_seconds": 2.3204880000012054,
+  "benchmark_body_seconds": 137.5576312000012,
+  "python": "3.10.13",
+  "packages": {
+    "torch": "2.10.0+cu130",
+    "numpy": "1.26.4",
+    "scipy": "1.15.3",
+    "Pillow": "12.3.0",
+    "pycocotools": "2.0.11"
+  },
+  "cpu": "13th Gen Intel(R) Core(TM) i7-13700KF",
+  "os": "Windows-10-10.0.26200-SP0",
+  "torch_intra_threads": 1,
+  "torch_interop_threads": 1,
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "wall_clock": "QueryPerformanceCounter()",
+  "other_HRSID_CPU_task_active_at_benchmark_setup": true,
+  "GT_opened": false,
+  "AP": false,
+  "optimizer_updates": 0,
+  "model_forwards": 0,
+  "cuda_initialized": false,
+  "paired_times_sha256": "76766c725811b8ec9db1efacea46a783612c65432ea1c4fe12c931b558f6659c"
+}

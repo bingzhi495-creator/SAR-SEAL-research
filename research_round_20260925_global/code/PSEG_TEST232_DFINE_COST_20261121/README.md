@@ -1,0 +1,7 @@
+# CPU stage benchmark reproduction
+
+The public driver replaces the original machine-specific paths with environment inputs. The result retains the original worker identity and measured output checks. The public driver uses the same timing loop, frozen candidate and point-head inputs, and exact RLE checks.
+
+Set PSEG_COST_SOURCE_ROOT to the directory of the retained capture, replay, replay readback and FIT head with the names used in the benchmark. It also contains the independent release copy. Set PSEG_COST_AUDIT_OWNER to the stage's verified manifest and capture admission directory, and PSEG_COST_REPLAY_SOURCE to the published PSeg TEST replay program. Use the pinned Python and package versions shown in the result, CUDA_VISIBLE_DEVICES=-1, and OMP_NUM_THREADS, MKL_NUM_THREADS, OPENBLAS_NUM_THREADS and NUMEXPR_NUM_THREADS set to 1. Run the benchmark in a fresh folder containing the original BENCHMARK_PROTOCOL.md. Set PSEG_COST_CPU_DESCRIPTION and PSEG_COST_SHARED_HOST to describe the actual run. The driver writes RESULT_SAFE.json and PAIRED_TIMES_SAFE.json beside itself.
+
+verify_cost.py preserves the observed source-run comparison. Use the original source receipt to verify the historical summary. An equivalent reproduction uses the portable driver, a fresh output directory and its own observed worker digest.

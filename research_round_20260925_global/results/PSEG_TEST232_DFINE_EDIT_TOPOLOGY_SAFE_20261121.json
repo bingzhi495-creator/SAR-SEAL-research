@@ -1,0 +1,157 @@
+{
+  "connectivity": {
+    "background": 4,
+    "foreground": 8
+  },
+  "model_forwards": 0,
+  "optimizer_updates": 0,
+  "purpose": "Historical target-split, descriptive label-free mask topology audit",
+  "runtime": {
+    "numpy": "1.26.4",
+    "pycocotools": "2.0.11",
+    "scipy": "1.15.3"
+  },
+  "seconds": 36.79818960000193,
+  "source_receipt_sha256": "e99d0f2bbd9e1839e260a88075f6af187e05ffc2b86abaf6cc33b788372b7b71",
+  "source_sha256": "22fa7dc697635ada8fcdf7b18d57f6e31ccc7e122f229a99120a6bbf50fc87b1",
+  "status": "PSEG_TEST232_DFINE_EDIT_TOPOLOGY_DIAGNOSTIC_COMPLETE",
+  "target_labels_opened": false,
+  "views": {
+    "exclude_exact_fit_overlap": {
+      "arms": {
+        "fixed": {
+          "components_decreased": 138,
+          "components_increased": 296,
+          "edited": 6175,
+          "holes_decreased": 24,
+          "holes_increased": 1663,
+          "largest_component_lost_pixels": 3801,
+          "largest_component_share_mean_delta_points": -0.04606583273792431,
+          "newly_disconnected": 87,
+          "singleton_count_increased": 181
+        },
+        "free_matched_count": {
+          "components_decreased": 248,
+          "components_increased": 218,
+          "edited": 6175,
+          "holes_decreased": 41,
+          "holes_increased": 1127,
+          "largest_component_lost_pixels": 5123,
+          "largest_component_share_mean_delta_points": -0.00277095763427126,
+          "newly_disconnected": 84,
+          "singleton_count_increased": 154
+        },
+        "free_natural": {
+          "components_decreased": 465,
+          "components_increased": 313,
+          "edited": 10113,
+          "holes_decreased": 73,
+          "holes_increased": 1493,
+          "largest_component_lost_pixels": 7744,
+          "largest_component_share_mean_delta_points": 0.05652742878071698,
+          "newly_disconnected": 128,
+          "singleton_count_increased": 242
+        },
+        "native_matched_count": {
+          "components_decreased": 333,
+          "components_increased": 450,
+          "edited": 10113,
+          "holes_decreased": 45,
+          "holes_increased": 493,
+          "largest_component_lost_pixels": 5784,
+          "largest_component_share_mean_delta_points": -0.011247474288619554,
+          "newly_disconnected": 163,
+          "singleton_count_increased": 369
+        }
+      },
+      "candidates": 22200,
+      "comparisons": {
+        "free_matched_count minus fixed": {
+          "candidate_edits": 6175,
+          "fewer_foreground_components": 384,
+          "fewer_holes": 986,
+          "more_foreground_components": 209,
+          "more_holes": 299,
+          "swaps": 28090
+        },
+        "free_natural minus native_matched_count": {
+          "candidate_edits": 10113,
+          "fewer_foreground_components": 655,
+          "fewer_holes": 323,
+          "more_foreground_components": 401,
+          "more_holes": 1336,
+          "swaps": 53053
+        }
+      },
+      "images": 222
+    },
+    "official": {
+      "arms": {
+        "fixed": {
+          "components_decreased": 142,
+          "components_increased": 310,
+          "edited": 6404,
+          "holes_decreased": 24,
+          "holes_increased": 1739,
+          "largest_component_lost_pixels": 3891,
+          "largest_component_share_mean_delta_points": -0.04801701749498988,
+          "newly_disconnected": 95,
+          "singleton_count_increased": 187
+        },
+        "free_matched_count": {
+          "components_decreased": 255,
+          "components_increased": 225,
+          "edited": 6404,
+          "holes_decreased": 41,
+          "holes_increased": 1169,
+          "largest_component_lost_pixels": 5571,
+          "largest_component_share_mean_delta_points": -0.00964438516263902,
+          "newly_disconnected": 88,
+          "singleton_count_increased": 157
+        },
+        "free_natural": {
+          "components_decreased": 475,
+          "components_increased": 323,
+          "edited": 10466,
+          "holes_decreased": 73,
+          "holes_increased": 1544,
+          "largest_component_lost_pixels": 8208,
+          "largest_component_share_mean_delta_points": 0.05845102312988476,
+          "newly_disconnected": 133,
+          "singleton_count_increased": 250
+        },
+        "native_matched_count": {
+          "components_decreased": 343,
+          "components_increased": 463,
+          "edited": 10466,
+          "holes_decreased": 45,
+          "holes_increased": 519,
+          "largest_component_lost_pixels": 5867,
+          "largest_component_share_mean_delta_points": -0.007650852194665478,
+          "newly_disconnected": 168,
+          "singleton_count_increased": 378
+        }
+      },
+      "candidates": 23200,
+      "comparisons": {
+        "free_matched_count minus fixed": {
+          "candidate_edits": 6404,
+          "fewer_foreground_components": 398,
+          "fewer_holes": 1036,
+          "more_foreground_components": 213,
+          "more_holes": 308,
+          "swaps": 29304
+        },
+        "free_natural minus native_matched_count": {
+          "candidate_edits": 10466,
+          "fewer_foreground_components": 674,
+          "fewer_holes": 338,
+          "more_foreground_components": 417,
+          "more_holes": 1377,
+          "swaps": 55040
+        }
+      },
+      "images": 232
+    }
+  }
+}
