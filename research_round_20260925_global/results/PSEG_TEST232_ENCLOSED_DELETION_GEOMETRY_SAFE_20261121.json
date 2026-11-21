@@ -1,0 +1,129 @@
+{
+  "comparison": "Post hoc historical test localized to original COCO .50 fixed pairs",
+  "definition": "Deleted stock foreground cells in a 4-connected enclosed background region of the edited raster",
+  "detector_forwards": 0,
+  "geometry_audit_source_sha256": "107f31864bbb7e807a4194e552c7a1778d410f0e564f80437c5717fe6b47098d",
+  "optimizer_updates": 0,
+  "original_score_sha256": "9bc6411cf35ee355f142a5fa5588c8e5820127b8101acf4da0e653e70553d3d1",
+  "seconds": 5.432969900000899,
+  "source_sha256": "7593d8f7c602a2190d9a6c3c8970d70d07f216aac58244f59c42f8763ad9ef1c",
+  "status": "PSEG_TEST232_ENCLOSED_DELETION_GEOMETRY_COMPLETE",
+  "views": {
+    "exclude_exact_fit_overlap": {
+      "average_area_of_enclosed_true_deletions_points": {
+        "fixed": 0.013484632135919716,
+        "free_matched_count": 0.0012060566570480003,
+        "free_natural": 0.002079505784744818,
+        "native_matched_count": 0.010150118231813506
+      },
+      "candidates_affected": {
+        "fixed_candidates_with_enclosed_deletions": 7,
+        "free_matched_count_candidates_with_enclosed_deletions": 1,
+        "free_natural_candidates_with_enclosed_deletions": 2,
+        "native_matched_count_candidates_with_enclosed_deletions": 4
+      },
+      "contributing_decoded_images": 138,
+      "eligible_pairs": 279,
+      "paired_contrasts": {
+        "free_matched_count minus fixed": {
+          "interval95_points": [
+            -0.024040076484111068,
+            -0.002995693260103243
+          ],
+          "mean_points": -0.012278575478871715
+        },
+        "free_natural minus native_matched_count": {
+          "interval95_points": [
+            -0.02343663251029484,
+            0.0017515168630161972
+          ],
+          "mean_points": -0.008070612447068687
+        }
+      },
+      "pooled_edits": {
+        "fixed": {
+          "all_deleted_cells": 849.0,
+          "enclosed_deleted_cells": 11.0,
+          "true_polygon_area_all_deleted_cells": 631.0533548312707,
+          "true_polygon_area_enclosed_deleted_cells": 10.835107348738667
+        },
+        "free_matched_count": {
+          "all_deleted_cells": 849.0,
+          "enclosed_deleted_cells": 2.0,
+          "true_polygon_area_all_deleted_cells": 591.1484526055015,
+          "true_polygon_area_enclosed_deleted_cells": 2.0
+        },
+        "free_natural": {
+          "all_deleted_cells": 1786.0,
+          "enclosed_deleted_cells": 3.0,
+          "true_polygon_area_all_deleted_cells": 1347.1758662485934,
+          "true_polygon_area_enclosed_deleted_cells": 3.0
+        },
+        "native_matched_count": {
+          "all_deleted_cells": 1786.0,
+          "enclosed_deleted_cells": 11.0,
+          "true_polygon_area_all_deleted_cells": 1445.7072749375372,
+          "true_polygon_area_enclosed_deleted_cells": 10.0
+        }
+      }
+    },
+    "official": {
+      "average_area_of_enclosed_true_deletions_points": {
+        "fixed": 0.013013141501796648,
+        "free_matched_count": 0.0011638868438645037,
+        "free_natural": 0.0020067957922712226,
+        "native_matched_count": 0.009795218992938908
+      },
+      "candidates_affected": {
+        "fixed_candidates_with_enclosed_deletions": 7,
+        "free_matched_count_candidates_with_enclosed_deletions": 2,
+        "free_natural_candidates_with_enclosed_deletions": 3,
+        "native_matched_count_candidates_with_enclosed_deletions": 4
+      },
+      "contributing_decoded_images": 143,
+      "eligible_pairs": 293,
+      "paired_contrasts": {
+        "free_matched_count minus fixed": {
+          "interval95_points": [
+            -0.023139204303455445,
+            -0.0029978267135126867
+          ],
+          "mean_points": -0.011849254657932146
+        },
+        "free_natural minus native_matched_count": {
+          "interval95_points": [
+            -0.022327175436647514,
+            0.001689484258004774
+          ],
+          "mean_points": -0.007788423200667682
+        }
+      },
+      "pooled_edits": {
+        "fixed": {
+          "all_deleted_cells": 881.0,
+          "enclosed_deleted_cells": 11.0,
+          "true_polygon_area_all_deleted_cells": 659.5336530844985,
+          "true_polygon_area_enclosed_deleted_cells": 10.835107348738667
+        },
+        "free_matched_count": {
+          "all_deleted_cells": 881.0,
+          "enclosed_deleted_cells": 3.0,
+          "true_polygon_area_all_deleted_cells": 617.766965067354,
+          "true_polygon_area_enclosed_deleted_cells": 2.0
+        },
+        "free_natural": {
+          "all_deleted_cells": 1855.0,
+          "enclosed_deleted_cells": 4.0,
+          "true_polygon_area_all_deleted_cells": 1409.9135315328313,
+          "true_polygon_area_enclosed_deleted_cells": 3.0
+        },
+        "native_matched_count": {
+          "all_deleted_cells": 1855.0,
+          "enclosed_deleted_cells": 11.0,
+          "true_polygon_area_all_deleted_cells": 1510.2574803858886,
+          "true_polygon_area_enclosed_deleted_cells": 10.0
+        }
+      }
+    }
+  }
+}

@@ -10,6 +10,8 @@
 
 - [HRSID 冻结边界修正复验](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_PRELOCK_20261121.md)已启动。三个 HRSID FIT 点头沿用原特征、模型、阈值和编辑预算，对每张测试图重放并核对原候选，再计算四种修正策略。第一批原生实现的一致性核验已通过，修正效果须等待全量独立回读和评分。[评分方案与合成测试](research_round_20260925_global/code/HRSID_OFFICIAL_FROZEN_REFINEMENT_SCORE_20261121/README.md)
 
+- [HRSID FIT109 拓扑对照实测](research_round_20260925_global/FIT109_BOUNDARY_SIMPLE_POINT_PILOT_ACTUAL_20261121.md)复现原五折和四个历史结果。各等量方案 36,351 次交换。拓扑约束将组件或孔洞数发生变化的掩膜由两种同量对照的 806／646 个降为 0，AP 相同，连续 IoU 差 −0.0035 点，未过预锁门槛。
+
 - [FIT109 三种子排序与邻域方向对照](research_round_20260925_global/code/FIT109_QUERY_LOGIT_ORDER_CONTEXT_20261121/CONTEXT_NOTE.md)。相同编辑预算下，普通成对损失较 BCE 平均 +0.078 AP 点，三个种子中有一个小幅下降。保留角度的邻域读出较环内排序低 0.437 AP 点，未达预锁条件。数据与英文审阅稿已更新。
 
 - [HRSID 官方 PNG 输入审计](research_round_20260925_global/HRSID_OFFICIAL_PNG_TEST_INPUT_ACTUAL_20261121.md)已完成实测和独立复核。1,962 图、5,922 条原标注保留为正式评分主口径。发现 4 条空栅格、2 张与 FIT 完全相同的图及 1 组 TEST 内重复，已冻结两套敏感性口径。[原生基线评分源码与合成核验](research_round_20260925_global/code/HRSID_OFFICIAL_BASELINE_SCORE_20261121/README.md)
