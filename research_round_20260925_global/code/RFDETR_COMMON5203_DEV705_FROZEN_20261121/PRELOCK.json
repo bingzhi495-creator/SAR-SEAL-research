@@ -1,0 +1,14 @@
+{
+  "phase": "RFDETR_COMMON5203_DEV705_FROZEN_PRELABEL_V1",
+  "scope": "Image-only native and refinement replay on the original 705 HRSID DEV images. Both forward passes use the independently accepted common-retention center 5203 E24 EMA.",
+  "detector_init_seed": 5201,
+  "detector_training_seed": 5203,
+  "fit_acceptance_sha256": "476b0f3fa748d1d3fd2393bdeb1af2d83e1532995d58b12625d57222e3f2638a",
+  "head_seeds": [5217, 5218, 5219],
+  "point_heads": "Original common5202 all-FIT109 heads, preprocessing scalers, native 14-feature extractor and support rules.",
+  "policies": ["N", "SF", "SU=F", "SU", "LW=S"],
+  "reference": "Generate this new detector's native rows on the original DEV705 CUDA FP32 path with TF32 disabled. Hash its raw FP32 Q164 class logits, boxes and every 144x144 mask plane by image. A separate process runs its own forward, compares all raw hashes and verifies byte-identical native ranks, scores, slot omissions and compressed RLEs before writing edits.",
+  "point_math": "Original CPU float32 posterior and point heads. If the CPU interpolated logit sign disagrees with the original GPU raster, require exact stock sign on the detector device and use the original-device interpolated sigmoid for this query. Store the raw plane, probability field, identity, disagreement count and digests for each such query.",
+  "outputs": "Shared original N and original official capture-format witnesses/12 treatment predictions. Independent readback validates joint-score query identities, native ordering, per-candidate XOR and match counts before labels.",
+  "statistical_contrast": "Use SU=F minus SF as the primary matched-count comparison and report paired SU minus N and SU minus LW=S alongside all head seeds. Source-level paired analysis compares the two same-recipe detectors. Two detector seeds describe observed replication; they do not estimate a population distribution of training outcomes."
+}
