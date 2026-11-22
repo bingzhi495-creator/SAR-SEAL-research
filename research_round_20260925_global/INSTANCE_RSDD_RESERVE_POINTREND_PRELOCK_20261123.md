@@ -1,0 +1,17 @@
+# Frozen PointRend comparison on additional Instance-RSDD parents
+
+The previous study compared independent selection and fixed pairing on 74 author-training images from 13 parents outside the scored 740-image cohort. The planned direct PointRend comparison on these parents remains open. The 740-image study found better occupancy ranking at the same supports and per-candidate counts, while PointRend's full RoI paste obtained higher AP. This run asks whether the controlled ranking advantage transfers to the additional parents. The reserve has already been scored for the pairing comparison. Parent identity and sensor-date separation were checked against the earlier 740 images. Geographic and physical-pass independence remain unverified. [Reserve protocol](INSTANCE_RSDD_PARENT_RESERVE_PRELOCK_20261123.md) · [Original PointRend comparison](INSTANCE_RSDD_POINTREND_TRANSFER_ACTUAL_20261122.md)
+
+Use the exact 74-image roster, its 42-image sensor-date sensitivity and the original 81 human-authored hull polygons. Keep RF-DETR center5202 E24, occupancy seed 5217, and the original 200-update HRSID FIT109 PointRend adaptation fixed. The source head artifact is pinned to `7401de08367ef31b909ea9c92daa27be02d4efb04460acbf96eab33648fdd7cc`. No additional training or target-dependent selection. The 74 native captures and existing occupancy writebacks are already independently reproduced. Recompute detector features for PointRend, verifying exact equality of every original mapped score and mask and every eligible FP32 query plane. [Author dataset](https://doi.org/10.3390/rs15051324) · [Original PointRend](https://arxiv.org/abs/1912.08193)
+
+| Arm | Policy |
+| --- | --- |
+| N | Frozen native RF-DETR mask |
+| C | PointRend adapter's coarse RoI paste |
+| P | Frozen PointRend's four-step full RoI paste |
+| B | PointRend probability ranks on the original at-most-32-per-side signed endpoints |
+| L | Archived frozen occupancy probability ranks on the same signed endpoints |
+
+B and L use the original natural occupancy exchange count for each candidate and implement the same number of actual additions and deletions with exact area conservation, including zero-edit candidates. Keep the known historical tie, padding, interpolation and eligibility convention of the earlier 740-image B and L. P and C use the same frozen detection IDs and scores. Require two complete label-free renders with identical edits and counters before opening the selected author labels. Report reference candidate counts, raw swaps, whole-RoI changes, point evaluations and elapsed phase time. Equal edits control the writeback budget.
+
+Primary contrast L−B on all 74 images. Predeclare positive mask AP difference, positive lower 95% sensor-date cluster interval for parent-balanced continuous IoU difference on fixed original matches, and at least 20 such matches with positive common budgets from at least eight original parents. Score the exact same test on the 42-image sensor-date separated subset as a sensitivity. Independently compute all original COCO mask metrics including AP75, AP90 and AR100, continuous geometry with original IoU 0.50 associations, 4,096 PCG64(5217) cluster draws, sensor splits, deduplication and P−L. Apply the observed edited mask area for each arm when recovering polygon overlap and FP/FN. Retain all outcomes and original evaluator handling of polygons and annotation identity.
