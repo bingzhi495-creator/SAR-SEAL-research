@@ -17,4 +17,6 @@
 
 同一 UEIKAP 队列上的第二冻结载体已完成独立数值、评分回执与共同队列指纹复核。17 艘匹配全部可编辑，4 组正向、14 组持平，全队列同量配对效应 +0.03014 点。两个覆盖条件未通过。稿件将其限于已评估的作者船体队列上的描述性证据。[RF-DETR 复验](../UEIKAP_RFDETR_CARRIER_ACTUAL_20261122.md)
 
+后续上界由独立逐像元实现核验 165 个量。框关联主指标 +0.00431 点且区间跨零，旧掩膜关系的全部队列统计逐值复现。框规则与原掩膜规则共有 17 个真值身份，其中 16 个选择不同候选，稿件明确区分关联规则和任一候选覆盖。[上界诊断](../UEIKAP_RFDETR_CANDIDATE_GEOMETRY_ACTUAL_20261122.md) · [评分复核](../UEIKAP_RFDETR_BOX_ASSOCIATION_ACTUAL_20261122.md)
+
 从公开 GitHub 技能采用了逐句核对数值及范围、书目和语境分开核验、按最终版面查看图件等方法。以上记录来自独立的同模型家族复核，外部仓库仅作公开方法来源。[ARIS 数值审核](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/4ba94ae2a1c1fbbb14858750dd8764cabf6c28bd/skills/paper-claim-audit/SKILL.md) · [Orchestra 引用规范](https://github.com/Orchestra-Research/AI-Research-SKILLs/blob/773a52944ba4747a18bd4ae9ade53fff041adcbc/20-ml-paper-writing/ml-paper-writing/references/citation-workflow.md) · [K-Dense 科学图件](https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/skills/scientific-visualization/SKILL.md) · [OpenAI PDF 检查](https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/pdf/SKILL.md)

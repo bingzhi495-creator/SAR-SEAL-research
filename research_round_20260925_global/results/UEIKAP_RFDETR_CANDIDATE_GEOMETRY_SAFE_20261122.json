@@ -1,0 +1,416 @@
+{
+  "acquisitions": 18,
+  "bound_rf_terminal_shas": {
+    "capture": "312e225a719cc68d1d64deaf65e0a5ef034c2a5258885416d846a4fafd485156",
+    "score": "4057a19efa37d6d9bf03dd89450beeb178b234d4b5eb2f0283d3314acdf7e01c",
+    "verify-capture": "1ad8565802f1d83046fcf9ef8405ca9b0f5bc4e5bb10c28fb4c6b66e41934262"
+  },
+  "counts": {
+    "candidates_with_fg_outside_box": 4742,
+    "candidates_with_forced_equal_area_infeasible": 47,
+    "eligible_area_candidates": 6199,
+    "empty_candidates": 3883,
+    "greedy_matches": 17,
+    "hulls": 139,
+    "images": 108,
+    "mapped_candidates": 10738,
+    "wakes": 114
+  },
+  "definitions": {
+    "area_and_crop": "Force raster inside reported integer box, exact stock area when feasible; infeasible candidates provide no reach.",
+    "area_guard_and_up_to_eight_anywhere": "Same ideal swaps but spend zero outside original [32,1024) area guard.",
+    "area_only": "Exact stock foreground area, arbitrary position inside the chip.",
+    "box": "Reported detector box in pixel edges versus exact envelope of author polygon.",
+    "crop_only": "Force raster inside reported integer box, arbitrary foreground area, ignoring original outside pixels.",
+    "limits": "Any-candidate, reusable-candidate per-hull oracle under GT; not a trained method or fixed matching result. RF stock may extend outside its own box.",
+    "mask": "Observed mapped joint-top100 ship mask versus rasterized author hull.",
+    "tight_mask_extent_box": "Integer bounding boxes of both the RF raster and author hull raster.",
+    "unfiltered_q164_box_only": "Every raw query box before class/score selection. No masks evaluated outside the mapped top100.",
+    "up_to_eight_anywhere": "Keep stock area and replace up to eight pixels per sign anywhere on chip.",
+    "within_box_equal_area_preserve_exterior": "Keep original pixels outside reported box and the original area inside, freely rearrange within.",
+    "within_box_free_area_preserve_exterior": "Keep original pixels outside reported box, freely rearrange or resize within."
+  },
+  "descriptions": {
+    "best_box_iou_per_hull": {
+      "maximum": 0.88726989923251,
+      "median": 0.5836707936826399,
+      "minimum": 0.1907286415869554,
+      "n": 139,
+      "q25": 0.48356584049886053,
+      "q75": 0.6693227574250574
+    },
+    "best_mask_iou_per_hull": {
+      "maximum": 0.6699346405228758,
+      "median": 0.33668341708542715,
+      "minimum": 0.06618531889290012,
+      "n": 139,
+      "q25": 0.24102357868498472,
+      "q75": 0.42950848760868277
+    },
+    "fraction_native_mask_outside_box": {
+      "maximum": 1.0,
+      "median": 0.036585365853658534,
+      "minimum": 0.0,
+      "n": 6855,
+      "q25": 0.0,
+      "q75": 0.12416216216216217
+    },
+    "greedy_unmatched_best_mask_area_over_truth": {
+      "maximum": 1.2177650429799427,
+      "median": 0.32628848020307094,
+      "minimum": 0.06618531889290012,
+      "n": 122,
+      "q25": 0.23535719119424647,
+      "q75": 0.41432702157893
+    },
+    "greedy_unmatched_best_mask_iou": {
+      "maximum": 0.4991922455573506,
+      "median": 0.31418070583938273,
+      "minimum": 0.06618531889290012,
+      "n": 122,
+      "q25": 0.2314834012474297,
+      "q75": 0.39020979020979024
+    },
+    "gt_raster_area_px": {
+      "maximum": 3048.0,
+      "median": 636.0,
+      "minimum": 156.0,
+      "n": 139,
+      "q25": 426.0,
+      "q75": 872.5
+    },
+    "nonempty_mask_area_px": {
+      "maximum": 1083.0,
+      "median": 141.0,
+      "minimum": 1.0,
+      "n": 6855,
+      "q25": 82.0,
+      "q75": 220.0
+    },
+    "qualifying_best_box_corresponding_mask_iou": {
+      "maximum": 0.6699346405228758,
+      "median": 0.29927494797622844,
+      "minimum": 0.0,
+      "n": 100,
+      "q25": 0.18067114810072557,
+      "q75": 0.39214124304984294
+    },
+    "qualifying_best_box_mask_area_over_truth": {
+      "maximum": 0.6754098360655738,
+      "median": 0.30118153404497094,
+      "minimum": 0.0,
+      "n": 100,
+      "q25": 0.18067114810072557,
+      "q75": 0.39841241175006525
+    }
+  },
+  "dfine_closed_comparison": {
+    "all_post_nms": {
+      "0.25": {
+        "area_and_crop": 84,
+        "area_guard_and_up_to_eight_anywhere": 64,
+        "area_only": 98,
+        "box": 116,
+        "crop_only": 135,
+        "mask": 61,
+        "up_to_eight_anywhere": 64
+      },
+      "0.5": {
+        "area_and_crop": 40,
+        "area_guard_and_up_to_eight_anywhere": 7,
+        "area_only": 57,
+        "box": 39,
+        "crop_only": 128,
+        "mask": 5,
+        "up_to_eight_anywhere": 7
+      },
+      "0.75": {
+        "area_and_crop": 21,
+        "area_guard_and_up_to_eight_anywhere": 0,
+        "area_only": 35,
+        "box": 0,
+        "crop_only": 113,
+        "mask": 0,
+        "up_to_eight_anywhere": 0
+      }
+    },
+    "top100": {
+      "0.25": {
+        "area_and_crop": 62,
+        "area_guard_and_up_to_eight_anywhere": 51,
+        "area_only": 80,
+        "box": 92,
+        "crop_only": 117,
+        "mask": 49,
+        "up_to_eight_anywhere": 51
+      },
+      "0.5": {
+        "area_and_crop": 8,
+        "area_guard_and_up_to_eight_anywhere": 4,
+        "area_only": 28,
+        "box": 21,
+        "crop_only": 73,
+        "mask": 2,
+        "up_to_eight_anywhere": 4
+      },
+      "0.75": {
+        "area_and_crop": 1,
+        "area_guard_and_up_to_eight_anywhere": 0,
+        "area_only": 15,
+        "box": 0,
+        "crop_only": 27,
+        "mask": 0,
+        "up_to_eight_anywhere": 0
+      }
+    }
+  },
+  "diagnostic_source_sha256": "73b8e8f0ef8769a0ad179453ecbebd59fee1b5e733b4c41bd7576bfe42ebdabe",
+  "external_dfine_bounds_sha256": "8ff238513c37cf1c566a85d86025303fba51499be64a440236288d589bac20af",
+  "frozen_predictions_modified": false,
+  "label_roster_sha256": "84eb3df2b78327f0b185fa44de1bdcb0822fd1b2b0ac25b2d5aa9d38ba700971",
+  "new_model_forwards": 0,
+  "optimizer_updates": 0,
+  "original_intake_sha256": "d19bad46ea19ac4b01c6b462eb7470a45d3d0ed498015675cd7778a0e83752d8",
+  "scope": "Previously scored released hull cohort",
+  "status": "UEIKAP_RFDETR_POSTHOC_GEOMETRY_COMPLETE",
+  "thresholds": {
+    "0.25": {
+      "area_and_crop": {
+        "equal_acquisition_weight_fraction": 0.7345462773094352,
+        "groups": 17,
+        "hulls": 107,
+        "hulls_added_vs_any_native_mask": 5,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "area_guard_and_up_to_eight_anywhere": {
+        "equal_acquisition_weight_fraction": 0.6740826181615654,
+        "groups": 15,
+        "hulls": 102,
+        "hulls_added_vs_any_native_mask": 0,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "area_only": {
+        "equal_acquisition_weight_fraction": 0.7739329384066226,
+        "groups": 17,
+        "hulls": 117,
+        "hulls_added_vs_any_native_mask": 15,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "box": {
+        "equal_acquisition_weight_fraction": 0.9850810738968634,
+        "groups": 18,
+        "hulls": 135,
+        "hulls_added_vs_any_native_mask": 33,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "crop_only": {
+        "equal_acquisition_weight_fraction": 1.0,
+        "groups": 18,
+        "hulls": 139,
+        "hulls_added_vs_any_native_mask": 37,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "mask": {
+        "equal_acquisition_weight_fraction": 0.6740826181615654,
+        "groups": 15,
+        "hulls": 102,
+        "hulls_added_vs_any_native_mask": 0,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "tight_mask_extent_box": {
+        "equal_acquisition_weight_fraction": 0.8938365484418116,
+        "groups": 18,
+        "hulls": 118,
+        "hulls_added_vs_any_native_mask": 17,
+        "hulls_missing_vs_any_native_mask": 1
+      },
+      "unfiltered_q164_box_only": {
+        "equal_acquisition_weight_fraction": 0.9934875066454014,
+        "groups": 18,
+        "hulls": 137,
+        "hulls_added_vs_any_native_mask": 35,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "up_to_eight_anywhere": {
+        "equal_acquisition_weight_fraction": 0.6740826181615654,
+        "groups": 15,
+        "hulls": 102,
+        "hulls_added_vs_any_native_mask": 0,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "within_box_equal_area_preserve_exterior": {
+        "equal_acquisition_weight_fraction": 0.7345462773094352,
+        "groups": 17,
+        "hulls": 107,
+        "hulls_added_vs_any_native_mask": 5,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "within_box_free_area_preserve_exterior": {
+        "equal_acquisition_weight_fraction": 1.0,
+        "groups": 18,
+        "hulls": 139,
+        "hulls_added_vs_any_native_mask": 37,
+        "hulls_missing_vs_any_native_mask": 0
+      }
+    },
+    "0.5": {
+      "area_and_crop": {
+        "equal_acquisition_weight_fraction": 0.1373541176172755,
+        "groups": 7,
+        "hulls": 38,
+        "hulls_added_vs_any_native_mask": 21,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "area_guard_and_up_to_eight_anywhere": {
+        "equal_acquisition_weight_fraction": 0.06034024455077087,
+        "groups": 4,
+        "hulls": 18,
+        "hulls_added_vs_any_native_mask": 1,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "area_only": {
+        "equal_acquisition_weight_fraction": 0.22276872737399053,
+        "groups": 10,
+        "hulls": 51,
+        "hulls_added_vs_any_native_mask": 34,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "box": {
+        "equal_acquisition_weight_fraction": 0.6911562365509734,
+        "groups": 17,
+        "hulls": 100,
+        "hulls_added_vs_any_native_mask": 83,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "crop_only": {
+        "equal_acquisition_weight_fraction": 0.9438463583200423,
+        "groups": 18,
+        "hulls": 129,
+        "hulls_added_vs_any_native_mask": 112,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "mask": {
+        "equal_acquisition_weight_fraction": 0.058878256246677294,
+        "groups": 4,
+        "hulls": 17,
+        "hulls_added_vs_any_native_mask": 0,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "tight_mask_extent_box": {
+        "equal_acquisition_weight_fraction": 0.20858016252753092,
+        "groups": 7,
+        "hulls": 48,
+        "hulls_added_vs_any_native_mask": 31,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "unfiltered_q164_box_only": {
+        "equal_acquisition_weight_fraction": 0.6911562365509734,
+        "groups": 17,
+        "hulls": 100,
+        "hulls_added_vs_any_native_mask": 83,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "up_to_eight_anywhere": {
+        "equal_acquisition_weight_fraction": 0.06034024455077087,
+        "groups": 4,
+        "hulls": 18,
+        "hulls_added_vs_any_native_mask": 1,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "within_box_equal_area_preserve_exterior": {
+        "equal_acquisition_weight_fraction": 0.1373541176172755,
+        "groups": 7,
+        "hulls": 38,
+        "hulls_added_vs_any_native_mask": 21,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "within_box_free_area_preserve_exterior": {
+        "equal_acquisition_weight_fraction": 0.9438463583200423,
+        "groups": 18,
+        "hulls": 129,
+        "hulls_added_vs_any_native_mask": 112,
+        "hulls_missing_vs_any_native_mask": 0
+      }
+    },
+    "0.75": {
+      "area_and_crop": {
+        "equal_acquisition_weight_fraction": 0.0601940457203615,
+        "groups": 5,
+        "hulls": 12,
+        "hulls_added_vs_any_native_mask": 12,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "area_guard_and_up_to_eight_anywhere": {
+        "equal_acquisition_weight_fraction": 0.0,
+        "groups": 0,
+        "hulls": 0,
+        "hulls_added_vs_any_native_mask": 0,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "area_only": {
+        "equal_acquisition_weight_fraction": 0.12834168755221384,
+        "groups": 6,
+        "hulls": 28,
+        "hulls_added_vs_any_native_mask": 28,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "box": {
+        "equal_acquisition_weight_fraction": 0.02835877572719678,
+        "groups": 4,
+        "hulls": 12,
+        "hulls_added_vs_any_native_mask": 12,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "crop_only": {
+        "equal_acquisition_weight_fraction": 0.5561564897091213,
+        "groups": 14,
+        "hulls": 95,
+        "hulls_added_vs_any_native_mask": 95,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "mask": {
+        "equal_acquisition_weight_fraction": 0.0,
+        "groups": 0,
+        "hulls": 0,
+        "hulls_added_vs_any_native_mask": 0,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "tight_mask_extent_box": {
+        "equal_acquisition_weight_fraction": 0.006512493354598618,
+        "groups": 2,
+        "hulls": 2,
+        "hulls_added_vs_any_native_mask": 2,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "unfiltered_q164_box_only": {
+        "equal_acquisition_weight_fraction": 0.033409280777701826,
+        "groups": 4,
+        "hulls": 13,
+        "hulls_added_vs_any_native_mask": 13,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "up_to_eight_anywhere": {
+        "equal_acquisition_weight_fraction": 0.0,
+        "groups": 0,
+        "hulls": 0,
+        "hulls_added_vs_any_native_mask": 0,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "within_box_equal_area_preserve_exterior": {
+        "equal_acquisition_weight_fraction": 0.0601940457203615,
+        "groups": 5,
+        "hulls": 12,
+        "hulls_added_vs_any_native_mask": 12,
+        "hulls_missing_vs_any_native_mask": 0
+      },
+      "within_box_free_area_preserve_exterior": {
+        "equal_acquisition_weight_fraction": 0.5612069947596263,
+        "groups": 14,
+        "hulls": 96,
+        "hulls_added_vs_any_native_mask": 96,
+        "hulls_missing_vs_any_native_mask": 0
+      }
+    }
+  },
+  "whole_scene_ap": false
+}

@@ -9,3 +9,7 @@
 原始论文完整 PDF 已下载并解析附录表 1，SHA-256 `2ea1bf0486b701a385829128a0274f4e54f2fcea991eb1d942eda37d4c71bc6a`。表中 127 个景号含 125 个裁块来源以及 2 个未裁块来源。125 个裁块来源有 193 个带编号的极化产品。镜像出现 188 个前缀，全部能映射至论文的 125 个来源。高分三号 84 景、5,629 图，TerraSAR-X 41 景、1,371 图，均为原始旋转框数据镜像的计数。多极化的前缀需合并到论文景号。该映射可用于核验未来取得的 Instance-RSDD 划分，当前尚无该划分的影像清单，无法核验其与 HRSID、PSeg-SSDD 的独立性。[原始论文与采集表](https://files.sciengine.com/pdfs/2095-283X/23A1C428928844EC809FB12C4F5A7A6B.pdf)
 
 Instance-RSDD 论文报告手工像素标注 3,555 图，训练 2,840 图、评价 715 图。其作者目录过去已核对 `annotation_coco/train.json`（1,933,970 字节）和 `test.json`（540,834 字节）公开清单，获取训练标注时出现登录要求与 403，未取得标注文件。此次核对作者固定提交的完整文件树（217 项），其中 8 份 JSON 均为 DOTA 划分配置。作者仓库无发布附件。本地项目数据和指定 D 盘目录内未定位到该数据的船体 JSON 正文。官方标注、逐图配对和许可证仍待核验，不能用镜像中的旋转框代替实例掩膜评分。[实例标注论文](https://doi.org/10.3390/rs15051324) · [作者标注入口](https://github.com/XIDIAN212Lab/SRNet/blob/2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6/readme.md#the-instance-rsdd-dataset) · [既有访问记录](HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md#第三套实例轮廓验证的新增查证)
+
+作者提交历史给出第二个独立分享。实际通过普通网页和公开提取码 `e0jd` 打开，目录同时显示 `annotation_coco/train.json` 和 `test.json`，打开文件会提示登录。本次核验到目录层，仍缺正文。期刊全文 XML 未找到替代数据附件。[作者早期分享](https://pan.baidu.com/s/1gjNTH8gqRBH52GQ2GLDjUg) · [两次链接的作者提交](https://github.com/XIDIAN212Lab/SRNet/commit/2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6) · [期刊全文 XML](https://mdpi-res.com/d_attachment/remotesensing/remotesensing-15-01324/article_deploy/remotesensing-15-01324.xml)
+
+随后用户提供了作者目录的两份标注和说明。最新测试文件含 740 张图和 872 个船体轮廓，文件结构、精确摘要和父景关系已核验。[本地文件核验](INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md)
