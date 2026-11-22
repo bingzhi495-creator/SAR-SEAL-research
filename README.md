@@ -8,7 +8,7 @@
 
 - [PSeg-SSDD 完整划分冻结跨库评分](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md)覆盖 232 图和 546 条浮点原标注。mask AP 17.974→18.319（+0.344），去除 10 张历史重复图后仍 +0.389。相同点头和逐候选编辑量下，独立选点较固定配对 +0.081 AP 点、+0.106 连续 IoU 点。同轮逐图配对中，等价取样将 CPU 精修均值由 158.8 降到 104.3 毫秒，最终掩膜与分数完全一致。同量原生概率对照出现的新增孔洞更少。
 
-- [RF-DETR 第二检测器种子](research_round_20260925_global/code/RFDETR_COMMON5203_E24_REPLICATION_20261121/README.md)的两条资格短窗已完成，每臂 32 次访问、8 次更新，原过程退出 0。同配方的共同行中心臂 5203 E24 训练已启动。 [训练验收后的 DEV705 同量对照入口](research_round_20260925_global/code/RFDETR_COMMON5203_DEV705_FROZEN_20261121/README.md)已完成九项合成测试，等待真实训练关闭。
+- [RF-DETR 第二检测器种子](research_round_20260925_global/code/RFDETR_COMMON5203_E24_REPLICATION_20261121/README.md)已验收 24 轮、17,640 次优化器和 EMA 更新、每轮 2,937 张唯一训练图。其独立 DEV705 原生导出已完成 705 图和 64,859 个映射候选。[冻结精修与独立评分](research_round_20260925_global/code/RFDETR_COMMON5203_DEV705_FROZEN_20261121/README.md)使用该种子自身候选掩膜和置信度，精修预测正在生成，尚无对照评分。
 
 - [HRSID 冻结边界修正复验](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_PRELOCK_20261121.md)已启动。三个 HRSID FIT 点头沿用原特征、模型、阈值和编辑预算，对每张测试图重放并核对原候选，再计算四种修正策略。第一批原生实现的一致性核验已通过，修正效果须等待全量独立回读和评分。[评分方案与合成测试](research_round_20260925_global/code/HRSID_OFFICIAL_FROZEN_REFINEMENT_SCORE_20261121/README.md)
 
