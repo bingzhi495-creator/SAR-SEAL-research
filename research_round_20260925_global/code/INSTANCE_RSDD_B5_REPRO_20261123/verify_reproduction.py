@@ -156,6 +156,8 @@ def verify(inputs):
     return dict(passed=report["differences"] == 0, absolute_tolerance_points=TOLERANCE_POINTS,
                 scientific_comparison=report, training_checks=training, canonical_streams=stream_results,
                 training_observed={key: inputs["training"].get(key) for key in training},
+                training_archive_crosscheck={key: inputs["training"].get(key) for key in
+                                             ("matched_per_source", "source_tensor_sha256", "exact_closed_source_samples")},
                 parent_count=len(per_parent), reserve_views=primary)
 
 
