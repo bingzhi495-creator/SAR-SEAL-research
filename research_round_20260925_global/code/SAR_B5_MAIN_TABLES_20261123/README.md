@@ -1,4 +1,4 @@
-# Reproduce the original 740-image and 1,962-image frozen tables
+# Reproduce the original frozen HRSID and Instance-RSDD tables
 
 Use the isolated Windows environment in the [previous clean-run setup](../INSTANCE_RSDD_B5_REPRO_20261123/README.md). These commands start from official image data and the original locally supplied frozen artifacts. The published comparison records are read by the final verifier. They are separate from the inputs to capture, editing and scoring. [Predeclared comparison](../../SAR_B5_MAIN_TABLES_REPRODUCTION_PRELOCK_20261123.md)
 
@@ -38,4 +38,19 @@ foreach ($seed in @(5217,5218)) {
 python verify_main_tables.py rsdd --published-results ../../results --intake runs/rsdd-intake/RESULT_SAFE.json --capture runs/rsdd-capture/RESULT_SAFE.json --edits-5217 runs/replay5217/RESULT_SAFE.json --edits-5218 runs/replay5218/RESULT_SAFE.json --score-5217 runs/score5217/RESULT_SAFE.json --score-5218 runs/score5218/RESULT_SAFE.json --output runs/rsdd-verified.json
 ```
 
-The checker compares the original and regenerated full-precision AP, AR and available continuous geometry with a tolerance of 0.000001 percentage points. Discrete counts and canonical stream digests must match exactly. HRSID DEV705, PointRend and the 74-image parent reserve are separate evaluation scopes.
+The checker compares the original and regenerated full-precision AP, AR and available continuous geometry with a tolerance of 0.000001 percentage points. Discrete counts and canonical stream digests must match exactly. The PointRend comparison and the 74-image parent reserve are separate evaluation scopes.
+
+## HRSID DEV705 center5202
+
+DEV705 is the historical source-group holdout from the official HRSID training split. The image intake rebuilds 705 images and 1,782 annotations. The CUDA capture regenerates the original checkpoint's FP32 stock masks and the original single-query posterior needed for exact CPU reconstruction. The replay uses the same three frozen point heads and eight strategies. The scorer covers both annotation views and fixed-match geometry on the original groups.
+
+```powershell
+python prepare_dev705.py --archive data/HRSID_PNG.zip --output runs/dev705-intake
+$env:CUDA_VISIBLE_DEVICES = '0'
+python portable_dev705_capture.py --archive data/HRSID_PNG.zip --intake runs/dev705-intake --checkpoint weights/checkpoint_23.ckpt --output runs/dev705-capture
+$env:CUDA_VISIBLE_DEVICES = '-1'
+python portable_dev705_replay.py --archive data/HRSID_PNG.zip --intake runs/dev705-intake --capture runs/dev705-capture --heads weights/point-heads --workers 6 --output runs/dev705-replay
+python portable_dev705_score.py --intake runs/dev705-intake --capture runs/dev705-capture --replay runs/dev705-replay --workers 4 --output runs/dev705-score
+```
+
+The score compares the regenerated geometry witness digest and the published numerical and discrete fields. The original center5203 and D-FINE runs have different capture inputs and are outside this entry point. [Original DEV705 report](../../RFDETR_CENTER5202_DEV705_MATCHED_RESULT_20261120.md)
