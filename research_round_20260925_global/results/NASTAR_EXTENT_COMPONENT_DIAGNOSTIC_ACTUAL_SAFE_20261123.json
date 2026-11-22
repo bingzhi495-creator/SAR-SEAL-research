@@ -1,0 +1,124 @@
+{
+  "adjacent_center_spacing_m": {
+    "axes": [
+      "plus_column",
+      "plus_row"
+    ],
+    "equal_pass_mean": [
+      2.5012175819379023,
+      2.499943862047727
+    ],
+    "max": [
+      2.5447549320808758,
+      2.5011360133455476
+    ],
+    "median": [
+      2.4985167193160183,
+      2.4999328859885868
+    ],
+    "min": [
+      2.4735795872254474,
+      2.4989110711805482
+    ]
+  },
+  "ais_content_aggregate_sha256": "57c16f473a89eeb14ea8680eddce70a7372075b06aefbf4a757f1d8a0bbabdb5",
+  "ais_product_packaging": {
+    "products_direct_csv": 83,
+    "products_nested_csv": 1
+  },
+  "analysis": "Post-hoc native anchor component extent diagnostic",
+  "axes_measurement": [
+    "along_true_heading_length",
+    "across_true_heading_beam"
+  ],
+  "component_count_max": 5,
+  "component_count_median": 1.0,
+  "definition": "8-neighbor native components ranked by cells in the closed 18 m reference disk, then area, then source scan order",
+  "exclusions": {
+    "any_arm_measurement_failure": 3,
+    "incomplete_physical_reference": 33,
+    "no_associated_native_mask": 72
+  },
+  "failure_by_arm": {
+    "fixed": {
+      "edge_contact": 3
+    },
+    "free_matched_count": {
+      "edge_contact": 3
+    },
+    "free_natural": {
+      "edge_contact": 3
+    },
+    "raw": {
+      "edge_contact": 3
+    }
+  },
+  "fragmented_anchors": 9,
+  "fragmented_percent": 26.47058823529412,
+  "fragmented_percent_equal_pass": 26.851851851851848,
+  "intake_sha256": "b7794080b60b38e825dc541ea067276241348cec1ba6cf56126296f6352b332a",
+  "measured_anchors": 34,
+  "measured_passes": 18,
+  "measurement_equal_pass": {
+    "mean_reference_m": [
+      73.47222222222223,
+      16.10185185185185
+    ],
+    "native": {
+      "mean_absolute_error_m": [
+        90.88849761261159,
+        75.88143351344394
+      ],
+      "mean_bias_m": [
+        87.95142147457189,
+        75.88143351344394
+      ],
+      "mean_extent_m": [
+        161.42364369679404,
+        91.98328536529579
+      ]
+    },
+    "native_minus_component_mae_m": [
+      9.855494462046389,
+      18.889264929405698
+    ],
+    "passes_with_equal_mae": [
+      12,
+      12
+    ],
+    "passes_with_higher_component_mae": [
+      2,
+      0
+    ],
+    "passes_with_lower_component_mae": [
+      4,
+      6
+    ],
+    "retained_component": {
+      "mean_absolute_error_m": [
+        81.0330031505652,
+        56.99216858403823
+      ],
+      "mean_bias_m": [
+        70.06922935453925,
+        56.99216858403823
+      ],
+      "mean_extent_m": [
+        143.54145157676146,
+        73.09402043589009
+      ]
+    }
+  },
+  "model_forwards": 0,
+  "new_label_fetches": 0,
+  "official_directory_sha256": "f84628515acca6c258ef50e5d5a80f398ab63934166aa49f3d6df4a3fedf27cf",
+  "optimizer_updates": 0,
+  "passes_with_fragmented_anchors": 7,
+  "physical_units": "metres",
+  "replay_result_sha256": "cb7ade9ce054ab9fc429c730dd6a3607a337f3d3beb6301ef8dc095a1399a014",
+  "score_result_sha256": "8ce6783fa1a7b6cb0a60fec6d9b01b1958f3f220724eb8125b46c6e31e5c7140",
+  "selected_chips": 142,
+  "selected_passes": 24,
+  "status": "NASTAR_CLOSED_EXTENT_COMPONENT_DIAGNOSTIC_COMPLETE",
+  "worker_sha256": "1ba3714ae4bbb40a48443b343659baa20f640e06c7c17d549dae29e38e35ed35"
+}

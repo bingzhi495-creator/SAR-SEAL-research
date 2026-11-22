@@ -35,3 +35,7 @@ python -I -B -X utf8 score_nastar_ais.py --code .. --intake runs/intake --captur
 ```
 
 Only the scorer reads the selected author AIS rows, after validating both independent writeback decisions and the observed replay exit. It reports physical extent errors against declared AIS dimensions. The private raster data and AIS rows stay local.
+
+## Closed-run extent diagnostic
+
+`diagnose_nastar_extent.py` uses the original pinned, completed evaluation and its archived AIS cache to inspect native 8-connected components. Use `--closed-root` for the historical run root with its original receipt paths, `--geo-site` for the same verified pyproj directory and `--output` for a fresh sibling directory. The diagnostic uses AIS position to select a nearby component for error analysis. The original comparison and outcome remain as recorded.

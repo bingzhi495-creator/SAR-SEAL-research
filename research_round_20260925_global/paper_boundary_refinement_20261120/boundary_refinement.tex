@@ -253,7 +253,7 @@ We then applied a frozen HRSID RF-DETR and its original point head to the same c
 RF-DETR reports a box at IoU 0.50 for 100 hulls. For 90 of these, the mask associated with the best box covers less than half of the reference area. Eight ideal equal-area swaps anywhere on the image raise mask coverage from 17 to 18 hulls, whereas a label-informed reconstruction inside the reported box could cover up to 129. We also fixed associations by box IoU in native score order. The box rule selects 99 masks below raster IoU 0.50. Ninety have positive edit budgets across 15 acquisitions. The same-count effect across all 18 acquisitions is 0.0043 continuous IoU points (\([-0.0008,0.0101]\)), with zero weak masks reaching continuous IoU 0.50. Of the 17 hulls associated by both rules, 16 use different candidates.
 
 \section{Limitations and Reproducibility}
-The local strategy preserves area and requires an existing detection. Natural selection increases holes on 1,544 of 10,466 edited PSeg-SSDD masks, versus 519 for matched native ranks. On DEV705, an edit can increase overlap with both the intended vessel and a nearby ship. All 107 nonempty D-FINE masks on Schwegmann chips~\cite{schwegmann} fall below the 32-pixel edit threshold.
+The local strategy preserves area and requires an existing detection. Natural selection increases holes on 1,544 of 10,466 edited PSeg-SSDD masks, versus 519 for matched native ranks. On DEV705, an edit can increase overlap with both the intended vessel and a nearby ship. All 107 nonempty D-FINE masks on Schwegmann chips~\cite{schwegmann} fall below the 32-pixel edit threshold. On 142 NovaSAR AIS chips~\cite{nastar}, 34 provided measurable spans for all policies and 17 had positive paired budgets. At the same count, independent selection increased absolute length error by 0.204 m relative to fixed pairing (95\% interval \([-0.110,0.581]\)).
 
 D-FINE training used 24 epochs (17,640 updates). On 232 PSeg-SSDD images in memory, equivalent sampling cut mean single-thread refinement from 158.8 to 104.3 ms/image with identical samples, masks, ranks and scores. Separate CUDA detection and postprocessing took 11.74 s. On the 74-image reserve, two single-thread passes with loaded inputs on an Intel Core i7-13700KF averaged 227.1, 1,221.5, and 1,049.2 ms per image for occupancy refinement, same-count PointRend, and whole-RoI PointRend, respectively. These timings exclude detector inference and feature capture. Reruns from author data with frozen weights reproduced the checked scores on the HRSID official split and both Instance-RSDD cohorts exactly. The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{repository} provides code, configurations, scores and data access.
 
@@ -264,7 +264,7 @@ Independent selection improves AP and continuous IoU over fixed pairing at match
 OpenAI Codex assisted with drafting and revising the text from the experiment records. Fig.~\ref{fig:native-boundary} was redrawn as a vector illustration from an OpenAI-generated concept. Figures~\ref{fig:dev-cases} and~\ref{fig:official-effects} show measured data.
 
 \IEEEtriggeratref{2}
-\begin{thebibliography}{20}
+\begin{thebibliography}{21}
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, 2020. \href{https://doi.org/10.1109/ACCESS.2020.3005861}{10.1109/ACCESS.2020.3005861}.
 \bibitem{pointrend} A. Kirillov, Y. Wu, K. He, and R. Girshick, ``PointRend: Image segmentation as rendering,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2020, pp. 9799--9808.
 \bibitem{bpr} C. Tang, H. Chen, X. Li, J. Li, Z. Zhang, and X. Hu, ``Look closer to segment better: Boundary patch refinement for instance segmentation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021, pp. 13926--13935.
@@ -285,6 +285,7 @@ OpenAI Codex assisted with drafting and revising the text from the experiment re
 \bibitem{rsdd} X. Yang, Q. Zhang, Q. Dong, Z. Han, X. Luo, and D. Wei, ``Ship instance segmentation based on rotated bounding boxes for SAR images,'' \emph{Remote Sens.}, vol. 15, no. 5, Art. no. 1324, 2023. \href{https://doi.org/10.3390/rs15051324}{10.3390/rs15051324}.
 \bibitem{ueikap} A. Mazzeo \emph{et al.}, ``UEIKAP dataset,'' Zenodo, ver. 1.0, 2026. \href{https://doi.org/10.5281/zenodo.18391027}{10.5281/zenodo.18391027}.
 \bibitem{schwegmann} C. P. Schwegmann, W. Kleynhans, B. P. Salmon, L. W. Mdakane, and R. G. V. Meyer, ``Very deep learning for ship discrimination in Synthetic Aperture Radar imagery,'' in \emph{Proc. IEEE Int. Geosci. Remote Sens. Symp. (IGARSS)}, 2016, pp. 104--107. \href{https://doi.org/10.1109/IGARSS.2016.7729017}{10.1109/IGARSS.2016.7729017}.
+\bibitem{nastar} B. Hosseiny, K. Kamirul, O. Pappas, and A. Achim, ``NASTaR: NovaSAR automated ship target recognition dataset,'' arXiv:2512.18503, 2025.
 \end{thebibliography}
 \end{document}
 
