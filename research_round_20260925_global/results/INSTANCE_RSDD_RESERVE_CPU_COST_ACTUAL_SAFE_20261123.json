@@ -1,0 +1,174 @@
+{
+  "B_uses_supplied_natural_k": true,
+  "CPU_matmul_precision": {
+    "B": "highest",
+    "L": "high",
+    "P": "highest"
+  },
+  "cpu": "13th Gen Intel(R) Core(TM) i7-13700KF",
+  "cpu_affinity_pinned": false,
+  "crossed_order": "LBP, BPL, PLB by image index; reverse each image's order in pass two",
+  "detector_forwards": 0,
+  "exact_candidate_rle_and_signed_edit_counts": true,
+  "images": 74,
+  "independent_point_renders": true,
+  "label_files_opened": false,
+  "lineage": {
+    "audit_sha256": "bb10ca305fe08f8fb15c85db96e9b9553d3ed24949c1edcaef03739be041d5dd",
+    "basis_result_sha256": "0d788541d84cf75989941fb6d8242a05a830f5753a46ee4067c598baaae5a830",
+    "basis_terminal_sha256": "99758990e53154446e4795394da913ce5e98e566ee68cf214b5ffa96a6d8f75b",
+    "capture_result_sha256": "f43fb04035045b1e30b7ae06ced778e66fcc4cd3e34077f83ebff6096dacc71d",
+    "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+    "manifest_sha256": "154d0d748b96df0d56ac249adcb8b6ae63275a09dfd7a0d7480839005e044338",
+    "predictions_sha256": "41163bd418d13a05f9c52b28e7821458bfb5eafca0fcf761682436fbff75f71c",
+    "roster_sha256": "2614e567e9ef1b2c791c1b357b03adfe7302ece53e911c1963c40e623ad405fc"
+  },
+  "logical_cpu_count": 24,
+  "measured_passes": [
+    {
+      "arms": {
+        "B": {
+          "counts": {
+            "adds": 31391,
+            "candidates_checked": 7346,
+            "changed": 4114,
+            "drops": 31391,
+            "empty": 0
+          },
+          "image_median_ms": 1177.614200001699,
+          "image_p90_ms": 1841.0732899988946,
+          "ms_per_image": 1206.5191081078287,
+          "point_evaluations": 12970496,
+          "process_cpu_seconds": 88.6875,
+          "seconds": 89.28241399997933
+        },
+        "L": {
+          "counts": {
+            "adds": 31391,
+            "candidates_checked": 7346,
+            "changed": 4114,
+            "drops": 31391,
+            "empty": 0
+          },
+          "image_median_ms": 222.96895000181394,
+          "image_p90_ms": 344.7454499982996,
+          "ms_per_image": 225.8133418909966,
+          "point_evaluations": 0,
+          "process_cpu_seconds": 16.515625,
+          "seconds": 16.71018729993375
+        },
+        "P": {
+          "counts": {
+            "adds": 408586,
+            "candidates_checked": 7346,
+            "changed": 4136,
+            "drops": 444542,
+            "empty": 171
+          },
+          "image_median_ms": 1042.235349999828,
+          "image_p90_ms": 1555.562720001035,
+          "ms_per_image": 1041.8752716215897,
+          "point_evaluations": 12970496,
+          "process_cpu_seconds": 76.484375,
+          "seconds": 77.09877009999764
+        }
+      },
+      "compared_images": 74,
+      "input_preparation_seconds": {
+        "native_planes_and_candidate_preparation": 1.2135445999883814,
+        "occupancy_rgb_decode_and_identity": 0.24157820000255015,
+        "pointrend_basis_read_and_identity": 2.248880500032101
+      },
+      "renderable_rois": 4136,
+      "verification_seconds": 5.301880899940443
+    },
+    {
+      "arms": {
+        "B": {
+          "counts": {
+            "adds": 31391,
+            "candidates_checked": 7346,
+            "changed": 4114,
+            "drops": 31391,
+            "empty": 0
+          },
+          "image_median_ms": 1227.1184500023082,
+          "image_p90_ms": 1936.3507500012931,
+          "ms_per_image": 1236.3870540540195,
+          "point_evaluations": 12970496,
+          "process_cpu_seconds": 90.71875,
+          "seconds": 91.49264199999743
+        },
+        "L": {
+          "counts": {
+            "adds": 31391,
+            "candidates_checked": 7346,
+            "changed": 4114,
+            "drops": 31391,
+            "empty": 0
+          },
+          "image_median_ms": 224.105099998269,
+          "image_p90_ms": 350.39583000107086,
+          "ms_per_image": 228.3845905403723,
+          "point_evaluations": 0,
+          "process_cpu_seconds": 16.765625,
+          "seconds": 16.90045969998755
+        },
+        "P": {
+          "counts": {
+            "adds": 408586,
+            "candidates_checked": 7346,
+            "changed": 4136,
+            "drops": 444542,
+            "empty": 171
+          },
+          "image_median_ms": 1043.131500002346,
+          "image_p90_ms": 1643.4776099973535,
+          "ms_per_image": 1056.5702581080661,
+          "point_evaluations": 12970496,
+          "process_cpu_seconds": 77.5625,
+          "seconds": 78.18619909999688
+        }
+      },
+      "compared_images": 74,
+      "input_preparation_seconds": {
+        "native_planes_and_candidate_preparation": 0.481207699936931,
+        "occupancy_rgb_decode_and_identity": 0.21527040001819842,
+        "pointrend_basis_read_and_identity": 1.83374719999847
+      },
+      "renderable_rois": 4136,
+      "verification_seconds": 5.319620699963707
+    }
+  ],
+  "occupancy_weights_sha256": "3a60f658149f4262451cd9118902bbe52dc83345d9fbcd23973a11dc473fcdf1",
+  "optimizer_updates": 0,
+  "point_weights_sha256": "7401de08367ef31b909ea9c92daa27be02d4efb04460acbf96eab33648fdd7cc",
+  "process_wall_seconds": 396.84921180000674,
+  "reference_edits_sha256": "07b87accf544a0558a55d00205ab4d56a04e0585a8665e415b0743b286f537e5",
+  "runtime": {
+    "Pillow": "12.3.0",
+    "numpy": "1.26.4",
+    "pycocotools": "2.0.11",
+    "rfdetr": "1.12.0",
+    "scipy": "1.15.3",
+    "torch": "2.10.0+cu130"
+  },
+  "same_process": true,
+  "setup_seconds": 1.0098317000010866,
+  "single_unmeasured_first_image_each_arm": true,
+  "status": "RESERVE74_CPU_COST_COMPLETE",
+  "system": "Windows",
+  "system_release": "10",
+  "thread_environment": {
+    "BLIS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "torch_interop_threads": 1,
+  "torch_intraop_threads": 1,
+  "warmup_images": 1,
+  "worker_sha256": "11c8e55a42c98795c3c82ff116a8689824c29f91f6314f989cfcff115028c461"
+}
