@@ -4,6 +4,10 @@
 
 ## 当前状态（2026-11-22）
 
+- [HRSID DEV705 同量经典对照](research_round_20260925_global/HRSID_DEV705_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)在检测器训练未使用的历史开发集上，学习排序较动态空间吸引力 +2.428 mask AP、+5.353 AP75、+1.150 连续 IoU；三个推进条件通过。PSeg-SSDD 的同量比较保持原有相反几何方向。
+
+- [Umbra 独立影像读回试点](research_round_20260925_global/UMBRA_OPEN_GEC_INTAKE_PILOT_20261122.md)实际读取三个开放 GEC 产品的原生 512² 块。公开获取和来源归组已验证，评价仍需独立船体标注。
+
 - [HRSID 官方划分原生基线实测](research_round_20260925_global/HRSID_OFFICIAL_CENTER5202_E24_NATIVE_SCORE_ACTUAL_20261121.md)覆盖 1,962 图，原生 RF-DETR 的 mask AP / AP75 / AR100 为 54.433 / 62.190 / 61.694。两套评分程序的 39 项指标逐值一致。此结果是历史参与过项目选型的官方划分上的固定原生基线。
 
 - [PSeg-SSDD 完整划分冻结跨库评分](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md)覆盖 232 图和 546 条浮点原标注。mask AP 17.974→18.319（+0.344），去除 10 张历史重复图后仍 +0.389。相同点头和逐候选编辑量下，独立选点较固定配对 +0.081 AP 点、+0.106 连续 IoU 点。同轮逐图配对中，等价取样将 CPU 精修均值由 158.8 降到 104.3 毫秒，最终掩膜与分数完全一致。同量原生概率对照出现的新增孔洞更少。

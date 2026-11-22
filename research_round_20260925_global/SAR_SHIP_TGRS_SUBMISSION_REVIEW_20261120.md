@@ -12,12 +12,12 @@
 
 UEIKAP 的 108 张作者原图对应 139 个已标注船体及 18 个预留 Sentinel-1 采集组。冻结 D-FINE 在原生阈值仅匹配 2 个船体（1.44%），二者固定配对预算均为零。主比较的有效覆盖为 0 艘、0 组，差值和区间均为零。两例相同动态空间吸引力预算下，学习排序的连续 IoU 平均低 0.914 点。检查全候选也仅有 5 个达标。前 100 候选在原面积、至多八次真值交换的放宽条件下最多覆盖 4 个。该结果约束本次载体与编辑预算的可修复范围。独立学术评审认为限定至 HRSID 同头同量机制后，作者资料齐备即可尝试 TGRS 送审。项目建议优先取得独立且匹配充足的闭集证据，以提高投稿依据。 [UEIKAP 冻结实测](UEIKAP_RESERVED_HULL_ACTUAL_20261122.md)
 
-在历史 PSeg-SSDD 232 图上，经典空间吸引力是竞争性对照。定住逐候选实际编辑量后，学习排序相对动态经典规则 −0.026 AP、+0.279 AP75、−0.270 连续 IoU（按解码图像组等权，95% 区间 [−0.440, −0.098]）。去除历史重复后方向一致。主结论依旧是 HRSID 上的固定配对限制，应将学习占据率比经典规则更有效的主张限定于推断条件与数据。 [经典对照实测](PSEG_TEST232_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)
+在历史 HRSID DEV705 上，检测器训练未使用对应影像。同量学习排序较经典动态规则提高 2.428 AP、5.353 AP75 和 1.150 连续 IoU，27 组配对区间 [0.927, 1.397]。这种严格同量对照支持源域排序贡献。在历史 PSeg-SSDD 232 图上，经典空间吸引力是竞争性对照。定住逐候选实际编辑量后，学习排序相对动态经典规则 −0.026 AP、+0.279 AP75、−0.270 连续 IoU（按解码图像组等权，95% 区间 [−0.440, −0.098]）。去除历史重复后方向一致。主结论依旧是 HRSID 上的固定配对限制，应将学习占据率比经典规则更有效的主张限定于 HRSID 的冻结载体。 [HRSID DEV705 实测](HRSID_DEV705_CLASSICAL_ATTRACTION_ACTUAL_20261122.md) · [经典对照实测](PSEG_TEST232_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)
 
 ## 投稿前最关键的补证
 
 在采集来源可核验、此前未参加开发且有足量可编辑船舶的场景上，一次冻结原生、固定配对、同量独立、自然计数和直接强对照，按采集组报告 AP、连续 IoU 和失败范围。其中 Instance-RSDD 高分三号子集值得优先核验。已定位作者的实例标注目录，获取入口需要账户登录，图像须从原始 RSDD 发行获取。入库后核对场景身份、标注覆盖、许可与重叠。OSSDD 的掩膜由旋转框填充，VesselBench 目前给出检测框，二者适合其定位任务。 [Instance-RSDD 论文](https://www.mdpi.com/2072-4292/15/5/1324) · [作者发布](https://github.com/XIDIAN212Lab/SRNet#the-instance-rsdd-dataset) · [OSSDD 标注协议](https://arxiv.org/html/2608.01963v1#S4.SS1) · [VesselBench](https://arxiv.org/html/2609.37003v1)
 
-SMART-Ship 原文确认靠泊船舶多边形，当前可核入口需要申请。SISS-YOLO 报告由 Labelme 勾画的 Sentinel-1 船体，公开数据声明只有原始 OpenSARShip2.0 入口。两条路径目前缺作者轮廓文件或采集索引。 [SMART-Ship 原文](https://arxiv.org/html/2508.02384v2) · [SISS-YOLO 原文](https://www.mdpi.com/2072-4292/17/17/3118)
+SMART-Ship 原文确认靠泊船舶多边形，当前可核入口需要申请。SISS-YOLO 报告由 Labelme 勾画的 Sentinel-1 船体，公开数据声明只有原始 OpenSARShip2.0 入口。两条路径目前缺作者轮廓文件或采集索引。Umbra 已真实读回三个独立采集产品各一个原生块，可作为补充双人判读的取数通路。 [Umbra 实际试点](UMBRA_OPEN_GEC_INTAKE_PILOT_20261122.md) [SMART-Ship 原文](https://arxiv.org/html/2508.02384v2) · [SISS-YOLO 原文](https://www.mdpi.com/2072-4292/17/17/3118)
 
 作者、单位、通讯信息和 ORCID 保留占位。原 A/B 长训练停止结果及全部历史试验仍见证据矩阵。 [研究收尾计划](PAPER_CLOSEOUT_PLAN_20261121.md)
