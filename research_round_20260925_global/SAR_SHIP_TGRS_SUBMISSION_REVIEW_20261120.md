@@ -18,7 +18,9 @@ UEIKAP 的 108 张作者原图对应 139 个已标注船体及 18 个预留 Sent
 
 ## 投稿前最关键的补证
 
-在采集来源可核验、此前未参加开发且有足量可编辑船舶的场景上，一次冻结原生、固定配对、同量独立、自然计数和直接强对照，按采集组报告 AP、连续 IoU 和失败范围。其中 Instance-RSDD 高分三号子集值得优先核验。已定位作者的实例标注目录，获取入口需要账户登录，图像须从原始 RSDD 发行获取。入库后核对场景身份、标注覆盖、许可与重叠。OSSDD 的掩膜由旋转框填充，VesselBench 目前给出检测框，二者适合其定位任务。 [Instance-RSDD 论文](https://www.mdpi.com/2072-4292/15/5/1324) · [作者发布](https://github.com/XIDIAN212Lab/SRNet#the-instance-rsdd-dataset) · [OSSDD 标注协议](https://arxiv.org/html/2608.01963v1#S4.SS1) · [VesselBench](https://arxiv.org/html/2609.37003v1)
+在 UEIKAP 的同一已评估采集队列上，冻结 RF-DETR 匹配 17／139 个作者船体。17 艘均可执行正预算固定配对，分布于 4 组，低于 20 艘、8 组的预设覆盖线。同头同量独立选点在这 4 组均有改善。按全 18 组等权为 +0.03014 连续 IoU 点，区间 [0.00028, 0.08025]。结果支持有限的外域机制迹象，整景和跨采集确认仍依赖足量独立影像及完整实例标注。[RF-DETR 外域实测](UEIKAP_RFDETR_CARRIER_ACTUAL_20261122.md)
+
+Instance-RSDD 高分三号子集仍为优先候选。已分段核验公开影像镜像，原始 RSDD 的 7,000 张图与旋转框配对，并按论文附录映射到 125 个裁块来源。船体标注由 Instance-RSDD 作者另行发布，当前入口需要登录，715 张原测试划分的实例配对和独立性尚未核验。OSSDD 提供旋转框填充掩膜，VesselBench 给出检测框。[原图与采集映射核验](INSTANCE_RSDD_IMAGE_ACCESS_ACTUAL_20261122.md) · [Instance-RSDD 论文](https://www.mdpi.com/2072-4292/15/5/1324) · [OSSDD 标注协议](https://arxiv.org/html/2608.01963v1#S4.SS1) · [VesselBench](https://arxiv.org/abs/2609.37003)
 
 SMART-Ship 原文确认靠泊船舶多边形，当前可核入口需要申请。SISS-YOLO 报告由 Labelme 勾画的 Sentinel-1 船体，公开数据声明只有原始 OpenSARShip2.0 入口。两条路径目前缺作者轮廓文件或采集索引。Umbra 已按预锁顺序和空间间隔取回 12 个不同采集组的原生窗口，并完成两份离线匿名判读材料。该补充证据仍依赖独立人工轮廓与一致性。 [Umbra 已核验准备](UMBRA_PROSPECTIVE_GEC_ANNOTATION_ACTUAL_20261122.md) [SMART-Ship 原文](https://arxiv.org/html/2508.02384v2) · [SISS-YOLO 原文](https://www.mdpi.com/2072-4292/17/17/3118)
 

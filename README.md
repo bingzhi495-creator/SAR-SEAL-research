@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-22）
 
+- 同一 UEIKAP 作者轮廓队列上，冻结 RF-DETR 匹配 17／139 艘，原 D-FINE 匹配 2／139。4 个有正编辑预算的采集组均出现同量独立选点收益，全队列 +0.03014 连续 IoU 点，覆盖仍低于 20 艘、8 组的预设线。[复验](research_round_20260925_global/UEIKAP_RFDETR_CARRIER_ACTUAL_20261122.md) · [Instance-RSDD 原图和父景映射核验](research_round_20260925_global/INSTANCE_RSDD_IMAGE_ACCESS_ACTUAL_20261122.md)
+
 - PSeg 目标域 FIT109 点头完成 200 次更新。DEV187 上相对同量动态规则 +0.695 AP，相对冻结 HRSID 头 −0.150 AP，相对原生 −0.885 AP。固定匹配连续 IoU 相对原生 −0.470 点，区间 [−0.621, −0.325]。按预锁结束此同量配方。[实测与代码入口](research_round_20260925_global/PSEG_RFDETR_TARGET_FIT109_ACTUAL_20261122.md)
 
 - PSeg 目标域强载体冻结点头复验中，学习排序较动态空间吸引力 +0.845 AP、+0.193 连续 IoU，几何区间跨零。原生 AP 70.694 仍最高，同量学习 69.958。固定端点的事后同量几何上界高于原生 2.246 点。[实验报告](research_round_20260925_global/PSEG_RFDETR_FROZEN_SOURCE_HEAD_ACTUAL_20261122.md) · [英文审阅稿复核](research_round_20260925_global/paper_boundary_refinement_20261120/ACADEMIC_REVIEW_20261122.md)
