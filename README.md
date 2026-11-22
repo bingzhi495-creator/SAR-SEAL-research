@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- Instance-RSDD 原 740 图完成两组冻结点头的全链复现，五种口径的 **2,303 项数值最大差异 0**。DEV705 的 67,386 个原生预测也已重建并与原文件逐字节一致。[实测](research_round_20260925_global/SAR_B5_MAIN_TABLES_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/SAR_B5_MAIN_TABLES_20261123/README.md)
+
 - 74 图新增父景实验的干净环境复现已通过。官方数据重建、真实 HRSID 最小训练和冻结全量评分均执行成功。图像、预测与编辑记录逐字节一致，**1,470 项数值最大差异 0**。[实测](research_round_20260925_global/INSTANCE_RSDD_B5_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/INSTANCE_RSDD_B5_REPRO_20261123/README.md)
 
 - Instance-RSDD 新增 74 图父景复验通过。冻结同头同量独立选点较固定配对 **+0.436 mask AP、+0.318 连续 IoU 点**。排除历史同传感器同日期后的 42 图为 +0.840 AP。两传感器单列均未达覆盖门槛。[新增父景实测](research_round_20260925_global/INSTANCE_RSDD_PARENT_RESERVE_ACTUAL_20261123.md) · [像素中心与填充对照](research_round_20260925_global/INSTANCE_RSDD_CENTER_RANKING_ACTUAL_20261123.md)
