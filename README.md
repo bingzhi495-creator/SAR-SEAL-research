@@ -2,13 +2,13 @@
 
 <!-- U57_U60_ACTUAL_20261021_01 -->
 
-## 当前状态（2026-11-21）
+## 当前状态（2026-11-22）
 
 - [HRSID 官方划分原生基线实测](research_round_20260925_global/HRSID_OFFICIAL_CENTER5202_E24_NATIVE_SCORE_ACTUAL_20261121.md)覆盖 1,962 图，原生 RF-DETR 的 mask AP / AP75 / AR100 为 54.433 / 62.190 / 61.694。两套评分程序的 39 项指标逐值一致。此结果是历史参与过项目选型的官方划分上的固定原生基线，边界修正的官方划分效果仍待实测。
 
 - [PSeg-SSDD 完整划分冻结跨库评分](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md)覆盖 232 图和 546 条浮点原标注。mask AP 17.974→18.319（+0.344），去除 10 张历史重复图后仍 +0.389。相同点头和逐候选编辑量下，独立选点较固定配对 +0.081 AP 点、+0.106 连续 IoU 点。同轮逐图配对中，等价取样将 CPU 精修均值由 158.8 降到 104.3 毫秒，最终掩膜与分数完全一致。同量原生概率对照出现的新增孔洞更少。
 
-- [RF-DETR 第二检测器种子](research_round_20260925_global/code/RFDETR_COMMON5203_E24_REPLICATION_20261121/README.md)已验收 24 轮、17,640 次优化器和 EMA 更新。首轮原生 DEV705 导出覆盖 705 图和 64,859 个映射候选。精修回放在一处近零像元触发严格栅格校验停止，已用原生 CUDA 算法精确复现并通过原图回归。修复后的全量捕获已正常结束，前 304 张与先前结果的预测和点编辑逐字节一致，两个原生输出摘要一致。独立回读及后续同量评分已接续。 [跨运行一致性](research_round_20260925_global/results/RFDETR_COMMON5203_DEV705_RECOVERY_PREFIX_SAFE_20261122.json)[评分入口](research_round_20260925_global/code/RFDETR_COMMON5203_DEV705_FROZEN_20261121/README.md)
+- [RF-DETR 第二检测器的同量实测](research_round_20260925_global/RFDETR_COMMON5203_DEV705_FROZEN_ACTUAL_20261122.md)完成 24 轮和 DEV705 全量复验。三个冻结点头上，独立选点较固定配对均提高 AP，平均 +0.838 AP、+0.583 连续 IoU 点。自然计数 AP 55.914→56.726。同量自由增删比较的连续 IoU 区间跨零。
 
 - [HRSID 官方划分冻结精修实测](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md)已完成预测独立回读及 12 条处理预测的评分。RF-DETR mask AP 54.433→55.454，三点头种子全部提升。同头同量独立选点较固定配对 +1.216 AP、+1.958 AP75；相对同量自由增删平均 +0.324 AP，其中一个种子退步。两个预锁敏感性口径保留增减方向。
 
@@ -34,9 +34,11 @@
 
 - [同量经典空间吸引力对照实测](research_round_20260925_global/FIT109_CLASSICAL_ATTRACTION_ACTUAL_20261121.md)已完成。同一 FIT109 端点和逐候选实际编辑数下，学习占据率较动态吸引力 +5.192 mask AP 点、+1.104 连续 IoU 点，AP90 −0.164 点。已核对原进程、全部等量计数和原匹配阈值记录。
 
+- [分数标签与两个硬标签的同量对照](research_round_20260925_global/FIT109_FRACTIONAL_TARGETS_ACTUAL_20261122.md)完成三种子和 9,000 次更新。相对 COCO 硬栅格 +0.184 AP，相对同一占据率硬化 +0.051 AP、一个种子下降。覆盖两种硬标签的预设一致性判据未通过。
+
 - [FIT109 四臂整合实验](research_round_20260925_global/RFDETR_QUERY_CHANNEL_FIT109_ACTUAL_20261121.md)已结束且独立复算一致。查询条件特征相对普通空间特征 +0.352 AP 点，未超过置换或零填充对照，按原判据停止扩展。
 
-- [论文收尾计划](research_round_20260925_global/PAPER_CLOSEOUT_PLAN_20261121.md)。北京时间 11 月 23 日 18:00 冻结正文证据，11 月 24 日 22:00 交付审阅稿和投稿判断。
+- [论文收尾计划](research_round_20260925_global/PAPER_CLOSEOUT_PLAN_20261121.md)。北京时间 11 月 23 日 18:00 冻结正文证据，11 月 24 日 22:00 交付审阅稿和投稿判断。 [最新 TGRS 投稿评议](research_round_20260925_global/SAR_SHIP_TGRS_SUBMISSION_REVIEW_20261120.md)
 
 - [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。 [通用复合仿射实测](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md#通用复合仿射的真实-fit-对照)在相同等距取整下，与单次中心的 4,145 条训练掩膜及源像素索引逐值一致。
 - [HRSID 中心模型的双侧边缘筛选](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md)。36 张 FIT 图实际前向，在 109 个固定匹配上仅有 2 个有效编辑，与普通对照同向，未过门槛。[等预算真值上界](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#同一位移菜单的真值上界)短轴 +1.549、长轴 +1.029 点，两轴差区间跨零。[同编辑预算局部上界](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#同编辑预算的局部轮廓上界)较最佳平移 +4.777 点，严格匹配 11→32。[固定查询位移试点](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#固定查询的配准位移试点实测)完成 180 次 CPU 前向。评分纳入 166 个固定匹配，法向读出较不编辑 −0.575 IoU 点，未通过预锁门槛。 [同次数的补删比例上界](research_round_20260925_global/HRSID_FIT_AREA_FLEX_ORACLE_ACTUAL_20261112.md)在相同 1,718 次翻转下较等量补删多 +0.766 连续 IoU 点，严格达标 24→26。动作由真值选择。 [三种子候选关联试点](research_round_20260925_global/HRSID_FIT_SEED_CONSENSUS_20261112.md)完成 108 次前向，双供体仅 47 个候选、4 个来源组，覆盖门槛未通过。 [关联与身份风险复算](research_round_20260925_global/HRSID_FIT_ASSOC_STRUCTURE_20261112.md)普通贪心确认 131 艘船、35 个来源组，保留全部未决关系。 [新图组面积确认](research_round_20260925_global/HRSID_FIT_SEED_AREA_CONFIRM_20261112.md)均值校准减小 0.934 点面积误差，中位数未超过普通均值，按门槛停止。

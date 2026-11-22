@@ -1,0 +1,82 @@
+{
+  "edits_each_target_arm": {
+    "edited": 4416,
+    "edited_neutral": 4,
+    "edited_unmatched": 4048,
+    "edited_valid": 364,
+    "no_op": 6484,
+    "swaps": 20809
+  },
+  "first_fractional_training_exact": true,
+  "fixed_matches": 412,
+  "fractional_minus_controls": {
+    "coco_raster": {
+      "AP75_points": [
+        0.9205955079109884,
+        0.27241892213168484,
+        0.3636536943079278
+      ],
+      "AP_points": [
+        0.3124091570461687,
+        0.14111873827128818,
+        0.09920510185381204
+      ],
+      "continuous_IoU_points": [
+        0.08792572238479579,
+        0.14171130812881927,
+        0.10327639319223181
+      ],
+      "gate": true,
+      "mean_AP_points": 0.18424433239042295,
+      "mean_continuous_IoU_points": 0.11097114123528229,
+      "source_reported_interval95_points": [
+        0.061687372044772315,
+        0.16582608838226628
+      ]
+    },
+    "threshold50": {
+      "AP75_points": [
+        -0.10004119230153208,
+        0.1259480170323144,
+        0.29892685482147385
+      ],
+      "AP_points": [
+        0.06702348614375353,
+        -0.007823799337245418,
+        0.09445629540074663
+      ],
+      "continuous_IoU_points": [
+        0.029461666607318193,
+        0.053089545625795154,
+        0.0189865176128734
+      ],
+      "gate": false,
+      "mean_AP_points": 0.05121866073575158,
+      "mean_continuous_IoU_points": 0.033845909948662246,
+      "source_reported_interval95_points": [
+        0.01056896121709601,
+        0.05830782579316084
+      ]
+    }
+  },
+  "head_fits": 45,
+  "historical_arms_exact": [
+    "raw",
+    "fixed",
+    "free_matched_count",
+    "free_natural"
+  ],
+  "historical_sha256": "66867e13d7697ac18aff843433d5f2d171773e002a2cf8a1d9bf63da4ccddd7f",
+  "paired_initialization_sampler_and_group_counts": true,
+  "paired_seed_folds": 15,
+  "prespecified_both_controls_gate": false,
+  "result_sha256": "af5e50e2317618e237769c049608c704c68be07c5ebc500c785f48319ec3d0fd",
+  "scope": "Aggregate independent arithmetic audit on historically detector-visible FIT109. Intervals quoted from source. No new fitting, per-image scoring, bootstrap or mask reconstruction.",
+  "seeds": [
+    5217,
+    5317,
+    5417
+  ],
+  "source_prefix_groups": 93,
+  "updates_verified": 9000
+}
