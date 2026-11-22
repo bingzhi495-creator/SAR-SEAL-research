@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- HRSID DEV705 同排序、同量配额实测完成。完整候选 AP 监督为 **56.890 mask AP**，较原生 +0.819 点，较最强预设比值对照 −0.253 点。按预锁停止扩展这套回归。保留全部候选和几何复核。[实测与复现](research_round_20260925_global/HRSID_DEV705_QUOTA_COMPETITION_ACTUAL_20261123.md)
+
 - HRSID FIT109 已核验 109 个来源组、三种子 313,135 个可行配额动作。原匹配几何监督已保留，完整候选匹配竞争的替换计算通过合成 COCO 复算。[样本和代码](research_round_20260925_global/RFDETR_FIT109_FROZEN_QUOTA_ACTIONS_ACTUAL_20261123.md)
 
 - 端点与配额诊断完成。高分三号只替换原端点内的 PointRend 决策得到 61.782 AP，距整框 0.049 点且召回更高。HRSID DEV705 冻结排序下，真值增删配额在相同总编辑量时提高 1.264 连续 IoU，三个种子均正。[端点拆分](research_round_20260925_global/INSTANCE_RSDD_POINTREND_SUPPORT_FACTOR_ACTUAL_20261123.md) · [配额上界](research_round_20260925_global/RFDETR_DEV705_FROZEN_ORDER_QUOTA_ACTUAL_20261123.md)
