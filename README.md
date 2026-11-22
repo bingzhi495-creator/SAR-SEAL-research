@@ -6,7 +6,7 @@
 
 - Instance-RSDD 新增 74 图的直接对照通过，同端点同编辑量时占据率排序较冻结 PointRend **+0.477 mask AP、+0.395 连续 IoU 点**。日期分离 42 图为 +1.061 AP 和 +0.490 IoU。整框 PointRend 在本队列低 1.293 AP，在历史高分三号队列领先 0.211 AP。[实测和复现](research_round_20260925_global/INSTANCE_RSDD_RESERVE_POINTREND_ACTUAL_20261123.md)
 
-- HRSID 官方 1,962 图与 Instance-RSDD 原 740 图的论文冻结主表均完成独立复现，**3,434 项数值最大差异 0**。DEV705 center5202 原生预测和编辑记录也已逐字节复现。[实测](research_round_20260925_global/SAR_B5_MAIN_TABLES_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/SAR_B5_MAIN_TABLES_20261123/README.md)
+- HRSID 官方 1,962 图与 Instance-RSDD 原 740 图的论文冻结主表均完成独立复现，**3,434 项数值最大差异 0**。DEV705 center5202 的 2,233 项评分及回放检查亦全部通过。[实测](research_round_20260925_global/SAR_B5_MAIN_TABLES_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/SAR_B5_MAIN_TABLES_20261123/README.md)
 
 - 74 图新增父景实验的干净环境复现已通过。官方数据重建、真实 HRSID 最小训练和冻结全量评分均执行成功。图像、预测与编辑记录逐字节一致，**1,470 项数值最大差异 0**。[实测](research_round_20260925_global/INSTANCE_RSDD_B5_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/INSTANCE_RSDD_B5_REPRO_20261123/README.md)
 
