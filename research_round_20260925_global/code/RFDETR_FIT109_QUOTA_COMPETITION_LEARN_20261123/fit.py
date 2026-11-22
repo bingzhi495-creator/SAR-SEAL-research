@@ -124,8 +124,9 @@ def load_shard(source, competition, ref, geo_ref, ap_ref, policies):
           and np.allclose(ap,levels.mean(axis=1),rtol=0,atol=1e-15)
           and int(mask.sum()) == geo_ref["supervised_candidate_seed_rows"],
           "Continuous geometry and ten-threshold unilateral AP targets in unit fractions")
-    all_w = candidate_weights(identity,count > 0)
-    match_w = candidate_weights(identity,(count > 0) & mask)
+    alternatives = np.diff(offsets) > 1
+    all_w = candidate_weights(identity,alternatives)
+    match_w = candidate_weights(identity,alternatives & mask)
     masses = np.zeros((m,2),dtype=np.float64)
     constant_worth = np.zeros(len(OFFSETS), dtype=np.float64)
     trainable = np.zeros(m,dtype=bool)
@@ -138,9 +139,8 @@ def load_shard(source, competition, ref, geo_ref, ap_ref, policies):
               and (np.isfinite(geometry[span]).all() and geometry[start+balance] == 0
                    if mask[i] else np.isnan(geometry[span]).all()),
               "Exactly zero target for balanced action and explicit matched-only geometry labels")
-        if k == 0:
+        if not alternatives[i]:
             continue
-        check(len(moves) > 1, "A nonzero budget supplies a feasible nonbalance action")
         trainable[span] = True
         trainable[start+balance] = False
         masses[span,0] = all_w[i]/(len(moves)-1)
@@ -150,6 +150,9 @@ def load_shard(source, competition, ref, geo_ref, ap_ref, policies):
         constant_worth += all_w[i]*ap[start+picks]
     check(int(np.isfinite(geometry).sum()) == geo_ref["supervised_actions"], "Complete published geometry exposure")
     counts = Counter(candidate_seed_rows=n, legal_actions=m, zero_budget_rows=int((count == 0).sum()),
+                     single_action_rows=int((~alternatives).sum()),
+                     nonzero_budget_single_action_rows=int(np.count_nonzero(~alternatives & (count > 0))),
+                     geometry_single_action_rows=int(np.count_nonzero(~alternatives & mask)),
                      geometry_candidate_seed_rows=int(mask.sum()), geometry_legal_actions=int(np.isfinite(geometry).sum()),
                      ap_nonzero_actions=int(np.count_nonzero(ap)), ap_positive_actions=int(np.count_nonzero(ap > 0)),
                      ap_negative_actions=int(np.count_nonzero(ap < 0)), ap_trainable_actions=int(trainable.sum()),
