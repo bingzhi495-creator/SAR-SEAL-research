@@ -17,3 +17,4 @@ Use the [B5 Windows CPython 3.10.13 environment](../INSTANCE_RSDD_B5_REPRO_20261
 
 Run Python with `-I -B -X utf8`. Use `CUDA_VISIBLE_DEVICES=0` for forward and `-1` for readback, editing and scoring. The edit authority contains the absolute paths and digests in `edit_additional.py` and uses the capture readback and its observer. Include the prepared result and observer only for edit verification. The scorer uses that verified result and observer. It opens the author masks only after validating the frozen predictions and edit stream. Results concern agreement with the released hulls and retain the no-match cases in the acquisition-weighted denominator.
 
+[Verified results and execution receipts](../../UEIKAP_ADDITIONAL_FAMILIES_ACTUAL_20261123.md).

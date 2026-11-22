@@ -1,0 +1,670 @@
+{
+  "initial_failed_capture": {
+    "actual_exit": 1,
+    "cause": "WinError 1114 during PyTorch c10 DLL initialization, before model capture",
+    "output_footer_verified": false,
+    "result_sha256": null,
+    "worker_sha256": "a4f6942094f8f722db085d7de88c8627cae89c3c1d1173837a37b46f2054d390"
+  },
+  "phases": {
+    "capture": {
+      "AP": false,
+      "GT_opened": false,
+      "audit_sha256": "b5f54c12d6d071579677ff1093641bff9b40d0801aef71f78e0611d4baadbd89",
+      "author_TEST": false,
+      "carrier_operator_sha256": "89c3294d79e1d69530401a4bf08e3400d52fbc6b77bc7967029cbd1fbbdbb116",
+      "carrier_sha256": "97449f58d1ad1a62c52c6f100fc872690e51d465e85e241660befba7a9690a71",
+      "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+      "cohort_roster_sha256": "0d78b4611e7db88a146f5bad489b6301e64e1d1eb499d536fd414e7b134c456d",
+      "counts": {
+        "eligible": 17537,
+        "mapped": 33975,
+        "overrides": 0,
+        "rank_gaps": 225
+      },
+      "cuda_admission_free": 24445452288,
+      "cuda_peak_bytes": 296904704,
+      "groups": 13,
+      "images": 342,
+      "intake_result_sha256": "ba7ec4395f6b96f8b20e2e33f0a04c0978451556275663fe02b63486e2902744",
+      "intake_sha256": "291cc1fbfb94b72f2ab41bbc468fa6f1d3a465fe995dd9e06185ae93d5e5f855",
+      "intake_terminal_sha256": "adc37131157ee24a65ac4b9e33ea1623011f7e07f733664f4ec347c00db09be3",
+      "manifest_sha256": "291cc1fbfb94b72f2ab41bbc468fa6f1d3a465fe995dd9e06185ae93d5e5f855",
+      "model_forward_calls": 342,
+      "optimizer_updates": 0,
+      "phase": "capture",
+      "portable_source_sha256": "45512c959eb914ae7713264ecff48eb437a2a52729810b34308abc52079148df",
+      "predictions_sha256": "6a784faaddb4a3889a8ded0a128fb9b6999fcbe9261bca4c1cae4698e7c3c97f",
+      "protocol_sha256": "fbcc4d067351a7a7d2db226e6261a13c2f399eed59be414226e6ae29b6553bf2",
+      "status": "UEIKAP_ADDITIONAL_RFDETR_CAPTURE_COMPLETE",
+      "target_labels_opened": false,
+      "worker_sha256": "a4f6942094f8f722db085d7de88c8627cae89c3c1d1173837a37b46f2054d390"
+    },
+    "intake": {
+      "acquisition_groups": 13,
+      "archive_bytes": 1571288093,
+      "central_directory_sha256": "e7a969a39b4f6723d9293acdc9297e917d2830fcba54eeac3dd22b26b4f56610",
+      "charged_range_bytes": 123877387,
+      "cohort_roster_sha256": "0d78b4611e7db88a146f5bad489b6301e64e1d1eb499d536fd414e7b134c456d",
+      "decoded_rgb_exact_overlap_previous_108": 0,
+      "http_requests": 20,
+      "images": 342,
+      "images_roster_sha256": "291cc1fbfb94b72f2ab41bbc468fa6f1d3a465fe995dd9e06185ae93d5e5f855",
+      "labeled_hulls": 528,
+      "labels_roster_sha256": "4231bb9c72dfc1135697efd210e568ecc501aee397076a47687fa93a02cdadf5",
+      "member_provenance_sha256": "e956de6937ab567d4d8d36f5ce04ffb4400dcd0c4889c50eb7d26fb6ee3f0a9f",
+      "protocol_sha256": "fbcc4d067351a7a7d2db226e6261a13c2f399eed59be414226e6ae29b6553bf2",
+      "received_bytes": 123877387,
+      "roster_result_sha256": "3706d4f4579a2ba949319ac0e5e00c95a1680325c16743a0ffde0976b6dfff45",
+      "source_record": 18391027,
+      "status": "UEIKAP_ADDITIONAL_AUTHOR_INTAKE_COMPLETE",
+      "worker_sha256": "45f558e47eb679230a13c136e1c0015b9c11676e7c0067d1811219773f377f8e"
+    },
+    "prepare-edits": {
+      "GT_opened": false,
+      "candidate_audit_sha256": "b5f54c12d6d071579677ff1093641bff9b40d0801aef71f78e0611d4baadbd89",
+      "capture_receipt_sha256": "1f7790e9858a19fadafc495b38592e93858fc00626bd92bcca0e548ed3b49ff6",
+      "capture_terminal_sha256": "8462bfc621fea88412ccee213e9c2c80e049dca0ce8fc67717b61d56f21e45e9",
+      "cohort_roster_sha256": "0d78b4611e7db88a146f5bad489b6301e64e1d1eb499d536fd414e7b134c456d",
+      "counts": {
+        "attraction_dynamic_candidates": 17410,
+        "attraction_dynamic_swaps": 124264,
+        "attraction_static_at_dynamic_count_candidates": 17410,
+        "attraction_static_at_dynamic_count_swaps": 124264,
+        "editable_supports": 17463,
+        "fixed_candidates": 17034,
+        "fixed_swaps": 119743,
+        "free_matched_count_candidates": 17034,
+        "free_matched_count_swaps": 119743,
+        "free_natural_candidates": 17462,
+        "free_natural_swaps": 127009,
+        "images": 342,
+        "learned_at_attraction_count_candidates": 17410,
+        "learned_at_attraction_count_swaps": 124264,
+        "mapped_candidates": 33975,
+        "native_matched_count_candidates": 17462,
+        "native_matched_count_swaps": 127009
+      },
+      "edits_sha256": "4365f8a85fe0e65bd6ab2eebb4b987291732e3adec775c572d3b9a3fd4f44c35",
+      "exact_replayed_policy_choices": false,
+      "exact_support_xor_area": true,
+      "groups": 13,
+      "historical_editor_sha256": "d753f673dcd43f1a65b817be176b4d77a05332a66d01fe98c7833f86248b5feb",
+      "images": 342,
+      "input_authority_sha256": "86767ded8243a21cb053142841116379164bdf14a1050950fbd5b23998e3d3ac",
+      "intake_terminal_sha256": "adc37131157ee24a65ac4b9e33ea1623011f7e07f733664f4ec347c00db09be3",
+      "manifest_sha256": "291cc1fbfb94b72f2ab41bbc468fa6f1d3a465fe995dd9e06185ae93d5e5f855",
+      "model_forwards": 0,
+      "optimizer_updates": 0,
+      "predictions_sha256": "6a784faaddb4a3889a8ded0a128fb9b6999fcbe9261bca4c1cae4698e7c3c97f",
+      "prepared_receipt_sha256": null,
+      "protocol_sha256": "fbcc4d067351a7a7d2db226e6261a13c2f399eed59be414226e6ae29b6553bf2",
+      "seconds": 255.8868747000015,
+      "status": "UEIKAP_ADDITIONAL_RFDETR_EDITS_PREPARED",
+      "target_labels_opened": false,
+      "worker_sha256": "ed7138d7ec70d9d63e73f42b8f9cc135991cc6f838abfd85b2f71a43c440f095"
+    },
+    "roster": {
+      "archive_bytes": 1571288093,
+      "archive_url": "https://zenodo.org/api/records/18391027/files/UEIKAP_SAR.zip/content",
+      "central_directory_sha256": "e7a969a39b4f6723d9293acdc9297e917d2830fcba54eeac3dd22b26b4f56610",
+      "families": 13,
+      "images": 342,
+      "model_forwards": 0,
+      "native_image_bytes_read": 0,
+      "per_family": {
+        "S1A_052791_06636C": {
+          "images": 9,
+          "released_class0_polygons": 14
+        },
+        "S1A_052813_06642D": {
+          "images": 48,
+          "released_class0_polygons": 135
+        },
+        "S1A_052864_0665F0": {
+          "images": 7,
+          "released_class0_polygons": 7
+        },
+        "S1A_052886_0666A3": {
+          "images": 51,
+          "released_class0_polygons": 79
+        },
+        "S1A_052893_0666E0": {
+          "images": 52,
+          "released_class0_polygons": 69
+        },
+        "S1A_052937_066868": {
+          "images": 5,
+          "released_class0_polygons": 8
+        },
+        "S1A_052944_0668AD": {
+          "images": 5,
+          "released_class0_polygons": 5
+        },
+        "S1A_052959_066921": {
+          "images": 33,
+          "released_class0_polygons": 50
+        },
+        "S1A_052966_066960": {
+          "images": 38,
+          "released_class0_polygons": 47
+        },
+        "S1A_052995_066A71": {
+          "images": 3,
+          "released_class0_polygons": 3
+        },
+        "S1A_053061_066CFD": {
+          "images": 9,
+          "released_class0_polygons": 9
+        },
+        "S1A_053236_0673A0": {
+          "images": 50,
+          "released_class0_polygons": 61
+        },
+        "S1A_053243_0673E1": {
+          "images": 32,
+          "released_class0_polygons": 41
+        }
+      },
+      "polygon_files_opened": 0,
+      "preview_excluded": 5,
+      "prior_evaluated_families": 18,
+      "prior_evaluated_images": 108,
+      "publisher_split": {
+        "test": 65,
+        "train": 217,
+        "val": 60
+      },
+      "qa_excluded": 50,
+      "released_class0_polygons": 528,
+      "roster_sha256": "0d78b4611e7db88a146f5bad489b6301e64e1d1eb499d536fd414e7b134c456d",
+      "selection_rule": "All strict satellite/orbit/datatake assignments outside the 18 previously evaluated families, excluding the five preview and 50 QA chips. Sort by original TIFF member name.",
+      "source_metadata_sha256": {
+        "CATALOGUE_READBACK_SAFE.json": "7a72d54dc5b67031a02474089442cde7f3b57c1a20ba28664971b4978648793d",
+        "FROZEN_HUMAN_QA50.json": "405f149aaa30808ecf2a495cb4dfaf0e1ea57b3aba860c5280dcdc9e5beafb1a",
+        "PROVISIONAL_EXTERNAL_RESERVATION.json": "1f3b4d3bf0ff8f0ed1767cfdd796b541e60f2a4c7d76b03c316f0b1e81dbded1",
+        "RECOVERED_FOOTPRINTS_PRIVATE.json": "fb58d7a0c4b7ac1f81751c2c8955c61cf8ce5bb0e6e2bccd738cec9ee1def732",
+        "RECOVERY_AGGREGATE_SAFE.json": "c2195a679688590284c1f269b843dd88d7986a29607502bc0d5225aa47cc9b01",
+        "all_labels_audit.json": "0d7aeb869f0bccda238992b61d1b57212e573d8479da53dc123520d510e02125",
+        "full_scene_mapping.json": "51285811a9098711cc8b9e7dfa3460ab71027bc7b70f7d7453b048e3e7545261",
+        "selection_locked.json": "bce9f651ab2b04c0e41f08b96d4f06680a49ee3e6fef6b34406b86fb90b11d7f"
+      },
+      "source_record": "https://zenodo.org/records/18391027",
+      "status": "UEIKAP_ADDITIONAL_FAMILIES_ROSTER_COMPLETE",
+      "tiff_footprints": {
+        "crs": "EPSG:4326",
+        "images": 342,
+        "outward_0p1_degree_bounds_west_south_east_north": [
+          5.0,
+          53.9,
+          15.9,
+          58.5
+        ]
+      },
+      "unresolved_excluded": 10,
+      "worker_sha256": "99f6eca5e3018e16c31d01a1148476adf83d521af420043eb6b2fce2fc97e2af"
+    },
+    "score": {
+      "complete_scene_false_positive_count_identifiable": false,
+      "continuous_iou_threshold_transitions_on_original_matches": {
+        "0.75": {
+          "attraction_dynamic": {
+            "both_below": 120,
+            "gained": 0,
+            "lost": 0,
+            "retained": 1
+          },
+          "attraction_static_at_dynamic_count": {
+            "both_below": 120,
+            "gained": 0,
+            "lost": 0,
+            "retained": 1
+          },
+          "fixed": {
+            "both_below": 120,
+            "gained": 0,
+            "lost": 0,
+            "retained": 1
+          },
+          "free_matched_count": {
+            "both_below": 120,
+            "gained": 0,
+            "lost": 0,
+            "retained": 1
+          },
+          "free_natural": {
+            "both_below": 120,
+            "gained": 0,
+            "lost": 0,
+            "retained": 1
+          },
+          "learned_at_attraction_count": {
+            "both_below": 120,
+            "gained": 0,
+            "lost": 0,
+            "retained": 1
+          },
+          "native_matched_count": {
+            "both_below": 120,
+            "gained": 0,
+            "lost": 0,
+            "retained": 1
+          },
+          "raw": {
+            "both_below": 120,
+            "gained": 0,
+            "lost": 0,
+            "retained": 1
+          }
+        },
+        "0.9": {
+          "attraction_dynamic": {
+            "both_below": 121,
+            "gained": 0,
+            "lost": 0,
+            "retained": 0
+          },
+          "attraction_static_at_dynamic_count": {
+            "both_below": 121,
+            "gained": 0,
+            "lost": 0,
+            "retained": 0
+          },
+          "fixed": {
+            "both_below": 121,
+            "gained": 0,
+            "lost": 0,
+            "retained": 0
+          },
+          "free_matched_count": {
+            "both_below": 121,
+            "gained": 0,
+            "lost": 0,
+            "retained": 0
+          },
+          "free_natural": {
+            "both_below": 121,
+            "gained": 0,
+            "lost": 0,
+            "retained": 0
+          },
+          "learned_at_attraction_count": {
+            "both_below": 121,
+            "gained": 0,
+            "lost": 0,
+            "retained": 0
+          },
+          "native_matched_count": {
+            "both_below": 121,
+            "gained": 0,
+            "lost": 0,
+            "retained": 0
+          },
+          "raw": {
+            "both_below": 121,
+            "gained": 0,
+            "lost": 0,
+            "retained": 0
+          }
+        }
+      },
+      "coverage_gate_met": true,
+      "edited_among_original_matches_by_arm": {
+        "attraction_dynamic": 121,
+        "attraction_static_at_dynamic_count": 121,
+        "fixed": 120,
+        "free_matched_count": 120,
+        "free_natural": 121,
+        "learned_at_attraction_count": 121,
+        "native_matched_count": 121,
+        "raw": 0
+      },
+      "frozen_geometry_advance": true,
+      "geographic_holdout": false,
+      "geometry_backend": {
+        "geos": "3.11.2",
+        "shapely": "2.0.2"
+      },
+      "groups": 13,
+      "images": 342,
+      "images_without_ship_candidate": 0,
+      "inputs": {
+        "accepted_edit_receipt_sha256": "c689f7a75f42d4ffc6650a50a11438208553f54c28fb078230b3b2dec9235b75",
+        "accepted_edit_terminal_sha256": "4dbb93fec516bc0becf76b313b7e03d9af4f245dcfcc44a7fccec4ca6360bfd0",
+        "candidate_audit_sha256": "b5f54c12d6d071579677ff1093641bff9b40d0801aef71f78e0611d4baadbd89",
+        "cohort_roster_sha256": "0d78b4611e7db88a146f5bad489b6301e64e1d1eb499d536fd414e7b134c456d",
+        "edits_sha256": "4365f8a85fe0e65bd6ab2eebb4b987291732e3adec775c572d3b9a3fd4f44c35",
+        "historical_geometry_lf_sha256": "d541d6dffc9a7d49317dea34f53153c4121ba4d7523e5c904e5f7024fa895f20",
+        "historical_rf_scorer_sha256": "9ecbac508e1506b6cee2706a31f497eb4a46dd9bb62fbd56340e9e64ec981fdc",
+        "images_roster_sha256": "291cc1fbfb94b72f2ab41bbc468fa6f1d3a465fe995dd9e06185ae93d5e5f855",
+        "intake_result_sha256": "ba7ec4395f6b96f8b20e2e33f0a04c0978451556275663fe02b63486e2902744",
+        "intake_terminal_sha256": "adc37131157ee24a65ac4b9e33ea1623011f7e07f733664f4ec347c00db09be3",
+        "labels_roster_sha256": "4231bb9c72dfc1135697efd210e568ecc501aee397076a47687fa93a02cdadf5",
+        "member_provenance_sha256": "e956de6937ab567d4d8d36f5ce04ffb4400dcd0c4889c50eb7d26fb6ee3f0a9f",
+        "predictions_sha256": "6a784faaddb4a3889a8ded0a128fb9b6999fcbe9261bca4c1cae4698e7c3c97f",
+        "protocol_sha256": "fbcc4d067351a7a7d2db226e6261a13c2f399eed59be414226e6ae29b6553bf2",
+        "worker_sha256": "b50f3035c1575fc417ced6b67a8ffeeb04a9cbe933f5c531b9b310c7c4792711"
+      },
+      "labeled_hulls_and_coverage": {
+        "eligible_area_sf_zero": 1,
+        "labeled_hulls": 528,
+        "native_area_at_least_1024": 0,
+        "native_area_below_32": 0,
+        "native_matched": 121,
+        "native_unmatched": 407,
+        "originally_matched_source_groups": 10,
+        "sf_positive": 120,
+        "sf_positive_source_groups": 10,
+        "wake_rows_excluded": 396
+      },
+      "model_forwards": 0,
+      "native_matched_mask_area_px_five_number_summary": {
+        "first_quartile": 190.0,
+        "maximum": 919.0,
+        "median": 292.0,
+        "minimum": 37.0,
+        "third_quartile": 401.0
+      },
+      "optimizer_updates": 0,
+      "originally_matched_hulls_continuous_error_area_sum_square_pixels": {
+        "attraction_dynamic": {
+          "false_negative_area": 28172.02314063042,
+          "false_positive_area": 2020.1736641453074
+        },
+        "attraction_static_at_dynamic_count": {
+          "false_negative_area": 28183.037615776746,
+          "false_positive_area": 2031.1881392916223
+        },
+        "fixed": {
+          "false_negative_area": 28326.952537417765,
+          "false_positive_area": 2175.103060932655
+        },
+        "free_matched_count": {
+          "false_negative_area": 28270.596596916985,
+          "false_positive_area": 2118.747120431869
+        },
+        "free_natural": {
+          "false_negative_area": 28275.732828396867,
+          "false_positive_area": 2123.8833519117434
+        },
+        "learned_at_attraction_count": {
+          "false_negative_area": 28277.328439755373,
+          "false_positive_area": 2125.478963270253
+        },
+        "native_matched_count": {
+          "false_negative_area": 28307.96508996513,
+          "false_positive_area": 2156.115613480024
+        },
+        "raw": {
+          "false_negative_area": 28295.631838785797,
+          "false_positive_area": 2143.7823623006825
+        }
+      },
+      "originally_matched_hulls_sensitivity": {
+        "arm_mean_iou_points": {
+          "attraction_dynamic": 54.47334317352743,
+          "attraction_static_at_dynamic_count": 54.44485076518034,
+          "fixed": 54.054063392574236,
+          "free_matched_count": 54.177123783232716,
+          "free_natural": 54.141450988031835,
+          "learned_at_attraction_count": 54.13568099006064,
+          "native_matched_count": 54.11789894168291,
+          "raw": 54.15657134892227
+        },
+        "contrasts": {
+          "free_matched_count minus fixed": {
+            "groups_equal": 0,
+            "groups_improved": 8,
+            "groups_worse": 2,
+            "mean_points": 0.12306039065846819,
+            "paired_95_interval_points": [
+              0.021058201017464806,
+              0.2193220337268112
+            ]
+          },
+          "free_natural minus native_matched_count": {
+            "groups_equal": 0,
+            "groups_improved": 5,
+            "groups_worse": 5,
+            "mean_points": 0.023552046348925826,
+            "paired_95_interval_points": [
+              -0.12019635494521674,
+              0.15025922024347618
+            ]
+          },
+          "free_natural minus raw": {
+            "groups_equal": 0,
+            "groups_improved": 6,
+            "groups_worse": 4,
+            "mean_points": -0.015120360890423788,
+            "paired_95_interval_points": [
+              -0.22026855337321086,
+              0.12266496284930443
+            ]
+          },
+          "learned_at_attraction_count minus attraction_dynamic": {
+            "groups_equal": 0,
+            "groups_improved": 2,
+            "groups_worse": 8,
+            "mean_points": -0.3376621834667748,
+            "paired_95_interval_points": [
+              -0.6114177389137769,
+              -0.10907823238152635
+            ]
+          },
+          "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+            "groups_equal": 0,
+            "groups_improved": 2,
+            "groups_worse": 8,
+            "mean_points": -0.309169775119702,
+            "paired_95_interval_points": [
+              -0.5800808615456515,
+              -0.10125839637844398
+            ]
+          }
+        },
+        "source_groups": 10
+      },
+      "previously_scored_acquisition_panel": false,
+      "primary_all_labeled_hulls": {
+        "arm_mean_iou_points": {
+          "attraction_dynamic": 11.755222734899522,
+          "attraction_static_at_dynamic_count": 11.752655073227244,
+          "fixed": 11.679192602344418,
+          "free_matched_count": 11.708731676156136,
+          "free_natural": 11.70348340307625,
+          "learned_at_attraction_count": 11.702003771304755,
+          "native_matched_count": 11.694249336447584,
+          "raw": 11.697252957660863
+        },
+        "contrasts": {
+          "free_matched_count minus fixed": {
+            "groups_equal": 3,
+            "groups_improved": 8,
+            "groups_worse": 2,
+            "mean_points": 0.0295390738117146,
+            "paired_95_interval_points": [
+              0.00789770665980585,
+              0.05197979316842621
+            ]
+          },
+          "free_natural minus native_matched_count": {
+            "groups_equal": 3,
+            "groups_improved": 5,
+            "groups_worse": 5,
+            "mean_points": 0.009234066628668026,
+            "paired_95_interval_points": [
+              -0.016170881407046193,
+              0.0354159418295199
+            ]
+          },
+          "free_natural minus raw": {
+            "groups_equal": 3,
+            "groups_improved": 6,
+            "groups_worse": 4,
+            "mean_points": 0.006230445415387284,
+            "paired_95_interval_points": [
+              -0.024806012039597806,
+              0.030165908153585025
+            ]
+          },
+          "learned_at_attraction_count minus attraction_dynamic": {
+            "groups_equal": 3,
+            "groups_improved": 2,
+            "groups_worse": 8,
+            "mean_points": -0.05321896359476686,
+            "paired_95_interval_points": [
+              -0.09777331909657777,
+              -0.015618202330415085
+            ]
+          },
+          "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+            "groups_equal": 3,
+            "groups_improved": 2,
+            "groups_worse": 8,
+            "mean_points": -0.050651301922489476,
+            "paired_95_interval_points": [
+              -0.09519143067024366,
+              -0.014637502976896708
+            ]
+          }
+        },
+        "source_groups": 13
+      },
+      "primary_estimand": "free_matched_count minus fixed",
+      "seconds": 5.990698599998723,
+      "ship_candidates_within_joint_top100": 33975,
+      "status": "UEIKAP_ADDITIONAL_RFDETR_RELEASED_HULL_SCORE_COMPLETE",
+      "whole_scene_AP": false
+    },
+    "verify-capture": {
+      "AP": false,
+      "GT_opened": false,
+      "audit_sha256": "b5f54c12d6d071579677ff1093641bff9b40d0801aef71f78e0611d4baadbd89",
+      "author_TEST": false,
+      "capture_sha256": "d7f99ff75782172fcfd263c8af43293b375b58b4ee2a2129139f892fc38ab5b9",
+      "capture_terminal_sha256": "ad5ba3d2320699df213a83aa1128f39d89a71bcf3cc13d56c538e1c945f51a9e",
+      "carrier_operator_sha256": "89c3294d79e1d69530401a4bf08e3400d52fbc6b77bc7967029cbd1fbbdbb116",
+      "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+      "cohort_roster_sha256": "0d78b4611e7db88a146f5bad489b6301e64e1d1eb499d536fd414e7b134c456d",
+      "counts": {
+        "eligible": 17537,
+        "mapped": 33975,
+        "overrides": 0,
+        "rank_gaps": 225
+      },
+      "exact_native_parity": true,
+      "groups": 13,
+      "images": 342,
+      "intake_result_sha256": "ba7ec4395f6b96f8b20e2e33f0a04c0978451556275663fe02b63486e2902744",
+      "intake_sha256": "291cc1fbfb94b72f2ab41bbc468fa6f1d3a465fe995dd9e06185ae93d5e5f855",
+      "intake_terminal_sha256": "adc37131157ee24a65ac4b9e33ea1623011f7e07f733664f4ec347c00db09be3",
+      "manifest_sha256": "291cc1fbfb94b72f2ab41bbc468fa6f1d3a465fe995dd9e06185ae93d5e5f855",
+      "model_forward_calls": 0,
+      "optimizer_updates": 0,
+      "phase": "verify-capture",
+      "portable_source_sha256": "45512c959eb914ae7713264ecff48eb437a2a52729810b34308abc52079148df",
+      "predictions_sha256": "6a784faaddb4a3889a8ded0a128fb9b6999fcbe9261bca4c1cae4698e7c3c97f",
+      "protocol_sha256": "fbcc4d067351a7a7d2db226e6261a13c2f399eed59be414226e6ae29b6553bf2",
+      "status": "UEIKAP_ADDITIONAL_RFDETR_CAPTURE_VERIFIED",
+      "target_labels_opened": false,
+      "worker_sha256": "a4f6942094f8f722db085d7de88c8627cae89c3c1d1173837a37b46f2054d390"
+    },
+    "verify-edits": {
+      "GT_opened": false,
+      "candidate_audit_sha256": "b5f54c12d6d071579677ff1093641bff9b40d0801aef71f78e0611d4baadbd89",
+      "capture_receipt_sha256": "1f7790e9858a19fadafc495b38592e93858fc00626bd92bcca0e548ed3b49ff6",
+      "capture_terminal_sha256": "8462bfc621fea88412ccee213e9c2c80e049dca0ce8fc67717b61d56f21e45e9",
+      "cohort_roster_sha256": "0d78b4611e7db88a146f5bad489b6301e64e1d1eb499d536fd414e7b134c456d",
+      "counts": {
+        "attraction_dynamic_candidates": 17410,
+        "attraction_dynamic_swaps": 124264,
+        "attraction_static_at_dynamic_count_candidates": 17410,
+        "attraction_static_at_dynamic_count_swaps": 124264,
+        "editable_supports": 17463,
+        "fixed_candidates": 17034,
+        "fixed_swaps": 119743,
+        "free_matched_count_candidates": 17034,
+        "free_matched_count_swaps": 119743,
+        "free_natural_candidates": 17462,
+        "free_natural_swaps": 127009,
+        "images": 342,
+        "learned_at_attraction_count_candidates": 17410,
+        "learned_at_attraction_count_swaps": 124264,
+        "mapped_candidates": 33975,
+        "native_matched_count_candidates": 17462,
+        "native_matched_count_swaps": 127009
+      },
+      "edits_sha256": "4365f8a85fe0e65bd6ab2eebb4b987291732e3adec775c572d3b9a3fd4f44c35",
+      "exact_replayed_policy_choices": true,
+      "exact_support_xor_area": true,
+      "groups": 13,
+      "historical_editor_sha256": "d753f673dcd43f1a65b817be176b4d77a05332a66d01fe98c7833f86248b5feb",
+      "images": 342,
+      "input_authority_sha256": "c1aca6cff412bb5b4b96fb760c7c0bb44cd4090bfccddf01500c6b33e8fde105",
+      "intake_terminal_sha256": "adc37131157ee24a65ac4b9e33ea1623011f7e07f733664f4ec347c00db09be3",
+      "manifest_sha256": "291cc1fbfb94b72f2ab41bbc468fa6f1d3a465fe995dd9e06185ae93d5e5f855",
+      "model_forwards": 0,
+      "optimizer_updates": 0,
+      "predictions_sha256": "6a784faaddb4a3889a8ded0a128fb9b6999fcbe9261bca4c1cae4698e7c3c97f",
+      "prepared_receipt_sha256": "4582b7911caf3e086c2974f08a03f7d4005025534e1b095b35411aaca2763eaf",
+      "protocol_sha256": "fbcc4d067351a7a7d2db226e6261a13c2f399eed59be414226e6ae29b6553bf2",
+      "seconds": 275.31662399999914,
+      "status": "UEIKAP_ADDITIONAL_RFDETR_EDITS_VERIFIED",
+      "target_labels_opened": false,
+      "worker_sha256": "ed7138d7ec70d9d63e73f42b8f9cc135991cc6f838abfd85b2f71a43c440f095"
+    }
+  },
+  "receipts": {
+    "capture": {
+      "actual_exit": 0,
+      "output_footer_verified": true,
+      "result_sha256": "d7f99ff75782172fcfd263c8af43293b375b58b4ee2a2129139f892fc38ab5b9",
+      "wall_seconds": 92.683182,
+      "worker_sha256": "a4f6942094f8f722db085d7de88c8627cae89c3c1d1173837a37b46f2054d390"
+    },
+    "intake": {
+      "actual_exit": 0,
+      "output_footer_verified": true,
+      "result_sha256": "ba7ec4395f6b96f8b20e2e33f0a04c0978451556275663fe02b63486e2902744",
+      "wall_seconds": 229.832027,
+      "worker_sha256": "45f558e47eb679230a13c136e1c0015b9c11676e7c0067d1811219773f377f8e"
+    },
+    "prepare-edits": {
+      "actual_exit": 0,
+      "output_footer_verified": true,
+      "result_sha256": "4582b7911caf3e086c2974f08a03f7d4005025534e1b095b35411aaca2763eaf",
+      "wall_seconds": 256.702399,
+      "worker_sha256": "ed7138d7ec70d9d63e73f42b8f9cc135991cc6f838abfd85b2f71a43c440f095"
+    },
+    "roster": {
+      "actual_exit": 0,
+      "output_footer_verified": true,
+      "result_sha256": "3706d4f4579a2ba949319ac0e5e00c95a1680325c16743a0ffde0976b6dfff45",
+      "wall_seconds": 0.114702,
+      "worker_sha256": "99f6eca5e3018e16c31d01a1148476adf83d521af420043eb6b2fce2fc97e2af"
+    },
+    "score": {
+      "actual_exit": 0,
+      "output_footer_verified": true,
+      "result_sha256": "9b17a62bf9804ea481ef1c4eee909fb27e52f7620b14cd60789bb9a8dc1d5f5a",
+      "wall_seconds": 6.386228,
+      "worker_sha256": "b50f3035c1575fc417ced6b67a8ffeeb04a9cbe933f5c531b9b310c7c4792711"
+    },
+    "verify-capture": {
+      "actual_exit": 0,
+      "output_footer_verified": true,
+      "result_sha256": "1f7790e9858a19fadafc495b38592e93858fc00626bd92bcca0e548ed3b49ff6",
+      "wall_seconds": 53.631711,
+      "worker_sha256": "a4f6942094f8f722db085d7de88c8627cae89c3c1d1173837a37b46f2054d390"
+    },
+    "verify-edits": {
+      "actual_exit": 0,
+      "output_footer_verified": true,
+      "result_sha256": "c689f7a75f42d4ffc6650a50a11438208553f54c28fb078230b3b2dec9235b75",
+      "wall_seconds": 276.218735,
+      "worker_sha256": "ed7138d7ec70d9d63e73f42b8f9cc135991cc6f838abfd85b2f71a43c440f095"
+    }
+  },
+  "status": "ACTUAL_CLOSED_AND_VERIFIED"
+}
