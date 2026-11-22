@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-22）
 
+- PSeg 目标域强载体冻结点头复验中，学习排序较动态空间吸引力 +0.845 AP、+0.193 连续 IoU，几何区间跨零。原生 AP 70.694 仍最高，同量学习 69.958。固定端点的事后同量几何上界高于原生 2.246 点。[实验报告](research_round_20260925_global/PSEG_RFDETR_FROZEN_SOURCE_HEAD_ACTUAL_20261122.md) · [英文审阅稿复核](research_round_20260925_global/paper_boundary_refinement_20261120/ACADEMIC_REVIEW_20261122.md)
+
 - [HRSID DEV705 同量经典对照](research_round_20260925_global/HRSID_DEV705_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)在检测器训练未使用的历史开发集上，学习排序较动态空间吸引力 +2.428 mask AP、+5.353 AP75、+1.150 连续 IoU；三个推进条件通过。PSeg-SSDD 的同量比较保持原有相反几何方向。
 
 - [Umbra 独立采集判读准备](research_round_20260925_global/UMBRA_PROSPECTIVE_GEC_ANNOTATION_ACTUAL_20261122.md)按预锁定名单完成 12 个采集组的原生 1024² 窗口与独立像元核验。两份匿名离线判读材料已生成，等待独立轮廓。

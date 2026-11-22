@@ -14,6 +14,8 @@ UEIKAP 的 108 张作者原图对应 139 个已标注船体及 18 个预留 Sent
 
 在历史 HRSID DEV705 上，检测器训练未使用对应影像。同量学习排序较经典动态规则提高 2.428 AP、5.353 AP75 和 1.150 连续 IoU，27 组配对区间 [0.927, 1.397]。这种严格同量对照支持源域排序贡献。在历史 PSeg-SSDD 232 图上，经典空间吸引力是竞争性对照。定住逐候选实际编辑量后，学习排序相对动态经典规则 −0.026 AP、+0.279 AP75、−0.270 连续 IoU（按解码图像组等权，95% 区间 [−0.440, −0.098]）。去除历史重复后方向一致。主结论依旧是 HRSID 上的固定配对限制，应将学习占据率比经典规则更有效的主张限定于 HRSID 的冻结载体。 [HRSID DEV705 实测](HRSID_DEV705_CLASSICAL_ATTRACTION_ACTUAL_20261122.md) · [经典对照实测](PSEG_TEST232_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)
 
+加入目标训练 RF-DETR 的历史 DEV187 强载体后，学习排序同量高于动态空间吸引力 0.845 AP，连续 IoU 区间跨零。原生 70.694 AP 仍领先所有编辑组。同端点同量的真值几何上界高于原生 2.246 点，放宽次数只多 0.032，开放面积多 1.018。结果优先支持检验排序迁移与面积约束，并继续收敛稿中的跨域主张。 [目标强载体实测](PSEG_RFDETR_FROZEN_SOURCE_HEAD_ACTUAL_20261122.md)
+
 ## 投稿前最关键的补证
 
 在采集来源可核验、此前未参加开发且有足量可编辑船舶的场景上，一次冻结原生、固定配对、同量独立、自然计数和直接强对照，按采集组报告 AP、连续 IoU 和失败范围。其中 Instance-RSDD 高分三号子集值得优先核验。已定位作者的实例标注目录，获取入口需要账户登录，图像须从原始 RSDD 发行获取。入库后核对场景身份、标注覆盖、许可与重叠。OSSDD 的掩膜由旋转框填充，VesselBench 目前给出检测框，二者适合其定位任务。 [Instance-RSDD 论文](https://www.mdpi.com/2072-4292/15/5/1324) · [作者发布](https://github.com/XIDIAN212Lab/SRNet#the-instance-rsdd-dataset) · [OSSDD 标注协议](https://arxiv.org/html/2608.01963v1#S4.SS1) · [VesselBench](https://arxiv.org/html/2609.37003v1)

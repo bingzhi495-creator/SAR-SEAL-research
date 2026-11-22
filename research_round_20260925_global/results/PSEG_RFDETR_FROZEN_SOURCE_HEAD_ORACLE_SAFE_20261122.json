@@ -1,0 +1,59 @@
+{
+  "continuous_iou_points": {
+    "learned": 83.95615556429547,
+    "oracle_free_area_same_flips": 87.6243311998715,
+    "oracle_same_count": 86.60675678597069,
+    "oracle_up_to_count": 86.63838457375763,
+    "raw": 84.36049616945762
+  },
+  "contrasts_points": {
+    "oracle_free_area_same_flips minus oracle_same_count": {
+      "delta_points": 1.0175744139008094,
+      "interval_95_points": [
+        0.8109407624566933,
+        1.2346949155134541
+      ]
+    },
+    "oracle_same_count minus learned": {
+      "delta_points": 2.6506012216752133,
+      "interval_95_points": [
+        2.382517561845913,
+        2.9369834279669518
+      ]
+    },
+    "oracle_same_count minus raw": {
+      "delta_points": 2.2462606165130805,
+      "interval_95_points": [
+        2.0504494321475915,
+        2.454454961036278
+      ]
+    },
+    "oracle_up_to_count minus oracle_same_count": {
+      "delta_points": 0.031627787786906496,
+      "interval_95_points": [
+        0.013949907355532724,
+        0.05267788130037847
+      ]
+    }
+  },
+  "counts": {
+    "forced_count_cannot_equal_raw": 4,
+    "positive_budget": 281,
+    "swaps": 2165
+  },
+  "decoded_image_groups": 119,
+  "matched_pairs": 281,
+  "model_forwards": 0,
+  "optimizer_updates": 0,
+  "posthoc": true,
+  "score_sha256": "b3252decceb28c9da468b0e86fc42568343385d79b27304ad071678c4ac8035b",
+  "status": "PSEG_TARGET_RF5201_POSTHOC_ORACLE_COMPLETE",
+  "strict_90_counts": {
+    "learned": 18,
+    "oracle_free_area_same_flips": 119,
+    "oracle_same_count": 86,
+    "oracle_up_to_count": 87,
+    "raw": 28
+  },
+  "worker_sha256": "ec90d3c4f7682fd0e64c689fc2a73231f0daedba02d3e982275a6518ee55d815"
+}
