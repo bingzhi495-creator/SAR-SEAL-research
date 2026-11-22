@@ -1,0 +1,169 @@
+{
+  "status": "METADATA_CENSUS_COMPLETE_EVALUATION_UNEXECUTED",
+  "source": "Author training partition minus all paper parent-scene IDs represented in the complete author test.",
+  "author_train_label_file_prior_admission_sha256": "54c92363aafe07dca084382a258190d436005d8df839f5de13995c89bd662b92",
+  "author_test_label_file_prior_admission_sha256": "ed5be06ac39b4cd5c373c00fdba132bc8f0ad1260023e2001c5e2d24a33f0760",
+  "test_image_roster_sha256": "72c4b9af8f8b0bd0df31a3a3f7df6a082390688f0942eed23f106316a2d5d98b",
+  "table1_extracted_text_sha256": "b9c25ef594c1bccd7dd84aa4b08b5deaab40a5188c6a5c1c1458fbe52681c396",
+  "image_archive_central_directory_sha256": "0d270fdb35120a341dff3940790d13173d603ee05b99ec9dd57efa1f82521d9e",
+  "train_roster_projection_ended_at_byte_exclusive": 341503,
+  "reserve_csv_sha256": "2614e567e9ef1b2c791c1b357b03adfe7302ece53e911c1963c40e623ad405fc",
+  "reserve_csv_encoding": "UTF-8 LF with header author_train_image_id,file_name,paper_scene,sensor; rows in author train image order.",
+  "reserve_filenames_uniquely_joined_to_original_archive": 74,
+  "prior_label_admission_author_images": {
+    "train": 2810,
+    "test": 740
+  },
+  "prior_label_admission_author_parent_counts": {
+    "train": 125,
+    "test": 112,
+    "shared": 112
+  },
+  "primary": {
+    "parent_scene_ids": [
+      2,
+      12,
+      28,
+      35,
+      36,
+      43,
+      46,
+      70,
+      90,
+      99,
+      100,
+      107,
+      112
+    ],
+    "images": 74,
+    "parents": 13,
+    "sensor_date_blocks": 12,
+    "images_by_sensor": {
+      "GF-3": 42,
+      "TerraSAR-X": 32
+    }
+  },
+  "date_separated_sensitivity": {
+    "parent_scene_ids": [
+      2,
+      28,
+      35,
+      36,
+      43,
+      46,
+      70,
+      107
+    ],
+    "images": 42,
+    "parents": 8,
+    "sensor_date_blocks": 8,
+    "images_by_sensor": {
+      "GF-3": 10,
+      "TerraSAR-X": 32
+    }
+  },
+  "parents_sharing_sensor_date_with_test": [
+    12,
+    90,
+    99,
+    100,
+    112
+  ],
+  "parents_sharing_rounded_center_with_same_sensor_test": [
+    12,
+    43,
+    46,
+    70,
+    112
+  ],
+  "per_parent": [
+    {
+      "paper_scene": 2,
+      "images": 2,
+      "sensor": "GF-3",
+      "calendar_date": "20210809"
+    },
+    {
+      "paper_scene": 12,
+      "images": 5,
+      "sensor": "GF-3",
+      "calendar_date": "20210228"
+    },
+    {
+      "paper_scene": 28,
+      "images": 5,
+      "sensor": "GF-3",
+      "calendar_date": "20210521"
+    },
+    {
+      "paper_scene": 35,
+      "images": 3,
+      "sensor": "TerraSAR-X",
+      "calendar_date": "20080311"
+    },
+    {
+      "paper_scene": 36,
+      "images": 4,
+      "sensor": "TerraSAR-X",
+      "calendar_date": "20111209"
+    },
+    {
+      "paper_scene": 43,
+      "images": 8,
+      "sensor": "TerraSAR-X",
+      "calendar_date": "20170305"
+    },
+    {
+      "paper_scene": 46,
+      "images": 7,
+      "sensor": "TerraSAR-X",
+      "calendar_date": "20171022"
+    },
+    {
+      "paper_scene": 70,
+      "images": 10,
+      "sensor": "TerraSAR-X",
+      "calendar_date": "20120908"
+    },
+    {
+      "paper_scene": 90,
+      "images": 13,
+      "sensor": "GF-3",
+      "calendar_date": "20201128"
+    },
+    {
+      "paper_scene": 99,
+      "images": 4,
+      "sensor": "GF-3",
+      "calendar_date": "20200521"
+    },
+    {
+      "paper_scene": 100,
+      "images": 2,
+      "sensor": "GF-3",
+      "calendar_date": "20200521"
+    },
+    {
+      "paper_scene": 107,
+      "images": 3,
+      "sensor": "GF-3",
+      "calendar_date": "20200924"
+    },
+    {
+      "paper_scene": 112,
+      "images": 8,
+      "sensor": "GF-3",
+      "calendar_date": "20200926"
+    }
+  ],
+  "verified_exposures": "Earlier project-wide label quality audit included the author training partition. Reviewed model evaluation protocols specify the author test. Earlier recorded test population comprised 740 images.",
+  "pending": [
+    "Exact decoded RGB comparisons with official 740 and HRSID detector/head training images",
+    "Pixel duplicates inside the new cohort",
+    "Geographic footprint and acquisition-pass independence",
+    "Native prediction coverage and every model metric"
+  ],
+  "new_image_arrays_opened": 0,
+  "new_instance_geometry_records_opened": 0,
+  "new_model_evaluations": 0
+}
