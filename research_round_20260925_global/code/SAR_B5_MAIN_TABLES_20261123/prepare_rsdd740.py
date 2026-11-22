@@ -114,7 +114,7 @@ def run(a):
     need(manifest_sha == MANIFEST, "Fresh decoded image manifest must match the earlier canonical digest")
     summary = dict(status=STATUS,test_roster_sha256=author_sha,image_manifest_sha256=manifest_sha,
                    images=740,sensor_counts=per_sensor,acquisition_groups=parents,rgb_unique=740,
-                   exact_crc_and_rgb=740,source="author test",target_polygon_rows_opened=0,
+                   encoded_unique=len({x["image_ref"]["sha256"] for x in items}),exact_crc_and_rgb=740,source="author test",target_polygon_rows_opened=0,
                    source_archive_directory_sha256=m.DIRECTORY_SHA,
                    image_source="original ZIP" if a.archive else "original JPEGs with official ZIP CRC verification",
                    elapsed_seconds=perf_counter()-started)
