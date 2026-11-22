@@ -18,6 +18,6 @@ UEIKAP 的 108 张作者原图对应 139 个已标注船体及 18 个预留 Sent
 
 在采集来源可核验、此前未参加开发且有足量可编辑船舶的场景上，一次冻结原生、固定配对、同量独立、自然计数和直接强对照，按采集组报告 AP、连续 IoU 和失败范围。其中 Instance-RSDD 高分三号子集值得优先核验。已定位作者的实例标注目录，获取入口需要账户登录，图像须从原始 RSDD 发行获取。入库后核对场景身份、标注覆盖、许可与重叠。OSSDD 的掩膜由旋转框填充，VesselBench 目前给出检测框，二者适合其定位任务。 [Instance-RSDD 论文](https://www.mdpi.com/2072-4292/15/5/1324) · [作者发布](https://github.com/XIDIAN212Lab/SRNet#the-instance-rsdd-dataset) · [OSSDD 标注协议](https://arxiv.org/html/2608.01963v1#S4.SS1) · [VesselBench](https://arxiv.org/html/2609.37003v1)
 
-SMART-Ship 原文确认靠泊船舶多边形，当前可核入口需要申请。SISS-YOLO 报告由 Labelme 勾画的 Sentinel-1 船体，公开数据声明只有原始 OpenSARShip2.0 入口。两条路径目前缺作者轮廓文件或采集索引。Umbra 已真实读回三个独立采集产品各一个原生块，可作为补充双人判读的取数通路。 [Umbra 实际试点](UMBRA_OPEN_GEC_INTAKE_PILOT_20261122.md) [SMART-Ship 原文](https://arxiv.org/html/2508.02384v2) · [SISS-YOLO 原文](https://www.mdpi.com/2072-4292/17/17/3118)
+SMART-Ship 原文确认靠泊船舶多边形，当前可核入口需要申请。SISS-YOLO 报告由 Labelme 勾画的 Sentinel-1 船体，公开数据声明只有原始 OpenSARShip2.0 入口。两条路径目前缺作者轮廓文件或采集索引。Umbra 已按预锁顺序和空间间隔取回 12 个不同采集组的原生窗口，并完成两份离线匿名判读材料。该补充证据仍依赖独立人工轮廓与一致性。 [Umbra 已核验准备](UMBRA_PROSPECTIVE_GEC_ANNOTATION_ACTUAL_20261122.md) [SMART-Ship 原文](https://arxiv.org/html/2508.02384v2) · [SISS-YOLO 原文](https://www.mdpi.com/2072-4292/17/17/3118)
 
 作者、单位、通讯信息和 ORCID 保留占位。原 A/B 长训练停止结果及全部历史试验仍见证据矩阵。 [研究收尾计划](PAPER_CLOSEOUT_PLAN_20261121.md)
