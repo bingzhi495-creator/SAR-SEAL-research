@@ -92,8 +92,6 @@ def capture(a, output):
     import numpy as np
     import torch
     from pycocotools import mask as codec
-    from rfdetr.models.postprocess import PostProcess
-    from rfdetr.utilities.tensors import nested_tensor_from_tensor_list
 
     need(sys.version_info[:3] == (3, 10, 13) and torch.__version__ == "2.10.0+cu130" and version("rfdetr") == "1.12.0"
          and version("Pillow") == "12.3.0" and version("pycocotools") == "2.0.11" and np.__version__ == "1.26.4",
@@ -102,6 +100,13 @@ def capture(a, output):
     torch.set_num_threads(2)
     torch.set_num_interop_threads(1)
     torch.set_float32_matmul_precision("highest")
+    # The original capture initializes torch before importing RF-DETR, whose
+    # package import then switches matmul precision to high (enabling CUDA TF32).
+    from rfdetr.models.postprocess import PostProcess
+    from rfdetr.utilities.tensors import nested_tensor_from_tensor_list
+
+    need(torch.get_float32_matmul_precision() == "high" and torch.backends.cuda.matmul.allow_tf32,
+         "Original effective FP32 matmul policy after RF-DETR import")
     hooks = module(a.code / "HRSID_FIT_NATIVE_POINT_UPDATE_20261110/cached_final_query.py", HOOK_SHA)
     core = source.load_core(a.private_root)
     args = SimpleNamespace(root=a.private_root, output=output, mode="dev")
@@ -148,7 +153,9 @@ def capture(a, output):
                 predictions_sha256=receipt["predictions_sha256"], checkpoint_sha256=base.SOURCE_CHECKPOINT,
                 capture_receipt_sha256=CAPTURE_RECEIPT, intake_sha256=MANIFEST_SHA, GT_opened=False,
                 author_TEST=True, TEST=True, FIT=False, DEV=False, AP=False,
-                cuda_peak_bytes=torch.cuda.max_memory_allocated())
+                cuda_peak_bytes=torch.cuda.max_memory_allocated(), matmul_precision=torch.get_float32_matmul_precision(),
+                cuda_matmul_allow_tf32=torch.backends.cuda.matmul.allow_tf32,
+                cudnn_allow_tf32=torch.backends.cudnn.allow_tf32)
 
 
 def main():
