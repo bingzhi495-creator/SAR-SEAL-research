@@ -75,7 +75,10 @@ def run(a):
     a.output.mkdir(parents=True)
     image_dir = a.output/"images"
     image_dir.mkdir()
-    author_sha = save(a.output/"test_image_roster.json",{"images":rows})
+    # The historical author roster was written with Windows CRLF and no final newline.
+    author_raw = json.dumps({"images":rows},indent=2,allow_nan=False).replace("\n","\r\n").encode()
+    (a.output/"test_image_roster.json").write_bytes(author_raw)
+    author_sha = digest(author_raw)
     need(author_sha == AUTHOR_ROSTER, "Exact original author image-only roster")
     started = perf_counter()
 
