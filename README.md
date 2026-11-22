@@ -8,13 +8,13 @@
 
 - [PSeg-SSDD 完整划分冻结跨库评分](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md)覆盖 232 图和 546 条浮点原标注。mask AP 17.974→18.319（+0.344），去除 10 张历史重复图后仍 +0.389。相同点头和逐候选编辑量下，独立选点较固定配对 +0.081 AP 点、+0.106 连续 IoU 点。同轮逐图配对中，等价取样将 CPU 精修均值由 158.8 降到 104.3 毫秒，最终掩膜与分数完全一致。同量原生概率对照出现的新增孔洞更少。
 
-- [RF-DETR 第二检测器种子](research_round_20260925_global/code/RFDETR_COMMON5203_E24_REPLICATION_20261121/README.md)已验收 24 轮、17,640 次优化器和 EMA 更新、每轮 2,937 张唯一训练图。其独立 DEV705 原生导出已完成 705 图和 64,859 个映射候选。[冻结精修与独立评分](research_round_20260925_global/code/RFDETR_COMMON5203_DEV705_FROZEN_20261121/README.md)使用该种子自身候选掩膜和置信度，精修预测正在生成，尚无对照评分。
+- [RF-DETR 第二检测器种子](research_round_20260925_global/code/RFDETR_COMMON5203_E24_REPLICATION_20261121/README.md)已验收 24 轮、17,640 次优化器和 EMA 更新。首轮原生 DEV705 导出覆盖 705 图和 64,859 个映射候选。精修回放在一处近零像元触发严格栅格校验停止，已用原生 CUDA 算法精确复现并通过原图回归。新一轮独立回放正在执行，等待同量评分。[评分入口](research_round_20260925_global/code/RFDETR_COMMON5203_DEV705_FROZEN_20261121/README.md)
 
-- [HRSID 冻结边界修正复验](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_PRELOCK_20261121.md)已启动。三个 HRSID FIT 点头沿用原特征、模型、阈值和编辑预算，对每张测试图重放并核对原候选，再计算四种修正策略。第一批原生实现的一致性核验已通过，修正效果须等待全量独立回读和评分。[评分方案与合成测试](research_round_20260925_global/code/HRSID_OFFICIAL_FROZEN_REFINEMENT_SCORE_20261121/README.md)
+- [HRSID 官方划分冻结精修实测](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md)已完成预测独立回读及 12 条处理预测的评分。RF-DETR mask AP 54.433→55.454，三点头种子全部提升。同头同量独立选点较固定配对 +1.216 AP、+1.958 AP75；相对同量自由增删平均 +0.324 AP，其中一个种子退步。两个预锁敏感性口径保留增减方向。
 
 - [新增误差诊断](research_round_20260925_global/DEV705_MATCHED_PAIRING_GEOMETRY_MODIFIERS_20261121.md)发现相同编辑量下本船 IoU 提升可能伴随邻船侵入。跨库真值上界显示，同一端点支持与总翻转数下，PSeg-SSDD 放开等面积后还有 +2.020 点连续 IoU 的几何空间。[PSeg-SSDD 上界](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md#same-support-geometric-ceilings) · [Schwegmann 中心船辅助复验](research_round_20260925_global/SCHWEGMANN_DFINE_FROZEN_WRITER_EVAL_20261121.md)750 张新图像均完成评价与独立复算。107 个非空中心候选均小于编辑下限，五臂逐像素一致。
 
-- [FIT109 邻船侵入同量对照](research_round_20260925_global/FIT109_NATIVE_RIVAL_OCCUPANCY_ACTUAL_20261122.md)通过预设判据，113 个近邻固定匹配上较无邻船证据的同量对照少侵入 0.262 平方像元，本船连续 IoU +0.221 点，全量 AP +0.012 点。冻结开发集复验待执行。
+- [FIT109 邻船侵入同量对照](research_round_20260925_global/FIT109_NATIVE_RIVAL_OCCUPANCY_ACTUAL_20261122.md)通过预设判据，113 个近邻固定匹配上较无邻船证据的同量对照少侵入 0.262 平方像元，本船连续 IoU +0.221 点，全量 AP +0.012 点。DEV705 冻结复验仅 7 个实际暴露匹配、3 个来源组，未达覆盖要求，整体 AP 不变。
 
 - [HRSID FIT109 拓扑对照实测](research_round_20260925_global/FIT109_BOUNDARY_SIMPLE_POINT_PILOT_ACTUAL_20261121.md)复现原五折和四个历史结果。各等量方案 36,351 次交换。拓扑约束将组件或孔洞数发生变化的掩膜由两种同量对照的 806／646 个降为 0，AP 相同，连续 IoU 差 −0.0035 点，未过预锁门槛。
 
@@ -30,7 +30,7 @@
 
 - [PSeg-SSDD TEST232 输入核验](research_round_20260925_global/code/PSEG_SSDD_OFFICIAL_TEST232_INPUT_20261121/README.md)在本地独立复核 232 图、546 个非空原始实例。作者 Drive 的文件名和大小已核对，未提供校验和，远端字节认证待续。 [作者元数据记录](research_round_20260925_global/results/PSEG_SSDD_AUTHOR_METADATA_SAFE_20261121.json)
 
-- [更新后的英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)补入 Atkinson 的遥感像元交换先例，把核心贡献聚焦在冻结 SAR 实例上对配对限制的同量检验。独立复核后修订了摘要中的 PSeg-SSDD 对照、点占据率定义和固定配对计数。 [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md)
+- [更新后的英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)纳入 HRSID 官方划分的冻结复验、匹配对照和敏感性结果。保留历史官方划分接触、三点头共享检测器与自由增删混合结果的范围说明。 [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md)
 
 - [同量经典空间吸引力对照实测](research_round_20260925_global/FIT109_CLASSICAL_ATTRACTION_ACTUAL_20261121.md)已完成。同一 FIT109 端点和逐候选实际编辑数下，学习占据率较动态吸引力 +5.192 mask AP 点、+1.104 连续 IoU 点，AP90 −0.164 点。已核对原进程、全部等量计数和原匹配阈值记录。
 

@@ -13,3 +13,9 @@
 两组比较均达到事先规定的侵入减少、本船 IoU 和全量 AP 非劣要求。全量 AP 变化很小，证据集中在近邻边界。检测器已训练过 FIT109，仅点头五折留出来源。DEV705 的已知误差用于提出假设，后续冻结复验将保留这个开发集角色。
 
 已有全景分割使用掩膜竞争处理重叠。本协议在固定检测器上以邻船掩膜置信度重排原生加点，保留现有加删数和删除位置，可衡量原生位置证据相对置换对照的增量。独立核验重算原始等量计数、全量 AP 差值和两组推进判据。区间来自原评分程序。 [Mask2Former 作者实现](https://github.com/facebookresearch/Mask2Former/blob/main/mask2former/maskformer_model.py) · [原始安全汇总](results/FIT109_NATIVE_RIVAL_OCCUPANCY_ACTUAL_SAFE_20261122.json) · [独立核验](results/FIT109_NATIVE_RIVAL_OCCUPANCY_INDEPENDENT_SAFE_20261122.json)
+
+## DEV705 冻结复验
+
+D-FINE 同一规则在不同图像和来源前缀上的冻结复验完成。47 个近邻固定匹配中，只有 7 个匹配在三个来源前缀组满足暴露条件，低于预设的 12 个和八组。邻船信号实际改变四个近邻掩膜。相对同量独立选点，近邻侵入描述性减少 0.094 平方像元，本船连续 IoU 增加 0.010 点，整体 AP、AP75 和 AP90 完全相同。相对置换对照侵入描述性减少 0.050 平方像元，本船 IoU 增加 0.005 点。按原规则，样本覆盖不足时只报告描述性估计。
+
+三条同量策略各修改 20,741 个候选，共交换 83,059 对像元，删除位置相同。捕获、独立进程复读及评分均实际退出 0。旧掩膜、原评分和逐候选翻转预算精确复现。当前冻结配置的主要限制是可用邻船占据信号的覆盖率。 [DEV 预设方案和源码](code/DEV705_NATIVE_RIVAL_OCCUPANCY_20261122/PROTOCOL.md) · [DEV 聚合实测](results/DEV705_NATIVE_RIVAL_OCCUPANCY_ACTUAL_SAFE_20261122.json)
