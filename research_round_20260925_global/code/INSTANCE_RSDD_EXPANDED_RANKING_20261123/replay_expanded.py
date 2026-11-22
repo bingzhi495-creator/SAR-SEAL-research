@@ -190,6 +190,8 @@ def replay_image(item):
          and spatial.shape == (256, 144, 144), "Exact frozen query and spatial planes")
     by_rank = dict(zip(row["logit_ranks"], planes, strict=True))
     pixels = m.pair.image_features(w.base.load_rgb(w.images, row))
+    occupancy_precision = w.torch.get_float32_matmul_precision()
+    need(occupancy_precision == "high", "Archived occupancy CPU precision after the RF-DETR image import")
     recorded, work = [], []
     counts = Counter(images=1, mapped_candidates=len(native["coco"]), area_eligible=len(by_rank))
     history = published["changes"]
@@ -223,9 +225,13 @@ def replay_image(item):
 
     rendered = RecordedRender(w.render)
     old_budgets = w.pr.RecordedBudget(w.budget)
-    with w.torch.inference_mode():
-        result, inference = w.infer.infer_image(w.head, spatial, recorded, adapter=w.adapter,
-                                                render=rendered, budget=old_budgets, image_hw=hw, chunk_size=12)
+    w.torch.set_float32_matmul_precision("highest")
+    try:
+        with w.torch.inference_mode():
+            result, inference = w.infer.infer_image(w.head, spatial, recorded, adapter=w.adapter,
+                                                    render=rendered, budget=old_budgets, image_hw=hw, chunk_size=12)
+    finally:
+        w.torch.set_float32_matmul_precision(occupancy_precision)
     counts["rendered"] = len(recorded)
     counts["point_evaluations"] = inference["point_evaluations"]
     need(inference["fallback"] == 0 and inference["point_evaluations"] == 3136 * len(recorded),
@@ -262,6 +268,10 @@ def replay_image(item):
         native_box = w.torch.as_tensor(box, dtype=w.torch.float32)[None]
         point = point_sides(logits, native_box, sides, observed[:2], n, hw)
         counts["point_extra_interpolations"] += sum(map(len, sides)) - 2*n
+        point_narrow = w.helper.select(narrow, tuple(s[:n] for s in point), k, tie="native")
+        need(mask_edit(stock_rle, stock, point_narrow, k) == historical["point_equal"],
+             "The expanded ranker restricted to S exactly reproduces the archived PointRend mask")
+        counts["native_point_bridge_verified"] += 1
         selections = (w.helper.select(narrow, qs, k, tie="native"),
                       w.helper.select(sides, point, k, tie="native"),
                       w.helper.select(sides, q, k, tie="native"))
@@ -316,6 +326,7 @@ def run(a, output, phase, authority_sha):
     past = original["counts"]
     identical = ("images", "mapped_candidates", "area_eligible", "rendered", "point_evaluations", "degenerate")
     need(all(counts[k] == past[k] for k in identical) and counts["positive_k"] == past["point_equal_candidates"]
+         and counts["native_point_bridge_verified"] == counts["positive_k"]
          and counts["swaps"] == past["point_equal_swaps"] and counts["zero_k"] == past["common_zero_swaps"]
          and {k:v["images"] for k,v in by_sensor.items()} == {"GF-3":583, "TerraSAR-X":157},
          "Original cohort, rendering effort and edit allowance")
@@ -335,7 +346,7 @@ def run(a, output, phase, authority_sha):
                    predictions_sha256=original["predictions_sha256"],
                    candidate_audit_sha256=original["candidate_audit_sha256"],
                    fit_weight_sha256=head_sha, images=740, author_TEST=True, GT_opened=False, AP=False,
-                   model_forwards=0, optimizer_updates=0, exact_replayed_policy_choices=independent,
+                   detector_forwards=0, optimizer_updates=0, exact_replayed_policy_choices=independent,
                    exact_support_xor_area=True, counts=dict(counts), counts_by_sensor=by_sensor,
                    seconds=perf_counter()-started, workers=a.workers)
     data = encode(payload)
