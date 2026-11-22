@@ -132,7 +132,8 @@ def edit_for(frame, rank, arm, score):
 
 def masks_for(arm, joined, score, codec, editor):
     predictions = []
-    measured = Counter(edited=0,edits=0,adds=0,drops=0,area_delta=0,quota_differs_from_balance=0)
+    measured = Counter(edited=0,edits=0,adds=0,drops=0,area_delta=0,quota_differs_from_balance=0,
+                       nonpositive_flips=0)
     for frame in joined.values():
         for old, row in zip(frame.native,frame.pool,strict=True):
             rank = row["rank"]
@@ -151,9 +152,13 @@ def masks_for(arm, joined, score, codec, editor):
             balance = edit_for(frame,rank,"SU",score)["adds"]
             need(added == action["adds"] and dropped == action["drops"]
                  and added+dropped == len(indices) == action["edits"] == 2*balance
-                 and added-dropped == action["area_delta"], "RLE intersection independently verifies exact XOR and net area")
+                 and added-dropped == action["area_delta"]
+                 and type(action["nonpositive_flips"]) is int
+                 and 0 <= action["nonpositive_flips"] <= action["edits"],
+                 "RLE intersection independently verifies exact XOR and net area")
             measured.update(edited=1,edits=added+dropped,adds=added,drops=dropped,area_delta=added-dropped,
-                            quota_differs_from_balance=int(added != balance))
+                            quota_differs_from_balance=int(added != balance),
+                            nonpositive_flips=action["nonpositive_flips"])
             predictions.append(dict(old,segmentation=rle))
     need(len(predictions) == 67386, "All original native rows retained")
     return predictions, dict(measured,unchanged=67386-measured["edited"])
@@ -229,7 +234,8 @@ def run(a, output):
     output.mkdir()
     seal = spot.write(output/"PRELABEL_SAFE.json",dict(status="DEV705_QUOTA_COMPETITION_SCORE_PRELABEL",
                       protocol_sha256=LOCK,closed_replay=receipts,images=705,decisions_sha256=replay["edits_sha256"],
-                      policy_model_sha256=a.policy_model_sha,DEV=True,GT_opened=False,AP=False,FIT=False,TEST=False))
+                      policy_model_sha256=a.policy_model_sha,historical_geometry_witness_used=True,
+                      DEV=True,GT_opened=False,AP=False,FIT=False,TEST=False))
     gt, findings = d.load_dev_geometry_inputs(native)
     need(len(gt["images"]) == 705 and len(gt["annotations"]) == 1782
          and [r["id"] for r in gt["images"]] == list(joined), "Original all-area DEV test geometry identity")
@@ -247,6 +253,10 @@ def run(a, output):
         times[arm]["coco_seconds"] = perf_counter()-start
         if arm in prior["coco"][SEED]:
             need(measured[arm] == prior["coco"][SEED][arm], "Exact historical score for " + arm)
+            budget = prior["budgets"][SEED][arm]
+            need(all(budgets[arm][k] == budget[k] for k in
+                     ("edited","edits","adds","drops","area_delta","nonpositive_flips")),
+                 "Exact published edit cost for " + arm)
     helpers = fit_step.load_geometry(a.code,a.shapely_site)
     geo = fixed_geometry(gt,joined,witnesses,fit_step,helpers,arithmetic,score)
     main = {arm:r["primary"]["AP"] for arm,r in measured.items()}

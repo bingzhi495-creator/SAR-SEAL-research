@@ -172,6 +172,15 @@ def fit_ridge(standard, target, weights, lam):
     return coef, float(np.sum(w*fit**2))
 
 
+def normalize_actions(masses):
+    full, matched = masses.T.copy(order="C")
+    for weight in (full,matched):
+        total = weight[weight > 0].sum()
+        check(np.isfinite(total) and total > 0, "Nonempty supervised action mass")
+        weight /= total
+    return full, matched
+
+
 def fit_all(source, src_result, competition, ap_result, policies):
     blocks, counts = [], Counter()
     offsets = np.zeros(len(OFFSETS),dtype=np.float64)
@@ -187,8 +196,7 @@ def fit_all(source, src_result, competition, ap_result, policies):
           geometry_candidate_seed_rows=1176,geometry_legal_actions=18308,source_groups=109).items()),
           "Complete previously admitted FIT source denominators")
     design, weights, delta_ap, delta_iou = (np.concatenate(x,axis=0) for x in zip(*blocks,strict=True))
-    weights /= weights.sum(axis=0)
-    all_mask, matched = weights.T
+    all_mask, matched = normalize_actions(weights)
     squared = np.einsum("n,np,np->p",all_mask,design,design)
     scale = np.sqrt(squared)
     scale[scale == 0] = 1.

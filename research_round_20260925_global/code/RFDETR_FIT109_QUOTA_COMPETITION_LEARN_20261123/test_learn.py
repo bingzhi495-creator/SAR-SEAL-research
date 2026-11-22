@@ -40,6 +40,14 @@ class LearnTests(unittest.TestCase):
         np.testing.assert_allclose(coef,np.array([1/1.05]),atol=1e-12,rtol=0)
         self.assertGreater(error,0)
 
+    def test_full_batch_mass_remains_normalized_in_solver_order(self):
+        masses = np.full((293872,2),.1,dtype=np.float64)
+        masses[17132:,1] = 0
+        full, matched = fit.normalize_actions(masses)
+        self.assertAlmostEqual(float(full[full>0].sum()),1.,places=13)
+        self.assertAlmostEqual(float(matched[matched>0].sum()),1.,places=13)
+        self.assertEqual(int(np.count_nonzero(matched)),17132)
+
     def test_source_channels_require_complete_action_alignment(self):
         with TemporaryDirectory() as tmp:
             base = Path(tmp)
