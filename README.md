@@ -2,7 +2,9 @@
 
 <!-- U57_U60_ACTUAL_20261021_01 -->
 
-## 当前状态（2026-11-22）
+## 当前状态（2026-11-23）
+
+- 端点与配额诊断完成。高分三号只替换原端点内的 PointRend 决策得到 61.782 AP，距整框 0.049 点且召回更高。HRSID DEV705 冻结排序下，真值增删配额在相同总编辑量时提高 1.264 连续 IoU，三个种子均正。[端点拆分](research_round_20260925_global/INSTANCE_RSDD_POINTREND_SUPPORT_FACTOR_ACTUAL_20261123.md) · [配额上界](research_round_20260925_global/RFDETR_DEV705_FROZEN_ORDER_QUOTA_ACTUAL_20261123.md)
 
 - Instance-RSDD 已完成同载体 PointRend 对照。583 张高分三号图上，同端点同量时，本方法较 PointRend 排序 +0.312 mask AP、+0.250 连续 IoU（采集组 95% 区间 [0.163, 0.338]）。整框 PointRend 为 61.831 AP，本方法为 61.620 AP。代码、各策略可编辑范围及两方面结果均已核验。[结果和复现](research_round_20260925_global/INSTANCE_RSDD_POINTREND_TRANSFER_ACTUAL_20261122.md) · [英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
 
