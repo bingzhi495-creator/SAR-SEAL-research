@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- 74 图新增父景实验的干净环境复现已通过。官方数据重建、真实 HRSID 最小训练和冻结全量评分均执行成功。图像、预测与编辑记录逐字节一致，**1,470 项数值最大差异 0**。[实测](research_round_20260925_global/INSTANCE_RSDD_B5_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/INSTANCE_RSDD_B5_REPRO_20261123/README.md)
+
 - Instance-RSDD 新增 74 图父景复验通过。冻结同头同量独立选点较固定配对 **+0.436 mask AP、+0.318 连续 IoU 点**。排除历史同传感器同日期后的 42 图为 +0.840 AP。两传感器单列均未达覆盖门槛。[新增父景实测](research_round_20260925_global/INSTANCE_RSDD_PARENT_RESERVE_ACTUAL_20261123.md) · [像素中心与填充对照](research_round_20260925_global/INSTANCE_RSDD_CENTER_RANKING_ACTUAL_20261123.md)
 
 - Instance-RSDD 两层完整边界的同量对照已闭合。高分三号上占据率排序较 PointRend 排序 **+0.390 mask AP、+0.223 连续 IoU 点**。扩大范围较原占据率方案仅 +0.011 AP，整框 PointRend 仍高 0.200 AP。保留原范围为主稿默认。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_EXPANDED_RANKING_ACTUAL_20261123.md)
