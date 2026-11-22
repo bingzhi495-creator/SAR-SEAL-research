@@ -22,7 +22,7 @@ UEIKAP 的 108 张作者原图对应 139 个已标注船体及 18 个预留 Sent
 
 同一载体有 100 艘存在达标候选框。其中 90 艘的最佳框候选面积不足真值一半。八次真值等面积交换仅覆盖 18 艘，框内任意重建位置与面积的上界为 129 艘。按框重新关联后，弱掩膜的可编辑覆盖增至 90 艘、15 组，同量精修的主区间仍跨零。稿件保留强原生掩膜上的同量效应，并将外域弱掩膜上的整形问题和现有局部编辑器效果分别表述。[候选几何](UEIKAP_RFDETR_CANDIDATE_GEOMETRY_ACTUAL_20261122.md) · [框关联实测](UEIKAP_RFDETR_BOX_ASSOCIATION_ACTUAL_20261122.md)
 
-Instance-RSDD 作者标注现已取得。结构核验确认实际下载测试为 740 张图、872 个船体，其中 583 张来自高分三号。两个作者划分共享全部测试母景。本轮冻结 HRSID 模型，分别报告完整发布划分和高分三号子集，后者作为与 HRSID 训练传感器相隔离的主比较。所有 740 个文件名均有原图镜像索引对应，实际逐图评分仍待运行。[标注核验](INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md) · [原图与采集映射](INSTANCE_RSDD_IMAGE_ACCESS_ACTUAL_20261122.md) · [第三库冻结协议](INSTANCE_RSDD_FROZEN_HRSID_PRELOCK_20261122.md)
+Instance-RSDD 完整 740 图及高分三号 583 图的冻结评价已完成。两个 HRSID 点头都提高主分析的 mask AP，均值 +0.552。相对固定配对同量独立选点均值 +0.483 AP，连续 IoU 区间均为正。这个结果直接补强 HRSID 训练传感器以外的对照，效应适用范围为一套冻结检测器和两个源点头。高分三号 AP90 两次均小幅下降，效用均值低于预锁 1 点。发布版实际 2,810／740 图，与原文表格的训练划分和测试数量有差异。其结果适合内部专业评阅，外部整网领先仍需在同一发布版与可比训练条件下评价。[第三库实测](INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [标注核验](INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md)
 
 SMART-Ship 原文确认靠泊船舶多边形，当前可核入口需要申请。SISS-YOLO 报告由 Labelme 勾画的 Sentinel-1 船体，公开数据声明只有原始 OpenSARShip2.0 入口。两条路径目前缺作者轮廓文件或采集索引。Umbra 已按预锁顺序和空间间隔取回 12 个不同采集组的原生窗口，并完成两份离线匿名判读材料。该补充证据仍依赖独立人工轮廓与一致性。 [Umbra 已核验准备](UMBRA_PROSPECTIVE_GEC_ANNOTATION_ACTUAL_20261122.md) [SMART-Ship 原文](https://arxiv.org/html/2508.02384v2) · [SISS-YOLO 原文](https://www.mdpi.com/2072-4292/17/17/3118)
 

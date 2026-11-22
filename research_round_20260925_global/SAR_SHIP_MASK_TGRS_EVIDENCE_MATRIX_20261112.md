@@ -98,4 +98,4 @@ UEIKAP 同一已评估队列上，先前冻结 D-FINE 匹配 2 艘、零可编�
 
 RF-DETR 在该队列的 100 艘有框覆盖和 17 艘有掩膜覆盖可进一步拆解。八次理想等面积交换覆盖 18 艘，任意位置同面积覆盖 51 艘，报告框内任意面积和位置的上界覆盖 129 艘。框关联弱掩膜的编辑暴露达到 90 艘、15 组，主差 +0.00431 连续 IoU 点 [−0.00084, 0.01010]，99 艘均未越过连续 IoU 0.50。测试了同一局部策略在弱掩膜上的限度，真值上界尚待实际可学习方法验证。[几何复核](UEIKAP_RFDETR_CANDIDATE_GEOMETRY_ACTUAL_20261122.md) · [同量实测](UEIKAP_RFDETR_BOX_ASSOCIATION_ACTUAL_20261122.md)
 
-随后取得 Instance-RSDD 作者标注。实际测试 740 图，含 583 高分三号图，发布划分与论文数量不同。原始影像按作者图名从镜像逐张获取。已冻结 HRSID 点头的第三库评价，实际 AP 和重叠结果待闭合。[标注](INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md) · [第三库预锁](INSTANCE_RSDD_FROZEN_HRSID_PRELOCK_20261122.md)
+随后在 Instance-RSDD 作者发布版的 740 图上完整评价两个冻结 HRSID 点头。高分三号主比较中，原生 AP 61.033，两点头自然策略 61.620／61.550，平均 +0.552。较固定配对的同头同量 AP +0.482／+0.483，连续 IoU +0.266／+0.253，采集组区间均为正。源载体共享。此项证据支持指定高分三号上的跨传感器效应，平均效用低于预锁 1 点，停止追加。原版本 740 图与公开论文的 715 图有差异。[第三库实测](INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [标注](INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md)

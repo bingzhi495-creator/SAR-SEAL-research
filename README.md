@@ -4,7 +4,7 @@
 
 ## 当前状态（2026-11-22）
 
-- Instance-RSDD 作者船体标注已收到并核验。实际训练／测试为 2,810／740 图，测试含 583 高分三号图。已锁定 HRSID 冻结模型的第三库评估。[标注核验](research_round_20260925_global/INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md) · [冻结协议](research_round_20260925_global/INSTANCE_RSDD_FROZEN_HRSID_PRELOCK_20261122.md)
+- Instance-RSDD 完整 740 图评价闭合。583 张高分三号影像上，两次 HRSID 冻结点头分别提高 0.587、0.517 mask AP。同头同量独立选点较固定配对均约 +0.483 AP。均值 +0.552 低于预锁 1 点，按规则保留两次结果。自然独立策略相对原生的 AP90 小幅下降。[结果及源码](research_round_20260925_global/INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [标注核验](research_round_20260925_global/INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md)
 
 - UEIKAP 候选诊断发现，139 艘中 100 艘存在达标框，其中 90 艘的最佳框候选掩膜面积不足真值一半。全图八次理想等面积交换只将覆盖从 17 增到 18。按框关联后，90 个弱掩膜在 15 个组有正预算，同量独立选点的连续 IoU 差区间仍跨零。[候选上界](research_round_20260925_global/UEIKAP_RFDETR_CANDIDATE_GEOMETRY_ACTUAL_20261122.md) · [弱掩膜对照](research_round_20260925_global/UEIKAP_RFDETR_BOX_ASSOCIATION_ACTUAL_20261122.md)
 

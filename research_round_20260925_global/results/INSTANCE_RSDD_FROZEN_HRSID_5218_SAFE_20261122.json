@@ -1,0 +1,2661 @@
+{
+  "author_TEST": true,
+  "authority_sha256": "530416f2055839951ced034726b7e3afa9d0754b5d9145da8968c878f0cf6e96",
+  "capture_receipt_sha256": "29357a70ceeff135e02ddb98b400b9f3695a8fe1f808f4a2af5e0ed86e4769ec",
+  "criteria": {
+    "coverage": true,
+    "dedup_ap_no_sign_reversal": true,
+    "positive_continuous_lower": true,
+    "same_count_ap_positive": true
+  },
+  "detector_forwards": 0,
+  "edit_receipt_sha256": "e66f377f4785ef4bfd8db0b30ebf0bcf7c081be8dd042c161c877ed5a1db8147",
+  "elapsed_seconds": 69.26632489999974,
+  "evaluator_annotation_ids_rekeyed": true,
+  "full_replication_eligible": false,
+  "gt_sha256": "ed5be06ac39b4cd5c373c00fdba132bc8f0ad1260023e2001c5e2d24a33f0760",
+  "non_simple_ap_retained": 1,
+  "optimizer_updates": 0,
+  "primary_ap_points": 0.5168863376626476,
+  "protocol_sha256": "5c0c9410db15710e34fe453271bd3a99a1f1a50eb365bd354f884e40b88c8b85",
+  "replicate_5218": true,
+  "status": "INSTANCE_RSDD_TEST740_FROZEN_HRSID_SCORE_COMPLETE_V1",
+  "views": {
+    "full": {
+      "annotations": 872,
+      "geometry": {
+        "counts": {
+          "eligible_anchors": 521,
+          "fixed_positive_anchors": 511,
+          "out_of_area_matched": 331
+        },
+        "original_anchors": 852,
+        "positive_exposure_groups": 96,
+        "stats": {
+          "group_equal_arms": {
+            "attraction_dynamic": {
+              "continuous_iou_points": 79.45790378213091,
+              "fn_per_truth_area_points": 7.561445052023831,
+              "fp_per_truth_area_points": 17.484983513654573
+            },
+            "attraction_static_at_dynamic_count": {
+              "continuous_iou_points": 79.49629750560888,
+              "fn_per_truth_area_points": 7.536468720205392,
+              "fp_per_truth_area_points": 17.460007181836126
+            },
+            "fixed": {
+              "continuous_iou_points": 79.59716510814772,
+              "fn_per_truth_area_points": 7.4626036402413005,
+              "fp_per_truth_area_points": 17.38614210187204
+            },
+            "free_matched_count": {
+              "continuous_iou_points": 79.87378229606445,
+              "fn_per_truth_area_points": 7.28604684083119,
+              "fp_per_truth_area_points": 17.209585302461928
+            },
+            "free_natural": {
+              "continuous_iou_points": 79.89206393434017,
+              "fn_per_truth_area_points": 7.273304716616431,
+              "fp_per_truth_area_points": 17.196843178247168
+            },
+            "learned_at_attraction_count": {
+              "continuous_iou_points": 79.88794888860403,
+              "fn_per_truth_area_points": 7.275980717421842,
+              "fp_per_truth_area_points": 17.199519179052576
+            },
+            "native_matched_count": {
+              "continuous_iou_points": 79.52062334012433,
+              "fn_per_truth_area_points": 7.513687337226192,
+              "fp_per_truth_area_points": 17.437225798856925
+            },
+            "raw": {
+              "continuous_iou_points": 79.59479737294666,
+              "fn_per_truth_area_points": 7.468369049024926,
+              "fp_per_truth_area_points": 17.391907510655663
+            }
+          },
+          "groups": 96,
+          "paired_contrasts_points": {
+            "free_matched_count minus fixed": {
+              "continuous_iou_points": {
+                "delta": 0.2766171879167358,
+                "interval_95": [
+                  0.20369001599058972,
+                  0.35266278669318263
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.17655679941011293,
+                "interval_95": [
+                  -0.22503651866011992,
+                  -0.1304164956495999
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.17655679941011246,
+                "interval_95": [
+                  -0.22503651866011937,
+                  -0.13041649564959942
+                ]
+              }
+            },
+            "free_natural minus native_matched_count": {
+              "continuous_iou_points": {
+                "delta": 0.3714405942158965,
+                "interval_95": [
+                  0.2862520921613142,
+                  0.4605421155510756
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.24038262060976176,
+                "interval_95": [
+                  -0.29597598110807677,
+                  -0.18579212397117964
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.24038262060976168,
+                "interval_95": [
+                  -0.2959759811080768,
+                  -0.1857921239711792
+                ]
+              }
+            },
+            "free_natural minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.29726656139351104,
+                "interval_95": [
+                  0.20100708294178873,
+                  0.3931227267030678
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.19506433240849771,
+                "interval_95": [
+                  -0.257306061251649,
+                  -0.13232117591801396
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.19506433240849733,
+                "interval_95": [
+                  -0.2573060612516487,
+                  -0.13232117591801332
+                ]
+              }
+            },
+            "learned_at_attraction_count minus attraction_dynamic": {
+              "continuous_iou_points": {
+                "delta": 0.4300451064731711,
+                "interval_95": [
+                  0.306489124767815,
+                  0.5579018164079874
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2854643346019941,
+                "interval_95": [
+                  -0.3654885468402625,
+                  -0.207537446770037
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.285464334601994,
+                "interval_95": [
+                  -0.36548854684026266,
+                  -0.2075374467700369
+                ]
+              }
+            },
+            "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+              "continuous_iou_points": {
+                "delta": 0.391651382995214,
+                "interval_95": [
+                  0.27844835700310583,
+                  0.5057018265102082
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2604880027835516,
+                "interval_95": [
+                  -0.3348847127081561,
+                  -0.18794003645142693
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.26048800278355144,
+                "interval_95": [
+                  -0.33488471270815606,
+                  -0.18794003645142662
+                ]
+              }
+            }
+          }
+        },
+        "transitions": {
+          "0.5": {
+            "attraction_dynamic": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "fixed": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "free_matched_count": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "free_natural": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "learned_at_attraction_count": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "native_matched_count": {
+              "both_below": 1,
+              "gained": 0,
+              "lost": 0,
+              "retained": 520
+            },
+            "raw": {
+              "both_below": 1,
+              "gained": 0,
+              "lost": 0,
+              "retained": 520
+            }
+          },
+          "0.75": {
+            "attraction_dynamic": {
+              "both_below": 99,
+              "gained": 3,
+              "lost": 7,
+              "retained": 412
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 98,
+              "gained": 4,
+              "lost": 6,
+              "retained": 413
+            },
+            "fixed": {
+              "both_below": 101,
+              "gained": 1,
+              "lost": 1,
+              "retained": 418
+            },
+            "free_matched_count": {
+              "both_below": 97,
+              "gained": 5,
+              "lost": 2,
+              "retained": 417
+            },
+            "free_natural": {
+              "both_below": 97,
+              "gained": 5,
+              "lost": 2,
+              "retained": 417
+            },
+            "learned_at_attraction_count": {
+              "both_below": 97,
+              "gained": 5,
+              "lost": 2,
+              "retained": 417
+            },
+            "native_matched_count": {
+              "both_below": 102,
+              "gained": 0,
+              "lost": 3,
+              "retained": 416
+            },
+            "raw": {
+              "both_below": 102,
+              "gained": 0,
+              "lost": 0,
+              "retained": 419
+            }
+          },
+          "0.9": {
+            "attraction_dynamic": {
+              "both_below": 497,
+              "gained": 6,
+              "lost": 3,
+              "retained": 15
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 499,
+              "gained": 4,
+              "lost": 1,
+              "retained": 17
+            },
+            "fixed": {
+              "both_below": 501,
+              "gained": 2,
+              "lost": 2,
+              "retained": 16
+            },
+            "free_matched_count": {
+              "both_below": 498,
+              "gained": 5,
+              "lost": 3,
+              "retained": 15
+            },
+            "free_natural": {
+              "both_below": 495,
+              "gained": 8,
+              "lost": 4,
+              "retained": 14
+            },
+            "learned_at_attraction_count": {
+              "both_below": 495,
+              "gained": 8,
+              "lost": 4,
+              "retained": 14
+            },
+            "native_matched_count": {
+              "both_below": 502,
+              "gained": 1,
+              "lost": 1,
+              "retained": 17
+            },
+            "raw": {
+              "both_below": 503,
+              "gained": 0,
+              "lost": 0,
+              "retained": 18
+            }
+          }
+        }
+      },
+      "images": 740,
+      "metrics_fraction": {
+        "attraction_dynamic": {
+          "AP": 0.5846550579007839,
+          "AP50": 0.928920131683983,
+          "AP75": 0.6918005299531572,
+          "AP90": 0.026278927368144835,
+          "APl": 0.6128712871287129,
+          "APm": 0.5585628751564244,
+          "APs": 0.5980548273080322,
+          "AR1": 0.5590596330275229,
+          "AR10": 0.6596330275229358,
+          "AR100": 0.7121559633027522,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7242477876106195
+        },
+        "attraction_static_at_dynamic_count": {
+          "AP": 0.5842990552830232,
+          "AP50": 0.928920131683983,
+          "AP75": 0.6879613753254853,
+          "AP90": 0.02788008776092395,
+          "APl": 0.6128712871287129,
+          "APm": 0.5585628751564244,
+          "APs": 0.5967575559155175,
+          "AR1": 0.5591743119266055,
+          "AR10": 0.6606651376146789,
+          "AR100": 0.7123853211009175,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7246017699115044
+        },
+        "fixed": {
+          "AP": 0.5850730280058289,
+          "AP50": 0.928920131683983,
+          "AP75": 0.6892773128755438,
+          "AP90": 0.03011913874245251,
+          "APl": 0.6128712871287129,
+          "APm": 0.5585254576463275,
+          "APs": 0.5983463507856918,
+          "AR1": 0.5594036697247706,
+          "AR10": 0.6604357798165138,
+          "AR100": 0.7115825688073395,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7233628318584071
+        },
+        "free_matched_count": {
+          "AP": 0.589538036966714,
+          "AP50": 0.928920131683983,
+          "AP75": 0.7047592445972755,
+          "AP90": 0.03118987683376529,
+          "APl": 0.6128712871287129,
+          "APm": 0.5587420190267133,
+          "APs": 0.6046682658437667,
+          "AR1": 0.5631880733944954,
+          "AR10": 0.6651376146788991,
+          "AR100": 0.7169724770642203,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7316814159292035
+        },
+        "free_natural": {
+          "AP": 0.5901396898923438,
+          "AP50": 0.928920131683983,
+          "AP75": 0.7082028834402523,
+          "AP90": 0.03010786460304048,
+          "APl": 0.6128712871287129,
+          "APm": 0.558623905047817,
+          "APs": 0.6058271870663883,
+          "AR1": 0.563302752293578,
+          "AR10": 0.6651376146788991,
+          "AR100": 0.7169724770642203,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7316814159292035
+        },
+        "learned_at_attraction_count": {
+          "AP": 0.5903154409175565,
+          "AP50": 0.928920131683983,
+          "AP75": 0.7082538814918176,
+          "AP90": 0.030195046835791297,
+          "APl": 0.6128712871287129,
+          "APm": 0.5587420190267133,
+          "APs": 0.6061504591399303,
+          "AR1": 0.5634174311926605,
+          "AR10": 0.6653669724770642,
+          "AR100": 0.7174311926605506,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7323893805309736
+        },
+        "native_matched_count": {
+          "AP": 0.5848768468164551,
+          "AP50": 0.928920131683983,
+          "AP75": 0.694014508615753,
+          "AP90": 0.02928419499274244,
+          "APl": 0.6128712871287129,
+          "APm": 0.5585150125238537,
+          "APs": 0.5980893162139398,
+          "AR1": 0.5589449541284404,
+          "AR10": 0.6605504587155964,
+          "AR100": 0.7131880733944954,
+          "ARl": 0.85,
+          "ARm": 0.6888888888888889,
+          "ARs": 0.7260176991150442
+        },
+        "raw": {
+          "AP": 0.5850408553880333,
+          "AP50": 0.928920131683983,
+          "AP75": 0.6958490792433606,
+          "AP90": 0.030239269504606682,
+          "APl": 0.6128712871287129,
+          "APm": 0.5585154133623185,
+          "APs": 0.5980463759920261,
+          "AR1": 0.5597477064220183,
+          "AR10": 0.6618119266055047,
+          "AR100": 0.7139908256880734,
+          "ARl": 0.85,
+          "ARm": 0.6888888888888889,
+          "ARs": 0.7272566371681417
+        }
+      },
+      "paired_contrasts_points": {
+        "free_matched_count minus fixed": {
+          "AP": 0.4465008960885086,
+          "AP50": 0.0,
+          "AP75": 1.5481931721731623,
+          "AP90": 0.10707380913127819,
+          "APl": 0.0,
+          "APm": 0.021656138038572692,
+          "APs": 0.632191505807489,
+          "AR1": 0.37844036697247674,
+          "AR10": 0.470183486238529,
+          "AR100": 0.5389908256880793,
+          "ARl": 0.0,
+          "ARm": 0.0,
+          "ARs": 0.8318584070796442
+        },
+        "free_natural minus native_matched_count": {
+          "AP": 0.5262843075888646,
+          "AP50": 0.0,
+          "AP75": 1.4188374824499306,
+          "AP90": 0.08236696102980404,
+          "APl": 0.0,
+          "APm": 0.010889252396328875,
+          "APs": 0.7737870852448481,
+          "AR1": 0.4357798165137594,
+          "AR10": 0.4587155963302725,
+          "AR100": 0.37844036697248784,
+          "ARl": 0.0,
+          "ARm": 0.03267973856209139,
+          "ARs": 0.5663716814159336
+        },
+        "free_natural minus raw": {
+          "AP": 0.5098834504310479,
+          "AP50": 0.0,
+          "AP75": 1.2353804196891693,
+          "AP90": -0.01314049015662018,
+          "APl": 0.0,
+          "APm": 0.010849168549853516,
+          "APs": 0.7780811074362126,
+          "AR1": 0.35550458715596367,
+          "AR10": 0.3325688073394395,
+          "AR100": 0.2981651376146921,
+          "ARl": 0.0,
+          "ARm": 0.03267973856209139,
+          "ARs": 0.4424778761061843
+        },
+        "learned_at_attraction_count minus attraction_dynamic": {
+          "AP": 0.566038301677263,
+          "AP50": 0.0,
+          "AP75": 1.6453351538660344,
+          "AP90": 0.3916119467646462,
+          "APl": 0.0,
+          "APm": 0.017914387028883372,
+          "APs": 0.8095631831898098,
+          "AR1": 0.4357798165137594,
+          "AR10": 0.5733944954128378,
+          "AR100": 0.5275229357798339,
+          "ARl": 0.0,
+          "ARm": 0.0,
+          "ARs": 0.8141592920354102
+        },
+        "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+          "AP": 0.6016385634533328,
+          "AP50": 0.0,
+          "AP75": 2.029250616633227,
+          "AP90": 0.23149590748673468,
+          "APl": 0.0,
+          "APm": 0.017914387028883372,
+          "APs": 0.9392903224412774,
+          "AR1": 0.4243119266055029,
+          "AR10": 0.470183486238529,
+          "AR100": 0.5045871559633097,
+          "ARl": 0.0,
+          "ARm": 0.0,
+          "ARs": 0.7787610619469199
+        }
+      },
+      "sensor_groups": 112
+    },
+    "full_deduplicated": {
+      "annotations": 872,
+      "geometry": {
+        "counts": {
+          "eligible_anchors": 521,
+          "fixed_positive_anchors": 511,
+          "out_of_area_matched": 331
+        },
+        "original_anchors": 852,
+        "positive_exposure_groups": 96,
+        "stats": {
+          "group_equal_arms": {
+            "attraction_dynamic": {
+              "continuous_iou_points": 79.45790378213091,
+              "fn_per_truth_area_points": 7.561445052023831,
+              "fp_per_truth_area_points": 17.484983513654573
+            },
+            "attraction_static_at_dynamic_count": {
+              "continuous_iou_points": 79.49629750560888,
+              "fn_per_truth_area_points": 7.536468720205392,
+              "fp_per_truth_area_points": 17.460007181836126
+            },
+            "fixed": {
+              "continuous_iou_points": 79.59716510814772,
+              "fn_per_truth_area_points": 7.4626036402413005,
+              "fp_per_truth_area_points": 17.38614210187204
+            },
+            "free_matched_count": {
+              "continuous_iou_points": 79.87378229606445,
+              "fn_per_truth_area_points": 7.28604684083119,
+              "fp_per_truth_area_points": 17.209585302461928
+            },
+            "free_natural": {
+              "continuous_iou_points": 79.89206393434017,
+              "fn_per_truth_area_points": 7.273304716616431,
+              "fp_per_truth_area_points": 17.196843178247168
+            },
+            "learned_at_attraction_count": {
+              "continuous_iou_points": 79.88794888860403,
+              "fn_per_truth_area_points": 7.275980717421842,
+              "fp_per_truth_area_points": 17.199519179052576
+            },
+            "native_matched_count": {
+              "continuous_iou_points": 79.52062334012433,
+              "fn_per_truth_area_points": 7.513687337226192,
+              "fp_per_truth_area_points": 17.437225798856925
+            },
+            "raw": {
+              "continuous_iou_points": 79.59479737294666,
+              "fn_per_truth_area_points": 7.468369049024926,
+              "fp_per_truth_area_points": 17.391907510655663
+            }
+          },
+          "groups": 96,
+          "paired_contrasts_points": {
+            "free_matched_count minus fixed": {
+              "continuous_iou_points": {
+                "delta": 0.2766171879167358,
+                "interval_95": [
+                  0.20369001599058972,
+                  0.35266278669318263
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.17655679941011293,
+                "interval_95": [
+                  -0.22503651866011992,
+                  -0.1304164956495999
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.17655679941011246,
+                "interval_95": [
+                  -0.22503651866011937,
+                  -0.13041649564959942
+                ]
+              }
+            },
+            "free_natural minus native_matched_count": {
+              "continuous_iou_points": {
+                "delta": 0.3714405942158965,
+                "interval_95": [
+                  0.2862520921613142,
+                  0.4605421155510756
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.24038262060976176,
+                "interval_95": [
+                  -0.29597598110807677,
+                  -0.18579212397117964
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.24038262060976168,
+                "interval_95": [
+                  -0.2959759811080768,
+                  -0.1857921239711792
+                ]
+              }
+            },
+            "free_natural minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.29726656139351104,
+                "interval_95": [
+                  0.20100708294178873,
+                  0.3931227267030678
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.19506433240849771,
+                "interval_95": [
+                  -0.257306061251649,
+                  -0.13232117591801396
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.19506433240849733,
+                "interval_95": [
+                  -0.2573060612516487,
+                  -0.13232117591801332
+                ]
+              }
+            },
+            "learned_at_attraction_count minus attraction_dynamic": {
+              "continuous_iou_points": {
+                "delta": 0.4300451064731711,
+                "interval_95": [
+                  0.306489124767815,
+                  0.5579018164079874
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2854643346019941,
+                "interval_95": [
+                  -0.3654885468402625,
+                  -0.207537446770037
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.285464334601994,
+                "interval_95": [
+                  -0.36548854684026266,
+                  -0.2075374467700369
+                ]
+              }
+            },
+            "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+              "continuous_iou_points": {
+                "delta": 0.391651382995214,
+                "interval_95": [
+                  0.27844835700310583,
+                  0.5057018265102082
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2604880027835516,
+                "interval_95": [
+                  -0.3348847127081561,
+                  -0.18794003645142693
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.26048800278355144,
+                "interval_95": [
+                  -0.33488471270815606,
+                  -0.18794003645142662
+                ]
+              }
+            }
+          }
+        },
+        "transitions": {
+          "0.5": {
+            "attraction_dynamic": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "fixed": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "free_matched_count": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "free_natural": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "learned_at_attraction_count": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 520
+            },
+            "native_matched_count": {
+              "both_below": 1,
+              "gained": 0,
+              "lost": 0,
+              "retained": 520
+            },
+            "raw": {
+              "both_below": 1,
+              "gained": 0,
+              "lost": 0,
+              "retained": 520
+            }
+          },
+          "0.75": {
+            "attraction_dynamic": {
+              "both_below": 99,
+              "gained": 3,
+              "lost": 7,
+              "retained": 412
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 98,
+              "gained": 4,
+              "lost": 6,
+              "retained": 413
+            },
+            "fixed": {
+              "both_below": 101,
+              "gained": 1,
+              "lost": 1,
+              "retained": 418
+            },
+            "free_matched_count": {
+              "both_below": 97,
+              "gained": 5,
+              "lost": 2,
+              "retained": 417
+            },
+            "free_natural": {
+              "both_below": 97,
+              "gained": 5,
+              "lost": 2,
+              "retained": 417
+            },
+            "learned_at_attraction_count": {
+              "both_below": 97,
+              "gained": 5,
+              "lost": 2,
+              "retained": 417
+            },
+            "native_matched_count": {
+              "both_below": 102,
+              "gained": 0,
+              "lost": 3,
+              "retained": 416
+            },
+            "raw": {
+              "both_below": 102,
+              "gained": 0,
+              "lost": 0,
+              "retained": 419
+            }
+          },
+          "0.9": {
+            "attraction_dynamic": {
+              "both_below": 497,
+              "gained": 6,
+              "lost": 3,
+              "retained": 15
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 499,
+              "gained": 4,
+              "lost": 1,
+              "retained": 17
+            },
+            "fixed": {
+              "both_below": 501,
+              "gained": 2,
+              "lost": 2,
+              "retained": 16
+            },
+            "free_matched_count": {
+              "both_below": 498,
+              "gained": 5,
+              "lost": 3,
+              "retained": 15
+            },
+            "free_natural": {
+              "both_below": 495,
+              "gained": 8,
+              "lost": 4,
+              "retained": 14
+            },
+            "learned_at_attraction_count": {
+              "both_below": 495,
+              "gained": 8,
+              "lost": 4,
+              "retained": 14
+            },
+            "native_matched_count": {
+              "both_below": 502,
+              "gained": 1,
+              "lost": 1,
+              "retained": 17
+            },
+            "raw": {
+              "both_below": 503,
+              "gained": 0,
+              "lost": 0,
+              "retained": 18
+            }
+          }
+        }
+      },
+      "images": 740,
+      "metrics_fraction": {
+        "attraction_dynamic": {
+          "AP": 0.5846550579007839,
+          "AP50": 0.928920131683983,
+          "AP75": 0.6918005299531572,
+          "AP90": 0.026278927368144835,
+          "APl": 0.6128712871287129,
+          "APm": 0.5585628751564244,
+          "APs": 0.5980548273080322,
+          "AR1": 0.5590596330275229,
+          "AR10": 0.6596330275229358,
+          "AR100": 0.7121559633027522,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7242477876106195
+        },
+        "attraction_static_at_dynamic_count": {
+          "AP": 0.5842990552830232,
+          "AP50": 0.928920131683983,
+          "AP75": 0.6879613753254853,
+          "AP90": 0.02788008776092395,
+          "APl": 0.6128712871287129,
+          "APm": 0.5585628751564244,
+          "APs": 0.5967575559155175,
+          "AR1": 0.5591743119266055,
+          "AR10": 0.6606651376146789,
+          "AR100": 0.7123853211009175,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7246017699115044
+        },
+        "fixed": {
+          "AP": 0.5850730280058289,
+          "AP50": 0.928920131683983,
+          "AP75": 0.6892773128755438,
+          "AP90": 0.03011913874245251,
+          "APl": 0.6128712871287129,
+          "APm": 0.5585254576463275,
+          "APs": 0.5983463507856918,
+          "AR1": 0.5594036697247706,
+          "AR10": 0.6604357798165138,
+          "AR100": 0.7115825688073395,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7233628318584071
+        },
+        "free_matched_count": {
+          "AP": 0.589538036966714,
+          "AP50": 0.928920131683983,
+          "AP75": 0.7047592445972755,
+          "AP90": 0.03118987683376529,
+          "APl": 0.6128712871287129,
+          "APm": 0.5587420190267133,
+          "APs": 0.6046682658437667,
+          "AR1": 0.5631880733944954,
+          "AR10": 0.6651376146788991,
+          "AR100": 0.7169724770642203,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7316814159292035
+        },
+        "free_natural": {
+          "AP": 0.5901396898923438,
+          "AP50": 0.928920131683983,
+          "AP75": 0.7082028834402523,
+          "AP90": 0.03010786460304048,
+          "APl": 0.6128712871287129,
+          "APm": 0.558623905047817,
+          "APs": 0.6058271870663883,
+          "AR1": 0.563302752293578,
+          "AR10": 0.6651376146788991,
+          "AR100": 0.7169724770642203,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7316814159292035
+        },
+        "learned_at_attraction_count": {
+          "AP": 0.5903154409175565,
+          "AP50": 0.928920131683983,
+          "AP75": 0.7082538814918176,
+          "AP90": 0.030195046835791297,
+          "APl": 0.6128712871287129,
+          "APm": 0.5587420190267133,
+          "APs": 0.6061504591399303,
+          "AR1": 0.5634174311926605,
+          "AR10": 0.6653669724770642,
+          "AR100": 0.7174311926605506,
+          "ARl": 0.85,
+          "ARm": 0.6892156862745098,
+          "ARs": 0.7323893805309736
+        },
+        "native_matched_count": {
+          "AP": 0.5848768468164551,
+          "AP50": 0.928920131683983,
+          "AP75": 0.694014508615753,
+          "AP90": 0.02928419499274244,
+          "APl": 0.6128712871287129,
+          "APm": 0.5585150125238537,
+          "APs": 0.5980893162139398,
+          "AR1": 0.5589449541284404,
+          "AR10": 0.6605504587155964,
+          "AR100": 0.7131880733944954,
+          "ARl": 0.85,
+          "ARm": 0.6888888888888889,
+          "ARs": 0.7260176991150442
+        },
+        "raw": {
+          "AP": 0.5850408553880333,
+          "AP50": 0.928920131683983,
+          "AP75": 0.6958490792433606,
+          "AP90": 0.030239269504606682,
+          "APl": 0.6128712871287129,
+          "APm": 0.5585154133623185,
+          "APs": 0.5980463759920261,
+          "AR1": 0.5597477064220183,
+          "AR10": 0.6618119266055047,
+          "AR100": 0.7139908256880734,
+          "ARl": 0.85,
+          "ARm": 0.6888888888888889,
+          "ARs": 0.7272566371681417
+        }
+      },
+      "paired_contrasts_points": {
+        "free_matched_count minus fixed": {
+          "AP": 0.4465008960885086,
+          "AP50": 0.0,
+          "AP75": 1.5481931721731623,
+          "AP90": 0.10707380913127819,
+          "APl": 0.0,
+          "APm": 0.021656138038572692,
+          "APs": 0.632191505807489,
+          "AR1": 0.37844036697247674,
+          "AR10": 0.470183486238529,
+          "AR100": 0.5389908256880793,
+          "ARl": 0.0,
+          "ARm": 0.0,
+          "ARs": 0.8318584070796442
+        },
+        "free_natural minus native_matched_count": {
+          "AP": 0.5262843075888646,
+          "AP50": 0.0,
+          "AP75": 1.4188374824499306,
+          "AP90": 0.08236696102980404,
+          "APl": 0.0,
+          "APm": 0.010889252396328875,
+          "APs": 0.7737870852448481,
+          "AR1": 0.4357798165137594,
+          "AR10": 0.4587155963302725,
+          "AR100": 0.37844036697248784,
+          "ARl": 0.0,
+          "ARm": 0.03267973856209139,
+          "ARs": 0.5663716814159336
+        },
+        "free_natural minus raw": {
+          "AP": 0.5098834504310479,
+          "AP50": 0.0,
+          "AP75": 1.2353804196891693,
+          "AP90": -0.01314049015662018,
+          "APl": 0.0,
+          "APm": 0.010849168549853516,
+          "APs": 0.7780811074362126,
+          "AR1": 0.35550458715596367,
+          "AR10": 0.3325688073394395,
+          "AR100": 0.2981651376146921,
+          "ARl": 0.0,
+          "ARm": 0.03267973856209139,
+          "ARs": 0.4424778761061843
+        },
+        "learned_at_attraction_count minus attraction_dynamic": {
+          "AP": 0.566038301677263,
+          "AP50": 0.0,
+          "AP75": 1.6453351538660344,
+          "AP90": 0.3916119467646462,
+          "APl": 0.0,
+          "APm": 0.017914387028883372,
+          "APs": 0.8095631831898098,
+          "AR1": 0.4357798165137594,
+          "AR10": 0.5733944954128378,
+          "AR100": 0.5275229357798339,
+          "ARl": 0.0,
+          "ARm": 0.0,
+          "ARs": 0.8141592920354102
+        },
+        "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+          "AP": 0.6016385634533328,
+          "AP50": 0.0,
+          "AP75": 2.029250616633227,
+          "AP90": 0.23149590748673468,
+          "APl": 0.0,
+          "APm": 0.017914387028883372,
+          "APs": 0.9392903224412774,
+          "AR1": 0.4243119266055029,
+          "AR10": 0.470183486238529,
+          "AR100": 0.5045871559633097,
+          "ARl": 0.0,
+          "ARm": 0.0,
+          "ARs": 0.7787610619469199
+        }
+      },
+      "sensor_groups": 112
+    },
+    "gf3": {
+      "annotations": 631,
+      "geometry": {
+        "counts": {
+          "eligible_anchors": 425,
+          "fixed_positive_anchors": 415,
+          "out_of_area_matched": 204
+        },
+        "original_anchors": 629,
+        "positive_exposure_groups": 68,
+        "stats": {
+          "group_equal_arms": {
+            "attraction_dynamic": {
+              "continuous_iou_points": 79.50750849268168,
+              "fn_per_truth_area_points": 7.948966724816216,
+              "fp_per_truth_area_points": 16.845245738434063
+            },
+            "attraction_static_at_dynamic_count": {
+              "continuous_iou_points": 79.55321698790566,
+              "fn_per_truth_area_points": 7.919694542193258,
+              "fp_per_truth_area_points": 16.8159735558111
+            },
+            "fixed": {
+              "continuous_iou_points": 79.60864841463403,
+              "fn_per_truth_area_points": 7.868755242017873,
+              "fp_per_truth_area_points": 16.76503425563571
+            },
+            "free_matched_count": {
+              "continuous_iou_points": 79.86145588826406,
+              "fn_per_truth_area_points": 7.707317891477997,
+              "fp_per_truth_area_points": 16.603596905095845
+            },
+            "free_natural": {
+              "continuous_iou_points": 79.88846754877719,
+              "fn_per_truth_area_points": 7.688847008210303,
+              "fp_per_truth_area_points": 16.585126021828145
+            },
+            "learned_at_attraction_count": {
+              "continuous_iou_points": 79.88135855710101,
+              "fn_per_truth_area_points": 7.693380675411881,
+              "fp_per_truth_area_points": 16.58965968902973
+            },
+            "native_matched_count": {
+              "continuous_iou_points": 79.57125590617763,
+              "fn_per_truth_area_points": 7.895521325772906,
+              "fp_per_truth_area_points": 16.791800339390743
+            },
+            "raw": {
+              "continuous_iou_points": 79.65177008387552,
+              "fn_per_truth_area_points": 7.845800083198882,
+              "fp_per_truth_area_points": 16.742079096816727
+            }
+          },
+          "groups": 68,
+          "paired_contrasts_points": {
+            "free_matched_count minus fixed": {
+              "continuous_iou_points": {
+                "delta": 0.252807473630058,
+                "interval_95": [
+                  0.1708030849759666,
+                  0.3335273546475429
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.16143735053987135,
+                "interval_95": [
+                  -0.2128988950453063,
+                  -0.10886601264395045
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.1614373505398705,
+                "interval_95": [
+                  -0.21289889504530557,
+                  -0.10886601264394954
+                ]
+              }
+            },
+            "free_natural minus native_matched_count": {
+              "continuous_iou_points": {
+                "delta": 0.31721164259958634,
+                "interval_95": [
+                  0.23119883367348745,
+                  0.40287817629165557
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.20667431756260096,
+                "interval_95": [
+                  -0.2628625363128854,
+                  -0.14989920500118872
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.20667431756260066,
+                "interval_95": [
+                  -0.2628625363128844,
+                  -0.1498992050011888
+                ]
+              }
+            },
+            "free_natural minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.23669746490164692,
+                "interval_95": [
+                  0.1385029974702009,
+                  0.32857089373402804
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.15695307498858013,
+                "interval_95": [
+                  -0.2174658805077761,
+                  -0.09277036446591343
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.15695307498857944,
+                "interval_95": [
+                  -0.21746588050777532,
+                  -0.09277036446591322
+                ]
+              }
+            },
+            "learned_at_attraction_count minus attraction_dynamic": {
+              "continuous_iou_points": {
+                "delta": 0.37385006441937657,
+                "interval_95": [
+                  0.24855124240611753,
+                  0.5020737229029849
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2555860494043347,
+                "interval_95": [
+                  -0.33961907910300293,
+                  -0.1740791499214172
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.2555860494043343,
+                "interval_95": [
+                  -0.3396190791030026,
+                  -0.1740791499214176
+                ]
+              }
+            },
+            "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+              "continuous_iou_points": {
+                "delta": 0.3281415691953664,
+                "interval_95": [
+                  0.20770076159930748,
+                  0.4532030528667344
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2263138667813741,
+                "interval_95": [
+                  -0.3094307032332102,
+                  -0.1478985411589005
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.22631386678137372,
+                "interval_95": [
+                  -0.3094307032332096,
+                  -0.14789854115890025
+                ]
+              }
+            }
+          }
+        },
+        "transitions": {
+          "0.5": {
+            "attraction_dynamic": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "fixed": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "free_matched_count": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "free_natural": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "learned_at_attraction_count": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "native_matched_count": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "raw": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            }
+          },
+          "0.75": {
+            "attraction_dynamic": {
+              "both_below": 85,
+              "gained": 3,
+              "lost": 5,
+              "retained": 332
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 84,
+              "gained": 4,
+              "lost": 4,
+              "retained": 333
+            },
+            "fixed": {
+              "both_below": 87,
+              "gained": 1,
+              "lost": 0,
+              "retained": 337
+            },
+            "free_matched_count": {
+              "both_below": 84,
+              "gained": 4,
+              "lost": 1,
+              "retained": 336
+            },
+            "free_natural": {
+              "both_below": 84,
+              "gained": 4,
+              "lost": 1,
+              "retained": 336
+            },
+            "learned_at_attraction_count": {
+              "both_below": 84,
+              "gained": 4,
+              "lost": 1,
+              "retained": 336
+            },
+            "native_matched_count": {
+              "both_below": 88,
+              "gained": 0,
+              "lost": 1,
+              "retained": 336
+            },
+            "raw": {
+              "both_below": 88,
+              "gained": 0,
+              "lost": 0,
+              "retained": 337
+            }
+          },
+          "0.9": {
+            "attraction_dynamic": {
+              "both_below": 408,
+              "gained": 5,
+              "lost": 3,
+              "retained": 9
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 410,
+              "gained": 3,
+              "lost": 1,
+              "retained": 11
+            },
+            "fixed": {
+              "both_below": 413,
+              "gained": 0,
+              "lost": 2,
+              "retained": 10
+            },
+            "free_matched_count": {
+              "both_below": 409,
+              "gained": 4,
+              "lost": 3,
+              "retained": 9
+            },
+            "free_natural": {
+              "both_below": 407,
+              "gained": 6,
+              "lost": 4,
+              "retained": 8
+            },
+            "learned_at_attraction_count": {
+              "both_below": 407,
+              "gained": 6,
+              "lost": 4,
+              "retained": 8
+            },
+            "native_matched_count": {
+              "both_below": 413,
+              "gained": 0,
+              "lost": 1,
+              "retained": 11
+            },
+            "raw": {
+              "both_below": 413,
+              "gained": 0,
+              "lost": 0,
+              "retained": 12
+            }
+          }
+        }
+      },
+      "images": 583,
+      "metrics_fraction": {
+        "attraction_dynamic": {
+          "AP": 0.609320738141561,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7119610793339138,
+          "AP90": 0.02880765735280896,
+          "APl": -1.0,
+          "APm": 0.6432068872083274,
+          "APs": 0.5984214006930005,
+          "AR1": 0.6068145800316957,
+          "AR10": 0.6889064976228209,
+          "AR100": 0.7364500792393027,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7303687635574837
+        },
+        "attraction_static_at_dynamic_count": {
+          "AP": 0.6091359447258425,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7062727521415512,
+          "AP90": 0.029997340300906894,
+          "APl": -1.0,
+          "APm": 0.6432068872083274,
+          "APs": 0.5980734372302462,
+          "AR1": 0.6071315372424723,
+          "AR10": 0.6906497622820919,
+          "AR100": 0.7364500792393027,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7303687635574836
+        },
+        "fixed": {
+          "AP": 0.6098429623028759,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7099521248618621,
+          "AP90": 0.03035384576979959,
+          "APl": -1.0,
+          "APm": 0.6431118742478682,
+          "APs": 0.5993478919442183,
+          "AR1": 0.6071315372424724,
+          "AR10": 0.690174326465927,
+          "AR100": 0.7354992076069731,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7290672451193058
+        },
+        "free_matched_count": {
+          "AP": 0.6146757809043264,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7256004303885585,
+          "AP90": 0.03238299782120083,
+          "APl": -1.0,
+          "APm": 0.6434741629572504,
+          "APs": 0.6057110733390993,
+          "AR1": 0.6115689381933438,
+          "AR10": 0.69540412044374,
+          "AR100": 0.7413629160063391,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7370932754880694
+        },
+        "free_natural": {
+          "AP": 0.6155007659684812,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7305126873572969,
+          "AP90": 0.03149082060704027,
+          "APl": -1.0,
+          "APm": 0.6434265651586732,
+          "APs": 0.6067391661628825,
+          "AR1": 0.6118858954041204,
+          "AR10": 0.69540412044374,
+          "AR100": 0.7413629160063391,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7370932754880694
+        },
+        "learned_at_attraction_count": {
+          "AP": 0.615868806928382,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7307364419473551,
+          "AP90": 0.03157795351341041,
+          "APl": -1.0,
+          "APm": 0.6434741629572504,
+          "APs": 0.6071801644879353,
+          "AR1": 0.6120443740095087,
+          "AR10": 0.6957210776545166,
+          "AR100": 0.7419968304278923,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7379609544468546
+        },
+        "native_matched_count": {
+          "AP": 0.6104325893369862,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7148589594103791,
+          "AP90": 0.030471484443224367,
+          "APl": -1.0,
+          "APm": 0.6431006336207041,
+          "APs": 0.5999920988135727,
+          "AR1": 0.6068145800316957,
+          "AR10": 0.690174326465927,
+          "AR100": 0.7378763866877972,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7323210412147506
+        },
+        "raw": {
+          "AP": 0.6103319025918548,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7182150355782427,
+          "AP90": 0.03256247444662266,
+          "APl": -1.0,
+          "APm": 0.6431118742478682,
+          "APs": 0.5997699400935147,
+          "AR1": 0.6077654516640253,
+          "AR10": 0.6920760697305863,
+          "AR100": 0.7386687797147385,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7334056399132322
+        }
+      },
+      "paired_contrasts_points": {
+        "free_matched_count minus fixed": {
+          "AP": 0.48328186014504615,
+          "AP50": 0.0,
+          "AP75": 1.5648305526696382,
+          "AP90": 0.20291520514012437,
+          "APl": null,
+          "APm": 0.03622887093821525,
+          "APs": 0.6363181394881012,
+          "AR1": 0.44374009508714174,
+          "AR10": 0.522979397781298,
+          "AR100": 0.5863708399366008,
+          "ARl": null,
+          "ARm": 0.0,
+          "ARs": 0.8026030368763593
+        },
+        "free_natural minus native_matched_count": {
+          "AP": 0.5068176631495058,
+          "AP50": 0.0,
+          "AP75": 1.5653727946917773,
+          "AP90": 0.1019336163815901,
+          "APl": null,
+          "APm": 0.03259315379691152,
+          "APs": 0.6747067349309743,
+          "AR1": 0.5071315372424667,
+          "AR10": 0.522979397781298,
+          "AR100": 0.34865293185418755,
+          "ARl": null,
+          "ARm": 0.0,
+          "ARs": 0.4772234273318743
+        },
+        "free_natural minus raw": {
+          "AP": 0.5168863376626476,
+          "AP50": 0.0,
+          "AP75": 1.2297651779054175,
+          "AP90": -0.10716538395823955,
+          "APl": null,
+          "APm": 0.031469091080504885,
+          "APs": 0.6969226069367784,
+          "AR1": 0.41204437400951255,
+          "AR10": 0.3328050713153674,
+          "AR100": 0.2694136291600535,
+          "ARl": null,
+          "ARm": 0.0,
+          "ARs": 0.36876355748372003
+        },
+        "learned_at_attraction_count minus attraction_dynamic": {
+          "AP": 0.6548068786821015,
+          "AP50": 0.0,
+          "AP75": 1.877536261344126,
+          "AP90": 0.2770296160601451,
+          "APl": null,
+          "APm": 0.026727574892293493,
+          "APs": 0.8758763794934787,
+          "AR1": 0.522979397781298,
+          "AR10": 0.6814580031695772,
+          "AR100": 0.5546751188589605,
+          "ARl": null,
+          "ARm": 0.0,
+          "ARs": 0.7592190889370909
+        },
+        "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+          "AP": 0.6732862202539436,
+          "AP50": 0.0,
+          "AP75": 2.4463689805803934,
+          "AP90": 0.15806132125035163,
+          "APl": null,
+          "APm": 0.026727574892293493,
+          "APs": 0.9106727257689129,
+          "AR1": 0.4912836767036466,
+          "AR10": 0.5071315372424778,
+          "AR100": 0.5546751188589605,
+          "ARl": null,
+          "ARm": 0.0,
+          "ARs": 0.759219088937102
+        }
+      },
+      "sensor_groups": 76
+    },
+    "gf3_deduplicated": {
+      "annotations": 631,
+      "geometry": {
+        "counts": {
+          "eligible_anchors": 425,
+          "fixed_positive_anchors": 415,
+          "out_of_area_matched": 204
+        },
+        "original_anchors": 629,
+        "positive_exposure_groups": 68,
+        "stats": {
+          "group_equal_arms": {
+            "attraction_dynamic": {
+              "continuous_iou_points": 79.50750849268168,
+              "fn_per_truth_area_points": 7.948966724816216,
+              "fp_per_truth_area_points": 16.845245738434063
+            },
+            "attraction_static_at_dynamic_count": {
+              "continuous_iou_points": 79.55321698790566,
+              "fn_per_truth_area_points": 7.919694542193258,
+              "fp_per_truth_area_points": 16.8159735558111
+            },
+            "fixed": {
+              "continuous_iou_points": 79.60864841463403,
+              "fn_per_truth_area_points": 7.868755242017873,
+              "fp_per_truth_area_points": 16.76503425563571
+            },
+            "free_matched_count": {
+              "continuous_iou_points": 79.86145588826406,
+              "fn_per_truth_area_points": 7.707317891477997,
+              "fp_per_truth_area_points": 16.603596905095845
+            },
+            "free_natural": {
+              "continuous_iou_points": 79.88846754877719,
+              "fn_per_truth_area_points": 7.688847008210303,
+              "fp_per_truth_area_points": 16.585126021828145
+            },
+            "learned_at_attraction_count": {
+              "continuous_iou_points": 79.88135855710101,
+              "fn_per_truth_area_points": 7.693380675411881,
+              "fp_per_truth_area_points": 16.58965968902973
+            },
+            "native_matched_count": {
+              "continuous_iou_points": 79.57125590617763,
+              "fn_per_truth_area_points": 7.895521325772906,
+              "fp_per_truth_area_points": 16.791800339390743
+            },
+            "raw": {
+              "continuous_iou_points": 79.65177008387552,
+              "fn_per_truth_area_points": 7.845800083198882,
+              "fp_per_truth_area_points": 16.742079096816727
+            }
+          },
+          "groups": 68,
+          "paired_contrasts_points": {
+            "free_matched_count minus fixed": {
+              "continuous_iou_points": {
+                "delta": 0.252807473630058,
+                "interval_95": [
+                  0.1708030849759666,
+                  0.3335273546475429
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.16143735053987135,
+                "interval_95": [
+                  -0.2128988950453063,
+                  -0.10886601264395045
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.1614373505398705,
+                "interval_95": [
+                  -0.21289889504530557,
+                  -0.10886601264394954
+                ]
+              }
+            },
+            "free_natural minus native_matched_count": {
+              "continuous_iou_points": {
+                "delta": 0.31721164259958634,
+                "interval_95": [
+                  0.23119883367348745,
+                  0.40287817629165557
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.20667431756260096,
+                "interval_95": [
+                  -0.2628625363128854,
+                  -0.14989920500118872
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.20667431756260066,
+                "interval_95": [
+                  -0.2628625363128844,
+                  -0.1498992050011888
+                ]
+              }
+            },
+            "free_natural minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.23669746490164692,
+                "interval_95": [
+                  0.1385029974702009,
+                  0.32857089373402804
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.15695307498858013,
+                "interval_95": [
+                  -0.2174658805077761,
+                  -0.09277036446591343
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.15695307498857944,
+                "interval_95": [
+                  -0.21746588050777532,
+                  -0.09277036446591322
+                ]
+              }
+            },
+            "learned_at_attraction_count minus attraction_dynamic": {
+              "continuous_iou_points": {
+                "delta": 0.37385006441937657,
+                "interval_95": [
+                  0.24855124240611753,
+                  0.5020737229029849
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2555860494043347,
+                "interval_95": [
+                  -0.33961907910300293,
+                  -0.1740791499214172
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.2555860494043343,
+                "interval_95": [
+                  -0.3396190791030026,
+                  -0.1740791499214176
+                ]
+              }
+            },
+            "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+              "continuous_iou_points": {
+                "delta": 0.3281415691953664,
+                "interval_95": [
+                  0.20770076159930748,
+                  0.4532030528667344
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2263138667813741,
+                "interval_95": [
+                  -0.3094307032332102,
+                  -0.1478985411589005
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.22631386678137372,
+                "interval_95": [
+                  -0.3094307032332096,
+                  -0.14789854115890025
+                ]
+              }
+            }
+          }
+        },
+        "transitions": {
+          "0.5": {
+            "attraction_dynamic": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "fixed": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "free_matched_count": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "free_natural": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "learned_at_attraction_count": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "native_matched_count": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            },
+            "raw": {
+              "both_below": 0,
+              "gained": 0,
+              "lost": 0,
+              "retained": 425
+            }
+          },
+          "0.75": {
+            "attraction_dynamic": {
+              "both_below": 85,
+              "gained": 3,
+              "lost": 5,
+              "retained": 332
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 84,
+              "gained": 4,
+              "lost": 4,
+              "retained": 333
+            },
+            "fixed": {
+              "both_below": 87,
+              "gained": 1,
+              "lost": 0,
+              "retained": 337
+            },
+            "free_matched_count": {
+              "both_below": 84,
+              "gained": 4,
+              "lost": 1,
+              "retained": 336
+            },
+            "free_natural": {
+              "both_below": 84,
+              "gained": 4,
+              "lost": 1,
+              "retained": 336
+            },
+            "learned_at_attraction_count": {
+              "both_below": 84,
+              "gained": 4,
+              "lost": 1,
+              "retained": 336
+            },
+            "native_matched_count": {
+              "both_below": 88,
+              "gained": 0,
+              "lost": 1,
+              "retained": 336
+            },
+            "raw": {
+              "both_below": 88,
+              "gained": 0,
+              "lost": 0,
+              "retained": 337
+            }
+          },
+          "0.9": {
+            "attraction_dynamic": {
+              "both_below": 408,
+              "gained": 5,
+              "lost": 3,
+              "retained": 9
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 410,
+              "gained": 3,
+              "lost": 1,
+              "retained": 11
+            },
+            "fixed": {
+              "both_below": 413,
+              "gained": 0,
+              "lost": 2,
+              "retained": 10
+            },
+            "free_matched_count": {
+              "both_below": 409,
+              "gained": 4,
+              "lost": 3,
+              "retained": 9
+            },
+            "free_natural": {
+              "both_below": 407,
+              "gained": 6,
+              "lost": 4,
+              "retained": 8
+            },
+            "learned_at_attraction_count": {
+              "both_below": 407,
+              "gained": 6,
+              "lost": 4,
+              "retained": 8
+            },
+            "native_matched_count": {
+              "both_below": 413,
+              "gained": 0,
+              "lost": 1,
+              "retained": 11
+            },
+            "raw": {
+              "both_below": 413,
+              "gained": 0,
+              "lost": 0,
+              "retained": 12
+            }
+          }
+        }
+      },
+      "images": 583,
+      "metrics_fraction": {
+        "attraction_dynamic": {
+          "AP": 0.609320738141561,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7119610793339138,
+          "AP90": 0.02880765735280896,
+          "APl": -1.0,
+          "APm": 0.6432068872083274,
+          "APs": 0.5984214006930005,
+          "AR1": 0.6068145800316957,
+          "AR10": 0.6889064976228209,
+          "AR100": 0.7364500792393027,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7303687635574837
+        },
+        "attraction_static_at_dynamic_count": {
+          "AP": 0.6091359447258425,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7062727521415512,
+          "AP90": 0.029997340300906894,
+          "APl": -1.0,
+          "APm": 0.6432068872083274,
+          "APs": 0.5980734372302462,
+          "AR1": 0.6071315372424723,
+          "AR10": 0.6906497622820919,
+          "AR100": 0.7364500792393027,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7303687635574836
+        },
+        "fixed": {
+          "AP": 0.6098429623028759,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7099521248618621,
+          "AP90": 0.03035384576979959,
+          "APl": -1.0,
+          "APm": 0.6431118742478682,
+          "APs": 0.5993478919442183,
+          "AR1": 0.6071315372424724,
+          "AR10": 0.690174326465927,
+          "AR100": 0.7354992076069731,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7290672451193058
+        },
+        "free_matched_count": {
+          "AP": 0.6146757809043264,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7256004303885585,
+          "AP90": 0.03238299782120083,
+          "APl": -1.0,
+          "APm": 0.6434741629572504,
+          "APs": 0.6057110733390993,
+          "AR1": 0.6115689381933438,
+          "AR10": 0.69540412044374,
+          "AR100": 0.7413629160063391,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7370932754880694
+        },
+        "free_natural": {
+          "AP": 0.6155007659684812,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7305126873572969,
+          "AP90": 0.03149082060704027,
+          "APl": -1.0,
+          "APm": 0.6434265651586732,
+          "APs": 0.6067391661628825,
+          "AR1": 0.6118858954041204,
+          "AR10": 0.69540412044374,
+          "AR100": 0.7413629160063391,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7370932754880694
+        },
+        "learned_at_attraction_count": {
+          "AP": 0.615868806928382,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7307364419473551,
+          "AP90": 0.03157795351341041,
+          "APl": -1.0,
+          "APm": 0.6434741629572504,
+          "APs": 0.6071801644879353,
+          "AR1": 0.6120443740095087,
+          "AR10": 0.6957210776545166,
+          "AR100": 0.7419968304278923,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7379609544468546
+        },
+        "native_matched_count": {
+          "AP": 0.6104325893369862,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7148589594103791,
+          "AP90": 0.030471484443224367,
+          "APl": -1.0,
+          "APm": 0.6431006336207041,
+          "APs": 0.5999920988135727,
+          "AR1": 0.6068145800316957,
+          "AR10": 0.690174326465927,
+          "AR100": 0.7378763866877972,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7323210412147506
+        },
+        "raw": {
+          "AP": 0.6103319025918548,
+          "AP50": 0.9691143049773694,
+          "AP75": 0.7182150355782427,
+          "AP90": 0.03256247444662266,
+          "APl": -1.0,
+          "APm": 0.6431118742478682,
+          "APs": 0.5997699400935147,
+          "AR1": 0.6077654516640253,
+          "AR10": 0.6920760697305863,
+          "AR100": 0.7386687797147385,
+          "ARl": -1.0,
+          "ARm": 0.7532163742690059,
+          "ARs": 0.7334056399132322
+        }
+      },
+      "paired_contrasts_points": {
+        "free_matched_count minus fixed": {
+          "AP": 0.48328186014504615,
+          "AP50": 0.0,
+          "AP75": 1.5648305526696382,
+          "AP90": 0.20291520514012437,
+          "APl": null,
+          "APm": 0.03622887093821525,
+          "APs": 0.6363181394881012,
+          "AR1": 0.44374009508714174,
+          "AR10": 0.522979397781298,
+          "AR100": 0.5863708399366008,
+          "ARl": null,
+          "ARm": 0.0,
+          "ARs": 0.8026030368763593
+        },
+        "free_natural minus native_matched_count": {
+          "AP": 0.5068176631495058,
+          "AP50": 0.0,
+          "AP75": 1.5653727946917773,
+          "AP90": 0.1019336163815901,
+          "APl": null,
+          "APm": 0.03259315379691152,
+          "APs": 0.6747067349309743,
+          "AR1": 0.5071315372424667,
+          "AR10": 0.522979397781298,
+          "AR100": 0.34865293185418755,
+          "ARl": null,
+          "ARm": 0.0,
+          "ARs": 0.4772234273318743
+        },
+        "free_natural minus raw": {
+          "AP": 0.5168863376626476,
+          "AP50": 0.0,
+          "AP75": 1.2297651779054175,
+          "AP90": -0.10716538395823955,
+          "APl": null,
+          "APm": 0.031469091080504885,
+          "APs": 0.6969226069367784,
+          "AR1": 0.41204437400951255,
+          "AR10": 0.3328050713153674,
+          "AR100": 0.2694136291600535,
+          "ARl": null,
+          "ARm": 0.0,
+          "ARs": 0.36876355748372003
+        },
+        "learned_at_attraction_count minus attraction_dynamic": {
+          "AP": 0.6548068786821015,
+          "AP50": 0.0,
+          "AP75": 1.877536261344126,
+          "AP90": 0.2770296160601451,
+          "APl": null,
+          "APm": 0.026727574892293493,
+          "APs": 0.8758763794934787,
+          "AR1": 0.522979397781298,
+          "AR10": 0.6814580031695772,
+          "AR100": 0.5546751188589605,
+          "ARl": null,
+          "ARm": 0.0,
+          "ARs": 0.7592190889370909
+        },
+        "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+          "AP": 0.6732862202539436,
+          "AP50": 0.0,
+          "AP75": 2.4463689805803934,
+          "AP90": 0.15806132125035163,
+          "APl": null,
+          "APm": 0.026727574892293493,
+          "APs": 0.9106727257689129,
+          "AR1": 0.4912836767036466,
+          "AR10": 0.5071315372424778,
+          "AR100": 0.5546751188589605,
+          "ARl": null,
+          "ARm": 0.0,
+          "ARs": 0.759219088937102
+        }
+      },
+      "sensor_groups": 76
+    },
+    "terrasar_x": {
+      "annotations": 241,
+      "geometry": {
+        "counts": {
+          "eligible_anchors": 96,
+          "fixed_positive_anchors": 96,
+          "out_of_area_matched": 127
+        },
+        "original_anchors": 223,
+        "positive_exposure_groups": 28,
+        "stats": {
+          "group_equal_arms": {
+            "attraction_dynamic": {
+              "continuous_iou_points": 79.33743519936475,
+              "fn_per_truth_area_points": 6.62032098952804,
+              "fp_per_truth_area_points": 19.03863239633295
+            },
+            "attraction_static_at_dynamic_count": {
+              "continuous_iou_points": 79.35806447717373,
+              "fn_per_truth_area_points": 6.605777438234858,
+              "fp_per_truth_area_points": 19.024088845039763
+            },
+            "fixed": {
+              "continuous_iou_points": 79.56927707810964,
+              "fn_per_truth_area_points": 6.476235464498212,
+              "fp_per_truth_area_points": 18.894546871303124
+            },
+            "free_matched_count": {
+              "continuous_iou_points": 79.90371785786547,
+              "fn_per_truth_area_points": 6.262960003546085,
+              "fp_per_truth_area_points": 18.681271410350995
+            },
+            "free_natural": {
+              "continuous_iou_points": 79.90079801356465,
+              "fn_per_truth_area_points": 6.264130579888446,
+              "fp_per_truth_area_points": 18.682441986693355
+            },
+            "learned_at_attraction_count": {
+              "continuous_iou_points": 79.90395397939712,
+              "fn_per_truth_area_points": 6.262295105160304,
+              "fp_per_truth_area_points": 18.68060651196521
+            },
+            "native_matched_count": {
+              "continuous_iou_points": 79.397658536852,
+              "fn_per_truth_area_points": 6.586376222184171,
+              "fp_per_truth_area_points": 19.004687628989075
+            },
+            "raw": {
+              "continuous_iou_points": 79.45643507497665,
+              "fn_per_truth_area_points": 6.5517508231738875,
+              "fp_per_truth_area_points": 18.970062229978794
+            }
+          },
+          "groups": 28,
+          "paired_contrasts_points": {
+            "free_matched_count minus fixed": {
+              "continuous_iou_points": {
+                "delta": 0.3344407797558104,
+                "interval_95": [
+                  0.16118802883300457,
+                  0.5083960608587815
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.21327546095212815,
+                "interval_95": [
+                  -0.32107358449442536,
+                  -0.10470085970988748
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.21327546095212865,
+                "interval_95": [
+                  -0.32107358449442575,
+                  -0.10470085970988892
+                ]
+              }
+            },
+            "free_natural minus native_matched_count": {
+              "continuous_iou_points": {
+                "delta": 0.5031394767126497,
+                "interval_95": [
+                  0.2864026779454114,
+                  0.7192380828435218
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.32224564229572356,
+                "interval_95": [
+                  -0.4526839845980861,
+                  -0.18630848435893796
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.3222456422957242,
+                "interval_95": [
+                  -0.4526839845980864,
+                  -0.18630848435893888
+                ]
+              }
+            },
+            "free_natural minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.4443629385880382,
+                "interval_95": [
+                  0.19227035163198883,
+                  0.692038550320479
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.28762024328544034,
+                "interval_95": [
+                  -0.44190081121272645,
+                  -0.1291827644833455
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.28762024328544084,
+                "interval_95": [
+                  -0.44190081121272734,
+                  -0.12918276448334554
+                ]
+              }
+            },
+            "learned_at_attraction_count minus attraction_dynamic": {
+              "continuous_iou_points": {
+                "delta": 0.5665187800323864,
+                "interval_95": [
+                  0.26511541430934216,
+                  0.8818206503444808
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.3580258843677386,
+                "interval_95": [
+                  -0.5554370398282626,
+                  -0.16603118648143
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.3580258843677389,
+                "interval_95": [
+                  -0.5554370398282635,
+                  -0.16603118648143023
+                ]
+              }
+            },
+            "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+              "continuous_iou_points": {
+                "delta": 0.5458895022234154,
+                "interval_95": [
+                  0.27495647499032555,
+                  0.818361109790347
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.34348233307455395,
+                "interval_95": [
+                  -0.5140955883687205,
+                  -0.16945379174813555
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.3434823330745546,
+                "interval_95": [
+                  -0.5140955883687206,
+                  -0.16945379174813655
+                ]
+              }
+            }
+          }
+        },
+        "transitions": {
+          "0.5": {
+            "attraction_dynamic": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 95
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 95
+            },
+            "fixed": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 95
+            },
+            "free_matched_count": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 95
+            },
+            "free_natural": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 95
+            },
+            "learned_at_attraction_count": {
+              "both_below": 0,
+              "gained": 1,
+              "lost": 0,
+              "retained": 95
+            },
+            "native_matched_count": {
+              "both_below": 1,
+              "gained": 0,
+              "lost": 0,
+              "retained": 95
+            },
+            "raw": {
+              "both_below": 1,
+              "gained": 0,
+              "lost": 0,
+              "retained": 95
+            }
+          },
+          "0.75": {
+            "attraction_dynamic": {
+              "both_below": 14,
+              "gained": 0,
+              "lost": 2,
+              "retained": 80
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 14,
+              "gained": 0,
+              "lost": 2,
+              "retained": 80
+            },
+            "fixed": {
+              "both_below": 14,
+              "gained": 0,
+              "lost": 1,
+              "retained": 81
+            },
+            "free_matched_count": {
+              "both_below": 13,
+              "gained": 1,
+              "lost": 1,
+              "retained": 81
+            },
+            "free_natural": {
+              "both_below": 13,
+              "gained": 1,
+              "lost": 1,
+              "retained": 81
+            },
+            "learned_at_attraction_count": {
+              "both_below": 13,
+              "gained": 1,
+              "lost": 1,
+              "retained": 81
+            },
+            "native_matched_count": {
+              "both_below": 14,
+              "gained": 0,
+              "lost": 2,
+              "retained": 80
+            },
+            "raw": {
+              "both_below": 14,
+              "gained": 0,
+              "lost": 0,
+              "retained": 82
+            }
+          },
+          "0.9": {
+            "attraction_dynamic": {
+              "both_below": 89,
+              "gained": 1,
+              "lost": 0,
+              "retained": 6
+            },
+            "attraction_static_at_dynamic_count": {
+              "both_below": 89,
+              "gained": 1,
+              "lost": 0,
+              "retained": 6
+            },
+            "fixed": {
+              "both_below": 88,
+              "gained": 2,
+              "lost": 0,
+              "retained": 6
+            },
+            "free_matched_count": {
+              "both_below": 89,
+              "gained": 1,
+              "lost": 0,
+              "retained": 6
+            },
+            "free_natural": {
+              "both_below": 88,
+              "gained": 2,
+              "lost": 0,
+              "retained": 6
+            },
+            "learned_at_attraction_count": {
+              "both_below": 88,
+              "gained": 2,
+              "lost": 0,
+              "retained": 6
+            },
+            "native_matched_count": {
+              "both_below": 89,
+              "gained": 1,
+              "lost": 0,
+              "retained": 6
+            },
+            "raw": {
+              "both_below": 90,
+              "gained": 0,
+              "lost": 0,
+              "retained": 6
+            }
+          }
+        }
+      },
+      "images": 157,
+      "metrics_fraction": {
+        "attraction_dynamic": {
+          "AP": 0.5151904245610833,
+          "AP50": 0.8012090396574022,
+          "AP75": 0.6334341111963081,
+          "AP90": 0.024812663703601502,
+          "APl": 0.6128712871287129,
+          "APm": 0.44684494324145657,
+          "APs": 0.6011909476930772,
+          "AR1": 0.43402489626556023,
+          "AR10": 0.5829875518672198,
+          "AR100": 0.6485477178423238,
+          "ARl": 0.85,
+          "ARm": 0.6081481481481481,
+          "ARs": 0.6971153846153846
+        },
+        "attraction_static_at_dynamic_count": {
+          "AP": 0.5136860311456911,
+          "AP50": 0.8012090396574022,
+          "AP75": 0.6335891659107162,
+          "AP90": 0.025949612939015983,
+          "APl": 0.6128712871287129,
+          "APm": 0.44684494324145657,
+          "APs": 0.5974473047818292,
+          "AR1": 0.43360995850622414,
+          "AR10": 0.5821576763485476,
+          "AR100": 0.649377593360996,
+          "ARl": 0.85,
+          "ARm": 0.6081481481481481,
+          "ARs": 0.6990384615384615
+        },
+        "fixed": {
+          "AP": 0.5141264992798192,
+          "AP50": 0.8012090396574022,
+          "AP75": 0.6306053915122956,
+          "AP90": 0.029705699860141887,
+          "APl": 0.6128712871287129,
+          "APm": 0.44684494324145657,
+          "APs": 0.5983147824781216,
+          "AR1": 0.43443983402489633,
+          "AR10": 0.5825726141078837,
+          "AR100": 0.6489626556016599,
+          "ARl": 0.85,
+          "ARm": 0.6081481481481481,
+          "ARs": 0.698076923076923
+        },
+        "free_matched_count": {
+          "AP": 0.5177488896788349,
+          "AP50": 0.8012090396574022,
+          "AP75": 0.6444546701224987,
+          "AP90": 0.02973235997776022,
+          "APl": 0.6128712871287129,
+          "APm": 0.4468448719741621,
+          "APs": 0.6068447106660181,
+          "AR1": 0.4365145228215768,
+          "AR10": 0.5858921161825725,
+          "AR100": 0.6531120331950209,
+          "ARl": 0.85,
+          "ARm": 0.6081481481481481,
+          "ARs": 0.7076923076923077
+        },
+        "free_natural": {
+          "AP": 0.5175428742818363,
+          "AP50": 0.8012090396574022,
+          "AP75": 0.6444546701224987,
+          "AP90": 0.02767220600777455,
+          "APl": 0.6128712871287129,
+          "APm": 0.4468448719741621,
+          "APs": 0.6064903359933553,
+          "AR1": 0.4360995850622407,
+          "AR10": 0.5858921161825725,
+          "AR100": 0.6531120331950209,
+          "ARl": 0.85,
+          "ARm": 0.6081481481481481,
+          "ARs": 0.7076923076923077
+        },
+        "learned_at_attraction_count": {
+          "AP": 0.5175428742818363,
+          "AP50": 0.8012090396574022,
+          "AP75": 0.6444546701224987,
+          "AP90": 0.02767220600777455,
+          "APl": 0.6128712871287129,
+          "APm": 0.4468448719741621,
+          "APs": 0.6064903359933553,
+          "AR1": 0.4360995850622407,
+          "AR10": 0.5858921161825725,
+          "AR100": 0.6531120331950209,
+          "ARl": 0.85,
+          "ARm": 0.6081481481481481,
+          "ARs": 0.7076923076923077
+        },
+        "native_matched_count": {
+          "AP": 0.5129968936857691,
+          "AP50": 0.8012090396574022,
+          "AP75": 0.6338707438872173,
+          "AP90": 0.029711863049582364,
+          "APl": 0.6128712871287129,
+          "APm": 0.44681766850955584,
+          "APs": 0.5956855995500915,
+          "AR1": 0.43360995850622414,
+          "AR10": 0.5829875518672198,
+          "AR100": 0.6485477178423238,
+          "ARl": 0.85,
+          "ARm": 0.6074074074074074,
+          "ARs": 0.698076923076923
+        },
+        "raw": {
+          "AP": 0.5134860201019136,
+          "AP50": 0.8012090396574022,
+          "AP75": 0.6325338980888785,
+          "AP90": 0.028011556318446925,
+          "APl": 0.6128712871287129,
+          "APm": 0.44681766850955584,
+          "APs": 0.5965981278015982,
+          "AR1": 0.43402489626556023,
+          "AR10": 0.5825726141078837,
+          "AR100": 0.649377593360996,
+          "ARl": 0.85,
+          "ARm": 0.6074074074074074,
+          "ARs": 0.7
+        }
+      },
+      "paired_contrasts_points": {
+        "free_matched_count minus fixed": {
+          "AP": 0.36223903990156847,
+          "AP50": 0.0,
+          "AP75": 1.384927861020313,
+          "AP90": 0.0026660117618333007,
+          "APl": 0.0,
+          "APm": -7.126729445472435e-06,
+          "APs": 0.8529928187896441,
+          "AR1": 0.20746887966804906,
+          "AR10": 0.3319502074688785,
+          "AR100": 0.4149377593360981,
+          "ARl": 0.0,
+          "ARm": 0.0,
+          "ARs": 0.9615384615384692
+        },
+        "free_natural minus native_matched_count": {
+          "AP": 0.4545980596067256,
+          "AP50": 0.0,
+          "AP75": 1.0583926235281371,
+          "AP90": -0.20396570418078144,
+          "APl": 0.0,
+          "APm": 0.002720346460627354,
+          "APs": 1.0804736443263852,
+          "AR1": 0.24896265560165887,
+          "AR10": 0.2904564315352687,
+          "AR100": 0.4564315352697079,
+          "ARl": 0.0,
+          "ARm": 0.07407407407407085,
+          "ARs": 0.9615384615384692
+        },
+        "free_natural minus raw": {
+          "AP": 0.4056854179922742,
+          "AP50": 0.0,
+          "AP75": 1.1920772033620186,
+          "AP90": -0.03393503106723754,
+          "APl": 0.0,
+          "APm": 0.002720346460627354,
+          "APs": 0.9892208191757179,
+          "AR1": 0.20746887966804906,
+          "AR10": 0.3319502074688785,
+          "AR100": 0.3734439834024883,
+          "ARl": 0.0,
+          "ARm": 0.07407407407407085,
+          "ARs": 0.7692307692307776
+        },
+        "learned_at_attraction_count minus attraction_dynamic": {
+          "AP": 0.23524497207529915,
+          "AP50": 0.0,
+          "AP75": 1.1020558926190582,
+          "AP90": 0.2859542304173047,
+          "APl": 0.0,
+          "APm": -7.126729445472435e-06,
+          "APs": 0.5299388300278096,
+          "AR1": 0.20746887966804906,
+          "AR10": 0.2904564315352687,
+          "AR100": 0.4564315352697079,
+          "ARl": 0.0,
+          "ARm": 0.0,
+          "ARs": 1.057692307692315
+        },
+        "learned_at_attraction_count minus attraction_static_at_dynamic_count": {
+          "AP": 0.3856843136145205,
+          "AP50": 0.0,
+          "AP75": 1.086550421178245,
+          "AP90": 0.1722593068758566,
+          "APl": 0.0,
+          "APm": -7.126729445472435e-06,
+          "APs": 0.9043031211526165,
+          "AR1": 0.24896265560165887,
+          "AR10": 0.3734439834024883,
+          "AR100": 0.3734439834024883,
+          "ARl": 0.0,
+          "ARm": 0.0,
+          "ARs": 0.8653846153846234
+        }
+      },
+      "sensor_groups": 36
+    }
+  },
+  "worker_sha256": "7039d7d0336f6a0cc3b64bfbe4b0c446b38b073cc90764f446a4dc6d09f90d85"
+}

@@ -19,4 +19,6 @@
 
 后续上界由独立逐像元实现核验 165 个量。框关联主指标 +0.00431 点且区间跨零，旧掩膜关系的全部队列统计逐值复现。框规则与原掩膜规则共有 17 个真值身份，其中 16 个选择不同候选，稿件明确区分关联规则和任一候选覆盖。[上界诊断](../UEIKAP_RFDETR_CANDIDATE_GEOMETRY_ACTUAL_20261122.md) · [评分复核](../UEIKAP_RFDETR_BOX_ASSOCIATION_ACTUAL_20261122.md)
 
+Instance-RSDD 两次冻结结果均与实际正常退出的回执一致。全部五种视图的原生、动态和静态对照逐值一致。独立复核了高分三号两点头的 +0.587／+0.517 AP、AP90 下降和 +0.552 的复验决策。新增 dataset 引文核对了作者、 DOI 与公开论文的 2,840／715 统计口径。[实测](../INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [原文](https://doi.org/10.3390/rs15051324)
+
 从公开 GitHub 技能采用了逐句核对数值及范围、书目和语境分开核验、按最终版面查看图件等方法。以上记录来自独立的同模型家族复核，外部仓库仅作公开方法来源。[ARIS 数值审核](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/4ba94ae2a1c1fbbb14858750dd8764cabf6c28bd/skills/paper-claim-audit/SKILL.md) · [Orchestra 引用规范](https://github.com/Orchestra-Research/AI-Research-SKILLs/blob/773a52944ba4747a18bd4ae9ade53fff041adcbc/20-ml-paper-writing/ml-paper-writing/references/citation-workflow.md) · [K-Dense 科学图件](https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/skills/scientific-visualization/SKILL.md) · [OpenAI PDF 检查](https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/pdf/SKILL.md)
