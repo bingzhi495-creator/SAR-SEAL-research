@@ -14,6 +14,8 @@
 
 - [新增误差诊断](research_round_20260925_global/DEV705_MATCHED_PAIRING_GEOMETRY_MODIFIERS_20261121.md)发现相同编辑量下本船 IoU 提升可能伴随邻船侵入。跨库真值上界显示，同一端点支持与总翻转数下，PSeg-SSDD 放开等面积后还有 +2.020 点连续 IoU 的几何空间。[PSeg-SSDD 上界](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md#same-support-geometric-ceilings) · [Schwegmann 中心船辅助复验](research_round_20260925_global/SCHWEGMANN_DFINE_FROZEN_WRITER_EVAL_20261121.md)750 张新图像均完成评价与独立复算。107 个非空中心候选均小于编辑下限，五臂逐像素一致。
 
+- [FIT109 邻船侵入同量对照](research_round_20260925_global/FIT109_NATIVE_RIVAL_OCCUPANCY_ACTUAL_20261122.md)通过预设判据，113 个近邻固定匹配上较无邻船证据的同量对照少侵入 0.262 平方像元，本船连续 IoU +0.221 点，全量 AP +0.012 点。冻结开发集复验待执行。
+
 - [HRSID FIT109 拓扑对照实测](research_round_20260925_global/FIT109_BOUNDARY_SIMPLE_POINT_PILOT_ACTUAL_20261121.md)复现原五折和四个历史结果。各等量方案 36,351 次交换。拓扑约束将组件或孔洞数发生变化的掩膜由两种同量对照的 806／646 个降为 0，AP 相同，连续 IoU 差 −0.0035 点，未过预锁门槛。
 
 - [FIT109 三种子排序与邻域方向对照](research_round_20260925_global/code/FIT109_QUERY_LOGIT_ORDER_CONTEXT_20261121/CONTEXT_NOTE.md)。相同编辑预算下，普通成对损失较 BCE 平均 +0.078 AP 点，三个种子中有一个小幅下降。保留角度的邻域读出较环内排序低 0.437 AP 点，未达预锁条件。数据与英文审阅稿已更新。

@@ -1,0 +1,76 @@
+{
+  "actual_result_sha256": "ae044680ae52192dd4ed14dc5beb2902dab5e63f1dd76f95de1ecd69e475aac5",
+  "advances_to_frozen_followup": true,
+  "aggregate_verification_scope": [
+    "closure and digest",
+    "frozen historic parity",
+    "budget and XOR arithmetic",
+    "scope, interval ordering, point contrasts and predeclared gate arithmetic"
+  ],
+  "bootstrap_near_group_count": 18,
+  "contrasts": {
+    "free_matched_count": {
+      "conditions": {
+        "ap_loss_under_point_three": true,
+        "coverage": true,
+        "intrusion_lower_bound_gt_zero": true,
+        "own_iou_lower_bound_gt_minus_point_two": true
+      },
+      "reported_near_intrusion_reduction_ci95_square_pixels": [
+        0.10048574275134836,
+        0.444058786688504
+      ],
+      "reported_near_intrusion_reduction_square_pixels": 0.2619562778067892,
+      "reported_near_own_iou_gain_ci95_points": [
+        0.07602034517103162,
+        0.3914153918895112
+      ],
+      "reported_near_own_iou_gain_points": 0.2207105788628686,
+      "whole_AP90_difference_points": 0.0,
+      "whole_AP_difference_points": 0.011772026852824524
+    },
+    "rival_q_rank_permutation": {
+      "conditions": {
+        "ap_loss_under_point_three": true,
+        "coverage": true,
+        "intrusion_lower_bound_gt_zero": true,
+        "own_iou_lower_bound_gt_minus_point_two": true
+      },
+      "reported_near_intrusion_reduction_ci95_square_pixels": [
+        0.06727388526031934,
+        0.3275918380697934
+      ],
+      "reported_near_intrusion_reduction_square_pixels": 0.18655892121202197,
+      "reported_near_own_iou_gain_ci95_points": [
+        0.04548951888779186,
+        0.36785757367043415
+      ],
+      "reported_near_own_iou_gain_points": 0.19547153719026536,
+      "whole_AP90_difference_points": 0.0,
+      "whole_AP_difference_points": 0.016490036715488543
+    }
+  },
+  "coverage": {
+    "exposed_matches": 40,
+    "exposed_prefix_groups": 11,
+    "matches": 113,
+    "placebo_changed": 27,
+    "placebo_displaced": 43,
+    "prefix_groups": 18,
+    "true_changed": 26,
+    "true_placebo_changed": 30
+  },
+  "edits_each_matched_arm": 4416,
+  "evidence_scope": "Historical FIT109, source images seen by D-FINE detector, five point-head source-held-out folds",
+  "flipped_pixels_each_matched_arm": 41618,
+  "historical_control_and_training_exact_match": true,
+  "historical_result_sha256": "66867e13d7697ac18aff843433d5f2d171773e002a2cf8a1d9bf63da4ccddd7f",
+  "original_process_exit": 0,
+  "prelabel_sha256": "342f8ac0a64885ad6e789ef1bf013f1f957b484ae392ea447fb56358523ee086",
+  "protocol_commit": "b55d5d7fd6d7b70b7b50298874f75fbb5a595412",
+  "protocol_sha256": "79e63614e20e2563b9a4f68e9aa2d0aac2e2e87989afb3f6f0225d81b1e95341",
+  "statistical_interval_source": "original scoring process; group-level samples were not emitted",
+  "status": "FIT109_NATIVE_RIVAL_AGGREGATE_INDEPENDENT_VERIFIED",
+  "swaps_each_matched_arm": 20809,
+  "wall_seconds": 58.519615
+}
