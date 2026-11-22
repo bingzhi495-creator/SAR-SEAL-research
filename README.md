@@ -4,7 +4,7 @@
 
 ## 当前状态（2026-11-22）
 
-- Instance-RSDD 的同载体 PointRend 对照已完成源点头拟合和 740 图空间特征复获，原候选、原掩膜和置信度逐位一致。目标回放进行中。[协议和已完成阶段](research_round_20260925_global/INSTANCE_RSDD_POINTREND_TRANSFER_ACTUAL_20261122.md)
+- Instance-RSDD 已完成同载体 PointRend 对照。583 张高分三号图上，同端点同量时，本方法较 PointRend 排序 +0.312 mask AP、+0.250 连续 IoU（采集组 95% 区间 [0.163, 0.338]）。整框 PointRend 为 61.831 AP，本方法为 61.620 AP。代码、各策略可编辑范围及两方面结果均已核验。[结果和复现](research_round_20260925_global/INSTANCE_RSDD_POINTREND_TRANSFER_ACTUAL_20261122.md) · [英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
 
 - Instance-RSDD 完整 740 图评价闭合。583 张高分三号影像上，两次 HRSID 冻结点头分别提高 0.587、0.517 mask AP。同头同量独立选点较固定配对均约 +0.483 AP。均值 +0.552 低于预锁 1 点，按规则保留两次结果。自然独立策略相对原生的 AP90 小幅下降。[结果及源码](research_round_20260925_global/INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [标注核验](research_round_20260925_global/INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md)
 

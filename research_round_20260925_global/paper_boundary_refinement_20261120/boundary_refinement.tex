@@ -170,34 +170,33 @@ We evaluate the retrieved Instance-RSDD split\cite{rsdd} (740 test images and 87
 
 On Gaofen-3, natural independent selection raises mask AP from 61.033 to 61.620 and 61.550 for frozen refits 5217 and 5218. Their mean gain is 0.552 points, below the prespecified 1-point continuation threshold. AP75 gains are 1.438 and 1.230 points, with AP90 differences of \(-0.094\) and \(-0.107\). At fixed-pair counts, independent selection gains 0.482 and 0.483 AP points. Acquisition-weighted continuous IoU increases by 0.266 (paired 95\% interval \([0.208,0.323]\)) and 0.253 (\([0.171,0.334]\)) points. The continuous evaluation covers 425 eligible native matches. Each seed has a positive fixed-pair count in 68 acquisitions. At dynamic attraction counts, learned ranking gains 0.676 and 0.655 AP points. Across all 740 images, native AP is 58.504 and the two natural policies reach 59.073 and 59.014.
 
-\subsection{Query-Conditioned Features at Fixed Edit Counts}
-Across five FIT109 source-held-out folds at equal counts, query conditioning gains 0.352 AP and 0.073 continuous IoU points over spatial features (IoU interval, \([-0.019,0.172]\)). AP is lower than with either zero padding or within-candidate permutation. The prespecified criteria fail.
-
-\subsection{PointRend-Style Refinement on the Same Carrier}
-Our PointRend~\cite{pointrend} adaptation uses fixed RF-DETR boxes, logits, and spatial features. Each FIT109 source-held-out head receives 200 updates and 196 sampled bitmask targets per update. Subdivision yields \(224\times224\) masks with 3,136 point evaluations. The 262 degenerate boxes retain their native masks.
+\subsection{Source-Fitted PointRend on Instance-RSDD}
+We refit a binary PointRend head on HRSID FIT109 for 200 updates, using RF-DETR spatial features and 196 point targets per update. In a follow-up fixed before the new scoring, both ranking policies share the same endpoints and the occupancy policy's edit count for each candidate. PointRend samples its rendered RoI with zero padding. Its renderer evaluates 3,136 points per valid RoI.
 
 \begin{table}[t]
 \centering
-\caption{One-seed PointRend-style adaptation on FIT109. Scores and source-equal IoU are scaled by 100. F, B and J share the fitted head and each edit 97,964 native pixels at the same per-instance count.}
-\label{tab:pointrend-fit}
-\footnotesize
-\begin{tabular}{@{}lrrr@{}}
+\caption{Frozen RF-DETR with alternative readouts on Instance-RSDD Gaofen-3. All arms score every original candidate. RoI rendering is enabled on 35,072 candidates. Both ranking arms use the same edit counts. IoU is continuous and acquisition-weighted. Metrics are scaled by 100.}
+\label{tab:rsdd-pointrend}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrr}
 \toprule
-Mask policy & AP & AP75 & Fixed IoU\\
+Policy & AP & AP75 & AP90 & IoU\\
 \midrule
-N: Stock RF-DETR & 54.844 & 58.830 & 83.934\\
-C: Coarse RoI paste & 48.552 & 49.118 & 78.715\\
-P: Learned RoI paste & 50.992 & 56.410 & 82.717\\
-F: Fixed pairs & 53.353 & 54.710 & 83.515\\
-B: Independent, equal-side edits & 54.400 & 57.729 & 83.776\\
-J: Joint ranking, free side counts & 53.462 & 57.698 & 83.692\\
+Native RF-DETR & 61.033 & 71.822 & 3.256 & 79.652\\
+Coarse RoI paste & 53.880 & 56.474 & 1.486 & 75.108\\
+PointRend RoI paste & 61.831 & 74.396 & 3.227 & 79.939\\
+PointRend ranks, equal count & 61.309 & 72.646 & 3.017 & 79.647\\
+Occupancy ranks, equal count & 61.620 & 73.259 & 3.162 & 79.897\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Learned RoI paste improves over coarse RoI paste by 2.440 AP points and remains 3.851 points below the native RF-DETR mask (Table~\ref{tab:pointrend-fit}). The same-budget B policy improves on F by 1.047 AP and 0.262 continuous IoU points, with a paired source-group interval of \([0.131,0.406]\). Against J, B gains 0.938 AP points and 0.084 continuous IoU points, with interval \([-0.039,0.202]\). The latter falls short of the prespecified geometry criteria. All three matched policies remain below stock mask AP for this point head.
+In Table~\ref{tab:rsdd-pointrend}, learned RoI paste improves mask AP by \(7.951\) points over coarse paste and \(0.798\) over native masks. At equal edit counts, occupancy ranking differs from PointRend ranking by \(+0.312\) AP and \(+0.250\) continuous IoU points (paired acquisition-group interval \([0.163, 0.338]\)). Full RoI paste yields 0.211 more AP points than the occupancy policy, with 72.361 versus 74.406 AR100. The equal-count AP difference is \(+0.363\) points on the full release. The source fits use different features and supervision.
 
-The B--J effect is 2.613 AP points at IoU 0.60 and 0.031 at 0.75. At fixed support and count, true occupancy ordering adds 3.013 continuous IoU points to B on 392 matches. Allowing fewer balanced edits adds only 0.003 points. Across three seeds with the original 14 inputs, pairwise ranking gives 55.777 mean AP versus 55.699 for pointwise supervision. Seedwise AP effects range from \(-0.033\) to \(+0.172\) points. An ordered signed-query ring descriptor also falls below its sorted and zero-padding controls (55.809 versus 56.246 and 55.912 AP). The corresponding analyses and source-held-out protocols accompany the release.
+\subsection{Source-Domain Controls}
+At fixed edit counts, adding query features on FIT109 raises AP by 0.352 points and continuous IoU by 0.073 points. The geometry interval crosses zero. AP is lower than in the zero-padding and within-candidate permutation controls.
+
+The related PointRend adaptation uses five source-group held-out heads on FIT109, each fitted for 200 updates. Applying its learned RoI probabilities as a full paste improves over coarse paste by 2.440 AP points and falls 3.851 points below native RF-DETR. The balanced, independent edit policy gains 1.047 AP and 0.262 continuous IoU points over fixed pairs at the same edit count (paired interval \([0.131,0.406]\)). Against independent editing with unconstrained area and the same count, it gains 0.938 AP points and 0.084 continuous IoU points (paired interval \([-0.039,0.202]\)). The latter falls short of the geometry criterion. The carrier had training exposure to these FIT images.
 
 \subsection{Frozen Transfer to PSeg-SSDD}
 The HRSID detector, point head, feature scaler, thresholds and exchange budgets are frozen for PSeg-SSDD DEV187. The target uses native image dimensions and contains 182 unique decoded RGB identities. A single export fixes the 18,700 top candidates, including empty masks, for all five arms. Table~\ref{tab:ssdd} reports COCO mask AP with the decimal polygons as the primary reference and the historical integer polygons and decoded-identity deduplication as sensitivities.
@@ -248,7 +247,7 @@ Local edits leave missed detections and area bias unresolved. Natural selection 
 The D-FINE detector used 24 epochs and 17,640 updates. Across 232 PSeg-SSDD images with inputs resident, equivalent sampling reduces mean single-thread refinement from 158.8 to 104.3 ms per image, with exact parity of samples, masks, ranks and scores. CUDA detection and postprocessing took 11.74 s in a separate run. The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{project repository} provides configurations, scoring code, aggregate results and data access instructions.
 
 \section{Conclusion}
-Independent selection improves AP and continuous overlap over fixed pairing with the same head and counts on HRSID, and on Instance-RSDD Gaofen-3 with two frozen heads. Comparisons with free-area writing and PSeg-SSDD transfer give mixed results. The limited extent of native masks and the local edit budget constrain the effect on the Sentinel-1 acquisitions.
+Independent selection improves AP and continuous overlap over fixed pairing with the same head and counts on HRSID, and on Instance-RSDD Gaofen-3 with two frozen heads. On Gaofen-3, occupancy ranks give higher AP than rendered PointRend ranks at the same per-candidate count. Full RoI paste gives the highest AP among the tested policies. PSeg-SSDD transfer gives mixed results. The limited extent of native masks and the local edit budget constrain the effect on the Sentinel-1 acquisitions.
 
 \section*{Acknowledgment}
 OpenAI Codex assisted with drafting and revising the Abstract and Sections I--VI from the experiment records. The layout of Fig.~\ref{fig:native-boundary} was based on a concept preview generated with OpenAI image generation and redrawn as an editable vector illustration. Figures~\ref{fig:dev-cases} and~\ref{fig:official-effects} plot measured experiment outputs.

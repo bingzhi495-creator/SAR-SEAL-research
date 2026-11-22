@@ -27,3 +27,5 @@ Instance-RSDD 完整 740 图及高分三号 583 图的冻结评价已完成。�
 SMART-Ship 原文确认靠泊船舶多边形，当前可核入口需要申请。SISS-YOLO 报告由 Labelme 勾画的 Sentinel-1 船体，公开数据声明只有原始 OpenSARShip2.0 入口。两条路径目前缺作者轮廓文件或采集索引。Umbra 已按预锁顺序和空间间隔取回 12 个不同采集组的原生窗口，并完成两份离线匿名判读材料。该补充证据仍依赖独立人工轮廓与一致性。 [Umbra 已核验准备](UMBRA_PROSPECTIVE_GEC_ANNOTATION_ACTUAL_20261122.md) [SMART-Ship 原文](https://arxiv.org/html/2508.02384v2) · [SISS-YOLO 原文](https://www.mdpi.com/2072-4292/17/17/3118)
 
 作者、单位、通讯信息和 ORCID 保留占位。原 A/B 长训练停止结果及全部历史试验仍见证据矩阵。 [研究收尾计划](PAPER_CLOSEOUT_PLAN_20261121.md)
+
+Instance-RSDD 的同载体 PointRend 对照已闭合。高分三号上，本方法在相同原生端点、前景面积和逐候选编辑次数下，相对 PointRend 的渲染概率排序 +0.312 mask AP、+0.250 连续 IoU，采集组配对区间 [0.163, 0.338]。在保留 PointRend 原式整框细化时，PointRend 为 61.831 AP，本方法为 61.620 AP。本方法的 AR100 为 74.406，整框细化为 72.361。适用范围为单源点头拟合和给定编辑量。聚焦边界选点和适用条件的 TGRS 机制稿具备送审依据，作者资料仍按要求留空。整网领先主张需要完整可比协议。 [同载体对照](INSTANCE_RSDD_POINTREND_TRANSFER_ACTUAL_20261122.md)
