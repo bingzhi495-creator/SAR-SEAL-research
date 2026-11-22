@@ -1,0 +1,3258 @@
+{
+  "capture_counts": {
+    "eligible": 4137,
+    "mapped": 7346,
+    "overrides": 0,
+    "rank_gaps": 54
+  },
+  "identity_checks": {
+    "confirmed_common_hrsid_fitting_acquisitions": 0,
+    "historical_test_images": 740,
+    "hrsid_physical_cross_scene_disjointness_verified": false,
+    "reserve_images": 74,
+    "reserve_parent_matches_historical_test": 0,
+    "reserve_parents": 13,
+    "reserve_rgb_matches_historical_test": 0,
+    "reserve_rgb_matches_hrsid_fit": 0,
+    "reserve_within_duplicate_images": 0,
+    "source_fit109": 109,
+    "source_images": 2937
+  },
+  "receipts": {
+    "capture": {
+      "actual_exit": 0,
+      "observer_wall_seconds": 34.110089,
+      "output_footer_verified": true,
+      "result_sha256": "de81c108a909a85b50a3fb05b842dc1f06c225b13e4f29ccab6ddaaa0341bddc",
+      "terminal_sha256": "259d8c5eabb7602ae70ac26a1600ecddd40b29bf0bd3bf8a09364bc3d338dedb",
+      "worker_sha256": "9d801418bb5701d524b3d6cf2bcab833ef3268f7520c866ccae412d1d9cbca6a"
+    },
+    "intake": {
+      "actual_exit": 0,
+      "observer_wall_seconds": 27.110035,
+      "output_footer_verified": true,
+      "result_sha256": "da9d92ea16e74f988d46d9855d26b530111b4c5e650fef513895c5d2e4441065",
+      "terminal_sha256": "b97ba047bf9422346f210b2a513be606cdc648cccdc0e8545affdd510f9ffaeb",
+      "worker_sha256": "65b0a52d2c81535e61249c7079f65ede96f41e66ca18777ab1931d1c897c9c88"
+    },
+    "prepare-edits": {
+      "actual_exit": 0,
+      "observer_wall_seconds": 24.689027,
+      "output_footer_verified": true,
+      "result_sha256": "6d0adf4a5d9043a31c05c12f26f193bf6a61213cea672ceaf5c0367d00108d35",
+      "terminal_sha256": "58765ca69a529919cce85d447785c854d017af2340f25c7b71d9d39db8479b1e",
+      "worker_sha256": "7238e6c5ca52133d51173388b01a28c48ec2a81dccd66139f6b7b2c4cbd8d072"
+    },
+    "score": {
+      "actual_exit": 0,
+      "observer_wall_seconds": 7.199732,
+      "output_footer_verified": true,
+      "result_sha256": "b7f46a2332866f8898ed27cd027b21019c10d9d056f3010b256a67bd8887feda",
+      "terminal_sha256": "f6c19153e4b57449126df492bdbaf8558531df70a368fcfac8168a81e8d7a089",
+      "worker_sha256": "5ff671b2b83bb12e322b0c766897bf3cdacaedd233bf0d6edcdfcccf2c938df4"
+    },
+    "source": {
+      "actual_exit": 0,
+      "observer_wall_seconds": 0.139229,
+      "output_footer_verified": true,
+      "result_sha256": "f54ce69df68bfbd74f857d05df63fe6670d5086174c60541fc6e660d32493845",
+      "terminal_sha256": "54c2fa93a72ce4d1e5330cfe7cae1331c3cdd8e82dba9f0cb4ff961e08aca97e",
+      "worker_sha256": "1b41078cd17b0bdd926c035973665b57e1dc046db2d7c66218516921087a7080"
+    },
+    "verify-capture": {
+      "actual_exit": 0,
+      "observer_wall_seconds": 17.586236,
+      "output_footer_verified": true,
+      "result_sha256": "5a452510dd8e9594cba8fdf4185458c809fe43e5a213471482aac8883549e8d8",
+      "terminal_sha256": "618dc13fd30273e4c6255403d5b3170405645f7e4849c39170c585b7fbae0ba3",
+      "worker_sha256": "9d801418bb5701d524b3d6cf2bcab833ef3268f7520c866ccae412d1d9cbca6a"
+    },
+    "verify-edits": {
+      "actual_exit": 0,
+      "observer_wall_seconds": 25.205634,
+      "output_footer_verified": true,
+      "result_sha256": "0f0aa047630c87653754152b8a47b8c570c9bff04928f06c6fd4b1031bcdcf97",
+      "terminal_sha256": "540e733a074b53bd10583c2dc77921b594280c559de626a500dd692fd81609d2",
+      "worker_sha256": "7238e6c5ca52133d51173388b01a28c48ec2a81dccd66139f6b7b2c4cbd8d072"
+    }
+  },
+  "replay_counts": {
+    "editable_supports": 4114,
+    "fixed_candidates": 4092,
+    "fixed_swaps": 30841,
+    "free_matched_count_candidates": 4092,
+    "free_matched_count_swaps": 30841,
+    "free_natural_candidates": 4114,
+    "free_natural_swaps": 31391,
+    "images": 74,
+    "mapped_candidates": 7346
+  },
+  "score": {
+    "author_train_sha256": "54c92363aafe07dca084382a258190d436005d8df839f5de13995c89bd662b92",
+    "authority_sha256": "07e76ed55e1f83663e74b0db91c9a636d57c33a9c3706b046190c208385644e7",
+    "by_parent": {
+      "100": {
+        "annotations": 2,
+        "counts": {
+          "area_excluded_matches": 1,
+          "eligible_matches": 1,
+          "invalid_polygon_matches": 0,
+          "original_matches": 2,
+          "positive_fixed_edits": 1
+        },
+        "images": 2,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.6504950495049505,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": 0.5999999999999999,
+            "APs": 0.7999999999999999,
+            "AR1": 0.7,
+            "AR10": 0.7,
+            "AR100": 0.7,
+            "ARl": null,
+            "ARm": 0.6,
+            "ARs": 0.8
+          },
+          "free_matched_count": {
+            "AP": 0.6504950495049505,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": 0.5999999999999999,
+            "APs": 0.7999999999999999,
+            "AR1": 0.7,
+            "AR10": 0.7,
+            "AR100": 0.7,
+            "ARl": null,
+            "ARm": 0.6,
+            "ARs": 0.8
+          },
+          "free_natural": {
+            "AP": 0.6504950495049505,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": 0.5999999999999999,
+            "APs": 0.7999999999999999,
+            "AR1": 0.7,
+            "AR10": 0.7,
+            "AR100": 0.7,
+            "ARl": null,
+            "ARm": 0.6,
+            "ARs": 0.8
+          },
+          "raw": {
+            "AP": 0.6504950495049505,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": 0.5999999999999999,
+            "APs": 0.7999999999999999,
+            "AR1": 0.7,
+            "AR10": 0.7,
+            "AR100": 0.7,
+            "ARl": null,
+            "ARm": 0.6,
+            "ARs": 0.8
+          }
+        },
+        "sensor_date": [
+          "GF-3",
+          "20200521"
+        ]
+      },
+      "107": {
+        "annotations": 3,
+        "counts": {
+          "area_excluded_matches": 0,
+          "eligible_matches": 3,
+          "invalid_polygon_matches": 0,
+          "original_matches": 3,
+          "positive_fixed_edits": 3
+        },
+        "images": 3,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.31006468956497096,
+            "AP50": 0.8076379066478078,
+            "AP75": 0.06704384724186704,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": null,
+            "APs": 0.3258518563994905,
+            "AR1": 0.4333333333333333,
+            "AR10": 0.5333333333333333,
+            "AR100": 0.7,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.7
+          },
+          "free_matched_count": {
+            "AP": 0.32502579281815336,
+            "AP50": 0.8076379066478078,
+            "AP75": 0.08882602545968879,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": null,
+            "APs": 0.3430091653320172,
+            "AR1": 0.4333333333333333,
+            "AR10": 0.5666666666666667,
+            "AR100": 0.7,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.7
+          },
+          "free_natural": {
+            "AP": 0.32502579281815336,
+            "AP50": 0.8076379066478078,
+            "AP75": 0.08882602545968879,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": null,
+            "APs": 0.3430091653320172,
+            "AR1": 0.4333333333333333,
+            "AR10": 0.5666666666666667,
+            "AR100": 0.7,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.7
+          },
+          "raw": {
+            "AP": 0.30908877506638843,
+            "AP50": 0.8076379066478078,
+            "AP75": 0.06704384724186704,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": null,
+            "APs": 0.3248007907017877,
+            "AR1": 0.4333333333333333,
+            "AR10": 0.5333333333333333,
+            "AR100": 0.7,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.7
+          }
+        },
+        "sensor_date": [
+          "GF-3",
+          "20200924"
+        ]
+      },
+      "112": {
+        "annotations": 10,
+        "counts": {
+          "area_excluded_matches": 5,
+          "eligible_matches": 5,
+          "invalid_polygon_matches": 0,
+          "original_matches": 10,
+          "positive_fixed_edits": 5
+        },
+        "images": 8,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.6406083794226353,
+            "AP50": 0.9203920392039204,
+            "AP75": 0.8708870887088709,
+            "AP90": 0.028920199712278924,
+            "APl": null,
+            "APm": 0.7477399913904434,
+            "APs": 0.5913425507248831,
+            "AR1": 0.5900000000000001,
+            "AR10": 0.6799999999999999,
+            "AR100": 0.74,
+            "ARl": null,
+            "ARm": 0.82,
+            "ARs": 0.66
+          },
+          "free_matched_count": {
+            "AP": 0.6411588322674939,
+            "AP50": 0.9203920392039204,
+            "AP75": 0.8708870887088709,
+            "AP90": 0.028920199712278924,
+            "APl": null,
+            "APm": 0.7477399913904434,
+            "APs": 0.5919890060487025,
+            "AR1": 0.5900000000000001,
+            "AR10": 0.6900000000000001,
+            "AR100": 0.75,
+            "ARl": null,
+            "ARm": 0.82,
+            "ARs": 0.68
+          },
+          "free_natural": {
+            "AP": 0.6411588322674939,
+            "AP50": 0.9203920392039204,
+            "AP75": 0.8708870887088709,
+            "AP90": 0.028920199712278924,
+            "APl": null,
+            "APm": 0.7477399913904434,
+            "APs": 0.5919890060487025,
+            "AR1": 0.5900000000000001,
+            "AR10": 0.6900000000000001,
+            "AR100": 0.75,
+            "ARl": null,
+            "ARm": 0.82,
+            "ARs": 0.68
+          },
+          "raw": {
+            "AP": 0.6380198852791034,
+            "AP50": 0.9203920392039204,
+            "AP75": 0.8708870887088709,
+            "AP90": 0.028920199712278924,
+            "APl": null,
+            "APm": 0.7411393313244368,
+            "APs": 0.5913425507248831,
+            "AR1": 0.5900000000000001,
+            "AR10": 0.6799999999999999,
+            "AR100": 0.74,
+            "ARl": null,
+            "ARm": 0.82,
+            "ARs": 0.66
+          }
+        },
+        "sensor_date": [
+          "GF-3",
+          "20200926"
+        ]
+      },
+      "12": {
+        "annotations": 5,
+        "counts": {
+          "area_excluded_matches": 5,
+          "eligible_matches": 0,
+          "invalid_polygon_matches": 0,
+          "original_matches": 5,
+          "positive_fixed_edits": 0
+        },
+        "images": 5,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.6785995904150676,
+            "AP50": 1.0,
+            "AP75": 0.9669966996699667,
+            "AP90": 0.05198019801980198,
+            "APl": null,
+            "APm": 0.6993249324932493,
+            "APs": 0.6004444444444444,
+            "AR1": 0.66,
+            "AR10": 0.74,
+            "AR100": 0.76,
+            "ARl": null,
+            "ARm": 0.775,
+            "ARs": 0.7
+          },
+          "free_matched_count": {
+            "AP": 0.6785995904150676,
+            "AP50": 1.0,
+            "AP75": 0.9669966996699667,
+            "AP90": 0.05198019801980198,
+            "APl": null,
+            "APm": 0.6993249324932493,
+            "APs": 0.6004444444444444,
+            "AR1": 0.66,
+            "AR10": 0.74,
+            "AR100": 0.76,
+            "ARl": null,
+            "ARm": 0.775,
+            "ARs": 0.7
+          },
+          "free_natural": {
+            "AP": 0.6785995904150676,
+            "AP50": 1.0,
+            "AP75": 0.9669966996699667,
+            "AP90": 0.05198019801980198,
+            "APl": null,
+            "APm": 0.6993249324932493,
+            "APs": 0.6004444444444444,
+            "AR1": 0.66,
+            "AR10": 0.74,
+            "AR100": 0.76,
+            "ARl": null,
+            "ARm": 0.775,
+            "ARs": 0.7
+          },
+          "raw": {
+            "AP": 0.6785995904150676,
+            "AP50": 1.0,
+            "AP75": 0.9669966996699667,
+            "AP90": 0.05198019801980198,
+            "APl": null,
+            "APm": 0.6993249324932493,
+            "APs": 0.6004444444444444,
+            "AR1": 0.66,
+            "AR10": 0.74,
+            "AR100": 0.76,
+            "ARl": null,
+            "ARm": 0.775,
+            "ARs": 0.7
+          }
+        },
+        "sensor_date": [
+          "GF-3",
+          "20210228"
+        ]
+      },
+      "2": {
+        "annotations": 2,
+        "counts": {
+          "area_excluded_matches": 0,
+          "eligible_matches": 2,
+          "invalid_polygon_matches": 0,
+          "original_matches": 2,
+          "positive_fixed_edits": 2
+        },
+        "images": 2,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.8003740374037404,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0037403740374037397,
+            "APl": null,
+            "APm": null,
+            "APs": 0.8003740374037404,
+            "AR1": 0.8,
+            "AR10": 0.8,
+            "AR100": 0.85,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.85
+          },
+          "free_matched_count": {
+            "AP": 0.8003740374037404,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0037403740374037397,
+            "APl": null,
+            "APm": null,
+            "APs": 0.8003740374037404,
+            "AR1": 0.8,
+            "AR10": 0.8,
+            "AR100": 0.85,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.85
+          },
+          "free_natural": {
+            "AP": 0.8504950495049505,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.5049504950495048,
+            "APl": null,
+            "APm": null,
+            "APs": 0.8504950495049505,
+            "AR1": 0.85,
+            "AR10": 0.85,
+            "AR100": 0.85,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.85
+          },
+          "raw": {
+            "AP": 0.8003740374037404,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0037403740374037397,
+            "APl": null,
+            "APm": null,
+            "APs": 0.8003740374037404,
+            "AR1": 0.8,
+            "AR10": 0.8,
+            "AR100": 0.85,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.85
+          }
+        },
+        "sensor_date": [
+          "GF-3",
+          "20210809"
+        ]
+      },
+      "28": {
+        "annotations": 5,
+        "counts": {
+          "area_excluded_matches": 1,
+          "eligible_matches": 4,
+          "invalid_polygon_matches": 0,
+          "original_matches": 5,
+          "positive_fixed_edits": 4
+        },
+        "images": 5,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.42638262040881103,
+            "AP50": 1.0,
+            "AP75": 0.2056583486402939,
+            "AP90": 0.0006243867630006244,
+            "APl": null,
+            "APm": 0.31666666666666665,
+            "APs": 0.49294291520610506,
+            "AR1": 0.48,
+            "AR10": 0.5199999999999999,
+            "AR100": 0.64,
+            "ARl": null,
+            "ARm": 0.4,
+            "ARs": 0.7
+          },
+          "free_matched_count": {
+            "AP": 0.4412804748960657,
+            "AP50": 1.0,
+            "AP75": 0.2101384346579454,
+            "AP90": 0.05198019801980198,
+            "APl": null,
+            "APm": 0.31666666666666665,
+            "APs": 0.5154132453222418,
+            "AR1": 0.5,
+            "AR10": 0.56,
+            "AR100": 0.66,
+            "ARl": null,
+            "ARm": 0.4,
+            "ARs": 0.725
+          },
+          "free_natural": {
+            "AP": 0.4412804748960657,
+            "AP50": 1.0,
+            "AP75": 0.2101384346579454,
+            "AP90": 0.05198019801980198,
+            "APl": null,
+            "APm": 0.31666666666666665,
+            "APs": 0.5154132453222418,
+            "AR1": 0.5,
+            "AR10": 0.56,
+            "AR100": 0.66,
+            "ARl": null,
+            "ARm": 0.4,
+            "ARs": 0.725
+          },
+          "raw": {
+            "AP": 0.4269199573357938,
+            "AP50": 1.0,
+            "AP75": 0.2101384346579454,
+            "AP90": 0.0015176700151767002,
+            "APl": null,
+            "APm": 0.31666666666666665,
+            "APs": 0.49362323674744935,
+            "AR1": 0.48,
+            "AR10": 0.5199999999999999,
+            "AR100": 0.66,
+            "ARl": null,
+            "ARm": 0.4,
+            "ARs": 0.725
+          }
+        },
+        "sensor_date": [
+          "GF-3",
+          "20210521"
+        ]
+      },
+      "35": {
+        "annotations": 3,
+        "counts": {
+          "area_excluded_matches": 0,
+          "eligible_matches": 3,
+          "invalid_polygon_matches": 0,
+          "original_matches": 3,
+          "positive_fixed_edits": 3
+        },
+        "images": 3,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.7057646953113635,
+            "AP50": 1.0,
+            "AP75": 0.6682216298552933,
+            "AP90": 0.3439759706307708,
+            "APl": null,
+            "APm": null,
+            "APs": 0.7057646953113635,
+            "AR1": 0.7,
+            "AR10": 0.7,
+            "AR100": 0.8333333333333333,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.8333333333333333
+          },
+          "free_matched_count": {
+            "AP": 0.7078716182655055,
+            "AP50": 1.0,
+            "AP75": 0.6682216298552933,
+            "AP90": 0.3650452001721912,
+            "APl": null,
+            "APm": null,
+            "APs": 0.7078716182655055,
+            "AR1": 0.7,
+            "AR10": 0.7333333333333333,
+            "AR100": 0.8333333333333333,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.8333333333333333
+          },
+          "free_natural": {
+            "AP": 0.7078716182655055,
+            "AP50": 1.0,
+            "AP75": 0.6682216298552933,
+            "AP90": 0.3650452001721912,
+            "APl": null,
+            "APm": null,
+            "APs": 0.7078716182655055,
+            "AR1": 0.7,
+            "AR10": 0.7333333333333333,
+            "AR100": 0.8333333333333333,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.8333333333333333
+          },
+          "raw": {
+            "AP": 0.7055450042278608,
+            "AP50": 1.0,
+            "AP75": 0.6682216298552933,
+            "AP90": 0.3417790597957433,
+            "APl": null,
+            "APm": null,
+            "APs": 0.7055450042278608,
+            "AR1": 0.7,
+            "AR10": 0.7,
+            "AR100": 0.8333333333333333,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.8333333333333333
+          }
+        },
+        "sensor_date": [
+          "TerraSAR-X",
+          "20080311"
+        ]
+      },
+      "36": {
+        "annotations": 5,
+        "counts": {
+          "area_excluded_matches": 0,
+          "eligible_matches": 5,
+          "invalid_polygon_matches": 0,
+          "original_matches": 5,
+          "positive_fixed_edits": 5
+        },
+        "images": 4,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.6934757422611331,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0009581603321622484,
+            "APl": null,
+            "APm": null,
+            "APs": 0.6934807833253286,
+            "AR1": 0.56,
+            "AR10": 0.7,
+            "AR100": 0.74,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.74
+          },
+          "free_matched_count": {
+            "AP": 0.7288086873203449,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0009581603321622484,
+            "APl": null,
+            "APm": null,
+            "APs": 0.7288100305357639,
+            "AR1": 0.5800000000000001,
+            "AR10": 0.74,
+            "AR100": 0.76,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.76
+          },
+          "free_natural": {
+            "AP": 0.7288086873203449,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0009581603321622484,
+            "APl": null,
+            "APm": null,
+            "APs": 0.7288100305357639,
+            "AR1": 0.5800000000000001,
+            "AR10": 0.74,
+            "AR100": 0.76,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.76
+          },
+          "raw": {
+            "AP": 0.6934373151315797,
+            "AP50": 1.0,
+            "AP75": 1.0,
+            "AP90": 0.0009581603321622484,
+            "APl": null,
+            "APm": null,
+            "APs": 0.6934414936820785,
+            "AR1": 0.56,
+            "AR10": 0.7,
+            "AR100": 0.74,
+            "ARl": null,
+            "ARm": null,
+            "ARs": 0.74
+          }
+        },
+        "sensor_date": [
+          "TerraSAR-X",
+          "20111209"
+        ]
+      },
+      "43": {
+        "annotations": 8,
+        "counts": {
+          "area_excluded_matches": 4,
+          "eligible_matches": 4,
+          "invalid_polygon_matches": 0,
+          "original_matches": 8,
+          "positive_fixed_edits": 4
+        },
+        "images": 8,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.6547732409795602,
+            "AP50": 0.9742574257425741,
+            "AP75": 0.7524752475247525,
+            "AP90": 0.21452145214521445,
+            "APl": null,
+            "APm": 0.8194719471947195,
+            "APs": 0.48711585444258715,
+            "AR1": 0.625,
+            "AR10": 0.6875,
+            "AR100": 0.7125,
+            "ARl": null,
+            "ARm": 0.85,
+            "ARs": 0.575
+          },
+          "free_matched_count": {
+            "AP": 0.6654702498921073,
+            "AP50": 0.9742574257425741,
+            "AP75": 0.7554669135978345,
+            "AP90": 0.31435643564356436,
+            "APl": null,
+            "APm": 0.8194719471947195,
+            "APs": 0.5135435418541854,
+            "AR1": 0.6375,
+            "AR10": 0.7125,
+            "AR100": 0.75,
+            "ARl": null,
+            "ARm": 0.85,
+            "ARs": 0.65
+          },
+          "free_natural": {
+            "AP": 0.6654702498921073,
+            "AP50": 0.9742574257425741,
+            "AP75": 0.7554669135978345,
+            "AP90": 0.31435643564356436,
+            "APl": null,
+            "APm": 0.8194719471947195,
+            "APs": 0.5135435418541854,
+            "AR1": 0.6375,
+            "AR10": 0.7125,
+            "AR100": 0.75,
+            "ARl": null,
+            "ARm": 0.85,
+            "ARs": 0.65
+          },
+          "raw": {
+            "AP": 0.6548805017056327,
+            "AP50": 0.9742574257425741,
+            "AP75": 0.7524752475247525,
+            "AP90": 0.21452145214521445,
+            "APl": null,
+            "APm": 0.8194719471947195,
+            "APs": 0.48720505255158725,
+            "AR1": 0.625,
+            "AR10": 0.6875,
+            "AR100": 0.725,
+            "ARl": null,
+            "ARm": 0.85,
+            "ARs": 0.6
+          }
+        },
+        "sensor_date": [
+          "TerraSAR-X",
+          "20170305"
+        ]
+      },
+      "46": {
+        "annotations": 7,
+        "counts": {
+          "area_excluded_matches": 2,
+          "eligible_matches": 5,
+          "invalid_polygon_matches": 0,
+          "original_matches": 7,
+          "positive_fixed_edits": 5
+        },
+        "images": 7,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.7793478426183632,
+            "AP50": 1.0,
+            "AP75": 0.9273927392739272,
+            "AP90": 0.5106082036775106,
+            "APl": null,
+            "APm": 0.9,
+            "APs": 0.7211135399254212,
+            "AR1": 0.7857142857142857,
+            "AR10": 0.8,
+            "AR100": 0.8142857142857143,
+            "ARl": null,
+            "ARm": 0.9,
+            "ARs": 0.78
+          },
+          "free_matched_count": {
+            "AP": 0.7797094439958923,
+            "AP50": 1.0,
+            "AP75": 0.9273927392739272,
+            "AP90": 0.5106082036775106,
+            "APl": null,
+            "APm": 0.9,
+            "APs": 0.7215440177558129,
+            "AR1": 0.7857142857142857,
+            "AR10": 0.8,
+            "AR100": 0.8285714285714286,
+            "ARl": null,
+            "ARm": 0.9,
+            "ARs": 0.8
+          },
+          "free_natural": {
+            "AP": 0.7797094439958923,
+            "AP50": 1.0,
+            "AP75": 0.9273927392739272,
+            "AP90": 0.5106082036775106,
+            "APl": null,
+            "APm": 0.9,
+            "APs": 0.7215440177558129,
+            "AR1": 0.7857142857142857,
+            "AR10": 0.8,
+            "AR100": 0.8285714285714286,
+            "ARl": null,
+            "ARm": 0.9,
+            "ARs": 0.8
+          },
+          "raw": {
+            "AP": 0.77968051588569,
+            "AP50": 1.0,
+            "AP75": 0.9273927392739272,
+            "AP90": 0.5106082036775106,
+            "APl": null,
+            "APm": 0.9,
+            "APs": 0.7215056583451839,
+            "AR1": 0.7857142857142857,
+            "AR10": 0.8,
+            "AR100": 0.8285714285714286,
+            "ARl": null,
+            "ARm": 0.9,
+            "ARs": 0.8
+          }
+        },
+        "sensor_date": [
+          "TerraSAR-X",
+          "20171022"
+        ]
+      },
+      "70": {
+        "annotations": 14,
+        "counts": {
+          "area_excluded_matches": 8,
+          "eligible_matches": 6,
+          "invalid_polygon_matches": 0,
+          "original_matches": 14,
+          "positive_fixed_edits": 6
+        },
+        "images": 10,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.6110649853528538,
+            "AP50": 0.9564356435643566,
+            "AP75": 0.7233723372337235,
+            "AP90": 0.00014019101025146763,
+            "APl": null,
+            "APm": 0.6100975072589785,
+            "APs": 0.6192260466370353,
+            "AR1": 0.48571428571428577,
+            "AR10": 0.6714285714285715,
+            "AR100": 0.7214285714285713,
+            "ARl": null,
+            "ARm": 0.7285714285714285,
+            "ARs": 0.7142857142857143
+          },
+          "free_matched_count": {
+            "AP": 0.6150113622914326,
+            "AP50": 0.9564356435643566,
+            "AP75": 0.7233723372337235,
+            "AP90": 0.039603960396039604,
+            "APl": null,
+            "APm": 0.6100975072589785,
+            "APs": 0.6340396453438447,
+            "AR1": 0.4928571428571429,
+            "AR10": 0.6785714285714286,
+            "AR100": 0.7214285714285713,
+            "ARl": null,
+            "ARm": 0.7285714285714285,
+            "ARs": 0.7142857142857143
+          },
+          "free_natural": {
+            "AP": 0.6150113622914326,
+            "AP50": 0.9564356435643566,
+            "AP75": 0.7233723372337235,
+            "AP90": 0.039603960396039604,
+            "APl": null,
+            "APm": 0.6100975072589785,
+            "APs": 0.6340396453438447,
+            "AR1": 0.4928571428571429,
+            "AR10": 0.6785714285714286,
+            "AR100": 0.7214285714285713,
+            "ARl": null,
+            "ARm": 0.7285714285714285,
+            "ARs": 0.7142857142857143
+          },
+          "raw": {
+            "AP": 0.6110730297395145,
+            "AP50": 0.9564356435643566,
+            "AP75": 0.7233723372337235,
+            "AP90": 0.00022063487685815937,
+            "APl": null,
+            "APm": 0.6100975072589785,
+            "APs": 0.6192459480752851,
+            "AR1": 0.48571428571428577,
+            "AR10": 0.6714285714285715,
+            "AR100": 0.7214285714285713,
+            "ARl": null,
+            "ARm": 0.7285714285714285,
+            "ARs": 0.7142857142857143
+          }
+        },
+        "sensor_date": [
+          "TerraSAR-X",
+          "20120908"
+        ]
+      },
+      "90": {
+        "annotations": 13,
+        "counts": {
+          "area_excluded_matches": 6,
+          "eligible_matches": 7,
+          "invalid_polygon_matches": 0,
+          "original_matches": 13,
+          "positive_fixed_edits": 7
+        },
+        "images": 13,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.6078608888688777,
+            "AP50": 0.9247270880934246,
+            "AP75": 0.798849115680799,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": 0.6948971820258949,
+            "APs": 0.5960600605846219,
+            "AR1": 0.6384615384615385,
+            "AR10": 0.7230769230769231,
+            "AR100": 0.7461538461538462,
+            "ARl": null,
+            "ARm": 0.75,
+            "ARs": 0.7444444444444445
+          },
+          "free_matched_count": {
+            "AP": 0.6105031238380495,
+            "AP50": 0.9247270880934246,
+            "AP75": 0.8234987351142874,
+            "AP90": 0.0010850400108504,
+            "APl": null,
+            "APm": 0.6948971820258949,
+            "APs": 0.5993973188087657,
+            "AR1": 0.6384615384615385,
+            "AR10": 0.7384615384615384,
+            "AR100": 0.7615384615384615,
+            "ARl": null,
+            "ARm": 0.75,
+            "ARs": 0.7666666666666666
+          },
+          "free_natural": {
+            "AP": 0.6105031238380495,
+            "AP50": 0.9247270880934246,
+            "AP75": 0.8234987351142874,
+            "AP90": 0.0010850400108504,
+            "APl": null,
+            "APm": 0.6948971820258949,
+            "APs": 0.5993973188087657,
+            "AR1": 0.6384615384615385,
+            "AR10": 0.7384615384615384,
+            "AR100": 0.7615384615384615,
+            "ARl": null,
+            "ARm": 0.75,
+            "ARs": 0.7666666666666666
+          },
+          "raw": {
+            "AP": 0.6080126077225111,
+            "AP50": 0.9247270880934246,
+            "AP75": 0.798849115680799,
+            "AP90": 0.0003826469603482087,
+            "APl": null,
+            "APm": 0.6948971820258949,
+            "APs": 0.5962833515220067,
+            "AR1": 0.6384615384615385,
+            "AR10": 0.7307692307692307,
+            "AR100": 0.7538461538461538,
+            "ARl": null,
+            "ARm": 0.75,
+            "ARs": 0.7555555555555555
+          }
+        },
+        "sensor_date": [
+          "GF-3",
+          "20201128"
+        ]
+      },
+      "99": {
+        "annotations": 4,
+        "counts": {
+          "area_excluded_matches": 2,
+          "eligible_matches": 2,
+          "invalid_polygon_matches": 0,
+          "original_matches": 4,
+          "positive_fixed_edits": 2
+        },
+        "images": 4,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.14757741210597075,
+            "AP50": 0.5706228850733173,
+            "AP75": 0.07387661843107388,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": 0.09820765613482298,
+            "APs": 0.5999999999999999,
+            "AR1": 0.225,
+            "AR10": 0.375,
+            "AR100": 0.525,
+            "ARl": null,
+            "ARm": 0.5,
+            "ARs": 0.6
+          },
+          "free_matched_count": {
+            "AP": 0.14757741210597075,
+            "AP50": 0.5706228850733173,
+            "AP75": 0.07387661843107388,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": 0.09820765613482298,
+            "APs": 0.5999999999999999,
+            "AR1": 0.225,
+            "AR10": 0.375,
+            "AR100": 0.525,
+            "ARl": null,
+            "ARm": 0.5,
+            "ARs": 0.6
+          },
+          "free_natural": {
+            "AP": 0.14757741210597075,
+            "AP50": 0.5706228850733173,
+            "AP75": 0.07387661843107388,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": 0.09820765613482298,
+            "APs": 0.5999999999999999,
+            "AR1": 0.225,
+            "AR10": 0.375,
+            "AR100": 0.525,
+            "ARl": null,
+            "ARm": 0.5,
+            "ARs": 0.6
+          },
+          "raw": {
+            "AP": 0.14757741210597075,
+            "AP50": 0.5706228850733173,
+            "AP75": 0.07387661843107388,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": 0.09820765613482298,
+            "APs": 0.5999999999999999,
+            "AR1": 0.225,
+            "AR10": 0.375,
+            "AR100": 0.525,
+            "ARl": null,
+            "ARm": 0.5,
+            "ARs": 0.6
+          }
+        },
+        "sensor_date": [
+          "GF-3",
+          "20200521"
+        ]
+      }
+    },
+    "census_sha256": "9454f1de69dc0d9450c30005647333f048dcea184b0561acf5dac518759e7bc6",
+    "detector_forwards": 0,
+    "elapsed_seconds": 6.955127300003369,
+    "evaluator_annotation_ids_rekeyed": false,
+    "hrsid_physical_cross_scene_disjointness_verified": false,
+    "non_simple_polygons_retained_in_ap": 0,
+    "optimizer_updates": 0,
+    "point_rend_comparator": "deferred; reserve support parity not established",
+    "prelock_commit": "8ea9023ffb48abbd71e683d223a44087f3021d5b",
+    "protocol_sha256": "3cc00d35d65318c3ae15c041c0f0b71f0c0dc743e0286c70955b9c3740009727",
+    "receipt_sha256": {
+      "capture": "5a452510dd8e9594cba8fdf4185458c809fe43e5a213471482aac8883549e8d8",
+      "intake": "da9d92ea16e74f988d46d9855d26b530111b4c5e650fef513895c5d2e4441065",
+      "replay": "0f0aa047630c87653754152b8a47b8c570c9bff04928f06c6fd4b1031bcdcf97",
+      "source": "f54ce69df68bfbd74f857d05df63fe6670d5086174c60541fc6e660d32493845"
+    },
+    "source_exposure_qualified": true,
+    "status": "INSTANCE_RSDD_RESERVE74_SCORE_COMPLETE_V1",
+    "views": {
+      "date_separated": {
+        "annotations": 47,
+        "criteria": {
+          "fixed_exposure_20_matches_8_parents": true,
+          "matched_ap_positive": true,
+          "sensor_date_paired_iou_lower_positive": true
+        },
+        "geometry": {
+          "counts": {
+            "area_excluded_matches": 15,
+            "eligible_matches": 32,
+            "original_matches": 47,
+            "positive_fixed_edits": 32
+          },
+          "counts_by_parent": {
+            "107": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 3,
+              "invalid_polygon_matches": 0,
+              "original_matches": 3,
+              "positive_fixed_edits": 3
+            },
+            "2": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 2,
+              "invalid_polygon_matches": 0,
+              "original_matches": 2,
+              "positive_fixed_edits": 2
+            },
+            "28": {
+              "area_excluded_matches": 1,
+              "eligible_matches": 4,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 4
+            },
+            "35": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 3,
+              "invalid_polygon_matches": 0,
+              "original_matches": 3,
+              "positive_fixed_edits": 3
+            },
+            "36": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 5
+            },
+            "43": {
+              "area_excluded_matches": 4,
+              "eligible_matches": 4,
+              "invalid_polygon_matches": 0,
+              "original_matches": 8,
+              "positive_fixed_edits": 4
+            },
+            "46": {
+              "area_excluded_matches": 2,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 7,
+              "positive_fixed_edits": 5
+            },
+            "70": {
+              "area_excluded_matches": 8,
+              "eligible_matches": 6,
+              "invalid_polygon_matches": 0,
+              "original_matches": 14,
+              "positive_fixed_edits": 6
+            }
+          },
+          "exposed_parents": 8,
+          "exposed_sensor_date_blocks": 8,
+          "group_equal_arms": {
+            "fixed": {
+              "continuous_iou_points": 78.91897133257824,
+              "fn_per_truth_area_points": 9.01905771694392,
+              "fp_per_truth_area_points": 17.483945876916916
+            },
+            "free_matched_count": {
+              "continuous_iou_points": 79.28311606298064,
+              "fn_per_truth_area_points": 8.789144858685788,
+              "fp_per_truth_area_points": 17.254033018658784
+            },
+            "free_natural": {
+              "continuous_iou_points": 79.33375236562806,
+              "fn_per_truth_area_points": 8.759011755459095,
+              "fp_per_truth_area_points": 17.223899915432092
+            },
+            "raw": {
+              "continuous_iou_points": 78.89618105570926,
+              "fn_per_truth_area_points": 9.031573154930134,
+              "fp_per_truth_area_points": 17.49646131490313
+            }
+          },
+          "paired_contrasts_points": {
+            "fixed minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.02279027686898516,
+                "parent_interval_95": [
+                  -0.10341814476190159,
+                  0.14686602878111654
+                ],
+                "sensor_date_interval_95": [
+                  -0.10001378891497525,
+                  0.152342596614498
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.012515437986211964,
+                "parent_interval_95": [
+                  -0.08961468963498653,
+                  0.06716067893280103
+                ],
+                "sensor_date_interval_95": [
+                  -0.09238117727054046,
+                  0.0655396998825627
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.012515437986211991,
+                "parent_interval_95": [
+                  -0.08961468963498584,
+                  0.06716067893279967
+                ],
+                "sensor_date_interval_95": [
+                  -0.09238117727053997,
+                  0.06553969988255992
+                ]
+              }
+            },
+            "free_matched_count minus fixed": {
+              "continuous_iou_points": {
+                "delta": 0.36414473040238704,
+                "parent_interval_95": [
+                  0.24901009235079918,
+                  0.47291875984073295
+                ],
+                "sensor_date_interval_95": [
+                  0.24950407367889227,
+                  0.4775543674130138
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2299128582581333,
+                "parent_interval_95": [
+                  -0.29940983004244726,
+                  -0.15590147999811926
+                ],
+                "sensor_date_interval_95": [
+                  -0.3024978849883914,
+                  -0.1584608124645952
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.22991285825813268,
+                "parent_interval_95": [
+                  -0.2994098300424466,
+                  -0.15590147999811801
+                ],
+                "sensor_date_interval_95": [
+                  -0.3024978849883909,
+                  -0.15846081246459476
+                ]
+              }
+            },
+            "free_matched_count minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.3869350072713722,
+                "parent_interval_95": [
+                  0.20859943333620312,
+                  0.5482217753053522
+                ],
+                "sensor_date_interval_95": [
+                  0.22044837893446956,
+                  0.547656934458824
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.24242829624434525,
+                "parent_interval_95": [
+                  -0.34394087901795733,
+                  -0.13096389959230012
+                ],
+                "sensor_date_interval_95": [
+                  -0.34292825528463156,
+                  -0.1373042672320862
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.24242829624434467,
+                "parent_interval_95": [
+                  -0.3439408790179539,
+                  -0.13096389959230054
+                ],
+                "sensor_date_interval_95": [
+                  -0.34292825528463045,
+                  -0.13730426723208694
+                ]
+              }
+            },
+            "free_natural minus free_matched_count": {
+              "continuous_iou_points": {
+                "delta": 0.05063630264741903,
+                "parent_interval_95": [
+                  0.02117194012123025,
+                  0.08964365693738263
+                ],
+                "sensor_date_interval_95": [
+                  0.021244060702410028,
+                  0.09038034287584296
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.030133103226689828,
+                "parent_interval_95": [
+                  -0.052150033259313014,
+                  -0.012680421908570688
+                ],
+                "sensor_date_interval_95": [
+                  -0.05269439161191969,
+                  -0.012841904594877579
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.030133103226690716,
+                "parent_interval_95": [
+                  -0.052150033259314055,
+                  -0.012680421908571354
+                ],
+                "sensor_date_interval_95": [
+                  -0.052694391611920466,
+                  -0.012841904594878162
+                ]
+              }
+            },
+            "free_natural minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.43757130991879123,
+                "parent_interval_95": [
+                  0.2678007471439212,
+                  0.5902415315292808
+                ],
+                "sensor_date_interval_95": [
+                  0.2816269656961572,
+                  0.5905927269147502
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2725613994710351,
+                "parent_interval_95": [
+                  -0.37240052218927144,
+                  -0.16443894180003982
+                ],
+                "sensor_date_interval_95": [
+                  -0.3712716380860393,
+                  -0.17340473343199364
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.2725613994710354,
+                "parent_interval_95": [
+                  -0.3724005221892708,
+                  -0.16443894180004043
+                ],
+                "sensor_date_interval_95": [
+                  -0.37127163808603947,
+                  -0.17340473343199353
+                ]
+              }
+            }
+          },
+          "represented_parents": 8,
+          "represented_sensor_date_blocks": 8
+        },
+        "images": 42,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.6128288681463785,
+            "AP50": 0.9711255622381619,
+            "AP75": 0.6714000427404697,
+            "AP90": 0.08331108054058861,
+            "APl": null,
+            "APm": 0.6782161485662745,
+            "APs": 0.5843272096801067,
+            "AR1": 0.5851063829787233,
+            "AR10": 0.6787234042553191,
+            "AR100": 0.7382978723404255,
+            "ARl": null,
+            "ARm": 0.7642857142857142,
+            "ARs": 0.7272727272727273
+          },
+          "free_matched_count": {
+            "AP": 0.6212302434906124,
+            "AP50": 0.9711255622381619,
+            "AP75": 0.6756532071794848,
+            "AP90": 0.12469820989308708,
+            "APl": null,
+            "APm": 0.6782161485662745,
+            "APs": 0.5978611541247099,
+            "AR1": 0.5936170212765958,
+            "AR10": 0.6978723404255319,
+            "AR100": 0.7510638297872341,
+            "ARl": null,
+            "ARm": 0.7642857142857142,
+            "ARs": 0.7454545454545454
+          },
+          "free_natural": {
+            "AP": 0.6238605746901804,
+            "AP50": 0.9711255622381619,
+            "AP75": 0.6756532071794848,
+            "AP90": 0.15100152188876656,
+            "APl": null,
+            "APm": 0.6782161485662745,
+            "APs": 0.6012041774694555,
+            "AR1": 0.5957446808510639,
+            "AR10": 0.7,
+            "AR100": 0.7510638297872341,
+            "ARl": null,
+            "ARm": 0.7642857142857142,
+            "ARs": 0.7454545454545454
+          },
+          "raw": {
+            "AP": 0.6129268595446451,
+            "AP50": 0.9711255622381619,
+            "AP75": 0.6722051648906435,
+            "AP90": 0.08348966703422625,
+            "APl": null,
+            "APm": 0.6782161485662745,
+            "APs": 0.5844199168444044,
+            "AR1": 0.5851063829787233,
+            "AR10": 0.6787234042553191,
+            "AR100": 0.7446808510638298,
+            "ARl": null,
+            "ARm": 0.7642857142857142,
+            "ARs": 0.7363636363636363
+          }
+        },
+        "paired_contrasts_points": {
+          "fixed minus raw": {
+            "AP": -0.009799139826660586,
+            "AP50": 0.0,
+            "AP75": -0.08051221501738093,
+            "AP90": -0.017858649363763912,
+            "APl": null,
+            "APm": 0.0,
+            "APs": -0.009270716429776726,
+            "AR1": 0.0,
+            "AR10": 0.0,
+            "AR100": -0.6382978723404209,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": -0.9090909090909038
+          },
+          "free_matched_count minus fixed": {
+            "AP": 0.8401375344233908,
+            "AP50": 0.0,
+            "AP75": 0.42531644390151335,
+            "AP90": 4.138712935249847,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 1.3533944444603208,
+            "AR1": 0.8510638297872464,
+            "AR10": 1.914893617021285,
+            "AR100": 1.276595744680853,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 1.8181818181818077
+          },
+          "free_matched_count minus raw": {
+            "AP": 0.8303383945967302,
+            "AP50": 0.0,
+            "AP75": 0.3448042288841324,
+            "AP90": 4.120854285886083,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 1.344123728030544,
+            "AR1": 0.8510638297872464,
+            "AR10": 1.914893617021285,
+            "AR100": 0.638297872340432,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 0.9090909090909038
+          },
+          "free_natural minus free_matched_count": {
+            "AP": 0.26303311995680145,
+            "AP50": 0.0,
+            "AP75": 0.0,
+            "AP90": 2.630331199567948,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 0.3343023344745677,
+            "AR1": 0.21276595744681437,
+            "AR10": 0.21276595744680327,
+            "AR100": 0.0,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 0.0
+          },
+          "free_natural minus raw": {
+            "AP": 1.0933715145535317,
+            "AP50": 0.0,
+            "AP75": 0.3448042288841324,
+            "AP90": 6.751185485454031,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 1.6784260625051117,
+            "AR1": 1.0638297872340607,
+            "AR10": 2.127659574468088,
+            "AR100": 0.638297872340432,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 0.9090909090909038
+          }
+        },
+        "within_recipe_mechanism_criterion": true
+      },
+      "full": {
+        "annotations": 81,
+        "criteria": {
+          "fixed_exposure_20_matches_8_parents": true,
+          "matched_ap_positive": true,
+          "sensor_date_paired_iou_lower_positive": true
+        },
+        "geometry": {
+          "counts": {
+            "area_excluded_matches": 34,
+            "eligible_matches": 47,
+            "original_matches": 81,
+            "positive_fixed_edits": 47
+          },
+          "counts_by_parent": {
+            "100": {
+              "area_excluded_matches": 1,
+              "eligible_matches": 1,
+              "invalid_polygon_matches": 0,
+              "original_matches": 2,
+              "positive_fixed_edits": 1
+            },
+            "107": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 3,
+              "invalid_polygon_matches": 0,
+              "original_matches": 3,
+              "positive_fixed_edits": 3
+            },
+            "112": {
+              "area_excluded_matches": 5,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 10,
+              "positive_fixed_edits": 5
+            },
+            "12": {
+              "area_excluded_matches": 5,
+              "eligible_matches": 0,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 0
+            },
+            "2": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 2,
+              "invalid_polygon_matches": 0,
+              "original_matches": 2,
+              "positive_fixed_edits": 2
+            },
+            "28": {
+              "area_excluded_matches": 1,
+              "eligible_matches": 4,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 4
+            },
+            "35": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 3,
+              "invalid_polygon_matches": 0,
+              "original_matches": 3,
+              "positive_fixed_edits": 3
+            },
+            "36": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 5
+            },
+            "43": {
+              "area_excluded_matches": 4,
+              "eligible_matches": 4,
+              "invalid_polygon_matches": 0,
+              "original_matches": 8,
+              "positive_fixed_edits": 4
+            },
+            "46": {
+              "area_excluded_matches": 2,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 7,
+              "positive_fixed_edits": 5
+            },
+            "70": {
+              "area_excluded_matches": 8,
+              "eligible_matches": 6,
+              "invalid_polygon_matches": 0,
+              "original_matches": 14,
+              "positive_fixed_edits": 6
+            },
+            "90": {
+              "area_excluded_matches": 6,
+              "eligible_matches": 7,
+              "invalid_polygon_matches": 0,
+              "original_matches": 13,
+              "positive_fixed_edits": 7
+            },
+            "99": {
+              "area_excluded_matches": 2,
+              "eligible_matches": 2,
+              "invalid_polygon_matches": 0,
+              "original_matches": 4,
+              "positive_fixed_edits": 2
+            }
+          },
+          "exposed_parents": 12,
+          "exposed_sensor_date_blocks": 11,
+          "group_equal_arms": {
+            "fixed": {
+              "continuous_iou_points": 78.81701068657706,
+              "fn_per_truth_area_points": 9.216362858763487,
+              "fp_per_truth_area_points": 16.708779140399297
+            },
+            "free_matched_count": {
+              "continuous_iou_points": 79.13546957063205,
+              "fn_per_truth_area_points": 9.017801230393323,
+              "fp_per_truth_area_points": 16.510217512029136
+            },
+            "free_natural": {
+              "continuous_iou_points": 79.17821144224716,
+              "fn_per_truth_area_points": 8.991519042050585,
+              "fp_per_truth_area_points": 16.4839353236864
+            },
+            "raw": {
+              "continuous_iou_points": 78.8011153841811,
+              "fn_per_truth_area_points": 9.22467513060168,
+              "fp_per_truth_area_points": 16.71709141223749
+            }
+          },
+          "paired_contrasts_points": {
+            "fixed minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.015895302395987205,
+                "parent_interval_95": [
+                  -0.09839541949494368,
+                  0.13410842013476185
+                ],
+                "sensor_date_interval_95": [
+                  -0.08003982462194656,
+                  0.102588629318855
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.008312271838189389,
+                "parent_interval_95": [
+                  -0.08547781322961304,
+                  0.06411203008811642
+                ],
+                "sensor_date_interval_95": [
+                  -0.06357583683648285,
+                  0.05469449214319782
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.00831227183818937,
+                "parent_interval_95": [
+                  -0.08547781322961245,
+                  0.06411203008811504
+                ],
+                "sensor_date_interval_95": [
+                  -0.06357583683648341,
+                  0.054694492143197396
+                ]
+              }
+            },
+            "free_matched_count minus fixed": {
+              "continuous_iou_points": {
+                "delta": 0.3184588840549682,
+                "parent_interval_95": [
+                  0.19639097488755253,
+                  0.4359847148777609
+                ],
+                "sensor_date_interval_95": [
+                  0.21662888510860917,
+                  0.4358160494079336
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.1985616283701673,
+                "parent_interval_95": [
+                  -0.2751377136445141,
+                  -0.11921551960613132
+                ],
+                "sensor_date_interval_95": [
+                  -0.2775336617200689,
+                  -0.13173291962471054
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.19856162837016664,
+                "parent_interval_95": [
+                  -0.2751377136445139,
+                  -0.11921551960613141
+                ],
+                "sensor_date_interval_95": [
+                  -0.277533661720069,
+                  -0.13173291962471018
+                ]
+              }
+            },
+            "free_matched_count minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.3343541864509554,
+                "parent_interval_95": [
+                  0.19065105495103044,
+                  0.46968964358431337
+                ],
+                "sensor_date_interval_95": [
+                  0.1955186454029841,
+                  0.47974247792210856
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2068739002083567,
+                "parent_interval_95": [
+                  -0.29622509210902026,
+                  -0.11062604474214006
+                ],
+                "sensor_date_interval_95": [
+                  -0.3018728273432322,
+                  -0.11314154218875588
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.20687390020835603,
+                "parent_interval_95": [
+                  -0.29622509210901965,
+                  -0.11062604474214005
+                ],
+                "sensor_date_interval_95": [
+                  -0.30187282734323057,
+                  -0.11314154218875519
+                ]
+              }
+            },
+            "free_natural minus free_matched_count": {
+              "continuous_iou_points": {
+                "delta": 0.04274187161509838,
+                "parent_interval_95": [
+                  0.018500229026210402,
+                  0.07256710499295889
+                ],
+                "sensor_date_interval_95": [
+                  0.01813086005139081,
+                  0.0764459840661118
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.02628218834273588,
+                "parent_interval_95": [
+                  -0.04385076922205872,
+                  -0.011573024684707089
+                ],
+                "sensor_date_interval_95": [
+                  -0.04619143952920668,
+                  -0.011484897215536735
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.02628218834273695,
+                "parent_interval_95": [
+                  -0.04385076922206008,
+                  -0.01157302468470763
+                ],
+                "sensor_date_interval_95": [
+                  -0.04619143952920854,
+                  -0.011484897215537526
+                ]
+              }
+            },
+            "free_natural minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.3770960580660538,
+                "parent_interval_95": [
+                  0.23415598472304064,
+                  0.5134263543937134
+                ],
+                "sensor_date_interval_95": [
+                  0.2345217184649146,
+                  0.5305752155777899
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.23315608855109257,
+                "parent_interval_95": [
+                  -0.32413211371302436,
+                  -0.13665220194713693
+                ],
+                "sensor_date_interval_95": [
+                  -0.33532244615594925,
+                  -0.13650625024594637
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.23315608855109296,
+                "parent_interval_95": [
+                  -0.3241321137130253,
+                  -0.1366522019471372
+                ],
+                "sensor_date_interval_95": [
+                  -0.33532244615594975,
+                  -0.13650625024594684
+                ]
+              }
+            }
+          },
+          "represented_parents": 12,
+          "represented_sensor_date_blocks": 11
+        },
+        "images": 74,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.582781711075448,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.698254337894544,
+            "AP90": 0.04436135051388127,
+            "APl": null,
+            "APm": 0.6126093497803384,
+            "APs": 0.5718413958001232,
+            "AR1": 0.5839506172839506,
+            "AR10": 0.6753086419753085,
+            "AR100": 0.7296296296296296,
+            "ARl": null,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.722
+          },
+          "free_matched_count": {
+            "AP": 0.5871400830408634,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.7010005349131717,
+            "AP90": 0.0580387792528483,
+            "APl": null,
+            "APm": 0.6126093497803384,
+            "APs": 0.5786822931272193,
+            "AR1": 0.5888888888888888,
+            "AR10": 0.6901234567901234,
+            "AR100": 0.7407407407407407,
+            "ARl": null,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.74
+          },
+          "free_natural": {
+            "AP": 0.5882736129895009,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.7010005349131717,
+            "AP90": 0.06937407873922202,
+            "APl": null,
+            "APm": 0.6126093497803384,
+            "APs": 0.5802538361272596,
+            "AR1": 0.5901234567901235,
+            "AR10": 0.691358024691358,
+            "AR100": 0.7407407407407407,
+            "ARl": null,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.74
+          },
+          "raw": {
+            "AP": 0.5827719798779556,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.6987031003743264,
+            "AP90": 0.044507443683496094,
+            "APl": null,
+            "APm": 0.6123233935531368,
+            "APs": 0.5719338724816093,
+            "AR1": 0.5839506172839506,
+            "AR10": 0.6765432098765432,
+            "AR100": 0.7345679012345678,
+            "ARl": null,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.73
+          }
+        },
+        "paired_contrasts_points": {
+          "fixed minus raw": {
+            "AP": 0.0009731197492368615,
+            "AP50": 0.0,
+            "AP75": -0.04487624797823164,
+            "AP90": -0.01460931696148221,
+            "APl": null,
+            "APm": 0.02859562272016225,
+            "APs": -0.009247668148615329,
+            "AR1": 0.0,
+            "AR10": -0.12345679012346622,
+            "AR100": -0.49382716049382047,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": -0.8000000000000007
+          },
+          "free_matched_count minus fixed": {
+            "AP": 0.4358371965415442,
+            "AP50": 0.0,
+            "AP75": 0.2746197018627661,
+            "AP90": 1.3677428738967032,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 0.684089732709614,
+            "AR1": 0.49382716049382047,
+            "AR10": 1.4814814814814947,
+            "AR100": 1.1111111111111072,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 1.8000000000000016
+          },
+          "free_matched_count minus raw": {
+            "AP": 0.43681031629078104,
+            "AP50": 0.0,
+            "AP75": 0.22974345388453443,
+            "AP90": 1.353133556935221,
+            "APl": null,
+            "APm": 0.02859562272016225,
+            "APs": 0.6748420645609987,
+            "AR1": 0.49382716049382047,
+            "AR10": 1.3580246913580285,
+            "AR100": 0.6172839506172867,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 1.0000000000000009
+          },
+          "free_natural minus free_matched_count": {
+            "AP": 0.11335299486374684,
+            "AP50": 0.0,
+            "AP75": 0.0,
+            "AP90": 1.133529948637372,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 0.15715430000402542,
+            "AR1": 0.12345679012346622,
+            "AR10": 0.12345679012345512,
+            "AR100": 0.0,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 0.0
+          },
+          "free_natural minus raw": {
+            "AP": 0.5501633111545279,
+            "AP50": 0.0,
+            "AP75": 0.22974345388453443,
+            "AP90": 2.4866635055725927,
+            "APl": null,
+            "APm": 0.02859562272016225,
+            "APs": 0.8319963645650241,
+            "AR1": 0.6172839506172867,
+            "AR10": 1.4814814814814836,
+            "AR100": 0.6172839506172867,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 1.0000000000000009
+          }
+        },
+        "within_recipe_mechanism_criterion": true
+      },
+      "full_deduplicated": {
+        "annotations": 81,
+        "criteria": {
+          "fixed_exposure_20_matches_8_parents": true,
+          "matched_ap_positive": true,
+          "sensor_date_paired_iou_lower_positive": true
+        },
+        "geometry": {
+          "counts": {
+            "area_excluded_matches": 34,
+            "eligible_matches": 47,
+            "original_matches": 81,
+            "positive_fixed_edits": 47
+          },
+          "counts_by_parent": {
+            "100": {
+              "area_excluded_matches": 1,
+              "eligible_matches": 1,
+              "invalid_polygon_matches": 0,
+              "original_matches": 2,
+              "positive_fixed_edits": 1
+            },
+            "107": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 3,
+              "invalid_polygon_matches": 0,
+              "original_matches": 3,
+              "positive_fixed_edits": 3
+            },
+            "112": {
+              "area_excluded_matches": 5,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 10,
+              "positive_fixed_edits": 5
+            },
+            "12": {
+              "area_excluded_matches": 5,
+              "eligible_matches": 0,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 0
+            },
+            "2": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 2,
+              "invalid_polygon_matches": 0,
+              "original_matches": 2,
+              "positive_fixed_edits": 2
+            },
+            "28": {
+              "area_excluded_matches": 1,
+              "eligible_matches": 4,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 4
+            },
+            "35": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 3,
+              "invalid_polygon_matches": 0,
+              "original_matches": 3,
+              "positive_fixed_edits": 3
+            },
+            "36": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 5
+            },
+            "43": {
+              "area_excluded_matches": 4,
+              "eligible_matches": 4,
+              "invalid_polygon_matches": 0,
+              "original_matches": 8,
+              "positive_fixed_edits": 4
+            },
+            "46": {
+              "area_excluded_matches": 2,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 7,
+              "positive_fixed_edits": 5
+            },
+            "70": {
+              "area_excluded_matches": 8,
+              "eligible_matches": 6,
+              "invalid_polygon_matches": 0,
+              "original_matches": 14,
+              "positive_fixed_edits": 6
+            },
+            "90": {
+              "area_excluded_matches": 6,
+              "eligible_matches": 7,
+              "invalid_polygon_matches": 0,
+              "original_matches": 13,
+              "positive_fixed_edits": 7
+            },
+            "99": {
+              "area_excluded_matches": 2,
+              "eligible_matches": 2,
+              "invalid_polygon_matches": 0,
+              "original_matches": 4,
+              "positive_fixed_edits": 2
+            }
+          },
+          "exposed_parents": 12,
+          "exposed_sensor_date_blocks": 11,
+          "group_equal_arms": {
+            "fixed": {
+              "continuous_iou_points": 78.81701068657706,
+              "fn_per_truth_area_points": 9.216362858763487,
+              "fp_per_truth_area_points": 16.708779140399297
+            },
+            "free_matched_count": {
+              "continuous_iou_points": 79.13546957063205,
+              "fn_per_truth_area_points": 9.017801230393323,
+              "fp_per_truth_area_points": 16.510217512029136
+            },
+            "free_natural": {
+              "continuous_iou_points": 79.17821144224716,
+              "fn_per_truth_area_points": 8.991519042050585,
+              "fp_per_truth_area_points": 16.4839353236864
+            },
+            "raw": {
+              "continuous_iou_points": 78.8011153841811,
+              "fn_per_truth_area_points": 9.22467513060168,
+              "fp_per_truth_area_points": 16.71709141223749
+            }
+          },
+          "paired_contrasts_points": {
+            "fixed minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.015895302395987205,
+                "parent_interval_95": [
+                  -0.09839541949494368,
+                  0.13410842013476185
+                ],
+                "sensor_date_interval_95": [
+                  -0.08003982462194656,
+                  0.102588629318855
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.008312271838189389,
+                "parent_interval_95": [
+                  -0.08547781322961304,
+                  0.06411203008811642
+                ],
+                "sensor_date_interval_95": [
+                  -0.06357583683648285,
+                  0.05469449214319782
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.00831227183818937,
+                "parent_interval_95": [
+                  -0.08547781322961245,
+                  0.06411203008811504
+                ],
+                "sensor_date_interval_95": [
+                  -0.06357583683648341,
+                  0.054694492143197396
+                ]
+              }
+            },
+            "free_matched_count minus fixed": {
+              "continuous_iou_points": {
+                "delta": 0.3184588840549682,
+                "parent_interval_95": [
+                  0.19639097488755253,
+                  0.4359847148777609
+                ],
+                "sensor_date_interval_95": [
+                  0.21662888510860917,
+                  0.4358160494079336
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.1985616283701673,
+                "parent_interval_95": [
+                  -0.2751377136445141,
+                  -0.11921551960613132
+                ],
+                "sensor_date_interval_95": [
+                  -0.2775336617200689,
+                  -0.13173291962471054
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.19856162837016664,
+                "parent_interval_95": [
+                  -0.2751377136445139,
+                  -0.11921551960613141
+                ],
+                "sensor_date_interval_95": [
+                  -0.277533661720069,
+                  -0.13173291962471018
+                ]
+              }
+            },
+            "free_matched_count minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.3343541864509554,
+                "parent_interval_95": [
+                  0.19065105495103044,
+                  0.46968964358431337
+                ],
+                "sensor_date_interval_95": [
+                  0.1955186454029841,
+                  0.47974247792210856
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2068739002083567,
+                "parent_interval_95": [
+                  -0.29622509210902026,
+                  -0.11062604474214006
+                ],
+                "sensor_date_interval_95": [
+                  -0.3018728273432322,
+                  -0.11314154218875588
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.20687390020835603,
+                "parent_interval_95": [
+                  -0.29622509210901965,
+                  -0.11062604474214005
+                ],
+                "sensor_date_interval_95": [
+                  -0.30187282734323057,
+                  -0.11314154218875519
+                ]
+              }
+            },
+            "free_natural minus free_matched_count": {
+              "continuous_iou_points": {
+                "delta": 0.04274187161509838,
+                "parent_interval_95": [
+                  0.018500229026210402,
+                  0.07256710499295889
+                ],
+                "sensor_date_interval_95": [
+                  0.01813086005139081,
+                  0.0764459840661118
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.02628218834273588,
+                "parent_interval_95": [
+                  -0.04385076922205872,
+                  -0.011573024684707089
+                ],
+                "sensor_date_interval_95": [
+                  -0.04619143952920668,
+                  -0.011484897215536735
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.02628218834273695,
+                "parent_interval_95": [
+                  -0.04385076922206008,
+                  -0.01157302468470763
+                ],
+                "sensor_date_interval_95": [
+                  -0.04619143952920854,
+                  -0.011484897215537526
+                ]
+              }
+            },
+            "free_natural minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.3770960580660538,
+                "parent_interval_95": [
+                  0.23415598472304064,
+                  0.5134263543937134
+                ],
+                "sensor_date_interval_95": [
+                  0.2345217184649146,
+                  0.5305752155777899
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.23315608855109257,
+                "parent_interval_95": [
+                  -0.32413211371302436,
+                  -0.13665220194713693
+                ],
+                "sensor_date_interval_95": [
+                  -0.33532244615594925,
+                  -0.13650625024594637
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.23315608855109296,
+                "parent_interval_95": [
+                  -0.3241321137130253,
+                  -0.1366522019471372
+                ],
+                "sensor_date_interval_95": [
+                  -0.33532244615594975,
+                  -0.13650625024594684
+                ]
+              }
+            }
+          },
+          "represented_parents": 12,
+          "represented_sensor_date_blocks": 11
+        },
+        "images": 74,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.582781711075448,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.698254337894544,
+            "AP90": 0.04436135051388127,
+            "APl": null,
+            "APm": 0.6126093497803384,
+            "APs": 0.5718413958001232,
+            "AR1": 0.5839506172839506,
+            "AR10": 0.6753086419753085,
+            "AR100": 0.7296296296296296,
+            "ARl": null,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.722
+          },
+          "free_matched_count": {
+            "AP": 0.5871400830408634,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.7010005349131717,
+            "AP90": 0.0580387792528483,
+            "APl": null,
+            "APm": 0.6126093497803384,
+            "APs": 0.5786822931272193,
+            "AR1": 0.5888888888888888,
+            "AR10": 0.6901234567901234,
+            "AR100": 0.7407407407407407,
+            "ARl": null,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.74
+          },
+          "free_natural": {
+            "AP": 0.5882736129895009,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.7010005349131717,
+            "AP90": 0.06937407873922202,
+            "APl": null,
+            "APm": 0.6126093497803384,
+            "APs": 0.5802538361272596,
+            "AR1": 0.5901234567901235,
+            "AR10": 0.691358024691358,
+            "AR100": 0.7407407407407407,
+            "ARl": null,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.74
+          },
+          "raw": {
+            "AP": 0.5827719798779556,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.6987031003743264,
+            "AP90": 0.044507443683496094,
+            "APl": null,
+            "APm": 0.6123233935531368,
+            "APs": 0.5719338724816093,
+            "AR1": 0.5839506172839506,
+            "AR10": 0.6765432098765432,
+            "AR100": 0.7345679012345678,
+            "ARl": null,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.73
+          }
+        },
+        "paired_contrasts_points": {
+          "fixed minus raw": {
+            "AP": 0.0009731197492368615,
+            "AP50": 0.0,
+            "AP75": -0.04487624797823164,
+            "AP90": -0.01460931696148221,
+            "APl": null,
+            "APm": 0.02859562272016225,
+            "APs": -0.009247668148615329,
+            "AR1": 0.0,
+            "AR10": -0.12345679012346622,
+            "AR100": -0.49382716049382047,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": -0.8000000000000007
+          },
+          "free_matched_count minus fixed": {
+            "AP": 0.4358371965415442,
+            "AP50": 0.0,
+            "AP75": 0.2746197018627661,
+            "AP90": 1.3677428738967032,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 0.684089732709614,
+            "AR1": 0.49382716049382047,
+            "AR10": 1.4814814814814947,
+            "AR100": 1.1111111111111072,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 1.8000000000000016
+          },
+          "free_matched_count minus raw": {
+            "AP": 0.43681031629078104,
+            "AP50": 0.0,
+            "AP75": 0.22974345388453443,
+            "AP90": 1.353133556935221,
+            "APl": null,
+            "APm": 0.02859562272016225,
+            "APs": 0.6748420645609987,
+            "AR1": 0.49382716049382047,
+            "AR10": 1.3580246913580285,
+            "AR100": 0.6172839506172867,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 1.0000000000000009
+          },
+          "free_natural minus free_matched_count": {
+            "AP": 0.11335299486374684,
+            "AP50": 0.0,
+            "AP75": 0.0,
+            "AP90": 1.133529948637372,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 0.15715430000402542,
+            "AR1": 0.12345679012346622,
+            "AR10": 0.12345679012345512,
+            "AR100": 0.0,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 0.0
+          },
+          "free_natural minus raw": {
+            "AP": 0.5501633111545279,
+            "AP50": 0.0,
+            "AP75": 0.22974345388453443,
+            "AP90": 2.4866635055725927,
+            "APl": null,
+            "APm": 0.02859562272016225,
+            "APs": 0.8319963645650241,
+            "AR1": 0.6172839506172867,
+            "AR10": 1.4814814814814836,
+            "AR100": 0.6172839506172867,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 1.0000000000000009
+          }
+        },
+        "within_recipe_mechanism_criterion": true
+      },
+      "gf3": {
+        "annotations": 44,
+        "criteria": {
+          "fixed_exposure_20_matches_8_parents": false,
+          "matched_ap_positive": true,
+          "sensor_date_paired_iou_lower_positive": true
+        },
+        "geometry": {
+          "counts": {
+            "area_excluded_matches": 20,
+            "eligible_matches": 24,
+            "original_matches": 44,
+            "positive_fixed_edits": 24
+          },
+          "counts_by_parent": {
+            "100": {
+              "area_excluded_matches": 1,
+              "eligible_matches": 1,
+              "invalid_polygon_matches": 0,
+              "original_matches": 2,
+              "positive_fixed_edits": 1
+            },
+            "107": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 3,
+              "invalid_polygon_matches": 0,
+              "original_matches": 3,
+              "positive_fixed_edits": 3
+            },
+            "112": {
+              "area_excluded_matches": 5,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 10,
+              "positive_fixed_edits": 5
+            },
+            "12": {
+              "area_excluded_matches": 5,
+              "eligible_matches": 0,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 0
+            },
+            "2": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 2,
+              "invalid_polygon_matches": 0,
+              "original_matches": 2,
+              "positive_fixed_edits": 2
+            },
+            "28": {
+              "area_excluded_matches": 1,
+              "eligible_matches": 4,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 4
+            },
+            "90": {
+              "area_excluded_matches": 6,
+              "eligible_matches": 7,
+              "invalid_polygon_matches": 0,
+              "original_matches": 13,
+              "positive_fixed_edits": 7
+            },
+            "99": {
+              "area_excluded_matches": 2,
+              "eligible_matches": 2,
+              "invalid_polygon_matches": 0,
+              "original_matches": 4,
+              "positive_fixed_edits": 2
+            }
+          },
+          "exposed_parents": 7,
+          "exposed_sensor_date_blocks": 6,
+          "group_equal_arms": {
+            "fixed": {
+              "continuous_iou_points": 77.74325599711304,
+              "fn_per_truth_area_points": 10.371083974681794,
+              "fp_per_truth_area_points": 16.55615520347854
+            },
+            "free_matched_count": {
+              "continuous_iou_points": 78.00754868192159,
+              "fn_per_truth_area_points": 10.210808134401642,
+              "fp_per_truth_area_points": 16.395879363198386
+            },
+            "free_natural": {
+              "continuous_iou_points": 78.0476788779986,
+              "fn_per_truth_area_points": 10.18615770237461,
+              "fp_per_truth_area_points": 16.371228931171355
+            },
+            "raw": {
+              "continuous_iou_points": 77.80322447786939,
+              "fn_per_truth_area_points": 10.332252657757762,
+              "fp_per_truth_area_points": 16.517323886554507
+            }
+          },
+          "paired_contrasts_points": {
+            "fixed minus raw": {
+              "continuous_iou_points": {
+                "delta": -0.05996848075634732,
+                "parent_interval_95": [
+                  -0.18721113845885132,
+                  0.10254905930194168
+                ],
+                "sensor_date_interval_95": [
+                  -0.16511279146705013,
+                  0.022260673986712238
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": 0.038831316924032855,
+                "parent_interval_95": [
+                  -0.06793917829022453,
+                  0.12418016737902697
+                ],
+                "sensor_date_interval_95": [
+                  -0.01872256693728078,
+                  0.11240591277862344
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": 0.03883131692403276,
+                "parent_interval_95": [
+                  -0.0679391782902251,
+                  0.12418016737902551
+                ],
+                "sensor_date_interval_95": [
+                  -0.018722566937280066,
+                  0.11240591277862204
+                ]
+              }
+            },
+            "free_matched_count minus fixed": {
+              "continuous_iou_points": {
+                "delta": 0.2642926848085523,
+                "parent_interval_95": [
+                  0.11066365007824734,
+                  0.41013140423920696
+                ],
+                "sensor_date_interval_95": [
+                  0.15824712652739947,
+                  0.40344267727341315
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.16027584028015138,
+                "parent_interval_95": [
+                  -0.2561666435325039,
+                  -0.06221347635106771
+                ],
+                "sensor_date_interval_95": [
+                  -0.25094528311629943,
+                  -0.08567252213782413
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.16027584028015035,
+                "parent_interval_95": [
+                  -0.2561666435325015,
+                  -0.062213476351068664
+                ],
+                "sensor_date_interval_95": [
+                  -0.2509452831162961,
+                  -0.0856725221378228
+                ]
+              }
+            },
+            "free_matched_count minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.20432420405220494,
+                "parent_interval_95": [
+                  0.048889707105844185,
+                  0.35766960078496723
+                ],
+                "sensor_date_interval_95": [
+                  0.043005647324812504,
+                  0.3555890218668886
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.12144452335611852,
+                "parent_interval_95": [
+                  -0.22417650423916413,
+                  -0.014919687625244855
+                ],
+                "sensor_date_interval_95": [
+                  -0.2258893664480525,
+                  -0.005817502576564263
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.12144452335611759,
+                "parent_interval_95": [
+                  -0.22417650423916102,
+                  -0.014919687625244945
+                ],
+                "sensor_date_interval_95": [
+                  -0.22588936644804825,
+                  -0.005817502576564136
+                ]
+              }
+            },
+            "free_natural minus free_matched_count": {
+              "continuous_iou_points": {
+                "delta": 0.040130196077017545,
+                "parent_interval_95": [
+                  0.0021691303883630197,
+                  0.08958714874481595
+                ],
+                "sensor_date_interval_95": [
+                  0.0018979890898176421,
+                  0.10198768808252841
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.02465043202703443,
+                "parent_interval_95": [
+                  -0.05273033450615573,
+                  -0.0012573802640041265
+                ],
+                "sensor_date_interval_95": [
+                  -0.06081918779605048,
+                  -0.0011002077310036107
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.024650432027035256,
+                "parent_interval_95": [
+                  -0.052730334506159035,
+                  -0.0012573802640041265
+                ],
+                "sensor_date_interval_95": [
+                  -0.060819187796052124,
+                  -0.0011002077310036107
+                ]
+              }
+            },
+            "free_natural minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.2444544001292225,
+                "parent_interval_95": [
+                  0.08360877951721436,
+                  0.4036890421701594
+                ],
+                "sensor_date_interval_95": [
+                  0.07717778089922216,
+                  0.41200948036278834
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.14609495538315295,
+                "parent_interval_95": [
+                  -0.25501337395288265,
+                  -0.03292987977890492
+                ],
+                "sensor_date_interval_95": [
+                  -0.2614181798783965,
+                  -0.02874835258289184
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.14609495538315284,
+                "parent_interval_95": [
+                  -0.2550133739528832,
+                  -0.03292987977890375
+                ],
+                "sensor_date_interval_95": [
+                  -0.2614181798783971,
+                  -0.028748352582892878
+                ]
+              }
+            }
+          },
+          "represented_parents": 7,
+          "represented_sensor_date_blocks": 6
+        },
+        "images": 42,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.5240611354127385,
+            "AP50": 0.8740636079840715,
+            "AP75": 0.6332504353024776,
+            "AP90": 0.004014911022713369,
+            "APl": null,
+            "APm": 0.5439714381625925,
+            "APs": 0.5224497956381385,
+            "AR1": 0.5704545454545455,
+            "AR10": 0.6500000000000001,
+            "AR100": 0.7136363636363636,
+            "ARl": null,
+            "ARm": 0.7055555555555556,
+            "ARs": 0.7192307692307692
+          },
+          "free_matched_count": {
+            "AP": 0.5254312310601829,
+            "AP50": 0.8740636079840715,
+            "AP75": 0.6376764969586532,
+            "AP90": 0.006280698124665378,
+            "APl": null,
+            "APm": 0.5439714381625925,
+            "APs": 0.5242562469302063,
+            "AR1": 0.5727272727272728,
+            "AR10": 0.6636363636363637,
+            "AR100": 0.7227272727272728,
+            "ARl": null,
+            "ARm": 0.7055555555555556,
+            "ARs": 0.7346153846153847
+          },
+          "free_natural": {
+            "AP": 0.5262695491710873,
+            "AP50": 0.8740636079840715,
+            "AP75": 0.6376764969586532,
+            "AP90": 0.014663879233709399,
+            "APl": null,
+            "APm": 0.5439714381625925,
+            "APs": 0.5258574702826311,
+            "AR1": 0.575,
+            "AR10": 0.6659090909090909,
+            "AR100": 0.7227272727272728,
+            "ARl": null,
+            "ARm": 0.7055555555555556,
+            "ARs": 0.7346153846153847
+          },
+          "raw": {
+            "AP": 0.5238623207359547,
+            "AP50": 0.8740636079840715,
+            "AP75": 0.6341539840610041,
+            "AP90": 0.004168617795159779,
+            "APl": null,
+            "APm": 0.5433647598477022,
+            "APs": 0.5225874408260816,
+            "AR1": 0.5704545454545455,
+            "AR10": 0.6522727272727273,
+            "AR100": 0.7181818181818181,
+            "ARl": null,
+            "ARm": 0.7055555555555556,
+            "ARs": 0.726923076923077
+          }
+        },
+        "paired_contrasts_points": {
+          "fixed minus raw": {
+            "AP": 0.019881467678373177,
+            "AP50": 0.0,
+            "AP75": -0.09035487585264956,
+            "AP90": -0.015370677244640977,
+            "APl": null,
+            "APm": 0.06066783148903632,
+            "APs": -0.013764518794301406,
+            "AR1": 0.0,
+            "AR10": -0.2272727272727204,
+            "AR100": -0.4545454545454519,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": -0.7692307692307776
+          },
+          "free_matched_count minus fixed": {
+            "AP": 0.13700956474443915,
+            "AP50": 0.0,
+            "AP75": 0.44260616561756505,
+            "AP90": 0.22657871019520093,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 0.1806451292067801,
+            "AR1": 0.2272727272727204,
+            "AR10": 1.3636363636363558,
+            "AR100": 0.909090909090915,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 1.538461538461544
+          },
+          "free_matched_count minus raw": {
+            "AP": 0.15689103242281233,
+            "AP50": 0.0,
+            "AP75": 0.3522512897649155,
+            "AP90": 0.21120803295055995,
+            "APl": null,
+            "APm": 0.06066783148903632,
+            "APs": 0.1668806104124787,
+            "AR1": 0.2272727272727204,
+            "AR10": 1.1363636363636354,
+            "AR100": 0.454545454545463,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 0.7692307692307665
+          },
+          "free_natural minus free_matched_count": {
+            "AP": 0.08383181109044013,
+            "AP50": 0.0,
+            "AP75": 0.0,
+            "AP90": 0.838318110904402,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 0.1601223352424741,
+            "AR1": 0.2272727272727204,
+            "AR10": 0.2272727272727204,
+            "AR100": 0.0,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 0.0
+          },
+          "free_natural minus raw": {
+            "AP": 0.24072284351325246,
+            "AP50": 0.0,
+            "AP75": 0.3522512897649155,
+            "AP90": 1.049526143854962,
+            "APl": null,
+            "APm": 0.06066783148903632,
+            "APs": 0.3270029456549528,
+            "AR1": 0.4545454545454408,
+            "AR10": 1.3636363636363558,
+            "AR100": 0.454545454545463,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 0.7692307692307665
+          }
+        },
+        "within_recipe_mechanism_criterion": false
+      },
+      "terrasar_x": {
+        "annotations": 37,
+        "criteria": {
+          "fixed_exposure_20_matches_8_parents": false,
+          "matched_ap_positive": true,
+          "sensor_date_paired_iou_lower_positive": true
+        },
+        "geometry": {
+          "counts": {
+            "area_excluded_matches": 14,
+            "eligible_matches": 23,
+            "original_matches": 37,
+            "positive_fixed_edits": 23
+          },
+          "counts_by_parent": {
+            "35": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 3,
+              "invalid_polygon_matches": 0,
+              "original_matches": 3,
+              "positive_fixed_edits": 3
+            },
+            "36": {
+              "area_excluded_matches": 0,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 5,
+              "positive_fixed_edits": 5
+            },
+            "43": {
+              "area_excluded_matches": 4,
+              "eligible_matches": 4,
+              "invalid_polygon_matches": 0,
+              "original_matches": 8,
+              "positive_fixed_edits": 4
+            },
+            "46": {
+              "area_excluded_matches": 2,
+              "eligible_matches": 5,
+              "invalid_polygon_matches": 0,
+              "original_matches": 7,
+              "positive_fixed_edits": 5
+            },
+            "70": {
+              "area_excluded_matches": 8,
+              "eligible_matches": 6,
+              "invalid_polygon_matches": 0,
+              "original_matches": 14,
+              "positive_fixed_edits": 6
+            }
+          },
+          "exposed_parents": 5,
+          "exposed_sensor_date_blocks": 5,
+          "group_equal_arms": {
+            "fixed": {
+              "continuous_iou_points": 80.32026725182673,
+              "fn_per_truth_area_points": 7.599753296477864,
+              "fp_per_truth_area_points": 16.922452652088367
+            },
+            "free_matched_count": {
+              "continuous_iou_points": 80.71455881482669,
+              "fn_per_truth_area_points": 7.347591564781675,
+              "fp_per_truth_area_points": 16.670290920392176
+            },
+            "free_natural": {
+              "continuous_iou_points": 80.76095703219511,
+              "fn_per_truth_area_points": 7.319024917596957,
+              "fp_per_truth_area_points": 16.64172427320746
+            },
+            "raw": {
+              "continuous_iou_points": 80.19816265301748,
+              "fn_per_truth_area_points": 7.674066592583165,
+              "fp_per_truth_area_points": 16.99676594819367
+            }
+          },
+          "paired_contrasts_points": {
+            "fixed minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.12210459880925555,
+                "parent_interval_95": [
+                  -0.00792676513562469,
+                  0.244087658696796
+                ],
+                "sensor_date_interval_95": [
+                  -0.01619431596431582,
+                  0.244087658696796
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.07431329610530053,
+                "parent_interval_95": [
+                  -0.14767059494153062,
+                  0.0032899064601355833
+                ],
+                "sensor_date_interval_95": [
+                  -0.14767059494153062,
+                  0.009699588397205616
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.07431329610530035,
+                "parent_interval_95": [
+                  -0.14767059494153223,
+                  0.0032899064601362936
+                ],
+                "sensor_date_interval_95": [
+                  -0.14767059494153223,
+                  0.009699588397205616
+                ]
+              }
+            },
+            "free_matched_count minus fixed": {
+              "continuous_iou_points": {
+                "delta": 0.39429156299995044,
+                "parent_interval_95": [
+                  0.2206828507386831,
+                  0.5486878168527511
+                ],
+                "sensor_date_interval_95": [
+                  0.2206828507386831,
+                  0.5486878168527511
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2521617316961896,
+                "parent_interval_95": [
+                  -0.3534891224600173,
+                  -0.1463261765257057
+                ],
+                "sensor_date_interval_95": [
+                  -0.3534891224600173,
+                  -0.1463261765257057
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.2521617316961894,
+                "parent_interval_95": [
+                  -0.353489122460018,
+                  -0.1463261765257041
+                ],
+                "sensor_date_interval_95": [
+                  -0.353489122460018,
+                  -0.1463261765257041
+                ]
+              }
+            },
+            "free_matched_count minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.516396161809206,
+                "parent_interval_95": [
+                  0.38575616050142686,
+                  0.644967457876626
+                ],
+                "sensor_date_interval_95": [
+                  0.38575616050142686,
+                  0.6470361631169851
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.3264750278014901,
+                "parent_interval_95": [
+                  -0.4078664066849278,
+                  -0.2427788018926927
+                ],
+                "sensor_date_interval_95": [
+                  -0.4101712537102875,
+                  -0.2427788018926927
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.32647502780148974,
+                "parent_interval_95": [
+                  -0.4078664066849257,
+                  -0.24277880189269255
+                ],
+                "sensor_date_interval_95": [
+                  -0.41017125371028695,
+                  -0.24277880189269255
+                ]
+              }
+            },
+            "free_natural minus free_matched_count": {
+              "continuous_iou_points": {
+                "delta": 0.046398217368411564,
+                "parent_interval_95": [
+                  0.035285054618492497,
+                  0.05690742655257282
+                ],
+                "sensor_date_interval_95": [
+                  0.035285054618492497,
+                  0.05690742655257282
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.028566647184717908,
+                "parent_interval_95": [
+                  -0.034163043010755165,
+                  -0.02195243185358233
+                ],
+                "sensor_date_interval_95": [
+                  -0.034163043010755165,
+                  -0.02195243185358233
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.02856664718471933,
+                "parent_interval_95": [
+                  -0.03416304301075712,
+                  -0.021952431853582866
+                ],
+                "sensor_date_interval_95": [
+                  -0.03416304301075712,
+                  -0.021952431853582866
+                ]
+              }
+            },
+            "free_natural minus raw": {
+              "continuous_iou_points": {
+                "delta": 0.5627943791776175,
+                "parent_interval_95": [
+                  0.4361554297540181,
+                  0.689433328601217
+                ],
+                "sensor_date_interval_95": [
+                  0.4361554297540181,
+                  0.6938283080749613
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.35504167498620803,
+                "parent_interval_95": [
+                  -0.4374052780408622,
+                  -0.2712415276456664
+                ],
+                "sensor_date_interval_95": [
+                  -0.4388418223267497,
+                  -0.2712415276456664
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.3550416749862091,
+                "parent_interval_95": [
+                  -0.4374052780408615,
+                  -0.2712415276456671
+                ],
+                "sensor_date_interval_95": [
+                  -0.43884182232675106,
+                  -0.2712415276456671
+                ]
+              }
+            }
+          },
+          "represented_parents": 5,
+          "represented_sensor_date_blocks": 5
+        },
+        "images": 32,
+        "metrics_fraction": {
+          "fixed": {
+            "AP": 0.6603295504301964,
+            "AP50": 0.9826731798776065,
+            "AP75": 0.7787874303333805,
+            "AP90": 0.10918289737038663,
+            "APl": null,
+            "APm": 0.7196437689325326,
+            "APs": 0.629657908738216,
+            "AR1": 0.6,
+            "AR10": 0.7054054054054054,
+            "AR100": 0.7486486486486486,
+            "ARl": null,
+            "ARm": 0.7923076923076924,
+            "ARs": 0.725
+          },
+          "free_matched_count": {
+            "AP": 0.6696524305687904,
+            "AP50": 0.9826731798776065,
+            "AP75": 0.7795307914511795,
+            "AP90": 0.15646647082290643,
+            "APl": null,
+            "APm": 0.7196437689325326,
+            "APs": 0.6454189433700295,
+            "AR1": 0.6081081081081081,
+            "AR10": 0.7216216216216216,
+            "AR100": 0.7621621621621621,
+            "ARl": null,
+            "ARm": 0.7923076923076924,
+            "ARs": 0.7458333333333333
+          },
+          "free_natural": {
+            "AP": 0.6696524305687904,
+            "AP50": 0.9826731798776065,
+            "AP75": 0.7795307914511795,
+            "AP90": 0.15646647082290643,
+            "APl": null,
+            "APm": 0.7196437689325326,
+            "APs": 0.6454189433700295,
+            "AR1": 0.6081081081081081,
+            "AR10": 0.7216216216216216,
+            "AR100": 0.7621621621621621,
+            "ARl": null,
+            "ARm": 0.7923076923076924,
+            "ARs": 0.7458333333333333
+          },
+          "raw": {
+            "AP": 0.6603895871819706,
+            "AP50": 0.9826731798776065,
+            "AP75": 0.7787874303333805,
+            "AP90": 0.10927568873839569,
+            "APl": null,
+            "APm": 0.7196437689325326,
+            "APs": 0.629720834658177,
+            "AR1": 0.6,
+            "AR10": 0.7054054054054054,
+            "AR100": 0.754054054054054,
+            "ARl": null,
+            "ARm": 0.7923076923076924,
+            "ARs": 0.7333333333333334
+          }
+        },
+        "paired_contrasts_points": {
+          "fixed minus raw": {
+            "AP": -0.0060036751774239505,
+            "AP50": 0.0,
+            "AP75": 0.0,
+            "AP90": -0.009279136800906251,
+            "APl": null,
+            "APm": 0.0,
+            "APs": -0.006292591996093222,
+            "AR1": 0.0,
+            "AR10": 0.0,
+            "AR100": -0.5405405405405461,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": -0.8333333333333415
+          },
+          "free_matched_count minus fixed": {
+            "AP": 0.9322880138594059,
+            "AP50": 0.0,
+            "AP75": 0.07433611177990462,
+            "AP90": 4.728357345251981,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 1.5761034631813442,
+            "AR1": 0.8108108108108136,
+            "AR10": 1.6216216216216162,
+            "AR100": 1.3513513513513598,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 2.083333333333337
+          },
+          "free_matched_count minus raw": {
+            "AP": 0.9262843386819819,
+            "AP50": 0.0,
+            "AP75": 0.07433611177990462,
+            "AP90": 4.719078208451075,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 1.569810871185251,
+            "AR1": 0.8108108108108136,
+            "AR10": 1.6216216216216162,
+            "AR100": 0.8108108108108136,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 1.2499999999999956
+          },
+          "free_natural minus free_matched_count": {
+            "AP": 0.0,
+            "AP50": 0.0,
+            "AP75": 0.0,
+            "AP90": 0.0,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 0.0,
+            "AR1": 0.0,
+            "AR10": 0.0,
+            "AR100": 0.0,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 0.0
+          },
+          "free_natural minus raw": {
+            "AP": 0.9262843386819819,
+            "AP50": 0.0,
+            "AP75": 0.07433611177990462,
+            "AP90": 4.719078208451075,
+            "APl": null,
+            "APm": 0.0,
+            "APs": 1.569810871185251,
+            "AR1": 0.8108108108108136,
+            "AR10": 1.6216216216216162,
+            "AR100": 0.8108108108108136,
+            "ARl": null,
+            "ARm": 0.0,
+            "ARs": 1.2499999999999956
+          }
+        },
+        "within_recipe_mechanism_criterion": false
+      }
+    },
+    "worker_sha256": "5ff671b2b83bb12e322b0c766897bf3cdacaedd233bf0d6edcdfcccf2c938df4"
+  },
+  "status": "INSTANCE_RSDD_PARENT_RESERVE_INDEPENDENTLY_REVIEWED"
+}

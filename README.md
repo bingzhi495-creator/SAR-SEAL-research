@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- Instance-RSDD 新增 74 图父景复验通过。冻结同头同量独立选点较固定配对 **+0.436 mask AP、+0.318 连续 IoU 点**。排除历史同传感器同日期后的 42 图为 +0.840 AP。两传感器单列均未达覆盖门槛。[新增父景实测](research_round_20260925_global/INSTANCE_RSDD_PARENT_RESERVE_ACTUAL_20261123.md) · [像素中心与填充对照](research_round_20260925_global/INSTANCE_RSDD_CENTER_RANKING_ACTUAL_20261123.md)
+
 - Instance-RSDD 两层完整边界的同量对照已闭合。高分三号上占据率排序较 PointRend 排序 **+0.390 mask AP、+0.223 连续 IoU 点**。扩大范围较原占据率方案仅 +0.011 AP，整框 PointRend 仍高 0.200 AP。保留原范围为主稿默认。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_EXPANDED_RANKING_ACTUAL_20261123.md)
 
 - HRSID DEV705 同排序、同量配额实测完成。完整候选 AP 监督为 **56.890 mask AP**，较原生 +0.819 点，较最强预设比值对照 −0.253 点。按预锁停止扩展这套回归。保留全部候选和几何复核。[实测与复现](research_round_20260925_global/HRSID_DEV705_QUOTA_COMPETITION_ACTUAL_20261123.md)
