@@ -12,6 +12,8 @@
 
 - [HRSID 官方划分冻结精修实测](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md)已完成预测独立回读及 12 条处理预测的评分。RF-DETR mask AP 54.433→55.454，三点头种子全部提升。同头同量独立选点较固定配对 +1.216 AP、+1.958 AP75；相对同量自由增删平均 +0.324 AP，其中一个种子退步。两个预锁敏感性口径保留增减方向。
 
+- [UEIKAP 采集家族预留外测](research_round_20260925_global/UEIKAP_RESERVED_HULL_PRELOCK_20261122.md)冻结 18 个来源家族、108 图上已发布船体多边形的几何对照。作者原 PNG 在取数核验，沿用 HRSID 冻结 D-FINE。
+
 - [新增误差诊断](research_round_20260925_global/DEV705_MATCHED_PAIRING_GEOMETRY_MODIFIERS_20261121.md)发现相同编辑量下本船 IoU 提升可能伴随邻船侵入。跨库真值上界显示，同一端点支持与总翻转数下，PSeg-SSDD 放开等面积后还有 +2.020 点连续 IoU 的几何空间。[PSeg-SSDD 上界](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md#same-support-geometric-ceilings) · [Schwegmann 中心船辅助复验](research_round_20260925_global/SCHWEGMANN_DFINE_FROZEN_WRITER_EVAL_20261121.md)750 张新图像均完成评价与独立复算。107 个非空中心候选均小于编辑下限，五臂逐像素一致。
 
 - [FIT109 邻船侵入同量对照](research_round_20260925_global/FIT109_NATIVE_RIVAL_OCCUPANCY_ACTUAL_20261122.md)通过预设判据，113 个近邻固定匹配上较无邻船证据的同量对照少侵入 0.262 平方像元，本船连续 IoU +0.221 点，全量 AP +0.012 点。DEV705 冻结复验仅 7 个实际暴露匹配、3 个来源组，未达覆盖要求，整体 AP 不变。
