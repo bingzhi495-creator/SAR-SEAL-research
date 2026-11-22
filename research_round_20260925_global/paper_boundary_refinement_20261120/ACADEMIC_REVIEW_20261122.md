@@ -13,4 +13,6 @@
 
 连续 IoU 的固定匹配计数已注明严格不等式适用的 HRSID RF-DETR 结果，以及包含等号的 D-FINE FIT109 和 PSeg RF-DETR 结果。COCO AP90 独立计算。[COCO 官方评价](https://cocodataset.org/dataset/detection-eval.htm)
 
+本日补充的目标域训练对照再次独立核对。新点头为 69.809 AP，相对原生 −0.885、相对冻结 HRSID 头 −0.150、相对同量动态规则 +0.695。两个视图的原六臂 156 项 COCO 数值精确复现，四项预锁推进条件均未通过。已补入正文和摘要。新代码的七项测试均通过，更新 PDF 仍为七页。[训练和评分对照](../PSEG_RFDETR_TARGET_FIT109_ACTUAL_20261122.md)
+
 从公开 GitHub 技能采用了逐句核对数值及范围、书目和语境分开核验、按最终版面查看图件等方法。以上记录来自独立的同模型家族复核，外部仓库仅作公开方法来源。[ARIS 数值审核](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/4ba94ae2a1c1fbbb14858750dd8764cabf6c28bd/skills/paper-claim-audit/SKILL.md) · [Orchestra 引用规范](https://github.com/Orchestra-Research/AI-Research-SKILLs/blob/773a52944ba4747a18bd4ae9ade53fff041adcbc/20-ml-paper-writing/ml-paper-writing/references/citation-workflow.md) · [K-Dense 科学图件](https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/skills/scientific-visualization/SKILL.md) · [OpenAI PDF 检查](https://github.com/openai/skills/blob/49f948faa9258a0c61caceaf225e179651397431/skills/.curated/pdf/SKILL.md)

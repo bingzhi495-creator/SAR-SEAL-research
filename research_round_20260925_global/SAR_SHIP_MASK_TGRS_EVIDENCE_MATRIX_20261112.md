@@ -91,3 +91,5 @@ D-FINE DEV705 的框内两像素带最多 16 次编辑，真值等量增删和�
 用于开发集复验的单一点头已按固定种子在 FIT109 重训并独立复现。1,321 个参数，93 个有监督来源、13,076 个唯一点对，200 次优化更新，每次 64 对。此次冻结部署头及归一化，后续 DEV705 修正结果见下文。 [重训协议](code/DFINE_SEG_EXTERNAL_BASELINE_FIT32_E24_20261112/e24/fit109_final_refit/PROTOCOL.md) · [实际训练](results/DFINE_E24_FIT109_FINAL_BCE_REFIT_ACTUAL_SAFE_20261112.json) · [独立复跑](results/DFINE_E24_FIT109_FINAL_BCE_REFIT_INDEPENDENT_SAFE_20261112.json)
 
 冻结点头的 DEV705 评分复算与原评分逐项一致，五组 AP 为 48.160／48.916／49.726／50.715／47.951。等量独立选点的固定连续 IoU 相对固定配对 +0.529 点，按正收益独立选点相对原样 +1.419 点。原有 3 个严格匹配保留并新增 12 个。该结果已通过历史开发集预设门槛。 [冻结复验](DFINE_E24_DEV705_FREE_ENDPOINT_20261120.md) · [投稿评议](SAR_SHIP_TGRS_SUBMISSION_REVIEW_20261120.md)
+
+目标训练 RF-DETR 的历史 DEV187 配对保留原生候选与动态交换量。一个按相同预算拟合的 PSeg FIT109 点头在 7,142 个候选上共交换 51,416 次，较动态吸引力 +0.695 AP，较 HRSID 冻结点头 −0.150 AP，较原掩膜 −0.885 AP。连续 IoU 较原掩膜 −0.470 点，配对区间 [−0.621, −0.325]。先验条件未达，停止此单种子同量配方。目标训练与 DEV 零精确 RGB 重合。结果只支持该载体与训练配置下的对照。[实测和预锁](PSEG_RFDETR_TARGET_FIT109_ACTUAL_20261122.md)
