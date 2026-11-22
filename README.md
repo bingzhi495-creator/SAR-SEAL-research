@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- 学习排序与静态吸引力的同量分侧对照已复算三套数据。HRSID 增、删侧提高真实交集 **+0.308、+0.446 点**；PSeg-SSDD 和 UEIKAP 两侧点估计下降，侧间直接区间跨零。[实测和复现](research_round_20260925_global/ATTRACTION_SIGNED_SIDES_ACTUAL_20261123.md)
+
 - UEIKAP 342 张作者图的冻结外测完成。528 艘中原生匹配 **121 艘**，120 艘、10 组有正编辑量。同量独立选点 **+0.02954 连续 IoU 点**，原判据通过。[实测及复现](research_round_20260925_global/UEIKAP_ADDITIONAL_FAMILIES_ACTUAL_20261123.md)
 
 - Instance-RSDD 同预算双侧对照已闭合。两侧独立选点相比仅改添加位置／仅改删除位置，历史高分三号 583 图分别 **+0.224／+0.199 mask AP 点**，新增父景 74 图分别 **+0.169／+0.288 点**，四个连续 IoU 区间均为正。[实测和复现](research_round_20260925_global/INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md)

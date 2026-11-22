@@ -1,0 +1,11 @@
+# Signed-side attribution of learned and classical ranking
+
+The [preregistered analysis](../../ATTRACTION_SIGNED_SIDES_PRELOCK_20261123.md) crosses frozen static attraction and learned occupancy on the addition and deletion sides. The first letter in SS, LS, SL and LL denotes the addition policy. Each policy retains the original dynamic-attraction per-candidate count. The archived dynamic mask is scored intact as a contextual comparator.
+
+Use the accepted archives identified by the pins in the workers. Keep original author annotations and predictions local. Use the same isolated CPython 3.10 runtime and geometry libraries as the original experiments. The [observer example](../RFDETR_FRACTIONAL_TIE_20261123/README.md) records the real exit and binds the result footer and SHA-256. Workers require fresh output directories.
+
+- For D-FINE, use the closed [HRSID DEV705](../../HRSID_DEV705_CLASSICAL_ATTRACTION_ACTUAL_20261122.md) and [PSeg-SSDD TEST232](../../PSEG_TEST232_CLASSICAL_ATTRACTION_ACTUAL_20261122.md) archives. Run `dfine_sides.py prepare-edits --cohort dev705|pseg232 --root DIR --code DIR --protocol FILE --manifest FILE --phase-root DIR --output DIR/prepare-edits`. The root is the private execution parent containing the closed capture and original classical comparisons. The manifest is the original accepted native roster. In the same phase root, run `score` with output `DIR/score` and `--shapely-site DIR`. For PSeg supply `--gt FILE` only in scoring. It must be the exact previously admitted author float annotation file.
+- For UEIKAP, use the seven closed stages of the [342-chip evaluation](../../UEIKAP_ADDITIONAL_FAMILIES_ACTUAL_20261123.md). Run `replay_ueikap.py --code DIR --root DIR --protocol FILE --protocol-sha256 SHA --output DIR/replay` under a `replay` observer. The root is the accepted prior UEIKAP run. Invoke `score_ueikap.py` with the same code, old root, protocol and digest, plus `--replay DIR/replay --replay-terminal FILE --output DIR/score`. Use Shapely 2.0.2 with GEOS 3.11.2.
+
+Both scorers verify the closed native and hybrid masks before using geometry. The public result includes the paired group intervals, coverage, exact replay checks, failed input bindings, and pure-arm parity. [Verified results](../../ATTRACTION_SIGNED_SIDES_ACTUAL_20261123.md)
+
