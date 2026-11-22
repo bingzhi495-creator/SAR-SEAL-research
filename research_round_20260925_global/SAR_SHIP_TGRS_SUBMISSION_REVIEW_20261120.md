@@ -1,6 +1,6 @@
 # SAR 船舶实例分割投稿评议
 
-**2026 年 11 月 22 日。论文已有外审前评阅基础。** HRSID 的证据支持明确、可复现的配对限制效应。当前建议保留这条主线，正式 TGRS 投稿优先补独立采集证据，并用同协议直接对照限定方法增量。 [当前英文稿](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [主张与证据矩阵](SAR_SHIP_MASK_TGRS_EVIDENCE_MATRIX_20261112.md) · [TGRS 作者说明](https://www.grss-ieee.org/publications/author-resources/tgrs-information-for-authors/)
+**2026 年 11 月 22 日。论文已有外审前评阅基础。** HRSID 的证据支持明确、可复现的配对限制效应。以原生实例边界、同量归因为主线，已具备专业审阅和讨论是否送审的基础。独立采集评估暴露了原生匹配覆盖不足，正式投稿的跨域主张仍需限定。 [当前英文稿](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [主张与证据矩阵](SAR_SHIP_MASK_TGRS_EVIDENCE_MATRIX_20261112.md) · [TGRS 作者说明](https://www.grss-ieee.org/publications/author-resources/tgrs-information-for-authors/)
 
 | 可写的贡献 | 当前证据 |
 | --- | --- |
@@ -10,8 +10,10 @@
 
 三个点头都在第二个检测器上复现了固定配对的影响。相对允许改变面积的普通同量写回，HRSID 官方平均 +0.324 AP，仍有一个点头退步；第二个检测器的连续 IoU 区间跨零。分数占据率相对 COCO 硬栅格有小幅优势，相对同一覆盖率的 0.50 硬化标签平均只增 0.051 AP，一个种子下降。面积和软标签的独立作用均应按这些证据陈述。 [分数标签控制](FIT109_FRACTIONAL_TARGETS_ACTUAL_20261122.md)
 
+UEIKAP 的 108 张作者原图对应 139 个已标注船体及 18 个预留 Sentinel-1 采集组。冻结 D-FINE 在原生阈值仅匹配 2 个船体（1.44%），二者固定配对预算均为零。主比较的有效覆盖为 0 艘、0 组，差值和区间均为零。两例相同动态空间吸引力预算下，学习排序的连续 IoU 平均低 0.914 点。这个实验定位了当前冻结流程的候选覆盖局限。独立学术评审认为限定至 HRSID 同头同量机制后，作者资料齐备即可尝试 TGRS 送审。项目建议优先取得独立且匹配充足的闭集证据，以提高投稿依据。 [UEIKAP 冻结实测](UEIKAP_RESERVED_HULL_ACTUAL_20261122.md)
+
 ## 投稿前最关键的补证
 
-在采集来源可核验、此前未参加开发且有足量可编辑船舶的场景上，一次冻结原生、固定配对、同量独立、自然计数和直接强对照，按采集组报告 AP、连续 IoU 和失败范围。其中 Instance-RSDD 高分三号子集值得优先核验，需取得作者的实例标注原包并核对场景身份、许可与重叠。OSSDD 的掩膜由旋转框填充，VesselBench 目前给出检测框，二者适合其定位任务。 [Instance-RSDD 论文](https://www.mdpi.com/2072-4292/15/5/1324) · [作者发布](https://github.com/XIDIAN212Lab/SRNet#the-instance-rsdd-dataset) · [OSSDD 标注协议](https://arxiv.org/html/2608.01963v1#S4.SS1) · [VesselBench](https://arxiv.org/html/2609.37003v1)
+在采集来源可核验、此前未参加开发且有足量可编辑船舶的场景上，一次冻结原生、固定配对、同量独立、自然计数和直接强对照，按采集组报告 AP、连续 IoU 和失败范围。其中 Instance-RSDD 高分三号子集值得优先核验。已定位作者的实例标注目录，获取入口需要账户登录，图像须从原始 RSDD 发行获取。入库后核对场景身份、标注覆盖、许可与重叠。OSSDD 的掩膜由旋转框填充，VesselBench 目前给出检测框，二者适合其定位任务。 [Instance-RSDD 论文](https://www.mdpi.com/2072-4292/15/5/1324) · [作者发布](https://github.com/XIDIAN212Lab/SRNet#the-instance-rsdd-dataset) · [OSSDD 标注协议](https://arxiv.org/html/2608.01963v1#S4.SS1) · [VesselBench](https://arxiv.org/html/2609.37003v1)
 
 作者、单位、通讯信息和 ORCID 保留占位。原 A/B 长训练停止结果及全部历史试验仍见证据矩阵。 [研究收尾计划](PAPER_CLOSEOUT_PLAN_20261121.md)

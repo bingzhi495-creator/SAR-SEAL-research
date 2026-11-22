@@ -1,0 +1,9 @@
+# Frozen D-FINE transfer to the reserved UEIKAP chips
+
+Use the 108 author PNGs in original reservation order after custody and decoded-image verification. Carry out the image-dependent stages without opening target labels. Read exact source PNG bytes at the native 512 by 512 grid and explicitly decode 8-bit data to RGB without interpolation or rotation.
+
+Keep the HRSID D-FINE E24 author EMA and the independent all-FIT109 BCE head and scaler. Use source capture and point-feature code already exercised on PSeg-SSDD, including the 640-square model input, author native decoding, original box NMS and scores, and first min(100, post-NMS count) ranks. Keep images and masks with no edits. Fix eligibility at 32 through 1,023 native foreground pixels, original two-pixel Chebyshev support and the original cap. There is no target training, recalibration or threshold search.
+
+Replay the original PSeg five arms. Additionally, apply the previously tested native adaptation of Atkinson spatial attraction at radius and decay scale five. The dynamic positive-attraction arm determines its own realized edit count. Static attraction and learned independent sorting replay the per-candidate dynamic count, including zero, within the identical endpoint set. All preserve the area, score and candidate identity. [Original spatial-attraction algorithm](https://doi.org/10.14358/PERS.71.7.839)
+
+Close capture and CPU replay in the original worker processes. The CPU reader checks complete native identities, probabilities and ranks. It independently reconstructs the chosen endpoint edits from the frozen head and carrier, checks byte equality and audits all realized per-candidate budgets, support, XOR counts and areas. Scoring is a separately authorized stage with its own label contract. The project reservation does not denote an official author TEST partition.
