@@ -8,7 +8,7 @@
 
 - [PSeg-SSDD 完整划分冻结跨库评分](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md)覆盖 232 图和 546 条浮点原标注。mask AP 17.974→18.319（+0.344），去除 10 张历史重复图后仍 +0.389。相同点头和逐候选编辑量下，独立选点较固定配对 +0.081 AP 点、+0.106 连续 IoU 点。同轮逐图配对中，等价取样将 CPU 精修均值由 158.8 降到 104.3 毫秒，最终掩膜与分数完全一致。同量原生概率对照出现的新增孔洞更少。
 
-- [RF-DETR 第二检测器种子](research_round_20260925_global/code/RFDETR_COMMON5203_E24_REPLICATION_20261121/README.md)已验收 24 轮、17,640 次优化器和 EMA 更新。首轮原生 DEV705 导出覆盖 705 图和 64,859 个映射候选。精修回放在一处近零像元触发严格栅格校验停止，已用原生 CUDA 算法精确复现并通过原图回归。新一轮独立回放正在执行，等待同量评分。[评分入口](research_round_20260925_global/code/RFDETR_COMMON5203_DEV705_FROZEN_20261121/README.md)
+- [RF-DETR 第二检测器种子](research_round_20260925_global/code/RFDETR_COMMON5203_E24_REPLICATION_20261121/README.md)已验收 24 轮、17,640 次优化器和 EMA 更新。首轮原生 DEV705 导出覆盖 705 图和 64,859 个映射候选。精修回放在一处近零像元触发严格栅格校验停止，已用原生 CUDA 算法精确复现并通过原图回归。修复后的全量捕获已正常结束，前 304 张与先前结果的预测和点编辑逐字节一致，两个原生输出摘要一致。独立回读及后续同量评分已接续。 [跨运行一致性](research_round_20260925_global/results/RFDETR_COMMON5203_DEV705_RECOVERY_PREFIX_SAFE_20261122.json)[评分入口](research_round_20260925_global/code/RFDETR_COMMON5203_DEV705_FROZEN_20261121/README.md)
 
 - [HRSID 官方划分冻结精修实测](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md)已完成预测独立回读及 12 条处理预测的评分。RF-DETR mask AP 54.433→55.454，三点头种子全部提升。同头同量独立选点较固定配对 +1.216 AP、+1.958 AP75；相对同量自由增删平均 +0.324 AP，其中一个种子退步。两个预锁敏感性口径保留增减方向。
 

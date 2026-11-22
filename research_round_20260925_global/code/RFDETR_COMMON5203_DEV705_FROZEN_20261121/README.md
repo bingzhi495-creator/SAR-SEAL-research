@@ -21,7 +21,7 @@ Run the examples from this directory using PowerShell and a Python 3.10.13 envir
 | `SAR_SEAL_CHECKPOINT` | Accepted 5203 E24 detector checkpoint. |
 | `SAR_SEAL_DEV705_INPUTS` | Closed DEV705 input directory supplying the original manifest and the published evaluator's audit and annotation inputs. |
 | `SAR_SEAL_PNG_ARCHIVE` | Original HRSID PNG archive. |
-| `SAR_SEAL_TREATMENT_SOURCE` | Historical frozen treatment implementation with SHA-256 `a50da3d740d9620a23c98b978b7cfaa383040f1e7542e2eb5da32ca4b0106da6`. This is a separate dependency. |
+| `SAR_SEAL_TREATMENT_SOURCE` | Historical frozen treatment implementation with SHA-256 `a50da3d740d9620a23c98b978b7cfaa383040f1e7542e2eb5da32ca4b0106da6`. Use the [exact archived treatment source](../HRSID_OFFICIAL_FROZEN_REFINEMENT_CAPTURE_READBACK_20261121/capture.py). |
 | `SAR_SEAL_FIT_RESULT`, `SAR_SEAL_FIT_ACCEPTANCE`, `SAR_SEAL_POINT_HEADS` | Closed original FIT109 point-head result, its acceptance and the directory of frozen heads/scalers. |
 | `SAR_SEAL_SHAPELY_SITE` | Optional directory for the pinned geometry installation when the interpreter cannot otherwise import it. |
 | `SAR_SEAL_CAPTURE_OUT`, `SAR_SEAL_READBACK_OUT`, `SAR_SEAL_SCORE_OUT` | New capture directory, new independent readback directory, and new score JSON file. |
@@ -65,3 +65,5 @@ Planning estimates are 1–2 hours for capture, 5–25 minutes for independent r
 The public copy resolves input locations through environment variables and uses the invoking interpreter for both capture subprocesses. The pinned historical source loader resolves its modules from the supplied release tree. Actual local paths and per-image records are written only to operator-selected output locations. The frozen capture protocol is byte-identical to the original (SHA-256 `664fa755a55e4ea732fe3c0ae04c67c16e4ad00079a70dc942d8aee1d2c22127`). Published implementation, detector, head, dataset identity and runtime checks are retained. New runs record the hashes of the portable adapters they actually execute.
 
 Nine generated CPU tests passed for the portable capture and score adapters. The stream reconstruction test uses a published synthetic point witness and checks all twelve outputs byte for byte. These tests supply evidence for the adapters; scientific results require a completed independently accepted detector capture and score.
+
+The first live refinement attempt stopped on a same-device mask parity mismatch. PyTorch dispatches CUDA bilinear interpolation to a different implementation under deterministic mode. The corrected fallback invokes the native RF-DETR interpolation path and restores both prior deterministic settings. It still checks every pixel against the frozen native mask before taking the sigmoid. On the failing real image, the corrected path reproduced the author's interpolation tensor exactly and rejected a deliberately altered native mask. The frozen protocol remains byte-identical.

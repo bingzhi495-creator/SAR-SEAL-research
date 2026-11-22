@@ -172,7 +172,15 @@ def render_with_backend(original, raw_cpu, raw_device, query_ids, ranks, log, to
         interpol = torch.nn.functional.interpolate
         cpu_mask = interpol(raw_cpu[:, q:q+1], (800, 800), mode="bilinear", align_corners=False)[0, 0] > 0
         diff = int(np.count_nonzero(cpu_mask.numpy() != stock))
-        native = interpol(raw_device[:, q:q+1], (800, 800), mode="bilinear", align_corners=False)[0, 0]
+        # RF-DETR PostProcess uses the native CUDA kernel. Deterministic mode
+        # dispatches CUDA bilinear interpolation to a different decomposition.
+        deterministic = torch.are_deterministic_algorithms_enabled()
+        warn_only = torch.is_deterministic_algorithms_warn_only_enabled()
+        try:
+            torch.use_deterministic_algorithms(False)
+            native = interpol(raw_device[:, q:q+1], (800, 800), mode="bilinear", align_corners=False)[0, 0]
+        finally:
+            torch.use_deterministic_algorithms(deterministic, warn_only=warn_only)
         need(diff > 0 and np.array_equal((native > 0).cpu().numpy(), stock),
              "Same-device strict-sign raster must reproduce every stock pixel")
         probability = native.sigmoid().cpu().numpy()
