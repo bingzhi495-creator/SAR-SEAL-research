@@ -1,0 +1,487 @@
+{
+  "ais_product_packaging": {
+    "products_direct_csv": 83,
+    "products_nested_csv": 1
+  },
+  "all_selected_sensitivity": {
+    "arm_measurements": {
+      "fixed": {
+        "ais_length_beam_mean_m": [
+          73.47222222222223,
+          16.10185185185185
+        ],
+        "groups": 18,
+        "length_beam_bias_m": [
+          88.33059322238053,
+          76.03242871354225
+        ],
+        "length_beam_mae_m": [
+          91.26766936042023,
+          76.03242871354225
+        ],
+        "length_beam_mean_m": [
+          161.80281544460271,
+          92.13428056539408
+        ],
+        "length_beam_ship_median_ae_m": [
+          75.9458481588805,
+          67.67827636429483
+        ],
+        "ships": 34
+      },
+      "free_matched_count": {
+        "ais_length_beam_mean_m": [
+          73.47222222222223,
+          16.10185185185185
+        ],
+        "groups": 18,
+        "length_beam_bias_m": [
+          88.63693906749252,
+          76.02134947697077
+        ],
+        "length_beam_mae_m": [
+          91.47200190215055,
+          76.02134947697077
+        ],
+        "length_beam_mean_m": [
+          162.1091612897147,
+          92.12320132882263
+        ],
+        "length_beam_ship_median_ae_m": [
+          75.9458481588805,
+          68.34204215356903
+        ],
+        "ships": 34
+      },
+      "free_natural": {
+        "ais_length_beam_mean_m": [
+          73.47222222222223,
+          16.10185185185185
+        ],
+        "groups": 18,
+        "length_beam_bias_m": [
+          88.67932128339034,
+          75.97915535502841
+        ],
+        "length_beam_mae_m": [
+          91.51438411804834,
+          75.97915535502841
+        ],
+        "length_beam_mean_m": [
+          162.1515435056125,
+          92.08100720688026
+        ],
+        "length_beam_ship_median_ae_m": [
+          75.9458481588805,
+          68.34204215356903
+        ],
+        "ships": 34
+      },
+      "raw": {
+        "ais_length_beam_mean_m": [
+          73.47222222222223,
+          16.10185185185185
+        ],
+        "groups": 18,
+        "length_beam_bias_m": [
+          87.95142147457189,
+          75.88143351344394
+        ],
+        "length_beam_mae_m": [
+          90.88849761261159,
+          75.88143351344394
+        ],
+        "length_beam_mean_m": [
+          161.42364369679404,
+          91.98328536529579
+        ],
+        "length_beam_ship_median_ae_m": [
+          74.28466990986873,
+          67.67827636429483
+        ],
+        "ships": 34
+      }
+    },
+    "coverage": {
+      "all_arm_measured": 34,
+      "any_arm_measurement_failure": 3,
+      "associated": 37,
+      "complete_physical_reference": 109,
+      "exactly_one_patch_row": 142,
+      "incomplete_physical_reference": 33,
+      "no_associated_native_mask": 72,
+      "selected": 142,
+      "valid_beam": 134,
+      "valid_heading": 111,
+      "valid_length": 134,
+      "valid_position": 142
+    },
+    "distinct_valid_label_counts": {
+      "declared_beam": 30,
+      "declared_length": 67,
+      "declared_length_beam": 90,
+      "reported_vessel": 137,
+      "true_heading": 91
+    },
+    "failure_by_arm": {
+      "fixed": {
+        "edge_contact": 3
+      },
+      "free_matched_count": {
+        "edge_contact": 3
+      },
+      "free_natural": {
+        "edge_contact": 3
+      },
+      "raw": {
+        "edge_contact": 3
+      }
+    },
+    "gates": {
+      "exposure": false,
+      "length_lower_positive": false,
+      "length_mean_at_least_half_m": false
+    },
+    "paired_contrasts": {
+      "fixed minus free_matched_count": {
+        "length_beam_interval_95_m": [
+          [
+            -0.5811864510723008,
+            0.11020976993955484
+          ],
+          [
+            -0.2208517236091908,
+            0.20876878360422763
+          ]
+        ],
+        "length_beam_mae_reduction_m": [
+          -0.20433254173030913,
+          0.01107923657147357
+        ],
+        "paired_groups": 18,
+        "paired_ships": 34,
+        "positive_budget_groups": 13,
+        "positive_budget_ships": 17,
+        "zero_budget_ships": 17
+      },
+      "raw minus fixed": {
+        "length_beam_interval_95_m": [
+          [
+            -0.6832190566675871,
+            -0.11773098179605768
+          ],
+          [
+            -0.3188803597966109,
+            -0.019895437989411454
+          ]
+        ],
+        "length_beam_mae_reduction_m": [
+          -0.37917174780864926,
+          -0.15099520009829467
+        ],
+        "paired_groups": 18,
+        "paired_ships": 34,
+        "positive_budget_groups": 13,
+        "positive_budget_ships": 17,
+        "zero_budget_ships": 17
+      },
+      "raw minus free_matched_count": {
+        "length_beam_interval_95_m": [
+          [
+            -1.1296585995233768,
+            -0.14077896190175443
+          ],
+          [
+            -0.3661801014489807,
+            0.06427474291333568
+          ]
+        ],
+        "length_beam_mae_reduction_m": [
+          -0.5835042895389584,
+          -0.13991596352682112
+        ],
+        "paired_groups": 18,
+        "paired_ships": 34,
+        "positive_budget_groups": 13,
+        "positive_budget_ships": 17,
+        "zero_budget_ships": 17
+      },
+      "raw minus free_natural": {
+        "length_beam_interval_95_m": [
+          [
+            -1.163095686114018,
+            -0.17818920630871912
+          ],
+          [
+            -0.3477097221757389,
+            0.14764494904120476
+          ]
+        ],
+        "length_beam_mae_reduction_m": [
+          -0.6258865054367609,
+          -0.09772184158445943
+        ],
+        "paired_groups": 18,
+        "paired_ships": 34,
+        "positive_budget_groups": 13,
+        "positive_budget_ships": 17,
+        "zero_budget_ships": 17
+      }
+    },
+    "passes_all_gates": false,
+    "selected_passes": 24
+  },
+  "arm_axes": [
+    "true_heading_length",
+    "across_heading_beam"
+  ],
+  "capture_result_sha256": "7399714af84c53cbd0ace830b81f8ddbcbbe0353d271000ccc7494f1b21aa32c",
+  "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+  "edits_sha256": "3b5a553dd33d7fdfc7f04d6d40d3f68aefee1b8b88f1997d6d7ed1a202e432d1",
+  "elapsed_seconds": 130.29069129999698,
+  "exact_decoded_duplicates": 0,
+  "full_primary_criterion": false,
+  "geometry_sha256": "4b4302c3f4eff9d4d8a6e759b62e065ab929cc9a7aeb7348268b40808ff7957c",
+  "intake_sha256": "b7794080b60b38e825dc541ea067276241348cec1ba6cf56126296f6352b332a",
+  "lock_sha256": "8782fde699b60e8ae4e2db70d2f59937d58d4279c0a7ddb6ce34db68b2ab27dc",
+  "model_forwards": 0,
+  "optimizer_updates": 0,
+  "primary_distinct_images": {
+    "arm_measurements": {
+      "fixed": {
+        "ais_length_beam_mean_m": [
+          73.47222222222223,
+          16.10185185185185
+        ],
+        "groups": 18,
+        "length_beam_bias_m": [
+          88.33059322238053,
+          76.03242871354225
+        ],
+        "length_beam_mae_m": [
+          91.26766936042023,
+          76.03242871354225
+        ],
+        "length_beam_mean_m": [
+          161.80281544460271,
+          92.13428056539408
+        ],
+        "length_beam_ship_median_ae_m": [
+          75.9458481588805,
+          67.67827636429483
+        ],
+        "ships": 34
+      },
+      "free_matched_count": {
+        "ais_length_beam_mean_m": [
+          73.47222222222223,
+          16.10185185185185
+        ],
+        "groups": 18,
+        "length_beam_bias_m": [
+          88.63693906749252,
+          76.02134947697077
+        ],
+        "length_beam_mae_m": [
+          91.47200190215055,
+          76.02134947697077
+        ],
+        "length_beam_mean_m": [
+          162.1091612897147,
+          92.12320132882263
+        ],
+        "length_beam_ship_median_ae_m": [
+          75.9458481588805,
+          68.34204215356903
+        ],
+        "ships": 34
+      },
+      "free_natural": {
+        "ais_length_beam_mean_m": [
+          73.47222222222223,
+          16.10185185185185
+        ],
+        "groups": 18,
+        "length_beam_bias_m": [
+          88.67932128339034,
+          75.97915535502841
+        ],
+        "length_beam_mae_m": [
+          91.51438411804834,
+          75.97915535502841
+        ],
+        "length_beam_mean_m": [
+          162.1515435056125,
+          92.08100720688026
+        ],
+        "length_beam_ship_median_ae_m": [
+          75.9458481588805,
+          68.34204215356903
+        ],
+        "ships": 34
+      },
+      "raw": {
+        "ais_length_beam_mean_m": [
+          73.47222222222223,
+          16.10185185185185
+        ],
+        "groups": 18,
+        "length_beam_bias_m": [
+          87.95142147457189,
+          75.88143351344394
+        ],
+        "length_beam_mae_m": [
+          90.88849761261159,
+          75.88143351344394
+        ],
+        "length_beam_mean_m": [
+          161.42364369679404,
+          91.98328536529579
+        ],
+        "length_beam_ship_median_ae_m": [
+          74.28466990986873,
+          67.67827636429483
+        ],
+        "ships": 34
+      }
+    },
+    "coverage": {
+      "all_arm_measured": 34,
+      "any_arm_measurement_failure": 3,
+      "associated": 37,
+      "complete_physical_reference": 109,
+      "exactly_one_patch_row": 142,
+      "incomplete_physical_reference": 33,
+      "no_associated_native_mask": 72,
+      "selected": 142,
+      "valid_beam": 134,
+      "valid_heading": 111,
+      "valid_length": 134,
+      "valid_position": 142
+    },
+    "distinct_valid_label_counts": {
+      "declared_beam": 30,
+      "declared_length": 67,
+      "declared_length_beam": 90,
+      "reported_vessel": 137,
+      "true_heading": 91
+    },
+    "failure_by_arm": {
+      "fixed": {
+        "edge_contact": 3
+      },
+      "free_matched_count": {
+        "edge_contact": 3
+      },
+      "free_natural": {
+        "edge_contact": 3
+      },
+      "raw": {
+        "edge_contact": 3
+      }
+    },
+    "gates": {
+      "exposure": false,
+      "length_lower_positive": false,
+      "length_mean_at_least_half_m": false
+    },
+    "paired_contrasts": {
+      "fixed minus free_matched_count": {
+        "length_beam_interval_95_m": [
+          [
+            -0.5811864510723008,
+            0.11020976993955484
+          ],
+          [
+            -0.2208517236091908,
+            0.20876878360422763
+          ]
+        ],
+        "length_beam_mae_reduction_m": [
+          -0.20433254173030913,
+          0.01107923657147357
+        ],
+        "paired_groups": 18,
+        "paired_ships": 34,
+        "positive_budget_groups": 13,
+        "positive_budget_ships": 17,
+        "zero_budget_ships": 17
+      },
+      "raw minus fixed": {
+        "length_beam_interval_95_m": [
+          [
+            -0.6832190566675871,
+            -0.11773098179605768
+          ],
+          [
+            -0.3188803597966109,
+            -0.019895437989411454
+          ]
+        ],
+        "length_beam_mae_reduction_m": [
+          -0.37917174780864926,
+          -0.15099520009829467
+        ],
+        "paired_groups": 18,
+        "paired_ships": 34,
+        "positive_budget_groups": 13,
+        "positive_budget_ships": 17,
+        "zero_budget_ships": 17
+      },
+      "raw minus free_matched_count": {
+        "length_beam_interval_95_m": [
+          [
+            -1.1296585995233768,
+            -0.14077896190175443
+          ],
+          [
+            -0.3661801014489807,
+            0.06427474291333568
+          ]
+        ],
+        "length_beam_mae_reduction_m": [
+          -0.5835042895389584,
+          -0.13991596352682112
+        ],
+        "paired_groups": 18,
+        "paired_ships": 34,
+        "positive_budget_groups": 13,
+        "positive_budget_ships": 17,
+        "zero_budget_ships": 17
+      },
+      "raw minus free_natural": {
+        "length_beam_interval_95_m": [
+          [
+            -1.163095686114018,
+            -0.17818920630871912
+          ],
+          [
+            -0.3477097221757389,
+            0.14764494904120476
+          ]
+        ],
+        "length_beam_mae_reduction_m": [
+          -0.6258865054367609,
+          -0.09772184158445943
+        ],
+        "paired_groups": 18,
+        "paired_ships": 34,
+        "positive_budget_groups": 13,
+        "positive_budget_ships": 17,
+        "zero_budget_ships": 17
+      }
+    },
+    "passes_all_gates": false,
+    "selected_passes": 24
+  },
+  "protocol_sha256": "54c4094d79ade98f06b7147608eb84c66439e722ef13f59bc0f2c8793f1231f9",
+  "replay_result_sha256": "cb7ade9ce054ab9fc429c730dd6a3607a337f3d3beb6301ef8dc095a1399a014",
+  "replay_terminal_sha256": "5886398321b59785da46cb2e641aa82c775b4ff712b6cd8cab09969050b91745",
+  "roster_selected": 142,
+  "row_join": "Unique exact original or uint8 ship-patch basename/stem inside the locked product CSV",
+  "selected_product_csv_hash_aggregate": "57c16f473a89eeb14ea8680eddce70a7372075b06aefbf4a757f1d8a0bbabdb5",
+  "source_head_sha256": "3a60f658149f4262451cd9118902bbe52dc83345d9fbcd23973a11dc473fcdf1",
+  "status": "NASTAR_AIS_PHYSICAL_SCORE_COMPLETE",
+  "units": "metres",
+  "worker_sha256": "02b912430f91a3b6f407b86a1c1601dddeb578034acf576f1601f51c7936138b"
+}

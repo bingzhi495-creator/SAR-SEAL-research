@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- NovaSAR 跨传感器的 AIS 尺寸外测完成。142 图中四种策略共同可测 34 条，17 条有正交换预算。等量独立选点的船长 MAE 减少量 −0.204 米，区间跨零，未通过预设条件。[实测](research_round_20260925_global/NASTAR_AIS_PHYSICAL_ACTUAL_20261123.md)
+
 - 74 图的单线程 CPU 精修对照测得占据率 **227.1 毫秒/图**，同量 PointRend 1,221.5，整框 PointRend 1,049.2。两轮均复现三条路径的全部候选掩膜。[实际计时](research_round_20260925_global/INSTANCE_RSDD_RESERVE_CPU_COST_ACTUAL_20261123.md)
 
 - Instance-RSDD 新增 74 图的直接对照通过，同端点同编辑量时占据率排序较冻结 PointRend **+0.477 mask AP、+0.395 连续 IoU 点**。日期分离 42 图为 +1.061 AP 和 +0.490 IoU。整框 PointRend 在本队列低 1.293 AP，在历史高分三号队列领先 0.211 AP。[实测和复现](research_round_20260925_global/INSTANCE_RSDD_RESERVE_POINTREND_ACTUAL_20261123.md)
