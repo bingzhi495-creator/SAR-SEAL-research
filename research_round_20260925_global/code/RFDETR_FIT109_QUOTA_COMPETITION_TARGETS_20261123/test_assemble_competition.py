@@ -20,6 +20,16 @@ def rle(mask):
 
 
 class SparseTest(unittest.TestCase):
+    def test_zero_annotation_id_alias_only_changes_the_identifier(self):
+        geometry = [[1.,1., 2.,1., 2.,2., 1.,2.]]
+        payload = [dict(id=0,area=1.,segmentation=geometry,iscrowd=0),
+                   dict(id=5,area=1.,segmentation=geometry,iscrowd=0)]
+        fixed = API["rekey_zero_annotation"](payload, 11)
+        self.assertEqual([row["id"] for row in fixed], [11,5])
+        self.assertEqual(fixed[0], dict(payload[0],id=11))
+        self.assertIs(fixed[1], payload[1])
+        self.assertEqual(payload[0]["id"], 0)
+
     def test_all_sparse_iou_alternatives_match_coco_binary_and_crowd(self):
         stock = np.zeros((8,8),dtype=np.uint8)
         stock[:5,:4] = 1

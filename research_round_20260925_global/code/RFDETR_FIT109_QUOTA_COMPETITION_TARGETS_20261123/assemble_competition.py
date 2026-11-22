@@ -20,7 +20,7 @@ from pycocotools.cocoeval import COCOeval
 
 
 STATUS = "RFDETR_FIT109_QUOTA_COMPETITION_TARGETS_COMPLETE"
-PROTOCOL = "ecfc612cd941ef4f276e103cd30bca223d291244ddf7d7e72b2178d82239a7ff"
+PROTOCOL = "d84f3fdba29ebe41ef64d539837031ece612928fa8c2966251ee1125d02eb897"
 ACTION_RESULT = "bec04364e1df66fe3073b9cbe6e6c3e563ffdfb9d38ee8933cba53a3c6a13111"
 ACTION_TERMINAL = "0097515808d3a73aadc23d3de15dee17001e9f2c13cf6dd50218cf8ed7ffe363"
 ACTION_SOURCE = "c3834371916148546c2dd3b842839808214798911bf04d7065cdea0221a8f4ae"
@@ -179,6 +179,14 @@ def balanced_populations(original, packets, sparse):
     return worlds, identities
 
 
+def rekey_zero_annotation(rows, unused_positive_id):
+    """COCO match arrays reserve zero for unmatched; preserve every physical label."""
+    need(sum(row["id"] == 0 for row in rows) == 1
+         and unused_positive_id > max(row["id"] for row in rows),
+         "One zero-based source annotation and one fresh positive identifier")
+    return [dict(row,id=unused_positive_id) if row["id"] == 0 else row for row in rows]
+
+
 def annotations(a, original):
     gt = document(a.fit_gt, ORIGINAL_GT,32*MIB)
     need(len(gt["images"]) == 2937 and len(gt["annotations"]) == 9260
@@ -187,9 +195,11 @@ def annotations(a, original):
     anns = [x for x in gt["annotations"] if x["image_id"] in original]
     need(len(imgs) == 109 and len(anns) == 496 and all(x["width"] == x["height"] == 800 for x in imgs)
          and len({x["id"] for x in anns}) == len(anns)
-         and all(type(x["id"]) is int and x["id"] > 0 and x["category_id"] == 1 and 0 <= x["area"] <= 640000 for x in anns),
+         and all(type(x["id"]) is int and x["id"] >= 0 and x["category_id"] == 1 and 0 <= x["area"] <= 640000 for x in anns),
          "Original 109-image matching population and author area ambiguity checks")
-    return dict(info={}, images=imgs, annotations=anns, categories=gt["categories"])
+    fresh_id = 1+max(row["id"] for row in gt["annotations"])
+    eligible = rekey_zero_annotation(anns, fresh_id)
+    return dict(info={}, images=imgs, annotations=eligible, categories=gt["categories"])
 
 
 def direct_coco(gt, outputs):
@@ -443,6 +453,7 @@ def main():
               source_feature_result_sha256=ACTION_RESULT,
               prelabel_seconds=middle-start,compilation_seconds=perf_counter()-middle,
               detector_forwards=0,optimizer_updates=0,FIT=True,DEV=False,TEST=False,FIT_GT_opened=True,
+              scorer_annotation_ids_zero_rekeyed=1,geometric_roles_from_prior_source_phase=True,
               source_only_AP=True)
     stamp=write(cfg.output/"RESULT_SAFE.json",encode(safe))
     print(json.dumps(dict(status=STATUS,result_sha256=stamp)),flush=True)
