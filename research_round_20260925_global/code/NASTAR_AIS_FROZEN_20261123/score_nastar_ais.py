@@ -11,6 +11,7 @@ from pathlib import Path
 import sys
 from time import perf_counter, sleep
 from urllib.parse import quote
+import zipfile
 import zlib
 
 import numpy as np
@@ -283,8 +284,10 @@ def closed_inputs(args):
 
 
 def load_ais(product, url, member, destination):
-    """Hash and CRC-check the selected official product CSV before matching patch names."""
-    path = destination/(product+".csv")
+    """Verify the selected official file bytes against their archive central-directory entry."""
+    filename = member.filename.rsplit("/", 1)[-1]
+    require(filename in ("AIS.csv","AIS.zip"), "Unexpected AIS resource name")
+    path = destination/(product+Path(filename).suffix)
     if path.exists():
         raw = path.read_bytes()
     else:
@@ -303,6 +306,14 @@ def load_ais(product, url, member, destination):
         with path.open("xb") as output:
             output.write(raw)
     require(len(raw) == member.file_size and zlib.crc32(raw) == member.CRC, "Private CSV cache differs from official archive")
+    if filename == "AIS.zip":
+        with zipfile.ZipFile(io.BytesIO(raw)) as bundle:
+            files = [entry for entry in bundle.infolist() if not entry.is_dir()]
+            require(len(files) == 1 and files[0].filename == "AIS.csv", "Unexpected nested AIS archive contents")
+            csv_bytes = bundle.read(files[0])
+            require(len(csv_bytes) == files[0].file_size and zlib.crc32(csv_bytes) == files[0].CRC,
+                    "Nested AIS.csv CRC or size mismatch")
+        return csv_bytes
     return raw
 
 
@@ -313,12 +324,23 @@ def selected_labels(blocks, prepare, private):
         by_product[item["product"]].append(item)
     matched = {}
     product_hashes = []
+    packaging = Counter()
     for product, items in by_product.items():
         require(prepare.PRODUCT.fullmatch(product), "Invalid locked product name")
         expected = prepare.ROOT+"Data/"+quote(product,safe="")+"/AIS.csv"
         require(all(item["ais_url"] == expected for item in items), "Official product CSV URL required")
-        member = directory[f"{prepare.ACCESSION}/Data/{product}/AIS.csv"]
-        raw = load_ais(product,expected,member,private)
+        folder = f"{prepare.ACCESSION}/Data/{product}/"
+        choices = [n for n in ("AIS.csv","AIS.zip") if folder+n in directory]
+        if not choices:
+            packaging["products_missing_official_ais"] += 1
+            for item in items:
+                matched[item["image_id"]] = (None,None)
+            continue
+        require(len(choices) == 1, "Ambiguous official AIS resource inside selected product")
+        name = choices[0]
+        packaging["products_direct_csv" if name == "AIS.csv" else "products_nested_csv"] += 1
+        member = directory[folder+name]
+        raw = load_ais(product,expected.rsplit("/",1)[0]+"/"+name,member,private)
         product_hashes.append((product,data_sha(raw)))
         lookup = defaultdict(list)
         # Author's converter resolves patch basenames with or without an extension.
@@ -341,7 +363,7 @@ def selected_labels(blocks, prepare, private):
         for item in items:
             hits = lookup[item["ais_patch_stem"]]
             matched[item["image_id"]] = (hits[0] if len(hits)==1 else None,len(hits))
-    return matched,data_sha(json.dumps(sorted(product_hashes),separators=(",",":")).encode())
+    return matched,data_sha(json.dumps(sorted(product_hashes),separators=(",",":")).encode()),dict(packaging)
 
 
 def run(args):
@@ -355,7 +377,7 @@ def run(args):
     require(not (args.output/"RESULT_SAFE.json").exists(), "Choose a fresh score directory")
     cache = args.output/"ais_private"
     cache.mkdir(exist_ok=True)
-    labels,csv_digest = selected_labels(blocks,prepare,cache)
+    labels,csv_digest,packaging = selected_labels(blocks,prepare,cache)
     rows = []
     for item,row,stock,changes in blocks:
         label,hits = labels[item["image_id"]]
@@ -363,7 +385,10 @@ def run(args):
         result = dict(pass_id=item["pass_id"],duplicate=row["duplicate_of_image_id"] is not None,counts=counts)
         rows.append(result)
         if label is None:
-            counts["ambiguous_exact_patch_rows" if hits else "no_exact_patch_row"] += 1
+            if hits is None:
+                counts["missing_official_ais_product"] += 1
+            else:
+                counts["ambiguous_exact_patch_rows" if hits else "no_exact_patch_row"] += 1
             continue
         counts["exactly_one_patch_row"] += 1
         fields,valid = clean_labels(label)
@@ -393,7 +418,7 @@ def run(args):
                 lock_sha256=receipt["lock_sha256"],intake_sha256=receipt["manifest_sha256"],
                 capture_result_sha256=receipt["capture_result_sha256"],replay_result_sha256=replay_sha,
                 replay_terminal_sha256=data_sha(args.replay_terminal.read_bytes()),edits_sha256=receipt["edits_sha256"],
-                selected_product_csv_hash_aggregate=csv_digest,geometry_sha256=GEOMETRY,
+                selected_product_csv_hash_aggregate=csv_digest,ais_product_packaging=packaging,geometry_sha256=GEOMETRY,
                 row_join="Unique exact original or uint8 ship-patch basename/stem inside the locked product CSV",
                 roster_selected=len(rows),exact_decoded_duplicates=sum(r["duplicate"] for r in rows),
                 primary_distinct_images=primary,all_selected_sensitivity=summary(rows),
