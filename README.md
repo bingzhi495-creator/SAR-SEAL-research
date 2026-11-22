@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-22）
 
+- Instance-RSDD 的同载体 PointRend 对照已完成源点头拟合和 740 图空间特征复获，原候选、原掩膜和置信度逐位一致。目标回放进行中。[协议和已完成阶段](research_round_20260925_global/INSTANCE_RSDD_POINTREND_TRANSFER_ACTUAL_20261122.md)
+
 - Instance-RSDD 完整 740 图评价闭合。583 张高分三号影像上，两次 HRSID 冻结点头分别提高 0.587、0.517 mask AP。同头同量独立选点较固定配对均约 +0.483 AP。均值 +0.552 低于预锁 1 点，按规则保留两次结果。自然独立策略相对原生的 AP90 小幅下降。[结果及源码](research_round_20260925_global/INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [标注核验](research_round_20260925_global/INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md)
 
 - UEIKAP 候选诊断发现，139 艘中 100 艘存在达标框，其中 90 艘的最佳框候选掩膜面积不足真值一半。全图八次理想等面积交换只将覆盖从 17 增到 18。按框关联后，90 个弱掩膜在 15 个组有正预算，同量独立选点的连续 IoU 差区间仍跨零。[候选上界](research_round_20260925_global/UEIKAP_RFDETR_CANDIDATE_GEOMETRY_ACTUAL_20261122.md) · [弱掩膜对照](research_round_20260925_global/UEIKAP_RFDETR_BOX_ASSOCIATION_ACTUAL_20261122.md)
