@@ -27,3 +27,4 @@ if ($LASTEXITCODE -ne 0) { throw 'Side ablation scoring failed' }
 
 The [observer example](../RFDETR_FRACTIONAL_TIE_20261123/README.md) checks the actual replay exit and output footer before admitting masks to scoring. The scorer verifies the frozen inputs and signed mask sets before opening the author labels. It reproduces the original arm metrics and reports all 13 COCO metrics, original matched geometry, group intervals, and exposure for both primary contrasts.
 
+[Verified results and run receipts](../../INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md).

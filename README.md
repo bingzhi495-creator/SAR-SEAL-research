@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- Instance-RSDD 同预算双侧对照已闭合。两侧独立选点相比仅改添加位置／仅改删除位置，历史高分三号 583 图分别 **+0.224／+0.199 mask AP 点**，新增父景 74 图分别 **+0.169／+0.288 点**，四个连续 IoU 区间均为正。[实测和复现](research_round_20260925_global/INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md)
+
 - 保留 PointRend 每候选的实际增删配额和区域外像素后，改用占据率选择位置。新增父景 74 图和历史高分三号 583 图的三种子平均分别提高 **0.662、0.144 mask AP 点**，连续 IoU 区间均为正。日期分离 42 图的连续 IoU 区间跨零。[实测和复现](research_round_20260925_global/POINTREND_SIGNED_QUOTA_SWAP_ACTUAL_20261123.md)
 
 - 外部 74 图三种子的分数监督控制完成。分数标签相对保留半格对照 **−0.030 mask AP、−0.009 连续 IoU 点**，相对原 COCO 栅格 +0.122 AP、+0.109 IoU。主对照未达预设推进条件。[完整试验](research_round_20260925_global/RFDETR_FRACTIONAL_TIE_TRANSFER_ACTUAL_20261123.md)
