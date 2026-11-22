@@ -4,7 +4,7 @@
 
 ## 当前状态（2026-11-23）
 
-- Instance-RSDD 原 740 图完成两组冻结点头的全链复现，五种口径的 **2,303 项数值最大差异 0**。DEV705 的 67,386 个原生预测也已重建并与原文件逐字节一致。[实测](research_round_20260925_global/SAR_B5_MAIN_TABLES_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/SAR_B5_MAIN_TABLES_20261123/README.md)
+- HRSID 官方 1,962 图与 Instance-RSDD 原 740 图的论文冻结主表均完成独立复现，**3,434 项数值最大差异 0**。DEV705 center5202 原生预测和编辑记录也已逐字节复现。[实测](research_round_20260925_global/SAR_B5_MAIN_TABLES_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/SAR_B5_MAIN_TABLES_20261123/README.md)
 
 - 74 图新增父景实验的干净环境复现已通过。官方数据重建、真实 HRSID 最小训练和冻结全量评分均执行成功。图像、预测与编辑记录逐字节一致，**1,470 项数值最大差异 0**。[实测](research_round_20260925_global/INSTANCE_RSDD_B5_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/INSTANCE_RSDD_B5_REPRO_20261123/README.md)
 
