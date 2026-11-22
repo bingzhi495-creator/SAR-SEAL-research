@@ -1,0 +1,76 @@
+{
+  "images": 108,
+  "labeled_hulls": 139,
+  "meaning": {
+    "area_and_crop": "Best achievable IoU when a candidate is freely redrawn within its own original box at unchanged area. Best intersection is min(A,K).",
+    "area_guard_and_up_to_eight_anywhere": "Use zero swaps outside original [32,1024) area guard, else up to eight swaps. Ignores all other policy restrictions, including rank, candidate pairing, support and confidence; reported independently within each named rank population.",
+    "area_only": "Preserve one candidate's foreground count A, freely redraw anywhere on that chip. Best intersection is min(A,G), where G is GT area. Perfect oracle, unconstrained by location.",
+    "box_and_mask": "Observed analytic-box and native-raster opportunity, independently counted by rectangle arithmetic and dense bitmap intersection per annotated hull.",
+    "crop_only": "Arbitrary binary mask inside the original integer pixel crop. Maximum IoU is K/G, K counting GT pixels in the half-open crop.",
+    "interpretation": "Post-hoc mathematical hull coverage ceilings, with ideal knowledge of each label. Ceilings are per hull and may reuse candidates. No prediction edits, training, rematching of published primary result, or realized performance claims.",
+    "up_to_eight_anywhere": "Keep area, replace up to eight foreground pixels by eight background pixels anywhere on chip. Best intersection is min(A,G,I+8) with native intersection I."
+  },
+  "primary_aggregate_sha256": "9ba3d8fc3c92d6169a9ccd693c1ca85156cb13d18dc757a6f4950bfb18770a90",
+  "scopes": {
+    "all_post_nms": {
+      "0.25": {
+        "area_and_crop": 84,
+        "area_guard_and_up_to_eight_anywhere": 64,
+        "area_only": 98,
+        "box": 116,
+        "crop_only": 135,
+        "mask": 61,
+        "up_to_eight_anywhere": 64
+      },
+      "0.5": {
+        "area_and_crop": 40,
+        "area_guard_and_up_to_eight_anywhere": 7,
+        "area_only": 57,
+        "box": 39,
+        "crop_only": 128,
+        "mask": 5,
+        "up_to_eight_anywhere": 7
+      },
+      "0.75": {
+        "area_and_crop": 21,
+        "area_guard_and_up_to_eight_anywhere": 0,
+        "area_only": 35,
+        "box": 0,
+        "crop_only": 113,
+        "mask": 0,
+        "up_to_eight_anywhere": 0
+      }
+    },
+    "top100": {
+      "0.25": {
+        "area_and_crop": 62,
+        "area_guard_and_up_to_eight_anywhere": 51,
+        "area_only": 80,
+        "box": 92,
+        "crop_only": 117,
+        "mask": 49,
+        "up_to_eight_anywhere": 51
+      },
+      "0.5": {
+        "area_and_crop": 8,
+        "area_guard_and_up_to_eight_anywhere": 4,
+        "area_only": 28,
+        "box": 21,
+        "crop_only": 73,
+        "mask": 2,
+        "up_to_eight_anywhere": 4
+      },
+      "0.75": {
+        "area_and_crop": 1,
+        "area_guard_and_up_to_eight_anywhere": 0,
+        "area_only": 15,
+        "box": 0,
+        "crop_only": 27,
+        "mask": 0,
+        "up_to_eight_anywhere": 0
+      }
+    }
+  },
+  "source_sha256": "799955e5752cecc6aa7552e3480a4e2ba4a89ec9c2490670585e03b6cc4a2f8c",
+  "status": "independent_dense_overlap_and_ceiling_complete"
+}

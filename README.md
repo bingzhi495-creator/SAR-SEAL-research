@@ -12,7 +12,9 @@
 
 - [HRSID 官方划分冻结精修实测](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md)已完成预测独立回读及 12 条处理预测的评分。RF-DETR mask AP 54.433→55.454，三点头种子全部提升。同头同量独立选点较固定配对 +1.216 AP、+1.958 AP75；相对同量自由增删平均 +0.324 AP，其中一个种子退步。两个预锁敏感性口径保留增减方向。
 
-- [UEIKAP 预留采集组正式评分](research_round_20260925_global/UEIKAP_RESERVED_HULL_ACTUAL_20261122.md)覆盖 108 张作者影像、139 个已标注船体、18 个 Sentinel-1 采集组。冻结 D-FINE 仅匹配 2 个船体，二者固定配对预算均为零，独立选点外部几何对照未达到覆盖门槛。
+- [UEIKAP 预留采集组正式评分](research_round_20260925_global/UEIKAP_RESERVED_HULL_ACTUAL_20261122.md)覆盖 108 张作者影像、139 个已标注船体、18 个 Sentinel-1 采集组。冻结 D-FINE 仅匹配 2 个船体，二者固定配对预算均为零。检查全部 30,910 个候选也只有 5 个达到 IoU 0.50，前 100 的八对等面积交换真值上限为 4 个。
+
+- [PSeg-SSDD 同编辑量经典对照](research_round_20260925_global/PSEG_TEST232_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)在 232 图上，学习排序相对动态空间吸引力为 −0.026 AP、+0.279 AP75、−0.270 连续 IoU，后者配对区间为 [−0.440, −0.098]。去除 10 张历史重复后方向一致。
 
 - [新增误差诊断](research_round_20260925_global/DEV705_MATCHED_PAIRING_GEOMETRY_MODIFIERS_20261121.md)发现相同编辑量下本船 IoU 提升可能伴随邻船侵入。跨库真值上界显示，同一端点支持与总翻转数下，PSeg-SSDD 放开等面积后还有 +2.020 点连续 IoU 的几何空间。[PSeg-SSDD 上界](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md#same-support-geometric-ceilings) · [Schwegmann 中心船辅助复验](research_round_20260925_global/SCHWEGMANN_DFINE_FROZEN_WRITER_EVAL_20261121.md)750 张新图像均完成评价与独立复算。107 个非空中心候选均小于编辑下限，五臂逐像素一致。
 
