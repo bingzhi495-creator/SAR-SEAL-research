@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- Instance-RSDD 两层完整边界的同量对照已闭合。高分三号上占据率排序较 PointRend 排序 **+0.390 mask AP、+0.223 连续 IoU 点**。扩大范围较原占据率方案仅 +0.011 AP，整框 PointRend 仍高 0.200 AP。保留原范围为主稿默认。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_EXPANDED_RANKING_ACTUAL_20261123.md)
+
 - HRSID DEV705 同排序、同量配额实测完成。完整候选 AP 监督为 **56.890 mask AP**，较原生 +0.819 点，较最强预设比值对照 −0.253 点。按预锁停止扩展这套回归。保留全部候选和几何复核。[实测与复现](research_round_20260925_global/HRSID_DEV705_QUOTA_COMPETITION_ACTUAL_20261123.md)
 
 - HRSID FIT109 已核验 109 个来源组、三种子 313,135 个可行配额动作。原匹配几何监督已保留，完整候选匹配竞争的替换计算通过合成 COCO 复算。[样本和代码](research_round_20260925_global/RFDETR_FIT109_FROZEN_QUOTA_ACTIONS_ACTUAL_20261123.md)
