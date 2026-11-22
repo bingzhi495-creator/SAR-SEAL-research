@@ -1,0 +1,29 @@
+# Source-fitted PointRend adaptation on Instance-RSDD
+
+This follow-up was specified after the frozen occupancy-head results on the retrieved Instance-RSDD release were known and before fitting, replaying or scoring this PointRend comparator. Use the same 740 author test images and 872 polygons. Gaofen-3, comprising 583 images from 76 acquisitions and a sensor not represented in HRSID training, is the primary view. Report the full release, TerraSAR-X and the existing RGB deduplication sensitivity. This follow-up on a previously evaluated release is a comparator study. [Image admission and earlier outcomes](INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md)
+
+## Source fit
+
+Reuse the frozen HRSID RF-DETR center5202 E24 checkpoint, the verified 109 HRSID FIT images and the fixed positive RoIs with valid boxes and masks from the prior source study. All 392 admissible source positives can enter the refit. Use initialization seed 5217, the original fold-0 random streams (search order seed 152170 and point-sampling seed 252170), one source group drawn uniformly and one positive RoI drawn uniformly within it per update. Do 200 AdamW updates at learning rate 0.002 and weight decay 0.01 with 196 bilinearly sampled bitmask targets per update. Sample 147 of 588 candidate points closest to the decision boundary plus 49 fresh points. Reuse the archived 256-channel RF-DETR projected spatial basis and query logits sampled at the centers of a 7 × 7 RoI. Keep the three 256-wide hidden layers, concatenate the original coarse logit after each hidden layer and output one foreground logit. Freeze the last iterate and its exact identity. Source fitting has no access to Instance-RSDD inputs. [Source adaptation and verification](RFDETR_POINTREND_FIT109_ACTUAL_20261121.md)
+
+The comparison freezes the detector and uses the same source cohort and 200 updates as the occupancy head. The PointRend adaptation and the occupancy head differ in capacity, point sampling, source target representation and learned features. The point head and subdivision follow the one-class analogue of the reference design. The frozen RF-DETR masks supply the coarse RoI and its projected mask features replace Mask R-CNN FPN features. Training uses fixed matched detections and a short source-head refit. Interpret results at that budget. [PointRend paper](https://arxiv.org/html/1912.08193v2) · [Reference code](https://github.com/facebookresearch/detectron2/tree/247691a1c292654867deb35cabb27f18d75a1363/projects/PointRend)
+
+## Replay and comparisons
+
+Recapture the FP32 spatial features with the original val576 RF-DETR pipeline and show exact parity for the archived native candidates, scores, boxes, raw masks and 43,252 eligible query planes. Keep the full original 73,226 mapped candidates with their ranks and scores. The common eligible set has original foreground area in [32,1024) and a clipped, nondegenerate detection box. All new arms use the native mask outside that set. Persist counts for each exclusion and for endpoints outside the detected boxes. Target geometry is unavailable to capture, replay and independent label-free readback.
+
+| Arm | Writeback |
+| --- | --- |
+| N | Original native mask |
+| C | Threshold and paste the frozen 7 × 7 coarse RoI probabilities |
+| P | Threshold and paste the learned 224 × 224 RoI probabilities |
+| B | Apply PointRend probability ranking to the archived native foreground and background endpoints |
+| L | Apply the frozen seed-5217 natural independent occupancy rankings on the same endpoints |
+
+C and P use bilinear probability paste with zero padding at source pixel centers and threshold at 0.5. P uses the archived subdivision grid and 784 point predictions at each of 28, 56, 112 and 224. It needs 3,136 point evaluations per valid RoI. B and L separately rank removal and addition endpoints and use exactly the seed-5217 natural edit count within each candidate. B uses the rendered probabilities from P sampled at those same native pixel centers, with the same padding convention and deterministic native-index tie resolution. B and L preserve foreground area and use the same candidate opportunity. The allowance is inherited from L and tests the ranking choice given that allowance. Boundary support and outside-box padding can also affect this comparison relative to direct occupancy evaluation.
+
+## Evaluation and decisions
+
+After the independent label-free parity, support, mask and edit-count checks, score the unmodified author polygons and area fields using the existing COCO evaluator. Use the same rekeying of annotation ID zero and the same treatment of the single non-simple polygon. For continuous IoU, use the unchanged nonignored native COCO 0.50 identities, the same valid original area-window anchors for every arm, and 4,096 paired acquisition-group bootstrap draws using PCG64(5217). Use each output mask's own area for FP and FN geometry. Record candidates edited, XOR, area change, empty edited masks, out-of-box endpoints, elapsed replay time and actual executed point count.
+
+Report mask AP, AP75, AP90, AR100 and continuous IoU for every arm. The ranking contrast is L minus B at fixed candidate edit counts. Positive GF-3 AP and a positive lower 95% continuous IoU bound support a ranking advantage within this paired recipe. Also report P minus C, P minus N, L minus N, L minus P and B minus N. P minus C measures gains from learned RoI rendering over the same coarse restriction. L minus P includes differences in writeback and permitted edit amounts. Report positive and negative results and do not use the target to choose settings or a checkpoint. A new comparator result cannot change the previously closed two-seed absolute-utility gate. One source refit measures a direct related adapted procedure under the declared comparison conditions.
