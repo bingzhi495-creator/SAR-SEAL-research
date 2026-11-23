@@ -1,0 +1,6 @@
+# Whole-RoI protocol grid correction
+
+The grid dimension in the third paragraph of the original lock is a transcription error. The earlier pinned carrier adaptation samples C at **7 × 7** regular RoI centers. It pastes that coarse result directly using the original postprocessing. P starts from the identical 7 × 7 coarse RoI and refines it to **224 × 224**, with four point-head evaluation stages of 784 predictions each and 3,136 total. Both use the same native-space paste and threshold. The 56 × 56 grid occurs inside the P subdivision sequence.
+
+The original lock calls for the earlier published rendering operator. Preserve that implementation, the original lock bytes, and all dataset, model, matching and decision rules. This clarification was fixed after detecting the source discrepancy and before rendering or scoring any of the new UEIKAP masks. The earlier label-free basis recapture did not choose or evaluate either paste path. [Original lock](UEIKAP_POINTREND_COVERAGE_PRELOCK_20261123.md) · [7 × 7 coarse sampler](code/RFDETR_POINTREND_SUBDIVISION_20261121/roi_point_head.py#L58-L66) · [Original PointRend render and paste](code/RFDETR_POINTREND_FIT109_20261121/infer_point_policies.py)
+
