@@ -1,6 +1,6 @@
 # 边界精修论文审阅稿与证据索引
 
-2026 年 11 月 23 日。IEEE 双栏英文稿面向 TGRS 学术审阅，作者信息按约定保留占位。正文沿着窄船栅格偏移、匹配预算检验、跨库结果、失效边界和复现条件展开。[英文 PDF](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图件及重建说明](paper_boundary_refinement_20261120/figures/README.md)
+2026 年 11 月 23 日。18 页 IEEE 双栏英文稿面向 TGRS 学术审阅，作者信息按约定保留占位。引言对应三个技术环节，方法包含一张总览和三张细节图。实验先交代数据、平台和指标，再按统一主表、真实案例、分侧与配额消融展开。[英文 PDF](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图件及重建说明](paper_boundary_refinement_20261120/figures/README.md)
 
 ## 主张与核验记录
 
@@ -28,6 +28,8 @@
 ## 正式投稿前的取舍
 
 12 个先锁定的 Umbra 采集窗口已完成冻结检测、原生端点精修、作者 Phoenix 整掩膜及独立复算。双参考评分器通过合成测试。两份原始轮廓回传后，依预锁口径报告等量端点主比较和整掩膜次要对照，纳入采集组覆盖。 [盲测执行](UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md) · [作者整掩膜对照](UMBRA12_PHOENIX_WHOLE_ACTUAL_20261123.md) · [评分准备](UMBRA12_DUAL_REVIEW_SCORE_READINESS_20261123.md)
+
+单独的三图智能体盲判只辅助识别模糊区域，主要定量表继续使用公开基准的作者标注，独立 Umbra 判读口径沿用原预锁。[盲判试点](UMBRA_AI_BLIND_PILOT_20261123.md)
 
 本稿已具备围绕固定预算边界决策开展专业审阅的证据。能优先保留的贡献是把编辑策略、评分和预算分开，并跨两个检测框架和两个高分三号载体得到可复核的效果。数学依据与经典分侧像素交换及后验概率排序有明确关系，技术贡献应落在任务定义、对照设计和原生栅格边界证据。分数标签单独带来稳定外部收益的证据仍弱，严格 AP90 的表示敏感性和 AIS 长度误差应保留。 [严格阈值复评](RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md) · [分数监督对照](RFDETR_FRACTIONAL_TIE_TRANSFER_ACTUAL_20261123.md) · [AIS 长度外测](GULF_AIS_GEOSCALE_ACTUAL_20261123.md)
 

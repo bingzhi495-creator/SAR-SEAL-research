@@ -14,7 +14,7 @@
 
 - Instance-RSDD 74 图的冻结 Phoenix 整掩膜对照完成。LVIS 面积规则比同量 Phoenix **−17.779 mask AP、−9.825 连续 IoU 点 [−14.014, −6.440]**，原候选外溢面积明显增加。同量 Phoenix 的 **58.976 AP** 结果保留。[实测、局限及复现](research_round_20260925_global/RSDD74_PHOENIX_WHOLEMASK_ACTUAL_20261123.md)
 
-- 英文论文按 IEEE 双栏重订为 **13 页学术审阅稿**。图件包含同预算方法图、跨数据定量效应及两个数据集的真实成败对照。正文报告总翻转量、增删配额和端点排序的独立比较。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+- 英文论文已重排为 **18 页 IEEE 双栏审阅稿**，包含 10 图、10 表。引言、相关工作和三段方法按问题对应，实验依次呈现数据与指标、定量、真实定性案例和消融。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
 - Instance-RSDD 严格阈值重评分完成。5203 高分三号 583 图同动态预算的学习减动态 AP90 由栅格 **−0.149** 变为连续 **+0.004**，表示改变量 **+0.153 [−0.195, 0.579]**。原 COCO 栅格指标保留。[实测与复现](research_round_20260925_global/RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md)
 
@@ -83,6 +83,7 @@
 - [HRSID DEV705 同量经典对照](research_round_20260925_global/HRSID_DEV705_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)在检测器训练未使用的历史开发集上，学习排序较动态空间吸引力 +2.428 mask AP、+5.353 AP75、+1.150 连续 IoU；三个推进条件通过。PSeg-SSDD 的同量比较保持原有相反几何方向。
 
 - [Umbra 独立采集盲测](research_round_20260925_global/UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md)在 12 个原生 1024² 窗口完成冻结检测、等量编辑和独立重放。[作者整掩膜 Phoenix 对照](research_round_20260925_global/UMBRA12_PHOENIX_WHOLE_ACTUAL_20261123.md)完成 718 个提示及原生读回。[双参考评分器](research_round_20260925_global/UMBRA12_DUAL_REVIEW_SCORE_READINESS_20261123.md)通过七项合成测试。精度评价等待两份独立轮廓回传。
+- [三张匿名图的智能体盲判试点](research_round_20260925_global/UMBRA_AI_BLIND_PILOT_20261123.md)产生一条候选轮廓和若干待核回波，材料保存在独立评议流程中，Umbra 精度评分继续使用预锁的原始参考。
 
 - [HRSID 官方划分原生基线实测](research_round_20260925_global/HRSID_OFFICIAL_CENTER5202_E24_NATIVE_SCORE_ACTUAL_20261121.md)覆盖 1,962 图，原生 RF-DETR 的 mask AP / AP75 / AR100 为 54.433 / 62.190 / 61.694。两套评分程序的 39 项指标逐值一致。此结果是历史参与过项目选型的官方划分上的固定原生基线。
 

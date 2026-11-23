@@ -28,3 +28,9 @@ Run `python draw_matched_budget_pipeline.py` to rebuild the method graphic. Run 
 Rebuild each figure with its adjacent Python script. Figure legibility, editable labels and embedded fonts were checked using the [scientific visualization checklist](https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/skills/scientific-visualization/SKILL.md).
 
 Run `plot_cross_dataset_phoenix_budget.py` with the two released score summaries to generate the cross-dataset plot. The PSeg case generator uses the separately authorized author images, polygons and closed prediction streams. It saves the binned publication panels and precise internal overlays in separate directories.
+# Additional method and ablation figures
+
+`method_native_occupancy.svg`, `method_signed_selection.svg` and `method_phoenix_controls.svg` show the three method stages on schematic cells. Their companion PDFs use the same editable vector artwork. Run `python draw_method_stages.py` to regenerate them.
+
+`independent_sides_ablation.svg` and its companion PDF use the observed COCO mask AP from the [same-count side intervention](../../INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md). The script `plot_independent_sides_ablation.py` reads the released aggregate at its verified digest. The date-separated view is nested. AP markers are point estimates.
+
