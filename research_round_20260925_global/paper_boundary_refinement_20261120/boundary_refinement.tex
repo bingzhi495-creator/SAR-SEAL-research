@@ -166,18 +166,20 @@ Relative to LW=S, SU gains 0.324 AP points on average, with seed effects of \(+0
 \end{figure*}
 
 \subsection{Frozen Transfer to Instance-RSDD}
-Instance-RSDD~\cite{rsdd} provides 740 test images (715 reported) and 872 instances. Our primary 583 Gaofen-3 images contain 631 polygons from 76 acquisitions. The remaining 157 images are TerraSAR-X. HRSID~\cite{hrsid}, our only training source, includes TerraSAR-X but lacks Gaofen-3.
+Instance-RSDD~\cite{rsdd} has 740 test images (715 reported) and 872 instances. Our 583 Gaofen-3 images span 631 polygons and 76 acquisitions. The other 157 are TerraSAR-X. HRSID training~\cite{hrsid} includes TerraSAR-X and lacks Gaofen-3.
 
 On Gaofen-3, natural selection gains 0.587 and 0.517 AP for seeds 5217 and 5218 (mean 0.552, below the 1-point criterion). AP75 rises by 1.438 and 1.230, and AP90 falls by 0.094 and 0.107. At fixed-pair counts, independent selection gains 0.482 and 0.483 AP, and 0.266 and 0.253 IoU (paired 95\% intervals \([0.208,0.323]\), \([0.171,0.334]\), 425 matches, 68 acquisitions with edits per seed). At attraction counts learned ranks gain 0.676 and 0.655 AP. Across all 740 images natural AP rises from 58.504 to 59.073 and 59.014.
 
-On 74 author-training chips from 13 additional parents, independent selection at fixed-pair counts gained 0.436 AP and 0.318 IoU (seed 5217, paired 95\% interval \([0.217,0.436]\)). All 47 eligible matches were edited across 12 parents (seven Gaofen-3, five TerraSAR-X). Intervals weight parents equally and resample sensor--date blocks. Excluding dates shared with the historical test left 42 chips, with gains of 0.840 AP and 0.364 IoU (\([0.250,0.478]\), 32 edited matches across eight parents). Both views met the 20-match, eight-parent minimum. Geographic independence remains unverified.
+On 74 author-training chips (13 additional parents), independent selection gained 0.436 AP and 0.318 IoU over fixed pairing at its count (seed 5217, 95\% interval \([0.217,0.436]\)). All 47 eligible matches were edited in 12 parents (seven Gaofen-3, five TerraSAR-X). Intervals resample sensor--dates with equal parent weights. Excluding shared dates left 42 chips, 32 edited matches and eight parents. Gains were 0.840 AP and 0.364 IoU (\([0.250,0.478]\)). Both views met the 20-match, eight-parent minimum. Geographic independence is unverified.
 
-With one frozen detector and each candidate's realized dynamic-attraction count, all three point-head seeds differed from both controls on 47 matches in 11 sensor--date blocks. On the 74 chips, learned ranking gained 0.468 AP and 0.431 IoU over dynamic attraction (95\% interval \([0.213,0.662]\)), and 0.203 AP and 0.301 IoU over static attraction (\([0.088,0.534]\)), but lost 0.173 AP75 against static. The 42 date-separated chips gained 0.978 and 0.478 AP, respectively, and neither sensor alone met the exposure minimum.
+At each candidate's dynamic-attraction count, three heads on one detector differed from both controls on 47 matches in 11 sensor--date blocks. Learned ranks gained 0.468 AP and 0.431 IoU over dynamic (\([0.213,0.662]\)), and 0.203 AP and 0.301 IoU over static (\([0.088,0.534]\)), losing 0.173 AP75 to static. Date-separated AP gains were 0.978 and 0.478. Neither sensor alone met the exposure minimum.
 
-At fixed head and count, independent additions and deletions together beat independent additions alone by 0.224 AP and 0.175 IoU on Gaofen-3 (two-seed means, 95\% IoU interval \([0.130,0.222]\)), and by 0.169 AP and 0.170 IoU on the 74 chips (\([0.108,0.251]\)). Over independent deletions alone, gains were 0.199 AP and 0.085 IoU (\([0.049,0.120]\)) and 0.288 AP and 0.148 IoU (\([0.042,0.252]\)), respectively. AP rose at every seed and both date-separated IoU intervals stayed positive.
+Five-pass Phoenix XL1 scores~\cite{phoenix} ranked the same native endpoints at the dynamic count, bypassing the COCO/Cityscapes 1\% area gate. On the 74 chips, this ranking scored 58.976 AP, above all three occupancy heads and 0.308 above their mean. Its 0.135 continuous IoU gain (95\% interval \([-0.026,0.277]\)) left neither ranking ahead under the joint AP--IoU criterion.
+
+At fixed head and count, freeing both sides versus additions alone gained 0.224 AP and 0.175 IoU on Gaofen-3 (two-seed means, \([0.130,0.222]\)), and 0.169 AP and 0.170 IoU on the 74 chips (\([0.108,0.251]\)). Versus deletions alone, gains were 0.199 AP and 0.085 IoU (\([0.049,0.120]\)), and 0.288 AP and 0.148 IoU (\([0.042,0.252]\)). AP rose at every seed. Both date-separated IoU intervals stayed positive.
 
 \subsection{Source-Fitted PointRend on Instance-RSDD}
-Binary PointRend used HRSID FIT109 RF-DETR features (200 updates, 196 targets/update), 3,136 point evaluations per RoI and zero padding. Both heads ranked capped or complete two-layer support inside the box at seed 5217 occupancy counts, with row-major ties. Features and supervision differed.
+Binary PointRend used HRSID FIT109 RF-DETR features, 200 updates at 196 targets/update, 3,136 evaluations/RoI and zero padding. Both heads ranked capped or complete two-layer box support at seed 5217 occupancy counts with row-major ties. Their features and supervision differed.
 
 \begin{table}[t]
 \centering
@@ -200,15 +202,15 @@ Occupancy ranks, complete & 61.631 & 73.280 & 3.041 & 79.871\\
 \end{tabular}
 \end{table}
 
-Relative to PointRend, occupancy gains 0.312 AP and 0.250 IoU on capped support (paired 95\% IoU interval \([0.163,0.338]\)), and 0.390 AP and 0.223 IoU on complete support (\([0.123,0.330]\), Table~\ref{tab:rsdd-pointrend}). Removing the cap changes these gaps by \(+0.078\) AP and \(-0.027\) IoU (\([-0.086,0.028]\)).
+Against PointRend, occupancy gains 0.312 AP and 0.250 IoU on capped support (\([0.163,0.338]\)), and 0.390 AP and 0.223 IoU on complete support (\([0.123,0.330]\), Table~\ref{tab:rsdd-pointrend}). Removing the cap changes these gaps by \(+0.078\) AP and \(-0.027\) IoU (\([-0.086,0.028]\)).
 
-Full paste exceeds complete-set occupancy by 0.200 AP, with lower AR100 (72.361 versus 74.105). Outside capped support lie 90.6\% of its differences from capped PointRend ranking. Capped paste gives 61.782 AP and 73.566 AR100 with unequal add/drop counts. On complete support, 25.2\% of PointRend deletions and 3.4\% of occupancy deletions have centers outside the RoI.
+Full paste gains 0.200 AP over complete-support occupancy but lowers AR100 (72.361 vs.\ 74.105). Outside capped support lie 90.6\% of its differences from capped PointRend ranks. Capped paste scores 61.782 AP and 73.566 AR100 at unequal counts. On complete support, 25.2\% of PointRend and 3.4\% of occupancy deletions lie outside the RoI.
 
-Restricting centers to the clipped RoI (268,302 exchanges), occupancy gains 0.379 AP and 0.224 IoU with zero padding (\([0.125,0.329]\)), and 0.345 AP and 0.223 IoU with border replication (\([0.124,0.327]\)). Changing padding alone gains 0.034 AP and 0.001 IoU (\([-0.006,0.008]\)).
+Inside the clipped RoI (268,302 exchanges), occupancy gains 0.379 AP and 0.224 IoU with zero padding (\([0.125,0.329]\)), and 0.345 AP and 0.223 IoU with border replication (\([0.124,0.327]\)). Padding accounts for 0.034 AP and 0.001 IoU (\([-0.006,0.008]\)).
 
-On the 74 chips, occupancy gained 0.477 AP and 0.395 IoU over capped PointRend at 31,391 exchanges (95\% IoU interval \([0.204,0.620]\)). Date-separated gains were 1.061 AP and 0.490 IoU (\([0.225,0.751]\)).
+At 31,391 exchanges, occupancy beat capped PointRend by 0.477 AP and 0.395 IoU on the 74 chips (\([0.204,0.620]\)). Date-separated gains were 1.061 AP and 0.490 IoU (\([0.225,0.751]\)).
 
-Keeping PointRend outside capped support, occupancy placed its exact per-instance additions and deletions, preserving area. All three seeds gained AP. On the 74 chips, mean AP rose from 57.534 to 58.196 and IoU gained 0.251 (95\% interval \([0.051,0.449]\)). On 583 historical Gaofen-3 images, AP rose from 61.831 to 61.975 and IoU gained 0.195 (\([0.109,0.281]\)). Locations differed for 44/47 matches in 12 parents and 424/425 in 68 acquisitions. After averaging seeds per match, we took 4,096 paired sensor--date draws (equal parents) or acquisition draws (equal acquisitions). Date-separated gains were 0.781 AP and 0.284 IoU (\([-0.007,0.528]\)). Standalone capped occupancy reached 58.827 AP on the 74 chips.
+With PointRend outside capped support, occupancy relocated its per-mask additions and deletions at fixed area. All seeds gained AP, from 57.534 to 58.196 on the 74 chips and 61.831 to 61.975 on Gaofen-3 (three-seed means). IoU rose 0.251 (\([0.051,0.449]\)) and 0.195 (\([0.109,0.281]\)). Locations differed on 44/47 matches in 12 parents and 424/425 in 68 acquisitions. After averaging seeds per match, 4,096 paired draws resampled sensor--dates (equal parents) or acquisitions (equal acquisitions). Date-separated gains were 0.781 AP and 0.284 IoU (\([-0.007,0.528]\)). Standalone capped occupancy scored 58.827 AP on the 74 chips.
 
 \subsection{Source-Domain Controls}
 Query features gain 0.352 AP and 0.073 IoU at fixed FIT109 counts. The IoU interval crosses zero. Zero padding and within-candidate permutation each give higher AP.
@@ -279,7 +281,7 @@ Independent selection improves AP and continuous IoU over fixed pairing at match
 OpenAI Codex assisted with drafting and revising the text from the experiment records. Fig.~\ref{fig:native-boundary} was redrawn as a vector illustration from an OpenAI-generated concept. Figures~\ref{fig:dev-cases} and~\ref{fig:official-effects} show measured data.
 
 
-\begin{thebibliography}{21}
+\begin{thebibliography}{22}
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, 2020. \href{https://doi.org/10.1109/ACCESS.2020.3005861}{10.1109/ACCESS.2020.3005861}.
 \bibitem{pointrend} A. Kirillov, Y. Wu, K. He, and R. Girshick, ``PointRend: Image segmentation as rendering,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2020, pp. 9799--9808.
 \bibitem{bpr} C. Tang, H. Chen, X. Li, J. Li, Z. Zhang, and X. Hu, ``Look closer to segment better: Boundary patch refinement for instance segmentation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021, pp. 13926--13935.
@@ -298,6 +300,7 @@ OpenAI Codex assisted with drafting and revising the text from the experiment re
 \bibitem{aranet} S. Chang, P. Lang, H. Chang, C. Zhao, J. Yang, J. Dong, and X. Fu, ``ARANet: A unified representation alignment framework for SAR ship instance segmentation,'' \emph{IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.}, vol. 19, pp. 28679--28694, 2026. \href{https://doi.org/10.1109/JSTARS.2026.3720719}{10.1109/JSTARS.2026.3720719}.
 \bibitem{rfdetr} I. Robinson, P. Robicheaux, M. Popov, D. Ramanan, and N. Peri, ``RF-DETR: Neural architecture search for real-time detection transformers,'' in \emph{Proc. Int. Conf. Learn. Represent. (ICLR)}, 2026.
 \bibitem{rsdd} X. Yang, Q. Zhang, Q. Dong, Z. Han, X. Luo, and D. Wei, ``Ship instance segmentation based on rotated bounding boxes for SAR images,'' \emph{Remote Sens.}, vol. 15, no. 5, Art. no. 1324, 2023. \href{https://doi.org/10.3390/rs15051324}{10.3390/rs15051324}.
+\bibitem{phoenix} B. Kim and S. J. Hwang, ``Learning from adversity: Semantic-aware mask refinement through adversarial perturbation,'' in \emph{Proc. Eur. Conf. Comput. Vis. (ECCV)}, 2026. \href{https://arxiv.org/abs/2607.29059}{arXiv:2607.29059}.
 \bibitem{ueikap} A. Mazzeo \emph{et al.}, ``UEIKAP dataset,'' Zenodo, ver. 1.0, 2026. \href{https://doi.org/10.5281/zenodo.18391027}{10.5281/zenodo.18391027}.
 \bibitem{schwegmann} C. P. Schwegmann, W. Kleynhans, B. P. Salmon, L. W. Mdakane, and R. G. V. Meyer, ``Very deep learning for ship discrimination in Synthetic Aperture Radar imagery,'' in \emph{Proc. IEEE Int. Geosci. Remote Sens. Symp. (IGARSS)}, 2016, pp. 104--107. \href{https://doi.org/10.1109/IGARSS.2016.7729017}{10.1109/IGARSS.2016.7729017}.
 \bibitem{nastar} B. Hosseiny, K. Kamirul, O. Pappas, and A. Achim, ``NASTaR: NovaSAR automated ship target recognition dataset,'' arXiv:2512.18503, 2025.
