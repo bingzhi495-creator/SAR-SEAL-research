@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- Instance-RSDD 74 图的三种子经典同量对照通过。相对动态规则 **+0.468 mask AP、+0.431 连续 IoU 点**，相对静态 **+0.203 AP、+0.301 IoU**。静态 AP75 高 0.173 点。42 图日期分离视图保持主指标正向。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_CLASSICAL_FAIR_MATCH_ACTUAL_20261123.md)
+
 - UEIKAP 342 图的整框覆盖对照已闭合。528 艘发布船体在掩膜 IoU 0.50 上，原生、粗渲染和冻结 PointRend 分别匹配 **121、111、30 艘**。固定框后 PointRend 较原生低 4.138 连续 IoU 点，未通过推进条件。[实测与复现](research_round_20260925_global/UEIKAP_POINTREND_COVERAGE_ACTUAL_20261123.md)
 
 - FIT109 争议位置校正完成。DEV705 同接受量下 **+0.01795 连续 IoU、+0.01575 mask AP 点**，通过源域判据。PSeg-SSDD 去重 222 图同对照区间跨零，AP 较纯静态低 0.11484 点，外域未通过。[实测与复现](research_round_20260925_global/ATTRACTION_LOCAL_CORRECTION_ACTUAL_20261123.md)
