@@ -95,7 +95,7 @@ def verify(args):
             and returned["author_commit"] == AUTHOR_REVISION and returned["weight_sha256"] == WEIGHT
             and tuple(returned[k] for k in ("workers", "threads", "seed", "batch_size", "refine_iters", "smooth_kernel"))
             == (4, 2, 5202, 2, 5, 1)
-            and returned["multimask_output"] is returned["binarize_input"] is True
+            and returned["multimask_output"] is returned["binarize_input"] is returned["binary_writer"] is True
             and returned["native_detector_forwards"] == returned["optimizer_updates"] == 0,
             "Request and author whole-mask refiner settings differ")
     request = json.loads(pin(args.run / "request" / "REQUEST_PRIVATE.json", req["request_sha256"]))
@@ -115,6 +115,8 @@ def verify(args):
     counts["signed_area_delta"] = counts["adds"] - counts["drops"]
     counts["candidate_refinement_iterations"] = 5 * counts["decoded_candidates"]
     require(counts == returned["counts"]["lvis"] and returned["counts"]["images"] == 12 and
+            all(returned["counts"][key] == value for key, value in req["counts"].items()) and
+            returned["counts"]["image_encodes"] == sum(bool(row["candidates"]) for row in images) and
             counts["decoded_candidates"] == req["counts"]["nonempty_candidates"] and
             counts["pass_through"] == req["counts"]["native_empty"] and
             counts["pass_through"] + counts["decoded_candidates"] == req["counts"]["native_candidates"],
