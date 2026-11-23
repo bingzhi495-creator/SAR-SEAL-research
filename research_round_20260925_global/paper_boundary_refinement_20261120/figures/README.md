@@ -1,10 +1,22 @@
 # Manuscript figures
 
-## Current main figures
+## November 2026 visual revision
+
+| Figure | Editable SVG | Vector PDF |
+| --- | --- | --- |
+| 1. Inference path | [SVG](matched_budget_pipeline.svg) | [PDF](matched_budget_pipeline.pdf) |
+| 2. Local occupancy and supervision | [SVG](method_native_occupancy.svg) | [PDF](method_native_occupancy.pdf) |
+| 3. Fixed versus independent selection at the same count | [SVG](method_signed_selection.svg) | [PDF](method_signed_selection.pdf) |
+| 4. Controlled Phoenix writes | [SVG](method_phoenix_controls.svg) | [PDF](method_phoenix_controls.pdf) |
+| 9. Observed SegRefiner gain and loss cases | [SVG](rsdd74_segrefiner_cases_binned.svg) | [PDF](rsdd74_segrefiner_cases_binned.pdf) |
+
+From this directory use `python draw_core_method_redesign.py --output .` for Figs. 1 and 3, and `python draw_supporting_stages_redesign.py --out .` for Figs. 2 and 4. The first script uses the worked example in `draw_matched_budget_pipeline.py`. For Fig. 9, run `python plot_rsdd_cases_redesign.py --help` to see the required released summary and closed local inputs. [Case selection](../../results/RSDD74_SEGREFINER_STOCK_CASES_SAFE_20261123.json) · [Review and rationale](../../style_review/STYLE_REDESIGN_20261123.md)
+
+
+## Other main figures
 
 | Editable file | Content and data |
 | --- | --- |
-| [Matched-budget pipeline](matched_budget_pipeline.svg) | Native mask and signed support, source-only point supervision, and fixed versus independent writers with a worked example. The geometry and scores are illustrative. |
 | [DEV705 overlap decomposition](dev705_overlap_cases.svg) | Two observed cases near the positive and negative medians. Each arm edits eight pixels per side. |
 | [Cross-cohort effects](transfer_effects.svg) | Within-head writer contrasts and learned-versus-dynamic rank contrasts. AP dots represent fits. Horizontal IoU intervals represent paired group resampling. |
 | [Gaofen-3 outcomes](gf3_matched_cases_binned.svg) | Four observed cases near the respective sign medians on 425 common eligible matches, with distinct images and eight swaps per arm. The released views pool local geometry to an eight-by-eight display grid. Values below each panel use the original continuous annotations. |
@@ -13,7 +25,7 @@
 
 The SVGs preserve text, geometry and connectors as editable vector elements. The corresponding PDFs use the same layouts for the manuscript. The method graphic was manually reconstructed as vectors from an illustrative layout concept. Its generator checks the assignment, selected slots and final areas before saving.
 
-Run `python draw_matched_budget_pipeline.py` to rebuild the method graphic. Run `python plot_transfer_effects.py` to rebuild the cross-cohort graphic from the published result summaries. The script checks each input hash and supports `--results` for a separate copy of the results directory. The Gaofen-3 script accepts the separately obtained author annotations and the closed detector 5203 replay produced by the [carrier reproduction](../../INSTANCE_RSDD_CARRIER5203_ACTUAL_20261123.md). Run `python plot_gf3_matched_cases.py --help` for its input directories. It places exact overlays in a separate private output directory. The published SVG and PDF contain pooled spatial measurements with no source imagery, full outlines or identifiers.
+Run `python plot_transfer_effects.py` to rebuild the cross-cohort graphic from the published result summaries. The script checks each input hash and supports `--results` for a separate copy of the results directory. The Gaofen-3 script accepts the separately obtained author annotations and the closed detector 5203 replay produced by the [carrier reproduction](../../INSTANCE_RSDD_CARRIER5203_ACTUAL_20261123.md). Run `python plot_gf3_matched_cases.py --help` for its input directories. It places exact overlays in a separate private output directory. The published SVG and PDF contain pooled spatial measurements with no source imagery, full outlines or identifiers.
 
 ## Supplementary and previous figures
 
@@ -30,7 +42,7 @@ Rebuild each figure with its adjacent Python script. Figure legibility, editable
 Run `plot_cross_dataset_phoenix_budget.py` with the two released score summaries to generate the cross-dataset plot. The PSeg case generator uses the separately authorized author images, polygons and closed prediction streams. It saves the binned publication panels and precise internal overlays in separate directories.
 # Additional method and ablation figures
 
-`method_native_occupancy.svg`, `method_signed_selection.svg` and `method_phoenix_controls.svg` show the three method stages on schematic cells. Their companion PDFs use the same editable vector artwork. Run `python draw_method_stages.py` to regenerate them.
+
 
 `independent_sides_ablation.svg` and its companion PDF use the observed COCO mask AP from the [same-count side intervention](../../INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md). The script `plot_independent_sides_ablation.py` reads the released aggregate at its verified digest. The date-separated view is nested. AP markers are point estimates.
 
@@ -40,4 +52,4 @@ Run `plot_cross_dataset_phoenix_budget.py` with the two released score summaries
 
 ## Stock SegRefiner-LR cases on Instance-RSDD
 
-[Editable SVG](rsdd74_segrefiner_cases_binned.svg) · [Vector PDF](rsdd74_segrefiner_cases_binned.pdf) · [Case selection and caption data](../../results/RSDD74_SEGREFINER_STOCK_CASES_SAFE_20261123.json). For 39 originally matched, gate-exposed hulls, the two separate images are closest to the respective medians of gains and losses from stock SegRefiner-LR. The public graphic pools exact mask and reference areas on an (8\times8) grid. The local review PDF overlays all three masks and the author outline on native SAR crops.
+[Editable SVG](rsdd74_segrefiner_cases_binned.svg) · [Vector PDF](rsdd74_segrefiner_cases_binned.pdf) · [Case selection and caption data](../../results/RSDD74_SEGREFINER_STOCK_CASES_SAFE_20261123.json). For 39 originally matched, gate-exposed hulls, the two separate images are closest to the respective medians of gains and losses from stock SegRefiner-LR. The public graphic pools exact mask and reference areas on an 8 × 8 grid. The local review PDF overlays all three masks and the author outline on native SAR crops.

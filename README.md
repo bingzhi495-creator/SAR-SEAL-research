@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- SegRefiner-LR 的同量删点位置对照已完成 Instance-RSDD。浅层规则较邻近迁移 +1.291 AP、+0.838 连续 IoU；较作者原版 +0.543 AP，几何区间跨零。[全部分组、区间与复现](research_round_20260925_global/SEGREFINER_DEPTH_ACTUAL_20261123.md)
+
 - SegRefiner-LR 的冻结增删分解已在 Instance-RSDD 完成。39 个受门槛覆盖的原始匹配中，删除在两个上下文中使连续 IoU 下降 4.09 点，11 个传感器日期组提供支持。[实际分解与复现](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md)
 
 - SegRefiner-LR 原版面积门槛实测。Instance-RSDD／PSeg 主队列分别有 **39／67 个固定几何匹配**达到原版 512 像素门槛，覆盖 11／57 组。全候选覆盖为 3,074／5,067 个，Instance-RSDD 的原版精修全量评分为 **56.574 AP**，原生及本地独立选点分别为 58.277 和 58.827 AP。PSeg 正在推理。[原版实测](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md)[门槛覆盖、范围和复现](research_round_20260925_global/SEGREFINER_STOCK_EXPOSURE_ACTUAL_20261123.md)
@@ -22,7 +24,7 @@
 
 - Instance-RSDD 74 图的冻结 Phoenix 整掩膜对照完成。LVIS 面积规则比同量 Phoenix **−17.779 mask AP、−9.825 连续 IoU 点 [−14.014, −6.440]**，原候选外溢面积明显增加。同量 Phoenix 的 **58.976 AP** 结果保留。[实测、局限及复现](research_round_20260925_global/RSDD74_PHOENIX_WHOLEMASK_ACTUAL_20261123.md)
 
-- 英文论文已重排为 **18 页 IEEE 双栏审阅稿**，包含 11 图、10 表。引言、相关工作和三段方法按问题对应，实验依次呈现数据与指标、定量、真实定性案例和消融。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+- 英文论文按 **52 篇原稿研读**重排为 **17 页 IEEE 双栏审阅稿**，包含 11 图、10 表。重绘总览、三张局部机制图和 SegRefiner 定性对比，重排主结果表、改写摘要及关键推导。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [逐篇评阅和改版对照](research_round_20260925_global/style_review/STYLE_REDESIGN_20261123.md) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
 - Instance-RSDD 严格阈值重评分完成。5203 高分三号 583 图同动态预算的学习减动态 AP90 由栅格 **−0.149** 变为连续 **+0.004**，表示改变量 **+0.153 [−0.195, 0.579]**。原 COCO 栅格指标保留。[实测与复现](research_round_20260925_global/RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md)
 
