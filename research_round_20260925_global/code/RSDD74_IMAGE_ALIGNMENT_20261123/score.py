@@ -54,7 +54,7 @@ SHIFTED = {head: {d: (f"phoenix/{d}" if head == "phoenix" else f"{head.split('/'
                   for d in ("minus", "plus")} for head in HEADS}
 ARMS = (*OLD, *(name for halves in SHIFTED.values() for name in halves.values()))
 OCC_ARMS = {v for h in HEADS[1:] for v in SHIFTED[h].values()}
-OCC_WORKER = "2074cedd879a0305b1cba696ea10d37200229de275ee0342c413282cf65844a8"
+OCC_WORKER = "1d022b13283ffabc6c8c824a0f862576a45576fe4b058369dec078434e62104a"
 INFER_WORKER = "2b9d2e691bd721d5d3b6889698297bdeb519005e3d0c93d20ba0bb3aa81ca72a"
 EDIT_STATUS = "RSDD74_IMAGE_ALIGNMENT_EDITS_COMPLETE"
 SCORE_STATUS = "RSDD74_IMAGE_ALIGNMENT_SCORE_COMPLETE"
