@@ -30,3 +30,9 @@ Tang 等（CVPR 2021）直接用图像和已有实例掩膜提取边界小块。
 | OSSDD（2026） | 作者 §4 从 VH 强度阈值提取候选连通域、人工剔除误检，随后由旋转框填充最终二值掩膜。此信息与项目先前对公开训练前缀的标签核验一致。 [作者论文](https://arxiv.org/html/2608.01963v1) · [官方数据](https://huggingface.co/datasets/sylviaHoch/OpenSARShip-Ship-Detection-Dataset) · [实物标签核验](results/OSSDD_TRAIN_PREFIX_LABEL_REPRESENTATION_ACTUAL_SAFE_20261110.json) | 可检验检测盒覆盖。二值字段描述旋转框，不能支撑船体边界结论。 |
 
 本次从原始论文、作者目录与公开标注字段取得资格证据，没有让任何模型读取这些候选来源来挑选研究条件。尚未核实可按采集独立分组、可直接下载的新增船体轮廓。既有 Umbra 双参考验证仍使用预锁定的采集与接收规则。
+
+### 两条已核清的补充路径
+
+HRSID 的正式发行包含 5,604 张有船体多边形的图块。项目曾用 2,937 张拟合检测器、705 张开发、1,962 张作官方划分重评，至此覆盖全部发行图块。作者另发的 ALOS-2 样例来自一幅母景，论文用框评价切出的 187 个窗口。附送的 400 张负例是背景图。作者报告全库 136 幅母景，而训练部分已有 137 个项目文件名前缀，前缀无法作为可核验的母景标识。[划分历史](HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md) · [官方划分重评](HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md) · [HRSID 作者发行](https://github.com/chaozhong2010/HRSID#dataset-download-link) · [原文 §II、§IV-F](https://doi.org/10.1109/ACCESS.2020.3005861)
+
+Umbra 官方公开目录的舰船检测前缀经五页完整枚举，共 4,573 个对象，包括 SAR 影像、相位历史与采集元数据及一个说明文本。公开目录中没有与船体实例轮廓对应的对象。冻结的 12 个窗口中，有 9 个窗口存在非空原生掩膜。可贡献的采集组上限因此为 9。两份参考各自需匹配至少 20 艘有正编辑次数的船，并达到至少 8 个采集组。实际合格数须待两份原始 JSON 接收后评分。[Umbra 官方开放数据](https://registry.opendata.aws/umbra-open-data/) · [冻结覆盖摘要](results/UMBRA12_PHOENIX_WHOLE_ACTUAL_SAFE_20261123.json) · [双参考接收与评分](code/UMBRA12_DUAL_REVIEW_SCORE_20261123/README.md)

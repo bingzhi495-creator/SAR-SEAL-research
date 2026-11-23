@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- 独立数据补查已核清 HRSID 和 Umbra 的公开参考范围。HRSID 5,604 张轮廓图均有历史使用。Umbra 的 12 个预锁窗口有 9 个存在非空原生候选，实际采集组覆盖待两份独立轮廓评分。[数据核验](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#两条已核清的补充路径)
+
 - SegRefiner-LR 的同量删点位置对照已完成 Instance-RSDD。浅层规则较邻近迁移 +1.291 AP、+0.838 连续 IoU；较作者原版 +0.543 AP，几何区间跨零。[全部分组、区间与复现](research_round_20260925_global/SEGREFINER_DEPTH_ACTUAL_20261123.md)
 
 - SegRefiner-LR 的冻结增删分解已在 Instance-RSDD 完成。39 个受门槛覆盖的原始匹配中，删除在两个上下文中使连续 IoU 下降 4.09 点，11 个传感器日期组提供支持。[实际分解与复现](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md)
