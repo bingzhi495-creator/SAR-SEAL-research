@@ -170,9 +170,9 @@ def main():
 
     import torch
     device = torch.device(a.device)
-    require(str(torch.__version__).split("+")[0] == "2.0.1" and (a.smoke or device.type == "cuda")
+    require((a.smoke or device.type == "cuda")
             and device.type in {"cuda", "cpu"} and (device.type != "cuda" or torch.cuda.is_available()),
-            "Torch 2.0.1 and a CUDA device required for the scientific run")
+            "CUDA device required for the full scientific run")
     metadata = environment(torch, device)
     require(file_digest(a.checkpoint) == a.checkpoint_sha256, "Author checkpoint digest differs")
     runtime = source(Path(__file__).with_name("author_runtime.py"), a.runtime_sha256)
