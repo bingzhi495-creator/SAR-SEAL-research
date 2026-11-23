@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- DGX Spark 已用作者权重通过 SegRefiner-LR 原版合成满批测试。32 个合格候选用时 10.70 秒，PyTorch 峰值保留 17.36 GiB。本机 PSeg 进度已到 160／232 张。[合成与真实队列的核验范围](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md#dgx-spark-原版路径资源核验合成输入)
+
 - 独立数据补查已核清 HRSID 和 Umbra 的公开参考范围。HRSID 5,604 张轮廓图均有历史使用。Umbra 的 12 个预锁窗口有 9 个存在非空原生候选，实际采集组覆盖待两份独立轮廓评分。[数据核验](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#两条已核清的补充路径)
 
 - SegRefiner-LR 的同量删点位置对照已完成 Instance-RSDD。浅层规则较邻近迁移 +1.291 AP、+0.838 连续 IoU；较作者原版 +0.543 AP，几何区间跨零。[全部分组、区间与复现](research_round_20260925_global/SEGREFINER_DEPTH_ACTUAL_20261123.md)
