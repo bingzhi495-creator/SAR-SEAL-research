@@ -19,3 +19,7 @@ SAR Ship Gulf 作者发布 18,342 张 512×512 Sentinel-1 IW GRD 图块，提供
 ## 学习型精修的直接对照候选
 
 Phoenix 官方实例精修器能输出与原图同尺寸的像素前景概率，可在冻结原生端点上作为同配额排序。作者 COCO/Cityscapes 规则跳过小于图像面积 1% 的预测，800×800 图的门槛为 6,400 像素。现有研究关注的 [32, 1024) 像素候选均在这一门槛以下。可用作者固定权重开展绕过其发布默认面积门槛的同端点适配，同时保留默认规则的实际覆盖。本地已关闭的双图 CPU 试点在 39 个实际解码候选上约 0.618 秒/候选，两图平均编码约 3.219 秒/图。74 图、4,137 个面积合格候选全部解码的线性估算约 47 分钟，实际耗时待测，完整同量对照尚未运行。[作者论文](https://arxiv.org/abs/2607.29059) · [作者面积规则](https://github.com/naver-ai/Phoenix/blob/13ee3996ef3d0292fab144316cc8e03b69c0ecfa/phoenix/eval/evaluators.py#L106) · [旧试点](results/PHOENIX_HRSID_FIT114_CPU_PILOT_ACTUAL_SAFE_20261111.json)
+
+## SAR Ship Gulf 发布文件的结构核验
+
+按作者镜像固定版本的目录字典序选取首个场景和首个 NPZ。该场景目录列出 57 个 NPZ。对首文件只读取 2,954 字节的指定范围，核验 ZIP 目录、七项标量的 CRC 和双极化 NPY 头。VV 和 VH 都是 512×512 的 float32。实际归档包含 19 项，含 AIS 船长、原景行列、采集标识和时间。样本船长为有限值且符合作者的 ≥50 米筛选，AIS 时间差在 600 秒以内，样本采集时刻在原景时间范围内。场景目录、文件名和内部标量互相吻合。未解码图像像元，未运行检测器，也未使用人工船体掩膜。提供方登记的完整文件 SHA-256 仅用于标识。此次分段核验支持该格式的实际读取，余下样本的场景、AIS 对应关系与去重仍需独立验证。[作者固定发行目录](https://huggingface.co/datasets/mshaya/sar-ship-gulf/tree/820ae84a00677d535c4db315adffb129b0d4a835/chips) · [样本场景目录](https://huggingface.co/datasets/mshaya/sar-ship-gulf/tree/820ae84a00677d535c4db315adffb129b0d4a835/chips/S1A_IW_GRDH_1SDV_20240811T001831_20240811T001856_055158_06B8DB_B6FF)
