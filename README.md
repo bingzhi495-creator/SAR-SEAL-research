@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- SegRefiner-LR 的冻结增删分解已在 Instance-RSDD 完成。39 个受门槛覆盖的原始匹配中，删除在两个上下文中使连续 IoU 下降 4.09 点，11 个传感器日期组提供支持。[实际分解与复现](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md)
+
 - SegRefiner-LR 原版面积门槛实测。Instance-RSDD／PSeg 主队列分别有 **39／67 个固定几何匹配**达到原版 512 像素门槛，覆盖 11／57 组。全候选覆盖为 3,074／5,067 个，Instance-RSDD 的原版精修全量评分为 **56.574 AP**，原生及本地独立选点分别为 58.277 和 58.827 AP。PSeg 正在推理。[原版实测](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md)[门槛覆盖、范围和复现](research_round_20260925_global/SEGREFINER_STOCK_EXPOSURE_ACTUAL_20261123.md)
 
 - 在同端点、同分、同量下加入受限重新配对。Instance-RSDD／PSeg 完整队列相对固定配对 **+0.250／+0.534 AP**，完全独立再 **+0.236／+0.197 AP**，同时保留两步正向连续几何差值。[实测与矢量图](research_round_20260925_global/PHOENIX_BOUNDED_MATCH_ACTUAL_20261123.md) · [强精修与新增数据核验](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md)
