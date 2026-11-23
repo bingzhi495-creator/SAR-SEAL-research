@@ -4,7 +4,7 @@
 
 ## 当前状态（2026-11-23）
 
-- PSeg-SSDD 历史官方 232 图完成 Phoenix 跨库复验。整图定额较阈值 **+2.525 AP、+4.001 连续 IoU [2.644, 5.382]**，仍低于原生 D-FINE **1.528 AP**。两套公开数据支持抑制超量写回的作用，实用增益随数据和候选而变。[实测、定性分析与复现](research_round_20260925_global/PSEG232_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md)
+- PSeg-SSDD 历史官方 232 图复验了两种编辑约束。整图定额较阈值 **+2.525 AP、+4.001 连续 IoU [2.644, 5.382]**。在同一窄端点、相同总翻转量下，等量增删较自由分配 **+1.842 AP、+1.151 IoU [0.701, 1.594]**。等量 Phoenix 与同量静态吸引力相差 −0.195 AP，固定几何区间跨零。[整图定额](research_round_20260925_global/PSEG232_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md) · [同增删量](research_round_20260925_global/PSEG232_PHOENIX_BALANCED_RANK_ACTUAL_20261123.md)
 
 - HRSID 源域五视图的保守排序完成。相对同样 1,209 次交换的普通平均为 **−0.333 连续 IoU 点 [−0.489, −0.149]**，147 个有差异船体、32 个来源组。按预设规则停止此排序扩展。[实测和复现](research_round_20260925_global/HRSID36_SHIFT_ROBUST_ORDER_ACTUAL_20261123.md)
 
