@@ -1,0 +1,21 @@
+# Signed decomposition of the original SegRefiner-LR binary writes
+
+## Question and scope
+
+The aggregate Instance-RSDD result motivated one question: does removing native foreground account for the geometric damage, both before and after the stock additions have been made? The component analysis is frozen before looking at any per-image component result. It is retrospective on the same author COCO SegRefiner-LR run. The PSeg masks will enter this analysis only after its original stock inference and scoring independently close and pass qualification. No new model inference, checkpoint switching, threshold change, label-conditioned edit, or refitting is permitted.
+
+Reuse the qualified native detectors, the original author area gate, the exact admitted annotation objects, and the earlier parent/date and decoded-image grouping. The Instance-RSDD complete and sensitivity views are 74 and 42 images. The PSeg-SSDD original and exact-overlap-filtered views are 232 and 222 images. Keep each original detection box, confidence, category, candidate ordinal, overflow and bypass behavior. The full-candidate metric population includes all unchanged and empty candidates, exactly as in the stock evaluator. Use author polygons only after the input lineage, four masks and signed reconstruction have been verified.
+
+## Masks and verification
+
+For each raw mask M and its stock mask S, additions are A = S minus M and removals D = M minus S. Compare four label-free arms: raw M, add-only M union S, delete-only M intersection S, and completed stock S. The two partial arms apply the full set of proposed changes of one sign. They are diagnostic controls with generally unequal edit counts, not practical methods compared at equal cost. The unedited masks under the 512-native-pixel gate remain exactly the same. Derive both arms without reference annotations. Check reconstruction of S, exact volumes of additions and removals, and comparable identity and scores across the full stream. Verify original raw and stock COCO, coverage and fixed-match geometry against their accepted score outputs.
+
+On any fixed matched hull with polygon T, record continuous overlap of A and D with T and their complement within the native canvas, all divided by the area of T. Let A_T, A_B, D_T and D_B denote the truth and background areas of added and removed pixels. The stock-minus-native FP difference is A_B minus D_B, and the FN difference is D_T minus A_T. Continuous IoU is a ratio, and COCO AP includes rematching, so report their two conditional contrasts and the descriptive interaction explicitly. Also count total added/removed pixels across every candidate and each component's changed original match coverage.
+
+## Primary contrast and reporting
+
+Primary geometry is the gate-exposed subset of the original fixed geometry anchors. The two deletion effects compare delete-only minus raw and stock minus add-only, respectively. Report both paired, acquisition-cluster 95% percentile intervals under the existing aggregation, 4,096 repetitions and PCG64 seed 5217. Negative deletion in both contexts is supported on a view if both upper interval limits are below zero and each comparison changes at least 20 geometry-matched hulls in at least eight of the original bootstrap groups. For each view report group counts, direction and failure of these criteria separately. The two original full cohorts are needed for a direction claim spanning these datasets; sensitivity views are nested.
+
+Report the same comparisons on all original fixed hull anchors and full-candidate COCO mask AP, AP75, AP90, small AP and AR100, without selecting a winning method. Also report add-only minus raw and stock minus delete-only, retained/rematched at 0.50, signed area components and descriptive interactions. An aggregate deletion contrast identifies a property of this frozen binary write sequence. It cannot identify the effect of equalizing the number or location of edits, and it does not establish a change in detector coverage or model training performance. A one-sided post-treatment analysis on only successfully matched stock hulls is excluded.
+
+The parent evaluation, native-geometry checks and source files are linked in the [stock protocol](SEGREFINER_STOCK_PRELOCK_20261123.md) and [stock transfer report](SEGREFINER_STOCK_ACTUAL_20261123.md).
