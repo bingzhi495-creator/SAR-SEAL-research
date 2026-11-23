@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- HRSID 源域五视图的保守排序完成。相对同样 1,209 次交换的普通平均为 **−0.333 连续 IoU 点 [−0.489, −0.149]**，147 个有差异船体、32 个来源组。按预设规则停止此排序扩展。[实测和复现](research_round_20260925_global/HRSID36_SHIFT_ROBUST_ORDER_ACTUAL_20261123.md)
+
 - Phoenix 可写范围 × 翻转预算四组实测完成。同一整图支持与可编辑候选下，回到定额较作者阈值 **+9.393 AP、+9.462 连续 IoU [6.329, 13.283]**，整图和窄端点同量之差则未通过全队列的几何判据。[实测和复现](research_round_20260925_global/RSDD74_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md)
 
 - Phoenix 同端点、同翻转量的面积消融闭合。严格等面积比自由增删 **+0.190 mask AP、+0.083 连续 IoU [−0.191, 0.401]**，差异覆盖达标，效用未通过。保留与整掩膜过扩张不同的解释范围。[实测和复现](research_round_20260925_global/RSDD74_PHOENIX_AREA_ABLATION_ACTUAL_20261123.md)

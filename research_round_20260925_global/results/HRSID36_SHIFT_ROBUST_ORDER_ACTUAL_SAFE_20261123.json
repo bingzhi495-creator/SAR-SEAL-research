@@ -1,0 +1,130 @@
+{
+  "AP": false,
+  "DEV": false,
+  "FIT": true,
+  "TEST": false,
+  "bootstrap_draws": 4096,
+  "bootstrap_seed": 5217,
+  "bootstrap_unit": "represented source prefix, equal hull weights",
+  "capture_result_sha256": "f3855f18529586348b4b423d180adaf8b0ebd46cd37aec5dbe7fd17c2a3fad8f",
+  "decision": "STOP_FIXED_ROBUST_RULE",
+  "differing_fixed_hulls": 147,
+  "differing_source_groups": 32,
+  "fixed_hulls": 166,
+  "historical_controls_exact": true,
+  "historical_score_sha256": "768e833dba8f37c9db86e8b8d9cafbda189a00a8c758784b0ebdfe28f6677075",
+  "images": 36,
+  "independent_readback_sha256": "f50ed715c14f00c436c73569dbf11ae66cc89df5a2cded8807452c10ab0376c5",
+  "metrics": {
+    "mean": {
+      "component_changes": 6,
+      "edit_pairs": 1209,
+      "fn": 11.843192090652842,
+      "fp": 18.05815852532072,
+      "intersection_per_truth_area_points": 88.15680790934715,
+      "intersection_px2": 240.5729384102459,
+      "iou": 75.58031986715274,
+      "neighbor_overlaps": 0,
+      "strict": 9
+    },
+    "native": {
+      "component_changes": 4,
+      "edit_pairs": 1209,
+      "fn": 12.619074610096206,
+      "fp": 18.83404104476408,
+      "intersection_per_truth_area_points": 87.3809253899038,
+      "intersection_px2": 240.03802227976135,
+      "iou": 74.52092526565083,
+      "neighbor_overlaps": 0,
+      "strict": 10
+    },
+    "robust": {
+      "component_changes": 3,
+      "edit_pairs": 1209,
+      "fn": 12.07569075561258,
+      "fp": 18.29065719028046,
+      "intersection_per_truth_area_points": 87.92430924438742,
+      "intersection_px2": 240.34805688654387,
+      "iou": 75.24692887091692,
+      "neighbor_overlaps": 0,
+      "strict": 9
+    },
+    "zero": {
+      "component_changes": 0,
+      "edit_pairs": 0,
+      "fn": 11.743685558920971,
+      "fp": 17.95865199358885,
+      "intersection_per_truth_area_points": 88.25631444107903,
+      "intersection_px2": 241.10664806549974,
+      "iou": 75.7574597274721,
+      "neighbor_overlaps": 0,
+      "strict": 12
+    }
+  },
+  "model_forward_calls": 0,
+  "optimizer_updates": 0,
+  "original_matches": 190,
+  "original_sparse_response_rows": 267782,
+  "passed": false,
+  "phase": "score",
+  "protocol_sha256": "8cd0ea42c1033871e2810a58ec1b0600b70eefecc19b15c23e1b9e9a1e7c5316",
+  "represented_source_groups": 32,
+  "request_sha256": "ccac34ef91dc1aa49873d957c3355da5f691c87b522b974e62f3ad72a226f5d0",
+  "robust_minus_mean": {
+    "fn": {
+      "interval_95": [
+        0.0968703008225127,
+        0.34571475174171407
+      ],
+      "mean": 0.23249866495973878
+    },
+    "fp": {
+      "interval_95": [
+        0.09687030082251272,
+        0.34571475174171395
+      ],
+      "mean": 0.23249866495973873
+    },
+    "intersection_per_truth_area_points": {
+      "interval_95": [
+        -0.3457147517417143,
+        -0.09687030082251236
+      ],
+      "mean": -0.23249866495973842
+    },
+    "intersection_px2": {
+      "interval_95": [
+        -0.3387663790463239,
+        -0.09605075873385466
+      ],
+      "mean": -0.2248815237020196
+    },
+    "iou": {
+      "interval_95": [
+        -0.4888038946970371,
+        -0.14932061330778332
+      ],
+      "mean": -0.3333909962358279
+    }
+  },
+  "robust_minus_unedited_iou_points": -0.510530856555178,
+  "source_fit_labels_opened": true,
+  "status": "HRSID36_SHIFT_ROBUST_ORDER_SCORE_COMPLETE",
+  "strict90_crossings_robust_vs": {
+    "mean": {
+      "gains": 0,
+      "losses": 0
+    },
+    "native": {
+      "gains": 0,
+      "losses": 1
+    },
+    "zero": {
+      "gains": 0,
+      "losses": 3
+    }
+  },
+  "target_labels_opened": false,
+  "worker_seconds": 4.331748399999924,
+  "worker_sha256": "d41ee8fbaaf1a2bf21329dbfab0f1881a5f308302fca6745781499ffea994341"
+}
