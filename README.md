@@ -82,7 +82,7 @@
 
 - [HRSID DEV705 同量经典对照](research_round_20260925_global/HRSID_DEV705_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)在检测器训练未使用的历史开发集上，学习排序较动态空间吸引力 +2.428 mask AP、+5.353 AP75、+1.150 连续 IoU；三个推进条件通过。PSeg-SSDD 的同量比较保持原有相反几何方向。
 
-- [Umbra 独立采集判读准备](research_round_20260925_global/UMBRA_PROSPECTIVE_GEC_ANNOTATION_ACTUAL_20261122.md)按预锁定名单完成 12 个采集组的原生 1024² 窗口与独立像元核验。两份匿名离线判读材料已生成，等待独立轮廓。
+- [Umbra 独立采集盲测](research_round_20260925_global/UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md)在 12 个原生 1024² 窗口上完成冻结检测和等量编辑，并通过独立重放。两份匿名离线判读材料已通过核验，主精度评价等待独立轮廓回传。
 
 - [HRSID 官方划分原生基线实测](research_round_20260925_global/HRSID_OFFICIAL_CENTER5202_E24_NATIVE_SCORE_ACTUAL_20261121.md)覆盖 1,962 图，原生 RF-DETR 的 mask AP / AP75 / AR100 为 54.433 / 62.190 / 61.694。两套评分程序的 39 项指标逐值一致。此结果是历史参与过项目选型的官方划分上的固定原生基线。
 
