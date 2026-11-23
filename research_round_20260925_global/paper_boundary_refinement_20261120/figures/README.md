@@ -8,6 +8,7 @@
 | [DEV705 overlap decomposition](dev705_overlap_cases.svg) | Two observed cases near the positive and negative medians. Each arm edits eight pixels per side. |
 | [Cross-cohort effects](transfer_effects.svg) | Within-head writer contrasts and learned-versus-dynamic rank contrasts. AP dots represent fits. Horizontal IoU intervals represent paired group resampling. |
 | [Gaofen-3 outcomes](gf3_matched_cases_binned.svg) | Four observed cases near the respective sign medians on 425 common eligible matches, with distinct images and eight swaps per arm. The released views pool local geometry to an eight-by-eight display grid. Values below each panel use the original continuous annotations. |
+| [Phoenix support and edit count](phoenix_support_budget.svg) | Observed mask AP on 74 images and fixed continuous IoU on 47 original matches, crossing narrow and whole support with threshold and exact-count rules. [Frozen scoring result](../../RSDD74_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md) |
 
 The SVGs preserve text, geometry and connectors as editable vector elements. The corresponding PDFs use the same layouts for the manuscript. The method graphic was manually reconstructed as vectors from an illustrative layout concept. Its generator checks the assignment, selected slots and final areas before saving.
 
