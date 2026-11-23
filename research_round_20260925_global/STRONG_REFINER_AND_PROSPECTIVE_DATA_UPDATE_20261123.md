@@ -19,3 +19,14 @@ Tang 等（CVPR 2021）直接用图像和已有实例掩膜提取边界小块。
 | MariSat（2026） | 1,260 张图像，作者从 OpenAerialMap 选择光学正射影像，结合 SAM 3 和 CVAT 人工校正生成实例标注。[作者论文 §2.1–2.4](https://arxiv.org/html/2608.29852v1) | 有船舶实例轮廓。影像模态不满足原生 SAR 评估条件。 |
 | SDFSD-v1.0（2024） | 846 景亚米级 SAR 影像，含 211 景 Umbra。作者在整景影像上绘制矩形矢量框，再切片。[作者论文 §2](https://www.mdpi.com/2072-4292/16/21/3952) | 能用于检测研究。现有矩形不能充当船舶轮廓真值。 |
 | Umbra Open Data | 提供港区等地点的 SAR 时间序列。官方 STAC 规范定义了采集标识和孔径中心 UTC 时刻。[官方数据入口](https://umbra.space/open-data/) · [采集元数据规范](https://docs.canopy.umbra.space/docs/collect-metadata) | 可按采集标识预先锁定整景并组织盲法描边。独立性须核对采集重叠，尤其是已使用 Umbra 数据的对照。此项是候选采样方案，尚未形成有真值的基准。 |
+
+## 补查：作者轮廓的实际可获得性（2026-11-23）
+
+| 候选来源 | 核验结果 | 判定 |
+| --- | --- | --- |
+| Sentinel-1 Test01 | 核对作者仓库提交 `b205e83d82f9868a1441118e132e900c5eccee2d` 的目录和 COCO JSON。60 张 800×800 图对应 207 条船舶记录，207 条 `segmentation` 均为空数组。切片记录也没有原始采集产品号。项目说明提及 Labelme 描边，公开文件仅能核验框。 [作者说明](https://github.com/Bighandsome-handsome/SAR-ShipDetection-Project/blob/b205e83d82f9868a1441118e132e900c5eccee2d/README.md) · [公开标注](https://github.com/Bighandsome-handsome/SAR-ShipDetection-Project/blob/b205e83d82f9868a1441118e132e900c5eccee2d/Test01/annotations/instances_val2017.json) | 不纳入船体轮廓评分。 |
+| SISS-YOLO（2025） | §3.1 描述作者从 OpenSARShip 2.0 的 24 景 Sentinel-1A 影像挑选切片，用 Labelme 绘制船舶多边形。作者可用性声明指向原始 OpenSARShip，§3.1 也明确原始切片无掩膜。暂未核实新增多边形的公开下载。原文的类别内 80／10／10 分配不能证明母景独立。 [原文及数据声明](https://www.mdpi.com/2072-4292/17/17/3118#sec3dot1-remotesensing-17-03118) | 需要原始多边形、未扩增切片键和采集产品号，才可按母景核查。 |
+| S&R-Net（2025） | §IV-A 报告在 41 景 Sentinel-1 的 11,340 个 OpenSARShip 1.0 单船切片上补充实例掩膜，2,318 个切片放入测试。Fig. 5 展示 VV/VH 双极化切片和掩膜。官方原始入口提供切片及 AIS 元数据，未核实新增掩膜公开发布、逐点描边方式或测试切片的母景分离。 [论文](https://doi.org/10.1109/JSTARS.2025.3622241) · [OpenSARShip 官方入口](https://opensar.sjtu.edu.cn/openSAR.html) | 需要原始掩膜、母景产品号、极化配对及标注说明。若仅有栅格掩膜，按像素参考报告。 |
+| OSSDD（2026） | 作者 §4 从 VH 强度阈值提取候选连通域、人工剔除误检，随后由旋转框填充最终二值掩膜。此信息与项目先前对公开训练前缀的标签核验一致。 [作者论文](https://arxiv.org/html/2608.01963v1) · [官方数据](https://huggingface.co/datasets/sylviaHoch/OpenSARShip-Ship-Detection-Dataset) · [实物标签核验](results/OSSDD_TRAIN_PREFIX_LABEL_REPRESENTATION_ACTUAL_SAFE_20261110.json) | 可检验检测盒覆盖。二值字段描述旋转框，不能支撑船体边界结论。 |
+
+本次从原始论文、作者目录与公开标注字段取得资格证据，没有让任何模型读取这些候选来源来挑选研究条件。尚未核实可按采集独立分组、可直接下载的新增船体轮廓。既有 Umbra 双参考验证仍使用预锁定的采集与接收规则。

@@ -49,6 +49,8 @@ Instance-RSDD 主队列使每个候选保持相同的增点集合与删点量。
 
 对已接纳的 Instance-RSDD 图块复核父景覆盖，作者测试覆盖 112 个原始父景，74 图补充队列覆盖其余 13 个，合计覆盖全部 125 个有实例切片的父景。作者训练集中其余 2,736 个图块来自此前测试父景。42 图日期分离再分析嵌套在 74 图，不能补充新的父景。原斜框数据论文另外两景缺少已接纳的作者船体多边形且不足八个新组。另一个相关靠泊船基准 SMART-Ship 已有论文，当前未核实官方图像和标注的联合公开入口。 [父景生成与核验](code/INSTANCE_RSDD_ACQUISITION_RESERVE_20261123/README.md) · [原数据论文](https://www.rhhz.net/cn/article/doi/10.12000/JR22007) · [SMART-Ship](https://arxiv.org/html/2508.02384v2)
 
+外部数据补查中，Test01 的 207 条公开记录均无实例轮廓，OSSDD 公开二值标签由旋转框填充。SISS-YOLO 和 S&R-Net 在原文中报告了追加的 OpenSARShip 船体标注，但其联合下载及母景对应尚未核实。[逐源核验](STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#补查作者轮廓的实际可获得性2026-11-23)
+
 12 个先锁定的 Umbra 采集窗口已完成冻结检测、原生端点精修、作者 Phoenix 整掩膜及独立复算。双参考评分器通过合成测试。两份原始轮廓回传后，依预锁口径报告等量端点主比较和整掩膜次要对照，纳入采集组覆盖。 [盲测执行](UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md) · [作者整掩膜对照](UMBRA12_PHOENIX_WHOLE_ACTUAL_20261123.md) · [评分准备](UMBRA12_DUAL_REVIEW_SCORE_READINESS_20261123.md)
 
 单独的三图智能体盲判只辅助识别模糊区域，主要定量表继续使用公开基准的作者标注，独立 Umbra 判读口径沿用原预锁。[盲判试点](UMBRA_AI_BLIND_PILOT_20261123.md)
