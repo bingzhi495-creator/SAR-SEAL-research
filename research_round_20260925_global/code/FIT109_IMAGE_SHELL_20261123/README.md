@@ -1,0 +1,11 @@
+# HRSID FIT109 image–mask correspondence
+
+The [locked protocol](../../FIT109_IMAGE_SHELL_PRELOCK_20261123.md) compares aligned gray-rank attraction, its equal-distance shell-mean control and center gray rank alone. The [original FIT109 comparison](../FIT109_CLASSICAL_ATTRACTION_20261121/README.md) supplies dynamic edit counts, static attraction, and the five source-held-out occupancy fits. The original images, annotations, prediction ledger and checkpoints stay in authorized research storage.
+
+Use the original isolated Python environment with NumPy 1.26.4, SciPy 1.15.3, PyTorch 2.10.0+cu130 and pycocotools 2.0.11. Set <code>CUDA_VISIBLE_DEVICES=-1</code>, the BLAS and OpenMP thread limits to one, and <code>SEAL_FIT109_SOURCE_ROOT</code> to the local directory used by the historical source pilot. The reference image bundle contains the accepted FIT-only roster. Geometry uses the original Shapely 2.0.2 and GEOS 3.11.2 runtime.
+
+Run <code>compare.py edits</code> with <code>--code</code> pointing to the published code root, <code>--bundle</code> to the original image bundle, <code>--protocol</code> to the prelock, its <code>--protocol-sha256</code> and a fresh <code>--output</code>. Use the [existing observer](../INSTANCE_RSDD_PHOENIX_EQUAL_COUNT_20261123/observe.py) with phase <code>edits</code>. This phase writes the complete image-only selections before the scoring process loads annotations.
+
+Run <code>compare.py score</code> with a fresh output. Add <code>--edits</code>, <code>--edits-terminal</code>, the original classical comparison's <code>--closed-result</code>, and its [accepted independent readback](../../results/FIT109_CLASSICAL_ATTRACTION_READBACK_SAFE_20261121.json) as <code>--closed-terminal</code>. Use observer phase <code>score</code>. The scorer checks that the historical plans, native scores, edit counts and classical outputs reproduce. It separately recovers the original supervised occupancy comparator using the existing five source folds. The aligned, radial and gray-only arms require no optimizer updates.
+
+<code>test_affinity.py</code> exercises the helper against independent synthetic array calculations, constant intensities, edge padding and original static ranking.
