@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- Phoenix 的同量分侧对照已闭合。只换为占据率新增位置，74 图平均 **−0.012 mask AP 点**；只换删除位置为 **−0.225 AP 点**。真实交集两个调整区间均跨零，未选用混合策略。[实测与复现](research_round_20260925_global/RSDD74_PHOENIX_SIGNED_SIDES_ACTUAL_20261123.md)
+
 - Instance-RSDD 74 图的冻结 Phoenix 同端点同量对照已闭合。Phoenix **58.976 mask AP**，较三个占据率头均值 **+0.308 AP、+0.135 连续 IoU 点**。几何区间跨零，两个方向均未通过联合判据，适用范围限于冻结端点排序。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_PHOENIX_EQUAL_COUNT_ACTUAL_20261123.md)
 
 - Instance-RSDD 74 图的三种子经典同量对照通过。相对动态规则 **+0.468 mask AP、+0.431 连续 IoU 点**，相对静态 **+0.203 AP、+0.301 IoU**。静态 AP75 高 0.173 点。42 图日期分离视图保持主指标正向。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_CLASSICAL_FAIR_MATCH_ACTUAL_20261123.md)

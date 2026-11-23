@@ -23,3 +23,9 @@ Phoenix 官方实例精修器能输出与原图同尺寸的像素前景概率，
 ## SAR Ship Gulf 发布文件的结构核验
 
 按作者镜像固定版本的目录字典序选取首个场景和首个 NPZ。该场景目录列出 57 个 NPZ。对首文件只读取 2,954 字节的指定范围，核验 ZIP 目录、七项标量的 CRC 和双极化 NPY 头。VV 和 VH 都是 512×512 的 float32。实际归档包含 19 项，含 AIS 船长、原景行列、采集标识和时间。样本船长为有限值且符合作者的 ≥50 米筛选，AIS 时间差在 600 秒以内，样本采集时刻在原景时间范围内。场景目录、文件名和内部标量互相吻合。未解码图像像元，未运行检测器，也未使用人工船体掩膜。提供方登记的完整文件 SHA-256 仅用于标识。此次分段核验支持该格式的实际读取，余下样本的场景、AIS 对应关系与去重仍需独立验证。[作者固定发行目录](https://huggingface.co/datasets/mshaya/sar-ship-gulf/tree/820ae84a00677d535c4db315adffb129b0d4a835/chips) · [样本场景目录](https://huggingface.co/datasets/mshaya/sar-ship-gulf/tree/820ae84a00677d535c4db315adffb129b0d4a835/chips/S1A_IW_GRDH_1SDV_20240811T001831_20240811T001856_055158_06B8DB_B6FF)
+
+## 分侧干预的直接先例
+
+Lu 等以分类面积配额约束亚像元的空间吸引力排序，说明按固定数量分配空间位置已有遥感先例。Chen 等对 Mask R-CNN 和 RefineMask 的前景误分、背景误分和漏分分别做真值校正并重算 AP，校正范围随各类错误数量变化。Bernhard 等在语义分割中依据误差诊断组合不同模型的分类和掩膜输出。本项目本轮干预限于冻结实例候选，在原端点和精确增删量下交叉替换两个实用排序器的添加、删除。连续交集的四组可加性用于核验像素干预，AP 四组交互用于记录重匹配后的整套候选响应。[固定配额遥感先例](https://doi.org/10.3390/rs9040360) · [实例误差校正](https://bmvc2022.mpi-inf.mpg.de/1062.pdf) · [语义分割模型组合](https://openaccess.thecvf.com/content/WACV2024/html/Bernhard_Whats_Outside_the_Intersection_Fine-Grained_Error_Analysis_for_Semantic_Segmentation_WACV_2024_paper.html) · [本轮预锁](RSDD74_PHOENIX_SIGNED_SIDES_PRELOCK_20261123.md)
+
+一个待验证的独立假设是两种排序对影像边界位置的依赖不同。在源域或事先锁定的新父景上，可仅将进入精修器的影像沿指定轴平移 ±1 像素，固定原检测掩膜、图像有效区域、端点与每侧配额，检查编辑掩膜质心的反对称响应。只依赖原掩膜的静态吸引力是零响应对照。该干预检验随影像移动的响应，独立作者轮廓验证边界准确性。此处尚未执行平移试验。
