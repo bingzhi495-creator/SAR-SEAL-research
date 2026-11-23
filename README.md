@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- PSeg-SSDD 历史官方 232 图完成 Phoenix 跨库复验。整图定额较阈值 **+2.525 AP、+4.001 连续 IoU [2.644, 5.382]**，仍低于原生 D-FINE **1.528 AP**。两套公开数据支持抑制超量写回的作用，实用增益随数据和候选而变。[实测、定性分析与复现](research_round_20260925_global/PSEG232_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md)
+
 - HRSID 源域五视图的保守排序完成。相对同样 1,209 次交换的普通平均为 **−0.333 连续 IoU 点 [−0.489, −0.149]**，147 个有差异船体、32 个来源组。按预设规则停止此排序扩展。[实测和复现](research_round_20260925_global/HRSID36_SHIFT_ROBUST_ORDER_ACTUAL_20261123.md)
 
 - Phoenix 可写范围 × 翻转预算四组实测完成。同一整图支持与可编辑候选下，回到定额较作者阈值 **+9.393 AP、+9.462 连续 IoU [6.329, 13.283]**，整图和窄端点同量之差则未通过全队列的几何判据。[实测和复现](research_round_20260925_global/RSDD74_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md)
@@ -12,7 +14,7 @@
 
 - Instance-RSDD 74 图的冻结 Phoenix 整掩膜对照完成。LVIS 面积规则比同量 Phoenix **−17.779 mask AP、−9.825 连续 IoU 点 [−14.014, −6.440]**，原候选外溢面积明显增加。同量 Phoenix 的 **58.976 AP** 结果保留。[实测、局限及复现](research_round_20260925_global/RSDD74_PHOENIX_WHOLEMASK_ACTUAL_20261123.md)
 
-- 英文论文按 IEEE 双栏重订为 **12 页学术审阅稿**。新版图件含同预算方法图、跨数据定量效应和 Gaofen-3 成败对照，正文补足强精修适配、分组区间、覆盖和复现条件。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+- 英文论文按 IEEE 双栏重订为 **13 页学术审阅稿**。新版图件含同预算方法图、跨数据定量效应和 Gaofen-3 成败对照，正文补足强精修适配、分组区间、覆盖和复现条件。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
 - Instance-RSDD 严格阈值重评分完成。5203 高分三号 583 图同动态预算的学习减动态 AP90 由栅格 **−0.149** 变为连续 **+0.004**，表示改变量 **+0.153 [−0.195, 0.579]**。原 COCO 栅格指标保留。[实测与复现](research_round_20260925_global/RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md)
 

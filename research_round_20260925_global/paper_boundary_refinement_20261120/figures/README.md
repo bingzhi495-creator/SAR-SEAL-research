@@ -8,7 +8,8 @@
 | [DEV705 overlap decomposition](dev705_overlap_cases.svg) | Two observed cases near the positive and negative medians. Each arm edits eight pixels per side. |
 | [Cross-cohort effects](transfer_effects.svg) | Within-head writer contrasts and learned-versus-dynamic rank contrasts. AP dots represent fits. Horizontal IoU intervals represent paired group resampling. |
 | [Gaofen-3 outcomes](gf3_matched_cases_binned.svg) | Four observed cases near the respective sign medians on 425 common eligible matches, with distinct images and eight swaps per arm. The released views pool local geometry to an eight-by-eight display grid. Values below each panel use the original continuous annotations. |
-| [Phoenix support and edit count](phoenix_support_budget.svg) | Observed mask AP on 74 images and fixed continuous IoU on 47 original matches, crossing narrow and whole support with threshold and exact-count rules. [Frozen scoring result](../../RSDD74_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md) |
+| [Phoenix support and edit count by dataset](phoenix_budget_by_dataset.svg) | The same four operating rules, shown for 74 Instance-RSDD images and 232 PSeg-SSDD images. Fixed geometry uses 47 and 293 original eligible matches, respectively. [Instance-RSDD scores](../../RSDD74_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md) · [PSeg-SSDD scores](../../PSEG232_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md) |
+| [PSeg-SSDD qualitative outcomes](pseg_budget_cases_binned.svg) | Actual median-sign cases showing foreground removed by thresholding and a narrow tip partially recovered only at the larger budget. The SVG has pooled spatial geometry, with exact native-area scores outside the panels. [Case selection and measured outcomes](../../PSEG232_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md) |
 
 The SVGs preserve text, geometry and connectors as editable vector elements. The corresponding PDFs use the same layouts for the manuscript. The method graphic was manually reconstructed as vectors from an illustrative layout concept. Its generator checks the assignment, selected slots and final areas before saving.
 
@@ -25,3 +26,5 @@ Run `python draw_matched_budget_pipeline.py` to rebuild the method graphic. Run 
 `hrsid_official_seed_effects.svg` and `hrsid_official_seed_effects.pdf` show the three point-head differences and arithmetic means for mask AP and AP75 on the historical HRSID official allocation. The segments span observed seed effects. [Verified official score](../../HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md)
 
 Rebuild each figure with its adjacent Python script. Figure legibility, editable labels and embedded fonts were checked using the [scientific visualization checklist](https://github.com/K-Dense-AI/scientific-agent-skills/blob/ec59a29a03d5c40f73ab40878df04860bc00e876/skills/scientific-visualization/SKILL.md).
+
+Run `plot_cross_dataset_phoenix_budget.py` with the two released score summaries to generate the cross-dataset plot. The PSeg case generator uses the separately authorized author images, polygons and closed prediction streams. It saves the binned publication panels and precise internal overlays in separate directories.
