@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- 英文论文按 IEEE 双栏重订为 **11 页学术审阅稿**。新版图件含同预算方法图、跨数据定量效应和 Gaofen-3 成败对照，正文补足强精修适配、分组区间、覆盖和复现条件。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+
 - Instance-RSDD 严格阈值重评分完成。5203 高分三号 583 图同动态预算的学习减动态 AP90 由栅格 **−0.149** 变为连续 **+0.004**，表示改变量 **+0.153 [−0.195, 0.579]**。原 COCO 栅格指标保留。[实测与复现](research_round_20260925_global/RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md)
 
 - Instance-RSDD 第二个 RF-DETR 载体 5203 已闭合。高分三号 583 图同头同量独立选点较固定配对 **+0.299 mask AP、+0.196 连续 IoU [0.136, 0.253]**。完整 740 图及已有新增父景 74／42 图通过预设判据。[各头结果和复现](research_round_20260925_global/INSTANCE_RSDD_CARRIER5203_ACTUAL_20261123.md)

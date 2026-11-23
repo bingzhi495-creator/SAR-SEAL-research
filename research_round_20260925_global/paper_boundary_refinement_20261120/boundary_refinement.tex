@@ -8,22 +8,110 @@
 \maketitle
 
 \begin{abstract}
-Small boundary displacements reduce mask overlap for narrow ships in synthetic aperture radar (SAR) images. We learn native-pixel fractional vessel occupancy from polygons. Independent endpoint selection and distance-based pairing share the predictor, candidate pixels and per-instance edit counts. Independent selection gains 0.811 mask average precision (AP) points with D-FINE and 0.906 and 0.838 with two RF-DETR fits on HRSID DEV705, and 1.216 on the historical official split. On 583 Instance-RSDD Gaofen-3 images, two frozen HRSID heads gain 0.482 and 0.483 AP over fixed pairing. On 74 images from additional parents, occupancy ranks gain 0.436 AP over fixed pairing and 0.477 AP over same-count PointRend. Placing PointRend's own additions and deletions by occupancy within the same boundary support raises whole-RoI AP by 0.662 points on the 74 images and 0.144 on Gaofen-3. Transfer is mixed on PSeg-SSDD. On 528 labeled Sentinel-1 hulls, independent selection gains 0.030 continuous IoU points over fixed pairing.
+In synthetic aperture radar (SAR) imagery, a narrow ship mask can have the correct area and still miss a substantial part of the annotated vessel. Boundary refinement commonly changes both the number and the positions of foreground pixels, making their effects difficult to distinguish. We estimate the fraction of each native image cell covered by a vessel using a compact point head trained on source polygons. For each frozen detection, we contrast distance-based pairing with independent selection of additions and removals at the same candidate pixels, predicted occupancies, and realized edit count. Independent selection improves mask average precision (AP) by 0.81--0.91 points across one D-FINE and two RF-DETR fits on 705 HRSID development images, and by 1.22 points in a historical reevaluation of the HRSID official split. On 583 Gaofen-3 images from Instance-RSDD, the equal-count gains are 0.48 and 0.30 AP points for the two RF-DETR fits. On 74 chips from additional parent scenes in the author training allocation, the gains are 0.44 and 0.31 points. A pretrained refiner obtains higher AP on those 74 chips at matched counts, and the advantage over geometric ranking does not persist across all datasets. The results quantify the cost of fixed pairing separately from the quality of the scores used to select edits.
 \end{abstract}
 \begin{IEEEkeywords}
 Synthetic aperture radar, ship instance segmentation, boundary refinement, native image grid.
 \end{IEEEkeywords}
 
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/matched_budget_pipeline.pdf}
+\caption{Native-grid boundary refinement. (a) A frozen prediction supplies the mask, box, score and decoder response. (b) Source polygons supervise a residual point head through fractional cell occupancy. (c) The two writers share the same signed endpoint sets and occupancy scores. At count \(k\), fixed pairing selects entire distance-assigned pairs, and independent selection ranks additions and removals separately. Each writer adds and removes \(k\) cells. The grid, scores and edits are schematic.}
+\label{fig:native-boundary}
+\end{figure*}
+
 \section{Introduction}
-A high-confidence SAR ship mask can include nearby clutter or omit part of the hull. On narrow vessels, a one-pixel shift can affect much of the predicted foreground.
+A one-cell transverse displacement can sharply reduce the overlap of a narrow SAR ship mask. For an ideal rectangle \(w\) cells wide, the displacement changes IoU to \((w-1)/(w+1)\) at constant area. A width of four cells gives IoU 0.60. In real images the delineated footprint may be affected by uneven returns, speckle, and nearby structures. Accurate localization therefore requires deciding where to place the boundary within an existing proposal. This differs from finding missing vessels or improving object-level feature representations \cite{gao2024,aranet,drsnet}.
 
-We first examine the geometry of D-FINE E24 predictions on DEV705, our development subset of the official HRSID~\cite{hrsid} training allocation. Expanding the detector box by two pixels makes continuous IoU 0.90 feasible in 134 additional cases among 1,329 fixed matches of small, slender targets. When the original foreground is held in place and pixels can only be added outside the original box, none of these 134 cases reaches 0.90. Box expansion alone does not correct the placement of the original boundary.
+We diagnose this distinction on 1,329 fixed matches of small, slender ships from the HRSID~\cite{hrsid} development subset. A two-pixel box expansion makes continuous IoU 0.90 feasible in 134 additional cases under an oracle. If the original foreground must be kept and additions are restricted to the expanded part of the box, none of those 134 cases reaches 0.90. The support can be wide enough while the existing mask still assigns foreground to the wrong cells. The diagnosis concerns locations in an annotated image footprint. Physical hull dimensions involve further effects of viewing geometry and annotation convention.
 
-We train a point predictor on the fractional overlap between native image cells and source polygons. At the same edit count per candidate, we compare independent pixel rankings with distance-based pair assignments. Continuous polygon overlap measures the edits that the fixed assignment prevents.
+This leads to a controlled question. Once a boundary writer has decided to add and remove \(k\) pixels each, does requiring additions and removals to follow a distance-based assignment constrain the result? We train an occupancy predictor on fractional native-cell overlap with source polygons and hold its endpoint scores fixed. The paired writer selects complete background--foreground pairs. The independent writer selects the same number of locations on each side and can combine endpoints from different pairs. Section~III shows why the latter can attain a higher \emph{estimated} intersection at the same budget. Its true intersection can still decrease when the predictor assigns a high value to a clutter cell or a low value to a weak return inside the reference outline.
+
+The study makes three contributions.
+\begin{enumerate}
+\item It links a native-grid error diagnosis to a controlled comparison of boundary-edit locations, with each proposal, score, endpoint set and realized budget held fixed.
+\item It uses source-trained fractional occupancy to implement that comparison and measures the effect against distance pairing, geometric attraction, learned rankings and a competitive unconstrained-area writer. Spatial pixel swapping and posterior ranking supply the mathematical precedents.
+\item It tracks the effect across two detection backbones, repeated RF-DETR fits and public cross-sensor cohorts. Continuous overlap, strict-threshold sensitivity and observed gains and losses explain where the effect is supported and where detector coverage or ranking dominates.
+\end{enumerate}
+
+\section{Related Work}
+Instance mask refinement can change the support, the ranking signal, or both. PointRend~\cite{pointrend} samples decoder features as a mask is subdivided. Boundary Patch Refinement~\cite{bpr} and RefineMask~\cite{refinemask} revisit local regions or propagate earlier mask predictions outside the refined band. SharpContour~\cite{sharpcontour} moves contour vertices with an instance-aware point classifier, and SegFix~\cite{segfix} relabels boundary cells from corresponding interior points. Phoenix~\cite{phoenix} learns to repair prompt masks from progressively perturbed masks. A whole-region implementation can affect pixels unavailable to a small native-grid writer. We therefore compare both whole-region outputs and within-support rankings, and separately test transplanting only the locations into the edits already made by PointRend.
+
+Atkinson~\cite{atkinson} independently ranks foreground and background subpixels for swaps that preserve class proportion within each coarse land-cover cell. Xu and Huang~\cite{xu} score subpixel pairs using spatial and temporal context. RankSEG~\cite{rankseg} studies posterior ranking and volume selection for IoU and Dice. Our comparison uses native ship masks, within-instance fractional labels and the realized edit count of the paired policy. Fixing the scoring function, candidate set and volume lets us measure the effect of the pairing restriction independently of score quality. A separate comparison holds the budget and support fixed while changing the ranker.
+
+SAR-specific segmenters address complementary failure modes. Gao et al.~\cite{gao2024} condition mask features on dynamic key points from strong scattering regions. DRSNet~\cite{drsnet} refines local features in rotated RoIs. GLDet~\cite{gldet} combines global semantic and local gradient information upstream of the detection and mask outputs. DACF-Net~\cite{dacf}, GCIE-Net~\cite{gcie}, DSR-Net~\cite{dsr}, and ARANet~\cite{aranet} improve multiscale, contextual or structural representations within the trained network. Those approaches can change which vessels are detected and how individual candidates are scored. We test a subsequent decision on frozen D-FINE-seg~\cite{dfine} and RF-DETR~\cite{rfdetr} proposals. HRSID~\cite{hrsid} and the pixel instance segmentation release of SSDD (PSeg-SSDD)~\cite{ssdd} use image-coordinate annotations whose interpretation matters for small footprints.
+
+\section{Method}
+\subsection{Candidate and Point Support}
+For each retained detection, let \(B\) be its box, \(M\) its native binary mask, \(s\) its confidence, and \(p_i\) the decoder response sampled at native index \(i\). D-FINE samples pre-crop sigmoid probabilities. RF-DETR interpolates raw logits bilinearly with half-pixel coordinates before applying the sigmoid. Neither interpolant decides whether an edit adds or removes a cell. That sign follows the actual native mask, so a threshold disagreement between \(p_i\) and \(M_i\) cannot flip the meaning of an edit.
+
+Candidate indices must lie in the half-open box and within two Chebyshev layers of the boundary. The outer band gives possible additions and the inner band possible deletions. We use masks with \(32\le |M|<1024\) and leave the others unchanged. From each side we keep the \(\min(32,n_{\rm out},n_{\rm in})\) points closest to \(p_i=0.50\), breaking ties in row-major order. The assignment for the paired control minimizes the total squared distance between these two sets. It changes no retained point. Fig.~\ref{fig:native-boundary} shows how the same scored points enter both writers.
+
+\subsection{Fractional Occupancy Predictor}
+The 14 features capture three sources of evidence. Decoder confidence and the original foreground flag describe the existing decision. Boundary depth and distance, box-relative coordinates, log mask area, fill ratio and candidate score encode instance geometry. The rendered intensity, \(3\times3\) and \(5\times5\) means and two centered finite differences describe the decoded image locally. They are derived from the supplied imagery. The method does not require calibrated radar intensity or sensor-specific metadata.
+
+Let \(C_i\) denote the native unit square and \(G\) the reference polygon for a valid original match at raster IoU 0.50. We supervise the point head with \(q_i=|C_i\cap G|/|C_i|\) using binary cross-entropy on fractional targets. Thus a cell divided by the reference contour contributes in proportion to its covered area. The network takes a duplicated standardized feature vector \(z_i\oplus z_i\), allowing direct parameter-matched comparisons to variants that substitute a partner vector for the second copy. Its two hidden layers have 24 ReLU units each. The 1,321-parameter head estimates
+\begin{equation}
+ \widehat q_i=\sigma\!\left(\operatorname{logit}(\operatorname{clip}(p_i))+
+ f_\theta(z_i\oplus z_i)\right),
+\end{equation}
+where clipping uses \([10^{-4},1-10^{-4}]\). The residual layer starts at zero, so initial predictions follow the detector response. Training group moments supply standardization. The frozen head uses 200 AdamW updates, 64 sampled pairs per update, learning rate 0.002 and weight decay 0.01. Each source group is equally likely when drawing a pair. No target polygons enter this fit, and the detector remains frozen.
+
+\subsection{Area-Preserving Edit}
+Each exchange adds one background pixel and removes one foreground pixel. Let \(P=|M|\) be the mask area, \(T\) the reference area, \(I\) their original intersection, and \(U=P+T-I\) their union. For disjoint edits with intersection change \(\Delta\), the continuous IoU change is
+\begin{equation}
+\frac{I+\Delta}{U-\Delta}-\frac{I}{U}
+=\frac{(P+T)\Delta}{U(U-\Delta)}.
+\label{eq:gain}
+\end{equation}
+At fixed \(P,T,I\), the change increases monotonically in \(\Delta\). This identity separates geometry from candidate scoring. With \(A\) and \(D\) chosen from the sampled background and foreground sets, respectively, the estimated overlap gain at count \(k\) is
+\begin{equation}
+ \sum_{a\in A}\widehat q(a)-\sum_{d\in D}\widehat q(d),
+ \qquad |A|=|D|=k.
+\end{equation}
+The objective is separable. Its maximizing choice takes the \(k\) largest background occupancies and the \(k\) smallest foreground occupancies. Every set of \(k\) assigned pairs satisfies these two cardinality constraints, so the independent optimum cannot have a lower \emph{estimated} gain than the paired optimum. This order does not extend to true overlap, because \(q_i\) and \(\widehat q_i\) can disagree, or to AP, which rematches the full detection stream at multiple thresholds.
+
+The fixed-pair writer ranks assigned pairs by \(\widehat q(a)-\widehat q(d)\) and accepts positive gains up to \(\min(8,\lfloor P/10\rfloor,n)\). It can make zero edits. The matched-count writer inherits its realized \(k\) on each candidate. The natural independent writer spends only on strictly positive margins between the two independently sorted lists, under the same cap. All balanced writes preserve candidate area and scores. They can change the component count, and cannot repair a missed detection or replace a globally underfilled proposal. The tests below separate the policy effect at matched \(k\) from the deployable natural-count comparison.
+
+\section{Experimental Protocol}
+\subsection{Data and Metrics}
+Table~\ref{tab:cohorts} separates source fitting, historical reevaluation and cross-dataset transfer. For HRSID to Instance-RSDD, PSeg-SSDD and UEIKAP, we transfer the HRSID-trained detector and point head without target fitting. The separate PSeg-trained detector experiment evaluates a source head and a target-trained head on the same PSeg carrier. UEIKAP measures coverage and agreement with released hull outlines. Those targeted annotations do not support whole-scene AP.
 
 \begin{table*}[t]
 \centering
-\caption{Frozen HRSID DEV705 evaluation. Scores and IoU are scaled by 100. Continuous IoU is source-group equal over 1,447 original valid matches. All arms use the same 70,500 candidates, ranks, scores and areas.}
+\caption{Evaluation cohorts and reference scope. The Gaofen-3 and date-separated views are nested within their respective Instance-RSDD cohorts. Source-prefix groups on HRSID are proxies for acquisition.}
+\label{tab:cohorts}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lrrp{0.43\textwidth}@{}}
+\toprule
+Cohort & Images & Outlines & Evaluation role \\
+\midrule
+HRSID DEV705 & 705 & 1,782 & Detector-held-out source development, 27 source-prefix groups with prior development exposure. \\
+HRSID official & 1,962 & 5,922 & Historical official allocation, with overlap and empty-raster checks. \\
+Instance-RSDD author test & 740 & 872 & Frozen HRSID transfer, 112 author acquisition groups. Gaofen-3 view: 583 images, 631 outlines, 76 groups. \\
+Instance-RSDD author train reserve & 74 & 81 & Frozen HRSID transfer on 13 additional parents. The date-separated view uses 42 images from eight parents. \\
+PSeg-SSDD historical official & 232 & 546 & Frozen HRSID transfer with original decimal polygons. A 222-image sensitivity excludes historical same-data overlap. \\
+UEIKAP reserve & 108 & 139 & Targeted author hulls from 18 Sentinel-1 acquisitions. \\
+UEIKAP additional acquisitions & 342 & 528 & Targeted author hulls from 13 Sentinel-1 acquisitions. \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The D-FINE E24 detector was trained on 2,937 HRSID images from the official training split. The point head was developed with five-fold source-prefix cross-fitting on FIT109 within that population, then refitted and frozen before target evaluation. DEV705 comprises 705 images with zero exact encoded or RGB-content overlap and no filename-source-prefix overlap with FIT. The filenames are proxies for acquisition groups, and DEV705 has prior development exposure.
+
+The HRSID official PNG test split contains 1,962 images and 5,922 annotations. Four annotations rasterize to empty masks. Two test images match FIT exactly and one pair within the test split is identical. Before scoring, we fixed a primary evaluation on the full set and sensitivities excluding the four empty raster annotations or the three exact-identity images. The project previously used this split for model selection. We report the frozen reevaluation as a historical comparison on the official allocation.
+
+We use standard COCO mask AP over the original candidate pool and report AP75, AP90, small-mask AP and AR100 where available. Continuous geometry holds the original nonignored raster-IoU-0.50 match fixed. It intersects the edited native-cell union with the corresponding reference polygon. Fixed-match geometry quantifies boundary repair given a detected vessel, while AP can rematch candidates and includes missed vessels. For group-paired intervals, we average eligible instances within each represented group. When fits share the same carrier and matches, we average point-head seed effects before resampling the groups. AP seed ranges describe observed fit variability. They are distinct from the paired geometry intervals.
+
+The HRSID RF-DETR fixed-match counts use continuous IoU \(>0.90\). The D-FINE source and DEV705 counts and PSeg RF-DETR counts include equality. COCO AP90 is computed independently from full-candidate raster matching. Our overlap sensitivity test retains COCO ordering, matching and area bins and replaces only the overlap matrix on common annotation support.
+
+\section{Results}
+\subsection{Effects of Pairing on HRSID}
+\begin{table*}[t]
+\centering
+\caption{D-FINE E24 on HRSID DEV705. COCO AP and recall use all 70,500 original candidates. Continuous IoU gives equal weight to source groups over 1,447 eligible valid matches of 1,652 original fixed matches. All rows retain candidate ranks, scores and foreground areas. Scores are scaled by 100.}
 \label{tab:dev}
 \begin{tabular}{lrrrrrr}
 \toprule
@@ -31,58 +119,13 @@ Mask policy & AP & AP75 & AP90 & Small AP & AR100 & Continuous IoU\\
 \midrule
 Raw D-FINE E24 & 48.160 & 51.507 & 0.145 & 47.196 & 54.018 & 75.798\\
 Same head, fixed pairing & 48.916 & 53.453 & 0.146 & 48.017 & 54.792 & 76.258\\
-Independent selection, fixed-policy count & 49.726 & 55.285 & 0.200 & 48.923 & 55.617 & 76.787\\
-Independent selection, natural positive gains & \textbf{50.715} & \textbf{57.760} & \textbf{0.223} & \textbf{50.034} & \textbf{56.695} & \textbf{77.217}\\
-Native decoder ranking, natural-policy count & 47.951 & 50.616 & 0.126 & 46.927 & 53.765 & 75.652\\
+Independent selection, fixed-pair count & 49.726 & 55.285 & 0.200 & 48.923 & 55.617 & 76.787\\
+Independent selection, natural count & \textbf{50.715} & \textbf{57.760} & \textbf{0.223} & \textbf{50.034} & \textbf{56.695} & \textbf{77.217}\\
+Native decoder ranking, natural count of independent policy & 47.951 & 50.616 & 0.126 & 46.927 & 53.765 & 75.652\\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-\section{Related Work}
-PointRend~\cite{pointrend} predicts at selected points during iterative mask subdivision. Boundary Patch Refinement~\cite{bpr} refines local crops along a predicted boundary. RefineMask~\cite{refinemask} carries earlier mask predictions forward outside the boundary region. SharpContour~\cite{sharpcontour} uses an instance-aware point classifier to move contour vertices. SegFix~\cite{segfix} relabels boundary pixels using the predicted labels of corresponding interior pixels. Atkinson~\cite{atkinson} independently selects foreground and background sub-pixels for swaps that preserve the class proportion of each coarse cell. Xu and Huang~\cite{xu} score subpixel pairs using spatio-temporal context for land-cover mapping. RankSEG~\cite{rankseg} studies posterior ranking and foreground-volume selection for IoU and Dice. We learn fractional occupancy from polygons at the raster resolution of existing SAR instance masks. Two separable top-\(k\) selections let us measure the effect of distance-based pairing when the point head, endpoint sets, and realized edit counts are fixed.
-
-HRSID~\cite{hrsid} and PSeg-SSDD~\cite{ssdd} provide public SAR ship instance annotations. Their polygon geometry and image-grid conventions matter for vessels that occupy few pixels. We refine masks after the detector is frozen, with its training-time mask sampling convention held fixed. D-FINE-seg~\cite{dfine} supplies the segmentation carrier and pre-crop decoder probabilities.
-
-For SAR ships, Gao et al.~\cite{gao2024} encode strong scattering regions as dynamic key points and use them to condition the mask head. DACF-Net~\cite{dacf} models multiscale shape and context in the feature pyramid and region proposals. GCIE-Net~\cite{gcie} adds a segmentation branch to DEIM and improves global context and cross-scale feature fusion. DSR-Net~\cite{dsr} combines differential features, graph reasoning and RoI refinement. ARANet~\cite{aranet} integrates edge-guided mask features and context alignment. We keep candidate formation fixed to measure the contribution of the final edit decision.
-
-\section{Method}
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=\textwidth]{figures/native_grid_selection.pdf}
-\caption{Equal-count editing on the native grid. The two-sided boundary support is extracted from a frozen instance prediction. Fixed pairing restricts selections to assigned pairs. Independent selection can choose different positions on the two sides while preserving the same edit count and foreground area. The mask and choices are schematic.}
-\label{fig:native-boundary}
-\end{figure*}
-\subsection{Candidate and Point Support}
-Each retained candidate has a box, class score and original binary mask \(M\). D-FINE samples the decoder's pre-crop sigmoid probabilities. RF-DETR interpolates the raw logits bilinearly using half-pixel coordinates, then applies a sigmoid. Both carriers use \(M\) to assign point signs. Editable integer pixel indices lie within the half-open detection box and a two-pixel Chebyshev boundary band. Polygon occupancy is measured over each selected pixel's unit cell. Candidate mask area \(P\) must satisfy \(32\le P<1024\). Up to 32 points per side are retained closest to the decoder's 0.50 threshold, with a common count limited by the smaller side. Ties are resolved in row-major order. The fixed-pair control assigns background points to foreground points by minimizing their summed squared distances. Both policies use the same endpoint sets (Fig.~\ref{fig:native-boundary}).
-
-\subsection{Fractional Occupancy Predictor}
-The 14 point features include decoder probability, original mask state, boundary layer and distance, box-relative coordinates, candidate area, fill ratio and score, rendered intensity, two local means and two centered finite differences. The intensity describes the decoded imagery. Training statistics standardize the inputs. The independent point predictor duplicates the point vector at the input of a two-layer, 24-unit-per-layer ReLU network. We add the scalar residual to the logit of the decoder probability clipped to \([10^{-4},1-10^{-4}]\). A sigmoid gives the predicted occupancy \(\widehat q\).
-
-At each original valid mask match at raster IoU 0.50, the training target is the fractional intersection of the corresponding source polygon with the native unit cell. Binary cross-entropy supervises these fractional values. The final frozen head uses 200 AdamW updates, 64 sampled pairs per step, learning rate 0.002 and weight decay 0.01. Sampling weights the training source groups equally. The detector parameters stay fixed.
-
-\subsection{Area-Preserving Edit}
-Each exchange adds one background pixel and removes one foreground pixel. Let \(T\) be the truth area, \(I\) the original intersection, and \(U=P+T-I\). For disjoint edits with intersection change \(\Delta\), the continuous IoU change is
-\begin{equation}
-\frac{I+\Delta}{U-\Delta}-\frac{I}{U}
-=\frac{(P+T)\Delta}{U(U-\Delta)}.
-\label{eq:gain}
-\end{equation}
-At fixed \(P,T,I\), the change increases monotonically in \(\Delta\). With \(A\) and \(D\) chosen from the sampled background and foreground sets, respectively, the estimated overlap gain at count \(k\) is
-\begin{equation}
- \sum_{a\in A}\widehat q(a)-\sum_{d\in D}\widehat q(d),
- \qquad |A|=|D|=k.
-\end{equation}
-The maximizing choice takes the \(k\) largest background occupancies and the \(k\) smallest foreground occupancies. The resulting marginal gains are nonincreasing. The natural policy accepts strictly positive margins up to the smaller of eight, \(\lfloor P/10\rfloor\), and the available side count. Zero is a feasible count. The fixed-pair policy ranks pairs by \(\widehat q(a)-\widehat q(d)\) and accepts positive gains under the same cap. The matched-count independent policy reuses that \(k\) and varies the edit locations. Equation~\eqref{eq:gain} applies to the true overlap. The point predictor estimates these occupancies and can make errors.
-
-\section{Evaluation}
-\subsection{Data and Metrics}
-The D-FINE E24 detector was trained on 2,937 HRSID images from the official training split. The point head was developed with five-fold source-prefix cross-fitting on FIT109 within that population, then refitted and frozen before target evaluation. DEV705 comprises 705 images with zero exact encoded or RGB-content overlap and no filename-source-prefix overlap with FIT. The filenames are proxies for acquisition groups, and DEV705 has prior development exposure.
-
-The HRSID official PNG test split contains 1,962 images and 5,922 annotations. Four annotations rasterize to empty masks. Two test images match FIT exactly and one pair within the test split is identical. Before scoring, we fixed a primary evaluation on the full set and sensitivities excluding the four empty raster annotations or the three exact-identity images. The project previously used this split for model selection. We report the frozen reevaluation as a historical comparison on the official allocation.
-
-We use standard COCO mask AP over the original candidate pool. Fixed geometry uses the original match identity and exact overlap of the predicted native cells with the source polygon. Bootstrap intervals are paired across the source groups of the fixed predictions. For fixed-match counts, the HRSID RF-DETR results use continuous IoU \(>0.90\). The D-FINE FIT109 and PSeg RF-DETR counts include equality. COCO AP90 is computed independently.
-
-\subsection{Mechanism and Development Effect}
 The natural policy increases mask AP by 2.555 points and small-object AP by 2.838 points over raw D-FINE (Table~\ref{tab:dev}). Group-equal continuous IoU increases by 1.419 points, with paired 95\% interval \([1.265,1.587]\). All three original valid strict matches are retained, and 12 additional matches reach 0.90. COCO AP90 remains low in absolute terms.
 
 At 83,059 swaps on 20,741 candidates, independent selection gains 0.811 AP and 0.529 continuous IoU over fixed pairing (IoU interval \([0.455,0.597]\)). The analogous five-fold FIT109 gains were 1.576 AP and 0.615 IoU. Natural selection makes 194,052 swaps, changing both coverage and count. Native decoder ranking at this count can force swaps with nonpositive predicted gains.
@@ -95,7 +138,7 @@ On detector-held-out DEV705, the frozen all-FIT109 head and both attraction rule
 
 On D-FINE FIT109, fractional labels gain 0.184 AP and 0.111 IoU over COCO rasters and 0.051 AP and 0.034 IoU over thresholding at 0.50, with one negative AP seed. On 74 Instance-RSDD images across three RF-DETR head seeds, full fractions scored 0.030 AP and 0.009 IoU below hardening all labels except 0.50 at equal counts (IoU interval \([-0.018,-0.002]\)), and gained 0.122 AP and 0.109 IoU over COCO rasters.
 
-\subsection{Matched Edits on a Stronger Detector}
+\subsection{Detector-Fit Repeatability and Capacity Controls}
 We retrained the point heads on FIT109 features from a frozen RF-DETR~\cite{rfdetr} detector trained with center-aligned target masks. Experiments use the official implementation, version 1.12.0. Three point-head initialization and sampling seeds share the same RF-DETR checkpoint, DEV705 population and 67,386 native mapped candidates. The 1,321- and 139,265-parameter heads use the same point features and each receives 200 updates in each refit. Table~\ref{tab:rfdetr} reports the COCO evaluation against 1,782 annotations and continuous IoU over 1,461 fixed matches, with equal weight for each of the 27 source-prefix groups. For the paired bootstrap we average the three seeds within each group before resampling groups.
 
 \begin{table}[t]
@@ -130,13 +173,13 @@ All three SU seeds increase the number of fixed matches with continuous IoU stri
 \label{fig:dev-cases}
 \end{figure*}
 
-For seed 5217, freeing the pair assignment improves 1,012 of the 1,461 fixed matches and degrades 252. The remaining 197 have an absolute difference no greater than \(10^{-12}\) in continuous IoU. Figure~\ref{fig:dev-cases}(a) gains 0.732 IoU points over fixed pairing. The selected additions cover one more pixel of the reference and the selected removals spare 1.5 pixels of the reference area. In Fig.~\ref{fig:dev-cases}(b), the additions overlap none of the reference under either policy, and the independent selection removes one more reference pixel of area. This lowers continuous IoU by 0.316 points.
+For seed 5217, freeing the pair assignment improves 1,012 of 1,461 fixed matches (69.3\%) and degrades 252 (17.2\%). The remaining 197 (13.5\%) differ by at most \(10^{-12}\) in continuous IoU. Fig.~\ref{fig:dev-cases} decomposes two median-sign cases using exact overlap. In (a), the independent additions recover one extra reference pixel-equivalent and the removals spare another 1.5. IoU gains 0.732 points. In (b), neither policy's additions recover any reference area. Independent selection removes one more pixel-equivalent of the hull and loses 0.316 IoU points. The second case illustrates a failure of occupancy ranking even though the independent writer maximizes estimated gain.
 
 At each head seed's realized natural-policy counts, ranking by true pixel occupancy would improve continuous IoU by 2.111 points over SU, with a paired interval of \([1.863,2.383]\). Varying the number of additions and removals at the same total count yields an additional 1.001 points, with interval \([0.814,1.224]\). These bounds retain the 1,461 original matched objects and the same endpoint support. With learned ranks frozen, a quota-only oracle gains 1.264 points over SU. All bounds are conditional on native matches.
 We trained a second RF-DETR with the same data and initialization and a different downstream seed (5203). Using its own candidates and scores and the unchanged three point heads, the matched-count policy gains 0.838 AP and 0.583 continuous IoU points over fixed pairing. The 95\% source-group IoU interval is \([0.488,0.678]\) over 1,465 fixed matches from 27 groups. Gains are positive for each head. The natural count raises AP from 55.914 to 56.726. The two detector fits share the starting weights and the evaluation images.
 
 \subsection{Frozen Evaluation on the HRSID Official Split}
-We use the same E24 RF-DETR carrier, three frozen FIT109 point-head seeds, and 187,796 native mapped candidates. An independent replay verifies the original candidate identities and scores, the realized edit counts and the final masks before scoring. The natural policy gains 1.021 mask AP points over the native masks (Table~\ref{tab:official}). The three gains are 1.078, 1.062, and 0.923 points. At the fixed-pair count, independent selection gains 1.216 AP points, 1.958 AP75 points, and 1.379 small-object AP points over fixed pairing. The three AP gains are 1.052, 1.297, and 1.299. Both comparisons remain positive for every seed in both sensitivity views. Their mean AP gains range from 1.018 to 1.029 and from 1.207 to 1.216 points, respectively.
+The official-split reevaluation uses the first E24 RF-DETR fit (5202), three frozen FIT109 point-head seeds, and 187,796 native mapped candidates. An independent replay verifies candidate identities, scores, realized edit counts and written masks. The natural policy gains 1.021 mask AP points over the native masks (Table~\ref{tab:official}), with seed effects of 1.078, 1.062 and 0.923 points. At the fixed-pair count, independent selection gains 1.216 AP, 1.958 AP75 and 1.379 small-object AP points. Its AP gains are 1.052, 1.297 and 1.299. Both comparisons remain positive for every seed when excluding empty annotations or exact image overlap. Their mean AP gains range from 1.018 to 1.029 and 1.207 to 1.216 points, respectively.
 
 \begin{table}[t]
 \centering
@@ -156,25 +199,37 @@ LW=S & 55.130 & 63.260 & 4.827 & 53.591 & 62.265\\
 \end{tabular}
 \end{table}
 
-Relative to LW=S, SU gains 0.324 AP points on average, with seed effects of \(+0.184\), \(+0.963\), and \(-0.174\). This contrast changes both the predictor and area policy. Switching from SU=F to the natural count changes mean AP by \(+0.011\) and AP75 by \(-0.112\) points. The official comparison supports a recurring cost of distance-based pairing on this carrier (Fig.~\ref{fig:official-effects}). Fixed-match continuous geometry is evaluated on the development and source splits.
+Relative to LW=S, SU gains 0.324 AP points on average, with seed effects of \(+0.184\), \(+0.963\), and \(-0.174\). This contrast changes both the predictor and area policy. Switching from SU=F to the natural count changes mean AP by \(+0.011\) and AP75 by \(-0.112\) points. The official comparison supports a recurring cost of distance-based pairing on carrier 5202 (Fig.~\ref{fig:transfer-effects}). On this split the independent replay establishes COCO AP. Source and transfer analyses supply the fixed-match continuous effects.
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/hrsid_official_seed_effects.pdf}
-\caption{Mask AP and AP75 differences on the historical HRSID official allocation. Circles show three point-head seeds on one fixed detector, diamonds show their means, and segments span the observed seed effects. Both policies in the first comparison use the same realized number of edits.}
-\label{fig:official-effects}
+\includegraphics[width=\textwidth]{figures/transfer_effects.pdf}
+\caption{Matched-budget effects across cohorts. In (A), independent selection is compared with fixed pairing using the same point head, candidate and realized count. AP symbols show observed head-seed effects and their mean. IoU intervals come from resampling the represented groups. In (B), learned ranking is compared with dynamic attraction at identical realized counts. PSeg-SSDD excludes ten overlapping images. UEIKAP assigns zero change to unmatched hulls and reports no whole-scene AP. Each detector fit establishes its own native matches.}
+\label{fig:transfer-effects}
 \end{figure*}
 
 \subsection{Frozen Transfer to Instance-RSDD}
-Instance-RSDD~\cite{rsdd} provides 2,810/740 train/test chips (paper: 2,840/715). The 740 test chips contain 872 hulls, and all 112 source scenes recur in the author training split. HRSID-only fitting~\cite{hrsid} leaves Gaofen-3 unseen (583 chips, 631 hulls, 76 acquisitions). The other 157 chips are TerraSAR-X.
+Instance-RSDD~\cite{rsdd} supplies hull outlines for RSDD-SAR imagery~\cite{rsddsar}. The author files contain 2,810 training and 740 test chips, compared with 2,840 and 715 in the paper. The 740 test chips contain 872 outlined vessels, and all 112 test parent scenes recur in the author training allocation. Our models are fitted on HRSID only. The prespecified Gaofen-3 view represents a sensor absent from HRSID fitting (583 chips, 631 outlines and 76 acquisitions). The remaining 157 test chips are TerraSAR-X.
 
-On Gaofen-3, natural selection gains 0.587 and 0.517 AP, below one point. AP75 rises by 1.438 and 1.230 and AP90 falls by 0.094 and 0.107. Equal-count AP gains are 0.482 and 0.483 with IoU gains of 0.266 and 0.253 (\([0.208,0.323]\), \([0.171,0.334]\), 425 matches). The second fit shares initialization and heads. It gains 0.299 AP and 0.196 IoU at equal count (\([0.136,0.253]\), 425 matches), with gains at all three heads. Mean natural AP gains on all 740 images are 0.539 and 0.435 for the two fits.
+On Gaofen-3, the first detector's two natural policies gain 0.587 and 0.517 AP over native. AP75 rises by 1.438 and 1.230, while AP90 falls by 0.094 and 0.107. With count fixed, the corresponding AP gains over pairing are 0.482 and 0.483. Mean continuous IoU gains 0.259 points (\([0.194,0.322]\), 425 eligible matches, 68 contributing acquisitions). This is a paired mean over the two heads. The second detector, sharing initialization and point-head provenance, gains 0.240, 0.280, and 0.378 AP points at equal count. Its mean AP and IoU gains are 0.299 and 0.196 (\([0.136,0.253]\)) on its own 425 eligible matches, with 67 contributing acquisitions. Across all 740 images, natural selection gains mean AP of 0.539 and 0.435 for the two fits. The gain from freeing pairs at fixed count repeats more consistently than a large improvement over the native proposal.
 
-On 74 chips from 13 additional parents, independent ranking gained 0.436 AP and 0.318 IoU (\([0.217,0.436]\)) at equal counts. On 42 date-separated chips gains were 0.840 AP and 0.364 IoU (\([0.250,0.478]\)). The second fit gained 0.306 and 0.529 AP, and 0.267 and 0.326 IoU (\([0.161,0.374]\), \([0.166,0.460]\)). Both fits met the 20-match and eight-parent criteria in each view. Intervals resample sensor--dates with equal parent weights. Geographic independence is unverified.
+The separate reserve contains 74 chips from 13 additional parents in the author training allocation. With detector 5202 and head 5217, equal-count independence gains 0.436 AP and 0.318 IoU (\([0.217,0.436]\), 47 eligible matches). The nested date-separated view contains 42 chips and 32 eligible matches. It gains 0.840 AP and 0.364 IoU (\([0.250,0.478]\)). Detector 5203 has 48 and 31 eligible matches in the two views. Its three-head means gain 0.306 and 0.529 AP and 0.267 and 0.326 IoU (\([0.161,0.374]\), \([0.166,0.460]\)). Both fits meet the 20-match and eight-parent criteria in each view. Intervals resample sensor--dates with equal parent weights. The date split probes temporal proximity within the reserve. Geographic independence is unverified.
 
-At each mask's dynamic-attraction count, three heads on one detector differed from both controls on 47 matches in 11 sensor--date blocks. Occupancy gained 0.468 AP and 0.431 IoU over dynamic (\([0.213,0.662]\)), and 0.203 AP and 0.301 IoU over static (\([0.088,0.534]\)), losing 0.173 AP75 to static. Date-separated AP gains were 0.978 and 0.478. Neither sensor alone met the exposure minimum.
+\subsection{What the Ranking Changes at the Same Budget}
+After fixing the edit budget, the next question is whether learned scores select better cells than a geometric rule. On the 74-chip reserve, at the dynamic attraction count, occupancy gains 0.468 AP and 0.431 IoU over dynamic (\([0.213,0.662]\)), and 0.203 AP and 0.301 IoU over static (\([0.088,0.534]\)). Static still leads by 0.173 AP75. Both contrasts change 47 eligible masks in 11 sensor--date blocks. The date-separated AP gains are 0.978 and 0.478, while neither sensor stratum alone meets the exposure criterion.
 
-At matched endpoints and counts on 74 chips, five-pass Phoenix XL1~\cite{phoenix} without its 1\% gate gained 0.308 AP (58.976) and 0.135 IoU (\([-0.026,0.277]\)) over occupancy. Both single-side swaps lost AP and had adjusted intersection intervals spanning zero. Under image-only \(\pm1\)-column shifts, the mean signed centroid response was 0.117 pixels for Phoenix and 0.070 for occupancy (difference 0.047, 95\% sensor--date interval \([0.028,0.064]\), 47 hulls).
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/gf3_matched_cases_binned.pdf}
+\caption{Observed Gaofen-3 outcomes at matched dynamic-attraction counts, detector 5203 and occupancy head 5217. Two positive and two negative cases are selected by proximity to the continuous-IoU median within each sign among 425 eligible original matches, before inspection of the imagery. All illustrated edits add eight and remove eight native pixels. The public visual pools exact masks, reference coverage and signed changes to an \(8\times8\) spatial grid. The dashed binned reference can fragment a narrow footprint. Reported IoU and signed overlap are evaluated on the original grid using the author polygon.}
+\label{fig:gf3-qual}
+\end{figure*}
+
+The paired average does not describe every vessel. In the second detector's 425 eligible Gaofen-3 matches, seed 5217 improves 268 masks (63.1\%) over dynamic attraction, worsens 154 (36.2\%), and ties three. Fig.~\ref{fig:gf3-qual} shows where area is redistributed in four cases, all at eight swaps. In the first two, learned ranking increases net reference intersection by 2.93 and 3.71 native pixel areas over dynamic attraction. Continuous IoU rises from 78.13 to 78.83 and from 71.86 to 72.56. In the other two, equal-sized edits lose 1.30 and 3.00 pixel areas of intersection. IoU falls from 87.09 to 86.52 and from 68.14 to 67.58. The native reference is included because a policy can improve on a competitor that itself degraded the initial mask. The individual outcomes support a position-based explanation for the measured changes. They do not establish which physical scattering process produced a local error.
+
+Strict matches are also sensitive to how the same source polygon is represented. In the second fit on Gaofen-3, learned minus dynamic AP90 changes from \(-0.149\) under standard raster overlap to \(+0.004\) under polygon--cell overlap. The paired 95\% interval for the change is \([-0.195,0.579]\). The first fit shrinks from \(+0.279\) to \(+0.053\). The 631 outlines and the prediction identities and order are held fixed. In both fits, the mean AP advantage averaged across the ten thresholds remains positive. The strict-threshold result motivates reporting the overlap convention and match coverage alongside AP90.
+
+At matched endpoints and counts on 74 chips, five-pass Phoenix XL1~\cite{phoenix} without its 1\% gate gains 0.308 AP (58.976) and 0.135 IoU (\([-0.026,0.277]\)) over occupancy. Substituting occupancy for only the Phoenix additions changes mean AP by \(-0.012\), while substituting only deletions changes it by \(-0.225\). Both adjusted intersection intervals cross zero. Under image-only \(\pm1\)-column shifts, the mean signed centroid response is 0.117 pixels for Phoenix and 0.070 for occupancy (paired difference 0.047, \([0.028,0.064]\), 47 hulls). The latter result measures sensitivity to image alignment on fixed proposals. It cannot by itself account for the ranking gap on correctly aligned images.
 
 At fixed head and count, freeing both sides versus additions alone gained 0.224 AP and 0.175 IoU on Gaofen-3 (two-seed means, \([0.130,0.222]\)) and 0.169 AP and 0.170 IoU on the 74 chips (\([0.108,0.251]\)). Over deletions alone, gains were 0.199 AP and 0.085 IoU (\([0.049,0.120]\)) and 0.288 AP and 0.148 IoU (\([0.042,0.252]\)). AP rose at every seed. Both date-separated IoU intervals stayed positive.
 
@@ -204,7 +259,7 @@ Occupancy ranks, complete & 61.631 & 73.280 & 3.041 & 79.871\\
 
 Against PointRend, occupancy gains 0.312 AP and 0.250 IoU on capped support (\([0.163,0.338]\)), and 0.390 AP and 0.223 IoU on complete support (\([0.123,0.330]\), Table~\ref{tab:rsdd-pointrend}). Removing the cap changes these gaps by \(+0.078\) AP and \(-0.027\) IoU (\([-0.086,0.028]\)).
 
-Full paste gains 0.200 AP over complete-support occupancy but lowers AR100 (72.361 vs.\ 74.105). Outside capped support lie 90.6\% of its differences from capped PointRend ranks. Capped paste scores 61.782 AP and 73.566 AR100 at unequal counts. On complete support, 25.2\% of PointRend and 3.4\% of occupancy deletions lie outside the RoI.
+Full paste gains 0.200 AP over complete-support occupancy but lowers AR100 (72.361 vs.\ 74.105). Outside capped support lie 90.6\% of its differences from capped PointRend ranks. Capped paste scores 61.782 AP and 73.566 AR100 at unequal counts. On complete support, 25.2\% of PointRend and 3.4\% of occupancy deletions lie outside the RoI. The matched results compare two rankings of available endpoints. The paste also changes which cells are available and how much area is written, making its AP and recall relevant to a separate system-level decision.
 
 Inside the clipped RoI (268,302 exchanges), occupancy gains 0.379 AP and 0.224 IoU with zero padding (\([0.125,0.329]\)), and 0.345 AP and 0.223 IoU with border replication (\([0.124,0.327]\)). Padding accounts for 0.034 AP and 0.001 IoU (\([-0.006,0.008]\)).
 
@@ -240,23 +295,23 @@ Native ranks, natural-policy count & 17.942 & 16.757 & 18.308 \\
 
 On DEV187, natural selection gains 0.336 AP over native and 0.278 over fixed pairing, below the 0.50 and 0.30 margins. At equal counts, independent selection gains 0.071 AP and 0.112 IoU (\([0.048,0.178]\), 209 fixed matches, 111 image groups). No match exceeds 0.90. Deduplication preserves the directions. Acquisition independence remains unverified.
 
-On the historical official split (232 images, 546 decimal polygons), AP rises from 17.974 to 18.319 and AP75 from 13.015 to 14.705. At equal counts, AP exceeds fixed pairing by 0.081. Excluding ten decoded training duplicates gives 0.389 AP over native and 0.100 over equal-count fixed pairing.
+On the historical official split, AP rises from 17.974 to 18.319 and AP75 from 13.015 to 14.705. At equal counts, AP exceeds fixed pairing by 0.081. Ten test images share decoded content with the historical PSeg training allocation. Excluding them yields 0.389 AP over native and 0.100 over fixed pairing. The detector and head in this transfer comparison were fitted on HRSID.
 
 Across 293 editable matches, independent selection gains 0.106 IoU over fixed pairs (image-paired 95\% interval \([0.055,0.157]\)). Natural selection gains 0.228 over native (\([0.104,0.364]\)). All stay below 0.90. Oracle ranks at the learned count add 1.097 IoU points. Allowing unequal counts at the same total flips adds 2.020 more.
 
-At the dynamic attraction count~\cite{atkinson} (73,770 exchanges, 11,054 predictions), learned ranking scores 18.331 versus 18.357 AP, gains 0.279 AP75 and loses 0.270 IoU (\([-0.440,-0.098]\)). Deduplication preserves these directions.
+At the dynamic attraction count~\cite{atkinson} (73,770 exchanges, 11,054 predictions), learned ranking scores 18.331 versus 18.357 AP, gains 0.279 AP75 and loses 0.270 IoU (\([-0.440,-0.098]\)). Deduplication preserves these directions. Freeing the pairing constraint helps the source-trained ranker on this cohort, while changing the ranking signal at the dynamic count reduces continuous overlap. The comparison thus isolates two effects with different signs.
 
 \subsection{Source and Target Heads on a PSeg-Trained RF-DETR}
 On historical DEV187 with PSeg-trained RF-DETR E24, the HRSID head raises AP from 69.113 to 69.958 at the dynamic count. The 0.193 IoU gain misses the criterion (119-group paired 95\% interval \([-0.036,0.430]\)). Native masks score 70.694 AP, leading by 0.735 AP and 0.404 IoU (\([0.245,0.564]\)). Equal-count independent selection gains 0.279 AP and 0.097 IoU over fixed pairing (\([-0.035,0.232]\)).
 
-On 281 matches, polygon-optimal ranks at the attraction count exceed native by 2.246 IoU and learned ranks by 2.651. Fewer flips on frozen support add 0.032 beyond this optimum, and varying area at fixed total flips adds 1.018.
+On 281 matches, polygon-optimal ranks at the attraction count exceed native by 2.246 IoU and learned ranks by 2.651. Fewer flips on frozen support add 0.032 beyond this optimum, and varying area at fixed total flips adds 1.018. These reference-dependent ceilings identify recoverable overlap inside the evaluated support, with scope to improve both the rankings and the area constraint.
 
 Refitting on 109 PSeg training images (zero decoded DEV187 overlap, 200 updates) yields 69.809 AP at the attraction count, 0.695 above dynamic, 0.150 below transfer and 0.885 below native. IoU falls 0.470 from native (\([-0.621,-0.325]\)). Deduplicated AP agrees in direction. The refit misses the replication criterion.
 
 \subsection{Frozen Transfer to Sentinel-1 Acquisitions}
-UEIKAP~\cite{ueikap} supplied 139 hulls on 108 chips from 18 acquisitions. We required 20 positive-budget IoU-0.50 matches across eight acquisitions. D-FINE matched two at zero budget (eight ideal swaps could cover four). HRSID RF-DETR had 17 positive-budget matches in four groups. Independent selection gained 0.03014 IoU over equal-count fixed pairing across all 18 groups (paired 95\% interval \([0.00028,0.08025]\)), and 0.515 in the four with matches. All 17 stayed below 0.75.
+UEIKAP~\cite{ueikap} supplied 139 hulls on 108 chips from 18 acquisitions. The evaluation required 20 positive-budget IoU-0.50 matches across eight acquisitions. D-FINE matched two at zero budget (eight ideal swaps could cover four). HRSID RF-DETR had 17 positive-budget matches in four groups. Independent selection gained 0.515 IoU points over equal-count fixed pairing conditional on those four represented groups. Assigning zero change to unmatched hulls gives 0.03014 points across all 18 groups (paired 95\% interval \([0.00028,0.08025]\)). All 17 remained below 0.75.
 
-RF-DETR boxes reached IoU 0.50 for 100 hulls. In 90, the best box mask covered less than half the hull. Eight ideal swaps could cover 18 hulls, within-box reconstruction 129. Score-ordered box matching selected 99 sub-0.50 masks (90 positive budgets, 15 acquisitions). Equal-count selection gained 0.0043 IoU across 18 acquisitions (\([-0.0008,0.0101]\)). None reached 0.50. Box and mask matching selected different candidates for 16 of 17 shared hulls.
+RF-DETR boxes reached IoU 0.50 for 100 hulls. In 90, the mask associated with the highest-overlap box had total foreground area below half the reference area. The median area ratio was 0.301. Geometric ceilings reached IoU 0.50 for 18 hulls with eight ideal swaps and 129 with within-box reconstruction. These are per-hull ceilings that allow candidate reuse. Score-ordered box matching selected 99 sub-0.50 masks (90 positive budgets, 15 acquisitions). Equal-count selection gained 0.0043 IoU across 18 acquisitions (\([-0.0008,0.0101]\)). None reached 0.50. Box and mask matching selected different candidates for 16 of 17 shared hulls. The area deficit and association changes limit the hulls accessible to a small, area-preserving edit.
 
 Across 342 chips from 13 additional Danish acquisitions, RF-DETR matched 121 of 528 released hulls. Positive budgets on 120 matches in ten groups met the criterion. Equal-count independent selection gained 0.02954 IoU over fixed pairing (group-equal 95\% interval \([0.00790,0.05198]\), unmatched hulls counted as zero), and 0.12306 among matches (\([0.02106,0.21932]\)). Learned ranking lost 0.05322 IoU to dynamic attraction at its count (\([-0.09777,-0.01562]\)). Natural selection gained 0.00623 over native (\([-0.02481,0.03017]\)). One fixed match reached continuous IoU 0.75 under every local policy.
 
@@ -266,47 +321,57 @@ On these previously evaluated chips, the frozen FIT109 PointRend head refined na
 At the dynamic edit count, replacing static attraction with learned additions or removals alone changed true intersection (\% of hull area) by \(+0.308\) and \(+0.446\) points on HRSID DEV705, and \(-0.082\) and \(-0.076\) on PSeg-SSDD TEST232 (same D-FINE). RF-DETR gave \(-0.02157\) and \(-0.01466\) on UEIKAP342. Adjusted 97.5\% intervals excluded zero for PSeg removals and UEIKAP additions. Both external 95\% intervals for additions minus removals crossed zero, leaving the dominant side unresolved.
 
 \begin{samepage}
-A \href{https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/3f8f738/research_round_20260925_global/ATTRACTION_LOCAL_CORRECTION_ACTUAL_20261123.md}{ridge model} fit on 4,063 FIT109 pairs chose between disputed static and learned locations. On historical D-FINE DEV705 it gained 0.01795 IoU over scores alone at equal accepted counts per mask and sign (paired 95\% interval \([0.00796,0.02803]\)), and 0.051 AP over learned ranks. On 222 deduplicated PSeg images, matched-count IoU gained 0.01567 (\([-0.00334,0.03754]\)), but static attraction led by 0.11484 AP and 0.16918 IoU.\par
+A \href{https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/3f8f738/research_round_20260925_global/ATTRACTION_LOCAL_CORRECTION_ACTUAL_20261123.md}{ridge model} fit on 4,063 FIT109 pairs chose between disputed static and learned locations. On historical D-FINE DEV705 it gained 0.01795 IoU over scores alone at equal accepted counts per mask and sign (paired 95\% interval \([0.00796,0.02803]\)). Against learned ranks alone it gained 0.051 AP. On 222 deduplicated PSeg images, matched-count IoU gained 0.01567 (\([-0.00334,0.03754]\)), and static attraction led by 0.11484 AP and 0.16918 IoU.\par
 \end{samepage}
 
-\section{Limitations and Reproducibility}
-At dynamic counts on Gaofen-3 in the second fit, learned minus dynamic AP90 changes from \(-0.149\) with raster overlap to \(+0.004\) with polygon--cell overlap (paired 95\% interval for the change \([-0.195,0.579]\)).
+\section{Discussion and Reproducibility}
+\subsection{What Transfers Across Data}
+The effect of removing the pairing constraint is most consistent when the input proposal already overlaps the reference. It persists across repeated point-head fits and two RF-DETR detector fits on the evaluated Gaofen-3 cohort. The larger feasible set explains the improvement in estimated overlap by construction. The signed examples and mixed attraction comparisons locate the empirical uncertainty in how scores order the underlying cells. A fixed proposal can also have too little foreground area or omit an entire ship. In those situations the same editing budget cannot substitute for proposal recovery. Whole-RoI refinement makes a different trade-off, improving full-stream AP in some cohorts while changing the support and recall.
 
-On DEV705 edits can improve target overlap and increase neighbor overlap. On PSeg-SSDD, holes increased in 1,544/10,466 edited masks with natural selection and 519 with matched native ranks. All 107 nonempty Schwegmann~\cite{schwegmann} D-FINE masks fell below 32 pixels. Of 142 NovaSAR AIS chips~\cite{nastar}, 34 had common spans (17 positive budgets). Equal-count independence raised absolute length error by 0.204\,m over fixed pairing (\([-0.110,0.581]\)\,m).
+The HRSID analyses contain historical evaluation and development exposures. Instance-RSDD sensor and date strata account for acquisition dependence within available cohorts. These strata share the frozen source model, and the two detector fits evaluate many of the same hulls. Their agreement measures sensitivity to model fitting on these cohorts. The scope of transfer to unfamiliar acquisition conditions remains open.
 
-Of 244 Gulf chips~\cite{gulf} from 64 Sentinel-1A orbit--dates, 242 were valid and 25 ships matched AIS in 19 groups (23 positive budgets). Native span bias was 105.42\,m at nominal spacing and 107.05\,m after geolocation. At equal counts independent selection reduced nominal MAE by 0.168\,m (\([-1.523,1.692]\)\,m), below 0.5\,m. For 23 ships, AIS headings reduced geolocated MAE by 7.60\,m (\([1.88,14.89]\)\,m), leaving 71.27\,m mean excess.
+\subsection{Topology and Physical Measurements}
+Area preservation leaves topology unconstrained. On DEV705 an edit can improve overlap with the intended hull and simultaneously increase overlap with a neighbor. Natural selection increased the hole count in 1,544 of 10,466 edited PSeg masks. Writing the same counts with native ranks did so in 519. All 107 nonempty D-FINE masks in the Schwegmann set~\cite{schwegmann} were below the 32-pixel size floor. These observations constrain applications that require connected hulls or very small instances.
 
-D-FINE ran 24 epochs (17,640 updates). Equivalent sampling on 232 in-memory PSeg images cut single-thread refinement from 158.8 to 104.3 ms/image with identical samples, masks, ranks and scores. CUDA detection and postprocessing took 11.74 s separately. On 74 chips, occupancy, equal-count and whole-RoI PointRend took 227.1, 1,221.5 and 1,049.2 ms/image (two single-thread passes, loaded inputs, Intel i7-13700KF), excluding detection and feature capture. The hybrid requires whole-RoI rendering. Frozen reruns reproduced HRSID official and both Instance-RSDD scores from author data. The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{repository} provides code, configurations, scores and data access.
+Of 142 NovaSAR AIS chips~\cite{nastar}, 34 yielded common spans across policies and 17 had positive edit budgets. Equal-count independence increased absolute length error by 0.204\,m over fixed pairing (\([-0.110,0.581]\)\,m). In the Gulf set~\cite{gulf}, 242 of 244 chips from 64 Sentinel-1A orbit--dates passed input checks. The AIS association and common-span criteria retained 25 ships in 19 groups, of which 23 had positive edit budgets. Native span bias was 105.42\,m at nominal spacing and 107.05\,m after geolocation. Equal-count independent selection reduced nominal MAE by 0.168\,m (\([-1.523,1.692]\)\,m). In the 23 cases with headings, comparison on that same subset shows that using AIS heading reduced geolocated MAE by 7.60\,m (\([1.88,14.89]\)\,m), leaving 71.27\,m mean excess. The magnitude of residual error limits the use of these mask edits for physical sizing.
+
+\subsection{Computation and Repeatability}
+D-FINE ran 24 epochs (17,640 updates). Equivalent sampling on 232 in-memory PSeg images cut single-thread refinement from 158.8 to 104.3\,ms/image with identical samples, masks, ranks and scores. CUDA detection and postprocessing took 11.74\,s for the 232 images in a separate measurement. On 74 Instance-RSDD chips, the occupancy writer, equal-count PointRend and whole-RoI PointRend took 227.1, 1,221.5 and 1,049.2\,ms/image, respectively (two single-thread passes on an Intel i7-13700KF with loaded inputs). These timings exclude detection and feature capture. The hybrid also renders the whole RoI.
+
+The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{repository} provides code, configuration, score summaries and data access instructions. Independent frozen replays reproduced 3,434 numerical entries across the HRSID official and Instance-RSDD 740-chip tables. The clean 74-chip replay used detector 5202 with head 5217 and reproduced 1,470 numerical entries. A frozen replay requires access to the imagery and annotations and the corresponding checkpoints from the project owner.
 
 \section{Conclusion}
-Independent selection improves AP and continuous IoU over equal-count fixed pairing on HRSID and both Instance-RSDD cohorts, including date-separated scenes. On Instance-RSDD, both sides outperform either alone. Occupancy beats PointRend at matched support and count and improves its whole-RoI paste by relocating its edits. Standalone capped occupancy retains higher AP on the added parents. PSeg-SSDD transfer is mixed. On additional Sentinel-1 acquisitions, independent selection modestly improves on fixed pairing, while dynamic attraction leads at its own count.
+For an existing ship mask, independent selection widens the set of attainable equal-area edits. Across the evaluated HRSID and Instance-RSDD cohorts, it improves AP and continuous IoU relative to the same occupancies with fixed pairing. On Instance-RSDD, learning locations for both additions and removals improves on learning either alone. Occupancy also improves on a source-fitted PointRend head at matched support and count, and relocating the edits inside its whole-RoI paste improves the paste. The PSeg-SSDD and Sentinel-1 experiments identify two remaining limits: transferring the ranking and obtaining a usable mask in the first place. Future refinement should measure those two sources of error separately.
 
-\noindent\emph{Acknowledgment.} OpenAI Codex assisted with drafting and revision. Fig.~\ref{fig:native-boundary} is a vector redrawing of an OpenAI concept. Figs.~\ref{fig:dev-cases} and~\ref{fig:official-effects} show measured data.
+\noindent\emph{Acknowledgment.} OpenAI Codex assisted with drafting and revision. Fig.~\ref{fig:native-boundary} was redrawn as an editable vector graphic from a generated concept. The remaining figures use observed results, including pooled spatial measurements in Fig.~\ref{fig:gf3-qual}.
 
 
-\begin{thebibliography}{23}
+\begin{thebibliography}{26}
+\bibitem{gao2024} F. Gao, X. Han, J. Wang, J. Sun, A. Hussain, and H. Zhou, ``SAR ship instance segmentation with dynamic key points information enhancement,'' \emph{IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.}, vol. 17, pp. 11365--11385, 2024. \href{https://doi.org/10.1109/JSTARS.2024.3383779}{10.1109/JSTARS.2024.3383779}.
+\bibitem{aranet} S. Chang, P. Lang, H. Chang, C. Zhao, J. Yang, J. Dong, and X. Fu, ``ARANet: A unified representation alignment framework for SAR ship instance segmentation,'' \emph{IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.}, vol. 19, pp. 28679--28694, 2026. \href{https://doi.org/10.1109/JSTARS.2026.3720719}{10.1109/JSTARS.2026.3720719}.
+\bibitem{drsnet} Q. Zhang and Z. Han, ``DRSNet: Rotated-ROI ship segmentation for SAR images based on dual-scale cross attention,'' \emph{IEEE Geosci. Remote Sens. Lett.}, vol. 21, pp. 1--5, 2024. \href{https://doi.org/10.1109/LGRS.2024.3420251}{10.1109/LGRS.2024.3420251}.
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, \href{https://doi.org/10.1109/ACCESS.2020.3005861}{2020}.
 \bibitem{pointrend} A. Kirillov, Y. Wu, K. He, and R. Girshick, ``PointRend: Image segmentation as rendering,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2020, pp. 9799--9808.
 \bibitem{bpr} C. Tang, H. Chen, X. Li, J. Li, Z. Zhang, and X. Hu, ``Look closer to segment better: Boundary patch refinement for instance segmentation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021, pp. 13926--13935.
 \bibitem{refinemask} G. Zhang, X. Lu, J. Tan, J. Li, Z. Zhang, Q. Li, and X. Hu, ``RefineMask: Towards high-quality instance segmentation with fine-grained features,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021, pp. 6861--6869.
 \bibitem{sharpcontour} C. Zhu, X. Zhang, Y. Li, L. Qiu, K. Han, and X. Han, ``SharpContour: A contour-based boundary refinement approach for efficient and accurate instance segmentation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2022, pp. 4392--4401.
 \bibitem{segfix} Y. Yuan, J. Xie, X. Chen, and J. Wang, ``SegFix: Model-agnostic boundary refinement for segmentation,'' in \emph{Proc. Eur. Conf. Comput. Vis. (ECCV)}, 2020, pp. 489--506.
+\bibitem{phoenix} B. Kim and S. J. Hwang, ``Learning from adversity: Semantic-aware mask refinement through adversarial perturbation,'' in \emph{Proc. Eur. Conf. Comput. Vis. (ECCV)}, 2026, pp. 75--92. \href{https://doi.org/10.1007/978-3-032-37520-9_5}{10.1007/978-3-032-37520-9\_5}.
 \bibitem{atkinson} P. M. Atkinson, ``Sub-pixel target mapping from soft-classified, remotely sensed imagery,'' \emph{Photogramm. Eng. Remote Sens.}, vol. 71, no. 7, pp. 839--846, 2005. \href{https://doi.org/10.14358/PERS.71.7.839}{10.14358/PERS.71.7.839}.
 \bibitem{xu} Y. Xu and B. Huang, ``A spatio-temporal pixel-swapping algorithm for subpixel land cover mapping,'' \emph{IEEE Geosci. Remote Sens. Lett.}, vol. 11, no. 2, pp. 474--478, 2014. \href{https://doi.org/10.1109/LGRS.2013.2268153}{10.1109/LGRS.2013.2268153}.
 \bibitem{rankseg} B. Dai and C. Li, ``RankSEG: A consistent ranking-based framework for segmentation,'' \emph{J. Mach. Learn. Res.}, vol. 24, no. 224, pp. 1--50, 2023. \href{https://www.jmlr.org/papers/v24/22-0712.html}{Journal article}.
-\bibitem{ssdd} T. Zhang \emph{et al.}, ``SAR Ship Detection Dataset (SSDD): Official release and comprehensive data analysis,'' \emph{Remote Sens.}, vol. 13, no. 18, Art. no. 3690, 2021. \href{https://doi.org/10.3390/rs13183690}{10.3390/rs13183690}.
-\bibitem{dfine} A. Saakyan and D. Solntsev, ``D-FINE-seg: Object detection and instance segmentation framework with multi-backend deployment,'' \href{https://arxiv.org/abs/2602.23043}{arXiv:2602.23043}, 2026.
-\bibitem{gao2024} F. Gao, X. Han, J. Wang, J. Sun, A. Hussain, and H. Zhou, ``SAR ship instance segmentation with dynamic key points information enhancement,'' \emph{IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.}, vol. 17, pp. 11365--11385, 2024. \href{https://doi.org/10.1109/JSTARS.2024.3383779}{10.1109/JSTARS.2024.3383779}.
+\bibitem{gldet} H. Chang, X. Fu, P. Lang, K. Guo, J. Dong, and S. Chang, ``GLDet: Real-time SAR ship detector based on global semantic information enhancement and local gradient information mining,'' \emph{IEEE Trans. Geosci. Remote Sens.}, vol. 63, Art. no. 5209020, 2025. \href{https://doi.org/10.1109/TGRS.2025.3559551}{10.1109/TGRS.2025.3559551}.
 \bibitem{dacf} S. Yang, X. Zhang, W. An, Z. Li, and N. Chen, ``DACF-Net: A dynamic attention and context fusion network with geometry-aware multi-scale refinement for SAR ship instance segmentation,'' \emph{Int. J. Digit. Earth}, vol. 19, no. 2, Art. no. 2696657, 2026. \href{https://doi.org/10.1080/17538947.2026.2696657}{10.1080/17538947.2026.2696657}.
 \bibitem{gcie} W. Luo, J. Lan, Y. Zeng, and W. Xiong, ``GCIE-Net: A global and channel information-enhanced network for ship instance segmentation in SAR images,'' \emph{Remote Sens.}, vol. 18, no. 15, Art. no. 2512, 2026. \href{https://doi.org/10.3390/rs18152512}{10.3390/rs18152512}.
 \bibitem{dsr} S.-W. He, W. Xiong, and L.-B. Yao, ``SAR ship instance segmentation method in complex scenes jointly driven by differential physical fields and structured graph reasoning,'' \emph{Acta Electronica Sinica}, pp. 1--11, 2026. \href{https://doi.org/10.12263/DZXB.20260699}{10.12263/DZXB.20260699}.
-\bibitem{aranet} S. Chang, P. Lang, H. Chang, C. Zhao, J. Yang, J. Dong, and X. Fu, ``ARANet: A unified representation alignment framework for SAR ship instance segmentation,'' \emph{IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.}, vol. 19, pp. 28679--28694, 2026. \href{https://doi.org/10.1109/JSTARS.2026.3720719}{10.1109/JSTARS.2026.3720719}.
+\bibitem{dfine} A. Saakyan and D. Solntsev, ``D-FINE-seg: Object detection and instance segmentation framework with multi-backend deployment,'' \href{https://arxiv.org/abs/2602.23043}{arXiv:2602.23043}, 2026.
 \bibitem{rfdetr} I. Robinson, P. Robicheaux, M. Popov, D. Ramanan, and N. Peri, ``RF-DETR: Neural architecture search for real-time detection transformers,'' in \emph{Proc. Int. Conf. Learn. Represent. (ICLR)}, 2026.
+\bibitem{ssdd} T. Zhang \emph{et al.}, ``SAR Ship Detection Dataset (SSDD): Official release and comprehensive data analysis,'' \emph{Remote Sens.}, vol. 13, no. 18, Art. no. 3690, 2021. \href{https://doi.org/10.3390/rs13183690}{10.3390/rs13183690}.
 \bibitem{rsdd} X. Yang, Q. Zhang, Q. Dong, Z. Han, X. Luo, and D. Wei, ``Ship instance segmentation based on rotated bounding boxes for SAR images,'' \emph{Remote Sens.}, vol. 15, no. 5, Art. no. 1324, \href{https://doi.org/10.3390/rs15051324}{2023}.
-\bibitem{phoenix} B. Kim and S. J. Hwang, ``Learning from adversity: Semantic-aware mask refinement through adversarial perturbation,'' in \emph{Proc. Eur. Conf. Comput. Vis. (ECCV)}, 2026. \href{https://arxiv.org/abs/2607.29059}{arXiv:2607.29059}.
+\bibitem{rsddsar} C. Xu \emph{et al.}, ``RSDD-SAR: Rotated ship detection dataset in SAR images,'' \emph{J. Radars}, vol. 11, no. 4, pp. 581--599, 2022. \href{https://doi.org/10.12000/JR22007}{10.12000/JR22007}.
 \bibitem{ueikap} A. Mazzeo \emph{et al.}, ``UEIKAP dataset,'' Zenodo, ver. 1.0, \href{https://doi.org/10.5281/zenodo.18391027}{2026}.
 \bibitem{schwegmann} C. P. Schwegmann, W. Kleynhans, B. P. Salmon, L. W. Mdakane, and R. G. V. Meyer, ``Very deep learning for ship discrimination in Synthetic Aperture Radar imagery,'' in \emph{Proc. IEEE Int. Geosci. Remote Sens. Symp. (IGARSS)}, 2016, pp. 104--107. \href{https://doi.org/10.1109/IGARSS.2016.7729017}{10.1109/IGARSS.2016.7729017}.
-\bibitem{nastar} B. Hosseiny, K. Kamirul, O. Pappas, and A. Achim, ``NASTaR: NovaSAR automated ship target recognition dataset,'' arXiv:2512.18503, 2025.
+\bibitem{nastar} B. Hosseiny, K. Kamirul, O. Pappas, and A. Achim, ``NASTaR: A NovaSAR-based automated ship target recognition dataset,'' \emph{IEEE Geosci. Remote Sens. Lett.}, vol. 23, Art. no. 1502605, 2026. \href{https://doi.org/10.1109/LGRS.2026.3679941}{10.1109/LGRS.2026.3679941}.
 \bibitem{gulf} M. Shaya, ``SAR Ship Gulf: Sentinel-1 GRD ship chips with AIS labels,'' Zenodo, ver. 1, 2026. \href{https://doi.org/10.5281/zenodo.21000650}{10.5281/zenodo.21000650}.
 \end{thebibliography}
 \end{document}
