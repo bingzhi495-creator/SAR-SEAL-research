@@ -1,0 +1,11 @@
+# Instance-RSDD second frozen carrier
+
+The [prelock](../../INSTANCE_RSDD_CARRIER5203_PRELOCK_20261123.md) uses the accepted second HRSID RF-DETR E24 fit and three archived HRSID FIT109 point heads. Use the same private image inputs as the [740-image reproduction](../SAR_B5_MAIN_TABLES_20261123/README.md) and the [74-image reproduction](../INSTANCE_RSDD_B5_REPRO_20261123/README.md). The image rosters and original author annotation files must match the earlier editions. The raw images, checkpoint and per-image records stay in research storage.
+
+Run each phase in order for <code>--cohort 740</code> and <code>--cohort 74</code>, with a fresh output directory and <code>python -I -B -X utf8</code>. Use [the existing observer](../GULF_AIS_FROZEN_20261123/observe.py) with the matching <code>capture</code>, <code>replay</code> or <code>score</code> phase. Every worker takes <code>--code</code> for the published code root, <code>--protocol</code>, <code>--protocol-sha256</code> and <code>--output</code>.
+
+1. <code>capture.py</code> requires <code>--stock-root</code>, the accepted old author-image intake, <code>--checkpoint</code>, and <code>--training-receipt</code> for 5203 E24. Use the B5 GPU environment. An independent CPU subprocess verifies native rows, planes and original mask signs before capture acceptance.
+2. <code>replay.py</code> requires the same <code>--stock-root</code>, <code>--capture</code>, <code>--capture-terminal</code>, and <code>--weights-dir</code> containing all three archived FIT109 bundles. Use the B5 environment with CUDA visibility off. This phase verifies all signed supports, unchanged candidates, and all arm counts.
+3. <code>score.py</code> requires <code>--capture</code>, <code>--capture-terminal</code>, <code>--capture-worker-sha256</code>, <code>--replay</code>, <code>--replay-terminal</code>, <code>--replay-worker-sha256</code>, and the unchanged <code>--author-labels</code> file. Use <code>test.json</code> for the 740 cohort and <code>train.json</code> for the 74 cohort. The worker verifies both observed phase outputs and reconstructs signed counts before reading labels.
+
+The main comparison is same-head independent ranking versus fixed pairing at the realized fixed count on each 5203 candidate. Classical and natural comparisons remain secondary. No stage computes a new model update.
