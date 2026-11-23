@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- FIT109 争议位置校正完成。DEV705 同接受量下 **+0.01795 连续 IoU、+0.01575 mask AP 点**，通过源域判据。PSeg-SSDD 去重 222 图同对照区间跨零，AP 较纯静态低 0.11484 点，外域未通过。[实测与复现](research_round_20260925_global/ATTRACTION_LOCAL_CORRECTION_ACTUAL_20261123.md)
+
 - 学习排序与静态吸引力的同量分侧对照已复算三套数据。HRSID 增、删侧提高真实交集 **+0.308、+0.446 点**；PSeg-SSDD 和 UEIKAP 两侧点估计下降，侧间直接区间跨零。[实测和复现](research_round_20260925_global/ATTRACTION_SIGNED_SIDES_ACTUAL_20261123.md)
 
 - UEIKAP 342 张作者图的冻结外测完成。528 艘中原生匹配 **121 艘**，120 艘、10 组有正编辑量。同量独立选点 **+0.02954 连续 IoU 点**，原判据通过。[实测及复现](research_round_20260925_global/UEIKAP_ADDITIONAL_FAMILIES_ACTUAL_20261123.md)

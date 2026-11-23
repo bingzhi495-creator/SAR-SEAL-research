@@ -14,3 +14,4 @@ Run the workers from this release in the pinned CPU runtime used by [the origina
 
 The exact legacy resources and archived hashes are identified by each worker and the linked [HRSID comparison](../../HRSID_DEV705_CLASSICAL_ATTRACTION_ACTUAL_20261122.md) and [PSeg comparison](../../PSEG_TEST232_CLASSICAL_ATTRACTION_ACTUAL_20261122.md). Inference phases keep the legacy base head frozen. Report detector forwards, base point-head readout, outside-fold optimizer steps, ridge solves, and elapsed observation times separately.
 
+[Verified results and execution receipts](../../ATTRACTION_LOCAL_CORRECTION_ACTUAL_20261123.md).
