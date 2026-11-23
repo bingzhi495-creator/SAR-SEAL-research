@@ -37,3 +37,7 @@ Run `plot_cross_dataset_phoenix_budget.py` with the two released score summaries
 ## Supplementary matched-distance ablation
 
 [Editable SVG](phoenix_bounded_matching.svg) · [Vector PDF](phoenix_bounded_matching.pdf) · [Source aggregates and selection rules](../../PHOENIX_BOUNDED_MATCH_ACTUAL_20261123.md). The left panel compares observed mask AP points. The dashed line marks the 0.30-point advancement threshold. The right panel gives fixed-match continuous IoU with paired cluster intervals. The two nested views are sensitivity analyses.
+
+## Stock SegRefiner-LR cases on Instance-RSDD
+
+[Editable SVG](rsdd74_segrefiner_cases_binned.svg) · [Vector PDF](rsdd74_segrefiner_cases_binned.pdf) · [Case selection and caption data](../../results/RSDD74_SEGREFINER_STOCK_CASES_SAFE_20261123.json). For 39 originally matched, gate-exposed hulls, the two separate images are closest to the respective medians of gains and losses from stock SegRefiner-LR. The public graphic pools exact mask and reference areas on an (8\times8) grid. The local review PDF overlays all three masks and the author outline on native SAR crops.
