@@ -27,7 +27,7 @@
 
 ## 正式投稿前的取舍
 
-12 个先锁定的 Umbra 采集窗口已完成冻结检测、原生端点精修和独立复算。双参考评分器通过合成测试，原始轮廓回传后按预锁定的采集组覆盖与配对几何口径评分。 [盲测执行与冻结证据](UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md) · [评分准备与测试范围](UMBRA12_DUAL_REVIEW_SCORE_READINESS_20261123.md)
+12 个先锁定的 Umbra 采集窗口已完成冻结检测、原生端点精修、作者 Phoenix 整掩膜及独立复算。双参考评分器通过合成测试。两份原始轮廓回传后，依预锁口径报告等量端点主比较和整掩膜次要对照，纳入采集组覆盖。 [盲测执行](UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md) · [作者整掩膜对照](UMBRA12_PHOENIX_WHOLE_ACTUAL_20261123.md) · [评分准备](UMBRA12_DUAL_REVIEW_SCORE_READINESS_20261123.md)
 
 本稿已具备围绕固定预算边界决策开展专业审阅的证据。能优先保留的贡献是把编辑策略、评分和预算分开，并跨两个检测框架和两个高分三号载体得到可复核的效果。数学依据与经典分侧像素交换及后验概率排序有明确关系，技术贡献应落在任务定义、对照设计和原生栅格边界证据。分数标签单独带来稳定外部收益的证据仍弱，严格 AP90 的表示敏感性和 AIS 长度误差应保留。 [严格阈值复评](RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md) · [分数监督对照](RFDETR_FRACTIONAL_TIE_TRANSFER_ACTUAL_20261123.md) · [AIS 长度外测](GULF_AIS_GEOSCALE_ACTUAL_20261123.md)
 
