@@ -166,7 +166,7 @@ Relative to LW=S, SU gains 0.324 AP points on average, with seed effects of \(+0
 \end{figure*}
 
 \subsection{Frozen Transfer to Instance-RSDD}
-Instance-RSDD~\cite{rsdd} has 740 test images (715 reported) and 872 instances. Our 583 Gaofen-3 images span 631 polygons and 76 acquisitions. The other 157 are TerraSAR-X. HRSID training~\cite{hrsid} includes TerraSAR-X and lacks Gaofen-3.
+Instance-RSDD~\cite{rsdd} provides 2,810/740 train/test chips (paper: 2,840/715). The 740 test chips contain 872 hulls, and all 112 source scenes recur in the author training split. HRSID-only fitting~\cite{hrsid} leaves Gaofen-3 unseen (583 chips, 631 hulls, 76 acquisitions). The other 157 chips are TerraSAR-X.
 
 On Gaofen-3, natural selection gains 0.587 and 0.517 AP for seeds 5217 and 5218 (mean 0.552, below the 1-point criterion). AP75 rises by 1.438 and 1.230, and AP90 falls by 0.094 and 0.107. At fixed-pair counts, independent selection gains 0.482 and 0.483 AP, and 0.266 and 0.253 IoU (paired 95\% intervals \([0.208,0.323]\), \([0.171,0.334]\), 425 matches, 68 acquisitions with edits per seed). At attraction counts learned ranks gain 0.676 and 0.655 AP. Across all 740 images natural AP rises from 58.504 to 59.073 and 59.014.
 
