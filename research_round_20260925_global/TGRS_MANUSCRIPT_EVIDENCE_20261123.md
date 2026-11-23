@@ -13,6 +13,10 @@
 | 现有失败如何约束泛化声明 | 去重 PSeg 与 UEIKAP 追加 342 图上，学习排名分别比同量动态吸引力低 0.275 和 0.053 连续 IoU 点。UEIKAP 预留 139 艘只有 17 艘具合格正预算的原生匹配。 | 未匹配轮廓在 UEIKAP 总体统计中计零，无全场景 AP。固定面积精修对漏检和面积不足作用受限。[PSeg](PSEG_TEST232_CLASSICAL_ATTRACTION_ACTUAL_20261122.md) · [UEIKAP 追加](UEIKAP_ADDITIONAL_FAMILIES_ACTUAL_20261123.md) · [UEIKAP 覆盖](UEIKAP_RFDETR_CARRIER_ACTUAL_20261122.md) |
 | 结论能否从作者数据复算 | 主表 3,434 项数值与独立重跑逐值一致。74 图在干净环境重跑，1,470 项数值逐值一致。 | 需要作者发布数据和项目指定冻结权重。74 图复现限定检测器 5202 与头 5217。[主表复现](SAR_B5_MAIN_TABLES_REPRODUCTION_ACTUAL_20261123.md) · [74 图复现](INSTANCE_RSDD_B5_REPRODUCTION_ACTUAL_20261123.md) |
 
+## 强精修整掩膜补证
+
+同一 Phoenix XL1 权重在 74 图上以公开 LVIS 面积规则整掩膜写回时，较同端点同量的 Phoenix 下降 **17.779 AP、9.825 连续 IoU 点**，几何区间 **[−14.014, −6.440]**。固定匹配的额外船外面积增加 33.726 点。按公开 COCO 面积规则仅改写 172 个候选，研究面积区间保持原生。这一结果已补进英文稿。结论限定于已评估的 Instance-RSDD 74 图，新的预注册采集结果仍需完成。[评分和复现](RSDD74_PHOENIX_WHOLEMASK_ACTUAL_20261123.md)
+
 ## 正式投稿前的取舍
 
 本稿已具备围绕固定预算边界决策开展专业审阅的证据。能优先保留的贡献是把编辑策略、评分和预算分开，并跨两个检测框架和两个高分三号载体得到可复核的效果。数学依据与经典分侧像素交换及后验概率排序有明确关系，技术贡献应落在任务定义、对照设计和原生栅格边界证据。分数标签单独带来稳定外部收益的证据仍弱，严格 AP90 的表示敏感性和 AIS 长度误差应保留。 [严格阈值复评](RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md) · [分数监督对照](RFDETR_FRACTIONAL_TIE_TRANSFER_ACTUAL_20261123.md) · [AIS 长度外测](GULF_AIS_GEOSCALE_ACTUAL_20261123.md)
