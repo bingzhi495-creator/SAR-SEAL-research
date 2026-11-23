@@ -1,0 +1,1100 @@
+{
+  "status": "FIT109_IMAGE_SHELL_SCORE_COMPLETE",
+  "score_result_sha256": "9c4a2fce60b2bd34421e14dc650fee7608ef1f8fdd8b9aa81e2a58570c2f7dd4",
+  "edits_result_sha256": "939889cbd67933490366a097bace271ec6afda13e0943f098bd8dcba694ac16d",
+  "stages": {
+    "edits": {
+      "actual_exit": 0,
+      "output_footer_verified": true
+    },
+    "score": {
+      "actual_exit": 0,
+      "output_footer_verified": true
+    }
+  },
+  "protocol_sha256": "c8395c6ce19f46003535a01d7c4f3b10084b9ec80085c8c3b87cd9b4b05c9a37",
+  "worker_sha256": "e15644d48ab12c3bd66b1024041a21c5f2723ac33b3cff7f20cd615b83fda0d3",
+  "affinity_sha256": "1757685e62a834787f3e5b9eda1ea7d3dde9606895b22b32bddb3f1ec0bc4f2b",
+  "reference_sha256": "f78d431c749c4a58c3a14dd3ad2e248c5580093a6cbe59e47c4e2c35d6f7e7e6",
+  "historical_readback_sha256": "2c3c48fca43236558774762dc7475412e634897a96f3921fbbb14487d5585bf4",
+  "source_only": true,
+  "historical_parity": true,
+  "images": 109,
+  "candidate_counts": {
+    "no_op_candidates": 4741,
+    "positive_budget_candidates": 6159,
+    "slots": 10900,
+    "supported": 6167,
+    "swaps_per_arm": 43624
+  },
+  "detector_forwards": 0,
+  "new_policy_optimizer_updates": 0,
+  "original_occupancy_replay_updates": 1000,
+  "original_match_scope": {
+    "fixed_valid": 412,
+    "stock_matches": 467
+  },
+  "verified_xor": {
+    "verified_changed_pixels": 523488,
+    "verified_masks": 36954
+  },
+  "cohorts": {
+    "aligned": {
+      "AP": 50.304312944903415,
+      "AP75": 49.41128939130463,
+      "AP90": 1.7307087851642304,
+      "APs": 48.057982456527746,
+      "AR100": 54.274193548387096
+    },
+    "appearance_only": {
+      "AP": 50.6747911558075,
+      "AP75": 51.09255333329098,
+      "AP90": 1.4793358005076436,
+      "APs": 48.52656521106631,
+      "AR100": 54.45564516129032
+    },
+    "attraction_dynamic": {
+      "AP": 48.15152379214841,
+      "AP75": 47.536230953988415,
+      "AP90": 1.708117240295458,
+      "APs": 45.49292914531329,
+      "AR100": 52.137096774193544
+    },
+    "attraction_static_at_dynamic_count": {
+      "AP": 48.668546747252456,
+      "AP75": 47.42420556674218,
+      "AP90": 1.6628390949694045,
+      "APs": 46.18882193262418,
+      "AR100": 52.600806451612904
+    },
+    "learned_at_attraction_count": {
+      "AP": 53.34375957846041,
+      "AP75": 57.981312305553715,
+      "AP90": 1.5439074750664037,
+      "APs": 51.42836874178796,
+      "AR100": 57.036290322580655
+    },
+    "radial": {
+      "AP": 48.78519111302812,
+      "AP75": 48.18531731833926,
+      "AP90": 1.6531924718890671,
+      "APs": 46.2334593461936,
+      "AR100": 52.64112903225807
+    },
+    "raw": {
+      "AP": 49.325106431730326,
+      "AP75": 47.388259956760734,
+      "AP90": 1.5337161943388828,
+      "APs": 47.03143351017642,
+      "AR100": 53.125
+    }
+  },
+  "budgets": {
+    "aligned": {
+      "edited": 6159,
+      "edited_neutral": 4,
+      "edited_unmatched": 5744,
+      "edited_valid": 411,
+      "no_op": 4741,
+      "swaps": 43624
+    },
+    "appearance_only": {
+      "edited": 6159,
+      "edited_neutral": 4,
+      "edited_unmatched": 5744,
+      "edited_valid": 411,
+      "no_op": 4741,
+      "swaps": 43624
+    },
+    "attraction_dynamic": {
+      "edited": 6159,
+      "edited_neutral": 4,
+      "edited_unmatched": 5744,
+      "edited_valid": 411,
+      "no_op": 4741,
+      "swaps": 43624
+    },
+    "attraction_static_at_dynamic_count": {
+      "edited": 6159,
+      "edited_neutral": 4,
+      "edited_unmatched": 5744,
+      "edited_valid": 411,
+      "no_op": 4741,
+      "swaps": 43624
+    },
+    "learned_at_attraction_count": {
+      "edited": 6159,
+      "edited_neutral": 4,
+      "edited_unmatched": 5744,
+      "edited_valid": 411,
+      "no_op": 4741,
+      "swaps": 43624
+    },
+    "radial": {
+      "edited": 6159,
+      "edited_neutral": 4,
+      "edited_unmatched": 5744,
+      "edited_valid": 411,
+      "no_op": 4741,
+      "swaps": 43624
+    },
+    "raw": {
+      "edited": 0,
+      "edited_neutral": 0,
+      "edited_unmatched": 0,
+      "edited_valid": 0,
+      "no_op": 10900,
+      "swaps": 0
+    }
+  },
+  "geometry": {
+    "aligned_minus": {
+      "appearance_only": {
+        "changed_groups": 93,
+        "changed_matches": 411,
+        "fields": {
+          "continuous_intersection_px2": {
+            "delta": 0.1506865015177369,
+            "interval_95": [
+              -0.316826840767164,
+              0.5946278390988138
+            ]
+          },
+          "continuous_iou_points": {
+            "delta": -0.008860456811624597,
+            "interval_95": [
+              -0.17565078438531456,
+              0.15366264427149823
+            ]
+          },
+          "fn_per_polygon_area_points": {
+            "delta": 0.021024192369822232,
+            "interval_95": [
+              -0.08698192333709853,
+              0.13182164348210043
+            ]
+          },
+          "fp_per_polygon_area_points": {
+            "delta": 0.021024192369822205,
+            "interval_95": [
+              -0.08698192333709859,
+              0.1318216434821006
+            ]
+          },
+          "intersection_per_polygon_area_points": {
+            "delta": -0.021024192369820935,
+            "interval_95": [
+              -0.13182164348209902,
+              0.08698192333709975
+            ]
+          },
+          "raster_intersection_per_truth_points": {
+            "delta": 0.06117225697978217,
+            "interval_95": [
+              -0.06321475762966305,
+              0.18381109087293865
+            ]
+          },
+          "raster_intersection_px": {
+            "delta": 0.49758290412939343,
+            "interval_95": [
+              -0.01488402708753762,
+              1.0119105975723632
+            ]
+          },
+          "raster_iou_points": {
+            "delta": 0.12606541381749503,
+            "interval_95": [
+              -0.06296558462187082,
+              0.3122936412432741
+            ]
+          }
+        }
+      },
+      "attraction_dynamic": {
+        "changed_groups": 92,
+        "changed_matches": 409,
+        "fields": {
+          "continuous_intersection_px2": {
+            "delta": 0.32682318302223595,
+            "interval_95": [
+              0.07499930217362015,
+              0.573205012683361
+            ]
+          },
+          "continuous_iou_points": {
+            "delta": 0.36276458905097236,
+            "interval_95": [
+              0.18702506337885175,
+              0.5748339281695464
+            ]
+          },
+          "fn_per_polygon_area_points": {
+            "delta": -0.2698753574970831,
+            "interval_95": [
+              -0.4236793650699074,
+              -0.1431644120627094
+            ]
+          },
+          "fp_per_polygon_area_points": {
+            "delta": -0.26987535749708297,
+            "interval_95": [
+              -0.42367936506990767,
+              -0.14316441206270952
+            ]
+          },
+          "intersection_per_polygon_area_points": {
+            "delta": 0.26987535749708375,
+            "interval_95": [
+              0.1431644120627093,
+              0.4236793650699095
+            ]
+          },
+          "raster_intersection_per_truth_points": {
+            "delta": 0.28157326153637874,
+            "interval_95": [
+              0.14755257412961986,
+              0.434069862370952
+            ]
+          },
+          "raster_intersection_px": {
+            "delta": 0.4056898386594791,
+            "interval_95": [
+              0.11330089831631719,
+              0.6936848977942464
+            ]
+          },
+          "raster_iou_points": {
+            "delta": 0.3787855607762375,
+            "interval_95": [
+              0.1999193847023066,
+              0.5792469286837301
+            ]
+          }
+        }
+      },
+      "attraction_static_at_dynamic_count": {
+        "changed_groups": 92,
+        "changed_matches": 407,
+        "fields": {
+          "continuous_intersection_px2": {
+            "delta": 0.2540492552628188,
+            "interval_95": [
+              0.06686539251453853,
+              0.4544939900893894
+            ]
+          },
+          "continuous_iou_points": {
+            "delta": 0.2455390897752446,
+            "interval_95": [
+              0.1108292125237824,
+              0.4049713169855139
+            ]
+          },
+          "fn_per_polygon_area_points": {
+            "delta": -0.18066754007551578,
+            "interval_95": [
+              -0.29570574599966015,
+              -0.0840954107398734
+            ]
+          },
+          "fp_per_polygon_area_points": {
+            "delta": -0.18066754007551566,
+            "interval_95": [
+              -0.2957057459996601,
+              -0.08409541073987319
+            ]
+          },
+          "intersection_per_polygon_area_points": {
+            "delta": 0.18066754007551578,
+            "interval_95": [
+              0.08409541073987305,
+              0.2957057459996606
+            ]
+          },
+          "raster_intersection_per_truth_points": {
+            "delta": 0.18853973697325047,
+            "interval_95": [
+              0.09187748820571723,
+              0.30320862660899744
+            ]
+          },
+          "raster_intersection_px": {
+            "delta": 0.33400901579269876,
+            "interval_95": [
+              0.11385443962531393,
+              0.5594977686415077
+            ]
+          },
+          "raster_iou_points": {
+            "delta": 0.25590015176708125,
+            "interval_95": [
+              0.1232804921898934,
+              0.40974790077974577
+            ]
+          }
+        }
+      },
+      "learned_at_attraction_count": {
+        "changed_groups": 93,
+        "changed_matches": 411,
+        "fields": {
+          "continuous_intersection_px2": {
+            "delta": -1.5213505124476503,
+            "interval_95": [
+              -2.0729724194958017,
+              -0.9804525230759235
+            ]
+          },
+          "continuous_iou_points": {
+            "delta": -0.7409902961557548,
+            "interval_95": [
+              -0.9569946756763656,
+              -0.5223144343983352
+            ]
+          },
+          "fn_per_polygon_area_points": {
+            "delta": 0.5204772101878943,
+            "interval_95": [
+              0.3695476913763097,
+              0.6747757335908882
+            ]
+          },
+          "fp_per_polygon_area_points": {
+            "delta": 0.5204772101878944,
+            "interval_95": [
+              0.36954769137630966,
+              0.6747757335908884
+            ]
+          },
+          "intersection_per_polygon_area_points": {
+            "delta": -0.5204772101878944,
+            "interval_95": [
+              -0.6747757335908878,
+              -0.3695476913763098
+            ]
+          },
+          "raster_intersection_per_truth_points": {
+            "delta": -0.585676943750421,
+            "interval_95": [
+              -0.7522933916972695,
+              -0.41732544960138085
+            ]
+          },
+          "raster_intersection_px": {
+            "delta": -1.6877317952270507,
+            "interval_95": [
+              -2.289091443028822,
+              -1.0815058281377088
+            ]
+          },
+          "raster_iou_points": {
+            "delta": -0.8284713164749343,
+            "interval_95": [
+              -1.0657757624694715,
+              -0.579606801917905
+            ]
+          }
+        }
+      },
+      "radial": {
+        "changed_groups": 93,
+        "changed_matches": 408,
+        "fields": {
+          "continuous_intersection_px2": {
+            "delta": 0.24989494139535134,
+            "interval_95": [
+              0.06327911650745588,
+              0.4525499625977241
+            ]
+          },
+          "continuous_iou_points": {
+            "delta": 0.22791096258413648,
+            "interval_95": [
+              0.10783851256589999,
+              0.36807444656554456
+            ]
+          },
+          "fn_per_polygon_area_points": {
+            "delta": -0.16508877363333876,
+            "interval_95": [
+              -0.26395555872364757,
+              -0.08029782943201376
+            ]
+          },
+          "fp_per_polygon_area_points": {
+            "delta": -0.16508877363333843,
+            "interval_95": [
+              -0.26395555872364734,
+              -0.08029782943201333
+            ]
+          },
+          "intersection_per_polygon_area_points": {
+            "delta": 0.1650887736333391,
+            "interval_95": [
+              0.0802978294320141,
+              0.26395555872364806
+            ]
+          },
+          "raster_intersection_per_truth_points": {
+            "delta": 0.17219141419695197,
+            "interval_95": [
+              0.0841664612361953,
+              0.27411257100682
+            ]
+          },
+          "raster_intersection_px": {
+            "delta": 0.3291527363633654,
+            "interval_95": [
+              0.10770352047629388,
+              0.5660638986777544
+            ]
+          },
+          "raster_iou_points": {
+            "delta": 0.23747062603379845,
+            "interval_95": [
+              0.11255147282818345,
+              0.3795475836436857
+            ]
+          }
+        }
+      },
+      "raw": {
+        "changed_groups": 93,
+        "changed_matches": 411,
+        "fields": {
+          "continuous_intersection_px2": {
+            "delta": 1.6625277096814643,
+            "interval_95": [
+              1.2882624713162003,
+              2.060786916810625
+            ]
+          },
+          "continuous_iou_points": {
+            "delta": 0.6262028901959892,
+            "interval_95": [
+              0.46243128852494564,
+              0.7981905500658684
+            ]
+          },
+          "fn_per_polygon_area_points": {
+            "delta": -0.3890506447434064,
+            "interval_95": [
+              -0.5077080710425388,
+              -0.2770755870546231
+            ]
+          },
+          "fp_per_polygon_area_points": {
+            "delta": -0.3890506447434065,
+            "interval_95": [
+              -0.5077080710425392,
+              -0.27707558705462304
+            ]
+          },
+          "intersection_per_polygon_area_points": {
+            "delta": 0.38905064474340667,
+            "interval_95": [
+              0.27707558705462365,
+              0.5077080710425399
+            ]
+          },
+          "raster_intersection_per_truth_points": {
+            "delta": 0.38325854506115165,
+            "interval_95": [
+              0.26956527389304547,
+              0.504973905060868
+            ]
+          },
+          "raster_intersection_px": {
+            "delta": 1.7142322520406028,
+            "interval_95": [
+              1.3164717365440812,
+              2.1397107140347202
+            ]
+          },
+          "raster_iou_points": {
+            "delta": 0.6176535730881231,
+            "interval_95": [
+              0.44617726704362615,
+              0.7990007936015069
+            ]
+          }
+        }
+      }
+    },
+    "bootstrap_draws": 4096,
+    "bootstrap_seed": 5217,
+    "group_equal": {
+      "aligned": {
+        "continuous_intersection_px2": 455.5773491507939,
+        "continuous_iou_points": 80.6754105192861,
+        "fn_per_polygon_area_points": 7.773186378254351,
+        "fp_per_polygon_area_points": 15.138997298933027,
+        "intersection_per_polygon_area_points": 92.22681362174565,
+        "raster_intersection_per_truth_points": 91.83787984792711,
+        "raster_intersection_px": 454.49243170386427,
+        "raster_iou_points": 80.17555838003764
+      },
+      "appearance_only": {
+        "continuous_intersection_px2": 455.42666264927635,
+        "continuous_iou_points": 80.68427097609771,
+        "fn_per_polygon_area_points": 7.7521621858845355,
+        "fp_per_polygon_area_points": 15.117973106563213,
+        "intersection_per_polygon_area_points": 92.24783781411548,
+        "raster_intersection_per_truth_points": 91.77670759094737,
+        "raster_intersection_px": 453.9948487997349,
+        "raster_iou_points": 80.04949296622013
+      },
+      "attraction_dynamic": {
+        "continuous_intersection_px2": 455.25052596777175,
+        "continuous_iou_points": 80.31264593023515,
+        "fn_per_polygon_area_points": 8.043061735751438,
+        "fp_per_polygon_area_points": 15.408872656430106,
+        "intersection_per_polygon_area_points": 91.95693826424858,
+        "raster_intersection_per_truth_points": 91.55630658639079,
+        "raster_intersection_px": 454.0867418652049,
+        "raster_iou_points": 79.79677281926143
+      },
+      "attraction_static_at_dynamic_count": {
+        "continuous_intersection_px2": 455.323299895531,
+        "continuous_iou_points": 80.42987142951088,
+        "fn_per_polygon_area_points": 7.953853918329869,
+        "fp_per_polygon_area_points": 15.319664839008535,
+        "intersection_per_polygon_area_points": 92.04614608167013,
+        "raster_intersection_per_truth_points": 91.64934011095389,
+        "raster_intersection_px": 454.1584226880716,
+        "raster_iou_points": 79.91965822827059
+      },
+      "learned_at_attraction_count": {
+        "continuous_intersection_px2": 457.0986996632418,
+        "continuous_iou_points": 81.41640081544186,
+        "fn_per_polygon_area_points": 7.252709168066457,
+        "fp_per_polygon_area_points": 14.618520088745125,
+        "intersection_per_polygon_area_points": 92.74729083193353,
+        "raster_intersection_per_truth_points": 92.42355679167756,
+        "raster_intersection_px": 456.18016349909135,
+        "raster_iou_points": 81.00402969651256
+      },
+      "radial": {
+        "continuous_intersection_px2": 455.3274542093985,
+        "continuous_iou_points": 80.44749955670196,
+        "fn_per_polygon_area_points": 7.938275151887692,
+        "fp_per_polygon_area_points": 15.304086072566356,
+        "intersection_per_polygon_area_points": 92.06172484811233,
+        "raster_intersection_per_truth_points": 91.66568843373018,
+        "raster_intersection_px": 454.16327896750107,
+        "raster_iou_points": 79.93808775400386
+      },
+      "raw": {
+        "continuous_intersection_px2": 453.91482144111257,
+        "continuous_iou_points": 80.04920762909012,
+        "fn_per_polygon_area_points": 8.162237022997758,
+        "fp_per_polygon_area_points": 15.528047943676425,
+        "intersection_per_polygon_area_points": 91.83776297700223,
+        "raster_intersection_per_truth_points": 91.45462130286599,
+        "raster_intersection_px": 452.77819945182375,
+        "raster_iou_points": 79.55790480694957
+      }
+    },
+    "minus_raw": {
+      "aligned": {
+        "continuous_intersection_px2": {
+          "delta": 1.6625277096814643,
+          "interval_95": [
+            1.2882624713162003,
+            2.060786916810625
+          ]
+        },
+        "continuous_iou_points": {
+          "delta": 0.6262028901959892,
+          "interval_95": [
+            0.46243128852494564,
+            0.7981905500658684
+          ]
+        },
+        "fn_per_polygon_area_points": {
+          "delta": -0.3890506447434064,
+          "interval_95": [
+            -0.5077080710425388,
+            -0.2770755870546231
+          ]
+        },
+        "fp_per_polygon_area_points": {
+          "delta": -0.3890506447434065,
+          "interval_95": [
+            -0.5077080710425392,
+            -0.27707558705462304
+          ]
+        },
+        "intersection_per_polygon_area_points": {
+          "delta": 0.38905064474340667,
+          "interval_95": [
+            0.27707558705462365,
+            0.5077080710425399
+          ]
+        },
+        "raster_intersection_per_truth_points": {
+          "delta": 0.38325854506115165,
+          "interval_95": [
+            0.26956527389304547,
+            0.504973905060868
+          ]
+        },
+        "raster_intersection_px": {
+          "delta": 1.7142322520406028,
+          "interval_95": [
+            1.3164717365440812,
+            2.1397107140347202
+          ]
+        },
+        "raster_iou_points": {
+          "delta": 0.6176535730881231,
+          "interval_95": [
+            0.44617726704362615,
+            0.7990007936015069
+          ]
+        }
+      },
+      "appearance_only": {
+        "continuous_intersection_px2": {
+          "delta": 1.5118412081637276,
+          "interval_95": [
+            1.1320866594129588,
+            1.900164341497275
+          ]
+        },
+        "continuous_iou_points": {
+          "delta": 0.6350633470076138,
+          "interval_95": [
+            0.45641835926399343,
+            0.8143321719312497
+          ]
+        },
+        "fn_per_polygon_area_points": {
+          "delta": -0.4100748371132288,
+          "interval_95": [
+            -0.5283817723962698,
+            -0.29235226703554207
+          ]
+        },
+        "fp_per_polygon_area_points": {
+          "delta": -0.4100748371132285,
+          "interval_95": [
+            -0.5283817723962697,
+            -0.2923522670355422
+          ]
+        },
+        "intersection_per_polygon_area_points": {
+          "delta": 0.41007483711322756,
+          "interval_95": [
+            0.2923522670355405,
+            0.5283817723962699
+          ]
+        },
+        "raster_intersection_per_truth_points": {
+          "delta": 0.3220862880813695,
+          "interval_95": [
+            0.19737425939244904,
+            0.4426819050340297
+          ]
+        },
+        "raster_intersection_px": {
+          "delta": 1.2166493479112093,
+          "interval_95": [
+            0.8014410961517241,
+            1.6531659437968746
+          ]
+        },
+        "raster_iou_points": {
+          "delta": 0.49158815927062804,
+          "interval_95": [
+            0.3015722341819934,
+            0.6717063375270969
+          ]
+        }
+      },
+      "attraction_dynamic": {
+        "continuous_intersection_px2": {
+          "delta": 1.3357045266592282,
+          "interval_95": [
+            0.9168805626719294,
+            1.7658681693903626
+          ]
+        },
+        "continuous_iou_points": {
+          "delta": 0.2634383011450168,
+          "interval_95": [
+            0.038848600004227116,
+            0.4856771333564066
+          ]
+        },
+        "fn_per_polygon_area_points": {
+          "delta": -0.11917528724632334,
+          "interval_95": [
+            -0.2728575349148199,
+            0.036228827857988165
+          ]
+        },
+        "fp_per_polygon_area_points": {
+          "delta": -0.11917528724632355,
+          "interval_95": [
+            -0.2728575349148201,
+            0.03622882785798788
+          ]
+        },
+        "intersection_per_polygon_area_points": {
+          "delta": 0.11917528724632288,
+          "interval_95": [
+            -0.03622882785798912,
+            0.27285753491482023
+          ]
+        },
+        "raster_intersection_per_truth_points": {
+          "delta": 0.10168528352477293,
+          "interval_95": [
+            -0.06233372690618719,
+            0.26385174102799575
+          ]
+        },
+        "raster_intersection_px": {
+          "delta": 1.3085424133811236,
+          "interval_95": [
+            0.8679094128690916,
+            1.7582682625021353
+          ]
+        },
+        "raster_iou_points": {
+          "delta": 0.2388680123118856,
+          "interval_95": [
+            0.008777996830082506,
+            0.4659962207867115
+          ]
+        }
+      },
+      "attraction_static_at_dynamic_count": {
+        "continuous_intersection_px2": {
+          "delta": 1.4084784544186455,
+          "interval_95": [
+            1.0218153680957838,
+            1.806723443555581
+          ]
+        },
+        "continuous_iou_points": {
+          "delta": 0.38066380042074455,
+          "interval_95": [
+            0.1921841919026767,
+            0.5735287519215677
+          ]
+        },
+        "fn_per_polygon_area_points": {
+          "delta": -0.20838310466789056,
+          "interval_95": [
+            -0.3391809830063569,
+            -0.08000981083236698
+          ]
+        },
+        "fp_per_polygon_area_points": {
+          "delta": -0.20838310466789078,
+          "interval_95": [
+            -0.33918098300635724,
+            -0.08000981083236722
+          ]
+        },
+        "intersection_per_polygon_area_points": {
+          "delta": 0.20838310466789087,
+          "interval_95": [
+            0.08000981083236741,
+            0.3391809830063568
+          ]
+        },
+        "raster_intersection_per_truth_points": {
+          "delta": 0.1947188080879012,
+          "interval_95": [
+            0.05608435698531182,
+            0.3334663568057321
+          ]
+        },
+        "raster_intersection_px": {
+          "delta": 1.380223236247904,
+          "interval_95": [
+            0.9775077055911957,
+            1.800373953344779
+          ]
+        },
+        "raster_iou_points": {
+          "delta": 0.36175342132104177,
+          "interval_95": [
+            0.16175581428103808,
+            0.5657478657551751
+          ]
+        }
+      },
+      "learned_at_attraction_count": {
+        "continuous_intersection_px2": {
+          "delta": 3.183878222129114,
+          "interval_95": [
+            2.749654222046861,
+            3.6090129713345904
+          ]
+        },
+        "continuous_iou_points": {
+          "delta": 1.367193186351744,
+          "interval_95": [
+            1.1450338462687364,
+            1.595042214353024
+          ]
+        },
+        "fn_per_polygon_area_points": {
+          "delta": -0.9095278549313011,
+          "interval_95": [
+            -1.0756882271332238,
+            -0.7513272569608169
+          ]
+        },
+        "fp_per_polygon_area_points": {
+          "delta": -0.9095278549313008,
+          "interval_95": [
+            -1.075688227133224,
+            -0.7513272569608171
+          ]
+        },
+        "intersection_per_polygon_area_points": {
+          "delta": 0.9095278549313011,
+          "interval_95": [
+            0.7513272569608149,
+            1.0756882271332242
+          ]
+        },
+        "raster_intersection_per_truth_points": {
+          "delta": 0.9689354888115727,
+          "interval_95": [
+            0.8054146003657752,
+            1.1418148821789629
+          ]
+        },
+        "raster_intersection_px": {
+          "delta": 3.401964047267653,
+          "interval_95": [
+            2.9315066125016322,
+            3.8627765039707653
+          ]
+        },
+        "raster_iou_points": {
+          "delta": 1.4461248895630572,
+          "interval_95": [
+            1.218605314632395,
+            1.6818112217021364
+          ]
+        }
+      },
+      "radial": {
+        "continuous_intersection_px2": {
+          "delta": 1.412632768286113,
+          "interval_95": [
+            1.040917473453469,
+            1.8038530971280442
+          ]
+        },
+        "continuous_iou_points": {
+          "delta": 0.39829192761185267,
+          "interval_95": [
+            0.21825382314655772,
+            0.5879281505639152
+          ]
+        },
+        "fn_per_polygon_area_points": {
+          "delta": -0.22396187111006755,
+          "interval_95": [
+            -0.35216192989462763,
+            -0.1006048286252138
+          ]
+        },
+        "fp_per_polygon_area_points": {
+          "delta": -0.22396187111006807,
+          "interval_95": [
+            -0.3521619298946279,
+            -0.10060482862521435
+          ]
+        },
+        "intersection_per_polygon_area_points": {
+          "delta": 0.22396187111006755,
+          "interval_95": [
+            0.10060482862521387,
+            0.3521619298946276
+          ]
+        },
+        "raster_intersection_per_truth_points": {
+          "delta": 0.2110671308641997,
+          "interval_95": [
+            0.08052731333049207,
+            0.3446218473550947
+          ]
+        },
+        "raster_intersection_px": {
+          "delta": 1.3850795156772375,
+          "interval_95": [
+            0.9879857408913355,
+            1.7996717907593134
+          ]
+        },
+        "raster_iou_points": {
+          "delta": 0.3801829470543246,
+          "interval_95": [
+            0.18879204805742877,
+            0.5793122376533791
+          ]
+        }
+      },
+      "raw": {
+        "continuous_intersection_px2": {
+          "delta": 0,
+          "interval_95": [
+            0,
+            0
+          ]
+        },
+        "continuous_iou_points": {
+          "delta": 0,
+          "interval_95": [
+            0,
+            0
+          ]
+        },
+        "fn_per_polygon_area_points": {
+          "delta": 0,
+          "interval_95": [
+            0,
+            0
+          ]
+        },
+        "fp_per_polygon_area_points": {
+          "delta": 0,
+          "interval_95": [
+            0,
+            0
+          ]
+        },
+        "intersection_per_polygon_area_points": {
+          "delta": 0,
+          "interval_95": [
+            0,
+            0
+          ]
+        },
+        "raster_intersection_per_truth_points": {
+          "delta": 0,
+          "interval_95": [
+            0,
+            0
+          ]
+        },
+        "raster_intersection_px": {
+          "delta": 0,
+          "interval_95": [
+            0,
+            0
+          ]
+        },
+        "raster_iou_points": {
+          "delta": 0,
+          "interval_95": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "pairs": 412,
+    "pointwise_intervals": true,
+    "source_groups": 93
+  },
+  "gates": {
+    "AP_gain_over_strongest_points": -3.0394466335569916,
+    "aligned_minus": {
+      "appearance_only": {
+        "AP_difference_points": -0.37047821090408206,
+        "AP_retained": false,
+        "changed_groups": 93,
+        "changed_matches": 411,
+        "exposure": true,
+        "intersection_lower95_points": -0.13182164348209902,
+        "positive_lower95": false
+      },
+      "attraction_dynamic": {
+        "AP_difference_points": 2.1527891527550054,
+        "AP_retained": true,
+        "changed_groups": 92,
+        "changed_matches": 409,
+        "exposure": true,
+        "intersection_lower95_points": 0.1431644120627093,
+        "positive_lower95": true
+      },
+      "attraction_static_at_dynamic_count": {
+        "AP_difference_points": 1.635766197650959,
+        "AP_retained": true,
+        "changed_groups": 92,
+        "changed_matches": 407,
+        "exposure": true,
+        "intersection_lower95_points": 0.08409541073987305,
+        "positive_lower95": true
+      },
+      "learned_at_attraction_count": {
+        "AP_difference_points": -3.0394466335569916,
+        "AP_retained": false,
+        "changed_groups": 93,
+        "changed_matches": 411,
+        "exposure": true,
+        "intersection_lower95_points": -0.6747757335908878,
+        "positive_lower95": false
+      },
+      "radial": {
+        "AP_difference_points": 1.519121831875296,
+        "AP_retained": true,
+        "changed_groups": 93,
+        "changed_matches": 408,
+        "exposure": true,
+        "intersection_lower95_points": 0.0802978294320141,
+        "positive_lower95": true
+      },
+      "raw": {
+        "AP_difference_points": 0.9792065131730894,
+        "AP_retained": true,
+        "changed_groups": 93,
+        "changed_matches": 411,
+        "exposure": true,
+        "intersection_lower95_points": 0.27707558705462365,
+        "positive_lower95": true
+      }
+    },
+    "mechanism_joint_pass": true,
+    "practical_pass": false,
+    "route": "no_advancement",
+    "strongest_baseline_by_AP": "learned_at_attraction_count"
+  },
+  "costs_seconds": {
+    "fixed_geometry_all_arms": 0.42450449999887496,
+    "historical_fit_and_comparator_replay": 6.0091969999921275,
+    "image_only": {
+      "appearance_endpoint_gather": 0.01344629934465047,
+      "image_rank_shared": 3.3361323999561137,
+      "legacy_dynamic_and_static": 2.5927624994219514,
+      "select_aligned": 0.5316837002756074,
+      "select_appearance_only": 0.4820839002932189,
+      "select_attraction_static_at_dynamic_count": 0.47628170014650095,
+      "select_radial": 0.485735000227578,
+      "shared_aligned_radial_static_scores": 2.533118500839919,
+      "verified_image_read": 1.2821735998877557
+    },
+    "image_only_phase": 16.134095200002776,
+    "per_arm_mask_materialization_and_COCO": {
+      "aligned": 11.62976520000666,
+      "appearance_only": 11.525834400003077,
+      "attraction_dynamic": 11.55360689999361,
+      "attraction_static_at_dynamic_count": 11.805083500003093,
+      "learned_at_attraction_count": 11.786209199999576,
+      "radial": 11.62145540000347,
+      "raw": 0.7108568999974523
+    }
+  },
+  "score_phase_seconds": 81.79204559999926
+}
