@@ -564,7 +564,7 @@ At fixed head and count, freeing both sides versus additions alone gained 0.224 
 
 Under the same dynamic budget, learned additions and removals each improve intersection on DEV705 (\(+0.308\) and \(+0.446\) points of hull area) and each lower it on PSeg-SSDD and UEIKAP342. External comparisons between the two sides have intervals spanning zero. A \href{https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/3f8f738/research_round_20260925_global/ATTRACTION_LOCAL_CORRECTION_ACTUAL_20261123.md}{ridge adjudicator} fit on 4,063 disputed FIT109 pairs gains 0.018 IoU over scores alone on DEV705 (\([0.008,0.028]\)); on deduplicated PSeg, its interval spans zero and static attraction leads by 0.115 AP.
 
-With frozen Phoenix scores and the same signed counts, freeing the pairing adds 0.486 AP and 0.327 continuous IoU on Instance-RSDD (\([0.169,0.479]\)), and 0.731 AP and 0.595 IoU on PSeg-SSDD (\([0.415,0.787]\)). Both sensitivity views meet the prespecified criteria. PSeg AP75 rises by 2.319 points and AP90 changes by \(-0.039\). Static attraction still leads by 0.195 AP at that count.
+With frozen Phoenix scores, independent selection improves over fixed pairing by 0.486 AP and 0.327 continuous IoU on Instance-RSDD, and 0.731 AP and 0.595 IoU on PSeg-SSDD. We then allow posterior-optimal re-pairing under the original per-candidate maximum swap distance. This gains 0.250 and 0.534 AP. Removing that cap adds 0.236 and 0.197 AP, below the prespecified 0.30 points in both full cohorts. Residual IoU gains are 0.197 (\([0.063,0.324]\)) and 0.280 (\([0.171,0.398]\)). PSeg static attraction still leads the independent arm by 0.195 AP at that count.
 
 \subsection{Pretrained writer support, count and signed allocation}
 \begin{table*}[t]

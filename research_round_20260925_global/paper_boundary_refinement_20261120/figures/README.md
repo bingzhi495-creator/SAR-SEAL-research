@@ -34,3 +34,6 @@ Run `plot_cross_dataset_phoenix_budget.py` with the two released score summaries
 
 `independent_sides_ablation.svg` and its companion PDF use the observed COCO mask AP from the [same-count side intervention](../../INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md). The script `plot_independent_sides_ablation.py` reads the released aggregate at its verified digest. The date-separated view is nested. AP markers are point estimates.
 
+## Supplementary matched-distance ablation
+
+[Editable SVG](phoenix_bounded_matching.svg) · [Vector PDF](phoenix_bounded_matching.pdf) · [Source aggregates and selection rules](../../PHOENIX_BOUNDED_MATCH_ACTUAL_20261123.md). The left panel compares observed mask AP points. The dashed line marks the 0.30-point advancement threshold. The right panel gives fixed-match continuous IoU with paired cluster intervals. The two nested views are sensitivity analyses.

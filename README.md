@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- 在同端点、同分、同量下加入受限重新配对。Instance-RSDD／PSeg 完整队列相对固定配对 **+0.250／+0.534 AP**，完全独立再 **+0.236／+0.197 AP**，同时保留两步正向连续几何差值。[实测与矢量图](research_round_20260925_global/PHOENIX_BOUNDED_MATCH_ACTUAL_20261123.md) · [强精修与新增数据核验](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md)
+
 - 固定 Phoenix 后验的同量独立选点在两个历史队列复验通过。Instance-RSDD 74 图 **+0.486 AP、+0.327 连续 IoU［0.169, 0.479］**；PSeg-SSDD 232 图 **+0.731 AP、+0.595 IoU［0.415, 0.787］**。同量静态吸引力在 PSeg 的 AP 仍高 0.195 点。[四视图实测与复现](research_round_20260925_global/PHOENIX_PAIR_OPERATOR_ACTUAL_20261123.md)
 
 - PSeg-SSDD 历史官方 232 图复验了两种编辑约束。整图定额较阈值 **+2.525 AP、+4.001 连续 IoU [2.644, 5.382]**。在同一窄端点、相同总翻转量下，等量增删较自由分配 **+1.842 AP、+1.151 IoU [0.701, 1.594]**。等量 Phoenix 与同量静态吸引力相差 −0.195 AP，固定几何区间跨零。[整图定额](research_round_20260925_global/PSEG232_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md) · [同增删量](research_round_20260925_global/PSEG232_PHOENIX_BALANCED_RANK_ACTUAL_20261123.md)
