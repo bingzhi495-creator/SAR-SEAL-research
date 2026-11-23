@@ -37,3 +37,10 @@ OSSDD 的作者采用矩形内部置一生成二值标注，适用于检测覆�
 ## SAR Ship Gulf 独立物理验证闭合
 
 固定作者目录的 18,342 个图块实际来自 194 个带图块的源景。作者手稿记录获取 241 原始场景，两个分母分别对应获取和当前可定位的发行版。18,334 个有效文件名中实测有 3,942 个不同九位船舶标识前缀，作者说明的 2,088 个 MMSI 计数仍待对齐。64 轨道日期组的 244 个预选归档和 97 个标注 XML 全部通过完整性核验。已在 242 图上完成冻结检测与同量评分，25 艘共同可测的 AIS MAE 效应未达到预锁门槛。[实际结果](GULF_AIS_FROZEN_ACTUAL_20261123.md) · [作者手稿数据口径](https://github.com/mousashaya/sar-atr-study/blob/b3b8368228818f2426a64b276b732bd604b15fe3/paper_classify.tex#L156-L180)
+
+
+## 新一轮作者标注与采集映射核验
+
+OpenSAR Insight 的固定公开版本含 4,047 份标注 XML。训练、验证、测试分别来自 10、2、3 个互不重叠的 Sentinel-1 产品，分别含 2,980、340、1,626 条 `Ship` 记录。记录给出矩形 `BoundingBox` 和 `Is_Vessel` 标记，4,907 条另有距离压缩框。未见逐船轮廓或掩膜字段，图块四角用于空间定位。这个版本适用于以原始采集分组的跨表示检测。官方测试标签归档 222,414 字节，SHA-256 为 `649af181e149733f6ddbdea457a50c6ea7fbce6a979797e2557276a68045e4dc`。[固定版本](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset/tree/e90a0c0465cfb8484b4f356ef968d976054f453a)
+
+SISS-YOLO 报告针对 24 个 Sentinel-1A 场景图块增补人工多边形，其公开数据入口指向原 OpenSARShip2.0。增补标签和增强前父景关系尚未取得。SMART-Ship 第二版的多模态标注尚无可核验的公开发布入口或 SAR 侧轮廓产生记录。MKLab 的 Sentinel-1 油污数据含船舶语义类别，作者通过机构申请提供数据，多倍率裁片需要原始产品映射来排除重叠。三套候选均缺少本研究可直接执行独立船体实例评价的完整材料。[SISS-YOLO](https://doi.org/10.3390/rs17173118) · [SMART-Ship 第二版](https://arxiv.org/html/2508.02384v2) · [MKLab 数据入口](https://m4d.iti.gr/oil-spill-detection-dataset/)

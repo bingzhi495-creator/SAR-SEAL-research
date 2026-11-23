@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | 固定编辑量时，强制固定配对有什么代价 | HRSID DEV705 的 D-FINE、RF-DETR 5202／5203 分别提高 0.811、0.906、0.838 mask AP 点。5202 的 HRSID 官方分配重评三头均值 +1.216 AP。 | 同检测候选、同分数、同端点、同实际逐候选编辑量。HRSID DEV 有开发接触，官方分配为历史重评。[D-FINE](DFINE_E24_DEV705_FREE_ENDPOINT_20261120.md) · [RF-DETR 5202](RFDETR_CENTER5202_DEV705_MATCHED_RESULT_20261120.md) · [RF-DETR 5203](RFDETR_COMMON5203_DEV705_FROZEN_ACTUAL_20261122.md) · [官方集复算](HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md) |
 | 固定配对的差异能否跨库重现 | Gaofen-3 583 图，两次 RF-DETR 拟合分别 +0.483 和 +0.299 AP。配对连续 IoU 分别 +0.259 [0.194, 0.322] 和 +0.196 [0.136, 0.253] 点。 | 两次检测器冻结外推，部分样本共享。各自原生匹配均为 425 个，贡献组分别为 68 和 67。[首次迁移](INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [双侧分解](INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md) · [第二次迁移](INSTANCE_RSDD_CARRIER5203_ACTUAL_20261123.md) |
-| 主结果由全部个体共同驱动吗 | Gaofen-3 5203、头 5217 在动态吸引力预算下，425 个合格匹配中 268 个改善、154 个下降、3 个无差。图 4 按正、负两侧各自中位数选例，四例都做八次交换。 | 以连续 IoU、原生固定匹配和精确交集为依据。右列显示净交集位置变化，公开图只含局部空间聚合。[图件与选例规则](paper_boundary_refinement_20261120/figures/README.md) |
+| 主结果由全部个体共同驱动吗 | Gaofen-3 5203、头 5217 在动态吸引力预算下，425 个合格匹配中 268 个改善、154 个下降、3 个无差。图 7 按正、负两侧各自中位数选例，四例都做八次交换。 | 以连续 IoU、原生固定匹配和精确交集为依据。右列显示净交集位置变化，公开图只含局部空间聚合。[图件与选例规则](paper_boundary_refinement_20261120/figures/README.md) |
 | 同端点排名和整区精修的结论是否一致 | Gaofen-3 上，占据率较同支持同量的 PointRend 提高 +0.312／+0.390 AP。整框 PointRend 比无候选上限的占据率高 0.200 AP，AR100 低 1.744 点。74 图上 Phoenix 同端点同量领先三头均值 0.308 AP，几何区间跨零。 | 同支持适配和整区输出分别报告。Phoenix 的同队列整图评价见下方补证。[PointRend 支持对照](INSTANCE_RSDD_POINTREND_SUPPORT_FACTOR_ACTUAL_20261123.md) · [双侧位置移植](POINTREND_SIGNED_QUOTA_SWAP_ACTUAL_20261123.md) · [Phoenix](INSTANCE_RSDD_PHOENIX_EQUAL_COUNT_ACTUAL_20261123.md) |
 | 现有失败如何约束泛化声明 | 去重 PSeg 与 UEIKAP 追加 342 图上，学习排名分别比同量动态吸引力低 0.275 和 0.053 连续 IoU 点。UEIKAP 预留 139 艘只有 17 艘具合格正预算的原生匹配。 | 未匹配轮廓在 UEIKAP 总体统计中计零，无全场景 AP。固定面积精修对漏检和面积不足作用受限。[PSeg](PSEG_TEST232_CLASSICAL_ATTRACTION_ACTUAL_20261122.md) · [UEIKAP 追加](UEIKAP_ADDITIONAL_FAMILIES_ACTUAL_20261123.md) · [UEIKAP 覆盖](UEIKAP_RFDETR_CARRIER_ACTUAL_20261122.md) |
 | 结论能否从作者数据复算 | 主表 3,434 项数值与独立重跑逐值一致。74 图在干净环境重跑，1,470 项数值逐值一致。 | 需要作者发布数据和项目指定冻结权重。74 图复现限定检测器 5202 与头 5217。[主表复现](SAR_B5_MAIN_TABLES_REPRODUCTION_ACTUAL_20261123.md) · [74 图复现](INSTANCE_RSDD_B5_REPRODUCTION_ACTUAL_20261123.md) |
@@ -24,6 +24,10 @@
 同一操作对照迁移到 PSeg-SSDD 官方历史划分，以冻结 HRSID D-FINE 代替 RSDD 的 RF-DETR，仍得到 **+2.525 AP 和 +4.001 连续 IoU [2.644, 5.382]**。整图自由增删定额在 PSeg 低于原生 D-FINE 和经典空间吸引力。去重后两项主效应保留。证据支持两个历史数据上的精修过量问题，采集域泛化和跨库实用领先仍待核验。[PSeg 四组实测与核验](PSEG232_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md)
 
 修订稿已纳入同端点补证。实测显示，PSeg 的窄域 Phoenix 在保持同一后验和总翻转量时，改用等量增删获得 **+1.842 AP 和 +1.151 IoU [0.701, 1.594]**。等量 Phoenix 的 18.222 AP 与同量静态吸引力的 18.417 AP 差 0.195 点，联合判据未支持任一方向。Instance-RSDD 的同类差异较小。两组结果要求将整体编辑量、两侧分配及端点排序分开论证，并保留载体与数据同时变化的条件。[同增删量实测](PSEG232_PHOENIX_BALANCED_RANK_ACTUAL_20261123.md)
+
+### 固定外部评分的独立选点复验
+
+同一 Phoenix 后验、原生端点、逐候选增删量和置信度下，独立选点较距离配对的 **Instance-RSDD 74 图为 +0.486 AP、+0.327 连续 IoU［0.169, 0.479］**，**PSeg-SSDD 232 图为 +0.731 AP、+0.595 IoU［0.415, 0.787］**。42 图日期分离和 222 图去重结果均通过预锁门槛。同量静态吸引力在 PSeg 上仍领先 0.195 AP。本文所得是历史队列上评分固定时的决策效用，与更换点头的成绩分别报告。[四视图实测](PHOENIX_PAIR_OPERATOR_ACTUAL_20261123.md)
 
 ## 正式投稿前的取舍
 
