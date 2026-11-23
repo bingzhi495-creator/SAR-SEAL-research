@@ -72,6 +72,14 @@ At fixed \(P,T,I\), the change increases monotonically in \(\Delta\). This ident
 \end{equation}
 The objective is separable. Its maximizing choice takes the \(k\) largest background occupancies and the \(k\) smallest foreground occupancies. Every set of \(k\) assigned pairs satisfies these two cardinality constraints, so the independent optimum cannot have a lower \emph{estimated} gain than the paired optimum. This order does not extend to true overlap, because \(q_i\) and \(\widehat q_i\) can disagree, or to AP, which rematches the full detection stream at multiple thresholds.
 
+If a fixed number of flips is split unequally between additions and removals, a net area change \(d=|A|-|D|\) and an intersection change \(g\) give
+\begin{equation}
+ \Delta\mathrm{IoU}
+ =\frac{(P+T)g-Id}{U(U+d-g)}.
+ \label{eq:variable-area}
+\end{equation}
+An area constraint limits one term and also changes which locations are written. We evaluate that effect separately from pair assignment.
+
 The fixed-pair writer ranks assigned pairs by \(\widehat q(a)-\widehat q(d)\) and accepts positive gains up to \(\min(8,\lfloor P/10\rfloor,n)\). It can make zero edits. The matched-count writer inherits its realized \(k\) on each candidate. The natural independent writer spends only on strictly positive margins between the two independently sorted lists, under the same cap. All balanced writes preserve candidate area and scores. They can change the component count, and cannot repair a missed detection or replace a globally underfilled proposal. The tests below separate the policy effect at matched \(k\) from the deployable natural-count comparison.
 
 \section{Experimental Protocol}
@@ -255,6 +263,8 @@ Phoenix whole, LVIS gate & 41.198 & 57.654 & 73\\
 \end{table}
 
 The LVIS-policy write loses 17.779 AP points relative to matched Phoenix (Table~\ref{tab:phoenix-whole}). Continuous IoU decreases by 9.825 points (95\% interval \([-14.014,-6.440]\), 47 original eligible matches in 11 sensor--date blocks). False positive area increases by 33.726 points of reference area (\([19.461,50.351]\)), and missed area changes by \(-2.905\) points (\([-5.907,0.286]\)). Of the 81 original hull associations, 65 survive at IoU 0.50. Rematching reaches 73 hulls. In the date-separated view, AP and IoU fall by 19.137 and 11.327 points, respectively. Both sensor views have the same sign, with fewer than eight contributing date blocks per view. The effects are specific to this previously evaluated detector stream. Whole writing changes support, area and eligibility jointly.
+
+To test area conservation under a common edit limit, we keep the same Phoenix probabilities, endpoints and \(2k\) flips for every candidate. We rank addition gains by \(p-0.50\) and removal gains by \(0.50-p\), where \(p\) is the frozen Phoenix occupancy. Sorted prefixes determine the maximum estimated pixel-correctness gain under each quota. With no constraint on \(d\), the 59,800 flips add a net 23,828 foreground cells across all predictions. Relative to that policy, strict balance gains 0.190 AP and 0.083 continuous IoU (\([-0.191,0.401]\)). The written masks differ for 45 fixed hulls in 11 sensor--date blocks. A two-cell tolerance on \(|d|\) gives 58.856 AP, compared with 58.976 for strict balance and 58.787 for free allocation. All three retain the 81 original matches. On HRSID DEV705, free allocation with a source-trained occupancy head gains 0.212 AP and 0.009 continuous IoU over balance at 631,020 fixed flips in a single fit. The two experiments leave the benefit of conserving area within fixed support unresolved. The much larger loss under whole writing calls for separate tests of support and flip count.
 
 \subsection{Source-Fitted PointRend on Instance-RSDD}
 Binary PointRend used HRSID FIT109 RF-DETR features, 200 updates at 196 targets/update, 3,136 evaluations/RoI and zero padding. Both heads ranked capped or complete two-layer box support at seed 5217 occupancy counts with row-major ties. Their features and supervision differed.

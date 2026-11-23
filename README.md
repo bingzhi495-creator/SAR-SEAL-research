@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- Phoenix 同端点、同翻转量的面积消融闭合。严格等面积比自由增删 **+0.190 mask AP、+0.083 连续 IoU [−0.191, 0.401]**，差异覆盖达标，效用未通过。保留与整掩膜过扩张不同的解释范围。[实测和复现](research_round_20260925_global/RSDD74_PHOENIX_AREA_ABLATION_ACTUAL_20261123.md)
+
 - Instance-RSDD 74 图的冻结 Phoenix 整掩膜对照完成。LVIS 面积规则比同量 Phoenix **−17.779 mask AP、−9.825 连续 IoU 点 [−14.014, −6.440]**，原候选外溢面积明显增加。同量 Phoenix 的 **58.976 AP** 结果保留。[实测、局限及复现](research_round_20260925_global/RSDD74_PHOENIX_WHOLEMASK_ACTUAL_20261123.md)
 
 - 英文论文按 IEEE 双栏重订为 **11 页学术审阅稿**。新版图件含同预算方法图、跨数据定量效应和 Gaofen-3 成败对照，正文补足强精修适配、分组区间、覆盖和复现条件。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
