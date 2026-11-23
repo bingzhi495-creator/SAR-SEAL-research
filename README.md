@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-23）
 
+- SAR Ship Gulf 独立采集船长外测完成。64 轨道日期组预选 244 图、242 图完成冻结预测，25 艘共同可测，23 艘有正预算。同量独立选点比固定配对减少 **0.168 米 MAE** [−1.523, 1.692]，覆盖达标，物理收益未通过。原生平均表观长度高估 **105.42 米**。[实测与复现](research_round_20260925_global/GULF_AIS_FROZEN_ACTUAL_20261123.md)
+
 - Phoenix 的同量分侧对照已闭合。只换为占据率新增位置，74 图平均 **−0.012 mask AP 点**；只换删除位置为 **−0.225 AP 点**。真实交集两个调整区间均跨零，未选用混合策略。[实测与复现](research_round_20260925_global/RSDD74_PHOENIX_SIGNED_SIDES_ACTUAL_20261123.md)
 
 - Instance-RSDD 74 图的冻结 Phoenix 同端点同量对照已闭合。Phoenix **58.976 mask AP**，较三个占据率头均值 **+0.308 AP、+0.135 连续 IoU 点**。几何区间跨零，两个方向均未通过联合判据，适用范围限于冻结端点排序。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_PHOENIX_EQUAL_COUNT_ACTUAL_20261123.md)

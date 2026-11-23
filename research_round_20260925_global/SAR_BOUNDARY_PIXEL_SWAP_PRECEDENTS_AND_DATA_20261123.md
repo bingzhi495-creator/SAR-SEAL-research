@@ -29,3 +29,7 @@ Phoenix 官方实例精修器能输出与原图同尺寸的像素前景概率，
 Lu 等以分类面积配额约束亚像元的空间吸引力排序，说明按固定数量分配空间位置已有遥感先例。Chen 等对 Mask R-CNN 和 RefineMask 的前景误分、背景误分和漏分分别做真值校正并重算 AP，校正范围随各类错误数量变化。Bernhard 等在语义分割中依据误差诊断组合不同模型的分类和掩膜输出。本项目本轮干预限于冻结实例候选，在原端点和精确增删量下交叉替换两个实用排序器的添加、删除。连续交集的四组可加性用于核验像素干预，AP 四组交互用于记录重匹配后的整套候选响应。[固定配额遥感先例](https://doi.org/10.3390/rs9040360) · [实例误差校正](https://bmvc2022.mpi-inf.mpg.de/1062.pdf) · [语义分割模型组合](https://openaccess.thecvf.com/content/WACV2024/html/Bernhard_Whats_Outside_the_Intersection_Fine-Grained_Error_Analysis_for_Semantic_Segmentation_WACV_2024_paper.html) · [本轮预锁](RSDD74_PHOENIX_SIGNED_SIDES_PRELOCK_20261123.md)
 
 一个待验证的独立假设是两种排序对影像边界位置的依赖不同。在源域或事先锁定的新父景上，可仅将进入精修器的影像沿指定轴平移 ±1 像素，固定原检测掩膜、图像有效区域、端点与每侧配额，检查编辑掩膜质心的反对称响应。只依赖原掩膜的静态吸引力是零响应对照。该干预检验随影像移动的响应，独立作者轮廓验证边界准确性。此处尚未执行平移试验。
+
+## SAR Ship Gulf 独立物理验证闭合
+
+固定作者目录的 18,342 个图块实际来自 194 个带图块的源景。作者手稿记录获取 241 原始场景，两个分母分别对应获取和当前可定位的发行版。18,334 个有效文件名中实测有 3,942 个不同九位船舶标识前缀，作者说明的 2,088 个 MMSI 计数仍待对齐。64 轨道日期组的 244 个预选归档和 97 个标注 XML 全部通过完整性核验。已在 242 图上完成冻结检测与同量评分，25 艘共同可测的 AIS MAE 效应未达到预锁门槛。[实际结果](GULF_AIS_FROZEN_ACTUAL_20261123.md) · [作者手稿数据口径](https://github.com/mousashaya/sar-atr-study/blob/b3b8368228818f2426a64b276b732bd604b15fe3/paper_classify.tex#L156-L180)

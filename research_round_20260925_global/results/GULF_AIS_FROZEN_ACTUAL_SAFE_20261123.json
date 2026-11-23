@@ -1,0 +1,440 @@
+{
+  "status": "ACTUAL_CLOSED_AND_VERIFIED",
+  "execution": {
+    "census": {
+      "receipt": {
+        "phase": "census",
+        "actual_exit": 0,
+        "output_footer_verified": true,
+        "worker_sha256": "d70c3a569c931b4d2a28b572a3a63a4226577ac0dc0ba2d4ea1bd37669d0351d",
+        "result_sha256": "c67170f6a68776aadff15456e8030a40d1933ea81fd09edbaee6dfc357583409",
+        "terminal_sha256": "5e6e67f7f9273b0e752df77e1166f4bd45a595c0a19334dfa46a8510839a1522",
+        "observed_wall_seconds": 25.363074
+      },
+      "result": {
+        "catalog_sha256": "16bfd349b1843b0f5766e5fb30c44002a17bccdce2f15b0d3b563dd90dce9d72",
+        "counts": {
+          "absolute_orbit_date_groups": 78,
+          "calendar_dates": 67,
+          "candidate_passes": 77,
+          "catalog_file_entries": 18342,
+          "distinct_filename_mmsis": 3942,
+          "invalid_filenames": 8,
+          "pass_yield_distribution": {
+            "1": 4,
+            "4": 60
+          },
+          "pilot_excluded_chips": 409,
+          "pilot_excluded_scenes": 2,
+          "represented_passes": 64,
+          "represented_scenes": 97,
+          "scene_directories": 194,
+          "selected_calendar_dates": 59,
+          "selected_chips": 244,
+          "selected_mmsis": 244,
+          "selected_npz_bytes": 170396315,
+          "selected_passes": 64,
+          "skipped_duplicate_prior_pass": 19,
+          "skipped_duplicate_within_pass": 0,
+          "total_catalog_bytes": 13041155158,
+          "valid_named_files": 18334
+        },
+        "model_forwards": 0,
+        "npz_opened": false,
+        "optimizer_updates": 0,
+        "phase": "census",
+        "pixel_arrays_opened": false,
+        "protocol_sha256": "6001a3d9be9cf5cccb71e4156603d91c2dec1858ba46816a8380f2d315272cbb",
+        "repo": "mshaya/sar-ship-gulf",
+        "revision": "820ae84a00677d535c4db315adffb129b0d4a835",
+        "root_tree_api": "https://huggingface.co/api/datasets/mshaya/sar-ship-gulf/tree/820ae84a00677d535c4db315adffb129b0d4a835/chips",
+        "roster_sha256": "839fdaac63936203bf8789fb92125120edd4d4392024bd33fb5a8645f52dc9bd",
+        "seconds": 25.22320469999977,
+        "status": "GULF_AIS_FROZEN_CENSUS_COMPLETE",
+        "target_labels_opened": false,
+        "tree_page_entries": [
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          536
+        ],
+        "tree_pages": 19,
+        "worker_sha256": "d70c3a569c931b4d2a28b572a3a63a4226577ac0dc0ba2d4ea1bd37669d0351d"
+      }
+    },
+    "intake": {
+      "receipt": {
+        "phase": "intake",
+        "actual_exit": 0,
+        "output_footer_verified": true,
+        "worker_sha256": "3ae9fad2f45129347d962541184e405ed7408fb6b4926d05e8a2540aa76a8016",
+        "result_sha256": "6c9a52e667b0b87275173685ff9e0ad5f8885afa5b1793f5b9a6279f8e3cb5d7",
+        "terminal_sha256": "16207dbc409a7234d35def7b9bb614095acf0a13d263a85deddbf1ff08e31f25",
+        "observed_wall_seconds": 227.582096
+      },
+      "result": {
+        "ais_fields_opened": false,
+        "census_result_sha256": "c67170f6a68776aadff15456e8030a40d1933ea81fd09edbaee6dfc357583409",
+        "census_terminal_sha256": "5e6e67f7f9273b0e752df77e1166f4bd45a595c0a19334dfa46a8510839a1522",
+        "counts": {
+          "failed": 2,
+          "failure_categories": {
+            "vv_decode_or_render": 2
+          },
+          "geometry_ready_scenes": 97,
+          "ready": 242,
+          "represented_passes": 64,
+          "selected": 244,
+          "selected_scenes": 97,
+          "verified_archives": 244
+        },
+        "detector_forwards": 0,
+        "intake_sha256": "1b89ae97b1cd953131358a28ac58530e036ef4f877eb9980ae3e0cb86d72de57",
+        "model_forwards": 0,
+        "optimizer_updates": 0,
+        "phase": "intake",
+        "protocol_sha256": "6001a3d9be9cf5cccb71e4156603d91c2dec1858ba46816a8380f2d315272cbb",
+        "roster_sha256": "839fdaac63936203bf8789fb92125120edd4d4392024bd33fb5a8645f52dc9bd",
+        "status": "GULF_AIS_FROZEN_INTAKE_COMPLETE",
+        "target_labels_opened": false,
+        "wall_seconds": 227.07098800000676,
+        "worker_sha256": "3ae9fad2f45129347d962541184e405ed7408fb6b4926d05e8a2540aa76a8016"
+      }
+    },
+    "capture": {
+      "receipt": {
+        "phase": "capture",
+        "actual_exit": 0,
+        "output_footer_verified": true,
+        "worker_sha256": "78207f87a0c0003f3e768d7307df991f2cefdf5a8e4e51cde0c8a085ee9c16d1",
+        "result_sha256": "a7004577308fe654b662cb9e36b94917ff7f6c2fc14ff1bb57b042c0f29a2e97",
+        "terminal_sha256": "c17a6f6d429bad4901297b9b1962ea9e4388f21737ff4c3d343fec3fcb086bdf",
+        "observed_wall_seconds": 65.200434
+      },
+      "result": {
+        "ais_fields_opened": false,
+        "audit_sha256": "811573224c346130305e92da4e25936bd61c8833423442f30d89777663d00125",
+        "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+        "counts": {
+          "eligible": 16559,
+          "mapped": 24095,
+          "overrides": 0,
+          "rank_gaps": 105
+        },
+        "cuda_admission_free": 24445452288,
+        "cuda_peak_bytes": 303425536,
+        "detector_forwards": 242,
+        "images": 242,
+        "intake_result_sha256": "6c9a52e667b0b87275173685ff9e0ad5f8885afa5b1793f5b9a6279f8e3cb5d7",
+        "intake_terminal_sha256": "16207dbc409a7234d35def7b9bb614095acf0a13d263a85deddbf1ff08e31f25",
+        "lock_sha256": "839fdaac63936203bf8789fb92125120edd4d4392024bd33fb5a8645f52dc9bd",
+        "manifest_sha256": "1b89ae97b1cd953131358a28ac58530e036ef4f877eb9980ae3e0cb86d72de57",
+        "model_forward_calls": 242,
+        "optimizer_updates": 0,
+        "phase": "capture",
+        "predictions_sha256": "4b72a4dce0722e3b5e9dccfba4a00b254334ad35a40e790e672289bff3b592a7",
+        "protocol_sha256": "6001a3d9be9cf5cccb71e4156603d91c2dec1858ba46816a8380f2d315272cbb",
+        "status": "GULF_AIS_FROZEN_CAPTURE_COMPLETE",
+        "target_labels_opened": false,
+        "wall_seconds": 64.19274339999538,
+        "worker_sha256": "78207f87a0c0003f3e768d7307df991f2cefdf5a8e4e51cde0c8a085ee9c16d1"
+      }
+    },
+    "replay": {
+      "receipt": {
+        "phase": "replay",
+        "actual_exit": 0,
+        "output_footer_verified": true,
+        "worker_sha256": "78207f87a0c0003f3e768d7307df991f2cefdf5a8e4e51cde0c8a085ee9c16d1",
+        "result_sha256": "102ea33600a9d1f37dce733070cbd6c3129adfefafac816b61e1adbf002c75f9",
+        "terminal_sha256": "752f08817dc6de58ac899616122317b7410b719001cb5a77823ca4f121dcf02a",
+        "observed_wall_seconds": 87.821563
+      },
+      "result": {
+        "ais_fields_opened": false,
+        "audit_sha256": "811573224c346130305e92da4e25936bd61c8833423442f30d89777663d00125",
+        "capture_result_sha256": "a7004577308fe654b662cb9e36b94917ff7f6c2fc14ff1bb57b042c0f29a2e97",
+        "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+        "counts": {
+          "editable_supports": 16521,
+          "fixed_candidates": 15986,
+          "fixed_swaps": 109853,
+          "free_matched_count_candidates": 15986,
+          "free_matched_count_swaps": 109853,
+          "free_natural_candidates": 16519,
+          "free_natural_swaps": 122843,
+          "images": 242,
+          "mapped_candidates": 24095
+        },
+        "detector_forwards": 0,
+        "edits_sha256": "325a45ddb11d489c45cbf0c40c5c4074304adf61c86626639e25dc9b18b958fc",
+        "images": 242,
+        "independent_decisions_equal": true,
+        "intake_result_sha256": "6c9a52e667b0b87275173685ff9e0ad5f8885afa5b1793f5b9a6279f8e3cb5d7",
+        "intake_terminal_sha256": "16207dbc409a7234d35def7b9bb614095acf0a13d263a85deddbf1ff08e31f25",
+        "lock_sha256": "839fdaac63936203bf8789fb92125120edd4d4392024bd33fb5a8645f52dc9bd",
+        "manifest_sha256": "1b89ae97b1cd953131358a28ac58530e036ef4f877eb9980ae3e0cb86d72de57",
+        "model_forward_calls": 0,
+        "optimizer_updates": 0,
+        "phase": "replay",
+        "point_head_sha256": "3a60f658149f4262451cd9118902bbe52dc83345d9fbcd23973a11dc473fcdf1",
+        "predictions_sha256": "4b72a4dce0722e3b5e9dccfba4a00b254334ad35a40e790e672289bff3b592a7",
+        "protocol_sha256": "6001a3d9be9cf5cccb71e4156603d91c2dec1858ba46816a8380f2d315272cbb",
+        "status": "GULF_AIS_FROZEN_REPLAY_COMPLETE",
+        "target_labels_opened": false,
+        "wall_seconds": 87.68849980000232,
+        "worker_sha256": "78207f87a0c0003f3e768d7307df991f2cefdf5a8e4e51cde0c8a085ee9c16d1"
+      }
+    },
+    "score": {
+      "receipt": {
+        "phase": "score",
+        "actual_exit": 0,
+        "output_footer_verified": true,
+        "worker_sha256": "868cff4c73c472c131511b0a3bfe8fbedaed584096eabc6a1c1aaf09f3244933",
+        "result_sha256": "9cc9e5a8a8f1abd8085221422bb21d0f165402731027a316ad7c1801442dbf83",
+        "terminal_sha256": "846a642b3136c86584999fe5b596ed2593986ca44acfdbe59da873bb298d2df1",
+        "observed_wall_seconds": 3.426765
+      },
+      "result": {
+        "arm_measurements": {
+          "fixed": {
+            "ais_length_m": 193.29824561403507,
+            "apparent_length_m": 300.35698284380936,
+            "groups": 19,
+            "mae_m": 113.1898955164912,
+            "ships": 25,
+            "signed_bias_m": 107.0587372297744
+          },
+          "free_matched_count": {
+            "ais_length_m": 193.29824561403507,
+            "apparent_length_m": 299.9724629921617,
+            "groups": 19,
+            "mae_m": 113.02230052510825,
+            "ships": 25,
+            "signed_bias_m": 106.67421737812663
+          },
+          "free_natural": {
+            "ais_length_m": 193.29824561403507,
+            "apparent_length_m": 300.2370481069927,
+            "groups": 19,
+            "mae_m": 113.28688563993924,
+            "ships": 25,
+            "signed_bias_m": 106.9388024929576
+          },
+          "raw": {
+            "ais_length_m": 193.29824561403507,
+            "apparent_length_m": 298.72245022519246,
+            "groups": 19,
+            "mae_m": 112.03691594592506,
+            "ships": 25,
+            "signed_bias_m": 105.42420461115731
+          }
+        },
+        "associated_arm_geometry_measurable": {
+          "fixed": 25,
+          "free_matched_count": 25,
+          "free_natural": 25,
+          "raw": 25
+        },
+        "associated_arm_measurement_failures": {
+          "fixed": {},
+          "free_matched_count": {},
+          "free_natural": {},
+          "raw": {}
+        },
+        "audit_sha256": "811573224c346130305e92da4e25936bd61c8833423442f30d89777663d00125",
+        "bootstrap": {
+          "draws": 4096,
+          "generator": "PCG64",
+          "percentile": [
+            2.5,
+            97.5
+          ],
+          "seed": 5217
+        },
+        "capture_result_sha256": "a7004577308fe654b662cb9e36b94917ff7f6c2fc14ff1bb57b042c0f29a2e97",
+        "capture_terminal_sha256": "c17a6f6d429bad4901297b9b1962ea9e4388f21737ff4c3d343fec3fcb086bdf",
+        "census_result_sha256": "c67170f6a68776aadff15456e8030a40d1933ea81fd09edbaee6dfc357583409",
+        "checkpoint_sha256": "011bd30ed056c871be1d61e14d71b3b2b258330a9d20cf2f164ca4a7c4f23c11",
+        "closure_verification_seconds": 2.168994299994665,
+        "coverage": {
+          "admitted_ais_metadata": 32,
+          "all_arm_geometry_fixed": 25,
+          "all_arm_measured_with_valid_length": 25,
+          "associated_native_mask": 25,
+          "common_positive_fixed_budget": 23,
+          "common_zero_fixed_budget": 2,
+          "duplicate_decoded_on_roster": 0,
+          "intake_ready": 242,
+          "length_members_requested": 25,
+          "ready_first_decoded_identity": 242,
+          "selected": 244
+        },
+        "dependency_versions": {
+          "Pillow": "12.3.0",
+          "numpy": "1.26.4",
+          "pycocotools": "2.0.11",
+          "scipy": "1.15.3"
+        },
+        "detector_forwards": 0,
+        "distinct_selected_dates": 59,
+        "edits_sha256": "325a45ddb11d489c45cbf0c40c5c4074304adf61c86626639e25dc9b18b958fc",
+        "endpoint": "Full native pixel cells projected on the frozen raw component major axis",
+        "frozen_worker_sha256": "78207f87a0c0003f3e768d7307df991f2cefdf5a8e4e51cde0c8a085ee9c16d1",
+        "gates": {
+          "exposure": true,
+          "length_lower_positive": false,
+          "length_mean_at_least_half_m": false
+        },
+        "heading_opened": false,
+        "intake_failure_categories": {
+          "vv_decode_or_render": 2
+        },
+        "intake_result_sha256": "6c9a52e667b0b87275173685ff9e0ad5f8885afa5b1793f5b9a6279f8e3cb5d7",
+        "intake_sha256": "1b89ae97b1cd953131358a28ac58530e036ef4f877eb9980ae3e0cb86d72de57",
+        "intake_terminal_sha256": "16207dbc409a7234d35def7b9bb614095acf0a13d263a85deddbf1ff08e31f25",
+        "length_members_opened_only_after_geometry": true,
+        "metadata_rejections_nonexclusive": {
+          "invalid_or_outside_120s": 36,
+          "other_ships_nonzero": 178,
+          "speed_lag_over_50m": 41
+        },
+        "model_forwards": 0,
+        "optimizer_updates": 0,
+        "paired_contrast": "absolute error fixed minus absolute error independent at exact fixed count",
+        "passes_all_gates": false,
+        "phase": "score",
+        "point_head_sha256": "3a60f658149f4262451cd9118902bbe52dc83345d9fbcd23973a11dc473fcdf1",
+        "predictions_sha256": "4b72a4dce0722e3b5e9dccfba4a00b254334ad35a40e790e672289bff3b592a7",
+        "primary": {
+          "ci95_m": [
+            -1.5226866394319896,
+            1.6917901569941638
+          ],
+          "mae_reduction_m": 0.16759499138294925,
+          "paired_groups": 19,
+          "paired_ships": 25,
+          "positive_fixed_groups": 18,
+          "positive_fixed_ships": 23,
+          "zero_fixed_ships": 2
+        },
+        "protocol_sha256": "6001a3d9be9cf5cccb71e4156603d91c2dec1858ba46816a8380f2d315272cbb",
+        "python_version": "3.10.13",
+        "replay_result_sha256": "102ea33600a9d1f37dce733070cbd6c3129adfefafac816b61e1adbf002c75f9",
+        "replay_terminal_sha256": "752f08817dc6de58ac899616122317b7410b719001cb5a77823ca4f121dcf02a",
+        "roster_exclusions_exclusive": {
+          "association_metadata": 210,
+          "intake_failure": 2,
+          "no_associated_native_mask": 7
+        },
+        "roster_sha256": "839fdaac63936203bf8789fb92125120edd4d4392024bd33fb5a8645f52dc9bd",
+        "scoring_seconds": 0.6254813999985345,
+        "selected_passes_with_chips": 64,
+        "selected_scene_start_date_range_utc": [
+          "20240811",
+          "20241226"
+        ],
+        "status": "GULF_AIS_FROZEN_SCORE_COMPLETE",
+        "units": "m",
+        "utc_date_sensitivity": {
+          "ci95_m": [
+            -1.5226866394319896,
+            1.6917901569941638
+          ],
+          "mae_reduction_m": 0.16759499138294925,
+          "multiple_dates_available": true,
+          "paired_groups": 19,
+          "paired_ships": 25,
+          "positive_fixed_groups": 18,
+          "positive_fixed_ships": 23,
+          "zero_fixed_ships": 2
+        },
+        "wall_seconds": 2.7944758999947226,
+        "whole_mask_diagnostic": {
+          "all_four_uncensored_ships": 25,
+          "arm_measurements": {
+            "fixed": {
+              "ais_length_m": 193.29824561403507,
+              "apparent_length_m": 309.12132131708984,
+              "groups": 19,
+              "mae_m": 118.4204034600276,
+              "ships": 25,
+              "signed_bias_m": 115.8230757030548
+            },
+            "free_matched_count": {
+              "ais_length_m": 193.29824561403507,
+              "apparent_length_m": 308.5235910952398,
+              "groups": 19,
+              "mae_m": 118.77851813659687,
+              "ships": 25,
+              "signed_bias_m": 115.22534548120477
+            },
+            "free_natural": {
+              "ais_length_m": 193.29824561403507,
+              "apparent_length_m": 308.364675915909,
+              "groups": 19,
+              "mae_m": 118.61960295726603,
+              "ships": 25,
+              "signed_bias_m": 115.06643030187395
+            },
+            "raw": {
+              "ais_length_m": 193.29824561403507,
+              "apparent_length_m": 306.8500780341087,
+              "groups": 19,
+              "mae_m": 117.36963326325186,
+              "ships": 25,
+              "signed_bias_m": 113.55183242007367
+            }
+          },
+          "paired_all_four": {
+            "ci95_m": [
+              -2.1972482866749066,
+              1.315535931563488
+            ],
+            "mae_reduction_m": -0.3581146765692423,
+            "paired_groups": 19,
+            "paired_ships": 25,
+            "positive_fixed_groups": 18,
+            "positive_fixed_ships": 23,
+            "zero_fixed_ships": 2
+          },
+          "paired_whole_minus_component_extent_m": {
+            "fixed": 8.764338473280436,
+            "free_matched_count": 8.55112810307814,
+            "free_natural": 8.127627808916337,
+            "raw": 8.127627808916337
+          }
+        },
+        "worker_sha256": "868cff4c73c472c131511b0a3bfe8fbedaed584096eabc6a1c1aaf09f3244933"
+      }
+    }
+  },
+  "failed_vv_diagnostic": {
+    "source_npz_count": 2,
+    "shape": [
+      512,
+      512
+    ],
+    "dtype": "float32",
+    "finite_zero_samples_per_array": 262144,
+    "positive_samples": 0,
+    "reason": "Empty VV response",
+    "ais_fields_opened": false
+  }
+}
