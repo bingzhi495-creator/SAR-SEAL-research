@@ -4,7 +4,7 @@
 
 ## 当前状态（2026-11-23）
 
-- SegRefiner-LR 原版面积门槛实测。Instance-RSDD／PSeg 主队列分别有 **39／67 个固定几何匹配**达到原版 512 像素门槛，覆盖 11／57 组。全候选覆盖为 3,074／5,067 个，作者精修评分尚待执行。[门槛覆盖、范围和复现](research_round_20260925_global/SEGREFINER_STOCK_EXPOSURE_ACTUAL_20261123.md)
+- SegRefiner-LR 原版面积门槛实测。Instance-RSDD／PSeg 主队列分别有 **39／67 个固定几何匹配**达到原版 512 像素门槛，覆盖 11／57 组。全候选覆盖为 3,074／5,067 个，作者精修单图校验已通过，整批评分待完成。[门槛覆盖、范围和复现](research_round_20260925_global/SEGREFINER_STOCK_EXPOSURE_ACTUAL_20261123.md)
 
 - 在同端点、同分、同量下加入受限重新配对。Instance-RSDD／PSeg 完整队列相对固定配对 **+0.250／+0.534 AP**，完全独立再 **+0.236／+0.197 AP**，同时保留两步正向连续几何差值。[实测与矢量图](research_round_20260925_global/PHOENIX_BOUNDED_MATCH_ACTUAL_20261123.md) · [强精修与新增数据核验](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md)
 
