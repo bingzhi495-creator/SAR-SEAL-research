@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- 完成 10 页英文审阅稿统稿。更新原生边界限距匹配、定量口径和定性失败解释，新增可编辑三路同预算方法图。四张量化表的数据保持已核验版本。两批 Umbra 前瞻评价等待独立轮廓回传。[正文 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [证据索引](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+
 - 在 HRSID FIT109 上完成分侧排序损失的三种子、五折同预算训练，合计 30 次拟合，逐候选增删数保持一致。排序损失相对同配方 BCE 为 +0.074 mask AP、+0.013 固定匹配连续 IoU［−0.007, 0.033］点，相对历史独立选点为 +0.066 AP、+0.025 IoU［−0.013, 0.059］点。两项均未通过 +0.30 AP 与几何区间的联合判据，维持原方法。原检测器见过该源域图像，只有点头按组留出。 [实测与复现](research_round_20260925_global/code/FIT109_SIGNED_RANK_LOSS_20261126/SCORE_ACTUAL.md)
 
 - SRNet 末级回贴面积积分与原生网格平滑完成同预算对照。面积积分相对原方法 −0.163 AP、+0.008 连续 IoU［−0.016, 0.032］，与平滑对照 AP 相同。候选选点确有改变，未达到改进阈值。复核同时更正了旧 SRNet 表格的小目标 AP 显示。[实测、积分代码及更正记录](research_round_20260925_global/code/SRNET_RSDD74_PIXEL_INTEGRAL_20261126/ACTUAL.md)

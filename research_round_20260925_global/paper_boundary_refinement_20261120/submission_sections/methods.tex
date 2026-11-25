@@ -2,7 +2,7 @@
 \label{sec:method}
 
 \subsection{Overview}
-For each retained ship detection, a frozen detector supplies a binary mask \(M\), box \(B\), confidence \(s\), and foreground response \(p_i\) at native pixel \(i\). We estimate occupancy at sampled boundary sites and compare two ways of choosing the locations of \(k\) additions and \(k\) removals. A second comparison fixes the total number of flips and varies its allocation across the two sides. Both comparisons preserve the detection identities, classes, boxes, and scores (Fig.~\ref{fig:native-boundary}). We also use the same frozen Phoenix response to compare the effects of writable support and edit count.
+A frozen detector supplies a mask \(M\), box \(B\), confidence \(s\), and decoder response \(p_i\) sampled on native image cell \(i\). We estimate occupancy on both sides of the contour (Section~\ref{sec:occupancy}), then test pairing at fixed signed counts (Section~\ref{sec:selection}) and allocation at fixed total count (Section~\ref{sec:variable-sign}). Detection identities, classes, boxes, and scores are fixed. A parallel control changes the write rule on one frozen Phoenix response (Fig.~\ref{fig:native-boundary}).
 
 \begin{figure*}[!t]
 \centering
@@ -45,7 +45,7 @@ v_i=\big(&p_i,M_i,\ell_i,d_i,\bar x_i,\bar y_i,\nu,\eta,s,\\
 \end{aligned}
 \label{eq:endpoint-features}
 \end{equation}
-Here \(d_i\) is Euclidean distance to the nearest opposite-class cell, with background outside the grid. The box coordinates are \(\bar x_i=(x-x_1)/(x_2-x_1)\) and \(\bar y_i=(y-y_1)/(y_2-y_1)\). Area descriptors are \(\nu=\log_2|M|\) and \(\eta=|M|/|B\cap\Omega|\), with the latter denominator counting native box indices. For decoded channels \(R_i,G_i,B_i\), \(L_i=(0.299R_i+0.587G_i+0.114B_i)/255\). Replicating values at the image edges gives
+Here \(d_i\) is Euclidean distance to the nearest opposite-class cell, with background outside the grid. The box coordinates are \(\bar x_i=(x-x_1)/(x_2-x_1)\) and \(\bar y_i=(y-y_1)/(y_2-y_1)\). Area descriptors are \(\nu=\log_2|M|\) and \(\eta=|M|/|B\cap\Omega|\), with the latter denominator counting native box indices. The decoded red, green, and blue values \(c_i^R,c_i^G,c_i^B\) give \(L_i=(0.299c_i^R+0.587c_i^G+0.114c_i^B)/255\). With edge replication, the local mean and horizontal difference are
 \begin{equation}
 \begin{aligned}
 \bar L_w(i)&=w^{-2}\!\!\sum_{j\in\mathcal N_w(i)}L_j,\\
@@ -90,12 +90,20 @@ We keep the assignment returned by SciPy on this integer cost matrix. The fixed 
   \left(\sum_{i\in A}\widehat q_i-\sum_{i\in D}\widehat q_i\right).
 \label{eq:independent-estimated-gain}
 \end{equation}
-This selects the highest occupancies on the addition side and the lowest on the removal side, breaking ties by the original pairing-row ordinal. The paired choice is feasible, so the independent estimate is at least as large. The natural-count comparison retains positive gains under the independent ranks up to \(K\). Fig.~\ref{fig:selection-stage} shows the matched comparison. For a positive realized count, a third writer maximizes the same estimated gain over endpoint sets that admit a one-to-one matching. Each edge must be no longer than the longest of the original \(k\) selected pairs. This bounded matching permits a different arrangement and retains the limit on individual displacement. The feasible choices for estimating gain range from the original matching through all admissible capped matchings to all independent endpoint sets.
+This selects the highest occupancies on the addition side and the lowest on the removal side, breaking ties by the original pairing-row ordinal. The natural-count comparison retains positive gains under the independent ranks up to \(K\). Figure~\ref{fig:selection-stage} illustrates the fixed-count comparison.
+
+The bounded writer tests whether reassigning partners accounts for the gain while preserving the maximum individual displacement. For \(k>0\), let \(H_{\rm fix}\) contain the \(k\) accepted pairs of the distance-first writer. Set \(\rho^2=\max_{(a,d)\in H_{\rm fix}}\|a-d\|_2^2\). On the graph with edges satisfying \(\|a-d\|_2^2\le\rho^2\), the bounded writer solves
+\begin{equation}
+\max_{\substack{H\ \text{matching}\\ |H|=k}}
+\sum_{(a,d)\in H}(\widehat q_a-\widehat q_d).
+\label{eq:bounded-endpoint-matching}
+\end{equation}
+Each site appears at most once. If the independent endpoint sets admit such a matching, we use them. Otherwise we solve \eqref{eq:bounded-endpoint-matching} by unit-capacity minimum-cost flow. The cap applies to individual edges. Total displacement and connectivity can vary. The three feasible sets are nested, so the estimated gains are ordered from distance-first to bounded to independent.
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/method_signed_selection.pdf}
-\caption{Illustrative comparison of distance pairing and independent selection. Both policies write the same number of cells on each side. The independent policy can combine endpoints that belong to different distance pairs.}
+\includegraphics[width=\textwidth]{figures/method_bounded_selection.pdf}
+\caption{Three writers at the same signed counts. The bounded writer re-pairs sites under the inherited displacement cap. Independent selection removes this cap. The worked example marks the two additions and removals in each output. The value \(\widehat g\) is the estimated intersection gain.}
 \label{fig:selection-stage}
 \end{figure*}
 
@@ -105,23 +113,23 @@ d=|A|-|D|,\qquad
 g=\sum_{i\in A}q_i-\sum_{i\in D}q_i .
 \label{eq:intersect-changes}
 \end{equation}
-The new IoU is \((I+g)/(U+d-g)\), giving
+The new mask has area \(P+d\), intersection \(I+g\), and union \(U+d-g\). Subtracting \(I/U\) gives
 \begin{equation}
 \Delta\mathrm{IoU}=\frac{(P+T)g-Id}{U(U+d-g)} .
 \label{eq:variable-area}
 \end{equation}
-At \(d=0\), exactly \(2k\) cells change, and IoU strictly increases with true intersection. On a fixed match, the two writers' common edits cancel in the difference of gains. Let \(\mathcal D\) be their symmetric difference of edited sites. Since the independent writer maximizes the estimated gain,
+For equal signed counts, \(d=0\) and IoU strictly increases with \(g\). Let \(g_{\rm pair}\) and \(g_{\rm ind}\) be the true gains under distance-first and independent selection. Common edits cancel, leaving the symmetric difference \(\mathcal D\) of the written sites. Optimality under the estimated gains gives
 \begin{equation}
 g_{\rm pair}-g_{\rm ind}
  \le \sum_{i\in\mathcal D}|\widehat q_i-q_i|
  \le 4k\max_{i\in S_+\cup S_-}|\widehat q_i-q_i| .
 \label{eq:selection-error}
 \end{equation}
-The ordering can therefore reverse when probabilities are inaccurate at the sites where the writers differ. COCO mask AP also allows reassignment at each evaluation threshold.
+Occupancy errors can reverse the ordering for a fixed match. COCO can also reassign matches at each IoU threshold.
 
 \subsection{Dual-Reference Allocation at a Fixed Total Count}
 \label{sec:variable-sign}
-For the D-FINE allocation comparison, the dynamic attraction rule supplies a fixed candidate count \(k_s\), and its same-count static counterpart supplies the incumbent \(S\). A separate 1,346-parameter head takes the duplicated 14-dimensional feature vector, uses two 24-unit hidden layers, and produces one residual logit per reference. Training uses binary raster targets from paired author instances with mutual raster IoU at least \(0.50\) and the same native detection match. Eligible candidates have \(n>k_s>0\) and at least one nonidentity action. The 848 qualifying candidates span 447 images in 439 decoded groups. The head uses training-only group, image, candidate, and endpoint weighting for scaling. Each of 1,000 AdamW updates samples 64 candidates through groups and images, using a learning rate of 0.002 and weight decay of 0.01. BCE averages the signed endpoints and both references within a candidate, then weights each sampled candidate equally. At each seed all allocation policies use the same head.
+For the D-FINE allocation comparison, dynamic attraction supplies the candidate count \(k_s\), and static attraction at that count supplies the incumbent action \(S=(A_S,D_S)\) (Section~\ref{sec:phoenix}). A separate 1,346-parameter head takes the duplicated 14-dimensional feature vector and uses two 24-unit hidden layers. It applies the residual form in \eqref{eq:occupancy-head} with a separate final output for each reference. Training uses binary raster targets from paired author instances with mutual raster IoU at least \(0.50\) and the same native detection match. Eligible candidates have \(n>k_s>0\) and at least one nonidentity action. The 848 qualifying candidates span 447 images in 439 decoded groups. The head uses training-only group, image, candidate, and endpoint weighting for scaling. Each of 1,000 AdamW updates samples 64 candidates through groups and images, using a learning rate of 0.002 and weight decay of 0.01. BCE averages the signed endpoints and both references within a candidate, then weights each sampled candidate equally. At each seed all allocation policies use the same head.
 
 Let \(E=S_+\cup S_-\) and \(\widehat q_{ir}\) denote occupancy under reference \(r\). Outside \(E\) the approximation takes the native labels as deterministic. Thus,
 \begin{equation}
@@ -137,7 +145,12 @@ With \(g_r=\sum_{i\in A}\widehat q_{ir}-\sum_{i\in D}\widehat q_{ir}\) and \(d=|
 \frac{\widehat I_{r0}+g_r}{P+d+\widehat T_r-\widehat I_{r0}-g_r}.
 \label{eq:dual-est-iou}
 \end{equation}
-For each feasible split \((a,2k_s-a)\), we rank the sites using eleven equally spaced mixtures of the reference probabilities. Additions take descending ranks and removals take ascending ranks, with ties resolved by the archived endpoint order. We cross the resulting side-specific prefixes and include the incumbent side where the count permits. The score is \(\min_r[\widehat f_r(A,D)-\widehat f_r(S)]\). The search evaluates the incumbent first, followed by splits in order of increasing \(|a-k_s|\) and then \(a\). Within a split, the first maximizing proposal is retained. The equal-allocation control restricts \(a=k_s\) with the same proposal construction and objective. A sensitivity permits feasible \(a\in\{k_s-1,k_s,k_s+1\}\). All policies flip exactly \(2k_s\) cells (Fig.~\ref{fig:signed-allocation}). We also compare mean-IoU and raw-intersection objectives over the full split range.
+Write \(a=|A|\) and \(b=|D|=2k_s-a\). The feasible integer range is \(\max(0,2k_s-n)\le a\le\min(n,2k_s)\). For \(\lambda\in\{0,0.1,\ldots,1\}\), we rank the two sides by \(\lambda\widehat q_{i1}+(1-\lambda)\widehat q_{i2}\), descending for additions and ascending for removals. Endpoint ties follow the archived order. For each split, we cross the first \(a\) and \(b\) entries of the corresponding side orders across all mixtures and add the incumbent side where its count permits. This gives a finite menu of action pairs, with score
+\begin{equation}
+J(A,D)=\min_{r\in\{1,2\}}\left[\widehat f_r(A,D)-\widehat f_r(S)\right].
+\label{eq:dual-maximin}
+\end{equation}
+The incumbent is evaluated first. Splits follow increasing \(|a-k_s|\) and then \(a\), with ties retaining the first action. The equal control admits only \(a=k_s\), and a sensitivity admits feasible \(a\in\{k_s-1,k_s,k_s+1\}\). The proposal rule and total \(2k_s\) flips are shared (Fig.~\ref{fig:signed-allocation}). Alternative full-menu objectives use mean IoU gain or minimum raw-intersection gain.
 
 \begin{figure*}[!t]
 \centering
@@ -146,13 +159,13 @@ For each feasible split \((a,2k_s-a)\), we rank the sites using eleven equally s
 \label{fig:signed-allocation}
 \end{figure*}
 
-Equation~\eqref{eq:dual-est-iou} uses the RankIoU reciprocal-moment approximation~\cite{rankrma}. We also compute the exact expectation on the same action menu. Under independent endpoint Bernoulli labels within a reference, the overlap \(I_r(W')\) and the number \(Z_r(W')\) of sampled reference foreground cells outside \(W'\) involve disjoint sites. Hence
+Equation~\eqref{eq:dual-est-iou} uses the reciprocal of the mean union, as in the RankIoU approximation~\cite{rankrma}. To assess this approximation on the same menu, we also compute the exact expectation under an independent Bernoulli model for the uncertain cells of each reference. The overlap \(I_r(W')\) and foreground count \(Z_r(W')\) outside \(W'\) involve disjoint sites. Their independence gives
 \begin{equation}
 \widehat f^{\rm E}_r(W')=\mathbb E[I_r(W')]\,
              \mathbb E[(|W'|+Z_r(W'))^{-1}] .
 \label{eq:exact-iou-signed}
 \end{equation}
-The reciprocal moment follows from the Poisson-binomial law~\cite{rankseg}. Both scores use the same incumbent and deterministic native labels beyond \(E\).
+The uncertain part of \(Z_r(W')\) follows the Poisson-binomial law~\cite{rankseg}. Both scores use the same incumbent and deterministic native labels outside \(E\).
 
 \subsection{Controlled Writing of a Frozen Refiner Response}
 \label{sec:phoenix}

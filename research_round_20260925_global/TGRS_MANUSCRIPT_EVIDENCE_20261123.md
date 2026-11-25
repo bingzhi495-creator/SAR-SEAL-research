@@ -24,7 +24,9 @@ SRNet 的 2,048 个固定匹配可写端点均处于先验裁剪阈值内部，�
 
 在 HRSID FIT109 上完成分侧排序损失的三种子、五折同预算训练，合计 30 次拟合，逐候选增删数保持一致。排序损失相对同配方 BCE 为 +0.074 mask AP、+0.013 固定匹配连续 IoU［−0.007, 0.033］点，相对历史独立选点为 +0.066 AP、+0.025 IoU［−0.013, 0.059］点。两项均未通过 +0.30 AP 与几何区间的联合判据，维持原方法。原检测器见过该源域图像，只有点头按组留出。 历史 N／F／I 的 COCO 指标在最终评分前精确复现。[同预算三种子结果及回执](code/FIT109_SIGNED_RANK_LOSS_20261126/SCORE_ACTUAL.md)
 
-## 投稿正文候选稿
+## 10 页英文审阅正文
+
+11 月 26 日统稿完成。摘要、引言及结论按已核验主张重写，方法新增同预算的限距匹配目标和双参考配额可行域，实验统一候选、采集分组及指标分母，定性段落解释相同编辑次数下的可定位增益与失败。四张表的表体与原有核验版逐字一致。六幅图均有可编辑源，其中图 3 用同一掩膜及分数展示距离优先、限距重配与独立选点。[图 3 可编辑 SVG](paper_boundary_refinement_20261120/figures/method_bounded_selection.svg)
 
 [10 页英文正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX 主文件](paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [方法、结果、分析与参考文献](paper_boundary_refinement_20261120/submission_sections) · [24 页完整证据稿](paper_boundary_refinement_20261120/boundary_refinement.pdf)
 
@@ -91,6 +93,8 @@ PSeg 的三段评分用独立的解析掩膜完成了预演。512 像素记录�
 对已接纳的 Instance-RSDD 图块复核父景覆盖，作者测试覆盖 112 个原始父景，74 图补充队列覆盖其余 13 个，合计覆盖全部 125 个有实例切片的父景。作者训练集中其余 2,736 个图块来自此前测试父景。42 图日期分离再分析嵌套在 74 图，不能补充新的父景。原斜框数据论文另外两景缺少已接纳的作者船体多边形且不足八个新组。另一个相关靠泊船基准 SMART-Ship 已有论文，当前未核实官方图像和标注的联合公开入口。 [父景生成与核验](code/INSTANCE_RSDD_ACQUISITION_RESERVE_20261123/README.md) · [原数据论文](https://www.rhhz.net/cn/article/doi/10.12000/JR22007) · [SMART-Ship](https://arxiv.org/html/2508.02384v2)
 
 外部数据补查中，Test01 的 207 条公开记录均无实例轮廓，OSSDD 公开二值标签由旋转框填充。SISS-YOLO 和 S&R-Net 报告了追加的 OpenSARShip 船体标注。其原始官方档案的 87 个产品对应 57 个采集组，分包间共有 18 组。作者船体轮廓与切片对应尚无可核验下载，已标注的独立组数待确认。[采集分组核验](OPENSARSHIP_ACQUISITION_GROUPS_20261125.md) [逐源核验](STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#补查作者轮廓的实际可获得性2026-11-23)
+
+新增公开数据补核。SDFSD-v1.0 的 846 幅原始场景覆盖高分三号、Umbra、Capella 和 ICEYE，整景 shapefile 与切片标注均来自旋转矩形。北航 5,267 张港口 SAR 切片发布的是功能区与设施类别。OpenSAR Insight 的 15 个 Sentinel-1 场景提供配准原始数据及人工筛选的 XML 检测标注。三项公开发行均缺少用于此次船体边界评分的作者实例轮廓。[SDFSD 数据论文](https://www.mdpi.com/2072-4292/16/21/3952) · [港口功能区作者发布](https://data.mendeley.com/datasets/t2f8n66c87/2) · [OpenSAR Insight 作者数据卡](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset)
 
 12 个先锁定的 Umbra 采集窗口已完成冻结检测、原生端点精修、作者 Phoenix 整掩膜及独立复算。双参考评分器通过合成测试。两份原始轮廓回传后，依预锁口径报告等量端点主比较和整掩膜次要对照，纳入采集组覆盖。 [盲测执行](UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md) · [作者整掩膜对照](UMBRA12_PHOENIX_WHOLE_ACTUAL_20261123.md) · [评分准备](UMBRA12_DUAL_REVIEW_SCORE_READINESS_20261123.md)
 
