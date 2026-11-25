@@ -7,12 +7,13 @@
 | 1. Inference path | [SVG](matched_budget_pipeline.svg) | [PDF](matched_budget_pipeline.pdf) |
 | 2. Local occupancy and supervision | [SVG](method_native_occupancy.svg) | [PDF](method_native_occupancy.pdf) |
 | 3. Fixed versus independent selection at the same count | [SVG](method_signed_selection.svg) | [PDF](method_signed_selection.pdf) |
-| 4. Controlled Phoenix writes | [SVG](method_phoenix_controls.svg) | [PDF](method_phoenix_controls.pdf) |
-| 6. Same predictions under two author references | [SVG](reference_disagreement_effects.svg) | [PDF](reference_disagreement_effects.pdf) |
-| 7. Variable signed allocation and measured area/intersection terms | [SVG](dual_reference_budget_effect.svg) | [PDF](dual_reference_budget_effect.pdf) |
-| 11. Observed SegRefiner gain and loss cases | [SVG](rsdd74_segrefiner_cases_binned.svg) | [PDF](rsdd74_segrefiner_cases_binned.pdf) |
+| 4. Dual-reference allocation at a fixed total count | [SVG](method_signed_allocation.svg) | [PDF](method_signed_allocation.pdf) |
+| 5. Controlled Phoenix writes | [SVG](method_phoenix_controls.svg) | [PDF](method_phoenix_controls.pdf) |
+| 7. Same predictions under two author references | [SVG](reference_disagreement_effects.svg) | [PDF](reference_disagreement_effects.pdf) |
+| 8. Variable signed allocation and measured area/intersection terms | [SVG](dual_reference_budget_effect.svg) | [PDF](dual_reference_budget_effect.pdf) |
+| 12. Observed SegRefiner gain and loss cases | [SVG](rsdd74_segrefiner_cases_binned.svg) | [PDF](rsdd74_segrefiner_cases_binned.pdf) |
 
-From this directory use `python draw_core_method_redesign.py --output .` for Figs. 1 and 3, and `python draw_supporting_stages_redesign.py --out .` for Figs. 2 and 4. The first script uses the worked example in `draw_matched_budget_pipeline.py`. For Fig. 6, run `python plot_reference_disagreement.py --results ../../results --figures .` to rebuild the vector plot from the published aggregate scores. For Fig. 7, run `python plot_dual_budget.py --score ../../results/SPSD_PSEG_SCORE_VARIABLE_SIGNED_BUDGET_SEED5297_20261125_SAFE.json --figures .`. For Fig. 11, run `python plot_rsdd_cases_redesign.py --help` to see the required released summary and closed local inputs. [Case selection](../../results/RSDD74_SEGREFINER_STOCK_CASES_SAFE_20261123.json) · [Review and rationale](../../style_review/STYLE_REDESIGN_20261123.md)
+From this directory use `python draw_core_method_redesign.py --output .` for Figs. 1 and 3, and `python draw_supporting_stages_redesign.py --out .` for Figs. 2 and 5. For Fig. 4, run `python draw_signed_allocation.py --output .`. Its illustrative occupancies produce equal and variable allocations with four flips each. The first script uses the worked example in `draw_matched_budget_pipeline.py`. For Fig. 7, run `python plot_reference_disagreement.py --results ../../results --figures .` to rebuild the vector plot from the published aggregate scores. For Fig. 8, run `python plot_dual_budget.py --score ../../results/SPSD_PSEG_SCORE_VARIABLE_SIGNED_BUDGET_SEED5297_20261125_SAFE.json --figures .`. For Fig. 12, run `python plot_rsdd_cases_redesign.py --help` to see the required released summary and closed local inputs. [Case selection](../../results/RSDD74_SEGREFINER_STOCK_CASES_SAFE_20261123.json) · [Review and rationale](../../style_review/STYLE_REDESIGN_20261123.md)
 
 
 ## Other main figures

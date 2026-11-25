@@ -1,13 +1,13 @@
 # 边界精修论文审阅稿与证据索引
 
-更新于 2026 年 11 月 26 日。22 页 IEEE 双栏英文稿面向 TGRS 学术审阅，作者信息按约定保留占位。现版方法明确 14 维端点特征和局部灰度算子，讨论集中于迁移与参考敏感性、候选覆盖、拓扑及物理测量、计算与复现，原图表均保留。新版新增图 7、三种子重复表、交集与面积变化分解，以及冻结迁移失败分析。致谢列明 AI 在摘要、正文、图注、图件和分析代码中的使用。摘要、三条贡献和结论以等预算位置决策为主线。引言用细长船体的像素偏移与 HRSID 几何证据引出研究问题，相关工作分别梳理原生网格监督、保面积交换和局部／整掩膜精修。图 6 以同一预测和候选呈现双参考效果、配对区间及分歧像素贡献，图件由已核验的聚合结果生成。方法包含一张总览和三张细节图，补全灰度与动态空间吸引力定义，并推导预测占用误差如何影响选点的实际收益。实验数据总表增加 SAR-SSP 作者验证集，明确栅格 IoU、母景权重和作者训练验证共享母景。[英文 PDF](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图件及重建说明](paper_boundary_refinement_20261120/figures/README.md) · [52 篇原文研读与版式修订](style_review/STYLE_REDESIGN_20261123.md)
+更新于 2026 年 11 月 26 日。23 页 IEEE 双栏英文稿面向 TGRS 学术审阅，作者信息按约定保留占位。现版方法明确 14 维端点特征和局部灰度算子，讨论集中于迁移与参考敏感性、候选覆盖、拓扑及物理测量、计算与复现，原图表均保留。新版新增固定总翻转数与观测效果图、三种子重复表、交集与面积变化分解，以及冻结迁移失败分析。致谢列明 AI 在摘要、正文、图注、图件和分析代码中的使用。摘要、三条贡献和结论以等预算位置决策为主线。引言用细长船体的像素偏移与 HRSID 几何证据引出研究问题，相关工作分别梳理原生网格监督、保面积交换和局部／整掩膜精修。图 6 以同一预测和候选呈现双参考效果、配对区间及分歧像素贡献，图件由已核验的聚合结果生成。方法包含一张总览和四张细节图，新增固定总翻转数的等量与可变分配示意，补全灰度与动态空间吸引力定义，并推导预测占用误差如何影响选点的实际收益。实验数据总表增加 SAR-SSP 作者验证集，明确栅格 IoU、母景权重和作者训练验证共享母景。[英文 PDF](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图件及重建说明](paper_boundary_refinement_20261120/figures/README.md) · [52 篇原文研读与版式修订](style_review/STYLE_REDESIGN_20261123.md)
 
 ## 主张与核验记录
 
 | 论文问题 | 直接证据 | 适用范围 |
 | --- | --- | --- |
 | 固定编辑量时，强制固定配对有什么代价 | HRSID DEV705 的 D-FINE、RF-DETR 5202／5203 分别提高 0.811、0.906、0.838 mask AP 点。5202 的 HRSID 官方分配重评三头均值 +1.216 AP。 | 同检测候选、同分数、同端点、同实际逐候选编辑量。HRSID DEV 有开发接触，官方分配为历史重评。[D-FINE](DFINE_E24_DEV705_FREE_ENDPOINT_20261120.md) · [RF-DETR 5202](RFDETR_CENTER5202_DEV705_MATCHED_RESULT_20261120.md) · [RF-DETR 5203](RFDETR_COMMON5203_DEV705_FROZEN_ACTUAL_20261122.md) · [官方集复算](HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md) |
-| 固定配对的差异能否跨库重现 | Gaofen-3 583 图，两次 RF-DETR 拟合分别 +0.483 和 +0.299 AP。配对连续 IoU 分别 +0.259 [0.194, 0.322] 和 +0.196 [0.136, 0.253] 点。 | 两次检测器冻结外推，部分样本共享。各自原生匹配均为 425 个，贡献组分别为 68 和 67。[首次迁移](INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [双侧分解](INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md) · [第二次迁移](INSTANCE_RSDD_CARRIER5203_ACTUAL_20261123.md) |
+| 固定配对的差异能否跨库重现 | Gaofen-3 583 图，两次 RF-DETR 拟合分别 +0.483 和 +0.299 AP。配对连续 IoU 分别 +0.259 [0.194, 0.322] 和 +0.196 [0.136, 0.253] 点。 | 两次检测器冻结外推使用相同的 583 张目标影像，各自建立原生匹配。各自原生匹配均为 425 个，贡献组分别为 68 和 67。[首次迁移](INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [双侧分解](INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md) · [第二次迁移](INSTANCE_RSDD_CARRIER5203_ACTUAL_20261123.md) |
 | 候选、目标函数及总翻转量相同时，自由增删分配是否有效 | 三个种子相对各自等量对照，PSeg-SSDD／SPSD 的平均 mask AP 为 +2.299／+1.751 点，固定匹配 IoU 为 +0.971／+0.573 点，配对组区间为 [0.740, 1.207]／[0.319, 0.840]。 | 同一批有方法选择历史的 183 张源域开发影像，且检测器冻结。区间描述三次拟合均值的影像组波动。[重复评分](code/SPSD_PSEG_REPEAT_VARIABLE_SIGNED_BUDGET_SEEDS5298_5299_20261126/ACTUAL.md) |
 | 冻结配额策略迁移后是否保留收益 | SAR-SSP 232 张验证图的 mask AP 为 −0.139 点，固定匹配 IoU 为 −0.212 点 [−0.547, 0.104]。漏分减少 0.653 点，船外误分增加 1.378 点，面积均以参考船体面积归一。 | D-FINE 和源域双参考头以冻结状态评价，目标队列此前曾用于项目评价。[迁移报告](code/SAR_SSP_DFINE_BCE5297_VARIABLE_SIGN_TRANSFER_20261126/ACTUAL.md) |
 | 迁移时配额选择与端点排序各有多少改善空间 | 用作者标注只改选配额可恢复 +0.958 IoU 点，在已选配额内重排行为 +0.180 点。真实面积和静态交集的联合替换为 +0.005 点 [−0.096, +0.115]。 | 回顾性的真值辅助复算，139 艘原分母、23 个有船母景。保留原载体与编辑总数。两项潜力为不同干预。[配额诊断](code/SAR_SSP_FROZEN_POLICY_REGRET_20261126/ACTUAL.md) |
@@ -61,6 +61,8 @@ PSeg 的三段评分用独立的解析掩膜完成了预演。512 像素记录�
 外部数据补查中，Test01 的 207 条公开记录均无实例轮廓，OSSDD 公开二值标签由旋转框填充。SISS-YOLO 和 S&R-Net 报告了追加的 OpenSARShip 船体标注。其原始官方档案的 87 个产品对应 57 个采集组，分包间共有 18 组。作者船体轮廓与切片对应尚无可核验下载，已标注的独立组数待确认。[采集分组核验](OPENSARSHIP_ACQUISITION_GROUPS_20261125.md) [逐源核验](STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#补查作者轮廓的实际可获得性2026-11-23)
 
 12 个先锁定的 Umbra 采集窗口已完成冻结检测、原生端点精修、作者 Phoenix 整掩膜及独立复算。双参考评分器通过合成测试。两份原始轮廓回传后，依预锁口径报告等量端点主比较和整掩膜次要对照，纳入采集组覆盖。 [盲测执行](UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md) · [作者整掩膜对照](UMBRA12_PHOENIX_WHOLE_ACTUAL_20261123.md) · [评分准备](UMBRA12_DUAL_REVIEW_SCORE_READINESS_20261123.md)
+
+补充队列另有 24 个前瞻锁定采集，已完成原生窗口复核和冻结掩膜重放。两份独立原始参考待接收，两队列按各自覆盖与置信区间判据分别评分。[补充冻结结果](UMBRA_SUPPLEMENT_FROZEN_CARRIER_ACTUAL_20261126.md) · [独立评分配置](code/UMBRA_SUPPLEMENT_DUAL_REVIEW_SCORE_20261126/README.md)
 
 非空原生候选覆盖 9 个窗口，达到 8 个有效采集组的条件仍须由各份独立参考分别检验。[新增直接证据](STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#两条已核清的补充路径)
 

@@ -44,19 +44,14 @@ def distribution_panel(figure, data):
     axis.set_ylim(0, max(values) + 4)
     axis.yaxis.set_major_locator(MaxNLocator(integer=True, nbins=4))
     axis.set_xticks(positions, ("<−4", "−4…−2", "−2…−1", "−1…0", "0", "0…1", "1…2", "2…4", ">4"))
-    axis.tick_params(axis="x", labelsize=5.7, length=0, pad=3)
-    axis.tick_params(axis="y", labelsize=6.2, length=0, pad=3)
-    axis.set_xlabel("Independent − distance-paired discrete IoU (pp)", fontsize=6.9, labelpad=4)
-    axis.set_ylabel("Hull count", fontsize=6.8, labelpad=4)
+    axis.tick_params(axis="x", labelsize=7.6, length=0, pad=3, labelrotation=24)
+    axis.tick_params(axis="y", labelsize=7.6, length=0, pad=3)
+    axis.set_xlabel("Independent − distance-paired discrete IoU (pp)", fontsize=7.8, labelpad=5)
+    axis.set_ylabel("Hull count", fontsize=7.8, labelpad=4)
     axis.grid(axis="y", color=LINE, linewidth=.6, zorder=0)
     for spine in ("left", "top", "right"):
         axis.spines[spine].set_visible(False)
     axis.spines["bottom"].set_color(LINE)
-    s = data["distribution"]
-    for x, color, value, label in ((.105, NEG, s["negative"], "lower"),
-                                    (.241, MUTED, s["equal"], "equal"),
-                                    (.378, POS, s["positive"], "higher")):
-        figure.text(x, .445, f"{value} {label}", color=color, fontsize=6.9, weight="bold")
 
 
 def spatial_panel(figure, data):
@@ -79,15 +74,16 @@ def spatial_panel(figure, data):
                   color="white" if abs(value) >= 29 else INK, fontsize=7.1, weight="bold")
     axis.set_xticks((0, .5, 1), ("0", "0.5", "1"))
     axis.set_yticks((0, .5, 1), ("0", "0.5", "1"))
-    axis.tick_params(length=0, labelsize=6.4, pad=2)
+    axis.tick_params(length=0, labelsize=7.6, pad=2)
     for spine in axis.spines.values():
         spine.set_visible(False)
     cbar = figure.colorbar(mesh, cax=color_axis, ticks=(-50, 0, 50))
-    cbar.ax.tick_params(labelsize=6.4, length=0, pad=2)
+    cbar.ax.tick_params(labelsize=7.6, length=0, pad=2)
     cbar.outline.set_visible(False)
     cbar.solids.set_rasterized(False)
+    cbar.solids.set_edgecolor("face")
     cbar.ax.set_ylabel("Net correct labels (%)", fontsize=6.8, labelpad=3)
-    figure.text(.71, .477, "Relative position in each hull ROI", ha="center", color=MUTED, fontsize=6.8)
+    figure.text(.71, .477, "Relative image-axis position in hull box", ha="center", color=MUTED, fontsize=6.8)
     figure.text(.71, .445, "52 changed hulls pooled · ≥5 hulls per cell", ha="center",
                 color=MUTED, fontsize=6.6)
 
@@ -129,7 +125,7 @@ def main():
                          "axes.labelcolor": INK, "xtick.color": MUTED, "ytick.color": MUTED,
                          "pdf.fonttype": 42, "svg.fonttype": "none", "figure.dpi": 200,
                          "savefig.dpi": 300, "figure.facecolor": "white"})
-    figure = plt.figure(figsize=(7.12, 5.22))
+    figure = plt.figure(figsize=(7.12, 4.40))
     figure.text(.047, .964, "Boundary edits on SAR-SSP author validation", fontsize=12.4,
                 weight="bold", va="top")
     figure.text(.047, .909,
