@@ -10,6 +10,7 @@
 - FIT109 跨检测器等量对照完成。确定性 D-FINE 投票较原独立选点高 0.567 AP 点，学习型融合低于投票，未过主门槛。[带完整对照的实测](research_round_20260925_global/HRSID_FIT109_CROSS_DETECTOR_ENDPOINT_ACTUAL_20261125.md) · [DEV705 候选资格，无标注](research_round_20260925_global/HRSID_DEV705_CROSS_CARRIER_DONOR_CENSUS_ACTUAL_20261125.md)
 - DEV705 同量供体投票冻结复验已完成。较原独立选点的 AP +0.017、连续 IoU +0.056 点，AP75 +0.494 与 AR100 −0.275 同时出现，未通过预设效用门槛。[复验与全部对照](research_round_20260925_global/HRSID_DEV705_FROZEN_DONOR_VOTE_ACTUAL_20261125.md)
 - COCO P2 同量补点实测完成。相对原独立排序 AP +0.013 点，离散 IoU 区间跨零，空间置换和灰度对照均未被有效超过。[完整对照和源码](research_round_20260925_global/HRSID_FIT109_COCO_P2_ENDPOINT_ACTUAL_20261125.md)
+- 候选上游诊断完成。SAR-SSP 全 164 条查询只额外覆盖 2 艘未匹配船体。HRSID FIT109 仍有 30 艘已有框且原掩膜失败，框内训练样本已导出。[外部框诊断](research_round_20260925_global/SAR_SSP_RAW164_BOX_COVERAGE_ACTUAL_20261125.md) · [源域上界和语料](research_round_20260925_global/HRSID_FIT109_BOX_REGROWTH_AND_ROI_ACTUAL_20261125.md)
 
 - 固定加点的删点限量恢复原版 +0.907／+0.878 AP（RSDD／PSeg），仍低于冻结独立选点。浅层同量的连续几何改善未转化为达到门槛的 AP 增益。[实测回执和复现](research_round_20260925_global/SEGREFINER_DELETION_CAP_ACTUAL_20261125.md)
 
