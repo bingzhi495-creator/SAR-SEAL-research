@@ -6,6 +6,7 @@
 
 - 可变增删分配在三个种子上均超过各自的等量对照。相同候选、目标函数及逐候选总翻转数下，PSeg-SSDD／SPSD 的平均 mask AP 为 +2.299／+1.751 点，固定匹配 IoU 为 +0.971／+0.573 点。两套标注对应相同的 183 张源域开发影像。[重复评分](research_round_20260925_global/code/SPSD_PSEG_REPEAT_VARIABLE_SIGNED_BUDGET_SEEDS5298_5299_20261126/ACTUAL.md)
 - 直接迁移到 SAR-SSP 232 张作者验证图，mask AP −0.139 点，固定匹配 IoU −0.212 点 [−0.547, 0.104]。漏分减少，船外误分增加，未达到预锁的跨库门槛。[冻结迁移评分](research_round_20260925_global/code/SAR_SSP_DFINE_BCE5297_VARIABLE_SIGN_TRANSFER_20261126/ACTUAL.md)
+- 固定每种增删配额的端点动作后，仅用源训练组折外预测拟合四系数校准。相对原可变配额，两参考的 Mask AP −0.324／−0.071，固定 IoU −0.164／−0.032 点。相对等量仍正，同容量打乱对照的两个区间跨零。按预设未推进。[实测](research_round_20260925_global/code/SPSD_PSEG_FIXED_WINNER_QUOTA_CALIBRATION_20261126/ACTUAL.md)
 - 在 SAR-SSP 历史队列上复算原写回。保留每种配额的预测端点排序，真值辅助重选增删量可恢复 +0.958 个固定匹配 IoU 点。同配额内重选端点为 +0.180 点。共同替换真实面积和静态交集收益为 +0.005 点，区间跨零。[配额诊断](research_round_20260925_global/code/SAR_SSP_FROZEN_POLICY_REGRET_20261126/ACTUAL.md)
 - 更新 21 页 IEEE 双栏英文审阅稿，含 14 图和 13 表，添加总翻转量固定时的增删配额公式、效应分解图及三种子结果表。作者和投稿信息按约定留为占位。[PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.tex) · [读图与复现](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
