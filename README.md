@@ -4,6 +4,9 @@
 
 ## 当前状态（2026-11-25）
 
+- 同一有限菜单的真值分量替换显示，双参考平均收益估计和参考差异惩罚分别贡献 +0.227／+0.139 个保守 IoU 点，均为回顾性归因。固定同一训练动作后的回归与成对排序已完成同预算拟合，留出评分单独进行。[误差分解](research_round_20260925_global/SPSD_PSEG_GATE5297_MIDPOINT_DISAGREEMENT_ATTRIBUTION_20261125_ACTUAL.md) · [排序配对拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_ROBUST_RANKING_SEED5297_20261125/ACTUAL.md)
+
+
 - 部署动作拟合已在历史 183 图开发组完成固定对照。与当前同运行环境旧动作相比，PSeg／SPSD mask AP +0.015／−0.131，固定 IoU −0.010／−0.072 点，未达到预锁门槛。相对同量静态吸引力仍为 +0.168／+0.628 AP。用同一动作比对时误差下降，选中动作真实至少一侧下降仍各为 70/206。[留出实测](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ACTUAL.md) · [FIT 动作覆盖](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ALIGNMENT_ACTUAL.md)
 
 
