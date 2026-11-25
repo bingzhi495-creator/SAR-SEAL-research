@@ -53,3 +53,9 @@ Run `plot_cross_dataset_phoenix_budget.py` with the two released score summaries
 ## Stock SegRefiner-LR cases on Instance-RSDD
 
 [Editable SVG](rsdd74_segrefiner_cases_binned.svg) · [Vector PDF](rsdd74_segrefiner_cases_binned.pdf) · [Case selection and caption data](../../results/RSDD74_SEGREFINER_STOCK_CASES_SAFE_20261123.json). For 39 originally matched, gate-exposed hulls, the two separate images are closest to the respective medians of gains and losses from stock SegRefiner-LR. The public graphic pools exact mask and reference areas on an 8 × 8 grid. The local review PDF overlays all three masks and the author outline on native SAR crops.
+
+## SAR-SSP 冻结编辑与分母
+
+[矢量 PDF](sarssp_public_summary.pdf) · [可编辑 SVG](sarssp_public_summary.svg) · [聚合输入](sarssp_public_aggregates.json)。图中 52 个变更配对来自 92 个原生固定匹配，来自 19 个母景。零差组属于输出掩膜改变但 IoU 保持的匹配。空间格汇总每艘船的候选政策分歧像素中，独立相对距离配对净判对比例。置信区间保持全部 139 个船体和 23 个含船母景。公开文件只有聚合统计。
+
+从本目录运行 `python make_public_sarssp_summary.py sarssp_public_aggregates.json --output .` 重绘图件。 [评分协议与矩阵](../../SAR_SSP_FROZEN_TRANSFER_ACTUAL_20261125.md) · [覆盖和等量编辑上限](../../SAR_SSP_COVERAGE_AND_EDIT_CEILING_ACTUAL_20261125.md)

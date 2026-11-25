@@ -558,6 +558,16 @@ The whole-support count improves 209 of the 293 original eligible PSeg matches, 
 
 Among the 39 original geometry matches that entered SegRefiner-LR, 14 gain continuous IoU and 25 lose it. Fig.~\ref{fig:segrefiner-cases} shows the cases nearest the gain and loss medians. In (a), SegRefiner reduces the predicted extension beyond the lower end of the reference and increases IoU from 58.68 to 60.96. In (b), overlap is lost at both ends and along the narrow side, reducing IoU from 71.93 to 67.43. The local occupancy masks score 58.89 and 71.95 on the same references.
 
+\subsection{Matched boundary edits on SAR-SSP}
+Equal-count independent and distance-paired writing produce different masks for 52 of the 92 original matched hulls. Of the changed masks, independent writing improves discrete IoU in 21, reduces it in 15, and preserves it in 16. Fig.~\ref{fig:sar-ssp-cases} shows the distribution and spatial pattern of these changes. The signs of individual effects coexist with the small net AP change in Table~\ref{tab:sar-ssp}.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/sarssp_public_summary.pdf}
+\caption{Observed SAR-SSP boundary edits. (a) Discrete IoU changes among the 52 original matches with different masks under the two equal-count policies. (b) Mean difference in the fraction of correct labels at disagreeing cells, evaluated within a normalized \(4\times4\) grid on each hull's enclosing rectangle. Each displayed cell pools at least five hulls. (c) Scene-balanced geometry differences over all 139 reference hulls with paired 95\% intervals and mask AP differences over all 232 chips.}
+\label{fig:sar-ssp-cases}
+\end{figure*}
+
 \section{Ablation Studies}
 \label{sec:ablation}
 We vary the point scores, the add/remove choices and the pretrained writer in experiments that control different variables. The writer comparisons reuse frozen responses. Each ablation holds its candidate stream and its indicated budget fixed.
@@ -695,11 +705,13 @@ At the same 147,540 flips on the sampled endpoints, assigning half to each side 
 \subsection{Transfer and Proposal Coverage}
 The two Gaofen-3 fits share initialization and scenes, so the observed gains support repeatability across downstream fits on those scenes. On PSeg-SSDD, learned ranks lose continuous IoU to attraction at the dynamic budget.
 
-Capping Phoenix edits reduces exterior false positives on both datasets. On PSeg-SSDD, all four support-by-count policies trail native, while balancing signed counts on narrow support recovers most of the gap to static attraction. The balance effect is smaller and uncertain on Instance-RSDD. Stock SegRefiner-LR deletions reduce overlap on both gate-exposed cohorts. Its all-match IoU loss versus native is supported on Instance-RSDD, with an interval crossing zero on PSeg-SSDD. Both the detector and image population change between datasets. On UEIKAP, only 17 of 139 released hulls have native matches with positive budgets. The within-box ceiling locates a coverage limit before local correction.
+The gains from limiting Phoenix writes and the losses from stock SegRefiner deletions recur with different detectors and image populations. On UEIKAP, only 17 of 139 released hulls have native matches with positive budgets. The within-box ceiling locates a coverage limit before local correction.
 
 HRSID official results retain historical development exposure. The group definitions and sensitivity views in Section~\ref{sec:protocol} bound the transfer evidence. Native, local and Phoenix predictions are sealed on 12 prospectively selected Umbra windows. Independent reference scoring on these windows is pending.
 
-The frozen SAR-SSP comparison falls below the practical transfer threshold despite a sufficient number of distinct edited hulls. Its binary references and parent-balanced estimator define a separate evaluation from the continuous polygon comparisons.
+The frozen SAR-SSP comparison falls below the practical transfer threshold. Its binary reference masks support a separate raster evaluation.
+
+On SAR-SSP, none of the 47 hulls left unmatched by native COCO assignment has another candidate with mask IoU of 0.50. With the reference available, independent selection on the original endpoints and at most the original swap cap crosses that threshold for one of these hulls. Across the same candidates, allowing arbitrary updates within their detector boxes adds nine recoverable hulls when area is fixed and another 19 when area may change. Both box variants retain the exterior of each stock mask. These per-hull ceilings allow candidate reuse. On the 92 original matches at the original realized signed counts, reference-optimal independent selection gains 1.187 scene-balanced discrete IoU points over learned independent selection and 0.895 points over reference-optimal distance pairing. Thus limited coverage and selection error remain visible at different stages of the frozen pipeline.
 
 An oracle keeps every stock addition and deletes cells of least author-polygon coverage from the native foreground. At the stock count, it gains 5.594 and 3.512 continuous IoU points on gate-exposed Instance-RSDD and PSeg matches, respectively. Allowing fewer deletions adds 4.256 and 4.189 points. Both sets of paired 95\% intervals are positive. At the stock count, even the best deletion sites leave 43 of 67 PSeg hulls below their addition-only overlap. These label-conditioned ceilings quantify separate constraints on position selection and count control.
 
@@ -721,7 +733,6 @@ Independent endpoint selection improves the overlap of already detected hulls at
 \noindent\emph{Acknowledgment.} OpenAI Codex assisted with drafting and revision. The method diagrams use schematic cells and an illustrative worked example. Result figures use observed measurements, including spatially pooled comparisons in Figs.~\ref{fig:gf3-qual} and~\ref{fig:pseg-budget-cases}.
 
 
-\IEEEtriggeratref{23}
 \begin{thebibliography}{30}
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, \href{https://doi.org/10.1109/ACCESS.2020.3005861}{2020}.
 \bibitem{rsdd} X. Yang, Q. Zhang, Q. Dong, Z. Han, X. Luo, and D. Wei, ``Ship instance segmentation based on rotated bounding boxes for SAR images,'' \emph{Remote Sens.}, vol. 15, no. 5, Art. no. 1324, \href{https://doi.org/10.3390/rs15051324}{2023}.
