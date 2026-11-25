@@ -1,0 +1,3 @@
+# FIT adapter correction before matching and optimizer
+
+The first execution stopped at the raw category assertion, before COCO matching, sample output and optimizer construction. The complete accepted capture has 91,500 category-1 native slots and zero image-owner mismatches. The original D-FINE PSeg scorer remaps each preserved raw candidate slot to the author evaluation category 0. Check original category 1 before applying exactly that same remap. Use Python integers for aggregate offset counts to serialize the receipt without rounding. The roster, reference rasters, area/offset conditions, assignment, draw order, seed, initialization, model and all four budgets stay fixed. Retain the original worker and terminal.
