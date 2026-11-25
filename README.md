@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- SRNet 的 74 图逐阈值诊断中，AP70 +1.627 点，AP80 −0.176 点，其余八个阈值持平。相同端点和增删数的真值辅助几何上界较实际独立选点 +0.530 连续 IoU 点［0.259, 0.834］。[完整实测和可编辑图](research_round_20260925_global/code/SRNET_RSDD74_THRESHOLD_ORACLE_20261126/ACTUAL.md)
+
 - 冻结 SRNet 在原 74 图上完成相同候选、等增删数对照。独立选点较原配对 +0.145 mask AP、+0.159 固定匹配连续 IoU［0.088, 0.236］。32 个匹配覆盖 13 个父景及 12 个日期组。AP 未达 0.30 点门槛，预锁判据为证据不足。[整批实测](research_round_20260925_global/code/SRNET_SSDD_E24_RSDD74_PAIRED_REPLAY_20261126/ACTUAL_REPLAY.md)
 
 - 本地 SRNet SSDD FIT741 E24 在 8 张固定 RSDD 影像上完成无标注原生旋转回贴核验，8 个 RLE 与作者实现精确一致。[实测与复现](research_round_20260925_global/code/SRNET_SSDD_E24_RSDD74_NATIVE_PARITY_20261126/ACTUAL.md)

@@ -16,6 +16,8 @@ SRNet 的原作者权重目录也已核对，匿名网页可浏览，列有 RSDD
 
 同一占据头转接至本地 SSDD FIT741 E24 SRNet 后，在既有 74 图上保持候选、端点和逐候选增删数。独立选点相对距离配对得到 +0.145 mask AP、+0.159 固定匹配连续 IoU［0.088, 0.236］。32 个有改变的匹配覆盖 13 个父景和 12 个传感器日期块。几何及覆盖条件成立，AP 未到 0.30 点。嵌套 42 图的对应结果为 +0.218 AP 和 +0.206 IoU［0.121, 0.306］。纯 RGB 重复核验发现 SSDD 741 张实际使用训练图与这 74 图之间无整幅解码重复。历史评分暴露及物理采集独立性仍按当前证据范围报告。[整批实测和复现](code/SRNET_SSDD_E24_RSDD74_PAIRED_REPLAY_20261126/ACTUAL_REPLAY.md) · [独立来源核验](code/SRNET_SSDD_E24_RSDD74_SOURCE_EXPOSURE_20261126/ACTUAL.md)
 
+SRNet 的整批 +0.145 mask AP 来自 AP70 +1.627 和 AP80 −0.176，其余八档持平。完全相同的冻结点池暨逐候选增删量下，按真值覆盖最优排序给出的连续 IoU 上界，比实际独立选点高 0.530 点［0.259, 0.834］。公开图将逐阈值 AP 和固定匹配几何分别呈现。已复现完整原 COCO 结果，主实用判据及独立外测范围沿用原协议。[诊断、可编辑 SVG 及复现](code/SRNET_RSDD74_THRESHOLD_ORACLE_20261126/ACTUAL.md)
+
 ## 投稿正文候选稿
 
 [10 页英文正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX 主文件](paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [方法、结果、分析与参考文献](paper_boundary_refinement_20261120/submission_sections) · [24 页完整证据稿](paper_boundary_refinement_20261120/boundary_refinement.pdf)
