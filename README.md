@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- 在 SAR-SSP 历史验证集上以同一冻结点头和逐候选总编辑数检验短轴方差上限。相对原自由分配，短轴约束 +0.133 mask AP、+0.143 固定匹配 IoU［−0.185, 0.487］点，误分 −1.105、漏分 +0.597 个参考面积百分点。相对等量分配为 −0.006 AP、−0.070 IoU；相对同规模面积和长轴对照的 IoU 区间均跨零。没有通过实用或方向特异性判据。 [实测、阈值与复现](research_round_20260925_global/code/SAR_SSP_TRANSVERSE_QUOTA_20261126/SCORE_ACTUAL.md)
+
 - 74 图历史保留集已补做一像元 Boundary IoU 强对照。逐候选增删数不变时，限距重配相对距离优先增加 +0.735 点［0.207, 1.243］，独立选点相对限距重配为 −0.034 点［−0.373, 0.278］。改用传感器日期块和两像元宽度结论一致。独立选点相对限距重配此前的 +0.479 mask AP 和 +0.116 连续面积 IoU 对应其他指标。 [实测及可编辑图](research_round_20260925_global/code/RSDD74_BOUNDED_BOUNDARY_20261126/ACTUAL.md)
 
 - 完成 10 页英文审阅稿统稿。更新原生边界限距匹配、定量口径和定性失败解释，新增可编辑三路同预算方法图。四张量化表的数据保持已核验版本。两批 Umbra 前瞻评价等待独立轮廓回传。[正文 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [证据索引](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
