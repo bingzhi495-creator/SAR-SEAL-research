@@ -1,0 +1,7 @@
+# Frozen D-FINE spatial endpoint capture
+
+The published entry point is the verified worker with local paths supplied as arguments. Use `python -I -B spatial_cues.py --help` to see the required authorities. Keep the unchanged protocol beside the code. `--native-source` is the closed TRAIN915 detector capture and `--point-source` is its independently read back native-point preparation. `--author-intake` and `--reference-capture` are the frozen author's source/package and rectangular-inference reference. The capture adapter, EMA acceptance/checkpoint and codec wheel are the matching local inputs for that runtime.
+
+The capture output must be a fresh `actual` folder beside the script. Record natural process termination, worker SHA-256 and the exact footer result SHA-256 in `observed_capture_active/TERMINAL.json`, then use the same script in `verify` mode and a fresh `readback` output. The CPU verification process uses `CUDA_VISIBLE_DEVICES=-1`. The artifact authorizations, raw images, pretrained weights, capture arrays, and observer logs remain with their original execution. The local execution and this CLI copy have different source-file hashes. The publication reports refer to the observed original execution. The shared extraction algorithm and synthetic projection/half-pixel sampling tests also run in this CLI copy.
+
+[Actual capture and readback](ACTUAL.md) · [Protocol](PRELOCK.md) · [Original D-FINE source](https://arxiv.org/abs/2602.23043)

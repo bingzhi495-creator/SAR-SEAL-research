@@ -4,6 +4,9 @@
 
 ## 当前状态（2026-11-25）
 
+- 冻结 D-FINE 在原 915 图的空间特征全部获取并读回，91,500 个候选概率平面逐字节复现。对齐空间特征相对原回归为 +0.020／+0.125 mask AP 和 −0.053／−0.041 固定 IoU，分侧内错位对照未被稳定超越。[全流程捕获](research_round_20260925_global/code/SPSD_PSEG_TRAIN915_DFINE_SPATIAL_CUES_20261125/ACTUAL.md) · [同容量拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_SPATIAL_CARRIER_CUES_SEED5297_20261125/ACTUAL.md) · [真实评分](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_SPATIAL_CARRIER_CUES_SEED5297_20261125/ACTUAL.md)
+
+
 - D-FINE 中间特征前的点网格诊断已完成。8,785 个有编辑预算的开发候选中，8,773 个的内外端点共享插值单元，原连续坐标无两侧重合。该结果明确同单元内插值权重仍可不同。[几何计数与原作者先例](research_round_20260925_global/SPSD_PSEG_NATIVE_POINT_STRIDE_GEOMETRY_20261125_ACTUAL.md)
 
 
