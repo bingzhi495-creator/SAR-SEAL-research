@@ -27,4 +27,16 @@ GitHub 的冻结协议记录发表于 2026-11-22 18:33:19 UTC，核对提交树�
 
 原公开元数据记录 5 个保留父景与历史测试共享一种传感器及日历日期，另有 5 个与同传感器的历史父景共享已发布的四舍五入中心，两类交集为 2。并用这两项筛查会排除 8 个父景，只余 **17 图、17 个原正编辑量匹配、5 个父景**，低于原预锁的 **20 个匹配和 8 个父景**。两项筛查基于历史元数据与已验收的匹配计数，未读取新几何或计算新的效果。剩余子集的物理地理或过境独立性仍需更完整的产品元数据。[原元数据汇总](../../results/INSTANCE_RSDD_PARENT_RESERVE_CENSUS_SAFE_20261123.json) · [本轮核验结果](RESULT_SAFE.json)
 
+## 补查供应商原始产品身份
+
+日期与中心是两种不同的筛查。逐行连接作者附表后，保留集与历史 740 图之间没有父景对同时共享传感器、公布日期和舍入中心。两个同时被两类规则标记的保留父景，各自对应的同日期和同中心历史父景不同。仅筛日期后仍保留的 42 图中，25 图来自三个 TerraSAR-X 父景。三者与 21 个历史父景共享同一公布中心，均为同规格 StripMap，日期不同。这类重复地点需要原产品覆盖核对，日期不同不足以确认地理分离。五个日期标记均为高分三号，这些来源对应需要高分三号的产品目录。[原始论文附表](https://rhhz.xml-journal.net/article/doi/10.12000/JR22007) · [Instance-RSDD 原作者发行](https://github.com/XIDIAN212Lab/SRNet#the-instance-rsdd-dataset)
+
+实际测试了 ESA 两个 TerraSAR-X 目录服务。每个服务分别提交一个不限定时空的对照请求和三个带筛选条件的请求。筛选取原作者日期及前后各一天，取公布中心经纬各 ±0.10°。EO-CAT 四次均为请求超时。ESA MAAP 四次均返回 HTTP 200 的 GeoJSON，含零条要素，未限定时空的请求也为空。ESA 的档案说明其 TerraSAR-X 项涵盖 ESA 支持项目取得的产品，因此这组结果无法排除原产品存在。Airbus 的归档规范列出精确 UTC、采集 ID、轨道和足迹，并要求授权请求。此次没有确认任何产品对应、获取凭据或下载影像。[EO-CAT 规范](https://eocat.esa.int/eo-catalogue/features.html) · [ESA TerraSAR-X 档案范围](https://eocat.esa.int/eo-catalogue/collections/TerraSAR-X?httpAccept=text%2Fhtml) · [ESA MAAP 规范](https://catalog.maap.eo.esa.int/doc/stac.html) · [Airbus 归档](https://api.oneatlas.airbus.com/guides/radar/g-radar-api/#12-find-archive-imagery) · [实测汇总](ESA_CATALOG_SAFE.json)
+
+中国资源卫星应用中心的已公开检索页在新的匿名会话中显示登录提示。中国遥感卫星地面站的匿名搜索表单和卫星选项均正常返回，实际显示 17 个传感器选项，未提供高分三号。该表单的通用 SAR 选项属于 ERS-2。未向该表单提交五个高分三号父景的时空查询，匹配记录数保持未知。[资源卫星应用中心](https://data.cresda.cn/#/2dMap) · [中国遥感卫星地面站检索](https://www.noda.ac.cn/rsgs/datasharing/imageFilmSearch)
+
+当前无需重传 SAR 影像。解决已标记对应只需覆盖 39 个相关父景的作者元数据，范围为 8 个标记保留父景和 31 个涉及的历史父景。每行提供作者父景编号、原产品 ID 或文件名、原始采集 ID、UTC 起止、绝对轨道及过境方向、供应商足迹。处理未标记对应需要 125 个切片父景的完整映射。验证与 HRSID 的同地点分离还需要其对应母景表。若主张具体图块地理不重叠，另需图块偏移与像元到地理坐标变换。先锁定相同采集、确认独立和未解决的划分规则，以 UTC 与采集 ID 判定来源身份，以足迹单独判定地点隔离。覆盖计数继续使用原门槛。已评分的原 74 图和嵌套视图原样保留，任何后来取得的更严格子集只作回顾性敏感性分析。
+
+复算 ESA 元数据探针可先用 `pdftotext -layout` 从原始 RSDD-SAR 作者 PDF 提取英文附表，再执行 `python probe_esa_parent_identity.py --appendix-text APPENDIX.txt --output ESA_CATALOG_SAFE.json`。探针只发布服务状态和条目数，原论文座标与目录返回记录不保存。目录可用性会随时间变化。[原作者 PDF](https://files.sciengine.com/pdfs/2095-283X/23A1C428928844EC809FB12C4F5A7A6B.pdf) · [复算程序](probe_esa_parent_identity.py)
+
 复核程序 `audit_reserve_scope.py` 读取上述已关闭的评分和事件回执及原始数据资格汇总。重新执行得到字节一致的安全汇总。报告和输出不含影像、坐标清单、标注和候选。

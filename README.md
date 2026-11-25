@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- 实测补查 Instance-RSDD 原产品身份。42 图的日期分离视图仍含 25 张来自三个共享舍入中心的 TerraSAR-X 父景。ESA 目录与高分三号公开入口的核查暂未给出原产品对应。保留集的地理证据边界已写入正文。[来源核验及目录实测](research_round_20260925_global/code/PUBLIC_HULL_REFERENCE_SCOPE_20261126/ACTUAL.md)
+
 - 74 图保留集的三种选点规则已完成同输入精修计时。一核六轮，端点、占据分数、原配对和预算预先缓存。原配对、限距重配、独立选点的选择加 RLE 写回中位耗时为 26.1、138.6、27.4 毫秒/图，原掩膜全部逐位复现。[分段耗时、次序和复现](research_round_20260925_global/code/LEARNED_BOUNDED_PAIRING_20261126/rsdd_timing/ACTUAL.md)
 
 - 等预算限距重配已在 HRSID DEV705 三个冻结点头和 Instance-RSDD 完成。HRSID 限距重配比距离优先 +0.475 AP，独立选择再增 +0.431 AP，两项固定匹配连续 IoU 区间均为正。74 图保留集上，独立选择较限距 +0.479 AP，固定匹配连续 IoU +0.116［0.008, 0.242］。高分三号两项 AP 都低于门槛。[实测、统计口径及复现](research_round_20260925_global/code/LEARNED_BOUNDED_PAIRING_20261126/ACTUAL.md)
