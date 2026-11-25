@@ -4,6 +4,10 @@
 
 ## 当前状态（2026-11-25）
 
+- SAR-SSP 作者压缩包已验收。232 张官方验证图的 139 个实例轮廓全部通过 PNG／JSON 核验，31 个母图均也出现在作者训练划分，原始采集身份还需核对。[数据和证据范围](research_round_20260925_global/SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md)
+
+- 固定加点的删点限量恢复原版 +0.907／+0.878 AP（RSDD／PSeg），仍低于冻结独立选点。浅层同量的连续几何改善未转化为达到门槛的 AP 增益。[实测回执和复现](research_round_20260925_global/SEGREFINER_DELETION_CAP_ACTUAL_20261125.md)
+
 - 同量删点几何上限已用 Instance-RSDD／PSeg 的同一原版候选算清。理想删点位置留有 **5.594／3.512 连续 IoU 点**余量，允许减少原删点数又增加 **4.256／4.189 点**。[闭合实测、公式和复现](research_round_20260925_global/SEGREFINER_DELETION_BUDGET_CEILING_ACTUAL_20261125.md)
 
 - 已找到 SAR-SSP 作者数据包，验证集按发布说明含 232 图、139 个船舶实例。压缩包内的成像来源与标注仍待核验。[作者入口和资格](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#sar-ssp-作者发布已定位2026-11-25)

@@ -42,3 +42,7 @@ Umbra 官方公开目录的舰船检测前缀经五页完整枚举，共 4,573 �
 第一作者 Rong Deng 的 SLGSea 仓库已给出 SAR-SSP、SPSD 和 HRSID-PAN 的同一作者分享。无需登录即可用发布提取码核验清单，唯一文件是 `SLGSea_Datasets.zip`，大小 **866,821,756 字节**。普通网页下载交给百度网盘客户端，匿名预览提示登录。作者列出原图、RGB 实例编号 PNG 和 COCO panoptic JSON。SAR-SSP 的 train／val 分别为 929／232 图、461／139 个船舶实例。SPSD 和 HRSID-PAN 暂无独立性结论，先核验 SAR-SSP 的原始图、真值和采集身份。收到压缩包后需核对实际标签、既有数据的图像及父景重叠，以及包内许可。论文现有实验未以此来源调参。[作者说明（固定版本）](https://github.com/deng1218/SLGSea/blob/8225c680d3e991aa2cb5b22af3918b8704ec7b02/README.md#datasets) · [作者数据入口](https://pan.baidu.com/s/1I7Q1hM3xAq5X5azDwkyfOA?pwd=8888)
 
 另外两条来源的资格已核清。BMT-S2O 的 2,297 张有分割标注的 SAR 图来自 HRSID，无法增加独立影像。MMDEC 提供新的 Sentinel-1 采集及产品信息，附带船舶记录是模型检测与长度等属性的 CSV，没有独立船体实例轮廓。[BMT-S2O §IV-A](https://arxiv.org/html/2609.04726v1) · [MMDEC §3.3](https://tristanaverty.github.io/assets/pdf/averty2026mmdec.pdf)
+
+### 作者 ZIP 已到达并通过内容核验
+
+实际压缩包与分享大小一致。完整核验 SAR-SSP 的 2,324 个影像、RGB 实例 ID 及 JSON 成员，确认原生 500×500 和 139 个验证船体。作者划分共享全部 31 个母图，发现 4 对母图内跨划分重叠切片。原始采集产品映射仍需单独核验。[验收结果](SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md)
