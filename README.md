@@ -15,6 +15,7 @@
 - 双参考 5297 的 183 图源域留出已实测。相对同量静态吸引力，两参考 AP +0.173／+0.415、IoU +0.167／+0.300 点。SPSD 上的同头均值与逐像元保守排序几何更高，完整晋级未通过。[九臂结果与复现](research_round_20260925_global/SPSD_PSEG_TRAIN183_DFINE_DUAL_REFERENCE_SOURCE_GATE_SEED5297_20261125_ACTUAL.md)
 - 5297 归因实测主要差距来自占用分数。在相同菜单中以作者占用排序恢复 +0.366 保守 IoU 点，真值下扩大端点空间另 +0.178。当前预测目标的全端点额外改善上界仅 0.001858 预测像元。[真值诊断](research_round_20260925_global/SPSD_PSEG_TRAIN183_SEED5297_DUAL_MAXIMIN_DIAG_20261125_ACTUAL.md) · [预测界限](research_round_20260925_global/SPSD_PSEG_GATE5297_PREDICTED_MAXIMIN_BOUND_20261125_ACTUAL.md)
 - 静态参照有符号收益损失完成两臂同容量、各 1,000 步及固定留出评分。对纯 BCE 的 AP +0.046／+0.108 点，IoU +0.017／+0.051 点，低于预锁推进幅度，且预测误差未稳定下降。[拟合](research_round_20260925_global/SPSD_PSEG_FIT_MATCHED_SIGNED_ACTION_SEED5297_20261125_ACTUAL.md) · [九臂评分](research_round_20260925_global/SPSD_PSEG_GATE_MATCHED_SIGNED_ACTION_SEED5297_20261125_ACTUAL.md)
+- 动作监督覆盖已核对。动作训练组在实际变更的候选上，平均 63.99% 有符号像元变化能量位于训练动作所张成的空间之外。下一轮检验与推理候选一致、等动作数量的训练监督。[无标注诊断](research_round_20260925_global/SPSD_PSEG_GATE_MATCHED_ACTION_BANK_SPAN_20261125_ACTUAL.md)
 - SAR-SSP 锁定 RF-DETR 原生配对后，D-FINE 几何上可多匹配 10 艘，涉及 3 个母景，未达到预锁场景范围。[互补上界](research_round_20260925_global/SAR_SSP_CROSS_CARRIER_NATIVE_COMPLEMENT_20261125_ACTUAL.md)
 - HRSID FIT109 扩边上限实测完成。原候选和预算不变时，完整框内 1–4 层相对抽样端点仅增 0.098 离散 IoU 点，第 3–4 层无额外收益，未达到扩边训练门槛。[实测与源码](research_round_20260925_global/HRSID_FIT109_NESTED_SUPPORT_ORACLE_ACTUAL_20261125.md)
 - HRSID FIT109 第二查询端点排序已实测。逐候选增删量一致，拟合真实线索的 AP 与原独立排序相同，未达推进门槛。原独立选点相对距离配对仍高 1.204 AP 点。[实测与源码](research_round_20260925_global/HRSID_FIT109_SIBLING_ENDPOINT_RANK_ACTUAL_20261125.md)
