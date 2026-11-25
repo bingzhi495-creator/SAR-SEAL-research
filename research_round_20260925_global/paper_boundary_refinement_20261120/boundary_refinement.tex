@@ -314,6 +314,8 @@ The last two quantities normalize the false-positive and missed area by the refe
 \end{equation}
 where \(n_j\) is the analyzed hull count in group \(j\). Geometry intervals use paired group resampling, typically 4,096 draws. Instance-RSDD reserve views keep parent weights and resample sensor--date blocks. PSeg groups are decoded-image equivalence groups. In the 183-image dual-reference comparison, we first average raster IoU over all annotated hulls in each image with native misses set to zero. Images then receive equal weight within each decoded group. The denominators are 411 and 410 hulls for PSeg and SPSD, respectively. When several heads share the same native matches, their effects are averaged within each group first. For SAR-SSP, Eq.~\eqref{eq:paired-acquisition-effect} uses mother-scene groups and \(\mathrm{IoU}_{\mathrm{raster}}=|M'\cap G_{\mathrm{r}}|/|M'\cup G_{\mathrm{r}}|\), where \(G_{\mathrm{r}}\) is the released set of foreground cells for an instance. In the SAR-SSP and case-focused UEIKAP all-hull estimates, unmatched references contribute zero change. UEIKAP also reports independently rematched coverage. COCO AP uses the benchmark views released for instance evaluation. Seed ranges summarize the observed fits.
 
+For the frozen Instance-RSDD masks, we also measure Boundary IoU~\cite{boundaryiou} on the original matches. Let \(B_d(X)\) contain the foreground cells removed by \(d\) successive \(3\times3\) erosions of binary mask \(X\), with zero outside the chip. We compute \(|B_d(M')\cap B_d(G_{\mathrm r})|/|B_d(M')\cup B_d(G_{\mathrm r})|\) for \(d=1\) and \(d=2\) native pixels. Differences are averaged within each matched hull across the corresponding heads, then within parent scenes and equally over those scenes. We use 4,096 paired parent resamples and additionally resample sensor--date blocks in the reserve. The thickness is fixed in pixels and the geometry uses a fixed native assignment.
+
 The fixed-match HRSID RF-DETR counts at the strict threshold use continuous IoU \(>0.90\). D-FINE and the stated PSeg RF-DETR counts include equality. These counts and COCO AP90 serve different functions. One sensitivity comparison changes the overlap matrix from raster mask IoU to polygon--cell IoU while keeping candidate order, annotation support, area bins and the evaluation rules fixed.
 
 \section{Quantitative Results}
@@ -412,6 +414,26 @@ Instance-RSDD~\cite{rsdd} supplies hull outlines for RSDD-SAR imagery~\cite{rsdd
 On Gaofen-3, the first detector's two natural policies gain 0.587 and 0.517 AP over native. AP75 rises by 1.438 and 1.230, while AP90 falls by 0.094 and 0.107. With count fixed, the corresponding AP gains over pairing are 0.482 and 0.483. Mean continuous IoU gains 0.259 points (\([0.194,0.322]\), 425 eligible matches, 68 contributing acquisitions). This is a paired mean over the two heads. The second detector, sharing initialization and point-head provenance, gains 0.240, 0.280, and 0.378 AP points at equal count. Its mean AP and IoU gains are 0.299 and 0.196 (\([0.136,0.253]\)) on its own 425 eligible matches, with 67 contributing acquisitions. Across all 740 images, natural selection gains mean AP of 0.539 and 0.435 for the two fits. The gain from freeing pairs at fixed count repeats more consistently than a large improvement over the native proposal.
 
 The separate reserve contains 74 chips from 13 additional parents in the author training allocation. With detector 5202 and head 5217, equal-count independence gains 0.436 AP and 0.318 IoU (\([0.217,0.436]\), 47 eligible matches). The nested date-separated view contains 42 chips and 32 eligible matches. It gains 0.840 AP and 0.364 IoU (\([0.250,0.478]\)). Detector 5203 has 48 and 31 eligible matches in the two views. Its three-head means gain 0.306 and 0.529 AP and 0.267 and 0.326 IoU (\([0.161,0.374]\), \([0.166,0.460]\)). Both fits meet the 20-match and eight-parent criteria in each view. Intervals resample sensor--dates with equal parent weights. The date split probes temporal proximity within the reserve. Geographic independence is unverified.
+
+With the original matches and signed counts frozen, the one-pixel boundary gain is positive with an interval above zero for GF-3 detector 5202 and for the 74-chip reserve (Table~\ref{tab:native-boundary}). On the same GF-3 images, the one-pixel interval for detector 5203 spans zero. Both GF-3 fits and the reserve give positive two-pixel intervals. Each eligible author and native mask has a nonempty eroded interior at both widths. The two GF-3 fits use 425 eligible matches each, in 68 and 67 parents. The reserve uses 47 matches in 12 parents. Its one-pixel independent-versus-paired interval with sensor--date blocks is \([0.231,1.243]\). Each comparison uses the original COCO predictions, scores and match identities.
+
+\begin{table}[t]
+\centering
+\caption{Fixed-match boundary IoU differences in points. The first three rows compare independent ranking with distance pairing. The last compares occupancy ranking with matched-support PointRend at its own fixed signed count. Brackets give paired 95\% parent intervals.}
+\label{tab:native-boundary}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Cohort and comparison & One pixel & Two pixels\\
+\midrule
+GF-3, 5202 & \(+0.466\ [0.223,0.702]\) & \(+0.467\ [0.278,0.653]\)\\
+GF-3, 5203 & \(+0.177\ [-0.025,0.376]\) & \(+0.255\ [0.107,0.404]\)\\
+Reserve, paired & \(+0.701\ [0.180,1.233]\) & \(+0.617\ [0.236,1.001]\)\\
+Reserve, PointRend & \(+0.829\ [-0.056,1.750]\) & \(+0.801\ [0.285,1.370]\)\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Frozen transfer to PSeg-SSDD}
 Five frozen HRSID policies share all 18,700 native candidates, including empty masks (Table~\ref{tab:ssdd}).
@@ -562,7 +584,7 @@ Full paste gains 0.200 AP over complete-support occupancy but lowers AR100 (72.3
 
 Inside the clipped RoI (268,302 exchanges), occupancy gains 0.379 AP and 0.224 IoU with zero padding (\([0.125,0.329]\)), and 0.345 AP and 0.223 IoU with border replication (\([0.124,0.327]\)). Padding accounts for 0.034 AP and 0.001 IoU (\([-0.006,0.008]\)).
 
-At 31,391 exchanges, occupancy beat capped PointRend by 0.477 AP and 0.395 IoU on the 74 chips (\([0.204,0.620]\)). Date-separated gains were 1.061 AP and 0.490 IoU (\([0.225,0.751]\)).
+At 31,391 exchanges, occupancy beat capped PointRend by 0.477 AP and 0.395 IoU on the 74 chips (\([0.204,0.620]\)). Date-separated gains were 1.061 AP and 0.490 IoU (\([0.225,0.751]\)). In the fixed-match boundary diagnostic, the occupancy comparison has an interval that spans zero at one pixel on the complete 74-chip reserve, whereas the two-pixel interval is positive (Table~\ref{tab:native-boundary}). The nested date-separated view gives \(+1.397\) one-pixel points \([0.245,2.420]\) over 32 matches in eight parents.
 
 Preserving PointRend outside capped support and its per-mask signed counts, occupancy raised AP at all three seeds. Mean AP rose from 57.534 to 58.196 on the 74 chips and from 61.831 to 61.975 on Gaofen-3. IoU gained 0.251 (\([0.051,0.449]\)) and 0.195 (\([0.109,0.281]\)). Locations differed on 44/47 matches in 12 parents and 424/425 in 68 acquisitions. We averaged seeds per match for 4,096 paired sensor--date draws (equal parents) or acquisition draws (equal acquisitions). Date-separated gains were 0.781 AP and 0.284 IoU (\([-0.007,0.528]\)). Standalone capped occupancy scored 58.827 AP on the 74 chips.
 
@@ -870,7 +892,7 @@ The D-FINE CUDA detector and postprocessor took 11.74\,s over 232 PSeg images. W
 Frozen Phoenix took 1,404.48\,s on the PSeg cohort with four two-thread CPU workers, five iterations and 11,054 prompts. Stock SegRefiner-LR took 454.18\,s over 74 Instance-RSDD images on an RTX 3090 Ti and 13,420.42\,s on the PSeg cohort under shared workstation load. These are observed wall times under the reported systems and workloads. The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{repository} provides code, configurations, data access notes and score summaries. Independent replay reproduced 3,434 table entries for the HRSID official split and Instance-RSDD 740, plus 1,470 entries on the 74-chip reserve for detector 5202 and head 5217. Reproduction uses the original annotations and the designated frozen weights.
 
 \section{Conclusion}
-At matched signed counts, independent endpoint selection improves boundary overlap and mask AP over distance pairing on HRSID and in the evaluated Instance-RSDD subsets. The gains on the common Gaofen-3 images recur for two downstream detector fits that share initialization. The same comparison produces small AP differences on PSeg-SSDD and SAR-SSP. On the 232 historical SSDD images, changing from the PSeg to the SPSD reference reverses the AP effect of the area-preserving natural-count endpoint writer relative to the native masks. The small number of editable matches on UEIKAP and the proposal-coverage analysis on SAR-SSP identify a separate limit on what local editing can recover.
+At matched signed counts, independent endpoint selection improves fixed hull overlap and mask AP over distance pairing on HRSID and in the evaluated Instance-RSDD subsets. In the fixed-match boundary diagnostic, one-pixel gains are supported for GF-3 detector 5202 and the 74-chip reserve. The second GF-3 fit has an interval that spans zero at one pixel and a positive two-pixel interval. The gains on the common Gaofen-3 images recur for two downstream detector fits that share initialization. The same comparison produces small AP differences on PSeg-SSDD and SAR-SSP. On the 232 historical SSDD images, changing from the PSeg to the SPSD reference reverses the AP effect of the area-preserving natural-count endpoint writer relative to the native masks. The small number of editable matches on UEIKAP and the proposal-coverage analysis on SAR-SSP identify a separate limit on what local editing can recover.
 
 At fixed total flips, a variable split improves mean AP and fixed-match raster IoU across three head fits under both labels of the same SSDD development images. On SAR-SSP, the frozen policy reduces missed area and increases false-positive area. Its paired IoU interval spans zero and the transfer criterion is unmet.
 
@@ -879,7 +901,8 @@ The pretrained-refiner comparisons isolate the effect of the edits themselves. L
 \section*{Acknowledgment}
 OpenAI Codex assisted with English drafting and revision in the abstract, Sections I--IX, and the figure captions. It also assisted in generating the vector-figure scripts, schematic layouts and experimental analysis code. The conceptual diagrams use illustrative cells and worked examples. The data figures use measured outputs, including spatially pooled displays in Figs.~\ref{fig:gf3-qual} and~\ref{fig:pseg-budget-cases}.
 
-\begin{thebibliography}{31}
+\IEEEtriggeratref{21}
+\begin{thebibliography}{34}
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, \href{https://doi.org/10.1109/ACCESS.2020.3005861}{2020}.
 \bibitem{rsdd} X. Yang, Q. Zhang, Q. Dong, Z. Han, X. Luo, and D. Wei, ``Ship instance segmentation based on rotated bounding boxes for SAR images,'' \emph{Remote Sens.}, vol. 15, no. 5, Art. no. 1324, \href{https://doi.org/10.3390/rs15051324}{2023}.
 \bibitem{gao2024} F. Gao, X. Han, J. Wang, J. Sun, A. Hussain, and H. Zhou, ``SAR ship instance segmentation with dynamic key points information enhancement,'' \emph{IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.}, vol. 17, pp. 11365--11385, 2024. \href{https://doi.org/10.1109/JSTARS.2024.3383779}{10.1109/JSTARS.2024.3383779}.
@@ -915,5 +938,6 @@ OpenAI Codex assisted with English drafting and revision in the abstract, Sectio
 \bibitem{airsarship} X. Sun, Z. Wang, Y. Sun, W. Diao, Y. Zhang, and K. Fu, ``AIR-SARShip-1.0: High-resolution SAR ship detection dataset,'' \emph{J. Radars}, vol. 8, no. 6, pp. 852--862, 2019. \href{https://doi.org/10.12000/JR19097}{10.12000/JR19097}.
 \bibitem{rankrma} Z. Wang and B. Dai, RankSEG-RMA: An efficient segmentation algorithm via reciprocal moment approximation, in \emph{Adv. Neural Inf. Process. Syst.}, vol. 38, 2025. \href{https://doi.org/10.52202/085713-5452}{10.52202/085713-5452}.
 \bibitem{rankdep} Z. Wang and B. Dai, ``On the relaxation of conditional independence assumption for image segmentation,'' \href{https://arxiv.org/abs/2609.38930}{arXiv:2609.38930}, 2026.
+\bibitem{boundaryiou} B. Cheng, R. Girshick, P. Doll{\'a}r, A. C. Berg, and A. Kirillov, ``Boundary IoU: Improving object-centric image segmentation evaluation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021. \href{https://arxiv.org/abs/2103.16562}{arXiv:2103.16562}.
 \end{thebibliography}
 \end{document}
