@@ -4,6 +4,9 @@
 
 ## 当前状态（2026-11-25）
 
+- OpenSARShip 官方上游 87 个 Sentinel-1A 产品对应 57 个独立采集组。两个分包无同名产品，但共享 18 个采集组。两项后续研究的作者船体轮廓和原切片对应仍待取得。[采集溯源与标注状态](research_round_20260925_global/OPENSARSHIP_ACQUISITION_GROUPS_20261125.md)
+
+
 - SAR-SSP 作者压缩包已验收。232 张官方验证图的 139 个实例轮廓全部通过 PNG／JSON 核验，31 个母图均也出现在作者训练划分，坐标与船框确认来自 AIR-SARShip-1.0 的高分三号影像，已排除历史 B1 作为全量无接触外测载体。现行冻结模型 232 图冻结推理、等量编辑和作者标注评分均已完成。等量独立选点 AP −0.005 点，未达到预锁门槛。原规则只允许 1/47 个未匹配船体在真值辅助下跨 IoU 0.50。[现象图与上界](research_round_20260925_global/SAR_SSP_COVERAGE_AND_EDIT_CEILING_ACTUAL_20261125.md) · [实测报告](research_round_20260925_global/SAR_SSP_FROZEN_TRANSFER_ACTUAL_20261125.md) · [验收](research_round_20260925_global/SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md) · [溯源](research_round_20260925_global/SAR_SSP_PROVENANCE_NOTE_20261125.md)
 - SAR-SSP 增加 D-FINE 同队列复验。等量独立选点相对距离配对为 +0.076 AP、+0.022 母景等权离散 IoU 点，区间跨零。[第二载体结果](research_round_20260925_global/SAR_SSP_DFINE_E24_SAME_COHORT_20261125_ACTUAL.md)
 - SPSD 与 PSeg-SSDD 作者影像完全一致，切换轮廓后，冻结自然量独立选点相对原生的 AP 从 +0.344 变为 −0.491 点。同量解除配对从 +0.081 变为 −0.007 点。[同图八臂对照及复现](research_round_20260925_global/SPSD_PSEG232_ANNOTATION_SENSITIVITY_20261125_ACTUAL.md)

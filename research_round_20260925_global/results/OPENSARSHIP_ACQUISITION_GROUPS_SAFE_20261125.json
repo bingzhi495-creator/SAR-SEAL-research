@@ -1,0 +1,59 @@
+{
+  "assessment_date": "2026-11-25",
+  "status": "UPSTREAM_ACQUISITION_METADATA_VERIFIED_DERIVATIVE_MASK_HOLDOUT_NOT_ADMITTED",
+  "scope": "Source metadata only. No image decoding, model execution or target scoring.",
+  "source": "https://opensar.sjtu.edu.cn/DataAndCodes.html",
+  "group_fields": [
+    "sentinel_platform",
+    "absolute_orbit",
+    "mission_data_take_id"
+  ],
+  "group_definition_source": "https://sentinels.copernicus.eu/web/sentinel/copernicus/sentinel-1/acquisition-plans",
+  "method": "Read upstream ZIP central directories using verified byte ranges, compare product identity sets with a separately packaged combined archive, recalculate group membership from the standard product identifiers.",
+  "part_1": {
+    "distinct_products": 41,
+    "distinct_acquisition_groups": 37
+  },
+  "part_2": {
+    "distinct_products": 46,
+    "distinct_acquisition_groups": 38
+  },
+  "intersection": {
+    "products": 0,
+    "acquisition_groups": 18
+  },
+  "union": {
+    "products": 87,
+    "acquisition_groups": 57
+  },
+  "combined_archive_product_set_matches_union": true,
+  "metadata_probe": {
+    "products_sampled": 2,
+    "sampling": "Smallest compressed ZIP member per part",
+    "fields_in_both_ship_tables": [
+      "center coordinates",
+      "head/tail coordinates",
+      "chip bounds"
+    ],
+    "hull_polygon_field_found_in_sampled_ship_tables": false
+  },
+  "derivative_labels": {
+    "SISS-YOLO": {
+      "reported_source_scenes": 24,
+      "reported_label": "manual Labelme polygons",
+      "source": "https://www.mdpi.com/2072-4292/17/17/3118",
+      "public_derivative_label_files_verified": false,
+      "independent_labeled_acquisition_groups": null
+    },
+    "S&R-Net": {
+      "reported_chips": 11340,
+      "reported_test_chips": 2318,
+      "reported_label": "ship instance masks on single-ship chips",
+      "source": "https://doi.org/10.1109/JSTARS.2025.3622241",
+      "manual_delineation_verified": false,
+      "public_derivative_label_files_verified": false,
+      "independent_labeled_acquisition_groups": null
+    }
+  },
+  "derivative_annotation_redistribution_permission_verified": false
+}
