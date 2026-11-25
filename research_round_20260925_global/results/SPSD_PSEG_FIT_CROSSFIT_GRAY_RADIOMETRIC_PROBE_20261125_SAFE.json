@@ -1,0 +1,189 @@
+{
+  "action_count": 5042,
+  "bootstrap": 4096,
+  "by_method": {
+    "native": {
+      "mae_budget_pct": {
+        "percentile95_points": [
+          5.684858601324317,
+          6.256792170578853
+        ],
+        "points": 5.97351925063463
+      },
+      "rmse_budget_pct": 9.78717561176214
+    },
+    "per_side": {
+      "mae_budget_pct": {
+        "percentile95_points": [
+          5.696490134648228,
+          6.238946906187045
+        ],
+        "points": 5.968698829967813
+      },
+      "rmse_budget_pct": 9.468670340038681
+    },
+    "pooled": {
+      "mae_budget_pct": {
+        "percentile95_points": [
+          5.691283175557446,
+          6.244069980565336
+        ],
+        "points": 5.969381149104744
+      },
+      "rmse_budget_pct": 9.485060570359142
+    },
+    "raw": {
+      "mae_budget_pct": {
+        "percentile95_points": [
+          5.662440110547058,
+          6.203357743785046
+        ],
+        "points": 5.932002847494874
+      },
+      "rmse_budget_pct": 9.441557367972788
+    }
+  },
+  "candidates": 848,
+  "contrasts": {
+    "per_side_minus_raw": {
+      "percentile95_points": [
+        -0.006314632157392409,
+        0.07968607785464972
+      ],
+      "points": 0.03669598247294009
+    },
+    "pooled_minus_per_side": {
+      "percentile95_points": [
+        -0.01290997661016945,
+        0.015004534205004139
+      ],
+      "points": 0.0006823191369301916
+    },
+    "pooled_minus_raw": {
+      "percentile95_points": [
+        -0.0035665701952710595,
+        0.08013527885442097
+      ],
+      "points": 0.03737830160987028
+    },
+    "raw_minus_native": {
+      "percentile95_points": [
+        -0.14477671223019023,
+        0.06260944666291124
+      ],
+      "points": -0.041516403139757116
+    }
+  },
+  "counts": {
+    "actions": 5042,
+    "disagreeing_points": 16050,
+    "eligible_candidate_packets": 848,
+    "fit_groups_with_supervision": 439,
+    "fit_images_with_supervision": 447,
+    "match_supported_hulls": 848,
+    "native_endpoint_pairs": 26983,
+    "original_image_records": 732,
+    "pseg_native_match": 1218,
+    "reference_pairs": 1575,
+    "reference_pairs_ge050": 1488,
+    "shared_native_match": 1100,
+    "spsd_native_match": 1213
+  },
+  "elapsed_seconds": 9.0758538999944,
+  "exact_packet_sha256": "de25b5d0c76eceb75d20bcedf4ec779b8cabc0eec31fee59d7305d4c4e51d785",
+  "extra_detector_forwards": 0,
+  "fold_coefficients": {
+    "native": [
+      [
+        0.04103909042667381
+      ],
+      [
+        0.10359621321072895
+      ],
+      [
+        0.03998349859916546
+      ],
+      [
+        0.0437707901298101
+      ],
+      [
+        -0.09065883206632615
+      ]
+    ],
+    "per_side": [
+      [
+        -0.23214496474393514,
+        0.3797984997142416
+      ],
+      [
+        -0.1646684309707044,
+        0.35127889355216974
+      ],
+      [
+        -0.2537946874293438,
+        0.36949666807659987
+      ],
+      [
+        -0.23945757818805627,
+        0.37236012065050056
+      ],
+      [
+        -0.37900033032169644,
+        0.39273205696098634
+      ]
+    ],
+    "pooled": [
+      [
+        -0.21326987140094028,
+        0.3841019593350666
+      ],
+      [
+        -0.14758182149661017,
+        0.35447696960680114
+      ],
+      [
+        -0.23097799389771556,
+        0.3729863236528751
+      ],
+      [
+        -0.2212811275806947,
+        0.3756301485139162
+      ],
+      [
+        -0.3677077689241002,
+        0.4035094319672924
+      ]
+    ],
+    "raw": [
+      [
+        -0.24695345745184924,
+        0.4735413679752476
+      ],
+      [
+        -0.19493399381609527,
+        0.45859895362854924
+      ],
+      [
+        -0.2778930371560495,
+        0.48130239944367365
+      ],
+      [
+        -0.2937064231344152,
+        0.4955803741683261
+      ],
+      [
+        -0.41220952494199253,
+        0.5181870044884603
+      ]
+    ]
+  },
+  "folds": 5,
+  "groups": 439,
+  "historical_test_opened": false,
+  "linear_solutions": 20,
+  "original_fit_result_sha256": "ae1b165a111a6b88939eb37b5741421259f0f39531c859a7c7663ad9116d1b05",
+  "protocol_sha256": "0e8c080a6c6cabfb7900c4cde4e876496fa58a8eca4e4285c878b6c28f9a9a38",
+  "source_gate_labels_opened": false,
+  "status": "SPSD_PSEG_FIT_GRAY_CROSSFIT_PROBE_COMPLETE",
+  "worker_sha256": "0f7ec4152cbebf9720372487de064c6be426ebba5875f1afe2e61d237983d47b"
+}

@@ -4,6 +4,9 @@
 
 ## 当前状态（2026-11-25）
 
+- 三组等容量灰度特征拟合完成。独立的 FIT 组外线性探针覆盖 5,042 个动作，共用灰度中秩较等容量原灰度的平均收益误差差 +0.0374 个编辑预算百分点，配对区间跨零。[组外检验](research_round_20260925_global/SPSD_PSEG_FIT_CROSSFIT_GRAY_RADIOMETRIC_PROBE_20261125_ACTUAL.md) · [非线性头拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_RADIOMETRIC_FEATURES_SEED5297_20261125/ACTUAL.md)
+
+
 - 三组同预算校准已完成固定写回评分。平均收益相对逐参考回归，PSeg／SPSD AP +0.065／−0.012，固定 IoU −0.0002／−0.031 点，主效用及分量特异性未通过。相对同量静态仍有 +0.233／+0.616 AP。[真实评分和分量归因](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
 
 
