@@ -10,6 +10,10 @@
 
 74 图三臂等预算补做了选点成本。在同一逻辑 CPU 上，从缓存端点、分数、原配对行和预算开始，六轮次序平衡回放的选择加 RLE 写回中位耗时为 26.1、138.6、27.4 毫秒/图，对应原配对、限距重配、独立选点。包含每轮排序、限距求解和共用写回，排除检测、点头计算和预处理。正文同时保留从驻留输入测起的 PointRend 整精修计时。[实际计时及边界](code/LEARNED_BOUNDED_PAIRING_20261126/rsdd_timing/ACTUAL.md)
 
+SRNet 的原作者权重目录也已核对，匿名网页可浏览，列有 RSDD.pth 和 SSDD.pth。尚未验证下载字节和对应训练名单。原文 Instance-RSDD 的 68.7 mask AP 使用 715 张评价图，当前作者发行核验为 740 张测试图，另有 74 张保留图来自发行版训练分配。直接比较需要核对版本、训练覆盖及统一评价；已有的 PointRend 证据仍是相同候选的精修对照。[SRNet 作者论文](https://www.mdpi.com/2072-4292/15/5/1324) · [权重发行入口](https://github.com/XIDIAN212Lab/SRNet/blob/2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6/readme.md#the-best-weights-files) · [当前数据版本](INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md)
+
+在本地已复核的 SSDD FIT741 E24 SRNet 上，按预设名单取 8 张历史 RSDD 图，含高分三号和 TerraSAR-X 各四张。保持原 608 像素输入和严格 0.50 掩膜阈值，独立原生回贴与作者未修改输出的 8 个 RLE、候选框、分数及顺序一致。此项只核验坐标接口和候选身份，未开启作者标注或计算 AP。[SRNet 原生回贴实测](code/SRNET_SSDD_E24_RSDD74_NATIVE_PARITY_20261126/ACTUAL.md)
+
 ## 投稿正文候选稿
 
 [10 页英文正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX 主文件](paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [方法、结果、分析与参考文献](paper_boundary_refinement_20261120/submission_sections) · [24 页完整证据稿](paper_boundary_refinement_20261120/boundary_refinement.pdf)

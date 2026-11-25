@@ -4,6 +4,10 @@
 
 ## 当前状态（2026-11-26）
 
+- 本地 SRNet SSDD FIT741 E24 在 8 张固定 RSDD 影像上完成无标注原生旋转回贴核验，8 个 RLE 与作者实现精确一致。[实测与复现](research_round_20260925_global/code/SRNET_SSDD_E24_RSDD74_NATIVE_PARITY_20261126/ACTUAL.md)
+
+- 固定预算选点新增独立 CPU 入口，支持读者自备的 COCO 候选与端点分数。原 74 图上两臂均逐项复现 7,346 个 RLE，FP32 并列顺序和零预算透传通过验证。[运行入口与验收](research_round_20260925_global/code/RFDETR_MATCHED_POINT_REFINEMENT_20261120/README_FIXED_COUNT.md)
+
 - 实测补查 Instance-RSDD 原产品身份。42 图的日期分离视图仍含 25 张来自三个共享舍入中心的 TerraSAR-X 父景。ESA 目录与高分三号公开入口的核查暂未给出原产品对应。保留集的地理证据边界已写入正文。[来源核验及目录实测](research_round_20260925_global/code/PUBLIC_HULL_REFERENCE_SCOPE_20261126/ACTUAL.md)
 
 - 74 图保留集的三种选点规则已完成同输入精修计时。一核六轮，端点、占据分数、原配对和预算预先缓存。原配对、限距重配、独立选点的选择加 RLE 写回中位耗时为 26.1、138.6、27.4 毫秒/图，原掩膜全部逐位复现。[分段耗时、次序和复现](research_round_20260925_global/code/LEARNED_BOUNDED_PAIRING_20261126/rsdd_timing/ACTUAL.md)
