@@ -1,0 +1,5 @@
+# Supplemental Umbra independent review admission
+
+This stage binds the separate A and B original review bytes to the 24-window prospectively locked supplemental Umbra cohort. Bind the published [cohort lock](../UMBRA_SUPPLEMENT_METADATA_20261126/LOCK.md), the successful packet-builder terminal and its result, and the anonymous packet roster. Supply the original export files and their observed receipt hashes. The same polygon and agreement validator used for the original study checks both roles, complete and searched-empty status, and native coordinates. Admission produces independent immutable input copies and agreement counts.
+
+A synthetic test with one missing cohort slot confirmed that both roles and exact bytes are preserved and that interchanged roles stop before publication. A separate operational check verified the actual packet lineage and opened no reviewer outputs. Actual annotation admission and scoring await original reviewer exports. The supplemental result must be interpreted separately from the original twelve-window study.
