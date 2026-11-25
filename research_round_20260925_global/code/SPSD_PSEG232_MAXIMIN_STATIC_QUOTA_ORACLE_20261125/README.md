@@ -1,0 +1,10 @@
+# Reproducing the static-budget dual-reference oracle
+
+The worker has two stages. The release contains the scientific source, protocol, test, and aggregate receipts. The prior PSeg annotation sensitivity and attribution jobs, the closed D-FINE native and attraction streams, both author archives, and admitted original FIT109 point head receipts remain external inputs.
+
+Use the published research code root containing PSEG_TEST232_CLASSICAL_ATTRACTION_20261122 and SPSD_PSEG232_ANNOTATION_SENSITIVITY_20261125. Use the original CPU runtime with Python 3.10.13, NumPy 1.26.4, SciPy 1.15.3, pycocotools 2.0.11, and CUDA disabled. Run the worker and tests with -I -B -X utf8. Run oracle.py --help to inspect the exact arguments. Use a fresh directory for observers and output files.
+
+1. Prepare. Run the original spatial-attraction observe.py with --phase prepare-edits, --worker pointing to oracle.py, --result set to PRELABEL_SAFE.json and --observer set to an observed_prepare child in your fresh output root. Its command executes oracle.py prepare with the existing --code, --owner, --capture, --classical-root, --old-readback, --original-replay, --prior-run, --protocol, --output, and --refit. The output path's parent will also contain the private endpoint ledger. Supply no annotation paths.
+2. Score. After actual exit zero and verified footer, use the same observer with --phase score and --result RESULT_SAFE.json. Its command executes oracle.py score. Pass the shared --code, --owner, --capture, --classical-root, --old-readback, --original-replay, --prior-run, --protocol, and --output. Instead of --refit, pass --prepare-root for the fully closed preparation, --official for Official-SSDD-OPEN.rar, --slgsea for SLGSea_Datasets.zip, and --mechanism-result for the accepted shared-hull decomposition RESULT_SAFE.json.
+
+The tests check the exact finite objective against brute force, zero-margin static preference, and complementary one-sided sites. Results are for the same historical cohort. Do not publish the private endpoint ledger, original captures, authors' masks or images, checkpoints, or individual ship or image records.
