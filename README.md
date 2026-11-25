@@ -11,6 +11,7 @@
 - 实做 RankIoU-RMA 比值与独立端点模型的精确期望对照。源域自由配额 136／8,785 个候选改变写回，两参考 Mask AP 与固定匹配 IoU 完全一致。精确期望下，自由配额相对等量仍为 +2.461／+1.782 AP 和 +0.993／+0.580 IoU 点。历史 SAR-SSP 的实际结果也逐值一致。[SAR-SSP 复算](research_round_20260925_global/code/SAR_SSP_EXPECTED_IOU_SIGNED_BUDGET_20261126/ACTUAL.md) · [直接先例对照](research_round_20260925_global/code/SPSD_PSEG_EXPECTED_IOU_SIGNED_BUDGET_20261126/ACTUAL.md)
 - 固定每种增删配额的端点动作后，仅用源训练组折外预测拟合四系数校准。相对原可变配额，两参考的 Mask AP −0.324／−0.071，固定 IoU −0.164／−0.032 点。相对等量仍正，同容量打乱对照的两个区间跨零。按预设未推进。[实测](research_round_20260925_global/code/SPSD_PSEG_FIXED_WINNER_QUOTA_CALIBRATION_20261126/ACTUAL.md)
 - 在 SAR-SSP 历史队列上复算原写回。保留每种配额的预测端点排序，真值辅助重选增删量可恢复 +0.958 个固定匹配 IoU 点。同配额内重选端点为 +0.180 点。共同替换真实面积和静态交集收益为 +0.005 点，区间跨零。[配额诊断](research_round_20260925_global/code/SAR_SSP_FROZEN_POLICY_REGRET_20261126/ACTUAL.md)
+- 补充 Umbra 队列以公开元数据锁定 24 个不同采集，两档标称目标 IPR 各 12。公布名单散列后进入原生窗口读取，独立于原 12 景队列。[补充队列预锁与元数据结果](research_round_20260925_global/code/UMBRA_SUPPLEMENT_METADATA_20261126/LOCK.md)
 - Umbra 盲态覆盖核验已实际完成。技术汇总按预锁保留在协调端，待封存两份原始判读后接续原评分。[核验程序](research_round_20260925_global/code/UMBRA12_COORDINATOR_EDIT_COVERAGE_20261126/README.md)
 - 更新 22 页 IEEE 双栏英文审阅稿，含 14 图和 13 表，添加总翻转量固定时的增删配额公式、效应分解图及三种子结果表。作者和投稿信息按约定留为占位。[PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.tex) · [读图与复现](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
