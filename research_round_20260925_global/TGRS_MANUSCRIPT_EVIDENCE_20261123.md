@@ -10,9 +10,12 @@
 
 [10 页英文正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX 主文件](paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [方法、结果、分析与参考文献](paper_boundary_refinement_20261120/submission_sections) · [24 页完整证据稿](paper_boundary_refinement_20261120/boundary_refinement.pdf)
 
-正文含 6 幅图、4 张表和 28 条参考文献。保留四张已有可编辑方法图、观测得失案例、双侧消融、同量强对照，以及一个原生像元下并不一致的冻结收益。正文写明两个 SSDD 参考共享相同开发影像，保留可变配额的 SAR-SSP 冻结迁移结果。跨库、已接触队列和 Umbra 前瞻队列的证据分别陈述。作者和通讯信息留有占位，Umbra 的独立评分待回件。
+正文含 6 幅图、4 张表和 29 条参考文献。保留四张已有可编辑方法图、观测得失案例、双侧消融、同量强对照，以及一个原生像元下并不一致的冻结收益。正文写明两个 SSDD 参考共享相同开发影像，保留可变配额的 SAR-SSP 冻结迁移结果。跨库、已接触队列和 Umbra 前瞻队列的证据分别陈述。作者和通讯信息留有占位，Umbra 的独立评分待回件。
 
 在论文目录内用 IEEEtran 和 `pdflatex` 编译 `boundary_refinement_main.tex`，重复编译直到交叉引用稳定。分节源文件位于 `submission_sections/`，矢量图和可编辑源复用 [已有图件目录](paper_boundary_refinement_20261120/figures/README.md)。详细诊断的原始协议、指标、安全聚合和复算入口仍从下表的证据链接查看。
+
+74 图父景保留集的协议、捕获、读回、编辑、评分时间线已复核。并用日期和近似中心筛查仅保留 17 图、5 父景，低于原覆盖门槛。第一个冻结评估及后续边界复评的适用范围已写入正文。[外部数据与原保留集复核](code/PUBLIC_HULL_REFERENCE_SCOPE_20261126/ACTUAL.md)
+
 ## 主张与核验记录
 
 | 论文问题 | 直接证据 | 适用范围 |
