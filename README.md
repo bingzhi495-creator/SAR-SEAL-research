@@ -6,6 +6,7 @@
 
 - SAR-SSP 作者压缩包已验收。232 张官方验证图的 139 个实例轮廓全部通过 PNG／JSON 核验，31 个母图均也出现在作者训练划分，坐标与船框确认来自 AIR-SARShip-1.0 的高分三号影像，已排除历史 B1 作为全量无接触外测载体。现行冻结模型 232 图冻结推理、等量编辑和作者标注评分均已完成。等量独立选点 AP −0.005 点，未达到预锁门槛。原规则只允许 1/47 个未匹配船体在真值辅助下跨 IoU 0.50。[现象图与上界](research_round_20260925_global/SAR_SSP_COVERAGE_AND_EDIT_CEILING_ACTUAL_20261125.md) · [实测报告](research_round_20260925_global/SAR_SSP_FROZEN_TRANSFER_ACTUAL_20261125.md) · [验收](research_round_20260925_global/SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md) · [溯源](research_round_20260925_global/SAR_SSP_PROVENANCE_NOTE_20261125.md)
 - HRSID FIT109 扩边上限实测完成。原候选和预算不变时，完整框内 1–4 层相对抽样端点仅增 0.098 离散 IoU 点，第 3–4 层无额外收益，未达到扩边训练门槛。[实测与源码](research_round_20260925_global/HRSID_FIT109_NESTED_SUPPORT_ORACLE_ACTUAL_20261125.md)
+- HRSID FIT109 第二查询端点排序已实测。逐候选增删量一致，拟合真实线索的 AP 与原独立排序相同，未达推进门槛。原独立选点相对距离配对仍高 1.204 AP 点。[实测与源码](research_round_20260925_global/HRSID_FIT109_SIBLING_ENDPOINT_RANK_ACTUAL_20261125.md)
 
 - 固定加点的删点限量恢复原版 +0.907／+0.878 AP（RSDD／PSeg），仍低于冻结独立选点。浅层同量的连续几何改善未转化为达到门槛的 AP 增益。[实测回执和复现](research_round_20260925_global/SEGREFINER_DELETION_CAP_ACTUAL_20261125.md)
 
