@@ -1,0 +1,604 @@
+{
+  "aggregation_worker_sha256": "f3e6d7a668e3ea54012f482851fdce982c475c84d72e165afe4132b32ac58a24",
+  "applied_author_masks": [
+    "pseg",
+    "spsd"
+  ],
+  "bootstrap_draws": 4096,
+  "common_native_exposure": {
+    "counts": {
+      "positive_common_quota": 206,
+      "reference_pairs": 410,
+      "reference_pairs_ge050": 370,
+      "shared_native_matches": 276
+    },
+    "exposure": {
+      "bce_cell_pessimistic": {
+        "groups": 107,
+        "hulls": 206
+      },
+      "bce_mean": {
+        "groups": 107,
+        "hulls": 204
+      },
+      "bce_robust": {
+        "groups": 106,
+        "hulls": 202
+      },
+      "fixed_iou": {
+        "groups": 106,
+        "hulls": 202
+      },
+      "near_iou": {
+        "groups": 103,
+        "hulls": 194
+      },
+      "static": {
+        "groups": 107,
+        "hulls": 206
+      },
+      "variable_mean_iou": {
+        "groups": 105,
+        "hulls": 195
+      },
+      "variable_raw_min": {
+        "groups": 97,
+        "hulls": 174
+      }
+    },
+    "paired_reference_signed_facts": {
+      "bce_robust": {
+        "area_delta_cells": 2150,
+        "grow": 199,
+        "minimum_intersection_gain_negative": 5,
+        "minimum_intersection_gain_positive": 182,
+        "minimum_intersection_gain_zero": 19,
+        "no_area": 4,
+        "pseg_intersection_delta_cells": 1662,
+        "shrink": 3,
+        "spsd_intersection_delta_cells": 1345
+      },
+      "fixed_iou": {
+        "area_delta_cells": 2150,
+        "grow": 199,
+        "minimum_intersection_gain_negative": 5,
+        "minimum_intersection_gain_positive": 182,
+        "minimum_intersection_gain_zero": 19,
+        "no_area": 4,
+        "pseg_intersection_delta_cells": 1664,
+        "shrink": 3,
+        "spsd_intersection_delta_cells": 1345
+      }
+    }
+  },
+  "decoded_groups": 180,
+  "detector_forwards": 0,
+  "elapsed_seconds": 29.365084299992304,
+  "exact_all_native_and_signed_action_parity": true,
+  "exact_arithmetic_posterior_gain_parity": true,
+  "external_acquisitions_opened": false,
+  "fit_labels_opened": false,
+  "historical_test_opened": false,
+  "images": 183,
+  "optimizer_updates": 0,
+  "original_counts": {
+    "candidates": 18300,
+    "differing": 8217,
+    "exchanges": 57692,
+    "images": 183,
+    "positive": 8785,
+    "supported": 8821
+  },
+  "prior_render_sha256": "d12a193bf80e6fb24b3c853c8da7d342f6408aa22e9f3920b873f2d5eb3de1e5",
+  "prior_render_terminal_sha256": "cb84320a93db76c5d11156c40aca0b2b1bd4d0fa2bd746a7d68c6c86ccaef9d2",
+  "prior_score_sha256": "f86390623ffd658e91c17e8a7b99e0859bcc3918b9fce0afda2ff332d72d023a",
+  "prior_score_terminal_sha256": "a3ad0ea5274ecfd7c11c7baf1d4ad2047b1926790871268922c5b90fc97edeb4",
+  "protocol_sha256": "c0c0379a939bb9fafc8249f928709a2299cab9c41f4d007ce7bf03ecd5fb86b5",
+  "references": {
+    "pseg": {
+      "estimates": {
+        "area_delta": {
+          "percentile95": [
+            1.457011945506234,
+            2.144241166443459
+          ],
+          "points": 1.7953667303227248
+        },
+        "inside_fp_delta": {
+          "percentile95": [
+            0.15213244094682785,
+            0.2971005950408521
+          ],
+          "points": 0.221153557249701
+        },
+        "inside_overlay": {
+          "percentile95": [
+            0.005139836349452442,
+            0.11156808578472006
+          ],
+          "points": 0.05640078225819547
+        },
+        "inside_true_gain": {
+          "percentile95": [
+            0.5378236536812906,
+            0.8215838301463562
+          ],
+          "points": 0.6765298079116611
+        },
+        "native_area": {
+          "percentile95": [
+            762.4350501543211,
+            1347.3475026244246
+          ],
+          "points": 1023.6678560509307
+        },
+        "outside_fp_delta": {
+          "percentile95": [
+            0.15835298648639454,
+            0.3359932333512368
+          ],
+          "points": 0.24141399744314848
+        },
+        "outside_minus_inside_overlay": {
+          "percentile95": [
+            -0.07485661227743035,
+            0.02933440550875984
+          ],
+          "points": -0.02391133670471746
+        },
+        "outside_overlay": {
+          "percentile95": [
+            -0.031622634637206506,
+            0.10830492454725406
+          ],
+          "points": 0.032489445553478
+        },
+        "outside_true_gain": {
+          "percentile95": [
+            0.5267572624543174,
+            0.785279748010081
+          ],
+          "points": 0.6562693677182136
+        },
+        "overlay_error": {
+          "percentile95": [
+            -0.017462318632917456,
+            0.21010414247079442
+          ],
+          "points": 0.08889022781167352
+        },
+        "pred_intersection_gain": {
+          "percentile95": [
+            1.148764322951487,
+            1.708421478694726
+          ],
+          "points": 1.4216894034415488
+        },
+        "pred_iou_delta": {
+          "percentile95": [
+            1.0208332956978197,
+            1.53822927553524
+          ],
+          "points": 1.2732772708264724
+        },
+        "pred_margin": {
+          "percentile95": [
+            0.4708780110736736,
+            0.723867729358814
+          ],
+          "points": 0.5939295547909283
+        },
+        "score_error": {
+          "percentile95": [
+            -0.10815247803176771,
+            0.1230485339006146
+          ],
+          "points": 0.0009473123677805547
+        },
+        "slope_error": {
+          "percentile95": [
+            -0.10471433739215166,
+            -0.07078949160540718
+          ],
+          "points": -0.08794291544389295
+        },
+        "true_intersection_gain": {
+          "percentile95": [
+            1.068142098170605,
+            1.5976607844168922
+          ],
+          "points": 1.3327991756298745
+        },
+        "true_iou_delta": {
+          "percentile95": [
+            0.7469893155525023,
+            1.2440261980344394
+          ],
+          "points": 0.9927570394569969
+        },
+        "true_margin": {
+          "percentile95": [
+            0.4419553809283911,
+            0.7458685611796025
+          ],
+          "points": 0.5929822424231477
+        }
+      },
+      "exposure": {
+        "author_hulls": 411,
+        "changed_groups": 109,
+        "changed_native_matches": 224,
+        "native_match": 311,
+        "native_miss": 100,
+        "positive_or_zero_signed_margin_overcredit": 90,
+        "positive_original_quota": 229
+      },
+      "metrics": {
+        "fixed_iou": {
+          "AP": 20.995841521115725,
+          "AP50": 49.63897174058973,
+          "AP75": 14.504740117938589,
+          "AP90": 0.07452358139039711,
+          "APs": 19.517910426790326,
+          "AR100": 38.27250608272506
+        },
+        "native": {
+          "AP": 20.700542871139362,
+          "AP50": 49.6471286034055,
+          "AP75": 13.254432262988205,
+          "AP90": 0.07452358139039711,
+          "APs": 19.101629258399917,
+          "AR100": 37.44525547445255
+        },
+        "variable_iou": {
+          "AP": 23.456685836807743,
+          "AP50": 50.0381255555801,
+          "AP75": 17.501311274157167,
+          "AP90": 0.04790801660811242,
+          "APs": 22.57835298446445,
+          "AR100": 40.68126520681267
+        }
+      },
+      "raw_pixel_sums": {
+        "area_delta": 2342,
+        "inside_fp_delta": 272,
+        "inside_overlay": 22.476897686719894,
+        "inside_true_gain": 899,
+        "outside_fp_delta": 268,
+        "outside_minus_inside_overlay": -11.756475448608398,
+        "outside_overlay": 10.720422238111496,
+        "outside_true_gain": 903,
+        "overlay_error": 33.19731992483139,
+        "pred_intersection_gain": 1835.1973199248314,
+        "pred_margin": 740.1949936909245,
+        "score_error": -101.10038152383926,
+        "slope_error": -134.29770144867052,
+        "true_intersection_gain": 1802,
+        "true_margin": 841.295375214763
+      },
+      "subgroups": {
+        "inside_minus": {
+          "group_equal_probability_minus_label_per_exposed_cell": 0.09043569399546163,
+          "percentile95": [
+            -0.025471402604451538,
+            0.1934637103707778
+          ],
+          "raw_author_occupancy_sum": 52,
+          "raw_count": 72,
+          "raw_probability_sum": 56.46763053536415
+        },
+        "inside_plus": {
+          "group_equal_probability_minus_label_per_exposed_cell": 0.01215611668980371,
+          "percentile95": [
+            -0.03728759012185442,
+            0.060669812872913786
+          ],
+          "raw_author_occupancy_sum": 951,
+          "raw_count": 1243,
+          "raw_probability_sum": 977.944528222084
+        },
+        "outside_minus": {
+          "group_equal_probability_minus_label_per_exposed_cell": -0.037005961557064836,
+          "percentile95": [
+            -0.07719043100938086,
+            0.012268550081484449
+          ],
+          "raw_author_occupancy_sum": 222,
+          "raw_count": 246,
+          "raw_probability_sum": 217.62676620483398
+        },
+        "outside_plus": {
+          "group_equal_probability_minus_label_per_exposed_cell": -0.015126644427171734,
+          "percentile95": [
+            -0.05584623604769952,
+            0.029041557230658765
+          ],
+          "raw_author_occupancy_sum": 1125,
+          "raw_count": 1417,
+          "raw_probability_sum": 1131.3471884429455
+        }
+      }
+    },
+    "spsd": {
+      "estimates": {
+        "area_delta": {
+          "percentile95": [
+            1.820450518376291,
+            2.790737202722624
+          ],
+          "points": 2.2997346365330356
+        },
+        "inside_fp_delta": {
+          "percentile95": [
+            0.4341001401022713,
+            0.7748943884259628
+          ],
+          "points": 0.597396279005793
+        },
+        "inside_overlay": {
+          "percentile95": [
+            0.03929847385816717,
+            0.22392594122839715
+          ],
+          "points": 0.12633943015897806
+        },
+        "inside_true_gain": {
+          "percentile95": [
+            0.4214979601987458,
+            0.6892912006866465
+          ],
+          "points": 0.5524710392607248
+        },
+        "native_area": {
+          "percentile95": [
+            744.4505429793973,
+            1333.950132425445
+          ],
+          "points": 1000.9181112714448
+        },
+        "outside_fp_delta": {
+          "percentile95": [
+            0.2636062290630041,
+            0.5676133951362985
+          ],
+          "points": 0.4098596295526678
+        },
+        "outside_minus_inside_overlay": {
+          "percentile95": [
+            -0.10516822249087449,
+            0.060116597893673365
+          ],
+          "points": -0.021216498379347956
+        },
+        "outside_overlay": {
+          "percentile95": [
+            -0.004600838689925455,
+            0.21968607282896635
+          ],
+          "points": 0.10512293177963007
+        },
+        "outside_true_gain": {
+          "percentile95": [
+            0.5701407243729744,
+            0.9283120766436226
+          ],
+          "points": 0.7400076887138495
+        },
+        "overlay_error": {
+          "percentile95": [
+            0.0485545624973298,
+            0.42570475052315276
+          ],
+          "points": 0.23146236193860822
+        },
+        "pred_intersection_gain": {
+          "percentile95": [
+            1.1936992622732776,
+            1.861204232124677
+          ],
+          "points": 1.523941089913183
+        },
+        "pred_iou_delta": {
+          "percentile95": [
+            0.6551536070409986,
+            1.0555007317542566
+          ],
+          "points": 0.8534714551184593
+        },
+        "pred_margin": {
+          "percentile95": [
+            0.34426470998002656,
+            0.5867890244281042
+          ],
+          "points": 0.46146066183718093
+        },
+        "score_error": {
+          "percentile95": [
+            -0.05971930000463533,
+            0.3199486665702071
+          ],
+          "points": 0.12650609066125035
+        },
+        "slope_error": {
+          "percentile95": [
+            -0.12783853900948092,
+            -0.0827129404846658
+          ],
+          "points": -0.10495627127735775
+        },
+        "true_intersection_gain": {
+          "percentile95": [
+            1.002836084572881,
+            1.6000403351162071
+          ],
+          "points": 1.2924787279745744
+        },
+        "true_iou_delta": {
+          "percentile95": [
+            0.2979039470825068,
+            0.8765977491291899
+          ],
+          "points": 0.5803741310489553
+        },
+        "true_margin": {
+          "percentile95": [
+            0.13960185147664567,
+            0.5384627413429273
+          ],
+          "points": 0.33495457117593086
+        }
+      },
+      "exposure": {
+        "author_hulls": 410,
+        "changed_groups": 113,
+        "changed_native_matches": 227,
+        "native_match": 308,
+        "native_miss": 102,
+        "positive_or_zero_signed_margin_overcredit": 106,
+        "positive_original_quota": 231
+      },
+      "metrics": {
+        "fixed_iou": {
+          "AP": 21.797032463979626,
+          "AP50": 50.61596928923373,
+          "AP75": 13.69470696453536,
+          "AP90": 0.36564807559892676,
+          "APs": 21.06671164608038,
+          "AR100": 39.21951219512195
+        },
+        "native": {
+          "AP": 20.789324763197367,
+          "AP50": 50.377520719679104,
+          "AP75": 11.585977200623129,
+          "AP90": 0.3727710900586461,
+          "APs": 19.82202837283075,
+          "AR100": 37.707317073170735
+        },
+        "variable_iou": {
+          "AP": 23.579389762643622,
+          "AP50": 51.34271800912617,
+          "AP75": 15.795122673041092,
+          "AP90": 0.3686082894003686,
+          "APs": 23.218233082201856,
+          "AR100": 40.634146341463406
+        }
+      },
+      "raw_pixel_sums": {
+        "area_delta": 2340,
+        "inside_fp_delta": 529,
+        "inside_overlay": 34.51579845696688,
+        "inside_true_gain": 641,
+        "outside_fp_delta": 341,
+        "outside_minus_inside_overlay": 6.25912456959486,
+        "outside_overlay": 40.77492302656174,
+        "outside_true_gain": 829,
+        "overlay_error": 75.29072148352861,
+        "pred_intersection_gain": 1545.2907214835286,
+        "pred_margin": 446.58543764565076,
+        "score_error": -50.07738525541829,
+        "slope_error": -125.36810673894682,
+        "true_intersection_gain": 1470,
+        "true_margin": 496.66282290106955
+      },
+      "subgroups": {
+        "inside_minus": {
+          "group_equal_probability_minus_label_per_exposed_cell": -0.012594566570376723,
+          "percentile95": [
+            -0.13647476568845823,
+            0.11716138038327753
+          ],
+          "raw_author_occupancy_sum": 25,
+          "raw_count": 81,
+          "raw_probability_sum": 19.9119682200253
+        },
+        "inside_plus": {
+          "group_equal_probability_minus_label_per_exposed_cell": 0.024154490501375185,
+          "percentile95": [
+            -0.034306585052098874,
+            0.08388141719982925
+          ],
+          "raw_author_occupancy_sum": 666,
+          "raw_count": 1251,
+          "raw_probability_sum": 695.4277666769922
+        },
+        "outside_minus": {
+          "group_equal_probability_minus_label_per_exposed_cell": -0.10226267605240161,
+          "percentile95": [
+            -0.2164891266563381,
+            0.005861322393842986
+          ],
+          "raw_author_occupancy_sum": 147,
+          "raw_count": 264,
+          "raw_probability_sum": 120.99634721130133
+        },
+        "outside_plus": {
+          "group_equal_probability_minus_label_per_exposed_cell": 0.006163711167854389,
+          "percentile95": [
+            -0.05196575223399735,
+            0.06612332205514487
+          ],
+          "raw_author_occupancy_sum": 976,
+          "raw_count": 1434,
+          "raw_probability_sum": 990.7712702378631
+        }
+      }
+    }
+  },
+  "repeated_source_development": true,
+  "seed": 5297,
+  "shared_ledger_sha256": "9bbf19f7dc3cc42a8dcc05c51f8f04a4c95c7b9ba4b861ee0a532866803a5772",
+  "signed_usage": {
+    "fixed_iou": {
+      "absolute_area_change": 0,
+      "adds": 57692,
+      "drops": 57692,
+      "grew": 0,
+      "same_as_fixed": 8785,
+      "shrank": 0,
+      "total": 115384,
+      "unchanged_area": 8785
+    },
+    "near_iou": {
+      "absolute_area_change": 16434,
+      "adds": 61533,
+      "drops": 53851,
+      "grew": 6029,
+      "same_as_fixed": 568,
+      "shrank": 2188,
+      "total": 115384,
+      "unchanged_area": 568
+    },
+    "variable_iou": {
+      "absolute_area_change": 68962,
+      "adds": 67777,
+      "drops": 47607,
+      "grew": 6029,
+      "same_as_fixed": 568,
+      "shrank": 2188,
+      "total": 115384,
+      "unchanged_area": 568
+    },
+    "variable_mean_iou": {
+      "absolute_area_change": 93692,
+      "adds": 70116,
+      "drops": 45268,
+      "grew": 5726,
+      "same_as_fixed": 56,
+      "shrank": 2864,
+      "total": 115384,
+      "unchanged_area": 195
+    },
+    "variable_raw_min": {
+      "absolute_area_change": 115316,
+      "adds": 115350,
+      "drops": 34,
+      "grew": 8782,
+      "same_as_fixed": 3,
+      "shrank": 0,
+      "total": 115384,
+      "unchanged_area": 3
+    }
+  },
+  "status": "SPSD_PSEG_SIGNED_POSTERIOR_ATTRIBUTION_COMPLETE",
+  "worker_sha256": "ddda0ce07b4f80eb131a2ea1f69fedde0ab94d199cbfc93e74aa4ace32a1867a"
+}

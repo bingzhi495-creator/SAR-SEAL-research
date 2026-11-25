@@ -504,6 +504,8 @@ To locate the loss, we replayed the original candidate menu for the 50 native ma
 
 Of the 393 false foreground cells present only under variable allocation, 392 belong to the largest component containing a retained fixed-mask cell. This count agrees under four- and eight-neighbor connectivity. Net excess foreground consists of 162 cells outside the native mask and 175 native cells retained by the variable writer. The corresponding scene-weighted, reference-normalized changes are 0.667 and 0.711 points. Isolated added components account for one gained false foreground cell on the original matches.
 
+We also replay the occupancy predictions at the exact sites where the two writes differ. On SAR-SSP, the two source-fitted outputs overestimate the intersection gain by 0.896 and 0.628 points of author reference area. The same computation against their corresponding SSDD references gives 0.089 and 0.231 points. The target area-coefficient terms are negative for both outputs and offset part of the error. This comparison is conditional on the selected edits. The two predictions share one target author mask, and the source and target estimates use their own group definitions.
+
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/dual_reference_budget_effect.pdf}
