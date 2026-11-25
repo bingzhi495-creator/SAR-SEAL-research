@@ -1,0 +1,3 @@
+# Image-group denominator clarification
+
+The first label-free attempt checked every original RLE and stopped at the final assertion that positive-quota candidates span all 180 groups. A separate count of the closed render confirmed 8,785 positive candidates in 177 of 180 groups, with all other render counts exact. Keep all 183 images and 180 groups. Images with no eligible actions have zero attainable margin and zero search gap when averaging within groups, and only positive-quota candidates enter the candidate-weighted statistic. Preserve the prior failure. Solver and fitting parameters, scores, quota, supports and author-label nonaccess remain fixed.
