@@ -1,0 +1,9 @@
+# Exact expected IoU on the signed boundary menu
+
+[Actual comparison](ACTUAL.md) · [Prelocked protocol](PRELOCK.md) · [Render summary](render/RESULT_SAFE.json) · [Score summary](score/RESULT_SAFE.json)
+
+The same fixed-total menu is scored with the existing RankIoU-RMA ratio and with the exact expected IoU under an independent Bernoulli model. The mathematical implementation and oracle-size synthetic comparisons are in [expected_iou.py](expected_iou.py) and [test_expected_iou.py](test_expected_iou.py). Set `SAR_SEAL_VARIABLE_WRITER` to the [historical writer](../SPSD_PSEG_GATE_VARIABLE_SIGNED_BUDGET_SEED5297_20261125/variable_writer.py) and run `python test_expected_iou.py`.
+
+The CPU replay uses the same Python 3.10.13, NumPy 1.26.4 and PyTorch 2.10.0+cu130 environment as the [previous source replay](../SPSD_PSEG_FIXED_WINNER_QUOTA_CALIBRATION_20261126/README.md). Set `CUDA_VISIBLE_DEVICES=-1` and OMP, MKL and OpenBLAS numerical threads to one. Store private input maps using the fields listed in `RENDER_KEYS` and `SCORE_KEYS`. Use the [released receipt helper](../SPSD_PSEG_FIXED_WINNER_QUOTA_CALIBRATION_20261126/common.py) as `--helpers`.
+
+Run `python -I -B -X utf8 run_expected.py render --inputs <renderer-paths.json> --helpers <common.py> --root <work-root> --output <work-root>/render` under the [exit observer](../PSEG_RFDETR_FROZEN_SOURCE_HEAD_20261122/observe_capture.py) in capture mode. Use `<work-root>/observed_render` as the observer directory. After the observer confirms a natural, verified exit, run the same entry with `score`, the scoring-path map, and output `<work-root>/score` under verify mode. The score independently verifies the old masks, exact candidate roster and same signed budget before it opens either author reference. The maps bind earlier privately held detector, FIT and candidate artifacts.
