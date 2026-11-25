@@ -1,0 +1,1279 @@
+{
+  "ap_inference": "pooled_point_only",
+  "author_reference_sha256": "54c92363aafe07dca084382a258190d436005d8df839f5de13995c89bd662b92",
+  "counts": {
+    "images": 74,
+    "mapped_candidates": 7346,
+    "positive_candidates": 4092,
+    "swaps": 30841
+  },
+  "detector_forwards": 0,
+  "elapsed_seconds": 11.29288959997939,
+  "exact_signed_and_cap_readback": true,
+  "exposed_historical_reserve_only": true,
+  "interaction_formula": "(I-L)-(PR_I-PR_L)",
+  "optimizer_updates": 0,
+  "paired_resamples": 4096,
+  "phase": "score",
+  "prelock_commit": "d38d3a073f61471a184754f393555aa5644434e4",
+  "prior_bounded_score_sha256": "648f9509bf889d11da57a5680e14dee95438f0318a32a93eae0085cab6a1c97c",
+  "protocol_sha256": "a456ecbad66c6fbf9a37abf8e577ee049668d5fab861034feabbc8ca09bb9544",
+  "render_result_sha256": "53c427d75a9c9b4a0e4a9af199c81b66d6a4bbb94d305c3fa80efd2e13bdfae1",
+  "render_terminal_sha256": "1746b5443ac65f7dcb57737b98d99d6baa8b045fb2eda7eb43c0b20dac6cb186",
+  "render_worker_sha256": "3bd0b930b1f3e9b3d79db1facbafdbae1e51f9bd16a77398cce54890a9d8c464",
+  "status": "RSDD74_POINTREND_COMMON_CAP_SCORE_COMPLETE",
+  "target_label_files_opened": 1,
+  "verify_result_sha256": "009a4320cbc5428402abefa65856375cb0158d8b98dc61f533a20678b7f8ae82",
+  "verify_terminal_sha256": "cd41eaf1ec3ef7fd3a05e32d5d9c6d3084b837f8d17de618b39716a428c55b1d",
+  "views": {
+    "date_separated": {
+      "author_hulls": 47,
+      "contrasts": {
+        "I_minus_F": {
+          "ap_points": 0.8401375344233912,
+          "change_coverage": true,
+          "changed_analysis_blocks": 8,
+          "changed_hulls": 32,
+          "changed_parent_groups": 8,
+          "decision": "positive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": 0.7357029149561365,
+              "interval_95": [
+                0.059396977707395715,
+                1.4268001994377717
+              ],
+              "parent_interval_95": [
+                0.06417235165442775,
+                1.398891390363665
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.7957276518401848,
+              "interval_95": [
+                0.3633633227797528,
+                1.2301245483163736
+              ],
+              "parent_interval_95": [
+                0.37000218719606137,
+                1.2141815411528407
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": 0.36414473040238704,
+              "interval_95": [
+                0.24950407367889227,
+                0.4775543674130138
+              ],
+              "parent_interval_95": [
+                0.24901009235079918,
+                0.47291875984073295
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.2299128582581333,
+              "interval_95": [
+                -0.3024978849883914,
+                -0.1584608124645952
+              ],
+              "parent_interval_95": [
+                -0.29940983004244726,
+                -0.15590147999811926
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.22991285825813268,
+              "interval_95": [
+                -0.3024978849883909,
+                -0.15846081246459476
+              ],
+              "parent_interval_95": [
+                -0.2994098300424466,
+                -0.15590147999811801
+              ]
+            }
+          }
+        },
+        "I_minus_L": {
+          "ap_points": 0.889560585008951,
+          "change_coverage": true,
+          "changed_analysis_blocks": 8,
+          "changed_hulls": 32,
+          "changed_parent_groups": 8,
+          "decision": "inconclusive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": -0.0896454158697968,
+              "interval_95": [
+                -0.570225613871044,
+                0.3534807365901164
+              ],
+              "parent_interval_95": [
+                -0.5599891886201871,
+                0.3405971645711423
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.08867970051370211,
+              "interval_95": [
+                -0.31575178511308355,
+                0.4748337877887724
+              ],
+              "parent_interval_95": [
+                -0.3199720145830627,
+                0.4676470482790638
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": 0.13209665754053823,
+              "interval_95": [
+                -0.019519333344035772,
+                0.2992064738712674
+              ],
+              "parent_interval_95": [
+                -0.022232077396903804,
+                0.2961406022444215
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.09184649393603911,
+              "interval_95": [
+                -0.19388839367962962,
+                0.0027371524048330764
+              ],
+              "parent_interval_95": [
+                -0.19066248684859582,
+                0.0030668309291109683
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.09184649393603814,
+              "interval_95": [
+                -0.1938883936796273,
+                0.0027371524048344364
+              ],
+              "parent_interval_95": [
+                -0.19066248684859427,
+                0.0030668309291112805
+              ]
+            }
+          }
+        },
+        "L_minus_F": {
+          "ap_points": -0.049423050585559736,
+          "change_coverage": true,
+          "changed_analysis_blocks": 8,
+          "changed_hulls": 32,
+          "changed_parent_groups": 8,
+          "decision": "inconclusive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": 0.8253483308259333,
+              "interval_95": [
+                0.16647407652783874,
+                1.4527511997316336
+              ],
+              "parent_interval_95": [
+                0.1681107089574908,
+                1.4264541729014093
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.7070479513264827,
+              "interval_95": [
+                0.18256216535515613,
+                1.2475447126372876
+              ],
+              "parent_interval_95": [
+                0.18379886255800426,
+                1.223885097069259
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": 0.2320480728618488,
+              "interval_95": [
+                0.08909992000448752,
+                0.35925184138851485
+              ],
+              "parent_interval_95": [
+                0.09016425875451328,
+                0.3554988978498681
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.13806636432209418,
+              "interval_95": [
+                -0.21577570553905234,
+                -0.05302972411081466
+              ],
+              "parent_interval_95": [
+                -0.21301190464290942,
+                -0.052699713612255006
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.13806636432209454,
+              "interval_95": [
+                -0.21577570553905412,
+                -0.053029724110816356
+              ],
+              "parent_interval_95": [
+                -0.21301190464291042,
+                -0.05269971361225581
+              ]
+            }
+          }
+        },
+        "pr_I_minus_F": {
+          "ap_points": 0.5316660263206572,
+          "change_coverage": true,
+          "changed_analysis_blocks": 8,
+          "changed_hulls": 32,
+          "changed_parent_groups": 8,
+          "decision": "inconclusive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": -0.3280057944435102,
+              "interval_95": [
+                -1.0763211206990406,
+                0.5105281222978841
+              ],
+              "parent_interval_95": [
+                -1.0775192945235297,
+                0.485275720600038
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.02099237058636838,
+              "interval_95": [
+                -0.5775197470236016,
+                0.7193794045609468
+              ],
+              "parent_interval_95": [
+                -0.5962367366706496,
+                0.6890356755960748
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": -0.07705988382302031,
+              "interval_95": [
+                -0.2643516651337219,
+                0.14978154323113557
+              ],
+              "parent_interval_95": [
+                -0.26780738905818247,
+                0.1450146783834576
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": 0.06587413559284166,
+              "interval_95": [
+                -0.07393418229365939,
+                0.18814103147239286
+              ],
+              "parent_interval_95": [
+                -0.07152498807934704,
+                0.19080299685356095
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": 0.065874135592842,
+              "interval_95": [
+                -0.07393418229366061,
+                0.18814103147239403
+              ],
+              "parent_interval_95": [
+                -0.07152498807934685,
+                0.1908029968535617
+              ]
+            }
+          }
+        },
+        "pr_I_minus_L": {
+          "ap_points": 0.27086682721687794,
+          "change_coverage": true,
+          "changed_analysis_blocks": 8,
+          "changed_hulls": 32,
+          "changed_parent_groups": 8,
+          "decision": "inconclusive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": -0.34744014811291724,
+              "interval_95": [
+                -0.9406680524985296,
+                0.3604178674328243
+              ],
+              "parent_interval_95": [
+                -0.9471538156105436,
+                0.33324905866113874
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": -0.23954286377068446,
+              "interval_95": [
+                -0.6861506975012945,
+                0.35549656152843223
+              ],
+              "parent_interval_95": [
+                -0.7020894757394677,
+                0.3415441085563772
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": -0.1042117090473571,
+              "interval_95": [
+                -0.23502044897606655,
+                0.05000515380714465
+              ],
+              "parent_interval_95": [
+                -0.23815795822083952,
+                0.04502495622998204
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": 0.07764538511148428,
+              "interval_95": [
+                -0.020225036945388963,
+                0.16998465578802402
+              ],
+              "parent_interval_95": [
+                -0.01914376686348699,
+                0.17419081794056798
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": 0.07764538511148439,
+              "interval_95": [
+                -0.020225036945388908,
+                0.1699846557880253
+              ],
+              "parent_interval_95": [
+                -0.019143766863487476,
+                0.17419081794057012
+              ]
+            }
+          }
+        },
+        "pr_L_minus_F": {
+          "ap_points": 0.26079919910377924,
+          "change_coverage": true,
+          "changed_analysis_blocks": 8,
+          "changed_hulls": 32,
+          "changed_parent_groups": 8,
+          "decision": "inconclusive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": 0.019434353669407045,
+              "interval_95": [
+                -0.29493007391327364,
+                0.33790047682284763
+              ],
+              "parent_interval_95": [
+                -0.29350148015730715,
+                0.3477195346360351
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.26053523435705284,
+              "interval_95": [
+                -0.05065151217184294,
+                0.5936178258613258
+              ],
+              "parent_interval_95": [
+                -0.03804864868657287,
+                0.6008453693738688
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": 0.02715182522433679,
+              "interval_95": [
+                -0.07565518718578623,
+                0.14348623041357023
+              ],
+              "parent_interval_95": [
+                -0.07565518718578623,
+                0.14613294841484148
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.011771249518642612,
+              "interval_95": [
+                -0.07854831789685703,
+                0.04837763415662369
+              ],
+              "parent_interval_95": [
+                -0.08012978884474235,
+                0.04805402933236623
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.01177124951864239,
+              "interval_95": [
+                -0.07854831789685657,
+                0.048377634156622745
+              ],
+              "parent_interval_95": [
+                -0.08012978884474192,
+                0.04805402933236677
+              ]
+            }
+          }
+        },
+        "writer_head_interaction": {
+          "ap_points": 0.618693757792073,
+          "changed_analysis_blocks": 8,
+          "changed_hulls": 32,
+          "changed_parent_groups": 8,
+          "continuous_interaction_direction": "positive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": 0.25779473224312044,
+              "interval_95": [
+                -0.4498880709996457,
+                0.9051473159962402
+              ],
+              "parent_interval_95": [
+                -0.4402821548136047,
+                0.8957782348957948
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.32822256428438656,
+              "interval_95": [
+                -0.33781299574760215,
+                0.9534875201412847
+              ],
+              "parent_interval_95": [
+                -0.33292855234716157,
+                0.9569174310381559
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": 0.23630836658789534,
+              "interval_95": [
+                0.055898719882822245,
+                0.4341626865749646
+              ],
+              "parent_interval_95": [
+                0.053131857223586376,
+                0.4354913556852793
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.16949187904752339,
+              "interval_95": [
+                -0.2827865967502698,
+                -0.05499724155520286
+              ],
+              "parent_interval_95": [
+                -0.2835001851948009,
+                -0.05208837456748655
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.16949187904752253,
+              "interval_95": [
+                -0.28278659675026946,
+                -0.05499724155520064
+              ],
+              "parent_interval_95": [
+                -0.28350018519479986,
+                -0.05208837456748566
+              ]
+            }
+          }
+        }
+      },
+      "eligible_original_matches": 32,
+      "historical_learned_metrics_reproduced": true,
+      "images": 42,
+      "mask_metrics_fraction": {
+        "bounded": {
+          "AP": 0.6123346376405229,
+          "AP50": 0.9711255622381619,
+          "AP75": 0.6714000427404697,
+          "AP90": 0.09624077827047967,
+          "APl": -1.0,
+          "APm": 0.6782161485662745,
+          "APs": 0.582269910698925,
+          "AR1": 0.5851063829787234,
+          "AR10": 0.6872340425531914,
+          "AR100": 0.7425531914893616,
+          "ARl": -1.0,
+          "ARm": 0.7642857142857142,
+          "ARs": 0.7333333333333333
+        },
+        "fixed": {
+          "AP": 0.6128288681463785,
+          "AP50": 0.9711255622381619,
+          "AP75": 0.6714000427404697,
+          "AP90": 0.08331108054058861,
+          "APl": -1.0,
+          "APm": 0.6782161485662745,
+          "APs": 0.5843272096801067,
+          "AR1": 0.5851063829787233,
+          "AR10": 0.6787234042553191,
+          "AR100": 0.7382978723404255,
+          "ARl": -1.0,
+          "ARm": 0.7642857142857142,
+          "ARs": 0.7272727272727273
+        },
+        "free_matched_count": {
+          "AP": 0.6212302434906124,
+          "AP50": 0.9711255622381619,
+          "AP75": 0.6756532071794848,
+          "AP90": 0.12469820989308708,
+          "APl": -1.0,
+          "APm": 0.6782161485662745,
+          "APs": 0.5978611541247099,
+          "AR1": 0.5936170212765958,
+          "AR10": 0.6978723404255319,
+          "AR100": 0.7510638297872341,
+          "ARl": -1.0,
+          "ARm": 0.7642857142857142,
+          "ARs": 0.7454545454545454
+        },
+        "pr_bounded": {
+          "AP": 0.610566172612371,
+          "AP50": 0.9711255622381619,
+          "AP75": 0.6722051648906435,
+          "AP90": 0.0835304214615291,
+          "APl": -1.0,
+          "APm": 0.6782161485662745,
+          "APs": 0.580481801649221,
+          "AR1": 0.5829787234042553,
+          "AR10": 0.6829787234042553,
+          "AR100": 0.7404255319148936,
+          "ARl": -1.0,
+          "ARm": 0.7642857142857142,
+          "ARs": 0.7303030303030302
+        },
+        "pr_fixed": {
+          "AP": 0.6079581806213332,
+          "AP50": 0.9711255622381619,
+          "AP75": 0.6508896233365564,
+          "AP90": 0.08318155842231309,
+          "APl": -1.0,
+          "APm": 0.6782161485662745,
+          "APs": 0.5762752134683807,
+          "AR1": 0.5808510638297871,
+          "AR10": 0.674468085106383,
+          "AR100": 0.7382978723404255,
+          "ARl": -1.0,
+          "ARm": 0.7642857142857142,
+          "ARs": 0.7272727272727273
+        },
+        "pr_independent": {
+          "AP": 0.6132748408845398,
+          "AP50": 0.9711255622381619,
+          "AP75": 0.6719416312729327,
+          "AP90": 0.10682417942418672,
+          "APl": -1.0,
+          "APm": 0.6782161485662745,
+          "APs": 0.5859732285701273,
+          "AR1": 0.5851063829787234,
+          "AR10": 0.6851063829787234,
+          "AR100": 0.7404255319148936,
+          "ARl": -1.0,
+          "ARm": 0.7642857142857142,
+          "ARs": 0.7303030303030302
+        },
+        "raw": {
+          "AP": 0.6129268595446451,
+          "AP50": 0.9711255622381619,
+          "AP75": 0.6722051648906435,
+          "AP90": 0.08348966703422625,
+          "APl": -1.0,
+          "APm": 0.6782161485662745,
+          "APs": 0.5844199168444044,
+          "AR1": 0.5851063829787233,
+          "AR10": 0.6787234042553191,
+          "AR100": 0.7446808510638298,
+          "ARl": -1.0,
+          "ARm": 0.7642857142857142,
+          "ARs": 0.7363636363636363
+        }
+      },
+      "original_native_matches": 47,
+      "parent_equal_arm_points": {
+        "bounded": {
+          "boundary_iou1_points": 31.411344196976355,
+          "boundary_iou2_points": 50.52000448388045,
+          "continuous_iou_points": 79.1510194054401,
+          "fn_per_truth_area_points": 8.880991352621827,
+          "fp_per_truth_area_points": 17.345879512594824
+        },
+        "fixed": {
+          "boundary_iou1_points": 30.58599586615042,
+          "boundary_iou2_points": 49.81295653255396,
+          "continuous_iou_points": 78.91897133257824,
+          "fn_per_truth_area_points": 9.01905771694392,
+          "fp_per_truth_area_points": 17.483945876916916
+        },
+        "free_matched_count": {
+          "boundary_iou1_points": 31.32169878110656,
+          "boundary_iou2_points": 50.60868418439415,
+          "continuous_iou_points": 79.28311606298064,
+          "fn_per_truth_area_points": 8.789144858685788,
+          "fp_per_truth_area_points": 17.254033018658784
+        },
+        "pr_bounded": {
+          "boundary_iou1_points": 30.38882127893707,
+          "boundary_iou2_points": 50.03328606669716,
+          "continuous_iou_points": 78.93222679390135,
+          "fn_per_truth_area_points": 9.025551486371116,
+          "fp_per_truth_area_points": 17.49043964634411
+        },
+        "pr_fixed": {
+          "boundary_iou1_points": 30.36938692526767,
+          "boundary_iou2_points": 49.7727508323401,
+          "continuous_iou_points": 78.90507496867701,
+          "fn_per_truth_area_points": 9.037322735889758,
+          "fp_per_truth_area_points": 17.502210895862753
+        },
+        "pr_independent": {
+          "boundary_iou1_points": 30.041381130824156,
+          "boundary_iou2_points": 49.793743202926464,
+          "continuous_iou_points": 78.82801508485399,
+          "fn_per_truth_area_points": 9.103196871482599,
+          "fp_per_truth_area_points": 17.568085031455595
+        },
+        "raw": {
+          "boundary_iou1_points": 30.230954216273854,
+          "boundary_iou2_points": 49.691703722753374,
+          "continuous_iou_points": 78.89618105570926,
+          "fn_per_truth_area_points": 9.031573154930134,
+          "fp_per_truth_area_points": 17.49646131490313
+        }
+      },
+      "represented_analysis_blocks": 8,
+      "represented_parent_groups": 8,
+      "writer_supported_for_both_heads": false
+    },
+    "full": {
+      "author_hulls": 81,
+      "contrasts": {
+        "I_minus_F": {
+          "ap_points": 0.4358371965415486,
+          "change_coverage": true,
+          "changed_analysis_blocks": 11,
+          "changed_hulls": 47,
+          "changed_parent_groups": 12,
+          "decision": "positive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": 0.7007956486821333,
+              "interval_95": [
+                0.23094251112128136,
+                1.2425988409174369
+              ],
+              "parent_interval_95": [
+                0.1677896444512587,
+                1.2370940397803991
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.6174947533388213,
+              "interval_95": [
+                0.2845426686535183,
+                1.0131459795850224
+              ],
+              "parent_interval_95": [
+                0.22039060576709088,
+                0.9929129493401635
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": 0.3184588840549682,
+              "interval_95": [
+                0.21662888510860917,
+                0.4358160494079336
+              ],
+              "parent_interval_95": [
+                0.19639097488755253,
+                0.4359847148777609
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.1985616283701673,
+              "interval_95": [
+                -0.2775336617200689,
+                -0.13173291962471054
+              ],
+              "parent_interval_95": [
+                -0.2751377136445141,
+                -0.11921551960613132
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.19856162837016664,
+              "interval_95": [
+                -0.277533661720069,
+                -0.13173291962471018
+              ],
+              "parent_interval_95": [
+                -0.2751377136445139,
+                -0.11921551960613141
+              ]
+            }
+          }
+        },
+        "I_minus_L": {
+          "ap_points": 0.47882080856375353,
+          "change_coverage": true,
+          "changed_analysis_blocks": 11,
+          "changed_hulls": 46,
+          "changed_parent_groups": 12,
+          "decision": "positive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": -0.03409992385849329,
+              "interval_95": [
+                -0.38011759585122185,
+                0.28679950454679853
+              ],
+              "parent_interval_95": [
+                -0.3740448941601113,
+                0.27082315632901105
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.05627475055680679,
+              "interval_95": [
+                -0.22921302279395603,
+                0.362300641203711
+              ],
+              "parent_interval_95": [
+                -0.22369625782265432,
+                0.33502343659509637
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": 0.11575860523488402,
+              "interval_95": [
+                0.008280603766324043,
+                0.24233480232619878
+              ],
+              "parent_interval_95": [
+                0.007093472598576807,
+                0.23662691843553393
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.07736215266818698,
+              "interval_95": [
+                -0.1544145494091952,
+                -0.0120174969431718
+              ],
+              "parent_interval_95": [
+                -0.15030334720285576,
+                -0.008851976047356852
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.0773621526681857,
+              "interval_95": [
+                -0.15441454940919355,
+                -0.012017496943171049
+              ],
+              "parent_interval_95": [
+                -0.15030334720285388,
+                -0.008851976047355917
+              ]
+            }
+          }
+        },
+        "L_minus_F": {
+          "ap_points": -0.04298361202220491,
+          "change_coverage": true,
+          "changed_analysis_blocks": 11,
+          "changed_hulls": 47,
+          "changed_parent_groups": 12,
+          "decision": "inconclusive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": 0.7348955725406267,
+              "interval_95": [
+                0.2983658647958456,
+                1.2165815702175968
+              ],
+              "parent_interval_95": [
+                0.20698069796299476,
+                1.238796736889291
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.5612200027820146,
+              "interval_95": [
+                0.21529427348883223,
+                0.9878653866997814
+              ],
+              "parent_interval_95": [
+                0.1427184142938934,
+                0.9888995628652927
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": 0.20270027882008415,
+              "interval_95": [
+                0.10661272552352932,
+                0.307842917402988
+              ],
+              "parent_interval_95": [
+                0.08475184994401037,
+                0.3128021617613023
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.12119947570198031,
+              "interval_95": [
+                -0.18643931643646947,
+                -0.06244285890141359
+              ],
+              "parent_interval_95": [
+                -0.18891721563099215,
+                -0.048554390094689336
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.12119947570198092,
+              "interval_95": [
+                -0.18643931643646888,
+                -0.06244285890141467
+              ],
+              "parent_interval_95": [
+                -0.18891721563099262,
+                -0.04855439009469093
+              ]
+            }
+          }
+        },
+        "pr_I_minus_F": {
+          "ap_points": 0.27213484546375355,
+          "change_coverage": true,
+          "changed_analysis_blocks": 11,
+          "changed_hulls": 47,
+          "changed_parent_groups": 12,
+          "decision": "inconclusive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": -0.1583123368275284,
+              "interval_95": [
+                -0.7657583389380304,
+                0.5314388638923249
+              ],
+              "parent_interval_95": [
+                -0.7819718189339712,
+                0.4731764435462688
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": -0.013853990434167684,
+              "interval_95": [
+                -0.48455766726339045,
+                0.5517828443513235
+              ],
+              "parent_interval_95": [
+                -0.47931736110077056,
+                0.48985945001197745
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": -0.04590798576333791,
+              "interval_95": [
+                -0.20300662074575823,
+                0.13290625181783472
+              ],
+              "parent_interval_95": [
+                -0.20106430037063547,
+                0.11915571872595694
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": 0.042766793003263394,
+              "interval_95": [
+                -0.06616898424491371,
+                0.1457016536316496
+              ],
+              "parent_interval_95": [
+                -0.05789609308476147,
+                0.14245157215758422
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": 0.042766793003263616,
+              "interval_95": [
+                -0.06616898424491399,
+                0.1457016536316505
+              ],
+              "parent_interval_95": [
+                -0.057896093084761964,
+                0.1424515721575849
+              ]
+            }
+          }
+        },
+        "pr_I_minus_L": {
+          "ap_points": 0.0952293376165727,
+          "change_coverage": true,
+          "changed_analysis_blocks": 11,
+          "changed_hulls": 46,
+          "changed_parent_groups": 12,
+          "decision": "inconclusive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": -0.13599149925184953,
+              "interval_95": [
+                -0.6416598622628287,
+                0.3865432649206224
+              ],
+              "parent_interval_95": [
+                -0.6468345586377133,
+                0.3872740292737423
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": -0.09190713418091434,
+              "interval_95": [
+                -0.49071680198403483,
+                0.3163907968848044
+              ],
+              "parent_interval_95": [
+                -0.49472985344640796,
+                0.31937379664465265
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": -0.037179195104669084,
+              "interval_95": [
+                -0.1721188181922538,
+                0.08592236280440566
+              ],
+              "parent_interval_95": [
+                -0.16300292951136516,
+                0.0875967595956461
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": 0.03201691205644811,
+              "interval_95": [
+                -0.04817997981850727,
+                0.1261283584436433
+              ],
+              "parent_interval_95": [
+                -0.04833650596382954,
+                0.11850236084489786
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": 0.032016912056448445,
+              "interval_95": [
+                -0.048179979818507114,
+                0.1261283584436446
+              ],
+              "parent_interval_95": [
+                -0.04833650596382936,
+                0.11850236084489883
+              ]
+            }
+          }
+        },
+        "pr_L_minus_F": {
+          "ap_points": 0.17690550784718084,
+          "change_coverage": true,
+          "changed_analysis_blocks": 11,
+          "changed_hulls": 47,
+          "changed_parent_groups": 12,
+          "decision": "inconclusive",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": -0.02232083757567886,
+              "interval_95": [
+                -0.29174236094190376,
+                0.29402769942904833
+              ],
+              "parent_interval_95": [
+                -0.28152818918402217,
+                0.2530899113614817
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.07805314374674666,
+              "interval_95": [
+                -0.27855043730562257,
+                0.4633672332132033
+              ],
+              "parent_interval_95": [
+                -0.24858907653472503,
+                0.40823941050670526
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": -0.008728790658668828,
+              "interval_95": [
+                -0.12394302466297577,
+                0.11878625625134359
+              ],
+              "parent_interval_95": [
+                -0.11125678394525762,
+                0.10156303409348115
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": 0.010749880946815282,
+              "interval_95": [
+                -0.06742873048565062,
+                0.0810671874065889
+              ],
+              "parent_interval_95": [
+                -0.05638385071497769,
+                0.07256341365902134
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": 0.010749880946815171,
+              "interval_95": [
+                -0.06742873048564961,
+                0.08106718740658869
+              ],
+              "parent_interval_95": [
+                -0.05638385071497726,
+                0.07256341365902187
+              ]
+            }
+          }
+        },
+        "writer_head_interaction": {
+          "ap_points": 0.3835914709471808,
+          "changed_analysis_blocks": 11,
+          "changed_hulls": 46,
+          "changed_parent_groups": 12,
+          "continuous_interaction_direction": "uncertain",
+          "geometry": {
+            "boundary_iou1_points": {
+              "delta": 0.10189157539335625,
+              "interval_95": [
+                -0.4309960779607804,
+                0.635576350888916
+              ],
+              "parent_interval_95": [
+                -0.47125034396532445,
+                0.6623416536287522
+              ]
+            },
+            "boundary_iou2_points": {
+              "delta": 0.14818188473772112,
+              "interval_95": [
+                -0.3398966476566876,
+                0.7019868788307813
+              ],
+              "parent_interval_95": [
+                -0.35463826779307167,
+                0.6740273256377136
+              ]
+            },
+            "continuous_iou_points": {
+              "delta": 0.1529378003395531,
+              "interval_95": [
+                -0.008431810151909556,
+                0.3392290441597752
+              ],
+              "parent_interval_95": [
+                -0.009471057607200795,
+                0.3311830941061782
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.1093790647246351,
+              "interval_95": [
+                -0.22450242871587603,
+                -0.005200994859690556
+              ],
+              "parent_interval_95": [
+                -0.22028354213502926,
+                -0.004908975105393176
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.10937906472463416,
+              "interval_95": [
+                -0.22450242871587434,
+                -0.005200994859689369
+              ],
+              "parent_interval_95": [
+                -0.22028354213502857,
+                -0.004908975105392471
+              ]
+            }
+          }
+        }
+      },
+      "eligible_original_matches": 47,
+      "historical_learned_metrics_reproduced": true,
+      "images": 74,
+      "mask_metrics_fraction": {
+        "bounded": {
+          "AP": 0.5823518749552259,
+          "AP50": 0.9205693491179733,
+          "AP75": 0.6987303599770548,
+          "AP90": 0.048268950853248324,
+          "APl": -1.0,
+          "APm": 0.6126093497803384,
+          "APs": 0.5706482460122974,
+          "AR1": 0.5839506172839506,
+          "AR10": 0.682716049382716,
+          "AR100": 0.7358024691358025,
+          "ARl": -1.0,
+          "ARm": 0.7419354838709677,
+          "ARs": 0.732
+        },
+        "fixed": {
+          "AP": 0.582781711075448,
+          "AP50": 0.9205693491179733,
+          "AP75": 0.698254337894544,
+          "AP90": 0.04436135051388127,
+          "APl": -1.0,
+          "APm": 0.6126093497803384,
+          "APs": 0.5718413958001232,
+          "AR1": 0.5839506172839506,
+          "AR10": 0.6753086419753085,
+          "AR100": 0.7296296296296296,
+          "ARl": -1.0,
+          "ARm": 0.7419354838709677,
+          "ARs": 0.722
+        },
+        "free_matched_count": {
+          "AP": 0.5871400830408634,
+          "AP50": 0.9205693491179733,
+          "AP75": 0.7010005349131717,
+          "AP90": 0.0580387792528483,
+          "APl": -1.0,
+          "APm": 0.6126093497803384,
+          "APs": 0.5786822931272193,
+          "AR1": 0.5888888888888888,
+          "AR10": 0.6901234567901234,
+          "AR100": 0.7407407407407407,
+          "ARl": -1.0,
+          "ARm": 0.7419354838709677,
+          "ARs": 0.74
+        },
+        "pr_bounded": {
+          "AP": 0.58169980577706,
+          "AP50": 0.9205693491179733,
+          "AP75": 0.6991959398847303,
+          "AP90": 0.044543019296081274,
+          "APl": -1.0,
+          "APm": 0.6126093497803384,
+          "APs": 0.5698578823111577,
+          "AR1": 0.5827160493827159,
+          "AR10": 0.6802469135802469,
+          "AR100": 0.7345679012345678,
+          "ARl": -1.0,
+          "ARm": 0.7419354838709677,
+          "ARs": 0.73
+        },
+        "pr_fixed": {
+          "AP": 0.5799307506985882,
+          "AP50": 0.9205693491179733,
+          "AP75": 0.6845842993124961,
+          "AP90": 0.044363926072922784,
+          "APl": -1.0,
+          "APm": 0.6123233935531368,
+          "APs": 0.5677282764200218,
+          "AR1": 0.5814814814814815,
+          "AR10": 0.6740740740740739,
+          "AR100": 0.7296296296296296,
+          "ARl": -1.0,
+          "ARm": 0.7419354838709677,
+          "ARs": 0.722
+        },
+        "pr_independent": {
+          "AP": 0.5826520991532258,
+          "AP50": 0.9205693491179733,
+          "AP75": 0.6989808680191725,
+          "AP90": 0.05187247750062969,
+          "APl": -1.0,
+          "APm": 0.6126093497803384,
+          "APs": 0.5719447826849974,
+          "AR1": 0.5839506172839506,
+          "AR10": 0.682716049382716,
+          "AR100": 0.7345679012345678,
+          "ARl": -1.0,
+          "ARm": 0.7419354838709677,
+          "ARs": 0.73
+        },
+        "raw": {
+          "AP": 0.5827719798779556,
+          "AP50": 0.9205693491179733,
+          "AP75": 0.6987031003743264,
+          "AP90": 0.044507443683496094,
+          "APl": -1.0,
+          "APm": 0.6123233935531368,
+          "APs": 0.5719338724816093,
+          "AR1": 0.5839506172839506,
+          "AR10": 0.6765432098765432,
+          "AR100": 0.7345679012345678,
+          "ARl": -1.0,
+          "ARm": 0.7419354838709677,
+          "ARs": 0.73
+        }
+      },
+      "original_native_matches": 81,
+      "parent_equal_arm_points": {
+        "bounded": {
+          "boundary_iou1_points": 28.642902450285543,
+          "boundary_iou2_points": 47.881436022784015,
+          "continuous_iou_points": 79.01971096539717,
+          "fn_per_truth_area_points": 9.09516338306151,
+          "fp_per_truth_area_points": 16.58757966469732
+        },
+        "fixed": {
+          "boundary_iou1_points": 27.908006877744924,
+          "boundary_iou2_points": 47.320216020002,
+          "continuous_iou_points": 78.81701068657706,
+          "fn_per_truth_area_points": 9.216362858763487,
+          "fp_per_truth_area_points": 16.708779140399297
+        },
+        "free_matched_count": {
+          "boundary_iou1_points": 28.608802526427052,
+          "boundary_iou2_points": 47.937710773340825,
+          "continuous_iou_points": 79.13546957063205,
+          "fn_per_truth_area_points": 9.017801230393323,
+          "fp_per_truth_area_points": 16.510217512029136
+        },
+        "pr_bounded": {
+          "boundary_iou1_points": 27.99480742804175,
+          "boundary_iou2_points": 47.31787154346781,
+          "continuous_iou_points": 78.8047481116782,
+          "fn_per_truth_area_points": 9.23718758700125,
+          "fp_per_truth_area_points": 16.72960386863706
+        },
+        "pr_fixed": {
+          "boundary_iou1_points": 28.01712826561743,
+          "boundary_iou2_points": 47.23981839972105,
+          "continuous_iou_points": 78.81347690233686,
+          "fn_per_truth_area_points": 9.226437706054435,
+          "fp_per_truth_area_points": 16.718853987690245
+        },
+        "pr_independent": {
+          "boundary_iou1_points": 27.858815928789898,
+          "boundary_iou2_points": 47.22596440928688,
+          "continuous_iou_points": 78.76756891657352,
+          "fn_per_truth_area_points": 9.269204499057698,
+          "fp_per_truth_area_points": 16.761620780693512
+        },
+        "raw": {
+          "boundary_iou1_points": 27.77736585105205,
+          "boundary_iou2_points": 47.14610091467603,
+          "continuous_iou_points": 78.8011153841811,
+          "fn_per_truth_area_points": 9.22467513060168,
+          "fp_per_truth_area_points": 16.71709141223749
+        }
+      },
+      "represented_analysis_blocks": 11,
+      "represented_parent_groups": 12,
+      "writer_supported_for_both_heads": false
+    }
+  },
+  "worker_sha256": "27ae1010649cfa8e6ba6cc93ff1c15d52bc18fc43219dc0933191aee134f9538"
+}
