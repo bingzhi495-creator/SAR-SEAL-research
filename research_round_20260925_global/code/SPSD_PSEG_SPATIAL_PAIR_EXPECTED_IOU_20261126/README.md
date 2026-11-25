@@ -1,0 +1,7 @@
+# Reproduction
+
+Use the [prelock](PRELOCK.md) and the exact closed FIT and source-development inputs identified in it. Use the pinned legacy [independent expected-IoU recipe](../SPSD_PSEG_EXPECTED_IOU_SIGNED_BUDGET_20261126/README.md) and Python from that run. Keep a separate coordinator directory for this run, its private fitted parameters, frozen candidate ledgers, and the actual-exit observer. Run the exact FIT adapter from the coordinator's fit directory. Its result constrains both graph and calibration identities, and matches the original group-held head predictions.
+
+Once the FIT gate and observed exit pass, use `run_pairs.py --code CODE --helpers COMMON --inputs RENDER_INPUTS --root RUN --output RUN/render` under the same observer with phase `prepare-edits`. Use the old path map with the unchanged label-free source artifacts. The worker verifies the FIT result and original code identities before reading source points.
+
+After the observed render exits successfully, use `score_pairs.py score --helpers COMMON --inputs SCORE_INPUTS --independent-run HISTORICAL_EXPECTED_RUN --root RUN --output RUN/score` under phase `score`. The worker verifies signed support and old exact masks before opening the two author references. `COMMON` is the digest-pinned [receipt helper](../SPSD_PSEG_FIXED_WINNER_QUOTA_CALIBRATION_20261126/common.py). Preserve the original environment variables and isolated CPU arguments. Use the closed original-run artifacts and the official dataset sources identified in their records. [Completed observations](ACTUAL.md)
