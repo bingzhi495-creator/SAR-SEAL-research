@@ -1,0 +1,10 @@
+# Replay exact SRNet native cell averaging
+
+Use the [registered input and control](PRELOCK.md), the exact observed pre-final capture and its independent readback, and the exact prior SRNet whole-74 run. Follow the original annotation and original selection contracts. The release includes safe aggregate receipts and numerical and replay source. Original archives and per-candidate edits and scores reside in their local private storage.
+
+1. Supply the original frozen paired replay parent via `--previous`, the 74-grid capture and independent readback parent via `--capture`, the registered `--protocol`, its `--protocol-sha` and `--prelock-commit`, the exact historical `--prior-replay` module, and the mathematical `--integrator` with `--integrator-sha`. Bind observed capture and readback digests with `--capture-result-sha`, `--capture-terminal-sha`, `--capture-worker-sha`, `--capture-readback-result-sha` and `--capture-readback-terminal-sha`. Use `integral_replay.py prepare-edits` with a fresh `--output`.
+2. Run `integral_replay.py verify-edits` with the same original bindings, a fresh output, and `--prepare`, `--prepare-terminal`, `--prepare-result-sha` and `--prepare-terminal-sha`. It independently recreates the edits and checks exact original mask, order, budgets and signed supports.
+3. Use `integral_score.py` with the closed capture, prepare and verify outputs and their recorded hashes. Include `--prior-score`, `--render-worker` and `--render-worker-sha`. The scorer verifies qualification and exact label-free replay before opening only the original admitted author TRAIN references. It reproduces N/F/I and scores the registered contrasts on the original two views.
+
+Invoke each phase using `python -I -B -X utf8` through the [observed subprocess runner](../LEARNED_BOUNDED_PAIRING_20261126/rsdd/observe.py), with `CUDA_VISIBLE_DEVICES=-1` and one numeric thread. Run `test_integral_replay.py` for the synthetic residual and direct-prior test. The exact history uses NumPy 1.26.4, CPU Torch 2.10.0, pycocotools 2.0.11, Shapely 2.0.2 and GEOS 3.11.2. Both workers expose their full argument lists through `--help`.
+

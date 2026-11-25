@@ -20,6 +20,8 @@ SRNet 的整批 +0.145 mask AP 来自 AP70 +1.627 和 AP80 −0.176，其余八�
 
 SRNet 的 2,048 个固定匹配可写端点均处于先验裁剪阈值内部，同支持真值余量 0.530 连续 IoU 点来自内部排序。另在等量写回下，原完整分数相对仅用先验 +0.045 AP、+0.192 连续 IoU［0.091, 0.290］。仅移除直接加性先验时，AP −0.163，连续 IoU 区间跨零。两项 AP 差均低于预锁门槛。[完整诊断与复现](code/SRNET_RSDD74_PRIOR_STRATA_20261126/ACTUAL.md)
 
+冻结 SRNet 的原生像元面积积分和同规则原生网格平滑均已完成等预算评分。面积积分在 45 个正预算候选中改变 21 个，相对原方法 −0.163 AP、+0.008 固定匹配连续 IoU［−0.016, 0.032］，相对平滑对照 AP 持平、IoU 区间跨零。数据未支持在现方法中替换像元中心概率。旧 74 图报告已按原评分 APs 修正小目标列。[实测和复现](code/SRNET_RSDD74_PIXEL_INTEGRAL_20261126/ACTUAL.md)
+
 ## 投稿正文候选稿
 
 [10 页英文正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX 主文件](paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [方法、结果、分析与参考文献](paper_boundary_refinement_20261120/submission_sections) · [24 页完整证据稿](paper_boundary_refinement_20261120/boundary_refinement.pdf)

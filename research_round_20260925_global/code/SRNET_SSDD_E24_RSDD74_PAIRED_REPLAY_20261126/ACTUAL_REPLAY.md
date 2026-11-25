@@ -4,14 +4,14 @@ The full measured reserve contains 74 images, 81 author hulls and 89 unchanged n
 
 | Cohort | Policy | AP | AP75 | AP90 | APsmall | AR100 |
 |:---|:---|---:|---:|---:|---:|---:|
-| 74 images | Native | 33.265 | 12.480 | 0.064 | 0.000 | 42.222 |
-| | Distance-paired | 33.283 | 12.480 | 0.064 | 0.000 | 42.222 |
-| | Independent | 33.428 | 12.480 | 0.064 | 0.000 | 42.346 |
-| Nested 42 | Native | 34.852 | 15.943 | 0.141 | 0.000 | 42.979 |
-| | Distance-paired | 34.852 | 15.943 | 0.141 | 0.000 | 42.979 |
-| | Independent | 35.070 | 15.943 | 0.141 | 0.000 | 43.191 |
+| 74 images | Native | 33.265 | 12.480 | 0.064 | 33.720 | 42.222 |
+| | Distance-paired | 33.283 | 12.480 | 0.064 | 33.735 | 42.222 |
+| | Independent | 33.428 | 12.480 | 0.064 | 33.937 | 42.346 |
+| Nested 42 | Native | 34.852 | 15.943 | 0.141 | 34.760 | 42.979 |
+| | Distance-paired | 34.852 | 15.943 | 0.141 | 34.760 | 42.979 |
+| | Independent | 35.070 | 15.943 | 0.141 | 35.125 | 43.191 |
 
-Scores are percentage points. The full comparison gave independent minus distance-paired AP of +0.1451 points and continuous IoU of +0.1595 points (sensor-date 95% interval +0.0884 to +0.2362). The 67 native raster matches included 32 valid area-eligible matches, all with positive equal count and different masks, across 13 author parents and 12 sensor-date blocks. Excess and missed foreground each declined by 0.1144 points of reference area, with a sensor-date interval of −0.1627 to −0.0668 for each. Both quantities change by the same amount because edit area is fixed.
+Scores are percentage points. The small-object column uses COCO APs from the original score receipt. An earlier table displayed zero because it looked up an absent metric key. The underlying score and the registered decision are unchanged. The full comparison gave independent minus distance-paired AP of +0.1451 points and continuous IoU of +0.1595 points (sensor-date 95% interval +0.0884 to +0.2362). The 67 native raster matches included 32 valid area-eligible matches, all with positive equal count and different masks, across 13 author parents and 12 sensor-date blocks. Excess and missed foreground each declined by 0.1144 points of reference area, with a sensor-date interval of −0.1627 to −0.0668 for each. Both quantities change by the same amount because edit area is fixed.
 
 On the unchanged nested 42 images, the corresponding AP change was +0.2179 and continuous IoU change was +0.2061 (95% interval +0.1213 to +0.3062), from 22 changed eligible matches across eight parents and eight sensor-date blocks. The nested view had 47 hulls and 40 native matches.
 

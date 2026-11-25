@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- SRNet 末级回贴面积积分与原生网格平滑完成同预算对照。面积积分相对原方法 −0.163 AP、+0.008 连续 IoU［−0.016, 0.032］，与平滑对照 AP 相同。候选选点确有改变，未达到改进阈值。复核同时更正了旧 SRNet 表格的小目标 AP 显示。[实测、积分代码及更正记录](research_round_20260925_global/code/SRNET_RSDD74_PIXEL_INTEGRAL_20261126/ACTUAL.md)
+
 - SRNet 在原 74 图的可写点未触及先验截断。完整分数较仅用先验 +0.192 连续 IoU［0.091, 0.290］、+0.045 AP。去掉直接先验 −0.163 AP，IoU 区间跨零。[截断分箱与同预算消融](research_round_20260925_global/code/SRNET_RSDD74_PRIOR_STRATA_20261126/ACTUAL.md)
 
 - SRNet 的 74 图逐阈值诊断中，AP70 +1.627 点，AP80 −0.176 点，其余八个阈值持平。相同端点和增删数的真值辅助几何上界较实际独立选点 +0.530 连续 IoU 点［0.259, 0.834］。[完整实测和可编辑图](research_round_20260925_global/code/SRNET_RSDD74_THRESHOLD_ORACLE_20261126/ACTUAL.md)
