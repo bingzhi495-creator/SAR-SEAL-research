@@ -1,0 +1,174 @@
+\section{Method}
+\label{sec:method}
+
+\subsection{Overview}
+For each retained ship detection, a frozen detector supplies a binary mask \(M\), box \(B\), confidence \(s\), and foreground response \(p_i\) at native pixel \(i\). We estimate occupancy at sampled boundary sites and compare two ways of choosing the locations of \(k\) additions and \(k\) removals. A second comparison fixes the total number of flips and varies its allocation across the two sides. Both comparisons preserve the detection identities, classes, boxes, and scores (Fig.~\ref{fig:native-boundary}). We also use the same frozen Phoenix response to compare the effects of writable support and edit count.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/matched_budget_pipeline.pdf}
+\caption{The local pipeline fixes the detector output, samples native boundary cells, estimates their occupancy, and writes the selected edits. The lower lane compares writing rules on the same frozen refiner response.}
+\label{fig:native-boundary}
+\end{figure*}
+
+\subsection{Native-Grid Sampling and Occupancy}
+\label{sec:occupancy}
+Let \(\Omega\) be the decoded \(W\)-by-\(H\) grid. Cell \(i=(x,y)\) covers \(C_i=[x,x+1)\times[y,y+1)\), and \(M_i=\mathbf{1}\{i\in M\}\). For \(B=[x_1,x_2)\times[y_1,y_2)\), inclusion is tested on the integer indices \(x,y\). For a response plane of width \(W_m\), native column \(x\) maps to \((x+\tfrac12)W_m/W-\tfrac12\), with the corresponding height map. D-FINE supplies a \(160\times160\) uncropped sigmoid plane. Its CPU feature path rounds the plane to FP16, bilinearly interpolates in FP32 with edge clamping, and rounds the sample to FP16. RF-DETR applies sigmoid after interpolating its logits. The saved binary mask determines the edit sign, including at sites where the sampled response and native binary decision differ.
+
+For \(32\le |M|<1024\), use square \(3\times3\) dilation \(\delta\) and erosion \(\varepsilon\) with zero exterior. The two-layer support pools are
+\begin{equation}
+\begin{aligned}
+\mathcal B_+&=(\delta^2(M)\setminus M)\cap B\cap\Omega,\\
+\mathcal B_-&=(M\setminus\varepsilon^2(M))\cap B\cap\Omega.
+\end{aligned}
+\label{eq:native-bands}
+\end{equation}
+Layer \(\ell_i\) is one in the first ring and two in the second. We retain the first \(n=\min(32,|\mathcal B_+|,|\mathcal B_-|)\) sites on each side in ascending order of \((|p_i-\tfrac12|,yW+x)\), giving \(S_+\) and \(S_-\). Masks outside the area range or with \(n=0\) retain their original shape. Fig.~\ref{fig:occupancy-stage} shows the native support and supervision.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/method_native_occupancy.pdf}
+\caption{The two native rings supply candidate additions and removals. The reference polygon supplies fractional cell coverage during training, and the point head corrects the decoder response with a learned logit residual.}
+\label{fig:occupancy-stage}
+\end{figure}
+
+A source-training candidate supplies supervision if it has a nonignored native COCO match at the raster IoU threshold of \(0.50\) and a valid reference polygon \(G\). Its target is the area fraction
+\begin{equation}
+q_i=|C_i\cap G|/|C_i| .
+\label{eq:fractional-target}
+\end{equation}
+The 14 inputs comprise response and membership, boundary geometry, box-relative and candidate descriptors, and local appearance. In implementation order, the vector is
+\begin{equation}
+\begin{aligned}
+v_i=\big(&p_i,M_i,\ell_i,d_i,\bar x_i,\bar y_i,\nu,\eta,s,\\
+        &L_i,\bar L_3(i),\bar L_5(i),\Delta_x L_i,\Delta_y L_i\big)^\top .
+\end{aligned}
+\label{eq:endpoint-features}
+\end{equation}
+Here \(d_i\) is Euclidean distance to the nearest opposite-class cell, with background outside the grid. The box coordinates are \(\bar x_i=(x-x_1)/(x_2-x_1)\) and \(\bar y_i=(y-y_1)/(y_2-y_1)\). Area descriptors are \(\nu=\log_2|M|\) and \(\eta=|M|/|B\cap\Omega|\), with the latter denominator counting native box indices. For decoded channels \(R_i,G_i,B_i\), \(L_i=(0.299R_i+0.587G_i+0.114B_i)/255\). Replicating values at the image edges gives
+\begin{equation}
+\begin{aligned}
+\bar L_w(i)&=w^{-2}\!\!\sum_{j\in\mathcal N_w(i)}L_j,\\
+\Delta_x L_i&=(L_{x+1,y}-L_{x-1,y})/2 ,
+\end{aligned}
+\label{eq:appearance-features}
+\end{equation}
+where \(\mathcal N_w(i)\) is the centered \(w\times w\) neighborhood and \(\Delta_y L_i\) uses the analogous row difference.
+
+In the single-reference head, \(E_j\) averages training endpoints in source group \(j\). The training-only standardization uses
+\begin{equation}
+\mu=J^{-1}\sum_{j=1}^{J}E_j[v],\quad
+\sigma_v^2=J^{-1}\sum_{j=1}^{J}E_j[v^2]-\mu^2 .
+\label{eq:group-standardization}
+\end{equation}
+We clip negative roundoff in the variance to zero and use unit scale when the resulting scale is below \(10^{-12}\). For \(z_i=(v_i-\mu)/\sigma_v\) and \(p_i^\epsilon=\operatorname{clip}(p_i,10^{-4},1-10^{-4})\), the prediction is
+\begin{equation}
+\widehat q_i=\operatorname{sigmoid}
+ \big(\operatorname{logit}(p_i^\epsilon)+f_\theta([z_i,z_i])\big).
+\label{eq:occupancy-head}
+\end{equation}
+The two-hidden-layer ReLU head maps \(28\to24\to24\to1\) with 1,321 parameters. Input duplication matches the capacity of the partner-context control. The final affine layer starts at zero, so initial predictions follow the clipped response. Each batch samples groups uniformly and takes a pair within each sampled group. With \(m=64\), the loss averages both sides.
+\begin{equation}
+\mathcal L_{\rm occ}=\frac{1}{2m}\sum_{j=1}^{m}
+  \left[\operatorname{BCE}(q_{a_j},\widehat q_{a_j})+
+        \operatorname{BCE}(q_{d_j},\widehat q_{d_j})\right].
+\label{eq:occ-loss}
+\end{equation}
+Here \(\operatorname{BCE}(y,p)=-y\log p-(1-y)\log(1-p)\). AdamW runs for 200 updates with learning rate \(0.002\) and weight decay \(0.01\). Each FIT109 development fold excludes its held source prefixes from fitting and standardization. Transfer freezes the weights and scaling obtained from all FIT109.
+
+\subsection{Endpoint Selection at Equal Signed Counts}
+\label{sec:selection}
+List \(S_+\) and \(S_-\) in row-major order as \(a_j\) and \(d_j\). Fixed pairing first solves
+\begin{equation}
+\pi^\star\in\arg\min_{\pi\in\mathfrak S_n}
+  \sum_{j=1}^n\|a_j-d_{\pi(j)}\|_2^2 .
+\label{eq:fixed-assignment}
+\end{equation}
+We keep the assignment returned by SciPy on this integer cost matrix. The fixed writer ranks the pair gains \(\widehat q_{a_j}-\widehat q_{d_{\pi^\star(j)}}\) in descending order with addition-row ties. It keeps positive gains up to \(K=\min(8,\lfloor |M|/10\rfloor,n)\). Denote the realized count by \(k\), including the case \(k=0\). At this same count the independent writer solves
+\begin{equation}
+\max_{\substack{A\subseteq S_+,\,D\subseteq S_-\\ |A|=|D|=k}}
+  \left(\sum_{i\in A}\widehat q_i-\sum_{i\in D}\widehat q_i\right).
+\label{eq:independent-estimated-gain}
+\end{equation}
+This selects the highest occupancies on the addition side and the lowest on the removal side, breaking ties by the original pairing-row ordinal. The paired choice is feasible, so the independent estimate is at least as large. The natural-count comparison retains positive gains under the independent ranks up to \(K\). Fig.~\ref{fig:selection-stage} shows the matched comparison.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/method_signed_selection.pdf}
+\caption{Illustrative comparison of distance pairing and independent selection. Both policies write the same number of cells on each side. The independent policy can combine endpoints that belong to different distance pairs.}
+\label{fig:selection-stage}
+\end{figure*}
+
+Write \(P=|M|\), \(T=|G|\), \(I=|M\cap G|\), and \(U=P+T-I\) in native area units. For the edited mask \(W'=(M\setminus D)\cup A\), its area change \(d\) and exact intersection change \(g\) are
+\begin{equation}
+d=|A|-|D|,\qquad
+g=\sum_{i\in A}q_i-\sum_{i\in D}q_i .
+\label{eq:intersect-changes}
+\end{equation}
+The new IoU is \((I+g)/(U+d-g)\), giving
+\begin{equation}
+\Delta\mathrm{IoU}=\frac{(P+T)g-Id}{U(U+d-g)} .
+\label{eq:variable-area}
+\end{equation}
+At \(d=0\), exactly \(2k\) cells change, and IoU strictly increases with true intersection. On a fixed match, the two writers' common edits cancel in the difference of gains. Let \(\mathcal D\) be their symmetric difference of edited sites. Since the independent writer maximizes the estimated gain,
+\begin{equation}
+g_{\rm pair}-g_{\rm ind}
+ \le \sum_{i\in\mathcal D}|\widehat q_i-q_i|
+ \le 4k\max_{i\in S_+\cup S_-}|\widehat q_i-q_i| .
+\label{eq:selection-error}
+\end{equation}
+The ordering can therefore reverse when probabilities are inaccurate at the sites where the writers differ. COCO mask AP also allows reassignment at each evaluation threshold.
+
+\subsection{Dual-Reference Allocation at a Fixed Total Count}
+\label{sec:variable-sign}
+For the D-FINE allocation comparison, the dynamic attraction rule supplies a fixed candidate count \(k_s\), and its same-count static counterpart supplies the incumbent \(S\). A separate 1,346-parameter head takes the duplicated 14-dimensional feature vector, uses two 24-unit hidden layers, and produces one residual logit per reference. Training uses binary raster targets from paired author instances with mutual raster IoU at least \(0.50\) and the same native detection match. Eligible candidates have \(n>k_s>0\) and at least one nonidentity action. The 848 qualifying candidates span 447 images in 439 decoded groups. The head uses training-only group, image, candidate, and endpoint weighting for scaling. Each of 1,000 AdamW updates samples 64 candidates through groups and images, using a learning rate of 0.002 and weight decay of 0.01. BCE averages the signed endpoints and both references within a candidate, then weights each sampled candidate equally. At each seed all allocation policies use the same head.
+
+Let \(E=S_+\cup S_-\) and \(\widehat q_{ir}\) denote occupancy under reference \(r\). Outside \(E\) the approximation takes the native labels as deterministic. Thus,
+\begin{equation}
+\begin{aligned}
+\widehat T_r&=|M\setminus E|+\sum_{i\in E}\widehat q_{ir},\\
+\widehat I_{r0}&=|M\setminus E|+\sum_{i\in E\cap M}\widehat q_{ir}.
+\end{aligned}
+\label{eq:dual-area-proxy}
+\end{equation}
+With \(g_r=\sum_{i\in A}\widehat q_{ir}-\sum_{i\in D}\widehat q_{ir}\) and \(d=|A|-|D|\), the ratio of expected intersection to expected union is
+\begin{equation}
+\widehat f_r(A,D)=
+\frac{\widehat I_{r0}+g_r}{P+d+\widehat T_r-\widehat I_{r0}-g_r}.
+\label{eq:dual-est-iou}
+\end{equation}
+For each feasible split \((a,2k_s-a)\), we rank the sites using eleven equally spaced mixtures of the reference probabilities. Additions take descending ranks and removals take ascending ranks, with ties resolved by the archived endpoint order. We cross the resulting side-specific prefixes and include the incumbent side where the count permits. The score is \(\min_r[\widehat f_r(A,D)-\widehat f_r(S)]\). The search evaluates the incumbent first, followed by splits in order of increasing \(|a-k_s|\) and then \(a\). Within a split, the first maximizing proposal is retained. The equal-allocation control restricts \(a=k_s\) with the same proposal construction and objective. A sensitivity permits feasible \(a\in\{k_s-1,k_s,k_s+1\}\). All policies flip exactly \(2k_s\) cells (Fig.~\ref{fig:signed-allocation}). We also compare mean-IoU and raw-intersection objectives over the full split range.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/method_signed_allocation.pdf}
+\caption{Illustrative allocation at a fixed total of four flips. The equal split adds two cells and removes two. The maximin choice in this example adds three and removes one, changing the final area at the same total count.}
+\label{fig:signed-allocation}
+\end{figure*}
+
+Equation~\eqref{eq:dual-est-iou} uses the RankIoU reciprocal-moment approximation~\cite{rankrma}. We also compute the exact expectation on the same action menu. Under independent endpoint Bernoulli labels within a reference, the overlap \(I_r(W')\) and the number \(Z_r(W')\) of sampled reference foreground cells outside \(W'\) involve disjoint sites. Hence
+\begin{equation}
+\widehat f^{\rm E}_r(W')=\mathbb E[I_r(W')]\,
+             \mathbb E[(|W'|+Z_r(W'))^{-1}] .
+\label{eq:exact-iou-signed}
+\end{equation}
+The reciprocal moment follows from the Poisson-binomial law~\cite{rankseg}. Both scores use the same incumbent and deterministic native labels beyond \(E\).
+
+\subsection{Controlled Writing of a Frozen Refiner Response}
+\label{sec:phoenix}
+The decoded image and native mask prompt Phoenix XL1~\cite{phoenix}. We share the same output probabilities \(r_i\) after five refinement iterations across all writers. Writable support \(\mathcal W\) is either the sampled boundary \(E\) or the full grid \(\Omega\). The threshold writer uses the author's selected binary hypothesis in \(\mathcal W\) on the shared positive-budget candidates. The count writer makes exactly \(2k_{\rm att}\) flips, where \(k_{\rm att}\) is obtained from dynamic spatial attraction~\cite{atkinson}. At exchange \(\tau\) the attraction is
+\begin{equation}
+h_\tau(i)=\sum_{j\in M_\tau}
+ e^{-\|i-j\|_2/5}\,\mathbf 1\{0<\|i-j\|_2\le5\}.
+\label{eq:dynamic-attraction}
+\end{equation}
+It exchanges the unused addition and removal sites with maximum and minimum attraction, respectively, while the difference exceeds \(10^{-12}\) and the count is below \(K\). It recomputes attraction after each exchange. The static counterpart uses \(h_0\) at the resulting count. The dual-reference allocation above uses \(k_s=k_{\rm att}\).
+
+Let \(u_{(j)}^+\) rank \(r_i-\tfrac12\) on native background and \(u_{(j)}^-\) rank \(\tfrac12-r_i\) on native foreground, both in descending order. The count writer maximizes over feasible splits
+\begin{equation}
+F_{\mathcal W}(a)=\sum_{j=1}^{a}u_{(j)}^+
+          +\sum_{j=1}^{2k_{\rm att}-a}u_{(j)}^- .
+\label{eq:writer-quota}
+\end{equation}
+Ties between splits prefer the smallest absolute area change and then fewer additions. Site ties follow the original endpoint ordinal and then row-major order. The balanced narrow writer fixes \(a=k_{\rm att}\) with the same ranks. The support-by-rule comparison uses common positive-budget candidates and shared probabilities. Candidates outside that population retain the native mask.
+

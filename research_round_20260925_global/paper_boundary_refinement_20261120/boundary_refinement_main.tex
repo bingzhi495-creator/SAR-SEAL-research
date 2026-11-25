@@ -1,0 +1,52 @@
+\documentclass[journal]{IEEEtran}
+\usepackage{amsmath,amssymb,booktabs,cite,graphicx,placeins}
+\usepackage[hidelinks]{hyperref}
+\begin{document}
+\raggedbottom
+\title{Ranking and Allocation of Boundary Edits for SAR Ship Instance Segmentation}
+\author{Author~Details~Pending\thanks{Review version. Author affiliations and corresponding-author details are pending.}}
+\maketitle
+
+\begin{abstract}
+A one-pixel boundary displacement can substantially reduce the overlap of a narrow ship mask in synthetic aperture radar (SAR) imagery. We refine retained detections by estimating object occupancy on the native grid and controlling the number of boundary edits. With the number of additions and removals fixed for each candidate, independent endpoint ranking improves mask average precision (AP) over distance pairing by 0.81--0.91 points on HRSID DEV705 and by 0.48 and 0.30 points for two frozen detector fits on the same Gaofen-3 images. The one-pixel boundary IoU gain is 0.47 points for the first fit and 0.70 points on a separate 74-chip parent reserve. The second fit's one-pixel interval includes zero. In a separate comparison, a dual-reference head selects how to divide a fixed total between additions and removals. Across three fits on the same 183 SSDD development images, allowing unequal counts improves mean mask AP by 2.30 and 1.75 points against the two reference releases. Frozen evaluation on SAR-SSP yields \(-0.14\) AP points and falls short of the transfer criterion. The experiments show when the locations and signed counts of edits affect the quality of retained masks.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Synthetic aperture radar, ship instance segmentation, boundary refinement, native image grid.
+\end{IEEEkeywords}
+
+\section{Introduction}
+\label{sec:introduction}
+
+A detector may localize a ship correctly while its mask follows a neighboring quay or cuts across the bow. The error matters on a thin hull. Translating a \(w\)-pixel-wide rectangle by one pixel across its short axis preserves its area but changes its intersection over union (IoU) to \((w-1)/(w+1)\), or \(0.60\) at \(w=4\). Close to shore, a nearby bright return can further complicate the decision about which foreground cells belong to the ship~\cite{hrsid,rsdd,gao2024}.
+
+A reference-guided analysis of retained HRSID masks motivates editing both sides of the contour. Among 1,329 matched instances with area below 1,024 pixels and aspect ratio at least two, expanding the detection box by two pixels permits 134 more instances to attain continuous IoU of 0.90. Expanding the foreground only within the new strip reaches this threshold in zero of those cases. At least 91 require additions and removals inside the original box. These reference-guided ceilings motivate separate tests of where to edit and how much area to change.
+
+We study these decisions on the native detector grid. We first fix the numbers of additions and removals separately. A distance-paired editor may have to remove a good foreground cell to make a useful addition nearby. Independent rankings release this coupling while keeping both counts, the scores, and the candidate identities fixed. We then hold the total number of changes fixed and vary the split, which allows changes in the predicted area. Our contributions are as follows.
+\begin{enumerate}
+\item We train a lightweight occupancy head with fractional polygon--cell coverage. The same features and native geometry support candidates from D-FINE-seg and RF-DETR~\cite{dfine,rfdetr}.
+\item We isolate the cost of distance-based coupling by comparing paired and independent endpoint ranking at the same realized signed counts. Frozen experiments across detector fits and author-labeled cohorts measure the mask AP, boundary IoU, and conditions under which effects vary.
+\item We use a second, two-output occupancy head to test signed allocation at a fixed total. The controlled comparisons retain the estimated-IoU objective while varying the available splits. Two SSDD reference releases, a frozen transfer test, and pretrained-refiner controls quantify the gains and the limits of changing area and writable support.
+\end{enumerate}
+
+\section{Related Work}
+\label{sec:related-work}
+
+\textit{SAR ship masks.} HRSID, the polygon subset of SSDD, and Instance-RSDD enable assessment of individual hulls from SAR images~\cite{hrsid,ssdd,rsdd}. Rotated regions and dual-scale attention align features with the long axis~\cite{rsdd,drsnet}. Dynamic scattering key points and geometry-aware feature fusion help generate masks in cluttered scenes~\cite{gao2024,dacf,gcie}. GLDet mines local gradients upstream of detection~\cite{gldet}. DSR-Net evolves a contour inside a region of interest using physical-gradient and curvature terms~\cite{dsr}. Given a retained mask and score, we use fractional occupancy to isolate decisions about boundary edits on the detector grid.
+
+\textit{Signed updates and overlap.} Spatial-attraction mapping exchanges labels to preserve the foreground proportion~\cite{atkinson,xu}. RankSEG uses posterior ranking and foreground volume selection for overlap objectives~\cite{rankseg}. Its reciprocal-moment and local-dependence variants address expected overlap under different probability assumptions~\cite{rankrma,rankdep}. In our setting the original mask fixes the two types of eligible sites. The detector score, candidate, support and per-candidate budget provide a common comparison for the effect of the pairing constraint and for the effect of signed allocation.
+
+\textit{Mask refinement.} PointRend samples uncertain positions during subdivision, SegFix corrects boundary labels using interior estimates, and boundary patch refinement predicts updates in image and mask patches~\cite{pointrend,segfix,bpr}. RefineMask incorporates progressively finer features~\cite{refinemask}. Phoenix and SegRefiner revise an input coarse mask~\cite{phoenix,segrefiner}. A whole-mask output combines the estimated response with the rule for writing it. Holding a response fixed while changing writable support or the edit count lets us distinguish the consequences of these two choices.
+
+\input{submission_sections/methods}
+\input{submission_sections/results}
+\input{submission_sections/analysis}
+
+\section{Conclusion}
+At fixed per-candidate signed counts, independent endpoint ranking improves continuous overlap and mask AP over distance pairing on HRSID and the evaluated Instance-RSDD subsets. The native one-pixel boundary metric supports the gain for one Gaofen-3 fit and for the 74-chip parent reserve. The interval for the second Gaofen-3 fit includes zero at one pixel. At fixed total edits, variable allocation improves the two SSDD development reference scores under repeated head fits. The frozen SAR-SSP result shows a decrease in missed area, an increase in excess foreground, and a paired IoU interval that includes zero. Candidate coverage limits what an editor can recover. These findings identify where matched-budget editing helps and where a more accurate initial proposal or a transferable allocation is needed.
+
+\section*{Acknowledgment}
+OpenAI Codex assisted with English drafting and editing, schematic and vector-figure preparation, and the experimental analysis code. The method illustrations use worked examples. The quantitative figures and qualitative panels identify their observed data and any spatial aggregation.
+
+\input{submission_sections/references}
+\end{document}
