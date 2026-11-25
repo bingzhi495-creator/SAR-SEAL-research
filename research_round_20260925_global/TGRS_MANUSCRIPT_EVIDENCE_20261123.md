@@ -1,6 +1,6 @@
 # 边界精修论文审阅稿与证据索引
 
-更新于 2026 年 11 月 25 日。17 页 IEEE 双栏英文稿面向 TGRS 学术审阅，作者信息按约定保留占位。引言对应三个技术环节，方法包含一张总览和三张细节图。实验先交代数据、平台和指标，再按统一主表、真实案例、分侧与配额消融展开。[英文 PDF](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图件及重建说明](paper_boundary_refinement_20261120/figures/README.md) · [52 篇原文研读与版式修订](style_review/STYLE_REDESIGN_20261123.md)
+更新于 2026 年 11 月 25 日。18 页 IEEE 双栏英文稿面向 TGRS 学术审阅，作者信息按约定保留占位。引言对应三个技术环节，方法包含一张总览和三张细节图。实验先交代数据、平台和指标，再按统一主表、真实案例、分侧与配额消融展开。[英文 PDF](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图件及重建说明](paper_boundary_refinement_20261120/figures/README.md) · [52 篇原文研读与版式修订](style_review/STYLE_REDESIGN_20261123.md)
 
 ## 主张与核验记录
 
@@ -75,4 +75,4 @@ PSeg 的三段评分用独立的解析掩膜完成了预演。512 像素记录�
 
 固定增点、将删点数量限制为增点数量后，均匀位置策略较原版在 Instance-RSDD／PSeg 恢复 **+0.907／+0.878 mask AP** 与 **+3.497／+2.520 连续 IoU**。相同数量下浅层排序的几何收益为正，AP 均未达到推进门槛。两种策略仍低于冻结独立选点与仅添加。原版删除反事实受益已复验，保留删点的实用收益还缺证据。[完整对照](SEGREFINER_DELETION_CAP_ACTUAL_20261125.md)
 
-SAR-SSP 作者包中的 232 张验证图和 139 个船体已完成原生掩膜核验。31 个母图编号允许组内配对，也都出现在作者训练划分。现已核实为 AIR-SARShip-1.0 的高分三号原景。Instance-RSDD 74 图与其中任何原景均可按传感器或采集日期排除同次卫星采集。232 图的冻结推理、等量掩膜重放和独立核验已完成，作者标注评分待执行。[实际验收](SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md)
+SAR-SSP 作者包中的 232 张验证图和 139 个船体已完成原生掩膜核验。31 个母图编号允许组内配对，也都出现在作者训练划分。现已核实为 AIR-SARShip-1.0 的高分三号原景。Instance-RSDD 74 图与其中任何原景均可按传感器或采集日期排除同次卫星采集。232 图的冻结推理、等量掩膜重放和作者标注评分均完成。主比较掩膜 AP −0.005 点，母景等权离散 IoU +0.101［−0.066, +0.335］点，未达到预锁门槛。正文新增独立小节和表 IX。[完整结果](SAR_SSP_FROZEN_TRANSFER_ACTUAL_20261125.md)[实际验收](SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md)

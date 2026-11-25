@@ -8,7 +8,7 @@
 \maketitle
 
 \begin{abstract}
-A one-pixel boundary displacement can leave the area of a narrow synthetic aperture radar (SAR) ship mask unchanged while substantially reducing overlap. We test whether this error can be corrected by selecting the locations to add and remove independently under a common budget. A 1,321-parameter point head estimates fractional occupancy on the decoded grid. With detector candidates, confidence scores, admissible cells and signed counts held fixed, independent selection gains 0.81--0.91 mask average precision (AP) points across D-FINE and RF-DETR on HRSID DEV705. The gain is 1.22 points in a historical reevaluation of the HRSID official split and 0.48 and 0.30 points for two RF-DETR fits transferred to the same 583 Gaofen-3 chips. On PSeg-SSDD, the gain is 0.08 points. In a separate test of pretrained Phoenix, a fixed count raises AP by 9.39 and 2.52 points over whole-grid thresholding on Instance-RSDD and PSeg-SSDD. Balanced Phoenix on narrow support remains 0.20 AP points below matched static attraction on PSeg-SSDD. Stock SegRefiner-LR loses 1.70 and 0.84 AP points relative to native on the Instance-RSDD reserve and PSeg-SSDD, respectively. Separating its edits reveals a deletion loss of about four continuous IoU points on gate-exposed hulls in both datasets.
+A one-pixel boundary displacement can leave the area of a narrow synthetic aperture radar (SAR) ship mask unchanged while substantially reducing overlap. We test whether this error can be corrected by selecting the locations to add and remove independently under a common budget. A 1,321-parameter point head estimates fractional occupancy on the decoded grid. With detector candidates, confidence scores, admissible cells and signed counts held fixed, independent selection gains 0.81--0.91 mask average precision (AP) points across D-FINE and RF-DETR on HRSID DEV705. The gain is 1.22 points in a historical reevaluation of the HRSID official split and 0.48 and 0.30 points for two RF-DETR fits transferred to the same 583 Gaofen-3 chips. On PSeg-SSDD, the gain is 0.08 points. The same matched comparison is effectively unchanged on 232 SAR-SSP validation chips. In a separate test of pretrained Phoenix, a fixed count raises AP by 9.39 and 2.52 points over whole-grid thresholding on Instance-RSDD and PSeg-SSDD. Balanced Phoenix on narrow support remains 0.20 AP points below matched static attraction on PSeg-SSDD. Stock SegRefiner-LR loses 1.70 and 0.84 AP points relative to native on the Instance-RSDD reserve and PSeg-SSDD, respectively. Separating its edits reveals a deletion loss of about four continuous IoU points on gate-exposed hulls in both datasets.
 \end{abstract}
 \begin{IEEEkeywords}
 Synthetic aperture radar, ship instance segmentation, boundary refinement, native image grid.
@@ -481,6 +481,35 @@ Across 342 chips from 13 additional Danish acquisitions, RF-DETR matched 121 of 
 
 On these previously evaluated chips, the frozen FIT109 PointRend head refined native masks of area \([32,1024)\) pixels. At raster IoU 0.50, native masks, \(7{\times}7\) coarse pastes and \(224{\times}224\) PointRend pastes covered 121, 111 and 30 case-focused hulls, respectively. PointRend recovered no new hulls against either comparator and omitted more hull area at fixed box associations, losing 4.1375 continuous IoU points to native and 3.4553 to coarse across all 528 hulls.
 
+\subsection{Frozen transfer to SAR-SSP}
+\label{sec:sar-ssp}
+We transfer the COCO-initialized RF-DETR fit 5202 and HRSID point head 5217 to all 232 SAR-SSP author validation chips. SAR-SSP provides 139 visible ship instances in 31 Gaofen-3 parent scenes from AIR-SARShip-1.0 \cite{slgsea,airsarship}. The author's training and validation tiles share all 31 parents. The detector and point head are fixed before evaluation and do not use either SAR-SSP split for fitting or selection. The 74-chip Instance-RSDD reserve comes from different satellite acquisitions by sensor or acquisition date. Same-acquisition overlap remains unresolved for 11 images in the separate Instance-RSDD author test set.
+
+We use the binary panoptic ship IDs on the 500-pixel grid, including 48 masks that touch a tile edge. Mask AP includes all 22,741 candidates and all chips. The geometry analysis retains the native IoU-0.50 assignment. It includes 92 matched hulls and assigns zero change to the 47 unmatched hulls. We weight the 23 ship-bearing parent scenes equally and resample those scenes for the paired interval.
+
+\begin{table}[t]
+\centering
+\caption{Frozen mask transfer on SAR-SSP. The independent and distance-paired policies have the same signed counts. The three attraction policies share a second set of counts. Scores are percentage points.}
+\label{tab:sar-ssp}
+\footnotesize
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Mask policy & AP & AP75 & AR100 \\
+\midrule
+Native & 21.392 & 19.781 & 34.676 \\
+Distance paired & 21.390 & 19.781 & 34.604 \\
+Independent, paired count & 21.386 & 19.254 & 34.820 \\
+\midrule
+Dynamic attraction & 21.485 & 19.577 & 34.892 \\
+Static, attraction count & 21.508 & 20.328 & 35.108 \\
+Learned, attraction count & 21.504 & 19.254 & 34.748 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At 57,565 exchanges shared by the paired and independent policies, independent selection changes 52 matched masks in 19 scenes. Its AP difference is \(-0.005\) points and scene-balanced discrete IoU changes by \(+0.101\) points (\([-0.066,0.335]\)). Removing edge-touching hulls gives \(+0.180\) IoU points (\([-0.012,0.442]\)). The result falls below the prespecified 0.30-point AP threshold and the IoU interval includes zero. At the attraction count, learned ranks change AP by \(+0.019\) and \(-0.004\) points against dynamic and static attraction, respectively. The corresponding IoU differences are \(-0.044\) (\([-0.419,0.475]\)) and \(-0.228\) (\([-0.608,0.204]\)). The held-count benefits observed on the earlier Gaofen-3 cohort have limited transfer to these released raster masks (Table~\ref{tab:sar-ssp}).
+
+
 \section{Qualitative Analysis}
 \label{sec:qualitative}
 Each comparison uses measured cases and the original matched reference. We retain both improved and degraded masks and select near the sign-specific medians before inspecting their appearances. The plots distinguish changes to the sampled boundary and changes from broader mask replacement.
@@ -670,7 +699,7 @@ Capping Phoenix edits reduces exterior false positives on both datasets. On PSeg
 
 HRSID official results retain historical development exposure. The group definitions and sensitivity views in Section~\ref{sec:protocol} bound the transfer evidence. Native, local and Phoenix predictions are sealed on 12 prospectively selected Umbra windows. Independent reference scoring on these windows is pending.
 
-The SAR-SSP release contains 232 validation tiles and 139 ship masks. All 31 parent scene identifiers occur in the author's training and validation tiles, with four cross-split footprint overlaps. Parent scene grouping is available for a frozen-model transfer analysis. We exclude SAR-SSP from the scored comparisons reported here.
+The frozen SAR-SSP comparison falls below the practical transfer threshold despite a sufficient number of distinct edited hulls. Its binary references and parent-balanced estimator define a separate evaluation from the continuous polygon comparisons.
 
 An oracle keeps every stock addition and deletes cells of least author-polygon coverage from the native foreground. At the stock count, it gains 5.594 and 3.512 continuous IoU points on gate-exposed Instance-RSDD and PSeg matches, respectively. Allowing fewer deletions adds 4.256 and 4.189 points. Both sets of paired 95\% intervals are positive. At the stock count, even the best deletion sites leave 43 of 67 PSeg hulls below their addition-only overlap. These label-conditioned ceilings quantify separate constraints on position selection and count control.
 
@@ -687,13 +716,13 @@ The D-FINE CUDA detector and postprocessor took 11.74\,s over the 232 PSeg image
 The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{repository} documents code, configurations, data access and score summaries. Independent replay reproduced 3,434 entries for HRSID official and Instance-RSDD 740, plus 1,470 entries on the 74-chip reserve with detector 5202 and head 5217. Image, annotation and checkpoint access are needed for replay.
 
 \section{Conclusion}
-Independent endpoint selection improves the overlap of already detected hulls at matched signed counts on HRSID and Instance-RSDD, with a smaller gain on PSeg-SSDD. The general-refiner comparisons show two distinct boundary errors. Capping Phoenix writes reduces false-positive area relative to whole-grid thresholding on both datasets, and the stock SegRefiner deletions reduce overlap on the gate-exposed hulls of both cohorts. Same-count shallow relocation shows a gain over proximity on the Instance-RSDD reserve and misses the advancement criterion on PSeg-SSDD. The results apply to the observed detector and acquisition settings. The small editable population on UEIKAP leaves proposal coverage as a separate limitation. A per-candidate deletion cap recovers part of the stock SegRefiner AP loss on both cohorts. At that cap, ranking deletion sites by boundary proximity improves continuous overlap over uniform selection, with little improvement in AP.
+Independent endpoint selection improves the overlap of already detected hulls at matched signed counts on HRSID and Instance-RSDD, with a smaller gain on PSeg-SSDD and little change on SAR-SSP. The general-refiner comparisons show two distinct boundary errors. Capping Phoenix writes reduces false-positive area relative to whole-grid thresholding on both datasets, and the stock SegRefiner deletions reduce overlap on the gate-exposed hulls of both cohorts. Same-count shallow relocation shows a gain over proximity on the Instance-RSDD reserve and misses the advancement criterion on PSeg-SSDD. The results apply to the observed detector and acquisition settings. The small editable population on UEIKAP leaves proposal coverage as a separate limitation. A per-candidate deletion cap recovers part of the stock SegRefiner AP loss on both cohorts. At that cap, ranking deletion sites by boundary proximity improves continuous overlap over uniform selection, with little improvement in AP.
 
 \noindent\emph{Acknowledgment.} OpenAI Codex assisted with drafting and revision. The method diagrams use schematic cells and an illustrative worked example. Result figures use observed measurements, including spatially pooled comparisons in Figs.~\ref{fig:gf3-qual} and~\ref{fig:pseg-budget-cases}.
 
 
-\IEEEtriggeratref{10}
-\begin{thebibliography}{28}
+\IEEEtriggeratref{23}
+\begin{thebibliography}{30}
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, \href{https://doi.org/10.1109/ACCESS.2020.3005861}{2020}.
 \bibitem{rsdd} X. Yang, Q. Zhang, Q. Dong, Z. Han, X. Luo, and D. Wei, ``Ship instance segmentation based on rotated bounding boxes for SAR images,'' \emph{Remote Sens.}, vol. 15, no. 5, Art. no. 1324, \href{https://doi.org/10.3390/rs15051324}{2023}.
 \bibitem{gao2024} F. Gao, X. Han, J. Wang, J. Sun, A. Hussain, and H. Zhou, ``SAR ship instance segmentation with dynamic key points information enhancement,'' \emph{IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.}, vol. 17, pp. 11365--11385, 2024. \href{https://doi.org/10.1109/JSTARS.2024.3383779}{10.1109/JSTARS.2024.3383779}.
@@ -723,5 +752,8 @@ Independent endpoint selection improves the overlap of already detected hulls at
 \bibitem{schwegmann} C. P. Schwegmann, W. Kleynhans, B. P. Salmon, L. W. Mdakane, and R. G. V. Meyer, ``Very deep learning for ship discrimination in Synthetic Aperture Radar imagery,'' in \emph{Proc. IEEE Int. Geosci. Remote Sens. Symp. (IGARSS)}, 2016, pp. 104--107. \href{https://doi.org/10.1109/IGARSS.2016.7729017}{10.1109/IGARSS.2016.7729017}.
 \bibitem{nastar} B. Hosseiny, K. Kamirul, O. Pappas, and A. Achim, ``NASTaR: A NovaSAR-based automated ship target recognition dataset,'' \emph{IEEE Geosci. Remote Sens. Lett.}, vol. 23, Art. no. 1502605, 2026. \href{https://doi.org/10.1109/LGRS.2026.3679941}{10.1109/LGRS.2026.3679941}.
 \bibitem{gulf} M. Shaya, ``SAR Ship Gulf: Sentinel-1 GRD ship chips with AIS labels,'' Zenodo, ver. 1, 2026. \href{https://doi.org/10.5281/zenodo.21000650}{10.5281/zenodo.21000650}.
+
+\bibitem{slgsea} R. Deng, T. Zhang, G. Gao, L. Zhang, S. Wei, and X. Zhang, ``SLGSea: Spatialized language guidance with scattering-aware query construction for ship--sea--land panoptic segmentation in SAR imagery,'' project repository and dataset release. \href{https://github.com/deng1218/SLGSea}{Code and data}.
+\bibitem{airsarship} X. Sun, Z. Wang, Y. Sun, W. Xi, Y. Zhang, and K. Fu, ``AIR-SARShip-1.0: High-resolution SAR ship detection dataset,'' \emph{J. Radars}, vol. 8, no. 6, pp. 852--862, 2019. \href{https://doi.org/10.12000/JR19097}{10.12000/JR19097}.
 \end{thebibliography}
 \end{document}
