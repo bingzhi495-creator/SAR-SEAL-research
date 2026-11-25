@@ -1,0 +1,5 @@
+# Geometry-only capacity of equal adoption counts
+
+Reuse the already observed old matched signed-action gate, with 183 closed render records and all 18,300 original slots, fixed PSeg/SPSD TRAIN development origin. Do not read labels, model parameters, original image pixels, new adoption predictions or test data.
+
+Use the new selective gate's frozen eligibility rule and quota. A positive original k and an archived BCE robust mask differing from the same-slot static mask make a slot eligible. Adopt floor(n/3) such slots per image. Allocate that number over k strata by floor(n_k/3) and descending largest remainder, using smaller k to break ties. Check archived source and complete counts before reporting. Compute legal adoption slots, minimum and maximum numbers of signed learned edits under cardinality alone, the invariant sum under matched k allocation, and the maximum membership disagreement between any two legal selectors. The maximum in a stratum of n eligible and m selected is 2 min(m,n-m). This is a combinatorial capacity of the frozen roster, not a bound on AP or achieved geometry. No threshold search or candidate selection uses these results.
