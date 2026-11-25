@@ -16,3 +16,7 @@
 ## 冻结原生模型推理
 
 现行 COCO→HRSID 载体已经在全部 232 张官方验证图完成 GPU 推理，运行 78.1 秒，保留 22,741 个检测候选及 8,592 个面积合格的细化概率平面。独立 CPU 核验逐项复核原生掩膜和候选审计，一致通过。推理与回读未打开目标标注，未进行优化器更新。候选计数属于载体输出，船体覆盖与精度待固定规则评分。[冻结推理协议](code/SAR_SSP_AIR_FROZEN_20261125/CAPTURE_PRELOCK.md) · [推理回执](results/SAR_SSP_VAL232_RFDETR_CAPTURE_SAFE_20261125.json) · [独立回读回执](results/SAR_SSP_VAL232_RFDETR_NATIVE_VERIFY_SAFE_20261125.json)
+
+## 冻结等量掩膜编辑
+
+全部 232 图完成按原 HRSID 配方的七组无标注重放。固定距离配对和同量独立选点分别在同 8,350 个候选上执行 57,565 次交换。动态吸引力及它的两种同量对照均在同 8,541 个候选上执行 60,412 次交换。独立重放逐字节复现编辑决策和实际写回，保持面积不变。以上是候选编辑统计，目标标注评分仍待执行。[编辑锁定](code/SAR_SSP_AIR_FROZEN_20261125/EDIT_PRELOCK.md) · [重放回执](results/SAR_SSP_VAL232_RFDETR_EDITS_SAFE_20261125.json) · [独立核验](results/SAR_SSP_VAL232_RFDETR_EDITS_VERIFY_SAFE_20261125.json)

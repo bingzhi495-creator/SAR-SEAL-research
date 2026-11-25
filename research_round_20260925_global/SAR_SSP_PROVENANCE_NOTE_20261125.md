@@ -26,6 +26,21 @@ SAR-SSP 的 929 张训练裁片和 232 张验证裁片均有 `source_image_no`�
 
 如果验收样本和阈值全程冻结且参与的每个权重均无该语料暴露，可将 SAR-SSP 作者验证集作为按 31 个 AIR 原景聚类的 GF-3 外部域对照。若另与既有 GF-3 评测合并，需要核对产品或影像重叠。若在 SAR-SSP 内训练或调参，则需按 `source_image_no` 重划，现有训练与验证并非原景独立。本核验没有推理、图像或掩膜解码，也没有计算 AP。
 
+## 与 Instance-RSDD 的采集来源核验
+
+2026-11-25。Instance-RSDD 作者确认其影像来自 RSDD-SAR。RSDD-SAR 附表 1 提供原景号、传感器、采集日、舍入后的场景中心、成像模式、分辨率、极化、产品级别与文件编号区间。AIR-SARShip-1.0 附表给出各景的本地编号、像素尺寸、海况、场景类型、分辨率及舰船计数。SAR-SSP 裁片坐标属于各自 AIR 原景局部坐标。两边的编号用途不同，目前缺少可直接拼接的卫星目录 ID、采集时间和地理范围。 [Instance-RSDD 作者论文](https://doi.org/10.3390/rs15051324) · [RSDD-SAR 附表 1](https://files.sciengine.com/pdfs/2095-283X/23A1C428928844EC809FB12C4F5A7A6B.pdf) · [AIR-SARShip-1.0 附表](https://doi.org/10.12000/JR19097)
+
+AIR-SARShip-1.0 的 31 景均为高分三号，官方发布日期为 **2019-12-31**。按 RSDD-SAR 附表 1 的采集日期与传感器核对，TerraSAR-X 影像和此日期之后采集的高分三号影像均可排除与 AIR-SARShip-1.0 共享同一次卫星采集。 [正式发布日期和数据来源](https://radars.ac.cn/news/bianjibugonggao/b5c223bb-d8fd-4663-a4ff-ab8f441f6c6a.htm)
+
+| Instance-RSDD 范围 | 2019-12-31 之后采集的 GF-3 裁片 / 景 | TerraSAR-X 裁片 / 景 | 已排除共享同一采集 | 未判定 GF-3 裁片 / 景 |
+|---|---:|---:|---:|---:|
+| 作者测试文件 `test.json` | 572 / 73 | 157 / 36 | 729 / 740 | 11 / 3 |
+| 作者 `train.json` 中未出现在 `test.json` 的 13 个原景 | 42 / 8 | 32 / 5 | 74 / 74 | 0 / 0 |
+
+三处未判定的高分三号原景分别为 UFS 3 m、FSI 5 m 和 FSII 10 m，分辨率与成像模式仅用于筛查。两套数据的地理区域是否重叠尚未核实。若需判定其余 11 张，优先索取 AIR 原景目录 ID、成像时刻或有效地理配准的原 TIFF 与产品元数据；在无标识但有原图时，可按原景做经几何验证的图像配准诊断，普通整图哈希仅能排除字节相同的影像。
+
+复现使用原始 RSDD-SAR 附表 PDF（SHA-256 `2ea1bf0486b701a385829128a0274f4e54f2fcea991eb1d942eda37d4c71bc6a`）和 [V1 原景复核代码](code/INSTANCE_RSDD_ACQUISITION_RESERVE_20261123/build_reserve_roster.py) 中由字节长度及 SHA-256 固定的 `train.json` 和 `test.json` 图像元数据前缀。将附表各行最后一列编号区间按闭区间展开到 193 个编号，保留同一行的原景、传感器和八位采集日期。对文件名 `产品编号_切块行_切块列.jpg` 取第一个整数字段，查回原景，再用 `sensor == "TerraSAR-X" or (sensor == "GF-3" and acquisition_date > 20191231)` 统计可排除裁片和原景数。74 图原景保留集取 `train` 中原景不在 `test` 原景集合的每张裁片。分组统计以原景内去重计数。全程仅使用附表和图像元数据。
+
 ## 复核入口
 
 运行 `python compare_provenance.py <SLGSea_Datasets.zip> <AIR-SARShip-1.0/dota>`。如需复核 SARDet 历史暴露，在本地另行提供 `--sardet-train` 和 `--sardet-mapping`，对应文件 SHA-256 分别为 `5fd26a7431a70a9126ae14ffefce3c1d775244f9b6b0c9b444dc3edbc7a6f863` 和 `e0d814f6661657679ac355f52728df94cb0eb02d00756b7a0d97ce50aa787f55`。代码不输出逐实例明细。
