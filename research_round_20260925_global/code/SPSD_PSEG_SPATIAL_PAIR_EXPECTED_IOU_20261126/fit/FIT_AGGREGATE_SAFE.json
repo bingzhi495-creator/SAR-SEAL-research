@@ -1,0 +1,310 @@
+{
+  "elapsed_seconds": 22.99103939998895,
+  "fit_inputs_sha256": "fdeccf3748ee6075e382aa431ba17da39232428d69eb9ab90462fff64b87dccb",
+  "fit_only": true,
+  "fit_packet_sha256": "de25b5d0c76eceb75d20bcedf4ec779b8cabc0eec31fee59d7305d4c4e51d785",
+  "full_fit_kappa_state_sha256": "5766fd18f11dbff72625c080cbb4d87ebdb3b7d9625f62d48ea345e24af92cbf",
+  "geometry": {
+    "candidates_with_pairs": 848,
+    "candidates_without_pairs": 0,
+    "changed_nonspatial_edges": 21774,
+    "changed_nonspatial_fraction": 0.9976175203885275,
+    "geometry_sha256": "56e92524408b2e116d6e05c0ace0aa61d771811106620ba58c3f04b143560864",
+    "graph_distance": {
+      "local": {
+        "distance_one_edges": 21826,
+        "max_manhattan": 1,
+        "mean_manhattan": 1,
+        "median_manhattan": 1
+      },
+      "nonspatial": {
+        "distance_one_edges": 725,
+        "max_manhattan": 93,
+        "mean_manhattan": 15.745441216897278,
+        "median_manhattan": 13
+      }
+    },
+    "groups_with_at_least_two_pairs": 439,
+    "groups_with_pairs": 439,
+    "pairs_per_graph": 21826,
+    "same_vertices_and_signed_type": true,
+    "signed_type_pairs": {
+      "inner_inner": 6220,
+      "outer_inner": 9430,
+      "outer_outer": 6176
+    },
+    "total_common_candidates": 848
+  },
+  "group_bootstrap_draws": 4096,
+  "historical_test_opened": false,
+  "native_detector_forwards": 0,
+  "nested_base_heads": false,
+  "oof_fold_sha256": "217c7b6e13e5739ee13ffe21da3caa6fa010c716372f430cee6d80d7bb5d4308",
+  "oof_optimizer_updates": 5000,
+  "oof_probability_sha256": "04031bcfb6ed916d4e43ff3e362e45ecda866cbaf723e03ce1dba42f5d97aae7",
+  "pair_core_sha256": "a904c262f0ce554fb6fc6b6e92864f29566394fdd9f21981bd9a3858cd0791f2",
+  "prior_action_fit_result_sha256": "ae1b165a111a6b88939eb37b5741421259f0f39531c859a7c7663ad9116d1b05",
+  "prior_bank_readback_sha256": "8b280c6777d53e7125fb1c1f342d3eb7c33811ee18c700bf0f7be580a06f8af1",
+  "prior_bank_result_sha256": "4872b63ee24c8021e09612314161c691006607dceb3ea92a2ce27690016836e4",
+  "prior_counts": {
+    "actions": 5042,
+    "disagreeing_points": 16050,
+    "eligible_candidate_packets": 848,
+    "fit_groups_with_supervision": 439,
+    "fit_images_with_supervision": 447,
+    "match_supported_hulls": 848,
+    "native_endpoint_pairs": 26983,
+    "original_image_records": 732,
+    "pseg_native_match": 1218,
+    "reference_pairs": 1575,
+    "reference_pairs_ge050": 1488,
+    "shared_native_match": 1100,
+    "spsd_native_match": 1213
+  },
+  "protocol_sha256": "925c4d5287af89ddac0b6343d53a0edfc32517cf8a1edef451696deb44293d9c",
+  "qualified_for_fixed_rerender": true,
+  "references": {
+    "pseg": {
+      "held_scoring": {
+        "local": {
+          "independent": {
+            "mean": 0.4343795608189485,
+            "percentile95": [
+              0.41249329235600757,
+              0.45639419060369535
+            ]
+          },
+          "local": {
+            "mean": 0.37657775499916235,
+            "percentile95": [
+              0.35476537836638744,
+              0.39845065874151503
+            ]
+          },
+          "nonspatial": {
+            "mean": 0.4005478496494903,
+            "percentile95": [
+              0.37897658854565647,
+              0.42210780169238926
+            ]
+          }
+        },
+        "nonspatial": {
+          "independent": {
+            "mean": 0.48458440469204617,
+            "percentile95": [
+              0.45936290280165243,
+              0.5092281733617662
+            ]
+          },
+          "local": {
+            "mean": 0.49678212883374545,
+            "percentile95": [
+              0.46800879801432044,
+              0.5250307272131308
+            ]
+          },
+          "nonspatial": {
+            "mean": 0.4792740640710492,
+            "percentile95": [
+              0.45320074542362926,
+              0.5049134266259813
+            ]
+          }
+        }
+      },
+      "held_local_minus_controls": {
+        "local": {
+          "local_minus_independent": {
+            "mean": -0.05780180581978621,
+            "percentile95": [
+              -0.06265369572008186,
+              -0.053064059224619514
+            ]
+          },
+          "local_minus_nonspatial": {
+            "mean": -0.02397009465032805,
+            "percentile95": [
+              -0.026480343575236286,
+              -0.021450214037738616
+            ]
+          }
+        },
+        "nonspatial": {
+          "local_minus_independent": {
+            "mean": 0.012197724141699244,
+            "percentile95": [
+              0.006051906378775763,
+              0.01846940601793566
+            ]
+          },
+          "local_minus_nonspatial": {
+            "mean": 0.01750806476269629,
+            "percentile95": [
+              0.013420597588233244,
+              0.02157992213514834
+            ]
+          }
+        }
+      },
+      "folds": [
+        {
+          "fold": 0,
+          "held_group_count": 88,
+          "held_pair_count": 4311,
+          "train_group_count": 351
+        },
+        {
+          "fold": 1,
+          "held_group_count": 88,
+          "held_pair_count": 4618,
+          "train_group_count": 351
+        },
+        {
+          "fold": 2,
+          "held_group_count": 88,
+          "held_pair_count": 4054,
+          "train_group_count": 351
+        },
+        {
+          "fold": 3,
+          "held_group_count": 88,
+          "held_pair_count": 4181,
+          "train_group_count": 351
+        },
+        {
+          "fold": 4,
+          "held_group_count": 87,
+          "held_pair_count": 4662,
+          "train_group_count": 352
+        }
+      ],
+      "local_held_strictly_better": true
+    },
+    "spsd": {
+      "held_scoring": {
+        "local": {
+          "independent": {
+            "mean": 0.5526640963658344,
+            "percentile95": [
+              0.5382352419689015,
+              0.5677360218646161
+            ]
+          },
+          "local": {
+            "mean": 0.4635977236170644,
+            "percentile95": [
+              0.447865816362012,
+              0.4799167920596759
+            ]
+          },
+          "nonspatial": {
+            "mean": 0.4934512158949145,
+            "percentile95": [
+              0.47861657973302757,
+              0.5090112096533527
+            ]
+          }
+        },
+        "nonspatial": {
+          "independent": {
+            "mean": 0.597596392266301,
+            "percentile95": [
+              0.582010540577615,
+              0.6138324094884658
+            ]
+          },
+          "local": {
+            "mean": 0.6072743948390807,
+            "percentile95": [
+              0.588875426399877,
+              0.6260584607788661
+            ]
+          },
+          "nonspatial": {
+            "mean": 0.5866539940047283,
+            "percentile95": [
+              0.5703681213697153,
+              0.6035482856776987
+            ]
+          }
+        }
+      },
+      "held_local_minus_controls": {
+        "local": {
+          "local_minus_independent": {
+            "mean": -0.08906637274876997,
+            "percentile95": [
+              -0.0936678267780301,
+              -0.08425327801269811
+            ]
+          },
+          "local_minus_nonspatial": {
+            "mean": -0.02985349227785006,
+            "percentile95": [
+              -0.03221873284494457,
+              -0.027353019704724698
+            ]
+          }
+        },
+        "nonspatial": {
+          "local_minus_independent": {
+            "mean": 0.009678002572779877,
+            "percentile95": [
+              0.0032983929250067034,
+              0.01601348380315529
+            ]
+          },
+          "local_minus_nonspatial": {
+            "mean": 0.020620400834352442,
+            "percentile95": [
+              0.016891696966062842,
+              0.024449908756117036
+            ]
+          }
+        }
+      },
+      "folds": [
+        {
+          "fold": 0,
+          "held_group_count": 88,
+          "held_pair_count": 4311,
+          "train_group_count": 351
+        },
+        {
+          "fold": 1,
+          "held_group_count": 88,
+          "held_pair_count": 4618,
+          "train_group_count": 351
+        },
+        {
+          "fold": 2,
+          "held_group_count": 88,
+          "held_pair_count": 4054,
+          "train_group_count": 351
+        },
+        {
+          "fold": 3,
+          "held_group_count": 88,
+          "held_pair_count": 4181,
+          "train_group_count": 351
+        },
+        {
+          "fold": 4,
+          "held_group_count": 87,
+          "held_pair_count": 4662,
+          "train_group_count": 352
+        }
+      ],
+      "local_held_strictly_better": true
+    }
+  },
+  "source_gate_labels_opened": false,
+  "source_gate_points_opened": false,
+  "status": "SPSD_PSEG_SPATIAL_PAIR_FIT_COMPLETE",
+  "transfer_labels_opened": false,
+  "worker_sha256": "280cb7547a3d85d02806ab62dd05519c6dd81626d6903e7fb0a2a9862dd47e47",
+  "observed_fit_result_sha256": "4f80ed3a7d7792ec7a132db3c5203f8faaf47a38efb332259b3077cd29406f1f",
+  "observed_natural_terminal_sha256": "2741b4a4e7d9c2685499cb873eb4d0ae973df186db99a7d87f874e317076d376",
+  "coefficient_values_published": false
+}
