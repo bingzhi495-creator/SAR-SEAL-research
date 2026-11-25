@@ -12,3 +12,7 @@
 坐标与检测框比对进一步确认，SAR-SSP 裁片来自 AIR-SARShip-1.0 的 31 个高分三号原景。历史 B1 的 SARDet-100K 初始化覆盖其中 27 景，该权重不可作为全量无接触外测对照。现行冻结 RF-DETR center5202 的项目链为官方 COCO 初始化和 HRSID FIT。正式结果应保留母景分组及与其他高分三号队列的采集级限制。[来源匹配及模型链](SAR_SSP_PROVENANCE_NOTE_20261125.md)
 
 [真实验收回执](results/SAR_SSP_AUTHOR_INTAKE_SAFE_20261125.json) · [复现脚本](code/SAR_SSP_AUTHOR_INTAKE_20261125/audit_archive.py)
+
+## 冻结原生模型推理
+
+现行 COCO→HRSID 载体已经在全部 232 张官方验证图完成 GPU 推理，运行 78.1 秒，保留 22,741 个检测候选及 8,592 个面积合格的细化概率平面。独立 CPU 核验逐项复核原生掩膜和候选审计，一致通过。推理与回读未打开目标标注，未进行优化器更新。候选计数属于载体输出，船体覆盖与精度待固定规则评分。[冻结推理协议](code/SAR_SSP_AIR_FROZEN_20261125/CAPTURE_PRELOCK.md) · [推理回执](results/SAR_SSP_VAL232_RFDETR_CAPTURE_SAFE_20261125.json) · [独立回读回执](results/SAR_SSP_VAL232_RFDETR_NATIVE_VERIFY_SAFE_20261125.json)
