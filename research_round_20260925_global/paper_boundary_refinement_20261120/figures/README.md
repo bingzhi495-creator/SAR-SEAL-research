@@ -8,9 +8,10 @@
 | 2. Local occupancy and supervision | [SVG](method_native_occupancy.svg) | [PDF](method_native_occupancy.pdf) |
 | 3. Fixed versus independent selection at the same count | [SVG](method_signed_selection.svg) | [PDF](method_signed_selection.pdf) |
 | 4. Controlled Phoenix writes | [SVG](method_phoenix_controls.svg) | [PDF](method_phoenix_controls.pdf) |
-| 9. Observed SegRefiner gain and loss cases | [SVG](rsdd74_segrefiner_cases_binned.svg) | [PDF](rsdd74_segrefiner_cases_binned.pdf) |
+| 6. Same predictions under two author references | [SVG](reference_disagreement_effects.svg) | [PDF](reference_disagreement_effects.pdf) |
+| 10. Observed SegRefiner gain and loss cases | [SVG](rsdd74_segrefiner_cases_binned.svg) | [PDF](rsdd74_segrefiner_cases_binned.pdf) |
 
-From this directory use `python draw_core_method_redesign.py --output .` for Figs. 1 and 3, and `python draw_supporting_stages_redesign.py --out .` for Figs. 2 and 4. The first script uses the worked example in `draw_matched_budget_pipeline.py`. For Fig. 9, run `python plot_rsdd_cases_redesign.py --help` to see the required released summary and closed local inputs. [Case selection](../../results/RSDD74_SEGREFINER_STOCK_CASES_SAFE_20261123.json) · [Review and rationale](../../style_review/STYLE_REDESIGN_20261123.md)
+From this directory use `python draw_core_method_redesign.py --output .` for Figs. 1 and 3, and `python draw_supporting_stages_redesign.py --out .` for Figs. 2 and 4. The first script uses the worked example in `draw_matched_budget_pipeline.py`. For Fig. 6, run `python plot_reference_disagreement.py --results ../../results --figures .` to rebuild the vector plot from the published aggregate scores. For Fig. 10, run `python plot_rsdd_cases_redesign.py --help` to see the required released summary and closed local inputs. [Case selection](../../results/RSDD74_SEGREFINER_STOCK_CASES_SAFE_20261123.json) · [Review and rationale](../../style_review/STYLE_REDESIGN_20261123.md)
 
 
 ## Other main figures

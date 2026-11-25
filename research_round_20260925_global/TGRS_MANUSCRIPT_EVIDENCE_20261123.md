@@ -1,6 +1,6 @@
 # 边界精修论文审阅稿与证据索引
 
-更新于 2026 年 11 月 25 日。19 页 IEEE 双栏英文稿面向 TGRS 学术审阅，作者信息按约定保留占位。摘要、三条贡献和结论以等预算位置决策为主线。方法包含一张总览和三张细节图，补全灰度与动态空间吸引力定义，并推导预测占用误差如何影响选点的实际收益。实验数据总表增加 SAR-SSP 作者验证集，明确栅格 IoU、母景权重和作者训练验证共享母景。[英文 PDF](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图件及重建说明](paper_boundary_refinement_20261120/figures/README.md) · [52 篇原文研读与版式修订](style_review/STYLE_REDESIGN_20261123.md)
+更新于 2026 年 11 月 25 日。20 页 IEEE 双栏英文稿面向 TGRS 学术审阅，作者信息按约定保留占位。摘要、三条贡献和结论以等预算位置决策为主线。引言用细长船体的像素偏移与 HRSID 几何证据引出研究问题，相关工作分别梳理原生网格监督、保面积交换和局部／整掩膜精修。图 6 以同一预测和候选呈现双参考效果、配对区间及分歧像素贡献，图件由已核验的聚合结果生成。方法包含一张总览和三张细节图，补全灰度与动态空间吸引力定义，并推导预测占用误差如何影响选点的实际收益。实验数据总表增加 SAR-SSP 作者验证集，明确栅格 IoU、母景权重和作者训练验证共享母景。[英文 PDF](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图件及重建说明](paper_boundary_refinement_20261120/figures/README.md) · [52 篇原文研读与版式修订](style_review/STYLE_REDESIGN_20261123.md)
 
 ## 主张与核验记录
 

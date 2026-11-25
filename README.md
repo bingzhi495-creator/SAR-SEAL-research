@@ -60,7 +60,7 @@
 
 - Instance-RSDD 74 图的冻结 Phoenix 整掩膜对照完成。LVIS 面积规则比同量 Phoenix **−17.779 mask AP、−9.825 连续 IoU 点 [−14.014, −6.440]**，原候选外溢面积明显增加。同量 Phoenix 的 **58.976 AP** 结果保留。[实测、局限及复现](research_round_20260925_global/RSDD74_PHOENIX_WHOLEMASK_ACTUAL_20261123.md)
 
-- 英文论文按 **52 篇原稿研读**重排为 **19 页 IEEE 双栏审阅稿**，包含 12 图、12 表。摘要与结论以等预算主对照为主线，方法补充估计误差界和动态空间吸引力的计算，数据总表列出 SAR-SSP 并说明栅格参考与母景关系。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [逐篇评阅和改版对照](research_round_20260925_global/style_review/STYLE_REDESIGN_20261123.md) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+- 英文论文按 **52 篇原稿研读**重排为 **20 页 IEEE 双栏审阅稿**，包含 13 图、12 表。摘要与结论以等预算主对照为主线，方法补充估计误差界和动态空间吸引力的计算，数据总表列出 SAR-SSP 并说明栅格参考与母景关系。引言从细长船体的边界偏移和 HRSID 几何证据展开，相关工作分三条技术脉络，图 6 对照两套作者标注下的 IoU 效果与同一候选的标签分歧。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [逐篇评阅和改版对照](research_round_20260925_global/style_review/STYLE_REDESIGN_20261123.md) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
 - Instance-RSDD 严格阈值重评分完成。5203 高分三号 583 图同动态预算的学习减动态 AP90 由栅格 **−0.149** 变为连续 **+0.004**，表示改变量 **+0.153 [−0.195, 0.579]**。原 COCO 栅格指标保留。[实测与复现](research_round_20260925_global/RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md)
 
