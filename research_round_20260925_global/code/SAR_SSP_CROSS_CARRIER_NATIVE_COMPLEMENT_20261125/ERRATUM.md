@@ -1,0 +1,4 @@
+# Pre-label D-FINE box endpoint clarification
+
+The first observed run terminated during native candidate admission, before archive truth or any coverage computation. Its overly strict sorted-endpoint assertion required both axes of every original rectangle to have nonnegative extent. A complete label-free check found 4,801 of 23,200 D-FINE candidates with a reversed endpoint on at least one axis. All 23,200 endpoints were finite and already within the 500 by 500 canvas. Preserve original coordinates and reproduce the original D-FINE SAR-SSP scorer's conversion to XYWH with max(0, x1 - x0) and max(0, y1 - y0). This yields zero box IoU for reversed or otherwise degenerate extents. Keep all candidates and their original masks, ranks, scores, cohorts and comparisons. RF rectangles keep the original stronger ordered-endpoint gate. Maintain the original prelock and retain the failed terminal and source.
+

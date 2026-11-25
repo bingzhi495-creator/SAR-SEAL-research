@@ -1,0 +1,386 @@
+{
+  "bootstrap_replicates": 4096,
+  "bootstrap_seed": 5297,
+  "comparisons": {
+    "free_matched_count_minus_fixed": {
+      "common_changed_groups": 123,
+      "common_changed_hulls": 196,
+      "common_changed_signs": {
+        "P-1_S-1": 15,
+        "P-1_S0": 8,
+        "P-1_S1": 11,
+        "P0_S-1": 34,
+        "P0_S0": 40,
+        "P0_S1": 23,
+        "P1_S-1": 17,
+        "P1_S0": 14,
+        "P1_S1": 34
+      },
+      "components": {
+        "assignment_present_vs_absent": {
+          "percentile95_points": [
+            -0.006837282070085971,
+            0.0013463731060987035
+          ],
+          "points": -0.0022380917489057722
+        },
+        "assignment_rank_switch": {
+          "percentile95_points": [
+            -0.009736702451438829,
+            -0.0003265412748171369
+          ],
+          "points": -0.003630487990059319
+        },
+        "different_assignment_reference_shape": {
+          "percentile95_points": [
+            -0.007479076098677772,
+            0.002728176921210969
+          ],
+          "points": -0.0021448101441708294
+        },
+        "low_overlap_or_unpaired_composition": {
+          "percentile95_points": [
+            -0.008398317152033251,
+            0.0055960946648114535
+          ],
+          "points": -0.001189061660468677
+        },
+        "paired_reference_count_weight": {
+          "percentile95_points": [
+            -0.0008554855321924388,
+            0.0
+          ],
+          "points": -0.00028516184406414624
+        },
+        "same_candidate_iou_normalization": {
+          "percentile95_points": [
+            -0.004662305041771769,
+            0.0030997698085998065
+          ],
+          "points": -0.0007704887337996309
+        },
+        "same_candidate_label_disagreement": {
+          "percentile95_points": [
+            -0.08051894960786224,
+            0.006304064633752892
+          ],
+          "points": -0.037055180358057195
+        }
+      },
+      "correspondence_counts": {
+        "assigned": 544,
+        "assigned_at_least_075": 268,
+        "assigned_at_least_090": 10,
+        "assigned_below_050": 51,
+        "both_missing": 108,
+        "different_rank": 10,
+        "one_missing": 17,
+        "reference_0_outside_primary_pairs": 53,
+        "reference_1_outside_primary_pairs": 54,
+        "same_rank": 358
+      },
+      "full_shift": {
+        "percentile95_points": [
+          -0.09317421407481188,
+          -0.00045782318206895155
+        ],
+        "points": -0.04731328247952556
+      },
+      "identical_candidate_cell_edits": {
+        "common_background_added": 133,
+        "common_background_removed": 194,
+        "common_foreground_added": 474,
+        "common_foreground_removed": 453,
+        "pseg_only_added": 283,
+        "pseg_only_removed": 233,
+        "spsd_only_added": 47,
+        "spsd_only_removed": 57
+      },
+      "maximum_image_error": 2.4341639814906557e-14,
+      "secondary_common_075": {
+        "changed_groups": 77,
+        "changed_hulls": 110,
+        "components": {
+          "iou_normalization": {
+            "percentile95_points": [
+              -0.0031012666484274928,
+              0.0019721756788477485
+            ],
+            "points": -0.0004610059170290737
+          },
+          "label_disagreement": {
+            "percentile95_points": [
+              -0.0672614594679122,
+              -0.0005019108357342734
+            ],
+            "points": -0.03221058424740064
+          },
+          "total": {
+            "percentile95_points": [
+              -0.06866016847025605,
+              5.0705427626186045e-05
+            ],
+            "points": -0.03267159016442971
+          }
+        }
+      }
+    },
+    "free_natural_minus_raw": {
+      "common_changed_groups": 137,
+      "common_changed_hulls": 262,
+      "common_changed_signs": {
+        "P-1_S-1": 29,
+        "P-1_S0": 9,
+        "P-1_S1": 5,
+        "P0_S-1": 62,
+        "P0_S0": 29,
+        "P0_S1": 27,
+        "P1_S-1": 33,
+        "P1_S0": 22,
+        "P1_S1": 46
+      },
+      "components": {
+        "assignment_present_vs_absent": {
+          "percentile95_points": [
+            -0.011361612955629452,
+            0.006153752326799738
+          ],
+          "points": -0.001785442515570781
+        },
+        "assignment_rank_switch": {
+          "percentile95_points": [
+            -0.035816435122624786,
+            0.0026298441925546056
+          ],
+          "points": -0.012445801936077177
+        },
+        "different_assignment_reference_shape": {
+          "percentile95_points": [
+            -0.021420032788852624,
+            0.000727980807200758
+          ],
+          "points": -0.008761219517532538
+        },
+        "low_overlap_or_unpaired_composition": {
+          "percentile95_points": [
+            -0.0827829209196253,
+            -0.0069878466157192835
+          ],
+          "points": -0.038160020518480685
+        },
+        "paired_reference_count_weight": {
+          "percentile95_points": [
+            -0.0005437653183113069,
+            0.003490335894019564
+          ],
+          "points": 0.0009821901919027523
+        },
+        "same_candidate_iou_normalization": {
+          "percentile95_points": [
+            -0.024007714032422047,
+            -0.002218979950447947
+          ],
+          "points": -0.012860986900920952
+        },
+        "same_candidate_label_disagreement": {
+          "percentile95_points": [
+            -0.3882752096116733,
+            -0.19320053071821733
+          ],
+          "points": -0.2864272134884257
+        }
+      },
+      "correspondence_counts": {
+        "assigned": 544,
+        "assigned_at_least_075": 268,
+        "assigned_at_least_090": 10,
+        "assigned_below_050": 51,
+        "both_missing": 108,
+        "different_rank": 10,
+        "one_missing": 17,
+        "reference_0_outside_primary_pairs": 53,
+        "reference_1_outside_primary_pairs": 54,
+        "same_rank": 358
+      },
+      "full_shift": {
+        "percentile95_points": [
+          -0.47933825928415336,
+          -0.24678658098830297
+        ],
+        "points": -0.35945849468510516
+      },
+      "identical_candidate_cell_edits": {
+        "common_background_added": 209,
+        "common_background_removed": 281,
+        "common_foreground_added": 839,
+        "common_foreground_removed": 934,
+        "pseg_only_added": 599,
+        "pseg_only_removed": 384,
+        "spsd_only_added": 51,
+        "spsd_only_removed": 99
+      },
+      "maximum_image_error": 2.4868995751603507e-14,
+      "secondary_common_075": {
+        "changed_groups": 84,
+        "changed_hulls": 131,
+        "components": {
+          "iou_normalization": {
+            "percentile95_points": [
+              -0.009150723288086299,
+              0.0017795759174983033
+            ],
+            "points": -0.0033387052056235655
+          },
+          "label_disagreement": {
+            "percentile95_points": [
+              -0.16349366022157397,
+              -0.04635565088336811
+            ],
+            "points": -0.1023108975710957
+          },
+          "total": {
+            "percentile95_points": [
+              -0.1689268449432918,
+              -0.04807414797603098
+            ],
+            "points": -0.10564960277671927
+          }
+        }
+      }
+    },
+    "learned_at_attraction_count_minus_attraction_static_at_dynamic_count": {
+      "common_changed_groups": 137,
+      "common_changed_hulls": 262,
+      "common_changed_signs": {
+        "P-1_S-1": 68,
+        "P-1_S0": 18,
+        "P-1_S1": 13,
+        "P0_S-1": 71,
+        "P0_S0": 20,
+        "P0_S1": 19,
+        "P1_S-1": 25,
+        "P1_S0": 5,
+        "P1_S1": 23
+      },
+      "components": {
+        "assignment_present_vs_absent": {
+          "percentile95_points": [
+            -0.01890209393536593,
+            0.0036750728177502856
+          ],
+          "points": -0.005770718798406565
+        },
+        "assignment_rank_switch": {
+          "percentile95_points": [
+            -0.039193908651971254,
+            0.011965683315843377
+          ],
+          "points": -0.009448061234906494
+        },
+        "different_assignment_reference_shape": {
+          "percentile95_points": [
+            -0.04167841447946634,
+            0.0012954357950784765
+          ],
+          "points": -0.01674922306004251
+        },
+        "low_overlap_or_unpaired_composition": {
+          "percentile95_points": [
+            -0.041122356464452246,
+            0.006203414440652931
+          ],
+          "points": -0.014410039023270397
+        },
+        "paired_reference_count_weight": {
+          "percentile95_points": [
+            0.0,
+            0.00503504889791976
+          ],
+          "points": 0.0018140314692472836
+        },
+        "same_candidate_iou_normalization": {
+          "percentile95_points": [
+            -0.05295484097141116,
+            -0.02071017226624837
+          ],
+          "points": -0.03636643583459525
+        },
+        "same_candidate_label_disagreement": {
+          "percentile95_points": [
+            -0.43978293989736805,
+            -0.1933377085604283
+          ],
+          "points": -0.31260318184736896
+        }
+      },
+      "correspondence_counts": {
+        "assigned": 544,
+        "assigned_at_least_075": 268,
+        "assigned_at_least_090": 10,
+        "assigned_below_050": 51,
+        "both_missing": 108,
+        "different_rank": 10,
+        "one_missing": 17,
+        "reference_0_outside_primary_pairs": 53,
+        "reference_1_outside_primary_pairs": 54,
+        "same_rank": 358
+      },
+      "full_shift": {
+        "percentile95_points": [
+          -0.5367417022239998,
+          -0.2567082365599057
+        ],
+        "points": -0.3935336283293428
+      },
+      "identical_candidate_cell_edits": {
+        "common_background_added": 416,
+        "common_background_removed": 251,
+        "common_foreground_added": 1075,
+        "common_foreground_removed": 1501,
+        "pseg_only_added": 839,
+        "pseg_only_removed": 570,
+        "spsd_only_added": 106,
+        "spsd_only_removed": 114
+      },
+      "maximum_image_error": 3.26405569239796e-14,
+      "secondary_common_075": {
+        "changed_groups": 84,
+        "changed_hulls": 131,
+        "components": {
+          "iou_normalization": {
+            "percentile95_points": [
+              -0.01771154693919496,
+              -0.0033271559670719356
+            ],
+            "points": -0.010248252273472626
+          },
+          "label_disagreement": {
+            "percentile95_points": [
+              -0.2371832369771973,
+              -0.081613621249246
+            ],
+            "points": -0.1560417176702017
+          },
+          "total": {
+            "percentile95_points": [
+              -0.25009347581474184,
+              -0.08962727104494393
+            ],
+            "points": -0.16628996994367434
+          }
+        }
+      }
+    }
+  },
+  "elapsed_seconds": 31.63492669997504,
+  "exact_both_reference_parity": true,
+  "images": 232,
+  "model_forwards": 0,
+  "native_candidates": 23200,
+  "natural_common_disagreement_advances_source_design": true,
+  "optimizer_updates": 0,
+  "prior_result_sha256": "dd152bd587d64453b874a9a34e6531adacbd7bf163de4f9b22ffb25c4dea52fc",
+  "protocol_sha256": "408603442e7e28a7ce5241b95628ba10d3fbcfd5376844fe4a16c25a732a4c5b",
+  "status": "SPSD_PSEG232_SHARED_HULL_DECOMPOSITION_COMPLETE",
+  "worker_sha256": "2434cbb4d8b9bd91aecbc4dfbfe106ac4f76c9925ef3a10d8296dced8ca5e5c7"
+}
