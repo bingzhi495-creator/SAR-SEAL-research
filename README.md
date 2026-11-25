@@ -4,13 +4,12 @@
 
 ## 当前状态（2026-11-25）
 
-- SAR-SSP 作者压缩包已验收。232 张官方验证图的 139 个实例轮廓全部通过 PNG／JSON 核验，31 个母图均也出现在作者训练划分，原始采集身份还需核对。[数据和证据范围](research_round_20260925_global/SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md)
+- SAR-SSP 作者压缩包已验收。232 张官方验证图的 139 个实例轮廓全部通过 PNG／JSON 核验，31 个母图均也出现在作者训练划分，坐标与船框确认来自 AIR-SARShip-1.0 的高分三号影像，已排除历史 B1 作为全量无接触外测载体。[验收](research_round_20260925_global/SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md) · [溯源](research_round_20260925_global/SAR_SSP_PROVENANCE_NOTE_20261125.md)
 
 - 固定加点的删点限量恢复原版 +0.907／+0.878 AP（RSDD／PSeg），仍低于冻结独立选点。浅层同量的连续几何改善未转化为达到门槛的 AP 增益。[实测回执和复现](research_round_20260925_global/SEGREFINER_DELETION_CAP_ACTUAL_20261125.md)
 
 - 同量删点几何上限已用 Instance-RSDD／PSeg 的同一原版候选算清。理想删点位置留有 **5.594／3.512 连续 IoU 点**余量，允许减少原删点数又增加 **4.256／4.189 点**。[闭合实测、公式和复现](research_round_20260925_global/SEGREFINER_DELETION_BUDGET_CEILING_ACTUAL_20261125.md)
 
-- 已找到 SAR-SSP 作者数据包，验证集按发布说明含 232 图、139 个船舶实例。压缩包内的成像来源与标注仍待核验。[作者入口和资格](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#sar-ssp-作者发布已定位2026-11-25)
 
 - PSeg-SSDD 的原版、增删分解和等量位置评分已完成。67 艘、57 组的固定匹配中，两个删点对照使连续 IoU 下降 4.033 和 3.977 点，与 Instance-RSDD 的结果一致。浅层删点的实用增益未复现。[原版与本地对照](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md) · [增删分解](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md) · [位置对照](research_round_20260925_global/SEGREFINER_DEPTH_ACTUAL_20261123.md)
 
@@ -40,7 +39,7 @@
 
 - Instance-RSDD 74 图的冻结 Phoenix 整掩膜对照完成。LVIS 面积规则比同量 Phoenix **−17.779 mask AP、−9.825 连续 IoU 点 [−14.014, −6.440]**，原候选外溢面积明显增加。同量 Phoenix 的 **58.976 AP** 结果保留。[实测、局限及复现](research_round_20260925_global/RSDD74_PHOENIX_WHOLEMASK_ACTUAL_20261123.md)
 
-- 英文论文按 **52 篇原稿研读**重排为 **17 页 IEEE 双栏审阅稿**，包含 11 图、11 表。重绘总览、三张局部机制图和 SegRefiner 定性对比，重排主结果表、改写摘要及关键推导。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [逐篇评阅和改版对照](research_round_20260925_global/style_review/STYLE_REDESIGN_20261123.md) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+- 英文论文按 **52 篇原稿研读**重排为 **17 页 IEEE 双栏审阅稿**，包含 11 图、11 表，已纳入 11 月 25 日删点限量对照。重绘总览、三张局部机制图和 SegRefiner 定性对比，重排主结果表、改写摘要及关键推导。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [逐篇评阅和改版对照](research_round_20260925_global/style_review/STYLE_REDESIGN_20261123.md) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
 - Instance-RSDD 严格阈值重评分完成。5203 高分三号 583 图同动态预算的学习减动态 AP90 由栅格 **−0.149** 变为连续 **+0.004**，表示改变量 **+0.153 [−0.195, 0.579]**。原 COCO 栅格指标保留。[实测与复现](research_round_20260925_global/RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md)
 
