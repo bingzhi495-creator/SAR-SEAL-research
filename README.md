@@ -2,9 +2,15 @@
 
 <!-- U57_U60_ACTUAL_20261021_01 -->
 
-## 当前状态（2026-11-25）
+## 当前状态（2026-11-26）
 
-- 可变增删分配首次通过预锁的两套参考及特异性门槛。每候选保持相同 2k 总翻转，使用相同目标函数时，PSeg／SPSD Mask AP +2.461／+1.782，固定 IoU +0.993／+0.580。已启动 5298／5299 重复与冻结跨库检验。[闭合评分](research_round_20260925_global/code/SPSD_PSEG_SCORE_VARIABLE_SIGNED_BUDGET_SEED5297_20261125/ACTUAL.md)
+- 可变增删分配在三个种子上均超过各自的等量对照。相同候选、目标函数及逐候选总翻转数下，PSeg-SSDD／SPSD 的平均 mask AP 为 +2.299／+1.751 点，固定匹配 IoU 为 +0.971／+0.573 点。两套标注对应相同的 183 张源域开发影像。[重复评分](research_round_20260925_global/code/SPSD_PSEG_REPEAT_VARIABLE_SIGNED_BUDGET_SEEDS5298_5299_20261126/ACTUAL.md)
+- 直接迁移到 SAR-SSP 232 张作者验证图，mask AP −0.139 点，固定匹配 IoU −0.212 点 [−0.547, 0.104]。漏分减少，船外误分增加，未达到预锁的跨库门槛。[冻结迁移评分](research_round_20260925_global/code/SAR_SSP_DFINE_BCE5297_VARIABLE_SIGN_TRANSFER_20261126/ACTUAL.md)
+- 更新 21 页 IEEE 双栏英文审阅稿，含 14 图和 13 表，添加总翻转量固定时的增删配额公式、效应分解图及三种子结果表。作者和投稿信息按约定留为占位。[PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.tex) · [读图与复现](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+
+## 研究记录（2026-11-25）
+
+- 可变增删分配首次通过预锁的两套参考及特异性门槛。每候选保持相同 2k 总翻转，使用相同目标函数时，PSeg／SPSD Mask AP +2.461／+1.782，固定 IoU +0.993／+0.580。本记录为首次种子，跨库和新增种子结果见 11 月 26 日。[闭合评分](research_round_20260925_global/code/SPSD_PSEG_SCORE_VARIABLE_SIGNED_BUDGET_SEED5297_20261125/ACTUAL.md)
 
 
 - 选择性采用固定 2,844 个候选和逐图逐 k 构成。学习排序较同量原边际规则在 PSeg／SPSD 的固定 IoU 为 +0.084／+0.154 点，区间均为正。较全量 BCE 联合为 −0.090／−0.243 点，未通过总门槛。同菜单全船体真值辅助联合上界 **+0.0586 点**，低于 +0.15。[真实评分](research_round_20260925_global/code/SPSD_PSEG_GATE_SELECTIVE_BCE_ADOPTION_SEED5297_20261125/ACTUAL.md) · [完整上界](research_round_20260925_global/code/SPSD_PSEG_GATE_SELECTIVE_BCE_ALL_HULL_ENVELOPE_20261125/ACTUAL.md)

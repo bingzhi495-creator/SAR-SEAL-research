@@ -8,7 +8,7 @@
 \maketitle
 
 \begin{abstract}
-A one-pixel boundary displacement can markedly reduce overlap for a narrow synthetic aperture radar (SAR) ship mask while preserving its area. We estimate fractional cell occupancy with a 1,321-parameter point head and test independent ranking of additions and removals against distance pairing. The comparison holds detector candidates, confidence scores, eligible cells and signed edit counts fixed. Independent selection gains 0.81--0.91 mask average precision (AP) points across D-FINE and RF-DETR on HRSID DEV705. Two frozen RF-DETR fits evaluated on the same 583 Gaofen-3 chips from Instance-RSDD gain 0.48 and 0.30 AP points and 0.259 and 0.196 continuous intersection-over-union points, respectively. Across the same 232 SAR-SSP validation chips, the AP differences for RF-DETR and D-FINE are \(-0.005\) and \(+0.076\) points, with scene-balanced discrete IoU intervals spanning zero. Separate experiments with fixed pretrained refiner responses show that constraining the number of edits can reduce excessive foreground changes on Instance-RSDD and PSeg-SSDD. The observed gains establish where local boundary edits are useful and where limited proposal coverage constrains them.
+A one-pixel boundary displacement can substantially reduce the overlap of a narrow synthetic aperture radar (SAR) ship mask. We separate two decisions under a fixed edit count: which boundary cells to change and how many to add or remove. With identical signed counts, independent endpoint ranking gains 0.81--0.91 mask average precision (AP) points over distance pairing across D-FINE and RF-DETR on HRSID DEV705. Two frozen RF-DETR fits gain 0.48 and 0.30 points on the same Gaofen-3 subset of Instance-RSDD. We then train a two-reference occupancy head and allow the signed allocation to vary while holding the total number of flips and the estimated-IoU objective fixed. Across three fits on the same 183 development images, mean mask AP gains are 2.299 and 1.751 points under PSeg-SSDD and SPSD, with group-balanced fixed IoU gains of 0.971 and 0.573 points. Additional reference intersection offsets the cost of the larger predicted masks. The frozen allocation produces \(-0.139\) AP points and \(-0.212\) fixed IoU points on SAR-SSP, where missed area falls but excess foreground increases. The experiments distinguish an effect of boundary allocation on the source cohort and a limit on its transfer.
 \end{abstract}
 \begin{IEEEkeywords}
 Synthetic aperture radar, ship instance segmentation, boundary refinement, native image grid.
@@ -24,7 +24,7 @@ The masks on HRSID show why enlarging the writable region alone is insufficient.
 We therefore ask whether a local editor can improve a retained SAR instance by moving the same number of cells, with the detection score and candidate identity fixed. Distance pairing commits each addition to a nearby removal. If those locations differ in their likelihood of belonging to the hull, a constraint on proximity can exclude an exchange that would recover more of the footprint. We test this restriction separately from point scoring and study when a wider refinement policy spends too many edits. Our contributions are as follows.
 \begin{enumerate}
 \item We estimate fractional hull occupancy on the detector's native image grid. Exact polygon--cell intersections supervise a compact point head that uses a common input representation for D-FINE-seg and RF-DETR \cite{dfine,rfdetr}.
-\item We derive how signed boundary edits affect overlap under fixed predicted area and evaluate independent addition and removal sites against distance pairing with identical candidates and edit counts. Two released sets of footprints for the same SSDD images let us measure how label differences change the apparent benefit of these edits.
+\item We derive how signed boundary edits affect overlap under fixed predicted area and evaluate independent addition and removal sites against distance pairing with identical candidates and edit counts. A second matched comparison allows the signed allocation to vary at an identical total count and evaluates the same objective under two reference masks. Two released sets of footprints for the same SSDD images let us measure how label differences change the apparent benefit of these edits.
 \item We compare local ranking and general-purpose refinement while controlling which cells may change and how many writes are made. Experiments across detectors and data partitions measure the gains, the loss from excessive edits and the limits imposed by native proposal coverage.
 \end{enumerate}
 
@@ -176,6 +176,26 @@ The advantage in Eq.~\eqref{eq:independent-estimated-gain} is computed from esti
  \label{eq:selection-error}
 \end{equation}
 for \(k>0\). Thus prediction errors at cells on which the policies disagree can reverse the ordering of true overlap. COCO AP also permits reassignment at every raster IoU threshold while keeping the confidence order fixed.
+
+\subsection{Reference-robust allocation at a fixed number of flips}
+\label{sec:variable-sign}
+The equal-count comparison holds predicted area fixed to isolate the locations of the edits. A separate experiment allows the area to change at the original total count. We fix the D-FINE candidate, its endpoint support and the count \(k_s\) from dynamic attraction. The static-attraction write \(S\) is the incumbent. Let \(E=S_+\cup S_-\), \(P=|M|\), and \(\hat q_{ir}\) be occupancy at sampled cell \(i\) for reference \(r\). The two-output head maps \(28\to24\to24\to2\) with the duplicated 14-dimensional input and a zero-initialized residual output. Its 1,346 parameters include biases. The FIT sample contains 848 common positive-budget candidates from 447 images in 439 exact decoded groups. Each of the 1,000 AdamW updates samples 64 candidates through groups and then images. The loss is the average pointwise binary cross-entropy over the two reference labels, with equal weight per sampled candidate. A single fitted head supplies both comparisons at each seed.
+
+The surrogate reference area and native intersection are
+\begin{equation}
+\begin{aligned}
+ \hat T_r&=|M\setminus E|+\sum_{i\in E}\hat q_{ir},\\
+ \hat I_{r0}&=|M\setminus E|+\sum_{i\in E\cap M}\hat q_{ir}.
+\end{aligned}
+\label{eq:dual-area-proxy}
+\end{equation}
+The approximation uses saved native foreground outside the sampled sites. For an addition set \(A\subseteq S_+\) and removal set \(D\subseteq S_-\), let \(g_r=\sum_{i\in A}\hat q_{ir}-\sum_{i\in D}\hat q_{ir}\). The surrogate overlap is
+\begin{equation}
+ \hat f_r(A,D)=
+ \frac{\hat I_{r0}+g_r}{P+|A|-|D|+\hat T_r-\hat I_{r0}-g_r}.
+ \label{eq:dual-est-iou}
+\end{equation}
+For each feasible split \(a=|A|\), \(|D|=2k_s-a\), the two sides are ranked under eleven mixtures of the two occupancies, descending for additions and ascending for removals. Within each split we compare the combinations of the resulting sites, including the incumbent endpoints where their count permits. The selector maximizes the smaller of the two estimated IoU improvements over \(S\). Score ties favor the incumbent and then smaller changes in the signed allocation. The matched control uses the same objective and search while fixing \(a=k_s\). A restricted control permits \(a=k_s-1,k_s,k_s+1\) when feasible. Every writer flips exactly \(2k_s\) cells and retains the original detection and score. We also evaluate the mean-IoU and raw-intersection objectives over the full split range. This applies the idea of overlap-based volume selection~\cite{rankseg,rankrma} to a fixed budget of signed boundary edits.
 
 \subsection{Support and signed allocation for a frozen general refiner}
 \label{sec:phoenix}
@@ -433,6 +453,51 @@ Of the 493 reference pairs with mutual IoU at least 0.50, 358 share a native can
 
 
 
+
+\subsubsection{Variable signed allocation at the same total count}
+\label{sec:variable-sign-results}
+The dual-reference head uses 732 SSDD author training images for fitting and 183 disjoint source development images for evaluation. The fitting and development splits share no exact decoded image group. The development images have prior method-selection exposure. Each writer flips 115,384 cells over the same 18,300 candidates. The fixed-allocation control adds and removes 57,692 cells each. The variable-IoU writer at seed 5297 makes 67,777 additions and 47,607 removals. It gains 2.461 mask AP points and 0.993 fixed IoU points (\([0.747,1.244]\)) on PSeg-SSDD. On SPSD it gains 1.782 AP and 0.580 IoU points (\([0.298,0.877]\)). The archived fixed-area BCE robust and mean writers also give smaller scores on both references. Full-range writing objectives retain different strengths across the two annotations.
+
+Let \(P_0,P_1\) and \(I_0,I_1\) denote the areas and intersections of the fixed and variable outputs against the same reference. Write \(U_j=P_j+T-I_j\), \(\bar P=(P_0+P_1)/2\), and \(\bar I=(I_0+I_1)/2\). The exact difference is
+\begin{equation}
+ \Delta\mathrm{IoU} =
+ \frac{(\bar P+T)(I_1-I_0)-\bar I(P_1-P_0)}{U_0 U_1}.
+ \label{eq:area-overlap-parts}
+\end{equation}
+The added intersection contributes 2.243 and 2.041 IoU points on the two references. The area terms are \(-1.250\) and \(-1.461\) points (Fig.~\ref{fig:dual-budget-effect}). The group-mean absolute area errors fall by 4.705 and 1.520 cells. Among 206 common positive-budget hulls, 182 gain intersection under both references and five lose intersection under at least one. This shows that the expanded masks recover annotated hull area on these images. The reference-area estimate in Eq.~\eqref{eq:dual-area-proxy} depends on the native foreground outside the sampled sites. Both references place about 78\% of the static-mask error outside those sites.
+
+
+
+Table~\ref{tab:dual-sign-seeds} reports the two prespecified repeats together with the archived first fit. Each seed uses its own paired fixed and variable writers. Averaging the three seeds on the same images gives 2.299 and 1.751 mask AP points and 0.971 and 0.573 fixed IoU points on PSeg-SSDD and SPSD. The respective IoU intervals are \([0.740,1.207]\) and \([0.319,0.840]\). Each paired group draw resamples the complete vector of seed-specific differences. These intervals describe image-group variability after averaging the tested fits. All three fits share the source data and fixed detector.
+
+\begin{table}[t]
+\centering
+\caption{Variable allocation minus fixed allocation at identical total flips. Both policies use the same head at each seed. Values are percentage points.}
+\label{tab:dual-sign-seeds}
+\footnotesize
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{PSeg-SSDD} & \multicolumn{2}{c}{SPSD}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Seed & AP & IoU & AP & IoU\\
+\midrule
+5297 & 2.461 & 0.993 & 1.782 & 0.580\\
+5298 & 2.465 & 1.037 & 1.615 & 0.584\\
+5299 & 1.971 & 0.882 & 1.856 & 0.555\\
+\midrule
+Mean & 2.299 & 0.971 & 1.751 & 0.573\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+With the source head and policy frozen, the same fixed-total-flip comparison on 232 SAR-SSP validation chips yields \(-0.139\) mask AP and \(-0.212\) fixed IoU points (\([-0.547,0.104]\)). It changes 48 original matches from 20 parent scenes. The variable policy decreases missed area by 0.653 points of reference area (\([-1.079,-0.328]\)) and increases excess foreground area by 1.378 points (\([0.750,2.067]\)). This target uses the released native raster masks and had prior evaluation exposure. The frozen procedure does not pass its paired transfer criterion on these data.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/dual_reference_budget_effect.pdf}
+\caption{Variable versus equal addition and removal counts at an identical total number of flips. Both use the same learned occupancy, candidate stream and predicted-IoU objective. (a) Seed 5297 differences on the 183 development images. IoU intervals use 4,096 paired decoded-image-group resamples. (b) Intersection and area terms from Eq.~\eqref{eq:area-overlap-parts}. Values retain each release's native assignments and complete hull denominator.}
+\label{fig:dual-budget-effect}
+\end{figure*}
 
 \subsection{Comparisons with strong ranking and full-mask alternatives}
 After fixing the edit budget, the next question is whether learned scores select better cells than a geometric rule. On the 74-chip reserve, at the dynamic attraction count, occupancy gains 0.468 AP and 0.431 IoU over dynamic (\([0.213,0.662]\)), and 0.203 AP and 0.301 IoU over static (\([0.088,0.534]\)). Static still leads by 0.173 AP75. Both contrasts change 47 eligible masks in 11 sensor--date blocks. The date-separated AP gains are 0.978 and 0.478, while neither sensor stratum alone meets the exposure criterion.
@@ -783,6 +848,8 @@ Frozen Phoenix took 1,404.48\,s on the PSeg cohort with four two-thread CPU work
 \section{Conclusion}
 At matched signed counts, independently selecting addition and removal sites improves boundary overlap and mask AP over distance pairing on HRSID and Instance-RSDD. The gains on the common Gaofen-3 images recur for two downstream detector fits that share initialization. The same comparison produces small AP differences on PSeg-SSDD and SAR-SSP. On the same SSDD images, changing from the PSeg to the SPSD reference reverses the measured gain of the variable-count writer over the native masks. The small number of editable matches on UEIKAP and the proposal-coverage analysis on SAR-SSP identify a separate limit on what local editing can recover.
 
+Allowing variable signed allocation recovers missed reference area on the same SSDD development images across three head fits. The frozen transfer to SAR-SSP instead shows excess foreground, indicating sensitivity to the target reference and candidate distribution.
+
 The pretrained-refiner comparisons isolate the effect of the edits themselves. Limiting whole-grid Phoenix writes reduces excess foreground changes on both evaluated datasets. For SegRefiner-LR, separately scoring additions and removals exposes deletion losses that a per-candidate cap partly recovers. Together, the experiments support controlling the location and amount of boundary editing, with the practical gain depending on the original proposals and the target acquisition setting.
 
 \section*{Acknowledgment}
@@ -822,5 +889,6 @@ OpenAI Codex assisted with English drafting and revision in the abstract, Sectio
 \bibitem{slgsea} R. Deng, T. Zhang, G. Gao, L. Zhang, S. Wei, and X. Zhang, ``SLGSea: Spatialized language guidance with scattering-aware query construction for ship--sea--land panoptic segmentation in SAR imagery,'' project repository and dataset release. \href{https://github.com/deng1218/SLGSea}{Code and data}.
 \bibitem{mansour2026} I. Mansour, F. Sica, and M. Schmitt, ``Prompting foundation models for zero-shot ship instance segmentation in SAR imagery,'' \emph{arXiv:2604.17920}, \href{https://arxiv.org/abs/2604.17920}{2026}.
 \bibitem{airsarship} X. Sun, Z. Wang, Y. Sun, W. Diao, Y. Zhang, and K. Fu, ``AIR-SARShip-1.0: High-resolution SAR ship detection dataset,'' \emph{J. Radars}, vol. 8, no. 6, pp. 852--862, 2019. \href{https://doi.org/10.12000/JR19097}{10.12000/JR19097}.
+\bibitem{rankrma} Z. Wang and B. Dai, RankSEG-RMA: An efficient segmentation algorithm via reciprocal moment approximation, in \emph{Adv. Neural Inf. Process. Syst.}, vol. 38, 2025. \href{https://doi.org/10.52202/085713-5452}{10.52202/085713-5452}.
 \end{thebibliography}
 \end{document}

@@ -1,0 +1,3 @@
+# Candidate-balanced BCE seed repetition
+
+[ACTUAL.md](ACTUAL.md) gives the verified training. [PRELOCK.md](PRELOCK.md) fixes inputs and exact update counts. Use the original prior FIT, the two admissible CPU parity probe receipts and the exact original train-only point and label bindings. Run fit_repeat_bce.py with CUDA_VISIBLE_DEVICES=-1 and OMP_NUM_THREADS, MKL_NUM_THREADS and OPENBLAS_NUM_THREADS each equal to 1. See --help for exact paths and a fresh --out. The public observer prepare-edits phase records the actual natural exit and footer. Then run verify_fit.py with the result digest and original occupancy source. Included aggregates contain only counts and hashes. Learned weights, original source packets and process logs remain private.
