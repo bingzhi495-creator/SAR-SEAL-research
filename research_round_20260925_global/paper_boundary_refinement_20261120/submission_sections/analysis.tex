@@ -1,7 +1,7 @@
 \section{Qualitative Analysis}
 \label{sec:qualitative}
 
-The signed intersection changes in Fig.~\ref{fig:dev-cases} show how two writes of the same size can have different effects. On HRSID DEV705, the seed-5217 point head improved 1,012 of the 1,461 eligible RF-DETR matches when the fixed pairs were released. It degraded 252 and tied 197. The two illustrated cases were selected nearest the median continuous-IoU difference within each sign, with distinct images. Both policies add eight and remove eight cells. In Fig.~\ref{fig:dev-cases}(a), independent selection recovers one extra pixel-equivalent of polygon area through additions and retains another 1.5 through deletions. Continuous IoU rises from 80.63 to 81.36. In Fig.~\ref{fig:dev-cases}(b), the additions of both policies miss the reference. Independent selection then removes one more pixel-equivalent of covered hull, reducing IoU from 76.19 to 75.87. Predicted occupancy ranks the competing sites incorrectly in this case.
+Fig.~\ref{fig:dev-cases} shows the effect of moving the same number of edits. On HRSID DEV705, independent selection with head 5217 improves 1,012 of 1,461 eligible matches, degrades 252, and ties 197. Both writers add and remove eight cells in the median-sign examples. In (a), independent selection gains one extra pixel-equivalent through additions and retains another 1.5 through deletions, increasing continuous IoU from 80.63 to 81.36. In (b), neither set of additions hits the reference, and the independent writer removes one more pixel-equivalent of hull, reducing IoU from 76.19 to 75.87.
 
 \begin{figure*}[!t]
 \centering
@@ -10,7 +10,7 @@ The signed intersection changes in Fig.~\ref{fig:dev-cases} show how two writes 
 \label{fig:dev-cases}
 \end{figure*}
 
-Fig.~\ref{fig:segrefiner-cases} gives a wider-edit comparison on Instance-RSDD. The published SegRefiner-LR writer~\cite{segrefiner} improves 14 of the 39 eligible reference matches it edits and worsens 25. In the median-sign improvement, the writer trims an extension beyond the hull and raises IoU from 58.68 to 60.96. In the loss case, the write removes reference area at both ends and along a narrow side, lowering IoU from 71.93 to 67.43. The local occupancy writes give 58.89 and 71.95 on these same references. The mixed outcomes are consistent with the signed-loss analysis below. The spatial pooling in the display can break a thin reference contour into segments. The overlap values use the unpooled masks.
+In Fig.~\ref{fig:segrefiner-cases}, the published SegRefiner-LR writer~\cite{segrefiner} improves 14 of 39 exposed matches and worsens 25. The median improvement trims excess foreground, raising continuous IoU from 58.68 to 60.96. The median loss removes part of the hull at both ends and along one side, reducing IoU from 71.93 to 67.43. The local writer gives 58.89 and 71.95 on the same hulls. Spatial pooling can fragment a thin contour in the display, while the scores use unpooled masks.
 
 \begin{figure*}[!t]
 \centering
@@ -19,7 +19,6 @@ Fig.~\ref{fig:segrefiner-cases} gives a wider-edit comparison on Instance-RSDD. 
 \label{fig:segrefiner-cases}
 \end{figure*}
 
-\FloatBarrier
 \section{Ablation Studies}
 \label{sec:ablation}
 
@@ -46,13 +45,16 @@ Date-separated, 42 chips & 5217 & 61.283 & 61.769 & 61.698 & \textbf{62.123}\\
 
 Each single-side change raises mask AP, and freeing both sides gives the highest AP in all four rows of Table~\ref{tab:signed-side-ablation}. On Gaofen-3, independent selection on both sides gains 0.175 continuous-IoU points over independent additions alone (paired 95\% interval \([0.130,0.222]\)) and 0.085 over independent removals alone (\([0.049,0.120]\)). The corresponding gains on the reserve are 0.170 (\([0.108,0.251]\)) and 0.148 (\([0.042,0.252]\)) across 47 eligible matches in 12 parents. The two signed changes are additive in intersection area at a fixed hull. The AP interaction ranges from \(-0.063\) to \(+0.020\) points across the main views, where edited masks can alter matching at each threshold.
 
+\subsection{Pairing order and displacement}
+The bounded matching control holds the largest permitted displacement of a single exchange at its original value. Across three HRSID DEV705 head fits, re-pairing under the cap gains 0.475 AP and 0.282 continuous-IoU points (paired 95\% interval \([0.219,0.344]\)). Independent ranking adds 0.431 AP and 0.357 continuous-IoU points (\([0.296,0.429]\)). Both contrasts meet the joint AP, geometry, and coverage criteria. On 583 Gaofen-3 chips, re-pairing under the cap gains a two-head mean of 0.254 AP and 0.115 continuous-IoU points (paired 95\% interval \([0.078,0.150]\)). Independent ranking adds 0.229 AP and 0.145 continuous-IoU points (\([0.087,0.204]\)). Both AP increments fall below the predeclared 0.30-point criterion. On the 74-chip reserve, bounded re-pairing changes AP by \(-0.043\) and improves continuous IoU by 0.203 (\([0.107,0.308]\)). Independent ranking then adds 0.479 AP and 0.116 continuous-IoU points (\([0.008,0.242]\)), meeting the joint AP, geometry, and coverage criteria. Its geometry interval on the nested 42-chip view includes zero.
+
 \subsection{Ranking, support, and the number of writes}
 
 A geometric ranking remains competitive under the same spatial and count constraints. On the 74-chip reserve, occupancy ranking at the dynamic-attraction budget~\cite{atkinson} gains 0.468 AP and 0.431 continuous-IoU points over dynamic attraction, and 0.203 AP and 0.301 IoU over static attraction. Static attraction leads by 0.173 AP75. Capped PointRend~\cite{pointrend} supplies a learned control on the same endpoints and counts. On Gaofen-3, occupancy improves on it by 0.312 AP and 0.250 fixed-match IoU points. Full RoI PointRend has 0.200 higher AP than the complete-support occupancy writer and 1.744 lower AR100. The full paste changes support and edit counts. These comparisons separate ranking quality from the performance of the complete refinement pipeline.
 
 We also cross the writable support and the flip limit on the same frozen five-iteration Phoenix response~\cite{phoenix}. On the PSeg-SSDD official allocation, imposing the exact count on the whole grid reduces writes from 3,391,327 to 147,540. This raises AP by 2.525 points and fixed-match IoU by 4.001 points (\([2.644,5.382]\)). Applying the count limit on sampled support raises IoU by 0.422 points, so the strongest effect of the limit occurs when the whole grid is writable. Within sampled support, equal signed counts then add 1.842 AP and 1.151 IoU points over the free split at exactly 147,540 flips. Static attraction still leads the balanced Phoenix writer by 0.195 AP at that budget. On the 74-chip reserve, the author LVIS whole-mask policy loses 17.779 AP points relative to same-response matched-count writing. The matched-endpoint Phoenix ranking itself leads occupancy by 0.308 AP, with a paired IoU interval spanning zero.
 
-For SegRefiner-LR, applying the original deletions lowers continuous IoU by 4.092 points relative to native on the 39 exposed Instance-RSDD matches, and by 4.087 relative to retaining the original additions alone. The corresponding losses on 67 exposed PSeg-SSDD matches are 4.03 and 3.98 points. A deletion cap based on the number of additions recovers 0.907 and 0.878 AP points over the original writer. The capped policies trail the addition-only and local occupancy policies on these two evaluated cohorts. Preserving predicted area and preserving the useful part of a proposed update are distinct design choices.
+On 39 exposed Instance-RSDD matches, SegRefiner-LR deletions reduce continuous IoU by 4.092 points versus native and 4.087 versus its additions-only arm. On 67 exposed PSeg-SSDD matches, the reductions are 4.03 and 3.98. Capping deletions at the number of additions recovers 0.907 and 0.878 AP over the original writer. Addition-only and local occupancy remain ahead of the capped writers.
 
 \subsection{Spatial dependence in the allocation score}
 

@@ -6,6 +6,8 @@
 
 冻结的高分三号与父景保留集补测原生一像元 Boundary IoU。高分三号 5202 为 +0.466 [0.223, 0.702]，74 图保留集为 +0.701 [0.180, 1.233]。5203 的一像元区间跨零，三个独立选点对距离配对的两像元敏感性均为正。完整保留集对同支持 PointRend 的一像元区间跨零。[边界诊断实证](code/INSTANCE_RSDD_NATIVE_BOUNDARY_IOU_20261126/ACTUAL.md)
 
+冻结占据头的限距强对照已完成，并入 10 页正文。HRSID DEV705 三次拟合的限距重配、解除上限依次增加 +0.475、+0.431 AP，两个固定匹配连续 IoU 区间均为正。高分三号两项几何增量均为正，AP 均低于 0.30 点。74 图保留集的独立选点比限距重配 +0.479 AP、+0.116 固定匹配连续 IoU，预锁方向判据通过。42 图为嵌套敏感性，其主比较的几何区间跨零。[完整实测和复现](code/LEARNED_BOUNDED_PAIRING_20261126/ACTUAL.md)
+
 ## 投稿正文候选稿
 
 [10 页英文正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX 主文件](paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [方法、结果、分析与参考文献](paper_boundary_refinement_20261120/submission_sections) · [24 页完整证据稿](paper_boundary_refinement_20261120/boundary_refinement.pdf)

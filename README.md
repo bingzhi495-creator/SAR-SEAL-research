@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- 等预算限距重配已在 HRSID DEV705 三个冻结点头和 Instance-RSDD 完成。HRSID 限距重配比距离优先 +0.475 AP，独立选择再增 +0.431 AP，两项固定匹配连续 IoU 区间均为正。74 图保留集上，独立选择较限距 +0.479 AP，固定匹配连续 IoU +0.116［0.008, 0.242］。高分三号两项 AP 都低于门槛。[实测、统计口径及复现](research_round_20260925_global/code/LEARNED_BOUNDED_PAIRING_20261126/ACTUAL.md)
+
 - 可变增删分配在三个种子上均超过各自的等量对照。相同候选、目标函数及逐候选总翻转数下，PSeg-SSDD／SPSD 的平均 mask AP 为 +2.299／+1.751 点，固定匹配 IoU 为 +0.971／+0.573 点。两套标注对应相同的 183 张源域开发影像。[重复评分](research_round_20260925_global/code/SPSD_PSEG_REPEAT_VARIABLE_SIGNED_BUDGET_SEEDS5298_5299_20261126/ACTUAL.md)
 - 直接迁移到 SAR-SSP 232 张作者验证图，mask AP −0.139 点，固定匹配 IoU −0.212 点 [−0.547, 0.104]。漏分减少，船外误分增加，未达到预锁的跨库门槛。[冻结迁移评分](research_round_20260925_global/code/SAR_SSP_DFINE_BCE5297_VARIABLE_SIGN_TRANSFER_20261126/ACTUAL.md)
 - 同一冻结点头在 SAR-SSP 上将已选动作的交集增量高估 +0.896／+0.628 个真值面积归一点。源域同口径点估计 +0.089／+0.231，内外侧误差差值区间均跨零。[目标域](research_round_20260925_global/code/SAR_SSP_SIGNED_POSTERIOR_ATTRIBUTION_20261126/ACTUAL.md) · [源域](research_round_20260925_global/code/SPSD_PSEG_SIGNED_POSTERIOR_ATTRIBUTION_20261126/ACTUAL.md)

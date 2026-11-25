@@ -90,7 +90,7 @@ We keep the assignment returned by SciPy on this integer cost matrix. The fixed 
   \left(\sum_{i\in A}\widehat q_i-\sum_{i\in D}\widehat q_i\right).
 \label{eq:independent-estimated-gain}
 \end{equation}
-This selects the highest occupancies on the addition side and the lowest on the removal side, breaking ties by the original pairing-row ordinal. The paired choice is feasible, so the independent estimate is at least as large. The natural-count comparison retains positive gains under the independent ranks up to \(K\). Fig.~\ref{fig:selection-stage} shows the matched comparison.
+This selects the highest occupancies on the addition side and the lowest on the removal side, breaking ties by the original pairing-row ordinal. The paired choice is feasible, so the independent estimate is at least as large. The natural-count comparison retains positive gains under the independent ranks up to \(K\). Fig.~\ref{fig:selection-stage} shows the matched comparison. For a positive realized count, a third writer maximizes the same estimated gain over endpoint sets that admit a one-to-one matching. Each edge must be no longer than the longest of the original \(k\) selected pairs. This bounded matching permits a different arrangement and retains the limit on individual displacement. The feasible choices for estimating gain range from the original matching through all admissible capped matchings to all independent endpoint sets.
 
 \begin{figure*}[!t]
 \centering

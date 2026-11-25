@@ -1,0 +1,709 @@
+{
+  "author_reference_sha256": "54c92363aafe07dca084382a258190d436005d8df839f5de13995c89bd662b92",
+  "detector_forwards": 0,
+  "elapsed_seconds": 3.3999459000187926,
+  "optimizer_updates": 0,
+  "original_historical_data_only": true,
+  "phase": "score",
+  "protocol_sha256": "f6b235aa2d5abb76e6948f04e6ed78ddc2edcb72fced3d11691a8e1e62e8b1dc",
+  "render_manifest_sha256": "c1ff6ceec596e101e1882b94bd7a4184abd00364ca45bbd2ef062e16af1efdf7",
+  "render_result_sha256": {
+    "5217": "4a015eef90344a4d06bd77fedb5fd5a1ea9d5742811f7de01a96dcb6a24ac994"
+  },
+  "render_worker_sha256": "34d4e588dc757dd60c975ebe9498d479a80265bf568422d57b3fa0fa1f6975f5",
+  "status": "LEARNED_BOUNDED_PAIRING_RSDD_SCORE_COMPLETE",
+  "view": "reserve74",
+  "views": {
+    "date_separated": {
+      "author_hulls": 47,
+      "eligible_original_matches": 32,
+      "exact_archived_raster_and_continuous_parity": true,
+      "head_contrasts": {
+        "5217": {
+          "I_minus_F": {
+            "ap_points": 0.8401375344233912,
+            "changed_analysis_blocks": 8,
+            "changed_hulls": 32,
+            "changed_parent_groups": 8,
+            "decision": "positive",
+            "exposure": true,
+            "geometry": {
+              "continuous_iou_points": {
+                "delta": 0.36414473040238704,
+                "interval_95": [
+                  0.24950407367889227,
+                  0.4775543674130138
+                ],
+                "parent_interval_95": [
+                  0.24901009235079918,
+                  0.47291875984073295
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.2299128582581333,
+                "interval_95": [
+                  -0.3024978849883914,
+                  -0.1584608124645952
+                ],
+                "parent_interval_95": [
+                  -0.29940983004244726,
+                  -0.15590147999811926
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.22991285825813268,
+                "interval_95": [
+                  -0.3024978849883909,
+                  -0.15846081246459476
+                ],
+                "parent_interval_95": [
+                  -0.2994098300424466,
+                  -0.15590147999811801
+                ]
+              }
+            },
+            "practical_within_bands": false
+          },
+          "I_minus_L": {
+            "ap_points": 0.889560585008951,
+            "changed_analysis_blocks": 8,
+            "changed_hulls": 32,
+            "changed_parent_groups": 8,
+            "decision": "descriptive",
+            "exposure": true,
+            "geometry": {
+              "continuous_iou_points": {
+                "delta": 0.13209665754053823,
+                "interval_95": [
+                  -0.019519333344035772,
+                  0.2992064738712674
+                ],
+                "parent_interval_95": [
+                  -0.022232077396903804,
+                  0.2961406022444215
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.09184649393603911,
+                "interval_95": [
+                  -0.19388839367962962,
+                  0.0027371524048330764
+                ],
+                "parent_interval_95": [
+                  -0.19066248684859582,
+                  0.0030668309291109683
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.09184649393603814,
+                "interval_95": [
+                  -0.1938883936796273,
+                  0.0027371524048344364
+                ],
+                "parent_interval_95": [
+                  -0.19066248684859427,
+                  0.0030668309291112805
+                ]
+              }
+            },
+            "practical_within_bands": false
+          },
+          "L_minus_F": {
+            "ap_points": -0.049423050585559736,
+            "changed_analysis_blocks": 8,
+            "changed_hulls": 32,
+            "changed_parent_groups": 8,
+            "decision": "descriptive",
+            "exposure": true,
+            "geometry": {
+              "continuous_iou_points": {
+                "delta": 0.2320480728618488,
+                "interval_95": [
+                  0.08909992000448752,
+                  0.35925184138851485
+                ],
+                "parent_interval_95": [
+                  0.09016425875451328,
+                  0.3554988978498681
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.13806636432209418,
+                "interval_95": [
+                  -0.21577570553905234,
+                  -0.05302972411081466
+                ],
+                "parent_interval_95": [
+                  -0.21301190464290942,
+                  -0.052699713612255006
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.13806636432209454,
+                "interval_95": [
+                  -0.21577570553905412,
+                  -0.053029724110816356
+                ],
+                "parent_interval_95": [
+                  -0.21301190464291042,
+                  -0.05269971361225581
+                ]
+              }
+            },
+            "practical_within_bands": false
+          },
+          "practical_recovery": false
+        }
+      },
+      "head_metrics": {
+        "5217": {
+          "bounded": {
+            "AP": 0.6123346376405229,
+            "AP50": 0.9711255622381619,
+            "AP75": 0.6714000427404697,
+            "AP90": 0.09624077827047967,
+            "APl": -1.0,
+            "APm": 0.6782161485662745,
+            "APs": 0.582269910698925,
+            "AR1": 0.5851063829787234,
+            "AR10": 0.6872340425531914,
+            "AR100": 0.7425531914893616,
+            "ARl": -1.0,
+            "ARm": 0.7642857142857142,
+            "ARs": 0.7333333333333333
+          },
+          "fixed": {
+            "AP": 0.6128288681463785,
+            "AP50": 0.9711255622381619,
+            "AP75": 0.6714000427404697,
+            "AP90": 0.08331108054058861,
+            "APl": -1.0,
+            "APm": 0.6782161485662745,
+            "APs": 0.5843272096801067,
+            "AR1": 0.5851063829787233,
+            "AR10": 0.6787234042553191,
+            "AR100": 0.7382978723404255,
+            "ARl": -1.0,
+            "ARm": 0.7642857142857142,
+            "ARs": 0.7272727272727273
+          },
+          "free_matched_count": {
+            "AP": 0.6212302434906124,
+            "AP50": 0.9711255622381619,
+            "AP75": 0.6756532071794848,
+            "AP90": 0.12469820989308708,
+            "APl": -1.0,
+            "APm": 0.6782161485662745,
+            "APs": 0.5978611541247099,
+            "AR1": 0.5936170212765958,
+            "AR10": 0.6978723404255319,
+            "AR100": 0.7510638297872341,
+            "ARl": -1.0,
+            "ARm": 0.7642857142857142,
+            "ARs": 0.7454545454545454
+          }
+        }
+      },
+      "images": 42,
+      "native_metrics": {
+        "AP": 0.6129268595446451,
+        "AP50": 0.9711255622381619,
+        "AP75": 0.6722051648906435,
+        "AP90": 0.08348966703422625,
+        "APl": -1.0,
+        "APm": 0.6782161485662745,
+        "APs": 0.5844199168444044,
+        "AR1": 0.5851063829787233,
+        "AR10": 0.6787234042553191,
+        "AR100": 0.7446808510638298,
+        "ARl": -1.0,
+        "ARm": 0.7642857142857142,
+        "ARs": 0.7363636363636363
+      },
+      "original_native_matches": 47,
+      "pooled_contrasts": {
+        "I_minus_F": {
+          "ap_points": 0.8401375344233912,
+          "changed_analysis_blocks": 8,
+          "changed_hulls": 32,
+          "changed_parent_groups": 8,
+          "decision": "positive",
+          "exposure": true,
+          "geometry": {
+            "continuous_iou_points": {
+              "delta": 0.36414473040238704,
+              "interval_95": [
+                0.24950407367889227,
+                0.4775543674130138
+              ],
+              "parent_interval_95": [
+                0.24901009235079918,
+                0.47291875984073295
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.2299128582581333,
+              "interval_95": [
+                -0.3024978849883914,
+                -0.1584608124645952
+              ],
+              "parent_interval_95": [
+                -0.29940983004244726,
+                -0.15590147999811926
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.22991285825813268,
+              "interval_95": [
+                -0.3024978849883909,
+                -0.15846081246459476
+              ],
+              "parent_interval_95": [
+                -0.2994098300424466,
+                -0.15590147999811801
+              ]
+            }
+          },
+          "practical_within_bands": false
+        },
+        "I_minus_L": {
+          "ap_points": 0.889560585008951,
+          "changed_analysis_blocks": 8,
+          "changed_hulls": 32,
+          "changed_parent_groups": 8,
+          "decision": "descriptive",
+          "exposure": true,
+          "geometry": {
+            "continuous_iou_points": {
+              "delta": 0.13209665754053823,
+              "interval_95": [
+                -0.019519333344035772,
+                0.2992064738712674
+              ],
+              "parent_interval_95": [
+                -0.022232077396903804,
+                0.2961406022444215
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.09184649393603911,
+              "interval_95": [
+                -0.19388839367962962,
+                0.0027371524048330764
+              ],
+              "parent_interval_95": [
+                -0.19066248684859582,
+                0.0030668309291109683
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.09184649393603814,
+              "interval_95": [
+                -0.1938883936796273,
+                0.0027371524048344364
+              ],
+              "parent_interval_95": [
+                -0.19066248684859427,
+                0.0030668309291112805
+              ]
+            }
+          },
+          "practical_within_bands": false
+        },
+        "L_minus_F": {
+          "ap_points": -0.049423050585559736,
+          "changed_analysis_blocks": 8,
+          "changed_hulls": 32,
+          "changed_parent_groups": 8,
+          "decision": "descriptive",
+          "exposure": true,
+          "geometry": {
+            "continuous_iou_points": {
+              "delta": 0.2320480728618488,
+              "interval_95": [
+                0.08909992000448752,
+                0.35925184138851485
+              ],
+              "parent_interval_95": [
+                0.09016425875451328,
+                0.3554988978498681
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.13806636432209418,
+              "interval_95": [
+                -0.21577570553905234,
+                -0.05302972411081466
+              ],
+              "parent_interval_95": [
+                -0.21301190464290942,
+                -0.052699713612255006
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.13806636432209454,
+              "interval_95": [
+                -0.21577570553905412,
+                -0.053029724110816356
+              ],
+              "parent_interval_95": [
+                -0.21301190464291042,
+                -0.05269971361225581
+              ]
+            }
+          },
+          "practical_within_bands": false
+        },
+        "practical_recovery": false
+      },
+      "represented_analysis_blocks": 8,
+      "represented_parent_groups": 8
+    },
+    "full": {
+      "author_hulls": 81,
+      "eligible_original_matches": 47,
+      "exact_archived_raster_and_continuous_parity": true,
+      "head_contrasts": {
+        "5217": {
+          "I_minus_F": {
+            "ap_points": 0.4358371965415486,
+            "changed_analysis_blocks": 11,
+            "changed_hulls": 47,
+            "changed_parent_groups": 12,
+            "decision": "positive",
+            "exposure": true,
+            "geometry": {
+              "continuous_iou_points": {
+                "delta": 0.3184588840549682,
+                "interval_95": [
+                  0.21662888510860917,
+                  0.4358160494079336
+                ],
+                "parent_interval_95": [
+                  0.19639097488755253,
+                  0.4359847148777609
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.1985616283701673,
+                "interval_95": [
+                  -0.2775336617200689,
+                  -0.13173291962471054
+                ],
+                "parent_interval_95": [
+                  -0.2751377136445141,
+                  -0.11921551960613132
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.19856162837016664,
+                "interval_95": [
+                  -0.277533661720069,
+                  -0.13173291962471018
+                ],
+                "parent_interval_95": [
+                  -0.2751377136445139,
+                  -0.11921551960613141
+                ]
+              }
+            },
+            "practical_within_bands": false
+          },
+          "I_minus_L": {
+            "ap_points": 0.47882080856375353,
+            "changed_analysis_blocks": 11,
+            "changed_hulls": 46,
+            "changed_parent_groups": 12,
+            "decision": "positive",
+            "exposure": true,
+            "geometry": {
+              "continuous_iou_points": {
+                "delta": 0.11575860523488402,
+                "interval_95": [
+                  0.008280603766324043,
+                  0.24233480232619878
+                ],
+                "parent_interval_95": [
+                  0.007093472598576807,
+                  0.23662691843553393
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.07736215266818698,
+                "interval_95": [
+                  -0.1544145494091952,
+                  -0.0120174969431718
+                ],
+                "parent_interval_95": [
+                  -0.15030334720285576,
+                  -0.008851976047356852
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.0773621526681857,
+                "interval_95": [
+                  -0.15441454940919355,
+                  -0.012017496943171049
+                ],
+                "parent_interval_95": [
+                  -0.15030334720285388,
+                  -0.008851976047355917
+                ]
+              }
+            },
+            "practical_within_bands": false
+          },
+          "L_minus_F": {
+            "ap_points": -0.04298361202220491,
+            "changed_analysis_blocks": 11,
+            "changed_hulls": 47,
+            "changed_parent_groups": 12,
+            "decision": "descriptive",
+            "exposure": true,
+            "geometry": {
+              "continuous_iou_points": {
+                "delta": 0.20270027882008415,
+                "interval_95": [
+                  0.10661272552352932,
+                  0.307842917402988
+                ],
+                "parent_interval_95": [
+                  0.08475184994401037,
+                  0.3128021617613023
+                ]
+              },
+              "fn_per_truth_area_points": {
+                "delta": -0.12119947570198031,
+                "interval_95": [
+                  -0.18643931643646947,
+                  -0.06244285890141359
+                ],
+                "parent_interval_95": [
+                  -0.18891721563099215,
+                  -0.048554390094689336
+                ]
+              },
+              "fp_per_truth_area_points": {
+                "delta": -0.12119947570198092,
+                "interval_95": [
+                  -0.18643931643646888,
+                  -0.06244285890141467
+                ],
+                "parent_interval_95": [
+                  -0.18891721563099262,
+                  -0.04855439009469093
+                ]
+              }
+            },
+            "practical_within_bands": false
+          },
+          "practical_recovery": false
+        }
+      },
+      "head_metrics": {
+        "5217": {
+          "bounded": {
+            "AP": 0.5823518749552259,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.6987303599770548,
+            "AP90": 0.048268950853248324,
+            "APl": -1.0,
+            "APm": 0.6126093497803384,
+            "APs": 0.5706482460122974,
+            "AR1": 0.5839506172839506,
+            "AR10": 0.682716049382716,
+            "AR100": 0.7358024691358025,
+            "ARl": -1.0,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.732
+          },
+          "fixed": {
+            "AP": 0.582781711075448,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.698254337894544,
+            "AP90": 0.04436135051388127,
+            "APl": -1.0,
+            "APm": 0.6126093497803384,
+            "APs": 0.5718413958001232,
+            "AR1": 0.5839506172839506,
+            "AR10": 0.6753086419753085,
+            "AR100": 0.7296296296296296,
+            "ARl": -1.0,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.722
+          },
+          "free_matched_count": {
+            "AP": 0.5871400830408634,
+            "AP50": 0.9205693491179733,
+            "AP75": 0.7010005349131717,
+            "AP90": 0.0580387792528483,
+            "APl": -1.0,
+            "APm": 0.6126093497803384,
+            "APs": 0.5786822931272193,
+            "AR1": 0.5888888888888888,
+            "AR10": 0.6901234567901234,
+            "AR100": 0.7407407407407407,
+            "ARl": -1.0,
+            "ARm": 0.7419354838709677,
+            "ARs": 0.74
+          }
+        }
+      },
+      "images": 74,
+      "native_metrics": {
+        "AP": 0.5827719798779556,
+        "AP50": 0.9205693491179733,
+        "AP75": 0.6987031003743264,
+        "AP90": 0.044507443683496094,
+        "APl": -1.0,
+        "APm": 0.6123233935531368,
+        "APs": 0.5719338724816093,
+        "AR1": 0.5839506172839506,
+        "AR10": 0.6765432098765432,
+        "AR100": 0.7345679012345678,
+        "ARl": -1.0,
+        "ARm": 0.7419354838709677,
+        "ARs": 0.73
+      },
+      "original_native_matches": 81,
+      "pooled_contrasts": {
+        "I_minus_F": {
+          "ap_points": 0.4358371965415486,
+          "changed_analysis_blocks": 11,
+          "changed_hulls": 47,
+          "changed_parent_groups": 12,
+          "decision": "positive",
+          "exposure": true,
+          "geometry": {
+            "continuous_iou_points": {
+              "delta": 0.3184588840549682,
+              "interval_95": [
+                0.21662888510860917,
+                0.4358160494079336
+              ],
+              "parent_interval_95": [
+                0.19639097488755253,
+                0.4359847148777609
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.1985616283701673,
+              "interval_95": [
+                -0.2775336617200689,
+                -0.13173291962471054
+              ],
+              "parent_interval_95": [
+                -0.2751377136445141,
+                -0.11921551960613132
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.19856162837016664,
+              "interval_95": [
+                -0.277533661720069,
+                -0.13173291962471018
+              ],
+              "parent_interval_95": [
+                -0.2751377136445139,
+                -0.11921551960613141
+              ]
+            }
+          },
+          "practical_within_bands": false
+        },
+        "I_minus_L": {
+          "ap_points": 0.47882080856375353,
+          "changed_analysis_blocks": 11,
+          "changed_hulls": 46,
+          "changed_parent_groups": 12,
+          "decision": "positive",
+          "exposure": true,
+          "geometry": {
+            "continuous_iou_points": {
+              "delta": 0.11575860523488402,
+              "interval_95": [
+                0.008280603766324043,
+                0.24233480232619878
+              ],
+              "parent_interval_95": [
+                0.007093472598576807,
+                0.23662691843553393
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.07736215266818698,
+              "interval_95": [
+                -0.1544145494091952,
+                -0.0120174969431718
+              ],
+              "parent_interval_95": [
+                -0.15030334720285576,
+                -0.008851976047356852
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.0773621526681857,
+              "interval_95": [
+                -0.15441454940919355,
+                -0.012017496943171049
+              ],
+              "parent_interval_95": [
+                -0.15030334720285388,
+                -0.008851976047355917
+              ]
+            }
+          },
+          "practical_within_bands": false
+        },
+        "L_minus_F": {
+          "ap_points": -0.04298361202220491,
+          "changed_analysis_blocks": 11,
+          "changed_hulls": 47,
+          "changed_parent_groups": 12,
+          "decision": "descriptive",
+          "exposure": true,
+          "geometry": {
+            "continuous_iou_points": {
+              "delta": 0.20270027882008415,
+              "interval_95": [
+                0.10661272552352932,
+                0.307842917402988
+              ],
+              "parent_interval_95": [
+                0.08475184994401037,
+                0.3128021617613023
+              ]
+            },
+            "fn_per_truth_area_points": {
+              "delta": -0.12119947570198031,
+              "interval_95": [
+                -0.18643931643646947,
+                -0.06244285890141359
+              ],
+              "parent_interval_95": [
+                -0.18891721563099215,
+                -0.048554390094689336
+              ]
+            },
+            "fp_per_truth_area_points": {
+              "delta": -0.12119947570198092,
+              "interval_95": [
+                -0.18643931643646888,
+                -0.06244285890141467
+              ],
+              "parent_interval_95": [
+                -0.18891721563099262,
+                -0.04855439009469093
+              ]
+            }
+          },
+          "practical_within_bands": false
+        },
+        "practical_recovery": false
+      },
+      "represented_analysis_blocks": 11,
+      "represented_parent_groups": 12
+    }
+  },
+  "worker_sha256": "bb751d3d42875b4cc9e980534697430283428b9ecfbb1c3c9bc09d26b63028e5"
+}
