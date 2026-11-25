@@ -1,0 +1,10 @@
+# Replay and scoring entry points
+
+Use the exact closed source and fit outputs specified in the receipts. The programs resolve published helpers relative to the supplied research directory and verify their hashes. The process needs a local CPU Torch 2.10.0+cu130 installation and the pinned COCO package environment. Run with one CPU thread for OpenMP, MKL and OpenBLAS, and disable visible CUDA devices. Supply a fresh private parent directory for each phase. Set `--output` to its non-existing `actual` child.
+
+For all phases pass `--source`, `--fit`, `--legacy`, `--public-round`, `--protocol`, `--coco-site`, `--protocol-sha`, `--prelock-commit`, `--source-sha`, `--source-terminal-sha`, `--fit-sha` and `--fit-terminal-sha`. Use the exact optimizer and model files from the closed fit and the original independent archive for the older F and I heads.
+
+1. Run `score_rank.py --phase render` without author annotations. Observe and hash the aggregate result after natural exit.
+2. Run `score_rank.py --phase verify` in a separate phase root, with `--render-root`, `--render-sha` and `--render-terminal-sha`. The phase reconstructs the full signed edit ledger from scratch and checks byte equality against render. A qualified result requires the observed footer, not simply the presence of files.
+3. Run the optional legacy-only check with `score_rank_canonical.py --phase legacy`, and then the full evaluation with `score_rank_canonical.py --phase score`. Pass `--verify-root`, `--verify-sha`, `--verify-terminal-sha` and `--fit-gt`. The canonical worker enforces exact reference metric parity before the two new arms enter the COCO evaluator. Ground truth is the independently hashed author FIT annotation file.
+4. To preserve worker exit and footer receipt, call `observe_rank.py --phase PHASE --observed PHASE_DIRECTORY --result RESULT_PATH --worker WORKER_PATH -- PYTHON -I -B WORKER_PATH ARGUMENTS`. Inspect only closed, verified aggregate output. The local replay edit ledger and worker logs remain private.

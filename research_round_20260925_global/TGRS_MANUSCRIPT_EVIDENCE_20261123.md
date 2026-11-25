@@ -22,6 +22,8 @@ SRNet 的 2,048 个固定匹配可写端点均处于先验裁剪阈值内部，�
 
 冻结 SRNet 的原生像元面积积分和同规则原生网格平滑均已完成等预算评分。面积积分在 45 个正预算候选中改变 21 个，相对原方法 −0.163 AP、+0.008 固定匹配连续 IoU［−0.016, 0.032］，相对平滑对照 AP 持平、IoU 区间跨零。数据未支持在现方法中替换像元中心概率。旧 74 图报告已按原评分 APs 修正小目标列。[实测和复现](code/SRNET_RSDD74_PIXEL_INTEGRAL_20261126/ACTUAL.md)
 
+在 HRSID FIT109 上完成分侧排序损失的三种子、五折同预算训练，合计 30 次拟合，逐候选增删数保持一致。排序损失相对同配方 BCE 为 +0.074 mask AP、+0.013 固定匹配连续 IoU［−0.007, 0.033］点，相对历史独立选点为 +0.066 AP、+0.025 IoU［−0.013, 0.059］点。两项均未通过 +0.30 AP 与几何区间的联合判据，维持原方法。原检测器见过该源域图像，只有点头按组留出。 历史 N／F／I 的 COCO 指标在最终评分前精确复现。[同预算三种子结果及回执](code/FIT109_SIGNED_RANK_LOSS_20261126/SCORE_ACTUAL.md)
+
 ## 投稿正文候选稿
 
 [10 页英文正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX 主文件](paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [方法、结果、分析与参考文献](paper_boundary_refinement_20261120/submission_sections) · [24 页完整证据稿](paper_boundary_refinement_20261120/boundary_refinement.pdf)
