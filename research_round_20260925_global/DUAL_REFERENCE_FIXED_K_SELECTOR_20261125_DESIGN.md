@@ -1,6 +1,6 @@
 # 以同预算静态写回为参照的双参考边界选择
 
-状态为待训练。已在合成输入上验证固定预算选择器，并完成既有历史队列的双参考几何上界。论文效用和投稿判断仍以真实训练、独立评价和公平对照为准。[同候选分解](SPSD_PSEG232_SHARED_HULL_DECOMPOSITION_20261125_ACTUAL.md) · [同预算几何上界](SPSD_PSEG232_MAXIMIN_STATIC_QUOTA_ORACLE_20261125_ACTUAL.md)
+状态为已完成首个固定种子的源域留出。几何上界和同量真实评分均已完成。联合选择相对静态在两参考均有效；同头均值与逐像元保守排序在 SPSD 上各有更高的几何读数，完整预锁门槛未通过。以下保留最初方法设计和验证协议。[首种子实测](SPSD_PSEG_TRAIN183_DFINE_DUAL_REFERENCE_SOURCE_GATE_SEED5297_20261125_ACTUAL.md)
 
 ## 设计依据
 

@@ -16,3 +16,5 @@
 首次入口检查把原生捕获的类别 ID 误当成评价端 ID，在匹配和优化开始前退出。核对全部 91,500 条原始候选后，按原评分协议将原生类别 1 映射为评价类别 0。原失败与更正程序单独保存。成功拟合实际退出 0，结果脚注及安全汇总散列核验通过，全部工作体约 9.74 秒。四套权重和尺度保存在本地，权重摘要与拟合资格见安全汇总。[输入更正](code/SPSD_PSEG_TRAIN732_MATCHED_OCCUPANCY_SEED5297_20261125/ERRATUM.md) · [冻结拟合源码](code/SPSD_PSEG_TRAIN732_MATCHED_OCCUPANCY_SEED5297_20261125) · [结果](results/SPSD_PSEG_TRAIN732_MATCHED_OCCUPANCY_SEED5297_20261125_SAFE.json)
 
 下一阶段使用独立的 183 张源域留出 JPEG 比较静态吸引力、均值排序、逐像元保守排序和联合较小收益选择。当前拟合回执证明真实等预算训练完成，指标与机制判断待固定评价。
+
+[后续固定源域留出结果](SPSD_PSEG_TRAIN183_DFINE_DUAL_REFERENCE_SOURCE_GATE_SEED5297_20261125_ACTUAL.md) 已完成，直接效用和完整推进判据分别记录。
