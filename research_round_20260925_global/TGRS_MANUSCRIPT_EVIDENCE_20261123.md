@@ -1,6 +1,6 @@
 # 边界精修论文审阅稿与证据索引
 
-更新于 2026 年 11 月 25 日。20 页 IEEE 双栏英文稿面向 TGRS 学术审阅，作者信息按约定保留占位。摘要、三条贡献和结论以等预算位置决策为主线。引言用细长船体的像素偏移与 HRSID 几何证据引出研究问题，相关工作分别梳理原生网格监督、保面积交换和局部／整掩膜精修。图 6 以同一预测和候选呈现双参考效果、配对区间及分歧像素贡献，图件由已核验的聚合结果生成。方法包含一张总览和三张细节图，补全灰度与动态空间吸引力定义，并推导预测占用误差如何影响选点的实际收益。实验数据总表增加 SAR-SSP 作者验证集，明确栅格 IoU、母景权重和作者训练验证共享母景。[英文 PDF](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图件及重建说明](paper_boundary_refinement_20261120/figures/README.md) · [52 篇原文研读与版式修订](style_review/STYLE_REDESIGN_20261123.md)
+更新于 2026 年 11 月 25 日。20 页 IEEE 双栏英文稿面向 TGRS 学术审阅，作者信息按约定保留占位。现版方法明确 14 维端点特征和局部灰度算子，讨论集中于迁移与参考敏感性、候选覆盖、拓扑及物理测量、计算与复现，原图表均保留。致谢列明 AI 在摘要、正文、图注、图件和分析代码中的使用。摘要、三条贡献和结论以等预算位置决策为主线。引言用细长船体的像素偏移与 HRSID 几何证据引出研究问题，相关工作分别梳理原生网格监督、保面积交换和局部／整掩膜精修。图 6 以同一预测和候选呈现双参考效果、配对区间及分歧像素贡献，图件由已核验的聚合结果生成。方法包含一张总览和三张细节图，补全灰度与动态空间吸引力定义，并推导预测占用误差如何影响选点的实际收益。实验数据总表增加 SAR-SSP 作者验证集，明确栅格 IoU、母景权重和作者训练验证共享母景。[英文 PDF](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图件及重建说明](paper_boundary_refinement_20261120/figures/README.md) · [52 篇原文研读与版式修订](style_review/STYLE_REDESIGN_20261123.md)
 
 ## 主张与核验记录
 
@@ -142,3 +142,9 @@ SAR-SSP 固定 RF-DETR 的 92 个原生匹配后，D-FINE 掩膜的同队列一�
 独立数据补查核验了 DLR/Tings 的四传感器 SAR 船迹数据。数据字典中的掩膜用于剔除船信号、陆地和其他区域，专家标注对象是尾迹。该数据的公开掩膜缺少完整船体实例定义，未进入正式外部评分。 [DLR 发布](https://elib.dlr.de/223263/) · [作者数据与字典](https://zenodo.org/records/14197227)
 
 同预算留出评分自然结束，18,300 个候选和历史回归写回均逐值核验。排序联合相对回归的 PSeg／SPSD AP −0.050／+0.005，IoU −0.003［−0.043，+0.036］／+0.042［−0.015，+0.102］点。相对同量静态仍有 +0.118／+0.633 AP 与 +0.233／+0.513 IoU。无标注冻结的完整并集含 294,091 个动作，176 对共有船体的真值可判序诊断涉及 102 个解码组。排序正确率点估计 +1.980［−0.173，+4.185］个百分点，各自选中动作至少一套参考退化的共有船体由 70 增至 76。该次完整推进门槛未通过，按规则结束该配方的种子扩展。结果限于已接触源域、现有选择器和固定种子，作者标注分歧与独立采集适用范围仍单独核验。 [评估及复现](code/SPSD_PSEG_GATE_MATCHED_ROBUST_RANKING_SEED5297_20261125/ACTUAL.md) · [稳健决策损失先例](https://ijcai.org/proceedings/2024/538)
+
+### 双参考平均收益与差异的同预算监督
+
+在同一组外生成的 FIT 动作、逐点 BCE、初始化和 1,000 次更新下分别监督平均收益、参考差异与两参考原回归。旧回归张量精确复现，三组容量及所有动作和端点采样量相同。差异监督对相同的两参考预测采用绝对值零子梯度，此时仍有逐点 BCE。留出效用由冻结评分检验。 [训练、开销和公式](code/SPSD_PSEG_FIT_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
+
+现版审阅稿保留 13 图和 12 表，并根据 IEEE 政策更新所用 AI 系统、论文位置和参与程度的说明。 [IEEE 作者中心](https://journals.ieeeauthorcenter.ieee.org/become-an-ieee-journal-author/publishing-ethics/guidelines-and-policies/submission-and-peer-review-policies/) · [TGRS 作者指南](https://www.grss-ieee.org/publications/author-resources/tgrs-information-for-authors/)
