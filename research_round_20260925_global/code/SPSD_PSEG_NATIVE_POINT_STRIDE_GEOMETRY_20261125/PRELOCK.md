@@ -1,0 +1,7 @@
+# Label-free native point to D-FINE mask-grid geometry audit
+
+Use the previous verified point preparation on TRAIN915 only. Require successful actual point terminal and footer with result 87693897f873a2129764781611b0f7c35cadde51c0c4e830d7f8187c3b684049. Revalidate the two point-index hashes, encoded packet hashes, sizes, shapes, native dimensions, orders and exact reported positive budgets. Do not read images, any labels or newly extracted network features. No model inference.
+
+For every positive-budget candidate map its fixed selected inner and outer native point centers to the original 160-by-160 mask grid under half-pixel interpolation and border clipping. Compute the exact clipped coordinate as rational numerators and map to an anchor cell by floor. For each sign count endpoints whose anchor cell occurs on the opposite sign, and separately endpoints whose exact clipped continuous coordinates occur on the opposite sign. Record per-side counts, candidate presence of shared cells and exact coincident locations, and medians of unique cells and coordinates on each side. Keep FIT and source-gate populations separate. This measures grid geometry and neither uses model values nor tests whether feature values at neighboring locations differ. Shared cells can retain different bilinear weights.
+
+Do not modify counts or choose any training arm based on this audit. Existing exact decoded duplicates retain their original groups and image membership. Publish only safe aggregate results and code.

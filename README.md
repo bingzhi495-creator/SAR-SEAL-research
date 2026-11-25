@@ -4,6 +4,9 @@
 
 ## 当前状态（2026-11-25）
 
+- D-FINE 中间特征前的点网格诊断已完成。8,785 个有编辑预算的开发候选中，8,773 个的内外端点共享插值单元，原连续坐标无两侧重合。该结果明确同单元内插值权重仍可不同。[几何计数与原作者先例](research_round_20260925_global/SPSD_PSEG_NATIVE_POINT_STRIDE_GEOMETRY_20261125_ACTUAL.md)
+
+
 - 三组端点灰度输入完成同预算评分。联合作为参照相对原回归的 Mask AP +0.051／+0.126（PSeg／SPSD），固定 IoU +0.018／+0.002 点，区间均跨零。相对同量静态仍有 +0.220／+0.754 AP，对分侧参照的特异性未通过。[实测与复现](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_RADIOMETRIC_CONTRAST_SEED5297_20261125/ACTUAL.md)
 
 
