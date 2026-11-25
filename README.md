@@ -4,6 +4,9 @@
 
 ## 当前状态（2026-11-25）
 
+- 三组端点灰度输入完成同预算评分。联合作为参照相对原回归的 Mask AP +0.051／+0.126（PSeg／SPSD），固定 IoU +0.018／+0.002 点，区间均跨零。相对同量静态仍有 +0.220／+0.754 AP，对分侧参照的特异性未通过。[实测与复现](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_RADIOMETRIC_CONTRAST_SEED5297_20261125/ACTUAL.md)
+
+
 - 三组等容量灰度特征拟合完成。独立的 FIT 组外线性探针覆盖 5,042 个动作，共用灰度中秩较等容量原灰度的平均收益误差差 +0.0374 个编辑预算百分点，配对区间跨零。[组外检验](research_round_20260925_global/SPSD_PSEG_FIT_CROSSFIT_GRAY_RADIOMETRIC_PROBE_20261125_ACTUAL.md) · [非线性头拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_RADIOMETRIC_FEATURES_SEED5297_20261125/ACTUAL.md)
 
 
