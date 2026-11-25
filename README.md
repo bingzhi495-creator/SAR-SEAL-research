@@ -9,6 +9,7 @@
 - SPSD 与 PSeg-SSDD 作者影像完全一致，切换轮廓后，冻结自然量独立选点相对原生的 AP 从 +0.344 变为 −0.491 点。同量解除配对从 +0.081 变为 −0.007 点。[同图八臂对照及复现](research_round_20260925_global/SPSD_PSEG232_ANNOTATION_SENSITIVITY_20261125_ACTUAL.md)
 - 同图同候选误差分解通过预锁门槛。自然量精修换参考后的 −0.359 IoU 效应差中，−0.286 点来自改动像素的参考分歧。已逐图复现原总效应。[机制与复现](research_round_20260925_global/SPSD_PSEG232_SHARED_HULL_DECOMPOSITION_20261125_ACTUAL.md)
 - 双参考同量几何上界通过。每候选固定签名预算时，相对静态吸引力的保守 IoU 改善为 +0.313 点，127 艘、86 个影像组。两参考联合选择器已通过合成测试，真实训练待受理。[双参考上界](research_round_20260925_global/SPSD_PSEG232_MAXIMIN_STATIC_QUOTA_ORACLE_20261125_ACTUAL.md) · [下一轮设计](research_round_20260925_global/DUAL_REFERENCE_FIXED_K_SELECTOR_20261125_DESIGN.md)
+- 双参考源训练名单验收完成，排除 12 张跨测试重复与 1 张不完整标注图，保留 915 图／901 个精确 RGB 组。固定训练 732 图，源域留出 183 图，无编码或解码重叠。[数据验收与协议](research_round_20260925_global/SPSD_PSEG_DUAL_REFERENCE_TRAIN_ADMISSION_20261125_ACTUAL.md)
 - SAR-SSP 锁定 RF-DETR 原生配对后，D-FINE 几何上可多匹配 10 艘，涉及 3 个母景，未达到预锁场景范围。[互补上界](research_round_20260925_global/SAR_SSP_CROSS_CARRIER_NATIVE_COMPLEMENT_20261125_ACTUAL.md)
 - HRSID FIT109 扩边上限实测完成。原候选和预算不变时，完整框内 1–4 层相对抽样端点仅增 0.098 离散 IoU 点，第 3–4 层无额外收益，未达到扩边训练门槛。[实测与源码](research_round_20260925_global/HRSID_FIT109_NESTED_SUPPORT_ORACLE_ACTUAL_20261125.md)
 - HRSID FIT109 第二查询端点排序已实测。逐候选增删量一致，拟合真实线索的 AP 与原独立排序相同，未达推进门槛。原独立选点相对距离配对仍高 1.204 AP 点。[实测与源码](research_round_20260925_global/HRSID_FIT109_SIBLING_ENDPOINT_RANK_ACTUAL_20261125.md)
