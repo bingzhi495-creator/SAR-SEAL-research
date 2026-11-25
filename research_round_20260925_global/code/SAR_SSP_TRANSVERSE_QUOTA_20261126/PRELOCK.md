@@ -1,0 +1,36 @@
+# Transverse spread filter in the frozen SAR-SSP signed-edit menu
+
+## Hypothesis
+
+On the previously evaluated SAR-SSP validation cohort, the frozen variable signed budget trades less missed hull area for more false foreground. Of 393 extra false foreground cells relative to equal signed counts, 392 are in the anchored main component. An oracle selecting among the frozen per-split winners recovers 0.958 fixed-match IoU points, compared with 0.180 points from re-ranking at the selected split. Connectedness admits edge widening, retained false foreground, and other errors. We test whether excessive apparent width across the long axis helps explain the observed transfer failure. [Migration result](../SAR_SSP_DFINE_BCE5297_VARIABLE_SIGN_TRANSFER_20261126/ACTUAL.md) · [Connected false foreground](../SAR_SSP_FALSE_FOREGROUND_ATTACHMENT_20261126/ACTUAL.md) · [Per-quota winner diagnostic](../SAR_SSP_FROZEN_POLICY_REGRET_20261126/ACTUAL.md)
+
+Second moments and covariance constraints have established segmentation precedents. SAR ship segmentation already uses oriented proposals and features. Eigenanalysis of detected SAR and ISAR ship pixels is also established for sizing and heading estimation. The earlier project two-flank study translated the entire original mask while keeping its width and area. Here we constrain the output's central spread in a fixed native-mask direction only when choosing among the original learned quota winners. The hypothesis concerns raster shape. The input provides no verified per-chip look angle or measured beam for this comparison. [Moment-constrained segmentation](https://cvai.cit.tum.de/_media/spezial/bib/kc11_iccv.pdf) · [SRNet](https://www.mdpi.com/2072-4292/15/5/1324) · [SAR ship pixel eigenanalysis](https://elib.dlr.de/204142/) · [Two-flank scout](../../HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md)
+
+## Intervention and controls
+
+Use the previously accepted D-FINE-S HRSID E24 capture and the original 1,346-parameter seed-5297 dual-reference point head fitted only on the 732 source-training images. Preserve all 232 historical SAR-SSP author validation images, 23,200 carrier candidates, ranks, scores, native masks, original cache, endpoints, posterior, dynamic attraction budget and source scaler. Require archived B balanced and F free-action parity for every slot, and each edited arm to retain exactly the original 2k total edits per candidate. The expected positive population is 10,393 slots and 147,118 flips per writer. Zero-budget candidates inherit the native mask. There is no new training, detector forward, target fit or threshold selection.
+
+At fixed native PCA axes, let the short-axis variance of an action's mask be the mean squared projection about that mask's own centroid. Let its long-axis variance be computed along the other fixed native eigenvector. The coordinates are native cell centers with equal foreground weight, so a rigid translation does not affect either variance. Positive-budget eligibility requires one 8-connected component of the native mask and native covariance eigenvalues satisfying large >= 4 small and large > 0. Rank-one elongated masks are eligible when they meet these rules. This is a length-to-width standard-deviation ratio of at least two. Outside eligibility, the three new writers use the original free action. The original B and F remain available for every slot independently.
+
+For each native candidate freeze the single archived estimated-maximin winning endpoint set from each feasible integer addition quota a, with removal quota 2k−a. Reconstruct the original eleven mixture order, ties, incumbency and original action scores. All writers draw from exactly this same per-split winner representation. Define the following three filters on this menu for eligible candidates.
+
+- T retains B and all other quota winners whose short-axis variance is at most B's. Apply only a floating-point tolerance of 1e-12 times the maximum of one and the magnitude of the compared variance.
+- A retains B and fills the same number of reserved places using the smallest absolute quota deviation from k. This is the least net area change.
+- L retains B and fills the same number of places using the smallest long-axis variance along the native major axis. This is the axis-swapped geometric control at the same menu size.
+
+T, A and L choose the original maximized minimum estimated IoU gain on their corresponding admissible menus, testing the archived order first for tied scores and breaking control-filter ties in that same order. Each retains B by construction and all three filters admit the same number of proposals on each candidate. The filter can alter the signed split and the final area. It leaves the total number of flips fixed. Record filter sizes, binding, actual output masks, changed quota and signed counts, final area, short- and long-axis moments and coverage. Independently reconstruct the complete selected masks and archive parity from the observed label-free output before scoring.
+
+## Evaluation and decision
+
+Reuse the accepted historical 139 author hulls, 88 original raster IoU 0.50 matches (51 misses retained), 23 hull-bearing source groups and 48 touch-edge references. Recover original N, B and F metrics. Report COCO mask AP, AP50, AP75, AP90, APsmall and AR100 for all 23,200 candidate slots. Report all-hull fixed-match raster IoU, false foreground and missed reference area, with the original paired 4,096 PCG64(5217) source-group resamples and nonedge sensitivity. Count changed eligible positive-budget fixed matches and distinct groups for any contrast used to support a decision. Mark cohort exposure and report N, B, F, T, A and L even if the new rule fails.
+
+T versus F is the primary mitigation comparison. Practical mitigation requires at least +0.30 AP points, at least +0.15 fixed-match IoU points with a paired 95% lower bound above zero, and at least 20 changed eligible positive-budget matches across eight groups. Report false-positive and false-negative differences separately. T versus B uses the same joint gate for evidence of practical recovery over balanced writing. Improvement relative to F alone does not establish that recovery.
+
+Interpret transverse specificity only when T beats both A and L on paired IoU with lower bounds above zero, false foreground falls with upper bounds below zero, AP is at least −0.10 points versus each, and each contrast meets the original 20-match/eight-group exposure rule. Report gate failures even when point estimates are favorable. A decline in false foreground alongside more misses can explain a trade-off without demonstrating practical mitigation. No new independent dataset is accessed. Any favorable outcome would first need fixed-rule source retention and a prospective independent cohort before it could change the paper's deployed method.
+
+| Closed source | SHA-256 |
+| --- | --- |
+| Original transfer driver | df5f63cf3d2042904b8757f2b34b018b3158dea7c31c428166bfece9377f5ffe |
+| Original label-free render | 9cf1753d4818df64717217831d29421f329eae21014b4656e52be83ecefd1701 |
+| Original label score | a857f06b37ca65e38205e24c5fd024e837f533dbf1ba6c448fed5d2e4727e837 |
+| Source finite-menu writer | fb49070f10d064fbe1bcce89e7baf1fb59d3ae81950863437adb95c37c7c4b81 |
