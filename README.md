@@ -4,6 +4,9 @@
 
 ## 当前状态（2026-11-25）
 
+- 可变增删分配首次通过预锁的两套参考及特异性门槛。每候选保持相同 2k 总翻转，使用相同目标函数时，PSeg／SPSD Mask AP +2.461／+1.782，固定 IoU +0.993／+0.580。已启动 5298／5299 重复与冻结跨库检验。[闭合评分](research_round_20260925_global/code/SPSD_PSEG_SCORE_VARIABLE_SIGNED_BUDGET_SEED5297_20261125/ACTUAL.md)
+
+
 - 选择性采用固定 2,844 个候选和逐图逐 k 构成。学习排序较同量原边际规则在 PSeg／SPSD 的固定 IoU 为 +0.084／+0.154 点，区间均为正。较全量 BCE 联合为 −0.090／−0.243 点，未通过总门槛。同菜单全船体真值辅助联合上界 **+0.0586 点**，低于 +0.15。[真实评分](research_round_20260925_global/code/SPSD_PSEG_GATE_SELECTIVE_BCE_ADOPTION_SEED5297_20261125/ACTUAL.md) · [完整上界](research_round_20260925_global/code/SPSD_PSEG_GATE_SELECTIVE_BCE_ALL_HULL_ENVELOPE_20261125/ACTUAL.md)
 
 
