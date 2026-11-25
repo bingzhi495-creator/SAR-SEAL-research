@@ -12,6 +12,7 @@
 - 固定每种增删配额的端点动作后，仅用源训练组折外预测拟合四系数校准。相对原可变配额，两参考的 Mask AP −0.324／−0.071，固定 IoU −0.164／−0.032 点。相对等量仍正，同容量打乱对照的两个区间跨零。按预设未推进。[实测](research_round_20260925_global/code/SPSD_PSEG_FIXED_WINNER_QUOTA_CALIBRATION_20261126/ACTUAL.md)
 - 在 SAR-SSP 历史队列上复算原写回。保留每种配额的预测端点排序，真值辅助重选增删量可恢复 +0.958 个固定匹配 IoU 点。同配额内重选端点为 +0.180 点。共同替换真实面积和静态交集收益为 +0.005 点，区间跨零。[配额诊断](research_round_20260925_global/code/SAR_SSP_FROZEN_POLICY_REGRET_20261126/ACTUAL.md)
 - 补充 Umbra 队列的 24 个独立采集全部通过原生窗口提取和 96 个原始瓦片独立校验，两份盲判包已核验。原 12 景与补充队列分别封存、评分和报告。实际判读回传和精度评价待完成。[预锁名单](research_round_20260925_global/code/UMBRA_SUPPLEMENT_METADATA_20261126/LOCK.md) · [原生窗口实测](research_round_20260925_global/code/UMBRA_SUPPLEMENT_NATIVE_20261126/ACTUAL.md) · [盲判包](research_round_20260925_global/UMBRA_SUPPLEMENT_REVIEW_PACKETS_ACTUAL_20261126.md)
+- 补充 24 景的冻结模型推理、掩膜写回和独立重放均完成。两位判读者的原始掩膜回件齐全后，按预锁规则独立评分。[冻结掩膜记录](research_round_20260925_global/UMBRA_SUPPLEMENT_FROZEN_CARRIER_ACTUAL_20261126.md) · [双参考评分](research_round_20260925_global/code/UMBRA_SUPPLEMENT_DUAL_REVIEW_SCORE_20261126/README.md)
 - Umbra 盲态覆盖核验已实际完成。技术汇总按预锁保留在协调端，待封存两份原始判读后接续原评分。[核验程序](research_round_20260925_global/code/UMBRA12_COORDINATOR_EDIT_COVERAGE_20261126/README.md)
 - 更新 22 页 IEEE 双栏英文审阅稿，含 14 图和 13 表，添加总翻转量固定时的增删配额公式、效应分解图及三种子结果表。作者和投稿信息按约定留为占位。[PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.tex) · [读图与复现](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
