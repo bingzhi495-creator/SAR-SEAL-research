@@ -148,3 +148,11 @@ SAR-SSP 固定 RF-DETR 的 92 个原生匹配后，D-FINE 掩膜的同队列一�
 在同一组外生成的 FIT 动作、逐点 BCE、初始化和 1,000 次更新下分别监督平均收益、参考差异与两参考原回归。旧回归张量精确复现，三组容量及所有动作和端点采样量相同。差异监督对相同的两参考预测采用绝对值零子梯度，此时仍有逐点 BCE。留出效用由冻结评分检验。 [训练、开销和公式](code/SPSD_PSEG_FIT_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
 
 现版审阅稿保留 13 图和 12 表，并根据 IEEE 政策更新所用 AI 系统、论文位置和参与程度的说明。 [IEEE 作者中心](https://journals.ieeeauthorcenter.ieee.org/become-an-ieee-journal-author/publishing-ethics/guidelines-and-policies/submission-and-peer-review-policies/) · [TGRS 作者指南](https://www.grss-ieee.org/publications/author-resources/tgrs-information-for-authors/)
+
+平均收益监督的冻结评价覆盖同一源域 183 图、180 解码组和 18,300 个候选。相对逐参考回归，PSeg／SPSD Mask AP +0.065／−0.012 点，固定 IoU −0.0002［−0.034，+0.034］／−0.031［−0.080，+0.014］点。差异项对照也未被稳定超越，SPSD 的同头均值仍更高。相对静态保留 +0.233／+0.616 AP。用相同动作做比较，平均收益预测绝对误差相对回归仅减少 0.0026 个像元，配对区间跨零。三个头回顾性替换真实平均收益，恢复的逐船较小交集均大于替换真实半差。此处是真值辅助诊断，按已锁条件结束该配方的扩展。后续优先检验新输入能否补足平均收益的预测信息。 [真实评估与成本](code/SPSD_PSEG_GATE_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
+
+### 独立参考数据核验
+
+SARShip-4i 报告 139 幅源 SAR 影像切为 6,961 芯片，混合自采像元标注与 HRSID 衍生语义掩膜。本次访问作者链接未能取得文件，请求接口返回 404。自采子集的母景、目标分离和单船数量尚待核实。Fan 等报告对八幅高分三号源图进行人工像元标注，表中只有四个区域与日期组合，尚无可核验公开轮廓与原景映射。OSSDD 公布的二值掩膜来自旋转框内部填充，适用于检测研究。 [SARShip-4i 原文](https://www.mdpi.com/2072-4292/15/13/3304) · [Fan 等源图与标注](https://www.mdpi.com/2072-4292/11/18/2171#sec2dot3) · [OSSDD 作者流程](https://arxiv.org/html/2608.01963v1#S4.SS1)
+
+12 个 Umbra 独立采集窗口中，论文主对照的 1,321 参数头、独立选点与距离配对等量预测已冻结并独立回放。两份原始盲态轮廓尚未接收。预锁要求两份参考均至少覆盖 20 个合格船体、8 个独立采集组，且各自配对 IoU 区间下界为正。它是一个前瞻性可行性验证，不能替代完整公共基准。 [冻结预测](UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md) · [独立评分接收流程](code/UMBRA12_DUAL_REVIEW_SCORE_20261123/README.md)

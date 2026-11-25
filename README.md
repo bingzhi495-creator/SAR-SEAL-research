@@ -4,8 +4,11 @@
 
 ## 当前状态（2026-11-25）
 
+- 三组同预算校准已完成固定写回评分。平均收益相对逐参考回归，PSeg／SPSD AP +0.065／−0.012，固定 IoU −0.0002／−0.031 点，主效用及分量特异性未通过。相对同量静态仍有 +0.233／+0.616 AP。[真实评分和分量归因](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
+
+
 - 审阅稿明确列出 14 维端点特征及灰度邻域公式，收紧迁移和原生候选覆盖的讨论，并按 IEEE 要求说明写作、作图和分析代码中的工具使用范围。新版保留 13 图、12 表。[英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
-- 三组双参考收益校准完成等预算拟合，各 1,346 参数和 1,000 次更新。原回归权重精确复现，平均收益和参考差异分别作为辅助监督，待固定写回评分。[三组训练与复现](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
+- 三组双参考收益校准完成等预算拟合，各 1,346 参数和 1,000 次更新。原回归权重精确复现，平均收益和参考差异分别作为辅助监督。[三组训练与复现](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
 
 
 - 两参考最小收益的成对排序完成同动作、同预算真实对照。相对回归联合，PSeg／SPSD IoU −0.003／+0.042 点，区间均跨零；排序正确率点估计 +1.980 个百分点，仍未达到写回推进门槛。[完整实测](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_ROBUST_RANKING_SEED5297_20261125/ACTUAL.md)
