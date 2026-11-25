@@ -112,3 +112,5 @@ SAR-SSP 固定 RF-DETR 的 92 个原生匹配后，D-FINE 掩膜的同队列一�
 双参考同量几何上界使用既有静态写回预算，232 图全分母下的逐船较小参考收益为 +0.313 IoU 点［+0.240，+0.390］，127 艘、86 组实际改变。原始端点完整复算与静态 RLE 逐值核验先于作者标注读取。该上界允许按作者参考选择位置，支持一轮固定源训练检验。双参考选择器现仅通过合成检查。[实测](SPSD_PSEG232_MAXIMIN_STATIC_QUOTA_ORACLE_20261125_ACTUAL.md) · [拟合与等量对照设计](DUAL_REFERENCE_FIXED_K_SELECTOR_20261125_DESIGN.md)
 
 下一阶段的作者训练名单已完成身份核验。剔除 12 张跨测试重复训练 JPEG，另隔离 1 张 SPSD 实例 ID 缺失图；915 张准入图按 901 个精确 RGB 组固定分为 732 图拟合和 183 图源域留出。两部分字节和解码图像均无重叠，采集母景身份仍待核实。相同配置以 1,000 次更新和同容量头作固定对照，训练尚待冻结点准备。[验收与划分](SPSD_PSEG_DUAL_REFERENCE_TRAIN_ADMISSION_20261125_ACTUAL.md)
+
+915 张准入训练图的 D-FINE HRSID E24 冻结捕获已实际完成，91,500 条候选含原生空掩膜，所有形状、原序及概率文件经过独立读回。双参考训练标签已按 732／183 的固定影像组切分导出，确认两部分无共同解码图像及原影像 ID。四臂同容量训练核心已用合成样本核对相同初始化、采样、预算和实际更新数。真实拟合待点特征资格完成。[捕获](SPSD_PSEG_TRAIN915_DFINE_E24_CAPTURE_20261125_ACTUAL.md) · [标签导出](SPSD_PSEG_DUAL_REFERENCE_LABEL_EXPORT_20261125_ACTUAL.md) · [训练核心](code/SPSD_PSEG_DUAL_REFERENCE_OCCUPANCY_TRAIN_CORE_20261125)

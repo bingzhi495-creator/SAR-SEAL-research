@@ -2,7 +2,11 @@ import unittest
 
 import numpy as np
 
-from complement import match, rescue
+from pathlib import Path
+from runpy import run_path
+
+functions = run_path(str(Path(__file__).with_name("complement.py")))
+match, rescue = functions["match"], functions["rescue"]
 
 
 class DonorMatchTest(unittest.TestCase):

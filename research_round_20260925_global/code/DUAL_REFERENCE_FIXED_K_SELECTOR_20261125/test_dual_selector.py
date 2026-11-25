@@ -2,7 +2,10 @@ import unittest
 
 import numpy as np
 
-from dual_selector import select
+from pathlib import Path
+from runpy import run_path
+
+select = run_path(str(Path(__file__).with_name("dual_selector.py")))["select"]
 
 
 class SelectTest(unittest.TestCase):
