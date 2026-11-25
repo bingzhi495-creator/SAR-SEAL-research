@@ -1,0 +1,99 @@
+{
+  "AP": false,
+  "all_archive_jpeg_and_rgb_exact": true,
+  "all_native_rle_and_probability_masks_exact": true,
+  "all_original_rank_score_and_rotated_box_same_call_exact": true,
+  "angle_version": "le90",
+  "author_box_transforms_sha256": "899315d58f3004da58b639df9d369ce01de3e8ca33076100ed99a704ab6308d2",
+  "author_commit": "2e56c7208f217ff1824f1d4f3f3ea242a5f78bc6",
+  "by_sensor": {
+    "GF-3": {
+      "candidates": 41,
+      "empty_masks": 0,
+      "exact_projected_masks": 41,
+      "images": 42,
+      "native_probability_positions": 10747904,
+      "no_candidates": 3,
+      "nonempty_masks": 41
+    },
+    "TerraSAR-X": {
+      "candidates": 48,
+      "empty_masks": 0,
+      "exact_projected_masks": 48,
+      "images": 32,
+      "native_probability_positions": 12582912,
+      "no_candidates": 0,
+      "nonempty_masks": 48
+    }
+  },
+  "counts": {
+    "candidates": 89,
+    "empty_masks": 0,
+    "exact_projected_masks": 89,
+    "images": 74,
+    "native_probability_positions": 23330816,
+    "no_candidates": 3,
+    "nonempty_masks": 89
+  },
+  "cpu_worker_processes": 4,
+  "elapsed_seconds": 126.60192059999099,
+  "ground_truth_opened": false,
+  "images": 74,
+  "index_sha256": "3db7f7779372762b16efd3fcf03c6810e90be68acaf24b466a57df4bd9629f28",
+  "intake_image_manifest_sha256": "154d0d748b96df0d56ac249adcb8b6ae63275a09dfd7a0d7480839005e044338",
+  "intake_result_sha256": "da9d92ea16e74f988d46d9855d26b530111b4c5e650fef513895c5d2e4441065",
+  "intake_terminal_sha256": "b97ba047bf9422346f210b2a513be606cdc648cccdc0e8545affdd510f9ffaeb",
+  "mask_threshold": 0.5,
+  "model_forwards": 74,
+  "model_selected": false,
+  "native_raster_shape": [
+    512,
+    512
+  ],
+  "network_shape": [
+    608,
+    608
+  ],
+  "no_image_or_candidate_filtering": true,
+  "official_RSDD_checkpoint": false,
+  "optimizer_updates": 0,
+  "origin": "project PSeg-SSDD FIT741 E24 refit",
+  "phase": "capture",
+  "pilot_result_sha256": "d914fcb254a5dcf143c496ceeedfed43080cc3ad28903f2054eae3e4818be112",
+  "pilot_terminal_sha256": "d17eb362c93613828a8f69291fab2009243005ad6b1802fdb488a87246354aa7",
+  "pilot_worker_sha256": "436a980f1428b2ed56797e5c1ac1f1b9edfddfaa5d453b5a24cae0111b64274f",
+  "pixels_edited": 0,
+  "private_image_only_index_sha256": "e17ed0bc8ae9cda98ce5b3d114e0eedc537000903b55fc32fbfc193a3a3812b9",
+  "probability_npz_files": 74,
+  "protocol_sha256": "8cc6abb79faea6af12fa7d22aeec18d43e277323092dd5cdf91aba4c8d744826",
+  "reference_files_opened": 0,
+  "runtime_versions": {
+    "Pillow": "9.5.0",
+    "e2cnn": "0.2.3",
+    "mmcv-full": "1.6.0",
+    "mmdet": "2.28.2",
+    "numpy": "1.26.4",
+    "opencv-python": "4.11.0.86",
+    "pycocotools": "2.0.11",
+    "torch": "1.12.0+cpu",
+    "torchvision": "0.13.0+cpu"
+  },
+  "source_fit_result_sha256": "6f8551a15b28d0184e76199cec415b46bcb7a688eaff72640ba6347ccd9ea447",
+  "source_fit_terminal_sha256": "4153fcf97ea9093ce0b657da0b18838262e202ac54f10d34dff793abeb071a91",
+  "status": "SRNET_SSDD_E24_RSDD74_NATIVE_CAPTURE_COMPLETE",
+  "test_settings": {
+    "max_per_img": 2000,
+    "min_bbox_size": 0,
+    "nms": {
+      "iou_thr": 0.1
+    },
+    "nms_pre": 2000,
+    "score_thr": 0.3
+  },
+  "threshold_operator": ">",
+  "threshold_selected": false,
+  "torch_threads_per_process": 1,
+  "weights_sha256": "8998d0f6c11082250a46af48ec0c5455fb7606de8b6bb6a00ad2956046ea95ea",
+  "whole_image_probability_dtype": "float32",
+  "worker_sha256": "ee08ae69961a547464899e1c5480a9def54d243d7daf89a6707898397432ffdc"
+}

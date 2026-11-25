@@ -14,6 +14,8 @@ SRNet 的原作者权重目录也已核对，匿名网页可浏览，列有 RSDD
 
 在本地已复核的 SSDD FIT741 E24 SRNet 上，按预设名单取 8 张历史 RSDD 图，含高分三号和 TerraSAR-X 各四张。保持原 608 像素输入和严格 0.50 掩膜阈值，独立原生回贴与作者未修改输出的 8 个 RLE、候选框、分数及顺序一致。此项只核验坐标接口和候选身份，未开启作者标注或计算 AP。[SRNet 原生回贴实测](code/SRNET_SSDD_E24_RSDD74_NATIVE_PARITY_20261126/ACTUAL.md)
 
+同一占据头转接至本地 SSDD FIT741 E24 SRNet 后，在既有 74 图上保持候选、端点和逐候选增删数。独立选点相对距离配对得到 +0.145 mask AP、+0.159 固定匹配连续 IoU［0.088, 0.236］。32 个有改变的匹配覆盖 13 个父景和 12 个传感器日期块。几何及覆盖条件成立，AP 未到 0.30 点。嵌套 42 图的对应结果为 +0.218 AP 和 +0.206 IoU［0.121, 0.306］。纯 RGB 重复核验发现 SSDD 741 张实际使用训练图与这 74 图之间无整幅解码重复。历史评分暴露及物理采集独立性仍按当前证据范围报告。[整批实测和复现](code/SRNET_SSDD_E24_RSDD74_PAIRED_REPLAY_20261126/ACTUAL_REPLAY.md) · [独立来源核验](code/SRNET_SSDD_E24_RSDD74_SOURCE_EXPOSURE_20261126/ACTUAL.md)
+
 ## 投稿正文候选稿
 
 [10 页英文正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX 主文件](paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [方法、结果、分析与参考文献](paper_boundary_refinement_20261120/submission_sections) · [24 页完整证据稿](paper_boundary_refinement_20261120/boundary_refinement.pdf)

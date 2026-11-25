@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- 冻结 SRNet 在原 74 图上完成相同候选、等增删数对照。独立选点较原配对 +0.145 mask AP、+0.159 固定匹配连续 IoU［0.088, 0.236］。32 个匹配覆盖 13 个父景及 12 个日期组。AP 未达 0.30 点门槛，预锁判据为证据不足。[整批实测](research_round_20260925_global/code/SRNET_SSDD_E24_RSDD74_PAIRED_REPLAY_20261126/ACTUAL_REPLAY.md)
+
 - 本地 SRNet SSDD FIT741 E24 在 8 张固定 RSDD 影像上完成无标注原生旋转回贴核验，8 个 RLE 与作者实现精确一致。[实测与复现](research_round_20260925_global/code/SRNET_SSDD_E24_RSDD74_NATIVE_PARITY_20261126/ACTUAL.md)
 
 - 固定预算选点新增独立 CPU 入口，支持读者自备的 COCO 候选与端点分数。原 74 图上两臂均逐项复现 7,346 个 RLE，FP32 并列顺序和零预算透传通过验证。[运行入口与验收](research_round_20260925_global/code/RFDETR_MATCHED_POINT_REFINEMENT_20261120/README_FIXED_COUNT.md)
