@@ -4,6 +4,9 @@
 
 ## 当前状态（2026-11-25）
 
+- 部署动作拟合已在历史 183 图开发组完成固定对照。与当前同运行环境旧动作相比，PSeg／SPSD mask AP +0.015／−0.131，固定 IoU −0.010／−0.072 点，未达到预锁门槛。相对同量静态吸引力仍为 +0.168／+0.628 AP。用同一动作比对时误差下降，选中动作真实至少一侧下降仍各为 70/206。[留出实测](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ACTUAL.md) · [FIT 动作覆盖](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ALIGNMENT_ACTUAL.md)
+
+
 - 双参考训练已完成部署动作与旧动作的匹配对照。两臂均为 1,346 参数、1,000 次更新，保持相同端点和动作抽样次数。五折交叉拟合生成部署方案，单独计入成本。保留首次历史权重精确复现失败及当前环境重复核验，留出评价单独核验。[训练实测](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ACTUAL.md)
 
 
