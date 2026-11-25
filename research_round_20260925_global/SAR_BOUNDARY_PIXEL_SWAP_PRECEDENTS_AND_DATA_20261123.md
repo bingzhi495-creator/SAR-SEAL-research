@@ -44,3 +44,9 @@ OSSDD 的作者采用矩形内部置一生成二值标注，适用于检测覆�
 OpenSAR Insight 的固定公开版本含 4,047 份标注 XML。训练、验证、测试分别来自 10、2、3 个互不重叠的 Sentinel-1 产品，分别含 2,980、340、1,626 条 `Ship` 记录。记录给出矩形 `BoundingBox` 和 `Is_Vessel` 标记，4,907 条另有距离压缩框。未见逐船轮廓或掩膜字段，图块四角用于空间定位。这个版本适用于以原始采集分组的跨表示检测。官方测试标签归档 222,414 字节，SHA-256 为 `649af181e149733f6ddbdea457a50c6ea7fbce6a979797e2557276a68045e4dc`。[固定版本](https://huggingface.co/datasets/opensar-insight/vessel-detection-dataset/tree/e90a0c0465cfb8484b4f356ef968d976054f453a)
 
 SISS-YOLO 报告针对 24 个 Sentinel-1A 场景图块增补人工多边形，其公开数据入口指向原 OpenSARShip2.0。增补标签和增强前父景关系尚未取得。SMART-Ship 第二版的多模态标注尚无可核验的公开发布入口或 SAR 侧轮廓产生记录。MKLab 的 Sentinel-1 油污数据含船舶语义类别，作者通过机构申请提供数据，多倍率裁片需要原始产品映射来排除重叠。三套候选均缺少本研究可直接执行独立船体实例评价的完整材料。[SISS-YOLO](https://doi.org/10.3390/rs17173118) · [SMART-Ship 第二版](https://arxiv.org/html/2508.02384v2) · [MKLab 数据入口](https://m4d.iti.gr/oil-spill-detection-dataset/)
+
+## 补核：逐点选取、联合配对与实例误差估计
+
+Atkinson 的二类像素交换在每次迭代按更新后的吸引力独立寻找前景和背景端点，保持粗单元的类别面积。Xu 和 Huang 在 §II 和图 1 对照这一逐点评分与逐轮选择联合得分像元对。其联合评分不等同于事先固定的最小平方距离一一配对。RankSEG 的定理 1 和引理 13 分析后验排名与预测掩膜的最终体积。最终体积约束只规定净面积，无法指定相对原掩膜的实际增删数。[Atkinson 原文](https://doi.org/10.14358/PERS.71.7.839) · [Xu 和 Huang 原文](https://www.grm.cuhk.edu.hk/~huangbo/Xuyong.pdf) · [RankSEG 定理](https://www.jmlr.org/papers/volume24/22-0712/22-0712.pdf)
+
+Back 等的 QuBER 在 RGB-D 和初始实例掩膜上估计边界真假阳性及真假阴性，并将误差信息融入精修解码器。双路编码依赖 RGB 与深度，因而是相关技术先例，现有单模态 SAR 没有其原版输入条件。我们的受控比较固定候选、置信度、端点、逐点分数以及固定配对实际产生的增删量。固定配对选出的两端集合在独立策略中可行，因此加性估计目标的最优值不下降。连续轮廓与 AP 实测承担效用证据，公式适用范围止于估计目标。[QuBER §III](https://arxiv.org/html/2306.16132v3#S3) · [正式论文及 DOI](https://doi.org/10.1109/ICRA55743.2025.11127393)

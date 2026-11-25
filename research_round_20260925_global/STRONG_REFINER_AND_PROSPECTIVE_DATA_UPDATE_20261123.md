@@ -36,3 +36,7 @@ Tang 等（CVPR 2021）直接用图像和已有实例掩膜提取边界小块。
 HRSID 的正式发行包含 5,604 张有船体多边形的图块。项目曾用 2,937 张拟合检测器、705 张开发、1,962 张作官方划分重评，至此覆盖全部发行图块。作者另发的 ALOS-2 样例来自一幅母景，论文用框评价切出的 187 个窗口。附送的 400 张负例是背景图。作者报告全库 136 幅母景，而训练部分已有 137 个项目文件名前缀，前缀无法作为可核验的母景标识。[划分历史](HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md) · [官方划分重评](HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md) · [HRSID 作者发行](https://github.com/chaozhong2010/HRSID#dataset-download-link) · [原文 §II、§IV-F](https://doi.org/10.1109/ACCESS.2020.3005861)
 
 Umbra 官方公开目录的舰船检测前缀经五页完整枚举，共 4,573 个对象，包括 SAR 影像、相位历史与采集元数据及一个说明文本。公开目录中没有与船体实例轮廓对应的对象。冻结的 12 个窗口中，有 9 个窗口存在非空原生掩膜。可贡献的采集组上限因此为 9。两份参考各自需匹配至少 20 艘有正编辑次数的船，并达到至少 8 个采集组。实际合格数须待两份原始 JSON 接收后评分。[Umbra 官方开放数据](https://registry.opendata.aws/umbra-open-data/) · [冻结覆盖摘要](results/UMBRA12_PHOENIX_WHOLE_ACTUAL_SAFE_20261123.json) · [双参考接收与评分](code/UMBRA12_DUAL_REVIEW_SCORE_20261123/README.md)
+
+### SAR-SSP 线索
+
+IEEE 的 DOI 登记确认了题名、作者及 Xplore 文档 11701465。通讯作者张天文的西南交大主页列出了论文。当前访问未取得 Xplore 正文或补充文件，Crossref 没有附数据关系，作者公开目录中也未核实到对应发布。不将不同名称的 SPSD 和 HRSID-PAN 假定为同一批影像。独立评估所需的原生实例掩膜、采集分组与数据许可仍待作者材料。[IEEE 文档](https://ieeexplore.ieee.org/document/11701465/) · [出版社登记](https://api.crossref.org/works/10.1109/TAES.2026.3735984) · [通讯作者主页](https://faculty.swjtu.edu.cn/zhangtianwen/zh_CN/index.htm)
