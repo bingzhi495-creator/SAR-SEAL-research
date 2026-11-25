@@ -4,6 +4,9 @@
 
 ## 当前状态（2026-11-25）
 
+- 两参考最小收益的成对排序完成同动作、同预算真实对照。相对回归联合，PSeg／SPSD IoU −0.003／+0.042 点，区间均跨零；排序正确率点估计 +1.980 个百分点，仍未达到写回推进门槛。[完整实测](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_ROBUST_RANKING_SEED5297_20261125/ACTUAL.md)
+
+
 - 同一有限菜单的真值分量替换显示，双参考平均收益估计和参考差异惩罚分别贡献 +0.227／+0.139 个保守 IoU 点，均为回顾性归因。固定同一训练动作后的回归与成对排序已完成同预算拟合，留出评分单独进行。[误差分解](research_round_20260925_global/SPSD_PSEG_GATE5297_MIDPOINT_DISAGREEMENT_ATTRIBUTION_20261125_ACTUAL.md) · [排序配对拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_ROBUST_RANKING_SEED5297_20261125/ACTUAL.md)
 
 
