@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- 74 图保留集的三种选点规则已完成同输入精修计时。一核六轮，端点、占据分数、原配对和预算预先缓存。原配对、限距重配、独立选点的选择加 RLE 写回中位耗时为 26.1、138.6、27.4 毫秒/图，原掩膜全部逐位复现。[分段耗时、次序和复现](research_round_20260925_global/code/LEARNED_BOUNDED_PAIRING_20261126/rsdd_timing/ACTUAL.md)
+
 - 等预算限距重配已在 HRSID DEV705 三个冻结点头和 Instance-RSDD 完成。HRSID 限距重配比距离优先 +0.475 AP，独立选择再增 +0.431 AP，两项固定匹配连续 IoU 区间均为正。74 图保留集上，独立选择较限距 +0.479 AP，固定匹配连续 IoU +0.116［0.008, 0.242］。高分三号两项 AP 都低于门槛。[实测、统计口径及复现](research_round_20260925_global/code/LEARNED_BOUNDED_PAIRING_20261126/ACTUAL.md)
 
 - 可变增删分配在三个种子上均超过各自的等量对照。相同候选、目标函数及逐候选总翻转数下，PSeg-SSDD／SPSD 的平均 mask AP 为 +2.299／+1.751 点，固定匹配 IoU 为 +0.971／+0.573 点。两套标注对应相同的 183 张源域开发影像。[重复评分](research_round_20260925_global/code/SPSD_PSEG_REPEAT_VARIABLE_SIGNED_BUDGET_SEEDS5298_5299_20261126/ACTUAL.md)

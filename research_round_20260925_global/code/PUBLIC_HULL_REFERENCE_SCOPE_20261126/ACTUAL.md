@@ -13,6 +13,12 @@
 
 本轮未取得可以直接用于新冻结船体评分的作者掩膜。SISS-YOLO 的未增强 LabelMe 标注及切片到原采集的映射最接近缺口。它们需要通过正式的作者共享取得。Umbra 的原 12 景及补充 24 景按已锁计划分别等待独立参考。
 
+## 补查的公开影像与原作者参考
+
+- **FUSAR-Ship 人工描边。** Al Hinai 与 Guida 的方法节和表 3 报告 30 张高分三号 FUSAR-Ship 切片的 CVAT 人工轮廓，并报告 OpenSARShip GRD 和 SLC 各 30 张的对照。FUSAR 原包有复旦官方入口。已检查的期刊和 Surrey 档案页均无 CVAT 导出、这 30 张切片的精确名单或母景映射。论文的分类划分表无法提供轮廓切片的采集独立性。此来源目前只能记录可能取得的已有参考。即使取得，也需先核验原切片、母景和许可，再查看正编辑匹配覆盖。[论文方法和表 3](https://www.mdpi.com/2072-4292/17/1/127) · [Surrey 归档](https://openresearch.surrey.ac.uk/esploro/outputs/journalArticle/Confidence-Aware-Ship-Classification-Using-Contour-Features/991146894402346) · [复旦发行入口](https://emwlab.fudan.edu.cn/resources/list.htm)
+- **Capella Maritime 影像。** 匿名读取官方 STAC 的 201 个条目链接和其中 69 个 GEC/GEO 元数据。按官方采集 ID 去重，每次采集优先保留 GEC，得到 35 次采集。筛选地距和方位分辨率均不超过 1 m 的 19 次，依次按较差分辨率、采集 UTC、采集 ID 排序。以 STAC 地理包围框无正面积相交为加入条件，贪心构造了 15 次采集的可行子集。15 个所选原生 TIFF 均有匿名 HTTP HEAD 200 并声明支持字节范围。未读取影像。供应商开放计划与对应许可链接指向 CC BY 4.0。15 次为民用范围及历史覆盖筛查之前的元数据结果，尚无船体轮廓或官方分割划分。当前未纳入冻结评价。[官方 STAC](https://capella-open-data.s3.us-west-2.amazonaws.com/stac/capella-open-data-by-use-case/capella-open-data-maritime/collection.json) · [AWS 登记](https://registry.opendata.aws/capella_opendata/) · [供应商许可](https://support.capellaspace.com/what-is-the-licensing-for-capellas-open-data)
+
+
 ## Instance-RSDD 74 图保留集的当时记录
 
 GitHub 的冻结协议记录发表于 2026-11-22 18:33:19 UTC，核对提交树中协议的 Git Blob 与本地逐字节一致。这早于 18:36:43 的数据接收、18:38:56 的检测器捕获和 18:44:36 的首次评分。捕获、读回、编辑及编辑核验的自然退出按顺序完整。评分代码在独立 RGB 重复核验和冻结编辑核验之后解码选定作者标注。原始作者几何在更早阶段做过数据资格检查。记录支持这一保留集在首次评分前固定了比较方案。[冻结提交](https://github.com/bingzhi495-creator/SAR-SEAL-research/commit/8ea9023ffb48abbd71e683d223a44087f3021d5b) · [原协议](../../INSTANCE_RSDD_PARENT_RESERVE_PRELOCK_20261123.md) · [原评分](../../INSTANCE_RSDD_PARENT_RESERVE_ACTUAL_20261123.md)

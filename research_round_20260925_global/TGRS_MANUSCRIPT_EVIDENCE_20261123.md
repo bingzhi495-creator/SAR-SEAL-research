@@ -8,6 +8,8 @@
 
 冻结占据头的限距强对照已完成，并入 10 页正文。HRSID DEV705 三次拟合的限距重配、解除上限依次增加 +0.475、+0.431 AP，两个固定匹配连续 IoU 区间均为正。高分三号两项几何增量均为正，AP 均低于 0.30 点。74 图保留集的独立选点比限距重配 +0.479 AP、+0.116 固定匹配连续 IoU，预锁方向判据通过。42 图为嵌套敏感性，其主比较的几何区间跨零。[完整实测和复现](code/LEARNED_BOUNDED_PAIRING_20261126/ACTUAL.md)
 
+74 图三臂等预算补做了选点成本。在同一逻辑 CPU 上，从缓存端点、分数、原配对行和预算开始，六轮次序平衡回放的选择加 RLE 写回中位耗时为 26.1、138.6、27.4 毫秒/图，对应原配对、限距重配、独立选点。包含每轮排序、限距求解和共用写回，排除检测、点头计算和预处理。正文同时保留从驻留输入测起的 PointRend 整精修计时。[实际计时及边界](code/LEARNED_BOUNDED_PAIRING_20261126/rsdd_timing/ACTUAL.md)
+
 ## 投稿正文候选稿
 
 [10 页英文正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX 主文件](paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [方法、结果、分析与参考文献](paper_boundary_refinement_20261120/submission_sections) · [24 页完整证据稿](paper_boundary_refinement_20261120/boundary_refinement.pdf)
