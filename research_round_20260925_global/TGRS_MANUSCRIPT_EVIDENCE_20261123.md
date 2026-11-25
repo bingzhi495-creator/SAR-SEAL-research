@@ -18,6 +18,8 @@ SRNet 的原作者权重目录也已核对，匿名网页可浏览，列有 RSDD
 
 SRNet 的整批 +0.145 mask AP 来自 AP70 +1.627 和 AP80 −0.176，其余八档持平。完全相同的冻结点池暨逐候选增删量下，按真值覆盖最优排序给出的连续 IoU 上界，比实际独立选点高 0.530 点［0.259, 0.834］。公开图将逐阈值 AP 和固定匹配几何分别呈现。已复现完整原 COCO 结果，主实用判据及独立外测范围沿用原协议。[诊断、可编辑 SVG 及复现](code/SRNET_RSDD74_THRESHOLD_ORACLE_20261126/ACTUAL.md)
 
+SRNet 的 2,048 个固定匹配可写端点均处于先验裁剪阈值内部，同支持真值余量 0.530 连续 IoU 点来自内部排序。另在等量写回下，原完整分数相对仅用先验 +0.045 AP、+0.192 连续 IoU［0.091, 0.290］。仅移除直接加性先验时，AP −0.163，连续 IoU 区间跨零。两项 AP 差均低于预锁门槛。[完整诊断与复现](code/SRNET_RSDD74_PRIOR_STRATA_20261126/ACTUAL.md)
+
 ## 投稿正文候选稿
 
 [10 页英文正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX 主文件](paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [方法、结果、分析与参考文献](paper_boundary_refinement_20261120/submission_sections) · [24 页完整证据稿](paper_boundary_refinement_20261120/boundary_refinement.pdf)
