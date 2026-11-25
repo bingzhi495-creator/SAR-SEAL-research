@@ -670,6 +670,8 @@ Capping Phoenix edits reduces exterior false positives on both datasets. On PSeg
 
 HRSID official results retain historical development exposure. The group definitions and sensitivity views in Section~\ref{sec:protocol} bound the transfer evidence. Native, local and Phoenix predictions are sealed on 12 prospectively selected Umbra windows. Independent reference scoring on these windows is pending.
 
+An oracle keeps every stock addition and deletes cells of least author-polygon coverage from the native foreground. At the stock count, it gains 5.594 and 3.512 continuous IoU points on gate-exposed Instance-RSDD and PSeg matches, respectively. Allowing fewer deletions adds 4.256 and 4.189 points. Both sets of paired 95\% intervals are positive. At the stock count, even the best deletion sites leave 43 of 67 PSeg hulls below their addition-only overlap. These label-conditioned ceilings quantify separate constraints on position selection and count control.
+
 \subsection{Topology and Physical Measurements}
 Area preservation leaves topology unconstrained. On DEV705 an edit can improve overlap with the intended hull and simultaneously increase overlap with a neighbor. Natural selection increased the hole count in 1,544 of 10,466 edited PSeg masks. Writing the same counts with native ranks did so in 519. All 107 nonempty D-FINE masks in the Schwegmann set~\cite{schwegmann} were below the 32-pixel size floor. These observations constrain applications that require connected hulls or very small instances. On the Instance-RSDD reserve, 24 of the 26 hulls harmed by SegRefiner deletion retain their pre-deletion component and hole counts in each comparison. Hull masks with count changes account for 47.5\% of parent-weighted gross IoU loss in the delete-only comparison and 47.9\% in the presence of additions. In the nested date-separated view, all 18 harmed hulls retain both counts. This retrospective comparison shows that component and hole counts alone miss many stock deletion errors.
 
@@ -686,7 +688,7 @@ Independent endpoint selection improves the overlap of already detected hulls at
 \noindent\emph{Acknowledgment.} OpenAI Codex assisted with drafting and revision. The method diagrams use schematic cells and an illustrative worked example. Result figures use observed measurements, including spatially pooled comparisons in Figs.~\ref{fig:gf3-qual} and~\ref{fig:pseg-budget-cases}.
 
 
-\IEEEtriggeratref{21}
+\IEEEtriggeratref{16}
 \begin{thebibliography}{27}
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, \href{https://doi.org/10.1109/ACCESS.2020.3005861}{2020}.
 \bibitem{rsdd} X. Yang, Q. Zhang, Q. Dong, Z. Han, X. Luo, and D. Wei, ``Ship instance segmentation based on rotated bounding boxes for SAR images,'' \emph{Remote Sens.}, vol. 15, no. 5, Art. no. 1324, \href{https://doi.org/10.3390/rs15051324}{2023}.

@@ -4,6 +4,10 @@
 
 ## 当前状态（2026-11-25）
 
+- 同量删点几何上限已用 Instance-RSDD／PSeg 的同一原版候选算清。理想删点位置留有 **5.594／3.512 连续 IoU 点**余量，允许减少原删点数又增加 **4.256／4.189 点**。[闭合实测、公式和复现](research_round_20260925_global/SEGREFINER_DELETION_BUDGET_CEILING_ACTUAL_20261125.md)
+
+- 已找到 SAR-SSP 作者数据包，验证集按发布说明含 232 图、139 个船舶实例。压缩包内的成像来源与标注仍待核验。[作者入口和资格](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#sar-ssp-作者发布已定位2026-11-25)
+
 - PSeg-SSDD 的原版、增删分解和等量位置评分已完成。67 艘、57 组的固定匹配中，两个删点对照使连续 IoU 下降 4.033 和 3.977 点，与 Instance-RSDD 的结果一致。浅层删点的实用增益未复现。[原版与本地对照](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md) · [增删分解](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md) · [位置对照](research_round_20260925_global/SEGREFINER_DEPTH_ACTUAL_20261123.md)
 
 - Instance-RSDD 原版删点的拓扑诊断已完成。两个对照各有 26 艘 IoU 下降，其中 24 艘保持连通分量和孔洞计数。审阅稿新增对照与 QuBER 先例，并明确等量独立选择的数学保证范围。[实测和复算](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md#受门槛船体的拓扑诊断) · [新版审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)

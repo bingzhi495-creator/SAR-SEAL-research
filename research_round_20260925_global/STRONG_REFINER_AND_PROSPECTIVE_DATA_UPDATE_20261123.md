@@ -37,6 +37,8 @@ HRSID 的正式发行包含 5,604 张有船体多边形的图块。项目曾用 
 
 Umbra 官方公开目录的舰船检测前缀经五页完整枚举，共 4,573 个对象，包括 SAR 影像、相位历史与采集元数据及一个说明文本。公开目录中没有与船体实例轮廓对应的对象。冻结的 12 个窗口中，有 9 个窗口存在非空原生掩膜。可贡献的采集组上限因此为 9。两份参考各自需匹配至少 20 艘有正编辑次数的船，并达到至少 8 个采集组。实际合格数须待两份原始 JSON 接收后评分。[Umbra 官方开放数据](https://registry.opendata.aws/umbra-open-data/) · [冻结覆盖摘要](results/UMBRA12_PHOENIX_WHOLE_ACTUAL_SAFE_20261123.json) · [双参考接收与评分](code/UMBRA12_DUAL_REVIEW_SCORE_20261123/README.md)
 
-### SAR-SSP 线索
+### SAR-SSP 作者发布已定位（2026-11-25）
 
-IEEE 的 DOI 登记确认了题名、作者及 Xplore 文档 11701465。通讯作者张天文的西南交大主页列出了论文。当前访问未取得 Xplore 正文或补充文件，Crossref 没有附数据关系，作者公开目录中也未核实到对应发布。不将不同名称的 SPSD 和 HRSID-PAN 假定为同一批影像。独立评估所需的原生实例掩膜、采集分组与数据许可仍待作者材料。[IEEE 文档](https://ieeexplore.ieee.org/document/11701465/) · [出版社登记](https://api.crossref.org/works/10.1109/TAES.2026.3735984) · [通讯作者主页](https://faculty.swjtu.edu.cn/zhangtianwen/zh_CN/index.htm)
+第一作者 Rong Deng 的 SLGSea 仓库已给出 SAR-SSP、SPSD 和 HRSID-PAN 的同一作者分享。无需登录即可用发布提取码核验清单，唯一文件是 `SLGSea_Datasets.zip`，大小 **866,821,756 字节**。普通网页下载交给百度网盘客户端，匿名预览提示登录。作者列出原图、RGB 实例编号 PNG 和 COCO panoptic JSON。SAR-SSP 的 train／val 分别为 929／232 图、461／139 个船舶实例。SPSD 和 HRSID-PAN 暂无独立性结论，先核验 SAR-SSP 的原始图、真值和采集身份。收到压缩包后需核对实际标签、既有数据的图像及父景重叠，以及包内许可。论文现有实验未以此来源调参。[作者说明（固定版本）](https://github.com/deng1218/SLGSea/blob/8225c680d3e991aa2cb5b22af3918b8704ec7b02/README.md#datasets) · [作者数据入口](https://pan.baidu.com/s/1I7Q1hM3xAq5X5azDwkyfOA?pwd=8888)
+
+另外两条来源的资格已核清。BMT-S2O 的 2,297 张有分割标注的 SAR 图来自 HRSID，无法增加独立影像。MMDEC 提供新的 Sentinel-1 采集及产品信息，附带船舶记录是模型检测与长度等属性的 CSV，没有独立船体实例轮廓。[BMT-S2O §IV-A](https://arxiv.org/html/2609.04726v1) · [MMDEC §3.3](https://tristanaverty.github.io/assets/pdf/averty2026mmdec.pdf)
