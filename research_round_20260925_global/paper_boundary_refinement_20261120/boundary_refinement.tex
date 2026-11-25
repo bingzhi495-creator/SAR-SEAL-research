@@ -492,6 +492,8 @@ Mean & 2.299 & 0.971 & 1.751 & 0.573\\
 
 With the source head and policy frozen, the same fixed-total-flip comparison on 232 SAR-SSP validation chips yields \(-0.139\) mask AP and \(-0.212\) fixed IoU points (\([-0.547,0.104]\)). It changes 48 original matches from 20 parent scenes. The variable policy decreases missed area by 0.653 points of reference area (\([-1.079,-0.328]\)) and increases excess foreground area by 1.378 points (\([0.750,2.067]\)). This target uses the released native raster masks and had prior evaluation exposure. The frozen procedure does not pass its paired transfer criterion on these data.
 
+To locate the loss, we replayed the original candidate menu for the 50 native matches with positive edit counts and kept the same 139-hull denominator. Using the author masks to select the best action at the model's chosen split recovered 0.180 mother-scene-weighted IoU points. Searching all splits after this within-split replacement recovered a further 1.147 points. In a separate substitution, retaining the predicted winner at every split and choosing only the split using the author masks recovered 0.958 points. Replacing the reference area and static intersection by their exact values, while retaining predicted intersection changes, changed realized IoU by 0.005 points (\([-0.096,0.115]\)). The observed deficit thus leaves room to improve how the number of additions and removals is chosen. These substitutions use the author masks and describe the available actions on this cohort.
+
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/dual_reference_budget_effect.pdf}

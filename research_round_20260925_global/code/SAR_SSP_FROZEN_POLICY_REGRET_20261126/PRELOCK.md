@@ -1,0 +1,15 @@
+# SAR-SSP retrospective audit of ranking and signed allocation
+
+This audit is fixed before computing any oracle frontier. The inputs are the previously closed D-FINE E24 capture, the archived source BCE seed 5297, the closed four-arm writeback, and the same SAR-SSP author labels and 232 validation chips. The complete historical cohort and earlier transfer outcome are already exposed. No new detector forward, fitting, class/score changes, or benchmark claims are allowed.
+
+Reproduce the exact native COCO .50 association, 139 hulls and 23 ship-bearing mother scenes, including all 51 unmatched hulls at zero. For positive-quota matches, reconstruct the original sampled support, endpoints, archived quotas and exact fixed/variable actions before interpreting the frontier. All others keep the same observed utility under all hypothetical replacements. Retain the original group weighting and paired bootstrap RNG 5217 with 4,096 draws.
+
+At each feasible split, generate the complete published finite menu, including the static incumbent at the fixed split. Use the released posterior, original rank ordering and 2k total without changing ranked endpoint sets. Let the selected action be w at quota a. Compute true binary IoU using the author mask for five explicitly label-assisted contrasts:
+
+1. Within-split menu regret is the best exact IoU in the selected split minus IoU(w).
+2. Across-split menu regret is the best exact IoU in the full menu minus the best at the selected split. Its sum with item 1 equals the full finite-menu regret.
+3. Allocation-only headroom preserves the original estimated-IoU winning action at every split and changes only the split by true IoU. This quantifies the limit of quota recalibration that preserves rank.
+4. Menu construction residual is the best exact IoU available over all subsets of the original endpoint support minus full-menu oracle IoU. With binary author labels, sorting true endpoint labels separately for each split maximizes IoU exactly. This has no access to pixels outside the original support.
+5. Substitute the exact reference area and exact static intersection into the objective while preserving all estimated signed gains, ranked endpoint sets and allowed splits. This is a counterfactual diagnostic of geometric denominator information. It still uses target truth and is not a deployable correction. Also report the two fixed/variable observed-arm means and require parity with the historical group-weighted score.
+
+Read target labels only inside the diagnostic after validating observed natural exits and complete capture and writeback receipts. Reconstruct the observed actions and realized edits on every positive-quota matched hull. For the six utility arms, report group-equal IoU means, paired intervals for all named contrasts, support and feasibility counts. Verify nonnegative regret components and telescope per hull. Preserve diagnostic results regardless of direction. Higher headroom only warrants a hypothesis, and this cohort remains unavailable for independent confirmation. No target AP is computed for counterfactuals, as these modify only native matches.
