@@ -8,7 +8,7 @@
 \maketitle
 
 \begin{abstract}
-A one-pixel boundary displacement can leave the area of a narrow synthetic aperture radar (SAR) ship mask unchanged while substantially reducing overlap. We test whether this error can be corrected by selecting the locations to add and remove independently under a common budget. A 1,321-parameter point head estimates fractional occupancy on the decoded grid. With detector candidates, confidence scores, admissible cells and signed counts held fixed, independent selection gains 0.81--0.91 mask average precision (AP) points across D-FINE and RF-DETR on HRSID DEV705. The gain is 1.22 points in a historical reevaluation of the HRSID official split and 0.48 and 0.30 points for two RF-DETR fits transferred to the same 583 Gaofen-3 chips. On PSeg-SSDD, the gain is 0.08 points. The same matched comparison is effectively unchanged on 232 SAR-SSP validation chips. In a separate test of pretrained Phoenix, a fixed count raises AP by 9.39 and 2.52 points over whole-grid thresholding on Instance-RSDD and PSeg-SSDD. Balanced Phoenix on narrow support remains 0.20 AP points below matched static attraction on PSeg-SSDD. Stock SegRefiner-LR loses 1.70 and 0.84 AP points relative to native on the Instance-RSDD reserve and PSeg-SSDD, respectively. Separating its edits reveals a deletion loss of about four continuous IoU points on gate-exposed hulls in both datasets.
+A one-pixel boundary displacement can markedly reduce overlap for a narrow synthetic aperture radar (SAR) ship mask while preserving its area. We estimate fractional cell occupancy with a 1,321-parameter point head and test independent ranking of additions and removals against distance pairing. The comparison holds detector candidates, confidence scores, eligible cells and signed edit counts fixed. Independent selection gains 0.81--0.91 mask average precision (AP) points across D-FINE and RF-DETR on HRSID DEV705. Two frozen RF-DETR fits evaluated on the same 583 Gaofen-3 chips from Instance-RSDD gain 0.48 and 0.30 AP points and 0.259 and 0.196 continuous intersection-over-union points, respectively. On 232 SAR-SSP validation chips, AP changes by \(-0.005\) points and the scene-balanced discrete overlap interval includes zero. Separate experiments with fixed pretrained refiner responses show that constraining the number of edits can reduce excessive foreground changes on Instance-RSDD and PSeg-SSDD. The observed gains establish where local boundary edits are useful and where limited proposal coverage constrains them.
 \end{abstract}
 \begin{IEEEkeywords}
 Synthetic aperture radar, ship instance segmentation, boundary refinement, native image grid.
@@ -18,13 +18,13 @@ Synthetic aperture radar, ship instance segmentation, boundary refinement, nativ
 \label{sec:introduction}
 Synthetic aperture radar (SAR) images often place a narrow ship beside returns of similar intensity from a quay or a neighboring vessel \cite{hrsid,rsdd,gao2024}. A detector can localize the ship while its mask follows part of the quay or truncates the hull. For a rectangle \(w\) native pixels wide, a one-cell lateral translation preserves area and yields an intersection over union (IoU) of \((w-1)/(w+1)\). At \(w=4\), the translated mask has IoU 0.60. This motivates correcting locations along the boundary of an existing instance.
 
-The HRSID development data distinguish boundary errors from a box-support limitation. Among 1,329 matched small, elongated ships, expanding the detection box by two pixels makes continuous IoU of 0.90 attainable in 134 additional cases under an oracle. Adding pixels outside the original box while retaining its mask reaches 0.90 in none of those 134 cases. At least 91 need both new and removed foreground within the original box. Here the reference is the annotated SAR footprint.
+HRSID development data illustrate how proposal support and errors within that support interact. We consider 1,329 fixed matches with reference area below 1,024 native cells and a minimum-area rotated-box aspect ratio of at least two. With reference-guided pixel selection, expanding the detection box by two pixels makes continuous IoU of 0.90 attainable in 134 cases that are geometrically excluded by the original box. Retaining the original mask and adding foreground only in the expanded strip reaches 0.90 in none of those cases. At least 91 also require both additions and removals inside the original box. This geometric upper bound motivates evaluating where changes occur as well as how far the editor can reach.
 
 We separate the boundary support, the location decision and the write budget. Our contributions are as follows.
 \begin{enumerate}
-\item A native-grid boundary head predicts cell occupancy from image and detector features, with fractional polygon coverage as supervision. It operates on frozen D-FINE-seg and RF-DETR candidates \cite{dfine,rfdetr}.
-\item At fixed endpoints, scores and signed edit counts, we compare distance assignment with independent ranking. We relate the change in location choice to both continuous footprint overlap and mask AP.
-\item With a single frozen Phoenix response, we vary writable support, total flips and their allocation between addition and removal. The same detector streams enable comparisons with complete-mask refiners on Instance-RSDD and PSeg-SSDD \cite{rsdd,ssdd}.
+\item We estimate occupancy at the native boundary of a frozen instance mask using a compact head with exact polygon--cell coverage as supervision. The head uses the same feature definition for D-FINE-seg and RF-DETR candidates \cite{dfine,rfdetr}.
+\item We derive how signed edits change the intersection with a reference footprint and compare independent endpoint selection with distance pairing at identical signed counts. The comparison measures the effect of location choice on continuous overlap and mask AP across detector fits and datasets.
+\item We use controlled writes to diagnose pretrained refiners. Holding each refiner response fixed, we test changes to writable support, total edit count and the allocation between additions and removals. Comparisons with spatial attraction and the original refiner policies identify when broad edits reduce overlap.
 \end{enumerate}
 
 \begin{figure*}[!t]
@@ -41,7 +41,7 @@ We separate the boundary support, the location decision and the write budget. Ou
 HRSID and the polygon subset of SSDD provide public reference footprints \cite{hrsid,ssdd}. SRNet models elongated ships in rotated boxes, and DRSNet combines two scales within rotated regions \cite{rsdd,drsnet}. Strong-scattering points, global context, edge features and structural cues can improve the features or proposals that produce a mask \cite{gao2024,gldet,aranet,gcie,dacf,dsr}. Our starting point is the frozen instance. We use the area of intersection between its native cells and the author polygon as the target for local boundary scoring.
 
 \subsection{Area-preserving exchanges and mask decisions}
-Atkinson's subpixel mapping algorithm exchanges foreground and background pixels while preserving the known class proportion in a coarse cell \cite{atkinson}. Xu and Huang add spatial and temporal information to the selection of land-cover exchanges \cite{xu}. RankSEG studies posterior ranking and volume selection for overlap-based segmentation objectives \cite{rankseg}. In a frozen SAR instance, an additional constraint comes from binding each addition to a particular removal by distance. We measure this constraint at a fixed set of sites and fixed signed counts. Spatial attraction on the same sites provides a separate test of the learned scores.
+Atkinson's subpixel mapping selects a foreground and a background subpixel independently using distance-weighted spatial attraction, then exchanges their labels if the swap improves spatial correlation \cite{atkinson}. The exchange preserves the class proportion assigned to the coarse pixel. Xu and Huang incorporate spatial and temporal information in land-cover exchanges \cite{xu}. RankSEG derives posterior ranking and foreground-volume selection for overlap-based segmentation \cite{rankseg}. These studies motivate two distinct controls for refining a frozen SAR instance. First, we compare distance-paired and independent locations within identical sampled boundary cells and at the same addition and removal counts. Second, we use spatial attraction with matched support and counts to test the value of learned local occupancy scores.
 
 \subsection{Local and whole-mask refinement}
 PointRend queries uncertain locations in iterative subdivision, SegFix propagates interior predictions to the boundary, and Boundary Patch Refinement estimates a local correction from image and mask patches \cite{pointrend,segfix,bpr}. RefineMask incorporates fine features at successive stages, while SharpContour iteratively moves contour vertices \cite{refinemask,sharpcontour}. QuBER estimates boundary false positives and false negatives and feeds these maps into an RGB-D refinement decoder~\cite{quber}. Phoenix and SegRefiner produce a new mask from a coarse input \cite{phoenix,segrefiner}. A whole-mask result depends on the response and on the cells permitted to change. With the response fixed, we vary support, total writes and signed allocation. This separates editing decisions from differences between the refiners.
@@ -73,12 +73,12 @@ In each pool, a pixel in the first dilation or erosion ring has layer \(\ell_i=1
 \label{fig:occupancy-stage}
 \end{figure}
 
-For a source mask with a valid reference polygon \(G\) matched at raster IoU 0.50, the target is
+For source training, a candidate supplies targets only if it has a nonignored COCO match at raster IoU 0.50 and a valid reference polygon \(G\). The fraction of cell \(i\) inside \(G\) is
 \begin{equation}
  q_i=\frac{|C_i\cap G|}{|C_i|}\in[0,1].
  \label{eq:fractional-target}
 \end{equation}
-This retains a partial intersection where a contour crosses a pixel. The feature vector \(v_i\in\mathbb R^{14}\) contains the decoder response \(p_i\), native foreground flag \(M_i\), \(\ell_i\), distance to the nearest opposite-class pixel, the two box-relative coordinates \((x-x_1)/(x_2-x_1)\) and \((y-y_1)/(y_2-y_1)\), \(\log_2|M|\), foreground area divided by the number of native indices inside the clipped box, \(s\), grayscale intensity, its \(3\times3\) and \(5\times5\) means, and its two centered first differences. Centered differences use one-pixel edge-replicated padding. These are features of the decoded rendering.
+This retains a partial intersection where a contour crosses a pixel. The feature vector \(v_i\in\mathbb R^{14}\) contains the decoder response \(p_i\), native foreground flag \(M_i\), \(\ell_i\), distance to the nearest opposite-class pixel, the two box-relative coordinates \((x-x_1)/(x_2-x_1)\) and \((y-y_1)/(y_2-y_1)\), \(\log_2|M|\), foreground area divided by the number of native indices inside the clipped box, \(s\), grayscale intensity, its \(3\times3\) and \(5\times5\) means, and its two centered first differences. Let \(L_i=(0.299R_i+0.587G_i+0.114B_i)/255\), where \(R_i,G_i,B_i\) are decoded channel values. The mean filters and differences replicate edge values. For example, the horizontal difference is \((L_{x+1,y}-L_{x-1,y})/2\). The nearest opposite-class distance is Euclidean and uses a background exterior. All appearance features come from the decoded rendering. At inference the editor admits candidates based on their predicted geometry. AP retains all candidate slots.
 
 For each training-source group \(j\), let \(E_j\) average the point observations from that group. The componentwise center and squared scale are
 \begin{equation}
@@ -110,13 +110,13 @@ An update first samples source groups uniformly, then samples a pair within each
 \subsection{Signed selection at a matched edit count}
 \label{sec:selection}
 
-The fixed comparison constructs a minimum-cost bipartite assignment \(\pi^\star\) between \(S_+\) and \(S_-\). Writing \(a_j,d_j\) for additive and subtractive sites,
+The fixed comparison lists each sampled set in row-major order and constructs a minimum-cost bipartite assignment \(\pi^\star\) between \(S_+\) and \(S_-\). Writing \(a_j,d_j\) for sites in the additive and subtractive lists,
 \begin{equation}
  \pi^\star\in\arg\min_{\pi\in\mathfrak S_n}
        \sum_{j=1}^n\|a_j-d_{\pi(j)}\|_2^2.
  \label{eq:fixed-assignment}
 \end{equation}
-The assignment is independent of the point head. The paired writer sorts \(\widehat q_{a_j}-\widehat q_{d_{\pi^\star(j)}}\) and retains positive gains, capped at \(K=\min(8,\lfloor |M|/10\rfloor,n)\). Let \(k\) be its realized number of pairs for the current candidate. The comparison uses this same \(k\) for independent selection, even when it equals zero. For a set of additions \(A\) and removals \(D\), the independent rule solves
+The assignment is independent of the point head. The paired writer sorts \(\widehat q_{a_j}-\widehat q_{d_{\pi^\star(j)}}\) in descending order, resolving ties by the addition-row ordinal. It retains positive gains, capped at \(K=\min(8,\lfloor |M|/10\rfloor,n)\). Let \(k\) be its realized number of pairs for the current candidate. The comparison uses this same \(k\) for independent selection, even when it equals zero. For a set of additions \(A\) and removals \(D\), the independent rule solves
 \begin{equation}
  \max_{\substack{A\subseteq S_+,\,D\subseteq S_-\\|A|=|D|=k}}
  \left(\sum_{i\in A}\widehat q_i-\sum_{i\in D}\widehat q_i\right).
@@ -149,13 +149,31 @@ The resulting overlap is \((I+g)/(U+d-g)\). Subtracting the original IoU gives
 \end{aligned}
 \label{eq:variable-area}
 \end{equation}
-At fixed area, increasing the true intersection gain \(g\) increases IoU. Independent ranking enlarges the set of feasible location choices, and the editor uses \(\widehat q_i\) to approximate their benefit. Ranking errors can lose true overlap. For COCO AP, the confidence order is fixed and matches can change at each raster IoU threshold.
+With \(k\) additions and \(k\) removals, exactly \(2k\) labels change and the mask area remains \(P\). The derivative of the edited IoU with respect to \(g\) is \((P+T)/(U-g)^2>0\), so the true intersection gain determines the overlap ordering at this count.
+
+The advantage in Eq.~\eqref{eq:independent-estimated-gain} is computed from estimated occupancy. Let \(g_{\rm ind}\) and \(g_{\rm pair}\) be the true gains for independent selection and distance pairing. Let \(\mathcal D\) be the symmetric difference between the two sets of edited sites. Subtracting the two gain estimates cancels edits common to both policies. Since the estimated independent gain is at least the estimated paired gain,
+\begin{equation}
+ g_{\rm pair}-g_{\rm ind}
+ \le \sum_{i\in\mathcal D}|\widehat q_i-q_i|
+ \le 4k\max_{i\in S_+\cup S_-}|\widehat q_i-q_i|
+ \label{eq:selection-error}
+\end{equation}
+for \(k>0\). Thus prediction errors at cells on which the policies disagree can reverse the ordering of true overlap. COCO AP also permits reassignment at every raster IoU threshold while keeping the confidence order fixed.
 
 \subsection{Support and signed allocation for a frozen general refiner}
 \label{sec:phoenix}
-The original binary mask and decoded image prompt Phoenix XL1~\cite{phoenix}. After five refinement iterations, the selected author's mask hypothesis has native foreground probabilities \(r_i\). We change the writing policy on this one response. The allowed cells \(\mathcal W\) are either \(S_+\cup S_-\) or the complete native grid \(\Omega\). For a threshold writer, the author's binary decision replaces \(M_i\) at sites in \(\mathcal W\). All other cells are retained.
+The original binary mask and decoded image prompt Phoenix XL1~\cite{phoenix}. After five refinement iterations, the selected author's mask hypothesis has native foreground probabilities \(r_i\). We change the writing policy on this one response. The allowed cells \(\mathcal W\) are either \(S_+\cup S_-\) or the complete native grid \(\Omega\). For a threshold writer, the author's binary decision replaces \(M_i\) at sites in \(\mathcal W\), including its decision when \(r_i=0.5\). All other cells are retained.
 
-The count writer uses \(2k_{\mathrm{att}}\) flips per candidate. The integer \(k_{\mathrm{att}}\) records the actual number of signed exchanges made by dynamic spatial attraction~\cite{atkinson} on the same narrow endpoints, with weight \(\exp(-\rho/5)\) for distance \(0<\rho\le 5\) native pixels and cap \(K\). For \(i\in\mathcal W\), let \(u_i^+=r_i-\tfrac12\) on original background and \(u_i^-=\tfrac12-r_i\) on original foreground. Let \(u_{(j)}^+\) and \(u_{(j)}^-\) be the respective descending orders. For \(a\) additions, the resulting score is
+The count writer uses \(2k_{\mathrm{att}}\) flips per candidate. Here \(k_{\mathrm{att}}\) is the realized exchange count of dynamic spatial attraction~\cite{atkinson}, distinct from the learned paired count \(k\). For the current foreground \(M_\tau\) after \(\tau\) exchanges, attraction at \(i\) is
+\begin{equation}
+ h_\tau(i)=\sum_{j\in M_\tau} e^{-\rho_{ij}/5}
+                      \mathbf{1}\{0<\rho_{ij}\le 5\},
+ \quad \rho_{ij}=\lVert i-j\rVert_2 .
+ \label{eq:dynamic-attraction}
+\end{equation}
+Each exchange selects the highest-attraction unused addition site and the lowest-attraction unused removal site, resolving ties by the original endpoint ordinal. The policy updates \(M_\tau\) and retires both sites. It stops when their attraction difference does not exceed \(10^{-12}\) or the count reaches \(K\). Static attraction uses the initial \(h_0\) at the same realized count.
+
+For \(i\in\mathcal W\), let \(u_i^+=r_i-\tfrac12\) on original background and \(u_i^-=\tfrac12-r_i\) on original foreground. Let \(u_{(j)}^+\) and \(u_{(j)}^-\) be the respective descending orders. For \(a\) additions, the resulting score is
 \begin{equation}
  F_\mathcal{W}(a)
  =\sum_{j=1}^{a}u^+_{(j)}
@@ -176,7 +194,7 @@ For any evaluation statistic \(Y\), the effect of the count rule on whole suppor
 \section{Experimental Protocol}
 \label{sec:protocol}
 \subsection{Datasets and data partitions}
-HRSID~\cite{hrsid}, Instance-RSDD~\cite{rsdd}, and PSeg-SSDD~\cite{ssdd} provide ship instance reference polygons. The HRSID-trained detector and point head are frozen before transfer to Instance-RSDD, PSeg-SSDD and UEIKAP (Table~\ref{tab:cohorts}). In a separate PSeg experiment, we fit a target head while retaining the same PSeg-trained detector used with the source head. UEIKAP releases outlines for selected hulls. We measure coverage and outline overlap for those hulls.
+HRSID~\cite{hrsid}, Instance-RSDD~\cite{rsdd} and PSeg-SSDD~\cite{ssdd} provide ship instance reference polygons. SAR-SSP provides raster instance IDs~\cite{slgsea}. For the transfer comparisons in Table~\ref{tab:cohorts}, we freeze the HRSID-trained detector and point head before applying them on the target images. In a separate PSeg experiment, we fit a target head while retaining the same PSeg-trained detector used with the source head. UEIKAP releases outlines for selected hulls, on which we measure coverage and overlap.
 
 \begin{table*}[t]
 \centering
@@ -187,7 +205,7 @@ HRSID~\cite{hrsid}, Instance-RSDD~\cite{rsdd}, and PSeg-SSDD~\cite{ssdd} provide
 \setlength{\tabcolsep}{5pt}
 \begin{tabular}{@{}p{0.26\textwidth}rrp{0.23\textwidth}p{0.30\textwidth}@{}}
 \toprule
-Dataset and view & Images & Outlines & Source grouping & Evaluation design \\
+Dataset and view & Images & Hulls & Source grouping & Evaluation design \\
 \midrule
 HRSID DEV705 & 705 & 1,782 & 27 filename-prefix groups & Detector-held-out source development \\
 HRSID official & 1,962 & 5,922 & -- & Historical reevaluation with overlap and empty-raster checks \\
@@ -195,6 +213,7 @@ HRSID official & 1,962 & 5,922 & -- & Historical reevaluation with overlap and e
 Instance-RSDD author test & 740 & 872 & 112 acquisition groups & Frozen transfer. Gaofen-3 view has 583 images, 631 outlines, 76 groups \\
 Instance-RSDD parent reserve & 74 & 81 & 13 additional parent scenes & Frozen transfer. Date-separated view has 42 images from eight parents \\
 PSeg-SSDD official & 232 & 546 & Decoded-image groups & Frozen transfer. Exact-overlap sensitivity has 222 images \\
+SAR-SSP author validation & 232 & 139 & 31 AIR-SARShip-1.0 parent scenes & Frozen transfer with raster masks. Author train and validation tiles share parents \\
 \addlinespace[1.5pt]
 UEIKAP reserve & 108 & 139 & 18 Sentinel-1 acquisitions & Case-focused author hull masks \\
 UEIKAP additional acquisitions & 342 & 528 & 13 Sentinel-1 acquisitions & Case-focused author hull masks \\
@@ -243,7 +262,7 @@ The last two quantities normalize the false-positive and missed area by the refe
                  \frac{1}{n_j}\sum_{i=1}^{n_j}\Delta_{ji},
  \label{eq:paired-acquisition-effect}
 \end{equation}
-where \(n_j\) is the analyzed hull count in group \(j\). Geometry intervals use paired group resampling, typically 4,096 draws. Instance-RSDD reserve views keep parent weights and resample sensor--date blocks. PSeg groups are decoded-image equivalence groups. When several heads share the same native matches, their effects are averaged within each group first. In case-focused UEIKAP analyses, unmatched released hulls contribute zero change to the all-hull estimate, and independently rematched coverage is reported separately. COCO AP uses the benchmark views released for instance evaluation. Seed ranges summarize the observed fits.
+where \(n_j\) is the analyzed hull count in group \(j\). Geometry intervals use paired group resampling, typically 4,096 draws. Instance-RSDD reserve views keep parent weights and resample sensor--date blocks. PSeg groups are decoded-image equivalence groups. When several heads share the same native matches, their effects are averaged within each group first. For SAR-SSP we use the same paired estimator with \(\mathrm{IoU}_{\mathrm{raster}}=|M'\cap G_{\mathrm{r}}|/|M'\cup G_{\mathrm{r}}|\), where \(G_{\mathrm{r}}\) is the released set of foreground cells for an instance. In the SAR-SSP and case-focused UEIKAP all-hull estimates, unmatched references contribute zero change. UEIKAP also reports independently rematched coverage. COCO AP uses the benchmark views released for instance evaluation. Seed ranges summarize the observed fits.
 
 The fixed-match HRSID RF-DETR counts at the strict threshold use continuous IoU \(>0.90\). D-FINE and the stated PSeg RF-DETR counts include equality. These counts and COCO AP90 serve different functions. One sensitivity comparison changes the overlap matrix from raster mask IoU to polygon--cell IoU while keeping candidate order, annotation support, area bins and the evaluation rules fixed.
 
@@ -263,7 +282,7 @@ The fixed-match HRSID RF-DETR counts at the strict threshold use continuous IoU 
 \multicolumn{2}{c}{Sample size} &
 \multicolumn{2}{c@{}}{Change (points)} \\
 \cmidrule(lr){1-2}\cmidrule(lr){3-4}\cmidrule(l){5-6}
-Cohort & Detector & Images & Fixed matches & Mask AP & Continuous IoU [95\% CI] \\
+Cohort & Detector & Images & Eligible fixed matches & Mask AP & Continuous IoU [95\% CI] \\
 \midrule
 HRSID DEV705 & D-FINE E24 & 705 & 1,447 & \(+0.811\) & \(+0.529\ [0.455,0.597]\)\\
  & RF-DETR 5202 & 705 & 1,461 & \(+0.906\) & \(+0.639\ [0.548,0.743]\)\\
@@ -279,7 +298,7 @@ PSeg-SSDD official & D-FINE E24 & 232 & 293 & \(+0.081\) & \(+0.106\ [0.055,0.15
 \end{tabular}
 \end{table*}
 
-Independent selection has its largest effects on HRSID and yields smaller gains in the Gaofen-3 transfer (Table~\ref{tab:primary-quant}). The within-row contrasts change only the chosen locations. On the Gaofen-3 images, continuous IoU increases in both detector fits, with gains of 0.259 and 0.196 points. PSeg-SSDD gives the smallest AP gain, 0.081 points. The comparisons with static attraction and complete-mask refiners below address the performance beyond distance pairing.
+Among the polygon cohorts in Table~\ref{tab:primary-quant}, independent selection has its largest effects on HRSID and yields smaller gains in the Gaofen-3 transfer. The within-row contrasts change only the edited locations. On the Gaofen-3 images, continuous IoU increases by 0.259 and 0.196 points for the two detector fits. PSeg-SSDD shows a smaller AP gain of 0.081 points. Table~\ref{tab:sar-ssp} reports the raster-mask cohort separately. Comparisons with spatial attraction and complete-mask refiners test performance against alternatives to distance pairing.
 
 \subsection{Source benchmark and repeated detector fits}
 \begin{table*}[t]
@@ -728,11 +747,14 @@ The D-FINE CUDA detector and postprocessor took 11.74\,s over the 232 PSeg image
 The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{repository} documents code, configurations, data access and score summaries. Independent replay reproduced 3,434 entries for HRSID official and Instance-RSDD 740, plus 1,470 entries on the 74-chip reserve with detector 5202 and head 5217. Image, annotation and checkpoint access are needed for replay.
 
 \section{Conclusion}
-Independent endpoint selection improves the overlap of already detected hulls at matched signed counts on HRSID and Instance-RSDD, with a smaller gain on PSeg-SSDD and little change on SAR-SSP. The general-refiner comparisons show two distinct boundary errors. Capping Phoenix writes reduces false-positive area relative to whole-grid thresholding on both datasets, and the stock SegRefiner deletions reduce overlap on the gate-exposed hulls of both cohorts. Same-count shallow relocation shows a gain over proximity on the Instance-RSDD reserve and misses the advancement criterion on PSeg-SSDD. The results apply to the observed detector and acquisition settings. The small editable population on UEIKAP leaves proposal coverage as a separate limitation. A per-candidate deletion cap recovers part of the stock SegRefiner AP loss on both cohorts. At that cap, ranking deletion sites by boundary proximity improves continuous overlap over uniform selection, with little improvement in AP.
+At matched signed counts, independently selecting addition and removal sites improves boundary overlap and mask AP over distance pairing on HRSID and Instance-RSDD. The gains on the common Gaofen-3 images recur for two downstream detector fits that share initialization. The same comparison produces a small AP gain on PSeg-SSDD and little change on SAR-SSP. The small number of editable matches on UEIKAP and the proposal-coverage analysis on SAR-SSP identify a separate limit on what local editing can recover.
+
+The pretrained-refiner comparisons isolate the effect of the edits themselves. Limiting whole-grid Phoenix writes reduces excess foreground changes on both evaluated datasets. For SegRefiner-LR, separately scoring additions and removals exposes deletion losses that a per-candidate cap partly recovers. Together, the experiments support controlling the location and amount of boundary editing, with the practical gain depending on the original proposals and the target acquisition setting.
 
 \noindent\emph{Acknowledgment.} OpenAI Codex assisted with drafting and revision. The method diagrams use schematic cells and an illustrative worked example. Result figures use observed measurements, including spatially pooled comparisons in Figs.~\ref{fig:gf3-qual} and~\ref{fig:pseg-budget-cases}.
 
 
+\IEEEtriggeratref{20}
 \begin{thebibliography}{30}
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, \href{https://doi.org/10.1109/ACCESS.2020.3005861}{2020}.
 \bibitem{rsdd} X. Yang, Q. Zhang, Q. Dong, Z. Han, X. Luo, and D. Wei, ``Ship instance segmentation based on rotated bounding boxes for SAR images,'' \emph{Remote Sens.}, vol. 15, no. 5, Art. no. 1324, \href{https://doi.org/10.3390/rs15051324}{2023}.
@@ -748,7 +770,7 @@ Independent endpoint selection improves the overlap of already detected hulls at
 \bibitem{dsr} S.-W. He, W. Xiong, and L.-B. Yao, ``SAR ship instance segmentation method in complex scenes jointly driven by differential physical fields and structured graph reasoning,'' \emph{Acta Electronica Sinica}, pp. 1--11, 2026. \href{https://doi.org/10.12263/DZXB.20260699}{10.12263/DZXB.20260699}.
 \bibitem{atkinson} P. M. Atkinson, ``Sub-pixel target mapping from soft-classified, remotely sensed imagery,'' \emph{Photogramm. Eng. Remote Sens.}, vol. 71, no. 7, pp. 839--846, 2005. \href{https://doi.org/10.14358/PERS.71.7.839}{10.14358/PERS.71.7.839}.
 \bibitem{xu} Y. Xu and B. Huang, ``A spatio-temporal pixel-swapping algorithm for subpixel land cover mapping,'' \emph{IEEE Geosci. Remote Sens. Lett.}, vol. 11, no. 2, pp. 474--478, 2014. \href{https://doi.org/10.1109/LGRS.2013.2268153}{10.1109/LGRS.2013.2268153}.
-\bibitem{rankseg} B. Dai and C. Li, ``RankSEG: A consistent ranking-based framework for segmentation,'' \emph{J. Mach. Learn. Res.}, vol. 24, no. 224, pp. 1--50, 2023. \href{https://www.jmlr.org/papers/v24/22-0712.html}{Journal article}.
+\bibitem{rankseg} B. Dai and C. Li, ``RankSEG: A consistent ranking-based framework for segmentation,'' \emph{J. Mach. Learn. Res.}, vol. 24, no. 224, pp. 1--50, \href{https://www.jmlr.org/papers/v24/22-0712.html}{2023}.
 \bibitem{pointrend} A. Kirillov, Y. Wu, K. He, and R. Girshick, ``PointRend: Image segmentation as rendering,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2020, pp. 9799--9808.
 \bibitem{segfix} Y. Yuan, J. Xie, X. Chen, and J. Wang, ``SegFix: Model-agnostic boundary refinement for segmentation,'' in \emph{Proc. Eur. Conf. Comput. Vis. (ECCV)}, 2020, pp. 489--506.
 \bibitem{bpr} C. Tang, H. Chen, X. Li, J. Li, Z. Zhang, and X. Hu, ``Look closer to segment better: Boundary patch refinement for instance segmentation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021, pp. 13926--13935.
