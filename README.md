@@ -5,6 +5,8 @@
 ## 当前状态（2026-11-25）
 
 - SAR-SSP 作者压缩包已验收。232 张官方验证图的 139 个实例轮廓全部通过 PNG／JSON 核验，31 个母图均也出现在作者训练划分，坐标与船框确认来自 AIR-SARShip-1.0 的高分三号影像，已排除历史 B1 作为全量无接触外测载体。现行冻结模型 232 图冻结推理、等量编辑和作者标注评分均已完成。等量独立选点 AP −0.005 点，未达到预锁门槛。原规则只允许 1/47 个未匹配船体在真值辅助下跨 IoU 0.50。[现象图与上界](research_round_20260925_global/SAR_SSP_COVERAGE_AND_EDIT_CEILING_ACTUAL_20261125.md) · [实测报告](research_round_20260925_global/SAR_SSP_FROZEN_TRANSFER_ACTUAL_20261125.md) · [验收](research_round_20260925_global/SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md) · [溯源](research_round_20260925_global/SAR_SSP_PROVENANCE_NOTE_20261125.md)
+- SAR-SSP 增加 D-FINE 同队列复验。等量独立选点相对距离配对为 +0.076 AP、+0.022 母景等权离散 IoU 点，区间跨零。[第二载体结果](research_round_20260925_global/SAR_SSP_DFINE_E24_SAME_COHORT_20261125_ACTUAL.md)
+- SPSD 与 PSeg-SSDD 作者影像完全一致，切换轮廓后，冻结自然量独立选点相对原生的 AP 从 +0.344 变为 −0.491 点。同量解除配对从 +0.081 变为 −0.007 点。[同图八臂对照及复现](research_round_20260925_global/SPSD_PSEG232_ANNOTATION_SENSITIVITY_20261125_ACTUAL.md)
 - HRSID FIT109 扩边上限实测完成。原候选和预算不变时，完整框内 1–4 层相对抽样端点仅增 0.098 离散 IoU 点，第 3–4 层无额外收益，未达到扩边训练门槛。[实测与源码](research_round_20260925_global/HRSID_FIT109_NESTED_SUPPORT_ORACLE_ACTUAL_20261125.md)
 - HRSID FIT109 第二查询端点排序已实测。逐候选增删量一致，拟合真实线索的 AP 与原独立排序相同，未达推进门槛。原独立选点相对距离配对仍高 1.204 AP 点。[实测与源码](research_round_20260925_global/HRSID_FIT109_SIBLING_ENDPOINT_RANK_ACTUAL_20261125.md)
 - FIT109 跨检测器等量对照完成。确定性 D-FINE 投票较原独立选点高 0.567 AP 点，学习型融合低于投票，未过主门槛。[带完整对照的实测](research_round_20260925_global/HRSID_FIT109_CROSS_DETECTOR_ENDPOINT_ACTUAL_20261125.md) · [DEV705 候选资格，无标注](research_round_20260925_global/HRSID_DEV705_CROSS_CARRIER_DONOR_CENSUS_ACTUAL_20261125.md)
