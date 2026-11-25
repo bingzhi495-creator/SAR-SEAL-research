@@ -13,6 +13,7 @@
 - 候选上游诊断完成。SAR-SSP 全 164 条查询只额外覆盖 2 艘未匹配船体。HRSID FIT109 仍有 30 艘已有框且原掩膜失败，框内训练样本已导出。[外部框诊断](research_round_20260925_global/SAR_SSP_RAW164_BOX_COVERAGE_ACTUAL_20261125.md) · [源域上界和语料](research_round_20260925_global/HRSID_FIT109_BOX_REGROWTH_AND_ROI_ACTUAL_20261125.md)
 - 自主 CleanUNet++ 的框内成对试验完成。每臂 800 次实际更新。均匀与弱例加权各恢复 6 艘原漏配船体，但全量 AP 均低于原生；加权比均匀低 0.322 AP 点。无模型的 48×48 还原对照减少 0.456 AP 点。[训练与核验](research_round_20260925_global/HRSID_FIT109_WEAK_ROI_PAIRED_ACTUAL_20261125.md)
 - 原生前景不变的同量补点已实测。CleanUNet++ 排序比原生 logits 同量对照高 0.394 mask AP 点，固定几何区间跨零，原漏配恢复有限。[预算和全部对照](research_round_20260925_global/HRSID_FIT109_NATIVE_PRESERVING_ROI_ACTUAL_20261125.md)
+- 同预算补点筛选已实测。原检测置信度保留 52.64% 的全量补点像素，mask AP 只低 0.007 点，并超过联合置信度筛选。联合筛选未达到推进门槛。[预锁对照与几何上限](research_round_20260925_global/HRSID_FIT109_ROI_EQUAL_BUDGET_ACTIVATION_20261125_ACTUAL.md)
 
 - 固定加点的删点限量恢复原版 +0.907／+0.878 AP（RSDD／PSeg），仍低于冻结独立选点。浅层同量的连续几何改善未转化为达到门槛的 AP 增益。[实测回执和复现](research_round_20260925_global/SEGREFINER_DELETION_CAP_ACTUAL_20261125.md)
 
