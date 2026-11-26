@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- [TGRS 完整稿与图件索引](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。25 页 IEEE 双栏，补回独立选点、限距重配、动态吸引力、Phoenix 和 SegRefiner 的实测定性对照，并保留全部量化和消融证据。
+
 - [DEV705 最小累计平方距离见证实测](research_round_20260925_global/code/DEV705_MIN_CUMULATIVE_WITNESS_20261126/ACTUAL.md)。无标注覆盖 36 个候选、19 个来源前缀。作者参考评分仅改变 1,461 个固定匹配中的一艘，低于预锁覆盖门。相对限距重配的 mask AP 变化 −0.001385 点，两阶段自然退出并通过回执核验，按协议结束该分支。
 
 - [TGRS 英文主稿与作者交接](research_round_20260925_global/paper_boundary_refinement_20261120/submission_20261126/AUTHOR_HANDOFF_ZH.md)。新版 10 页，已核对 HRSID 官方训练分母、限距和单像元结果及复现条件。英文投稿信已备。交接方在 21 个候选入口未发现精确名称的 Umbra 回件，正式前瞻评分与期刊投稿尚未执行。
