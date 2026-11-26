@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- D-FINE E24 已完成同一 74 图保留集的冻结等预算强对照。同一 D-FINE 候选、占据率头和逐候选增删数下，独立选点相对限距重配 +0.344 mask AP、+0.133 连续 IoU［0.018, 0.251］点，42 个有效改动覆盖 11 个传感器日期块。D-FINE 与 RF-DETR 两套流程在同一队列均达到相应判据。一像元 Boundary IoU 的进一步收益仍不确定。 [完整实测和复现](research_round_20260925_global/code/DFINE_RSDD74_COMMON_CAP_20261126/ACTUAL.md)
+
 - Instance-RSDD 74 图同预算、同位移上限的两评分头交叉验证已完成。PointRend 上独立选点相对限距重配 +0.095 mask AP、−0.037 连续 IoU［−0.172, 0.086］点，覆盖达标，未过效用门槛。原占据率头的 +0.479 AP、+0.116 IoU 复现。两评分头的连续 IoU 交互为 +0.153［−0.008, 0.339］点，完整保留集差异仍不确定。 [实测、复现和可编辑图](research_round_20260925_global/code/RSDD74_POINTREND_COMMON_CAP_20261126/SCORE_ACTUAL.md)
 
 - 在 SAR-SSP 历史验证集上以同一冻结点头和逐候选总编辑数检验短轴方差上限。相对原自由分配，短轴约束 +0.133 mask AP、+0.143 固定匹配 IoU［−0.185, 0.487］点，误分 −1.105、漏分 +0.597 个参考面积百分点。相对等量分配为 −0.006 AP、−0.070 IoU；相对同规模面积和长轴对照的 IoU 区间均跨零。没有通过实用或方向特异性判据。 [实测、阈值与复现](research_round_20260925_global/code/SAR_SSP_TRANSVERSE_QUOTA_20261126/SCORE_ACTUAL.md)
