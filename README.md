@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- [研究交接与续研入口（2026-11-26）](research_round_20260925_global/SAR_SEAL_RESEARCH_HANDOFF_20261126.md)。含原研究目标、历史版本、已核验效用与失败、前瞻外测及复现入口。
+
 - PSeg-SSDD 的 232 图已完成冻结 D-FINE 学习占据率的等预算限距对照。独立选点相对限距重配 +0.021 mask AP、+0.069 连续 IoU［0.030, 0.109］点，未过 +0.30 AP 门槛。使用同图两套作者参考，固定全船体栅格 IoU 的对应差值为 PSeg +0.040 点、SPSD −0.007 点，两参考差为 −0.047［−0.088, −0.007］点。两套参考含各自原生匹配，采集范围相同。 [实际评分与复现](research_round_20260925_global/code/PSEG232_DFINE_COMMON_CAP_20261126/ACTUAL_SCORE.md)
 
 - D-FINE E24 已完成同一 74 图保留集的冻结等预算强对照。同一 D-FINE 候选、占据率头和逐候选增删数下，独立选点相对限距重配 +0.344 mask AP、+0.133 连续 IoU［0.018, 0.251］点，42 个有效改动覆盖 11 个传感器日期块。D-FINE 与 RF-DETR 两套流程在同一队列均达到相应判据。一像元 Boundary IoU 的进一步收益仍不确定。 [完整实测和复现](research_round_20260925_global/code/DFINE_RSDD74_COMMON_CAP_20261126/ACTUAL.md)
