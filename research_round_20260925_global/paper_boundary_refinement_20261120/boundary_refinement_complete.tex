@@ -26,7 +26,7 @@ Synthetic aperture radar, ship instance segmentation, boundary refinement, nativ
 
 In SAR imagery, a detection may localize the ship while its mask follows a nearby quay or cuts off part of the hull~\cite{hrsid,rsdd,gao2024}. A one-pixel shift across a \(w\)-pixel-wide rectangle leaves its area unchanged but reduces its intersection over union (IoU) with the original rectangle to \((w-1)/(w+1)\). For \(w=4\), the overlap is 0.60 (Fig.~\ref{fig:one-pixel}).
 
-\begin{figure}[!t]
+\begin{figure}[!b]
 \centering
 \includegraphics[width=\columnwidth]{\MethodAsset{nora_one_pixel_motivation.pdf}}
 \caption{A one-cell transverse shift of a four-cell-wide rectangular hull. Three of every five union cells overlap.}
@@ -45,7 +45,7 @@ NORA addresses these two editing decisions on a retained mask. The ranking deter
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_scene_to_mask.pdf}}
-\caption{Scene-to-mask workflow. \CaseCaption{The window enlarges the same schematic grid.}{The window enlarges the native mask on the same Instance-RSDD crop. The observed writer adds and removes four cells.} Source labels train the ROH.}
+\caption{Scene-to-mask workflow. \CaseCaption{The window enlarges the same schematic grid.}{The window enlarges the native mask on the same Instance-RSDD crop. The writer adds and removes four cells. The dashed contour is the author reference.} Source labels train the ROH.}
 \label{fig:native-boundary}
 \end{figure*}
 
