@@ -17,7 +17,7 @@
 | 字段 | 内容 |
 | --- | --- |
 | Title | Ranking and Allocation of Boundary Edits for SAR Ship Instance Segmentation |
-| Abstract | 从最终署名 PDF 或同一版本的 [LaTeX](../boundary_refinement_main.tex) 提取摘要正文。把 LaTeX 转为普通文本，核对百分制百分点、数值、术语和数据范围。 |
+| Abstract | 可从 [英文系统字段](PORTAL_FIELDS_EN.txt) 复制。署名版若改摘要，以最终 PDF 为准。摘要采用单段和 IEEE 150–250 词范围。 [IEEE Editorial Style Manual](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE-Editorial-Style-Manual-for-Authors.pdf) |
 | Keywords | Synthetic aperture radar, ship instance segmentation, boundary refinement, native image grid |
 | Cover letter | 使用 [英文草稿](COVER_LETTER_EN.md)，经通讯作者确认后替换所有方括号字段。是否单独上传以系统显示为准。 |
 | Related works / prior versions | 已知研究稿和历史版本见 [项目仓库](https://github.com/bingzhi495-creator/SAR-SEAL-research) 和 [论文版本索引](https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/d2ffc7bef2b1e1011db5b753f843a6988f8ca744/docs/PAPER_INDEX.md)。由作者确认与此次稿件最直接的版本、其他会议或期刊版本及其状态。若适用，向编辑说明关系并给出可定位链接。 |

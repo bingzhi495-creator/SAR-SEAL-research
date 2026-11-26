@@ -51,6 +51,8 @@ The bounded control keeps the original maximum single-pair displacement. The pai
 
 On the same historical reserve, D-FINE and its HRSID occupancy head give \(+0.344\) AP and \(+0.133\) continuous IoU (\([0.018,0.251]\)) for independent minus bounded selection. Changes cover 42 of 44 eligible matches in 11 blocks. At one pixel, bounded re-pairing gains 0.639 Boundary-IoU points (\([0.271,1.052]\)) over distance-first pairing, while independent ranking changes it by \(+0.256\) relative to bounded re-pairing (\([-0.176,0.697]\)).
 
+A DEV705 follow-up accepted independent endpoints only when no pairing of those endpoints satisfied the cap and their minimum total squared distance did not exceed either pairing comparator. The rule changed 36 candidates across 19 prefixes but only one fixed matched hull, below the prespecified coverage threshold. Mask AP changed by \(-0.0014\) points relative to bounded re-pairing.
+
 \subsection{Ranking, support, and the number of writes}
 With SSDD-trained SRNet, independent ranking over distance pairing gains 0.145 AP and 0.159 continuous IoU points (\([0.088,0.236]\)), below the AP threshold.
 

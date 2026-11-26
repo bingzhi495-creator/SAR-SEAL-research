@@ -1,0 +1,8 @@
+Title
+Ranking and Allocation of Boundary Edits for SAR Ship Instance Segmentation
+
+Abstract
+For narrow ship masks in synthetic aperture radar imagery, small boundary shifts can change overlap substantially. We estimate occupancy on the native pixel grid and compare three selection rules at the same detection scores and per-side edit counts. On HRSID DEV705, independent endpoint ranking gains 0.81–0.91 mask average precision points over distance-first pairing. On a historical 74-chip Instance-RSDD reserve, independent ranking gains 0.479 and 0.344 mask average precision points over bounded re-pairing with frozen RF-DETR and D-FINE, respectively. The corresponding continuous intersection-over-union gains are 0.116 and 0.133 points. For RF-DETR, bounded re-pairing improves one-pixel boundary overlap by 0.735 points over distance-first pairing. The interval for the additional one-pixel gain from independent ranking spans zero. At a fixed total edit count, variable allocation improves mask average precision by 2.30 and 1.75 points over balanced allocation across three head fits and two annotations of shared SSDD images. Frozen transfer to SAR-SSP trades missed area for excess foreground and lowers mask average precision by 0.14 points.
+
+Index Terms
+Synthetic aperture radar, ship instance segmentation, boundary refinement, native image grid
