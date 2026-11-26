@@ -4,7 +4,7 @@
 \newif\ifnativecases
 \ifdefined\NativeCaseReview\nativecasestrue\else\nativecasesfalse\fi
 \newcommand{\CaseAsset}[2]{\ifnativecases local_figures/#2\else figures/journal_20261126/#1\fi}
-\newcommand{\MethodAsset}[1]{\ifnativecases local_method_figures/#1\else figures/journal_20261126/#1\fi}
+\newcommand{\MethodAsset}[1]{\ifnativecases local_method_figures/#1\else figures/method_atlas_20261126/#1\fi}
 \DeclareRobustCommand{\CaseCaption}[2]{\ifnativecases #2\else #1\fi}
 \hypersetup{pdftitle={NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation}}
 \begin{document}
@@ -24,7 +24,14 @@ Synthetic aperture radar, ship instance segmentation, boundary refinement, nativ
 \section{Introduction}
 \label{sec:introduction}
 
-In SAR imagery, a detection may localize the ship while its mask follows a nearby quay or cuts off part of the hull~\cite{hrsid,rsdd,gao2024}. A one-pixel shift across a \(w\)-pixel-wide rectangle leaves its area unchanged but reduces its intersection over union (IoU) with the original rectangle to \((w-1)/(w+1)\). For \(w=4\), the overlap is 0.60.
+In SAR imagery, a detection may localize the ship while its mask follows a nearby quay or cuts off part of the hull~\cite{hrsid,rsdd,gao2024}. A one-pixel shift across a \(w\)-pixel-wide rectangle leaves its area unchanged but reduces its intersection over union (IoU) with the original rectangle to \((w-1)/(w+1)\). For \(w=4\), the overlap is 0.60 (Fig.~\ref{fig:one-pixel}).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{\MethodAsset{nora_one_pixel_motivation.pdf}}
+\caption{A one-cell transverse shift of a four-cell-wide rectangular hull. Three of every five union cells overlap.}
+\label{fig:one-pixel}
+\end{figure}
 
 On HRSID, we examined 1,329 matched ships with reference area below 1,024 cells and aspect ratio at least two. Under reference-guided editing, expanding the detection box by two pixels lets 134 additional masks reach continuous IoU 0.90. Adding foreground only in the expanded strip recovers none of those cases. At least 91 require both additions and removals inside the original box.
 
@@ -37,8 +44,8 @@ NORA addresses these two editing decisions on a retained mask. The ranking deter
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{\MethodAsset{matched_budget_pipeline.pdf}}
-\caption{NORA on a frozen detection. The scalar ROH scores native boundary cells for equal-count editing. \CaseCaption{}{The Instance-RSDD example adds and removes four cells.}}
+\includegraphics[width=\textwidth]{\MethodAsset{nora_scene_to_mask.pdf}}
+\caption{Scene-to-mask workflow. \CaseCaption{The window enlarges the same schematic grid.}{The window enlarges the native mask on the same Instance-RSDD crop. The observed writer adds and removes four cells.} Source labels train the ROH.}
 \label{fig:native-boundary}
 \end{figure*}
 
@@ -80,14 +87,14 @@ For masks of area \(32\le |M|<1024\), we construct the outside and inside pools 
 \end{aligned}
 \label{eq:native-bands}
 \end{equation}
-The first ring on each side has layer index \(\ell_i=1\), and the second has \(\ell_i=2\). Within each pool, we sort by \((|p_i-\tfrac12|,yW+x)\) and keep the first \(n=\min(32,|\mathcal B_+|,|\mathcal B_-|)\) sites. This concentrates samples near the decision threshold and makes the two endpoint lists \(S_+\) and \(S_-\) the same size. The writer passes through masks outside the eligible area range and masks with \(n=0\). Fig.~\ref{fig:occupancy-stage} shows the native support and readout.
+The first ring on each side has layer index \(\ell_i=1\), and the second has \(\ell_i=2\). Within each pool, we sort by \((|p_i-\tfrac12|,yW+x)\) and keep the first \(n=\min(32,|\mathcal B_+|,|\mathcal B_-|)\) sites. This concentrates samples near the decision threshold and makes the two endpoint lists \(S_+\) and \(S_-\) the same size. The writer passes through masks outside the eligible area range and masks with \(n=0\). Fig.~\ref{fig:occupancy-stage} shows the native support and the two ranked site lists.
 
-\ifnativecases The native inset localizes a real boundary in the Instance-RSDD reserve. The grids and fractional-coverage cell show the sampling and source-training operations separately from that transfer example.\fi
+\ifnativecases The sampling example traces the boundary of the retained Instance-RSDD mask. Its bounding box and ranking scores illustrate how the site lists are constructed.\fi
 
-\begin{figure}[t]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{\MethodAsset{method_native_occupancy.pdf}}
-\caption{Native-grid sampling and residual occupancy scoring. \CaseCaption{The inset shows sampled cells.}{The inset shows an \(8\times8\) native enlargement.} Source polygon coverage supplies fractional supervision.}
+\includegraphics[width=\columnwidth]{\MethodAsset{nora_native_sampling.pdf}}
+\caption{Two clipped boundary rings and representative sampled sites. The box and ranking scores are illustrative.}
 \label{fig:occupancy-stage}
 \end{figure}
 
@@ -96,7 +103,16 @@ At source training time, we use candidates with a nonignored COCO match at raste
  q_i=\frac{|C_i\cap G|}{|C_i|}\in[0,1].
  \label{eq:fractional-target}
 \end{equation}
-which also supplies the cell's contribution to continuous intersection area. The 14 features are the same on both sides of the native contour,
+which also supplies the cell's contribution to continuous intersection area. Fig.~\ref{fig:fractional-readout} shows the area target alongside the decoder's center readout.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{\MethodAsset{nora_fractional_readout.pdf}}
+\caption{Fractional polygon coverage and bilinear decoding at a native cell. The two grids show illustrative geometries at the same cell center.}
+\label{fig:fractional-readout}
+\end{figure*}
+
+The 14 features are the same on both sides of the native contour,
 \begin{equation}
 \begin{aligned}
  v_i=\bigl(&p_i,M_i,\ell_i,d_i,\bar x_i,\bar y_i,\nu,\eta,s,\\
@@ -126,7 +142,14 @@ We clamp negative roundoff before taking the square root and substitute unit sca
    \left(\operatorname{logit}(p_i^\epsilon)+f_\theta([z_i,z_i])\right).
  \label{eq:occupancy-head}
 \end{equation}
-where \(f_\theta\) maps \(28\to24\to24\to1\) through two ReLU hidden layers. Each stacked layer in Fig.~\ref{fig:occupancy-stage} represents a fully connected transform at one endpoint. Both copies of \(z_i\) come from that endpoint. This keeps the input width and the 1,321 parameters, including biases, equal to those of the partner-context control. A zero-initialized final affine layer makes the initial prediction equal to the clipped decoder response.
+where \(f_\theta\) maps \(28\to24\to24\to1\) through two ReLU hidden layers. The stacks in Fig.~\ref{fig:roh-architecture} represent fully connected transforms at one endpoint. Both copies of \(z_i\) come from that endpoint. This keeps the input width and the 1,321 parameters, including biases, equal to those of the partner-context control. A zero-initialized final affine layer makes the initial prediction equal to the clipped decoder response.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{\MethodAsset{nora_roh_architecture.pdf}}
+\caption{Endpoint features, the scalar ROH and fractional supervision. The dual-reference ROH uses a two-output residual head.}
+\label{fig:roh-architecture}
+\end{figure*}
 
 An AdamW update samples source groups uniformly and draws a pair \((a_j,d_j)\) within each chosen group. For a batch of \(m\) pairs, the loss averages fractional binary cross-entropy over both endpoints,
 \begin{equation}
@@ -170,12 +193,12 @@ using each endpoint at most once. If the independent endpoint sets admit such a 
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{\MethodAsset{method_bounded_selection.pdf}}
-\caption{Same-count endpoint selection. \CaseCaption{Each schematic writer adds and removes two cells.}{The D-FINE case uses four additions and four removals per writer. The separate schematic uses two per side.} Estimated gain \(\widehat g\) is in cell-area units.}
+\includegraphics[width=\textwidth]{\MethodAsset{nora_pairing_paths.pdf}}
+\caption{Endpoint selection on shared support. Paired lines join added and removed cells. The schematic uses two edits per side. The D-FINE case uses four per side. \CaseCaption{Its masks are pooled for display.}{Its masks are overlaid on native SAR.}}
 \label{fig:selection-stage}
 \end{figure*}
 
-The rulers show the longest distance-first edge and the same length used as the cap for bounded re-pairing. The independent writer reads both ranked lists at the same signed counts. \ifnativecases The upper row shows how small the actual mask differences can be even when the pairing rule changes.\fi
+Bounded re-pairing retains the longest distance-first edge as its distance cap. Independent selection reads both lists at the same signed counts. The observed example shows the masks produced by each rule on the same candidate.
 
 For the geometric calculation, write \(P=|M|\), \(T=|G|\) and \(I=|M\cap G|\) in native pixel-area units, with \(U=P+T-I\). The edited mask is \((M\setminus D)\cup A\). Its change in area is the difference of the counts. Its change in intersection comes from the fractional coverage of the edited cells,
 \begin{equation}
@@ -196,6 +219,15 @@ so the new overlap is \((I+g)/(U+d-g)\). Subtracting the original IoU gives
 \label{eq:variable-area}
 \end{equation}
 At \(k\) additions and \(k\) removals, the mask still has area \(P\) after exactly \(2k\) flips. With \(d=0\), the derivative of IoU with respect to \(g\) is \((P+T)/(U-g)^2>0\). Thus the true intersection gain orders the continuous IoUs of the writers on a fixed reference at that count.
+
+Fig.~\ref{fig:overlap-accounting} compares two equal-total edits with the same intersection gain and different union areas.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{\MethodAsset{nora_overlap_accounting.pdf}}
+\caption{Illustrative overlap accounting. The two edits recover one shared cell in both cases. The variable split adds a second foreground cell outside the reference.}
+\label{fig:overlap-accounting}
+\end{figure*}
 
 Equation~\eqref{eq:independent-estimated-gain} uses estimated occupancies. Let \(g_{\rm ind}\) and \(g_{\rm pair}\) denote the true gains for independent selection and distance-first pairing, and let \(\mathcal D\) be the symmetric difference of their edited sites. The common edits cancel when subtracting the gains. Since the estimated independent gain is at least as large, for \(k>0\) we have
 \begin{equation}
@@ -241,8 +273,8 @@ where \(W\) is the edited mask, \(I_r(W)\) is its intersection with the random r
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{\MethodAsset{method_signed_allocation.pdf}}
-\caption{Equal and variable allocations of four edits on shared schematic support.\CaseCaption{}{ The upper inset shows SAR context.}}
+\includegraphics[width=\textwidth]{\MethodAsset{nora_signed_budget.pdf}}
+\caption{Equal and variable allocations of four edits on shared schematic support.\CaseCaption{}{ The SAR inset provides scene context.}}
 \label{fig:signed-allocation}
 \end{figure*}
 
@@ -271,10 +303,10 @@ For \(i\in\mathcal W\), the write margins are \(u_i^+=r_i-\tfrac12\) on original
 \end{equation}
 We evaluate every feasible integer \(a\), with each prefix bounded by the number of available cells on its side. Ties between splits favor the smallest absolute area change and then fewer additions. Ties within a side follow the original endpoint ordinal and then row-major order for the remaining cells. A nonpositive margin can be selected to meet the exact total. The balanced narrow writer fixes \(a=k_{\mathrm{att}}\) with the same within-side rankings. All four support-by-rule arms share the positive-budget candidates and their probabilities, and retain the original masks elsewhere.
 
-\begin{figure}[t]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{\MethodAsset{method_phoenix_controls.pdf}}
-\caption{Support and count controls on one frozen Phoenix response.\CaseCaption{}{ The PSeg-SSDD example compares whole-grid threshold and exact-count writes.}}
+\includegraphics[width=\columnwidth]{\MethodAsset{nora_frozen_writer.pdf}}
+\caption{Support and count controls on one frozen Phoenix response.\CaseCaption{}{ The PSeg-SSDD examples show alternative whole-grid writes.}}
 \label{fig:phoenix-stage}
 \end{figure}
 

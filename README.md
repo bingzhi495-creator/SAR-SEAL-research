@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- [NORA 九幅新方法图及完整稿](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。同一 SAR 裁片串起场景、原生像元与写回。新增偏移、读出、ROH 和交并比解释图。
+
 - [GLDet 精读与 NORA 全部插图重绘](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。五张方法图分别展示整体、ROH 和写入控制，定性对照沿用原有实测。公开图和构图、证据索引随稿更新。
 
 - [NORA 稿件统一 ROH 模块简称](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。摘要定义残差占据率头，正文、图表和投稿摘要统一采用 ROH。原始实验编号可从复现索引定位。
