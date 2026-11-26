@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- [TGRS 英文主稿与作者交接](research_round_20260925_global/paper_boundary_refinement_20261120/submission_20261126/AUTHOR_HANDOFF_ZH.md)。新版 10 页，已核对 HRSID 官方训练分母、限距和单像元结果及复现条件。英文投稿信已备。交接方在 21 个候选入口未发现精确名称的 Umbra 回件，正式前瞻评分与期刊投稿尚未执行。
+
 - [研究交接与续研入口（2026-11-26）](research_round_20260925_global/SAR_SEAL_RESEARCH_HANDOFF_20261126.md)。含原研究目标、历史版本、已核验效用与失败、前瞻外测及复现入口。
 
 - PSeg-SSDD 的 232 图已完成冻结 D-FINE 学习占据率的等预算限距对照。独立选点相对限距重配 +0.021 mask AP、+0.069 连续 IoU［0.030, 0.109］点，未过 +0.30 AP 门槛。使用同图两套作者参考，固定全船体栅格 IoU 的对应差值为 PSeg +0.040 点、SPSD −0.007 点，两参考差为 −0.047［−0.088, −0.007］点。两套参考含各自原生匹配，采集范围相同。 [实际评分与复现](research_round_20260925_global/code/PSEG232_DFINE_COMMON_CAP_20261126/ACTUAL_SCORE.md)
@@ -51,7 +53,7 @@
 - 补充 Umbra 队列的 24 个独立采集全部通过原生窗口提取和 96 个原始瓦片独立校验，两份盲判包已核验。原 12 景与补充队列分别封存、评分和报告。实际判读回传和精度评价待完成。[预锁名单](research_round_20260925_global/code/UMBRA_SUPPLEMENT_METADATA_20261126/LOCK.md) · [原生窗口实测](research_round_20260925_global/code/UMBRA_SUPPLEMENT_NATIVE_20261126/ACTUAL.md) · [盲判包](research_round_20260925_global/UMBRA_SUPPLEMENT_REVIEW_PACKETS_ACTUAL_20261126.md)
 - 补充 24 景的冻结模型推理、掩膜写回和独立重放均完成。两位判读者的原始掩膜回件齐全后，按预锁规则独立评分。[冻结掩膜记录](research_round_20260925_global/UMBRA_SUPPLEMENT_FROZEN_CARRIER_ACTUAL_20261126.md) · [双参考评分](research_round_20260925_global/code/UMBRA_SUPPLEMENT_DUAL_REVIEW_SCORE_20261126/README.md)
 - Umbra 盲态覆盖核验已实际完成。技术汇总按预锁保留在协调端，待封存两份原始判读后接续原评分。[核验程序](research_round_20260925_global/code/UMBRA12_COORDINATOR_EDIT_COVERAGE_20261126/README.md)
-- 投稿正文候选压缩为 10 页 IEEE 双栏，含 6 图、4 表与 29 条参考。保留固定增删数的单像元证据边界、三种子配额对照、定性得失实例和强对照。[正文 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [24 页完整证据稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
+- 上一版投稿正文候选压缩为 10 页 IEEE 双栏，含 6 图、4 表与 29 条参考。保留固定增删数的单像元证据边界、三种子配额对照、定性得失实例和强对照。[正文 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [24 页完整证据稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
 - 更新 24 页 IEEE 双栏英文审阅稿，含 15 图和 14 表。标题、摘要与结论区分固定增删数的独立端点排序和固定总翻转数的可变分配。新增可编辑配比示意图、目标函数的定量对照与 RankSEG-DEP 适用边界。作者和投稿信息按约定留为占位。[PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.tex) · [读图与复现](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
 ## 研究记录（2026-11-25）

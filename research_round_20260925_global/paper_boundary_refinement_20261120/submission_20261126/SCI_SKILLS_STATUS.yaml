@@ -1,0 +1,49 @@
+project_id: SAR-SEAL
+product_name: SCI-Skills
+product_version: 3.0.2
+contract_version: "1.0"
+entry_route: project_continue
+primary_paper_family: M
+diagnosed_stage: M5
+execution_mode: REVIEW
+action_route: HYBRID
+working_title: Ranking and Allocation of Boundary Edits for SAR Ship Instance Segmentation
+target:
+  journal: IEEE Transactions on Geoscience and Remote Sensing
+  article_type: regular research article candidate
+  language: English
+  requirements_verified_on: "2026-11-26"
+  requirements_source: https://www.grss-ieee.org/publications/author-resources/tgrs-information-for-authors/
+stage_status:
+  partially_passed: [M5]
+  provisional_deliverables: [M6, M7]
+data_sufficiency:
+  status: INSUFFICIENT
+  research_question_fit: sufficient for the historical cohort-specific manuscript claims
+  critical_unrepairable_gaps:
+    - U12 and U24 independent A/B references pending
+  acquisition_needed: independent review returns under the original protocol
+expert_tasks:
+  completed:
+    - {task_id: review-20261126, expert_skill: sci-skills-presubmission-review, status: VERIFIED}
+    - {task_id: submission-20261126, expert_skill: sci-skills-manuscript-writing, status: VERIFIED}
+expert_conflicts:
+  resolved:
+    - {issue: official HRSID TRAIN size, resolution: full 3642 and project detector fitting 2937}
+    - {issue: whole-RoI PointRend AR100 rounding, resolution: report direct arm values}
+manuscript:
+  review_pdf: ../boundary_refinement_main.pdf
+  source: ../boundary_refinement_main.tex
+  pages: 10
+  figures: 6
+  tables: 4
+  references: 27
+  author_metadata: pending
+  submission: not_executed
+manual_operations:
+  status: AWAITING_AUTHOR_APPROVAL
+  active_operation_task_id: SAR-SEAL-TGRS-PORTAL-20261126
+  companion_prompt_generated: true
+  return_card_received: false
+  evidence_verified: false
+next_action: Corresponding author reviews the exact PDF and supplies author and declaration details.

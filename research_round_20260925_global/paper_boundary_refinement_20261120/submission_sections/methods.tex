@@ -98,7 +98,7 @@ The bounded writer tests whether reassigning partners accounts for the gain whil
 \sum_{(a,d)\in H}(\widehat q_a-\widehat q_d).
 \label{eq:bounded-endpoint-matching}
 \end{equation}
-Each site appears at most once. If the independent endpoint sets admit such a matching, we use them. Otherwise we solve \eqref{eq:bounded-endpoint-matching} by unit-capacity minimum-cost flow. The cap applies to individual edges. Total displacement and connectivity can vary. The three feasible sets are nested, so the estimated gains are ordered from distance-first to bounded to independent.
+Each site appears at most once. If the independent endpoint sets admit such a matching, we use them. Otherwise we solve \eqref{eq:bounded-endpoint-matching} by unit-capacity minimum-cost flow. The cap applies to individual edges. The total squared distance and connectivity can vary. The accepted distance-first assignment is feasible for the bounded objective. Removing the cap allows any two endpoint sets of the same size. Therefore the estimated gain can only increase across these three choices.
 
 \begin{figure*}[!t]
 \centering

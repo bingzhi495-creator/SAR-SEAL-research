@@ -239,3 +239,9 @@ SARShip-4i 报告 139 幅源 SAR 影像切为 6,961 芯片，混合自采像元�
 编辑范围、候选分数、后验及总翻转数保持完全一致。优化两套预测 IoU 相对静态的较小改善时，允许可行增删数量重分配。与使用同一估计式但增删各 k 的强对照相比，PSeg／SPSD mask AP **+2.461／+1.782**，固定 IoU **+0.993［+0.747，+1.244］／+0.580［+0.298，+0.877］**点。相对原 BCE 联合和均值对照也在两参考改善。分解显示额外交集贡献超过扩面积的代价，206 个共有正预算船体中 182 艘两参考都增加真实交集，5 艘至少一套减少。共用每候选 2k 次，任何闭合写回均实际修改 115,384 个像元。预锁的两参考及分量特异性判据均通过。新证据限于一个训练种子和历史开发 183 图。不同可变目标之间仍存在参考特异性的强弱排序。完成后安排两种子和目标数据冻结迁移。 [标签前写回](code/SPSD_PSEG_GATE_VARIABLE_SIGNED_BUDGET_SEED5297_20261125/RENDER_ACTUAL.md) · [实际评分](code/SPSD_PSEG_SCORE_VARIABLE_SIGNED_BUDGET_SEED5297_20261125/ACTUAL.md)
 
 面积选择及重叠目标优化已有 RankSEG 与 RankSEG-RMA 原则。项目先前的单参考几何上界和 Phoenix 总量／签名实验也相关。当前差别是固定检测候选、冻结端点、双份作者参考目标下的总翻转配额，以及同一预测目标的增删配比直接对照。它的贡献强度需要重复和目标数据支持。 [RankSEG](https://www.jmlr.org/papers/v24/22-0712.html) · [RankSEG-RMA](https://proceedings.neurips.cc/paper_files/paper/2025/hash/ef1cace6eccc84ea1993db63edbad7d6-Abstract-Conference.html) · [既有 Phoenix 对照](RSDD74_PHOENIX_AREA_ABLATION_ACTUAL_20261123.md)
+
+## 2026-11-26 写作与投稿准备
+
+新版英文正文 10 页、6 图、4 表、27 条参考。官方 HRSID TRAIN 为 3,642 张，项目检测器 FIT 为其中 2,937 张，另有 DEV705。区分名册 28 个来源前缀与 RF-DETR 5202 固定匹配的 1,461 艘、27 个贡献组。保留历史 Instance-RSDD 同一 74 图队列中两套冻结载体的 AP 和连续 IoU 增益，以及独立选点相对限距重配的一像元区间跨零。PointRend 整框与完整边界占据率的比较现直接报告两臂 AP 和 AR100。现行主稿与 24 页历史审阅稿按版本使用。[正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [更正与来源](paper_boundary_refinement_20261120/submission_20261126/REVISION_AUDIT.md)
+
+交接方在 21 个候选入口按四个精确文件名查到 0 份 Umbra 回件。U12 和 U24 的正式评分均未启动。已备投稿信及作者入站清单。署名、声明与权限由作者核对，SCI-Skills M5 保留部分通过状态。[作者交接](paper_boundary_refinement_20261120/submission_20261126/AUTHOR_HANDOFF_ZH.md)
