@@ -3,7 +3,7 @@
 \usepackage[hidelinks]{hyperref}
 \newif\ifnativecases
 \ifdefined\NativeCaseReview\nativecasestrue\else\nativecasesfalse\fi
-\newcommand{\CaseAsset}[2]{\ifnativecases local_figures/#2\else figures/#1\fi}
+\newcommand{\CaseAsset}[2]{\ifnativecases local_figures/#2\else figures/cvpr_20261126/#1\fi}
 \DeclareRobustCommand{\CaseCaption}[2]{\ifnativecases #2\else #1\fi}
 \hypersetup{pdftitle={Ranking and Allocation of Boundary Edits for SAR Ship Instance Segmentation}}
 \begin{document}
@@ -36,7 +36,7 @@ We study two decisions on retained detections while preserving the candidate ide
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/matched_budget_pipeline.pdf}
+\includegraphics[width=\textwidth]{figures/cvpr_20261126/matched_budget_pipeline.pdf}
 \caption{Panel (a) fixes the detector output. Panels (b) and (c) define sampled cells and estimate occupancy. Panel (d) shows the independent write at equal signed counts. The lower lane shows the frozen-refiner control. Fig.~\ref{fig:signed-allocation} illustrates the separate fixed-total allocation.}
 \label{fig:native-boundary}
 \end{figure*}
@@ -75,7 +75,7 @@ In each pool, a pixel in the first dilation or erosion ring has layer \(\ell_i=1
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/method_native_occupancy.pdf}
+\includegraphics[width=\columnwidth]{figures/cvpr_20261126/method_native_occupancy.pdf}
 \caption{Native-grid boundary support and point supervision. Outside endpoints can be added, and inside endpoints can be removed. At source training time the polygon contributes a fractional target in each unit cell. The detector response supplies the initial logit for the small learned residual.}
 \label{fig:occupancy-stage}
 \end{figure}
@@ -157,7 +157,7 @@ Each site appears at most once. If the independent endpoint sets admit such a ma
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/method_bounded_selection.pdf}
+\includegraphics[width=\textwidth]{figures/cvpr_20261126/method_bounded_selection.pdf}
 \caption{Three writers at the same signed counts. The bounded writer re-pairs sites under the inherited displacement cap. Independent selection removes this cap. The worked example marks the two additions and removals in each output. The value \(\widehat g\) is the estimated intersection gain.}
 \label{fig:selection-stage}
 \end{figure*}
@@ -219,7 +219,7 @@ where \(W\) is the edited mask, \(I_r(W)\) is its overlap with the random refere
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/method_signed_allocation.pdf}
+\includegraphics[width=\textwidth]{figures/cvpr_20261126/method_signed_allocation.pdf}
 \caption{Allocation at a fixed total in an illustrative example. The available splits share writable endpoints. The equal split adds two cells and removes two. Maximizing the smaller predicted IoU gain across two references selects three additions and one removal in this example. Both outputs flip four cells, with different final areas.}
 \label{fig:signed-allocation}
 \end{figure*}
@@ -248,7 +248,7 @@ The count writer chooses the feasible integer \(a\) maximizing \(F_\mathcal W\),
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/method_phoenix_controls.pdf}
+\includegraphics[width=\columnwidth]{figures/cvpr_20261126/method_phoenix_controls.pdf}
 \caption{Frozen Phoenix control. Its response is shared by two choices of writable support and two writing rules. The balanced narrow comparison matches the same total count and assigns half to each side to isolate the signed split.}
 \label{fig:phoenix-stage}
 \end{figure}
@@ -413,12 +413,12 @@ Large, free signs & 55.130 & 63.260 & 4.827 & 53.591 & 62.265\\
 \end{tabular}
 \end{table}
 
-Relative to LW=S, SU gains 0.324 AP points on average, with seed effects of \(+0.184\), \(+0.963\), and \(-0.174\). This contrast changes both the predictor and area policy. Switching from SU=F to the natural count changes mean AP by \(+0.011\) and AP75 by \(-0.112\) points. The official comparison supports a recurring cost of distance-based pairing on carrier 5202 (Fig.~\ref{fig:transfer-effects}). On this split the independent replay establishes COCO AP. Source and transfer analyses supply the fixed-match continuous effects.
+Relative to LW=S, SU gains 0.324 AP points on average, with seed effects of \(+0.184\), \(+0.963\), and \(-0.174\). This contrast changes both the predictor and area policy. Switching from SU=F to the natural count changes mean AP by \(+0.011\) and AP75 by \(-0.112\) points. The official comparison supports a recurring cost of distance-based pairing on carrier 5202 (Table~\ref{tab:official}). On this split the independent replay establishes COCO AP. Source and transfer analyses supply the fixed-match continuous effects.
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/transfer_effects.pdf}
-\caption{Matched-budget effects across cohorts. In (A), independent selection is compared with fixed pairing using the same point head, candidate and realized count. AP symbols show observed head-seed effects and their mean. IoU intervals come from resampling the represented groups. In (B), learned ranking is compared with dynamic attraction at identical realized counts. PSeg-SSDD excludes ten overlapping images. UEIKAP assigns zero change to unmatched hulls and reports no whole-scene AP. Each detector fit establishes its own native matches.}
+\includegraphics[width=\textwidth]{figures/cvpr_20261126/transfer_effects.pdf}
+\caption{Matched-count effects of changing the pairing constraint. Squares compare bounded re-pairing with distance-first assignment (\(L-F\)); circles compare independent ranking with bounded re-pairing (\(I-L\)). Panel (a) gives mask AP point estimates, with the dashed line marking the positive-side AP advance criterion. Panel (b) gives fixed-match continuous IoU effects with paired 95\% group intervals. Each row shares the detector, head, sampled endpoints and realized signed counts across all writers. The reserve pipelines share target images and the 42-chip view is nested. Deduplication removes exact historical fitting overlaps from the PSeg-SSDD view. Counts are eligible fixed matches.}
 \label{fig:transfer-effects}
 \end{figure*}
 
@@ -495,7 +495,7 @@ Of the 493 reference pairs with mutual IoU at least 0.50, 358 share a native can
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.98\textwidth]{figures/reference_disagreement_effects.pdf}
+\includegraphics[width=0.98\textwidth]{figures/cvpr_20261126/reference_disagreement_effects.pdf}
 \caption{Effect of exchanging the released reference masks on the same 232 SSDD images. (a) Each row compares the same two predicted masks under PSeg-SSDD and SPSD. (b) The total shift subtracts the PSeg-SSDD effect from the SPSD effect. The conflicting-label term is the contribution from edited cells on targets assigned to the same native candidate under both references. The remaining terms include IoU normalization, candidate assignment and reference composition. Intervals are paired 95\% percentile intervals from 4,096 decoded-image resamples.}
 \label{fig:reference-disagreement}
 \end{figure*}
@@ -553,7 +553,7 @@ We also replay the occupancy predictions at the exact sites where the two writes
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.98\textwidth]{figures/dual_reference_budget_effect.pdf}
+\includegraphics[width=0.98\textwidth]{figures/cvpr_20261126/dual_reference_budget_effect.pdf}
 \caption{Variable versus equal addition and removal counts at an identical total number of flips. Both use the same learned occupancy, candidate stream and predicted-IoU objective. (a) Seed 5297 differences on the 183 development images. IoU intervals use 4,096 paired decoded-image-group resamples. (b) Intersection and area terms from Eq.~\eqref{eq:area-overlap-parts}. Values retain each release's native assignments and complete hull denominator.}
 \label{fig:dual-budget-effect}
 \end{figure*}
@@ -695,7 +695,7 @@ To quantify complementarity, we fix the 92 RF-DETR native matches and allow one-
 
 \subsection{Maximum-Displacement Control at Equal Counts}
 \label{sec:pairing-effects}
-Table~\ref{tab:bounded-results} measures the effect of reassigning pairs within the original maximum displacement and the additional effect of removing that cap. Within each row the same detector, head, support and \(k\) apply to all three writers. The predeclared criterion combines at least 0.30 mask AP points, a same-direction 95\% continuous-IoU interval and at least 20 changed eligible matches across eight groups.
+Figure~\ref{fig:transfer-effects} and Table~\ref{tab:bounded-results} measure the effect of reassigning pairs within the original maximum displacement and the additional effect of removing that cap. Within each row the same detector, head, support and \(k\) apply to all three writers. The predeclared criterion combines at least 0.30 mask AP points, a same-direction 95\% continuous-IoU interval and at least 20 changed eligible matches across eight groups.
 
 \begin{table*}[!t]
 \centering
@@ -748,7 +748,7 @@ Figure~\ref{fig:rsdd-common-cap-cases} compares the four masks for the same reta
 \subsection{Equal-count results on HRSID DEV705}
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.82\textwidth]{figures/dev705_overlap_cases.pdf}
+\includegraphics[width=0.82\textwidth]{figures/cvpr_20261126/dev705_overlap_cases.pdf}
 \caption{Two observed RF-DETR DEV705 matches at the same edit count in seed 5217. Each arm adds eight pixels and removes eight. Bars report the intersection contributed by added native cells, the intersection lost in removed cells, and their net effect relative to the raw mask. IoU compares each complete edited mask with the same reference polygon. Cases are observed matches nearest the median within the positive and negative IoU differences, respectively, with the first image excluded when choosing the second case.}
 \label{fig:dev-cases}
 \par\vspace{7pt}
@@ -805,7 +805,7 @@ Equal-count independent and distance-paired writing produce different masks for 
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/sarssp_public_summary.pdf}
+\includegraphics[width=0.95\textwidth]{figures/cvpr_20261126/sarssp_public_summary.pdf}
 \caption{Observed SAR-SSP boundary edits. (a) Discrete IoU changes among the 52 original matches with different masks under the two equal-count policies. (b) Mean difference in the fraction of correct labels at disagreeing cells, evaluated within a normalized \(4\times4\) grid in each hull's image-axis-aligned enclosing rectangle. Each displayed cell pools at least five hulls. (c) Scene-balanced geometry differences over all 139 reference hulls with paired 95\% intervals and mask AP differences over all 232 chips.}
 \label{fig:sar-ssp-cases}
 \end{figure*}
@@ -887,7 +887,7 @@ Date-separated, 42 chips & 5217 & 61.283 & 61.769 & 61.698 & \textbf{62.123}\\
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/independent_sides_ablation.pdf}
+\includegraphics[width=\columnwidth]{figures/cvpr_20261126/independent_sides_ablation.pdf}
 \caption{AP changes from switching one or both sides to independent selection. The reference within each row is the fixed-pair policy. The Gaofen-3 values average the two frozen point-head seeds. All policies have the same add count, remove count and final area.}
 \label{fig:signed-side-ablation}
 \end{figure}
@@ -928,8 +928,8 @@ We cross the writable support with the flip rule using the same fifth-iteration 
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/phoenix_budget_by_dataset.pdf}
-\caption{Writable support and edit count on two frozen detector streams. Within each dataset, all four policies use the same editable candidates and Phoenix probabilities. Mask AP uses the full native candidate stream. Continuous IoU weights parent scenes equally over 47 original eligible matches on Instance-RSDD and decoded-image groups equally over 293 matches on PSeg-SSDD. Each panel uses its own vertical scale.}
+\includegraphics[width=\textwidth]{figures/cvpr_20261126/phoenix_budget_by_dataset.pdf}
+\caption{Writable support and edit count on two frozen detector streams. Within each dataset, all four policies use the same editable candidates and Phoenix probabilities. Mask AP uses the full native candidate stream. Continuous IoU weights parent scenes equally over 47 original eligible matches on Instance-RSDD and decoded-image groups equally over 293 matches on PSeg-SSDD. Both panels use the same horizontal difference scale. The columns give the original threshold and exact-count scores.}
 \label{fig:phoenix-support-budget}
 \end{figure*}
 

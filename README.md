@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- [完整研究设计与 CVPR 图件修订](research_round_20260925_global/paper_boundary_refinement_20261120/design/DESIGN_RATIONALE_ZH.md)。完整稿的方法图、定性对照、定量结果与消融图全部修订，公开版含 16 张可编辑矢量图；本机作者审阅版含真实 SAR 叠图。
+
 - [TGRS 完整稿与图件索引](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。25 页 IEEE 双栏，补回独立选点、限距重配、动态吸引力、Phoenix 和 SegRefiner 的实测定性对照，并保留全部量化和消融证据。
 
 - [DEV705 最小累计平方距离见证实测](research_round_20260925_global/code/DEV705_MIN_CUMULATIVE_WITNESS_20261126/ACTUAL.md)。无标注覆盖 36 个候选、19 个来源前缀。作者参考评分仅改变 1,461 个固定匹配中的一艘，低于预锁覆盖门。相对限距重配的 mask AP 变化 −0.001385 点，两阶段自然退出并通过回执核验，按协议结束该分支。
