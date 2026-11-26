@@ -898,9 +898,6 @@ At fixed total flips, a variable split improves mean AP and fixed-match raster I
 
 The pretrained-refiner comparisons isolate the effect of the edits themselves. Limiting whole-grid Phoenix writes reduces excess foreground changes on both evaluated datasets. For SegRefiner-LR, separately scoring additions and removals exposes deletion losses that a per-candidate cap partly recovers. These experiments show why endpoint ranking, signed allocation, and candidate coverage should be measured separately when evaluating local mask refinement.
 
-\section*{Acknowledgment}
-OpenAI Codex assisted with English drafting and revision in the abstract, Sections I--IX, and the figure captions. It also assisted in generating the vector-figure scripts, schematic layouts and experimental analysis code. The conceptual diagrams use illustrative cells and worked examples. The data figures use measured outputs, including spatially pooled displays in Figs.~\ref{fig:gf3-qual} and~\ref{fig:pseg-budget-cases}.
-
 \IEEEtriggeratref{21}
 \begin{thebibliography}{34}
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, \href{https://doi.org/10.1109/ACCESS.2020.3005861}{2020}.
