@@ -1,8 +1,10 @@
-# TGRS 完整稿、研究设计与图件
+# NORA 完整稿、研究设计与图件
 
-- [25 页 IEEE 双栏全文终审稿](boundary_refinement_complete.pdf) · [LaTeX 源码](boundary_refinement_complete.tex) · [语言终审和题注核验](design/PROSE_FINAL_REVIEW_20261126.md)
-- [研究问题、完整设计与证据边界](design/DESIGN_RATIONALE_ZH.md) · [所有公开图件和生成说明](figures/cvpr_20261126/README.md)
-- [现行精简稿](boundary_refinement_main.pdf) · [作者信息与投稿资料](submission_20261126/AUTHOR_HANDOFF_ZH.md) · [实验证据索引](../TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+**NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation**
+
+- [IEEE 双栏英文稿](boundary_refinement_complete.pdf) · [LaTeX 源码](boundary_refinement_complete.tex) · [语言终审和题注核验](design/PROSE_FINAL_REVIEW_20261126.md)
+- [研究问题、完整设计与证据边界](design/DESIGN_RATIONALE_ZH.md) · [所有公开图件和生成说明](figures/cvpr_20261126/README.md) · [编号与复现入口](design/NORA_REPRODUCIBILITY.md)
+- [早期精简稿](boundary_refinement_main.pdf) · [作者信息与投稿资料](submission_20261126/AUTHOR_HANDOFF_ZH.md) · [实验证据索引](../TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
 完整稿的 16 张公开图为可编辑的矢量文件。本机作者审阅稿为 17 张图，提供已核验的真实原始 SAR 叠图。全面更新包括 5 张方法图、固定增删数三路对照的双尺度效应图、参考与配额图、正负案例、SAR-SSP 图及消融图。方法图保留原算例和训练／推理边界。汇总图呈现相同预算下的预设判据，定性对比保留两类结果、精确 IoU 与轮廓尺度。全稿保留 15 张表、34 条参考及各项失败和适用范围。
 

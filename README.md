@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- [NORA 新版完整稿](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。标题采用方法简称与全称，核心限距对照提前。正文以拟合数和效果区间交代重复，精确实验编号留在复现索引。
+
 - [TGRS 全文终审稿与题注精简](research_round_20260925_global/paper_boundary_refinement_20261120/design/PROSE_FINAL_REVIEW_20261126.md)。重写完整英文稿，压缩图表说明，保留原公式、数据表、失败结果及前瞻外测状态。
 
 - [完整研究设计与 CVPR 图件修订](research_round_20260925_global/paper_boundary_refinement_20261120/design/DESIGN_RATIONALE_ZH.md)。完整稿的方法图、定性对照、定量结果与消融图全部修订，公开版含 16 张可编辑矢量图；本机作者审阅版含真实 SAR 叠图。

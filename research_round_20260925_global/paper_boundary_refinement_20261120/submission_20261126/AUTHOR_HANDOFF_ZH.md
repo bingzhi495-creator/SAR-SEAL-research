@@ -1,6 +1,6 @@
 # IEEE TGRS 投稿交接（2026-11-26）
 
-当前材料供作者审定。以 [英文主稿 PDF](../boundary_refinement_main.pdf) 和 [LaTeX](../boundary_refinement_main.tex) 为提交候选，以 [24 页审阅稿](../boundary_refinement.pdf) 与 [主张和证据索引](../../TGRS_MANUSCRIPT_EVIDENCE_20261123.md) 复核来源。扩展稿是内部审阅资产。补充材料是否提交、哪些图表和附录进入补充材料，由作者审定；若选用，先整理独立且与最终主稿一致的补充 PDF。英文 [投稿信](COVER_LETTER_EN.md) 是可编辑草稿。投稿、受理和发表状态均为未执行。
+当前候选稿为 [NORA 英文完整稿](../boundary_refinement_complete.pdf) 和 [LaTeX](../boundary_refinement_complete.tex)，题目及摘要以当前稿为准。详细证据见 [主张与证据](../../TGRS_MANUSCRIPT_EVIDENCE_20261123.md)。[早期精简稿](../boundary_refinement_main.pdf) 和 [扩展历史稿](../boundary_refinement.pdf) 可供查阅。补充材料由作者审定，须与拟提交正文一致。[英文投稿信](COVER_LETTER_EN.md) 为草案。投稿、受理和发表均尚未执行。
 
 ## 官方入口及格式
 
@@ -16,7 +16,7 @@
 
 | 字段 | 内容 |
 | --- | --- |
-| Title | Ranking and Allocation of Boundary Edits for SAR Ship Instance Segmentation |
+| Title | NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation |
 | Abstract | 可从 [英文系统字段](PORTAL_FIELDS_EN.txt) 复制。署名版若改摘要，以最终 PDF 为准。摘要采用单段和 IEEE 150–250 词范围。 [IEEE Editorial Style Manual](https://journals.ieeeauthorcenter.ieee.org/wp-content/uploads/sites/7/IEEE-Editorial-Style-Manual-for-Authors.pdf) |
 | Keywords | Synthetic aperture radar, ship instance segmentation, boundary refinement, native image grid |
 | Cover letter | 使用 [英文草稿](COVER_LETTER_EN.md)，经通讯作者确认后替换所有方括号字段。是否单独上传以系统显示为准。 |

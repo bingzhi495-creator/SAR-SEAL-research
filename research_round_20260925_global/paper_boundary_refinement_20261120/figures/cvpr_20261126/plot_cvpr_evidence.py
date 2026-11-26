@@ -84,14 +84,14 @@ def effects(root):
     dev_measures = tuple(make(row, "AP_points", row["metrics"]["iou_points"], "interval95")
                          for row in (dev["contrasts"][name] for name in CONTRASTS))
     rows = [
-        ("HRSID DEV705", "RF-DETR 5202 · 3 heads", dev["fixed_matching_counts"]["valid"], dev_measures),
-        ("Instance-RSDD Gaofen-3", "RF-DETR 5202 · 2 heads",
+        ("HRSID DEV705", "RF-DETR fit A · 3 heads", dev["fixed_matching_counts"]["valid"], dev_measures),
+        ("Instance-RSDD Gaofen-3", "RF-DETR fit A · 2 heads",
          scores["gf3"]["views"]["gf3"]["eligible_original_matches"], rf_rows(scores["gf3"]["views"]["gf3"])),
     ]
     for view_key, title in (("full", "Instance-RSDD reserve · 74"), ("date_separated", "  Nested reserve · 42")):
         rf = scores["reserve"]["views"][view_key]
         df = scores["dfine"]["views"][view_key]
-        rows.extend([(title, "RF-DETR 5202", rf["eligible_original_matches"], rf_rows(rf)),
+        rows.extend([(title, "RF-DETR fit A", rf["eligible_original_matches"], rf_rows(rf)),
                      ("", "D-FINE E24", df["eligible_matches"], df_rows(df))])
     for key, title in (("official", "PSeg-SSDD official · 232"), ("exclude_exact_fit_overlap", "  Deduplicated · 222")):
         ps = scores["pseg"]["views"][key]

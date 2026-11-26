@@ -5,15 +5,15 @@
 \ifdefined\NativeCaseReview\nativecasestrue\else\nativecasesfalse\fi
 \newcommand{\CaseAsset}[2]{\ifnativecases local_figures/#2\else figures/cvpr_20261126/#1\fi}
 \DeclareRobustCommand{\CaseCaption}[2]{\ifnativecases #2\else #1\fi}
-\hypersetup{pdftitle={Ranking and Allocation of Boundary Edits for SAR Ship Instance Segmentation}}
+\hypersetup{pdftitle={NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation}}
 \begin{document}
 \raggedbottom
-\title{Ranking and Allocation of Boundary Edits for SAR Ship Instance Segmentation}
+\title{NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation}
 \author{Author~Details~Pending\thanks{Complete review manuscript. Author affiliations and submission metadata are pending.}}
 \maketitle
 
 \begin{abstract}
-A shift of a few pixels can change the overlap of a narrow ship mask in synthetic aperture radar (SAR) imagery. We estimate ship occupancy on the native grid and compare three ways to choose pixels to add or remove, holding the detections and the two edit counts fixed. On HRSID DEV705, independent selection gains 0.81--0.91 mask average precision (AP) points over distance-first pairing. On the historical 74-chip Instance-RSDD reserve, it gains 0.479 and 0.344 AP points over bounded re-pairing with frozen RF-DETR and D-FINE pipelines, respectively. Continuous intersection over union (IoU) increases by 0.116 and 0.133 points. With a one-pixel boundary band, bounded re-pairing improves Boundary IoU by 0.735 points over distance-first pairing for RF-DETR. The paired 95\% interval for the additional change under independent selection spans zero. A separate experiment keeps the total count fixed and lets the split between additions and removals vary. Across three head fits, this gives mean gains of 2.30 and 1.75 AP points under two sets of annotations for the same SSDD images. On frozen transfer to SAR-SSP, the variable split reduces missed area, increases false foreground, and lowers mask AP by 0.14 points.
+A small boundary shift can substantially reduce overlap for a narrow ship in synthetic aperture radar (SAR) imagery. We introduce Native-Grid Occupancy Ranking and Allocation (NORA), a mask editor that estimates hull occupancy on the native grid and uses it to choose pixels to add or remove. At the same per-side counts, independent selection improves mask average precision (AP) by 0.81--0.91 points over distance-first pairing on HRSID DEV705. On the historical 74-chip Instance-RSDD reserve, it improves AP by 0.479 and 0.344 points over bounded re-pairing with frozen RF-DETR and D-FINE pipelines. Continuous intersection over union (IoU) improves by 0.116 and 0.133 points, respectively. With RF-DETR, bounded re-pairing increases one-pixel Boundary IoU by 0.735 points over distance-first pairing. The paired 95\% interval for the further change under independent selection spans zero. When only the total edit count is fixed, varying the addition--removal split gives mean gains of 2.30 and 1.75 AP points across three point-head fits on the same SSDD images under two annotation releases. Frozen transfer to SAR-SSP reduces missed area, increases false foreground, and lowers AP by 0.14 points.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -23,21 +23,21 @@ Synthetic aperture radar, ship instance segmentation, boundary refinement, nativ
 \section{Introduction}
 \label{sec:introduction}
 
-A detection can localize a ship while its mask follows a nearby quay or omits part of the hull. In synthetic aperture radar (SAR) imagery, returns from the quay or from an adjacent vessel can be comparable in strength to those from the target~\cite{hrsid,rsdd,gao2024}. Errors across the short axis of a ship have a particularly large effect on overlap. A transverse shift of one pixel leaves the area of a \(w\)-pixel-wide rectangle unchanged, but its intersection over union (IoU) with the original rectangle drops to \((w-1)/(w+1)\), or 0.60 when the rectangle is four pixels wide.
+In SAR imagery, a detection may localize the ship while its mask follows a nearby quay or cuts off part of the hull~\cite{hrsid,rsdd,gao2024}. A one-pixel shift across a \(w\)-pixel-wide rectangle leaves its area unchanged but reduces its intersection over union (IoU) with the original rectangle to \((w-1)/(w+1)\). For \(w=4\), the overlap is 0.60.
 
-The HRSID detections help locate the error. We examined 1,329 original matches with reference area below 1,024 cells and aspect ratio at least two. When a reference-guided editor could modify cells in a two-pixel expansion of each detection box, 134 additional instances could reach continuous IoU 0.90. Adding foreground only in the new strip brought none of these 134 instances to the threshold. At least 91 required both adding and removing cells inside the original box. These are ceilings computed from the reference outlines. They motivated a comparison of where an editor writes, with the candidate and allowable edit count held fixed.
+On HRSID, we examined 1,329 matched ships with reference area below 1,024 cells and aspect ratio at least two. Under reference-guided editing, expanding the detection box by two pixels lets 134 additional masks reach continuous IoU 0.90. Adding foreground only in the expanded strip recovers none of those cases. At least 91 require both additions and removals inside the original box.
 
-We therefore retain each detection and its confidence, estimate occupancy near the native mask boundary, and vary two decisions. The first concerns location. A likely addition can be paired with a nearby cell that also belongs to the hull, so even a move at constant area can make the mask worse. The second concerns area. If the mask is too large or too small, an equal number of additions and removals leaves the area error intact. We make three contributions.
+NORA addresses these two editing decisions on a retained mask. The ranking determines which pixels change at the given addition and removal counts. The allocation determines how the same total edit count is divided between the two sides when the predicted area is wrong.
 \begin{enumerate}
-\item We supervise a compact residual occupancy head with the fraction of each native pixel that lies inside the reference polygon. The same point features and endpoint construction apply to retained masks from D-FINE-seg and RF-DETR~\cite{dfine,rfdetr}.
-\item We hold the sampled locations, point scores and number of additions and removals fixed. This comparison separates the effect of reassigning pairs under the original displacement cap from the effect of lifting that cap. We report mask average precision (AP), fixed-match continuous IoU and native-scale Boundary IoU.
-\item We learn occupancy under two SSDD annotation releases and use those scores to compare addition--removal splits at a fixed total count. The SSDD control shares the objective and count. Frozen transfer and experiments that reuse a pretrained refiner's response test where changing the split, support or number of writes helps.
+\item We estimate occupancy on the native grid from fractional polygon coverage and a compact residual head. The same point features and endpoint construction apply to D-FINE-seg and RF-DETR~\cite{dfine,rfdetr}.
+\item We measure the effects of bounded re-pairing and independent ranking using common sites, scores and signed counts.
+\item We compare addition--removal splits at a fixed total count under two SSDD references. Frozen transfer and controlled pretrained-refiner writes characterize the effects of changing area, support and edit count.
 \end{enumerate}
 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{figures/cvpr_20261126/matched_budget_pipeline.pdf}
-\caption{Native-grid editing of a frozen detection. The main path samples and scores boundary cells before an equal-count write. The lower rows show source-only supervision and the separate frozen-refiner control. Fig.~\ref{fig:signed-allocation} shows the variable split.}
+\caption{NORA applied to a frozen detection. The main path samples and scores boundary cells before an equal-count write. The lower rows show source-only supervision and the separate frozen-refiner control. Fig.~\ref{fig:signed-allocation} shows the variable split.}
 \label{fig:native-boundary}
 \end{figure*}
 
@@ -58,9 +58,9 @@ PointRend resamples uncertain points during subdivision. SegFix transfers interi
 
 \subsection{Overview}
 
-The editor starts from a retained detection on the decoded SAR image. The frozen detector supplies a binary mask \(M\), a box \(B\), a confidence \(s\), and a foreground response \(p_i\) at native cell \(i\). We sample cells on both sides of the contour and predict their hull occupancy. The three matched-count writers use the same scores and candidate sites. Each adds \(k\) cells and removes \(k\) cells, so differences in the output come from the choice of locations. The candidate identity, box, class and confidence carry through to the edited mask (Fig.~\ref{fig:native-boundary}).
+NORA starts from a frozen detection with binary mask \(M\), box \(B\), confidence \(s\), and foreground response \(p_i\) at native cell \(i\). The point head scores sampled cells on both sides of the contour. The matched-count writers select \(k\) additions and \(k\) removals from these sites. The edited mask retains the candidate identity, class, box and confidence (Fig.~\ref{fig:native-boundary}).
 
-Two separate comparisons change other aspects of that decision. In one, we hold the total number of flips fixed and let the counts on the two sides differ. In the other, the same image and native mask prompt the pretrained Phoenix XL1 refiner~\cite{phoenix}. Its frozen response lets us vary the writable region and the write rule without recomputing the response for each treatment.
+To study mask area, we fix the total number of flips and vary the addition--removal split. We also vary the writable region and edit count for a fixed response from the pretrained Phoenix XL1 refiner~\cite{phoenix}.
 
 \subsection{Native-grid sampling and fractional occupancy}
 \label{sec:occupancy}
@@ -204,7 +204,7 @@ Errors at the disputed sites can therefore reverse the ordering of true overlap.
 
 If the native mask area is inaccurate, a different split may be useful at the same total cost. We test that choice with a frozen D-FINE candidate, fixed endpoint sets and the exchange count \(k_s\) from dynamic attraction. The incumbent \(S\) is the static-attraction write at that count. Let \(E=S_+\cup S_-\), \(P=|M|\), and \(\hat q_{ir}\) be estimated occupancy of cell \(i\) under reference \(r\).
 
-The two-output residual head takes the duplicated 14-dimensional features and maps \(28\to24\to24\to2\). It has 1,346 parameters including biases and starts with a zero residual output. Fitting uses 848 common candidates with positive edit budgets from 447 images in 439 exact decoded groups. Each of 1,000 AdamW updates draws 64 candidates by sampling groups and then images. The objective is pointwise binary cross-entropy against both references, with the same weight per sampled candidate. At each seed, one fitted head provides the scores for both allocation policies.
+The two-output residual head takes the duplicated 14-dimensional features and maps \(28\to24\to24\to2\). It has 1,346 parameters including biases and starts with a zero residual output. Fitting uses 848 common candidates with positive edit budgets from 447 images in 439 exact decoded groups. Each of 1,000 AdamW updates draws 64 candidates by sampling groups and then images. The objective is pointwise binary cross-entropy against both references, with the same weight per sampled candidate. Within each fit, one point head provides the scores for both allocation policies.
 
 To estimate overlap without target labels, we use the native binary states outside \(E\) and the predicted occupancies inside it. The resulting reference area and intersection with the native mask are
 \begin{equation}
@@ -303,7 +303,7 @@ UEIKAP additional acquisitions & 342 & 528 & 13 Sentinel-1 acquisitions & Case-f
 \end{tabular}
 \end{table*}
 
-The official HRSID training split contains 3,642 images. The D-FINE E24 detector uses 2,937 of them for fitting, and FIT109 lies within that population. Head development on FIT109 uses five-fold source-prefix cross-fitting. For target evaluation we refit on FIT109 and freeze the result. The 705 DEV705 images span 28 filename prefixes, used as proxies for acquisitions. We found no exact overlap with the detector fitting population by encoded image, decoded RGB content or filename source prefix. Twenty-seven prefixes contribute to the 1,461 eligible RF-DETR 5202 matches. DEV705 has prior development exposure.
+The official HRSID training split contains 3,642 images. The D-FINE E24 detector uses 2,937 of them for fitting, and FIT109 lies within that population. Head development on FIT109 uses five-fold source-prefix cross-fitting. For target evaluation we refit on FIT109 and freeze the result. The 705 DEV705 images span 28 filename prefixes, used as proxies for acquisitions. We found no exact overlap with the detector fitting population by encoded image, decoded RGB content or filename source prefix. Twenty-seven prefixes contribute to the 1,461 eligible RF-DETR fit A matches. DEV705 has prior development exposure.
 
 The official HRSID PNG test split contains 1,962 images and 5,922 annotations, of which four rasterize to empty masks. Two test images match FIT images exactly, and one pair within the test split is identical. Before scoring, we fixed the full set as the primary population and defined sensitivities excluding either the four empty raster annotations or the three exact-identity images. Since this project previously used the split for model selection, we treat the frozen reevaluation as historical evidence on the official allocation.
 
@@ -313,7 +313,7 @@ For PSeg we distinguish the 187-image diagnostic view and its 182-image exact-de
 
 We run frozen D-FINE-seg-S~\cite{dfine} and RF-DETR~\cite{rfdetr} through their respective native mask decoders. The HRSID D-FINE detector received 17,640 optimizer updates over 24 epochs. Its author inference uses a 640-pixel input, 300 queries, box NMS at 0.70 and a mask threshold of 0.50. RF-DETR uses author version 1.12.0 with the 576-pixel validation transform, 164 queries and a joint top-100 ranking before selecting ship-class slots. Each detector yields its own candidate stream. Within a paired contrast, all writers reuse the same detector run and stream.
 
-The HRSID fractional heads are fitted on FIT109 for 200 updates using the sampling procedure in Section~\ref{sec:occupancy}. Section~\ref{sec:variable-sign} specifies the dual-reference BCE fit. Repeated point-head fits share the stated features and fitting budget. The two RF-DETR fits share their HRSID training images and initial weights, with downstream seeds 5202 and 5203.
+The HRSID fractional heads are fitted on FIT109 for 200 updates using the sampling procedure in Section~\ref{sec:occupancy}. Section~\ref{sec:variable-sign} specifies the dual-reference BCE fit. Repeated point-head fits share the stated features and fitting budget. RF-DETR fits A and B share their HRSID training images and initial weights.
 
 We capture the frozen detector outputs on CUDA. The RF-DETR verification uses PyTorch 2.10.0 and CUDA 13.0. Polygon scoring uses pycocotools and the original coordinate geometry. We time the local writer and PointRend on an Intel Core i7-13700KF with resident inputs and one numerical thread per pass. Frozen Phoenix XL1 inference uses four two-thread CPU workers on DGX Spark and batches of up to two masks, with the author's five-iteration setting shared across writer comparisons. Detector capture, refinement and scoring are timed separately in their respective settings.
 
@@ -350,7 +350,7 @@ The last two measures express area outside the reference and missed area, each a
 \end{equation}
 where \(n_j\) is the number of analyzed hulls in group \(j\). Intervals use paired group resampling, typically with 4,096 draws. In the Instance-RSDD reserve, we retain parent weights and resample sensor--date blocks. PSeg uses groups of exactly decoded identical images. When heads share the same native matches, we average their paired effects within each group before computing the interval.
 
-The 183-image dual-reference analysis uses a raster IoU averaged over all annotated hulls in each image, with native misses set to zero. Images within a decoded group receive equal weight. The reference populations contain 411 PSeg and 410 SPSD hulls. For SAR-SSP, Eq.~\eqref{eq:paired-acquisition-effect} uses mother-scene groups and \(\mathrm{IoU}_{\mathrm{raster}}=|M'\cap G_{\mathrm{r}}|/|M'\cup G_{\mathrm{r}}|\), with \(G_{\mathrm{r}}\) denoting the released foreground cells of one instance. The all-hull SAR-SSP and case-focused UEIKAP effects assign zero change to unmatched references. We also report independently rematched coverage for UEIKAP and use the released instance-evaluation views for COCO AP. Reported seed ranges summarize the observed fits.
+The 183-image dual-reference analysis uses a raster IoU averaged over all annotated hulls in each image, with native misses set to zero. Images within a decoded group receive equal weight. The reference populations contain 411 PSeg and 410 SPSD hulls. For SAR-SSP, Eq.~\eqref{eq:paired-acquisition-effect} uses mother-scene groups and \(\mathrm{IoU}_{\mathrm{raster}}=|M'\cap G_{\mathrm{r}}|/|M'\cup G_{\mathrm{r}}|\), with \(G_{\mathrm{r}}\) denoting the released foreground cells of one instance. The all-hull SAR-SSP and case-focused UEIKAP effects assign zero change to unmatched references. We also report independently rematched coverage for UEIKAP and use the released instance-evaluation views for COCO AP.
 
 We measure Boundary IoU~\cite{boundaryiou} for the frozen Instance-RSDD masks on the original matches. Let \(B_d(X)\) be the foreground cells removed from a binary mask \(X\) by \(d\) successive \(3\times3\) erosions with a zero exterior. We compute \(|B_d(M')\cap B_d(G_{\mathrm r})|/|B_d(M')\cup B_d(G_{\mathrm r})|\) at \(d=1\) and \(d=2\) native pixels. The thickness and the original candidate assignment stay fixed. We average differences over corresponding heads within a matched hull, then over hulls within a parent scene and equally across scenes. Intervals use 4,096 paired parent resamples, with sensor--date resampling also reported in the reserve.
 
@@ -375,20 +375,20 @@ The strict fixed-match HRSID RF-DETR counts use continuous IoU \(>0.90\). D-FINE
 Cohort & Detector & Images & Eligible fixed matches & Mask AP & Continuous IoU [95\% CI] \\
 \midrule
 HRSID DEV705 & D-FINE E24 & 705 & 1,447 & \(+0.811\) & \(+0.529\ [0.455,0.597]\)\\
- & RF-DETR 5202 & 705 & 1,461 & \(+0.906\) & \(+0.639\ [0.548,0.743]\)\\
- & RF-DETR 5203 & 705 & 1,465 & \(+0.838\) & \(+0.583\ [0.488,0.678]\)\\
-HRSID official & RF-DETR 5202 & 1,962 & -- & \(+1.216\) & --\\
+ & RF-DETR fit A & 705 & 1,461 & \(+0.906\) & \(+0.639\ [0.548,0.743]\)\\
+ & RF-DETR fit B & 705 & 1,465 & \(+0.838\) & \(+0.583\ [0.488,0.678]\)\\
+HRSID official & RF-DETR fit A & 1,962 & -- & \(+1.216\) & --\\
 \addlinespace[2pt]
-Instance-RSDD Gaofen-3 & RF-DETR 5202 & 583 & 425 & \(+0.483\) & \(+0.259\ [0.194,0.322]\)\\
- & RF-DETR 5203 & 583 & 425 & \(+0.299\) & \(+0.196\ [0.136,0.253]\)\\
-Instance-RSDD reserve & RF-DETR 5202 & 74 & 47 & \(+0.436\) & \(+0.318\ [0.217,0.436]\)\\
- & RF-DETR 5203 & 74 & 48 & \(+0.306\) & \(+0.267\ [0.161,0.374]\)\\
+Instance-RSDD Gaofen-3 & RF-DETR fit A & 583 & 425 & \(+0.483\) & \(+0.259\ [0.194,0.322]\)\\
+ & RF-DETR fit B & 583 & 425 & \(+0.299\) & \(+0.196\ [0.136,0.253]\)\\
+Instance-RSDD reserve & RF-DETR fit A & 74 & 47 & \(+0.436\) & \(+0.318\ [0.217,0.436]\)\\
+ & RF-DETR fit B & 74 & 48 & \(+0.306\) & \(+0.267\ [0.161,0.374]\)\\
 PSeg-SSDD official & D-FINE E24 & 232 & 293 & \(+0.081\) & \(+0.106\ [0.055,0.157]\)\\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-At the fixed-pair count, independent selection improves mask AP and, where measured, continuous IoU on the principal polygon cohorts in Table~\ref{tab:primary-quant}. The gains are largest on HRSID. On Gaofen-3, continuous IoU improves by 0.259 and 0.196 points for the two detector fits. The AP gain on PSeg-SSDD is 0.081 points. Each within-row comparison changes the cell locations at the same count. Table~\ref{tab:sar-ssp} gives the corresponding results for the SAR-SSP raster references. We also compare with spatial attraction and pretrained refiners to assess how the effects depend on the comparison policy.
+At equal signed counts, independent selection gives its largest AP gains on HRSID (Table~\ref{tab:primary-quant}). The gains are smaller on the transferred polygon cohorts. Results under the SAR-SSP raster references appear in Table~\ref{tab:sar-ssp}.
 
 \subsection{Source benchmark and repeated detector fits}
 \begin{table*}[t]
@@ -409,18 +409,18 @@ Native decoder ranking, natural count of independent policy & 47.951 & 50.616 & 
 \end{tabular}
 \end{table*}
 
-At its natural count, the D-FINE editor gains 2.555 mask AP points and 2.838 small-object AP points over the detector on DEV705 (Table~\ref{tab:dev}). Group-equal continuous IoU rises by 1.419 points, with a paired 95\% interval of \([1.265,1.587]\). The editor preserves all three original valid strict matches and brings 12 additional matches to 0.90. COCO AP90 remains low in absolute terms. Each writer retains the native ranks, scores and mask areas.
+At its natural count, the D-FINE editor gains 2.555 mask AP points and 2.838 small-object AP points over the detector on DEV705 (Table~\ref{tab:dev}). Group-equal continuous IoU rises by 1.419 points, with a paired 95\% interval of \([1.265,1.587]\). The editor retains the three original strict matches and brings 12 more to 0.90. Absolute COCO AP90 remains low. Each writer retains the native ranks, scores and mask areas.
 
 At the same 83,059 swaps on 20,741 candidates, independent selection improves on distance pairing by 0.811 AP and 0.529 continuous IoU points (\([0.455,0.597]\)). The five-fold FIT109 comparison gives gains of 1.576 AP and 0.615 IoU points. The natural-count policy makes 194,052 swaps and extends the edits to more candidates. At that larger budget, ranking by the native decoder response can select swaps with nonpositive predicted gains.
 
-Matched-count AP gains are positive for all three point-head fits on RF-DETR 5203 (Table~\ref{tab:primary-quant}). This detector uses the same initialization and training data as fit 5202. Independent selection at its natural count raises AP from 55.914 to 56.726 on fit 5203.
+On RF-DETR fit B, the fixed-count AP gain is positive for all three point heads (Table~\ref{tab:primary-quant}). At the natural edit count, AP rises from 55.914 to 56.726.
 
 \subsection{Frozen evaluation on the HRSID official split}
-The fixed-count gains recur on the HRSID official allocation. We reuse all 187,796 mapped candidates from RF-DETR 5202 at E24 and three frozen FIT109 point heads. Independent replay verified the candidate identities, scores, realized edit counts and output masks. Independent selection at the paired count adds 1.216 AP, 1.958 AP75 and 1.379 small-object AP points over distance pairing (Table~\ref{tab:official}). The AP gains for the three seeds are 1.052, 1.297 and 1.299. The natural-count policy gains 1.021 AP points over the native output, with seed effects of 1.078, 1.062 and 0.923. Excluding empty annotations or exact image overlap leaves both contrasts positive for every seed. The mean gains range from 1.207 to 1.216 points for the fixed-count comparison and from 1.018 to 1.029 for the natural-count comparison.
+The official HRSID evaluation reuses 187,796 mapped candidates from RF-DETR fit A and three frozen FIT109 heads. At equal counts, independent selection improves AP by 1.216 points (range 1.052--1.299), AP75 by 1.958 points, and small-object AP by 1.379 points over distance pairing (Table~\ref{tab:official}). At the natural count, the mean gain over the native masks is 1.021 AP points (range 0.923--1.078). The gains persist after excluding empty annotations or exact image overlaps. Across these checks, the two mean gains range from 1.207 to 1.216 and from 1.018 to 1.029 AP points, respectively.
 
 \begin{table}[t]
 \centering
-\caption{Frozen RF-DETR on the HRSID official allocation. Refined rows average three seeds. The fixed independent writer uses the paired count and the large head uses the natural total with variable signs. Scores are in points.}
+\caption{Frozen RF-DETR on the HRSID official allocation. Refined rows average three heads. The fixed independent writer uses the paired count and the large head uses the natural total with variable signs. Scores are in points.}
 \label{tab:official}
 \footnotesize
 \setlength{\tabcolsep}{3.5pt}
@@ -437,7 +437,7 @@ Large, free signs & 55.130 & 63.260 & 4.827 & 53.591 & 62.265\\
 \end{tabular}
 \end{table}
 
-Natural-count selection adds only \(+0.011\) mean AP points relative to selection at the fixed-pair count and changes AP75 by \(-0.112\) points. At the natural total, the small-head independent writer (SU) scores 0.324 AP points above the large-head variable-sign writer (LW=S) on average. The seed effects are \(+0.184\), \(+0.963\) and \(-0.174\). This comparison changes both the occupancy predictor and the area policy. The official-split replay establishes the recurring AP gain over distance pairing on fit 5202 (Table~\ref{tab:official}). The source and transfer analyses provide the corresponding fixed-match continuous effects.
+Natural-count selection adds only \(+0.011\) mean AP points relative to selection at the fixed-pair count and changes AP75 by \(-0.112\) points. At the natural total, the small-head independent writer (SU) scores 0.324 AP points above the large-head variable-sign writer (LW=S) on average. The point-head differences range from \(-0.174\) to \(+0.963\) AP points. This comparison changes both the occupancy predictor and the area policy.
 
 \begin{figure*}[!t]
 \centering
@@ -449,11 +449,11 @@ Natural-count selection adds only \(+0.011\) mean AP points relative to selectio
 \subsection{Frozen transfer to Instance-RSDD}
 Instance-RSDD~\cite{rsdd} annotates ship outlines on RSDD-SAR imagery~\cite{rsddsar}. The release contains 2,810 training chips and 740 test chips. The paper reports 2,840 and 715. The released test chips contain 872 outlines, and all 112 test parent scenes also occur in the author training allocation. The RF-DETR detectors and occupancy heads in this comparison were fitted on HRSID. The prespecified Gaofen-3 subset contains 583 chips, 631 outlines and 76 acquisitions from a sensor absent from HRSID fitting. TerraSAR-X supplies the remaining 157 test chips.
 
-At the fixed-pair count, independent selection improves AP on Gaofen-3 with both frozen detectors. For fit 5202 the two point heads gain 0.482 and 0.483 AP points. Their paired mean continuous-IoU gain is 0.259 points (\([0.194,0.322]\)) over 425 eligible matches in 68 acquisitions. For fit 5203 the three gains are 0.240, 0.280 and 0.378 AP points. The mean gains are 0.299 AP and 0.196 IoU points (\([0.136,0.253]\)) on its own 425 eligible matches in 67 acquisitions. The detectors share their initialization and point-head provenance. On fit 5202, the two heads at their natural counts gain 0.587 and 0.517 AP points over the native masks. AP75 improves by 1.438 and 1.230 points, while AP90 falls by 0.094 and 0.107. Across all 740 chips, the mean natural-count gain over native is 0.539 AP points for fit 5202 and 0.435 for fit 5203. The more consistent gain is between writers at identical counts.
+At equal counts, independent selection improves AP with both Gaofen-3 detectors (Table~\ref{tab:primary-quant}). With fit A, the two point heads gain 0.482--0.483 AP points and a mean of 0.259 continuous IoU points (\([0.194,0.322]\)) across 425 eligible matches in 68 acquisitions. With fit B, the three gains range from 0.240 to 0.378 AP points. The gains average 0.299 AP and 0.196 IoU points (\([0.136,0.253]\)) across its own 425 matches in 67 acquisitions. At the natural count with fit A, AP and AP75 increase by 0.517--0.587 and 1.230--1.438 points over the native masks, while AP90 drops by 0.094--0.107 points. Across all 740 chips, the mean natural-count AP gains are 0.539 and 0.435 points for fits A and B.
 
-The fixed-count improvement also occurs on the 74-chip reserve, drawn from 13 additional parents in the author training allocation. Fit 5202 with head 5217 gains 0.436 AP and 0.318 continuous IoU points (\([0.217,0.436]\)) across 47 eligible matches. Its nested 42-chip date-separated view contains 32 eligible matches and gives gains of 0.840 AP and 0.364 IoU points (\([0.250,0.478]\)). Fit 5203 contributes 48 and 31 eligible matches in the full and nested views. Its three-head means gain 0.306 and 0.529 AP points and 0.267 and 0.326 IoU points, with respective IoU intervals \([0.161,0.374]\) and \([0.166,0.460]\). Both fits meet the 20-match and eight-parent coverage criteria in each view. Intervals resample sensor--date blocks, with equal weights for parent scenes. The nested view tests sensitivity to close acquisition dates within the reserve. Geographic independence remains unverified.
+The fixed-count improvement also occurs on the 74-chip reserve, drawn from 13 additional parents in the author training allocation. Fit A with the first occupancy head gains 0.436 AP and 0.318 continuous IoU points (\([0.217,0.436]\)) across 47 eligible matches. Its nested 42-chip date-separated view contains 32 eligible matches and gives gains of 0.840 AP and 0.364 IoU points (\([0.250,0.478]\)). Fit B contributes 48 and 31 eligible matches in the full and nested views. Its three-head means gain 0.306 and 0.529 AP points and 0.267 and 0.326 IoU points, with respective IoU intervals \([0.161,0.374]\) and \([0.166,0.460]\). Both fits meet the 20-match and eight-parent coverage criteria in each view. Intervals resample sensor--date blocks, with equal weights for parent scenes. The nested view tests sensitivity to close acquisition dates within the reserve. Geographic independence remains unverified.
 
-Boundary IoU changes depend on the pixel width even when the matched hull and edit count are fixed (Table~\ref{tab:native-boundary}). At one pixel, the paired intervals for independent selection over distance pairing are above zero for Gaofen-3 fit 5202 and the 74-chip reserve. The interval for fit 5203 spans zero on the same Gaofen-3 chips. At two pixels all three intervals lie above zero. The eligible reference and native masks have a nonempty eroded interior at both widths. Each Gaofen-3 fit contributes 425 matches, in 68 or 67 parents, and the reserve contributes 47 matches in 12 parents. Resampling the reserve by sensor--date block gives a one-pixel interval of \([0.231,1.243]\). These contrasts retain the original COCO candidates, confidence scores and match identities.
+For independent selection over distance pairing, the one-pixel Boundary IoU intervals are positive for Gaofen-3 fit A and the 74-chip reserve, and span zero for Gaofen-3 fit B (Table~\ref{tab:native-boundary}). All three two-pixel intervals are positive. The native and reference masks retain eroded interiors at both widths. The reserve has 47 eligible matches across 12 parents. Its one-pixel interval is \([0.231,1.243]\) with sensor--date block resampling.
 
 \begin{table}[t]
 \centering
@@ -465,13 +465,50 @@ Boundary IoU changes depend on the pixel width even when the matched hull and ed
 \toprule
 Cohort and comparison & One pixel & Two pixels\\
 \midrule
-GF-3, 5202 & \(+0.466\ [0.223,0.702]\) & \(+0.467\ [0.278,0.653]\)\\
-GF-3, 5203 & \(+0.177\ [-0.025,0.376]\) & \(+0.255\ [0.107,0.404]\)\\
+Gaofen-3, fit A & \(+0.466\ [0.223,0.702]\) & \(+0.467\ [0.278,0.653]\)\\
+Gaofen-3, fit B & \(+0.177\ [-0.025,0.376]\) & \(+0.255\ [0.107,0.404]\)\\
 Reserve, paired & \(+0.701\ [0.180,1.233]\) & \(+0.617\ [0.236,1.001]\)\\
 Reserve, PointRend & \(+0.829\ [-0.056,1.750]\) & \(+0.801\ [0.285,1.370]\)\\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Bounded Re-pairing and Independent Selection}
+\label{sec:pairing-effects}
+Figure~\ref{fig:transfer-effects} and Table~\ref{tab:bounded-results} separate bounded re-pairing \(L-F\) from the effect of removing the cap \(I-L\). Within a row, all three writers use the same detector, occupancy head, support and \(k\). The predeclared criterion requires at least 0.30 mask AP points, a same-direction 95\% continuous-IoU interval, and at least 20 changed eligible matches across eight groups.
+
+\begin{table*}[!t]
+\centering
+\caption{Matched-count effects of bounded re-pairing \(L-F\) and independent ranking \(I-L\). AP and continuous IoU differences are in points, with paired 95\% intervals for IoU. The 42-chip and 222-chip views are nested. RF-DETR and D-FINE use the same 74 historical reserve chips.}
+\label{tab:bounded-results}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+\multicolumn{2}{@{}l}{Evaluation view} & Eligible & \multicolumn{2}{c}{\(L-F\)} & \multicolumn{2}{c@{}}{\(I-L\)}\\
+\cmidrule(lr){4-5}\cmidrule(l){6-7}
+Cohort & Pipeline & matches & AP & Continuous IoU [95\% CI] & AP & Continuous IoU [95\% CI]\\
+\midrule
+HRSID DEV705 & RF-DETR fit A & 1,461 & \(+0.475\) & \(+0.282\ [0.219,0.344]\) & \(+0.431\) & \(+0.357\ [0.296,0.429]\)\\
+Instance-RSDD Gaofen-3 & RF-DETR fit A & 425 & \(+0.254\) & \(+0.115\ [0.078,0.150]\) & \(+0.229\) & \(+0.145\ [0.087,0.204]\)\\
+Instance-RSDD reserve 74 & RF-DETR fit A & 47 & \(-0.043\) & \(+0.203\ [0.107,0.308]\) & \(+0.479\) & \(+0.116\ [0.008,0.242]\)\\
+ & D-FINE E24 & 44 & \(+0.253\) & \(+0.252\ [0.151,0.362]\) & \(+0.344\) & \(+0.133\ [0.018,0.251]\)\\
+\quad Nested 42 & RF-DETR fit A & 32 & \(-0.049\) & \(+0.232\ [0.089,0.359]\) & \(+0.890\) & \(+0.132\ [-0.020,0.299]\)\\
+ & D-FINE E24 & 32 & \(0.000\) & \(+0.225\ [0.114,0.351]\) & \(+0.604\) & \(+0.151\ [0.021,0.290]\)\\
+PSeg-SSDD official & D-FINE E24 & 293 & \(+0.060\) & \(+0.037\ [0.011,0.063]\) & \(+0.021\) & \(+0.069\ [0.030,0.109]\)\\
+\quad Deduplicated 222 & D-FINE E24 & 279 & \(+0.080\) & \(+0.037\ [0.009,0.064]\) & \(+0.020\) & \(+0.072\ [0.031,0.116]\)\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Both increments meet the criterion on HRSID. On Gaofen-3, the IoU intervals are above zero, while the AP gains fall below the practical threshold. On the historical 74-chip reserve, \(I-L\) meets the criterion with both frozen pipelines. D-FINE changes 42 of 44 eligible matches across 11 sensor--date blocks. RF-DETR and D-FINE use separately trained detector and point-head combinations and share the same target chips.
+
+At one native pixel, \(L-F\) gains 0.735 Boundary-IoU points with RF-DETR (\([0.207,1.243]\)) and 0.639 with D-FINE (\([0.271,1.052]\)). The corresponding \(I-L\) effects are \(-0.034\) (\([-0.373,0.278]\)) and \(+0.256\) points (\([-0.176,0.697]\)). Both intervals span zero at two pixels as well. The continuous-overlap gains after removing the cap therefore leave the narrow-contour improvement uncertain. With the adapted PointRend scores at the same cap and counts, \(I-L\) changes AP by \(+0.095\) points and continuous IoU by \(-0.037\) (\([-0.172,0.086]\)). The occupancy-minus-PointRend interaction is \(+0.153\) IoU points (\([-0.008,0.339]\)).
+
+On PSeg-SSDD, the \(I-L\) AP gain is small on both the full and deduplicated views. On all 232 images, the all-hull raster IoU effect is \(+0.040\) points under PSeg and \(-0.007\) under SPSD, each using its own native assignments. The paired SPSD-minus-PSeg difference is \(-0.047\) points (\([-0.088,-0.007]\)). The images are identical, while the reference contours and their original candidate assignments can differ.
+
+We also restrict independent writes to candidates on which the selected endpoints cannot be paired within the cap and the minimum summed squared pair distance does not exceed that for either pairing comparator. On DEV705 this rule changes 36 candidates across 19 prefixes and just one of 1,461 eligible matches. It fails the coverage requirement and changes AP by \(-0.0014\) points relative to bounded re-pairing. On the 74-chip reserve, the SSDD-trained SRNet comparison gives \(+0.145\) AP and \(+0.159\) continuous IoU points (\([0.088,0.236]\)) for independent selection over distance pairing. The AP gain falls below the criterion.
 
 \subsection{Frozen transfer to PSeg-SSDD}
 The HRSID-to-PSeg comparisons on DEV187 use one D-FINE stream. All five policies retain its 18,700 candidates, including empty masks (Table~\ref{tab:ssdd}).
@@ -525,11 +562,9 @@ Most of the natural-count shift comes from edited cells that the two references 
 \end{figure*}
 
 
-
-
 \subsubsection{Variable signed allocation at the same total count}
 \label{sec:variable-sign-results}
-At 115,384 total flips on 18,300 candidates, changing the allocation improves both SSDD reference scores. Both writers use the same occupancy predictions and predicted-IoU objective. Fitting candidates come from 732 images in the author training allocation, 447 of which contribute to the common positive-budget set. The 183 historically used development images belong to decoded-image groups excluded from fitting. The equal-allocation control makes 57,692 additions and 57,692 removals. For seed 5297, the variable-IoU writer makes 67,777 additions and 47,607 removals. Its gain is 2.461 mask AP and 0.993 fixed-match raster IoU points on PSeg (\([0.747,1.244]\)), and 1.782 AP and 0.580 IoU points on SPSD (\([0.298,0.877]\)). Both the archived fixed-area robust and mean BCE writers also score lower on the two references. With the split range held fixed, the mean-IoU objective gains 0.498 AP and 0.312 IoU over the maximin objective on PSeg, while losing 0.044 AP and 0.073 IoU on SPSD. The mean objective thus trades a gain on PSeg against a loss on SPSD.
+At 115,384 total flips on 18,300 candidates, changing the allocation improves both SSDD reference scores. Both writers use the same occupancy predictions and predicted-IoU objective. Fitting candidates come from 732 images in the author training allocation, 447 of which contribute to the common positive-budget set. The 183 historically used development images belong to decoded-image groups excluded from fitting. The equal-allocation control makes 57,692 additions and 57,692 removals. For the initial dual-reference fit, the variable-allocation writer makes 67,777 additions and 47,607 removals. Its gain is 2.461 mask AP and 0.993 fixed-match raster IoU points on PSeg (\([0.747,1.244]\)), and 1.782 AP and 0.580 IoU points on SPSD (\([0.298,0.877]\)). Both the archived fixed-area robust and mean BCE writers also score lower on the two references. With the split range held fixed, the mean-IoU objective gains 0.498 AP and 0.312 IoU over the maximin objective on PSeg, while losing 0.044 AP and 0.073 IoU on SPSD. The mean objective thus trades a gain on PSeg against a loss on SPSD.
 
 To separate the change in intersection from the change in predicted area, let \(P_0,P_1\) and \(I_0,I_1\) denote the fixed and variable writers' areas and intersections against one reference. Define \(U_j=P_j+T-I_j\), \(\bar P=(P_0+P_1)/2\), and \(\bar I=(I_0+I_1)/2\). The exact IoU difference is
 \begin{equation}
@@ -540,27 +575,26 @@ To separate the change in intersection from the change in predicted area, let \(
 The additional intersection accounts for 2.243 IoU points on PSeg and 2.041 on SPSD. The area terms offset these gains by \(-1.250\) and \(-1.461\) points (Fig.~\ref{fig:dual-budget-effect}). The mean absolute area errors across groups fall by 4.705 and 1.520 cells, respectively. Among 206 common positive-budget hulls, 182 gain reference intersection under both labels and five lose under at least one. The larger masks thus recover annotated hull area on these images. The reference-area proxy in Eq.~\eqref{eq:dual-area-proxy} relies on the native foreground outside the sampled sites, where both references locate about 78\% of the static-mask error.
 
 
+The gain survives both prespecified head repetitions (Table~\ref{tab:dual-sign-seeds}). Each of the three fits, including the archived first fit, supplies its own fixed- and variable-allocation outputs on the same images. Mean gains are 2.299 AP and 0.971 fixed IoU points on PSeg, and 1.751 AP and 0.573 IoU points on SPSD. The IoU intervals are \([0.740,1.207]\) and \([0.319,0.840]\), respectively. The intervals resample evaluation groups after averaging the three fits within each group.
 
-The gain survives both prespecified head repetitions (Table~\ref{tab:dual-sign-seeds}). Each of the three fits, including the archived first fit, supplies its own fixed- and variable-allocation outputs on the same images. Mean gains are 2.299 AP and 0.971 fixed IoU points on PSeg, and 1.751 AP and 0.573 IoU points on SPSD. The IoU intervals are \([0.740,1.207]\) and \([0.319,0.840]\), respectively. Each paired draw keeps the complete vector of seed-specific differences for the sampled group. The intervals describe variation across evaluation groups after averaging these fits, which share a detector and source data.
-
-Replacing the ratio approximation with the exact objective in Eq.~\eqref{eq:exact-iou-signed} preserves the gain on the original 5297 fit. At the same total count, it changes the variable and fixed choices on 136 and 11 of 8,785 positive-budget candidates, respectively. All 206 common positive-budget matches retain the variable mask. Both references give identical AP and fixed-match IoU for each approximation and exact-objective pair. This checks the reciprocal-moment approximation under independent endpoint Bernoulli labels and deterministic native labels outside the writable support. Modeling the spatial dependence studied by RankSEG-DEP~\cite{rankdep} requires a different joint distribution. At fixed signed counts, the expected intersection in Eq.~\eqref{eq:independent-estimated-gain} is linear in the occupancy marginals.
+Replacing the ratio approximation with the exact objective in Eq.~\eqref{eq:exact-iou-signed} preserves the gain on the initial dual-reference fit. At the same total count, it changes the variable and fixed choices on 136 and 11 of 8,785 positive-budget candidates, respectively. All 206 common positive-budget matches retain the variable mask. Both references give identical AP and fixed-match IoU for each approximation and exact-objective pair. This checks the reciprocal-moment approximation under independent endpoint Bernoulli labels and deterministic native labels outside the writable support. Modeling the spatial dependence studied by RankSEG-DEP~\cite{rankdep} requires a different joint distribution. At fixed signed counts, the expected intersection in Eq.~\eqref{eq:independent-estimated-gain} is linear in the occupancy marginals.
 
 A joint model improves predictions for adjacent endpoint pairs with little change in the masks. It holds the occupancy marginals fixed while modeling disjoint four-neighbor pairs, with independence and sign-preserving rewiring as controls. On held FIT groups, local dependence reduces the four-state Brier loss by 0.058 and 0.089 under the two references relative to independence on the same pairs. Freezing the coefficients and rescoring the same signed menus changes one of 206 common positive-budget masks on development. Mask AP is identical under both references. Raster IoU changes by zero and \(+0.00175\) points, with the latter interval spanning zero.
 
 \begin{table}[t]
 \centering
-\caption{Variable minus equal allocation in percentage points. Both writers use the same head and total flips at each seed.}
+\caption{Variable minus equal allocation in percentage points. Both writers use the same head and total flips within each fit.}
 \label{tab:dual-sign-seeds}
 \footnotesize
 \begin{tabular}{@{}lrrrr@{}}
 \toprule
  & \multicolumn{2}{c}{PSeg-SSDD} & \multicolumn{2}{c}{SPSD}\\
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}
-Seed & AP & IoU & AP & IoU\\
+Point-head fit & AP & IoU & AP & IoU\\
 \midrule
-5297 & 2.461 & 0.993 & 1.782 & 0.580\\
-5298 & 2.465 & 1.037 & 1.615 & 0.584\\
-5299 & 1.971 & 0.882 & 1.856 & 0.555\\
+1 & 2.461 & 0.993 & 1.782 & 0.580\\
+2 & 2.465 & 1.037 & 1.615 & 0.584\\
+3 & 1.971 & 0.882 & 1.856 & 0.555\\
 \midrule
 Mean & 2.299 & 0.971 & 1.751 & 0.573\\
 \bottomrule
@@ -578,7 +612,7 @@ At the differing edit sites, the two source-fitted outputs overestimate the inte
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/cvpr_20261126/dual_reference_budget_effect.pdf}
-\caption{Variable minus equal allocation at fixed total flips. (a) Seed 5297 effects on 183 development images, with 4,096 paired decoded-image-group resamples for the IoU intervals. (b) Intersection and area terms from Eq.~\eqref{eq:area-overlap-parts}. Both panels retain all hulls and each reference's native assignments.}
+\caption{Variable minus equal allocation at fixed total flips. (a) Effects for the first dual-reference fit on 183 development images, with 4,096 paired decoded-image-group resamples for the IoU intervals. (b) Intersection and area terms from Eq.~\eqref{eq:area-overlap-parts}. Both panels retain all hulls and each reference's native assignments.}
 \label{fig:dual-budget-effect}
 \end{figure*}
 
@@ -586,14 +620,11 @@ At the differing edit sites, the two source-fitted outputs overestimate the inte
 At the dynamic-attraction count on the 74-chip reserve, learned occupancy ranks improve continuous overlap over both attraction rules. The gain over dynamic attraction is 0.468 AP and 0.431 IoU points (\([0.213,0.662]\)). Over static attraction it is 0.203 AP and 0.301 IoU points (\([0.088,0.534]\)), although static leads by 0.173 AP75 points. Both comparisons change 47 eligible masks in 11 sensor--date blocks. The date-separated AP gains are 0.978 and 0.478 points. Neither sensor stratum alone meets the exposure requirement.
 
 
-
-
-
-The stricter AP90 contrast depends on the overlap convention. On Gaofen-3 fit 5203, learned minus dynamic changes from \(-0.149\) points under raster overlap to \(+0.004\) under polygon--cell overlap, with a paired 95\% interval for the shift of \([-0.195,0.579]\). On fit 5202, it falls from \(+0.279\) to \(+0.053\). Both conventions share the same 631 outlines and prediction identities and order. The mean AP advantage across the ten thresholds is positive for both fits. Match coverage and the overlap convention qualify the AP90 result.
+The stricter AP90 contrast depends on the overlap convention. On Gaofen-3 fit B, learned minus dynamic changes from \(-0.149\) points under raster overlap to \(+0.004\) under polygon--cell overlap, with a paired 95\% interval for the shift of \([-0.195,0.579]\). On fit A, it falls from \(+0.279\) to \(+0.053\). Both conventions share the same 631 outlines and prediction identities and order. The mean AP advantage across the ten thresholds is positive for both fits. Match coverage and the overlap convention qualify the AP90 result.
 
 Five-pass Phoenix XL1~\cite{phoenix} provides a learned ranking comparison on the same endpoints and counts. On the 74 chips, disabling its 1\% gate for this comparison gives Phoenix 58.976 AP and a 0.308-point AP gain over occupancy. Continuous IoU differs by 0.135 points (\([-0.026,0.277]\)). Replacing only the Phoenix additions with occupancy choices changes mean AP by \(-0.012\) points. Replacing only the deletions changes it by \(-0.225\). Both intersection intervals span zero. With image-only shifts of \(\pm1\) column, the mean signed centroid response is 0.117 pixels for Phoenix and 0.070 for occupancy (paired difference 0.047, \([0.028,0.064]\), 47 hulls). This perturbation measures alignment sensitivity on fixed proposals. It leaves the source of the ranking difference on correctly aligned images unresolved.
 
-The PointRend comparison holds the endpoints and the seed-5217 occupancy counts fixed. Both heads use row-major ordering for ties and operate on capped or complete two-layer box support. The binary PointRend head uses HRSID FIT109 RF-DETR features, 200 updates at 196 targets per update, 3,136 evaluations per RoI and zero padding. The two predictors use different features and supervision.
+The PointRend comparison holds the endpoints and the counts from the first occupancy head fixed. Both heads use row-major ordering for ties and operate on capped or complete two-layer box support. The binary PointRend head uses HRSID FIT109 RF-DETR features, 200 updates at 196 targets per update, 3,136 evaluations per RoI and zero padding. The two predictors use different features and supervision.
 
 \begin{table}[t]
 \centering
@@ -624,7 +655,7 @@ Restricting all 268,302 exchanges to the clipped RoI retains the occupancy advan
 
 On the 74-chip reserve, occupancy gains 0.477 AP and 0.395 IoU points over capped PointRend at 31,391 exchanges (\([0.204,0.620]\) for IoU). On the date-separated view the corresponding gains are 1.061 AP and 0.490 IoU points (\([0.225,0.751]\)). On the full reserve the one-pixel Boundary IoU interval includes zero and the two-pixel interval lies above zero (Table~\ref{tab:native-boundary}). The nested view gives \(+1.397\) one-pixel points \([0.245,2.420]\) over 32 matches in eight parents.
 
-Occupancy also improves PointRend when the original paste supplies the per-mask signed counts and the mask outside capped support. All three occupancy seeds gain AP. The mean increases from 57.534 to 58.196 on the 74 chips and from 61.831 to 61.975 on Gaofen-3. Continuous IoU gains 0.251 and 0.195 points, with intervals of \([0.051,0.449]\) and \([0.109,0.281]\). The writers choose different sites on 44 of 47 matches in 12 parents and 424 of 425 in 68 acquisitions. We average seeds per match, then draw 4,096 paired sensor--date resamples with equal parent weights or acquisition resamples with equal acquisition weights. In the date-separated view the gains are 0.781 AP and 0.284 IoU points (\([-0.007,0.528]\)). The standalone capped occupancy writer scores 58.827 AP on the full 74 chips.
+Occupancy also improves PointRend when the original paste supplies the per-mask signed counts and the mask outside capped support. All three occupancy heads gain AP. The mean increases from 57.534 to 58.196 on the 74 chips and from 61.831 to 61.975 on Gaofen-3. Continuous IoU gains 0.251 and 0.195 points, with intervals of \([0.051,0.449]\) and \([0.109,0.281]\). The writers choose different sites on 44 of 47 matches in 12 parents and 424 of 425 in 68 acquisitions. We average the head effects per match, then draw 4,096 paired sensor--date resamples with equal parent weights or acquisition resamples with equal acquisition weights. In the date-separated view the gains are 0.781 AP and 0.284 IoU points (\([-0.007,0.528]\)). The standalone capped occupancy writer scores 58.827 AP on the full 74 chips.
 
 Applying the original Phoenix XL1 binary writer to the same reserve compares a different editing regime, with five refinement iterations and two author area rules. The COCO rule admits the 172 candidates whose foreground exceeds 1\% of the image and excludes the 32--1023-pixel range used by the local editor. The LVIS rule refines all 6,079 nonempty native masks. Both preserve the scores and all 7,346 candidate identities. They give identical outputs for the 172 candidates refined by both. Thresholding the archived Phoenix scores at 0.50 independently reproduces the full-mask decisions on all 259,242 recorded endpoints in 4,107 matched-budget candidates.
 
@@ -684,7 +715,7 @@ Full PointRend pasting further reduces coverage on these previously evaluated ch
 
 \subsection{Frozen transfer to SAR-SSP}
 \label{sec:sar-ssp}
-The SAR-SSP transfer uses the COCO-initialized RF-DETR fit 5202 and frozen HRSID point head 5217 on all 232 author validation chips. The release includes 139 ship instances from 31 Gaofen-3 parent scenes in AIR-SARShip-1.0~\cite{slgsea,airsarship}. All 31 parents occur in both SAR-SSP author allocations. Neither allocation was used to fit or select the detector or point head. Sensor or acquisition date distinguishes this cohort from the 74-chip Instance-RSDD reserve. Same-acquisition overlap remains unresolved for 11 images in the separate Instance-RSDD author test set.
+The SAR-SSP transfer uses the COCO-initialized RF-DETR fit A and the first frozen HRSID point head on all 232 author validation chips. The release includes 139 ship instances from 31 Gaofen-3 parent scenes in AIR-SARShip-1.0~\cite{slgsea,airsarship}. All 31 parents occur in both SAR-SSP author allocations. Neither allocation was used to fit or select the detector or point head. Sensor or acquisition date distinguishes this cohort from the 74-chip Instance-RSDD reserve. Same-acquisition overlap remains unresolved for 11 images in the separate Instance-RSDD author test set.
 
 COCO mask AP includes all 22,741 candidates and all chips. We use the released instance IDs on the 500-pixel grid, including 48 hull masks that touch a tile edge. For geometry, we freeze the native IoU-0.50 assignments of 92 matched hulls and assign zero change to the other 47. Each of the 23 ship-bearing parent scenes has equal weight and is resampled as a unit for the paired intervals.
 
@@ -715,48 +746,9 @@ The D-FINE E24 pipeline gives similarly small effects on the same 232 chips. Wit
 A reference-assisted assignment quantifies how many RF-DETR misses the D-FINE candidates could recover. We keep the 92 RF-DETR native matches and assign D-FINE candidates one-to-one to remaining hulls at mask IoU 0.50. The author masks allow 10 additional matches across three scenes, eight of them from one parent. The upper bound falls short of the prespecified five-scene criterion. Even with both candidate pools, no mask reaches IoU 0.50 for 37 of 139 hulls.
 
 
-
-
-\subsection{Maximum-Displacement Control at Equal Counts}
-\label{sec:pairing-effects}
-Figure~\ref{fig:transfer-effects} and Table~\ref{tab:bounded-results} separate bounded re-pairing \(L-F\) from the effect of removing the cap \(I-L\). Within a row, all three writers use the same detector, occupancy head, support and \(k\). The predeclared criterion requires at least 0.30 mask AP points, a same-direction 95\% continuous-IoU interval, and at least 20 changed eligible matches across eight groups.
-
-\begin{table*}[!t]
-\centering
-\caption{Matched-count effects of bounded re-pairing \(L-F\) and independent ranking \(I-L\). AP and continuous IoU differences are in points, with paired 95\% intervals for IoU. The 42-chip and 222-chip views are nested. RF-DETR and D-FINE use the same 74 historical reserve chips.}
-\label{tab:bounded-results}
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.12}
-\begin{tabular}{@{}llrrrrl@{}}
-\toprule
-\multicolumn{2}{@{}l}{Evaluation view} & Eligible & \multicolumn{2}{c}{\(L-F\)} & \multicolumn{2}{c@{}}{\(I-L\)}\\
-\cmidrule(lr){4-5}\cmidrule(l){6-7}
-Cohort & Pipeline & matches & AP & Continuous IoU [95\% CI] & AP & Continuous IoU [95\% CI]\\
-\midrule
-HRSID DEV705 & RF-DETR 5202 & 1,461 & \(+0.475\) & \(+0.282\ [0.219,0.344]\) & \(+0.431\) & \(+0.357\ [0.296,0.429]\)\\
-Instance-RSDD Gaofen-3 & RF-DETR 5202 & 425 & \(+0.254\) & \(+0.115\ [0.078,0.150]\) & \(+0.229\) & \(+0.145\ [0.087,0.204]\)\\
-Instance-RSDD reserve 74 & RF-DETR 5202 & 47 & \(-0.043\) & \(+0.203\ [0.107,0.308]\) & \(+0.479\) & \(+0.116\ [0.008,0.242]\)\\
- & D-FINE E24 & 44 & \(+0.253\) & \(+0.252\ [0.151,0.362]\) & \(+0.344\) & \(+0.133\ [0.018,0.251]\)\\
-\quad Nested 42 & RF-DETR 5202 & 32 & \(-0.049\) & \(+0.232\ [0.089,0.359]\) & \(+0.890\) & \(+0.132\ [-0.020,0.299]\)\\
- & D-FINE E24 & 32 & \(0.000\) & \(+0.225\ [0.114,0.351]\) & \(+0.604\) & \(+0.151\ [0.021,0.290]\)\\
-PSeg-SSDD official & D-FINE E24 & 293 & \(+0.060\) & \(+0.037\ [0.011,0.063]\) & \(+0.021\) & \(+0.069\ [0.030,0.109]\)\\
-\quad Deduplicated 222 & D-FINE E24 & 279 & \(+0.080\) & \(+0.037\ [0.009,0.064]\) & \(+0.020\) & \(+0.072\ [0.031,0.116]\)\\
-\bottomrule
-\end{tabular}
-\end{table*}
-
-Both increments meet the criterion on HRSID. On Gaofen-3, the IoU intervals are above zero, while the AP gains fall below the practical threshold. On the historical 74-chip reserve, \(I-L\) meets the criterion with both frozen pipelines. D-FINE changes 42 of 44 eligible matches across 11 sensor--date blocks. RF-DETR and D-FINE use separately trained detector and point-head combinations and share the same target chips.
-
-At one native pixel, \(L-F\) gains 0.735 Boundary-IoU points with RF-DETR (\([0.207,1.243]\)) and 0.639 with D-FINE (\([0.271,1.052]\)). The corresponding \(I-L\) effects are \(-0.034\) (\([-0.373,0.278]\)) and \(+0.256\) points (\([-0.176,0.697]\)). Both intervals span zero at two pixels as well. The continuous-overlap gains after removing the cap therefore leave the narrow-contour improvement uncertain. With the adapted PointRend scores at the same cap and counts, \(I-L\) changes AP by \(+0.095\) points and continuous IoU by \(-0.037\) (\([-0.172,0.086]\)). The occupancy-minus-PointRend interaction is \(+0.153\) IoU points (\([-0.008,0.339]\)).
-
-On PSeg-SSDD, the \(I-L\) AP gain is small on both the full and deduplicated views. On all 232 images, the all-hull raster IoU effect is \(+0.040\) points under PSeg and \(-0.007\) under SPSD, each using its own native assignments. The paired SPSD-minus-PSeg difference is \(-0.047\) points (\([-0.088,-0.007]\)). The images are identical, while the reference contours and their original candidate assignments can differ.
-
-We also restrict independent writes to candidates on which the selected endpoints cannot be paired within the cap and the minimum summed squared pair distance does not exceed that for either pairing comparator. On DEV705 this rule changes 36 candidates across 19 prefixes and just one of 1,461 eligible matches. It fails the coverage requirement and changes AP by \(-0.0014\) points relative to bounded re-pairing. On the 74-chip reserve, the SSDD-trained SRNet comparison gives \(+0.145\) AP and \(+0.159\) continuous IoU points (\([0.088,0.236]\)) for independent selection over distance pairing. The AP gain falls below the criterion.
-
 \section{Qualitative Analysis}
 \label{sec:qualitative}
-The cases keep the original candidate-to-reference assignments. Examples near the median gain and loss show what happens when we change the edited locations, change the count for a frozen response, or apply a whole-crop refiner.
+The examples retain the original candidate-to-reference matches. We show gains and losses near their respective medians to trace each change in overlap to the cells that were edited.
 
 \subsection{Independent ranking under matched signed counts}
 
@@ -774,11 +766,11 @@ Figure~\ref{fig:rsdd-common-cap-cases} compares the four D-FINE masks for each o
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.82\textwidth]{figures/cvpr_20261126/dev705_overlap_cases.pdf}
-\caption{RF-DETR DEV705 overlap changes at seed 5217, with eight additions and eight removals per writer. The bars separate recovered, lost, and net reference area relative to the native mask. The cases are nearest the median IoU change within each sign and use different images.}
+\caption{RF-DETR DEV705 overlap changes for one frozen point head, with eight additions and eight removals per writer. The bars separate recovered, lost, and net reference area relative to the native mask. The cases are nearest the median IoU change within each sign and use different images.}
 \label{fig:dev-cases}
 \par\vspace{7pt}
 \includegraphics[width=0.79\textwidth]{\CaseAsset{gf3_matched_cases_binned.pdf}{gf3_cases_exact.pdf}}
-\caption{Gaofen-3 native, dynamic-attraction and learned occupancy masks, with detector 5203 and head seed 5217. The four cases are selected before image inspection near the gain and loss medians among 425 eligible matches. Each edited mask uses eight swaps. \CaseCaption{The \(8\times8\) pooling can fragment the dashed reference.}{Native SAR crops show the author outline, masks and signed overlap changes.} IoU and overlap use the native geometry.}
+\caption{Gaofen-3 native, dynamic-attraction and learned occupancy masks, for RF-DETR fit B with the first occupancy head. The four cases are selected before image inspection near the gain and loss medians among 425 eligible matches. Each edited mask uses eight swaps. \CaseCaption{The \(8\times8\) pooling can fragment the dashed reference.}{Native SAR crops show the author outline, masks and signed overlap changes.} IoU and overlap use the native geometry.}
 \label{fig:gf3-qual}
 \end{figure*}
 
@@ -796,11 +788,11 @@ Figure~\ref{fig:rsdd-common-cap-cases} compares the four D-FINE masks for each o
 \label{fig:segrefiner-cases}
 \end{figure*}
 
-For seed 5217, changing from fixed pairing to independent selection improves 1,012 of the 1,461 fixed matches (69.3\%) and degrades 252 (17.2\%). The remaining 197 (13.5\%) differ by at most \(10^{-12}\) in continuous IoU. With the same number of edits in Fig.~\ref{fig:dev-cases}(a), the independent additions recover one more reference pixel-equivalent and the removals spare a further 1.5. IoU rises by 0.732 points. Neither policy's additions recover reference area in (b). The independent rule removes one additional pixel-equivalent of the hull and loses 0.316 IoU points. In this case, maximizing the estimated gain removes more of the reference hull.
+For the head in Fig.~\ref{fig:dev-cases}, changing from fixed pairing to independent selection improves 1,012 of the 1,461 fixed matches (69.3\%) and degrades 252 (17.2\%). The remaining 197 (13.5\%) differ by at most \(10^{-12}\) in continuous IoU. With the same number of edits in Fig.~\ref{fig:dev-cases}(a), the independent additions recover one more reference pixel-equivalent and the removals spare a further 1.5. IoU rises by 0.732 points. Neither policy's additions recover reference area in (b). The independent rule removes one additional pixel-equivalent of the hull and loses 0.316 IoU points. In this case, maximizing the estimated gain removes more of the reference hull.
 
 \subsection{Learned ranking and dynamic attraction on Gaofen-3}
 
-At the dynamic-attraction count, occupancy seed 5217 improves 268 of detector 5203's 425 eligible Gaofen-3 matches (63.1\%), worsens 154 (36.2\%), and ties three. Figure~\ref{fig:gf3-qual} shows two gains and two losses, with eight swaps in each case. In the first two rows, the learned edits increase the reference intersection by 2.93 and 3.71 native pixel areas relative to dynamic attraction. The corresponding IoUs rise from 78.13 to 78.83 and from 71.86 to 72.56. In the other rows, the same number of edits reduces the intersection by 1.30 and 3.00 pixel areas. IoU falls from 87.09 to 86.52 and from 68.14 to 67.58.
+At the dynamic-attraction count, the learned writer improves 268 of the 425 eligible matches from RF-DETR fit B (63.1\%), worsens 154 (36.2\%), and ties three. Figure~\ref{fig:gf3-qual} shows two gains and two losses, with eight swaps in each case. In the first two rows, the learned edits increase the reference intersection by 2.93 and 3.71 native pixel areas relative to dynamic attraction. The corresponding IoUs rise from 78.13 to 78.83 and from 71.86 to 72.56. In the other rows, the same number of edits reduces the intersection by 1.30 and 3.00 pixel areas. IoU falls from 87.09 to 86.52 and from 68.14 to 67.58.
 
 \subsection{Whole-grid edit limits on PSeg-SSDD}
 
@@ -842,13 +834,13 @@ Our adaptation of Atkinson's attraction rule~\cite{atkinson} uses a five-pixel r
 
 On detector-held-out DEV705, the frozen all-FIT109 head and the two attraction rules each make 262,802 swaps on 37,811 candidates, covering all 1,447 eligible matches. Their AP scores are 50.727 for learned occupancy, 48.299 for dynamic attraction, and 48.396 for static attraction. Learning gains 5.353 AP75 and 1.150 continuous IoU points relative to dynamic attraction, with a paired 27-prefix 95\% IoU interval of \([0.927,1.397]\). Excluding four empty reference rasters yields a gain of 2.434 AP points.
 
-Target representation affects these comparisons at fixed counts. On D-FINE FIT109, fractional targets gain 0.184 AP and 0.111 IoU points over COCO rasters. The gains over targets thresholded at 0.50 are 0.051 AP and 0.034 IoU points, with a negative AP effect for one seed. Across three RF-DETR head seeds on 74 Instance-RSDD images, full fractions score 0.030 AP and 0.009 IoU points lower than hardening all targets except 0.50, with an IoU interval of \([-0.018,-0.002]\). Against COCO rasters, the same full fractions gain 0.122 AP and 0.109 IoU points. The comparison therefore depends on the alternative representation.
+Target representation affects these comparisons at fixed counts. On D-FINE FIT109, fractional targets gain 0.184 AP and 0.111 IoU points over COCO rasters. The gains over targets thresholded at 0.50 are 0.051 AP and 0.034 IoU points, with a negative AP effect for one fit. Across three RF-DETR point-head fits on 74 Instance-RSDD images, full fractions score 0.030 AP and 0.009 IoU points lower than hardening all targets except 0.50, with an IoU interval of \([-0.018,-0.002]\). Against COCO rasters, the same full fractions gain 0.122 AP and 0.109 IoU points. The comparison therefore depends on the alternative representation.
 
-For the capacity comparison, we retrain point heads on FIT109 features from frozen RF-DETR~\cite{rfdetr} with center-aligned training masks, using the official implementation (version 1.12.0). The three initialization and sampling seeds share the same detector checkpoint, DEV705 population and 67,386 native mapped candidates. Both the 1,321- and 139,265-parameter heads receive the same features and 200 updates per refit. Table~\ref{tab:rfdetr} evaluates COCO mask AP against 1,782 annotations. Continuous IoU uses 1,461 fixed matches with equal weight for each of the 27 source-prefix groups. For paired resampling, we first average the three head results within each group.
+For the capacity comparison, we retrain point heads on FIT109 features from frozen RF-DETR~\cite{rfdetr} with center-aligned training masks, using the official implementation (version 1.12.0). The three point-head fits share the same detector checkpoint, DEV705 population and 67,386 native mapped candidates. Both the 1,321- and 139,265-parameter heads receive the same features and 200 updates per refit. Table~\ref{tab:rfdetr} evaluates COCO mask AP against 1,782 annotations. Continuous IoU uses 1,461 fixed matches with equal weight for each of the 27 source-prefix groups. For paired resampling, we first average the three head results within each group.
 
 \begin{table}[t]
 \centering
-\caption{RF-DETR DEV705 capacity and writing rules. Scores are means over three point-head seeds on the 0--100 scale. Matched policies inherit the indicated per-candidate edit count.}
+\caption{RF-DETR DEV705 capacity and writing rules. Scores are means over three point-head fits on the 0--100 scale. Matched policies inherit the indicated per-candidate edit count.}
 \label{tab:rfdetr}
 \footnotesize
 \begin{tabular}{@{}lrrr@{}}
@@ -871,7 +863,7 @@ The natural-count small head (SU) gains 0.808, 0.847 and 0.726 AP points over th
 
 At the 0.90 IoU threshold, 9, 9 and 10 of the 86 native matches above the threshold fall to or below it across the three heads. In the opposite direction, 29, 21 and 18 matches cross upward. The effects apply to the shared frozen detector and point-head training budget. They support relaxing the fixed pairing under this configuration, with the effect of conserving area relative to a competitive point writer still uncertain.
 
-At each seed's realized SU counts, ranking by true pixel occupancy would add 2.111 continuous IoU points over SU, with a paired interval of \([1.863,2.383]\). Allowing the addition and removal counts to vary at the same total would add another 1.001 points, with interval \([0.814,1.224]\). With learned ranks held fixed, a quota-only oracle gains 1.264 points over SU. All three ceilings retain the 1,461 native matches and the original endpoint support.
+At each head's realized SU counts, ranking by true pixel occupancy would add 2.111 continuous IoU points over SU, with a paired interval of \([1.863,2.383]\). Allowing the addition and removal counts to vary at the same total would add another 1.001 points, with interval \([0.814,1.224]\). With learned ranks held fixed, a quota-only oracle gains 1.264 points over SU. All three ceilings retain the 1,461 native matches and the original endpoint support.
 
 At matched FIT109 counts, query-conditioned features gain 0.352 AP and 0.073 IoU points over the ordinary feature control. The IoU interval spans zero. Zero padding and within-candidate permutation both achieve higher AP than the query-conditioned features.
 
@@ -892,12 +884,12 @@ We form four masks from the same sampled endpoints and head scores. Both sides f
 \setlength{\tabcolsep}{5pt}
 \begin{tabular}{@{}llrrrr@{}}
 \toprule
-View & Point-head seed & Both fixed & Independent add only & Independent remove only & Both independent\\
+View & Point head & Both fixed & Independent add only & Independent remove only & Both independent\\
 \midrule
-Gaofen-3, 583 chips & 5217 & 61.036 & 61.331 & 61.286 & \textbf{61.518}\\
-Gaofen-3, 583 chips & 5218 & 60.984 & 61.207 & 61.302 & \textbf{61.468}\\
-Reserve, 74 chips & 5217 & 58.278 & 58.545 & 58.426 & \textbf{58.714}\\
-Date-separated, 42 chips & 5217 & 61.283 & 61.769 & 61.698 & \textbf{62.123}\\
+Gaofen-3, 583 chips & H1 & 61.036 & 61.331 & 61.286 & \textbf{61.518}\\
+Gaofen-3, 583 chips & H2 & 60.984 & 61.207 & 61.302 & \textbf{61.468}\\
+Reserve, 74 chips & H1 & 58.278 & 58.545 & 58.426 & \textbf{58.714}\\
+Date-separated, 42 chips & H1 & 61.283 & 61.769 & 61.698 & \textbf{62.123}\\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -905,13 +897,13 @@ Date-separated, 42 chips & 5217 & 61.283 & 61.769 & 61.698 & \textbf{62.123}\\
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/cvpr_20261126/independent_sides_ablation.pdf}
-\caption{AP changes relative to fixed pairing with one or both sides independent at the same signed counts and area. Gaofen-3 averages two frozen point-head seeds.}
+\caption{AP changes relative to fixed pairing with one or both sides independent at the same signed counts and area. Gaofen-3 averages two frozen point heads.}
 \label{fig:signed-side-ablation}
 \end{figure}
 
 Switching either side raises AP in Table~\ref{tab:signed-side-ablation} and Fig.~\ref{fig:signed-side-ablation}. Using independent ranks on both sides attains the highest measured AP in each row. It also improves fixed-match continuous IoU over each single-side rule on the main Gaofen-3 and reserve views. The AP interaction is small and changes sign across cohorts. The size of each side's contribution therefore depends on the cohort and metric.
 
-At the fixed head and count, freeing both sides adds 0.224 AP and 0.175 IoU points over freeing only the additions on Gaofen-3 (two-seed means, \([0.130,0.222]\)). On the 74 chips, the corresponding gains are 0.169 AP and 0.170 IoU points (\([0.108,0.251]\)). Relative to independent deletions alone, the gains are 0.199 AP and 0.085 IoU points (\([0.049,0.120]\)) and 0.288 AP and 0.148 IoU points (\([0.042,0.252]\)), respectively. AP increases at every seed. Both IoU intervals are also positive in the date-separated view.
+At the fixed head and count, freeing both sides adds 0.224 AP and 0.175 IoU points over freeing only the additions on Gaofen-3 (means over two heads, \([0.130,0.222]\)). On the 74 chips, the corresponding gains are 0.169 AP and 0.170 IoU points (\([0.108,0.251]\)). Relative to independent deletions alone, the gains are 0.199 AP and 0.085 IoU points (\([0.049,0.120]\)) and 0.288 AP and 0.148 IoU points (\([0.042,0.252]\)), respectively. AP increases for both Gaofen-3 heads and in the reserve. Both IoU intervals are also positive in the date-separated view.
 
 At the dynamic-attraction budget, learned addition and removal locations increase DEV705 intersection by \(+0.308\) and \(+0.446\) points of hull area, respectively. Both reduce intersection on PSeg-SSDD and UEIKAP342. On those external cohorts, the interval for the difference between the two sides spans zero. A \href{https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/3f8f738/research_round_20260925_global/ATTRACTION_LOCAL_CORRECTION_ACTUAL_20261123.md}{ridge adjudicator} fitted on 4,063 disputed FIT109 pairs gains 0.018 IoU points over using the scores alone on DEV705 (\([0.008,0.028]\)). On deduplicated PSeg, its IoU interval spans zero and static attraction leads by 0.115 AP points.
 
@@ -963,9 +955,9 @@ At the same 147,540 narrow-support flips, allocating half to additions and half 
 
 \section{Discussion and Reproducibility}
 \subsection{Transfer and Reference Dependence}
-Equal-count comparisons measure how changing the written cells affects overlap within an unchanged boundary support. Mask AP gains recur for two Gaofen-3 detector fits, with shared initialization and target scenes. Mask AP changes little on PSeg-SSDD and SAR-SSP. Reference choice can also change the direction of the result. On the same 232 historical SSDD images, the natural-count writer preserves mask area and has opposite AP effects relative to the native masks under the PSeg and SPSD references. Most of the accompanying IoU shift comes from edited cells where the two outlines disagree on the same candidates (Fig.~\ref{fig:reference-disagreement}).
+The AP effect of location selection varies across cohorts and references. Both Gaofen-3 detector fits gain AP, while the changes on PSeg-SSDD and SAR-SSP are small. On the same 232 SSDD images, the area-preserving natural-count writer has opposite AP effects under the PSeg and SPSD references. Most of the resulting IoU shift comes from edits at cells the two outlines label differently (Fig.~\ref{fig:reference-disagreement}).
 
-The HRSID official split and SAR-SSP validation data have prior evaluation exposure. The two detector fits on Gaofen-3 share target scenes, and the Instance-RSDD reserve protocol uses parent IDs and sensor--date keys to distinguish views (Table~\ref{tab:cohorts}). We froze native, local and Phoenix masks for 12 prospectively selected Umbra windows. For the separate 24-collect cohort, native intake has been verified and the frozen edits have been replayed. Independent reference scoring is pending for both cohorts.
+The HRSID official split and SAR-SSP validation set have prior evaluation exposure. The Gaofen-3 fits share target scenes, and the reserve views are distinguished by parent IDs and sensor--date keys (Table~\ref{tab:cohorts}). The frozen outputs for 12 prospective Umbra windows and a separate 24-collect cohort await independent reference scoring.
 
 \subsection{Proposal Coverage and Edit Constraints}
 On SAR-SSP, only one of the 47 unmatched hulls can cross mask IoU 0.50 under reference-guided edits within the original support and exchange cap. The 164 raw queries add box-level coverage for two of those 47 hulls. If arbitrary reference-guided edits are allowed inside the existing boxes, nine hulls can be recovered at fixed area and another 19 when the area is allowed to change. These are per-hull ceilings that allow candidate reuse. The 92 original matches admit a different test. At their observed endpoint counts, reference-optimal edits can improve scene-balanced discrete IoU by 1.187 points over learned independence and by 0.895 points over reference-optimal distance pairing. The matched cases leave room for better local ranking. Many misses would require wider support or different proposals. On UEIKAP, only 17 of 139 released hulls have native matches with a positive edit budget.
@@ -980,15 +972,15 @@ The physical-length comparison covers fewer ships. Of the 142 NovaSAR AIS chips~
 \subsection{Computation and Repeatability}
 The D-FINE CUDA detector and postprocessor took 11.74\,s for 232 PSeg images. With the detector outputs already in memory, interpolation that gives the same outputs reduced single-thread local refinement from 158.8 to 104.3\,ms/image. Across two single-thread passes on the 74 Instance-RSDD chips, occupancy writing took 227.1\,ms/image, the equal-count PointRend adaptation took 1,221.5\,ms/image, and whole-RoI PointRend took 1,049.2\,ms/image. The adaptation renders the whole region of interest before the constrained write. In a separate six-pass test with the endpoints, occupancy scores, counts and initial pairings already cached, distance-first, bounded and independent selection took 26.1, 138.6 and 27.4\,ms/image, respectively, including RLE encoding on the same logical CPU.
 
-Frozen Phoenix took 1,404.48\,s on PSeg with four two-thread CPU workers, five iterations and 11,054 prompts. Stock SegRefiner-LR took 454.18\,s for 74 Instance-RSDD images on an RTX 3090 Ti and 13,420.42\,s on PSeg under shared workstation load. These elapsed times describe the stated hardware and workloads. Independent replay reproduced 3,434 table entries for the HRSID official and Instance-RSDD 740 allocations, and 1,470 for detector 5202 and head 5217 on the 74-chip reserve.
+Frozen Phoenix took 1,404.48\,s on PSeg with four two-thread CPU workers, five iterations and 11,054 prompts. Stock SegRefiner-LR took 454.18\,s for 74 Instance-RSDD images on an RTX 3090 Ti and 13,420.42\,s on PSeg under shared workstation load. Independent replay reproduced 3,434 table entries for the HRSID official and Instance-RSDD 740 allocations, and 1,470 for the first RF-DETR pipeline on the 74-chip reserve.
 
 \section{Conclusion}
-With the detector and signed counts fixed, independent endpoints yield greater fixed-match overlap and mask AP than distance-first pairing on HRSID and the evaluated Instance-RSDD subsets. On the historical 74-chip reserve, the AP and continuous IoU gains over bounded re-pairing recur with frozen RF-DETR and D-FINE. Bounded re-pairing already improves one-pixel Boundary IoU over distance-first pairing for both pipelines. The additional one-pixel effect of independent selection remains uncertain. At that width the independent-versus-distance-first gain is supported on Gaofen-3 for fit 5202, while the interval for the other fit spans zero and its two-pixel interval is positive. The AP gain is small on PSeg-SSDD. The matched-count comparison on SAR-SSP shows little change in AP or raster IoU. Reference sensitivity on the 232 SSDD images and low proposal coverage on UEIKAP further constrain the scope of local editing.
+NORA tests where to edit a retained detection and how to divide an edit allowance. At equal signed counts, independent selection improves AP and continuous IoU over distance-first pairing on HRSID and the evaluated Instance-RSDD subsets. On the shared 74-chip reserve, the gain over bounded re-pairing holds for both frozen pipelines. Bounded re-pairing improves one-pixel Boundary IoU over distance-first pairing, while the additional one-pixel effect of independent selection remains uncertain. The small AP effects on PSeg-SSDD and SAR-SSP limit the scope of this improvement.
 
-Varying the split at a fixed total increases mean mask AP and fixed-match raster IoU across three fits under both annotations of the same SSDD development images. Frozen transfer to SAR-SSP reduces missed area and increases false-positive area. Its paired IoU interval spans zero, and the transfer criterion is unmet. In tests with frozen general refiners, limiting whole-grid Phoenix writes reduces excess foreground changes on both cohorts, while capping SegRefiner-LR deletions recovers part of the loss. The comparisons separate the error attributable to edit locations and counts from the coverage of the upstream candidate stream.
+Allowing the split to vary improves AP and fixed-match IoU under both SSDD annotation releases. On frozen transfer to SAR-SSP, the split recovers missed area at the cost of more false foreground, and the paired interval for overlap spans zero. These results make proposal coverage and reference choice central to deciding when local mask edits are useful.
 
 \section*{Data and Code Availability}
-The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{project repository} contains analysis code, configurations, evaluation protocols, data access instructions and aggregate scores. Access to the images and outlines follows the terms of the original releases. Reproducing the fixed-mask comparisons requires those annotations, the documented splits, the designated frozen weights and the versioned capture and replay procedures.
+The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{project repository} contains analysis code, configurations, evaluation protocols, data access instructions and aggregate scores. Exact detector and point-head identifiers are given in the \href{https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/main/research_round_20260925_global/paper_boundary_refinement_20261120/design/NORA_REPRODUCIBILITY.md}{reproduction index}. Access to the images and outlines follows the terms of the original releases. Reproducing the fixed-mask comparisons requires those annotations, the documented splits, the designated frozen weights and the versioned capture and replay procedures.
 
 \section*{Acknowledgment}
 OpenAI Codex assisted with the English text in the abstract and Sections I--IX, figure captions, schematic layouts, vector-figure scripts and experimental analysis code. The method schematics use illustrative cell values. The result figures use observed outputs, with spatial pooling identified in the captions where applicable.

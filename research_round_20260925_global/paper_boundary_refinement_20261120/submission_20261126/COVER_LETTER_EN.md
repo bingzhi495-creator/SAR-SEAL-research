@@ -1,6 +1,6 @@
 Dear Editor-in-Chief,
 
-Please consider our manuscript “Ranking and Allocation of Boundary Edits for SAR Ship Instance Segmentation” for IEEE Transactions on Geoscience and Remote Sensing.
+Please consider our manuscript “NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation” for IEEE Transactions on Geoscience and Remote Sensing.
 
 A small shift of a SAR ship outline can change a large fraction of a narrow mask. We study which cells to add and remove on the native image grid after detection. A compact occupancy head uses fractional polygon–cell coverage as supervision. With detector candidates, confidence scores, editable cells, and realized addition and removal counts held fixed, we compare distance-first pairing, exact re-pairing within the original maximum displacement, and independent ranking of the two sides. We also examine how redistributing a fixed total number of flips affects overlap when two author references differ.
 
