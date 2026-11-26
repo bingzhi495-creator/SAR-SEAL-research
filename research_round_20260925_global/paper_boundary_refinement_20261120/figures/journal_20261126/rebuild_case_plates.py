@@ -37,7 +37,7 @@ DATA = {
         "context": "Instance-RSDD reserve · D-FINE",
         "public": "rsdd74_common_cap_cases",
         "local": "rsdd74_common_cap_cases",
-        "labels": ("Author reference", "N  Native", "F  Distance-first", "L  Bounded",
+        "labels": ("GT hull", "N  Native", "F  Distance-first", "L  Bounded",
                    "I  Independent", "I − L changes"),
         "cases": (
             ("+0.18", "4 add / 4 remove", ("", "IoU 51.71", "IoU 51.52",
@@ -67,8 +67,8 @@ DATA = {
         "context": "PSeg-SSDD · 293 fixed hulls · 209 gains · 76 losses · 8 ties",
         "public": "pseg_budget_cases_binned",
         "local": "pseg_budget_cases_exact",
-        "labels": ("Author coverage", "Whole threshold (WT)", "Fixed count (WC)", "Area error change"),
-        "local_labels": ("Native + author", "Whole threshold (WT)", "Fixed count (WC)", "Boundary detail"),
+        "labels": ("GT coverage", "Whole threshold (WT)", "Fixed count (WC)", "Area error change"),
+        "local_labels": ("Native + GT", "Whole threshold (WT)", "Fixed count (WC)", "Boundary detail"),
         "cases": (
             ("+5.87", "", ("8×8 bins · 5×5 pixels/bin", "38 flips · IoU 56.40\nFP 0.00% · FN 43.60%",
                            "16 flips · IoU 62.26\nFP 0.04% · FN 37.71%", "WT − WC · FP + FN")),
@@ -77,7 +77,7 @@ DATA = {
         ),
         "native_base": ("Native IoU 66.88", "Native IoU 56.04"),
         "footer": ((351, 381), (400, 416)),
-        "note": "FP and FN as percentages of author hull area",
+        "note": "FP and FN (% of GT hull area)",
     },
     "seg": {
         "title": "Whole-crop refinement and local edits",
@@ -95,7 +95,7 @@ DATA = {
         "title": "Scene-to-mask comparison at an equal edit count",
         "context": "SAR-SSP · frozen transfer",
         "local": "sarssp_private_cases",
-        "labels": ("SAR context", "Author reference", "Hull detail", "Native mask",
+        "labels": ("SAR context", "GT mask", "Hull detail", "Native mask",
                    "Distance-paired", "Independent"),
         "cases": (
             ("+0.61", "8 add / 8 remove", ("", "", "", "IoU 63.58%", "IoU 63.18%", "IoU 63.78%")),
@@ -356,8 +356,8 @@ def paint(canvas, key, spec, boxes, size, local, old_width):
             center = bx + 0.5 * size.tile
             highlighted = label in {"I  Independent", "ROH ranking", "Fixed count (WC)",
                                     "Local ROH", "Independent"}
-            color = ACCENT if highlighted else LOCATOR if label in {"Author reference", "Native + author",
-                                                               "Author coverage"} else INK
+            color = ACCENT if highlighted else LOCATOR if label in {"GT hull", "GT mask", "Native + GT",
+                                                               "GT coverage"} else INK
             canvas.text(center, by-4, label, color=color, centered=True,
                         size=7.9 if cols == 2 else 7.0, bold=True)
             dest = fitz.Rect(bx, by, bx+size.tile, by+size.tile)

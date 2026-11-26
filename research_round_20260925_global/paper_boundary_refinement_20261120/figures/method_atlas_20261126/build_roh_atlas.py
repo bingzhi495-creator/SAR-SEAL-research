@@ -41,7 +41,7 @@ def readout(out,case=None):
         pix=doc[0].get_pixmap(matrix=fitz.Matrix(4,4),clip=fitz.Rect(22.5,76,89.5,143),alpha=False)
         im=np.frombuffer(pix.samples,np.uint8).reshape(pix.height,pix.width,pix.n)
         ax.imshow(im,extent=(17,108,121,30),interpolation='nearest')
-        txt(ax,12,139,'SAR + author outline',8.7)
+        txt(ax,12,139,'SAR + GT outline',8.7)
     else:
         x,y,k=18,31,13
         hull=np.array([(0,.6),(1.5,.3),(4.7,2.8),(6.2,5.5),(5.5,6.3),(3.1,5.2),(.6,2.5)])*k+[x,y]

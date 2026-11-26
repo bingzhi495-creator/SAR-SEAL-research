@@ -164,7 +164,7 @@ def paired_paths(figures, case, local):
     text(ax,506,168,f"Instance-RSDD · D-FINE · {case['swaps']} add / {case['swaps']} remove",
          size=8,color=MUTED,anchor="right")
     centers=(51,183,305,428)
-    details=("Author reference","F","L","I")
+    details=("GT hull","F","L","I")
     if not local:
         grids=np.asarray(case["pooled_fraction"])
         for center,grid in zip(centers,grids[[0,2,3,4]],strict=True):
@@ -271,7 +271,7 @@ def phoenix(figures, local):
     text(ax,209,30,r"Fixed $r_i$",size=7.6,bold=True,anchor="center")
     text(ax,103,77,"Same candidate and posterior",size=7.05,color=MUTED,anchor="center")
     rule(ax,(9,85),(237,85))
-    text(ax,108,95,"Author threshold",size=7.55,bold=True,anchor="center")
+    text(ax,108,95,"Phoenix threshold",size=7.55,bold=True,anchor="center")
     text(ax,205,95,"Exact total",size=7.55,bold=True,anchor="center")
     text(ax,205,105,r"$2k_{\rm att}=4$",size=7.1,color=MUTED,anchor="center")
     rule(ax,(155,105),(155,229))
@@ -297,7 +297,7 @@ def phoenix(figures, local):
         rule(ax,(9,252),(237,252))
         text(ax,9,260,"Observed · PSeg-SSDD whole grid",size=7.7,bold=True)
         coords=[(49,275,86,312),(159,275,196,312)]
-        text(ax,67.5,269,"Author threshold",size=7.05,anchor="center")
+        text(ax,67.5,269,"Phoenix threshold",size=7.05,anchor="center")
         text(ax,177.5,269,"Exact count",size=7.05,anchor="center")
         text(ax,67.5,318,"38 flips  ·  IoU 56.40",size=6.95,anchor="center")
         text(ax,177.5,318,"16 flips  ·  IoU 62.26",size=6.95,anchor="center")
