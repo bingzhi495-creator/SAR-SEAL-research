@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- [TGRS 全文终审稿与题注精简](research_round_20260925_global/paper_boundary_refinement_20261120/design/PROSE_FINAL_REVIEW_20261126.md)。重写完整英文稿，压缩图表说明，保留原公式、数据表、失败结果及前瞻外测状态。
+
 - [完整研究设计与 CVPR 图件修订](research_round_20260925_global/paper_boundary_refinement_20261120/design/DESIGN_RATIONALE_ZH.md)。完整稿的方法图、定性对照、定量结果与消融图全部修订，公开版含 16 张可编辑矢量图；本机作者审阅版含真实 SAR 叠图。
 
 - [TGRS 完整稿与图件索引](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。25 页 IEEE 双栏，补回独立选点、限距重配、动态吸引力、Phoenix 和 SegRefiner 的实测定性对照，并保留全部量化和消融证据。

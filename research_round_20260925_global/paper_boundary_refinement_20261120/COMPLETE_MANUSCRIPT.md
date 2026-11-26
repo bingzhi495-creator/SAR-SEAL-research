@@ -1,6 +1,6 @@
 # TGRS 完整稿、研究设计与图件
 
-- [25 页 IEEE 双栏完整稿](boundary_refinement_complete.pdf) · [LaTeX 源码](boundary_refinement_complete.tex)
+- [25 页 IEEE 双栏全文终审稿](boundary_refinement_complete.pdf) · [LaTeX 源码](boundary_refinement_complete.tex) · [语言终审和题注核验](design/PROSE_FINAL_REVIEW_20261126.md)
 - [研究问题、完整设计与证据边界](design/DESIGN_RATIONALE_ZH.md) · [所有公开图件和生成说明](figures/cvpr_20261126/README.md)
 - [现行精简稿](boundary_refinement_main.pdf) · [作者信息与投稿资料](submission_20261126/AUTHOR_HANDOFF_ZH.md) · [实验证据索引](../TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 
