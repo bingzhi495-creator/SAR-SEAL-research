@@ -77,7 +77,7 @@ RankSEG derives overlap-oriented decisions by ranking label probabilities and ch
 
 \subsection{Overview}
 
-Given a retained ship detection, an editor must find an eligible part of the contour, score cells in that region, and convert those scores into a binary write. NORA represents these steps separately (Fig.~\ref{fig:native-boundary}). Its inputs are the detector box \(B\), confidence \(s\), binary mask \(M\), and foreground response \(p_i\) at native cell \(i\). The binary mask defines which cells can be added and removed. A small residual head estimates how much of each sampled cell is covered by the target outline. Source polygons supply these supervision targets during training. At inference, the fitted head receives the detector outputs and local image features.
+Given a retained ship detection, an editor must find an eligible part of the contour, score cells in that region, and convert those scores into a binary write. Fig.~\ref{fig:network-overview} shows the architecture, and Fig.~\ref{fig:native-boundary} traces a retained ship through the native grid. D-FINE-seg~\cite{dfine} and RF-DETR~\cite{rfdetr} are alternative front ends. Each run supplies one candidate stream and uses its detector's native mask decoder. Its inputs are the detector box \(B\), confidence \(s\), binary mask \(M\), and foreground response \(p_i\) at native cell \(i\). The binary mask defines which cells can be added and removed. A small residual head estimates how much of each sampled cell is covered by the target outline. Source polygons supply these supervision targets during training. At inference, the fitted head receives the detector outputs and local image features.
 
 A displaced edge can be corrected without changing the amount of foreground. In that setting, all writers make \(k\) additions and \(k\) removals, and differ only in how the two endpoint lists are used. An area deficit or excess calls for a different control. The variable-allocation writer keeps the total number of flips fixed and varies the signed split. The candidate identity, class, box and confidence remain fixed in both settings. A separate control holds a Phoenix XL1 response fixed while changing the support or write rule~\cite{phoenix}, extending the same analysis to a refiner that can replace a wider region.
 
@@ -86,6 +86,13 @@ A displaced edge can be corrected without changing the amount of foreground. In 
 \includegraphics[width=\textwidth]{\MethodAsset{nora_scene_to_mask.pdf}}
 \caption{Scene-to-mask workflow. \CaseCaption{The window enlarges the same schematic grid.}{The window enlarges the native mask on the same Instance-RSDD crop. The writer adds and removes four cells. The dashed contour is the author reference.} Source labels train the ROH.}
 \label{fig:native-boundary}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{\MethodAsset{nora_network_overview.pdf}}
+\caption{NORA network architecture. One frozen detector provides candidate metadata, a decoded binary mask and a mask response. The scalar head supplies the equal-signed-count writers. The dual-reference head supplies the balanced and variable splits at a fixed total. The candidate identity, class, box and confidence pass through the write.}
+\label{fig:network-overview}
 \end{figure*}
 
 \subsection{Native-grid sampling and the scalar ROH}
@@ -160,12 +167,12 @@ We clamp negative roundoff before taking the square root and substitute unit sca
    \left(\operatorname{logit}(p_i^\epsilon)+f_\theta([z_i,z_i])\right).
  \label{eq:occupancy-head}
 \end{equation}
-where \(f_\theta\) maps \(28\to24\to24\to1\) through two ReLU hidden layers. The stacks in Fig.~\ref{fig:roh-architecture} represent fully connected transforms at one endpoint. Both copies of \(z_i\) come from that endpoint. This keeps the input width and the 1,321 parameters, including biases, equal to those of the partner-context control. A zero-initialized final affine layer makes the initial prediction equal to the clipped decoder response.
+where \(f_\theta\) maps \(28\to24\to24\to1\) through two ReLU hidden layers. Fig.~\ref{fig:roh-architecture} shows the affine weights as output-by-input matrices for one endpoint. The two head variants are fitted separately. Both copies of \(z_i\) come from that endpoint. This keeps the input width and the 1,321 parameters, including biases, equal to those of the partner-context control. A zero-initialized final affine layer makes the initial prediction equal to the clipped decoder response.
 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_roh_architecture.pdf}}
-\caption{Endpoint features, the scalar ROH and fractional supervision. The dual-reference ROH uses a two-output residual head.}
+\caption{ROH layer architecture at one native endpoint. Both heads use the duplicated standardized features. Each output adjusts the decoder logit before the sigmoid and is supervised by its corresponding polygon--cell coverage.}
 \label{fig:roh-architecture}
 \end{figure*}
 
@@ -1092,11 +1099,11 @@ OpenAI Codex assisted with the English text in the abstract and Sections I--IX, 
 \bibitem{rankseg} B. Dai and C. Li, ``RankSEG: A consistent ranking-based framework for segmentation,'' \emph{J. Mach. Learn. Res.}, vol. 24, no. 224, pp. 1--50, \href{https://www.jmlr.org/papers/v24/22-0712.html}{2023}.
 \bibitem{rankrma} Z. Wang and B. Dai, ``RankSEG-RMA: An efficient segmentation algorithm via reciprocal moment approximation,'' in \emph{Adv. Neural Inf. Process. Syst.}, vol. 38, 2025. \href{https://doi.org/10.52202/085713-5452}{10.52202/085713-5452}.
 \bibitem{rankdep} Z. Wang and B. Dai, ``On the relaxation of conditional independence assumption for image segmentation,'' \href{https://arxiv.org/abs/2609.38930}{arXiv:2609.38930}, 2026.
+\bibitem{dfine} A. Saakyan and D. Solntsev, ``D-FINE-seg: Object detection and instance segmentation framework with multi-backend deployment,'' \href{https://arxiv.org/abs/2602.23043}{arXiv:2602.23043}, 2026.
+\bibitem{rfdetr} I. Robinson, P. Robicheaux, M. Popov, D. Ramanan, and N. Peri, ``RF-DETR: Neural architecture search for real-time detection transformers,'' in \emph{Proc. Int. Conf. Learn. Represent. (ICLR)}, 2026.
 \bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, \href{https://doi.org/10.1109/ACCESS.2020.3005861}{2020}.
 \bibitem{ssdd} T. Zhang \emph{et al.}, ``SAR Ship Detection Dataset (SSDD): Official release and comprehensive data analysis,'' \emph{Remote Sens.}, vol. 13, no. 18, Art. no. 3690, 2021. \href{https://doi.org/10.3390/rs13183690}{10.3390/rs13183690}.
 \bibitem{slgsea} R. Deng, T. Zhang, G. Gao, L. Zhang, S. Wei, and X. Zhang, ``SLGSea: Spatialized language guidance with scattering-aware query construction for ship--sea--land panoptic segmentation in SAR imagery,'' project repository and dataset release. \href{https://github.com/deng1218/SLGSea}{Code and data}.
-\bibitem{dfine} A. Saakyan and D. Solntsev, ``D-FINE-seg: Object detection and instance segmentation framework with multi-backend deployment,'' \href{https://arxiv.org/abs/2602.23043}{arXiv:2602.23043}, 2026.
-\bibitem{rfdetr} I. Robinson, P. Robicheaux, M. Popov, D. Ramanan, and N. Peri, ``RF-DETR: Neural architecture search for real-time detection transformers,'' in \emph{Proc. Int. Conf. Learn. Represent. (ICLR)}, 2026.
 \bibitem{rsddsar} C. Xu \emph{et al.}, ``RSDD-SAR: Rotated ship detection dataset in SAR images,'' \emph{J. Radars}, vol. 11, no. 4, pp. 581--599, 2022. \href{https://doi.org/10.12000/JR22007}{10.12000/JR22007}.
 \bibitem{ueikap} A. Mazzeo \emph{et al.}, ``UEIKAP dataset,'' Zenodo, ver. 1.0, \href{https://doi.org/10.5281/zenodo.18391027}{2026}.
 \bibitem{airsarship} X. Sun, Z. Wang, Y. Sun, W. Diao, Y. Zhang, and K. Fu, ``AIR-SARShip-1.0: High-resolution SAR ship detection dataset,'' \emph{J. Radars}, vol. 8, no. 6, pp. 852--862, 2019. \href{https://doi.org/10.12000/JR19097}{10.12000/JR19097}.

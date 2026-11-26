@@ -8,7 +8,7 @@ ap.add_argument('--source',type=Path,default=Path(__file__).with_name('NORA_meth
 p=ap.parse_args().source
 doc=ET.parse(p)
 pages=doc.findall('diagram')
-assert len(pages)==9
+assert len(pages)==10
 for pg in pages:
     cells=pg.findall('.//mxCell')
     assert len(cells)==len({c.get('id') for c in cells})
@@ -27,5 +27,8 @@ for pg in pages:
             assert s.startswith('shape=rectangle;')
             counts['rect']+=1
     print(pg.get('name'),counts)
-values=[c.get('value') for c in pages[4].findall('.//mxCell')]
-assert [v for v in values if v in ('28','24','1')]==['28','24','24','1']
+roh=next(pg for pg in pages if pg.get("id")=="nora_roh_architecture")
+values=[c.get("value") for c in roh.findall(".//mxCell")]
+for label, count in (("24 × 28",2),("24 × 24",2),("1 × 24",1),("2 × 24",1)):
+    assert values.count(label)==count,(label,values)
+assert pages[2].get("id")=="nora_network_overview"

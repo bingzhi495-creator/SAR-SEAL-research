@@ -1,4 +1,4 @@
-"""Build the editable nine-page companion from the published schematic SVGs."""
+"""Build the editable ten-page companion from the published schematic SVGs."""
 import argparse
 import base64
 import re
@@ -8,8 +8,8 @@ import xml.etree.ElementTree as ET
 from urllib.parse import quote
 
 HERE = Path(__file__).resolve().parent
-SOURCE = HERE.parent / "release/research_round_20260925_global/paper_boundary_refinement_20261120/figures/method_atlas_20261126"
-FIGURES = [('nora_one_pixel_motivation', '1 · one pixel motivation'), ('nora_scene_to_mask', '2 · scene to mask'), ('nora_native_sampling', '3 · native sampling'), ('nora_fractional_readout', '4 · fractional readout'), ('nora_roh_architecture', '5 · ROH architecture'), ('nora_pairing_paths', '6 · pairing paths'), ('nora_overlap_accounting', '7 · overlap accounting'), ('nora_signed_budget', '8 · signed budget'), ('nora_frozen_writer', '9 · frozen writer')]
+SOURCE = HERE
+FIGURES = [('nora_one_pixel_motivation', '1 · one pixel motivation'), ('nora_scene_to_mask', '2 · scene to mask'), ('nora_network_overview', '3 · Overall network'), ('nora_native_sampling', '4 · native sampling'), ('nora_fractional_readout', '5 · fractional readout'), ('nora_roh_architecture', '6 · ROH architecture'), ('nora_pairing_paths', '7 · pairing paths'), ('nora_overlap_accounting', '8 · overlap accounting'), ('nora_signed_budget', '9 · signed budget'), ('nora_frozen_writer', '10 · frozen writer')]
 NUM = r"[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?"
 def fmt(n):
     return f"{n:.5f}".rstrip("0").rstrip(".") or "0"
@@ -128,7 +128,7 @@ def main():
     ap.add_argument("--source",type=Path,default=SOURCE)
     ap.add_argument("--output",type=Path,default=HERE/"NORA_method_atlas.drawio")
     args=ap.parse_args()
-    workbook=ET.Element("mxfile",host="app.diagrams.net",pages="9",compressed="false")
+    workbook=ET.Element("mxfile",host="app.diagrams.net",pages="10",compressed="false")
     for stem,title in FIGURES:
         svg=ET.parse(args.source/(stem+".svg")).getroot()
         _,_,w,h=map(float,svg.attrib["viewBox"].split())

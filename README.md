@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- [NORA 整体架构与 ROH 网络层图](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。新版图 3 展示完整接口，图 6 展开逐端点打分头。十页方法图册可逐元素编辑。
+
 - [NORA 引言与相关工作扩写](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。引言展开 SAR 船体边界问题，相关工作比较已有路线和 NORA 接续点，证据移至实验章节。
 
 - [NORA 九幅新方法图及完整稿](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。同一 SAR 裁片串起场景、原生像元与写回。新增偏移、读出、ROH 和交并比解释图。
