@@ -1,13 +1,22 @@
-# NORA 完整稿与重绘图件
+# NORA 精简正文、补充材料与重绘图件
 
 **NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation**
 
 残差占据率头（Residual Occupancy Head，ROH）在正文使用简称。单输出和双参考版本分别写为 scalar ROH 和 dual-reference ROH。
 
-- [IEEE 双栏英文稿](boundary_refinement_complete.pdf) · [LaTeX 源码](boundary_refinement_complete.tex)
+- [精简正文 PDF](boundary_refinement_concise.pdf) · [补充材料 PDF](boundary_refinement_supplement.pdf) · [正文 LaTeX](boundary_refinement_concise.tex) · [补充材料 LaTeX](boundary_refinement_supplement.tex)
+- [扩展审阅稿 PDF](boundary_refinement_complete.pdf) · [扩展稿 LaTeX](boundary_refinement_complete.tex)
 - [十张方法图和编辑入口](figures/method_atlas_20261126/README.md) · [结果图件](figures/journal_20261126/README.md) · [方法图构图说明](style_review/NORA_METHOD_FIGURE_STORYBOARD_20261126.md) · [GLDet 全文与全图表研读](style_review/GLDET_FULL_STYLE_REVIEW_20261126.md)
 - [问题、完整设计与证据边界](design/DESIGN_RATIONALE_ZH.md) · [复现索引](design/NORA_REPRODUCIBILITY.md) · [实验证据](../TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
 - [语言终审](design/PROSE_FINAL_REVIEW_20261126.md) · [作者信息与投稿资料](submission_20261126/AUTHOR_HANDOFF_ZH.md)
+
+## 精简正文（2026-11-26）
+
+采用 IEEE 双栏排版，正文至结论 12 页，含参考文献共 13 页。正文的 9 张图和 7 张表涵盖整体网络、原生网格采样、ROH、等增删数的三种写回策略和固定总量的双参考分配。保留原检测器和匹配预算的 PointRend 对照，按相同写入预算展示增益与退化案例。外域结果和边界 IoU 的不确定性留在正文。
+
+独立补充材料的公开版为 25 页，保留扩展稿 15 张数据表的表体和编号公式，收录数据划分、完整实现、推导、各子集与模型的消融、拓扑与计算开销。作者本地审阅版采用真实 SAR 裁片，补充材料共 26 页。本次改动沿用已核验实验，署名与投稿元数据仍保留占位。公开版在本目录分别运行三次 pdflatex 编译两份 LaTeX 源码。
+
+## 扩展审阅稿与图件
 
 重绘覆盖方法图、定量图、定性对照及消融图。图内保留必要的操作、符号、单位和图例，方法段落解释真实裁片和操作示意的关系。公开版为 21 图，作者审阅版包括 22 图及真实 SAR 裁片。方法与原理图共 10 幅。原 15 张数据表的表体、公式和实验结果逐项保留。图注和表题按重排精简。
 
