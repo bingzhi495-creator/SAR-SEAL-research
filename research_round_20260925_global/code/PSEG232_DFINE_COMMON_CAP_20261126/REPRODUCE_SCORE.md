@@ -1,0 +1,8 @@
+# Reproduce the PSeg and SPSD score
+
+Use the label-free render and independent verifier specified by the prelock. Each must end successfully with an observed result footer. The scorer binds those two receipts, reopens the earlier accepted source capture and recomputes every written RLE from the signed endpoint ledger before opening either reference archive.
+
+Run `score_pseg.py` on the accepted CPU stack (Python 3.10.13, NumPy 1.26.4, pycocotools 2.0.11, Shapely 2.0.2 and GEOS 3.11.2). Set `CUDA_VISIBLE_DEVICES=-1`, invoke Python with `-I -B -X utf8` and use the existing score observer in [the common-cap replay](../LEARNED_BOUNDED_PAIRING_20261126/rsdd/observe.py). Supply the closed original capture, its accepted image-only manifest, original replay and readback, the terminal of the preceding annotation sensitivity, prelock commit and SHA-256, two new render qualification receipts and the existing author archives. `--help` lists the receipt and source flags. The archive bytes are available from the authors through the links in the [prelock](PRELOCK.md).
+
+The official primary view is the full 232-image PSeg polygon release. Its interval resamples decoded JPEG groups containing original valid area-eligible matches. The 222-image nested view removes the ten historical overlap files. The same-image secondary comparison uses two different author matching sets, includes unmatched hulls at zero and resamples the same 232 images across references. Absolute official AP is stored as a fraction. AP differences and geometry are expressed in points. The synthetic tests use only generated masks and receipts.
+

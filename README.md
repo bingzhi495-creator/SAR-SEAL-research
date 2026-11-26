@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- PSeg-SSDD 的 232 图已完成冻结 D-FINE 学习占据率的等预算限距对照。独立选点相对限距重配 +0.021 mask AP、+0.069 连续 IoU［0.030, 0.109］点，未过 +0.30 AP 门槛。使用同图两套作者参考，固定全船体栅格 IoU 的对应差值为 PSeg +0.040 点、SPSD −0.007 点，两参考差为 −0.047［−0.088, −0.007］点。两套参考含各自原生匹配，采集范围相同。 [实际评分与复现](research_round_20260925_global/code/PSEG232_DFINE_COMMON_CAP_20261126/ACTUAL_SCORE.md)
+
 - D-FINE E24 已完成同一 74 图保留集的冻结等预算强对照。同一 D-FINE 候选、占据率头和逐候选增删数下，独立选点相对限距重配 +0.344 mask AP、+0.133 连续 IoU［0.018, 0.251］点，42 个有效改动覆盖 11 个传感器日期块。D-FINE 与 RF-DETR 两套流程在同一队列均达到相应判据。一像元 Boundary IoU 的进一步收益仍不确定。 [完整实测和复现](research_round_20260925_global/code/DFINE_RSDD74_COMMON_CAP_20261126/ACTUAL.md)
 
 - Instance-RSDD 74 图同预算、同位移上限的两评分头交叉验证已完成。PointRend 上独立选点相对限距重配 +0.095 mask AP、−0.037 连续 IoU［−0.172, 0.086］点，覆盖达标，未过效用门槛。原占据率头的 +0.479 AP、+0.116 IoU 复现。两评分头的连续 IoU 交互为 +0.153［−0.008, 0.339］点，完整保留集差异仍不确定。 [实测、复现和可编辑图](research_round_20260925_global/code/RSDD74_POINTREND_COMMON_CAP_20261126/SCORE_ACTUAL.md)
