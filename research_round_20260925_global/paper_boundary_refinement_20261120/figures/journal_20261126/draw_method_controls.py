@@ -96,7 +96,13 @@ def selection():
         x=8+168*i
         label(ax,x,36,["F   Distance-first","L   Bounded re-pairing","I   Independent ranking"][i],10,weight="bold")
         grid(ax,x+20,48,12,mask,a,d,i<2)
-        label(ax,x,132,["Max edge  √2 px","Edge cap  √2 px","Unpaired"][i],8.7)
+        if i<2:
+            ax.plot([x+8,x+30],[132,132],lw=1.3,color=OCHRE)
+            for tip in (x+8,x+30):
+                ax.plot([tip,tip],[129,135],lw=1.3,color=OCHRE)
+            label(ax,x+35,132,["√2 px","≤ √2 px"][i],9)
+        else:
+            label(ax,x+8,132,"Unpaired",8.6)
         label(ax,x,148,f"Gain   {g:.2f} cell areas",9.5,weight="bold",color=BLUE)
         if i<2: ax.plot([x+152]*2,[30,151],color="#DED3C8",lw=.8)
     save(f,"method_bounded_selection")
@@ -105,16 +111,21 @@ def allocation():
     mask,add,drop,actions=ALLOC
     f,ax=canvas(510,144)
     label(ax,8,12,"Four flips · 15-cell mask",10,weight="bold")
-    label(ax,501,12,"Δarea = additions − removals",8.7,ha="right")
+
     for i,(a,d) in enumerate(actions):
         x=8+i*250
         label(ax,x,38,["(a)  Equal split","(b)  Variable split"][i],11,weight="bold")
         grid(ax,x,51,13,mask,[add[j] for j in a],[drop[j] for j in d])
-        label(ax,x+103,68,f"+{len(a)} cells",10,color=TEAL,weight="bold")
-        label(ax,x+103,87,f"−{len(d)} cells",10,color=RUST,weight="bold")
+        label(ax,x+105,62,f"+{len(a)}",11,color=TEAL,weight="bold")
+        label(ax,x+135,62,f"−{len(d)}",11,color=RUST,weight="bold")
         delta=len(a)-len(d)
-        label(ax,x+103,111,f"Area  15 → {15+delta} cells",10,weight="bold")
-        label(ax,x+103,128,["Δarea  0","Δarea  +2"][i],8.5)
+        for row,n in enumerate((15,15+delta)):
+            y=83+row*21
+            label(ax,x+104,y+3,["In","Out"][row],8.2)
+            for pos in range(n):
+                ax.add_patch(Rectangle((x+125+pos*4.7,y),4.2,7,fc=TEAL if pos>=15 else "#CDBBA8",ec="none"))
+            label(ax,x+210,y+4,str(n),8.7,weight="bold")
+        label(ax,x+104,127,f"Δarea  {delta:+d} cells" if delta else "Δarea  0 cells",8.6)
     ax.plot([245]*2,[31,135],color="#DED3C8",lw=.8)
     save(f,"method_signed_allocation")
 
@@ -129,10 +140,17 @@ def phoenix():
         for j,scope in enumerate(("narrow","whole")):
             y=62+j*76
             a,d=examples[scope,mode]
-            if i==0: label(ax,7,y+27,scope.title(),9,weight="bold")
+            if i==0:
+                for r in range(5):
+                    for c in range(6):
+                        ring=(1<=r<=3 and 1<=c<=4 and (r in (1,3) or c in (1,4)))
+                        active=scope=="whole" or ring
+                        ax.add_patch(Rectangle((11+c*4.4,y+8+r*4.4),4.1,4.1,
+                                               fc="#B4896E" if active else "#F5EEE4",ec="none"))
+                label(ax,8,y+40,scope.title(),8.5,weight="bold")
             grid(ax,x,y,7.2,mask,a,d)
             label(ax,x+28,y+61,f"+{len(a)} / −{len(d)}",9,ha="center")
-    ax.plot([8,239],[211]*2,color="#DED3C8",lw=.9)
+    ax.plot([8,239],[211]*2,color="#DED3C8",lw=.5)
     label(ax,8,226,"Narrow support · four flips",9.3,weight="bold")
     label(ax,8,242,"Free split  +3 / −1",8.7)
     label(ax,135,242,"Balanced  +2 / −2",8.7)

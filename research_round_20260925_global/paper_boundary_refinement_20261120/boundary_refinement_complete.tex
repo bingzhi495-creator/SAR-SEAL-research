@@ -38,7 +38,7 @@ NORA addresses these two editing decisions on a retained mask. The ranking deter
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{matched_budget_pipeline.pdf}}
-\caption{NORA on a frozen detection. The scalar ROH scores native boundary cells for equal-count editing. \CaseCaption{}{The native and edited views show the same Instance-RSDD candidate.}}
+\caption{NORA on a frozen detection. The scalar ROH scores native boundary cells for equal-count editing. \CaseCaption{}{The Instance-RSDD example adds and removes four cells.}}
 \label{fig:native-boundary}
 \end{figure*}
 
@@ -87,7 +87,7 @@ The first ring on each side has layer index \(\ell_i=1\), and the second has \(\
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{\MethodAsset{method_native_occupancy.pdf}}
-\caption{Native-grid sampling and residual occupancy scoring. \CaseCaption{The inset shows sampled cells.}{The inset enlarges a native SAR boundary.} Source polygon coverage supplies fractional supervision.}
+\caption{Native-grid sampling and residual occupancy scoring. \CaseCaption{The inset shows sampled cells.}{The inset shows an \(8\times8\) native enlargement.} Source polygon coverage supplies fractional supervision.}
 \label{fig:occupancy-stage}
 \end{figure}
 
@@ -126,7 +126,7 @@ We clamp negative roundoff before taking the square root and substitute unit sca
    \left(\operatorname{logit}(p_i^\epsilon)+f_\theta([z_i,z_i])\right).
  \label{eq:occupancy-head}
 \end{equation}
-where \(f_\theta\) maps \(28\to24\to24\to1\) through two ReLU hidden layers. Both copies of \(z_i\) come from the same endpoint. This keeps the input width and the 1,321 parameters, including biases, equal to those of the partner-context control. A zero-initialized final affine layer makes the initial prediction equal to the clipped decoder response.
+where \(f_\theta\) maps \(28\to24\to24\to1\) through two ReLU hidden layers. Each stacked layer in Fig.~\ref{fig:occupancy-stage} represents a fully connected transform at one endpoint. Both copies of \(z_i\) come from that endpoint. This keeps the input width and the 1,321 parameters, including biases, equal to those of the partner-context control. A zero-initialized final affine layer makes the initial prediction equal to the clipped decoder response.
 
 An AdamW update samples source groups uniformly and draws a pair \((a_j,d_j)\) within each chosen group. For a batch of \(m\) pairs, the loss averages fractional binary cross-entropy over both endpoints,
 \begin{equation}
@@ -175,7 +175,7 @@ using each endpoint at most once. If the independent endpoint sets admit such a 
 \label{fig:selection-stage}
 \end{figure*}
 
-In the schematic, paired lines join one added site to one removed site. The independent writer reads the two ranked lists separately at the same signed counts. \ifnativecases The upper row shows how small the actual mask differences can be even when the pairing rule changes.\fi
+The rulers show the longest distance-first edge and the same length used as the cap for bounded re-pairing. The independent writer reads both ranked lists at the same signed counts. \ifnativecases The upper row shows how small the actual mask differences can be even when the pairing rule changes.\fi
 
 For the geometric calculation, write \(P=|M|\), \(T=|G|\) and \(I=|M\cap G|\) in native pixel-area units, with \(U=P+T-I\). The edited mask is \((M\setminus D)\cup A\). Its change in area is the difference of the counts. Its change in intersection comes from the fractional coverage of the edited cells,
 \begin{equation}

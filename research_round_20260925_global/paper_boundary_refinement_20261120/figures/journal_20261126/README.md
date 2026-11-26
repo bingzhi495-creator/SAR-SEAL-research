@@ -19,3 +19,5 @@ python rebuild_case_plates.py --public-source ../cvpr_20261126 --work rebuilt_ca
 
 暖白与鞍棕用于背景和层级。橙赭标记主流程或放大定位，矿绿和砖红配合增删符号。酒红用于需要分开的参考。版面说明与图注见[构图文字稿](../../style_review/NORA_METHOD_FIGURE_STORYBOARD_20261126.md)和[GLDet 逐页研读](../../style_review/GLDET_FULL_STYLE_REVIEW_20261126.md)。
 
+
+[五页 Draw.io 可编辑工程](NORA_method_figures.drawio)可在 draw.io 的本地文件入口打开。五张方法图的方片、连线和文字可单独编辑。需要从已校核的示意图重建时，在本目录执行 `python build_NORA_method_figures.py --source . --output rebuilt_methods.drawio`。

@@ -157,8 +157,71 @@ def mini_coverage(ax,x,y,step):
     return line
 
 
+def layer_card(ax,x,y,w,h,label,depth=1,pt=7.6):
+    """A perspective-free stack denotes the feature width of one MLP stage."""
+    for back in range(depth-1,0,-1):
+        box(ax,x+1.18*back,y-1.23*back,w,h,"#DDE7DE",TEAL,.52)
+    box(ax,x,y,w,h,MINT if depth>1 else PALE,TEAL,.62)
+    center(ax,x+w/2,y+h/2,label,pt,bold=True)
+
+
+def rail_pixel_icon(ax,x,y,pattern,colors,step=2.7):
+    for row,col in np.ndindex(pattern.shape):
+        box(ax,x+col*step,y+row*step,step,step,colors[pattern[row,col]],WHITE,.24,z=2)
+    box(ax,x,y,pattern.shape[1]*step,pattern.shape[0]*step,"none",LINE,.52,z=5)
+
+
+def graphic_rails(ax,native):
+    header_ink=OCHRE
+    box(ax,9,143,496,37,SAND,LINE)
+    text(ax,16,160,"SOURCE TRAINING",7.4,color=header_ink,bold=True)
+    # A contour, native cells intersecting a fragment, and the fitting objective.
+    shape=np.array(((115,158),(122,150),(136,149),(143,155),(135,164),(122,165)))
+    ax.add_patch(Polygon(shape,closed=True,facecolor="#F1DEC2",edgecolor=OCHRE,lw=.9,zorder=4))
+    center(ax,130,173,r"Polygon $G$",7.15)
+    arrow(ax,(155,157),(187,157),OCHRE)
+    gx,gy,gg=197,148,6
+    for yy in range(3):
+        for xx in range(4):
+            box(ax,gx+xx*gg,gy+yy*gg,gg,gg,WHITE,LINE,.44,z=2)
+    clipped=Polygon(((198,151),(221,151),(215,160),(201,165),(198,164)),
+                    closed=True,facecolor=MINT,edgecolor=TEAL,lw=.8,zorder=3)
+    ax.add_patch(clipped)
+    for yy in (154,160):
+        edge(ax,(197,yy),(221,yy),LINE,.4,z=4)
+    for xx in (203,209,215):
+        edge(ax,(xx,148),(xx,166),LINE,.4,z=4)
+    center(ax,209,173,r"Cell fraction $q_i$",7.15)
+    arrow(ax,(233,157),(267,157),OCHRE)
+    box(ax,279,148,58,18,"#F9EEDC",OCHRE,.55)
+    center(ax,308,157,r"$\mathcal{L}_{\mathrm{BCE}}$",9.1,bold=True)
+    center(ax,308,173,"Fit ROH",7.15)
+    arrow(ax,(319,143),(319,136),OCHRE,True)
+
+    box(ax,9,186,496,37,PALE,LINE)
+    text(ax,16,203,"FROZEN REFINER",7.4,bold=True,color=GRAY)
+    binary=native[::2,::2].astype(int)
+    texture=np.array(((0,0,1,1,0,1),(1,2,2,3,1,0),(0,1,3,2,3,1),(0,1,0,2,1,0)))
+    heat=np.array(((0,0,1,1,0,0),(0,1,2,3,2,0),(0,1,3,3,3,1),(0,0,1,2,1,0)))
+    rail_pixel_icon(ax,113,193,texture,("#423731","#6C6159","#B8AEA4","#E4D5C5"),3.35)
+    center(ax,141,200.5,"+",8.2,color=GRAY,bold=True)
+    rail_pixel_icon(ax,152,193,binary,(WHITE,NAVY),3.35)
+    center(ax,142.5,215.5,"Image + mask",7.15)
+    arrow(ax,(186,201),(216,201),GRAY)
+    rail_pixel_icon(ax,228,191,heat,("#F5EEE4","#D9B993","#B9824F","#85553B"),3.75)
+    text(ax,256,200.5,r"$r_i$",8.4,color=GRAY,bold=True)
+    center(ax,246.5,215.5,"Phoenix response",7.15)
+    arrow(ax,(276,201),(307,201),GRAY)
+    narrow=np.array(((0,1,1,1,1,0),(1,2,2,2,2,1),(1,2,2,2,2,1),(0,1,1,1,1,0)))
+    whole=np.where(binary,2,1)
+    rail_pixel_icon(ax,324,193,narrow,(WHITE,"#D9C4A5",NAVY),3.35)
+    rail_pixel_icon(ax,386,193,whole,(WHITE,"#D9C4A5",NAVY),3.35)
+    center(ax,334,215.5,"Narrow",7.05)
+    center(ax,396,215.5,"Whole",7.05)
+
+
 def overview(demo):
-    fig,ax=paper(514.8,206)
+    fig,ax=paper(514.8,230)
     widths=(114,116,125,112)
     xs=(9,133,259,393)
     heads=("Retain detection","Sample endpoints","Estimate occupancy","Write the mask")
@@ -183,36 +246,20 @@ def overview(demo):
     center(ax,191,122,r"Rank by $|p_i-0.5|$",7.2,color=GRAY)
 
     center(ax,321.5,44,"Scalar ROH",7.7,bold=True)
-    for xc,lab in ((278,"14"),(299,"28"),(320,"24"),(341,"24"),(362,"1")):
-        box(ax,xc-8,58,16,18,MINT,LINE)
-        center(ax,xc,67,lab,7.8,bold=True)
+    for xc,lab,depth in ((278,"14",1),(299,"28",3),(320,"24",2),(341,"24",2),(362,"1",1)):
+        layer_card(ax,xc-8,58,16,18,lab,depth)
+    center(ax,299,82,r"$[z_i,z_i]$",6.8,color=GRAY)
     for a in (278,299,320,341):
         arrow(ax,(a+8.3,67),(a+12.6,67),TEAL)
-    center(ax,321.5,89,r"$\sigma[\mathrm{logit}(p_i^\epsilon)+f_\theta]$",8.3,color=TEAL)
-    edge(ax,(273,97),(370,97),LINE,.65)
-    center(ax,321.5,110,r"Predicted occupancy $\widehat q_i$",8.3,color=TEAL,bold=True)
+    center(ax,321.5,94,r"$\sigma[\mathrm{logit}(p_i^\epsilon)+f_\theta]$",8.3,color=TEAL)
+    edge(ax,(273,102),(370,102),LINE,.65)
+    center(ax,321.5,114,r"Predicted occupancy $\widehat q_i$",8.3,color=TEAL,bold=True)
 
     center(ax,449,44,"Independent endpoints",7.75,bold=True)
     tiles(ax,413,55,6,demo["after"],add=demo["addition"],drop=demo["removal"])
     center(ax,449,113,r"Add $k$ and remove $k$",8.2,bold=True)
 
-    box(ax,9,140,496,25,SAND,LINE)
-    text(ax,16,152.5,"SOURCE TRAINING",7.7,color=OCHRE,bold=True)
-    text(ax,104,152.5,"Author polygon",7.7)
-    arrow(ax,(161,152.5),(178,152.5),OCHRE)
-    text(ax,186,152.5,r"Fractional cell coverage $q_i$",7.7)
-    arrow(ax,(278,152.5),(293,152.5),OCHRE)
-    text(ax,299,152.5,"BCE fits ROH",7.7,bold=True)
-    arrow(ax,(350,140),(350,130),OCHRE,dash=True)
-
-    box(ax,9,173,496,24,PALE,LINE)
-    text(ax,16,185,"FROZEN REFINER CONTROL",7.5,bold=True,color=GRAY)
-    text(ax,143,185,"Image + mask",7.5)
-    arrow(ax,(213,185),(228,185),GRAY)
-    text(ax,235,185,"One Phoenix response",7.5)
-    arrow(ax,(313,185),(329,185),GRAY)
-    text(ax,335,185,"Vary support or write rule",7.5)
-    text(ax,497,185,"Worked example",7.1,color=GRAY,align="right")
+    graphic_rails(ax,demo['native'])
     return fig
 
 
@@ -220,7 +267,7 @@ def occupancy(demo):
     fig,ax=paper(247.9,323)
     box(ax,8,8,232,99,WHITE,LINE)
     box(ax,8,8,232,20,SKY,LINE)
-    title(ax,14,18,"a","Native support and endpoint sampling")
+    title(ax,14,18,"a","Sample native cells")
 
     gx,gy,step=16,36,6.7
     tiles(ax,gx,gy,step,demo["native"],out=demo["outside"],inner=demo["inside"])
@@ -249,7 +296,7 @@ def occupancy(demo):
 
     box(ax,8,117,232,91,WHITE,LINE)
     box(ax,8,117,232,20,SKY,LINE)
-    title(ax,14,127,"b","Native readout and target coverage")
+    title(ax,14,127,"b","Readout and target")
     box(ax,15,143,103,57,PALE,LINE)
     box(ax,129,143,104,57,SAND,LINE)
     center(ax,66.5,151,"Decoder readout",7.6,bold=True)
@@ -262,7 +309,7 @@ def occupancy(demo):
         ax.add_patch(Circle((x+dx,y+dy),1.65,facecolor=GRAY,edgecolor=WHITE,lw=.3,zorder=5))
     ax.add_patch(Circle(c,2.1,facecolor=BLUE,edgecolor=WHITE,lw=.4,zorder=6))
     text(ax,76,171,r"$c_i$",8,color=BLUE)
-    center(ax,66.5,193,"Bilinear at cell center",7.5)
+    center(ax,66.5,193,r"Bilinear at $c_i$",7.5)
     fraction=mini_coverage(ax,168,159,24)
     text(ax,199,170,r"$G$",7.8,color=TEAL)
     text(ax,152,168,r"$C_i$",7.8,color=GRAY)
@@ -270,11 +317,10 @@ def occupancy(demo):
 
     box(ax,8,218,232,97,WHITE,LINE)
     box(ax,8,218,232,20,SKY,LINE)
-    title(ax,14,228,"c","Residual occupancy head (ROH)")
+    title(ax,14,228,"c","Scalar ROH")
     marks=((18,40,r"$v_i$ (14)"),(72,58,r"$[z_i,z_i]$ (28)"),(143,23,"24"),(174,23,"24"),(205,24,"1"))
-    for x,w,label in marks:
-        box(ax,x,249,w,17,MINT if w<25 else PALE,LINE)
-        center(ax,x+w/2,257.5,label,7.75,bold=True)
+    for (x,w,label),depth in zip(marks,(1,3,2,2,1),strict=True):
+        layer_card(ax,x,249,w,17,label,depth)
     for prev,nxt in zip(marks,marks[1:]):
         arrow(ax,(prev[0]+prev[1]+1,257.5),(nxt[0]-1,257.5),TEAL)
     text(ax,17,279,r"$\mathrm{logit}(p_i^\epsilon)$",8.15)
@@ -290,7 +336,7 @@ def occupancy(demo):
     arrow(ax,(161,279),(176,279),TEAL)
     text(ax,181,279,r"$\widehat q_i$",9.6,color=TEAL,bold=True)
     edge(ax,(15,293),(233,293),LINE,.7)
-    text(ax,15,305,"Fractional BCE · 1,321 parameters",7.5,color=GRAY)
+    text(ax,15,305,"1,321 parameters",7.5,color=GRAY)
     text(ax,233,305,"Schematic",7.1,color=GRAY,align="right")
     return fig
 
