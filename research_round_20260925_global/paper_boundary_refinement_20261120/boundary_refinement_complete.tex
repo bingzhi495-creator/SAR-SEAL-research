@@ -24,7 +24,11 @@ Synthetic aperture radar, ship instance segmentation, boundary refinement, nativ
 \section{Introduction}
 \label{sec:introduction}
 
-In SAR imagery, a detection may localize the ship while its mask follows a nearby quay or cuts off part of the hull~\cite{hrsid,rsdd,gao2024}. A one-pixel shift across a \(w\)-pixel-wide rectangle leaves its area unchanged but reduces its intersection over union (IoU) with the original rectangle to \((w-1)/(w+1)\). For \(w=4\), the overlap is 0.60 (Fig.~\ref{fig:one-pixel}).
+Ship instance segmentation estimates the footprint of each vessel in a synthetic aperture radar (SAR) image. The footprint separates neighboring vessels and indicates their orientation and extent in image coordinates. SAR supports observations in darkness and through cloud cover and forms images by coherently processing radar echoes~\cite{moreira2013}. The apparent outline can be weak or interrupted even when a vessel is readily visible. Identifying the vessel and delineating its hull therefore place different demands on a mask predictor.
+
+A ship moored alongside a quay can be readily identifiable in the radar image even where the boundary between ship and shore is difficult to trace. Strong scattering from a part of the vessel may lie well inside its outline, while a return from the adjacent quay may be as bright as one from the vessel itself~\cite{gao2024,gldet}. These ambiguities matter after localization. A box can enclose the intended vessel while the mask extends along the quay on one side and cuts into the hull on the other. Enlarging the whole mask can recover a missing flank while adding more quay foreground. Narrowing it can remove the quay while discarding an already weak part of the hull.
+
+The elongated geometry of a ship makes the direction of a boundary error important. Consider a rectangular mask of width \(w\) native pixels. After a transverse shift of one pixel, its intersection with the original spans \(w-1\) pixels across the hull, and the union spans \(w+1\). The length cancels in the intersection over union (IoU). A vessel four pixels wide therefore has an IoU of 0.60 with its displaced copy, however long the rectangle is (Fig.~\ref{fig:one-pixel}). The two masks have identical area. A mask that consistently omits the outermost strip along one flank instead has an area deficit. A boundary editor must distinguish an error in the placement of foreground from an error in its amount.
 
 \begin{figure}[!b]
 \centering
@@ -33,14 +37,49 @@ In SAR imagery, a detection may localize the ship while its mask follows a nearb
 \label{fig:one-pixel}
 \end{figure}
 
-On HRSID, we examined 1,329 matched ships with reference area below 1,024 cells and aspect ratio at least two. Under reference-guided editing, expanding the detection box by two pixels lets 134 additional masks reach continuous IoU 0.90. Adding foreground only in the expanded strip recovers none of those cases. At least 91 require both additions and removals inside the original box.
+How a hull boundary meets the sampling grid also affects what a training label represents. An annotated polygon passes through continuous image coordinates, whereas a binary mask assigns a single label to each native cell. A polygon may cover a substantial part of a cell whose center falls just outside it. Conversely, a center just inside the outline can belong to a cell with little covered area. The detector response sampled at that center and the fraction of the cell covered by the polygon thus answer different questions. The response carries information about the detector's interpretation of the image. The covered fraction specifies how much that cell contributes to the intersection with the annotated hull if the editor includes it.
 
-NORA addresses these two editing decisions on a retained mask. The ranking determines which pixels change at the given addition and removal counts. The allocation determines how the same total edit count is divided between the two sides when the predicted area is wrong.
-\begin{enumerate}
-\item We train the ROH on fractional polygon coverage to estimate occupancy on the native grid. The same point features and endpoint construction apply to D-FINE-seg and RF-DETR~\cite{dfine,rfdetr}.
-\item We measure the effects of bounded re-pairing and independent ranking using common sites, scores and signed counts.
-\item We compare addition--removal splits at a fixed total count under two SSDD references. Frozen transfer and controlled pretrained-refiner writes characterize the effects of changing area, support and edit count.
-\end{enumerate}
+Point-based refinement concentrates computation near an uncertain contour~\cite{pointrend}. For a retained binary mask, the point score and the current label determine different parts of the edit. A point with a high foreground score can be added only if its cell currently lies outside the mask. Suppose an editor is allowed to add one cell outside the predicted hull and remove one inside. Pairing nearby cells limits the distance over which a single exchange redistributes foreground. Such a constraint is plausible for a local displacement. It can also force an otherwise useful addition to be coupled to a removal that cuts into the hull. Selecting the two endpoints independently permits corrections on different flanks while preserving total area. A separate decision arises when the entire mask is too narrow. In that case even well-placed exchanges leave the original area deficit intact.
+
+We introduce Native-Grid Occupancy Ranking and Allocation (NORA) to formulate these decisions on a retained instance. NORA retains the identity, class, box and confidence of the detection. It samples cells on both sides of the native mask contour and uses a residual occupancy head (ROH) to estimate their coverage from the decoder response, mask geometry and local image appearance. Source polygon coverage supervises the head. During inference, the cell scores and native binary labels supply the information needed to choose additions and removals.
+
+NORA fixes different quantities for placement and area. To examine placement, every writer adds \(k\) cells and removes \(k\) cells from the same candidate sets using the same scores. The writers differ in how they couple these choices. To examine area, every writer changes the same total number of cells, but the numbers added and removed may differ. Each extra addition in place of a removal increases the written area by two native cells. At equal signed counts, the mask area is fixed and the true intersection gain orders continuous IoU for a given native mask and reference. With a variable split, both intersection and union contribute to the decision. This distinction links the correction of a local displacement to endpoint ranking and the correction of an area error to the allocation of the write budget.
+
+\section{Related Work}
+\label{sec:related-work}
+
+\subsection{SAR ship masks and native-grid supervision}
+
+The region from which a mask is predicted matters for long ships. A horizontal region can contain much more water or shore than hull when the ship is oblique. SRNet uses an oriented proposal and aligns the features with the rotated region before mask prediction~\cite{rsdd}. DRSNet exchanges information between feature scales within rotated regions~\cite{drsnet}. This line of work improves the input geometry of the mask head. The transformation still has to deliver foreground labels to the image grid, where a small transverse displacement can alter the overlap of a narrow instance substantially.
+
+Other work improves the features that separate a hull from adjacent bright returns. Gao \emph{et al.} use dynamic key points to relate strong scatterers to the ship instance~\cite{gao2024}. GLDet combines global context with local gradient information~\cite{gldet}. More recent methods address different failures within the detector. ARANet aligns edge and semantic features and adapts the feature pyramid to scale~\cite{aranet}. DACF-Net uses geometry-aware region proposals and multiscale context~\cite{dacf}. GCIE-Net enhances spatial and channel features for mask generation~\cite{gcie}. DSR-Net introduces differential-field features and graph reasoning over candidate regions~\cite{dsr}. These approaches improve the representation, separation or shape of the instances that a detector returns. Their outputs can still be supplied to a boundary editor once the response and binary mask are on a common grid.
+
+We study a narrower decision at that interface. For a candidate already retained by the detector, the native mask specifies the sign of a possible edit. Its surrounding image and decoder response help estimate where the reference outline lies. NORA adapts the response using a fractional polygon target, so that a cell crossed by the annotation contributes its covered area during training. The output remains binary on the original image grid. The point target therefore specifies alignment with the annotation at the available sampling scale. Boundary IoU measures disagreement in a boundary band~\cite{boundaryiou}. We use it alongside polygon--cell IoU to distinguish changes along the narrow contour from changes in area overlap.
+
+\subsection{Local and whole-mask refinement}
+
+Adaptive mask refiners use different representations of where correction is needed. PointRend allocates point evaluations to uncertain locations as the mask is subdivided~\cite{pointrend}. Boundary Patch Refinement processes patches centered on the predicted boundary and merges their predictions~\cite{bpr}. RefineMask incorporates fine-grained features across successive mask stages~\cite{refinemask}. These designs improve the spatial detail available to the mask. Two refiners that process the same number of points or patches can nevertheless change different numbers of cells after their outputs are written to the image. As a result, a difference in final overlap may reflect both the scores that identify useful changes and the number of changes made.
+
+Boundary correction can also be represented directly. SegFix transfers interior labels to boundary locations along learned directions~\cite{segfix}. SharpContour moves contour vertices along their normals and then converts the refined shape to the mask representation~\cite{sharpcontour}. QuBER distinguishes boundary error types, including excess and missed foreground, and uses them to guide a decoder~\cite{quber}. These formulations make explicit which part of a prediction is corrected. NORA represents the two edit signs by disjoint native-cell lists derived from the current mask. For the placement comparison, a PointRend adaptation and the ROH can be evaluated on the same lists with the same counts per side. This isolates the positions chosen by the two scoring rules under the same writer.
+
+Prompted and generative refiners can revise a broader region. Mansour \emph{et al.} use SAR detector boxes to prompt a frozen SAM~2 model and obtain ship masks from box-supervised proposals~\cite{mansour2026}. That formulation starts from localization. SegRefiner refines an image-conditioned coarse mask by discrete denoising, while Phoenix learns refinement from adversarially perturbed masks~\cite{segrefiner,phoenix}. A model that can replace the entire mask also changes the set of writable cells and may change far more labels than a boundary editor. The stock replacement is thus informative about the whole refinement procedure. To examine the cause of a change, we also reuse one Phoenix response and vary its writable region and binary write rule. The two types of comparison distinguish the refiner output from the constraints imposed when that output is converted to a mask.
+
+\subsection{Posterior ranking and area-constrained exchanges}
+
+Area preservation has roots in subpixel land-cover mapping. Atkinson exchanges labels on a finer grid inside a coarse pixel to improve spatial attraction while retaining its estimated class proportions~\cite{atkinson}. Xu and Huang introduce earlier land-cover maps or sampled information into this exchange~\cite{xu}. The prescribed quantity in these studies is how much of a coarse pixel belongs to a class. For a retained ship instance, the initial foreground area comes from the detector and may itself be inaccurate. An exchange is useful for moving area between edges, and the same operation preserves any overall area deficit or excess.
+
+NORA uses spatial attraction as one matched-count score control. To study the separate effect of pairing, it shares the cell scores, sampled sites and realized addition and removal counts across three writers. The first keeps the initial distance-first pairs. The second re-pairs with the longest edge among the retained distance-first pairs as its cap. The third ranks the two lists independently. This sequence distinguishes the benefit of reassigning endpoints within a distance bound from the effect of allowing a write whose selected endpoints need not admit such a pairing. The bound concerns the maximum edge length. A bound on aggregate displacement would impose a different constraint.
+
+RankSEG derives overlap-oriented decisions by ranking label probabilities and choosing a foreground cardinality~\cite{rankseg}. RankSEG-RMA accelerates the IoU calculation by approximating a reciprocal moment, and later work extends the analysis to dependent spatial labels~\cite{rankrma,rankdep}. We reuse the overlap approximation for a finite menu of edits to one retained instance. Native labels outside the writable sites remain fixed. The total number of flips is given, so the decision is how many of those flips add foreground and how many remove it. For two alternative annotation references, NORA scores each proposed edit by the smaller estimated gain over a shared incumbent. Comparing equal and variable splits with the same objective separates the effect of changing mask area from changing the optimization criterion.
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Overview}
+
+Given a retained ship detection, an editor must find an eligible part of the contour, score cells in that region, and convert those scores into a binary write. NORA represents these steps separately (Fig.~\ref{fig:native-boundary}). Its inputs are the detector box \(B\), confidence \(s\), binary mask \(M\), and foreground response \(p_i\) at native cell \(i\). The binary mask defines which cells can be added and removed. A small residual head estimates how much of each sampled cell is covered by the target outline. Source polygons supply these supervision targets during training. At inference, the fitted head receives the detector outputs and local image features.
+
+A displaced edge can be corrected without changing the amount of foreground. In that setting, all writers make \(k\) additions and \(k\) removals, and differ only in how the two endpoint lists are used. An area deficit or excess calls for a different control. The variable-allocation writer keeps the total number of flips fixed and varies the signed split. The candidate identity, class, box and confidence remain fixed in both settings. A separate control holds a Phoenix XL1 response fixed while changing the support or write rule~\cite{phoenix}, extending the same analysis to a refiner that can replace a wider region.
 
 \begin{figure*}[!t]
 \centering
@@ -49,31 +88,10 @@ NORA addresses these two editing decisions on a retained mask. The ranking deter
 \label{fig:native-boundary}
 \end{figure*}
 
-\section{Related Work}
-\label{sec:related-work}
-
-\subsection{SAR ship masks and native-grid boundary supervision}
-HRSID and the polygon subset of SSDD provide individual ship outlines in public SAR images~\cite{hrsid,ssdd}. SRNet aligns elongated targets within rotated boxes, while DRSNet combines two feature scales within rotated regions~\cite{rsdd,drsnet}. Other ship models use scattering key points, representation alignment, geometry-aware proposals, contextual features or differential fields~\cite{gao2024,aranet,dacf,gcie,dsr}. GLDet uses local gradients in the detector~\cite{gldet}. We study the decision that remains once the detector has returned a box, score and binary mask. A polygon can cut through a native cell, so we use the covered fraction as the target even when the cell straddles the hull edge.
-
-\subsection{Area-preserving exchanges and mask decisions}
-Atkinson's subpixel mapping exchanges foreground and background labels to improve distance-weighted spatial attraction and preserve the class proportion~\cite{atkinson}. Xu and Huang extend this idea to spatial and temporal exchange in land-cover mapping~\cite{xu}. RankSEG derives selection rules for overlap using posterior ranking and foreground volume~\cite{rankseg}. RankSEG-DEP models dependence between spatially close labels~\cite{rankdep}. In a retained instance, the detector's mask determines which cells can enter or leave the foreground. Fixing the number selected on each side lets us ask how coupling the two choices changes overlap while using the same point scores. Fixing their sum alone addresses the separate problem of mask area.
-
-\subsection{Local and whole-mask refinement}
-PointRend resamples uncertain points during subdivision. SegFix transfers interior labels to boundary sites, and Boundary Patch Refinement uses patches of the image and coarse mask to predict local updates~\cite{pointrend,segfix,bpr}. RefineMask incorporates fine features at successive stages. SharpContour moves contour vertices, and QuBER supplies estimates of boundary false positives and false negatives to an RGB-D refinement decoder~\cite{refinemask,sharpcontour,quber}. For SAR ships, Mansour \emph{et al.} use boxes from a SAR-trained detector to prompt frozen SAM2~\cite{mansour2026}. Phoenix and SegRefiner both take a coarse mask as input~\cite{phoenix,segrefiner}. Their final masks combine a learned response with a decision about which pixels to change. Reusing one frozen response lets us vary the writable region, the number of edits or their signed split and observe the effect of each writing rule.
-
-\section{Method}
-\label{sec:method}
-
-\subsection{Overview}
-
-NORA starts from a frozen detection with binary mask \(M\), box \(B\), confidence \(s\), and foreground response \(p_i\) at native cell \(i\). The scalar ROH scores sampled cells on both sides of the contour. The matched-count writers select \(k\) additions and \(k\) removals from these sites. The edited mask retains the candidate identity, class, box and confidence (Fig.~\ref{fig:native-boundary}).
-
-The source labels determine the targets used to fit the score head. At transfer, the fitted head receives only the frozen detector outputs and image features. The Phoenix comparison reuses the native mask as its prompt and holds a separate refiner response fixed.
-
-To study mask area, we fix the total number of flips and vary the addition--removal split. We also vary the writable region and edit count for a fixed response from the pretrained Phoenix XL1 refiner~\cite{phoenix}.
-
 \subsection{Native-grid sampling and the scalar ROH}
 \label{sec:occupancy}
+
+The support and supervision address different aspects of the boundary problem. A narrow band gives the writer access to both sides of a misplaced edge, and a fractional target distinguishes cells that differ in their area of overlap even when their centers have the same binary label.
 
 All edits use the decoded grid \(\Omega=\{0,\ldots,W-1\}\times\{0,\ldots,H-1\}\), of width \(W\) and height \(H\). An integer location \(i=(x,y)\) indexes the cell \(C_i=[x,x+1)\times[y,y+1)\). The foreground is \(M=\{i\in\Omega:M_i=1\}\). In area calculations, \(M\) also denotes the union of those unit cells. The box \(B=[x_1,x_2)\times[y_1,y_2)\) is expressed in the same coordinate frame. A site lies inside it when its integer indices satisfy \(x_1\le x<x_2\) and \(y_1\le y<y_2\).
 
@@ -166,6 +184,8 @@ We use 200 updates, \(m=64\) pairs per update, a learning rate of 0.002, and wei
 
 \subsection{Endpoint Selection at Equal Signed Counts}
 \label{sec:selection}
+
+For a retained mask with the correct area, the available edits can be used to move a strip of foreground from one part of the contour to another. The comparison below holds the scores, candidate sites and signed counts constant so that differences can be attributed to endpoint selection.
 
 We denote the original, unedited mask by \(N\). The three edited masks are \(F\) for distance-first pairing, \(L\) for bounded re-pairing, and \(I\) for independent selection. We take the realized count from \(F\) and pass that count to both other writers. This fixes the number of changed cells and the final mask area for every candidate.
 
@@ -283,6 +303,8 @@ With two additions and two removals, the illustrated mask remains at 15 cells. W
 \subsection{Support and signed allocation for a frozen general refiner}
 \label{sec:phoenix}
 
+The preceding writers use responses estimated at sampled cells. A whole-mask refiner supplies a response over a larger region. Its effect can depend on where that response is allowed to act and on how many labels it changes. We vary those two factors while holding the refiner output fixed.
+
 Phoenix XL1~\cite{phoenix} receives the decoded image and the original binary mask. We take the author's selected hypothesis after five refinement iterations and keep its native foreground probabilities \(r_i\) fixed. The experiment varies where that response can write and how it is converted to binary edits. The writable support \(\mathcal W\) is either the sampled endpoints \(S_+\cup S_-\) or the full decoded grid \(\Omega\). The threshold writer uses the author's binary decision, including the decision at \(r_i=0.5\), within \(\mathcal W\). It leaves every other cell unchanged.
 
 The count writer makes \(2k_{\mathrm{att}}\) flips. Here \(k_{\mathrm{att}}\) is the number of accepted dynamic-attraction exchanges~\cite{atkinson}, separate from the learned distance-first count \(k\). After \(\tau\) exchanges the foreground is \(M_\tau\). The attraction of cell \(i\) is
@@ -316,6 +338,8 @@ For an evaluation statistic \(Y\), the count effect on whole support is \(Y_{\ma
 
 \section{Experimental Protocol}
 \label{sec:protocol}
+
+Matched-support comparisons test whether cell scores and selection rules change the quality of a retained contour. Fixed-total comparisons show the consequence of changing the signed split. Transfer evaluations examine whether these patterns recur under different imagery and reference conventions. Detection-level scores use the complete candidate stream, while fixed matches let us trace local geometric changes.
 
 \subsection{Datasets and data partitions}
 
@@ -402,6 +426,8 @@ The strict fixed-match HRSID RF-DETR counts use continuous IoU \(>0.90\). D-FINE
 \section{Quantitative Results}
 \label{sec:quantitative}
 
+The first comparisons ask whether a fixed set of detections benefits from changing the locations of a fixed number of writes. We then examine the two parts of that decision separately, the cap on admissible pair lengths and the score used to select endpoints. Finally, fixed-total comparisons address mask-area errors by varying the signed split. This order keeps the evidence about placement separate from evidence about changing the size of the mask.
+
 \begin{table*}[t]
 \centering
 \caption{Independent selection versus distance pairing at matched signed counts. Continuous IoU uses paired 95\% group intervals. The Gaofen-3 fits share target scenes.}
@@ -434,6 +460,8 @@ PSeg-SSDD official & D-FINE E24 & 232 & 293 & \(+0.081\) & \(+0.106\ [0.055,0.15
 At equal signed counts, independent selection gives its largest AP gains on HRSID (Table~\ref{tab:primary-quant}). The gains are smaller on the transferred polygon cohorts. Results under the SAR-SSP raster references appear in Table~\ref{tab:sar-ssp}.
 
 \subsection{Source benchmark and repeated detector fits}
+
+A reference-guided coverage check on HRSID DEV705 asks how much a larger box could help before a learned score is considered. We reuse the original D-FINE E24 matches for 1,329 small, elongated polygon instances with reference area below 1,024 cells and aspect ratio at least two. Among the cases blocked by the original box, 134 can exceed continuous IoU 0.90 when the box is expanded by two pixels. Adding foreground only in the expanded strip reaches none of those cases. At least 91 require both additions and removals inside the original box. These counts describe reachability given the reference. They give a reason to examine both sides of the existing contour even when a wider region is available.
 \begin{table*}[t]
 \centering
 \caption{Frozen D-FINE E24 on HRSID DEV705. COCO metrics use all 70,500 candidates. Continuous IoU uses 1,447 eligible matches and equal source-group weights.}
@@ -792,7 +820,7 @@ A reference-assisted assignment quantifies how many RF-DETR misses the D-FINE ca
 
 \section{Qualitative Analysis}
 \label{sec:qualitative}
-The examples retain the original candidate-to-reference matches. We show gains and losses near their respective medians to trace each change in overlap to the cells that were edited.
+The quantitative comparisons show when a writer improves overlap on average. The examples show what changes in a particular mask. Each comparison retains the original candidate-to-reference match. We select gains and losses near their respective medians and inspect the cells responsible for the difference. Under fixed signed counts, an increase in covered hull area must come from the choice of sites. When the split varies, additional foreground can recover part of the hull and also cover nearby background.
 
 \subsection{Independent ranking under matched signed counts}
 
@@ -873,7 +901,7 @@ In the spatial panel, bins lie in the image-axis-aligned enclosing box of each r
 
 \section{Ablation Studies}
 \label{sec:ablation}
-We first examine point supervision and features, then separate the choices of where and how often to edit. The comparisons within each detector stream retain the candidates and confidence scores. Those testing endpoint selection hold the realized count fixed. The support and count experiment deliberately varies these constraints while sharing the pretrained responses.
+The ablations distinguish the roles of scoring, placement and edit count. We first test whether fractional supervision and endpoint features produce useful scores for a shared set of sites. We then vary which side can be ranked independently with the signed counts fixed. The frozen-refiner comparisons vary the writable region and count while sharing the pretrained response. Comparisons within a detector stream retain the candidates and confidence scores.
 
 \subsection{ROH inputs, supervision, and capacity}
 
@@ -1003,6 +1031,8 @@ On narrow PSeg support, the exact-count rule gains 0.514 AP and 0.422 IoU points
 At the same 147,540 narrow-support flips, allocating half to additions and half to removals raises PSeg Phoenix AP from 16.380 to 18.222 and continuous IoU by 1.151 points (\([0.701,1.594]\)). The two masks differ for 283 of 293 fixed matches across 137 of 143 decoded-image groups. Missed area falls by 1.428 points of reference area and false-positive area rises by 0.340 points. The balanced writer trails matched static attraction by 0.195 AP and 0.076 IoU points (\([-0.246,0.105]\)). It also scores 0.109 AP points below the matched learned head, with a 0.186-point IoU advantage (\([0.036,0.339]\)). After excluding ten exact historical overlaps, balance gains 2.093 AP and 1.232 IoU points over free allocation (\([0.762,1.682]\)). Its differences relative to the two matched ranking methods retain their directions.
 
 \section{Discussion and Reproducibility}
+
+Existing SAR segmentation systems improve the proposal or the features from which the mask is predicted. The results here concern a later decision on that existing prediction. A useful write requires accessible boundary cells, scores that agree with the reference, and a signed count suited to the mask error. These conditions help delimit the range of the transfer results.
 \subsection{Transfer and Reference Dependence}
 The AP effect of location selection varies across cohorts and references. Both Gaofen-3 detector fits gain AP, while the changes on PSeg-SSDD and SAR-SSP are small. On the same 232 SSDD images, the area-preserving natural-count writer has opposite AP effects under the PSeg and SPSD references. Most of the resulting IoU shift comes from edits at cells the two outlines label differently (Fig.~\ref{fig:reference-disagreement}).
 
@@ -1014,6 +1044,8 @@ On SAR-SSP, only one of the 47 unmatched hulls can cross mask IoU 0.50 under ref
 The stock SegRefiner tests distinguish deletion locations from deletion count. With the original additions and the same number of deletions, replacing the deleted cells by reference-guided choices gains 5.594 and 3.512 IoU points on the evaluated Instance-RSDD and PSeg-SSDD matches, respectively. Allowing fewer deletions adds 4.256 and 4.189 points. We also tried a rule without reference labels that caps deletions at the smaller of the stock addition and deletion counts. Uniform selection under this cap gains 0.907 and 0.878 AP points over stock. The addition-only and local ROH writers still score higher on both cohorts. A suitable count can recover part of the loss while leaving substantial error in the choice of cells.
 
 \subsection{Topology and Physical Interpretation}
+
+Contour regularity is a separate property from area and overlap. Pairing constrains endpoint distance, while the balanced split fixes the number of foreground cells. SharpContour parameterizes the outline directly, and DSR-Net models structural relations within the detector~\cite{sharpcontour,dsr}. The present writer isolates the effects of position and count. Its topology is assessed from the resulting masks.
 An area-preserving edit can split a connected component, open a hole or extend the mask toward a neighboring vessel. Natural-count selection increased the number of holes in 1,544 of 10,466 edited PSeg masks. The same number of edits ranked by the native response increased holes in 519 masks. Yet 24 of the 26 Instance-RSDD hulls harmed by stock SegRefiner deletion kept the same number of components and holes. Those counts can stay constant when a narrow edge or an end is misplaced. At the small-size limit, all 107 nonempty candidate masks in the Schwegmann set~\cite{schwegmann} fell below the 32-cell area floor.
 
 The physical-length comparison covers fewer ships. Of the 142 NovaSAR AIS chips~\cite{nastar}, 34 yielded common mask spans and 17 admitted positive-budget edits. Equal-count independent selection changed absolute length error by \(+0.204\)~m (\([-0.110,0.581]\)~m). On 25 common Sentinel-1A cases from the Gulf data~\cite{gulf}, the nominal mean absolute error changed by \(-0.168\)~m (\([-1.523,1.692]\)~m). Using AIS headings in a 23-case sensitivity analysis still left a mean geolocated length excess of 71.27~m. With these coverage and uncertainty limits, the mask-overlap gains establish little about physical length accuracy.
@@ -1024,7 +1056,7 @@ The D-FINE CUDA detector and postprocessor took 11.74\,s for 232 PSeg images. Wi
 Frozen Phoenix took 1,404.48\,s on PSeg with four two-thread CPU workers, five iterations and 11,054 prompts. Stock SegRefiner-LR took 454.18\,s for 74 Instance-RSDD images on an RTX 3090 Ti and 13,420.42\,s on PSeg under shared workstation load. Independent replay reproduced 3,434 table entries for the HRSID official and Instance-RSDD 740 allocations, and 1,470 for the first RF-DETR pipeline on the 74-chip reserve.
 
 \section{Conclusion}
-NORA tests where to edit a retained detection and how to divide an edit allowance. At equal signed counts, independent selection improves AP and continuous IoU over distance-first pairing on HRSID and the evaluated Instance-RSDD subsets. On the shared 74-chip reserve, the gain over bounded re-pairing holds for both frozen pipelines. Bounded re-pairing improves one-pixel Boundary IoU over distance-first pairing, while the additional one-pixel effect of independent selection remains uncertain. The small AP effects on PSeg-SSDD and SAR-SSP limit the scope of this improvement.
+A retained SAR ship mask can have the right area at the wrong location or omit part of the hull entirely. NORA addresses those errors with native-grid occupancy scores and separate decisions about the locations and signs of the writes. At equal signed counts, independent selection improves AP and continuous IoU over distance-first pairing on HRSID and the evaluated Instance-RSDD subsets. On the shared 74-chip reserve, the gain over bounded re-pairing holds for both frozen pipelines. Bounded re-pairing improves one-pixel Boundary IoU over distance-first pairing, while the additional one-pixel effect of independent selection remains uncertain. The small AP effects on PSeg-SSDD and SAR-SSP limit the scope of this improvement.
 
 Allowing the split to vary improves AP and fixed-match IoU under both SSDD annotation releases. On frozen transfer to SAR-SSP, the split recovers missed area at the cost of more false foreground, and the paired interval for overlap spans zero. These results make proposal coverage and reference choice central to deciding when local mask edits are useful.
 
@@ -1035,43 +1067,41 @@ The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{project repos
 OpenAI Codex assisted with the English text in the abstract and Sections I--IX, figure captions, schematic layouts, vector-figure scripts and experimental analysis code. The method schematics use illustrative cell values. The result figures use observed outputs, with spatial pooling identified in the captions where applicable.
 
 
-\begin{thebibliography}{34}
-\bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, \href{https://doi.org/10.1109/ACCESS.2020.3005861}{2020}.
-\bibitem{rsdd} X. Yang, Q. Zhang, Q. Dong, Z. Han, X. Luo, and D. Wei, ``Ship instance segmentation based on rotated bounding boxes for SAR images,'' \emph{Remote Sens.}, vol. 15, no. 5, Art. no. 1324, \href{https://doi.org/10.3390/rs15051324}{2023}.
+\begin{thebibliography}{35}
+\bibitem{moreira2013} A. Moreira, P. Prats-Iraola, M. Younis, G. Krieger, I. Hajnsek, and K. P. Papathanassiou, ``A tutorial on synthetic aperture radar,'' \emph{IEEE Geosci. Remote Sens. Mag.}, vol. 1, no. 1, pp. 6--43, 2013. \href{https://doi.org/10.1109/MGRS.2013.2248301}{10.1109/MGRS.2013.2248301}.
 \bibitem{gao2024} F. Gao, X. Han, J. Wang, J. Sun, A. Hussain, and H. Zhou, ``SAR ship instance segmentation with dynamic key points information enhancement,'' \emph{IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.}, vol. 17, pp. 11365--11385, 2024. \href{https://doi.org/10.1109/JSTARS.2024.3383779}{10.1109/JSTARS.2024.3383779}.
-\bibitem{dfine} A. Saakyan and D. Solntsev, ``D-FINE-seg: Object detection and instance segmentation framework with multi-backend deployment,'' \href{https://arxiv.org/abs/2602.23043}{arXiv:2602.23043}, 2026.
-\bibitem{rfdetr} I. Robinson, P. Robicheaux, M. Popov, D. Ramanan, and N. Peri, ``RF-DETR: Neural architecture search for real-time detection transformers,'' in \emph{Proc. Int. Conf. Learn. Represent. (ICLR)}, 2026.
-\bibitem{ssdd} T. Zhang \emph{et al.}, ``SAR Ship Detection Dataset (SSDD): Official release and comprehensive data analysis,'' \emph{Remote Sens.}, vol. 13, no. 18, Art. no. 3690, 2021. \href{https://doi.org/10.3390/rs13183690}{10.3390/rs13183690}.
-\bibitem{drsnet} Q. Zhang and Z. Han, ``DRSNet: Rotated-ROI ship segmentation for SAR images based on dual-scale cross attention,'' \emph{IEEE Geosci. Remote Sens. Lett.}, vol. 21, pp. 1--5, 2024. \href{https://doi.org/10.1109/LGRS.2024.3420251}{10.1109/LGRS.2024.3420251}.
 \bibitem{gldet} H. Chang, X. Fu, P. Lang, K. Guo, J. Dong, and S. Chang, ``GLDet: Real-time SAR ship detector based on global semantic information enhancement and local gradient information mining,'' \emph{IEEE Trans. Geosci. Remote Sens.}, vol. 63, Art. no. 5209020, 2025. \href{https://doi.org/10.1109/TGRS.2025.3559551}{10.1109/TGRS.2025.3559551}.
+\bibitem{pointrend} A. Kirillov, Y. Wu, K. He, and R. Girshick, ``PointRend: Image segmentation as rendering,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2020, pp. 9799--9808.
+\bibitem{rsdd} X. Yang, Q. Zhang, Q. Dong, Z. Han, X. Luo, and D. Wei, ``Ship instance segmentation based on rotated bounding boxes for SAR images,'' \emph{Remote Sens.}, vol. 15, no. 5, Art. no. 1324, \href{https://doi.org/10.3390/rs15051324}{2023}.
+\bibitem{drsnet} Q. Zhang and Z. Han, ``DRSNet: Rotated-ROI ship segmentation for SAR images based on dual-scale cross attention,'' \emph{IEEE Geosci. Remote Sens. Lett.}, vol. 21, pp. 1--5, 2024. \href{https://doi.org/10.1109/LGRS.2024.3420251}{10.1109/LGRS.2024.3420251}.
 \bibitem{aranet} S. Chang, P. Lang, H. Chang, C. Zhao, J. Yang, J. Dong, and X. Fu, ``ARANet: A unified representation alignment framework for SAR ship instance segmentation,'' \emph{IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.}, vol. 19, pp. 28679--28694, 2026. \href{https://doi.org/10.1109/JSTARS.2026.3720719}{10.1109/JSTARS.2026.3720719}.
-\bibitem{gcie} W. Luo, J. Lan, Y. Zeng, and W. Xiong, ``GCIE-Net: A global and channel information-enhanced network for ship instance segmentation in SAR images,'' \emph{Remote Sens.}, vol. 18, no. 15, Art. no. 2512, 2026. \href{https://doi.org/10.3390/rs18152512}{10.3390/rs18152512}.
 \bibitem{dacf} S. Yang, X. Zhang, W. An, Z. Li, and N. Chen, ``DACF-Net: A dynamic attention and context fusion network with geometry-aware multi-scale refinement for SAR ship instance segmentation,'' \emph{Int. J. Digit. Earth}, vol. 19, no. 2, Art. no. 2696657, 2026. \href{https://doi.org/10.1080/17538947.2026.2696657}{10.1080/17538947.2026.2696657}.
+\bibitem{gcie} W. Luo, J. Lan, Y. Zeng, and W. Xiong, ``GCIE-Net: A global and channel information-enhanced network for ship instance segmentation in SAR images,'' \emph{Remote Sens.}, vol. 18, no. 15, Art. no. 2512, 2026. \href{https://doi.org/10.3390/rs18152512}{10.3390/rs18152512}.
 \bibitem{dsr} S.-W. He, W. Xiong, and L.-B. Yao, ``SAR ship instance segmentation method in complex scenes jointly driven by differential physical fields and structured graph reasoning,'' \emph{Acta Electronica Sinica}, pp. 1--11, 2026. \href{https://doi.org/10.12263/DZXB.20260699}{10.12263/DZXB.20260699}.
+\bibitem{boundaryiou} B. Cheng, R. Girshick, P. Doll{\'a}r, A. C. Berg, and A. Kirillov, ``Boundary IoU: Improving object-centric image segmentation evaluation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021. \href{https://arxiv.org/abs/2103.16562}{arXiv:2103.16562}.
+\bibitem{bpr} C. Tang, H. Chen, X. Li, J. Li, Z. Zhang, and X. Hu, ``Look closer to segment better: Boundary patch refinement for instance segmentation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021, pp. 13926--13935.
+\bibitem{refinemask} G. Zhang, X. Lu, J. Tan, J. Li, Z. Zhang, Q. Li, and X. Hu, ``RefineMask: Towards high-quality instance segmentation with fine-grained features,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021, pp. 6861--6869.
+\bibitem{segfix} Y. Yuan, J. Xie, X. Chen, and J. Wang, ``SegFix: Model-agnostic boundary refinement for segmentation,'' in \emph{Proc. Eur. Conf. Comput. Vis. (ECCV)}, 2020, pp. 489--506.
+\bibitem{sharpcontour} C. Zhu, X. Zhang, Y. Li, L. Qiu, K. Han, and X. Han, ``SharpContour: A contour-based boundary refinement approach for efficient and accurate instance segmentation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2022, pp. 4392--4401.
+\bibitem{quber} S. Back, S. Lee, K. Kim, J. Lee, S. Shin, J. Maeng, and K. Lee, ``High-quality unknown object instance segmentation via quadruple boundary error refinement,'' in \emph{Proc. IEEE Int. Conf. Robot. Autom. (ICRA)}, 2025, pp. 13574--13581, doi: 10.1109/ICRA55743.2025.11127393.
+\bibitem{mansour2026} I. Mansour, F. Sica, and M. Schmitt, ``Prompting foundation models for zero-shot ship instance segmentation in SAR imagery,'' \emph{arXiv:2604.17920}, \href{https://arxiv.org/abs/2604.17920}{2026}.
+\bibitem{segrefiner} M. Wang, H. Ding, J. H. Liew, J. Liu, Y. Zhao, and Y. Wei, ``SegRefiner: Towards model-agnostic segmentation refinement with discrete diffusion process,'' in \emph{Adv. Neural Inf. Process. Syst.}, vol. 36, 2023. \href{https://proceedings.neurips.cc/paper_files/paper/2023/hash/fc0cc55dca3d791c4a0bb2d8ddeefe4f-Abstract-Conference.html}{Proceedings}.
+\bibitem{phoenix} B. Kim and S. J. Hwang, ``Learning from adversity: Semantic-aware mask refinement through adversarial perturbation,'' in \emph{Proc. Eur. Conf. Comput. Vis. (ECCV)}, 2026, pp. 75--92. \href{https://doi.org/10.1007/978-3-032-37520-9_5}{10.1007/978-3-032-37520-9\_5}.
 \bibitem{atkinson} P. M. Atkinson, ``Sub-pixel target mapping from soft-classified, remotely sensed imagery,'' \emph{Photogramm. Eng. Remote Sens.}, vol. 71, no. 7, pp. 839--846, 2005. \href{https://doi.org/10.14358/PERS.71.7.839}{10.14358/PERS.71.7.839}.
 \bibitem{xu} Y. Xu and B. Huang, ``A spatio-temporal pixel-swapping algorithm for subpixel land cover mapping,'' \emph{IEEE Geosci. Remote Sens. Lett.}, vol. 11, no. 2, pp. 474--478, 2014. \href{https://doi.org/10.1109/LGRS.2013.2268153}{10.1109/LGRS.2013.2268153}.
 \bibitem{rankseg} B. Dai and C. Li, ``RankSEG: A consistent ranking-based framework for segmentation,'' \emph{J. Mach. Learn. Res.}, vol. 24, no. 224, pp. 1--50, \href{https://www.jmlr.org/papers/v24/22-0712.html}{2023}.
-\bibitem{pointrend} A. Kirillov, Y. Wu, K. He, and R. Girshick, ``PointRend: Image segmentation as rendering,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2020, pp. 9799--9808.
-\bibitem{segfix} Y. Yuan, J. Xie, X. Chen, and J. Wang, ``SegFix: Model-agnostic boundary refinement for segmentation,'' in \emph{Proc. Eur. Conf. Comput. Vis. (ECCV)}, 2020, pp. 489--506.
-\bibitem{bpr} C. Tang, H. Chen, X. Li, J. Li, Z. Zhang, and X. Hu, ``Look closer to segment better: Boundary patch refinement for instance segmentation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021, pp. 13926--13935.
-\bibitem{refinemask} G. Zhang, X. Lu, J. Tan, J. Li, Z. Zhang, Q. Li, and X. Hu, ``RefineMask: Towards high-quality instance segmentation with fine-grained features,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021, pp. 6861--6869.
-\bibitem{sharpcontour} C. Zhu, X. Zhang, Y. Li, L. Qiu, K. Han, and X. Han, ``SharpContour: A contour-based boundary refinement approach for efficient and accurate instance segmentation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2022, pp. 4392--4401.
-\bibitem{quber} S. Back, S. Lee, K. Kim, J. Lee, S. Shin, J. Maeng, and K. Lee, ``High-quality unknown object instance segmentation via quadruple boundary error refinement,'' in \emph{Proc. IEEE Int. Conf. Robot. Autom. (ICRA)}, 2025, pp. 13574--13581, doi: 10.1109/ICRA55743.2025.11127393.
-\bibitem{phoenix} B. Kim and S. J. Hwang, ``Learning from adversity: Semantic-aware mask refinement through adversarial perturbation,'' in \emph{Proc. Eur. Conf. Comput. Vis. (ECCV)}, 2026, pp. 75--92. \href{https://doi.org/10.1007/978-3-032-37520-9_5}{10.1007/978-3-032-37520-9\_5}.
-\bibitem{segrefiner} M. Wang, H. Ding, J. H. Liew, J. Liu, Y. Zhao, and Y. Wei, ``SegRefiner: Towards model-agnostic segmentation refinement with discrete diffusion process,'' in \emph{Adv. Neural Inf. Process. Syst.}, vol. 36, 2023. \href{https://proceedings.neurips.cc/paper_files/paper/2023/hash/fc0cc55dca3d791c4a0bb2d8ddeefe4f-Abstract-Conference.html}{Proceedings}.
-
+\bibitem{rankrma} Z. Wang and B. Dai, ``RankSEG-RMA: An efficient segmentation algorithm via reciprocal moment approximation,'' in \emph{Adv. Neural Inf. Process. Syst.}, vol. 38, 2025. \href{https://doi.org/10.52202/085713-5452}{10.52202/085713-5452}.
+\bibitem{rankdep} Z. Wang and B. Dai, ``On the relaxation of conditional independence assumption for image segmentation,'' \href{https://arxiv.org/abs/2609.38930}{arXiv:2609.38930}, 2026.
+\bibitem{hrsid} S. Wei, X. Zeng, Q. Qu, M. Wang, H. Su, and J. Shi, ``HRSID: A high-resolution SAR images dataset for ship detection and instance segmentation,'' \emph{IEEE Access}, vol. 8, pp. 120234--120254, \href{https://doi.org/10.1109/ACCESS.2020.3005861}{2020}.
+\bibitem{ssdd} T. Zhang \emph{et al.}, ``SAR Ship Detection Dataset (SSDD): Official release and comprehensive data analysis,'' \emph{Remote Sens.}, vol. 13, no. 18, Art. no. 3690, 2021. \href{https://doi.org/10.3390/rs13183690}{10.3390/rs13183690}.
+\bibitem{slgsea} R. Deng, T. Zhang, G. Gao, L. Zhang, S. Wei, and X. Zhang, ``SLGSea: Spatialized language guidance with scattering-aware query construction for ship--sea--land panoptic segmentation in SAR imagery,'' project repository and dataset release. \href{https://github.com/deng1218/SLGSea}{Code and data}.
+\bibitem{dfine} A. Saakyan and D. Solntsev, ``D-FINE-seg: Object detection and instance segmentation framework with multi-backend deployment,'' \href{https://arxiv.org/abs/2602.23043}{arXiv:2602.23043}, 2026.
+\bibitem{rfdetr} I. Robinson, P. Robicheaux, M. Popov, D. Ramanan, and N. Peri, ``RF-DETR: Neural architecture search for real-time detection transformers,'' in \emph{Proc. Int. Conf. Learn. Represent. (ICLR)}, 2026.
 \bibitem{rsddsar} C. Xu \emph{et al.}, ``RSDD-SAR: Rotated ship detection dataset in SAR images,'' \emph{J. Radars}, vol. 11, no. 4, pp. 581--599, 2022. \href{https://doi.org/10.12000/JR22007}{10.12000/JR22007}.
 \bibitem{ueikap} A. Mazzeo \emph{et al.}, ``UEIKAP dataset,'' Zenodo, ver. 1.0, \href{https://doi.org/10.5281/zenodo.18391027}{2026}.
+\bibitem{airsarship} X. Sun, Z. Wang, Y. Sun, W. Diao, Y. Zhang, and K. Fu, ``AIR-SARShip-1.0: High-resolution SAR ship detection dataset,'' \emph{J. Radars}, vol. 8, no. 6, pp. 852--862, 2019. \href{https://doi.org/10.12000/JR19097}{10.12000/JR19097}.
 \bibitem{schwegmann} C. P. Schwegmann, W. Kleynhans, B. P. Salmon, L. W. Mdakane, and R. G. V. Meyer, ``Very deep learning for ship discrimination in Synthetic Aperture Radar imagery,'' in \emph{Proc. IEEE Int. Geosci. Remote Sens. Symp. (IGARSS)}, 2016, pp. 104--107. \href{https://doi.org/10.1109/IGARSS.2016.7729017}{10.1109/IGARSS.2016.7729017}.
 \bibitem{nastar} B. Hosseiny, K. Kamirul, O. Pappas, and A. Achim, ``NASTaR: A NovaSAR-based automated ship target recognition dataset,'' \emph{IEEE Geosci. Remote Sens. Lett.}, vol. 23, Art. no. 1502605, 2026. \href{https://doi.org/10.1109/LGRS.2026.3679941}{10.1109/LGRS.2026.3679941}.
-
 \bibitem{gulf} M. Shaya, ``SAR Ship Gulf: Sentinel-1 GRD ship chips with AIS labels,'' Zenodo, ver. 1, 2026. \href{https://doi.org/10.5281/zenodo.21000650}{10.5281/zenodo.21000650}.
-
-\bibitem{slgsea} R. Deng, T. Zhang, G. Gao, L. Zhang, S. Wei, and X. Zhang, ``SLGSea: Spatialized language guidance with scattering-aware query construction for ship--sea--land panoptic segmentation in SAR imagery,'' project repository and dataset release. \href{https://github.com/deng1218/SLGSea}{Code and data}.
-\bibitem{mansour2026} I. Mansour, F. Sica, and M. Schmitt, ``Prompting foundation models for zero-shot ship instance segmentation in SAR imagery,'' \emph{arXiv:2604.17920}, \href{https://arxiv.org/abs/2604.17920}{2026}.
-\bibitem{airsarship} X. Sun, Z. Wang, Y. Sun, W. Diao, Y. Zhang, and K. Fu, ``AIR-SARShip-1.0: High-resolution SAR ship detection dataset,'' \emph{J. Radars}, vol. 8, no. 6, pp. 852--862, 2019. \href{https://doi.org/10.12000/JR19097}{10.12000/JR19097}.
-\bibitem{rankrma} Z. Wang and B. Dai, RankSEG-RMA: An efficient segmentation algorithm via reciprocal moment approximation, in \emph{Adv. Neural Inf. Process. Syst.}, vol. 38, 2025. \href{https://doi.org/10.52202/085713-5452}{10.52202/085713-5452}.
-\bibitem{rankdep} Z. Wang and B. Dai, ``On the relaxation of conditional independence assumption for image segmentation,'' \href{https://arxiv.org/abs/2609.38930}{arXiv:2609.38930}, 2026.
-\bibitem{boundaryiou} B. Cheng, R. Girshick, P. Doll{\'a}r, A. C. Berg, and A. Kirillov, ``Boundary IoU: Improving object-centric image segmentation evaluation,'' in \emph{Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR)}, 2021. \href{https://arxiv.org/abs/2103.16562}{arXiv:2103.16562}.
 \end{thebibliography}
 \end{document}
