@@ -4,6 +4,7 @@
 
 残差占据率头（Residual Occupancy Head，ROH）在正文使用简称。单输出和双参考版本分别写为 scalar ROH 和 dual-reference ROH。
 
+- [论文与图件续作交接](NORA_CONTINUATION_20261126.md)
 - [精简正文 PDF](boundary_refinement_concise.pdf) · [补充材料 PDF](boundary_refinement_supplement.pdf) · [正文 LaTeX](boundary_refinement_concise.tex) · [补充材料 LaTeX](boundary_refinement_supplement.tex)
 - [扩展审阅稿 PDF](boundary_refinement_complete.pdf) · [扩展稿 LaTeX](boundary_refinement_complete.tex)
 - [十张方法图和编辑入口](figures/method_atlas_20261126/README.md) · [结果图件](figures/journal_20261126/README.md) · [方法图构图说明](style_review/NORA_METHOD_FIGURE_STORYBOARD_20261126.md) · [GLDet 全文与全图表研读](style_review/GLDET_FULL_STYLE_REVIEW_20261126.md)

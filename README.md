@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- [现行 NORA 论文与图件续作交接](research_round_20260925_global/paper_boundary_refinement_20261120/NORA_CONTINUATION_20261126.md)。汇总三条问题与方法、主稿和补材、实测结论、图源、研究历史及后续验收。
+
 - [NORA 精简正文与独立补充材料](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。正文至结论 12 页，含参考文献 13 页。保留核心方法、等预算对照及真实案例的证据线，补充材料保留扩展稿的 15 张数据表及完整复现细节。引言与相关工作围绕三个技术问题对应展开，方法和图件统一采用 GT 多边形、轮廓或掩膜等对象名称。
 
 - [NORA 整体架构与 ROH 网络层图](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。新版图 3 展示完整接口，图 6 展开逐端点打分头。十页方法图册可逐元素编辑。

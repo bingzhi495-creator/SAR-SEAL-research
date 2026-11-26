@@ -4,15 +4,17 @@
 
 ## 从这里接续
 
+第 1 步阅读 [现行 NORA 论文与图件续作交接](paper_boundary_refinement_20261120/NORA_CONTINUATION_20261126.md)。该页锁定当前稿件、图件、证据范围和续作要求。
+
 | 内容 | 入口 |
 | --- | --- |
-| 现行正文和可编辑源 | [10 页 IEEE 双栏英文稿](paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement_main.tex) |
-| 完整审阅材料 | [24 页扩展稿](paper_boundary_refinement_20261120/boundary_refinement.pdf) · [扩展稿源码](paper_boundary_refinement_20261120/boundary_refinement.tex) · [图源与重建](paper_boundary_refinement_20261120/figures/README.md) |
+| 现行正文和可编辑源 | [精简正文 PDF](paper_boundary_refinement_20261120/boundary_refinement_concise.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement_concise.tex) |
+| 完整审阅材料 | [独立补充材料](paper_boundary_refinement_20261120/boundary_refinement_supplement.pdf) · [LaTeX](paper_boundary_refinement_20261120/boundary_refinement_supplement.tex) · [现行图件入口](paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md) |
 | 结论、失败条件和每项实测入口 | [主张与证据索引](TGRS_MANUSCRIPT_EVIDENCE_20261123.md) · [历史证据矩阵](SAR_SHIP_MASK_TGRS_EVIDENCE_MATRIX_20261112.md) · [投稿预审](SAR_SHIP_TGRS_SUBMISSION_REVIEW_20261120.md) |
 | 全部阶段的研究日志及复现 | [仓库 README](../README.md) · [逐次 Git 提交](https://github.com/bingzhi495-creator/SAR-SEAL-research/commits/main/) · [论文版本](../docs/PAPER_INDEX.md) |
 | 数据版本、授权与同步 | [上游数据入口](../docs/DATA_ACCESS.md) · [首发范围](../PUBLICATION_SCOPE.md) · [持续同步](../docs/CONTINUOUS_SYNC.md) |
 
-审阅稿采用问题驱动的引言、沿技术缺口展开的相关工作、整体与模块图、变量定义、复现设置和指标公式，保留正负定性案例、消融、裁剪与栅格口径、统计分母及成本。正文 6 图、4 表和 29 条参考，扩展稿 15 图、14 表。已有图源支持后续编辑。文字从观测和数据限制出发，图注说清对照，保留作者拟定署名、单位、ORCID 等占位信息和 AI 使用披露。现行版式研究综合了 52 篇原文。[原文样本与版式修订](style_review/STYLE_REDESIGN_20261123.md)
+审阅稿采用问题驱动的引言、沿技术缺口展开的相关工作、整体与模块图、变量定义、复现设置和指标公式，保留正负定性案例、消融、裁剪与栅格口径、统计分母及成本。现行精简正文至结论 12 页，含参考文献 13 页，9 图、7 表。独立补充材料含 15 张表。已有图源支持后续编辑。文字从观测和数据限制出发，图注交代对照和必要的显示处理，署名、单位和 ORCID 暂留占位。现行版式研究综合了 52 篇原文。[原文样本与版式修订](style_review/STYLE_REDESIGN_20261123.md)
 
 ## 已完成的研究与可继承的资源
 
@@ -40,7 +42,7 @@
 
 - **Umbra 原批 U12**。12 处不同采集的原生窗口、冻结预测与写回均已独立重放。原协议要求每位盲判者至少 20 个符合原生固定匹配和正预算的船体，覆盖至少 8 个采集组，且各自 95% 配对连续 IoU 下界为正。Phoenix 整掩膜载体有独立封存入口。核查原始返回文件 `SAR_ship_review_A.json`、`SAR_ship_review_B.json`，验收双角色、匿名名单、完整/搜寻空窗和原始字节，再运行评分。[原批资格与判据](UMBRA12_FROZEN_CARRIER_PRELOCK_20261123.md) · [评分就绪](UMBRA12_DUAL_REVIEW_SCORE_READINESS_20261123.md) · [Phoenix 实际封存](UMBRA12_PHOENIX_WHOLE_ACTUAL_20261123.md)
 - **补批 U24**。24 个独立采集、96 个原始瓦片、两份独立盲态判读包和冻结预测已核验。各自接收 `SAR_ship_supplement_review_A.json`、`SAR_ship_supplement_review_B.json`。每份参考至少 30 个符合条件的船体及 12 个采集组，且正下界，分批保留原分母和决定。四份返回在交接时均未有已验收的记录。用户可以安排两位判读者，优先公共数据核验的约定仍有效。三图 AI 盲态预试只用于发现轮廓定义歧义，独立参考资格仍按原协议执行。[补批判读包](UMBRA_SUPPLEMENT_REVIEW_PACKETS_ACTUAL_20261126.md) · [预测与重放](UMBRA_SUPPLEMENT_FROZEN_CARRIER_ACTUAL_20261126.md) · [验收评分](code/UMBRA_SUPPLEMENT_DUAL_REVIEW_SCORE_20261126/README.md)
-- **执行顺序。** 从远端主分支与本地证据入口对照版本，按原路径查四份实际回传和运行状态。若回传齐全，按各批原规则估计效应、覆盖和一致性。若未齐全，使用已有合格开发集推进一项能改变结论的最小几何检验，保留原始 F、L、I 的掩膜、预算和统计方案。待验证设计可先在 DEV705 对同一端点定义最小累计平方配对位移 C。仅当 I 在原逐边上限下不可配对，且 C(I)≤min(C(F),C(L))，允许 I；其余使用 L。先锁定分母与效用门，再做无标注见证规模检验。见证覆盖不足则记录未进入效用评分；选择、阈值及分母在历史盲态和 Umbra 测试上冻结。这条设计尚未执行。保持一项主假设及具体反例，超时复查原 PID，发起运行前确认无重合任务。科研执行由明确所有者负责，独立智能体可核对文献、逻辑、图稿和结果。
+- **执行顺序。** 优先核对现行稿件和图源，按原规则清点 Umbra 两批的实际回传。DEV705 最小累计平方配对位移见证已执行，仅改变 1/1,461 个固定匹配，低于预锁覆盖门。该分支已按规则结束。具体结果见 [见证实测](code/DEV705_MIN_CUMULATIVE_WITNESS_20261126/ACTUAL.md)，正文与图件续作见本页顶部。
 - **写作与发布。** SCI-Skills 3.0.2 已在项目安装并校验，沿方法与应用项目的 M5 验证衔接，再更新相关图表与措辞。评估 TGRS 适合程度时重看原生窄边界、AP 与连续面积三个主张各自的证据。当前稿可审阅。投稿时间、三条贡献和地域泛化由科学证据判断，正式署名及权限留待作者确认。作者轮廓、原始输入、权重、凭据、运行冻结载荷和第三方全文遵照发布范围。独立文档、代码和聚合结果在本次任务内按已授权 GitHub 范围同步。
 
 ## 可追溯的历史入口
