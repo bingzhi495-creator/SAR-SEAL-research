@@ -3,7 +3,8 @@
 \usepackage[hidelinks]{hyperref}
 \newif\ifnativecases
 \ifdefined\NativeCaseReview\nativecasestrue\else\nativecasesfalse\fi
-\newcommand{\CaseAsset}[2]{\ifnativecases local_figures/#2\else figures/cvpr_20261126/#1\fi}
+\newcommand{\CaseAsset}[2]{\ifnativecases local_figures/#2\else figures/journal_20261126/#1\fi}
+\newcommand{\MethodAsset}[1]{\ifnativecases local_method_figures/#1\else figures/journal_20261126/#1\fi}
 \DeclareRobustCommand{\CaseCaption}[2]{\ifnativecases #2\else #1\fi}
 \hypersetup{pdftitle={NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation}}
 \begin{document}
@@ -36,8 +37,8 @@ NORA addresses these two editing decisions on a retained mask. The ranking deter
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/cvpr_20261126/matched_budget_pipeline.pdf}
-\caption{NORA applied to a frozen detection. The scalar ROH scores sampled boundary cells before an equal-count write. The lower rows show source-only supervision and the separate frozen-refiner control. Fig.~\ref{fig:signed-allocation} shows the variable split.}
+\includegraphics[width=\textwidth]{\MethodAsset{matched_budget_pipeline.pdf}}
+\caption{NORA on a frozen detection. The scalar ROH scores native boundary cells for equal-count editing. \CaseCaption{}{The native and edited views show the same Instance-RSDD candidate.}}
 \label{fig:native-boundary}
 \end{figure*}
 
@@ -60,6 +61,8 @@ PointRend resamples uncertain points during subdivision. SegFix transfers interi
 
 NORA starts from a frozen detection with binary mask \(M\), box \(B\), confidence \(s\), and foreground response \(p_i\) at native cell \(i\). The scalar ROH scores sampled cells on both sides of the contour. The matched-count writers select \(k\) additions and \(k\) removals from these sites. The edited mask retains the candidate identity, class, box and confidence (Fig.~\ref{fig:native-boundary}).
 
+The source labels determine the targets used to fit the score head. At transfer, the fitted head receives only the frozen detector outputs and image features. The Phoenix comparison reuses the native mask as its prompt and holds a separate refiner response fixed.
+
 To study mask area, we fix the total number of flips and vary the addition--removal split. We also vary the writable region and edit count for a fixed response from the pretrained Phoenix XL1 refiner~\cite{phoenix}.
 
 \subsection{Native-grid sampling and the scalar ROH}
@@ -79,10 +82,12 @@ For masks of area \(32\le |M|<1024\), we construct the outside and inside pools 
 \end{equation}
 The first ring on each side has layer index \(\ell_i=1\), and the second has \(\ell_i=2\). Within each pool, we sort by \((|p_i-\tfrac12|,yW+x)\) and keep the first \(n=\min(32,|\mathcal B_+|,|\mathcal B_-|)\) sites. This concentrates samples near the decision threshold and makes the two endpoint lists \(S_+\) and \(S_-\) the same size. The writer passes through masks outside the eligible area range and masks with \(n=0\). Fig.~\ref{fig:occupancy-stage} shows the native support and readout.
 
+\ifnativecases The native inset localizes a real boundary in the Instance-RSDD reserve. The grids and fractional-coverage cell show the sampling and source-training operations separately from that transfer example.\fi
+
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/cvpr_20261126/method_native_occupancy.pdf}
-\caption{Native-grid sampling and occupancy estimation. Outside sites can be added and inside sites removed. Fractional polygon coverage supervises the scalar ROH during source training.}
+\includegraphics[width=\columnwidth]{\MethodAsset{method_native_occupancy.pdf}}
+\caption{Native-grid sampling and residual occupancy scoring. \CaseCaption{The inset shows sampled cells.}{The inset enlarges a native SAR boundary.} Source polygon coverage supplies fractional supervision.}
 \label{fig:occupancy-stage}
 \end{figure}
 
@@ -165,10 +170,12 @@ using each endpoint at most once. If the independent endpoint sets admit such a 
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/cvpr_20261126/method_bounded_selection.pdf}
-\caption{Three writers on shared support. Each adds two cells and removes two cells. Lines show selected pairs. The value \(\widehat g\) is estimated intersection gain in native cell-area units.}
+\includegraphics[width=\textwidth]{\MethodAsset{method_bounded_selection.pdf}}
+\caption{Same-count endpoint selection. \CaseCaption{Each schematic writer adds and removes two cells.}{The D-FINE case uses four additions and four removals per writer. The separate schematic uses two per side.} Estimated gain \(\widehat g\) is in cell-area units.}
 \label{fig:selection-stage}
 \end{figure*}
+
+In the schematic, paired lines join one added site to one removed site. The independent writer reads the two ranked lists separately at the same signed counts. \ifnativecases The upper row shows how small the actual mask differences can be even when the pairing rule changes.\fi
 
 For the geometric calculation, write \(P=|M|\), \(T=|G|\) and \(I=|M\cap G|\) in native pixel-area units, with \(U=P+T-I\). The edited mask is \((M\setminus D)\cup A\). Its change in area is the difference of the counts. Its change in intersection comes from the fractional coverage of the edited cells,
 \begin{equation}
@@ -234,10 +241,12 @@ where \(W\) is the edited mask, \(I_r(W)\) is its intersection with the random r
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/cvpr_20261126/method_signed_allocation.pdf}
-\caption{Illustrative four-flip writes on shared support. The equal split uses two additions and two removals. The variable split uses three additions and one removal.}
+\includegraphics[width=\textwidth]{\MethodAsset{method_signed_allocation.pdf}}
+\caption{Equal and variable allocations of four edits on shared schematic support.\CaseCaption{}{ The upper inset shows SAR context.}}
 \label{fig:signed-allocation}
 \end{figure*}
+
+With two additions and two removals, the illustrated mask remains at 15 cells. With three additions and one removal, the same four flips increase the mask to 17 cells. This area change affects the IoU denominator as well as the intersection term, as shown in Eq.~\eqref{eq:variable-area}.
 
 \subsection{Support and signed allocation for a frozen general refiner}
 \label{sec:phoenix}
@@ -264,10 +273,12 @@ We evaluate every feasible integer \(a\), with each prefix bounded by the number
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/cvpr_20261126/method_phoenix_controls.pdf}
-\caption{Two writable supports and two write rules applied to one frozen Phoenix response. The narrow balanced and exact-count writers use the same total.}
+\includegraphics[width=\columnwidth]{\MethodAsset{method_phoenix_controls.pdf}}
+\caption{Support and count controls on one frozen Phoenix response.\CaseCaption{}{ The PSeg-SSDD example compares whole-grid threshold and exact-count writes.}}
 \label{fig:phoenix-stage}
 \end{figure}
+
+\ifnativecases In the PSeg-SSDD example, the whole-grid threshold writes 38 cells and the exact-count rule writes 16. Both use the same crop and frozen response. The schematic below it shows the four crossed conditions with a separate illustrative budget.\fi
 
 For an evaluation statistic \(Y\), the count effect on whole support is \(Y_{\mathrm{whole,count}}-Y_{\mathrm{whole,thr}}\). Subtracting the narrow-support count effect \(Y_{\mathrm{narrow,count}}-Y_{\mathrm{narrow,thr}}\) gives the interaction between support and writing rule. The comparison of balanced and free splits fixes both support and total count. Equations~\eqref{eq:intersect-changes} and \eqref{eq:variable-area} explain how those writers can change area and overlap differently at that budget.
 
@@ -280,7 +291,7 @@ HRSID~\cite{hrsid}, Instance-RSDD~\cite{rsdd} and PSeg-SSDD~\cite{ssdd} supply s
 
 \begin{table*}[t]
 \centering
-\caption{Evaluation cohorts and grouping units. The 42-chip reserve view and the overlap-excluded 222-image PSeg view are nested sensitivities.}
+\caption{Evaluation cohorts and grouping units. The 42-chip reserve and 222-image PSeg views are nested.}
 \label{tab:cohorts}
 \footnotesize
 \renewcommand{\arraystretch}{1.19}
@@ -361,7 +372,7 @@ The strict fixed-match HRSID RF-DETR counts use continuous IoU \(>0.90\). D-FINE
 
 \begin{table*}[t]
 \centering
-\caption{Independent selection versus distance pairing at fixed signed counts. AP gives point estimates and continuous IoU gives paired 95\% source-group intervals. The Gaofen-3 fits share target scenes.}
+\caption{Independent selection versus distance pairing at matched signed counts. Continuous IoU uses paired 95\% group intervals. The Gaofen-3 fits share target scenes.}
 \label{tab:primary-quant}
 \footnotesize
 \renewcommand{\arraystretch}{1.17}
@@ -393,7 +404,7 @@ At equal signed counts, independent selection gives its largest AP gains on HRSI
 \subsection{Source benchmark and repeated detector fits}
 \begin{table*}[t]
 \centering
-\caption{Frozen D-FINE E24 on HRSID DEV705, with scores scaled by 100. COCO metrics use 70,500 candidates. Continuous IoU equally weights source groups over 1,447 eligible matches from 1,652 native matches.}
+\caption{Frozen D-FINE E24 on HRSID DEV705. COCO metrics use all 70,500 candidates. Continuous IoU uses 1,447 eligible matches and equal source-group weights.}
 \label{tab:dev}
 \begin{tabular}{lrrrrrr}
 \toprule
@@ -420,7 +431,7 @@ The official HRSID evaluation reuses 187,796 mapped candidates from RF-DETR fit 
 
 \begin{table}[t]
 \centering
-\caption{Frozen RF-DETR on the HRSID official allocation. Refined rows average three fits for each head size. The fixed independent writer uses the paired count and the large head uses the natural total with variable signs. Scores are in points.}
+\caption{Frozen RF-DETR on the HRSID official split. Refined rows average three fits per head size. Variable signs use the natural total count.}
 \label{tab:official}
 \footnotesize
 \setlength{\tabcolsep}{3.5pt}
@@ -441,8 +452,8 @@ Natural-count selection adds only \(+0.011\) mean AP points relative to selectio
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/cvpr_20261126/transfer_effects.pdf}
-\caption{Matched-count effects of bounded re-pairing (\(L-F\), squares) and independent ranking (\(I-L\), circles). (a) Mask AP point estimates and the 0.30-point gate. (b) Continuous IoU with paired 95\% group intervals. Counts are eligible fixed matches. The 42-chip and overlap-excluded rows are nested.}
+\includegraphics[width=\textwidth]{figures/journal_20261126/transfer_effects.pdf}
+\caption{Matched-count contrasts \(L-F\) and \(I-L\). (a) Mask AP, with shading at or above 0.30 points. (b) Continuous IoU differences with paired 95\% group intervals. Counts are eligible fixed matches.}
 \label{fig:transfer-effects}
 \end{figure*}
 
@@ -457,7 +468,7 @@ For independent selection over distance pairing, the one-pixel Boundary IoU inte
 
 \begin{table}[t]
 \centering
-\caption{Fixed-match Boundary IoU differences in points with paired 95\% parent intervals. The first three rows compare independent ranking with distance pairing. The last compares ROH ranking with PointRend on matched support and signed counts.}
+\caption{Fixed-match Boundary IoU contrasts with paired 95\% parent intervals (points).}
 \label{tab:native-boundary}
 \footnotesize
 \setlength{\tabcolsep}{2.5pt}
@@ -475,11 +486,11 @@ Reserve, PointRend & \(+0.829\ [-0.056,1.750]\) & \(+0.801\ [0.285,1.370]\)\\
 
 \subsection{Bounded Re-pairing and Independent Selection}
 \label{sec:pairing-effects}
-Figure~\ref{fig:transfer-effects} and Table~\ref{tab:bounded-results} separate bounded re-pairing \(L-F\) from the effect of removing the cap \(I-L\). Within a row, all three writers use the same detector, scalar ROH, support and \(k\). The predeclared criterion requires at least 0.30 mask AP points, a same-direction 95\% continuous-IoU interval, and at least 20 changed eligible matches across eight groups.
+The 42-chip reserve and 222-chip deduplicated views are nested in the corresponding full cohorts. Figure~\ref{fig:transfer-effects} and Table~\ref{tab:bounded-results} separate bounded re-pairing \(L-F\) from the effect of removing the cap \(I-L\). Within a row, all three writers use the same detector, scalar ROH, support and \(k\). The predeclared criterion requires at least 0.30 mask AP points, a same-direction 95\% continuous-IoU interval, and at least 20 changed eligible matches across eight groups.
 
 \begin{table*}[!t]
 \centering
-\caption{Matched-count effects of bounded re-pairing \(L-F\) and independent ranking \(I-L\). AP and continuous IoU differences are in points, with paired 95\% intervals for IoU. The 42-chip and 222-chip views are nested. RF-DETR and D-FINE use the same 74 historical reserve chips.}
+\caption{Matched-count contrasts \(L-F\) and \(I-L\) in points. Continuous IoU uses paired 95\% intervals. The two pipelines share the 74 reserve chips.}
 \label{tab:bounded-results}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
@@ -530,7 +541,7 @@ Refitting on PSeg leaves a gap to the native masks on DEV187. The refit uses 109
 
 \begin{table}[t]
 \centering
-\caption{Frozen HRSID-to-PSeg-SSDD mask AP on DEV187. Float and integer polygons use all 187 images. Dedup.\ uses float polygons on 182 unique decoded images.}
+\caption{Frozen HRSID-to-PSeg-SSDD mask AP on DEV187. Dedup.\ uses float polygons on 182 unique decoded images.}
 \label{tab:ssdd}
 \footnotesize
 \begin{tabular}{@{}lrrr@{}}
@@ -556,14 +567,15 @@ Most of the natural-count shift comes from edited cells that the two references 
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.98\textwidth]{figures/cvpr_20261126/reference_disagreement_effects.pdf}
-\caption{Raster IoU effects on the same 232 SSDD images and predicted masks. (a) Effects under each reference. (b) The SPSD-minus-PSeg shift and the contribution of edited cells with differing labels on shared native matches. Paired 95\% intervals use 4,096 decoded-image resamples.}
+\includegraphics[width=0.98\textwidth]{figures/journal_20261126/reference_disagreement_effects.pdf}
+\caption{Raster IoU on the same 232 SSDD images and masks. (a) Effects under each reference. (b) The reference-dependent shift and its label-disagreement component. Bars show paired 95\% decoded-image intervals.}
 \label{fig:reference-disagreement}
 \end{figure*}
 
 
 \subsubsection{Variable signed allocation at the same total count}
 \label{sec:variable-sign-results}
+The first-fit decomposition uses paired decoded-image-group resampling and keeps each reference's native assignments.
 At 115,384 total flips on 18,300 candidates, changing the allocation improves both SSDD reference scores. Both writers use the same dual-reference ROH scores and predicted-IoU objective. Fitting candidates come from 732 images in the author training allocation, 447 of which contribute to the common positive-budget set. The 183 historically used development images belong to decoded-image groups excluded from fitting. The equal-allocation control makes 57,692 additions and 57,692 removals. For the initial dual-reference ROH fit, the variable-allocation writer makes 67,777 additions and 47,607 removals. Its gain is 2.461 mask AP and 0.993 fixed-match raster IoU points on PSeg (\([0.747,1.244]\)), and 1.782 AP and 0.580 IoU points on SPSD (\([0.298,0.877]\)). Both the archived fixed-area robust and mean BCE writers also score lower on the two references. With the split range held fixed, the mean-IoU objective gains 0.498 AP and 0.312 IoU over the maximin objective on PSeg, while losing 0.044 AP and 0.073 IoU on SPSD. The mean objective thus trades a gain on PSeg against a loss on SPSD.
 
 To separate the change in intersection from the change in predicted area, let \(P_0,P_1\) and \(I_0,I_1\) denote the fixed and variable writers' areas and intersections against one reference. Define \(U_j=P_j+T-I_j\), \(\bar P=(P_0+P_1)/2\), and \(\bar I=(I_0+I_1)/2\). The exact IoU difference is
@@ -583,7 +595,7 @@ A joint model improves predictions for adjacent endpoint pairs with little chang
 
 \begin{table}[t]
 \centering
-\caption{Variable minus equal allocation in percentage points. Both writers use the same dual-reference ROH and total flips within each fit.}
+\caption{Variable minus equal allocation within each dual-reference ROH fit (points).}
 \label{tab:dual-sign-seeds}
 \footnotesize
 \begin{tabular}{@{}lrrrr@{}}
@@ -611,8 +623,8 @@ At the differing edit sites, the two source-fitted outputs overestimate the inte
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.98\textwidth]{figures/cvpr_20261126/dual_reference_budget_effect.pdf}
-\caption{Variable minus equal allocation at fixed total flips. (a) Effects for the first dual-reference ROH fit on 183 development images, with 4,096 paired decoded-image-group resamples for the IoU intervals. (b) Intersection and area terms from Eq.~\eqref{eq:area-overlap-parts}. Both panels retain all hulls and each reference's native assignments.}
+\includegraphics[width=0.98\textwidth]{figures/journal_20261126/dual_reference_budget_effect.pdf}
+\caption{Variable minus equal allocation at fixed total flips. (a) Effects for the first dual-reference ROH fit on 183 development images. (b) Intersection and area terms from Eq.~\eqref{eq:area-overlap-parts}.}
 \label{fig:dual-budget-effect}
 \end{figure*}
 
@@ -628,7 +640,7 @@ The PointRend comparison holds the endpoints and the counts from the first scala
 
 \begin{table}[t]
 \centering
-\caption{Matched-support ranking on Gaofen-3 with frozen RF-DETR. Both rankers make 268,347 exchanges across 34,808 candidates. Continuous IoU equally weights acquisitions over 425 fixed matches. Scores are in points.}
+\caption{Matched-support ranking on Gaofen-3. Both rankers make 268,347 exchanges. Continuous IoU weights acquisitions equally over 425 fixed matches.}
 \label{tab:rsdd-pointrend}
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{lrrrr}
@@ -661,7 +673,7 @@ Applying the original Phoenix XL1 binary writer to the same reserve compares a d
 
 \begin{table}[t]
 \centering
-\caption{Phoenix endpoint and full-mask writers on the 74-chip Instance-RSDD reserve. Hull counts are the numbers of the 81 reference hulls matched at IoU 0.50 under COCO rematching.}
+\caption{Phoenix writers on the 74-chip Instance-RSDD reserve. Hull counts use COCO rematching at IoU 0.50 among 81 reference hulls.}
 \label{tab:phoenix-whole}
 \footnotesize
 \begin{tabular}{@{}lrrr@{}}
@@ -686,7 +698,7 @@ The stock deletions reduce continuous IoU on the 39 gate-exposed matches by 4.09
 
 \begin{table}[t]
 \centering
-\caption{Effect of stock deletions on fixed-match continuous IoU, with and without additions. Brackets give paired 95\% intervals in points.}
+\caption{Stock deletion effects on fixed-match continuous IoU (points). Brackets give paired 95\% intervals.}
 \label{tab:stock-deletions}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -721,7 +733,7 @@ COCO mask AP includes all 22,741 candidates and all chips. We use the released i
 
 \begin{table}[t]
 \centering
-\caption{Frozen RF-DETR on SAR-SSP. Pairing and independent selection use matched addition and removal counts. The three attraction policies share a separate count. Scores are in points.}
+\caption{Frozen RF-DETR on SAR-SSP (points). The paired and independent policies share one edit count. The attraction policies share a separate count.}
 \label{tab:sar-ssp}
 \footnotesize
 \begin{tabular}{@{}lrrr@{}}
@@ -757,7 +769,7 @@ Figure~\ref{fig:rsdd-common-cap-cases} compares the four D-FINE masks for each o
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\CaseAsset{rsdd74_common_cap_cases.pdf}{rsdd74_common_cap_cases.pdf}}
-\caption{D-FINE masks \(N,F,L,I\) for matches from different Instance-RSDD reserve chips nearest the gain and loss medians of \(I-L\). Each edited mask adds and removes four cells in (a) and eight in (b). \CaseCaption{The \(8\times8\) grids show pooled coverage and the signed foreground difference.}{Rows share the same SAR crop and intensity stretch. The final column marks \(I\)-only and \(L\)-only foreground.} IoU uses the original geometry.}
+\caption{D-FINE masks near the gain and loss medians of \(I-L\) on the Instance-RSDD reserve. Each edited mask adds and removes four cells in (a) and eight in (b). \CaseCaption{The grids pool coverage and the signed difference.}{Each case uses a shared SAR crop.} IoU uses the native geometry.}
 \label{fig:rsdd-common-cap-cases}
 \end{figure*}
 
@@ -765,26 +777,29 @@ Figure~\ref{fig:rsdd-common-cap-cases} compares the four D-FINE masks for each o
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.82\textwidth]{figures/cvpr_20261126/dev705_overlap_cases.pdf}
-\caption{RF-DETR DEV705 overlap changes for one frozen scalar ROH fit, with eight additions and eight removals per writer. The bars separate recovered, lost, and net reference area relative to the native mask. The cases are nearest the median IoU change within each sign and use different images.}
+\includegraphics[width=\textwidth]{figures/journal_20261126/dev705_overlap_cases.pdf}
+\caption{Recovered, lost and net intersection area on two median-sign RF-DETR DEV705 cases relative to the native mask. Distance pairing and independent selection each add and remove eight cells.}
 \label{fig:dev-cases}
-\par\vspace{7pt}
-\includegraphics[width=0.79\textwidth]{\CaseAsset{gf3_matched_cases_binned.pdf}{gf3_cases_exact.pdf}}
-\caption{Gaofen-3 masks from RF-DETR fit B, dynamic attraction and ranking by the first ROH. The four cases are selected before image inspection near the gain and loss medians among 425 eligible matches. Each edited mask uses eight swaps. \CaseCaption{The \(8\times8\) pooling can fragment the dashed reference.}{Native SAR crops show the author outline, masks and signed overlap changes.} IoU and overlap use the native geometry.}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{\CaseAsset{gf3_matched_cases_binned.pdf}{gf3_cases_exact.pdf}}
+\caption{Four Gaofen-3 cases near the gain and loss medians among 425 eligible matches. The edited masks each use eight swaps. \CaseCaption{Grids pool coverage and overlap changes.}{All methods share the SAR crop and author outline.} Scores use native geometry.}
 \label{fig:gf3-qual}
 \end{figure*}
 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\CaseAsset{pseg_budget_cases_binned.pdf}{pseg_budget_cases_exact.pdf}}
-\caption{Whole-grid Phoenix threshold and fixed-count writing on median-sign PSeg-SSDD cases. Gain and Loss refer to fixed count minus threshold IoU. \CaseCaption{Pooled footprints accompany the threshold-minus-fixed-count error map. Teal indicates lower fixed-count error.}{The three masks share the same native SAR crop and author polygon.} IoU, false positives and false negatives use the original polygon and cells.}
+\caption{Threshold and fixed-count Phoenix masks near the gain and loss medians on PSeg-SSDD. \CaseCaption{Pooled footprints accompany the signed error difference.}{The masks share the SAR crop and author polygon.} IoU and the error areas use native geometry.}
 \label{fig:pseg-budget-cases}
 \end{figure*}
 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.86\textwidth]{\CaseAsset{rsdd74_segrefiner_cases_binned.pdf}{rsdd74_segrefiner_cases_SAR_PRIVATE.pdf}}
-\caption{Native, local ROH and SegRefiner-LR masks for median gain and loss cases among 39 eligible Instance-RSDD matches. The rows use different images. \CaseCaption{An \(8\times8\) grid pools masks and intersection changes.}{The author outline and all three masks share the same native SAR crop.} IoU and signed changes use the native grid.}
+\caption{Native, local ROH and SegRefiner-LR masks near the gain and loss medians among 39 Instance-RSDD matches. \CaseCaption{Grids pool masks and intersection changes.}{Each case uses a shared SAR crop and author outline.} Scores use native geometry.}
 \label{fig:segrefiner-cases}
 \end{figure*}
 
@@ -808,7 +823,7 @@ Of the 39 eligible original matches exposed to SegRefiner-LR, 14 gain continuous
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.94\textwidth]{local_figures/sarssp_private_cases.pdf}
-\caption{Same-count SAR-SSP comparisons showing the SAR context, author reference, native mask and both edited masks. Figure~\ref{fig:sar-ssp-cases} gives the pooled results.}
+\caption{Equal-count SAR-SSP cases. The overview locates the ship in context. The aligned crops show the author reference, native mask and both edited masks.}
 \label{fig:sar-ssp-native-cases}
 \end{figure*}
 \fi
@@ -817,10 +832,12 @@ The independent and distance-paired rules write different masks for 52 of the 92
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/cvpr_20261126/sarssp_public_summary.pdf}
-\caption{Equal-count SAR-SSP effects. (a) Discrete IoU changes on 52 original matches with different masks. (b) Mean correct-label difference at disagreeing cells on a normalized \(4\times4\) grid within each hull's image-axis-aligned enclosing rectangle, with at least five hulls per bin. (c) Scene-balanced geometry over 139 hulls with paired 95\% intervals and mask AP over 232 chips.}
+\includegraphics[width=0.95\textwidth]{figures/journal_20261126/sarssp_public_summary.pdf}
+\caption{Equal-count SAR-SSP effects. (a) IoU changes on 52 different masks. (b) Correct-label differences at disagreeing cells in normalized hull coordinates. (c) Raster IoU over 139 hulls and mask AP over 232 chips.}
 \label{fig:sar-ssp-cases}
 \end{figure*}
+
+In the spatial panel, bins lie in the image-axis-aligned enclosing box of each reference. We report a bin only if at least five hulls contribute. The scene-balanced IoU intervals resample parent scenes.
 
 \section{Ablation Studies}
 \label{sec:ablation}
@@ -840,7 +857,7 @@ For the capacity comparison, we retrain the scalar ROH and the larger point-head
 
 \begin{table}[t]
 \centering
-\caption{RF-DETR DEV705 capacity and writing rules. Scores are means over three fits on the 0--100 scale. Matched policies inherit the indicated per-candidate edit count.}
+\caption{RF-DETR DEV705 capacity and write rules. Scores are means of three fits on the 0--100 scale.}
 \label{tab:rfdetr}
 \footnotesize
 \begin{tabular}{@{}lrrr@{}}
@@ -878,7 +895,7 @@ We form four masks from the same sampled endpoints and ROH scores. Both sides fo
 
 \begin{table*}[t]
 \centering
-\caption{Instance-RSDD mask AP with fixed counts on both sides. The 42-chip view is nested in the 74-chip reserve. The largest measured value is bold in each row.}
+\caption{Instance-RSDD signed-side ablation at matched counts. The 42-chip view is nested.}
 \label{tab:signed-side-ablation}
 \footnotesize
 \setlength{\tabcolsep}{5pt}
@@ -896,8 +913,8 @@ Date-separated, 42 chips & H1 & 61.283 & 61.769 & 61.698 & \textbf{62.123}\\
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/cvpr_20261126/independent_sides_ablation.pdf}
-\caption{AP changes relative to fixed pairing with one or both sides independent at the same signed counts and area. Gaofen-3 averages two frozen ROH fits.}
+\includegraphics[width=\columnwidth]{figures/journal_20261126/independent_sides_ablation.pdf}
+\caption{AP effects of making either or both sides independent at equal signed counts. Gaofen-3 averages two frozen ROH fits.}
 \label{fig:signed-side-ablation}
 \end{figure}
 
@@ -913,7 +930,7 @@ We repeat the pairing comparison with frozen Phoenix scores. At matched counts, 
 
 \begin{table*}[t]
 \centering
-\caption{Writable support and flip count for a frozen Phoenix response. Mask AP and fixed continuous IoU are in points. The four crossed conditions share editable candidates. The balanced condition retains the narrow support and total count.}
+\caption{Writable support and count for a frozen Phoenix response (points). The balanced condition retains narrow support and the same total.}
 \label{tab:phoenix-factors}
 \footnotesize
 \setlength{\tabcolsep}{5pt}
@@ -938,8 +955,8 @@ For the Instance-RSDD support and count comparison, we use the same fifth-iterat
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/cvpr_20261126/phoenix_budget_by_dataset.pdf}
-\caption{Support and count effects at frozen Phoenix probabilities on a common scale. AP uses the full native candidate streams. Continuous IoU weights parent scenes equally across 47 fixed matches on Instance-RSDD and decoded-image groups equally across 293 on PSeg-SSDD. Columns give threshold and exact-count scores.}
+\includegraphics[width=\textwidth]{figures/journal_20261126/phoenix_budget_by_dataset.pdf}
+\caption{Exact-count minus threshold effects for two writable supports and one frozen Phoenix response. Numeric labels give the two original scores. Continuous IoU uses 47 and 293 fixed matches, respectively.}
 \label{fig:phoenix-support-budget}
 \end{figure*}
 

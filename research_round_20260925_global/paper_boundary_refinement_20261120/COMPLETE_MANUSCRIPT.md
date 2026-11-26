@@ -1,13 +1,15 @@
-# NORA 完整稿、研究设计与图件
+# NORA 完整稿与重绘图件
 
 **NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation**
 
-核心模块简称 **ROH**（Residual Occupancy Head，残差占据率头）。单输出和双参考版本分别写为 scalar ROH 和 dual-reference ROH。
+残差占据率头（Residual Occupancy Head，ROH）在正文使用简称。单输出和双参考版本分别写为 scalar ROH 和 dual-reference ROH。
 
-- [IEEE 双栏英文稿](boundary_refinement_complete.pdf) · [LaTeX 源码](boundary_refinement_complete.tex) · [语言终审和题注核验](design/PROSE_FINAL_REVIEW_20261126.md)
-- [研究问题、完整设计与证据边界](design/DESIGN_RATIONALE_ZH.md) · [所有公开图件和生成说明](figures/cvpr_20261126/README.md) · [编号与复现入口](design/NORA_REPRODUCIBILITY.md)
-- [早期精简稿](boundary_refinement_main.pdf) · [作者信息与投稿资料](submission_20261126/AUTHOR_HANDOFF_ZH.md) · [实验证据索引](../TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+- [IEEE 双栏英文稿](boundary_refinement_complete.pdf) · [LaTeX 源码](boundary_refinement_complete.tex)
+- [16 张公开图和重建入口](figures/journal_20261126/README.md) · [方法图构图说明](style_review/NORA_METHOD_FIGURE_STORYBOARD_20261126.md) · [GLDet 全文与全图表研读](style_review/GLDET_FULL_STYLE_REVIEW_20261126.md)
+- [问题、完整设计与证据边界](design/DESIGN_RATIONALE_ZH.md) · [复现索引](design/NORA_REPRODUCIBILITY.md) · [实验证据](../TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+- [语言终审](design/PROSE_FINAL_REVIEW_20261126.md) · [作者信息与投稿资料](submission_20261126/AUTHOR_HANDOFF_ZH.md)
 
-完整稿的 16 张公开图为可编辑的矢量文件。本机作者审阅稿为 17 张图，提供已核验的真实原始 SAR 叠图。全面更新包括 5 张方法图、固定增删数三路对照的双尺度效应图、参考与配额图、正负案例、SAR-SSP 图及消融图。方法图保留原算例和训练／推理边界。汇总图呈现相同预算下的预设判据，定性对比保留两类结果、精确 IoU 与轮廓尺度。全稿保留 15 张表、34 条参考及各项失败和适用范围。
+重绘覆盖方法图、定量图、定性对照及消融图。图内保留必要的操作、符号、单位和图例，方法段落解释真实裁片和操作示意的关系。公开版为 16 图，作者审阅版包括 17 图及真实 SAR 裁片。原 15 张数据表的表体、公式和实验结果逐项保留。图注和表题按重排精简。
 
-在本目录运行两到三次 `pdflatex -interaction=nonstopmode -halt-on-error boundary_refinement_complete.tex` 可重建公开版。图件源数据保留原归档和已发布的摘要。当前公开图使用聚合矢量案例；本机作者审阅稿的 54 处原图图像摘要与前版逐一一致。真实署名、图件复用权限以及两批 Umbra 独立评分保留原办理状态。
+在本目录执行两至三次 pdflatex 编译 boundary_refinement_complete.tex 即可重建公开稿。署名等投稿元数据保留占位，Umbra 的独立标注与评分状态见证据索引。
+
