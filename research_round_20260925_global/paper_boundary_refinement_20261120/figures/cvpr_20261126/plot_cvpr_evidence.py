@@ -84,8 +84,8 @@ def effects(root):
     dev_measures = tuple(make(row, "AP_points", row["metrics"]["iou_points"], "interval95")
                          for row in (dev["contrasts"][name] for name in CONTRASTS))
     rows = [
-        ("HRSID DEV705", "RF-DETR fit A · 3 heads", dev["fixed_matching_counts"]["valid"], dev_measures),
-        ("Instance-RSDD Gaofen-3", "RF-DETR fit A · 2 heads",
+        ("HRSID DEV705", "RF-DETR fit A · 3 ROH fits", dev["fixed_matching_counts"]["valid"], dev_measures),
+        ("Instance-RSDD Gaofen-3", "RF-DETR fit A · 2 ROH fits",
          scores["gf3"]["views"]["gf3"]["eligible_original_matches"], rf_rows(scores["gf3"]["views"]["gf3"])),
     ]
     for view_key, title in (("full", "Instance-RSDD reserve · 74"), ("date_separated", "  Nested reserve · 42")):

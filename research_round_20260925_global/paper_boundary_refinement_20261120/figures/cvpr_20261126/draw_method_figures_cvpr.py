@@ -126,7 +126,7 @@ def overview(ex):
         center(ax, x, 53, value, 7.3, bold=True)
     for x0, x1 in zip(locations, locations[1:]):
         arrow(ax, x0+8, 53, x1-8, 53)
-    center(ax, 321, 76, "Compact residual head", 7.7, bold=True)
+    center(ax, 321, 76, "ROH", 7.7, bold=True)
     center(ax, 321, 91, r"Predicted occupancy $\widehat q_i$", 8.15, color=TEAL, bold=True)
     rect(ax, 9, 117, 497, 19, TEAL_TINT, RULE)
     txt(ax, 18, 126, "Training only", 8, color=TEAL, bold=True)
@@ -187,7 +187,7 @@ def occupancy():
     center(ax, 182, 202, r"$q_i=|C_i\cap G|/|C_i|$", 8, bold=True)
     center(ax, 182, 217, "Author polygon coverage", 7.4, color=GRAY)
     rule(ax, 10, 235, 237, 235)
-    heading(ax, 10, 247, "c", "Residual occupancy head")
+    heading(ax, 10, 247, "c", "ROH")
     for x, desc, width in ((13, r"$v_i$ (14)", 46), (69, r"$[z_i,z_i]$ (28)", 67),
                            (145, "24", 24), (180, "24", 24), (215, "1", 20)):
         rect(ax, x, 257, width, 15, BLUE_TINT if x==215 else PAPER)

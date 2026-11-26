@@ -2,6 +2,8 @@
 
 **NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation**
 
+核心模块简称 **ROH**（Residual Occupancy Head，残差占据率头）。单输出和双参考版本分别写为 scalar ROH 和 dual-reference ROH。
+
 - [IEEE 双栏英文稿](boundary_refinement_complete.pdf) · [LaTeX 源码](boundary_refinement_complete.tex) · [语言终审和题注核验](design/PROSE_FINAL_REVIEW_20261126.md)
 - [研究问题、完整设计与证据边界](design/DESIGN_RATIONALE_ZH.md) · [所有公开图件和生成说明](figures/cvpr_20261126/README.md) · [编号与复现入口](design/NORA_REPRODUCIBILITY.md)
 - [早期精简稿](boundary_refinement_main.pdf) · [作者信息与投稿资料](submission_20261126/AUTHOR_HANDOFF_ZH.md) · [实验证据索引](../TGRS_MANUSCRIPT_EVIDENCE_20261123.md)

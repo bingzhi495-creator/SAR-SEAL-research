@@ -4,8 +4,8 @@ These five diagrams explain the manuscript's existing method. All cell maps and 
 
 | Stem | IEEE width | Canvas (pt) | Figure content |
 | --- | --- | --- | --- |
-| `matched_budget_pipeline` | Two columns | 514.8 × 171 | Frozen candidate, sampled support, occupancy and signed write. Independent training-only and frozen-refiner lanes. |
-| `method_native_occupancy` | One column | 247.9 × 308 | Native cell grid, boundary support, endpoint readout, visibly separate fractional polygon supervision, and residual head. |
+| `matched_budget_pipeline` | Two columns | 514.8 × 171 | Frozen candidate, sampled support, scalar ROH scoring and signed write. Independent training-only and frozen-refiner lanes. |
+| `method_native_occupancy` | One column | 247.9 × 308 | Native cell grid, boundary support, endpoint readout, visibly separate fractional polygon supervision, and scalar ROH. |
 | `method_bounded_selection` | Two columns | 514.8 × 176 | Original signed-count example with two additions and two removals per writer. The paired and bounded panels show selected edges. The independent panel shows endpoint sets. |
 | `method_signed_allocation` | Two columns | 514.8 × 157 | Equal-total comparison on four flips. Balanced allocation preserves 15 foreground cells. Variable allocation produces 17. |
 | `method_phoenix_controls` | One column | 247.9 × 262 | One frozen response, a support-by-writer table, and a separate matched-total allocation control. |

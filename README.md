@@ -4,6 +4,8 @@
 
 ## 当前状态（2026-11-26）
 
+- [NORA 稿件统一 ROH 模块简称](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。摘要定义残差占据率头，正文、图表和投稿摘要统一采用 ROH。原始实验编号可从复现索引定位。
+
 - [NORA 新版完整稿](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。标题采用方法简称与全称，核心限距对照提前。正文以拟合数和效果区间交代重复，精确实验编号留在复现索引。
 
 - [TGRS 全文终审稿与题注精简](research_round_20260925_global/paper_boundary_refinement_20261120/design/PROSE_FINAL_REVIEW_20261126.md)。重写完整英文稿，压缩图表说明，保留原公式、数据表、失败结果及前瞻外测状态。

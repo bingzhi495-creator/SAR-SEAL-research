@@ -2,14 +2,16 @@
 
 当前稿标题为 **NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation**。Ranking 指合法端点的占据率排序。Allocation 指在固定总编辑数下分配增加和删除。正文先报告等增删量的 F、L、I，再报告固定总量的可变配比。F 表示距离优先配对，L 表示在原最大单对距离下重配，I 表示两侧独立选点。这些写法对应原有的冻结预测与评价。
 
+ROH 是残差占据率头（Residual Occupancy Head）的简称。单输出版本为 scalar ROH（1,321 个参数），双参考版本为 dual-reference ROH（1,346 个参数）。
+
 ## 复现编号
 
 | 正文别名 | 原实验标识及含义 | 结果和入口 |
 | --- | --- | --- |
 | RF-DETR fit A | 检测器下游训练种子 5202 | [HRSID DEV705](../../RFDETR_CENTER5202_DEV705_MATCHED_RESULT_20261120.md) · [原版官方集](../../HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md) |
 | RF-DETR fit B | 检测器下游训练种子 5203；与 A 共用训练数据及初始化 | [HRSID DEV705](../../RFDETR_COMMON5203_DEV705_FROZEN_ACTUAL_20261122.md) · [Instance-RSDD 冻结迁移](../../INSTANCE_RSDD_CARRIER5203_ACTUAL_20261123.md) |
-| H1、H2、H3 | 标量占据头的 5217、5218、5219。只用 H1 的结果对应首个冻结点头。同侧消融表的 H1、H2 对应前两头。 | [同侧消融](../../INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md) · [限距对照与采集分组](../../code/LEARNED_BOUNDED_PAIRING_20261126/ACTUAL.md) |
-| 双参考表中的拟合 1、2、3 | 双输出占据头的 5297、5298、5299。配比分析中的初始拟合和近似目标复算均对应 5297。 | [三次拟合](../../code/SPSD_PSEG_REPEAT_VARIABLE_SIGNED_BUDGET_SEEDS5298_5299_20261126/ACTUAL.md) · [目标域冻结迁移](../../code/SAR_SSP_DFINE_BCE5297_VARIABLE_SIGN_TRANSFER_20261126/ACTUAL.md) |
+| H1、H2、H3 | scalar ROH 的 5217、5218、5219。只用 H1 的结果对应首个冻结点头。同侧消融表的 H1、H2 对应前两头。 | [同侧消融](../../INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md) · [限距对照与采集分组](../../code/LEARNED_BOUNDED_PAIRING_20261126/ACTUAL.md) |
+| 双参考表中的拟合 1、2、3 | dual-reference ROH 的 5297、5298、5299。配比分析中的初始拟合和近似目标复算均对应 5297。 | [三次拟合](../../code/SPSD_PSEG_REPEAT_VARIABLE_SIGNED_BUDGET_SEEDS5298_5299_20261126/ACTUAL.md) · [目标域冻结迁移](../../code/SAR_SSP_DFINE_BCE5297_VARIABLE_SIGN_TRANSFER_20261126/ACTUAL.md) |
 
 定性图中，HRSID DEV705 的交集分解和高分三号的学习对动态吸引力使用 H1。它们分别来自 RF-DETR fit A、fit B。高分三号和历史 Instance-RSDD 保留集的共同影像以及 HRSID 的历史评估暴露均按正文口径报告。图 6 的别名来自同一批汇总输入。D-FINE E24 的独立冻结流程沿用原标识。
 
