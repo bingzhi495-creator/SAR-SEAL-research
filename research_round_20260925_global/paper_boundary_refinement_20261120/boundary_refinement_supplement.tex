@@ -40,7 +40,7 @@ When one flank is displaced but the mask has the correct area, \(k\) additions a
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_network_overview.pdf}}
-\caption{Mask refinement for one retained detection. A frozen front end supplies the binary mask $M$, the center response $p_i$ and the original candidate metadata. The scalar ROH scores sites for $F$, $L$ and $I$ at equal signed counts. A separately fitted dual ROH scores sites for allocation at a fixed total count. The scalar target is the fraction covered by the GT polygon. The two dual targets are foreground labels from the matched PSeg and SPSD raster masks at the same site. The image and layers are schematic.}
+\caption{NORA inputs and mask update. \CaseCaption{The Sentinel-1A VV image shows the \emph{Ever Given} on 25 March 2021. The \(32\times28\) display averages \(2\times2\) samples of backscatter brightness after clipping to \([-8,10]\) dB. Contains modified Copernicus Sentinel data (2021), terrain-corrected by Catalyst via Microsoft Planetary Computer (\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}).}{The SAR input is the Gaofen-3 ship crop from Fig.~\ref{fig:gf3-qual}(c), shown without the overlaid contours.} The network and output mask are schematic. The frozen detector supplies the binary mask \(M\), cell-center response \(p_i\) and detection metadata. The scalar ROH learns polygon--cell fractions for equal-count placement. The dual ROH learns foreground membership from a matched PSeg raster and SPSD instance mask for fixed-total allocation.}
 \label{fig:network-overview}
 \end{figure*}
 

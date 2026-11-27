@@ -15,6 +15,8 @@ import argparse
 parser=argparse.ArgumentParser(description='Rebuild five NORA explanatory vector figures.')
 parser.add_argument('--output',type=Path,required=True)
 parser.add_argument('--figure', choices=['overview','roh','selection','allocation','phoenix'], help='Rebuild one panel family; default builds all five.')
+parser.add_argument('--author-scene', type=Path, help='Use an admitted local author image or a PDF image object for the overview.')
+parser.add_argument('--author-image-xref', type=int, help='PDF image object number when --author-scene is a PDF.')
 args=parser.parse_args()
 OUT=args.output;OUT.mkdir(parents=True,exist_ok=True)
 def canvas(h):
@@ -38,22 +40,77 @@ def save(f,name):
  for ext in ['pdf','svg','png']:f.savefig(OUT/f'{name}.{ext}',dpi=170,facecolor='white')
  plt.close(f)
 
+def render_input(ax, bounds):
+    """Place the SAR input inside a top-origin frame expressed in figure points."""
+    left, top, right, bottom = bounds
+    if args.author_scene:
+        from PIL import Image
+        if args.author_scene.suffix.lower() == '.pdf':
+            if args.author_image_xref is None:
+                raise ValueError('A source PDF requires its admitted --author-image-xref.')
+            with fitz.open(args.author_scene) as document:
+                pm = fitz.Pixmap(document, args.author_image_xref)
+                from io import BytesIO
+                image = np.asarray(Image.open(BytesIO(pm.tobytes('png'))).convert('RGB'))
+        else:
+            with Image.open(args.author_scene) as source:
+                image = np.asarray(source.convert('RGB'))
+        nr, nc = image.shape[:2]
+        aspect = nc / nr
+    else:
+        from hashlib import sha256
+        from math import cos, radians, sin
+        from urllib.parse import urlsplit
+        record = json.loads(Path(__file__).with_name('suez_s1a_vv_20210325_grid.json').read_text(encoding='utf-8'))
+        values = np.asarray(record['gray_u8'], dtype=np.uint8)
+        if list(values.shape) != record['shape_rows_cols'] or sha256(values.tobytes()).hexdigest() != record['gray_u8_sha256']:
+            raise ValueError('The SAR display matrix differs from its published shape or digest.')
+        nr, nc = values.shape
+        west, south, east, north = map(float, urlsplit(record['source_window']).path.split('/')[-2].split(','))
+        win_rows, win_cols = record['window_shape_rows_cols']
+        x0, y0, x1, y1 = record['roi_xyxy_end_exclusive']
+        latitude = radians(north - (y0 + y1) * (north-south) / (2 * win_rows))
+        # Ratio of the WGS84 prime-vertical and meridional radii at the ROI center.
+        flattening = 1 / 298.257223563
+        eccentricity_sq = flattening * (2-flattening)
+        lon_to_lat = cos(latitude) * (1 - eccentricity_sq * sin(latitude)**2) / (1-eccentricity_sq)
+        aspect = ((x1-x0) * (east-west) / win_cols) * lon_to_lat / ((y1-y0) * (north-south) / win_rows)
+    width = min(right-left, (bottom-top) * aspect)
+    height = width / aspect
+    x = (left+right-width) / 2
+    y = (top+bottom-height) / 2
+    if args.author_scene:
+        ax.imshow(image, extent=(x,x+width,y+height,y), origin='upper', interpolation='none', aspect='auto', zorder=4)
+    else:
+        dx, dy = width/nc, height/nr
+        ax.add_patch(Rectangle((x,y), width,height,facecolor='black',edgecolor='none',zorder=3.9))
+        for row, col in np.ndindex(values.shape):
+            tone = int(values[row,col])
+            color = '#{0:02x}{0:02x}{0:02x}'.format(tone)
+            # Small right/bottom underlap prevents hairline gaps in antialiased PDF viewers.
+            pad_x = .10 if col+1 < nc else 0
+            pad_y = .10 if row+1 < nr else 0
+            tile = Rectangle((x+col*dx,y+row*dy),dx+pad_x,dy+pad_y,
+                             facecolor=color,edgecolor='none',antialiased=False,zorder=4)
+            tile.set_gid(f'sar-r{row:02d}-c{col:02d}')
+            ax.add_patch(tile)
+    ax.add_patch(Rectangle((x,y),width,height,fill=False,edgecolor=GRAY,lw=.6,zorder=5))
+
+
 def overview():
  f,a=canvas(232)
- for x,label in [(8,'Frozen prediction'),(151,'Native boundary'),(297,'Occupancy'),(403,'Mask update')]:t(a,x,13,label,9,b=True)
+ for x,label in [(8,'Frozen prediction'),(180,'Native boundary'),(297,'Occupancy'),(403,'Mask update')]:t(a,x,13,label,9,b=True)
  line(a,8,26,508,26)
- # A vector schematic is shared by both versions; no observed detector feature maps are implied.
- box(a,10,56,49,51)
- a.add_patch(Polygon([(21,96),(40,63),(49,66),(43,80),(29,99)],fc='#BCA995',ec=GRAY,lw=.8,zorder=6))
- t(a,34,120,'SAR image',7.8,ha='center')
- arrow(a,61,81,74,81,ORANGE)
- stack(a,77,59,55,42,ORANGE)
- t(a,104,73,'RF-DETR',7.5,b=True,ha='center');t(a,104,86,'or D-FINE',7.5,ha='center')
- t(a,104,119,'Frozen decoder',7.5,ha='center')
- arrow(a,135,81,153,81)
- box(a,155,57,120,50)
- for yy,label in [(69,r'$M,B$  inner / outer rings'),(86,r'$p_i$  uncertainty order')]:t(a,162,yy,label,8)
- t(a,215,120,r'$S_+,S_-$  up to 32 / side',7.7,ha='center')
+ render_input(a, (8,41,104,137))
+ t(a,56,147,'SAR crop' if args.author_scene else 'Sentinel-1A VV',7.8,ha='center')
+ arrow(a,106,85,117,85,ORANGE)
+ stack(a,119,64,41,42,ORANGE)
+ t(a,140,77,'RF-DETR',7.4,b=True,ha='center');t(a,140,91,'or D-FINE',7.3,ha='center')
+ t(a,140,119,'Frozen decoder',7.5,ha='center')
+ arrow(a,167,85,178,85)
+ box(a,180,57,95,50)
+ for yy,label in [(69,r'$M,B$  inner/outer rings'),(86,r'$p_i$  uncertainty order')]:t(a,184,yy,label,7.8)
+ t(a,228,120,r'$S_+,S_-$  up to 32 / side',7.7,ha='center')
  arrow(a,277,81,296,81)
  stack(a,298,57,71,50,GREEN)
  t(a,334,69,'ROH',9,GREEN,True,'center')
@@ -64,17 +121,17 @@ def overview():
  t(a,456,51,'Scalar scores',8,GREEN,True,'center');t(a,456,68,r'$F,L,I:\quad +k,-k$',8,ha='center')
  t(a,456,108,'Dual scores',8,WINE,True,'center');t(a,456,125,r'$+a,-(2k_s-a)$',8,ha='center')
  # Explicit mask and metadata bypasses, separated from fitting.
- line(a,131,52,131,42,GRAY);line(a,131,42,394,42,GRAY)
+ line(a,155,58,155,42,GRAY);line(a,155,42,394,42,GRAY)
  line(a,394,42,394,153,GRAY);arrow(a,394,153,437,153,GRAY)
  t(a,279,33,'ID · class · box · confidence',7.2,GRAY,ha='center')
- line(a,215,124,215,166);arrow(a,215,166,437,166)
+ line(a,228,124,228,166);arrow(a,228,166,437,166)
  t(a,304,159,r'Binary mask $M$',7.4,GRAY,ha='center')
  grid(a,439,149,3.4,np.array([[0,0,0,1,0,0,0,0],[0,0,1,1,1,0,0,0],[0,1,1,1,1,1,0,0],[0,0,1,1,1,1,1,0],[0,0,0,1,1,0,0,0]],bool))
  t(a,486,163,r'$M^{\prime}$',9,b=True)
  line(a,507,60,512,60);line(a,512,60,512,146);arrow(a,512,146,456,146)
  arrow(a,456,139,456,149)
- arrow(a,34,127,34,145);line(a,34,145,292,145);arrow(a,292,145,311,111)
- t(a,118,136,'Image appearance',7.4,GRAY,ha='center')
+ line(a,56,154,56,162);line(a,56,162,201,162);line(a,201,162,201,145);line(a,201,145,292,145);arrow(a,292,145,311,111)
+ t(a,131,154,'Image appearance',7.4,GRAY,ha='center')
  line(a,8,178,508,178)
  t(a,8,193,'Scalar fit',8,GREEN,True)
  t(a,84,193,r'Polygon $G$',8)

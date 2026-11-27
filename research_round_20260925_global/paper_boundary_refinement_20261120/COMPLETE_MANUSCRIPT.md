@@ -1,5 +1,8 @@
 # NORA 精简正文、补充材料与重绘图件
 
+**图 1 更新（2026-11-27）。** [正文第 3 页](boundary_refinement_concise.pdf#page=3)及[补图 S2，第 2 页](boundary_refinement_supplement.pdf#page=2)使用真实 SAR 输入。作者版采用已获准的高分三号单船裁片。公开版展示 Sentinel-1A 的历史 VV 影像，显示为 32 行 × 28 列块均值；网络与输出掩膜是机制示意。四份稿件已重新编译并核验，正文 13 页、补材 27 页。所引影像、署名、显示变换和可编辑文件见[总图和复现入口](figures/revision_20261126_02/README.md)。
+
+
 ## 现行全文修订（2026-11-27）
 
 [正文 PDF](boundary_refinement_concise.pdf)（13 页） · [独立补材 PDF](boundary_refinement_supplement.pdf)（27 页） · [本轮修改、统计口径及验证](design/NORA_FULLTEXT_REVISION_20261127.md) · [核心图源](figures/revision_20261126_02/README.md)。标量头与双参考头的训练目标已按公开标签记录核实。以下各轮记录保留为版本历史。

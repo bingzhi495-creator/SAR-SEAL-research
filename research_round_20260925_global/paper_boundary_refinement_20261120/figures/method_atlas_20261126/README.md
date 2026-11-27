@@ -21,3 +21,7 @@
 
 
 总图与 ROH 层图由[当前矢量图生成器](../revision_20261126_02/draw_core_revision.py)生成。标量头使用多边形覆盖比例。双参考头的两个二值标签分别来自 PSeg 匹配多边形的 COCO 栅格与 SPSD 原生全景实例图。此目录的同名绘图入口也调用当前生成器。
+
+图 3 的公开输入为 2021 年 3 月 25 日苏伊士运河 Sentinel-1A VV 观测。左图用 32 行、28 列的灰度矢量方片表示。每格取相邻 2×2 个显示亮度样本的平均值，显示宽高按地面距离校正。图中其余阶段示意 NORA 运算。[聚合值、原始来源、许可与重建命令](../revision_20261126_02/README.md#sentinel-1a-input-in-the-public-overview)
+
+本机作者可通过 `python draw_nora_network_overview.py --output rebuilt --author-scene CROP.png` 生成两套图。若采用已有授权 PDF 中的无叠加图像对象，请传入该 PDF 以及 `--author-image-xref` 对象编号。作者图写入 `rebuilt/local`，公开版写入 `rebuilt/public`。

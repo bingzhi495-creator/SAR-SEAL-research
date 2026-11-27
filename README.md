@@ -2,7 +2,7 @@
 
 ## NORA 作者审阅稿（2026-11-27）
 
-[当前正文、补充材料及图件](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md) · [全文修订记录](research_round_20260925_global/paper_boundary_refinement_20261120/design/NORA_FULLTEXT_REVISION_20261127.md)。正文 13 页，公开补材 27 页。已区分两个 ROH 的实际监督对象，并按统一分组解释边界增量。独立评分状态见记录。
+[当前正文、补充材料及图件](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md) · [全文修订记录](research_round_20260925_global/paper_boundary_refinement_20261120/design/NORA_FULLTEXT_REVISION_20261127.md)。正文 13 页，公开补材 27 页。已区分两个 ROH 的实际监督对象，并按统一分组解释边界增量。独立评分状态见记录。图 1 与补图 S2 现使用真实 SAR 输入，公开影像的来源与显示变换见[方法图说明](research_round_20260925_global/paper_boundary_refinement_20261120/figures/revision_20261126_02/README.md)。
 
 
 <!-- U57_U60_ACTUAL_20261021_01 -->
