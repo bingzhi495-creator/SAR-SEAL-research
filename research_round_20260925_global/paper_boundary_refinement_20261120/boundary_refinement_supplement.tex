@@ -32,14 +32,14 @@ A displaced edge can be corrected without changing the amount of foreground. In 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_scene_to_mask.pdf}}
-\caption{Scene-to-mask workflow. \CaseCaption{The window enlarges the same schematic grid.}{The window enlarges the native mask on the same Instance-RSDD crop. The writer adds and removes four cells. The dashed contour is the ground-truth mask.} Source labels train the ROH.}
+\caption{Scene-to-mask workflow. \CaseCaption{The window enlarges the same schematic grid.}{The window enlarges the native mask on the same Instance-RSDD crop. The writer adds four cells and removes four; the dashed contour is the GT polygon outline.} GT polygon--cell fractions supervise ROH fitting only.}
 \label{fig:native-boundary}
 \end{figure*}
 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_network_overview.pdf}}
-\caption{NORA network architecture. One frozen detector provides candidate metadata, a decoded binary mask and a mask response. The scalar head supplies the equal-count selection rules. The dual-reference head supplies the balanced and variable splits at a fixed total. The candidate identity, class, box and confidence are carried over to the refined mask.}
+\caption{NORA on one retained detection. One frozen front end supplies the binary mask $M$, center response $p_i$ and candidate metadata. The scalar ROH scores the equal-count writers $F,L,I$; the separately fitted dual ROH scores fixed-total allocation. GT polygons supervise ROH fitting only. Image and layer glyphs are schematic.}
 \label{fig:network-overview}
 \end{figure*}
 
@@ -67,7 +67,7 @@ The first ring on each side has layer index \(\ell_i=1\), and the second has \(\
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{\MethodAsset{nora_native_sampling.pdf}}
-\caption{Two clipped boundary rings and representative sampled sites. The box and ranking scores are illustrative.}
+\caption{Native support for additions $S_+$ and removals $S_-$. Two inner and outer boundary rings are clipped to box $B$, then ranked by $|p_i-0.5|$ with row-major ties. The box, displayed scores and representative sites are illustrative.}
 \label{fig:occupancy-stage}
 \end{figure}
 
@@ -81,7 +81,7 @@ which also supplies the cell's contribution to continuous intersection area. Fig
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_fractional_readout.pdf}}
-\caption{Fractional polygon coverage and bilinear decoding at a native cell. The two grids show illustrative geometries at the same cell center.}
+\caption{GT polygon coverage $q_i=|C_i\cap G|/|C_i|$ and detector center response $p_i$. The polygon--cell intersection and bilinear decoder readout are distinct operations at the same native cell; shown grids, values and polygon geometry are illustrative.}
 \label{fig:fractional-readout}
 \end{figure*}
 
@@ -120,7 +120,7 @@ where \(f_\theta\) maps \(28\to24\to24\to1\) through two ReLU hidden layers. Fig
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_roh_architecture.pdf}}
-\caption{ROH layer architecture at one native endpoint. Both heads use the duplicated standardized features. Each output adjusts the decoder logit before the sigmoid and is supervised by its corresponding polygon--cell coverage.}
+\caption{ROH at one endpoint. The four feature groups contain 4, 2, 3 and 5 components. Two copies of the same standardized vector form 28 inputs. Matrix sizes are output by input; each affine layer includes a bias. The separate scalar and dual fits add one or two residuals to the clipped decoder logit. BCE targets are the GT polygon--cell fractions $q_i$ and $(q_{i1},q_{i2})$; the output affine layer starts at zero.}
 \label{fig:roh-architecture}
 \end{figure*}
 
@@ -169,7 +169,7 @@ using each endpoint at most once. If the independent endpoint sets admit such a 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_pairing_paths.pdf}}
-\caption{Endpoint selection on shared support. Paired lines join added and removed cells. The schematic uses two edits per side. The D-FINE case uses four per side. \CaseCaption{Its masks are pooled for display.}{Its masks are overlaid on native SAR.}}
+\caption{Endpoint placement at shared signed counts. Top: illustrative gains of 0.89, 0.99 and 1.44 cell areas for $F,L,I$, each with two additions and two removals; $L$ inherits the longest retained $F$ edge. Bottom: the same D-FINE detection with four additions and four removals per writer. \CaseCaption{The measured masks are pooled for display.}{Methods share the SAR crop, scale and GT polygon outline.} Lower-panel IoU uses native polygon--cell geometry.}
 \label{fig:selection-stage}
 \end{figure*}
 
@@ -211,7 +211,7 @@ where \(W\) is the edited mask, \(I_r(W)\) is its intersection with the random r
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_signed_budget.pdf}}
-\caption{Equal and variable allocations of four edits on shared schematic support.\CaseCaption{}{ The SAR inset provides scene context.}}
+\caption{Fixed-total allocation on schematic support. Both rules flip four cells of a 15-cell mask. The equal split adds two and removes two (area 15); the variable example adds three and removes one (area 17). Both use the same dual-reference scores and maximin predicted-IoU objective. Counts and geometry are illustrative.}
 \label{fig:signed-allocation}
 \end{figure*}
 
@@ -244,7 +244,7 @@ Fig.~\ref{fig:overlap-accounting} compares two equal-total edits with the same i
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_overlap_accounting.pdf}}
-\caption{Illustrative overlap accounting. The two edits recover one shared cell in both cases. The variable split adds a second foreground cell outside the reference.}
+\caption{Illustrative intersection and union accounting for two flips. Both edited masks gain one cell of intersection. Equal allocation has $d=0$ and IoU $10/14$; two additions have $d=2$ and IoU $10/16$, because the second added cell lies outside the GT reference. Native IoU is $9/15$.}
 \label{fig:overlap-accounting}
 \end{figure*}
 
@@ -282,14 +282,14 @@ For \(i\in\mathcal W\), the write margins are \(u_i^+=r_i-\tfrac12\) on original
 \end{equation}
 We evaluate every feasible integer \(a\), with each prefix bounded by the number of available cells on its side. Ties between splits favor the smallest absolute area change and then fewer additions. Ties within a side follow the original endpoint ordinal and then row-major order for the remaining cells. A nonpositive margin can be selected to meet the exact total. The balanced narrow writer fixes \(a=k_{\mathrm{att}}\) with the same within-side rankings. All four support-by-rule arms share the positive-budget candidates and their probabilities, and retain the original masks elsewhere.
 
-\begin{figure}[!t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=\columnwidth]{\MethodAsset{nora_frozen_writer.pdf}}
-\caption{Support and count controls on one frozen Phoenix response.\CaseCaption{}{ The PSeg-SSDD examples show alternative whole-grid writes.}}
+\includegraphics[width=\textwidth]{\MethodAsset{nora_frozen_writer.pdf}}
+\caption{Writable support and update rule crossed on one frozen Phoenix response. Thresholding uses the Phoenix binary output inside each support. Exact-count writing makes $2k_{\mathrm{att}}$ flips, allowing unequal additions and removals. The shown counts (six or nine versus four flips) are illustrative; measured whole-grid cases appear in the qualitative comparison.}
 \label{fig:phoenix-stage}
-\end{figure}
+\end{figure*}
 
-\ifnativecases In the PSeg-SSDD example, the whole-grid threshold writes 38 cells and the exact-count rule writes 16. Both use the same crop and frozen response. The schematic below it shows the four crossed conditions with a separate illustrative budget.\fi
+
 
 For an evaluation statistic \(Y\), the count effect on whole support is \(Y_{\mathrm{whole,count}}-Y_{\mathrm{whole,thr}}\). Subtracting the narrow-support count effect \(Y_{\mathrm{narrow,count}}-Y_{\mathrm{narrow,thr}}\) gives the interaction between support and writing rule. The comparison of balanced and free splits fixes both support and total count. Equations~\eqref{eq:intersect-changes} and \eqref{eq:variable-area} explain how those writers can change area and overlap differently at that budget.
 
@@ -437,7 +437,7 @@ Native decoder ranking, natural count of independent policy & 47.951 & 50.616 & 
 \end{tabular}
 \end{table*}
 
-At its natural count, NORA with D-FINE gains 2.555 mask AP points and 2.838 small-object AP points over the detector on DEV705 (Table~\ref{tab:dev}). Group-equal continuous IoU rises by 1.419 points, with a paired 95\% interval of \([1.265,1.587]\). The refined masks retain the three original strict matches and brings 12 more to 0.90. Absolute COCO AP90 remains low. Each rule retains the native ranks, scores and mask areas.
+At its natural count, NORA with D-FINE gains 2.555 mask AP points and 2.838 small-object AP points over the detector on DEV705 (Table~\ref{tab:dev}). Group-equal continuous IoU rises by 1.419 points, with a paired 95\% interval of \([1.265,1.587]\). The refined masks retain the three original strict matches and bring 12 more to 0.90. Absolute COCO AP90 remains low. Each rule retains the native ranks, scores and mask areas.
 
 At the same 83,059 swaps on 20,741 candidates, independent selection improves on distance pairing by 0.811 AP and 0.529 continuous IoU points (\([0.455,0.597]\)). The five-fold FIT109 comparison gives gains of 1.576 AP and 0.615 IoU points. The natural-count policy makes 194,052 swaps and extends the edits to more candidates. At that larger budget, ranking by the native decoder response can select swaps with nonpositive predicted gains.
 
@@ -585,7 +585,7 @@ Most of the natural-count shift comes from edited cells that the two references 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/journal_20261126/reference_disagreement_effects.pdf}
-\caption{Raster IoU on the same 232 SSDD images and masks. (a) Effects under each reference. (b) The reference-dependent shift and its label-disagreement component. Bars show paired 95\% decoded-image intervals.}
+\caption{Reference sensitivity on the same 232 SSDD images and writer outputs. (a) All-hull raster-IoU effects using each reference's native assignments. (b) SPSD-minus-PSeg effect and its label-disagreement component. Intervals use paired 95\% decoded-image-group resampling; the two references are not separate acquisition cohorts.}
 \label{fig:reference-disagreement}
 \end{figure*}
 
@@ -641,7 +641,7 @@ At the differing edit sites, the two source-fitted outputs overestimate the inte
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/journal_20261126/dual_reference_budget_effect.pdf}
-\caption{Variable minus equal allocation at fixed total flips. (a) Effects for the first dual-reference ROH fit on 183 development images. (b) Intersection and area terms from Eq.~\eqref{eq:area-overlap-parts}.}
+\caption{Variable minus equal allocation at 115,384 total flips on the same 183 SSDD development images. (a) Raster IoU with paired 95\% decoded-image-group intervals and mask AP for the first dual-reference ROH fit. PSeg and SPSD are two references of the same images. (b) Exact intersection and area contributions to the IoU difference. This first-fit display differs from the three-fit mean in the results table.}
 \label{fig:dual-budget-effect}
 \end{figure*}
 
@@ -785,7 +785,7 @@ Figure~\ref{fig:rsdd-common-cap-cases} compares the four D-FINE masks for each o
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\CaseAsset{rsdd74_common_cap_cases.pdf}{rsdd74_common_cap_cases.pdf}}
-\caption{D-FINE masks near the gain and loss medians of \(I-L\) on the Instance-RSDD reserve. Each edited mask adds and removes four cells in (a) and eight in (b). \CaseCaption{The grids pool coverage and the signed difference.}{Each case uses a shared SAR crop.} IoU uses the native geometry.}
+\caption{D-FINE cases near the gain and loss medians of $I-L$ on the 74-chip Instance-RSDD reserve. Every edited mask adds and removes four cells in (a), and eight in (b). \CaseCaption{Coverage is averaged on an $8\times8$ display grid; the last panel pools the signed foreground difference $I-L$.}{Methods within each case share the SAR crop, scale and GT outline. The last panel shows the signed foreground difference $I-L$.} IoU and case selection use native polygon--cell geometry.}
 \label{fig:rsdd-common-cap-cases}
 \end{figure*}
 
@@ -801,21 +801,21 @@ Figure~\ref{fig:rsdd-common-cap-cases} compares the four D-FINE masks for each o
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\CaseAsset{gf3_matched_cases_binned.pdf}{gf3_cases_exact.pdf}}
-\caption{Four Gaofen-3 cases near the gain and loss medians among 425 eligible matches. The edited masks each use eight swaps. \CaseCaption{Grids pool coverage and overlap changes.}{All methods share the SAR crop and ground-truth outline.} Scores use native geometry.}
+\caption{ROH ranking versus dynamic attraction on Gaofen-3, using frozen RF-DETR fit B. Two cases lie near each sign median among 425 eligible matches; each edited mask makes eight additions and eight removals. \CaseCaption{Coverage and signed intersection differences are pooled on an $8\times8$ display grid; mask coverage uses quarter-occupancy levels and the dashed GT contour is at 50\% coverage.}{Methods within each case share the SAR crop, scale and GT outline.} IoU and intersection areas use native geometry; both gains and losses are retained.}
 \label{fig:gf3-qual}
 \end{figure*}
 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\CaseAsset{pseg_budget_cases_binned.pdf}{pseg_budget_cases_exact.pdf}}
-\caption{Threshold and fixed-count Phoenix masks near the gain and loss medians on PSeg-SSDD. \CaseCaption{Pooled footprints accompany the signed error difference.}{The masks share the SAR crop and ground-truth polygon.} IoU and the error areas use native geometry.}
+\caption{Phoenix threshold and exact-count masks near the gain and loss medians on PSeg-SSDD. The exact-count writer uses 16 flips in each case; thresholding uses 38 and 75. \CaseCaption{An $8\times8$ grid pools $5\times5$ native cells per bin in (a), $7\times7$ in (b); coverage is shown in quarter-occupancy levels and the last panel pools threshold-minus-count FP+FN area.}{Methods within each case share the SAR crop, scale and GT polygon; the enlarged boundary panel uses its marked window.} IoU, FP and FN use native geometry; error percentages divide by GT hull area.}
 \label{fig:pseg-budget-cases}
 \end{figure*}
 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.86\textwidth]{\CaseAsset{rsdd74_segrefiner_cases_binned.pdf}{rsdd74_segrefiner_cases_SAR_PRIVATE.pdf}}
-\caption{Native, local ROH and SegRefiner-LR masks near the gain and loss medians among 39 Instance-RSDD matches. \CaseCaption{Grids pool masks and intersection changes.}{Each case uses a shared SAR crop and ground-truth outline.} Scores use native geometry.}
+\caption{SegRefiner-LR gain and loss cases among 39 eligible Instance-RSDD matches. Native, local ROH and whole-crop refinement share the same retained detection. \CaseCaption{An $8\times8$ display grid pools mask fractions and signed intersection changes; the dashed GT contour is at 25\% coverage. IoU uses native geometry.}{Methods within each case share the SAR crop, scale and GT outline; IoU uses native geometry.}}
 \label{fig:segrefiner-cases}
 \end{figure*}
 
@@ -849,7 +849,7 @@ The independent and distance-paired rules write different masks for 52 of the 92
 \begin{figure*}[t]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/journal_20261126/sarssp_public_summary.pdf}
-\caption{Equal-count SAR-SSP effects. (a) IoU changes on 52 different masks. (b) Correct-label differences at disagreeing cells in normalized hull coordinates. (c) Raster IoU over 139 hulls and mask AP over 232 chips.}
+\caption{Equal-count SAR-SSP transfer. (a) IoU changes for 52 masks that differ between $I$ and $F$. (b) Correct-label differences at disagreeing cells, aggregated in a $4\times4$ grid of normalized axis-aligned GT-mask boxes; bins require at least five hulls and color saturates at $\pm50\%$. (c) Parent-scene-balanced raster IoU over 139 hulls (native misses have zero change), with paired 95\% scene intervals, and mask AP over all 232 chips.}
 \label{fig:sar-ssp-cases}
 \end{figure*}
 

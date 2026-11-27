@@ -14,7 +14,7 @@
 \maketitle
 
 \begin{abstract}
-A narrow ship mask can have the correct area yet miss one flank of the hull in synthetic aperture radar (SAR) imagery. Native-Grid Occupancy Ranking and Allocation (NORA) estimates occupancy on both sides of a retained mask boundary and uses those estimates to choose which cells to add and remove. At equal addition and removal counts, independent selection gains 0.81--0.91 mask average precision (AP) points over distance-first pairing on HRSID DEV705. Over bounded re-pairing, it gains 0.479 and 0.344 AP points with frozen RF-DETR and D-FINE on the same 74 historical Instance-RSDD reserve chips. With RF-DETR, bounded re-pairing improves one-pixel Boundary IoU by 0.735 points over distance-first pairing. The paired 95\% interval for the additional effect of independent selection includes zero. When only the total edit count is fixed, allowing the split to vary gains 2.30 and 1.75 AP points over equal allocation under two annotations of the same SSDD images, averaged across three head fits. On frozen transfer to SAR-SSP, the variable split reduces missed area but adds excess foreground and lowers AP by 0.14 points.
+A narrow ship mask can have the correct area yet miss one flank of the hull in synthetic aperture radar (SAR) imagery. Native-Grid Occupancy Ranking and Allocation (NORA) estimates occupancy on both sides of a retained mask boundary and uses those estimates to choose which cells to add and remove. The head uses ground-truth polygon--cell fractions as targets; a second head supports dual-reference allocation at fixed total flips. At equal addition and removal counts, independent selection gains 0.81--0.91 mask average precision (AP) points over distance-first pairing on HRSID DEV705. Over bounded re-pairing, it gains 0.479 and 0.344 AP points with frozen RF-DETR and D-FINE on the same 74 historical Instance-RSDD reserve chips. With RF-DETR, bounded re-pairing improves one-pixel Boundary IoU by 0.735 points over distance-first pairing. The paired 95\% interval for the additional effect of independent selection includes zero. When only the total edit count is fixed, allowing the split to vary gains 2.30 and 1.75 AP points over equal allocation under two annotations of the same SSDD images, averaged across three head fits. On frozen transfer to SAR-SSP, the variable split reduces missed area but adds excess foreground and lowers AP by 0.14 points.
 \end{abstract}
 \begin{IEEEkeywords}
 Synthetic aperture radar, ship instance segmentation, mask refinement, boundary supervision.
@@ -23,10 +23,10 @@ Synthetic aperture radar, ship instance segmentation, mask refinement, boundary 
 \section{Introduction}
 \label{sec:introduction}
 
-A vessel moored beside a quay can be easy to locate in a synthetic aperture radar (SAR) image even where the boundary between ship and shore is difficult to trace. SAR forms an image by coherently processing echoes from the scene~\cite{moreira2013}. A strong return can originate inside the hull, while part of the quay may appear as bright as the vessel~\cite{gao2024,gldet}. A detector can therefore enclose the intended ship while its mask cuts into one flank and extends onto shore along the other. We introduce Native-Grid Occupancy Ranking and Allocation (NORA) for refining such a mask while retaining the detection identity, box, class and confidence. Three operations address distinct sources of boundary error.
+A vessel moored beside a quay can be easy to locate in a synthetic aperture radar (SAR) image even where the boundary between ship and shore is difficult to trace. SAR forms an image by coherently processing echoes from the scene~\cite{moreira2013}. A strong return can originate inside the hull, while part of the quay may appear as bright as the vessel~\cite{gao2024,gldet}. A detector can therefore enclose the intended ship while its mask cuts into one flank and extends onto shore along the other. We introduce Native-Grid Occupancy Ranking and Allocation (NORA) for refining such a mask while retaining the detection identity, box, class and confidence. Three linked decisions address partial-cell evidence, misplaced equal-area masks and incorrect foreground area.
 
 \emph{Fractional occupancy at the mask boundary.}
-A polygon can cover part of a cell even when its center lies outside the outline. The response sampled from the detector at that center is informative, but it does not directly specify how much intersection area the cell would contribute if selected. NORA learns this quantity with a residual occupancy head (ROH). The covered fraction of each source cell supplies a continuous training target. At inference, the ROH adjusts the decoder logit using the native mask, its local geometry and image appearance. The existing binary label determines whether a scored cell can be added or removed.
+A polygon can cover part of a cell even when its center lies outside the outline. The response sampled from the detector at that center is informative, but it does not directly specify how much intersection area the cell would contribute if selected. NORA learns this quantity with a residual occupancy head (ROH). The covered fraction of each source cell supplies a continuous training target. At inference, the ROH adjusts the decoder logit using the native mask, its local geometry and image appearance. The existing binary label determines whether a scored cell can be added or removed. The target describes annotation coverage; the output remains binary at native resolution.
 
 \emph{Placement at equal addition and removal counts.}
 Shifting a rectangular hull of width \(w\) cells transversely by one cell preserves its area, yet its intersection over union (IoU) falls to \((w-1)/(w+1)\), or 0.60 for a four-cell-wide hull. An exchange can correct such a displacement, but the best addition need not lie near a useful removal. We distinguish three placement rules on the same sites and scores, each making exactly \(k\) additions and \(k\) removals. Distance-first pairing (\(F\)) fixes partners by minimum squared-distance assignment. Bounded re-pairing (\(L\)) can change partners with no edge longer than the longest one retained by \(F\). Independent ranking (\(I\)) selects each side separately. The two successive comparisons distinguish the effect of changing partners within the distance cap from the additional effect of removing that cap.
@@ -45,12 +45,12 @@ NORA uses the fraction of a cell covered by its ground-truth polygon to supervis
 \subsection{Endpoint placement at equal edit counts}
 Atkinson selects subpixel exchanges by spatial attraction while preserving the class proportions assigned to each coarse remote sensing pixel~\cite{atkinson}. In learned refinement, PointRend queries uncertain locations during mask subdivision, SegFix transfers interior labels to boundary sites, and Boundary Patch Refinement predicts corrections from local image and mask patches~\cite{pointrend,segfix,bpr}. Their outputs can reflect changes in the predicted responses, where those responses are applied, and how many cells change. For a retained SAR instance, a controlled question is whether connecting an addition to a nearby removal restricts which locations can be corrected when the evidence and the edit count are already given.
 
-NORA holds the detector, native support, occupancy scores and realized counts on each side fixed. Distance-first pairing supplies the original count and the longest retained edge. Bounded re-pairing can improve the estimated gain within that maximum length, and independent selection can use any two endpoint sets of the prescribed sizes. The two contrasts distinguish re-pairing from relaxing the maximum edge length. They leave aggregate displacement free to vary. An adapted PointRend head also supplies a second set of scores for a comparison using common sites and counts.
+NORA holds the detector, native support, occupancy scores and realized counts on each side fixed. Distance-first pairing supplies the original count and the longest retained edge. Bounded re-pairing can improve the estimated gain within that maximum length, and independent selection can use any two endpoint sets of the prescribed sizes. The two contrasts distinguish re-pairing from relaxing the maximum edge length. They leave aggregate displacement and mask topology free to vary; the comparison does not isolate those quantities. An adapted PointRend head also supplies a second set of scores for a comparison using common sites and counts.
 
 \subsection{Signed allocation at a fixed total count}
-RankSEG derives overlap-oriented decisions by ranking posterior scores and choosing how many sites to label as foreground~\cite{rankseg}. RankSEG-RMA approximates a reciprocal moment in the binary IoU objective~\cite{rankrma}. Whole-mask methods such as SegRefiner and Phoenix instead start from a given mask and learn how to correct coarse or perturbed predictions~\cite{segrefiner,phoenix}. The final foreground area alone leaves the number of flips from the original mask undetermined. Conversely, equal additions and removals preserve any original area deficit or excess. This leaves an allocation question when the total number of edits is fixed.
+RankSEG derives overlap-oriented decisions by ranking posterior scores and choosing the foreground count~\cite{rankseg}. From a coarse input mask, SegRefiner learns discrete denoising updates~\cite{segrefiner}. RankSEG-RMA subsequently approximates the reciprocal moment in binary IoU~\cite{rankrma}, while Phoenix learns semantic-aware whole-mask correction~\cite{phoenix}. The final foreground area alone leaves the number of flips from the original mask undetermined. Conversely, equal additions and removals preserve any original area deficit or excess. This leaves an allocation question when the total number of edits is fixed.
 
-NORA uses the RankIoU-RMA ratio to score a finite menu on the sampled support and retains the original cell states outside it. The comparison gives the balanced and variable splits the same scores, total count, objective and menu construction rule. When two annotation releases describe the same images, this objective takes the smaller estimated IoU gain over a common incumbent. It therefore tests whether changing the allocation improves IoU under the two supplied references. A separate experiment freezes the Phoenix response and crosses writable support with the binary mask update rule to examine those factors on a whole-mask refiner.
+These precedents motivate ranking and overlap objectives; the remaining control is a fixed number of changed cells relative to the original mask. NORA uses the RankIoU-RMA ratio to score a finite menu on the sampled support and retains the original cell states outside it. The comparison gives the balanced and variable splits the same scores, total count, objective and menu construction rule. When two annotation releases describe the same images, this objective takes the smaller estimated IoU gain over a common incumbent. It therefore tests whether changing the allocation improves IoU under the two supplied references. A separate experiment freezes the Phoenix response and crosses writable support with the binary mask update rule to examine those factors on a whole-mask refiner.
 
 \section{Method}
 \label{sec:method}
@@ -60,7 +60,7 @@ NORA edits the mask of a retained ship detection. Each run uses one frozen front
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_network_overview.pdf}}
-\caption{NORA network architecture. One frozen detector provides candidate metadata, a decoded binary mask and a mask response. The scalar head supplies the equal-count selection rules. The dual-reference head supplies the balanced and variable splits at a fixed total. The candidate identity, class, box and confidence are carried over to the refined mask.}
+\caption{NORA on one retained detection. One frozen front end supplies the binary mask $M$, center response $p_i$ and candidate metadata. The scalar ROH scores the equal-count writers $F,L,I$; the separately fitted dual ROH scores fixed-total allocation. GT polygons supervise ROH fitting only. Image and layer glyphs are schematic.}
 \label{fig:network-overview}
 \end{figure*}
 
@@ -80,7 +80,7 @@ Here \(\delta\) and \(\varepsilon\) denote dilation and erosion. In each pool, t
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{\MethodAsset{nora_native_sampling.pdf}}
-\caption{Two clipped boundary rings and representative sampled sites. The box and ranking scores are illustrative.}
+\caption{Native support for additions $S_+$ and removals $S_-$. Two inner and outer boundary rings are clipped to box $B$, then ranked by $|p_i-0.5|$ with row-major ties. The box, displayed scores and representative sites are illustrative.}
 \label{fig:occupancy-stage}
 \end{figure}
 
@@ -92,7 +92,7 @@ The 14-component feature vector at each endpoint is
 \end{aligned}
 \label{eq:endpoint-features}
 \end{equation}
-Here \(\ell_i\) is the boundary ring, \(d_i\) is the Euclidean distance to the opposite binary class, and \((\bar x_i,\bar y_i)\) denotes the box-normalized cell position. The candidate-level area features are \(\nu=\log_2|M|\) and \(\eta=|M|/|B\cap\Omega|\). The last five components are native intensity, its \(3\times3\) and \(5\times5\) neighborhood means, and its horizontal and vertical central differences. The intensity features are computed from the released image rendering. Together with the geometry features, they provide context for distinguishing cells drawn at similar decoder responses. Bilinear sampling at the native center interpolates the stored sigmoid plane for D-FINE and the logits before sigmoid for RF-DETR. The half-cell mapping, padding rules, precision conventions and complete feature vector are given in Supplementary Section~S1.
+Here \(\ell_i\in\{1,2\}\) is the boundary ring, \(d_i\) is the Euclidean distance to the opposite binary class, and \((\bar x_i,\bar y_i)\) denotes the box-normalized cell position. Distances are in native pixels, and areas count unit cells. The candidate-level area features are \(\nu=\log_2|M|\) and \(\eta=|M|/|B\cap\Omega|\). The last five components are native intensity, its \(3\times3\) and \(5\times5\) neighborhood means, and its horizontal and vertical central differences. The intensity features are computed from the released image rendering. Together with the geometry features, they provide context for distinguishing cells drawn at similar decoder responses. Bilinear sampling at the native center interpolates the stored sigmoid plane for D-FINE and the logits before sigmoid for RF-DETR. The half-cell mapping, padding rules, precision conventions and complete feature vector are given in Supplementary Section~S1.
 
 The Residual Occupancy Head (ROH) learns from source candidates with a nonignored COCO match at raster IoU 0.50 and a valid ground-truth polygon \(G\). A polygon can cross a cell even when its center lies outside the polygon. The supervision target records the covered area fraction,
 \begin{equation}
@@ -104,7 +104,7 @@ These fractions describe the annotation on the released grid. The inference mask
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_fractional_readout.pdf}}
-\caption{Fractional polygon coverage and bilinear decoding at a native cell. The two grids show illustrative geometries at the same cell center.}
+\caption{GT polygon coverage $q_i=|C_i\cap G|/|C_i|$ and detector center response $p_i$. The polygon--cell intersection and bilinear decoder readout are distinct operations at the same native cell; shown grids, values and polygon geometry are illustrative.}
 \label{fig:fractional-readout}
 \end{figure*}
 
@@ -129,7 +129,7 @@ where \(\ell(q,p)=-q\log p-(1-q)\log(1-p)\). The scalar fit uses 200 AdamW updat
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_roh_architecture.pdf}}
-\caption{ROH layer architecture at one native endpoint. Both heads use the duplicated standardized features. Each output adjusts the decoder logit before the sigmoid and is supervised by its corresponding polygon--cell coverage.}
+\caption{ROH at one endpoint. The four feature groups contain 4, 2, 3 and 5 components. Two copies of the same standardized vector form 28 inputs. Matrix sizes are output by input; each affine layer includes a bias. The separate scalar and dual fits add one or two residuals to the clipped decoder logit. BCE targets are the GT polygon--cell fractions $q_i$ and $(q_{i1},q_{i2})$; the output affine layer starts at zero.}
 \label{fig:roh-architecture}
 \end{figure*}
 
@@ -172,8 +172,8 @@ Fig.~\ref{fig:matched-selection} illustrates how the same scores and counts yiel
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=.93\textwidth]{figures/journal_20261126/method_bounded_selection.pdf}
-\caption{Distance-first pairing, bounded re-pairing and independent selection on an illustrative shared grid. Each rule adds two foreground cells and removes two. Lines mark matched pairs and gains are estimated intersection changes in native cell-area units.}
+\includegraphics[width=\textwidth]{figures/journal_20261126/method_bounded_selection.pdf}
+\caption{Equal-count placement on a shared illustrative grid. Each rule adds two cells and removes two; orange circles mark the common candidate sites. $F$ ranks a distance-minimizing full assignment. $L$ optimizes a size-two matching with every edge no longer than the longest edge retained by $F$ ($\rho=\sqrt{2}$ native pixels). $I$ ranks each side independently. Displayed gains are illustrative predicted intersection changes, not measured IoU or AP.}
 \label{fig:matched-selection}
 \end{figure*}
 
@@ -213,7 +213,7 @@ Fig.~\ref{fig:signed-allocation} illustrates the area change caused by changing 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_signed_budget.pdf}}
-\caption{Equal and variable allocations of four edits on shared schematic support.\CaseCaption{}{ The SAR inset provides scene context.}}
+\caption{Fixed-total allocation on schematic support. Both rules flip four cells of a 15-cell mask. The equal split adds two and removes two (area 15); the variable example adds three and removes one (area 17). Both use the same dual-reference scores and maximin predicted-IoU objective. Counts and geometry are illustrative.}
 \label{fig:signed-allocation}
 \end{figure*}
 
@@ -376,7 +376,7 @@ Additional intersection contributes 2.243 and 2.041 IoU points under PSeg and SP
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.98\textwidth]{figures/journal_20261126/dual_reference_budget_effect.pdf}
-\caption{Variable minus equal allocation at fixed total flips. (a) Effects for the first dual-reference ROH fit on 183 development images. (b) Intersection and area terms from Eq.~\eqref{eq:area-overlap-parts}.}
+\caption{Variable minus equal allocation at 115,384 total flips on the same 183 SSDD development images. (a) Raster IoU with paired 95\% decoded-image-group intervals and mask AP for the first dual-reference ROH fit. PSeg and SPSD are two references of the same images. (b) Exact intersection and area contributions to the IoU difference. This first-fit display differs from the three-fit mean in the results table.}
 \label{fig:dual-budget-effect}
 \end{figure*}
 
@@ -389,7 +389,7 @@ The D-FINE cases in Fig.~\ref{fig:rsdd-common-cap-cases} retain the original det
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\CaseAsset{rsdd74_common_cap_cases.pdf}{rsdd74_common_cap_cases.pdf}}
-\caption{D-FINE masks near the gain and loss medians of \(I-L\) on the Instance-RSDD reserve. Each edited mask adds and removes four cells in (a) and eight in (b). \CaseCaption{The grids pool coverage and the signed difference.}{Each case uses a shared SAR crop.} IoU uses the native geometry.}
+\caption{D-FINE cases near the gain and loss medians of $I-L$ on the 74-chip Instance-RSDD reserve. Every edited mask adds and removes four cells in (a), and eight in (b). \CaseCaption{Coverage is averaged on an $8\times8$ display grid; the last panel pools the signed foreground difference $I-L$.}{Methods within each case share the SAR crop, scale and GT outline. The last panel shows the signed foreground difference $I-L$.} IoU and case selection use native polygon--cell geometry.}
 \label{fig:rsdd-common-cap-cases}
 \end{figure*}
 
@@ -400,7 +400,7 @@ Figure~\ref{fig:gf3-qual} gives the Gaofen-3 gain and loss cases from the attrac
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\CaseAsset{gf3_matched_cases_binned.pdf}{gf3_cases_exact.pdf}}
-\caption{Four Gaofen-3 cases near the gain and loss medians among 425 eligible matches. The edited masks each use eight swaps. \CaseCaption{Grids pool coverage and overlap changes.}{All methods share the SAR crop and ground-truth outline.} Scores use native geometry.}
+\caption{ROH ranking versus dynamic attraction on Gaofen-3, using frozen RF-DETR fit B. Two cases lie near each sign median among 425 eligible matches; each edited mask makes eight additions and eight removals. \CaseCaption{Coverage and signed intersection differences are pooled on an $8\times8$ display grid; mask coverage uses quarter-occupancy levels and the dashed GT contour is at 50\% coverage.}{Methods within each case share the SAR crop, scale and GT outline.} IoU and intersection areas use native geometry; both gains and losses are retained.}
 \label{fig:gf3-qual}
 \end{figure*}
 
