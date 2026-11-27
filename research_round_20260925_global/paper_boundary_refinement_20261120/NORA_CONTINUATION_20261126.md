@@ -1,9 +1,17 @@
 # NORA 论文与图件续作交接
 
+## 实测方法图与案例修订（2026-11-27）
+
+[正文 PDF](boundary_refinement_concise.pdf)（14 页、10 图、7 表） · [补材 PDF](boundary_refinement_supplement.pdf)（28 页，公开版 20 图、作者版 21 图，15 表） · [逐图与证据记录](design/NORA_OBSERVED_FIGURES_20261127.md)。[方法图与可编辑层](figures/observed_methods_20261127/README.md) · [定性图、选例与聚合记录](figures/observed_cases_20261127/README.md)。
+
+高分三号正文优先展示四个既有案例中正、负各自交集改变量绝对值较大的一例，补材保留四例。新增 SegRefiner-LR 与局部 ROH 的同船比较。作者审阅版使用原生 SAR 裁片，公开定性图使用对应案例的聚合矢量。Umbra 独立评分仍待完成。
+
+以下结果为各次修订当时的页数、图件和链接，现行稿件以上述入口为准。
+
 **图 1 接续记录（2026-11-27）。** 正文图 1 和补图 S2 已换用真实 SAR 输入。原生高分三号裁片仅留在作者审阅版。公开稿采用可重建的 Sentinel-1A VV 聚合矢量。[当前稿件和可编辑图件](COMPLETE_MANUSCRIPT.md)。
 
 
-**现行交接，2026-11-27。** [全文修订及验证](design/NORA_FULLTEXT_REVISION_20261127.md) · [正文、独立补材及图件索引](COMPLETE_MANUSCRIPT.md)。公开稿件为 13 / 27 页。正负案例及冻结迁移证据保留，Umbra 独立评分仍待完成。以下续作 02 及更早信息按当时版本读取。
+**前一版交接，2026-11-27。** [全文修订及验证](design/NORA_FULLTEXT_REVISION_20261127.md) · [正文、独立补材及图件索引](COMPLETE_MANUSCRIPT.md)。公开稿件为 13 / 27 页。正负案例及冻结迁移证据保留，Umbra 独立评分仍待完成。以下续作 02 及更早信息按当时版本读取。
 
 
 > 续作 02 已完成稿图修订与四份 PDF 编译核验。当前公开正文 13 页、补材 26 页（20 图）；本机原生补材 26 页（21 图）。[现行入口与修订记录](COMPLETE_MANUSCRIPT.md) · [证据及验收记录](design/CONTINUATION_AUDIT_20261126_02.md) · [五页可编辑核心图](figures/revision_20261126_02/README.md)。下文保留本次交接时的历史快照；Umbra 独立评分仍未完成。

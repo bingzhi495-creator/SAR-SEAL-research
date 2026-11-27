@@ -5,6 +5,8 @@
 \ifdefined\NativeCaseReview\nativecasestrue\else\nativecasesfalse\fi
 \newcommand{\CaseAsset}[2]{\ifnativecases local_figures/#2\else figures/journal_20261126/#1\fi}
 \newcommand{\MethodAsset}[1]{\ifnativecases local_method_figures/#1\else figures/method_atlas_20261126/#1\fi}
+\newcommand{\ObservedMethod}[1]{\ifnativecases local_observed_figures/#1\else figures/observed_methods_20261127/#1\fi}
+\newcommand{\ObservedCase}[1]{\ifnativecases local_observed_figures/#1\else figures/observed_cases_20261127/#1\fi}
 \DeclareRobustCommand{\CaseCaption}[2]{\ifnativecases #2\else #1\fi}
 \hypersetup{pdftitle={NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation}}
 \begin{document}
@@ -57,7 +59,7 @@ NORA takes one retained ship detection as input and returns a binary mask on the
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{\MethodAsset{nora_network_overview.pdf}}
-\caption{NORA for one retained detection. \CaseCaption{The Sentinel-1A VV image shows the \emph{Ever Given} on 25 March 2021. The \(32\times28\) display averages \(2\times2\) samples of backscatter brightness after clipping to \([-8,10]\) dB. Contains modified Copernicus Sentinel data (2021), terrain-corrected by Catalyst via Microsoft Planetary Computer (\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}).}{The SAR input is the Gaofen-3 ship crop from Fig.~\ref{fig:gf3-qual}(c), shown without the overlaid contours.} The network and output mask are schematic. The frozen detector supplies the binary mask \(M\), cell-center response \(p_i\) and detection metadata. The scalar residual occupancy head (ROH) ranks cells for \(F,L,I\) at equal addition and removal counts. A separately fitted dual ROH supplies foreground probabilities for fixed-total allocation. Scalar supervision uses ground-truth polygon--cell fractions. Dual supervision uses foreground labels from two matched raster references.}
+\caption{NORA for one retained detection. \CaseCaption{The Sentinel-1A VV image shows the \emph{Ever Given} on 25 March 2021. The \(32\times28\) display averages \(2\times2\) samples of backscatter brightness after clipping to \([-8,10]\) dB. Contains modified Copernicus Sentinel data (2021), terrain-corrected by Catalyst via Microsoft Planetary Computer (\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}).}{The SAR input shows an Instance-RSDD Gaofen-3 ship before the prediction and reference contours are overlaid.} The network and output mask are schematic. The frozen detector supplies the binary mask \(M\), cell-center response \(p_i\) and detection metadata. The scalar residual occupancy head (ROH) ranks cells for \(F,L,I\) at equal addition and removal counts. A separately fitted dual ROH supplies foreground probabilities for fixed-total allocation. Scalar supervision uses ground-truth polygon--cell fractions. Dual supervision uses foreground labels from two matched raster references.}
 \label{fig:network-overview}
 \end{figure*}
 
@@ -76,8 +78,8 @@ We sort each pool by \((|p_i-\tfrac12|,yW+x)\), giving priority to responses nea
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{\MethodAsset{nora_native_sampling.pdf}}
-\caption{Candidate cells on the native grid. Clipping the two outer and two inner rings to \(B\) gives the pools for \(S_+\) and \(S_-\). Cells closest to \(p_i=0.5\) rank first, with ties resolved in row-major order. The box, scores and selected sites illustrate the sampling rule.}
+\includegraphics[width=\columnwidth]{\ObservedMethod{observed_sampling.pdf}}
+\caption{Native boundary support. Within the box \(B\), the writer takes candidate additions from the outer two rings and removals from the inner two rings. Candidates on each side are ordered by \(\lvert p_i-0.5\rvert\) and capped at 32. \CaseCaption{The top panels use a schematic mask, box and scores. The lower panel shows a D-FINE native mask on the Instance-RSDD reserve, pooled into \(8\times8\) display bins and rounded to quarter occupancy. Its native continuous IoU is 51.71 points.}{The left panel shows the observed D-FINE mask on the Instance-RSDD reserve. The displayed box and score ordering illustrate the sampling rule.}}
 \label{fig:occupancy-stage}
 \end{figure}
 
@@ -100,8 +102,8 @@ Thus \(q_i\) measures coverage by the released annotation, while \(p_i\) samples
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{\MethodAsset{nora_fractional_readout.pdf}}
-\caption{Two quantities at the same native cell. Intersecting \(C_i\) with the GT polygon \(G\) gives its covered fraction \(q_i=|C_i\cap G|/|C_i|\). Bilinear sampling of the decoder field at the center supplies \(p_i\). The grids, polygon and values are illustrative.}
+\includegraphics[width=\textwidth]{\ObservedMethod{observed_readout.pdf}}
+\caption{Target and decoder response for the scalar ROH. \CaseCaption{At left, the Instance-RSDD reference polygon is pooled into an \(8\times8\) display grid with quarter-occupancy levels.}{At left, the annotated outline is overlaid on the Instance-RSDD SAR crop.} The other panels illustrate one native cell. The polygon covers half of this example cell (\(q_i=0.50\)). Bilinear interpolation of four decoder neighbors gives \(p_i\) at the same cell center.}
 \label{fig:fractional-readout}
 \end{figure*}
 
@@ -165,12 +167,12 @@ g_F-g_I\le\sum_{i\in\mathcal D}|\widehat q_i-q_i|
 \end{equation}
 Only sites on which the rules disagree contribute to this bound (Supplementary Section~S2). Cells outside the sampled support keep their native labels under either budget. In particular, a local edit cannot recover a missed hull with no retained proposal. Mask AP also depends on rematching across IoU thresholds, even when every detection retains its original confidence.
 
-Figure~\ref{fig:matched-selection} follows one common set of scores through all three rules.
+Figure~\ref{fig:matched-selection} follows a common set of scores through all three rules and shows their outputs for one reserve detection.
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{figures/journal_20261126/method_bounded_selection.pdf}
-\caption{Equal-count placement on a common grid. Orange circles mark candidate sites. Each rule adds two cells and removes two. \(F\) ranks pairs from a distance-minimizing full assignment. \(L\) optimizes a size-two matching with distance capped at the longest edge retained by \(F\) (\(\rho=\sqrt{2}\) native pixels). \(I\) ranks each side independently. The displayed gains are illustrative changes in predicted intersection area, in native cell units.}
+\includegraphics[width=\textwidth]{\ObservedMethod{observed_placement.pdf}}
+\caption{Equal-count endpoint placement. In the upper schematic, \(F\), \(L\) and \(I\) each add and remove two cells. \(F\) sets the maximum retained edge length \(\rho=\sqrt{2}\) native pixels, \(L\) re-pairs cells within this cap, and \(I\) ranks each side independently. The illustrative predicted intersection gains are 0.89, 0.99 and 1.44 cell areas. Below, all three methods add and remove four cells on the same D-FINE detection from the Instance-RSDD reserve. Their continuous IoUs are 51.52, 51.73 and 51.92 points. \CaseCaption{The \(8\times8\) bins show mean GT or mask coverage.}{All panels share the SAR crop, scale and annotated outline.} The observed scores use native polygon--cell geometry.}
 \label{fig:matched-selection}
 \end{figure*}
 
@@ -209,12 +211,12 @@ To test the ratio approximation, we hold the candidate masks fixed and compute t
 \end{equation}
 We evaluate the reciprocal moment by Poisson-binomial convolution and use the same objective relative to \(S\).
 
-Figure~\ref{fig:signed-allocation} shows how the split alone changes mask area.
+Figure~\ref{fig:signed-allocation} illustrates the resulting area change and gives the total numbers of additions and removals observed on the dual-reference development images.
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{\MethodAsset{nora_signed_budget.pdf}}
-\caption{Fixed-total allocation. Both rules flip four cells of a 15-cell mask using the same dual-reference scores and the same minimum-gain objective across references. Adding two cells and removing two preserves area at 15. Adding three and removing one increases it to 17. The grid and counts are illustrative.}
+\includegraphics[width=\textwidth]{\ObservedMethod{observed_allocation.pdf}}
+\caption{Signed allocation at a fixed total. The upper schematic gives four flips to each writer on a 15-cell mask. The equal split preserves its area and three additions with one removal increase it to 17 cells. Below, the bars give the observed totals across the candidate stream for the first dual-reference ROH fit on the same 183 SSDD development images. The equal split adds and removes 57,692 cells. The variable split adds 67,777 and removes 47,607, for the same 115,384 flips.}
 \label{fig:signed-allocation}
 \end{figure*}
 
@@ -391,26 +393,35 @@ The increase in intersection contributes 2.243 IoU points under PSeg and 2.041 u
 
 On 232 SAR-SSP validation chips, the frozen dual-reference head and variable allocation change 48 original matches across 20 parent scenes. Missed foreground falls by 0.653 points of reference area (\([-1.079,-0.328]\)), while excess foreground rises by 1.378 points (\([0.750,2.067]\)). Mask AP falls by 0.139 points and the raster-IoU interval spans zero. This transfer fails the paired criterion. A reference-assisted check keeps the predicted winning mask at every feasible split and uses the reference only to select the split. Across the 50 native matches with a positive budget, that choice recovers 0.958 scene-weighted IoU points on the original 139-hull denominator. The existing set of candidate edits consequently contains better allocations than the frozen policy selects. The expected-IoU and dependence checks are in Supplementary Sec.~S4.
 
-\subsection{Where equal-count edits gain or lose hull area}
+\subsection{Where refinements recover or remove hull area}
 \label{sec:qualitative}
-Figure~\ref{fig:rsdd-common-cap-cases} follows two original D-FINE detections on the Instance-RSDD reserve. Of the 44 eligible fixed matches, lifting the cap on re-pairing raises continuous IoU for 25, lowers it for 11 and leaves eight unchanged. The two examples lie near the respective gain and loss medians. The gain is 0.18 points at four swaps and the loss is 0.15 points at eight. Within each example, all three writers retain the same mask area. IoU can rise only if the added cells recover more of the reference polygon or the removed cells discard less of it.
+On the historical Instance-RSDD reserve, independent ranking improves continuous IoU over bounded re-pairing for 25 of 44 eligible D-FINE matches, reduces it for 11 and leaves it unchanged for eight (Fig.~\ref{fig:rsdd-common-cap-cases}). In the positive case, the independent additions recover slightly less of the annotated hull ($-0.118$ native pixel areas). Its removals spare a further $0.711$, raising intersection by $0.593$ and IoU by $0.18$ points. In the loss case the removal terms cancel. Independent additions recover $0.875$ fewer pixel areas, and IoU falls by $0.15$ points.
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{\CaseAsset{rsdd74_common_cap_cases.pdf}{rsdd74_common_cap_cases.pdf}}
-\caption{D-FINE gain (a) and loss (b) near the respective medians of \(I-L\) on the 74-chip Instance-RSDD reserve. Each edited mask adds and removes four cells in (a) and eight in (b). \CaseCaption{The \(8\times8\) display grid averages cell coverage and, in the last panel, the signed foreground difference \(I-L\).}{All methods in a row share the SAR crop, scale and GT outline. The last panel shows the signed foreground difference \(I-L\).} IoU and case selection use native polygon--cell geometry.}
+\includegraphics[width=\textwidth]{\ObservedCase{rsdd74_equal_placement.pdf}}
+\caption{Independent ranking ($I$) versus bounded re-pairing ($L$) on the 74-chip Instance-RSDD reserve. The two hulls lie nearest their respective gain and loss medians among 44 eligible D-FINE matches. Both rules add and remove four cells in (a) and eight in (b). The detail enlarges the boxed region where the foreground assignments differ. Its colors distinguish $I$-only and $L$-only foreground. The right column gives whole-hull intersection changes in native pixel areas. A positive removal term means that $I$ removes less of the annotated hull. Among $4\times4$ windows on the display grid, the box encloses the largest GT area on which the two masks disagree. \CaseCaption{Each full view pools GT or mask coverage on an $8\times8$ grid. Dashed contours mark 50\% GT coverage. The detail shows the mean signed foreground difference per bin.}{The masks and GT polygon share the same native SAR crop. Dashed contours trace the GT polygon and solid contours the predicted mask.} Changes use unrounded values.}
 \label{fig:rsdd-common-cap-cases}
 \end{figure*}
 
 The HRSID DEV705 examples show how additions and removals contribute separately. Both methods make eight swaps. In the positive case, independent selection recovers one more pixel-equivalent of the reference polygon through additions and spares a further 1.5 through removals compared with distance-first pairing. IoU rises by 0.732 points. In the negative case, neither method's additions intersect the reference, but independent selection removes one additional pixel-equivalent of the hull. IoU falls by 0.316 points. A lower predicted occupancy can therefore send the writer to a cell that contains more of the annotated hull.
 
-On Gaofen-3, ROH ranking at the dynamic-attraction count improves 268 of 425 fixed matches, worsens 154 and ties three. Figure~\ref{fig:gf3-qual} shows two gains and two losses with the original RF-DETR masks held fixed. Each method makes eight exchanges per case. Relative to dynamic attraction, ROH ranking recovers 2.93 and 3.71 additional native pixel areas of intersection in the first two cases and loses 1.30 and 3.00 in the others. These intersection differences explain how the overlap can move in either direction while predicted foreground area stays fixed. Supplementary Sec.~S5 gives the corresponding edits, including examples for the whole-mask refiners and SAR-SSP.
+At the dynamic-attraction budget on Gaofen-3, ROH ranking improves 268 of 425 eligible RF-DETR matches, worsens 154 and ties three (Fig.~\ref{fig:gf3-qual}). In the gain case, better-placed additions recover $2.467$ more native pixel areas of the GT hull and removals spare another $1.245$. Intersection increases by $3.71$ in total and IoU rises from $71.86$ to $72.56$. In the loss case the additions contribute the same intersection. ROH removes three more native pixel areas of the hull, and IoU falls from $68.14$ to $67.58$. Supplementary Section~S5 includes the two other matched examples.
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{\CaseAsset{gf3_matched_cases_binned.pdf}{gf3_cases_exact.pdf}}
-\caption{ROH ranking and dynamic attraction on Gaofen-3 with frozen RF-DETR fit B. Two gains and two losses lie near the respective medians among 425 eligible matches. Each method adds eight cells and removes eight cells per case. \CaseCaption{The \(8\times8\) display grid pools coverage and signed intersection differences. Mask coverage is displayed in quarter-occupancy levels. The dashed GT contour marks 50\% coverage.}{All methods in a row share the SAR crop, scale and GT outline.} Intersection changes are ROH minus dynamic attraction. IoU and intersection areas use native geometry.}
+\includegraphics[width=\textwidth]{\ObservedCase{gf3_matched_ranking.pdf}}
+\caption{ROH ranking versus dynamic attraction on Gaofen-3 with frozen RF-DETR fit B. Each rule makes eight additions and eight removals per case. From two near-median gains and two near-median losses, the example of each sign with the larger absolute change in intersection is shown. The crop and edit count are fixed within each row. The detail enlarges the boxed region and shows the signed change in GT intersection, ROH minus attraction. The right column separates the whole-hull change into contributions from additions and removals. Among $4\times4$ windows on the display grid, the box encloses the largest GT area on which the two masks disagree. \CaseCaption{GT coverage is averaged on an $8\times8$ grid, and a dashed line marks the 50\% contour. Predicted mask coverage uses quarter levels. Detail bins sum signed polygon--cell intersection changes in native pixel areas.}{Dashed contours trace the GT polygon and solid contours the predicted mask in the registered SAR crop.} Changes use unrounded values.}
 \label{fig:gf3-qual}
+\end{figure*}
+
+The whole-crop comparison exposes a different failure mode (Fig.~\ref{fig:retained-whole-cases}). On the narrow hull in (a), local ROH keeps the lower end close to the native outline. SegRefiner-LR retracts the mask, and its IoU falls to 67.43 compared with 71.95 for ROH and 71.93 for the native mask. In (b), the native mask extends beyond the annotated hull. Whole-crop refinement trims the extension and reaches 60.96, compared with 58.89 for ROH and 58.68 for the native mask. Both the number and the locations of the edits differ, so the IoU gaps describe the complete mask updates.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{\ObservedCase{retained_hulls.pdf}}
+\caption{Local ROH and whole-crop SegRefiner-LR on two Instance-RSDD reserve detections. Cases lie nearest the median loss (a) and gain (b) for SegRefiner-LR relative to the native mask among 39 gate-exposed matches. Labels give continuous IoU on the same polygon and the difference between the two refined masks, in points. The two writers have different edit support and counts. \CaseCaption{Mask coverage is pooled on an \(8\times8\) display grid. The dashed contour marks 25\% GT coverage.}{The solid boundary follows the prediction on the registered SAR crop, and the dashed outline is the GT polygon.} Boxes mark the same detail window across each row.}
+\label{fig:retained-whole-cases}
 \end{figure*}
 
 \subsection{Ablations and alternative rankers}
@@ -499,7 +510,7 @@ NORA ranks candidate boundary cells by estimated polygon coverage to choose wher
 \section*{Data and Code Availability}
 The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research}{project repository} provides analysis code, configurations, evaluation protocols, aggregate results and links to the data releases. The \href{https://github.com/bingzhi495-creator/SAR-SEAL-research/blob/main/research_round_20260925_global/paper_boundary_refinement_20261120/design/NORA_REPRODUCIBILITY.md}{reproducibility index} identifies the frozen detector and ROH fits, splits, and capture and replay procedures for the fixed-mask comparisons. Images and reference outlines are available under the terms of their respective releases.
 
-\IEEEtriggeratref{8}
+\ifnativecases\IEEEtriggeratref{17}\else\IEEEtriggeratref{15}\fi
 \begin{thebibliography}{22}
 \bibitem{moreira2013} A. Moreira, P. Prats-Iraola, M. Younis, G. Krieger, I. Hajnsek, and K. P. Papathanassiou, ``A tutorial on synthetic aperture radar,'' \emph{IEEE Geosci. Remote Sens. Mag.}, vol. 1, no. 1, pp. 6--43, 2013. \href{https://doi.org/10.1109/MGRS.2013.2248301}{10.1109/MGRS.2013.2248301}.
 \bibitem{gao2024} F. Gao, X. Han, J. Wang, J. Sun, A. Hussain, and H. Zhou, ``SAR ship instance segmentation with dynamic key points information enhancement,'' \emph{IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.}, vol. 17, pp. 11365--11385, 2024. \href{https://doi.org/10.1109/JSTARS.2024.3383779}{10.1109/JSTARS.2024.3383779}.

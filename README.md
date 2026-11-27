@@ -1,1065 +1,2123 @@
-# SEAL：公共 SAR 船舶实例分割研究
+# SEAL：公共 SAR 船舶实例分割研究
+
 
 ## NORA 作者审阅稿（2026-11-27）
 
-[当前正文、补充材料及图件](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md) · [全文修订记录](research_round_20260925_global/paper_boundary_refinement_20261120/design/NORA_FULLTEXT_REVISION_20261127.md)。正文 13 页，公开补材 27 页。已区分两个 ROH 的实际监督对象，并按统一分组解释边界增量。独立评分状态见记录。图 1 与补图 S2 现使用真实 SAR 输入，公开影像的来源与显示变换见[方法图说明](research_round_20260925_global/paper_boundary_refinement_20261120/figures/revision_20261126_02/README.md)。
+[当前正文、补充材料及图件](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md) · [逐图及证据核验](research_round_20260925_global/paper_boundary_refinement_20261120/design/NORA_OBSERVED_FIGURES_20261127.md) · [全文修订记录](research_round_20260925_global/paper_boundary_refinement_20261120/design/NORA_FULLTEXT_REVISION_20261127.md)。正文 14 页、10 图，独立补材 28 页。原生正负案例展示新增和删除位置对标注交集的各自贡献，公开版保留同例聚合几何。图 1 展示真实 SAR 输入。Umbra 独立评分仍待完成。
 
-
-<!-- U57_U60_ACTUAL_20261021_01 -->
-
+
+
+<!-- U57_U60_ACTUAL_20261021_01 -->
+
+
+
 ## 当前状态（2026-11-26）
 
-- [NORA 续作修订 02 与逐图核验](research_round_20260925_global/paper_boundary_refinement_20261120/design/CONTINUATION_AUDIT_20261126_02.md)：全文主线、五张核心方法图和正负案例图注已修订；正文 13 页，公开补材 26 页。保留实验表体、公式、证据范围和 Umbra 待评分状态。
-
-- [现行 NORA 论文与图件续作交接](research_round_20260925_global/paper_boundary_refinement_20261120/NORA_CONTINUATION_20261126.md)。汇总三条问题与方法、主稿和补材、实测结论、图源、研究历史及后续验收。
-
-- [NORA 精简正文与独立补充材料](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。正文至结论 12 页，含参考文献 13 页。保留核心方法、等预算对照及真实案例的证据线，补充材料保留扩展稿的 15 张数据表及完整复现细节。引言与相关工作围绕三个技术问题对应展开，方法和图件统一采用 GT 多边形、轮廓或掩膜等对象名称。
-
-- [NORA 整体架构与 ROH 网络层图](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。新版图 3 展示完整接口，图 6 展开逐端点打分头。十页方法图册可逐元素编辑。
-
-- [NORA 引言与相关工作扩写](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。引言展开 SAR 船体边界问题，相关工作比较已有路线和 NORA 接续点，证据移至实验章节。
-
-- [NORA 九幅新方法图及完整稿](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。同一 SAR 裁片串起场景、原生像元与写回。新增偏移、读出、ROH 和交并比解释图。
-
-- [GLDet 精读与 NORA 全部插图重绘](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。五张方法图分别展示整体、ROH 和写入控制，定性对照沿用原有实测。公开图和构图、证据索引随稿更新。
-
-- [NORA 稿件统一 ROH 模块简称](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。摘要定义残差占据率头，正文、图表和投稿摘要统一采用 ROH。原始实验编号可从复现索引定位。
-
-- [NORA 新版完整稿](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。标题采用方法简称与全称，核心限距对照提前。正文以拟合数和效果区间交代重复，精确实验编号留在复现索引。
-
-- [TGRS 全文终审稿与题注精简](research_round_20260925_global/paper_boundary_refinement_20261120/design/PROSE_FINAL_REVIEW_20261126.md)。重写完整英文稿，压缩图表说明，保留原公式、数据表、失败结果及前瞻外测状态。
-
-- [完整研究设计与 CVPR 图件修订](research_round_20260925_global/paper_boundary_refinement_20261120/design/DESIGN_RATIONALE_ZH.md)。完整稿的方法图、定性对照、定量结果与消融图全部修订，公开版含 16 张可编辑矢量图；本机作者审阅版含真实 SAR 叠图。
-
-- [TGRS 完整稿与图件索引](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。25 页 IEEE 双栏，补回独立选点、限距重配、动态吸引力、Phoenix 和 SegRefiner 的实测定性对照，并保留全部量化和消融证据。
-
-- [DEV705 最小累计平方距离见证实测](research_round_20260925_global/code/DEV705_MIN_CUMULATIVE_WITNESS_20261126/ACTUAL.md)。无标注覆盖 36 个候选、19 个来源前缀。作者参考评分仅改变 1,461 个固定匹配中的一艘，低于预锁覆盖门。相对限距重配的 mask AP 变化 −0.001385 点，两阶段自然退出并通过回执核验，按协议结束该分支。
-
-- [TGRS 英文主稿与作者交接](research_round_20260925_global/paper_boundary_refinement_20261120/submission_20261126/AUTHOR_HANDOFF_ZH.md)。新版 10 页，已核对 HRSID 官方训练分母、限距和单像元结果及复现条件。英文投稿信已备。交接方在 21 个候选入口未发现精确名称的 Umbra 回件，正式前瞻评分与期刊投稿尚未执行。
-
-- [研究交接与续研入口（2026-11-26）](research_round_20260925_global/SAR_SEAL_RESEARCH_HANDOFF_20261126.md)。含原研究目标、历史版本、已核验效用与失败、前瞻外测及复现入口。
-
-- PSeg-SSDD 的 232 图已完成冻结 D-FINE 学习占据率的等预算限距对照。独立选点相对限距重配 +0.021 mask AP、+0.069 连续 IoU［0.030, 0.109］点，未过 +0.30 AP 门槛。使用同图两套作者参考，固定全船体栅格 IoU 的对应差值为 PSeg +0.040 点、SPSD −0.007 点，两参考差为 −0.047［−0.088, −0.007］点。两套参考含各自原生匹配，采集范围相同。 [实际评分与复现](research_round_20260925_global/code/PSEG232_DFINE_COMMON_CAP_20261126/ACTUAL_SCORE.md)
-
-- D-FINE E24 已完成同一 74 图保留集的冻结等预算强对照。同一 D-FINE 候选、占据率头和逐候选增删数下，独立选点相对限距重配 +0.344 mask AP、+0.133 连续 IoU［0.018, 0.251］点，42 个有效改动覆盖 11 个传感器日期块。D-FINE 与 RF-DETR 两套流程在同一队列均达到相应判据。一像元 Boundary IoU 的进一步收益仍不确定。 [完整实测和复现](research_round_20260925_global/code/DFINE_RSDD74_COMMON_CAP_20261126/ACTUAL.md)
-
-- Instance-RSDD 74 图同预算、同位移上限的两评分头交叉验证已完成。PointRend 上独立选点相对限距重配 +0.095 mask AP、−0.037 连续 IoU［−0.172, 0.086］点，覆盖达标，未过效用门槛。原占据率头的 +0.479 AP、+0.116 IoU 复现。两评分头的连续 IoU 交互为 +0.153［−0.008, 0.339］点，完整保留集差异仍不确定。 [实测、复现和可编辑图](research_round_20260925_global/code/RSDD74_POINTREND_COMMON_CAP_20261126/SCORE_ACTUAL.md)
-
-- 在 SAR-SSP 历史验证集上以同一冻结点头和逐候选总编辑数检验短轴方差上限。相对原自由分配，短轴约束 +0.133 mask AP、+0.143 固定匹配 IoU［−0.185, 0.487］点，误分 −1.105、漏分 +0.597 个参考面积百分点。相对等量分配为 −0.006 AP、−0.070 IoU；相对同规模面积和长轴对照的 IoU 区间均跨零。没有通过实用或方向特异性判据。 [实测、阈值与复现](research_round_20260925_global/code/SAR_SSP_TRANSVERSE_QUOTA_20261126/SCORE_ACTUAL.md)
-
-- 74 图历史保留集已补做一像元 Boundary IoU 强对照。逐候选增删数不变时，限距重配相对距离优先增加 +0.735 点［0.207, 1.243］，独立选点相对限距重配为 −0.034 点［−0.373, 0.278］。改用传感器日期块和两像元宽度结论一致。独立选点相对限距重配此前的 +0.479 mask AP 和 +0.116 连续面积 IoU 对应其他指标。 [实测及可编辑图](research_round_20260925_global/code/RSDD74_BOUNDED_BOUNDARY_20261126/ACTUAL.md)
-
-- 完成 10 页英文审阅稿统稿。更新原生边界限距匹配、定量口径和定性失败解释，新增可编辑三路同预算方法图。四张量化表的数据保持已核验版本。两批 Umbra 前瞻评价等待独立轮廓回传。[正文 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [证据索引](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
-
-- 在 HRSID FIT109 上完成分侧排序损失的三种子、五折同预算训练，合计 30 次拟合，逐候选增删数保持一致。排序损失相对同配方 BCE 为 +0.074 mask AP、+0.013 固定匹配连续 IoU［−0.007, 0.033］点，相对历史独立选点为 +0.066 AP、+0.025 IoU［−0.013, 0.059］点。两项均未通过 +0.30 AP 与几何区间的联合判据，维持原方法。原检测器见过该源域图像，只有点头按组留出。 [实测与复现](research_round_20260925_global/code/FIT109_SIGNED_RANK_LOSS_20261126/SCORE_ACTUAL.md)
-
-- SRNet 末级回贴面积积分与原生网格平滑完成同预算对照。面积积分相对原方法 −0.163 AP、+0.008 连续 IoU［−0.016, 0.032］，与平滑对照 AP 相同。候选选点确有改变，未达到改进阈值。复核同时更正了旧 SRNet 表格的小目标 AP 显示。[实测、积分代码及更正记录](research_round_20260925_global/code/SRNET_RSDD74_PIXEL_INTEGRAL_20261126/ACTUAL.md)
-
-- SRNet 在原 74 图的可写点未触及先验截断。完整分数较仅用先验 +0.192 连续 IoU［0.091, 0.290］、+0.045 AP。去掉直接先验 −0.163 AP，IoU 区间跨零。[截断分箱与同预算消融](research_round_20260925_global/code/SRNET_RSDD74_PRIOR_STRATA_20261126/ACTUAL.md)
-
-- SRNet 的 74 图逐阈值诊断中，AP70 +1.627 点，AP80 −0.176 点，其余八个阈值持平。相同端点和增删数的真值辅助几何上界较实际独立选点 +0.530 连续 IoU 点［0.259, 0.834］。[完整实测和可编辑图](research_round_20260925_global/code/SRNET_RSDD74_THRESHOLD_ORACLE_20261126/ACTUAL.md)
-
-- 冻结 SRNet 在原 74 图上完成相同候选、等增删数对照。独立选点较原配对 +0.145 mask AP、+0.159 固定匹配连续 IoU［0.088, 0.236］。32 个匹配覆盖 13 个父景及 12 个日期组。AP 未达 0.30 点门槛，预锁判据为证据不足。[整批实测](research_round_20260925_global/code/SRNET_SSDD_E24_RSDD74_PAIRED_REPLAY_20261126/ACTUAL_REPLAY.md)
-
-- 本地 SRNet SSDD FIT741 E24 在 8 张固定 RSDD 影像上完成无标注原生旋转回贴核验，8 个 RLE 与作者实现精确一致。[实测与复现](research_round_20260925_global/code/SRNET_SSDD_E24_RSDD74_NATIVE_PARITY_20261126/ACTUAL.md)
-
-- 固定预算选点新增独立 CPU 入口，支持读者自备的 COCO 候选与端点分数。原 74 图上两臂均逐项复现 7,346 个 RLE，FP32 并列顺序和零预算透传通过验证。[运行入口与验收](research_round_20260925_global/code/RFDETR_MATCHED_POINT_REFINEMENT_20261120/README_FIXED_COUNT.md)
-
-- 实测补查 Instance-RSDD 原产品身份。42 图的日期分离视图仍含 25 张来自三个共享舍入中心的 TerraSAR-X 父景。ESA 目录与高分三号公开入口的核查暂未给出原产品对应。保留集的地理证据边界已写入正文。[来源核验及目录实测](research_round_20260925_global/code/PUBLIC_HULL_REFERENCE_SCOPE_20261126/ACTUAL.md)
-
-- 74 图保留集的三种选点规则已完成同输入精修计时。一核六轮，端点、占据分数、原配对和预算预先缓存。原配对、限距重配、独立选点的选择加 RLE 写回中位耗时为 26.1、138.6、27.4 毫秒/图，原掩膜全部逐位复现。[分段耗时、次序和复现](research_round_20260925_global/code/LEARNED_BOUNDED_PAIRING_20261126/rsdd_timing/ACTUAL.md)
-
-- 等预算限距重配已在 HRSID DEV705 三个冻结点头和 Instance-RSDD 完成。HRSID 限距重配比距离优先 +0.475 AP，独立选择再增 +0.431 AP，两项固定匹配连续 IoU 区间均为正。74 图保留集上，独立选择较限距 +0.479 AP，固定匹配连续 IoU +0.116［0.008, 0.242］。高分三号两项 AP 都低于门槛。[实测、统计口径及复现](research_round_20260925_global/code/LEARNED_BOUNDED_PAIRING_20261126/ACTUAL.md)
-
-- 可变增删分配在三个种子上均超过各自的等量对照。相同候选、目标函数及逐候选总翻转数下，PSeg-SSDD／SPSD 的平均 mask AP 为 +2.299／+1.751 点，固定匹配 IoU 为 +0.971／+0.573 点。两套标注对应相同的 183 张源域开发影像。[重复评分](research_round_20260925_global/code/SPSD_PSEG_REPEAT_VARIABLE_SIGNED_BUDGET_SEEDS5298_5299_20261126/ACTUAL.md)
-- 直接迁移到 SAR-SSP 232 张作者验证图，mask AP −0.139 点，固定匹配 IoU −0.212 点 [−0.547, 0.104]。漏分减少，船外误分增加，未达到预锁的跨库门槛。[冻结迁移评分](research_round_20260925_global/code/SAR_SSP_DFINE_BCE5297_VARIABLE_SIGN_TRANSFER_20261126/ACTUAL.md)
-- 同一冻结点头在 SAR-SSP 上将已选动作的交集增量高估 +0.896／+0.628 个真值面积归一点。源域同口径点估计 +0.089／+0.231，内外侧误差差值区间均跨零。[目标域](research_round_20260925_global/code/SAR_SSP_SIGNED_POSTERIOR_ATTRIBUTION_20261126/ACTUAL.md) · [源域](research_round_20260925_global/code/SPSD_PSEG_SIGNED_POSTERIOR_ATTRIBUTION_20261126/ACTUAL.md)
-- 在 SAR-SSP 原生匹配上，393 个额外船外误分中 392 个连着保留的主分量，四邻域和八邻域一致。净误分分为原生背景转前景 +0.667 和原生前景保留 +0.711 个真值面积归一点。[误分分解](research_round_20260925_global/code/SAR_SSP_FALSE_FOREGROUND_ATTACHMENT_20261126/ACTUAL.md)
-- 实做 RankIoU-RMA 比值与独立端点模型的精确期望对照。源域自由配额 136／8,785 个候选改变写回，两参考 Mask AP 与固定匹配 IoU 完全一致。精确期望下，自由配额相对等量仍为 +2.461／+1.782 AP 和 +0.993／+0.580 IoU 点。历史 SAR-SSP 的实际结果也逐值一致。[SAR-SSP 复算](research_round_20260925_global/code/SAR_SSP_EXPECTED_IOU_SIGNED_BUDGET_20261126/ACTUAL.md) · [直接先例对照](research_round_20260925_global/code/SPSD_PSEG_EXPECTED_IOU_SIGNED_BUDGET_20261126/ACTUAL.md)
-- 复核了外部公开船体标注入口和 74 图保留集的原始冻结时间线。严格叠加两项已知日期和近似中心筛查仅剩 17 图和 5 父景，低于原覆盖门槛。[独立性及数据资格](research_round_20260925_global/code/PUBLIC_HULL_REFERENCE_SCOPE_20261126/ACTUAL.md)
-- 冻结 Instance-RSDD 原生边界复评。高分三号 5202 和 74 图父景保留集的一像元 Boundary IoU 分别 +0.466 和 +0.701 点，配对区间均为正。高分三号 5203 一像元区间跨零。三个等量配对对照的两像元敏感性均为正。[边界指标、阈值和证据](research_round_20260925_global/code/INSTANCE_RSDD_NATIVE_BOUNDARY_IOU_20261126/ACTUAL.md)
-- 空间相邻端点的联合模型通过 FIT 判据，两参考留折 Brier 较独立模型降低 0.0578／0.0891。冻结同量写回只改变 206 个共同正预算匹配中的 1 艘，两参考 Mask AP 持平，固定 IoU 为 0.000／+0.002 点。[真实配对和冻结评分](research_round_20260925_global/code/SPSD_PSEG_SPATIAL_PAIR_EXPECTED_IOU_20261126/ACTUAL.md)
-- 固定每种增删配额的端点动作后，仅用源训练组折外预测拟合四系数校准。相对原可变配额，两参考的 Mask AP −0.324／−0.071，固定 IoU −0.164／−0.032 点。相对等量仍正，同容量打乱对照的两个区间跨零。按预设未推进。[实测](research_round_20260925_global/code/SPSD_PSEG_FIXED_WINNER_QUOTA_CALIBRATION_20261126/ACTUAL.md)
-- 在 SAR-SSP 历史队列上复算原写回。保留每种配额的预测端点排序，真值辅助重选增删量可恢复 +0.958 个固定匹配 IoU 点。同配额内重选端点为 +0.180 点。共同替换真实面积和静态交集收益为 +0.005 点，区间跨零。[配额诊断](research_round_20260925_global/code/SAR_SSP_FROZEN_POLICY_REGRET_20261126/ACTUAL.md)
-- 补充 Umbra 队列的 24 个独立采集全部通过原生窗口提取和 96 个原始瓦片独立校验，两份盲判包已核验。原 12 景与补充队列分别封存、评分和报告。实际判读回传和精度评价待完成。[预锁名单](research_round_20260925_global/code/UMBRA_SUPPLEMENT_METADATA_20261126/LOCK.md) · [原生窗口实测](research_round_20260925_global/code/UMBRA_SUPPLEMENT_NATIVE_20261126/ACTUAL.md) · [盲判包](research_round_20260925_global/UMBRA_SUPPLEMENT_REVIEW_PACKETS_ACTUAL_20261126.md)
-- 补充 24 景的冻结模型推理、掩膜写回和独立重放均完成。两位判读者的原始掩膜回件齐全后，按预锁规则独立评分。[冻结掩膜记录](research_round_20260925_global/UMBRA_SUPPLEMENT_FROZEN_CARRIER_ACTUAL_20261126.md) · [双参考评分](research_round_20260925_global/code/UMBRA_SUPPLEMENT_DUAL_REVIEW_SCORE_20261126/README.md)
-- Umbra 盲态覆盖核验已实际完成。技术汇总按预锁保留在协调端，待封存两份原始判读后接续原评分。[核验程序](research_round_20260925_global/code/UMBRA12_COORDINATOR_EDIT_COVERAGE_20261126/README.md)
-- 上一版投稿正文候选压缩为 10 页 IEEE 双栏，含 6 图、4 表与 29 条参考。保留固定增删数的单像元证据边界、三种子配额对照、定性得失实例和强对照。[正文 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [24 页完整证据稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
-- 更新 24 页 IEEE 双栏英文审阅稿，含 15 图和 14 表。标题、摘要与结论区分固定增删数的独立端点排序和固定总翻转数的可变分配。新增可编辑配比示意图、目标函数的定量对照与 RankSEG-DEP 适用边界。作者和投稿信息按约定留为占位。[PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.tex) · [读图与复现](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
-
-## 研究记录（2026-11-25）
-
-- 可变增删分配首次通过预锁的两套参考及特异性门槛。每候选保持相同 2k 总翻转，使用相同目标函数时，PSeg／SPSD Mask AP +2.461／+1.782，固定 IoU +0.993／+0.580。本记录为首次种子，跨库和新增种子结果见 11 月 26 日。[闭合评分](research_round_20260925_global/code/SPSD_PSEG_SCORE_VARIABLE_SIGNED_BUDGET_SEED5297_20261125/ACTUAL.md)
-
-
-- 选择性采用固定 2,844 个候选和逐图逐 k 构成。学习排序较同量原边际规则在 PSeg／SPSD 的固定 IoU 为 +0.084／+0.154 点，区间均为正。较全量 BCE 联合为 −0.090／−0.243 点，未通过总门槛。同菜单全船体真值辅助联合上界 **+0.0586 点**，低于 +0.15。[真实评分](research_round_20260925_global/code/SPSD_PSEG_GATE_SELECTIVE_BCE_ADOPTION_SEED5297_20261125/ACTUAL.md) · [完整上界](research_round_20260925_global/code/SPSD_PSEG_GATE_SELECTIVE_BCE_ALL_HULL_ENVELOPE_20261125/ACTUAL.md)
-
-
-- 冻结 D-FINE 在原 915 图的空间特征全部获取并读回，91,500 个候选概率平面逐字节复现。对齐空间特征相对原回归为 +0.020／+0.125 mask AP 和 −0.053／−0.041 固定 IoU，分侧内错位对照未被稳定超越。[全流程捕获](research_round_20260925_global/code/SPSD_PSEG_TRAIN915_DFINE_SPATIAL_CUES_20261125/ACTUAL.md) · [同容量拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_SPATIAL_CARRIER_CUES_SEED5297_20261125/ACTUAL.md) · [真实评分](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_SPATIAL_CARRIER_CUES_SEED5297_20261125/ACTUAL.md)
-
-
-- D-FINE 中间特征前的点网格诊断已完成。8,785 个有编辑预算的开发候选中，8,773 个的内外端点共享插值单元，原连续坐标无两侧重合。该结果明确同单元内插值权重仍可不同。[几何计数与原作者先例](research_round_20260925_global/SPSD_PSEG_NATIVE_POINT_STRIDE_GEOMETRY_20261125_ACTUAL.md)
-
-
-- 三组端点灰度输入完成同预算评分。联合作为参照相对原回归的 Mask AP +0.051／+0.126（PSeg／SPSD），固定 IoU +0.018／+0.002 点，区间均跨零。相对同量静态仍有 +0.220／+0.754 AP，对分侧参照的特异性未通过。[实测与复现](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_RADIOMETRIC_CONTRAST_SEED5297_20261125/ACTUAL.md)
-
-
-- 三组等容量灰度特征拟合完成。独立的 FIT 组外线性探针覆盖 5,042 个动作，共用灰度中秩较等容量原灰度的平均收益误差差 +0.0374 个编辑预算百分点，配对区间跨零。[组外检验](research_round_20260925_global/SPSD_PSEG_FIT_CROSSFIT_GRAY_RADIOMETRIC_PROBE_20261125_ACTUAL.md) · [非线性头拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_RADIOMETRIC_FEATURES_SEED5297_20261125/ACTUAL.md)
-
-
-- 三组同预算校准已完成固定写回评分。平均收益相对逐参考回归，PSeg／SPSD AP +0.065／−0.012，固定 IoU −0.0002／−0.031 点，主效用及分量特异性未通过。相对同量静态仍有 +0.233／+0.616 AP。[真实评分和分量归因](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
-
-
-- 审阅稿明确列出 14 维端点特征及灰度邻域公式，收紧迁移和原生候选覆盖的讨论，并按 IEEE 要求说明写作、作图和分析代码中的工具使用范围。新版保留 13 图、12 表。[英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
-- 三组双参考收益校准完成等预算拟合，各 1,346 参数和 1,000 次更新。原回归权重精确复现，平均收益和参考差异分别作为辅助监督。[三组训练与复现](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
-
-
-- 两参考最小收益的成对排序完成同动作、同预算真实对照。相对回归联合，PSeg／SPSD IoU −0.003／+0.042 点，区间均跨零；排序正确率点估计 +1.980 个百分点，仍未达到写回推进门槛。[完整实测](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_ROBUST_RANKING_SEED5297_20261125/ACTUAL.md)
-
-
-- 同一有限菜单的真值分量替换显示，双参考平均收益估计和参考差异惩罚分别贡献 +0.227／+0.139 个保守 IoU 点，均为回顾性归因。固定同一训练动作后的回归与成对排序已完成同预算拟合，留出评分单独进行。[误差分解](research_round_20260925_global/SPSD_PSEG_GATE5297_MIDPOINT_DISAGREEMENT_ATTRIBUTION_20261125_ACTUAL.md) · [排序配对拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_ROBUST_RANKING_SEED5297_20261125/ACTUAL.md)
-
-
-- 部署动作拟合已在历史 183 图开发组完成固定对照。与当前同运行环境旧动作相比，PSeg／SPSD mask AP +0.015／−0.131，固定 IoU −0.010／−0.072 点，未达到预锁门槛。相对同量静态吸引力仍为 +0.168／+0.628 AP。用同一动作比对时误差下降，选中动作真实至少一侧下降仍各为 70/206。[留出实测](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ACTUAL.md) · [FIT 动作覆盖](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ALIGNMENT_ACTUAL.md)
-
-
-- 双参考训练已完成部署动作与旧动作的匹配对照。两臂均为 1,346 参数、1,000 次更新，保持相同端点和动作抽样次数。五折交叉拟合生成部署方案，单独计入成本。保留首次历史权重精确复现失败及当前环境重复核验，留出评价单独核验。[训练实测](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ACTUAL.md)
-
-
-- OpenSARShip 官方上游 87 个 Sentinel-1A 产品对应 57 个采集组。两个分包无同名产品，但共享 18 个采集组。两项后续研究的作者船体轮廓和原切片对应仍待取得。[采集溯源与标注状态](research_round_20260925_global/OPENSARSHIP_ACQUISITION_GROUPS_20261125.md)
-
-
-- SAR-SSP 作者压缩包已验收。232 张官方验证图的 139 个实例轮廓全部通过 PNG／JSON 核验，31 个母图均也出现在作者训练划分，坐标与船框确认来自 AIR-SARShip-1.0 的高分三号影像，已排除历史 B1 作为全量无接触外测载体。现行冻结模型 232 图冻结推理、等量编辑和作者标注评分均已完成。等量独立选点 AP −0.005 点，未达到预锁门槛。原规则只允许 1/47 个未匹配船体在真值辅助下跨 IoU 0.50。[现象图与上界](research_round_20260925_global/SAR_SSP_COVERAGE_AND_EDIT_CEILING_ACTUAL_20261125.md) · [实测报告](research_round_20260925_global/SAR_SSP_FROZEN_TRANSFER_ACTUAL_20261125.md) · [验收](research_round_20260925_global/SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md) · [溯源](research_round_20260925_global/SAR_SSP_PROVENANCE_NOTE_20261125.md)
-- SAR-SSP 增加 D-FINE 同队列复验。等量独立选点相对距离配对为 +0.076 AP、+0.022 母景等权离散 IoU 点，区间跨零。[第二载体结果](research_round_20260925_global/SAR_SSP_DFINE_E24_SAME_COHORT_20261125_ACTUAL.md)
-- SPSD 与 PSeg-SSDD 作者影像完全一致，切换轮廓后，冻结自然量独立选点相对原生的 AP 从 +0.344 变为 −0.491 点。同量解除配对从 +0.081 变为 −0.007 点。[同图八臂对照及复现](research_round_20260925_global/SPSD_PSEG232_ANNOTATION_SENSITIVITY_20261125_ACTUAL.md)
-- 同图同候选误差分解通过预锁门槛。自然量精修换参考后的 −0.359 IoU 效应差中，−0.286 点来自改动像素的参考分歧。已逐图复现原总效应。[机制与复现](research_round_20260925_global/SPSD_PSEG232_SHARED_HULL_DECOMPOSITION_20261125_ACTUAL.md)
-- 双参考同量几何上界通过。每候选固定签名预算时，相对静态吸引力的保守 IoU 改善为 +0.313 点，127 艘、86 个影像组。两参考联合选择器已通过合成测试，真实训练待受理。[双参考上界](research_round_20260925_global/SPSD_PSEG232_MAXIMIN_STATIC_QUOTA_ORACLE_20261125_ACTUAL.md) · [下一轮设计](research_round_20260925_global/DUAL_REFERENCE_FIXED_K_SELECTOR_20261125_DESIGN.md)
-- 双参考源训练名单验收完成，排除 12 张跨测试重复与 1 张不完整标注图，保留 915 图／901 个精确 RGB 组。固定训练 732 图，源域留出 183 图，无编码或解码重叠。[数据验收与协议](research_round_20260925_global/SPSD_PSEG_DUAL_REFERENCE_TRAIN_ADMISSION_20261125_ACTUAL.md)
-- 双参考 915 张训练图的 D-FINE 冻结前向和独立读回完成，保留 91,500 个候选。拟合与源域内部验证标签分开导出并独立验收。容量匹配的四臂训练核心已用合成输入核对 1,000 次更新。[捕获](research_round_20260925_global/SPSD_PSEG_TRAIN915_DFINE_E24_CAPTURE_20261125_ACTUAL.md) · [标签](research_round_20260925_global/SPSD_PSEG_DUAL_REFERENCE_LABEL_EXPORT_20261125_ACTUAL.md)
-- 双参考种子 5297 已完成四臂真实拟合。各臂 1,346 参数、1,000 次 AdamW 更新，共享初始化、点对与批次。[端点准备](research_round_20260925_global/SPSD_PSEG_TRAIN915_DFINE_POINT_PREP_20261125_ACTUAL.md) · [真实等量拟合](research_round_20260925_global/SPSD_PSEG_TRAIN732_MATCHED_OCCUPANCY_SEED5297_20261125_ACTUAL.md)
-- 双参考 5297 的 183 图源域留出已实测。相对同量静态吸引力，两参考 AP +0.173／+0.415、IoU +0.167／+0.300 点。SPSD 上的同头均值与逐像元保守排序几何更高，完整晋级未通过。[九臂结果与复现](research_round_20260925_global/SPSD_PSEG_TRAIN183_DFINE_DUAL_REFERENCE_SOURCE_GATE_SEED5297_20261125_ACTUAL.md)
-- 5297 归因实测主要差距来自占用分数。在相同菜单中以作者占用排序恢复 +0.366 保守 IoU 点，真值下扩大端点空间另 +0.178。当前预测目标的全端点额外改善上界仅 0.001858 预测像元。[真值诊断](research_round_20260925_global/SPSD_PSEG_TRAIN183_SEED5297_DUAL_MAXIMIN_DIAG_20261125_ACTUAL.md) · [预测界限](research_round_20260925_global/SPSD_PSEG_GATE5297_PREDICTED_MAXIMIN_BOUND_20261125_ACTUAL.md)
-- 静态参照有符号收益损失完成两臂同容量、各 1,000 步及固定留出评分。对纯 BCE 的 AP +0.046／+0.108 点，IoU +0.017／+0.051 点，低于预锁推进幅度，且预测误差未稳定下降。[拟合](research_round_20260925_global/SPSD_PSEG_FIT_MATCHED_SIGNED_ACTION_SEED5297_20261125_ACTUAL.md) · [九臂评分](research_round_20260925_global/SPSD_PSEG_GATE_MATCHED_SIGNED_ACTION_SEED5297_20261125_ACTUAL.md)
-- 动作监督覆盖已核对。动作训练组在实际变更的候选上，平均 63.99% 有符号像元变化能量位于训练动作所张成的空间之外。下一轮检验与推理候选一致、等动作数量的训练监督。[无标注诊断](research_round_20260925_global/SPSD_PSEG_GATE_MATCHED_ACTION_BANK_SPAN_20261125_ACTUAL.md)
-- SAR-SSP 锁定 RF-DETR 原生配对后，D-FINE 几何上可多匹配 10 艘，涉及 3 个母景，未达到预锁场景范围。[互补上界](research_round_20260925_global/SAR_SSP_CROSS_CARRIER_NATIVE_COMPLEMENT_20261125_ACTUAL.md)
-- HRSID FIT109 扩边上限实测完成。原候选和预算不变时，完整框内 1–4 层相对抽样端点仅增 0.098 离散 IoU 点，第 3–4 层无额外收益，未达到扩边训练门槛。[实测与源码](research_round_20260925_global/HRSID_FIT109_NESTED_SUPPORT_ORACLE_ACTUAL_20261125.md)
-- HRSID FIT109 第二查询端点排序已实测。逐候选增删量一致，拟合真实线索的 AP 与原独立排序相同，未达推进门槛。原独立选点相对距离配对仍高 1.204 AP 点。[实测与源码](research_round_20260925_global/HRSID_FIT109_SIBLING_ENDPOINT_RANK_ACTUAL_20261125.md)
-- FIT109 跨检测器等量对照完成。确定性 D-FINE 投票较原独立选点高 0.567 AP 点，学习型融合低于投票，未过主门槛。[带完整对照的实测](research_round_20260925_global/HRSID_FIT109_CROSS_DETECTOR_ENDPOINT_ACTUAL_20261125.md) · [DEV705 候选资格，无标注](research_round_20260925_global/HRSID_DEV705_CROSS_CARRIER_DONOR_CENSUS_ACTUAL_20261125.md)
-- DEV705 同量供体投票冻结复验已完成。较原独立选点的 AP +0.017、连续 IoU +0.056 点，AP75 +0.494 与 AR100 −0.275 同时出现，未通过预设效用门槛。[复验与全部对照](research_round_20260925_global/HRSID_DEV705_FROZEN_DONOR_VOTE_ACTUAL_20261125.md)
-- COCO P2 同量补点实测完成。相对原独立排序 AP +0.013 点，离散 IoU 区间跨零，空间置换和灰度对照均未被有效超过。[完整对照和源码](research_round_20260925_global/HRSID_FIT109_COCO_P2_ENDPOINT_ACTUAL_20261125.md)
-- 候选上游诊断完成。SAR-SSP 全 164 条查询只额外覆盖 2 艘未匹配船体。HRSID FIT109 仍有 30 艘已有框且原掩膜失败，框内训练样本已导出。[外部框诊断](research_round_20260925_global/SAR_SSP_RAW164_BOX_COVERAGE_ACTUAL_20261125.md) · [源域上界和语料](research_round_20260925_global/HRSID_FIT109_BOX_REGROWTH_AND_ROI_ACTUAL_20261125.md)
-- 自主 CleanUNet++ 的框内成对试验完成。每臂 800 次实际更新。均匀与弱例加权各恢复 6 艘原漏配船体，但全量 AP 均低于原生；加权比均匀低 0.322 AP 点。无模型的 48×48 还原对照减少 0.456 AP 点。[训练与核验](research_round_20260925_global/HRSID_FIT109_WEAK_ROI_PAIRED_ACTUAL_20261125.md)
-- 原生前景不变的同量补点已实测。CleanUNet++ 排序比原生 logits 同量对照高 0.394 mask AP 点，固定几何区间跨零，原漏配恢复有限。[预算和全部对照](research_round_20260925_global/HRSID_FIT109_NATIVE_PRESERVING_ROI_ACTUAL_20261125.md)
-- 同预算补点筛选已实测。原检测置信度保留 52.64% 的全量补点像素，mask AP 只低 0.007 点，并超过联合置信度筛选。联合筛选未达到推进门槛。[预锁对照与几何上限](research_round_20260925_global/HRSID_FIT109_ROI_EQUAL_BUDGET_ACTIVATION_20261125_ACTUAL.md)
-
-- 固定加点的删点限量恢复原版 +0.907／+0.878 AP（RSDD／PSeg），仍低于冻结独立选点。浅层同量的连续几何改善未转化为达到门槛的 AP 增益。[实测回执和复现](research_round_20260925_global/SEGREFINER_DELETION_CAP_ACTUAL_20261125.md)
-
-- 同量删点几何上限已用 Instance-RSDD／PSeg 的同一原版候选算清。理想删点位置留有 **5.594／3.512 连续 IoU 点**余量，允许减少原删点数又增加 **4.256／4.189 点**。[闭合实测、公式和复现](research_round_20260925_global/SEGREFINER_DELETION_BUDGET_CEILING_ACTUAL_20261125.md)
-
-
-- PSeg-SSDD 的原版、增删分解和等量位置评分已完成。67 艘、57 组的固定匹配中，两个删点对照使连续 IoU 下降 4.033 和 3.977 点，与 Instance-RSDD 的结果一致。浅层删点的实用增益未复现。[原版与本地对照](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md) · [增删分解](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md) · [位置对照](research_round_20260925_global/SEGREFINER_DEPTH_ACTUAL_20261123.md)
-
-- Instance-RSDD 原版删点的拓扑诊断已完成。两个对照各有 26 艘 IoU 下降，其中 24 艘保持连通分量和孔洞计数。审阅稿新增对照与 QuBER 先例，并明确等量独立选择的数学保证范围。[实测和复算](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md#受门槛船体的拓扑诊断) · [新版审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
-
-- DGX Spark 已用作者权重通过 SegRefiner-LR 原版合成满批测试。32 个合格候选用时 10.70 秒，PyTorch 峰值保留 17.36 GiB。本机随后完成官方 232 张的原版推理。[合成与真实队列的核验范围](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md#dgx-spark-原版路径资源核验合成输入)
-
-- 独立数据补查已核清 HRSID 和 Umbra 的公开参考范围。HRSID 5,604 张轮廓图均有历史使用。Umbra 的 12 个预锁窗口有 9 个存在非空原生候选，实际采集组覆盖待两份独立轮廓评分。[数据核验](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#两条已核清的补充路径)
-
-- SegRefiner-LR 的同量删点位置对照已完成 Instance-RSDD。浅层规则较邻近迁移 +1.291 AP、+0.838 连续 IoU；较作者原版 +0.543 AP，几何区间跨零。[全部分组、区间与复现](research_round_20260925_global/SEGREFINER_DEPTH_ACTUAL_20261123.md)
-
-- SegRefiner-LR 的冻结增删分解已在 Instance-RSDD 完成。39 个受门槛覆盖的原始匹配中，删除在两个上下文中使连续 IoU 下降 4.09 点，11 个传感器日期组提供支持。[实际分解与复现](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md)
-
-- SegRefiner-LR 原版面积门槛实测。Instance-RSDD／PSeg 主队列分别有 **39／67 个固定几何匹配**达到原版 512 像素门槛，覆盖 11／57 组。全候选覆盖为 3,074／5,067 个，Instance-RSDD 的原版精修全量评分为 **56.574 AP**，原生及本地独立选点分别为 58.277 和 58.827 AP。PSeg 的实测评分已闭合，结果见本节首条。[原版实测](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md)[门槛覆盖、范围和复现](research_round_20260925_global/SEGREFINER_STOCK_EXPOSURE_ACTUAL_20261123.md)
-
-- 在同端点、同分、同量下加入受限重新配对。Instance-RSDD／PSeg 完整队列相对固定配对 **+0.250／+0.534 AP**，完全独立再 **+0.236／+0.197 AP**，同时保留两步正向连续几何差值。[实测与矢量图](research_round_20260925_global/PHOENIX_BOUNDED_MATCH_ACTUAL_20261123.md) · [强精修与新增数据核验](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md)
-
-- 固定 Phoenix 后验的同量独立选点在两个历史队列复验通过。Instance-RSDD 74 图 **+0.486 AP、+0.327 连续 IoU［0.169, 0.479］**；PSeg-SSDD 232 图 **+0.731 AP、+0.595 IoU［0.415, 0.787］**。同量静态吸引力在 PSeg 的 AP 仍高 0.195 点。[四视图实测与复现](research_round_20260925_global/PHOENIX_PAIR_OPERATOR_ACTUAL_20261123.md)
-
-- PSeg-SSDD 历史官方 232 图复验了两种编辑约束。整图定额较阈值 **+2.525 AP、+4.001 连续 IoU [2.644, 5.382]**。在同一窄端点、相同总翻转量下，等量增删较自由分配 **+1.842 AP、+1.151 IoU [0.701, 1.594]**。等量 Phoenix 与同量静态吸引力相差 −0.195 AP，固定几何区间跨零。[整图定额](research_round_20260925_global/PSEG232_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md) · [同增删量](research_round_20260925_global/PSEG232_PHOENIX_BALANCED_RANK_ACTUAL_20261123.md)
-
-- HRSID 源域五视图的保守排序完成。相对同样 1,209 次交换的普通平均为 **−0.333 连续 IoU 点 [−0.489, −0.149]**，147 个有差异船体、32 个来源组。按预设规则停止此排序扩展。[实测和复现](research_round_20260925_global/HRSID36_SHIFT_ROBUST_ORDER_ACTUAL_20261123.md)
-
-- Phoenix 可写范围 × 翻转预算四组实测完成。同一整图支持与可编辑候选下，回到定额较作者阈值 **+9.393 AP、+9.462 连续 IoU [6.329, 13.283]**，整图和窄端点同量之差则未通过全队列的几何判据。[实测和复现](research_round_20260925_global/RSDD74_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md)
-
-- Phoenix 同端点、同翻转量的面积消融闭合。严格等面积比自由增删 **+0.190 mask AP、+0.083 连续 IoU [−0.191, 0.401]**，差异覆盖达标，效用未通过。保留与整掩膜过扩张不同的解释范围。[实测和复现](research_round_20260925_global/RSDD74_PHOENIX_AREA_ABLATION_ACTUAL_20261123.md)
-
-- Instance-RSDD 74 图的冻结 Phoenix 整掩膜对照完成。LVIS 面积规则比同量 Phoenix **−17.779 mask AP、−9.825 连续 IoU 点 [−14.014, −6.440]**，原候选外溢面积明显增加。同量 Phoenix 的 **58.976 AP** 结果保留。[实测、局限及复现](research_round_20260925_global/RSDD74_PHOENIX_WHOLEMASK_ACTUAL_20261123.md)
-
-- 英文论文按 **52 篇原稿研读**重排为 **20 页 IEEE 双栏审阅稿**，包含 13 图、12 表。摘要与结论以等预算主对照为主线，方法补充估计误差界和动态空间吸引力的计算，数据总表列出 SAR-SSP 并说明栅格参考与母景关系。引言从细长船体的边界偏移和 HRSID 几何证据展开，相关工作分三条技术脉络，图 6 对照两套作者标注下的 IoU 效果与同一候选的标签分歧。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [逐篇评阅和改版对照](research_round_20260925_global/style_review/STYLE_REDESIGN_20261123.md) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
-
-- Instance-RSDD 严格阈值重评分完成。5203 高分三号 583 图同动态预算的学习减动态 AP90 由栅格 **−0.149** 变为连续 **+0.004**，表示改变量 **+0.153 [−0.195, 0.579]**。原 COCO 栅格指标保留。[实测与复现](research_round_20260925_global/RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md)
-
-- Instance-RSDD 第二个 RF-DETR 载体 5203 已闭合。高分三号 583 图同头同量独立选点较固定配对 **+0.299 mask AP、+0.196 连续 IoU [0.136, 0.253]**。完整 740 图及已有新增父景 74／42 图通过预设判据。[各头结果和复现](research_round_20260925_global/INSTANCE_RSDD_CARRIER5203_ACTUAL_20261123.md)
-
-- HRSID FIT109 同量灰度邻域对照完成。真实灰度位置较距离圈均值 **+1.519 mask AP、+0.165 归一化真值交集点**，也通过与静态吸引力的机制对照。AP 分别低于端点灰度秩 **0.370 点**、学习占据率 **3.039 点**，未通过实用推进判据。[实测和复现](research_round_20260925_global/FIT109_IMAGE_SHELL_ACTUAL_20261123.md)
-
-- Instance-RSDD 74 图同量横移对照完成。输入横移一像素时，Phoenix 质心响应 **0.117 像素**、三种子占据率均值 **0.070**，配对差 **+0.047 [0.028, 0.064] 像素**。42 图日期分离视图保留方向，结论限于此前已测队列。[实测与复现](research_round_20260925_global/RSDD74_IMAGE_ALIGNMENT_ACTUAL_20261123.md)
-
-- Gulf 固定锚点尺度与航向诊断完成。25 艘同样本换用源 XML 地理尺度后原生偏差 **+107.05 米**。23 艘有航向的同一子集，沿 AIS 航向 MAE 减少 **7.60 米**，仍平均高估 **71.27 米**。[实测与复现](research_round_20260925_global/GULF_AIS_GEOSCALE_ACTUAL_20261123.md)
-
-- SAR Ship Gulf 独立采集船长外测完成。64 轨道日期组预选 244 图、242 图完成冻结预测，25 艘共同可测，23 艘有正预算。同量独立选点比固定配对减少 **0.168 米 MAE** [−1.523, 1.692]，覆盖达标，物理收益未通过。原生平均表观长度高估 **105.42 米**。[实测与复现](research_round_20260925_global/GULF_AIS_FROZEN_ACTUAL_20261123.md)
-
-- Phoenix 的同量分侧对照已闭合。只换为占据率新增位置，74 图平均 **−0.012 mask AP 点**；只换删除位置为 **−0.225 AP 点**。真实交集两个调整区间均跨零，未选用混合策略。[实测与复现](research_round_20260925_global/RSDD74_PHOENIX_SIGNED_SIDES_ACTUAL_20261123.md)
-
-- Instance-RSDD 74 图的冻结 Phoenix 同端点同量对照已闭合。Phoenix **58.976 mask AP**，较三个占据率头均值 **+0.308 AP、+0.135 连续 IoU 点**。几何区间跨零，两个方向均未通过联合判据，适用范围限于冻结端点排序。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_PHOENIX_EQUAL_COUNT_ACTUAL_20261123.md)
-
-- Instance-RSDD 74 图的三种子经典同量对照通过。相对动态规则 **+0.468 mask AP、+0.431 连续 IoU 点**，相对静态 **+0.203 AP、+0.301 IoU**。静态 AP75 高 0.173 点。42 图日期分离视图保持主指标正向。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_CLASSICAL_FAIR_MATCH_ACTUAL_20261123.md)
-
-- UEIKAP 342 图的整框覆盖对照已闭合。528 艘发布船体在掩膜 IoU 0.50 上，原生、粗渲染和冻结 PointRend 分别匹配 **121、111、30 艘**。固定框后 PointRend 较原生低 4.138 连续 IoU 点，未通过推进条件。[实测与复现](research_round_20260925_global/UEIKAP_POINTREND_COVERAGE_ACTUAL_20261123.md)
-
-- FIT109 争议位置校正完成。DEV705 同接受量下 **+0.01795 连续 IoU、+0.01575 mask AP 点**，通过源域判据。PSeg-SSDD 去重 222 图同对照区间跨零，AP 较纯静态低 0.11484 点，外域未通过。[实测与复现](research_round_20260925_global/ATTRACTION_LOCAL_CORRECTION_ACTUAL_20261123.md)
-
-- 学习排序与静态吸引力的同量分侧对照已复算三套数据。HRSID 增、删侧提高真实交集 **+0.308、+0.446 点**；PSeg-SSDD 和 UEIKAP 两侧点估计下降，侧间直接区间跨零。[实测和复现](research_round_20260925_global/ATTRACTION_SIGNED_SIDES_ACTUAL_20261123.md)
-
-- UEIKAP 342 张作者图的冻结外测完成。528 艘中原生匹配 **121 艘**，120 艘、10 组有正编辑量。同量独立选点 **+0.02954 连续 IoU 点**，原判据通过。[实测及复现](research_round_20260925_global/UEIKAP_ADDITIONAL_FAMILIES_ACTUAL_20261123.md)
-
-- Instance-RSDD 同预算双侧对照已闭合。两侧独立选点相比仅改添加位置／仅改删除位置，历史高分三号 583 图分别 **+0.224／+0.199 mask AP 点**，新增父景 74 图分别 **+0.169／+0.288 点**，四个连续 IoU 区间均为正。[实测和复现](research_round_20260925_global/INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md)
-
-- 保留 PointRend 每候选的实际增删配额和区域外像素后，改用占据率选择位置。新增父景 74 图和历史高分三号 583 图的三种子平均分别提高 **0.662、0.144 mask AP 点**，连续 IoU 区间均为正。日期分离 42 图的连续 IoU 区间跨零。[实测和复现](research_round_20260925_global/POINTREND_SIGNED_QUOTA_SWAP_ACTUAL_20261123.md)
-
-- 外部 74 图三种子的分数监督控制完成。分数标签相对保留半格对照 **−0.030 mask AP、−0.009 连续 IoU 点**，相对原 COCO 栅格 +0.122 AP、+0.109 IoU。主对照未达预设推进条件。[完整试验](research_round_20260925_global/RFDETR_FRACTIONAL_TIE_TRANSFER_ACTUAL_20261123.md)
-
-- NovaSAR 跨传感器的 AIS 尺寸外测完成。142 图中四种策略共同可测 34 条，17 条有正交换预算。等量独立选点的船长 MAE 减少量 −0.204 米，区间跨零，未通过预设条件。[实测](research_round_20260925_global/NASTAR_AIS_PHYSICAL_ACTUAL_20261123.md)
-
-- 74 图的单线程 CPU 精修对照测得占据率 **227.1 毫秒/图**，同量 PointRend 1,221.5，整框 PointRend 1,049.2。两轮均复现三条路径的全部候选掩膜。[实际计时](research_round_20260925_global/INSTANCE_RSDD_RESERVE_CPU_COST_ACTUAL_20261123.md)
-
-- Instance-RSDD 新增 74 图的直接对照通过，同端点同编辑量时占据率排序较冻结 PointRend **+0.477 mask AP、+0.395 连续 IoU 点**。日期分离 42 图为 +1.061 AP 和 +0.490 IoU。整框 PointRend 在本队列低 1.293 AP，在历史高分三号队列领先 0.211 AP。[实测和复现](research_round_20260925_global/INSTANCE_RSDD_RESERVE_POINTREND_ACTUAL_20261123.md)
-
-- HRSID 官方 1,962 图与 Instance-RSDD 原 740 图的论文冻结主表均完成独立复现，**3,434 项数值最大差异 0**。DEV705 center5202 的 2,233 项评分及回放检查亦全部通过。[实测](research_round_20260925_global/SAR_B5_MAIN_TABLES_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/SAR_B5_MAIN_TABLES_20261123/README.md)
-
-- 74 图新增父景实验的干净环境复现已通过。官方数据重建、真实 HRSID 最小训练和冻结全量评分均执行成功。图像、预测与编辑记录逐字节一致，**1,470 项数值最大差异 0**。[实测](research_round_20260925_global/INSTANCE_RSDD_B5_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/INSTANCE_RSDD_B5_REPRO_20261123/README.md)
-
-- Instance-RSDD 新增 74 图父景复验通过。冻结同头同量独立选点较固定配对 **+0.436 mask AP、+0.318 连续 IoU 点**。排除历史同传感器同日期后的 42 图为 +0.840 AP。两传感器单列均未达覆盖门槛。[新增父景实测](research_round_20260925_global/INSTANCE_RSDD_PARENT_RESERVE_ACTUAL_20261123.md) · [像素中心与填充对照](research_round_20260925_global/INSTANCE_RSDD_CENTER_RANKING_ACTUAL_20261123.md)
-
-- Instance-RSDD 两层完整边界的同量对照已闭合。高分三号上占据率排序较 PointRend 排序 **+0.390 mask AP、+0.223 连续 IoU 点**。扩大范围较原占据率方案仅 +0.011 AP，整框 PointRend 仍高 0.200 AP。保留原范围为主稿默认。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_EXPANDED_RANKING_ACTUAL_20261123.md)
-
-- HRSID DEV705 同排序、同量配额实测完成。完整候选 AP 监督为 **56.890 mask AP**，较原生 +0.819 点，较最强预设比值对照 −0.253 点。按预锁停止扩展这套回归。保留全部候选和几何复核。[实测与复现](research_round_20260925_global/HRSID_DEV705_QUOTA_COMPETITION_ACTUAL_20261123.md)
-
-- HRSID FIT109 已核验 109 个来源组、三种子 313,135 个可行配额动作。原匹配几何监督已保留，完整候选匹配竞争的替换计算通过合成 COCO 复算。[样本和代码](research_round_20260925_global/RFDETR_FIT109_FROZEN_QUOTA_ACTIONS_ACTUAL_20261123.md)
-
-- 端点与配额诊断完成。高分三号只替换原端点内的 PointRend 决策得到 61.782 AP，距整框 0.049 点且召回更高。HRSID DEV705 冻结排序下，真值增删配额在相同总编辑量时提高 1.264 连续 IoU，三个种子均正。[端点拆分](research_round_20260925_global/INSTANCE_RSDD_POINTREND_SUPPORT_FACTOR_ACTUAL_20261123.md) · [配额上界](research_round_20260925_global/RFDETR_DEV705_FROZEN_ORDER_QUOTA_ACTUAL_20261123.md)
-
-- Instance-RSDD 已完成同载体 PointRend 对照。583 张高分三号图上，同端点同量时，本方法较 PointRend 排序 +0.312 mask AP、+0.250 连续 IoU（采集组 95% 区间 [0.163, 0.338]）。整框 PointRend 为 61.831 AP，本方法为 61.620 AP。代码、各策略可编辑范围及两方面结果均已核验。[结果和复现](research_round_20260925_global/INSTANCE_RSDD_POINTREND_TRANSFER_ACTUAL_20261122.md) · [英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
-
-- Instance-RSDD 完整 740 图评价闭合。583 张高分三号影像上，两次 HRSID 冻结点头分别提高 0.587、0.517 mask AP。同头同量独立选点较固定配对均约 +0.483 AP。均值 +0.552 低于预锁 1 点，按规则保留两次结果。自然独立策略相对原生的 AP90 小幅下降。[结果及源码](research_round_20260925_global/INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [标注核验](research_round_20260925_global/INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md)
-
-- UEIKAP 候选诊断发现，139 艘中 100 艘存在达标框，其中 90 艘的最佳框候选掩膜面积不足真值一半。全图八次理想等面积交换只将覆盖从 17 增到 18。按框关联后，90 个弱掩膜在 15 个组有正预算，同量独立选点的连续 IoU 差区间仍跨零。[候选上界](research_round_20260925_global/UEIKAP_RFDETR_CANDIDATE_GEOMETRY_ACTUAL_20261122.md) · [弱掩膜对照](research_round_20260925_global/UEIKAP_RFDETR_BOX_ASSOCIATION_ACTUAL_20261122.md)
-
-- 同一 UEIKAP 作者轮廓队列上，冻结 RF-DETR 匹配 17／139 艘，原 D-FINE 匹配 2／139。4 个有正编辑预算的采集组均出现同量独立选点收益，全队列 +0.03014 连续 IoU 点，覆盖仍低于 20 艘、8 组的预设线。[复验](research_round_20260925_global/UEIKAP_RFDETR_CARRIER_ACTUAL_20261122.md) · [Instance-RSDD 原图和父景映射核验](research_round_20260925_global/INSTANCE_RSDD_IMAGE_ACCESS_ACTUAL_20261122.md)
-
-- PSeg 目标域 FIT109 点头完成 200 次更新。DEV187 上相对同量动态规则 +0.695 AP，相对冻结 HRSID 头 −0.150 AP，相对原生 −0.885 AP。固定匹配连续 IoU 相对原生 −0.470 点，区间 [−0.621, −0.325]。按预锁结束此同量配方。[实测与代码入口](research_round_20260925_global/PSEG_RFDETR_TARGET_FIT109_ACTUAL_20261122.md)
-
-- PSeg 目标域强载体冻结点头复验中，学习排序较动态空间吸引力 +0.845 AP、+0.193 连续 IoU，几何区间跨零。原生 AP 70.694 仍最高，同量学习 69.958。固定端点的事后同量几何上界高于原生 2.246 点。[实验报告](research_round_20260925_global/PSEG_RFDETR_FROZEN_SOURCE_HEAD_ACTUAL_20261122.md) · [英文审阅稿复核](research_round_20260925_global/paper_boundary_refinement_20261120/ACADEMIC_REVIEW_20261122.md)
-
-- [HRSID DEV705 同量经典对照](research_round_20260925_global/HRSID_DEV705_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)在检测器训练未使用的历史开发集上，学习排序较动态空间吸引力 +2.428 mask AP、+5.353 AP75、+1.150 连续 IoU；三个推进条件通过。PSeg-SSDD 的同量比较保持原有相反几何方向。
-
-- [Umbra 独立采集盲测](research_round_20260925_global/UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md)在 12 个原生 1024² 窗口完成冻结检测、等量编辑和独立重放。[作者整掩膜 Phoenix 对照](research_round_20260925_global/UMBRA12_PHOENIX_WHOLE_ACTUAL_20261123.md)完成 718 个提示及原生读回。[双参考评分器](research_round_20260925_global/UMBRA12_DUAL_REVIEW_SCORE_READINESS_20261123.md)通过七项合成测试。精度评价等待两份独立轮廓回传。
-- [三张匿名图的智能体盲判试点](research_round_20260925_global/UMBRA_AI_BLIND_PILOT_20261123.md)产生一条候选轮廓和若干待核回波，材料保存在独立评议流程中，Umbra 精度评分继续使用预锁的原始参考。
-
-- [HRSID 官方划分原生基线实测](research_round_20260925_global/HRSID_OFFICIAL_CENTER5202_E24_NATIVE_SCORE_ACTUAL_20261121.md)覆盖 1,962 图，原生 RF-DETR 的 mask AP / AP75 / AR100 为 54.433 / 62.190 / 61.694。两套评分程序的 39 项指标逐值一致。此结果是历史参与过项目选型的官方划分上的固定原生基线。
-
-- [PSeg-SSDD 完整划分冻结跨库评分](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md)覆盖 232 图和 546 条浮点原标注。mask AP 17.974→18.319（+0.344），去除 10 张历史重复图后仍 +0.389。相同点头和逐候选编辑量下，独立选点较固定配对 +0.081 AP 点、+0.106 连续 IoU 点。同轮逐图配对中，等价取样将 CPU 精修均值由 158.8 降到 104.3 毫秒，最终掩膜与分数完全一致。同量原生概率对照出现的新增孔洞更少。
-
-- [RF-DETR 第二检测器的同量实测](research_round_20260925_global/RFDETR_COMMON5203_DEV705_FROZEN_ACTUAL_20261122.md)完成 24 轮和 DEV705 全量复验。三个冻结点头上，独立选点较固定配对均提高 AP，平均 +0.838 AP、+0.583 连续 IoU 点。自然计数 AP 55.914→56.726。同量自由增删比较的连续 IoU 区间跨零。
-
-- [HRSID 官方划分冻结精修实测](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md)已完成预测独立回读及 12 条处理预测的评分。RF-DETR mask AP 54.433→55.454，三点头种子全部提升。同头同量独立选点较固定配对 +1.216 AP、+1.958 AP75；相对同量自由增删平均 +0.324 AP，其中一个种子退步。两个预锁敏感性口径保留增减方向。
-
-- [UEIKAP 预留采集组正式评分](research_round_20260925_global/UEIKAP_RESERVED_HULL_ACTUAL_20261122.md)覆盖 108 张作者影像、139 个已标注船体、18 个 Sentinel-1 采集组。冻结 D-FINE 仅匹配 2 个船体，二者固定配对预算均为零。检查全部 30,910 个候选也只有 5 个达到 IoU 0.50，前 100 的八对等面积交换真值上限为 4 个。
-
-- [PSeg-SSDD 同编辑量经典对照](research_round_20260925_global/PSEG_TEST232_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)在 232 图上，学习排序相对动态空间吸引力为 −0.026 AP、+0.279 AP75、−0.270 连续 IoU，后者配对区间为 [−0.440, −0.098]。去除 10 张历史重复后方向一致。
-
-- [新增误差诊断](research_round_20260925_global/DEV705_MATCHED_PAIRING_GEOMETRY_MODIFIERS_20261121.md)发现相同编辑量下本船 IoU 提升可能伴随邻船侵入。跨库真值上界显示，同一端点支持与总翻转数下，PSeg-SSDD 放开等面积后还有 +2.020 点连续 IoU 的几何空间。[PSeg-SSDD 上界](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md#same-support-geometric-ceilings) · [Schwegmann 中心船辅助复验](research_round_20260925_global/SCHWEGMANN_DFINE_FROZEN_WRITER_EVAL_20261121.md)750 张新图像均完成评价与独立复算。107 个非空中心候选均小于编辑下限，五臂逐像素一致。
-
-- [FIT109 邻船侵入同量对照](research_round_20260925_global/FIT109_NATIVE_RIVAL_OCCUPANCY_ACTUAL_20261122.md)通过预设判据，113 个近邻固定匹配上较无邻船证据的同量对照少侵入 0.262 平方像元，本船连续 IoU +0.221 点，全量 AP +0.012 点。DEV705 冻结复验仅 7 个实际暴露匹配、3 个来源组，未达覆盖要求，整体 AP 不变。
-
-- [HRSID FIT109 拓扑对照实测](research_round_20260925_global/FIT109_BOUNDARY_SIMPLE_POINT_PILOT_ACTUAL_20261121.md)复现原五折和四个历史结果。各等量方案 36,351 次交换。拓扑约束将组件或孔洞数发生变化的掩膜由两种同量对照的 806／646 个降为 0，AP 相同，连续 IoU 差 −0.0035 点，未过预锁门槛。
-
-- [FIT109 三种子排序与邻域方向对照](research_round_20260925_global/code/FIT109_QUERY_LOGIT_ORDER_CONTEXT_20261121/CONTEXT_NOTE.md)。相同编辑预算下，普通成对损失较 BCE 平均 +0.078 AP 点，三个种子中有一个小幅下降。保留角度的邻域读出较环内排序低 0.437 AP 点，未达预锁条件。数据与英文审阅稿已更新。
-
-- [HRSID 官方 PNG 输入审计](research_round_20260925_global/HRSID_OFFICIAL_PNG_TEST_INPUT_ACTUAL_20261121.md)已完成实测和独立复核。1,962 图、5,922 条原标注保留为正式评分主口径。发现 4 条空栅格、2 张与 FIT 完全相同的图及 1 组 TEST 内重复，已冻结两套敏感性口径。[原生基线评分源码与合成核验](research_round_20260925_global/code/HRSID_OFFICIAL_BASELINE_SCORE_20261121/README.md)
-
-- [PointRend 同载体实测](research_round_20260925_global/RFDETR_POINTREND_FIT109_ACTUAL_20261121.md)已完成五折训练、六臂比较及独立复算。同头同量下，独立选点较固定配对 +1.047 mask AP 点，较自由增删 +0.938 点。自由增删对照的连续 IoU 增益只有 +0.084 点，区间跨零，未通过预锁条件。
-
-- [AP 与连续边界效应](research_round_20260925_global/FIT109_POINTREND_AP_GEOMETRY_AND_IOU_WRITER_20261121.md)定位了阈值收益，并完成估计 IoU 的等量写回试验。新规则较固定偏置 +0.354 AP，低于等量增删和原生对照，按预锁停止。
-
-- [固定预算的点排序上界和训练对照](research_round_20260925_global/FIT109_POINT_RANKING_AND_DECISION_SUPERVISION_20261121.md)。同预算理想排序还有 3.013 个连续 IoU 点的空间。普通同侧成对排序较原生 +1.068 AP；共享容量的 SPO+ 略低于 BCE 与普通排序，两次实测逐值核验一致。
-
-- [PSeg-SSDD TEST232 输入核验](research_round_20260925_global/code/PSEG_SSDD_OFFICIAL_TEST232_INPUT_20261121/README.md)在本地独立复核 232 图、546 个非空原始实例。作者 Drive 的文件名和大小已核对，未提供校验和，远端字节认证待续。 [作者元数据记录](research_round_20260925_global/results/PSEG_SSDD_AUTHOR_METADATA_SAFE_20261121.json)
-
-- [更新后的英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)纳入 HRSID 官方划分的冻结复验、匹配对照和敏感性结果。保留历史官方划分接触、三点头共享检测器与自由增删混合结果的范围说明。 [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md)
-
-- [同量经典空间吸引力对照实测](research_round_20260925_global/FIT109_CLASSICAL_ATTRACTION_ACTUAL_20261121.md)已完成。同一 FIT109 端点和逐候选实际编辑数下，学习占据率较动态吸引力 +5.192 mask AP 点、+1.104 连续 IoU 点，AP90 −0.164 点。已核对原进程、全部等量计数和原匹配阈值记录。
-
-- [分数标签与两个硬标签的同量对照](research_round_20260925_global/FIT109_FRACTIONAL_TARGETS_ACTUAL_20261122.md)完成三种子和 9,000 次更新。相对 COCO 硬栅格 +0.184 AP，相对同一占据率硬化 +0.051 AP、一个种子下降。覆盖两种硬标签的预设一致性判据未通过。
-
-- [FIT109 四臂整合实验](research_round_20260925_global/RFDETR_QUERY_CHANNEL_FIT109_ACTUAL_20261121.md)已结束且独立复算一致。查询条件特征相对普通空间特征 +0.352 AP 点，未超过置换或零填充对照，按原判据停止扩展。
-
-- [论文收尾计划](research_round_20260925_global/PAPER_CLOSEOUT_PLAN_20261121.md)。北京时间 11 月 23 日 18:00 冻结正文证据，11 月 24 日 22:00 交付审阅稿和投稿判断。 [最新 TGRS 投稿评议](research_round_20260925_global/SAR_SHIP_TGRS_SUBMISSION_REVIEW_20261120.md)
-
-- [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。 [通用复合仿射实测](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md#通用复合仿射的真实-fit-对照)在相同等距取整下，与单次中心的 4,145 条训练掩膜及源像素索引逐值一致。
-- [HRSID 中心模型的双侧边缘筛选](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md)。36 张 FIT 图实际前向，在 109 个固定匹配上仅有 2 个有效编辑，与普通对照同向，未过门槛。[等预算真值上界](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#同一位移菜单的真值上界)短轴 +1.549、长轴 +1.029 点，两轴差区间跨零。[同编辑预算局部上界](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#同编辑预算的局部轮廓上界)较最佳平移 +4.777 点，严格匹配 11→32。[固定查询位移试点](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#固定查询的配准位移试点实测)完成 180 次 CPU 前向。评分纳入 166 个固定匹配，法向读出较不编辑 −0.575 IoU 点，未通过预锁门槛。 [同次数的补删比例上界](research_round_20260925_global/HRSID_FIT_AREA_FLEX_ORACLE_ACTUAL_20261112.md)在相同 1,718 次翻转下较等量补删多 +0.766 连续 IoU 点，严格达标 24→26。动作由真值选择。 [三种子候选关联试点](research_round_20260925_global/HRSID_FIT_SEED_CONSENSUS_20261112.md)完成 108 次前向，双供体仅 47 个候选、4 个来源组，覆盖门槛未通过。 [关联与身份风险复算](research_round_20260925_global/HRSID_FIT_ASSOC_STRUCTURE_20261112.md)普通贪心确认 131 艘船、35 个来源组，保留全部未决关系。 [新图组面积确认](research_round_20260925_global/HRSID_FIT_SEED_AREA_CONFIRM_20261112.md)均值校准减小 0.934 点面积误差，中位数未超过普通均值，按门槛停止。
-- [论文主张与实验依据](research_round_20260925_global/SAR_SHIP_MASK_TGRS_EVIDENCE_MATRIX_20261112.md)。汇总旧残差方案的停止依据、两种架构的 HRSID 实测、几何与评分对照、SSDD 小数标注验证及正式测试边界。[冻结特征梯度](research_round_20260925_global/HRSID_FIT_LARGE_VECTOR_SHAPE_ACTUAL_20261112.md#冻结特征的跨尺寸损失方向)随前缀留出和范数对照改变方向，保留首次有限步检查失败。[等面积复算](research_round_20260925_global/HRSID_FIT_LARGE_VECTOR_SHAPE_ACTUAL_20261112.md#大船固定面积的查询掩膜复算)为混合结果。[真实查询投影的四步更新](research_round_20260925_global/HRSID_FIT_LARGE_VECTOR_SHAPE_ACTUAL_20261112.md#共享查询投影的四步真实更新)固定面积 IoU +0.0089 点，未达方向门槛。
-- [HRSID 固定共同行 E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行-e24-的固定-dev705-实测)。固定同序监督实例的种子 5202 通过独立验收，DEV705 mask AP **51.434→56.072（+4.638 点）**，AP75 +9.314 点，大目标 AP −6.672 点。正式 TEST 继续隔离。[全量候选的连续多边形复评](research_round_20260925_global/HRSID_DEV705_CONTINUOUS_AP_SENSITIVITY_20261111.md)在相同 1,761 条有效标注上将配对 AP 增益从 +4.679 收窄至 +2.673 点，AP90 差值由 +0.530 变为 −0.228 点。[共享半像素偏移的 FIT 检验](research_round_20260925_global/HRSID_FIT114_SHARED_PHASE_NEGATIVE_RESULT_20261111.md)低于逐视图独立对照，按预设条件停止进入训练。 [大船核心漏分的 FIT 诊断](research_round_20260925_global/HRSID_FIT_LARGE_COMPLEMENTARY_QUERY_DIAGNOSTIC_20261111.md)两臂各完成 28 张图的固定导出，已锁定同面积补充查询对照。 [实际评分](research_round_20260925_global/HRSID_FIT_LARGE_COMPLEMENTARY_QUERY_RESULT_20261111.md)显示中心臂相对等面积膨胀的核心召回仅 +0.030 点，且出现新增连通桥，按预锁规则停止该配方。 [冻结读出的空间留出诊断](research_round_20260925_global/HRSID_FIT_LARGE_FIXED_QUERY_READOUT_DIAGNOSTIC_20261111.md)已锁定相同新增面积的三项常规对照。 [固定基底导出](research_round_20260925_global/HRSID_FIT_LARGE_FINAL_BASIS_CAPTURE_20261111.md)两臂各 28 次前向，原候选和全部查询 logits 逐位复现。 [读出与真值编辑复算](research_round_20260925_global/HRSID_FIT_LARGE_FIXED_QUERY_AND_EDIT_ENVELOPE_RESULT_20261111.md)的有界方法未通过门槛，四种真值编辑的核心增量均低于门槛。允许删除误分时，整掩膜 IoU 上界相对原锚有 +3.315 点余量。 [实际固定删除](research_round_20260925_global/HRSID_FIT_LARGE_LOGIT_DELETION_RESULT_20261111.md)使严格达标 42→28。[前缀留出停止](research_round_20260925_global/HRSID_FIT_LARGE_LOGIT_ABSTENTION_RESULT_20261111.md)只覆盖一个前缀且使严格达标 42→40。按门槛停止该规则。 [等量补删上限实测](research_round_20260925_global/HRSID_FIT_LARGE_PAIRED_BOUNDARY_MENU_ACTUAL_20261112.md)中心组真值三选一受限上限 +0.096 IoU 点，按预锁停止方向拟合。 [大船训练标签连续复算](research_round_20260925_global/HRSID_FIT_LARGE_VECTOR_SHAPE_ACTUAL_20261112.md)28 张图、191 条有效配对视图，中心采样连续 IoU +1.227 点，直缩与裁剪均为正。 [固定预测的尺寸匹配复放](research_round_20260925_global/HRSID_FIT_LARGE_VECTOR_SHAPE_ACTUAL_20261112.md#固定预测中的同图查询匹配复放)实际改变 19 个中小目标代价列，33 个混合图大目标均无查询改配。 [同一匹配的连续多边形复算](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定匹配的连续多边形复算)中，1,605 对的平均 IoU 增益由 +2.041 收窄到 +1.006 点。 [标签取样位置与固定上移对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定预测的标签取样位置与纵向平移对照)中，原预测有方向一致性，上移 1 像素后未通过正剩余信号门槛。 [全量候选 AP 对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#全量候选的固定纵向平移-ap)显示原生上移提高 2.861 AP 点，中心臂仍领先 1.777 AP 点。
-- [PSeg-SSDD 目标域同预算 E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-目标域同预算-e24-实测)。独立验收通过，固定整数 DEV187 的 mask AP **67.819→69.500（+1.680 点）**，AP75 +1.533、AP90 +3.411。当前为单种子开发集结果，正式 TEST 继续隔离。
-- [PSeg-SSDD 重复图像敏感性与共同行实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-精确重复敏感性与固定共同监督实测)。FIT／DEV 精确像素交集为零，DEV 内五组像素副本的 32 种代表选择均保留增益，AP +1.702 至 +1.885 点。真实原生 CPU 加载 32 视图的 62 条共同监督通过两臂核对。[固定共同监督的 GPU 短窗](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-固定共同监督的-windows-gpu-短窗实测)各完成 32 次 FIT 访问和 8 次 AdamW／EMA 更新，独立核对共同实例 56 条及 31 次仅掩膜变化。
-- [PSeg-SSDD 旧整数标签实验的第二种子](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-自然保留的第二种子首次短窗)。同一 Q100 初值，种子 5202 两臂各 32 次 FIT 访问、8 次更新，29 次访问仅掩膜不同。[E24 两臂已独立验收](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-第二种子-e24-闭合和独立验收)，各完成 24 轮、4,464 次 AdamW 和 EMA 更新。[固定 DEV187 复验完成](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-第二种子的固定-dev187-实测)，两种子 AP 分别提高 1.680 和 0.806 点，均值 +1.243。 [第二种子几何诊断和两种子标注敏感性](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md)。固定两种供体分数后第二种子仍有正向整数 AP 差值。候选浮点标注下两组 AP 差值为 −3.113、−3.897 点，收益方向依赖 DEV 标注版本。[字段交叉与半像素平移](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md#ssdd-dev187-的多边形栅格化与坐标原点敏感性)确认多边形单独解释全部口径差异，正向半像素平移可复现两种子 AP 和 AP75 的反号。 [候选归档 TRAIN 标签](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md#本地候选归档的-train-标注字节核验)与浮点派生所用源文件逐字节一致，远端版本和像素坐标约定仍待核验。 [正式划分候选包审计](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md#候选归档划分与测试图像重复审计)确认 10 张测试 JPEG 与当前 FIT741 训练图同字节。 [作者远端训练标注核验](research_round_20260925_global/PSEG_SSDD_OFFICIAL_TRAIN_PROVENANCE_AND_ENCODINGS_20261111.md)确认 1,857 个训练标注记录与本地逐字节一致。2,041 条 VOC 整数轮廓可由作者 COCO 小数坐标逐顶点截断精确重现。 [训练几何四格实测](research_round_20260925_global/PSEG_SSDD_FLOAT_FIT_FACTORIAL_ACTUAL_20261111.md)中，小数和整数顶点的中心采样分别提高小目标连续 IoU 5.310 和 2.492 点。 [小数 FIT741 全量输入](research_round_20260925_global/PSEG_SSDD_FLOAT_FIT_FACTORIAL_ACTUAL_20261111.md#官方小数-fit741-输入构建和原尺寸栅格实测)已读回，1,606 条原尺寸掩膜改变，两套均无空掩膜。 [RF-DETR 真实读取器复验](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_SAME_VIEW_ACTUAL_20261111.md)核对 32 个增强视图的图像、框、类别及随机状态，四格同保留 55 条非空实例。 [Windows 全量共同监督](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_SAME_VIEW_ACTUAL_20261111.md#windows-真实读取器的完整-fit741-共同监督)在 741 图上共同保留 1,457 条非空实例，另有 1 条中心独有非空。 [小数配对训练方案](research_round_20260925_global/PSEG_SSDD_OFFICIAL_FLOAT_COMMON_TRAIN_PROTOCOL_20261111.md)。 [小数 CPU 真实短训](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md)两臂各 32 次 FIT 访问、8 次 AdamW／EMA，57 条共同实例，30 批掩膜不同。 [DGX 原请求预检](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md#dgx-原训练请求实际预检)完成，CUDA 仅可用 2.91 GiB。 [GB10 两项 CUDA 算子实测](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md#dgx-gb10-的实际-cuda-算子核验)通过，当时可用 2.68 GiB。 [Windows 备用入口](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md#windows-原生-cuda-备用入口)已通过 CPU 预检。 [发布版请求](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md#已发布-windows-入口的实际请求预检)也已通过。 [Windows BF16 CUDA 两臂](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md#windows-原生-cuda-两臂实测)实际各 32 次访问、8 次 AdamW／EMA，56 条共同监督。正式 E24 待验证。 [E24 实际运行预锁](research_round_20260925_global/code/SSDD_WINDOWS_FLOAT_COMMON_E24_20261112/SSDD_WINDOWS_FLOAT_COMMON_E24_OPERATION_PRELOCK_20261112.md)已通过 CPU 预检和完整轮次时钟用例。 [Windows 隔离启动修正](research_round_20260925_global/code/SSDD_WINDOWS_FLOAT_COMMON_E24_ISOLATED_START_20261112/SSDD_WINDOWS_FLOAT_COMMON_E24_ISOLATED_START_AMENDMENT_20261112.md)保留首次前向前退出，按同一训练方案通过真实解释器导入和 FIT741 读取。 [E24 实际进展与验收入口](research_round_20260925_global/code/SSDD_WINDOWS_FLOAT_COMMON_E24_ACCEPTANCE_20261112/README.md)[原生 A 已独立验收](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md)24 轮、17,856 次访问、4,464 次 AdamW／EMA；[中心 B 与完整配对验收](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#中心-b-闭合与完整配对验收)同为 24 轮、17,856 次访问、4,464 次 AdamW／EMA，[固定 DEV187 小数主结果](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#dev187-小数主评分实测)为 67.460→70.694 AP，对强参考仅 +0.220 点，低于预锁 +1 门槛。[等量候选和连续轮廓实测](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#首轮等量候选固定分数与连续轮廓)固定分数后仍 +2.755／+4.009 AP，377 个共同匹配的连续 IoU +0.967 点。[5202 两臂实际短训验收](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#5202-两臂真实短训验收)各 32 次 FIT 访问和 8 次更新，29 次只改变掩膜。[5202 完整训练与评价入口](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#5202-原生完整训练与固定评估入口)[原生 A 已验收完整 E24，中心 B 也已完整验收](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#5202-两臂-e24-独立闭合与固定评价启动)。两臂各 24 轮和 4,464 次更新。[固定 DEV187 两种子复验](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#5202-固定小数-dev187-实测与两种子取舍)已完成，配对均值 +2.810 mask AP 点，对强参考 +0.197 点，按原门槛停止追加种子。 [小数主评分入口](research_round_20260925_global/code/SSDD_FLOAT_PRIMARY_DEV187_20261112/PROTOCOL.md)通过五项合成 CPU 检查，实际导出及评分待两组 E24 独立验收。 [Windows 正式评估入口](research_round_20260925_global/code/SSDD_FLOAT_PRIMARY_DEV187_WINDOWS_OWNER_20261112/README.md)通过四项检查及真实合成 JobObject 退出核验。 [连续轮廓复评](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md#两套标注在连续多边形重叠下的复评)中，标注顶点更换后两种子的 AP 方向仍反转。 [质心与形状四格复评](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md#固定候选的标注质心与形状交叉复评)在固定轮廓形状时仍出现反号。 [等距长短轴复评](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md#等距长轴与短轴平移复评)中，两种子在垂直长轴的 AP 方向敏感性更大。 [HRSID 同类复评](research_round_20260925_global/HRSID_DEV705_CONTINUOUS_AP_SENSITIVITY_20261111.md#长轴与垂直方向的等距平移复评)中，等距位移也对垂直长轴的 AP 影响更大。 [两库固定匹配 IoU](research_round_20260925_global/HRSID_DEV705_CONTINUOUS_AP_SENSITIVITY_20261111.md#hrsid-与-ssdd-的固定匹配对称位移)中，中心组多出的方向损失为 0.173 至 0.204 点。 [同字节 FIT 标注核验](research_round_20260925_global/PSEG_SSDD_FLOAT_FIT_FACTORIAL_ACTUAL_20261111.md#同字节训练图的轮廓标注差异)中，10 组官方小数轮廓 IoU 平均 82.280%，对齐质心后 83.598%。
-- [SRNet 外部对照的原生 FIT 与全量几何实测](research_round_20260925_global/SRNET_SSDD_FIT741_BASELINE_NATIVE_PATH_20261111.md#全-fit-的裁剪与回贴四组几何实测)。1,661 个真值目标的重建 IoU 为原版 96.414%、匹配回贴 97.988%、中心采样 98.736%。真实训练图另触发一条跨层目标错配。原版 E24 在第 4 轮触及进程显存配额，完成 670 次 SGD 更新。分配器重试已完成 24 轮、4,464 次 SGD 更新和 17,856 次访问，原进程退出及最终权重通过独立验收，固定 DEV187 作者阈值 AP 为 **60.540**，低阈值敏感性为 **61.134**。 [两套标注复评](research_round_20260925_global/SRNET_SSDD_FIT741_BASELINE_NATIVE_PATH_20261111.md#固定-srnet-预测的两套标注复评)的小数 AP 分别为 62.720、63.203，使用原候选及分数。[固定评分和同预算 RF-DETR 对照](research_round_20260925_global/SRNET_SSDD_FIT741_BASELINE_NATIVE_PATH_20261111.md#同一-e24-权重的固定-dev187-评分实测)。两档原生 CPU 导出在一张预选 FIT 图各完成 242 个掩膜的逐像素编码复核。[实测](research_round_20260925_global/SRNET_SSDD_FIT741_BASELINE_NATIVE_PATH_20261111.md#原生两档阈值的真实-fit-cpu-实测)。
-- [PSeg-SSDD 等量候选与轮廓诊断](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-重训后的等量候选和轮廓复算)。逐图等量后，各臂 9,024 个非空候选。IoU 0.90 最大一对一覆盖 81→104，两种固定分数下 AP90 均提高，共同匹配 IoU +0.922 点。
-- [PSeg-SSDD 固定配对平移上界](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-共同行预测的平移上界)。375 个共同匹配上，原始平均 IoU 优势 +0.922 点，纵向 ±2 后 +0.729 点，二维 ±2 后 +0.254 点。二维对齐后中心在 IoU 0.90 多 15 个固定配对。
-- [PSeg-SSDD 固定海陆分层](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-重训后的固定海陆分层)。目标域重训的全水面／含陆地 AP 分别 +1.003／+3.527 点，IoU 0.90 等量候选最大匹配分别 66→82、15→22。保留低阈值对照与冻结源模型的不同结果。
-- [DGX 的 HRSID Q164 初始化及 FIT2937 解码](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#dgx-完整-fit2937-接收及独立解码)。DGX 已逐位复现完整 Q164 初值。2,937 张训练图全部通过原编码与 RF-DETR 原生解码字节核验，B/C 实际训练资格仍待完成。
-- [DGX 原 B/C 入口的 CPU 初值核验](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#dgx-bc-原训练入口的-cpu-初值实测)。完整训练环境下 Q100、Q164 摘要及 545 个 CPU 张量通过。首次缺依赖的失败保留，实际 GPU 短窗仍待资源准入。
-- [HRSID 逐步中心 B 与单次复合中心 C 的真实短窗](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#windows-bc-真实短窗与独立验收)。本机两臂各 32 次 FIT 访问和 8 次更新。16 次直缩逐值一致，16 次裁剪中 13 次出现实际入训掩膜变化。独立验收通过，E24 效用待验证。
-- [HRSID 固定 B/C E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#逐步中心与单次复合中心的固定-dev705-实测)。逐步中心 55.881 AP，单次复合 55.828 AP，同训练预算差 −0.053 点，相对更强的同种子自然保留参考差 −0.303 点，按预锁判据停止单次复合配方扩展。
-- [HRSID FIT 大目标标签机制预锁](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit-全量大目标计数与标签足迹检验预锁)。完整 FIT 有 50 条大目标标注，来自 28 张图、4 个前缀。已完成全部 28 图的 112 视图回放。共同大目标的标签 FN 下降 0.845 点，足迹 IoU 提高 1.829 点，未支持标签收缩解释。
-- [HRSID 共同行大目标复算](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#大目标退化及配对组敏感性)。大目标 16 条集中在 3 个前缀组，逐组剔除 APl 差值 −8.958 至 +0.109 点，整体 AP 始终为正。等量候选并固定分数模板后，大目标仍下降。 [大船漏分区域复算](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#大船内部与两像素边带的漏分复算)中，平移后核心、边带的单位面积漏分增量为 +4.79、+11.19 点，核心优先采样未过门。
-- [HRSID 固定共同行的 IoU 0.90 缺口](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行-iou-090-缺口与像素预算)。中心独有的 178 个严格覆盖中，176 个原生候选已在 0.75 至 0.90 之间。827 个共同近阈值目标的最少编辑中位数 39→25 像素。两臂在等量候选上无严格一对一分配损失。 [827 个近严格目标的预算上界](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#近严格目标的固定最佳与全候选编辑上界)中，改用全部候选只多恢复 1 个原生目标，中心目标无新增。
-- [HRSID 高 IoU 转移的平移上界](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行严格覆盖转移的平移上界)。178 个仅中心达标的真值中，原生掩膜经真值辅助二维 ±2 平移恢复 72 个。17 个受面积比限制，89 个仍未恢复。原进程和独立复算均完成。
-- [HRSID 一像素边界带的编辑上界](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#一像素边界带的固定编辑预算)。最佳平移后 129 个失败掩膜中，同预算真值辅助可恢复 90 个，一像素带与整图恢复数一致，其中 87 个为小目标。独立复算完成。
-- [HRSID 一像素形态基线实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#一像素二值形态规则的真实评分)。固定中心臂 67,386 条候选，补孔和去孤点的 mask AP 变化 +0.00263 点，AP90 与同编辑量随机臂一致，原固定匹配无严格新增或失守。
-- [HRSID FIT114 边界分数与采样相位实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-冻结边界分数与采样相位对照)。独立核对 414,942 个边界点。55 张留出图上真实相位仅改 4 像素，严格达标净变化为 0，与同编辑量的有序 logits 和打乱相位的总裕量相同。
-- [HRSID FIT114 局部强度五折实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-渲染强度与等编辑量的五折实测)。真实强度在等预算下胜过有序 logits 和置换强度的裕量，弱于绝对 logit 与原掩膜。当前编辑规则止于 FIT。
-- [HRSID 输出网格实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-输出网格的误差下界与可表达性实测)。496 条 FIT 标注上，距离场构造达到 IoU 0.90 的数量为 228→437，净增全部在小目标。粗网格有 3 条不可达证书，未测模型 AP。 [保留原节点的嵌套细格实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#保留原节点的细网格可表达性实测)为 228→436，新增 208 条均为小目标。 [固定候选的单元内残差实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定候选上的单元内残差实测)中，五种峰位置均恢复同一条 IoU 0.90 匹配，中点无独有恢复。
-- [HRSID FIT 固定查询裁块对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit-固定查询的原生裁块与低通裁块实测)。16 图的原生与低通裁块按同配额都净增 1 个 IoU 0.90 达标，配对 2 胜 10 平 2 负。直接替换符号时两组 IoU 均下降。
-- [Phoenix 外部细化对照的 CPU 编码实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#phoenix-官方样例的-cpu-编码实测)。官方 EfficientViT-XL1 权重已核验，作者示例完成图像编码。提示生成、五轮解码与 SAR 固定候选评分待执行。
-- [Phoenix DGX 完整推理和 HRSID FIT 试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#phoenix-完整推理与固定-fit-候选试点)。作者样例的单掩膜与批量结果逐像素一致。两图 145 条原候选中，官方 1% 门槛激活 0 条；全非空适配改动 39 条，两个固定配对的平均 IoU 0.848→0.768。
-- [OpenCV 新旧最近邻复算](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md#opencv-5-原生与精确最近邻实测)。Windows 4.5.5 与 5.0.0 默认输出相同。5.0.0 显式精确模式在此前合成坐标上的差异只见于半格平局。[固定 96 个真实训练视图](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md#opencv-5-在真实-fit-栅格上的直接对照)上，显式精确模式与整数中心 615 条掩膜逐像素一致。 [训练尺寸全范围的合成索引实测](research_round_20260925_global/MASK_RTDETR_OPENCV_AXIS_ENVELOPE_ACTUAL_20261112.md)覆盖 2,252.8 万位置，显式精确模式的 9,722 处差异全在半格。
-- [HRSID E24 冻结模型到 SSDD DEV187 的跨库诊断](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md)。六臂评分与独立复算已完成。固定 SSDD DEV187 上三组平均 +0.376 mask AP 点，未达到预设跨库支持门槛。 等量候选的 IoU 0.75 最大覆盖三组增加 5、20、22 个，IoU 0.90 增加 1、0、0 个。 固定共同匹配的 IoU 平均 +0.519 点，纵向方向组合仅两组通过。 [海陆分层](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#sl-ssdd-海陆分层复算)中，31 张含陆地图的平均 AP −0.686、AP75 +4.578，三组总 AP 均下降。 [同量候选 AP50 复算](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#含陆地图-ap50-的候选与评分对照)仍下降 4.535 点，固定候选和固定分数的对照均定位到负向影响。
-- [Schwegmann 中心船散射掩膜辅助验证](research_round_20260925_global/HRSID_TO_SCHWEGMANN_CENTRAL_SHIP_PROTOCOL_20261110.md)。32 张图、16 个采集组的六臂评分与独立复算完成。中心船平均 IoU +3.906 点，采集数低于预设门槛，保留为描述性结果。 [负例获取](research_round_20260925_global/HRSID_TO_SCHWEGMANN_CENTRAL_SHIP_PROTOCOL_20261110.md#同采集海杂波与疑似目标的实际获取)匹配海杂波 2 条、疑似目标 3 条，组覆盖不足。
-- [UEIKAP 四个训练家族标签复核](research_round_20260925_global/HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md#ueikap-四个独立训练采集家族的标签复核)。四例均找到对应 TXT／COCO／AIS，6 条 TXT 类别 1 与 COCO 尾迹掩膜逐值一致。船体类别和整图标签完整性仍待核，预留外测隔离。
-- [Mask RT-DETR 掩膜取样的真实 FIT 复算](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md)。96 个固定视图的小目标纵向绝对质心误差 0.914→0.191 像素，连续栅格 IoU +8.890 点，3／581 条中心输出变空。[原始多边形复核](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_POLYGON_AND_SUPPORT_PROTOCOL_20261111.md)的 IoU +6.874 点，三条空行在当前网格的最高连续 IoU 均低于 0.5。实际模型 AP 待验证。 [Windows CUDA 原训练器](research_round_20260925_global/MASK_RTDETR_AUTHOR_CPU_FIT_QUALIFICATION_PROTOCOL_20261111.md#windows-cuda-原作者两次-fit-更新)已验收两次 AdamW、调度和 EMA。 [固定实例配对](research_round_20260925_global/MASK_RTDETR_AUTHOR_CPU_FIT_QUALIFICATION_PROTOCOL_20261111.md#固定实例的原生与中心-cuda-两步配对)已验收两臂各两步、15 条共同实例，实际训练输入只改变掩膜。 [HRSID FIT2937 同预算 E24 方案](research_round_20260925_global/MASK_RTDETR_HRSID_FIT2937_E24_AUTHOR_PROTOCOL_20261111.md)完成官方 COCO 单类迁移、真实原生读取器及两臂各 8 次更新的资格验收。 原生 A 已自然完成 24 轮并通过[独立验收](research_round_20260925_global/results/MASK_RTDETR_HRSID_FIT2937_NATIVE_E24_INDEPENDENT_ACTUAL_SAFE_20261111.json)，70,560 次 FIT 访问、17,640 次 AdamW／调度／EMA 返回，训练约 8,015.84 秒，Paddle 峰值保留显存约 18.17 GiB。E8／E16／E24 检查点及 E24 状态重载均通过。中心 B 也已自然完成 24 轮，独立核对每臂 70,560 次访问、17,640 次更新以及完全相同的非空支持。 [完整配对验收](research_round_20260925_global/MASK_RTDETR_HRSID_FIT2937_E24_PAIR_ACTUAL_20261112.md)。[单类作者导出](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_ONE_CPU_EXPORT_ACTUAL_20261111.md)在一张 FIT 图实测 100 条原生有序 800² 掩膜，固定 DEV705 已评分。 [评分接口](research_round_20260925_global/MASK_RTDETR_AUTHOR_MASK_SCORE_ADAPTER_ACTUAL_20261111.md)已用固定 FIT 图核对 12 项 COCO 指标及 AP90。 [多图、EMA 与跨图评分实测](research_round_20260925_global/MASK_RTDETR_HRSID_NATIVE_ENDPOINT_EVAL_FIT_QUALIFICATION_20261111.md)验证真实三图的原始 ID 和 300 条掩膜、646 个 EMA 张量、29 图的独立评分一致性。 [逐图导出和独立评分](research_round_20260925_global/MASK_RTDETR_FIXED_ENDPOINT_STREAM_FIT_ACTUAL_20261111.md)从已闭合的训练 EMA 实测三图 300 条候选，两种 COCO 评分口径逐值对齐。[固定 DEV705 原生作者实测](research_round_20260925_global/MASK_RTDETR_HRSID_DEV705_AUTHOR_PAIR_ACTUAL_20261112.md) mask AP **50.304→56.043（+5.739 点）**，AP75 +10.344、AP90 +1.914、小目标 AP +6.345、大目标 AP −14.038。固定一个配对种子，正式 TEST 隔离。 [连续几何实测](research_round_20260925_global/MASK_RTDETR_HRSID_DEV705_AUTHOR_PAIR_ACTUAL_20261112.md#固定候选的连续多边形复算)在同 1,761 条有效标注上将 AP 增益从 +5.757 收窄至 +3.625 点，AP75 +6.330，大目标 AP −14.038。 [候选覆盖与固定匹配实测](research_round_20260925_global/MASK_RTDETR_HRSID_DEV705_CANDIDATE_AND_GEOMETRY_ACTUAL_20261112.md)等量下 IoU 0.75 最大覆盖 +125，固定两种分数模板 AP +5.728／+5.864，共同匹配连续 IoU +1.533 点。 [同一批大船的跨架构诊断](research_round_20260925_global/MASK_RTDETR_HRSID_DEV705_CANDIDATE_AND_GEOMETRY_ACTUAL_20261112.md#两种架构在同一批大船上的误分与漏分)共同 13 条，RF-DETR 主要增漏分，Mask RT-DETR 主要增误分。 [Windows 统一导出入口](research_round_20260925_global/MASK_RTDETR_FIXED_ENDPOINT_STREAM_FIT_ACTUAL_20261111.md#windows-实际-cuda-导出的统一入口)已通过源码和验收检查。 [作者分类语义和真实训练批次归因](research_round_20260925_global/MASK_RTDETR_FIT_MATCH_AND_TARGET_ATTRIBUTION_ACTUAL_20261111.md)核实固定 v2.9.0 实际走框 IoU MAL。四图六个实例的最终普通层查询均未改配，BCE、Dice 随掩膜标签改变。 [密集批次复验](research_round_20260925_global/MASK_RTDETR_FIT_DENSE_ASSIGNMENT_REPLAY_ACTUAL_20261111.md)的 72 个实例中，主格 21 个改配，正查询集合相同。四次额外匹配抽样核对到标签改配 21–29，原生标签随随机点变化改配 41–44。
-- [同一 Mask RT-DETR 算子的 SSDD FIT 几何复验](research_round_20260925_global/MASK_RTDETR_PSEG_SSDD_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md)。96 个固定视图，99 条小目标均在两臂非空。连续整数多边形 IoU +4.961 点，栅格参考纵向质心误差减少 0.344 像素。模型 AP 待同预算训练。
-- [Mask RT-DETR 原生 Windows CPU 资格](research_round_20260925_global/MASK_RTDETR_AUTHOR_CPU_FIT_QUALIFICATION_PROTOCOL_20261111.md)。官方读取器实际通过 8 张 SSDD FIT 图，646 个官方 COCO 张量逐值加载，一次前向输出 100 个候选。Windows 两步训练在首批前向后受资源保护停止。[DGX ARM CPU 独立两步资格](research_round_20260925_global/MASK_RTDETR_S_DGX_ARM_CPU_TRAIN_QUALIFICATION_PROTOCOL_20261111.md)已验收，AdamW、调度和 EMA 各 2 次，三份原生档案已核对。模型 AP 待完整训练。
-- [Mask RT-DETR 的原生／中心配对短窗](research_round_20260925_global/MASK_RTDETR_S_DGX_ARM_CPU_TRAIN_QUALIFICATION_PROTOCOL_20261111.md#第二载体的配对短窗预锁)。沿用作者训练器和相同 SSDD FIT8，目标是验证真实批次中位图缩放是唯一输入差异。合成通过，真实配对待资源准入。
-- [FIT114 输入位移实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-冻结模型的输入位移实测)。单种子 8 个来源组、26 个目标、48 次冻结前向。三个位置相对真值的 IoU 均改善，+1 配准改善受一个来源组影响，−1 配准基本持平。
-- [固定点目标值试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定监督点目标值试点实测)。同一 487 点、三臂各 8 次真实更新，单次复合中心相对逐步中心在裁剪留出上 +0.065 IoU 点，低于预设 0.5 点。连续值对照精确复现。 [多边形覆盖率四臂实测](research_round_20260925_global/HRSID_FIT_FROZEN_VECTOR_OCCUPANCY_ACTUAL_20261111.md)相对源栅格覆盖率 −0.028 IoU 点，8 个留出裁剪组无一提高，按预锁停止该试点。 [方向占据率留出实测](research_round_20260925_global/HRSID_FIT_ORIENTED_OCCUPANCY_ACTUAL_20261112.md)各臂 8 次更新，沿长轴组相对预设最强对照 −0.044 IoU 点，8 组无改善，未通过长训门槛。
-- [冻结模型的点监督分配试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#冻结模型点监督诊断预锁)。固定八张源图上的分歧富集为同配额随机期望的 1.87 倍。随后同预算 8 次原生投影更新的轮廓指标未达到晋级门槛。
-- [HRSID 训练标签的多边形优先对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#hrsid-fit-only-多边形优先对照)。456 个固定训练视图已完成。核心裁剪中单次中心相对逐步中心在两种参考下提升 +6.45、+6.27 个几何 IoU 点。模型效用待同预算实测。
-- [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#模型迁移决策与海面实例分割先例)。已取得一对有船的同景聚焦 SLC 与复数距压，FFT 数值核验通过，完整配准与模型收益待测。双目录核验含船裁块对应母幅零起点 burst 5，原 XML 的第 9 项与该行序不一致。逐行有效采样及多普勒标定待核。[目录实测](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#同景样本的母幅-burst-行列归属实测)。已核对实测海面 RD 回波实例分割先例和 KuRALS 定位试点边界。[三条验证路径与评分](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#rd-试验的执行顺序与评分)。 [模型迁移与有效格点评分](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#本轮迁移决策与-kurals-pd-的有效格点)。 [零样本、RD 定位和同景轮廓的验证条件](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#泛化结果的命名与主线选择)。 [少标注迁移的强对照与论文决策](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#少标注迁移的对照与论文决策)。 [坐标核验与错位对照](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#坐标核验与轮廓收益的判别试验)。 [结构、权重迁移及同景配准验收](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#从空间模型迁移到-rd-的首轮验收)。
-- [RD 功率的方位歧义与复数分支对照](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#复数相位与船体轮廓的输入对照)。合成移位复算中，慢时间中心相差 11 格，功率谱在数值精度内相同。已给出同景功率、复数与错配对照，真实 RD 模型结果待测。
-
-主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
-
-- [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
-- [HRSID 原生 E24 训练与 DEV705 实测](research_round_20260925_global/HRSID_COCO_E24_DEV705_NATIVE_EVALUATION_PROTOCOL_20261109.md)。原训练独立验收 24 轮、17,640 次 AdamW 和 EMA 更新，三处固定归档通过。固定 DEV705 的 mask AP **50.427**、AP75 **54.466**、AP90 **1.466**。HRSID 官方 TEST 继续隔离。[固定候选误差普查](research_round_20260925_global/HRSID_DEV705_NATIVE_CANDIDATE_COVERAGE_PROTOCOL_20261109.md)独立复算确认 1,778 个有效 GT 仅 104 个有 0.90 达标候选，原顺序达到最大一对一匹配数。
-- [HRSID 历史 DEV705 固定掩膜平移](research_round_20260925_global/HRSID_DEV705_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。1,049 个近严格配对中，±2 像素真值辅助平移恢复 159 个，361 个受面积比限制。固定上移新增 82 个并损失 48 个既有严格配对。
-- [RD 原生格点及输入核验](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#原生-rd-网格与模型接入核验)。64×800 合成图的裁补往返逐格一致，核查了 RF-DETR 默认缩放与补边影响的验证条件。公开母幅目录未提供所需的逐行注释，真实 RD 模型分数待测。
-- [SSDD 第二种子短轴复验](research_round_20260925_global/SSDD_FLOAT_COMMON_DEV187_HULL_COCENTER_REPEAT5202_ACTUAL_20261112.md)。233 个细长小船相对当前原生臂的连续 IoU 差为 +1.356 点，真值短轴对齐后 +0.134，长轴对齐后 +1.279。历史强参考对照中未见相同的短轴差值收窄。
-- [HRSID 短轴完整投影质量的真实复算](research_round_20260925_global/HRSID_FIT_HULL_CDF_20261112.md)。262 个固定匹配、39 个来源。相对最好的简单摘要增益 +0.080 连续 IoU 点，低于预锁门槛，停止该损失分支进入训练。
-- [HRSID 双船共享像素实测](research_round_20260925_global/HRSID_FIT_SHARED_PIXEL_OWNERSHIP_20261112.md)。357 个有效匹配仅 6 对满足条件。真值归属与两项同预算简单规则的连续 IoU 相同，155 个近严格锚无新增 0.90 达标，停止此分支。
-- [HRSID 三种子同预算轮廓实测](research_round_20260925_global/HRSID_FIT_CONSENSUS_CONTOUR_20261112.md)。固定 FIT36 全候选 mask AP 从 73.019 到 74.503，比同补删数单模型高 0.938 点。普通多数投票 74.241。达到复验门槛，待独立图组核验。
-- [HRSID 三种子轮廓复验](research_round_20260925_global/HRSID_FIT_CONSENSUS_CONTOUR_REPEAT_20261112.md)。来源不重叠的另 36 张 FIT 裁片，mask AP 59.073→60.831；同补删量单模型 59.708，多数投票 60.807。 [单前向内部候选对照](research_round_20260925_global/HRSID_FIT_SINGLE_FORWARD_QUERY_FUSION_20261112.md)在首批裁片未达到门槛。
-- [HRSID 纯二值规则同源实测](research_round_20260925_global/HRSID_FIT_RLE_VOTE_SOURCE_BRIDGE_20261112.md)。在首批 FIT36 中，纯二值多数票 mask AP 74.236，原概率排序多数票 74.241，原掩膜 73.019。[SSDD 同规则冻结诊断](research_round_20260925_global/HRSID_TO_SSDD_DEV187_RLE_VOTE_20261112.md)由 37.979 到 38.044，低于 +0.50 点门槛。
-- [HRSID 与 SSDD 固定增删数的边界余量](research_round_20260925_global/HRSID_FIT_RLE_VOTE_HEADROOM_20261112.md)。SSDD 原分歧区真值上界比投票高 0.147 IoU 点，完整边界带再高 0.864；其中至少一份供体提出异议的位置占 67.7% 的额外余量。严格 0.90 最多 2 个。
-- [HRSID 有符号距离同预算实测](research_round_20260925_global/HRSID_FIT_RLE_SIGNED_DISTANCE_FUSION_20261112.md)。比二值投票 +0.362 AP 点，扩大到任一供体异议与双供体版本指标相同，未过预锁门槛。
-- [D-FINE 严格候选覆盖](research_round_20260925_global/DFINE_E24_DEV705_CANDIDATE_COVERAGE_20261112.md)。全部后 NMS 候选将 IoU 0.90 覆盖从 19 增至 21，仍有 1,757 个实例缺少合格掩膜。 [细长小船的真值平移上界](research_round_20260925_global/DFINE_E24_DEV705_AXIS_ORACLE_20261112.md)在 1,425 个标注上将严格达标从 2 增至 11。
-- [D-FINE-seg-S 外部对照入口](research_round_20260925_global/DFINE_SEG_EXTERNAL_BASELINE_FIT1_20261112.md)固定 E24 训练与独立验收完成，17,640 次实际更新。DEV705 mask AP 48.160，AP75 51.507，原始导出及评分均已闭合。
-- [D-FINE E24 FIT114 原生捕获](research_round_20260925_global/DFINE_E24_HRSID_FIT114_CAPTURE_20261112.md)。109 张核心图和 5 张压力图各做一次原生前向，11,400 个概率平面逐像素复现原掩膜，独立读取验收通过。面积修正未拟合或评分。
-- [D-FINE 定额面积校准](research_round_20260925_global/DFINE_DEV705_BOX_MASK_AREA_CALIBRATION_20261112.md)。开发集五折诊断中框比例校准降低面积误差但损伤轮廓 IoU，四项推进条件均未通过。
-- [D-FINE FIT109 边界概率排序](research_round_20260925_global/DFINE_E24_FIT109_PROBABILITY_RANK_20261112.md)。概率超过同额几何与置换，但相对原掩膜 IoU −0.159 点、mask AP −0.853 点。
-- [D-FINE 细长小船理想掩膜网格上界](research_round_20260925_global/DFINE_DEV705_IDEAL_LATTICE_BOUND_20261112.md)。在框内自由栅格可达而原掩膜未达 0.90 的 1,120 个匹配中，理想 160 网格额外证实排除 21 个，未过分辨率训练推进门槛。
-- [D-FINE FIT109 选择性删除](research_round_20260925_global/DFINE_E24_FIT109_SELECTIVE_DELETION_20261112.md)。五折来源交叉拟合，加入概率幅值的 AP 49.450，低于同动作的上下文对照 49.511。
-- [D-FINE 检测框截断的原生几何上界](research_round_20260925_global/DFINE_DEV705_NATIVE_BOX_CEILING_20261112.md)。0.90 的 206 个框内排除中，176 个只受框限制，扩 2 像素有 134 个理论可达。
-- [D-FINE 固定原掩膜的框外补全上界](research_round_20260925_global/DFINE_DEV705_FIXED_STOCK_COLLAR_20261112.md)。扩框内自由重选像元的 134 个严格可达样本中，只补框外为 0。
-- [D-FINE FIT109 框外概率补点](research_round_20260925_global/DFINE_E24_FIT109_BOX_COLLAR_20261112.md)。连通补点 AP 49.325→45.176，固定连续 IoU −1.709 点，停止单独扩框配方。
-- [D-FINE 框内同预算编辑上界](research_round_20260925_global/DFINE_DEV705_INSIDE_EDIT_MENUS_20261112.md)。同一 1,329 个固定匹配，等量增删和自由增删的 IoU 0.90 上界分别为 58 与 68 个，原掩膜 2 个。
-- [D-FINE FIT109 成对边界头训练](research_round_20260925_global/DFINE_E24_FIT109_PAIRED_POINT_20261112.md)。五折实际训练，AP 49.325→50.124，独立点与打乱对照 50.043／50.077，真实配对未过增量门槛。
-- [D-FINE FIT109 灰度消融](research_round_20260925_global/DFINE_E24_FIT109_GRAY_ABLATION_20261112.md)。原位置灰度相对灰度均值和同层置换分别 +0.580／+0.545 AP 点，固定严格匹配 7→6，未通过完整推进门槛。
-- [D-FINE FIT109 等量灰度比较](research_round_20260925_global/DFINE_E24_FIT109_GRAY_EQUAL_COUNT_20261112.md)。逐候选共用 6,664 次交换，原位置灰度相对两对照仅 +0.027／+0.023 AP 点，未过门槛。
-- [D-FINE FIT109 严格匹配保留试验](research_round_20260925_global/DFINE_E24_FIT109_STRICT_GUARD_20261112.md)。保住 7 个原严格匹配，保留 34／4,406 个候选编辑，AP +0.074 点，按预设停止。
-- [D-FINE FIT109 直接交换收益监督](research_round_20260925_global/DFINE_E24_FIT109_DIRECT_UTILITY_20261112.md)。直接损失 AP 50.140，等量时低于同头 BCE 与 Brier，原严格失守 2 个。
-- [D-FINE FIT109 固定端点几何上界](research_round_20260925_global/DFINE_E24_FIT109_PAIR_SUPPORT_ORACLE_20261112.md)。固定配对、等量重选、自由增删的严格达标上界为 11／27／38 个。
-- [D-FINE FIT109 独立边界端点选择](research_round_20260925_global/DFINE_E24_FIT109_FREE_ENDPOINT_PAIRING_20261112.md)。等量相对固定配对 +1.577 AP，按正收益独立选择相对原掩膜 +3.969 AP，7 个原严格匹配全保留，训练侧门槛通过。
-- [D-FINE 点头全 FIT 冻结重训](research_round_20260925_global/results/DFINE_E24_FIT109_FINAL_BCE_REFIT_INDEPENDENT_SAFE_20261112.json)。实际 200 次更新并由独立执行复现，用于后续 DEV705 原模型对照。
-- [D-FINE DEV705 裁剪前概率捕获](research_round_20260925_global/DFINE_E24_DEV705_PROBABILITY_CAPTURE_20261112.md)。705 次原前向和 70,500 份原二值复现均已验收。此次捕获未读取标签。
-- [D-FINE DEV705 冻结端点评估](research_round_20260925_global/DFINE_E24_DEV705_FREE_ENDPOINT_20261120.md)。原掩膜 AP 48.160，独立选点 50.715，预锁门槛通过，复算逐项一致。
-- [TGRS 投稿评议与剩余实验](research_round_20260925_global/SAR_SHIP_TGRS_SUBMISSION_REVIEW_20261120.md)。英文审阅稿已完成。汇总几何误差、同编辑量机制、两种架构与跨库实测，给出强基线、正式评价和成本核验的最少补证据。
-- [边界修正论文审阅稿 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX 源码](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.tex)。保留作者占位，收录 HRSID 同量机制和 PSeg-SSDD 冻结复验。
-- [PSeg-SSDD 冻结跨库实测](research_round_20260925_global/DFINE_HRSID_TO_PSEG_SSDD_DEV187_FROZEN_TRANSFER_20261120.md)。浮点 mask AP 17.897→18.234，较同头固定配对 +0.278 点，低于预设推进门槛。[RF-DETR 强载体同量对照计划](research_round_20260925_global/paper_boundary_refinement_20261120/RFDETR_MATCHED_POINT_REFINEMENT_PLAN.md)和[初版对照源码](research_round_20260925_global/code/RFDETR_MATCHED_POINT_REFINEMENT_20261120/README.md)已完成。[真实 FIT 四图接入](research_round_20260925_global/RFDETR_CENTER5202_MATCHED_POINT_REAL_SPOT_20261120.md)已独立复跑。185 个面积合格掩膜逐位重建，两种头各完成两次相同样本更新，真实栅格非零等量写回核验通过。[完整 FIT109 载体](research_round_20260925_global/results/RFDETR_CENTER5202_FIT109_CAPTURE_PUBLIC_SAFE_20261120.json)已验收，6,738 张原掩膜逐位复核。[三种子源端训练](research_round_20260925_global/results/RFDETR_CENTER5202_FIT109_MATCHED_TRAINING_PUBLIC_SAFE_20261120.json)已验收 7,200 次更新。DEV705 原始输出逐字节重放，三种子八策略读出和 67,386 个候选的独立核验已通过，[固定评分已闭合](research_round_20260925_global/RFDETR_CENTER5202_DEV705_MATCHED_RESULT_20261120.md)。三种子主方案均优于原生，平均 +0.794 mask AP 点。同头同量独立选点较固定配对 +0.906 AP 点。与普通同量逐点写回的两项预锁判据未通过，[等预算几何诊断已闭合](research_round_20260925_global/RFDETR_CENTER5202_DEV705_OCCUPANCY_BOUND_ACTUAL_20261120.md)。等面积情况下选点余量 +2.111 连续 IoU 点，放开增删数量额外 +1.001 点。 [下一轮源端对照](research_round_20260925_global/RFDETR_QUERY_CHANNEL_RESIDUAL_FIT109_PRELOCK_20261120.md)固定四种输入、原候选和等量增删，查询贡献投影已通过合成复核。 [FIT109 稀疏编码等价与成本](./research_round_20260925_global/RFDETR_SPARSE_RLE_ENCODING_COST_20261120.md)覆盖 32 个结构分层样本，逐字节等价，编码时间中位数为 90.23 μs 对 988.15 μs。
-- [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
-- [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移。新增局部复数 RD 的失焦轮廓修正方案，包含运动补偿重聚焦、同容量和错配对照。真实 RD 模型分数待测。
-- [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。
-- [HRSID FIT 的原生 164 查询与候选保留对照](research_round_20260925_global/HRSID_FIT_NATIVE_QUERY_RETENTION_PROTOCOL_20261109.md)。实测全查询严格匹配 37→39，等量非空保持 37。密集压力图在 0.50 多 36 个，0.90 仍为零。独立复算后按预设门槛停止筛选分支。
-- [HRSID FIT 固定查询轮廓几何](research_round_20260925_global/HRSID_FIT_FIXED_CONTOUR_GEOMETRY_PROTOCOL_20261109.md)。主层放宽整体恢复 51/234，局部同预算恢复 37/234，密集层分别为 0/59 与 19/59。按预设门槛优先验证整体平移的预测信号。
-- [HRSID 同一查询的框掩膜中心偏差](research_round_20260925_global/HRSID_FIT_BOX_SHIFT_PROTOCOL_20261109.md)。实测框差、掩膜差与常量的严格匹配均为 51，原生为 37；拟合组均失守 15/37，框差未过门。原生掩膜重采样有合成像素中心偏移证据，真实增强重放待检验。
-- [HRSID FIT 训练标签采样相位](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_REPLAY_PROTOCOL_20261109.md)。114 图、456 个配对视图实测，小目标纵向偏差 +0.876→−0.120 原图像素，参考 IoU 0.795→0.952。保留行变动 3 失 1 增，独立复算通过，进入配对训练资格。
-- [HRSID DEV705 等量候选覆盖实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#关闭模型的候选覆盖与图内分配诊断)。逐图非空候选等量后，三种子的 IoU 0.90 最大匹配数分别增加 98、70、113。[5203 独立读回](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#5203-实测及源域与外部域比较)。
-- [HRSID DEV705 跨图分数交叉对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#等量候选的跨图分数排序对照)。两种供体分数固定后，中心候选 mask AP 仍高 4.526 至 5.062 点。固定候选换分数的最大绝对变动为 0.298 点。
-- [HRSID 共同检出船舶的掩膜方向实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定-iou-050-实例的掩膜几何与方向核验)。两个种子的 y 质心偏差分别由 +0.696、+0.517 收敛到 −0.079、−0.098 像素。原生掩膜上移的收益在中心臂消失。
-- [单次中心的真实 FIT 审计](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#dgx-实测与共同行资格)。DGX 原始 SSDD 741 视图和 HRSID 456 视图闭合并独立复算。直缩 3,571 条共同行掩膜一致。裁剪在 SSDD 改变 639／644 条，HRSID 主层改变 635／638 条。自然 C 在 HRSID 多 3 条非空监督。新的共同行加载器通过 4 个真实 FIT 视图。短训监督入口已通过源码预检并在当前占用下拒绝启动。直缩复用候选经 456 个真实 FIT 视图双臂逐值验收；16 个固定视图的开启审计计时中，主层与压力层直缩耗时中位比减少 59.0% 和 72.0%。
-- [HRSID FIT 与 SSDD DEV 图像内容筛查](research_round_20260925_global/HRSID_SSDD_CROSSSET_VISUAL_CONTENT_SCREEN_PROTOCOL_20261111.md)。两个已核对集合的编码与 RGB 精确重复均为零。近似筛查未通过变换正对照，采集独立性待核。
-- [独立外部数据核验](research_round_20260925_global/HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md#2026-11-10-独立外部数据入口与标签边界)。实际读回 Schwegmann 的 23 条影像掩膜配对，核对 UEIKAP 来源预留和 AIR-SARShip 标签边界。[OSSDD 训练分片](research_round_20260925_global/HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md#ossdd-训练分片的实际标签读回)的旋转框派生掩膜已完成三个样本核验。
-- [HRSID 漏分的面积与触边分层实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#面积加权漏分的失败范围)。两个种子的全体像素错误合计下降，大型贴边小样本组的净错误均增加。
-- [HRSID 训练掩膜相位的配对训练](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_PAIRED_TRAIN_PROTOCOL_20261109.md)。同机两臂各通过 32 次访问、8 次 AdamW 和 EMA 的真实资格。图像与框配对一致，29 批掩膜不同。首组两臂各通过 24 轮、17,640 次 AdamW 和 EMA 更新及 E1/E8/E24 档案验收。DEV705 原始 GT 的 mask AP 为 A **50.434**、B **55.551**，相对较强原生参考 **+5.117 点**，独立复算通过。[后续种子 5202、5203 已预锁](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_REPEAT_SEEDS_PROTOCOL_20261109.md)，四个真实短窗已通过独立验收。5202 两臂均独立验收 E24，访问顺序相同。固定 DEV705 的 A 为 **51.333**、B 为 **56.131**，首个确认种子提升 **+4.799 点**，正式 TEST 未开启。 首组与首个确认组均为正，5203 两臂各独立验收 E24，固定 DEV705 的 A 为 **50.661**、B 为 **55.411**。三组平均提升 **4.888 点**，通过预锁的开发集效用门。三种子汇总规则的 9 项合成测试通过。 [共同行对照、方向合成实测及 SSDD 预案](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md)。 共同行训练、短窗与 E24 验收、DEV705 准入及配对几何入口通过 56 项合成测试。真实共同行短窗已验收。每臂 32 次访问、8 次更新，29 次访问中实际入训掩膜不同。原生臂 E24 已独立验收，共 70,560 次访问、17,640 次 AdamW 和 EMA。原中心臂在第 22 轮中断，已核对 21 个完整轮次，原退出回执缺失。新中心臂从相同 COCO 初值重新运行，第 1 轮已完成，各记录 735 次 AdamW 与 EMA 更新。E24 验收与配对评价待完成。B/C 长训、固定 DEV705 准入、配对几何和关闭计划均已通过各自合成测试。真实 B/C 短窗待资源交接。 [DEV705 组构成敏感性实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#dev705-文件名前缀组敏感性实测)显示，[5201–5203 三个种子](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#第三个种子的来源组敏感性实测)的 AP 和 AP75 在全部 2,048 次抽样与逐一移除 28 组时均为正。 [纵向三臂 FIT 实测](research_round_20260925_global/HRSID_FIT_VERTICAL_DIRECTION_REPLAY_PROTOCOL_20261109.md)通过方向门槛，原生与反射相对纵向中心分别为 +0.988 与 −0.718 原图像素。
-- [SSDD FIT 损失采样复验](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-fit-固定匹配后的损失采样)。裁剪 B/C 标签 304／404,352 变化，约为均匀参照 3 倍。固定预测下整体加权损失 −0.011095，小目标 +0.012432。
-- [SSDD FIT 匹配点标签复验](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-fit-冻结匹配点的标签变化)。原 30 个非空视图逐值通过。裁剪 B/C 完整掩膜 24／24 改变，原匹配点标签只改变 6／31,104。模型效用待同预算实测。
-- [Windows PSeg-SSDD 独立长训](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#windows-pseg-ssdd-短训通过及独立长训)。 两臂 GPU 短训均通过独立验收，正式 E24 两臂已通过独立验收。首个 DEV 导出在前向前触发 CUDA 初始化错误，修复后的独立复跑待评分。[固定 DEV187 阶段入口](research_round_20260925_global/code/SSDD_DEV187_STAGE_WORKER_20261111/ssdd_dev187_stage_worker.py)已通过合成测试，实际评价待两臂关闭及验收。
-- [SSDD 相位迁移入口和 Q100 初始化实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-迁移入口与-q100-初始化实测)。已核验完整初始张量，FIT741 隔离目录实际完成并独立读回。长训验收、导出和评分候选已联测，DGX 已完成 741 个真实增强视图，两臂保留同一 1,445 条非空监督，裁剪小目标纵向偏移 +0.582→−0.026 原图像素。DGX Q100 差异定位至一项位置编码，独立副本已恢复原完整初值摘要。正式装配的 DGX CPU 初值验收已通过，GPU 短窗等待显存准入。独立纵向三臂通过反转门槛，连续面积下裁剪小目标 IoU 为原生 0.845、逐步中心 0.933、单次中心 0.955。HRSID FIT114 原账本复现，主层裁剪小目标同指标为 0.687→0.814→0.882。 [DGX 实测回执](research_round_20260925_global/results/SSDD_FIT741_DGX_CPU_REPLAY_ACTUAL_SAFE_20261110.json)。Windows CPU 复验正常关闭，21 个共享字段数值一致，未执行模型前向或评分。[Windows 实测回执](research_round_20260925_global/results/SSDD_FIT741_WINDOWS_CPU_REPLAY_ACTUAL_SAFE_20261110.json)
-- [SSDD 训练匹配的采样归因](research_round_20260925_global/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_PROTOCOL_20261109.md)。DGX 30 图精确重放，分层降幅 0.321 点，按预设门槛停止；后续诊断高 IoU 候选。
-- [SSDD 双相位掩膜几何](research_round_20260925_global/RFDETR_E24_FIT_DUAL_PHASE_MASK_GEOMETRY_PROTOCOL_20261109.md)。首组 42/55 缺严格候选，最优标量阈值双相位恢复 3/42，按门槛停线。
-- [SSDD 冻结空间基底的嵌套掩膜拟合](research_round_20260925_global/RFDETR_E24_FIT_NESTED_MASK_BASIS_ORACLE_PROTOCOL_20261109.md)。固定基底的系数拟合双相位恢复 18/42，标量对照 3/42。
-- [SSDD 原生 BF16 系数回放](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_COEFFICIENT_REPLAY_PROTOCOL_20261109.md)。保持共享偏置，仅改系数恢复 19/42，系数相对范数偏大，下一项检验有限改动。
-- [SSDD 有界系数实测](research_round_20260925_global/RFDETR_FIT_BOUNDED_COEFFICIENT_ORACLE_PROTOCOL_20261109.md)。迭代 20/42、一步 15/42、偏置 3/42，进入冻结原生推理的同预算全候选试验。
-- [SSDD 冻结系数读出学习对照](research_round_20260925_global/RFDETR_FIT_FROZEN_COEFFICIENT_SCOUT_PROTOCOL_20261109.md)。各 484 步，内外侧差 mask AP 70.902，原生 72.563。交叉读出显示严格损失来自原匹配行的扩张。
-- [SSDD 原图有界系数教师](research_round_20260925_global/RFDETR_FIT_ORIGINAL_GRID_TEACHER_PROTOCOL_20261109.md)。学生 AP 72.495，原生 72.563；真值保护未过门槛。训练点拟合消除 60.52% 教师差距，恒等目标仍有漂移。
-- [SSDD 教师修正与严格保持的局部梯度诊断](research_round_20260925_global/RFDETR_FIT_TEACHER_DIRECTION_PROBE_PROTOCOL_20261109.md)。两半方向均冲突。普通投影保留 61.84% 拟合改善并新增 1 个严格失守，未过门。
-- [SSDD 固定候选的有界掩膜收益诊断](research_round_20260925_global/RFDETR_FIT_BOUNDED_ACTION_HEADROOM_PROTOCOL_20261109.md)。111 图真值引导拟合将 AP 72.563 提到 80.659，统一偏置为 73.081，保留全部原严格配对。仅用于确定下一条无真值预测机制。
-- [SSDD 边界双侧局部证据](research_round_20260925_global/RFDETR_FIT_LOCAL_SIGNED_EVIDENCE_PROTOCOL_20261109.md)。五组各 96 次实际更新。114 张历史校准图上局部 logits 的固定匹配净裕量领先，法线配方按规则停止。
-- [SSDD 局部 logits 全候选编辑与弃权](research_round_20260925_global/RFDETR_FIT_SELECTIVE_LOGIT_ACTION_PROTOCOL_20261109.md)。预设风险门未找到合格阈值。全强制次要对照较原生 +1.621 AP 点，[固定归因](research_round_20260925_global/RFDETR_FIT_FORCED_LOGIT_CROSSREAD_PROTOCOL_20261109.md)中仅原匹配 +1.686 点，进入前瞻强对照准备。
-- [SSDD DEV187 固定局部 logits 前瞻实测](research_round_20260925_global/RFDETR_DEV187_FIXED_LOGIT_PROSPECTIVE_PROTOCOL_20261109.md)。有序局部 logits 较 E24 +1.127 AP 点，较 E100 +0.405 点，固定配方停线。[严格保护诊断](research_round_20260925_global/RFDETR_DEV187_STRICT_RETENTION_CROSSREAD_PROTOCOL_20261109.md)恢复 AP90，但相对 E100 的 AP 差仍低于 1 点。
-- [SSDD 同八像素预算的补删比例](research_round_20260925_global/RFDETR_FIT_ASYMMETRIC_EDIT_PROTOCOL_20261109.md)。真值比例机会门通过，预测分配 AP 低 0.178 点。[固定归因](research_round_20260925_global/RFDETR_FIT_ASYMMETRIC_CROSSREAD_PROTOCOL_20261109.md)显示下降主要出现在原匹配行。
-- [SSDD 候选条件的配额结果估计](research_round_20260925_global/RFDETR_FIT_QUOTA_OUTCOME_PROTOCOL_20261109.md)。多阈值头停线。[同预算机会诊断](research_round_20260925_global/RFDETR_FIT_RANK_QUOTA_ORACLE_AP_PROTOCOL_20261109.md)中真值排序较四补四删 +3.016 AP 点，[同预算点前缀实测](research_round_20260925_global/RFDETR_FIT_PREFIX_RANK_LOSS_PROTOCOL_20261109.md) 主组相对普通成对排序 AP +0.366 点，相对 BCE AP90 +1.081 点、AP75 −0.557 点，未通过前瞻扩展门槛。[固定 COCO 匹配归因](research_round_20260925_global/RFDETR_FIT_AP75_MATCH_ATTRIBUTION_PROTOCOL_20261109.md) 已实际完成。主组 AP75 的 −0.557 点来自达标边变化，只换 IoU 优先顺序的差值为零。[失守来源和拟合普查](research_round_20260925_global/RFDETR_FIT_AP75_ANCHOR_CENSUS_PROTOCOL_20261109.md) 的五条直接失守边均仅 BCE 后达标，拟合侧对应可控支持为 7 个配对、4 个内容组。[484 图双头五折对照](research_round_20260925_global/RFDETR_FIT_AP75_BROAD_SUPPORT_PROTOCOL_20261109.md) 中，扩展训练只多救回 1 个固定配对，难例支持筛查未通过。[固定多阈值动作实测](research_round_20260925_global/RFDETR_FIT_COCO_ACTION_UTILITY_OOF_PROTOCOL_20261109.md) 略高于 BCE，低于全样本前四排序，未过保持与推进门槛。[候选分侧秩实测](research_round_20260925_global/RFDETR_FIT_SIDE_CONTEXT_RANK_PROTOCOL_20261109.md) 在 96 步与原输入高阈值总数持平，384 步少 13 次，未推进。[翻转对齐实测](research_round_20260925_global/RFDETR_FIT_ALIGNED_FLIP_EVIDENCE_PROTOCOL_20261109.md) 增加 117 个正确翻转，高阈值通过较原 38 维头少 2 次，未通过推进门。固定配对中新增 38 次、失守 40 次，两动作真值选择的上限较原头多 38 次。[嵌套五折选择实测](research_round_20260925_global/RFDETR_FIT_NESTED_VIEW_SELECTION_PROTOCOL_20261109.md) 中高阈值通过比原头少 4 次，未过安全与收益门。
-- [SSDD 原生掩膜网格诊断](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_GRID_CANCELLATION_PROTOCOL_20261109.md)。真实错分抵消下降 2.249 个百分点，低于预设 5 点准入。
-- [HRSID 原生 FIT 首轮](research_round_20260925_global/HRSID_NATIVE_FIT_FIRST_EPOCH_PROTOCOL_20261109.md)。已完成并独立验收 735 次更新和完整原生检查点。
-- [SSDD 预测轮廓的切向对应](research_round_20260925_global/RFDETR_E24_FIT_CONTOUR_CORRESPONDENCE_PROTOCOL_20261109.md)。对齐未胜出，按预设五项图像配对门槛停线。
-- [SSDD 小船的有符号错分诊断](research_round_20260925_global/RFDETR_E24_FIT_SIGNED_BOUNDARY_EVIDENCE_20261109.md)。两种秩候选均未过预设门槛，保留补删分项和实际覆盖。
-- [等像素预算的实例间分配](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_EDIT_ALLOCATION_PROTOCOL_20261109.md)。三组各 14,864 次翻转，估计交并比组低于原生与置信度，按规则停止。
-- [严格掩膜排名实测与 FIT 预锁检验](research_round_20260925_global/RFDETR_FIXED_MASK_RANK_WITNESS_AND_FIT_PROTOCOL_20261109.md)。学习秩较原生 AP 低 0.217 个百分点，按规则停止。固定前缀的完美 16 像素编辑上限仅覆盖约四成小目标候选。
-- [HRSID 真实空目标与稠密 FIT 输入资格](research_round_20260925_global/HRSID_REAL_FIT_NATIVE_MATCH_PROTOCOL_20261109.md)。空目标与稠密目标的反向均通过，164 查询逐组覆盖全部 163 个实例。
-- [HRSID 原生 COCO FIT 目录资格](research_round_20260925_global/HRSID_FIT_NATIVE_COCO_LAYOUT_PROTOCOL_20261109.md)。2,937 张 FIT PNG 与 9,260 条派生标注已落盘并独立核验。
-- [HRSID E24 的 DEV705 固定评分](research_round_20260925_global/HRSID_COCO_E24_DEV705_NATIVE_EVALUATION_PROTOCOL_20261109.md)。完成 E24 后使用冻结预测和原始 GT 评价。
-- [HRSID DEV705 输入审计](research_round_20260925_global/HRSID_OFFICIAL_PNG_DEV705_AUDIT_PROTOCOL_20261109.md)。705 图和 1,782 条原始标注已核验，保留 4 条空栅格记录。
-- [HRSID 官方 PNG FIT 审计实测](research_round_20260925_global/HRSID_OFFICIAL_PNG_FIT_PIXEL_LABEL_AUDIT_PROTOCOL_20261109.md)。全量 FIT 固定增强后有 8,505 个非空目标和 99 个无目标视图。
-- [AdamW 历史状态对照实测](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_ACTUAL_20261109.md)。F/S 各 372 次更新，首梯度完全一致。S 严格覆盖净增 10，AP 低 0.573 个百分点，按规则停线。
-- [严格反向路径的 AdamW 等预算对照](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_PROTOCOL_20261109.md)。固定 F/S 首步门槛、每组 372 次更新和 DEV187 分支规则。
-- [严格反向首步实测](research_round_20260925_global/RFDETR_E24_STRICT_BACKWARD_REPLAY_ACTUAL_20261109.md)。两组真实 FIT 复验全梯度逐元素一致，允许推进同反向路径的公平优化器对照。
-- [DINO 高效注意力反向实测与确定性控制](research_round_20260925_global/RFDETR_E24_EFFICIENT_ATTENTION_BACKWARD_ACTUAL_20261108.md)。骨干外部反向边界精确一致，内部高效注意力节点局部复现分歧。 首次严格反向复验维持原 cuBLAS 环境。
-- [HRSID 跨数据集证据范围](research_round_20260925_global/HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md)。官方 PNG 归档全量字节和成员 CRC 已核验，保留 JPG、空栅格和历史测试接触记录。
-- [双算子联合反向控制实测](research_round_20260925_global/RFDETR_E24_COMBINED_SAMPLING_BACKWARD_CONTROL_ACTUAL_20261108.md)。已观测骨干首特征边界逐字节稳定，patch 入梯度仍分叉，完整配对暂缓。
-- [同图反向节点及同梯度 AdamW 首步实测](research_round_20260925_global/RFDETR_E24_SAME_GRAPH_NODE_AND_ADAMW_STEP_ACTUAL_20261108.md)。定位 9 个网格采样和 2 个双线性上采样分叉。固定梯度后历史状态改变首步幅度和方向。
-- [双线性采样反向控制实测](research_round_20260925_global/RFDETR_E24_GRID_BACKWARD_CONTROL_ACTUAL_20261108.md)。原生 CUDA 前向逐字节一致，全部受控反向交给 CPU 后仍观察到 1.096% 梯度差。
-- [四次首窗复放与反向差异](research_round_20260925_global/RFDETR_E24_FIRST_GRADIENT_REPLAY_ACTUAL_20261108.md)。同臂差异落在跨臂范围内，已核验的前向及损失一致。下一项只控制采样反向。
-- [AdamW 配对实测及首梯度资格失败](research_round_20260925_global/RFDETR_E24_OPTIMIZER_FIRST_GRADIENT_GATE_ACTUAL_20261108.md)。每臂 372 次真实更新，首梯度差异集中在骨干，停止 DEV 评价并锁定首窗复放。
-- [固定 E24 的 AdamW 历史状态对照协议](research_round_20260925_global/RFDETR_E24_OPTIMIZER_PRESERVATION_PROTOCOL_20261108.md)。等在线权重、EMA、学习率和增强序列，预锁首梯度资格及短程停走规则。
-- [DGX 四端点保留掩膜几何实测](research_round_20260925_global/RFDETR_DGX_FOUR_ENDPOINTS_GEOMETRY_ACTUAL_20261108.md)。E100 严格覆盖较同运行 E24 净增 17 个，较独立 E24 少 19 个。
-- [DGX 连续 E100 四端点实际评分](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_FOUR_ENDPOINTS_ACTUAL_20261108.md)。同运行 E24/E50/E100 的 mask AP 为 67.866/67.729/68.165。E100 相对 E24 的 AP75 +1.648，小目标 AP −0.339。
-- [优化器状态分支的原文及源码](research_round_20260925_global/RFDETR_OPTIMIZER_STATE_PRIMARY_PRIOR_20261108.md)。固定检查点保留与重置已有先例，可用于排查短热启动的几何回落。
-- [FIT 冻结教师边界诊断实测](research_round_20260925_global/RFDETR_FIT_TEACHER_BOUNDARY_ACTUAL_20261108.md)。3/26 符合可配对几何回落，净改善见于 2 个图组，依预注册规则停止固定软教师分支。
-- [DGX 评估资源预检与重新准入](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_ALT_EVAL_RESOURCE_ADMISSION_20261108.md)。首次预检退出 1，未前向。新运行按长期服务共存与更低资源上限准入。
-- [连续端点 DGX 同机补充评估协议](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_ALT_EVAL_PROTOCOL_20261108.md)。受限于归档传输速率，四个端点另用同一 DGX 数值路径，端点选择不变。
-- [DGX 连续 E100 闭合与三端点评估协议](research_round_20260925_global/RFDETR_NATIVE_E100_REMOTE_CLOSED_EVAL_PROTOCOL_20261108.md)。已完成 18,600 次更新。远端 OS 退出与归档通过独立核对，保留本机原 SSH 回执缺口。
-- [FIT 增强图冻结教师边界可行性协议](research_round_20260925_global/RFDETR_FIT_TEACHER_BOUNDARY_PROTOCOL_20261108.md)。预锁真实增强、掩膜配对和继续门槛。
-- [DGX 首次 E100 闭合及新 E100 启动](research_round_20260925_global/RFDETR_NATIVE_E100_FAILURE_RECOVERY_ACTUAL_20261108.md)。首次运行最后记录 E32，已独立闭合。修复进程扫描后，从相同初始权重新启动并核对 GPU 进程。
-- [数学、物理、雷达与近期分割方法原文源码续查](research_round_20260925_global/PRIMARY_METHODS_SOURCE_AUDIT_CONTINUATION_20261108.md)。包含可微分水岭、复极化和去斑、结构预训练、可复训分割对照，以及可证伪的候选重叠诊断。
-- [RF-DETR E24 邻船重叠实测](research_round_20260925_global/RFDETR_E24_FIT_CANDIDATE_OVERLAP_ACTUAL_20261108.md)。516 张 FIT 拟合图上，857 个低 IoU 匹配实例中有 33 个涉及邻船预测重叠，已用独立算法复算。
-- [等点数边界采样诊断协议](research_round_20260925_global/RFDETR_E24_FIT_POINT_SAMPLING_RISK_PROTOCOL_20261108.md)。先核查原生覆盖和同一均匀 BCE 目标的估计方差，达到预锁门槛后再进入真实训练式验证。
-- [等点数边界采样固定 E24 实测](research_round_20260925_global/RFDETR_E24_FIT_POINT_SAMPLING_RISK_ACTUAL_20261108.md)。96 图、178 个匹配实例。小实例 357/744 次原生采样未命中边界错分，分层方差通过门槛，进入训练式验证。
-- [E24 训练式点覆盖复核协议](research_round_20260925_global/RFDETR_E24_TRAIN_STYLE_POINT_SAMPLING_PROTOCOL_20261108.md)。采用真实训练增广、五层匹配和 13 个查询组，单列成本与训练效用。
-- [E24 真实训练式点覆盖与方差结果](research_round_20260925_global/RFDETR_E24_TRAIN_STYLE_POINT_SAMPLING_ACTUAL_20261108.md)。2,535 次匹配验证降方差门槛。39 个增强后 GT 在并集上均有错分点命中。
-- [等点数采样成本协议与实现](research_round_20260925_global/RFDETR_E24_POINT_SAMPLER_FULL_STEP_COST_PROTOCOL_20261108.md)。测真实前反向并检查 Dice 一致，计入边界准备成本。
-- [分层采样 V2 前反向成本实测](research_round_20260925_global/RFDETR_E24_POINT_SAMPLER_COST_V2_ACTUAL_20261108.md)。Dice 完全一致，时延略超预锁上限，V2 停在成本验证。
-- [分层采样 V3 批量抽样与复测协议](research_round_20260925_global/RFDETR_E24_POINT_SAMPLER_COST_V3_PROTOCOL_20261108.md)。按真值分组批量抽样，沿用 V2 时延门槛。
-- [分层采样 V3 前反向成本实测](research_round_20260925_global/RFDETR_E24_POINT_SAMPLER_COST_V3_ACTUAL_20261108.md)。同会话配对中位数通过成本门槛、Dice 完全一致。整轮训练耗时和 AP 待配对训练。
-- [E24 等目标 B/D 热启动配对训练协议](research_round_20260925_global/RFDETR_E24_EQUAL_RISK_WARM_BD_SCOUT_PROTOCOL_20261108.md)。每臂 372 次更新，固定同机 E24 和 DEV187 评价。
-- [B/D 首次导入退出与实际启动](research_round_20260925_global/RFDETR_E24_WARM_BD_IMPORT_RECOVERY_ACTUAL_20261108.md)。恢复版通过依赖检查并进入实际更新。
-- [E24 等目标 B/D 实训与 DEV187 固定评价](research_round_20260925_global/RFDETR_E24_EQUAL_RISK_WARM_BD_SCOUT_ACTUAL_20261108.md)。D 相对同预算 B 的 AP 增加 1.091 点，相对同机 E24 低 0.188 点，按预锁规则停止此短训配方扩展。
-- [E24 原生损失 A 热启动对照协议](research_round_20260925_global/RFDETR_E24_NATIVE_WARM_A_CONTROL_PROTOCOL_20261108.md)。固定原预算与数据，验证高 IoU 覆盖是否也在原生损失下回落。
-- [原生 A 实测与固定共同查询交叉](research_round_20260925_global/RFDETR_E24_NATIVE_WARM_A_CONTROL_ACTUAL_20261108.md)。A 的 AP 与 D 接近，严格覆盖也回落，预锁解释落在混合区间。
-- [全部 100 个原始查询覆盖协议](research_round_20260925_global/RFDETR_WARM_RAW100_COVERAGE_PROTOCOL_20261108.md)。区分候选筛选遗漏与原始掩膜覆盖缺失。
-- [全部 100 个原始查询实测](research_round_20260925_global/RFDETR_WARM_RAW100_COVERAGE_ACTUAL_20261108.md)。A/B/D 严格覆盖丢失分别有 36/37、39/39、41/42 在原始查询中也缺失。
-- [FIT 匹配状态交叉读出实测](research_round_20260925_global/RFDETR_E24_FIT_MATCH_CROSSREAD_ACTUAL_20261108.md)。秩的匹配候选独立编辑未改变 AP 或 AP75，停止判定保持。
-- [FIT 等结构选择器实测与停止判定](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_HEAD_SCOUT_ACTUAL_STOP_20261108.md)。同预算秩相对排序略好，校准后未达到锁定的 AP/AP75 门槛，停止进入 DEV。
-- [完整 FIT741 CUDA 原生采集实测](research_round_20260925_global/RFDETR_E24_FIT741_NATIVE_CUDA_CAPTURE_ACTUAL_20261108.md)。741 图已独立验收，60,881 个船舶候选、19,917,672 个带内 logits；固定匹配与等结构头协议已锁。
-- [同图 CUDA 接线验收与 FIT 主采集设备](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_WINDOWS_CUDA_ACTUAL_20261108.md)。本机实际 CUDA 原件通过独立复核，完整 CUDA 采集锁为选择器的主输入。
-- [第一张真实 FIT 图的原生捕获已独立验收](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_CPU_PILOT_ACTUAL_20261108.md)。90 个船舶候选、19,363 个原图带内 logits；完整 FIT 采集路径已冻结。
-- [FIT 选择器的冻结划分与原生采集协议](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_CAPTURE_AND_SCOPE_20261108.md)。FIT741 分为 516/114/111 张，同字节图像成组；候选采集与等支持灰度特征已通过合成测试。
-- [E24 实际预测边界带的限额编辑上限](research_round_20260925_global/RFDETR_E24_PRODUCTION_BOUNDARY_ORACLE_ACTUAL_20261108.md)。K=16 新增 90/377 双达标，超过预设的 20/377 机会门，下一步进入 FIT 选择器试验。
-- [E24 双标注限额修边上限实测](research_round_20260925_global/RFDETR_E24_SIGNED_EDIT_ORACLE_ACTUAL_20261107.md)。每实例最多改 16 或 32 像素，GT 边界带联合编辑分别新增 53 或 103 个双达标实例，下一项锁定实际预测支持。
-- [DGX 连续 E100 已启动与等预算修边诊断方案](research_round_20260925_global/RFDETR_E100_ORIGINAL_START_AND_SIGNED_EDIT_ORACLE_PLAN_20261107.md)。E100 固定为主要端点，限额编辑上限的整数计算已通过合成穷举对照，实际数据待执行。
-- [E24 双标注边界误差定位实测](research_round_20260925_global/RFDETR_E24_BOUNDARY_LOCALIZATION_ACTUAL_20261107.md)。224 个双标注严格阈值未达标实例中，2 像素共同边界带聚集 64.69% 的漏分与 71.96% 的溢出。
-- [RF-DETR E24 的真实 DEV187 双标注评价与误差诊断](research_round_20260925_global/RFDETR_E24_DEV187_ACTUAL_EVALUATION_20261107.md)
-- [全部原始查询覆盖实测与高 IoU 缺口](research_round_20260925_global/RFDETR_E24_RAW_QUERY_GEOMETRY_ACTUAL_20261107.md)
-- [E24 原始查询诊断首次资源失败及后续核验](research_round_20260925_global/RFDETR_E24_RAW_QUERY_FIRST_ORIGINAL_FAILURE_20261107.md)
-- [RF-DETR 连续 E24 实测与原生断点](research_round_20260925_global/RFDETR_NATIVE_CONTINUOUS_E24_STATUS_20261107.md)
-- [E24 固定 DEV187 的原生导出与 CPU 评价协议](research_round_20260925_global/RFDETR_E24_DEV187_EVALUATION_CHAIN_20261107.md)
-- [HRSID 与既有像素核验的输入字节对齐及跨集重复检查](research_round_20260925_global/HRSID_U43_V04_INPUT_IDENTITY_ACTUAL_20261107.md)
-- [RF-DETR E2 原生接续，第 187 次更新已验收](research_round_20260925_global/RFDETR_NATIVE_E2_ACTUAL_ACCEPTED_20261107.md)
-- [RF-DETR BF16 E1 实测与原生断点验收](research_round_20260925_global/RFDETR_NATIVE_E1_ACTUAL_ACCEPTED_20261107.md)
-- [RF-DETR E1 的两次实际退出、根因和完整指纹修正](research_round_20260925_global/RFDETR_NATIVE_E1_FIRST_ATTEMPT_ACTUAL_FAILURE_20261107.md)
-
-- [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
-- [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
-- [CPU COCO适配器有限独立审阅：运行仍待](research_round_20260925_global/U57_DIFFSAR_NATIVE_CPU_COCO_ADAPTER_INDEPENDENT_REVIEW_20261107.md)
-- [DEV187候选完整内容覆盖：187逻辑/183原字节对象，仍待Root准入](research_round_20260925_global/DEV187_ORIGINAL_IMAGE_CANDIDATE_COMPOSITION_STATUS_20261107_03.md)
-- [DiffSAR端点预测有限独立审阅：未确认具体阻断，运行仍待](research_round_20260925_global/U57_DIFFSAR_ENDPOINT_PREDICTION_INDEPENDENT_REVIEW_20261107.md)
-- [DiffSAR完整端点预测代码候选：仅源码与有限测试，未执行](research_round_20260925_global/U57_DIFFSAR_ENDPOINT_PREDICTION_SOURCE_STATUS_20261107.md)
-- [GLDet作者复现来源：500轮设置、初始化与可训练代码仍未取得](research_round_20260925_global/U57_GLDET_AUTHOR_REPRODUCTION_PRIMARY_REVIEW_20261107.md)
-- [DiffSAR正式512：实际完整状态接续，尚无端点AP](research_round_20260925_global/U57_DIFFSAR_FORMAL_CONTINUATION512_ACTUAL_20261107.md)
-- [DiffSAR原始来源：初值未知、500训练／1000测试／maxDets100](research_round_20260925_global/U57_DIFFSAR_PAPER_INITIALIZATION_PRIMARY_REVIEW_20261107.md)
-- [HRSID标注版本差异：净差18涉及26张、原划分保留](research_round_20260925_global/HRSID_ANNOTATION_PROTOCOL_DIFF_STATUS_20261107_05.md)
-- [外部DiffSAR首256次正式更新：完整状态已保存，尚无AP](research_round_20260925_global/U57_DIFFSAR_FORMAL_FIRST256_ACTUAL_20261107.md)
-- [DiffSAR恢复状态与原生数值方差：旧失败保留、同起点重复实证](research_round_20260925_global/U57_DIFFSAR_STATE_AND_NUMERICAL_VARIATION_ACTUAL_20261107.md)
-- [完整外部训练的新前向协议及证据边界](research_round_20260925_global/U57_DIFFSAR_FORMAL50_STATE_CONTINUITY_FORWARD_PROTOCOL_20261107.md)
-- [HRSID5604图本地原字节、CRC、header与跨划分重复聚合](research_round_20260925_global/HRSID_JPG_INPUT_AUDIT_STATUS_20261107_04.md)
-- [DiffSAR真实32步原生训练健康结果：第6步激活掩膜信号](research_round_20260925_global/U57_DIFFSAR_NATIVE_HEALTH32_ACTUAL_20261107.md)
-- [完整FIT输入已传DGX的安全聚合](research_round_20260925_global/U57_FIT_DGX_INPUT_TRANSFER_20261107.md)与[作者原优化器/采样/学习率来源核对](research_round_20260925_global/U57_DIFFSAR_NATIVE_RECIPE_SOURCE_REVIEW_20261107.md)
-- [原DEV187人口/尺寸/顺序核验：真实读取原GT，仅输入范围](research_round_20260925_global/DEV187_ORIGINAL_GT_POPULATION_BRIDGE_STATUS_20261107_04.md)
-- [原DEV187字节已私有暂存DGX：数据准入不等于预测](research_round_20260925_global/DEV187_DGX_RAW_INPUT_STAGE_STATUS_20261107_06.md)
-- [质量评分与标注约定直接先例：Mask Scoring R-CNN及边界文献](research_round_20260925_global/MASK_QUALITY_ANNOTATION_CONVENTION_PRIMARY_REVIEW_20261107_01.md)
-- [N26冻结排名两GT诊断：预绑定源码，真实评价尚未运行](research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_01/README.md)
-- [N26诊断有限独立静态审阅](research_round_20260925_global/N26_FROZEN_RANKING_GT_DIAGNOSTIC_INDEPENDENT_REVIEW_20261107_01.md)
-- [N26首次实际诊断失败：可选bbox检查错误，0个COCO案例，无新AP](research_round_20260925_global/N26_FROZEN_DUALGT_ATTEMPT01_FAILURE_STATUS_20261107.md)
-- [N26冻结输入已私有暂存DGX：字节阶段没有数值JSON解析](research_round_20260925_global/N26_FROZEN_DUALGT_DGX_INPUT_STAGE_STATUS_20261107_02.md)
-- [N26诊断02最小实现修复：原输入/评分/评价门槛保持，实际未执行](research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/README.md)
-- [排序、边界与栅格化三项原始来源短记：单一条件性负对照](research_round_20260925_global/MASK_QUALITY_RASTERIZATION_PRIMARY_RESEARCH_NOTE_20261107_09.md)
-- [N26两GT真实8例结果：排序增益整数+1.438、浮点+1.602，非几何创新](research_round_20260925_global/N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md)
-- [N26两GT有限独立结果/完整性范围复核：指定Codex审阅待补](research_round_20260925_global/N26_DUALGT02_LIMITED_RESULT_CLAIM_REVIEW_20261107.md)
-- [N26结果后研究取舍：先检验排序/ignore解释，不追加尺度模块](research_round_20260925_global/N26_POST_DUALGT_RESEARCH_DECISION_20261107_01.md)
-- [质量后校准直接先例：2024 mask-IoU校准与2025折衷记录](research_round_20260925_global/SCALE_CONDITIONED_MASK_QUALITY_PRIMARY_REVIEW_20261107_01.md)
-- [官方COCO尺度分组的竞争解释：未执行的新诊断设计](research_round_20260925_global/COCO_SCALE_GROUP_RANKING_ALTERNATIVE_REVIEW_20261107_01.md)
-- [RF-DETR首次真实检查：原始strict失败、资源已闭合、主训接回](research_round_20260925_global/RFDETR_RAW_STRICT_PROBE_ACTUAL_RESULT_20261107_01.md)
-- [RF-DETR限定schema兼容与真实CPU前向结果](research_round_20260925_global/RFDETR_SCHEMA_COMPAT_CPU_FORWARD_ACTUAL_RESULT_20261107_02.md)
-- [形状、拓扑、OT与等变性六项原文及作者源码](research_round_20260925_global/SHAPE_TOPOLOGY_OT_EQUIVARIANCE_PRIMARY_SUPPLEMENT_20261107_01.md)
-- [单类迁移的boat分类行、强初始化与公平对照](research_round_20260925_global/RFDETR_SINGLE_CLASS_TRANSFER_INITIALIZATION_REVIEW_20261107_01.md)
-- [canonical预测导出候选：原GT、类别与top100顺序](research_round_20260925_global/code/RFDETR_CANONICAL_EXPORT_DRAFT_20261107_01/README.md)
-- [完整训练环境实际清单、两次解析失败与离线准备](research_round_20260925_global/RFDETR_FULL_TRAIN_PREPARATION_ACTUAL_STATUS_20261107_01.md)
-- [主实验 36,864 传输失败及有界恢复](research_round_20260925_global/U57_36864_SSH_CAPTURE_FAILURE_AND_RECOVERY_20261107.md)
-- [RF-DETR 原生 BF16 两步候选](research_round_20260925_global/RFDETR_TWO_UPDATE_BF16_QUALIFICATION_DRAFT_20261107_01/README.md)
-- [RF-DETR 真实数据两步 FP32 优化器实测](research_round_20260925_global/RFDETR_NATIVE_FP32_TWO_UPDATE_ACTUAL_20261107_01.md)
-- [RF-DETR 真实数据两次 FP32 优化器更新候选](research_round_20260925_global/RFDETR_TWO_UPDATE_FP32_QUALIFICATION_DRAFT_20261107_01/README.md)
-- [RF-DETR 原生 SSDD DataModule 两样本实测](research_round_20260925_global/RFDETR_NATIVE_SSDD_DATA_ENTRY_ACTUAL_20261107_01.md)
-- [RF-DETR SSDD 原生目录实际字节验收](research_round_20260925_global/RFDETR_SSDD_NATIVE_INPUT_LAYOUT_ACTUAL_20261107_01.md)
-- [RF-DETR 原生 CLI 首次实测与修正](research_round_20260925_global/RFDETR_CLI_CODEC_ACTUAL_RESULT_20261107_01.md)
-- [RF-DETR 官方 CLI 与编解码检查候选](research_round_20260925_global/RFDETR_CLI_CODEC_QUALIFICATION_DRAFT_20261107_01/README.md)
-- [576训练资格接口：原生加载、更新计数、EMA及canonical导出](research_round_20260925_global/RFDETR_TRAINING_QUALIFICATION_INTERFACE_DRAFT_20261107_01/README.md)
-- [完整train/CLI依赖候选与实际执行缺口](research_round_20260925_global/RFDETR_FULL_TRAIN_CLI_DEPENDENCY_READINESS_20261107_01.md)
-- [RF-DETR v02空schema兼容、离线诊断与待执行真实验证](research_round_20260925_global/RFDETR_V02_CANDIDATE_STATUS_20261107_02.md)
-- [RF-DETR实际基础依赖安装、数据接口与待执行CPU探针](research_round_20260925_global/RFDETR_RUNTIME_PREPARATION_STATUS_20261107_02.md)
-- [2026-11-07数学、物理与雷达方法溯源、30条原文源码索引和后续实验](research_round_20260925_global/PRIMARY_METHODS_SOURCE_AUDIT_AND_NEXT_TEST_20261107.md)
-- [完整双标注复评：FULL相对PLAIN从−0.166点变为+0.786点](research_round_20260925_global/MAIN_E50_DEV187_DUAL_GT_ACTUAL_RESULT_20261107.md)
-- [固定 374 个配对的共同区误差诊断预分析](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_PREANALYSIS_20261107.md)
-- [固定50轮整集DEV187实测：PLAIN 68.423，FULL 68.256，停止FULL自动扩训](research_round_20260925_global/MAIN_E50_DEV187_ACTUAL_RESULT_20261107.md)
-- [分片恢复和逐步验收记录](research_round_20260925_global/MAIN_E50_FIRST_SHARD_CORRECTED_PREDICTION_20261107.md)
-- [主线固定50轮已验收，首片原始失败和根因记录](research_round_20260925_global/MAIN_E50_ENDPOINT_AND_FIRST_SHARD_IMPORT_FAILURE_20261107.md)
-- [主线恢复段和 RF-DETR 原生BF16两步历史记录](research_round_20260925_global/U57_RECOVERY36864_AND_RFDETR_BF16_ACTUAL_20261107.md)
-- [2026-11-07研究决策：数学/物理/雷达/最新模型原始证据与RF-DETR新基线](research_round_20260925_global/RESEARCH_DECISION_20261107.md)
-- [RF-DETR五块公平实验计划：100轮候选、诊断和停止规则（未运行）](research_round_20260925_global/RFDETR_BASELINE_AND_DIAGNOSTIC_PLAN_20261107.md)
-- [R101真实加载与CPU模型factory候选：代码冻结，实际执行仍待](research_round_20260925_global/R101_REAL_LOADING_CANDIDATES_STATUS_20261107.md)
-- [R101逐键覆盖候选：520项完整规范、14项有限合成测试，未加载模型](research_round_20260925_global/code/R101_EXPLICIT_BACKBONE_COVERAGE_DRAFT_20261107_01/README.md)
-- [R101覆盖候选有限独立审阅：metadata通过不授真实加载资格](research_round_20260925_global/R101_BACKBONE_COVERAGE_CANDIDATE_REVIEW_20261107.md)
-- [已接收19段的两臂部分成本：5.59小时及限定ETA](research_round_20260925_global/MAIN_E50_PARTIAL_PAIRED_COST_20261107_01.md)
-- [外部DiffSAR公开预训练新入口：ImageNet/COCO与迁移边界](research_round_20260925_global/DIFFSAR_INITIALIZATION_GAP_NEW_EVIDENCE_20261107_02.md)
-- [R101 V1候选已私有取得：仅字节核验，未加载模型](research_round_20260925_global/PUBLIC_R101_INITIALIZER_BYTE_INTAKE_STATUS_20261107.md)
-- [31232严格接收：旧UNKNOWN保留、新同算法观察通过，无重训](research_round_20260925_global/U57_STRICT_CENSUS_UNKNOWN_AND_FRESH_OBSERVATION_20261107.md)
-- [主E50评价资源衔接候选：有限验证完成，真实运行待](research_round_20260925_global/MAIN_E50_ENDPOINT_RESOURCE_CLOSURE_SOURCE_STATUS_20261107.md)
-- [原参考数据人口/顺序/角色桥：真实I/O通过，无新AP](research_round_20260925_global/MAIN_E50_REFERENCE_ORDER_ROLE_BRIDGE_STATUS_20261107.md)
-- [最后186次更新的普通源码静态合同核查](research_round_20260925_global/MAIN_E50_FINAL186_STATIC_CONTRACT_REVIEW_20261107.md)
-- [回答“跟其他方法比”：实测表、论文值、尚未完成的对照](research_round_20260925_global/OTHER_METHODS_COMPARISON_USER_BRIEF_20261107.md)
-- [当前与其他方法的对比：已测数字、不同预算和外部缺口](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_20261107.md)
-- [DiffSAR两次限定梯度观察：原失败保留与解释边界](research_round_20260925_global/U57_DIFFSAR_MASK_GRADIENT_DIAGNOSTICS_20261107.md)
-- [完整FIT原图字节恢复](research_round_20260925_global/U57_FIT_RAW_RECOVERY_20261107.md)与[私有输入包组装聚合](research_round_20260925_global/U57_FIT_INPUT_ASSEMBLY_20261107.md)
-- [完整DiffSAR首FIT实际执行：梯度覆盖失败与待定位范围](research_round_20260925_global/U57_FULL_DIFFSAR_SINGLE_FIT_FAILURE_ACTUAL_20261106.md)
-- [作者运行环境、真实D2算子及完整模型准备的实际结果](research_round_20260925_global/U57_AUTHOR_RUNTIME_AND_D2_OPERATOR_ACTUAL_20261106.md)
-- [作者Detectron2 CUDA扩展：实际构建与资格边界](research_round_20260925_global/U57_AUTHOR_D2_BUILD_ACTUAL_20261106.md)
-- [11月6日重新连接与一次限定恢复](research_round_20260925_global/U57_RECONNECT_AND_BOUNDED_RECOVERY_20261106.md)
-- [CARAFE真实CUDA输出与梯度检查](research_round_20260925_global/CARAFE_ACTUAL_OPERATOR_PROBE_20261106.md)
-- [标注版本敏感性的实际结果：R优势反转](research_round_20260925_global/U57_INTEGER_FLOAT_GT_SENSITIVITY_ACTUAL_20261025.md)
-- [DiffSAR作者实现的CARAFE依赖与实际mapper](research_round_20260925_global/U57_DIFFSAR_CARAFE_AND_MAPPER_EXECUTION_GAPS_20261025.md)
-- [全380实例、all-100 oracle覆盖诊断的实际结果](research_round_20260925_global/U57_ALL100_ORACLE_COVERAGE_ACTUAL_20261025.md)
-- [固定native几何诊断：实际FP/FN与解释范围](research_round_20260925_global/U57_FIXED_NATIVE_GEOMETRY_DIAGNOSIS_ACTUAL_20261025.md)
-- [最新精修直接先例：基础SAM、++与局部保留](research_round_20260925_global/U57_HIGH_IOU_REFINEMENT_PRIOR_UPDATE_20261025.md)
-- [实际DEV187标注来源补核](research_round_20260925_global/U57_DEV187_GT_PROVENANCE_SUPPLEMENT_20261025.md)
-- [完整187图SAMRefiner强对照：实际结果与统一评价](research_round_20260925_global/U57_SAMREFINER_FULL187_COMPARISON_EXECUTION_20261025.md)
-- [其他方法对比：实测范围、论文值与复现缺口](research_round_20260925_global/U57_COMPARISON_EVIDENCE_SNAPSHOT_20261025.md)
-- [20736原会话采集失败与一次限定接续](research_round_20260925_global/U57_20736_CAPTURE_RESET_AND_BOUNDED_RECOVERY_20261025.md)：严格前缀保持20480；失败额外计算不作父产物，新接续尚未接收。
-
-- [SAMRefiner真实单图功能/资源探针已合格](research_round_20260925_global/U57_SAMREFINER_ONE_IMAGE_FUNCTIONAL_PROBE_ACCEPTED_20261025.md)：原工具/SSH/worker均0，清理后allocated/reserved=0/0；仅首图100候选，无AP或全187图结论，v02原失败保留。
-
-- [SAMRefiner首次真实模型返回与清理失败](research_round_20260925_global/U57_SAMREFINER_FIRST_REAL_MODEL_FAILURE_AND_CLEANUP_HYPOTHESIS_20261025.md)：100候选的真实FP32精修已返回，原作业清理未通过，失败保留且无AP；[v03清理候选](research_round_20260925_global/code/U57_SAMREFINER_REAL_ONE_IMAGE_CLEANUP_FIX_DRAFT_20261025_03/README.md)尚未执行。
-
-- [SAM权重已到达DGX及共享GPU单图探针范围](research_round_20260925_global/U57_SAMREFINER_SHARED_GPU_PROBE_SCOPE_20261025.md)：完整字节与独立全摘要已验证；已有推理服务保留，真实SAM精修尚未执行。
-
-- [RGB400首图真实比较与首端点前输入敏感性补充规则](research_round_20260925_global/U57_PROSPECTIVE_RGB400_INPUT_SENSITIVITY_POLICY_20261025.md)：比较完成但数值与字节不相等；不推定AP影响，不换主输入。
-
-- [与其他方法的最新对比快照](research_round_20260925_global/U57_COMPARISON_EVIDENCE_SNAPSHOT_20261025.md)：内部实测、PointRend结构适配及外部方法复现缺口分别列明；[19456步独立安全标量](research_round_20260925_global/results/U57_FORMAL19456_ACTUAL_SCALARS_20261021.json)。尚无外部同协议完整AP。
-
-- [15616→15872单次恢复的严格接收结果](research_round_20260925_global/results/U57_CAPTURE_RECOVERY15616_15872_SAFE_RESOLUTION_20261025.json)：失败原段保留，新恢复从合格父状态执行；通信根因和物理修复仍未证明。
-- [FastGeodis固定CPU/CUDA算子检查源码与结果](research_round_20260925_global/code/U57_FASTGEODIS_CPU_CUDA_SMOKE_20261025_01/README.md)：两个9×9样例、四次明确调用实际通过；软件/合成检查独立记账，不计完整训练、重复种子或AP。
-- [官方ViT-H权重获取状态](research_round_20260925_global/results/U57_SAM_VITH_OFFICIAL_ASSET_ACQUISITION_SAFE_STATUS_20261025.json)：文件已在本机获取并记录本地摘要，尚未加载模型；权重不上传Git。
-- [SAMRefiner真实单图驱动候选](research_round_20260925_global/code/U57_SAMREFINER_REAL_ONE_IMAGE_TRIAL_DRAFT_20261025_01/README.md)：3项纯元数据测试与静态审阅通过，完整模型未执行；[独立资源方案](research_round_20260925_global/U57_SAMREFINER_FP32_MEMORY_AND_PROSPECTIVE_RESOURCE_PLAN_20261025.md)尚未绑定。
-- [GLDet原PDF指标核查](research_round_20260925_global/U57_GLDET_ORIGINAL_PDF_METRICS_AUDIT_20261025.md)：确有实例分割，作者mask AP与本项目内部DEV不直接排名。
-- [SAMRefiner首张原图与100候选输入核对](research_round_20260925_global/code/U57_SAMREFINER_FIRST_INPUT_CHECK_20261025_01/README.md)：真实CPU单图、像素及候选顺序核验通过；没有SAM推理或AP。
-- [SAMRefiner实际运行依赖与未闭合条件](research_round_20260925_global/U57_SAMREFINER_RUNTIME_READINESS_AND_BUILD_GAPS_20261025.md)：作者定制SAM包已隔离安装并通过GPU隐藏的真实入口导入；原生GPU算子仅在两固定样例通过，SAM模型及AP仍待。
-- [SAMRefiner作者API桥接候选源码](research_round_20260925_global/code/U57_SAMREFINER_REAL_BRIDGE_DRAFT_20261025_01/README.md)：7项小NumPy边界测试及独立源码审阅通过；按作者图像路径接口批量调用，真实作者函数/模型/图像、内部候选顺序及AP仍未执行或验证。
-- [SAMRefiner固定候选适配器候选源码](research_round_20260925_global/code/U57_SAMREFINER_FIXED_CANDIDATE_ADAPTER_DRAFT_20261025_01/README.md)：13项有限标准库测试及独立静态审阅通过；真实SAM桥接、推理与AP尚未完成。
-- [SAMRefiner同粗掩膜强对照的实际接口核查](research_round_20260925_global/U57_SAMREFINER_PREDICTED_MASK_INTERFACE_AUDIT_20261025.md)：默认5轮、共享编码、候选/评分及空mask适配边界；未运行。
-- [本地候选归档与整数标签转换的实际补证](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md) · [首端点前新增的标签敏感性规则](research_round_20260925_global/U57_PROSPECTIVE_ANNOTATION_SENSITIVITY_POLICY_20261025.md)
-- [DiffSARShipInst作者配置的实际执行缺口](research_round_20260925_global/U57_DIFFSAR_AUTHOR_CONFIG_EXECUTION_GAPS_20261025.md) · [单次诊断恢复的合格结果](research_round_20260925_global/results/U57_CAPTURE_RECOVERY13824_14080_SAFE_RESOLUTION_20261025.json)
-- [External method comparison: actual results, literature scope and missing fair controls (2026-10-25)](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_STATUS_20261025.md)
-- [Original E24 actual training roster audit](research_round_20260925_global/results/U57_E24_TRAINING_ROSTER_SAFE_AUDIT_20261025.json) · [Latest capture failure and unchanged formal prefix](research_round_20260925_global/results/U57_13824_CAPTURE_FAILURE_SAFE_STATUS_20261025.json)
-
-- [Current internal dataset lineage and protocol evidence (2026-10-24)](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md)
-- [Conditional ordinary capacity control: design only, not implemented](research_round_20260925_global/U57_CONDITIONAL_PLAIN_CAPACITY_CONTROL_DESIGN_20261024.md)
-- [Trained metrics and comparisons with other models (2026-10-24)](research_round_20260925_global/TRAINED_METRICS_COMPARISON_20261024.md)
-- [Current progress and complete method explanation (2026-10-24)](research_round_20260925_global/U57_CURRENT_PROGRESS_AND_METHOD_EXPLANATION_20261024.md)
-- [原始终态丢失、ESRCH失败与最小修复](research_round_20260925_global/U57_OWNER_ESRCH_FAILURE_AND_FIX_20261021.md) · [修复候选源码与测试范围](research_round_20260925_global/code/U57_OWNER_ESRCH_FIX_DRAFT_20261021_01/README.md)
-- [本轮真实训练、CPU恢复及证据边界](research_round_20260925_global/U57_U60_ACTUAL_TRAINING_AND_CPU_RESTORE_20261021.md) · [实测标量](research_round_20260925_global/results/U57_U60_ACTUAL_SCALARS_20261021.json)
-- [研究路线与证据范围核对](research_round_20260925_global/U57_EXPERIMENT_LINEAGE_AND_EVIDENCE_SCOPE_20261021.md)：旧24＋48实验已闭环，当前E50属于独立结构实验，总目标及证据要求保持不变。
-- [GCIE-Net直接先例补记](research_round_20260925_global/U57_GCIE_DIRECT_PRIOR_DELTA_LIMITED_20261021.md)：补充SAR跨尺度门控先例，保留全文/代码未核边界。
-- [GCIE查询读出与H/4特征窄补证](research_round_20260925_global/GCIE_QUERY_READOUT_EVIDENCE_LIMITED_20261021.md)：出版社索引§3.2式1–2显示同任务已有该组合，不单列首创；全文/代码未核，保留整体差异和效用待证。
-- [RSI4EO新预印本协议核查](research_round_20260925_global/U57_RSI4EO_PREPRINT_PROTOCOL_CHECK_20261021.md)：区分作者报告与内部实验，检查几何启示，不直接排名。
-- [GB10 CPU offload性能可行性备忘](research_round_20260925_global/U57_GB10_OFFLOAD_PERFORMANCE_FEASIBILITY_20261021.md)：仅未来瓶颈假设，尚未开展性能试验，不改变正式E50配方或训练。
-- [CUDA初始化失败与定向缓存观察](research_round_20260925_global/U57_CUDA_INIT_FAILURE_AND_TARGETED_CACHE_OBSERVATION_20261021.md)：22:29:44 UTC的pending为历史观察，后续接续已严格接收4352；原0更新失败、MemFree/MemAvailable差异及因果不确定性保留，未证明速度提升。
-- [U60恢复检查源码](research_round_20260925_global/code/U60_DGX_SMOKE_RESTORE_ENTRY_DRAFT_20261020_01/README.md)：7项有限测试及静态审阅后另经上述真实执行。目录UNEXECUTED标签为成稿时状态；E50恢复、完整预测及AP仍待验证。
-- [U61完整候选导出入口](research_round_20260925_global/code/U61_DEV_FULL100_SINGLE_EXPORT_DRAFT_20261021_01/README.md)已真实通过单图100候选导出与CPU重载；已与U63拼齐187图；DGX完整CPU读取已另经U65通过，零残差校准仍待完成。[查新与直接先例](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)。
-
-- [U62剩余186图导出入口](research_round_20260925_global/code/U62_DEV_REMAINING186_EXPORT_DRAFT_20261021_01/README.md)：有限测试和静态审阅通过，尚未绑定或执行；此前资源观察未达到其准入门槛，旧版未执行；后续独立U63已完成剩余导出。
-
-- [U63独立CPU8G导出配置](research_round_20260925_global/code/U63_DEV_REMAINING186_CPU8G_EXPORT_DRAFT_20261021_01/README.md)：已实际通过剩余186图18600候选的导出、保存后重载及Root验收；与首图拼成完整187图索引。独立U65完整CPU读取已通过，零残差RLE校准仍待验证。
-
-- 既有读取证据：187/187包最终远端字节inventory已核验，原传输任务真实退出0；[U65完整CPU读取入口](research_round_20260925_global/code/U65_DGX_DEV187_CPU_READER_VALIDATION_DRAFT_20261021_01/README.md)随后独立实际读取并释放187图/18700候选，198项直接来源闭合、失败与残留均0，已由Root严格接收，摘要另行stage成功。它不证明E50恢复、模型forward、RLE或AP，历史Windows原始来源未重验。8192阶段历史原训练与输入验证管线DGX账户38正常/3失败/41总计包含独立CPU验证和更新前失败，不是纯训练计数。旧2048磁盘故障的额外512次更新及未知SSH/owner退出保持未合格；成功重算不按loss/AP选优，也不宣称逐bit复现或独立种子。
-- [U65纯metadata接收器](research_round_20260925_global/code/U65_ROOT_ACCEPTANCE_METADATA_DRAFT_20261021_01/README.md)：原5项有限标准库测试及静态审阅之外，本次另有真实退出、187条audit和来源/日志字节核验并完成Root接收；替身测试本身不构成执行证据。
-- [U66固定E50薄预测核心](research_round_20260925_global/code/U66_DGX_FIXED50_PREDICTION_CORE_DRAFT_20261021_01/README.md)：4项有限标准库替身测试、AST及独立静态审阅通过，修正两处真实ABI接线；仍未绑定、未执行，不构成GPU/reader/恢复/forward、owner、CPU指标或AP资格。
-- [U67固定E50完整人口薄指标核心](research_round_20260925_global/code/U67_DGX_FIXED50_POPULATION_METRICS_CORE_DRAFT_20261021_01/README.md)：7项有限标准库JSON/替身测试、AST及有限静态审阅通过；尚未绑定或实际读取数据/运行COCO/AP，没有owner或运行资格，不替代真实完整人口评价。
-- [U68固定E50单shard薄worker](research_round_20260925_global/code/U68_DGX_FIXED50_SINGLE_SHARD_WORKER_DRAFT_20261021_01/README.md)：3源码文件已发布并核验，6项有限标准库/替身接线测试及静态审阅通过；真实GPU/模型路径未执行；成稿时encoder来源待核的本机起源层已另经U69追溯确认，外部GPU监督/终态与运行资格仍待核，不授owner、预测或AP资格。后续补核确认旧U68/U69有限来源并集漏掉恢复所需FIT reader，旧源码的有限审阅不表示完整预测就绪。
-- [U69原encoder起源追溯](research_round_20260925_global/U69_ORIGINAL_DEV_ENCODER_PROVENANCE_LIMITED_20261021.md)：仅确认本机原DEV元数据/读出源码身份，不是teacher权重、特征新提取或运行资格。
-- [U69监督入口源码](research_round_20260925_global/code/U69_DGX_FIXED50_SINGLE_SHARD_SUPERVISION_DRAFT_20261021_01/README.md) · [未来评价源码就绪边界](research_round_20260925_global/U69_FUTURE_EVALUATION_SOURCE_READINESS_LIMITED_20261021.md)：五份目录文件冻结，6+7项有限替身测试及静态集成审阅通过；五份未来运行源码已独立DGX暂存并核字节，原mask pin通过独立overlay保留、原环境未改。运行spec未绑定，源码/真实库/模型未执行；全部21个科学源码角色闭合、E50、标定、四分片和CPU COCO及外部Root资格仍待完成。
-- [U70总体评价I/O追溯](research_round_20260925_global/U70_POPULATION_EVALUATION_IO_TRACE_AND_NEXT_ADAPTER_20261021.md) · [薄CPU worker源码](research_round_20260925_global/code/U70_DGX_FIXED50_POPULATION_METRICS_WORKER_DRAFT_20261021_01/README.md)：3份源码/说明文件已冻结、同步并核验；7项有限标准库/合成JSON及import边界替身测试、AST与Root/独立静态审阅通过，未见具体阻断。7份未来科学源码、6份原JSON（14004851字节输入）及五文件库候选已独立DGX字节暂存；未绑定、未import、未真实运行或取得ABI/AP/Root资格；实际CPU监督资格及四份真实E50分片仍缺，U71另补未执行监督源码。未来AP三态为源码约定，合成结果不是真AP。
-- [U71薄CPU监督入口](research_round_20260925_global/code/U71_DGX_FIXED50_CPU_METRICS_SUPERVISION_DRAFT_20261021_01/README.md)：4文件冻结，7项有限标准库/替身测试、AST及作者外独立与Root静态审阅通过，未见具体阻断；未来entry/owner两份源码已DGX字节暂存。未绑定、未导入或真实运行，不授ABI/AP/Root资格，四份真实E50分片及实际外部门禁仍待。
-- [U71窄范围直接先例补查](research_round_20260925_global/U71_TARGETED_DIRECT_PRIOR_UPDATE_20261021.md)：补记9月27日UnfoldCRF预印本对容量/计算控制和个体退化解释的约束；不是10月17日后新发表，不更改当前主判据或增训练臂，也不证明本方法创新或外部代码已复现。
-- [U72–U74来源闭合缺口与修复](research_round_20260925_global/U72_U73_PREDICTION_SOURCE_CLOSURE_GAP_AND_FIX_20261021.md) · [U73 worker](research_round_20260925_global/code/U73_DGX_FIXED50_PREDICTION_SOURCE_CLOSURE_DRAFT_20261021_01/README.md) · [U74监督入口](research_round_20260925_global/code/U74_DGX_FIXED50_SINGLE_SHARD_SUPERVISION_DRAFT_20261021_01/README.md)：旧U68/U69遗漏的原FIT代码引用现有独立22角色接口，保留原12整ref/14关闭门，投影原21来源及19模块给U66。作者5+6项有限新测试与独立集成静态审阅未见剩余具体阻断；7份旧候选源码及3份新源码已字节暂存，14份原路径候选仍来自非最终6144端点、须E50重核。未绑定、未执行、无真实恢复/预测/AP资格；训练和模型数学不改。
-
-- [U75/U76外部接收与人口准入边界](research_round_20260925_global/U75_U76_EXTERNAL_ACCEPTANCE_AND_POPULATION_ADMISSION_LIMITED_20261021.md) · [U75单片接收](research_round_20260925_global/code/U75_ROOT_FIXED50_SHARD_ACCEPTANCE_DRAFT_20261021_01/README.md) · [U76修订02完整人口准入](research_round_20260925_global/code/U76_ROOT_FIXED50_POPULATION_ADMISSION_DRAFT_20261021_02/README.md)：源码冻结，作者7+8项有限合成测试及独立集成静态审阅未见剩余具体阻断；01漏共同manifest的源码门已在独立02最小修复，01保留。六份新源码与本备忘已另经远端核验；新helper本轮未DGX字节暂存，未绑定或真实调用；成稿时Root结果保存/CAS及U71 CPU prelaunch语义门尚未接线；后续U78/U79已补源码调用点，真实E50运行仍未接通，不授预测、ABI、Root或AP资格。
-- [U77—U79实际调用点与证据范围](research_round_20260925_global/U77_U79_ROOT_INTEGRATION_LIMITED_20261021.md)：保留U77旧01快照缺口及02通用零字段兼容问题，独立03保持原owned身份严格性；新有限测试为U77五项+两次各新增一项、U78六项、U79四项，未重复旧suite。03的进程观察函数已仅用于本次U57终态补强并真实通过；未执行真实E50 COLLECT/ENVELOPE、预测接收/CAS或CPU评价。
-- [U80—U81原启动与已保存配置消费](research_round_20260925_global/U80_U81_ORIGINAL_LAUNCH_AND_SAVED_SPEC_LIMITED_20261021.md)：共享真实预检/Popen/wait/二进制日志源码，CPU原样消费U78保存的SPEC；保留01的三处缺口，02最小修复后与U81真共享实现合成联调通过。有限测试为U80六项＋02新增三项、U81五项；未实际启动真实E50预测或CPU评价。Windows与POSIX混合宿主须可信RootAPI的显式字节reader，默认同宿主CLI不能称即用；实际部署和后续post/active回收/接收仍待落实。
-- 连接与本机资源（8192阶段历史）：此前7168→7424的连接失败后已恢复并接收；本次8192→8448的连接中断也已恢复，原配置检查通过后仅启动一次，尚未接收。05:59 UTC本机历史空闲32535512KiB低于原门槛，整卡1329MiB，未启动本机训练或新增科学失败。
-
-<details>
-<summary>历史阶段记录（以顶部当前状态为准）</summary>
-
-<!-- U57_PROGRESS_20261020_01 -->
-
-### 2026-10-20 阶段记录
-
-DGX PLAIN/FULL 已各完成并接收 **768/37050 次正式更新**（完整一轮后再27图）；本机各2816次保持独立，不能相加。最新本机成对资源检查未全部达标，未放宽限额。**尚无最终AP、已证实涨点或TGRS就绪结论。**
-
-- [训练进展、成本、评估缺口与下一步](research_round_20260925_global/U57_TRAINING_PROGRESS_AND_EVALUATION_READINESS_20261020.md) · [实测标量记录](research_round_20260925_global/results/U57_DGX_PROGRESS_ACTUAL_20261020.json)
-- [U58模型恢复草稿](research_round_20260925_global/code/U58_DGX_FIXED50_RESTORE_DRAFT_20261018_01/README.md) · [U59全候选输入草稿](research_round_20260925_global/code/U59_DGX_DEV_FULL_QUERY_PACKAGE_DRAFT_20261018_01/README.md)：18项有限合成测试及独立静态审阅通过，真实恢复、序列化、搬运和零残差校准仍未执行。
-- [直接先例查新](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md) · [风险与否证设计](research_round_20260925_global/U57_FIXED_QUERY_REFINEMENT_RISK_AND_DIRECT_PRIORS_20261018.md)
-
-
-
-<!-- U57_ACTUAL_FORMAL_20261018_01 -->
-
-### 2026-10-18 首段历史记录
-
-全741图输入已在DGX实际校验通过；两段接续测试通过；独立正式训练已接收**PLAIN/FULL各256/37050步**。本机保持**各2816/37050步**，当前资源不满足原准入门槛。两条训练记录独立，不能相加。**无新增AP或已证实涨点，尚无TGRS投稿就绪结论。**
-
-- [本轮真实结果、限制及下一步](research_round_20260925_global/U57_ALL741_DGX_TRAINING_ACTUAL_20261018.md) · [结构化实测摘要](research_round_20260925_global/results/U57_DGX_ORIGINAL_TRAINING_ACTUAL_20261018.json)
-- [直接先例查新](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md) · [固定query风险与否证设计](research_round_20260925_global/U57_FIXED_QUERY_REFINEMENT_RISK_AND_DIRECT_PRIORS_20261018.md)
-- [训练实现与协议](research_round_20260925_global/code/U57_DGX_ORIGINAL_UPDATE_TRAINING_DRAFT_20261018_01/README.md)：源码成稿时的“未执行”标签保留为历史；当前实际执行状态以上述结果为准。
-
-
-
-<!-- U57_NEAREST_PRIOR_20261018_01 -->
-
-[最近直接先例查新（含2026已发表来源）](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)：保留5项直接相关先例，区分原文/作者代码/仅索引可得；U形网络+实例条件及图像+粗mask精修不能作为宽泛首创。当前整合效用仍待公平训练，容量/计算匹配为优先解释对照；未核线索明确保留。
-
-<!-- ROOT_U54_U57_ACCEPTANCE_CODE_20261018_01 -->
-
-[全量输入接收元数据草稿](research_round_20260925_global/code/U54_ROOT_ACCEPTANCE_METADATA_DRAFT_20261018_01/README.md) / [DGX训练接收元数据草稿](research_round_20260925_global/code/U57_ROOT_ACCEPTANCE_METADATA_DRAFT_20261018_01/README.md)：辅助将真实退出、回收与逐项字节核验组织为下一段输入；合计5项微型标准库测试通过，尚未用于真实接收。函数不观察外部进程、不读取数据、不自行推进训练，不替代真实执行证据。
-
-<!-- U57_ORIGINAL_UPDATE_CODE_20261018_01 -->
-
-[DGX 独立原更新训练源码草稿](research_round_20260925_global/code/U57_DGX_ORIGINAL_UPDATE_TRAINING_DRAFT_20261018_01/README.md)：保留原数值更新，新增全状态断点接续和配对提交；5项微型标准库测试及独立静态审查通过，修复输入摘要字段不一致。尚未运行模型/训练，必须先真实接收全741图验证，再执行一次独立SMOKE与全新E50；不计入本机2816步，不构成涨点或速度结论。
-
-<!-- U57_STATIC_TRAINING_PLAN_20261018_01 -->
-
-[DGX 原更新全量成对训练设计](research_round_20260925_global/U57_DGX_ORIGINAL_UPDATE_FULL_FIT_TRAINING_PLAN_20261018.md)：独立新环境从零计数，沿用已有结构与原数学更新；先验收741图实际读取，再完成一次接续全链检查，随后固定E50。当前仅设计，训练实现与执行尚未完成。
-
-<!-- U54_ACTUAL_INPUTS_AND_BASELINE_CONTROL_20261018_01 -->
-
-**2026-10-18 最新状态：** 全741图/1661实例的本机CPU便携导出已通过；DGX全量传输与实际读取尚未完成。本机接续因RAM低于原限额实际停止，正式进度仍为2816/37050步/臂，严格失败资格存在原输出捕获缺口。DGX严格诊断中PLAIN原法自重放通过，候选参数超出预锁容差；FULL遇到不支持的确定性反向，未完成比较。候选未采纳，无新增AP。见[最新真实结果及下一步](research_round_20260925_global/U56_ACTUAL_STRICT_CONTROL_AND_MAIN_RESOURCE_STOP_20261018.md)、[全量导出汇总](research_round_20260925_global/results/U53_ALL741_CPU_EXPORTS_ACTUAL_20261018.json)和[严格诊断摘要](research_round_20260925_global/results/U56_DGX_STRICT_EQUIVALENCE_ACTUAL_FAILURE_20261018.json)。
-
-
-<!-- U53_INPUT_PREPARATION_20261018_01 -->
-
-**2026-10-18 当前状态：** 主训练已核验2816步，下一段中断且退出未知；已保留原件、不计完成。DGX试跑6次真实更新；便携输入64/741图已核验。U53合并导出及U52数值比较尚未执行；无新增AP。见[中断记录及输入准备](research_round_20260925_global/U40_INTERRUPTION_AND_FULL_INPUT_EXPORT_20261018.md)。新增内容远端待同步。
-
-
-<!-- U51_ACTUAL_AND_U40_RESOURCE_RESUMED_CURRENT_20261018_01 -->
-
-**2026-10-18 当前进度：** 本机已按原限额接续2816→3072，最后已核验端点仍2816/37050（7.60%预算），新段运行中。DGX已实际完成两臂各3次更新的兼容性试跑；全量输入首批32/741图（43匹配实例，约117.78MB）也已导出核验。[实际记录及后续](research_round_20260925_global/U50_DGX_PAIRED_PILOT_ACTUAL_AND_FULL_INPUT_NEXT_20261018.md)、[首批数值](research_round_20260925_global/results/U51_MATCHED_FIT_0000_0032_EXPORT_ACTUAL_20261018.json)。[保留结构的训练计算候选](research_round_20260925_global/code/U52_SHARED_ENCODER_GRADIENT_ACCUMULATION_DRAFT_20261018_01/README.md)已保存源码，梯度等价和速度尚未实测，当前训练未替换。尚无新增AP或创新成立结论；GitHub传输错误仍待恢复，不能称已同步。
-
-
-<!-- U50_DGX_ACTUAL_ACCEPTED_CURRENT_20261018_01 -->
-
-**2026-10-18 DGX已实际跑通训练：** FULL/PLAIN各完成3次真实更新，共6次，2图/28不同匹配实例；约45秒，Torch分配峰值2.17GiB、进程组RSS11.43GiB，原任务退出0并核验接收。[实际结果及下一步](research_round_20260925_global/U50_DGX_PAIRED_PILOT_ACTUAL_AND_FULL_INPUT_NEXT_20261018.md)、[标量摘要](research_round_20260925_global/results/U50_DGX_PAIRED_PILOT_ACTUAL_20261018.json)。这只是兼容性与资源试点，无AP或加速结论；主训练仍每臂2816/37050（预算7.60%）。[分批导出入口](research_round_20260925_global/code/U51_MATCHED_CPU_EXPORT_DRAFT_20261018_01/README_ENTRY.md)已完成源码，尚未实际导出；下一步按批准备全部741图输入。普通源码及摘要已本地保存，GitHub仍待传输恢复和远端核验。
-
-
-<!-- U49_ACTUAL_EXPORT_ACCEPTED_CURRENT_20261018_01 -->
-
-**2026-10-18 DGX输入导出已实测：** 2图/28匹配实例已完成原值、紧凑存储和CPU重载核验；私有输入约43.37 MB，worker4.609秒。仅导出，不是训练或AP；[核验摘要](research_round_20260925_global/results/U49_MATCHED_CPU_EXPORT_ACTUAL_20261018.json)。主训练保持每臂2816/37050（预算7.60%）；资源满足原门限后续训。DGX实际运行尚未完成，GitHub传输错误下新增内容仍待远端同步。
-
-
-<!-- U40_2816_ACTUAL_ACCEPTED_20261018_01 -->
-
-**2026-10-18 主训练已接收2816：** 原2560→2816任务实际退出0并核验接收，两臂各256次更新、各561次匹配实例训练访问；主训现2816/37050（预算7.60%），无新增AP。原任务1060.828秒，资源未越限、检查点恢复及重载核验通过。FULL/PLAIN平均总训练损失0.03616286/0.03624759，仅为优化监测，不能称精度提升。[本段结果及下一步](research_round_20260925_global/U40_U02560_02816_ACCEPTED_AND_DGX_EXPORT_STATUS_20261018.md)、[正式数值](research_round_20260925_global/results/U40_FORMAL_U02560_02816_ACTUAL_20261018.json)。[U49导出入口](research_round_20260925_global/code/U49_MATCHED_CPU_EXPORT_DRAFT_20261018_01/README.md)与[U50 DGX试点核心](research_round_20260925_global/code/U50_DGX_PAIRED_PILOT_BODY_DRAFT_20261018_01/README.md)已完成普通源码，尚未实际导出/远端运行；新环境试点不计U40。此前“本段运行中/2560”记录是历史状态。新改动已保留本地，GitHub传输故障仍待恢复。
-
-
-<!-- U40_POST_U48_ACTUAL_RESUMED_20261018_01 -->
-
-2026-10-18 接续实况更新：09:09:57 UTC 与09:11:48 UTC两次资源观察均达标，free RAM分别38350995456/38238998528 B、整卡2065/1963 MiB。Root已实际启动并登记原配对2560→2816接续任务，17份训练来源及原配方/限额不变，恢复原2560检查点。当前为运行中，尚无该段终态或新配对预算；有效端点仍2560/37050。此前资源不足描述保留为当时观察，不能据启动记为已完成。 DGX的[独立配对试点可行性](research_round_20260925_global/DGX_PAIRED_PILOT_PORT_FEASIBILITY_20261018.md)已保存：matched-only导出可避开完整教师环境，仍需实际导出与核验；尚无DGX数值试点或速度结论。本轮本地提交待传，GitHub连接传输故障尚未恢复。
-
-
-<!-- U48_NATIVE_SINGLE_IMAGE_ACTUAL_20261018_01 -->
-
-**2026-10-18 单图原生推理实测：** 原 E24 教师在预选 HRSID TRAIN 图像的全部 100 查询推理已实际退出 0 并接收；原生掩膜/分数/标签校准通过，26.453 秒，分配器峰值约 2.11GiB，显存已释放。原 2GiB 后处理 OOM 失败单独保留，独立修正版只把分配预算改为 3GiB。无新增训练、AP 或全人口资格；主训仍每臂2560/37050，资源余量未达接续门。[实测与下一步](research_round_20260925_global/U48_SINGLE_HRSID_NATIVE_CAPTURE_ACTUAL_AND_NEXT_STEP_20261018.md)、[成功摘要](research_round_20260925_global/results/U48_HRSID_TRAIN0_NATIVE_CAPTURE_3G_ACTUAL_20261018.json)、[失败摘要](research_round_20260925_global/results/U48_HRSID_TRAIN0_NATIVE_CAPTURE_2G_OOM_ACTUAL_20261018.json)、[资源修正版](research_round_20260925_global/code/U48_EXTERNAL_NATIVE_CAPTURE_GPU3G_DRAFT_20261018_01/README.md)。[完整查询覆盖假设](research_round_20260925_global/U40_FIXED50_QUERY_COVERAGE_ERROR_HYPOTHESIS_20261018.md)仅为E50后检验设计。GitHub 连接传输仍失败，本轮及此前待传改动尚未核验远端同步。
-
-
-**2026-10-18教师恢复实测：** U47原任务退出0并核验接收，原E24教师完整610项状态/451个参数与加载证明一致；worker21.5秒、采样RSS峰值约1.52GiB，CUDA未初始化、模型及anchor已释放。无图像前向或外部AP。[实测及剩余接线](research_round_20260925_global/U47_TEACHER_CPU_RESTORE_ACTUAL_AND_DGX_STATUS_20261018.md)、[恢复代码](research_round_20260925_global/code/U47_EXTERNAL_TEACHER_CPU_RESTORE_DRAFT_20261018_01/README.md)、[数值摘要](research_round_20260925_global/results/U47_EXTERNAL_TEACHER_CPU_RESTORE_ACTUAL_20261018.json)。DGX已实际只读连接；其既有Torch2.10/Python3.12环境不同于原U40锁定环境，不能直接拼接训练，尚无迁移或速度结论。主训有效端点仍2560，下面的历史“teacher未加载”描述以本条更新为准；新图预处理来源、无GT实际前向和E50全人口评价仍待完成。新增本地改动因GitHub连接传输异常标记待同步，未报告远端成功。
-
-<!-- U40_RESOURCE_RECOVERY_CURRENT_20261018_01 -->
-
-**2026-10-18最新状态：** [2560,2816)独立接续尝试因整卡显存8398 MiB超过8192 MiB受控退出；可用内存未低于16 GiB，800.078秒未到时限。[中断记录](research_round_20260925_global/results/U40_U02560_02816_WHOLE_GPU_ABORT_ACTUAL_20261018.json)已核验保存。有效配对进度仍为2560/37050。主训需两次相隔30秒观察整卡基线≤3584 MiB、可用RAM≥32 GiB，原运行限额保持，目前未重启。原版CPU实测确认morph0两个端点AD/FD不一致；独立三行候选U46两方向局部VJP/FD均符合完整累计预期，两次actual0均已核验接收。[实际结果与下一步](research_round_20260925_global/U45_U46_DSC_COORDINATE_ACTUAL_FINDING_AND_NEXT_STEP_20261018.md)。均无真实影像、全网训练或新AP，且端点完整累计已有作者先例，不作为新采样方法或创新成立。
-
-**2026-10-18资源中断补记：** 第11段[2560,2816)原任务因可用RAM低于原16GiB下限受控退出，实际终态与失败记账已接收；整卡峰值8165MiB没有超过8192MiB，775.453秒也未到1800秒期限。正常配对进度仍为每臂2560，失败段不计入已接收预算。原检查点与部分输出保留，未将单臂部分结果当成配对完成。触发低内存的具体进程尚不能归因；并行全人口合成测试亦不能排除干扰，后续训练期间仅做小fixture验证。[实际失败](research_round_20260925_global/results/U40_U02560_02816_RESOURCE_ABORT_ACTUAL_20261018.json)。用户已授权资源充足时按原限额独立接续；总50轮/37050、17科学源、共同顺序和实例读出配方不改。
-
-**外部推理函数层已补齐，均未科学执行：** [E50严格CPU恢复](research_round_20260925_global/code/U44_EXTERNAL_FIXED50_RESTORE_DRAFT_20261018_01/README.md)、[三模型小窗口轮换](research_round_20260925_global/code/U44_EXTERNAL_STREAM_WINDOW_DRAFT_20261018_01/README.md)、[原TEST全人口合并与逐method COCO](research_round_20260925_global/code/U44_EXTERNAL_SPLIT_METRICS_DRAFT_20261018_01/README.md)。分别2/2/3项标准库元数据行为测试通过，Root静态审与窗口独立互接审未发现确定阻断；真实CP恢复、无GT图像前向、资源稳态及外部AP均未运行。teacher实际构造/加载、外部owner入口、来源准入与原片接收仍未实现；强R缺项仍须显式处理，不因这些函数存在宣称跨集可运行。
-
-
-**2026-10-18实际进展：** 自研完整UNet++与普通对照已接收每臂2560次更新（3轮+337图），[2560,2816)后续原尝试已资源中断，模型进度仍为2560；固定50轮/37050预算不变。第10段每臂614次匹配GT训练访问，训练标量均有限、两臂loss接近，尚无新增实例AP。[第10段实测](research_round_20260925_global/results/U40_FORMAL_U02304_02560_ACTUAL_20261017.json)、[匹配训练监测](research_round_20260925_global/results/U40_U02304_02560_TRAINING_LOSS_MONITOR_20261017.json)。HRSID路径修复后已完整访问5604图/16969实例：全图RGB解码成功，16956实例非空栅格通过、13实例为空（train9/test4），原非空门未满足，actual1失败已保留；未删图或改标注。[实际失败](research_round_20260925_global/results/U43_CANONICAL_POPULATION_EMPTY_RASTER_FAILURE_ACTUAL_20261018.json)、[COCO协议核查](research_round_20260925_global/U43_EMPTY_RASTER_COCO_PROTOCOL_REVIEW_20261018.md)。
-
-**外部单图接线已保存：** [U44薄桥](research_round_20260925_global/code/U44_NEW_IMAGE_ITEM_BRIDGE_DRAFT_20261017_01/README.md)将U41自然e/M/L、原100查询及S0接到U40逐图残差预测，沿原RGB400与几何；两项标准库元数据测试和独立静态ABI审通过，未运行真实像素、张量、窗口、模型或外部AP。窗口/恢复与全TEST COCO的函数层已在本轮补充，均未科学执行；teacher实际加载、完整owner与来源准入仍待接线，强R缺项须显式处理。旧187图包装不能直接用于外部人口。
-
-
-**完整自主UNet++主线：** 按用户要求以复合编码、H/4语义/双方向融合及完整嵌套解码作为主体，新增每图共享一次的实例读出；[方案与最少对照](refine-logs/UNETPP_FULL_METHOD_20261017_01/EXPERIMENT_PLAN.md)、[执行跟踪](refine-logs/UNETPP_FULL_METHOD_20261017_01/EXPERIMENT_TRACKER.md)、[接口草稿](research_round_20260925_global/code/UNETPP_FULL_INSTANCE_ADAPTER_DRAFT_20261017_01/README.md)。已核历史语义正信号：HRSID单seed F1约+2.40点、SSDD三seed均值约+1.03点；这些不归因给full/new1全部模块或实例AP。共享接口三项tiny真实nn CPU合约已实际通过并经Root接收；[原完整主干feature wrapper](research_round_20260925_global/code/UNETPP_FULL_FEATURE_BACKBONE_DRAFT_20261017_01/README.md)及[真实full CPU64入口](research_round_20260925_global/code/U30_FULL_FEATURE_CPU_DRAFT_20261017_01/README.md)已实际通过原完整卷积主体特征精确等价和eval反向两项；245个有效参数张量梯度均有限，四个旧语义头零调用。真实100查询M/F已实际补采并接收；U36两臂均通过400真实影像两步更新，U38完整FIT读取和共同初始化也已通过；U39跨图资源已通过，正式50轮主训练已启动：前十段两臂各累计2560次已接收（3轮+337图），第11段资源中断已保留，待充足余量独立接续；尚无新增实例AP。[实际结果](research_round_20260925_global/U30_REAL_FULL_FEATURE_CPU64_ACTUAL_RESULT_20261017.md)。[本轮实测与范围](research_round_20260925_global/UNETPP_SHARED_ADAPTER_CPU_RESULT_AND_FULL_FEATURE_STATUS_20261017.md)。
-
-**真实400主干资源试点已通过：** U36两臂统一使用FP32中间激活CPU暂存，普通与自主FULL均完成真实9实例影像两次AdamW更新；FULL第二步245个有效参数张量梯度均有限且非零，峰值GPU分配约1.97GiB、采样RSS约13.00GiB。小模型另做普通/暂存各两步，梯度与Adam状态精确相同。合计8次一次性试点更新，不计入主训练。此前U33/U35显存失败保留；单图通过不代表741图稳定、AP改善或加速。[实际结果与范围](research_round_20260925_global/U36_REAL400_TRAINING_RESOURCE_ACTUAL_RESULT_20261017.md)、[数值摘要](research_round_20260925_global/results/U36_REAL400_CPU_SAVED_ACTIVATIONS_ACTUAL_20261017.json)。
-
-**全量输入与共同初始化已通过：** U38原任务退出0且外部接收，完成全部FIT741图/1661匹配实例的原JPEG、EXIF、RGB400/整数几何及原缓存/GT关联检查；实际完成公共104状态与共享实例头同源初始化。CUDA未初始化，无训练或AP。原尺寸572种、G范围1–29，不能以此前9实例单图代替全部负载。[实际结果](research_round_20260925_global/U38_FULL_FIT_RGB_AND_COMMON_INITIALIZATION_ACTUAL_RESULT_20261017.md)、[脱敏摘要](research_round_20260925_global/results/U38_FULL_METHOD_CPU_READER_INIT_ACTUAL_20261017.md)。后续[U39跨图检查](research_round_20260925_global/code/U39_FULL_METHOD_CROSS_IMAGE_RESOURCE_DRAFT_20261017_01/DESIGN.md)已实际完成并接收；正式训练状态见下段，DEV全100候选输入与评价准备并行推进。
-
-**跨图训练实测与正式实现：** [U39原始试点](research_round_20260925_global/results/U39_CROSS_IMAGE_RESOURCE_ACTUAL_20261017.md)实际退出0并接收：两臂各3次连续更新，覆盖27实例图，状态图间保留；6次丢弃更新不计正式预算。[主方法衔接](research_round_20260925_global/U39_CROSS_IMAGE_RESOURCE_AND_FINAL_METHOD_CONTINUATION_20261017.md)继续沿用已有自定义UNet++卷积骨架。[U40连续训练代码](research_round_20260925_global/code/U40_FULL_METHOD_CONTINUOUS_TRAIN_DRAFT_20261017_01/DESIGN.md)已进入正式训练，当前两臂各累计2560次更新已接收，[2560,2816)原尝试已资源终止并保留；总预算每臂50轮/37,050更新，完整保存恢复模型、Adam、BN、RNG及共同顺序。尚无新增AP。
-
-**正式训练接线：** 原首三段[0,256)、[256,512)、[512,768)均实际退出0并接收；[首段](research_round_20260925_global/results/U40_FORMAL_U00000_00256_ACTUAL_20261017.json)、[第二段](research_round_20260925_global/results/U40_FORMAL_U00256_00512_ACTUAL_20261017.json)、[第三段](research_round_20260925_global/results/U40_FORMAL_U00512_00768_ACTUAL_20261017.json)。第四段[768,1024)也已正常结束，两臂各累计1024更新（第1轮+283图），worker模型/Adam/BN/RNG恢复与保存回读检查通过；[第四段实测](research_round_20260925_global/results/U40_FORMAL_U00768_01024_ACTUAL_20261017.json)。第五段[1024,1280)已实际退出0并接收，每臂604次匹配GT训练访问、worker恢复和回读检查通过；[第五段实测](research_round_20260925_global/results/U40_FORMAL_U01024_01280_ACTUAL_20261017.json)。第六段[1280,1536)已实际退出0并接收，每臂568次匹配GT训练访问、worker恢复和保存回读检查通过；[第六段实测](research_round_20260925_global/results/U40_FORMAL_U01280_01536_ACTUAL_20261017.json)。第七段[1536,1792)已实际退出0并接收，每臂563次匹配GT训练访问、worker恢复和保存回读检查通过；[第七段实测](research_round_20260925_global/results/U40_FORMAL_U01536_01792_ACTUAL_20261017.json)。第八段[1792,2048)已实际退出0并接收，每臂574次匹配GT训练访问、worker恢复和保存回读检查通过；[第八段实测](research_round_20260925_global/results/U40_FORMAL_U01792_02048_ACTUAL_20261017.json)。第九段[2048,2304)已实际退出0并接收，每臂550次匹配GT训练访问、worker完整恢复和保存回读检查通过；[第九段实测](research_round_20260925_global/results/U40_FORMAL_U02048_02304_ACTUAL_20261017.json)。第十段[2304,2560)也已实际退出0并接收，每臂614次匹配GT训练访问、恢复和保存回读检查通过；[第十段实测](research_round_20260925_global/results/U40_FORMAL_U02304_02560_ACTUAL_20261017.json)。该段原尝试已受控资源终止，完成数仅计2560；下一次须在原限额及充足余量下独立接续。固定每臂50轮/37050更新才完整DEV评价；不以中途AP选型，不额外加pilot。
-
-**训练拟合监测：** [前1280更新摘要](research_round_20260925_global/results/U40_FIRST1280_TRAINING_LOSS_MONITOR_20261017.json)由第5段实际终止并接收后、下一任务启动前，对五段已接收原JSON trace作标准库标量汇总，未重放tensor/图像/GT/模型。loss/BCE/softDice均有限；第五段同图平均loss普通0.038416、自主0.038289，差异很小。它只反映匹配训练实例的拟合，不能判定AP、全部候选假阳性、收敛或创新，不据此选轮次或改配方。第6段[匹配训练loss监测](research_round_20260925_global/results/U40_U01280_01536_TRAINING_LOSS_MONITOR_20261017.json)同图均值为普通0.035898、自主0.035758，仍非常接近；全部有限，没有开发评价或配方调整。第7段[训练拟合监测](research_round_20260925_global/results/U40_U01536_01792_TRAINING_LOSS_MONITOR_20261017.json)同图均值普通0.037304、自主0.037189，仍接近，未用于改配方或选择端点。第8段[训练拟合监测](research_round_20260925_global/results/U40_U01792_02048_TRAINING_LOSS_MONITOR_20261017.json)同图均值普通0.035317、自主0.035126，全部有限且差距小，没有新增AP或选型。第9段[训练拟合监测](research_round_20260925_global/results/U40_U02048_02304_TRAINING_LOSS_MONITOR_20261017.json)同图均值普通0.037823、自主0.037617，仍只支持匹配训练拟合、没有AP或收敛结论。
-
-**固定端点评价研发：** [E50完整DEV评价设计](research_round_20260925_global/U40_FIXED50_DEV_EVALUATION_DESIGN_20261017.md)已有[预测核心](research_round_20260925_global/code/U40_FIXED50_DEV_PREDICTION_DRAFT_20261017_01/DESIGN.md)和[完整人口CPU评价核心](research_round_20260925_global/code/U40_FIXED50_DEV_METRICS_DRAFT_20261017_01/README.md)草稿，各3项纯元数据测试通过；[数值外层入口](research_round_20260925_global/code/U40_FIXED50_DEV_ENTRY_DRAFT_20261017_01/README.md)也已实现，另3项纯元数据测试与独立静态接口审阅通过，均未实际数值执行；[RGB读取桥](research_round_20260925_global/code/U40_FIXED50_DEV_RGB_READER_IMPLEMENTATION_DRAFT_20261017_01/README.md)已完成源码、静态与3项纯元数据测试，真实读取和数值路径尚未执行。仅在每臂37,050更新完成并接收后评价187图/18,700查询；保留原查询映射、S0及全部候选。187个原JPEG候选引用已从四份原JSON采集清单精确提取，桥的真实metadata函数已通过；[准备摘要](research_round_20260925_global/results/U40_FIXED50_DEV_METADATA_PREPARATION_ACTUAL_20261017.json)。尚未读取JPEG/tensor/GT/权重或执行NN/COCO，实际文件/数值准入仍待固定端点；不补teacher、不用中途AP选型。
-
-**直接先例更新：** [O2Former与DACF-net查新](research_round_20260925_global/U40_DIRECT_PRIOR_UPDATE_20261017.md)区分正式发表与arXiv证据、离岸/近岸与整体AP，以及结构/骨干/后处理版本；方向、跨层调制和残差融合已有直接先例，当前结构收益与差异仍待同预算和机制对照。[固定query精修与点提示比较范围](research_round_20260925_global/U40_FIXED_QUERY_REFINEMENT_AND_PROMPT_PROTOCOL_PRIORS_20261017.md)补核ReSAM正式索引/v1/作者代码及CascadePSP先例，不改正在运行的配方。
-
-**新图采集接口研发：** [U41单图原生采集草稿](research_round_20260925_global/code/U41_UNBOUND_NEW_IMAGE_NATIVE_CAPTURE_DRAFT_20261017_01/README.md)复用原观察、渲染、评分函数，区分最终e与旧pre-hook输入h；纯影像流程沿实际库data_samples=None分支保留原training=True预处理/固定补边，不读取标注或伪造GT。3项标准库接口测试与独立静态审阅通过，尚未执行像素/NN或取得新人口资格；HRSID1962、SSDD232及模型接触来源仍待独立核验，不改当前U40。[U42单图像素/COCO栅格检查](research_round_20260925_global/code/U42_UNBOUND_HRSID_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)也已形成未绑定草稿，3项标准库接口/失败注入测试与独立静态审阅通过；保留原实例分组、连续/栅格面积差异和有限越界坐标，没有真实解码、GT栅格或人口资格。来源/数据边界见[跨集准备度](research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)。
-
-**HRSID全集输入检查研发：** [固定执行计划](research_round_20260925_global/U43_HRSID_FULL_PIXEL_MASK_INPUT_CHECK_PLAN_20261017.md)、[U43完整人口核心](research_round_20260925_global/code/U43_HRSID_POPULATION_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)与[CPU入口/工作体](research_round_20260925_global/code/U43_HRSID_POPULATION_CHECK_ENTRY_DRAFT_20261017_01/README.md)已完成6项标准库元数据/失败路径测试和一次独立静态互接审。固定原train3642/11047、test1962/5922，全5604图/16969原实例调用U42，不合并ID命名空间、不去重或过滤失败项；全程不导入Torch、不执行模型。首次原任务已actual1并完成Root失败保留：在PIL库引用核验处4.844秒提前退出，未像素解码/原split记录解析/COCO栅格，0逐图记录；入口此前已核编码Source字节。[实际失败](research_round_20260925_global/results/U43_HRSID_POPULATION_LIBRARY_PATH_FAILURE_ACTUAL_20261017.json)、[路径原因](research_round_20260925_global/results/U43_LIBRARY_CANONICAL_PATH_DIAGNOSTIC_20261017.json)。十二库的物理路径与入口别名不同、bytes/SHA相同；[独立修复计划](research_round_20260925_global/U43_CANONICAL_LIBRARY_REFERENCE_REPAIR_PLAN_20261017.md)保留原代码与严格门，尚未绑定或重新执行。没有取得完整输入资格、外部AP或盲测证明。
-
-**外部推理接线设计：** [U44固定HRSID外部路线](research_round_20260925_global/U44_HRSID_FIXED_EXTERNAL_PREDICTION_DESIGN_20261017.md)采用固定小CPU窗口、teacher/普通/自主主干逐臂轮换上卡，仅保存最终RLE及必要身份，避免全1962图dense logit缓存。仍待主E50效用、真实输入检查及新图接口闭合，不改主训练或宣称已运行外部AP；强R缺项不得临时用内部RLE冒充。
-
-**教师初始化来源核对：** 已在第7段实际终止接收后、下一段启动前，沿当前FIT/N13/N16原JSON加载回执核对，五处native0 E24 teacher引用一致，并追到原COCO initializer。其本地完整SHA与绑定ref相等、官方文件名校验前缀/响应长度/首4MiB SHA一致，MD5字串与ETag相同；[实际多指纹摘要](research_round_20260925_global/results/M2F_COCO_INITIALIZER_ENDPOINT_FINGERPRINT_LINKAGE_20261017.json)。[官方全流读取尝试](research_round_20260925_global/results/M2F_OFFICIAL_COCO_REMOTE_BYTES_WITNESS_20261017_01.json)90秒仅读4MiB，仍保留未完成状态；ETag不被假定为服务端MD5，未完成全量远端SHA256，也不声称独立训练谱系或消除历史TEST暴露。[范围与原始来源](research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)。
-
-**U38执行源码：** [CPU入口与工作体](research_round_20260925_global/code/U38_FULL_METHOD_CPU_ENTRY_DRAFT_20261017_01/DESIGN.md)和[组合资格函数](research_round_20260925_global/code/U38_FULL_METHOD_CPU_QUALIFIER_DRAFT_20261017_01/DESIGN.md)已实际执行并接收；完整原JPEG引用有序摘要一致、公共初始化已实际构造/核对后释放，Root接收没有重放像素或神经计算。
-
-**完整主干后续安排：** [U38原最小验证方案](research_round_20260925_global/U38_FULL_METHOD_READER_AND_RESOURCE_GATE_DESIGN_20261017.md)的CPU部分已实际完成；U39保持相同FP32/400/chunk1/CPU暂存与AdamW，验证跨图状态保留及资源。普通和自主完整主干仍拟同50轮/37050更新，不从试点loss选型、不增加训练不需要的全FIT候选补采。
-
-**完整主干的真实输入（U32已完成）：** 冻结模型在一张9实例FIT影像上真实取得100查询M/F，原L、查询、类别、GT/匹配、分数及输出顺序与既有锚点精确一致。实际退出0并接收；无优化器、DEV、TEST或AP。U36已完成普通/自主400主干每臂两次一次性更新；仅该真实单图范围，见上方最新结果。[结果和具体试点](research_round_20260925_global/U32_NATIVE100_CAPTURE_ACTUAL_AND_U33_REAL400_PLAN_20261017.md)。
-
-**最新实测（N26，三预锁种子完成）：** 固定R掩膜，仅学习质量乘分；AP为69.423613 / 69.637142 / 69.551345，均值**69.537367 ± 0.107449**（样本SD），相对原R 68.099385平均**+1.437982 AP点**。各624次更新及完整187图/380GT/18700query COCO均实际结束并经Root接收，qhat1原COCO12精确复现。**这是已有质量回归适配的评分效用，掩膜未改善，核心创新尚未成立。** [完整结果](research_round_20260925_global/N26_FIXED_R_QUALITY_THREE_SEED_RESULT_20261017.md)、[全指标与成本](research_round_20260925_global/results/N26_FIXED_R_QUALITY_THREE_SEED_AGGREGATE_20261017.json)、[主张评议](research_round_20260925_global/N26_RESULT_TO_CLAIM_20261017/findings.md)、[执行前计划](refine-logs/N26_QUERY_MASK_QUALITY_BASELINE_20261017_01/EXPERIMENT_PLAN.md)、[训练评价源码](research_round_20260925_global/code/N26_QUALITY_TRAIN_EVAL_SOURCE_ONLY_20261017_01/README.md)。
-
-**当前结构研发（N28，固定E24完整DEV已完成）：** 两臂各17784更新；187图/380GT/18700查询统一COCO已实际完成并接收。SELECTIVE **67.021271 AP**，WHOLE_NODE **66.655257**、强R **68.099385**；配对+0.366014，预锁强参考门槛Delta−2.516096。Root决定停止本路由配方扩展，不加种子/预算/融合；[结果、几何与主方法接续](research_round_20260925_global/N28_FIXED24_FULLDEV_RESULT_AND_FULL_METHOD_CONTINUATION_20261017.md)、[全部指标](research_round_20260925_global/results/N28_FIXED24_COMPLETE187_COCO_ACTUAL_20261017.json)。该试验不代替完整自研UNet++主干验证；主方法已从每臂1792更新接续，固定50轮预算不变。
-
-**N28查新与评价研发：** [五项直接先例核查](research_round_20260925_global/N28_DIRECT_PRECEDENT_REVIEW_20261017.md)明确分支门控已有先例；[固定24轮评价设计](research_round_20260925_global/N28_FIXED24_DEV_EVALUATION_DESIGN_20261017.md)及[评价源码](research_round_20260925_global/code/N28_FIXED24_DEV_EVAL_DRAFT_20261017_01/README.md)已用于原固定端点评价。四个GPU分片与完整CPU COCO、几何诊断均已实际完成并接收，范围及停止判断见上段；文件名中的DRAFT保留原源码身份，不表示本次仍未运行。
-
-**N28恢复预锁与源码：** [恢复预锁](refine-logs/N28_DENSE_ROUTING_20261017_01/RESOURCE_RECOVERY_PLAN.md)、[CPU检查源码](research_round_20260925_global/code/N28_CHECKPOINT_RECOVERY_SOURCE_ONLY_20261017_01/README.md)与[单轮修订训练源码](research_round_20260925_global/code/N28_SINGLE_EPOCH_TRAIN_SOURCE_ONLY_20261017_01/README.md)均在执行前发布。CPU恢复检查及第6至24轮原GPU训练已实际结束并接收；原8轮任务的超时仍保留为失败。训练接续成功不代表方法已经涨点。
-
-**最新机制诊断（N27，完整FIT741/1661已实际完成）：** R剩余错误73.8521%在固定Ω外。IoU0.90/0.95当前未达标实例中，即使域内用GT完美纠正，仍无法达标的分别为424/581、1101/1304。该结果支持检验具备域外写入能力的结构，不证明门控有效、AP上界或核心创新。对应N28路由两臂保持同输入、同写入权限、同预算，固定第24轮完整DEV已完成；SELECTIVE相对WHOLE_NODE +0.366014AP点，但低于强参考，按规则停止该路由配方。[结果及下一项约束](research_round_20260925_global/N27_MATCHED_SUPPORT_CENSUS_RESULT_20261017.md)、[全部阈值与成本](research_round_20260925_global/results/N27_MATCHED_SUPPORT_CENSUS_AGGREGATE_20261017.json)、[预锁计划](refine-logs/N27_MATCHED_SUPPORT_CENSUS_20261017_01/EXPERIMENT_PLAN.md)、[源码](research_round_20260925_global/code/N27_MATCHED_SUPPORT_CENSUS_SOURCE_ONLY_20261017_01/README.md)。正式TEST、跨集和完整结构验证仍待完成。
-
-**UNet++ 模块复核（2026-10-17）：** 已重新核对自定义 CBAM_block 内部的卷积、注意力、残差及 SimAM 增强，H/4 方向融合和 up_x 传输路径；补核发现解码块前置 BN/ReLU 结果被 `conv1(x)` 覆盖，已纠正此前的顺序描述并记录独立修复对照方案。这是实际源码确认，尚非完整公平训练证据。当前 N26 未直接训练这套 UNet++。[具体改动与验证边界](research_round_20260925_global/UNETPP_MODULE_MODIFICATIONS_CONFIRMED_20261017.md)。
-
-**前轮结构训练（N23，当前配方STOP）：** 三臂均完成固定新增24轮、每臂39864次更新；完整187图/380GT/18700query统一COCO已实际完成并经Root接收。B mask AP **67.807324**，A_COMMON **67.788929**、A_ACTIVE **67.603337**，强R **68.099385**；主Delta **−0.292061 AP点**，不追加本配方种子/预算/调参/融合。原native/R的全部预测及COCO12精确复现。[完整结果与范围](research_round_20260925_global/N23_FIXED24_FULLDEV_RESULT_AND_STOP_20261017.md)、[全部指标与成本](research_round_20260925_global/results/N23_FIXED24_FOURHEAD_COCO_AGGREGATE_20261017.json)、[结果到主张](research_round_20260925_global/N23_RESULT_TO_CLAIM_20261017/findings.md)。
-
-**最新诊断（N24已完成）：** 完整187图/380GT/18700query、五组预测的原COCO12全部精确复现。所有已检阈值/top10/100下均无贪心匹配数量差；强R在IoU0.90/0.95仅112/4个GT有达标候选，确认高精度轮廓空间，但不能排除score排序损失。[完整结果与限制](research_round_20260925_global/N24_FULLDEV_ERROR_CENSUS_RESULT_20261017.md)、[五组聚合](research_round_20260925_global/results/N24_FULLDEV_ERROR_CENSUS_AGGREGATE_20261017.json)、[预锁原文](refine-logs/N24_FULLDEV_ERROR_CENSUS_20261017_01/EXPERIMENT_PLAN.md)、[源码](research_round_20260925_global/code/N24_FULLDEV_ERROR_CENSUS_SOURCE_ONLY_20261017_01/README.md)。
-
-**最新诊断（N25已完成，GT oracle）：** 五组×三评分完整COCO已actual0并Root接收；R固定mask的S0×GT质量由68.099385到73.396406（+5.297021 AP点），仅GT质量为3.380706。全部几何不变，原5组COCO12精确复现。**这是不可部署诊断，没有新模型涨点。** [完整结果](research_round_20260925_global/N25_FIXEDMASK_SCORE_ORACLE_RESULT_20261017.md)、[15组指标](research_round_20260925_global/results/N25_FIXEDMASK_SCORE_ORACLE_AGGREGATE_20261017.json)、[判断范围](research_round_20260925_global/N25_RESULT_TO_CLAIM_20261017/findings.md)。
-
-
-
-**已保存的研发与证据：** [固定训练方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)、[训练源码](research_round_20260925_global/code/N23_ANCHORED_DOMAIN_TRAIN_SOURCE_ONLY_20261017_01/README.md)、[固定评价方案](refine-logs/N23_FIXED_E24_FOURHEAD_DEV_20261017_01/EXPERIMENT_PLAN.md)、[评价源码](research_round_20260925_global/code/N23_FOURHEAD_FIXED_E24_DEV_SOURCE_ONLY_20261017_02/README.md)、[N22实际机会诊断](research_round_20260925_global/N22_FIT_FULLC_QUALIFIED_DIAGNOSTIC_RESULT_20261017.md)、[真实全FIT覆盖](research_round_20260925_global/N23_REAL_FULLFIT_CACHE_COVERAGE_RESULT_20261017.md)、[2026最新直接先例及监督边界](research_round_20260925_global/N23_DIRECT_SUPERVISION_AND_2026_STRUCTURAL_PRIOR_CHECK_20261017.md)。
-
-论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-17**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
-
-
-
-**自主设计与作者基线归属补充：** 团队自定义UNet++按完整结构评估；历史D目录的单个FPN文件与DiffSARShipInst作者固定版本统一换行后完全一致，SCJE-FPN及其中采用的CARAFE/ACmix须按作者基线引用。两份本地R535配置声明启用SCJE，不能仅改builder构造普通FPN对照；这不认证当前E/N20调用。[归属、实际路由与对照要求](research_round_20260925_global/UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
-
-**自定义 UNet++ 历史训练证据：** full 版本有明确训练入口；SamplingBoundary 的 HRSID、SSDD 配置与各 5 轮、每轮 64 批的历史日志对应。未确认历史模型源码及权重身份，也不据此推断实例 AP 收益。[入口、短训记录与证据边界](research_round_20260925_global/UNETPP_HISTORICAL_TRAINING_ROUTE_EVIDENCE_20261017.md)。
-
-**当前状态（N20）：** 第二种子全187图统一COCO及独立Root接收均已完成，阶段结果冻结为`STOP_CURRENT_RECIPE`。固定主终点E24-atmost下，seed201 LOCAL/CENTER/强R仍为68.297126/67.978791/68.099385 AP，seed202仍为67.991722/67.697705/68.099385 AP；平均主差值为+0.045039 AP点（精确值+0.04503879895506202），未达到预锁1点门槛，不启动seed203、追加预算或融合。恢复原执行任务实际退出0，exactheld已保存，fresh221 FIRST实际退出0后，Root外部接收实际完成；N20接收时为221正常终态+27保留失败=248、legacy pins229。原post19115实际退出1作为failure27保留，恢复只修复metadata的JSON键比较，没有重训或重算十组COCO。独立N21几何结果见下，不改变本阶段停止结论。旧独立审阅仍为WARN/provisional partial；本阶段不证明总体胜过强R、创新成立或TGRS就绪，总目标未完成。[两seed全部结果与阶段判定](research_round_20260925_global/N20_TWO_SEED_MAIN_RESULTS_20261017.md)。
-
-**已完成（N21）：** 预锁32张FIT图×64个唯一整数中心、共2048组的理想插值几何诊断已实际0并完成Root外部接收。主分母2002/2048满足50%覆盖要求，同一原生2×2单元为0/2002，按原80%判据为`SHARED_FOUR_PREMISE_REJECTED`；主分母的理想系数矩阵均rank9。撤回“普遍同四角→低秩瓶颈”前提，不据此启动原生邻域训练。当前全局222正常+27失败=249、legacy pins230；不更改N20停止规则，不推实际F/LN rank、训练点分布、AP或总体模型有效性，总目标未完成。[完整结果](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_RESULT_20261017.md)、[结果前预锁原文](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_PRELOCK_20261017.md)、[机器可读摘要](research_round_20260925_global/results/N21_NATIVE_SUPPORT_GEOMETRY_SUMMARY_20261017.json)。接收前的失败及恢复时间线保留在两seed主结果说明和Git历史中。
-
-**复核开销测量：** 第二批外部接收实际完成分段计时，共297.468秒，其中原来源及保存证明核验293.453秒；不能进一步归因于某一具体检查，也不作为模型FPS或加速收益。当前32范围、科学入口与核验规则保持。[实测分项与后续工程候选](research_round_20260925_global/N20_CPU_REVIEW_COST_AND_FUTURE_PROTOCOL_20261016.md)。
-
-**首种子201的全量汇总状态：** 已按32份固定范围执行全187图统一COCO，并完成独立post与Root实际终态核验；静态审阅仅保留为执行前历史。[静态审阅记录](research_round_20260925_global/N20_FINAL32_ENTRY_STATIC_READINESS_REVIEW_20261016.md)。
-
-**跨集数据准备：** 本地5604个JPG的train/test实例标注，与已核官方PNG对应split按文件stem、ID及全部标注字段精确相等；完整文本SHA不同。5604文件编码哈希/头部检查实际0，均800×800三分量JPEG，尚未解码像素/mask。发现两组跨train/test相同编码图、一组test内部重复，其标注多重集均不同；原协议保留，未来另预锁去重敏感性补充。合并标注16951实例与split合计16969不等，不能互换。官方JPG归档身份、掩膜空间对齐和母景独立未确认，不恢复盲TEST；不继续等待PNG下载，不改变N20。[本地数据完整补充](research_round_20260925_global/HRSID_LOCAL_JPG_METADATA_AND_VERSION_BOUNDARY_20261015.md)。
-
-**增量查新：** [O²Former与DACF-net先例核查](research_round_20260925_global/DIRECT_SAR_INSTANCE_SEGMENTATION_INCREMENTAL_PRIOR_CHECK_20261015_01.md)分别标记全文和官方域索引证据，不与当前DEV跨协议排名；方向、多尺度和上下文模块已有直接先例；已补记v1实现需澄清的形状与对齐边界，不将自行适配称作完整作者复现。
-
-**采样与精修直接先例补查：** LIIF已包含原生3×3、相对坐标及解码后局部集成；I-MedSAM展示先插值到目标网格再作连续精修的另一条路线。条件rank上界不是本项目实测瓶颈；原生邻域本身不能算新原语。七项有限证据区分代码、正文与索引摘录，不宣称穷尽2026研究。[有限补查与设计边界](research_round_20260925_global/N20_NATIVE_GRID_VS_RENDERED_F9_DIRECT_PRIOR_REVIEW_20261016_01.md)。
-
-**自主UNet++与历史资产扩展审阅：** 按用户说明记录自主设计，已还原13组实际前向结构；重点保留选择性跨尺度传输、H/4语义与方向互补、采样重建协同三条候选。扩展登记1009个源码/配置/示例项；D内260个模型候选中222个关联数值训练记录，另20个pth是评价缓存。Mamba100轮/MSCK160轮等检测成绩与实例mask AP分开；旧full骨架与clean50轮不能混同，来源未接上不等于未训练。[扩展总评与下一步](research_round_20260925_global/UNETPP_EXPANDED_MODEL_ASSET_REVIEW_AND_NEXT_DESIGN_20261015.md)、[自主结构还原](research_round_20260925_global/UNETPP_SELF_DESIGNED_STRUCTURE_RECONSTRUCTION_20261015.md)、[全部源码目录](research_round_20260925_global/UNETPP_COMPLETE_MODEL_SOURCE_CATALOG_20261015.md)、[训练资产目录](research_round_20260925_global/UNETPP_COMPLETE_TRAINED_ASSET_CATALOG_20261015.md)、[有界先例核对](research_round_20260925_global/UNETPP_SELF_STRUCTURE_BOUNDED_PRIOR_CONTEXT_20261015.md)。三条均尚未确认学术新颖性或当前实例效用，不改N20端点。
-
-**UNet++模块内部改造复核（10月17日）：** 已重新核到编码与解码复合注意力、抗混叠下采样、门控细节上采样四组内部设计及实际forward；full有`trainer_coco.py:5/62`训练入口。full的未使用BlurPool结果、前置BN旁路及DSConv批次索引问题仍为静态证据，尚未张量回归；当前N20不是这套UNet++整网试验。[具体实现、问题与验证范围](research_round_20260925_global/UNETPP_MODULE_INTERNAL_CHANGES_SOURCE_CHECK_20261016.md)。
-
-**UNet++末端门控机制补充：** 本地SimAM核心公式与作者公式相同，外层 `h + SimAM(h)` 构成带恒等项的空间选择增益；需用固定增益等对照区分选择作用与整体放大，尚未执行验证。[公式、适用条件与候选对照](research_round_20260925_global/UNETPP_SIMAM_RESIDUAL_MECHANISM_STATIC_NOTE_20261016.md)。
-
-**采样候选直接先例补查（10月16日）：** 已核BlurPool、FADE、DySample、FreqFusion，以及2025遥感双向重采样和2026抗混叠分割先例；模块内部改造已确认，联合机制与实例效用待验。记录聚合/相位、普通残差容量、外部skip及共享BN的替代解释；不改当前N20。[有限查新与可否定假设](research_round_20260925_global/UNETPP_SAMPLING_DIRECT_PRIOR_TARGETED_REVIEW_20261016.md)。
-
-**自主传输路由的近年先例补查（10月16日）：** 新读ICUnet++（2023）、RPAU-Net++（2025）及两篇遥感分割作者稿，补充直接门控位置对照；不以“UNet+++CBAM”称新。Root确认原model_new1为先门控后上采样，后续需区分运算顺序与被门控支路，所列对照尚未执行。[有界查新与源码顺序校核](research_round_20260925_global/UNETPP_UPSAMPLE_TRANSPORT_RECENT_DIRECT_PRIOR_20261016.md)。
-
-**旧自主结构的权重来源补查：** 222已定位writer/reader代码声明；111/222/两份ALL_NEW完成只读ZIP与pickle操作码元数据登记，未加载模型或tensor。不同前向、开关与完整训练身份仍需核对；部分旧AP50/AP75实际是整幅掩膜IoU阈值通过指标，不能用于COCO mask AP排名。[来源与结构线索](research_round_20260925_global/UNETPP_LEGACY_PROVENANCE_AND_CONTAINER_EVIDENCE_20261015.md)、[有界只读工具](tools/legacy_weight_metadata_intake.py)、[两项合成回归](tests/test_legacy_weight_metadata_intake.py)。
-
-**已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
-
-**最近已完成的单模块结果（N14）：** 固定新stage24训练与完整DEV187/all100 GPU、独立CPU及ROOT资格均通过（每臂39,864更新，全18,700 query同GPU输入sign/RLE/COCO12一致）。BASE AP67.686612、MEMORY67.683479；模块−基线−0.003132点、相对原较强E24端点−0.415905点，C1未通过，按预锁规则停止该配方追加seed/预算和融合。训练BCE下降约1.41%没有转为AP收益；不推断方法总体失效或充分收敛。[完整合格结果与停止决定](research_round_20260925_global/N14_FIXED24_FAIR_COMPARISON_QUALIFIED_RESULT_AND_STOP_20261014.md)、[首次AP前规则](research_round_20260925_global/N14_FIXED24_FIRST_SEED_DECISION_CLARIFICATION_20261014.md)。下一轮[固定强E24行动机会诊断](refine-logs/N15_FIXED_ACTION_OPPORTUNITY_20261014_01/EXPERIMENT_PLAN.md)已于UTC04:31:14预登记，[真实GPU、独立CPU与ROOT诊断现已全部合格](research_round_20260925_global/N15_FIXED_E24_ACTION_OPPORTUNITY_QUALIFIED_RESULT_AND_NEXT_STEP_20261014.md)：同K的C行动oracle相对Omega平均+1.461603 IoU点，286/374>=.5点，高IoU实例增加39，预锁机会门通过。当前是GT理想行动选择上界，没有学习选择器的AP结果，[N16唯一公平scout协议现已锁定](research_round_20260925_global/N16_FAIR_UTILITY_SELECTOR_LOCKED_TRAINING_DESIGN_20261014.md)，已核原matcher负query不受mask监督，双方共同扩展背景代理target并纠正分层采样比例；完整缓存已通过GPU、独立CPU和ROOT核验，两scout已完成相同固定24轮训练及E8/E24端点资格；两个实现失败和原641/741受控时限失败均保留。固定无GT候选C、相同K预算和374匹配条件人口，区分实际PR可修补机会、避免伤害及理想GT上界。GO门提前锁定，没有新AP或核心创新结论。原[下一假设](research_round_20260925_global/N15_ACTION_UTILITY_SUPPORT_SELECTION_NEXT_HYPOTHESIS_20261014.md)保留提出时状态。
-
-**当前研发（N17已完成）：** 同预算24轮LOCAL/CENTER、全187图/380GT/18700query、五GPU与七数值CPU、统一全量官方COCO及post实际退出后Root资格均完成。主E24-atmost LOCAL **67.786531**、CENTER **68.103370**、强R **68.099385**，Δ **−0.316840 AP点**，按预锁STOP当前配方，不补172/173、不融合。正常136/失败21/157终态身份；没有运行中的N17科学任务。N18诊断已实际完成并核验，见下一段；没有创新/TGRS就绪结论。[完整结果](research_round_20260925_global/N17_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[全部10端点原始stats](research_round_20260925_global/results/N17_FIXED24_ALL10_COCO_STATS_20261015.json)、[claim判定](research_round_20260925_global/N17_RESULT_TO_CLAIM_20261015/findings.md)。
-
-**N18已核诊断：** 原374固定配对，LOCAL可修选中4574/有害3651，强Ω6564/8528；LOCAL同时减少纠正和误改，漏选率58.140%高于Ω39.929%。PR可修11146/65423（17.037%）与N15一致，不能据此认定主要AP瓶颈。原CPU实际0/472.219秒，正常137/失败21/158身份，无科学任务运行。下一项先研究FP/FN的非对称修补取舍，再锁定公平强对照；没有新训练/AP/创新结论。[完整统计和下一假设](research_round_20260925_global/N18_QUALIFIED_ROUTING_CAPABILITY_RESULT_AND_NEXT_HYPOTHESIS_20261015.md)、[像素数与AP边界](research_round_20260925_global/N18_PIXEL_COUNTS_VERSUS_AP_INTERPRETATION_20261015.md)。
-
-**最新完成（N19）：** 固定1/2方向评分DIR AP **67.726509**，普通偏置67.816800、反向偏置67.789369、强R68.099385；主Δ **−0.372876点**，当前方案STOP，不补评分参数/质量头/种子。全187图/18700query及Root资格完成，正常138/失败21/159身份，无科学任务运行。后续真实feature邻域同容量/同预算检验N20已完成缓存资格并启动原训练任务，见顶部当前状态。[全部结果与范围](research_round_20260925_global/N19_FIXED_HALF_FULLDEV_QUALIFIED_RESULT_AND_STOP_20261015.md)、[原始stats12](research_round_20260925_global/results/N19_FIXED_HALF_ALL6_COCO_STATS_20261015.json)。
-
-**机会与指标的边界：** [条件IoU机会不能保证全量AP](research_round_20260925_global/N17_CONDITIONAL_IOU_OPPORTUNITY_VERSUS_FULL_AP_20261015.md)给出结果后最小诊断：区分实际选点漏掉可修位置与固定PR本身不可修；N18统计已完成，不改变主端点/停止规则，不把未匹配query当真实背景。
-
-**新增直接先例（GLDet）：** 用户提供的TGRS2025论文含实例分割，原文SSDD/HRSID mask AP71.3/58.6、整网500轮。已核全文/表格；完整作者代码尚未确认。空间扫描/邻域卷积/方向pool需要新空间载体，当前点头不能原样接入；N14无空间memory首试已按负结果停止，GLDet的完整空间结构迁移仍未执行，不直接比较不同划分AP。[原论文综述](research_round_20260925_global/GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)、[代码现况和单项局部信息检验设计](research_round_20260925_global/GLDET_CODE_RECHECK_AND_MINIMAL_LOCAL_INFORMATION_TEST_20261015.md)。其局部信息检验已演变为N17：完整FIT邻域缓存和固定24轮训练已合格，DEV全量验证完成且主结果负收益停止；这是低成本信息检验，尚非完整GLDet复现或新创新。不能使用DEV捕获训练。
-
-**局部特征与细化的直接先例：** 新增[五项定向核查](research_round_20260925_global/N20_DIRECT_REFINEMENT_PRECEDENT_FOCUSED_REVIEW_20261015_01.md)，覆盖RefineMask、Mask Transfiner、SegRefiner、SAMRefiner（ICLR 2025）与UnfoldCRF（2026预印本）。普通3×3真实邻域即使涨点，也先支持当前配方的信息效用；稀疏点交互、多阶段细化和通用条件修正均有先例，尚不能宣称结构创新或SOTA。
-
-**当前已核验结果（N13）：** 三种子固定E48 LOG/GEO均值67.768660/67.579076 AP，配对差−0.189583点，三组均负，已停止该GEO联合配方扩展。全部E24曲线已核验，LOG/GEO均值67.992117/67.781883。真实诊断CPU失败9保留；image113四路探针实际0并ROOT核验，仅支持此例CPU/GPU特征渲染差异，同GPU F的CPU PR满足原容差，全374对尚未qualified。[局部探针结果](research_round_20260925_global/N13_IMAGE113_NUMERICAL_PROBE_RESULT_20261014.md)。无正式TEST、跨集或核心创新/TGRS结论。
-
-
-新[CPU恢复入口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)已实际通过独立端点检查；原GPU失败与缺失报告保留。
-
-后续[冷启动训练源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_qualified_endpoint_training_source_20261013_03/ABI.md)已静态审阅并保存，702/703首段训练及独立CPU核验已通过；当前入口只允许702/703首段。后续[连续48轮接续源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_continuous48_adopted_endpoint_training_source_20261013_04/ABI.md)已通过静态审阅，三个种子第9–16轮、第17–24轮、第25–32轮及第33–40轮均已通过核验，三个固定E48均已通过独立CPU和ROOT核验，原固定DEV评价失败保留，修复版GPU/CPU及ROOT已通过，701 E08曲线及三条E48主端点均已合格；三个E08曲线已完成独立CPU和ROOT核验，全部三条E24已完成独立CPU/ROOT核验，真实固定PR诊断GPU原59604实际0，独立CPU原4404实际1，数值故障定位中。见[训练与接续状态](research_round_20260925_global/N13_SEED702_COLD_TRAINING_AND_CONTINUOUS48_SOURCE_STATUS_20261013.md)及[完整DEV评价接口](research_round_20260925_global/N13_FIXED_DEV_EVALUATION_INTERFACE_CONTRACT_20261013.md)。
-
-新[原栅格固定PR适配器草案](research_round_20260925_global/code/N13_original_raster_fixed_PR_adapter_draft.py)实现已知F/L算术及独立候选分块；无GT、K或最终选集合输入。已有CPU合成验证；新[非零残差/非连续栅格逐点检查](research_round_20260925_global/code/N13_original_raster_fixed_PR_nonzero_strided_check.py)实际通过，真实权重映射、渲染/导出及固定配对的源码规则已完成[文字核对](research_round_20260925_global/N13_FIXED_PR_ACTUAL_SOURCE_INTERFACE_REVIEW_20261014.md)，真实输入/端点绑定、域定义、科学运行时及大栅格资源资格仍待核验。见[诊断方案和验证范围](research_round_20260925_global/N13_FIXED_PR_COVERAGE_REPAIRABILITY_DIAGNOSTIC_DRAFT_20261014.md)。 已补入条件IoU诊断进入完整AP检验的两个必要条件：自然全部query的GT无关策略，以及明确固定候选/exact-K或拒绝写入的行动范围；当前未执行新方法评价。新增[纯诊断统计](research_round_20260925_global/code/N13_fixed_PR_diagnostic_statistics_draft.py)及[独立手算检查](research_round_20260925_global/code/N13_fixed_PR_diagnostic_statistics_independent_hand_check.py)已通过host合成检查，仅SYNTHETIC_ONLY。 已核对外部作者width2函数的严格邻域计数规则及空/满/孤点静态含义；本地作者函数及N12 v02调用/计数规则已在任务间隙完成ROOT文字核对，真实诊断输入/域重建和运行资格仍待核验。
-
-新[候选—原LOG重建—统计连接层](research_round_20260925_global/N13_FIXED_PR_PIPELINE_SYNTHETIC_INTEGRATION_CHECK_20261014.md)已保存；72项首次合成检查与独立106项halo/域外补查均实际退出0。新增域真实翻转、非空域外保持和完整C冒充原参考的统计前拒绝已验证，仅SYNTHETIC_ONLY，未取得真实SAR诊断资格。
-
-新[显式区域装配接口](research_round_20260925_global/N13_FIXED_PR_NATIVE_DOMAIN_ASSEMBLY_SYNTHETIC_CHECK_20261014.md)连接native L、CPU作者回调与互斥旧域/halo；49项字面回调检查及13项拒绝实际通过，尚未验证真实作者数值、来源、CUDA或SAR域。
-
-新[诊断接口补齐](research_round_20260925_global/N13_FIXED_PR_PRECOMPUTED_POPULATION_AND_DISTANCE_INTERFACE_CHECK_20261014.md)复用同一人口汇总，允许保留逐对JSON后释放栅格，并在原LOG重建后透传显式距离分层。59项/10拒绝和35项有限检查实际通过；不认证预计算数值、距离来源或真实SAR效果。
-
-</details>
-
-## 从这里开始
-
-- [GLDet附件定向复核与loss边界](research_round_20260925_global/GLDET_ATTACHMENT_TARGETED_RECHECK_AND_LOSS_SCOPE_20261015_01.md)：确认实例分割直接先例；式(7)10/3/10属于标签分配cost，不能写成联合训练loss权重。
-- [HRSID官方PNG编码文件获取试点](research_round_20260925_global/HRSID_OFFICIAL_PNG_ENCODED_IMAGE_BYTES_PILOT_20261015_01.md)：两文件真实字节/SHA/ZIP及PNG容器CRC/IHDR通过；未解码像素、未取得完整数据集或评价模型，原header解析失败保留。
-- [HRSID官方PNG同包TRAIN/TEST实核](research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)：Root独立核TRAIN3642图/11047实例、TEST1962图/5922实例，文件名无交集且覆盖5604 PNG目录；数值ID跨split复用，不能裸ID合并。仅元数据，尚无影像/mask/AP资格。
-- [N20渲染F9条件性信息分析](research_round_20260925_global/N20_RENDERED_F9_CONDITIONAL_INFORMATION_AND_CONTROL_SCOPE_20261015_01.md)：明确±1为最终栅格像素；仅在同一有效双线性单元等条件下有四基表示，尚无实际秩/覆盖率或效用结论。
-- [HRSID作者固定版本标注实文件核验](research_round_20260925_global/HRSID_OFFICIAL_ANNOTATION_INTAKE_20261015_01.md)：取得3573图/9870实例的Git候选JSON并独立核对，215图无标注关联；该候选的配套TEST及母景独立未认证，与同包PNG的具体差异见上方实核，不能混配。
-
-- [YOLO11n路口微调实测](docs/edge_traffic/xavier_nx_20261015/training_20261015/TRAINING_REPORT.md)：完成1022/128/128、30轮训练；四类mAP50 17.53%→48.12%，行人AP50仅16.33%；公开视频仍有小车误报公交/广告牌误报卡车，不具备五类高精度部署结论；NX与电动自行车未验证。
-
-- [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：固定24轮E8/E24实验方案；首种子（201）GPU清理失败后的保存产物恢复过程见[恢复核验](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)。各个种子的统一评价与重复实验进展见[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
-
-- [N20当前32份核验合同](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)与[全187统一评价合同](research_round_20260925_global/code/N20_FIXEDDEV_FULL187_COCO_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)：规定分批核验、全量统一评价及独立复核流程；实际进展见[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。旧八份合同保留为历史。主端点与继续规则不变，合成检查不是实际AP或发表依据。
-
-- [N20真实F邻域结构原型与训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数适配器的结构原型与训练设计，文档保留提出时状态。普通DW结构仅为信息基线，不列为新创新；统一评价与重复实验进展见[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
-
-- [N20原生网格取点先例与诊断候选](research_round_20260925_global/N20_NATIVE_GRID_SAMPLING_DIRECT_PRIOR_CANDIDATE_20261016.md)：补充LIIF、Deformable DETR、IFA与Implicit PointRend的直接先例，区分单次四角条件与两次插值、LN后的适用范围。仅为尚未预锁或执行的诊断候选，不改变当前实验。
-
-- [路口五类检测数据集核查（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/DATASET_SHORTLIST.md)：Intersection-Flow-5K、MIO-TCD、BDD100K与电动自行车专项候选；明确类别/视角/许可/获取状态及部分标注问题。
-
-- [Xavier NX 路口预训练检测选型与公开实测（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/REPORT.md)：三模型各完整719帧；权重来源、可复跑工具、误报失败例与NX待验收条件。尚未满足电动自行车独立识别/五类高准确率/NX30FPS。
-
-- [N19固定方向代价探针](refine-logs/N19_FIXED_HALF_DIRECTIONAL_READOUT_20261015_01/EXPERIMENT_PLAN.md)：只用已有同头概率、固定1/2评分及普通/反向偏置对照，协议已事前锁定；body手算与outer接口检查通过，源码及一次独立定向审阅完成。原CPU实际0/426.812秒，三份完整AP及Root资格完成，主DIR67.726509，Δ−0.372876点，按预锁STOP；[完整结果](research_round_20260925_global/N19_FIXED_HALF_FULLDEV_QUALIFIED_RESULT_AND_STOP_20261015.md)。[查新](research_round_20260925_global/N19_IOU_DIRECTIONAL_ACTION_RISK_TARGETED_PRIOR_20261015.md)判为低新颖性/效用待检验，保持旧STOP，不称新理论或质量估计效应。
-
-- [N18最小机制诊断计划](refine-logs/N18_FIXED_PR_ROUTING_CAPABILITY_20261015_01/EXPERIMENT_PLAN.md)：固定374配对复用已存动作，区分路由漏选与PR纠错能力；纯计数手算及单项接口检查已通过；新读取源码完成一次独立静态审查。真实CPU诊断实际退出0并通过Root整数/来源核对；结果见[N18诊断](research_round_20260925_global/N18_QUALIFIED_ROUTING_CAPABILITY_RESULT_AND_NEXT_HYPOTHESIS_20261015.md)。
-
-- [N17局部粗mask、错误估计和选点直接先例](research_round_20260925_global/N17_LOCAL_NATIVE_L_ERROR_SCOUT_TARGETED_PRIOR_CHECK_20261015.md)：SEED/QuBER/MagNet/PointRend重叠与具体差异，现阶段只做信息探针，不确认创新。
-
-- [N16预锁主结果解释器](research_round_20260925_global/code/N16_FIRST_SEED_RESULT_INTERPRETER_UNBOUND_DRAFT_20261014_01.md)：仅E24主端点触发复验/停止；6项合成检查通过，真实AP解释待完整独立资格。
-
-- [N16四CPU证明后的最终完整核验合同](research_round_20260925_global/code/N16_FIXED_E24_ALL100_SCOUT_CPU_NUMERIC_SHARDS_QUALIFIER_CONTRACT_20261014_01.md)：代码/最小合成/静态审阅已准备，尚未实际执行，不替代完整资格。
-
-- [N15下一单一公平选择器草案](research_round_20260925_global/N15_SINGLE_FAIR_UTILITY_SELECTOR_MINIMAL_UNBOUND_DESIGN_20261014.md)：相同容量/输入的修补效用与错误概率，两者共有真实目标/负query及成本规则；ROOT指出均匀all100采样的稀释风险，尚未正式登记或训练。
-
-- [N15完整机会诊断合格结果与下一步](research_round_20260925_global/N15_FIXED_E24_ACTION_OPPORTUNITY_QUALIFIED_RESULT_AND_NEXT_STEP_20261014.md)：实际固定头存在扩域修补机会；GT oracle、学习能力和部署AP分开，3个提前门通过。
-
-- [N15行动效用的五项直接先例查新](research_round_20260925_global/N15_ACTION_UTILITY_TARGETED_PRIMARY_PRIOR_CHECK_20261014.md)：PointRend、MagNet、Mask Transfiner、PromptMoE与SAM-Veteran；已知效用监督与新的工程假设分开，当前N15机会诊断已合格，不能等同AP或选择器效用。
-- [N15固定E24行动机会预登记](refine-logs/N15_FIXED_ACTION_OPPORTUNITY_20261014_01/EXPERIMENT_PLAN.md)：同C动作、同K、原强预测核对、实际GPU输入CPU回放及预锁GO门。
-
-- [真实诊断CPU数值失败与单图定位](research_round_20260925_global/N13_REAL_FIXED_PR_CPU_COMPATIBILITY_FAILURE_AND_SINGLE_IMAGE_PROBE_20261014.md)：第9实际失败保留，不放宽原容差，探针区分特征重渲染与算术，原GPU33452单次执行中。
-
-- [全部三种子E24曲线与真实固定PR诊断启动](research_round_20260925_global/N13_FIXED24_THREE_SEED_CURVE_RESULT_AND_REAL_DIAGNOSTIC_START_20261014.md)：全部固定曲线核验完成，当前701 LOG E48的374＋6真实诊断GPU原59604实际0，独立CPU原4404实际1，数值故障定位中，尚无核验后新效用。
-
-- [合格曲线与三种子主结果](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)：三条E48已核验并执行当前联合配方停止决定；三个E08仅作固定学习曲线，全部三条E24已完成独立CPU/ROOT核验，真实固定PR诊断GPU原59604实际0，独立CPU原4404实际1，数值故障定位中。
-
-- [固定DEV执行错误与独立修复版](research_round_20260925_global/N13_FIXED_DEV_SERIALIZATION_REPAIR_STATUS_20261013.md)：原实际失败及未完成产物保留；修复版已通过GPU、独立CPU和ROOT核验，完整三种子主结果及当前曲线见最新状态。
-
-- [固定48轮训练资格与稳定性结果](research_round_20260925_global/N13_FIXED48_TRAINING_QUALIFIED_RESULT_20261013.md)：六头各79,728更新，全部端点核验通过；六头43–48轮平均可编辑BCE较37–42轮均下降超过1%，尚不支持充分收敛；训练资格与实际AP评价分别核验。
-- [HRSID官方协议与发布范围核查](research_round_20260925_global/HRSID_OFFICIAL_PROTOCOL_AND_RELEASE_SCOPE_CHECK_20261013.md)：原文支持65/35裁片协议；补核固定作者提交与未回应许可issue，场景独立与数据再发布许可仍未确认；未打开数据包。
-- [Poly-BRBLE 原论文全文核查](research_round_20260925_global/N13_POLY_BRBLE_FULLTEXT_CHECK_20261013.md)：直接先例已包含边界buffer、不确定选点与点精修；明确当前sameK差异、联合处理限制和后续强对照。
-- [SAR提示式基础模型全文核查](research_round_20260925_global/SAR_PROMPTED_FOUNDATION_MODELS_FULLTEXT_REVIEW_20261013.md)：核对监督范围、指标与可复现性，并明确它与当前残差点头实验的可比边界。
-- [学习选择器的监督目标与完整模型边界](research_round_20260925_global/N13_LEARNED_SELECTOR_TARGETS_AND_FINE_FEATURE_PRIOR_CHECK_20261014.md)：Mask Transfiner的GT缩放损失目标与固定作者重实现、RefineMask的可训练P2/SFM及Simple版本；明确后续强对照与创新措辞。
-- [固定K二值IoU oracle与概率代理边界](research_round_20260925_global/N13_FIXED_K_BINARY_IOU_ORACLE_AND_PROBABILISTIC_PROXY_LIMIT_20261014.md)：更正真实标签与预测概率的适用范围，给出证明、人工反例及固定权重强对照；不是新SAR实验。
-- [固定预算行动选择的两项直接先例查漏](research_round_20260925_global/N13_FIXED_BUDGET_ACTION_UTILITY_DIRECT_PRIOR_GAPS_20261014.md)：MagNet候选置信排序、PromptMoE执行质量监督，以及待登记的错误预测/实际翻转、MagNet式排序和固定权重强对照；当前实验不改。
-- [预计算人口与距离分层接口补齐](research_round_20260925_global/N13_FIXED_PR_PRECOMPUTED_POPULATION_AND_DISTANCE_INTERFACE_CHECK_20261014.md)：保留原数组路径、避免重复逐对统计；公开有限复现，科学资格仍未认证。
-- [固定PR显式区域装配及有限检查](research_round_20260925_global/N13_FIXED_PR_NATIVE_DOMAIN_ASSEMBLY_SYNTHETIC_CHECK_20261014.md)：固定CPU FP32作者回调接口和标签1域，不实现或替换作者width2；只有合成装配证据。
-- [固定PR连接层及新增域/域外独立合成补查](research_round_20260925_global/N13_FIXED_PR_PIPELINE_SYNTHETIC_INTEGRATION_CHECK_20261014.md)：必需原预测参考、只写旧域的完整重建和统计前拒绝；公开便携源码及四路径复现命令，尚无真实SAR效用。
-- [固定PR候选的覆盖、纠正能力与选择余量诊断草案](research_round_20260925_global/N13_FIXED_PR_COVERAGE_REPAIRABILITY_DIAGNOSTIC_DRAFT_20261014.md)：四项嵌套oracle、原输出重建、独立候选及exact-K强制伤害门；纯布尔代码人工穷举已通过，真实SAR适配/执行尚未登记。
-- [固定48轮三种子完整主结果与下一诊断](research_round_20260925_global/N13_FIXED48_THREE_SEED_PRIMARY_RESULT_AND_NEXT_DIAGNOSTIC_20261014.md)：配对均值为负，按原规则停止当前联合配方；保留所有指标、成本、失败与适用范围，下一行动oracle只是草案。
-- [实测区域成本的归因边界](research_round_20260925_global/N13_MEASURED_REGION_COST_ATTRIBUTION_PLAN_20261014.md)：聚合计时含两臂选择、排序校验和摘要；列明遗漏的传输/导出成本及主评价后最小补测，未认定子阶段瓶颈或取得加速。
-- [共享投影与成本公平性审阅](research_round_20260925_global/N13_SHARED_PROJECTION_COST_FAIRNESS_REVIEW_20261013.md)：稠密强对照应同样共享特征投影；列明计算、内存和数值等价的边界，实际加速与质量收益仍待检验。
-- [当前研究目标与执行要求](RESEARCH_GOAL.md)：问题、公平比较、重复实验、机制验证和停止规则。
-- [修补行动收益与计算分配的直接先例](research_round_20260925_global/N13_ACTION_UTILITY_AND_ALLOCATION_DIRECT_PRIOR_ADDENDUM_20261013.md)：六项原始工作、近期SAR有限补核、像素收益与IoU的区别，以及待检验的质量与成本方案；出版核验限制明确保留，当前训练不改。
-- [论文版本索引](docs/PAPER_INDEX.md)：各代正文、补充材料与历史稿的关系。
-- 可阅读历史修订稿：[正文 PDF](paper_tgrs/revision_tgrs_20260905/main.pdf)、[补充 PDF](paper_tgrs/revision_tgrs_20260905/supplement.pdf)、[说明](paper_tgrs/revision_tgrs_20260905/README_CN.md)。它们属于旧融合主线，未重写成 10 月当前研究；PDF 与当前源码的对应关系未重新编译核验。
-- [数据获取与版本说明](docs/DATA_ACCESS.md)、[上游数据索引](docs/upstream_data_index.json)：PSeg-SSDD 与 HRSID 的官方入口。
-- [掩膜残差读出与校准先例核查](research_round_20260925_global/CALIBRATION_PRECEDENT_REVIEW_20261012.md)：PointRend、Implicit PointRend、质量评分及 SAR 直接先例；机制假设仍待检验。
-- [完整实验计划](refine-logs/EXPERIMENT_PLAN.md)、[实验跟踪](refine-logs/EXPERIMENT_TRACKER.md)、[下一研究批次](refine-logs/NEXT_RESEARCH_BATCH.md)。这些记录保留历史合同；有日期的最新状态优先。
-
-## 当前证据和决定
-
-所有下表结果均来自历史内部 **DEV187 / 380 GT**，不是官方 TEST。AP 使用百分制；“+1 AP 点”表示 67 到 68。没有把本项目的内部指标与外部论文数值直接排名。
-
-| 固定比较 | mask AP | 能支持的结论 |
-|---|---:|---|
-| 预选强 E24 原生参考 | 67.071057 | 同协议固定参考 |
-| A：原生模型 + 同样点监督，24 轮再追加 48 轮 | 64.686168 | 当前续训配方的端点 |
-| B：联合残差读出，同样预算 | 66.797068 | B 高于 A，但低于强 E24；结束该配方扩展 |
-| C：冻结 E24，粗 F/e/L 点头，两个下游种子均值 | 68.166136 | 相对 E24 +1.095079 AP 点的开发集效用 |
-| R：相同点头加真实 JPEG 7×7 patch，两个下游种子均值 | 68.153211 | 与 C 几乎持平；未支持新增 patch 的作用 |
-
-详见 [固定长预算 A/B 结果](docs/fixed_endpoint_joint_native_E24warm48_result_20261012.md)与 [N07 全部种子及固定端点评价](docs/N07_fixed8_fullDEV_point_refinement_result_20261012.md)。N07 每头固定 8 轮、13,288 更新；两个下游种子共享同一个教师初始化，不能替代多教师重复或充分收敛证据。R−C 配对均值为 −0.012924 AP 点，未满足结果前锁定的跟进规则；保留效用，停止当前 patch 配方扩展。
-
-N09已完成简单全局logit偏移控制：仅在FIT缓存点拟合、只在原生 |L|≤2 内应用、保持query和原生分数。首个DEV评价在原生精确一致性检查处退出1；已保留[历史失败状态](docs/N09_global_offset_runtime_state_20261012.md)，完整修复与合格结果如下。
-
-2026-10-13 已修复原始 all100 评分路径；完整 DEV 的 GPU 评价和独立 CPU 核验均真实退出 0，原生 18,700 候选输出精确复现。全局偏移 AP 为 **67.1466401**，比原生仅高 **0.0755834** 个百分点、比 C 均值低 **1.0194955**；未达到预登记近似替代规则。这只限定本次全局偏移，不证明新颖性或 F/e 因果作用。[完整核验结果](research_round_20260925_global/N09_FIXED_GLOBAL_OFFSET_RESULT_20261013.md)。已进入 [PointRend 式公平结构对照](research_round_20260925_global/FAIR_POINT_HEAD_CONTROL_DESIGN_20261013.md)，实际执行状态见下文 N10 更新。
-
-当前核心创新、正式 TEST、跨集收益和 TGRS 投稿依据仍未成立。失败结果和停止原因保留，不将局部提升包装为最终成功。
-
-## 目录导航
-
-| 目录 | 内容 |
-|---|---|
-| `paper/`、`paper_tgrs/` | 多代论文 LaTeX / BibTeX、作者说明、历史正文和补充 PDF |
-| `carrier/`、`mne/`、`seeding/`、`losses/` | 历史模型扩展、配置与候选组件 |
-| `protocol/`、`benchmark/`、`diagnostics/` | 数据转换、评价和误差诊断源码 |
-| `research_round_20260925_global/` | 当前及历史训练、固定评价和独立核验 SOURCE |
-| `docs/`、`refine-logs/` | 审阅、先例分析、实验计划和研究范围 |
-| `autodl/`、`tools/` | 历史环境准备与辅助工具 |
-
-最新 SOURCE 位于 `research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/` 下：
-
-- `N07_frozen_E24_original_detail_point_refinement_source_20261012_01/`：FIT 缓存、点头训练、GPU 评价、独立 CPU 核验。
-- `N09_FIT_only_global_logit_offset_control_source_20261012_01/`：全局偏移数学、FIT 求解及独立 CPU 核验；历史首个评价失败保留。
-- `N09_FIT_only_global_logit_offset_control_source_20261013_02/`：恢复原始 all100 评分路径的完整 DEV 评价器。
-- `N06_fixed_E24_one_to_one_error_audit_source_20261012_01/`、`N01_uniform_point_supervision_gradient_probe_source_20261012_01/`：固定误差和监督诊断。
-
-## 数据与复现范围
-
-本仓库包含数据获取说明和转换/审计源码，**不包含原始数据、全量标注、权重及运行缓存**，不能称为完整数据镜像。官方 SSDD 的 PSeg 多边形与 BBox/RBox 检测框版本不同；内部 FIT741/DEV187 不等于官方 TEST232。HRSID 的 JPG/PNG、场景协议和纯背景补充版本也必须分别记录。数据及其许可入口见 [DATA_ACCESS.md](docs/DATA_ACCESS.md)。
-
-历史环境记录为 PyTorch 2.0.1+cu118、torchvision 0.15.2、MMEngine 0.10.4、MMCV 2.1.0、MMDetection 3.3.0，并依赖 NumPy、SciPy、OpenCV、Pillow、pycocotools。最新本机资格环境与历史环境不可直接混用；没有声称全仓库在新机器完成重跑。
-
-历史入口示例：`python protocol/pseg_to_coco.py`（需配置数据路径）及 `python protocol/seal_eval.py --preds ... --gt ...`。当前科学入口采用 `--spec ABS --owner-execute`，依赖本地冻结数据、初始化和来源资格链。本次保存源码，不包含全部绑定输入，**尚不能下载后一键复现最新实验**；不得删除检查以冒充已验证的可移植版本。
-
-
-
-**2026-10-13 / N10 已闭合：** 四头各固定8轮/13,288次更新，完整DEV GPU评价及独立CPU核验均正常结束并完成ROOT核验。C均值AP **68.166136**，PointRend结构适配PR均值 **67.927378**；C−PR两组均正，平均 **+0.238757 AP点**，未达到预锁+0.30开发优先线，不自动延长此结构。两臂均高于原生67.071057，但不能据此确认创新或充分收敛。原生IoU≥.90固定配对上四臂平均IoU均小幅下降，下一步检验可编辑区域的误差覆盖与修复上限。见 [完整合格结果](docs/N10_fixed8_C_PR_fullDEV_qualified_result_20261013.md)、[全DEV状态](research_round_20260925_global/N10_FULLDEV_STATUS_20261013.md)、[固定协议](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[实际状态](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)及 [研发代码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/)。
-
-当前C实例条件偏置属于已知原语，不能单独宣称创新；定向先例与最小反证方案见 [查新备忘录](research_round_20260925_global/C_CONDITIONED_POINT_HEAD_NOVELTY_MEMO_20261013.md)。
-
-下一方向依据 [既有误差证据](docs/N01_N06_N07_N09_ERROR_EVIDENCE_FOR_NEXT_DECISION_20261013.md)与 [固定区域/采样风险定向查新](research_round_20260925_global/FIXED_BAND_SAMPLING_RISK_PRECEDENT_MEMO_20261013.md)。区域监督、MIS和控制变量均有先例；候选全图几何目标尚未执行或确认，不能用新名称替代实证。
-
-**2026-10-13 / N11：** GPU及独立CPU均已实际退出0并完成ROOT资格。原生.50固定374对中，当前区域只覆盖 **22.53%错分像素**；仅改带内损失/容量无法覆盖多数排除错误。见 [限定范围的完整结果](docs/N11_original_editable_band_qualified_result_20261013.md)，下一方向优先强几何区域对照与可否证的新选择规则；尚未建立新方法效用或创新。见 [当前状态与范围](research_round_20260925_global/N11_EDITABLE_REGION_COVERAGE_STATUS_20261013.md)及 [诊断SOURCE](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N11_native_editable_region_coverage_source_20261013_01/SOURCE_ABI.md)。
-
-## 持续同步
-
-本仓库是后续研究的持续记录入口。总结、综述、方法设计、研发源码与配置、论文更新及实质对话研究总结形成后，在当前工作任务内及时提交；实验成功、失败和未完成的验证均按实际状态保留。只有核验远端提交与目标文件后才记为已同步，失败则标为待同步；应用关闭或离线时不承诺自动上传。具体范围与流程见 [持续同步规则](docs/CONTINUOUS_SYNC.md)。
-
-## 发布范围与许可
-
-首次发布快照及完整性验证见 [publication_manifest_20261012.json](docs/publication_manifest_20261012.json)（限定于其中记录的提交；后续版本以 Git 提交历史为准），历史工作区盘点见 `docs/workspace_inventory_20261011.csv.gz`（元数据，非原始数据）。[发布范围](PUBLICATION_SCOPE.md)明确哪些内容未随仓库提供。
-
-作者、单位、日期和其他提交元数据保留占位符。自有项目尚未指定统一开源许可；第三方实现使用原始来源链接与各自许可证，不把第三方代码改授为本项目许可。外部下载的文献全文、第三方参考仓库、凭据、运维配置、无关工程以及整个工作区 Git 历史不随本快照发布。
-
-**以下为历史形成记录；当前训练进度以顶部和最新状态段为准。**
-
-当时下一项仅作为待检验假设：同一冻结模型、点头、编辑与训练预算下，先比较几何边界选择与不确定性选择，完整训练采用至少三个配对种子。强先例、反证条件及执行边界见 [区域选择设计备忘录](research_round_20260925_global/N11_REGION_CHOICE_NEXT_HYPOTHESIS_20261013.md)；尚未新增训练或确认创新。
-
-**N12 实验前登记：** [同预算区域覆盖诊断协议](refine-logs/N12_REGION_COVERAGE_20261013_01/EXPERIMENT_PLAN.md)已锁定主比较与反证规则；[执行跟踪](refine-logs/N12_REGION_COVERAGE_20261013_01/EXPERIMENT_TRACKER.md)记录实际状态：首个GPU运行在依赖文件来源核验处退出1，尚未开始区域计算；修正实际包树绑定后，GPU及独立CPU均真实退出0并完成ROOT核验。失败源码与修正版均保存，见[运行状态](docs/N12_region_diagnostic_runtime_status_20261013.md)。只有真实GPU及独立CPU核验完成后才报告新覆盖/距离结果；并非新方法效用。
-
-
-**N12 已核验诊断：** 相同K下，主固定374配对的错误覆盖22.53%→24.67%，条件oracle IoU仅增加0.000728650；.75固定集合覆盖略降，两臂oracle≥.90/.95主槽位计数未增加。通过预登记的有限跟进条件，将登记匹配FIT缓存与至少三个配对种子的公平训练，尚无新训练提升或创新。见[完整限定结果](docs/N12_sameK_region_qualified_result_20261013.md)。
-
-
-**历史快照（首轮缓存核验失败时，后续进展见顶部当前状态）：** 下一项[N13训练准备](research_round_20260925_global/N13_REGION_TRAINING_PREPARATION_20261013.md)已完成缓存/门控静态盘点：旧FIT采样缓存不足以构造新区域，旧头内部门控必须统一外移。采用相同PR骨架和三个冷初始化配对种子，已在新缓存计算前登记48轮固定预算、评价和停止规则；新缓存和训练源码均通过一次独立静态审阅；GPU缓存已正常退出并完成生成阶段ROOT核验；首个独立CPU核验在第4图原生L重算检查处退出1，正在调查；缓存尚未资格，未开始训练。失败原件保留，不改判据追求通过。缓存源码已经保存，见[执行状态与代码入口](docs/N13_sameK_region_execution_status_20261013.md)。见[固定协议](refine-logs/N13_SAMEK_PR_20261013_01/EXPERIMENT_PLAN.md)和[实际跟踪](refine-logs/N13_SAMEK_PR_20261013_01/EXPERIMENT_TRACKER.md)。
-
-N13核验失败后，已在新的数值执行前保存[固定单图诊断登记](research_round_20260925_global/N13_NATIVE_L_REPLAY_DIAGNOSTIC_PLAN_20261013.md)及[原生L数值验证审阅](research_round_20260925_global/N13_NATIVE_L_NUMERIC_VALIDATION_REVIEW_20261013.md)；新[诊断源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_cache_L_replay_diagnostic_source_20261013_01/ABI.md)仅用于定位重算差异，不改变容差或放行未资格缓存。
-
-**N13有限诊断已结束：** 第4图原FP32重算有1/536571个值超过原容差，FP64有3个；该图P与原边界区域未变。原判据仍失败，未产生缓存Q或开始训练。见[限定调试观察](research_round_20260925_global/N13_NATIVE_L_REPLAY_DIAGNOSTIC_OBSERVATION_20261013.md)；不以单图数值差或源码审阅宣称方法效用、创新或全缓存资格。
-
-- [N13 全样本 GPU 关系与 CPU v2 资格修订](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_AND_CPU_QUALIFICATION_AMENDMENT_20261013.md)：GPU关系与CPU v2资格实际通过，原失败及固定训练配方保留。
-
-- [N13 CPU v2 与固定48轮训练源码接口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_sameK_region_qualified_relation_training_source_20261013_02/SOURCE_ABI.md)：CPU v2实际资格通过，种子701配对训练1–8轮已启动。
-
-- [N13 全体冻结 M→L GPU 关系实际通过](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_OBSERVATION_20261013.md)：741图/1661query逐字节一致，原执行157.109秒；已获CPU v2资格并启动首段配对训练。
-
-- [N13 直接先例定点更新（六项）](research_round_20260925_global/N13_POINT_REGION_DIRECT_PRECEDENT_UPDATE_20261013.md)：含2026年SeSAM近邻；同K几何区域是待检验差异，已有采样/点头/带外继承不算独立创新。当前训练配方保持不变。
-
-- [N13 CPU v2实际合格结果与训练准入范围](research_round_20260925_global/N13_CACHE_CPU_V2_ACTUAL_QUALIFIED_RESULT_20261013.md)：全部区域/监督/采样强门通过；原full-L CPU容差在6图失败保留为诊断。种子701首段配对训练运行中。
-
-
-**本轮研发更新：** [完整DEV评价源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_sameK_fixed_DEV_evaluation_source_20261013_01/EVALUATION_SOURCE_ABI.md)已静态审阅，尚未实际评价；[几何与点精修定向查新](research_round_20260925_global/N13_GEOMETRIC_POINT_REFINEMENT_TARGETED_PRIOR_UPDATE_20261013.md)补充五项论文及更接近的Poly-BRBLE技术披露，创新主张需以具体支持分配差异和强对照效用为依据。
-
-- [后续候选：预测实际修补的正负收益](research_round_20260925_global/N13_LEARNED_EDIT_UTILITY_NEXT_HYPOTHESIS_20261013.md)：与同容量错误概率选择器比较；待登记、未执行，不改变当前三种子48轮实验。像素收益不等于IoU/AP提升。
-
-- [N13三个首段端点完整核验及连续48轮进度](research_round_20260925_global/N13_ALL_THREE_E08_ENDPOINTS_AND_CONTINUOUS48_STATUS_20261013.md)：701原报告失败保留；三个固定E48均已核验（各79,728更新/臂），首个固定DEV评价执行失败待修复。完整DEV实际载荷约10.95GiB，尚无新AP。
-
-单图探针元数据原44062实际0（9,975来源、94成功、原8失败及新增1失败、总103身份）；ROOT准入后，原GPU33452已单次启动。比较原容差不变，不生成Q／AP，数值原因尚待实际结束和ROOT读回。
-
-最新执行状态：[N16全FIT缓存已实际完成、待独立CPU核验](research_round_20260925_global/N16_FULLFIT_CACHE_EXECUTION_STATUS_20261014.md)。正常退出0，741图/3035136点/611.937秒；完整独立CPU核验及ROOT最终准入均已实际通过；固定24轮配对scout训练已原实际退出0，独立端点核验与ROOT最终资格已通过，尚无新增AP。
-
-[独立机制与结果解释矩阵](research_round_20260925_global/N16_FIXED_PROTOCOL_MECHANISM_RESULT_INTERPRETATION_20261014.md)：净纠错不等于AP；背景代理监督、dense-flip强对照及完整部署成本的主张边界。训练端点与部署选点的独立CPU核验源码已保存为未绑定草稿，合成通过不等于实际资格。
-
-**N16正式训练准入：** GPU和独立CPU全部741图/3035136点实际通过，combined最大绝对误差1.52587890625e-5、实际修正符号精确；ROOT闭合通过后已启动固定24轮Utility/Error配对训练任务。E24主评价尚未执行。
-
-**固定24轮已完成：** 两臂各17784更新、72843264点暴露，原GPU任务正常退出0；端点独立CPU核验已启动，完整DEV AP尚未执行。训练完成不等于方法涨点或投稿资格。
-
-**固定端点完整资格通过：** E8/E24模型、实际AdamW状态与计数、私有图序、完整训练记录和独立CPU前向/固定损失均通过，原GPU/CPU/ROOT均实际0。当前准备完整DEV187/all100的固定E24主评价；尚无新AP、部署选点或SOTA/TGRS结论。
-
-[固定24轮完整DEV评价协议与状态](research_round_20260925_global/N16_FIXED_E24_FULLDEV_EVALUATION_PROTOCOL_AND_STATUS_20261014.md)
-
-[完整DEV固定分段执行补充](research_round_20260925_global/N16_FIXED_FULLDEV_EXECUTION_PARTITION_SUPPLEMENT_20261014.md)
-
-
-[正式TEST与跨集证据准备度](research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)：定位既有测试暴露与HRSID旧TEST选型历史，区分固定配方外部评价与独立确认性证据；实际包、真mask、ID/场景与许可覆盖仍须执行前闭合。本次仅普通历史/元数据审阅，未新增科学验证。
-
-[补充跨集候选：Instance-RSDD（尚未入场）](research_round_20260925_global/INSTANCE_RSDD_PUBLIC_DATA_CANDIDATE_AND_MASK_SCOPE_20261016.md)：已核对论文的人工逐实例像素标注说明与作者入口，并实际看到 `annotation_coco` 目录及标称1KB的 `readme.txt`；目录名不认证COCO格式，包内编码、实际划分、历史使用、独立性与许可仍待核验。未新增跨集AP，不改变N20。
-
-[历史TEST用途台账补充（2026-10-16）](research_round_20260925_global/HISTORICAL_TEST_USE_LEDGER_TEXT_EVIDENCE_20261016.md)：从已发布实验稿定位HRSID融合设置/BPR种子与PSeg-SSDD对比checkpoint的测试选型披露，补齐具体已知用途；原始运行、权重与时间链未重新核验，不推及当前N20，不恢复盲测身份。
-
-
-[scout条件重复的初始化编号登记](research_round_20260925_global/N16_SCOUT_INITIALIZATION_REPEAT_PROSPECTIVE_LOCK_20261014.md)：在ROOT查看本轮完整AP前，固定后续202610140162/163；只改变配对scout初始化，原停止门不变，没有开始新增训练，结论限固定载体下初始化稳健性。
-
-[后续最少必要实验与验证边界](research_round_20260925_global/N17_MINIMAL_SCIENTIFIC_EVIDENCE_NEXT_ACTIONS_20261015.md)：先完成主AP，有收益按锁复验，无收益先分析已有全量错误；只在新改动、失败或具体疑点出现时重复工程检查。
-
-[统一COCO后的独立后置ROOT入口](research_round_20260925_global/code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_DRAFT_20261015_01.py)：已冻结/接口fixture通过，独立静态审阅READY、真实执行未开始；不重复计算COCO。
-
-
-[保留第21次失败的统一COCO03](research_round_20260925_global/code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_03.py) · [独立后置ROOT02](research_round_20260925_global/code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_DRAFT_20261015_02.py)：均已冻结/接口检查通过，待五段独立CPU实际证据和原终态后执行，不是新AP。
-
-[独立CPU重复计算的静态观察](research_round_20260925_global/N17_CPU_REDUNDANT_COMPUTATION_STATIC_OBSERVATION_20261015.md)：两个只读缓存候选，未测耗时、未实现，不改变当前核验。
-
-
-N20后续未执行源码：[独立CPU端点核验入口](research_round_20260925_global/code/N20_PAIRED_TRAIN_CPU_ENTRY_UNBOUND_DRAFT_20261015_01.py)、[真实邻域全候选评分](research_round_20260925_global/code/N20_ALL100_LOCAL_CENTER_FEATURE_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)、[分段DEV入口前门](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_GPU_FRONT_UNBOUND_DRAFT_20261015_01.py)。CPU入口只通过语法检查；评分body通过语法和一次独立静态核对，尚未数值执行；DEV前门尚需接真实legacy/prior carrier hook，不可直接启动。已有common-C精修仅作固定参考，新选中点仍fresh计算并保留原数值/符号门，不把缓存读取当部署计时。
-
-原正常GPU0路径下的CPU141/23和DEV142前门保留为未执行历史草稿；收尾失败24后当前改用CPU恢复140/24/164，原GPUactual0保持False。后续DEV需消费新恢复资格，不能直接套用旧前门或补写缺失GPU报告。
-
-已另存[消费恢复资格的DEV前门v02](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_GPU_FRONT_UNBOUND_DRAFT_20261015_02.py)：GPU失败只保留为失败记录，四个模型从原快照取，后续首DEV141/24；仍需真实legacy/priorcarrier hooks和CPU恢复实际资格，未绑定、未执行。
-
-**完整主线接线更新：** 已选plain64原结构作更贴近的普通对照；新几何/plain包装已实现仅AST，FIT全部查询M100真实补采源已完成但尚未执行。历史clean32/GN、plain64与full64分别注明，不把它们混成同一基线。[当前研发与输入缺口](research_round_20260925_global/U31_MAIN_CONTROL_AND_NATIVE100_INPUT_PROGRESS_20261017.md)。
-
-- 2026-10-25：新增[U57首次端点AP前效用与复验规则](research_round_20260925_global/U57_PROSPECTIVE_UTILITY_AND_REPEAT_POLICY_20261025.md)；首次训练途中明确，不追溯预锁。对比表补入固定R 68.099 AP和N26质量排序三种子均值69.537 AP，历史参考预算与本轮分列。
-
-- 2026-10-25：[SegS-YOLO官方原文增量核查](research_round_20260925_global/U57_DIRECT_PRIOR_INCREMENT_20261025.md)：确为SAR实例分割与上下文/多尺度/动态蛇形结构先例；LS-SSDD仅定性，不改变当前训练或已有晋级规则。
-
-- 2026-10-25：[最近直接先例差异表已补核SegS-YOLO](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)，保留原访问日期并另标本轮补核日期；当前未形成外部复现或新AP结论。
-
-- 2026-10-25：[教师身份与数据接触核查](research_round_20260925_global/U57_TEACHER_IDENTITY_AND_DATA_EXPOSURE_SCOPE_20261025.md)：当前原生教师为项目Mask2Former/R50 E24，纠正与DiffSAR外部先例混称；[官方COCO初始化完整摘要关联](research_round_20260925_global/results/U57_OFFICIAL_COCO_INITIALIZER_FULL_STREAM_AUDIT_20261025.json)已补齐，DEV排除仍需实际历史清单核查。历史D目录FPN归属记录不等于当前载体身份。
-
-2026-10-25接续更新：原18688→18944的TCP连接失败保持失败、0更新；新的单次30秒连接接续已通过原工具/SSH/worker0、771项字节和严格进程核验，正式前缀18944。下一18944→19200实际运行中。不同预算/预训练与数据划分的外部数字不直接排名，SAM完整模型候选仍未执行。
+- [NORA 续作修订 02 与逐图核验](research_round_20260925_global/paper_boundary_refinement_20261120/design/CONTINUATION_AUDIT_20261126_02.md)：全文主线、五张核心方法图和正负案例图注已修订；正文 13 页，公开补材 26 页。保留实验表体、公式、证据范围和 Umbra 待评分状态。
+
+
+
+- [现行 NORA 论文与图件续作交接](research_round_20260925_global/paper_boundary_refinement_20261120/NORA_CONTINUATION_20261126.md)。汇总三条问题与方法、主稿和补材、实测结论、图源、研究历史及后续验收。
+
+
+
+- [NORA 精简正文与独立补充材料](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。正文至结论 12 页，含参考文献 13 页。保留核心方法、等预算对照及真实案例的证据线，补充材料保留扩展稿的 15 张数据表及完整复现细节。引言与相关工作围绕三个技术问题对应展开，方法和图件统一采用 GT 多边形、轮廓或掩膜等对象名称。
+
+
+
+- [NORA 整体架构与 ROH 网络层图](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。新版图 3 展示完整接口，图 6 展开逐端点打分头。十页方法图册可逐元素编辑。
+
+
+
+- [NORA 引言与相关工作扩写](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。引言展开 SAR 船体边界问题，相关工作比较已有路线和 NORA 接续点，证据移至实验章节。
+
+
+
+- [NORA 九幅新方法图及完整稿](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。同一 SAR 裁片串起场景、原生像元与写回。新增偏移、读出、ROH 和交并比解释图。
+
+
+
+- [GLDet 精读与 NORA 全部插图重绘](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。五张方法图分别展示整体、ROH 和写入控制，定性对照沿用原有实测。公开图和构图、证据索引随稿更新。
+
+
+
+- [NORA 稿件统一 ROH 模块简称](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。摘要定义残差占据率头，正文、图表和投稿摘要统一采用 ROH。原始实验编号可从复现索引定位。
+
+
+
+- [NORA 新版完整稿](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。标题采用方法简称与全称，核心限距对照提前。正文以拟合数和效果区间交代重复，精确实验编号留在复现索引。
+
+
+
+- [TGRS 全文终审稿与题注精简](research_round_20260925_global/paper_boundary_refinement_20261120/design/PROSE_FINAL_REVIEW_20261126.md)。重写完整英文稿，压缩图表说明，保留原公式、数据表、失败结果及前瞻外测状态。
+
+
+
+- [完整研究设计与 CVPR 图件修订](research_round_20260925_global/paper_boundary_refinement_20261120/design/DESIGN_RATIONALE_ZH.md)。完整稿的方法图、定性对照、定量结果与消融图全部修订，公开版含 16 张可编辑矢量图；本机作者审阅版含真实 SAR 叠图。
+
+
+
+- [TGRS 完整稿与图件索引](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md)。25 页 IEEE 双栏，补回独立选点、限距重配、动态吸引力、Phoenix 和 SegRefiner 的实测定性对照，并保留全部量化和消融证据。
+
+
+
+- [DEV705 最小累计平方距离见证实测](research_round_20260925_global/code/DEV705_MIN_CUMULATIVE_WITNESS_20261126/ACTUAL.md)。无标注覆盖 36 个候选、19 个来源前缀。作者参考评分仅改变 1,461 个固定匹配中的一艘，低于预锁覆盖门。相对限距重配的 mask AP 变化 −0.001385 点，两阶段自然退出并通过回执核验，按协议结束该分支。
+
+
+
+- [TGRS 英文主稿与作者交接](research_round_20260925_global/paper_boundary_refinement_20261120/submission_20261126/AUTHOR_HANDOFF_ZH.md)。新版 10 页，已核对 HRSID 官方训练分母、限距和单像元结果及复现条件。英文投稿信已备。交接方在 21 个候选入口未发现精确名称的 Umbra 回件，正式前瞻评分与期刊投稿尚未执行。
+
+
+
+- [研究交接与续研入口（2026-11-26）](research_round_20260925_global/SAR_SEAL_RESEARCH_HANDOFF_20261126.md)。含原研究目标、历史版本、已核验效用与失败、前瞻外测及复现入口。
+
+
+
+- PSeg-SSDD 的 232 图已完成冻结 D-FINE 学习占据率的等预算限距对照。独立选点相对限距重配 +0.021 mask AP、+0.069 连续 IoU［0.030, 0.109］点，未过 +0.30 AP 门槛。使用同图两套作者参考，固定全船体栅格 IoU 的对应差值为 PSeg +0.040 点、SPSD −0.007 点，两参考差为 −0.047［−0.088, −0.007］点。两套参考含各自原生匹配，采集范围相同。 [实际评分与复现](research_round_20260925_global/code/PSEG232_DFINE_COMMON_CAP_20261126/ACTUAL_SCORE.md)
+
+
+
+- D-FINE E24 已完成同一 74 图保留集的冻结等预算强对照。同一 D-FINE 候选、占据率头和逐候选增删数下，独立选点相对限距重配 +0.344 mask AP、+0.133 连续 IoU［0.018, 0.251］点，42 个有效改动覆盖 11 个传感器日期块。D-FINE 与 RF-DETR 两套流程在同一队列均达到相应判据。一像元 Boundary IoU 的进一步收益仍不确定。 [完整实测和复现](research_round_20260925_global/code/DFINE_RSDD74_COMMON_CAP_20261126/ACTUAL.md)
+
+
+
+- Instance-RSDD 74 图同预算、同位移上限的两评分头交叉验证已完成。PointRend 上独立选点相对限距重配 +0.095 mask AP、−0.037 连续 IoU［−0.172, 0.086］点，覆盖达标，未过效用门槛。原占据率头的 +0.479 AP、+0.116 IoU 复现。两评分头的连续 IoU 交互为 +0.153［−0.008, 0.339］点，完整保留集差异仍不确定。 [实测、复现和可编辑图](research_round_20260925_global/code/RSDD74_POINTREND_COMMON_CAP_20261126/SCORE_ACTUAL.md)
+
+
+
+- 在 SAR-SSP 历史验证集上以同一冻结点头和逐候选总编辑数检验短轴方差上限。相对原自由分配，短轴约束 +0.133 mask AP、+0.143 固定匹配 IoU［−0.185, 0.487］点，误分 −1.105、漏分 +0.597 个参考面积百分点。相对等量分配为 −0.006 AP、−0.070 IoU；相对同规模面积和长轴对照的 IoU 区间均跨零。没有通过实用或方向特异性判据。 [实测、阈值与复现](research_round_20260925_global/code/SAR_SSP_TRANSVERSE_QUOTA_20261126/SCORE_ACTUAL.md)
+
+
+
+- 74 图历史保留集已补做一像元 Boundary IoU 强对照。逐候选增删数不变时，限距重配相对距离优先增加 +0.735 点［0.207, 1.243］，独立选点相对限距重配为 −0.034 点［−0.373, 0.278］。改用传感器日期块和两像元宽度结论一致。独立选点相对限距重配此前的 +0.479 mask AP 和 +0.116 连续面积 IoU 对应其他指标。 [实测及可编辑图](research_round_20260925_global/code/RSDD74_BOUNDED_BOUNDARY_20261126/ACTUAL.md)
+
+
+
+- 完成 10 页英文审阅稿统稿。更新原生边界限距匹配、定量口径和定性失败解释，新增可编辑三路同预算方法图。四张量化表的数据保持已核验版本。两批 Umbra 前瞻评价等待独立轮廓回传。[正文 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [证据索引](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+
+
+
+- 在 HRSID FIT109 上完成分侧排序损失的三种子、五折同预算训练，合计 30 次拟合，逐候选增删数保持一致。排序损失相对同配方 BCE 为 +0.074 mask AP、+0.013 固定匹配连续 IoU［−0.007, 0.033］点，相对历史独立选点为 +0.066 AP、+0.025 IoU［−0.013, 0.059］点。两项均未通过 +0.30 AP 与几何区间的联合判据，维持原方法。原检测器见过该源域图像，只有点头按组留出。 [实测与复现](research_round_20260925_global/code/FIT109_SIGNED_RANK_LOSS_20261126/SCORE_ACTUAL.md)
+
+
+
+- SRNet 末级回贴面积积分与原生网格平滑完成同预算对照。面积积分相对原方法 −0.163 AP、+0.008 连续 IoU［−0.016, 0.032］，与平滑对照 AP 相同。候选选点确有改变，未达到改进阈值。复核同时更正了旧 SRNet 表格的小目标 AP 显示。[实测、积分代码及更正记录](research_round_20260925_global/code/SRNET_RSDD74_PIXEL_INTEGRAL_20261126/ACTUAL.md)
+
+
+
+- SRNet 在原 74 图的可写点未触及先验截断。完整分数较仅用先验 +0.192 连续 IoU［0.091, 0.290］、+0.045 AP。去掉直接先验 −0.163 AP，IoU 区间跨零。[截断分箱与同预算消融](research_round_20260925_global/code/SRNET_RSDD74_PRIOR_STRATA_20261126/ACTUAL.md)
+
+
+
+- SRNet 的 74 图逐阈值诊断中，AP70 +1.627 点，AP80 −0.176 点，其余八个阈值持平。相同端点和增删数的真值辅助几何上界较实际独立选点 +0.530 连续 IoU 点［0.259, 0.834］。[完整实测和可编辑图](research_round_20260925_global/code/SRNET_RSDD74_THRESHOLD_ORACLE_20261126/ACTUAL.md)
+
+
+
+- 冻结 SRNet 在原 74 图上完成相同候选、等增删数对照。独立选点较原配对 +0.145 mask AP、+0.159 固定匹配连续 IoU［0.088, 0.236］。32 个匹配覆盖 13 个父景及 12 个日期组。AP 未达 0.30 点门槛，预锁判据为证据不足。[整批实测](research_round_20260925_global/code/SRNET_SSDD_E24_RSDD74_PAIRED_REPLAY_20261126/ACTUAL_REPLAY.md)
+
+
+
+- 本地 SRNet SSDD FIT741 E24 在 8 张固定 RSDD 影像上完成无标注原生旋转回贴核验，8 个 RLE 与作者实现精确一致。[实测与复现](research_round_20260925_global/code/SRNET_SSDD_E24_RSDD74_NATIVE_PARITY_20261126/ACTUAL.md)
+
+
+
+- 固定预算选点新增独立 CPU 入口，支持读者自备的 COCO 候选与端点分数。原 74 图上两臂均逐项复现 7,346 个 RLE，FP32 并列顺序和零预算透传通过验证。[运行入口与验收](research_round_20260925_global/code/RFDETR_MATCHED_POINT_REFINEMENT_20261120/README_FIXED_COUNT.md)
+
+
+
+- 实测补查 Instance-RSDD 原产品身份。42 图的日期分离视图仍含 25 张来自三个共享舍入中心的 TerraSAR-X 父景。ESA 目录与高分三号公开入口的核查暂未给出原产品对应。保留集的地理证据边界已写入正文。[来源核验及目录实测](research_round_20260925_global/code/PUBLIC_HULL_REFERENCE_SCOPE_20261126/ACTUAL.md)
+
+
+
+- 74 图保留集的三种选点规则已完成同输入精修计时。一核六轮，端点、占据分数、原配对和预算预先缓存。原配对、限距重配、独立选点的选择加 RLE 写回中位耗时为 26.1、138.6、27.4 毫秒/图，原掩膜全部逐位复现。[分段耗时、次序和复现](research_round_20260925_global/code/LEARNED_BOUNDED_PAIRING_20261126/rsdd_timing/ACTUAL.md)
+
+
+
+- 等预算限距重配已在 HRSID DEV705 三个冻结点头和 Instance-RSDD 完成。HRSID 限距重配比距离优先 +0.475 AP，独立选择再增 +0.431 AP，两项固定匹配连续 IoU 区间均为正。74 图保留集上，独立选择较限距 +0.479 AP，固定匹配连续 IoU +0.116［0.008, 0.242］。高分三号两项 AP 都低于门槛。[实测、统计口径及复现](research_round_20260925_global/code/LEARNED_BOUNDED_PAIRING_20261126/ACTUAL.md)
+
+
+
+- 可变增删分配在三个种子上均超过各自的等量对照。相同候选、目标函数及逐候选总翻转数下，PSeg-SSDD／SPSD 的平均 mask AP 为 +2.299／+1.751 点，固定匹配 IoU 为 +0.971／+0.573 点。两套标注对应相同的 183 张源域开发影像。[重复评分](research_round_20260925_global/code/SPSD_PSEG_REPEAT_VARIABLE_SIGNED_BUDGET_SEEDS5298_5299_20261126/ACTUAL.md)
+
+- 直接迁移到 SAR-SSP 232 张作者验证图，mask AP −0.139 点，固定匹配 IoU −0.212 点 [−0.547, 0.104]。漏分减少，船外误分增加，未达到预锁的跨库门槛。[冻结迁移评分](research_round_20260925_global/code/SAR_SSP_DFINE_BCE5297_VARIABLE_SIGN_TRANSFER_20261126/ACTUAL.md)
+
+- 同一冻结点头在 SAR-SSP 上将已选动作的交集增量高估 +0.896／+0.628 个真值面积归一点。源域同口径点估计 +0.089／+0.231，内外侧误差差值区间均跨零。[目标域](research_round_20260925_global/code/SAR_SSP_SIGNED_POSTERIOR_ATTRIBUTION_20261126/ACTUAL.md) · [源域](research_round_20260925_global/code/SPSD_PSEG_SIGNED_POSTERIOR_ATTRIBUTION_20261126/ACTUAL.md)
+
+- 在 SAR-SSP 原生匹配上，393 个额外船外误分中 392 个连着保留的主分量，四邻域和八邻域一致。净误分分为原生背景转前景 +0.667 和原生前景保留 +0.711 个真值面积归一点。[误分分解](research_round_20260925_global/code/SAR_SSP_FALSE_FOREGROUND_ATTACHMENT_20261126/ACTUAL.md)
+
+- 实做 RankIoU-RMA 比值与独立端点模型的精确期望对照。源域自由配额 136／8,785 个候选改变写回，两参考 Mask AP 与固定匹配 IoU 完全一致。精确期望下，自由配额相对等量仍为 +2.461／+1.782 AP 和 +0.993／+0.580 IoU 点。历史 SAR-SSP 的实际结果也逐值一致。[SAR-SSP 复算](research_round_20260925_global/code/SAR_SSP_EXPECTED_IOU_SIGNED_BUDGET_20261126/ACTUAL.md) · [直接先例对照](research_round_20260925_global/code/SPSD_PSEG_EXPECTED_IOU_SIGNED_BUDGET_20261126/ACTUAL.md)
+
+- 复核了外部公开船体标注入口和 74 图保留集的原始冻结时间线。严格叠加两项已知日期和近似中心筛查仅剩 17 图和 5 父景，低于原覆盖门槛。[独立性及数据资格](research_round_20260925_global/code/PUBLIC_HULL_REFERENCE_SCOPE_20261126/ACTUAL.md)
+
+- 冻结 Instance-RSDD 原生边界复评。高分三号 5202 和 74 图父景保留集的一像元 Boundary IoU 分别 +0.466 和 +0.701 点，配对区间均为正。高分三号 5203 一像元区间跨零。三个等量配对对照的两像元敏感性均为正。[边界指标、阈值和证据](research_round_20260925_global/code/INSTANCE_RSDD_NATIVE_BOUNDARY_IOU_20261126/ACTUAL.md)
+
+- 空间相邻端点的联合模型通过 FIT 判据，两参考留折 Brier 较独立模型降低 0.0578／0.0891。冻结同量写回只改变 206 个共同正预算匹配中的 1 艘，两参考 Mask AP 持平，固定 IoU 为 0.000／+0.002 点。[真实配对和冻结评分](research_round_20260925_global/code/SPSD_PSEG_SPATIAL_PAIR_EXPECTED_IOU_20261126/ACTUAL.md)
+
+- 固定每种增删配额的端点动作后，仅用源训练组折外预测拟合四系数校准。相对原可变配额，两参考的 Mask AP −0.324／−0.071，固定 IoU −0.164／−0.032 点。相对等量仍正，同容量打乱对照的两个区间跨零。按预设未推进。[实测](research_round_20260925_global/code/SPSD_PSEG_FIXED_WINNER_QUOTA_CALIBRATION_20261126/ACTUAL.md)
+
+- 在 SAR-SSP 历史队列上复算原写回。保留每种配额的预测端点排序，真值辅助重选增删量可恢复 +0.958 个固定匹配 IoU 点。同配额内重选端点为 +0.180 点。共同替换真实面积和静态交集收益为 +0.005 点，区间跨零。[配额诊断](research_round_20260925_global/code/SAR_SSP_FROZEN_POLICY_REGRET_20261126/ACTUAL.md)
+
+- 补充 Umbra 队列的 24 个独立采集全部通过原生窗口提取和 96 个原始瓦片独立校验，两份盲判包已核验。原 12 景与补充队列分别封存、评分和报告。实际判读回传和精度评价待完成。[预锁名单](research_round_20260925_global/code/UMBRA_SUPPLEMENT_METADATA_20261126/LOCK.md) · [原生窗口实测](research_round_20260925_global/code/UMBRA_SUPPLEMENT_NATIVE_20261126/ACTUAL.md) · [盲判包](research_round_20260925_global/UMBRA_SUPPLEMENT_REVIEW_PACKETS_ACTUAL_20261126.md)
+
+- 补充 24 景的冻结模型推理、掩膜写回和独立重放均完成。两位判读者的原始掩膜回件齐全后，按预锁规则独立评分。[冻结掩膜记录](research_round_20260925_global/UMBRA_SUPPLEMENT_FROZEN_CARRIER_ACTUAL_20261126.md) · [双参考评分](research_round_20260925_global/code/UMBRA_SUPPLEMENT_DUAL_REVIEW_SCORE_20261126/README.md)
+
+- Umbra 盲态覆盖核验已实际完成。技术汇总按预锁保留在协调端，待封存两份原始判读后接续原评分。[核验程序](research_round_20260925_global/code/UMBRA12_COORDINATOR_EDIT_COVERAGE_20261126/README.md)
+
+- 上一版投稿正文候选压缩为 10 页 IEEE 双栏，含 6 图、4 表与 29 条参考。保留固定增删数的单像元证据边界、三种子配额对照、定性得失实例和强对照。[正文 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement_main.tex) · [24 页完整证据稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
+
+- 更新 24 页 IEEE 双栏英文审阅稿，含 15 图和 14 表。标题、摘要与结论区分固定增删数的独立端点排序和固定总翻转数的可变分配。新增可编辑配比示意图、目标函数的定量对照与 RankSEG-DEP 适用边界。作者和投稿信息按约定留为占位。[PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.tex) · [读图与复现](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+
+
+
+## 研究记录（2026-11-25）
+
+
+
+- 可变增删分配首次通过预锁的两套参考及特异性门槛。每候选保持相同 2k 总翻转，使用相同目标函数时，PSeg／SPSD Mask AP +2.461／+1.782，固定 IoU +0.993／+0.580。本记录为首次种子，跨库和新增种子结果见 11 月 26 日。[闭合评分](research_round_20260925_global/code/SPSD_PSEG_SCORE_VARIABLE_SIGNED_BUDGET_SEED5297_20261125/ACTUAL.md)
+
+
+
+
+
+- 选择性采用固定 2,844 个候选和逐图逐 k 构成。学习排序较同量原边际规则在 PSeg／SPSD 的固定 IoU 为 +0.084／+0.154 点，区间均为正。较全量 BCE 联合为 −0.090／−0.243 点，未通过总门槛。同菜单全船体真值辅助联合上界 **+0.0586 点**，低于 +0.15。[真实评分](research_round_20260925_global/code/SPSD_PSEG_GATE_SELECTIVE_BCE_ADOPTION_SEED5297_20261125/ACTUAL.md) · [完整上界](research_round_20260925_global/code/SPSD_PSEG_GATE_SELECTIVE_BCE_ALL_HULL_ENVELOPE_20261125/ACTUAL.md)
+
+
+
+
+
+- 冻结 D-FINE 在原 915 图的空间特征全部获取并读回，91,500 个候选概率平面逐字节复现。对齐空间特征相对原回归为 +0.020／+0.125 mask AP 和 −0.053／−0.041 固定 IoU，分侧内错位对照未被稳定超越。[全流程捕获](research_round_20260925_global/code/SPSD_PSEG_TRAIN915_DFINE_SPATIAL_CUES_20261125/ACTUAL.md) · [同容量拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_SPATIAL_CARRIER_CUES_SEED5297_20261125/ACTUAL.md) · [真实评分](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_SPATIAL_CARRIER_CUES_SEED5297_20261125/ACTUAL.md)
+
+
+
+
+
+- D-FINE 中间特征前的点网格诊断已完成。8,785 个有编辑预算的开发候选中，8,773 个的内外端点共享插值单元，原连续坐标无两侧重合。该结果明确同单元内插值权重仍可不同。[几何计数与原作者先例](research_round_20260925_global/SPSD_PSEG_NATIVE_POINT_STRIDE_GEOMETRY_20261125_ACTUAL.md)
+
+
+
+
+
+- 三组端点灰度输入完成同预算评分。联合作为参照相对原回归的 Mask AP +0.051／+0.126（PSeg／SPSD），固定 IoU +0.018／+0.002 点，区间均跨零。相对同量静态仍有 +0.220／+0.754 AP，对分侧参照的特异性未通过。[实测与复现](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_RADIOMETRIC_CONTRAST_SEED5297_20261125/ACTUAL.md)
+
+
+
+
+
+- 三组等容量灰度特征拟合完成。独立的 FIT 组外线性探针覆盖 5,042 个动作，共用灰度中秩较等容量原灰度的平均收益误差差 +0.0374 个编辑预算百分点，配对区间跨零。[组外检验](research_round_20260925_global/SPSD_PSEG_FIT_CROSSFIT_GRAY_RADIOMETRIC_PROBE_20261125_ACTUAL.md) · [非线性头拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_RADIOMETRIC_FEATURES_SEED5297_20261125/ACTUAL.md)
+
+
+
+
+
+- 三组同预算校准已完成固定写回评分。平均收益相对逐参考回归，PSeg／SPSD AP +0.065／−0.012，固定 IoU −0.0002／−0.031 点，主效用及分量特异性未通过。相对同量静态仍有 +0.233／+0.616 AP。[真实评分和分量归因](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
+
+
+
+
+
+- 审阅稿明确列出 14 维端点特征及灰度邻域公式，收紧迁移和原生候选覆盖的讨论，并按 IEEE 要求说明写作、作图和分析代码中的工具使用范围。新版保留 13 图、12 表。[英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
+
+- 三组双参考收益校准完成等预算拟合，各 1,346 参数和 1,000 次更新。原回归权重精确复现，平均收益和参考差异分别作为辅助监督。[三组训练与复现](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_GAIN_CALIBRATION_SEED5297_20261125/ACTUAL.md)
+
+
+
+
+
+- 两参考最小收益的成对排序完成同动作、同预算真实对照。相对回归联合，PSeg／SPSD IoU −0.003／+0.042 点，区间均跨零；排序正确率点估计 +1.980 个百分点，仍未达到写回推进门槛。[完整实测](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_ROBUST_RANKING_SEED5297_20261125/ACTUAL.md)
+
+
+
+
+
+- 同一有限菜单的真值分量替换显示，双参考平均收益估计和参考差异惩罚分别贡献 +0.227／+0.139 个保守 IoU 点，均为回顾性归因。固定同一训练动作后的回归与成对排序已完成同预算拟合，留出评分单独进行。[误差分解](research_round_20260925_global/SPSD_PSEG_GATE5297_MIDPOINT_DISAGREEMENT_ATTRIBUTION_20261125_ACTUAL.md) · [排序配对拟合](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_ROBUST_RANKING_SEED5297_20261125/ACTUAL.md)
+
+
+
+
+
+- 部署动作拟合已在历史 183 图开发组完成固定对照。与当前同运行环境旧动作相比，PSeg／SPSD mask AP +0.015／−0.131，固定 IoU −0.010／−0.072 点，未达到预锁门槛。相对同量静态吸引力仍为 +0.168／+0.628 AP。用同一动作比对时误差下降，选中动作真实至少一侧下降仍各为 70/206。[留出实测](research_round_20260925_global/code/SPSD_PSEG_GATE_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ACTUAL.md) · [FIT 动作覆盖](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ALIGNMENT_ACTUAL.md)
+
+
+
+
+
+- 双参考训练已完成部署动作与旧动作的匹配对照。两臂均为 1,346 参数、1,000 次更新，保持相同端点和动作抽样次数。五折交叉拟合生成部署方案，单独计入成本。保留首次历史权重精确复现失败及当前环境重复核验，留出评价单独核验。[训练实测](research_round_20260925_global/code/SPSD_PSEG_FIT_MATCHED_DEPLOYMENT_ACTION_BANK_SEED5297_20261125/ACTUAL.md)
+
+
+
+
+
+- OpenSARShip 官方上游 87 个 Sentinel-1A 产品对应 57 个采集组。两个分包无同名产品，但共享 18 个采集组。两项后续研究的作者船体轮廓和原切片对应仍待取得。[采集溯源与标注状态](research_round_20260925_global/OPENSARSHIP_ACQUISITION_GROUPS_20261125.md)
+
+
+
+
+
+- SAR-SSP 作者压缩包已验收。232 张官方验证图的 139 个实例轮廓全部通过 PNG／JSON 核验，31 个母图均也出现在作者训练划分，坐标与船框确认来自 AIR-SARShip-1.0 的高分三号影像，已排除历史 B1 作为全量无接触外测载体。现行冻结模型 232 图冻结推理、等量编辑和作者标注评分均已完成。等量独立选点 AP −0.005 点，未达到预锁门槛。原规则只允许 1/47 个未匹配船体在真值辅助下跨 IoU 0.50。[现象图与上界](research_round_20260925_global/SAR_SSP_COVERAGE_AND_EDIT_CEILING_ACTUAL_20261125.md) · [实测报告](research_round_20260925_global/SAR_SSP_FROZEN_TRANSFER_ACTUAL_20261125.md) · [验收](research_round_20260925_global/SAR_SSP_AUTHOR_INTAKE_ACTUAL_20261125.md) · [溯源](research_round_20260925_global/SAR_SSP_PROVENANCE_NOTE_20261125.md)
+
+- SAR-SSP 增加 D-FINE 同队列复验。等量独立选点相对距离配对为 +0.076 AP、+0.022 母景等权离散 IoU 点，区间跨零。[第二载体结果](research_round_20260925_global/SAR_SSP_DFINE_E24_SAME_COHORT_20261125_ACTUAL.md)
+
+- SPSD 与 PSeg-SSDD 作者影像完全一致，切换轮廓后，冻结自然量独立选点相对原生的 AP 从 +0.344 变为 −0.491 点。同量解除配对从 +0.081 变为 −0.007 点。[同图八臂对照及复现](research_round_20260925_global/SPSD_PSEG232_ANNOTATION_SENSITIVITY_20261125_ACTUAL.md)
+
+- 同图同候选误差分解通过预锁门槛。自然量精修换参考后的 −0.359 IoU 效应差中，−0.286 点来自改动像素的参考分歧。已逐图复现原总效应。[机制与复现](research_round_20260925_global/SPSD_PSEG232_SHARED_HULL_DECOMPOSITION_20261125_ACTUAL.md)
+
+- 双参考同量几何上界通过。每候选固定签名预算时，相对静态吸引力的保守 IoU 改善为 +0.313 点，127 艘、86 个影像组。两参考联合选择器已通过合成测试，真实训练待受理。[双参考上界](research_round_20260925_global/SPSD_PSEG232_MAXIMIN_STATIC_QUOTA_ORACLE_20261125_ACTUAL.md) · [下一轮设计](research_round_20260925_global/DUAL_REFERENCE_FIXED_K_SELECTOR_20261125_DESIGN.md)
+
+- 双参考源训练名单验收完成，排除 12 张跨测试重复与 1 张不完整标注图，保留 915 图／901 个精确 RGB 组。固定训练 732 图，源域留出 183 图，无编码或解码重叠。[数据验收与协议](research_round_20260925_global/SPSD_PSEG_DUAL_REFERENCE_TRAIN_ADMISSION_20261125_ACTUAL.md)
+
+- 双参考 915 张训练图的 D-FINE 冻结前向和独立读回完成，保留 91,500 个候选。拟合与源域内部验证标签分开导出并独立验收。容量匹配的四臂训练核心已用合成输入核对 1,000 次更新。[捕获](research_round_20260925_global/SPSD_PSEG_TRAIN915_DFINE_E24_CAPTURE_20261125_ACTUAL.md) · [标签](research_round_20260925_global/SPSD_PSEG_DUAL_REFERENCE_LABEL_EXPORT_20261125_ACTUAL.md)
+
+- 双参考种子 5297 已完成四臂真实拟合。各臂 1,346 参数、1,000 次 AdamW 更新，共享初始化、点对与批次。[端点准备](research_round_20260925_global/SPSD_PSEG_TRAIN915_DFINE_POINT_PREP_20261125_ACTUAL.md) · [真实等量拟合](research_round_20260925_global/SPSD_PSEG_TRAIN732_MATCHED_OCCUPANCY_SEED5297_20261125_ACTUAL.md)
+
+- 双参考 5297 的 183 图源域留出已实测。相对同量静态吸引力，两参考 AP +0.173／+0.415、IoU +0.167／+0.300 点。SPSD 上的同头均值与逐像元保守排序几何更高，完整晋级未通过。[九臂结果与复现](research_round_20260925_global/SPSD_PSEG_TRAIN183_DFINE_DUAL_REFERENCE_SOURCE_GATE_SEED5297_20261125_ACTUAL.md)
+
+- 5297 归因实测主要差距来自占用分数。在相同菜单中以作者占用排序恢复 +0.366 保守 IoU 点，真值下扩大端点空间另 +0.178。当前预测目标的全端点额外改善上界仅 0.001858 预测像元。[真值诊断](research_round_20260925_global/SPSD_PSEG_TRAIN183_SEED5297_DUAL_MAXIMIN_DIAG_20261125_ACTUAL.md) · [预测界限](research_round_20260925_global/SPSD_PSEG_GATE5297_PREDICTED_MAXIMIN_BOUND_20261125_ACTUAL.md)
+
+- 静态参照有符号收益损失完成两臂同容量、各 1,000 步及固定留出评分。对纯 BCE 的 AP +0.046／+0.108 点，IoU +0.017／+0.051 点，低于预锁推进幅度，且预测误差未稳定下降。[拟合](research_round_20260925_global/SPSD_PSEG_FIT_MATCHED_SIGNED_ACTION_SEED5297_20261125_ACTUAL.md) · [九臂评分](research_round_20260925_global/SPSD_PSEG_GATE_MATCHED_SIGNED_ACTION_SEED5297_20261125_ACTUAL.md)
+
+- 动作监督覆盖已核对。动作训练组在实际变更的候选上，平均 63.99% 有符号像元变化能量位于训练动作所张成的空间之外。下一轮检验与推理候选一致、等动作数量的训练监督。[无标注诊断](research_round_20260925_global/SPSD_PSEG_GATE_MATCHED_ACTION_BANK_SPAN_20261125_ACTUAL.md)
+
+- SAR-SSP 锁定 RF-DETR 原生配对后，D-FINE 几何上可多匹配 10 艘，涉及 3 个母景，未达到预锁场景范围。[互补上界](research_round_20260925_global/SAR_SSP_CROSS_CARRIER_NATIVE_COMPLEMENT_20261125_ACTUAL.md)
+
+- HRSID FIT109 扩边上限实测完成。原候选和预算不变时，完整框内 1–4 层相对抽样端点仅增 0.098 离散 IoU 点，第 3–4 层无额外收益，未达到扩边训练门槛。[实测与源码](research_round_20260925_global/HRSID_FIT109_NESTED_SUPPORT_ORACLE_ACTUAL_20261125.md)
+
+- HRSID FIT109 第二查询端点排序已实测。逐候选增删量一致，拟合真实线索的 AP 与原独立排序相同，未达推进门槛。原独立选点相对距离配对仍高 1.204 AP 点。[实测与源码](research_round_20260925_global/HRSID_FIT109_SIBLING_ENDPOINT_RANK_ACTUAL_20261125.md)
+
+- FIT109 跨检测器等量对照完成。确定性 D-FINE 投票较原独立选点高 0.567 AP 点，学习型融合低于投票，未过主门槛。[带完整对照的实测](research_round_20260925_global/HRSID_FIT109_CROSS_DETECTOR_ENDPOINT_ACTUAL_20261125.md) · [DEV705 候选资格，无标注](research_round_20260925_global/HRSID_DEV705_CROSS_CARRIER_DONOR_CENSUS_ACTUAL_20261125.md)
+
+- DEV705 同量供体投票冻结复验已完成。较原独立选点的 AP +0.017、连续 IoU +0.056 点，AP75 +0.494 与 AR100 −0.275 同时出现，未通过预设效用门槛。[复验与全部对照](research_round_20260925_global/HRSID_DEV705_FROZEN_DONOR_VOTE_ACTUAL_20261125.md)
+
+- COCO P2 同量补点实测完成。相对原独立排序 AP +0.013 点，离散 IoU 区间跨零，空间置换和灰度对照均未被有效超过。[完整对照和源码](research_round_20260925_global/HRSID_FIT109_COCO_P2_ENDPOINT_ACTUAL_20261125.md)
+
+- 候选上游诊断完成。SAR-SSP 全 164 条查询只额外覆盖 2 艘未匹配船体。HRSID FIT109 仍有 30 艘已有框且原掩膜失败，框内训练样本已导出。[外部框诊断](research_round_20260925_global/SAR_SSP_RAW164_BOX_COVERAGE_ACTUAL_20261125.md) · [源域上界和语料](research_round_20260925_global/HRSID_FIT109_BOX_REGROWTH_AND_ROI_ACTUAL_20261125.md)
+
+- 自主 CleanUNet++ 的框内成对试验完成。每臂 800 次实际更新。均匀与弱例加权各恢复 6 艘原漏配船体，但全量 AP 均低于原生；加权比均匀低 0.322 AP 点。无模型的 48×48 还原对照减少 0.456 AP 点。[训练与核验](research_round_20260925_global/HRSID_FIT109_WEAK_ROI_PAIRED_ACTUAL_20261125.md)
+
+- 原生前景不变的同量补点已实测。CleanUNet++ 排序比原生 logits 同量对照高 0.394 mask AP 点，固定几何区间跨零，原漏配恢复有限。[预算和全部对照](research_round_20260925_global/HRSID_FIT109_NATIVE_PRESERVING_ROI_ACTUAL_20261125.md)
+
+- 同预算补点筛选已实测。原检测置信度保留 52.64% 的全量补点像素，mask AP 只低 0.007 点，并超过联合置信度筛选。联合筛选未达到推进门槛。[预锁对照与几何上限](research_round_20260925_global/HRSID_FIT109_ROI_EQUAL_BUDGET_ACTIVATION_20261125_ACTUAL.md)
+
+
+
+- 固定加点的删点限量恢复原版 +0.907／+0.878 AP（RSDD／PSeg），仍低于冻结独立选点。浅层同量的连续几何改善未转化为达到门槛的 AP 增益。[实测回执和复现](research_round_20260925_global/SEGREFINER_DELETION_CAP_ACTUAL_20261125.md)
+
+
+
+- 同量删点几何上限已用 Instance-RSDD／PSeg 的同一原版候选算清。理想删点位置留有 **5.594／3.512 连续 IoU 点**余量，允许减少原删点数又增加 **4.256／4.189 点**。[闭合实测、公式和复现](research_round_20260925_global/SEGREFINER_DELETION_BUDGET_CEILING_ACTUAL_20261125.md)
+
+
+
+
+
+- PSeg-SSDD 的原版、增删分解和等量位置评分已完成。67 艘、57 组的固定匹配中，两个删点对照使连续 IoU 下降 4.033 和 3.977 点，与 Instance-RSDD 的结果一致。浅层删点的实用增益未复现。[原版与本地对照](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md) · [增删分解](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md) · [位置对照](research_round_20260925_global/SEGREFINER_DEPTH_ACTUAL_20261123.md)
+
+
+
+- Instance-RSDD 原版删点的拓扑诊断已完成。两个对照各有 26 艘 IoU 下降，其中 24 艘保持连通分量和孔洞计数。审阅稿新增对照与 QuBER 先例，并明确等量独立选择的数学保证范围。[实测和复算](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md#受门槛船体的拓扑诊断) · [新版审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
+
+
+
+- DGX Spark 已用作者权重通过 SegRefiner-LR 原版合成满批测试。32 个合格候选用时 10.70 秒，PyTorch 峰值保留 17.36 GiB。本机随后完成官方 232 张的原版推理。[合成与真实队列的核验范围](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md#dgx-spark-原版路径资源核验合成输入)
+
+
+
+- 独立数据补查已核清 HRSID 和 Umbra 的公开参考范围。HRSID 5,604 张轮廓图均有历史使用。Umbra 的 12 个预锁窗口有 9 个存在非空原生候选，实际采集组覆盖待两份独立轮廓评分。[数据核验](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md#两条已核清的补充路径)
+
+
+
+- SegRefiner-LR 的同量删点位置对照已完成 Instance-RSDD。浅层规则较邻近迁移 +1.291 AP、+0.838 连续 IoU；较作者原版 +0.543 AP，几何区间跨零。[全部分组、区间与复现](research_round_20260925_global/SEGREFINER_DEPTH_ACTUAL_20261123.md)
+
+
+
+- SegRefiner-LR 的冻结增删分解已在 Instance-RSDD 完成。39 个受门槛覆盖的原始匹配中，删除在两个上下文中使连续 IoU 下降 4.09 点，11 个传感器日期组提供支持。[实际分解与复现](research_round_20260925_global/SEGREFINER_SIGN_ACTUAL_20261123.md)
+
+
+
+- SegRefiner-LR 原版面积门槛实测。Instance-RSDD／PSeg 主队列分别有 **39／67 个固定几何匹配**达到原版 512 像素门槛，覆盖 11／57 组。全候选覆盖为 3,074／5,067 个，Instance-RSDD 的原版精修全量评分为 **56.574 AP**，原生及本地独立选点分别为 58.277 和 58.827 AP。PSeg 的实测评分已闭合，结果见本节首条。[原版实测](research_round_20260925_global/SEGREFINER_STOCK_ACTUAL_20261123.md)[门槛覆盖、范围和复现](research_round_20260925_global/SEGREFINER_STOCK_EXPOSURE_ACTUAL_20261123.md)
+
+
+
+- 在同端点、同分、同量下加入受限重新配对。Instance-RSDD／PSeg 完整队列相对固定配对 **+0.250／+0.534 AP**，完全独立再 **+0.236／+0.197 AP**，同时保留两步正向连续几何差值。[实测与矢量图](research_round_20260925_global/PHOENIX_BOUNDED_MATCH_ACTUAL_20261123.md) · [强精修与新增数据核验](research_round_20260925_global/STRONG_REFINER_AND_PROSPECTIVE_DATA_UPDATE_20261123.md)
+
+
+
+- 固定 Phoenix 后验的同量独立选点在两个历史队列复验通过。Instance-RSDD 74 图 **+0.486 AP、+0.327 连续 IoU［0.169, 0.479］**；PSeg-SSDD 232 图 **+0.731 AP、+0.595 IoU［0.415, 0.787］**。同量静态吸引力在 PSeg 的 AP 仍高 0.195 点。[四视图实测与复现](research_round_20260925_global/PHOENIX_PAIR_OPERATOR_ACTUAL_20261123.md)
+
+
+
+- PSeg-SSDD 历史官方 232 图复验了两种编辑约束。整图定额较阈值 **+2.525 AP、+4.001 连续 IoU [2.644, 5.382]**。在同一窄端点、相同总翻转量下，等量增删较自由分配 **+1.842 AP、+1.151 IoU [0.701, 1.594]**。等量 Phoenix 与同量静态吸引力相差 −0.195 AP，固定几何区间跨零。[整图定额](research_round_20260925_global/PSEG232_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md) · [同增删量](research_round_20260925_global/PSEG232_PHOENIX_BALANCED_RANK_ACTUAL_20261123.md)
+
+
+
+- HRSID 源域五视图的保守排序完成。相对同样 1,209 次交换的普通平均为 **−0.333 连续 IoU 点 [−0.489, −0.149]**，147 个有差异船体、32 个来源组。按预设规则停止此排序扩展。[实测和复现](research_round_20260925_global/HRSID36_SHIFT_ROBUST_ORDER_ACTUAL_20261123.md)
+
+
+
+- Phoenix 可写范围 × 翻转预算四组实测完成。同一整图支持与可编辑候选下，回到定额较作者阈值 **+9.393 AP、+9.462 连续 IoU [6.329, 13.283]**，整图和窄端点同量之差则未通过全队列的几何判据。[实测和复现](research_round_20260925_global/RSDD74_PHOENIX_SUPPORT_BUDGET_ACTUAL_20261123.md)
+
+
+
+- Phoenix 同端点、同翻转量的面积消融闭合。严格等面积比自由增删 **+0.190 mask AP、+0.083 连续 IoU [−0.191, 0.401]**，差异覆盖达标，效用未通过。保留与整掩膜过扩张不同的解释范围。[实测和复现](research_round_20260925_global/RSDD74_PHOENIX_AREA_ABLATION_ACTUAL_20261123.md)
+
+
+
+- Instance-RSDD 74 图的冻结 Phoenix 整掩膜对照完成。LVIS 面积规则比同量 Phoenix **−17.779 mask AP、−9.825 连续 IoU 点 [−14.014, −6.440]**，原候选外溢面积明显增加。同量 Phoenix 的 **58.976 AP** 结果保留。[实测、局限及复现](research_round_20260925_global/RSDD74_PHOENIX_WHOLEMASK_ACTUAL_20261123.md)
+
+
+
+- 英文论文按 **52 篇原稿研读**重排为 **20 页 IEEE 双栏审阅稿**，包含 13 图、12 表。摘要与结论以等预算主对照为主线，方法补充估计误差界和动态空间吸引力的计算，数据总表列出 SAR-SSP 并说明栅格参考与母景关系。引言从细长船体的边界偏移和 HRSID 几何证据展开，相关工作分三条技术脉络，图 6 对照两套作者标注下的 IoU 效果与同一候选的标签分歧。[审阅 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [逐篇评阅和改版对照](research_round_20260925_global/style_review/STYLE_REDESIGN_20261123.md) · [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md) · [证据与投稿判断](research_round_20260925_global/TGRS_MANUSCRIPT_EVIDENCE_20261123.md)
+
+
+
+- Instance-RSDD 严格阈值重评分完成。5203 高分三号 583 图同动态预算的学习减动态 AP90 由栅格 **−0.149** 变为连续 **+0.004**，表示改变量 **+0.153 [−0.195, 0.579]**。原 COCO 栅格指标保留。[实测与复现](research_round_20260925_global/RSDD_STRICT_CONTINUOUS_ACTUAL_20261123.md)
+
+
+
+- Instance-RSDD 第二个 RF-DETR 载体 5203 已闭合。高分三号 583 图同头同量独立选点较固定配对 **+0.299 mask AP、+0.196 连续 IoU [0.136, 0.253]**。完整 740 图及已有新增父景 74／42 图通过预设判据。[各头结果和复现](research_round_20260925_global/INSTANCE_RSDD_CARRIER5203_ACTUAL_20261123.md)
+
+
+
+- HRSID FIT109 同量灰度邻域对照完成。真实灰度位置较距离圈均值 **+1.519 mask AP、+0.165 归一化真值交集点**，也通过与静态吸引力的机制对照。AP 分别低于端点灰度秩 **0.370 点**、学习占据率 **3.039 点**，未通过实用推进判据。[实测和复现](research_round_20260925_global/FIT109_IMAGE_SHELL_ACTUAL_20261123.md)
+
+
+
+- Instance-RSDD 74 图同量横移对照完成。输入横移一像素时，Phoenix 质心响应 **0.117 像素**、三种子占据率均值 **0.070**，配对差 **+0.047 [0.028, 0.064] 像素**。42 图日期分离视图保留方向，结论限于此前已测队列。[实测与复现](research_round_20260925_global/RSDD74_IMAGE_ALIGNMENT_ACTUAL_20261123.md)
+
+
+
+- Gulf 固定锚点尺度与航向诊断完成。25 艘同样本换用源 XML 地理尺度后原生偏差 **+107.05 米**。23 艘有航向的同一子集，沿 AIS 航向 MAE 减少 **7.60 米**，仍平均高估 **71.27 米**。[实测与复现](research_round_20260925_global/GULF_AIS_GEOSCALE_ACTUAL_20261123.md)
+
+
+
+- SAR Ship Gulf 独立采集船长外测完成。64 轨道日期组预选 244 图、242 图完成冻结预测，25 艘共同可测，23 艘有正预算。同量独立选点比固定配对减少 **0.168 米 MAE** [−1.523, 1.692]，覆盖达标，物理收益未通过。原生平均表观长度高估 **105.42 米**。[实测与复现](research_round_20260925_global/GULF_AIS_FROZEN_ACTUAL_20261123.md)
+
+
+
+- Phoenix 的同量分侧对照已闭合。只换为占据率新增位置，74 图平均 **−0.012 mask AP 点**；只换删除位置为 **−0.225 AP 点**。真实交集两个调整区间均跨零，未选用混合策略。[实测与复现](research_round_20260925_global/RSDD74_PHOENIX_SIGNED_SIDES_ACTUAL_20261123.md)
+
+
+
+- Instance-RSDD 74 图的冻结 Phoenix 同端点同量对照已闭合。Phoenix **58.976 mask AP**，较三个占据率头均值 **+0.308 AP、+0.135 连续 IoU 点**。几何区间跨零，两个方向均未通过联合判据，适用范围限于冻结端点排序。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_PHOENIX_EQUAL_COUNT_ACTUAL_20261123.md)
+
+
+
+- Instance-RSDD 74 图的三种子经典同量对照通过。相对动态规则 **+0.468 mask AP、+0.431 连续 IoU 点**，相对静态 **+0.203 AP、+0.301 IoU**。静态 AP75 高 0.173 点。42 图日期分离视图保持主指标正向。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_CLASSICAL_FAIR_MATCH_ACTUAL_20261123.md)
+
+
+
+- UEIKAP 342 图的整框覆盖对照已闭合。528 艘发布船体在掩膜 IoU 0.50 上，原生、粗渲染和冻结 PointRend 分别匹配 **121、111、30 艘**。固定框后 PointRend 较原生低 4.138 连续 IoU 点，未通过推进条件。[实测与复现](research_round_20260925_global/UEIKAP_POINTREND_COVERAGE_ACTUAL_20261123.md)
+
+
+
+- FIT109 争议位置校正完成。DEV705 同接受量下 **+0.01795 连续 IoU、+0.01575 mask AP 点**，通过源域判据。PSeg-SSDD 去重 222 图同对照区间跨零，AP 较纯静态低 0.11484 点，外域未通过。[实测与复现](research_round_20260925_global/ATTRACTION_LOCAL_CORRECTION_ACTUAL_20261123.md)
+
+
+
+- 学习排序与静态吸引力的同量分侧对照已复算三套数据。HRSID 增、删侧提高真实交集 **+0.308、+0.446 点**；PSeg-SSDD 和 UEIKAP 两侧点估计下降，侧间直接区间跨零。[实测和复现](research_round_20260925_global/ATTRACTION_SIGNED_SIDES_ACTUAL_20261123.md)
+
+
+
+- UEIKAP 342 张作者图的冻结外测完成。528 艘中原生匹配 **121 艘**，120 艘、10 组有正编辑量。同量独立选点 **+0.02954 连续 IoU 点**，原判据通过。[实测及复现](research_round_20260925_global/UEIKAP_ADDITIONAL_FAMILIES_ACTUAL_20261123.md)
+
+
+
+- Instance-RSDD 同预算双侧对照已闭合。两侧独立选点相比仅改添加位置／仅改删除位置，历史高分三号 583 图分别 **+0.224／+0.199 mask AP 点**，新增父景 74 图分别 **+0.169／+0.288 点**，四个连续 IoU 区间均为正。[实测和复现](research_round_20260925_global/INDEPENDENT_SIDE_FACTORIAL_ACTUAL_20261123.md)
+
+
+
+- 保留 PointRend 每候选的实际增删配额和区域外像素后，改用占据率选择位置。新增父景 74 图和历史高分三号 583 图的三种子平均分别提高 **0.662、0.144 mask AP 点**，连续 IoU 区间均为正。日期分离 42 图的连续 IoU 区间跨零。[实测和复现](research_round_20260925_global/POINTREND_SIGNED_QUOTA_SWAP_ACTUAL_20261123.md)
+
+
+
+- 外部 74 图三种子的分数监督控制完成。分数标签相对保留半格对照 **−0.030 mask AP、−0.009 连续 IoU 点**，相对原 COCO 栅格 +0.122 AP、+0.109 IoU。主对照未达预设推进条件。[完整试验](research_round_20260925_global/RFDETR_FRACTIONAL_TIE_TRANSFER_ACTUAL_20261123.md)
+
+
+
+- NovaSAR 跨传感器的 AIS 尺寸外测完成。142 图中四种策略共同可测 34 条，17 条有正交换预算。等量独立选点的船长 MAE 减少量 −0.204 米，区间跨零，未通过预设条件。[实测](research_round_20260925_global/NASTAR_AIS_PHYSICAL_ACTUAL_20261123.md)
+
+
+
+- 74 图的单线程 CPU 精修对照测得占据率 **227.1 毫秒/图**，同量 PointRend 1,221.5，整框 PointRend 1,049.2。两轮均复现三条路径的全部候选掩膜。[实际计时](research_round_20260925_global/INSTANCE_RSDD_RESERVE_CPU_COST_ACTUAL_20261123.md)
+
+
+
+- Instance-RSDD 新增 74 图的直接对照通过，同端点同编辑量时占据率排序较冻结 PointRend **+0.477 mask AP、+0.395 连续 IoU 点**。日期分离 42 图为 +1.061 AP 和 +0.490 IoU。整框 PointRend 在本队列低 1.293 AP，在历史高分三号队列领先 0.211 AP。[实测和复现](research_round_20260925_global/INSTANCE_RSDD_RESERVE_POINTREND_ACTUAL_20261123.md)
+
+
+
+- HRSID 官方 1,962 图与 Instance-RSDD 原 740 图的论文冻结主表均完成独立复现，**3,434 项数值最大差异 0**。DEV705 center5202 的 2,233 项评分及回放检查亦全部通过。[实测](research_round_20260925_global/SAR_B5_MAIN_TABLES_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/SAR_B5_MAIN_TABLES_20261123/README.md)
+
+
+
+- 74 图新增父景实验的干净环境复现已通过。官方数据重建、真实 HRSID 最小训练和冻结全量评分均执行成功。图像、预测与编辑记录逐字节一致，**1,470 项数值最大差异 0**。[实测](research_round_20260925_global/INSTANCE_RSDD_B5_REPRODUCTION_ACTUAL_20261123.md) · [复现入口](research_round_20260925_global/code/INSTANCE_RSDD_B5_REPRO_20261123/README.md)
+
+
+
+- Instance-RSDD 新增 74 图父景复验通过。冻结同头同量独立选点较固定配对 **+0.436 mask AP、+0.318 连续 IoU 点**。排除历史同传感器同日期后的 42 图为 +0.840 AP。两传感器单列均未达覆盖门槛。[新增父景实测](research_round_20260925_global/INSTANCE_RSDD_PARENT_RESERVE_ACTUAL_20261123.md) · [像素中心与填充对照](research_round_20260925_global/INSTANCE_RSDD_CENTER_RANKING_ACTUAL_20261123.md)
+
+
+
+- Instance-RSDD 两层完整边界的同量对照已闭合。高分三号上占据率排序较 PointRend 排序 **+0.390 mask AP、+0.223 连续 IoU 点**。扩大范围较原占据率方案仅 +0.011 AP，整框 PointRend 仍高 0.200 AP。保留原范围为主稿默认。[实测与复现](research_round_20260925_global/INSTANCE_RSDD_EXPANDED_RANKING_ACTUAL_20261123.md)
+
+
+
+- HRSID DEV705 同排序、同量配额实测完成。完整候选 AP 监督为 **56.890 mask AP**，较原生 +0.819 点，较最强预设比值对照 −0.253 点。按预锁停止扩展这套回归。保留全部候选和几何复核。[实测与复现](research_round_20260925_global/HRSID_DEV705_QUOTA_COMPETITION_ACTUAL_20261123.md)
+
+
+
+- HRSID FIT109 已核验 109 个来源组、三种子 313,135 个可行配额动作。原匹配几何监督已保留，完整候选匹配竞争的替换计算通过合成 COCO 复算。[样本和代码](research_round_20260925_global/RFDETR_FIT109_FROZEN_QUOTA_ACTIONS_ACTUAL_20261123.md)
+
+
+
+- 端点与配额诊断完成。高分三号只替换原端点内的 PointRend 决策得到 61.782 AP，距整框 0.049 点且召回更高。HRSID DEV705 冻结排序下，真值增删配额在相同总编辑量时提高 1.264 连续 IoU，三个种子均正。[端点拆分](research_round_20260925_global/INSTANCE_RSDD_POINTREND_SUPPORT_FACTOR_ACTUAL_20261123.md) · [配额上界](research_round_20260925_global/RFDETR_DEV705_FROZEN_ORDER_QUOTA_ACTUAL_20261123.md)
+
+
+
+- Instance-RSDD 已完成同载体 PointRend 对照。583 张高分三号图上，同端点同量时，本方法较 PointRend 排序 +0.312 mask AP、+0.250 连续 IoU（采集组 95% 区间 [0.163, 0.338]）。整框 PointRend 为 61.831 AP，本方法为 61.620 AP。代码、各策略可编辑范围及两方面结果均已核验。[结果和复现](research_round_20260925_global/INSTANCE_RSDD_POINTREND_TRANSFER_ACTUAL_20261122.md) · [英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)
+
+
+
+- Instance-RSDD 完整 740 图评价闭合。583 张高分三号影像上，两次 HRSID 冻结点头分别提高 0.587、0.517 mask AP。同头同量独立选点较固定配对均约 +0.483 AP。均值 +0.552 低于预锁 1 点，按规则保留两次结果。自然独立策略相对原生的 AP90 小幅下降。[结果及源码](research_round_20260925_global/INSTANCE_RSDD_FROZEN_HRSID_ACTUAL_20261122.md) · [标注核验](research_round_20260925_global/INSTANCE_RSDD_AUTHOR_FILES_ADMISSION_ACTUAL_20261122.md)
+
+
+
+- UEIKAP 候选诊断发现，139 艘中 100 艘存在达标框，其中 90 艘的最佳框候选掩膜面积不足真值一半。全图八次理想等面积交换只将覆盖从 17 增到 18。按框关联后，90 个弱掩膜在 15 个组有正预算，同量独立选点的连续 IoU 差区间仍跨零。[候选上界](research_round_20260925_global/UEIKAP_RFDETR_CANDIDATE_GEOMETRY_ACTUAL_20261122.md) · [弱掩膜对照](research_round_20260925_global/UEIKAP_RFDETR_BOX_ASSOCIATION_ACTUAL_20261122.md)
+
+
+
+- 同一 UEIKAP 作者轮廓队列上，冻结 RF-DETR 匹配 17／139 艘，原 D-FINE 匹配 2／139。4 个有正编辑预算的采集组均出现同量独立选点收益，全队列 +0.03014 连续 IoU 点，覆盖仍低于 20 艘、8 组的预设线。[复验](research_round_20260925_global/UEIKAP_RFDETR_CARRIER_ACTUAL_20261122.md) · [Instance-RSDD 原图和父景映射核验](research_round_20260925_global/INSTANCE_RSDD_IMAGE_ACCESS_ACTUAL_20261122.md)
+
+
+
+- PSeg 目标域 FIT109 点头完成 200 次更新。DEV187 上相对同量动态规则 +0.695 AP，相对冻结 HRSID 头 −0.150 AP，相对原生 −0.885 AP。固定匹配连续 IoU 相对原生 −0.470 点，区间 [−0.621, −0.325]。按预锁结束此同量配方。[实测与代码入口](research_round_20260925_global/PSEG_RFDETR_TARGET_FIT109_ACTUAL_20261122.md)
+
+
+
+- PSeg 目标域强载体冻结点头复验中，学习排序较动态空间吸引力 +0.845 AP、+0.193 连续 IoU，几何区间跨零。原生 AP 70.694 仍最高，同量学习 69.958。固定端点的事后同量几何上界高于原生 2.246 点。[实验报告](research_round_20260925_global/PSEG_RFDETR_FROZEN_SOURCE_HEAD_ACTUAL_20261122.md) · [英文审阅稿复核](research_round_20260925_global/paper_boundary_refinement_20261120/ACADEMIC_REVIEW_20261122.md)
+
+
+
+- [HRSID DEV705 同量经典对照](research_round_20260925_global/HRSID_DEV705_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)在检测器训练未使用的历史开发集上，学习排序较动态空间吸引力 +2.428 mask AP、+5.353 AP75、+1.150 连续 IoU；三个推进条件通过。PSeg-SSDD 的同量比较保持原有相反几何方向。
+
+
+
+- [Umbra 独立采集盲测](research_round_20260925_global/UMBRA12_FROZEN_CARRIER_ACTUAL_20261123.md)在 12 个原生 1024² 窗口完成冻结检测、等量编辑和独立重放。[作者整掩膜 Phoenix 对照](research_round_20260925_global/UMBRA12_PHOENIX_WHOLE_ACTUAL_20261123.md)完成 718 个提示及原生读回。[双参考评分器](research_round_20260925_global/UMBRA12_DUAL_REVIEW_SCORE_READINESS_20261123.md)通过七项合成测试。精度评价等待两份独立轮廓回传。
+
+- [三张匿名图的智能体盲判试点](research_round_20260925_global/UMBRA_AI_BLIND_PILOT_20261123.md)产生一条候选轮廓和若干待核回波，材料保存在独立评议流程中，Umbra 精度评分继续使用预锁的原始参考。
+
+
+
+- [HRSID 官方划分原生基线实测](research_round_20260925_global/HRSID_OFFICIAL_CENTER5202_E24_NATIVE_SCORE_ACTUAL_20261121.md)覆盖 1,962 图，原生 RF-DETR 的 mask AP / AP75 / AR100 为 54.433 / 62.190 / 61.694。两套评分程序的 39 项指标逐值一致。此结果是历史参与过项目选型的官方划分上的固定原生基线。
+
+
+
+- [PSeg-SSDD 完整划分冻结跨库评分](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md)覆盖 232 图和 546 条浮点原标注。mask AP 17.974→18.319（+0.344），去除 10 张历史重复图后仍 +0.389。相同点头和逐候选编辑量下，独立选点较固定配对 +0.081 AP 点、+0.106 连续 IoU 点。同轮逐图配对中，等价取样将 CPU 精修均值由 158.8 降到 104.3 毫秒，最终掩膜与分数完全一致。同量原生概率对照出现的新增孔洞更少。
+
+
+
+- [RF-DETR 第二检测器的同量实测](research_round_20260925_global/RFDETR_COMMON5203_DEV705_FROZEN_ACTUAL_20261122.md)完成 24 轮和 DEV705 全量复验。三个冻结点头上，独立选点较固定配对均提高 AP，平均 +0.838 AP、+0.583 连续 IoU 点。自然计数 AP 55.914→56.726。同量自由增删比较的连续 IoU 区间跨零。
+
+
+
+- [HRSID 官方划分冻结精修实测](research_round_20260925_global/HRSID_OFFICIAL_FROZEN_REFINEMENT_ACTUAL_20261122.md)已完成预测独立回读及 12 条处理预测的评分。RF-DETR mask AP 54.433→55.454，三点头种子全部提升。同头同量独立选点较固定配对 +1.216 AP、+1.958 AP75；相对同量自由增删平均 +0.324 AP，其中一个种子退步。两个预锁敏感性口径保留增减方向。
+
+
+
+- [UEIKAP 预留采集组正式评分](research_round_20260925_global/UEIKAP_RESERVED_HULL_ACTUAL_20261122.md)覆盖 108 张作者影像、139 个已标注船体、18 个 Sentinel-1 采集组。冻结 D-FINE 仅匹配 2 个船体，二者固定配对预算均为零。检查全部 30,910 个候选也只有 5 个达到 IoU 0.50，前 100 的八对等面积交换真值上限为 4 个。
+
+
+
+- [PSeg-SSDD 同编辑量经典对照](research_round_20260925_global/PSEG_TEST232_CLASSICAL_ATTRACTION_ACTUAL_20261122.md)在 232 图上，学习排序相对动态空间吸引力为 −0.026 AP、+0.279 AP75、−0.270 连续 IoU，后者配对区间为 [−0.440, −0.098]。去除 10 张历史重复后方向一致。
+
+
+
+- [新增误差诊断](research_round_20260925_global/DEV705_MATCHED_PAIRING_GEOMETRY_MODIFIERS_20261121.md)发现相同编辑量下本船 IoU 提升可能伴随邻船侵入。跨库真值上界显示，同一端点支持与总翻转数下，PSeg-SSDD 放开等面积后还有 +2.020 点连续 IoU 的几何空间。[PSeg-SSDD 上界](research_round_20260925_global/PSEG_SSDD_TEST232_DFINE_FROZEN_ACTUAL_20261121.md#same-support-geometric-ceilings) · [Schwegmann 中心船辅助复验](research_round_20260925_global/SCHWEGMANN_DFINE_FROZEN_WRITER_EVAL_20261121.md)750 张新图像均完成评价与独立复算。107 个非空中心候选均小于编辑下限，五臂逐像素一致。
+
+
+
+- [FIT109 邻船侵入同量对照](research_round_20260925_global/FIT109_NATIVE_RIVAL_OCCUPANCY_ACTUAL_20261122.md)通过预设判据，113 个近邻固定匹配上较无邻船证据的同量对照少侵入 0.262 平方像元，本船连续 IoU +0.221 点，全量 AP +0.012 点。DEV705 冻结复验仅 7 个实际暴露匹配、3 个来源组，未达覆盖要求，整体 AP 不变。
+
+
+
+- [HRSID FIT109 拓扑对照实测](research_round_20260925_global/FIT109_BOUNDARY_SIMPLE_POINT_PILOT_ACTUAL_20261121.md)复现原五折和四个历史结果。各等量方案 36,351 次交换。拓扑约束将组件或孔洞数发生变化的掩膜由两种同量对照的 806／646 个降为 0，AP 相同，连续 IoU 差 −0.0035 点，未过预锁门槛。
+
+
+
+- [FIT109 三种子排序与邻域方向对照](research_round_20260925_global/code/FIT109_QUERY_LOGIT_ORDER_CONTEXT_20261121/CONTEXT_NOTE.md)。相同编辑预算下，普通成对损失较 BCE 平均 +0.078 AP 点，三个种子中有一个小幅下降。保留角度的邻域读出较环内排序低 0.437 AP 点，未达预锁条件。数据与英文审阅稿已更新。
+
+
+
+- [HRSID 官方 PNG 输入审计](research_round_20260925_global/HRSID_OFFICIAL_PNG_TEST_INPUT_ACTUAL_20261121.md)已完成实测和独立复核。1,962 图、5,922 条原标注保留为正式评分主口径。发现 4 条空栅格、2 张与 FIT 完全相同的图及 1 组 TEST 内重复，已冻结两套敏感性口径。[原生基线评分源码与合成核验](research_round_20260925_global/code/HRSID_OFFICIAL_BASELINE_SCORE_20261121/README.md)
+
+
+
+- [PointRend 同载体实测](research_round_20260925_global/RFDETR_POINTREND_FIT109_ACTUAL_20261121.md)已完成五折训练、六臂比较及独立复算。同头同量下，独立选点较固定配对 +1.047 mask AP 点，较自由增删 +0.938 点。自由增删对照的连续 IoU 增益只有 +0.084 点，区间跨零，未通过预锁条件。
+
+
+
+- [AP 与连续边界效应](research_round_20260925_global/FIT109_POINTREND_AP_GEOMETRY_AND_IOU_WRITER_20261121.md)定位了阈值收益，并完成估计 IoU 的等量写回试验。新规则较固定偏置 +0.354 AP，低于等量增删和原生对照，按预锁停止。
+
+
+
+- [固定预算的点排序上界和训练对照](research_round_20260925_global/FIT109_POINT_RANKING_AND_DECISION_SUPERVISION_20261121.md)。同预算理想排序还有 3.013 个连续 IoU 点的空间。普通同侧成对排序较原生 +1.068 AP；共享容量的 SPO+ 略低于 BCE 与普通排序，两次实测逐值核验一致。
+
+
+
+- [PSeg-SSDD TEST232 输入核验](research_round_20260925_global/code/PSEG_SSDD_OFFICIAL_TEST232_INPUT_20261121/README.md)在本地独立复核 232 图、546 个非空原始实例。作者 Drive 的文件名和大小已核对，未提供校验和，远端字节认证待续。 [作者元数据记录](research_round_20260925_global/results/PSEG_SSDD_AUTHOR_METADATA_SAFE_20261121.json)
+
+
+
+- [更新后的英文审阅稿](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf)纳入 HRSID 官方划分的冻结复验、匹配对照和敏感性结果。保留历史官方划分接触、三点头共享检测器与自由增删混合结果的范围说明。 [可编辑图件](research_round_20260925_global/paper_boundary_refinement_20261120/figures/README.md)
+
+
+
+- [同量经典空间吸引力对照实测](research_round_20260925_global/FIT109_CLASSICAL_ATTRACTION_ACTUAL_20261121.md)已完成。同一 FIT109 端点和逐候选实际编辑数下，学习占据率较动态吸引力 +5.192 mask AP 点、+1.104 连续 IoU 点，AP90 −0.164 点。已核对原进程、全部等量计数和原匹配阈值记录。
+
+
+
+- [分数标签与两个硬标签的同量对照](research_round_20260925_global/FIT109_FRACTIONAL_TARGETS_ACTUAL_20261122.md)完成三种子和 9,000 次更新。相对 COCO 硬栅格 +0.184 AP，相对同一占据率硬化 +0.051 AP、一个种子下降。覆盖两种硬标签的预设一致性判据未通过。
+
+
+
+- [FIT109 四臂整合实验](research_round_20260925_global/RFDETR_QUERY_CHANNEL_FIT109_ACTUAL_20261121.md)已结束且独立复算一致。查询条件特征相对普通空间特征 +0.352 AP 点，未超过置换或零填充对照，按原判据停止扩展。
+
+
+
+- [论文收尾计划](research_round_20260925_global/PAPER_CLOSEOUT_PLAN_20261121.md)。北京时间 11 月 23 日 18:00 冻结正文证据，11 月 24 日 22:00 交付审阅稿和投稿判断。 [最新 TGRS 投稿评议](research_round_20260925_global/SAR_SHIP_TGRS_SUBMISSION_REVIEW_20261120.md)
+
+
+
+- [TGRS 投稿准备度与待验证门槛](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md)。 [通用复合仿射实测](research_round_20260925_global/TGRS_SUBMISSION_READINESS_20261109.md#通用复合仿射的真实-fit-对照)在相同等距取整下，与单次中心的 4,145 条训练掩膜及源像素索引逐值一致。
+
+- [HRSID 中心模型的双侧边缘筛选](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md)。36 张 FIT 图实际前向，在 109 个固定匹配上仅有 2 个有效编辑，与普通对照同向，未过门槛。[等预算真值上界](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#同一位移菜单的真值上界)短轴 +1.549、长轴 +1.029 点，两轴差区间跨零。[同编辑预算局部上界](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#同编辑预算的局部轮廓上界)较最佳平移 +4.777 点，严格匹配 11→32。[固定查询位移试点](research_round_20260925_global/HRSID_FIT_CENTERED_TWO_FLANK_SCOUT_ACTUAL_20261112.md#固定查询的配准位移试点实测)完成 180 次 CPU 前向。评分纳入 166 个固定匹配，法向读出较不编辑 −0.575 IoU 点，未通过预锁门槛。 [同次数的补删比例上界](research_round_20260925_global/HRSID_FIT_AREA_FLEX_ORACLE_ACTUAL_20261112.md)在相同 1,718 次翻转下较等量补删多 +0.766 连续 IoU 点，严格达标 24→26。动作由真值选择。 [三种子候选关联试点](research_round_20260925_global/HRSID_FIT_SEED_CONSENSUS_20261112.md)完成 108 次前向，双供体仅 47 个候选、4 个来源组，覆盖门槛未通过。 [关联与身份风险复算](research_round_20260925_global/HRSID_FIT_ASSOC_STRUCTURE_20261112.md)普通贪心确认 131 艘船、35 个来源组，保留全部未决关系。 [新图组面积确认](research_round_20260925_global/HRSID_FIT_SEED_AREA_CONFIRM_20261112.md)均值校准减小 0.934 点面积误差，中位数未超过普通均值，按门槛停止。
+
+- [论文主张与实验依据](research_round_20260925_global/SAR_SHIP_MASK_TGRS_EVIDENCE_MATRIX_20261112.md)。汇总旧残差方案的停止依据、两种架构的 HRSID 实测、几何与评分对照、SSDD 小数标注验证及正式测试边界。[冻结特征梯度](research_round_20260925_global/HRSID_FIT_LARGE_VECTOR_SHAPE_ACTUAL_20261112.md#冻结特征的跨尺寸损失方向)随前缀留出和范数对照改变方向，保留首次有限步检查失败。[等面积复算](research_round_20260925_global/HRSID_FIT_LARGE_VECTOR_SHAPE_ACTUAL_20261112.md#大船固定面积的查询掩膜复算)为混合结果。[真实查询投影的四步更新](research_round_20260925_global/HRSID_FIT_LARGE_VECTOR_SHAPE_ACTUAL_20261112.md#共享查询投影的四步真实更新)固定面积 IoU +0.0089 点，未达方向门槛。
+
+- [HRSID 固定共同行 E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行-e24-的固定-dev705-实测)。固定同序监督实例的种子 5202 通过独立验收，DEV705 mask AP **51.434→56.072（+4.638 点）**，AP75 +9.314 点，大目标 AP −6.672 点。正式 TEST 继续隔离。[全量候选的连续多边形复评](research_round_20260925_global/HRSID_DEV705_CONTINUOUS_AP_SENSITIVITY_20261111.md)在相同 1,761 条有效标注上将配对 AP 增益从 +4.679 收窄至 +2.673 点，AP90 差值由 +0.530 变为 −0.228 点。[共享半像素偏移的 FIT 检验](research_round_20260925_global/HRSID_FIT114_SHARED_PHASE_NEGATIVE_RESULT_20261111.md)低于逐视图独立对照，按预设条件停止进入训练。 [大船核心漏分的 FIT 诊断](research_round_20260925_global/HRSID_FIT_LARGE_COMPLEMENTARY_QUERY_DIAGNOSTIC_20261111.md)两臂各完成 28 张图的固定导出，已锁定同面积补充查询对照。 [实际评分](research_round_20260925_global/HRSID_FIT_LARGE_COMPLEMENTARY_QUERY_RESULT_20261111.md)显示中心臂相对等面积膨胀的核心召回仅 +0.030 点，且出现新增连通桥，按预锁规则停止该配方。 [冻结读出的空间留出诊断](research_round_20260925_global/HRSID_FIT_LARGE_FIXED_QUERY_READOUT_DIAGNOSTIC_20261111.md)已锁定相同新增面积的三项常规对照。 [固定基底导出](research_round_20260925_global/HRSID_FIT_LARGE_FINAL_BASIS_CAPTURE_20261111.md)两臂各 28 次前向，原候选和全部查询 logits 逐位复现。 [读出与真值编辑复算](research_round_20260925_global/HRSID_FIT_LARGE_FIXED_QUERY_AND_EDIT_ENVELOPE_RESULT_20261111.md)的有界方法未通过门槛，四种真值编辑的核心增量均低于门槛。允许删除误分时，整掩膜 IoU 上界相对原锚有 +3.315 点余量。 [实际固定删除](research_round_20260925_global/HRSID_FIT_LARGE_LOGIT_DELETION_RESULT_20261111.md)使严格达标 42→28。[前缀留出停止](research_round_20260925_global/HRSID_FIT_LARGE_LOGIT_ABSTENTION_RESULT_20261111.md)只覆盖一个前缀且使严格达标 42→40。按门槛停止该规则。 [等量补删上限实测](research_round_20260925_global/HRSID_FIT_LARGE_PAIRED_BOUNDARY_MENU_ACTUAL_20261112.md)中心组真值三选一受限上限 +0.096 IoU 点，按预锁停止方向拟合。 [大船训练标签连续复算](research_round_20260925_global/HRSID_FIT_LARGE_VECTOR_SHAPE_ACTUAL_20261112.md)28 张图、191 条有效配对视图，中心采样连续 IoU +1.227 点，直缩与裁剪均为正。 [固定预测的尺寸匹配复放](research_round_20260925_global/HRSID_FIT_LARGE_VECTOR_SHAPE_ACTUAL_20261112.md#固定预测中的同图查询匹配复放)实际改变 19 个中小目标代价列，33 个混合图大目标均无查询改配。 [同一匹配的连续多边形复算](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定匹配的连续多边形复算)中，1,605 对的平均 IoU 增益由 +2.041 收窄到 +1.006 点。 [标签取样位置与固定上移对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定预测的标签取样位置与纵向平移对照)中，原预测有方向一致性，上移 1 像素后未通过正剩余信号门槛。 [全量候选 AP 对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#全量候选的固定纵向平移-ap)显示原生上移提高 2.861 AP 点，中心臂仍领先 1.777 AP 点。
+
+- [PSeg-SSDD 目标域同预算 E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-目标域同预算-e24-实测)。独立验收通过，固定整数 DEV187 的 mask AP **67.819→69.500（+1.680 点）**，AP75 +1.533、AP90 +3.411。当前为单种子开发集结果，正式 TEST 继续隔离。
+
+- [PSeg-SSDD 重复图像敏感性与共同行实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-精确重复敏感性与固定共同监督实测)。FIT／DEV 精确像素交集为零，DEV 内五组像素副本的 32 种代表选择均保留增益，AP +1.702 至 +1.885 点。真实原生 CPU 加载 32 视图的 62 条共同监督通过两臂核对。[固定共同监督的 GPU 短窗](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-固定共同监督的-windows-gpu-短窗实测)各完成 32 次 FIT 访问和 8 次 AdamW／EMA 更新，独立核对共同实例 56 条及 31 次仅掩膜变化。
+
+- [PSeg-SSDD 旧整数标签实验的第二种子](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-自然保留的第二种子首次短窗)。同一 Q100 初值，种子 5202 两臂各 32 次 FIT 访问、8 次更新，29 次访问仅掩膜不同。[E24 两臂已独立验收](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-第二种子-e24-闭合和独立验收)，各完成 24 轮、4,464 次 AdamW 和 EMA 更新。[固定 DEV187 复验完成](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-第二种子的固定-dev187-实测)，两种子 AP 分别提高 1.680 和 0.806 点，均值 +1.243。 [第二种子几何诊断和两种子标注敏感性](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md)。固定两种供体分数后第二种子仍有正向整数 AP 差值。候选浮点标注下两组 AP 差值为 −3.113、−3.897 点，收益方向依赖 DEV 标注版本。[字段交叉与半像素平移](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md#ssdd-dev187-的多边形栅格化与坐标原点敏感性)确认多边形单独解释全部口径差异，正向半像素平移可复现两种子 AP 和 AP75 的反号。 [候选归档 TRAIN 标签](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md#本地候选归档的-train-标注字节核验)与浮点派生所用源文件逐字节一致，远端版本和像素坐标约定仍待核验。 [正式划分候选包审计](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md#候选归档划分与测试图像重复审计)确认 10 张测试 JPEG 与当前 FIT741 训练图同字节。 [作者远端训练标注核验](research_round_20260925_global/PSEG_SSDD_OFFICIAL_TRAIN_PROVENANCE_AND_ENCODINGS_20261111.md)确认 1,857 个训练标注记录与本地逐字节一致。2,041 条 VOC 整数轮廓可由作者 COCO 小数坐标逐顶点截断精确重现。 [训练几何四格实测](research_round_20260925_global/PSEG_SSDD_FLOAT_FIT_FACTORIAL_ACTUAL_20261111.md)中，小数和整数顶点的中心采样分别提高小目标连续 IoU 5.310 和 2.492 点。 [小数 FIT741 全量输入](research_round_20260925_global/PSEG_SSDD_FLOAT_FIT_FACTORIAL_ACTUAL_20261111.md#官方小数-fit741-输入构建和原尺寸栅格实测)已读回，1,606 条原尺寸掩膜改变，两套均无空掩膜。 [RF-DETR 真实读取器复验](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_SAME_VIEW_ACTUAL_20261111.md)核对 32 个增强视图的图像、框、类别及随机状态，四格同保留 55 条非空实例。 [Windows 全量共同监督](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_SAME_VIEW_ACTUAL_20261111.md#windows-真实读取器的完整-fit741-共同监督)在 741 图上共同保留 1,457 条非空实例，另有 1 条中心独有非空。 [小数配对训练方案](research_round_20260925_global/PSEG_SSDD_OFFICIAL_FLOAT_COMMON_TRAIN_PROTOCOL_20261111.md)。 [小数 CPU 真实短训](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md)两臂各 32 次 FIT 访问、8 次 AdamW／EMA，57 条共同实例，30 批掩膜不同。 [DGX 原请求预检](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md#dgx-原训练请求实际预检)完成，CUDA 仅可用 2.91 GiB。 [GB10 两项 CUDA 算子实测](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md#dgx-gb10-的实际-cuda-算子核验)通过，当时可用 2.68 GiB。 [Windows 备用入口](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md#windows-原生-cuda-备用入口)已通过 CPU 预检。 [发布版请求](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md#已发布-windows-入口的实际请求预检)也已通过。 [Windows BF16 CUDA 两臂](research_round_20260925_global/PSEG_SSDD_RFDETR_FLOAT_CPU_SHORT_ACTUAL_20261112.md#windows-原生-cuda-两臂实测)实际各 32 次访问、8 次 AdamW／EMA，56 条共同监督。正式 E24 待验证。 [E24 实际运行预锁](research_round_20260925_global/code/SSDD_WINDOWS_FLOAT_COMMON_E24_20261112/SSDD_WINDOWS_FLOAT_COMMON_E24_OPERATION_PRELOCK_20261112.md)已通过 CPU 预检和完整轮次时钟用例。 [Windows 隔离启动修正](research_round_20260925_global/code/SSDD_WINDOWS_FLOAT_COMMON_E24_ISOLATED_START_20261112/SSDD_WINDOWS_FLOAT_COMMON_E24_ISOLATED_START_AMENDMENT_20261112.md)保留首次前向前退出，按同一训练方案通过真实解释器导入和 FIT741 读取。 [E24 实际进展与验收入口](research_round_20260925_global/code/SSDD_WINDOWS_FLOAT_COMMON_E24_ACCEPTANCE_20261112/README.md)[原生 A 已独立验收](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md)24 轮、17,856 次访问、4,464 次 AdamW／EMA；[中心 B 与完整配对验收](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#中心-b-闭合与完整配对验收)同为 24 轮、17,856 次访问、4,464 次 AdamW／EMA，[固定 DEV187 小数主结果](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#dev187-小数主评分实测)为 67.460→70.694 AP，对强参考仅 +0.220 点，低于预锁 +1 门槛。[等量候选和连续轮廓实测](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#首轮等量候选固定分数与连续轮廓)固定分数后仍 +2.755／+4.009 AP，377 个共同匹配的连续 IoU +0.967 点。[5202 两臂实际短训验收](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#5202-两臂真实短训验收)各 32 次 FIT 访问和 8 次更新，29 次只改变掩膜。[5202 完整训练与评价入口](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#5202-原生完整训练与固定评估入口)[原生 A 已验收完整 E24，中心 B 也已完整验收](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#5202-两臂-e24-独立闭合与固定评价启动)。两臂各 24 轮和 4,464 次更新。[固定 DEV187 两种子复验](research_round_20260925_global/SSDD_WINDOWS_FLOAT_COMMON_E24_NATIVE_ACTUAL_20261112.md#5202-固定小数-dev187-实测与两种子取舍)已完成，配对均值 +2.810 mask AP 点，对强参考 +0.197 点，按原门槛停止追加种子。 [小数主评分入口](research_round_20260925_global/code/SSDD_FLOAT_PRIMARY_DEV187_20261112/PROTOCOL.md)通过五项合成 CPU 检查，实际导出及评分待两组 E24 独立验收。 [Windows 正式评估入口](research_round_20260925_global/code/SSDD_FLOAT_PRIMARY_DEV187_WINDOWS_OWNER_20261112/README.md)通过四项检查及真实合成 JobObject 退出核验。 [连续轮廓复评](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md#两套标注在连续多边形重叠下的复评)中，标注顶点更换后两种子的 AP 方向仍反转。 [质心与形状四格复评](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md#固定候选的标注质心与形状交叉复评)在固定轮廓形状时仍出现反号。 [等距长短轴复评](research_round_20260925_global/SSDD_DEV187_GEOMETRY_AND_GT_SENSITIVITY_20261111.md#等距长轴与短轴平移复评)中，两种子在垂直长轴的 AP 方向敏感性更大。 [HRSID 同类复评](research_round_20260925_global/HRSID_DEV705_CONTINUOUS_AP_SENSITIVITY_20261111.md#长轴与垂直方向的等距平移复评)中，等距位移也对垂直长轴的 AP 影响更大。 [两库固定匹配 IoU](research_round_20260925_global/HRSID_DEV705_CONTINUOUS_AP_SENSITIVITY_20261111.md#hrsid-与-ssdd-的固定匹配对称位移)中，中心组多出的方向损失为 0.173 至 0.204 点。 [同字节 FIT 标注核验](research_round_20260925_global/PSEG_SSDD_FLOAT_FIT_FACTORIAL_ACTUAL_20261111.md#同字节训练图的轮廓标注差异)中，10 组官方小数轮廓 IoU 平均 82.280%，对齐质心后 83.598%。
+
+- [SRNet 外部对照的原生 FIT 与全量几何实测](research_round_20260925_global/SRNET_SSDD_FIT741_BASELINE_NATIVE_PATH_20261111.md#全-fit-的裁剪与回贴四组几何实测)。1,661 个真值目标的重建 IoU 为原版 96.414%、匹配回贴 97.988%、中心采样 98.736%。真实训练图另触发一条跨层目标错配。原版 E24 在第 4 轮触及进程显存配额，完成 670 次 SGD 更新。分配器重试已完成 24 轮、4,464 次 SGD 更新和 17,856 次访问，原进程退出及最终权重通过独立验收，固定 DEV187 作者阈值 AP 为 **60.540**，低阈值敏感性为 **61.134**。 [两套标注复评](research_round_20260925_global/SRNET_SSDD_FIT741_BASELINE_NATIVE_PATH_20261111.md#固定-srnet-预测的两套标注复评)的小数 AP 分别为 62.720、63.203，使用原候选及分数。[固定评分和同预算 RF-DETR 对照](research_round_20260925_global/SRNET_SSDD_FIT741_BASELINE_NATIVE_PATH_20261111.md#同一-e24-权重的固定-dev187-评分实测)。两档原生 CPU 导出在一张预选 FIT 图各完成 242 个掩膜的逐像素编码复核。[实测](research_round_20260925_global/SRNET_SSDD_FIT741_BASELINE_NATIVE_PATH_20261111.md#原生两档阈值的真实-fit-cpu-实测)。
+
+- [PSeg-SSDD 等量候选与轮廓诊断](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-重训后的等量候选和轮廓复算)。逐图等量后，各臂 9,024 个非空候选。IoU 0.90 最大一对一覆盖 81→104，两种固定分数下 AP90 均提高，共同匹配 IoU +0.922 点。
+
+- [PSeg-SSDD 固定配对平移上界](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-共同行预测的平移上界)。375 个共同匹配上，原始平均 IoU 优势 +0.922 点，纵向 ±2 后 +0.729 点，二维 ±2 后 +0.254 点。二维对齐后中心在 IoU 0.90 多 15 个固定配对。
+
+- [PSeg-SSDD 固定海陆分层](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-重训后的固定海陆分层)。目标域重训的全水面／含陆地 AP 分别 +1.003／+3.527 点，IoU 0.90 等量候选最大匹配分别 66→82、15→22。保留低阈值对照与冻结源模型的不同结果。
+
+- [DGX 的 HRSID Q164 初始化及 FIT2937 解码](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#dgx-完整-fit2937-接收及独立解码)。DGX 已逐位复现完整 Q164 初值。2,937 张训练图全部通过原编码与 RF-DETR 原生解码字节核验，B/C 实际训练资格仍待完成。
+
+- [DGX 原 B/C 入口的 CPU 初值核验](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#dgx-bc-原训练入口的-cpu-初值实测)。完整训练环境下 Q100、Q164 摘要及 545 个 CPU 张量通过。首次缺依赖的失败保留，实际 GPU 短窗仍待资源准入。
+
+- [HRSID 逐步中心 B 与单次复合中心 C 的真实短窗](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#windows-bc-真实短窗与独立验收)。本机两臂各 32 次 FIT 访问和 8 次更新。16 次直缩逐值一致，16 次裁剪中 13 次出现实际入训掩膜变化。独立验收通过，E24 效用待验证。
+
+- [HRSID 固定 B/C E24 实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#逐步中心与单次复合中心的固定-dev705-实测)。逐步中心 55.881 AP，单次复合 55.828 AP，同训练预算差 −0.053 点，相对更强的同种子自然保留参考差 −0.303 点，按预锁判据停止单次复合配方扩展。
+
+- [HRSID FIT 大目标标签机制预锁](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit-全量大目标计数与标签足迹检验预锁)。完整 FIT 有 50 条大目标标注，来自 28 张图、4 个前缀。已完成全部 28 图的 112 视图回放。共同大目标的标签 FN 下降 0.845 点，足迹 IoU 提高 1.829 点，未支持标签收缩解释。
+
+- [HRSID 共同行大目标复算](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#大目标退化及配对组敏感性)。大目标 16 条集中在 3 个前缀组，逐组剔除 APl 差值 −8.958 至 +0.109 点，整体 AP 始终为正。等量候选并固定分数模板后，大目标仍下降。 [大船漏分区域复算](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#大船内部与两像素边带的漏分复算)中，平移后核心、边带的单位面积漏分增量为 +4.79、+11.19 点，核心优先采样未过门。
+
+- [HRSID 固定共同行的 IoU 0.90 缺口](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行-iou-090-缺口与像素预算)。中心独有的 178 个严格覆盖中，176 个原生候选已在 0.75 至 0.90 之间。827 个共同近阈值目标的最少编辑中位数 39→25 像素。两臂在等量候选上无严格一对一分配损失。 [827 个近严格目标的预算上界](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#近严格目标的固定最佳与全候选编辑上界)中，改用全部候选只多恢复 1 个原生目标，中心目标无新增。
+
+- [HRSID 高 IoU 转移的平移上界](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#共同行严格覆盖转移的平移上界)。178 个仅中心达标的真值中，原生掩膜经真值辅助二维 ±2 平移恢复 72 个。17 个受面积比限制，89 个仍未恢复。原进程和独立复算均完成。
+
+- [HRSID 一像素边界带的编辑上界](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#一像素边界带的固定编辑预算)。最佳平移后 129 个失败掩膜中，同预算真值辅助可恢复 90 个，一像素带与整图恢复数一致，其中 87 个为小目标。独立复算完成。
+
+- [HRSID 一像素形态基线实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#一像素二值形态规则的真实评分)。固定中心臂 67,386 条候选，补孔和去孤点的 mask AP 变化 +0.00263 点，AP90 与同编辑量随机臂一致，原固定匹配无严格新增或失守。
+
+- [HRSID FIT114 边界分数与采样相位实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-冻结边界分数与采样相位对照)。独立核对 414,942 个边界点。55 张留出图上真实相位仅改 4 像素，严格达标净变化为 0，与同编辑量的有序 logits 和打乱相位的总裕量相同。
+
+- [HRSID FIT114 局部强度五折实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-渲染强度与等编辑量的五折实测)。真实强度在等预算下胜过有序 logits 和置换强度的裕量，弱于绝对 logit 与原掩膜。当前编辑规则止于 FIT。
+
+- [HRSID 输出网格实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-输出网格的误差下界与可表达性实测)。496 条 FIT 标注上，距离场构造达到 IoU 0.90 的数量为 228→437，净增全部在小目标。粗网格有 3 条不可达证书，未测模型 AP。 [保留原节点的嵌套细格实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#保留原节点的细网格可表达性实测)为 228→436，新增 208 条均为小目标。 [固定候选的单元内残差实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定候选上的单元内残差实测)中，五种峰位置均恢复同一条 IoU 0.90 匹配，中点无独有恢复。
+
+- [HRSID FIT 固定查询裁块对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit-固定查询的原生裁块与低通裁块实测)。16 图的原生与低通裁块按同配额都净增 1 个 IoU 0.90 达标，配对 2 胜 10 平 2 负。直接替换符号时两组 IoU 均下降。
+
+- [Phoenix 外部细化对照的 CPU 编码实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#phoenix-官方样例的-cpu-编码实测)。官方 EfficientViT-XL1 权重已核验，作者示例完成图像编码。提示生成、五轮解码与 SAR 固定候选评分待执行。
+
+- [Phoenix DGX 完整推理和 HRSID FIT 试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#phoenix-完整推理与固定-fit-候选试点)。作者样例的单掩膜与批量结果逐像素一致。两图 145 条原候选中，官方 1% 门槛激活 0 条；全非空适配改动 39 条，两个固定配对的平均 IoU 0.848→0.768。
+
+- [OpenCV 新旧最近邻复算](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md#opencv-5-原生与精确最近邻实测)。Windows 4.5.5 与 5.0.0 默认输出相同。5.0.0 显式精确模式在此前合成坐标上的差异只见于半格平局。[固定 96 个真实训练视图](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md#opencv-5-在真实-fit-栅格上的直接对照)上，显式精确模式与整数中心 615 条掩膜逐像素一致。 [训练尺寸全范围的合成索引实测](research_round_20260925_global/MASK_RTDETR_OPENCV_AXIS_ENVELOPE_ACTUAL_20261112.md)覆盖 2,252.8 万位置，显式精确模式的 9,722 处差异全在半格。
+
+- [HRSID E24 冻结模型到 SSDD DEV187 的跨库诊断](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md)。六臂评分与独立复算已完成。固定 SSDD DEV187 上三组平均 +0.376 mask AP 点，未达到预设跨库支持门槛。 等量候选的 IoU 0.75 最大覆盖三组增加 5、20、22 个，IoU 0.90 增加 1、0、0 个。 固定共同匹配的 IoU 平均 +0.519 点，纵向方向组合仅两组通过。 [海陆分层](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#sl-ssdd-海陆分层复算)中，31 张含陆地图的平均 AP −0.686、AP75 +4.578，三组总 AP 均下降。 [同量候选 AP50 复算](research_round_20260925_global/HRSID_TO_SSDD_FROZEN_DEV187_PROTOCOL_20261110.md#含陆地图-ap50-的候选与评分对照)仍下降 4.535 点，固定候选和固定分数的对照均定位到负向影响。
+
+- [Schwegmann 中心船散射掩膜辅助验证](research_round_20260925_global/HRSID_TO_SCHWEGMANN_CENTRAL_SHIP_PROTOCOL_20261110.md)。32 张图、16 个采集组的六臂评分与独立复算完成。中心船平均 IoU +3.906 点，采集数低于预设门槛，保留为描述性结果。 [负例获取](research_round_20260925_global/HRSID_TO_SCHWEGMANN_CENTRAL_SHIP_PROTOCOL_20261110.md#同采集海杂波与疑似目标的实际获取)匹配海杂波 2 条、疑似目标 3 条，组覆盖不足。
+
+- [UEIKAP 四个训练家族标签复核](research_round_20260925_global/HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md#ueikap-四个独立训练采集家族的标签复核)。四例均找到对应 TXT／COCO／AIS，6 条 TXT 类别 1 与 COCO 尾迹掩膜逐值一致。船体类别和整图标签完整性仍待核，预留外测隔离。
+
+- [Mask RT-DETR 掩膜取样的真实 FIT 复算](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md)。96 个固定视图的小目标纵向绝对质心误差 0.914→0.191 像素，连续栅格 IoU +8.890 点，3／581 条中心输出变空。[原始多边形复核](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_POLYGON_AND_SUPPORT_PROTOCOL_20261111.md)的 IoU +6.874 点，三条空行在当前网格的最高连续 IoU 均低于 0.5。实际模型 AP 待验证。 [Windows CUDA 原训练器](research_round_20260925_global/MASK_RTDETR_AUTHOR_CPU_FIT_QUALIFICATION_PROTOCOL_20261111.md#windows-cuda-原作者两次-fit-更新)已验收两次 AdamW、调度和 EMA。 [固定实例配对](research_round_20260925_global/MASK_RTDETR_AUTHOR_CPU_FIT_QUALIFICATION_PROTOCOL_20261111.md#固定实例的原生与中心-cuda-两步配对)已验收两臂各两步、15 条共同实例，实际训练输入只改变掩膜。 [HRSID FIT2937 同预算 E24 方案](research_round_20260925_global/MASK_RTDETR_HRSID_FIT2937_E24_AUTHOR_PROTOCOL_20261111.md)完成官方 COCO 单类迁移、真实原生读取器及两臂各 8 次更新的资格验收。 原生 A 已自然完成 24 轮并通过[独立验收](research_round_20260925_global/results/MASK_RTDETR_HRSID_FIT2937_NATIVE_E24_INDEPENDENT_ACTUAL_SAFE_20261111.json)，70,560 次 FIT 访问、17,640 次 AdamW／调度／EMA 返回，训练约 8,015.84 秒，Paddle 峰值保留显存约 18.17 GiB。E8／E16／E24 检查点及 E24 状态重载均通过。中心 B 也已自然完成 24 轮，独立核对每臂 70,560 次访问、17,640 次更新以及完全相同的非空支持。 [完整配对验收](research_round_20260925_global/MASK_RTDETR_HRSID_FIT2937_E24_PAIR_ACTUAL_20261112.md)。[单类作者导出](research_round_20260925_global/MASK_RTDETR_HRSID_FIT_ONE_CPU_EXPORT_ACTUAL_20261111.md)在一张 FIT 图实测 100 条原生有序 800² 掩膜，固定 DEV705 已评分。 [评分接口](research_round_20260925_global/MASK_RTDETR_AUTHOR_MASK_SCORE_ADAPTER_ACTUAL_20261111.md)已用固定 FIT 图核对 12 项 COCO 指标及 AP90。 [多图、EMA 与跨图评分实测](research_round_20260925_global/MASK_RTDETR_HRSID_NATIVE_ENDPOINT_EVAL_FIT_QUALIFICATION_20261111.md)验证真实三图的原始 ID 和 300 条掩膜、646 个 EMA 张量、29 图的独立评分一致性。 [逐图导出和独立评分](research_round_20260925_global/MASK_RTDETR_FIXED_ENDPOINT_STREAM_FIT_ACTUAL_20261111.md)从已闭合的训练 EMA 实测三图 300 条候选，两种 COCO 评分口径逐值对齐。[固定 DEV705 原生作者实测](research_round_20260925_global/MASK_RTDETR_HRSID_DEV705_AUTHOR_PAIR_ACTUAL_20261112.md) mask AP **50.304→56.043（+5.739 点）**，AP75 +10.344、AP90 +1.914、小目标 AP +6.345、大目标 AP −14.038。固定一个配对种子，正式 TEST 隔离。 [连续几何实测](research_round_20260925_global/MASK_RTDETR_HRSID_DEV705_AUTHOR_PAIR_ACTUAL_20261112.md#固定候选的连续多边形复算)在同 1,761 条有效标注上将 AP 增益从 +5.757 收窄至 +3.625 点，AP75 +6.330，大目标 AP −14.038。 [候选覆盖与固定匹配实测](research_round_20260925_global/MASK_RTDETR_HRSID_DEV705_CANDIDATE_AND_GEOMETRY_ACTUAL_20261112.md)等量下 IoU 0.75 最大覆盖 +125，固定两种分数模板 AP +5.728／+5.864，共同匹配连续 IoU +1.533 点。 [同一批大船的跨架构诊断](research_round_20260925_global/MASK_RTDETR_HRSID_DEV705_CANDIDATE_AND_GEOMETRY_ACTUAL_20261112.md#两种架构在同一批大船上的误分与漏分)共同 13 条，RF-DETR 主要增漏分，Mask RT-DETR 主要增误分。 [Windows 统一导出入口](research_round_20260925_global/MASK_RTDETR_FIXED_ENDPOINT_STREAM_FIT_ACTUAL_20261111.md#windows-实际-cuda-导出的统一入口)已通过源码和验收检查。 [作者分类语义和真实训练批次归因](research_round_20260925_global/MASK_RTDETR_FIT_MATCH_AND_TARGET_ATTRIBUTION_ACTUAL_20261111.md)核实固定 v2.9.0 实际走框 IoU MAL。四图六个实例的最终普通层查询均未改配，BCE、Dice 随掩膜标签改变。 [密集批次复验](research_round_20260925_global/MASK_RTDETR_FIT_DENSE_ASSIGNMENT_REPLAY_ACTUAL_20261111.md)的 72 个实例中，主格 21 个改配，正查询集合相同。四次额外匹配抽样核对到标签改配 21–29，原生标签随随机点变化改配 41–44。
+
+- [同一 Mask RT-DETR 算子的 SSDD FIT 几何复验](research_round_20260925_global/MASK_RTDETR_PSEG_SSDD_FIT_CPU_GEOMETRY_PROTOCOL_20261111.md)。96 个固定视图，99 条小目标均在两臂非空。连续整数多边形 IoU +4.961 点，栅格参考纵向质心误差减少 0.344 像素。模型 AP 待同预算训练。
+
+- [Mask RT-DETR 原生 Windows CPU 资格](research_round_20260925_global/MASK_RTDETR_AUTHOR_CPU_FIT_QUALIFICATION_PROTOCOL_20261111.md)。官方读取器实际通过 8 张 SSDD FIT 图，646 个官方 COCO 张量逐值加载，一次前向输出 100 个候选。Windows 两步训练在首批前向后受资源保护停止。[DGX ARM CPU 独立两步资格](research_round_20260925_global/MASK_RTDETR_S_DGX_ARM_CPU_TRAIN_QUALIFICATION_PROTOCOL_20261111.md)已验收，AdamW、调度和 EMA 各 2 次，三份原生档案已核对。模型 AP 待完整训练。
+
+- [Mask RT-DETR 的原生／中心配对短窗](research_round_20260925_global/MASK_RTDETR_S_DGX_ARM_CPU_TRAIN_QUALIFICATION_PROTOCOL_20261111.md#第二载体的配对短窗预锁)。沿用作者训练器和相同 SSDD FIT8，目标是验证真实批次中位图缩放是唯一输入差异。合成通过，真实配对待资源准入。
+
+- [FIT114 输入位移实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#fit114-冻结模型的输入位移实测)。单种子 8 个来源组、26 个目标、48 次冻结前向。三个位置相对真值的 IoU 均改善，+1 配准改善受一个来源组影响，−1 配准基本持平。
+
+- [固定点目标值试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定监督点目标值试点实测)。同一 487 点、三臂各 8 次真实更新，单次复合中心相对逐步中心在裁剪留出上 +0.065 IoU 点，低于预设 0.5 点。连续值对照精确复现。 [多边形覆盖率四臂实测](research_round_20260925_global/HRSID_FIT_FROZEN_VECTOR_OCCUPANCY_ACTUAL_20261111.md)相对源栅格覆盖率 −0.028 IoU 点，8 个留出裁剪组无一提高，按预锁停止该试点。 [方向占据率留出实测](research_round_20260925_global/HRSID_FIT_ORIENTED_OCCUPANCY_ACTUAL_20261112.md)各臂 8 次更新，沿长轴组相对预设最强对照 −0.044 IoU 点，8 组无改善，未通过长训门槛。
+
+- [冻结模型的点监督分配试点](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#冻结模型点监督诊断预锁)。固定八张源图上的分歧富集为同配额随机期望的 1.87 倍。随后同预算 8 次原生投影更新的轮廓指标未达到晋级门槛。
+
+- [HRSID 训练标签的多边形优先对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#hrsid-fit-only-多边形优先对照)。456 个固定训练视图已完成。核心裁剪中单次中心相对逐步中心在两种参考下提升 +6.45、+6.27 个几何 IoU 点。模型效用待同预算实测。
+
+- [距离–多普勒迁移的适用范围和验证设计](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#模型迁移决策与海面实例分割先例)。已取得一对有船的同景聚焦 SLC 与复数距压，FFT 数值核验通过，完整配准与模型收益待测。双目录核验含船裁块对应母幅零起点 burst 5，原 XML 的第 9 项与该行序不一致。逐行有效采样及多普勒标定待核。[目录实测](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#同景样本的母幅-burst-行列归属实测)。已核对实测海面 RD 回波实例分割先例和 KuRALS 定位试点边界。[三条验证路径与评分](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#rd-试验的执行顺序与评分)。 [模型迁移与有效格点评分](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#本轮迁移决策与-kurals-pd-的有效格点)。 [零样本、RD 定位和同景轮廓的验证条件](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#泛化结果的命名与主线选择)。 [少标注迁移的强对照与论文决策](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#少标注迁移的对照与论文决策)。 [坐标核验与错位对照](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#坐标核验与轮廓收益的判别试验)。 [结构、权重迁移及同景配准验收](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#从空间模型迁移到-rd-的首轮验收)。
+
+- [RD 功率的方位歧义与复数分支对照](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#复数相位与船体轮廓的输入对照)。合成移位复算中，慢时间中心相差 11 格，功率谱在数值精度内相同。已给出同景功率、复数与错配对照，真实 RD 模型结果待测。
+
+
+
+主实验 PLAIN/FULL 每组已验收 **37050 次正式更新**。整数栅格下 FULL 的 mask AP 低 0.166 个百分点，依预设规则停止自动扩训。候选浮点栅格下差值为 +0.786 个百分点，列为评估口径敏感性。374 个固定配对的共同区总误差差值为 +0.047 点，未达到预设 1 点门槛。RF-DETR 原生 BF16 强基线已按完整 E100 调度连续完成 **E24、4,464 次更新**。固定 DEV187 整数 GT 的 mask AP 为 **67.443**，AP75 为 **85.386**。候选浮点 GT 另报。
+
+
+
+- [374 对共同区域的实际结果及误差解释](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_ACTUAL_20261107.md)
+
+- [HRSID 原生 E24 训练与 DEV705 实测](research_round_20260925_global/HRSID_COCO_E24_DEV705_NATIVE_EVALUATION_PROTOCOL_20261109.md)。原训练独立验收 24 轮、17,640 次 AdamW 和 EMA 更新，三处固定归档通过。固定 DEV705 的 mask AP **50.427**、AP75 **54.466**、AP90 **1.466**。HRSID 官方 TEST 继续隔离。[固定候选误差普查](research_round_20260925_global/HRSID_DEV705_NATIVE_CANDIDATE_COVERAGE_PROTOCOL_20261109.md)独立复算确认 1,778 个有效 GT 仅 104 个有 0.90 达标候选，原顺序达到最大一对一匹配数。
+
+- [HRSID 历史 DEV705 固定掩膜平移](research_round_20260925_global/HRSID_DEV705_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。1,049 个近严格配对中，±2 像素真值辅助平移恢复 159 个，361 个受面积比限制。固定上移新增 82 个并损失 48 个既有严格配对。
+
+- [RD 原生格点及输入核验](research_round_20260925_global/RANGE_DOPPLER_TRANSFER_SCOPE_20261109.md#原生-rd-网格与模型接入核验)。64×800 合成图的裁补往返逐格一致，核查了 RF-DETR 默认缩放与补边影响的验证条件。公开母幅目录未提供所需的逐行注释，真实 RD 模型分数待测。
+
+- [SSDD 第二种子短轴复验](research_round_20260925_global/SSDD_FLOAT_COMMON_DEV187_HULL_COCENTER_REPEAT5202_ACTUAL_20261112.md)。233 个细长小船相对当前原生臂的连续 IoU 差为 +1.356 点，真值短轴对齐后 +0.134，长轴对齐后 +1.279。历史强参考对照中未见相同的短轴差值收窄。
+
+- [HRSID 短轴完整投影质量的真实复算](research_round_20260925_global/HRSID_FIT_HULL_CDF_20261112.md)。262 个固定匹配、39 个来源。相对最好的简单摘要增益 +0.080 连续 IoU 点，低于预锁门槛，停止该损失分支进入训练。
+
+- [HRSID 双船共享像素实测](research_round_20260925_global/HRSID_FIT_SHARED_PIXEL_OWNERSHIP_20261112.md)。357 个有效匹配仅 6 对满足条件。真值归属与两项同预算简单规则的连续 IoU 相同，155 个近严格锚无新增 0.90 达标，停止此分支。
+
+- [HRSID 三种子同预算轮廓实测](research_round_20260925_global/HRSID_FIT_CONSENSUS_CONTOUR_20261112.md)。固定 FIT36 全候选 mask AP 从 73.019 到 74.503，比同补删数单模型高 0.938 点。普通多数投票 74.241。达到复验门槛，待独立图组核验。
+
+- [HRSID 三种子轮廓复验](research_round_20260925_global/HRSID_FIT_CONSENSUS_CONTOUR_REPEAT_20261112.md)。来源不重叠的另 36 张 FIT 裁片，mask AP 59.073→60.831；同补删量单模型 59.708，多数投票 60.807。 [单前向内部候选对照](research_round_20260925_global/HRSID_FIT_SINGLE_FORWARD_QUERY_FUSION_20261112.md)在首批裁片未达到门槛。
+
+- [HRSID 纯二值规则同源实测](research_round_20260925_global/HRSID_FIT_RLE_VOTE_SOURCE_BRIDGE_20261112.md)。在首批 FIT36 中，纯二值多数票 mask AP 74.236，原概率排序多数票 74.241，原掩膜 73.019。[SSDD 同规则冻结诊断](research_round_20260925_global/HRSID_TO_SSDD_DEV187_RLE_VOTE_20261112.md)由 37.979 到 38.044，低于 +0.50 点门槛。
+
+- [HRSID 与 SSDD 固定增删数的边界余量](research_round_20260925_global/HRSID_FIT_RLE_VOTE_HEADROOM_20261112.md)。SSDD 原分歧区真值上界比投票高 0.147 IoU 点，完整边界带再高 0.864；其中至少一份供体提出异议的位置占 67.7% 的额外余量。严格 0.90 最多 2 个。
+
+- [HRSID 有符号距离同预算实测](research_round_20260925_global/HRSID_FIT_RLE_SIGNED_DISTANCE_FUSION_20261112.md)。比二值投票 +0.362 AP 点，扩大到任一供体异议与双供体版本指标相同，未过预锁门槛。
+
+- [D-FINE 严格候选覆盖](research_round_20260925_global/DFINE_E24_DEV705_CANDIDATE_COVERAGE_20261112.md)。全部后 NMS 候选将 IoU 0.90 覆盖从 19 增至 21，仍有 1,757 个实例缺少合格掩膜。 [细长小船的真值平移上界](research_round_20260925_global/DFINE_E24_DEV705_AXIS_ORACLE_20261112.md)在 1,425 个标注上将严格达标从 2 增至 11。
+
+- [D-FINE-seg-S 外部对照入口](research_round_20260925_global/DFINE_SEG_EXTERNAL_BASELINE_FIT1_20261112.md)固定 E24 训练与独立验收完成，17,640 次实际更新。DEV705 mask AP 48.160，AP75 51.507，原始导出及评分均已闭合。
+
+- [D-FINE E24 FIT114 原生捕获](research_round_20260925_global/DFINE_E24_HRSID_FIT114_CAPTURE_20261112.md)。109 张核心图和 5 张压力图各做一次原生前向，11,400 个概率平面逐像素复现原掩膜，独立读取验收通过。面积修正未拟合或评分。
+
+- [D-FINE 定额面积校准](research_round_20260925_global/DFINE_DEV705_BOX_MASK_AREA_CALIBRATION_20261112.md)。开发集五折诊断中框比例校准降低面积误差但损伤轮廓 IoU，四项推进条件均未通过。
+
+- [D-FINE FIT109 边界概率排序](research_round_20260925_global/DFINE_E24_FIT109_PROBABILITY_RANK_20261112.md)。概率超过同额几何与置换，但相对原掩膜 IoU −0.159 点、mask AP −0.853 点。
+
+- [D-FINE 细长小船理想掩膜网格上界](research_round_20260925_global/DFINE_DEV705_IDEAL_LATTICE_BOUND_20261112.md)。在框内自由栅格可达而原掩膜未达 0.90 的 1,120 个匹配中，理想 160 网格额外证实排除 21 个，未过分辨率训练推进门槛。
+
+- [D-FINE FIT109 选择性删除](research_round_20260925_global/DFINE_E24_FIT109_SELECTIVE_DELETION_20261112.md)。五折来源交叉拟合，加入概率幅值的 AP 49.450，低于同动作的上下文对照 49.511。
+
+- [D-FINE 检测框截断的原生几何上界](research_round_20260925_global/DFINE_DEV705_NATIVE_BOX_CEILING_20261112.md)。0.90 的 206 个框内排除中，176 个只受框限制，扩 2 像素有 134 个理论可达。
+
+- [D-FINE 固定原掩膜的框外补全上界](research_round_20260925_global/DFINE_DEV705_FIXED_STOCK_COLLAR_20261112.md)。扩框内自由重选像元的 134 个严格可达样本中，只补框外为 0。
+
+- [D-FINE FIT109 框外概率补点](research_round_20260925_global/DFINE_E24_FIT109_BOX_COLLAR_20261112.md)。连通补点 AP 49.325→45.176，固定连续 IoU −1.709 点，停止单独扩框配方。
+
+- [D-FINE 框内同预算编辑上界](research_round_20260925_global/DFINE_DEV705_INSIDE_EDIT_MENUS_20261112.md)。同一 1,329 个固定匹配，等量增删和自由增删的 IoU 0.90 上界分别为 58 与 68 个，原掩膜 2 个。
+
+- [D-FINE FIT109 成对边界头训练](research_round_20260925_global/DFINE_E24_FIT109_PAIRED_POINT_20261112.md)。五折实际训练，AP 49.325→50.124，独立点与打乱对照 50.043／50.077，真实配对未过增量门槛。
+
+- [D-FINE FIT109 灰度消融](research_round_20260925_global/DFINE_E24_FIT109_GRAY_ABLATION_20261112.md)。原位置灰度相对灰度均值和同层置换分别 +0.580／+0.545 AP 点，固定严格匹配 7→6，未通过完整推进门槛。
+
+- [D-FINE FIT109 等量灰度比较](research_round_20260925_global/DFINE_E24_FIT109_GRAY_EQUAL_COUNT_20261112.md)。逐候选共用 6,664 次交换，原位置灰度相对两对照仅 +0.027／+0.023 AP 点，未过门槛。
+
+- [D-FINE FIT109 严格匹配保留试验](research_round_20260925_global/DFINE_E24_FIT109_STRICT_GUARD_20261112.md)。保住 7 个原严格匹配，保留 34／4,406 个候选编辑，AP +0.074 点，按预设停止。
+
+- [D-FINE FIT109 直接交换收益监督](research_round_20260925_global/DFINE_E24_FIT109_DIRECT_UTILITY_20261112.md)。直接损失 AP 50.140，等量时低于同头 BCE 与 Brier，原严格失守 2 个。
+
+- [D-FINE FIT109 固定端点几何上界](research_round_20260925_global/DFINE_E24_FIT109_PAIR_SUPPORT_ORACLE_20261112.md)。固定配对、等量重选、自由增删的严格达标上界为 11／27／38 个。
+
+- [D-FINE FIT109 独立边界端点选择](research_round_20260925_global/DFINE_E24_FIT109_FREE_ENDPOINT_PAIRING_20261112.md)。等量相对固定配对 +1.577 AP，按正收益独立选择相对原掩膜 +3.969 AP，7 个原严格匹配全保留，训练侧门槛通过。
+
+- [D-FINE 点头全 FIT 冻结重训](research_round_20260925_global/results/DFINE_E24_FIT109_FINAL_BCE_REFIT_INDEPENDENT_SAFE_20261112.json)。实际 200 次更新并由独立执行复现，用于后续 DEV705 原模型对照。
+
+- [D-FINE DEV705 裁剪前概率捕获](research_round_20260925_global/DFINE_E24_DEV705_PROBABILITY_CAPTURE_20261112.md)。705 次原前向和 70,500 份原二值复现均已验收。此次捕获未读取标签。
+
+- [D-FINE DEV705 冻结端点评估](research_round_20260925_global/DFINE_E24_DEV705_FREE_ENDPOINT_20261120.md)。原掩膜 AP 48.160，独立选点 50.715，预锁门槛通过，复算逐项一致。
+
+- [TGRS 投稿评议与剩余实验](research_round_20260925_global/SAR_SHIP_TGRS_SUBMISSION_REVIEW_20261120.md)。英文审阅稿已完成。汇总几何误差、同编辑量机制、两种架构与跨库实测，给出强基线、正式评价和成本核验的最少补证据。
+
+- [边界修正论文审阅稿 PDF](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.pdf) · [LaTeX 源码](research_round_20260925_global/paper_boundary_refinement_20261120/boundary_refinement.tex)。保留作者占位，收录 HRSID 同量机制和 PSeg-SSDD 冻结复验。
+
+- [PSeg-SSDD 冻结跨库实测](research_round_20260925_global/DFINE_HRSID_TO_PSEG_SSDD_DEV187_FROZEN_TRANSFER_20261120.md)。浮点 mask AP 17.897→18.234，较同头固定配对 +0.278 点，低于预设推进门槛。[RF-DETR 强载体同量对照计划](research_round_20260925_global/paper_boundary_refinement_20261120/RFDETR_MATCHED_POINT_REFINEMENT_PLAN.md)和[初版对照源码](research_round_20260925_global/code/RFDETR_MATCHED_POINT_REFINEMENT_20261120/README.md)已完成。[真实 FIT 四图接入](research_round_20260925_global/RFDETR_CENTER5202_MATCHED_POINT_REAL_SPOT_20261120.md)已独立复跑。185 个面积合格掩膜逐位重建，两种头各完成两次相同样本更新，真实栅格非零等量写回核验通过。[完整 FIT109 载体](research_round_20260925_global/results/RFDETR_CENTER5202_FIT109_CAPTURE_PUBLIC_SAFE_20261120.json)已验收，6,738 张原掩膜逐位复核。[三种子源端训练](research_round_20260925_global/results/RFDETR_CENTER5202_FIT109_MATCHED_TRAINING_PUBLIC_SAFE_20261120.json)已验收 7,200 次更新。DEV705 原始输出逐字节重放，三种子八策略读出和 67,386 个候选的独立核验已通过，[固定评分已闭合](research_round_20260925_global/RFDETR_CENTER5202_DEV705_MATCHED_RESULT_20261120.md)。三种子主方案均优于原生，平均 +0.794 mask AP 点。同头同量独立选点较固定配对 +0.906 AP 点。与普通同量逐点写回的两项预锁判据未通过，[等预算几何诊断已闭合](research_round_20260925_global/RFDETR_CENTER5202_DEV705_OCCUPANCY_BOUND_ACTUAL_20261120.md)。等面积情况下选点余量 +2.111 连续 IoU 点，放开增删数量额外 +1.001 点。 [下一轮源端对照](research_round_20260925_global/RFDETR_QUERY_CHANNEL_RESIDUAL_FIT109_PRELOCK_20261120.md)固定四种输入、原候选和等量增删，查询贡献投影已通过合成复核。 [FIT109 稀疏编码等价与成本](./research_round_20260925_global/RFDETR_SPARSE_RLE_ENCODING_COST_20261120.md)覆盖 32 个结构分层样本，逐字节等价，编码时间中位数为 90.23 μs 对 988.15 μs。
+
+- [HRSID 裁片近远边缘诊断](research_round_20260925_global/HRSID_FIT_SEAM_CONTEXT_20261112.md)原随机试点完整配对不足，新 40 组已评分，远边缘连续 IoU 高 2.732 点，但严格达标仅多 1 个，按原门槛停止。
+
+- [RD 首轮迁移判别实验](research_round_20260925_global/RD_TRANSFER_PILOT_DECISION_20261112.md)。用同架构三种初始化检验海面 RD 定位迁移。新增局部复数 RD 的失焦轮廓修正方案，包含运动补偿重聚焦、同容量和错配对照。真实 RD 模型分数待测。
+
+- [SSDD DEV187 历史原生平移诊断](research_round_20260925_global/SSDD_DEV187_NATIVE_TRANSLATION_PROTOCOL_20261109.md)。同规则下 248 个近严格配对中 29 个可由 ±2 像素平移恢复，72 个受面积比限制。固定上移新增 13 个并损失 37 个，与 HRSID 的净值方向相反。
+
+- [HRSID FIT 的原生 164 查询与候选保留对照](research_round_20260925_global/HRSID_FIT_NATIVE_QUERY_RETENTION_PROTOCOL_20261109.md)。实测全查询严格匹配 37→39，等量非空保持 37。密集压力图在 0.50 多 36 个，0.90 仍为零。独立复算后按预设门槛停止筛选分支。
+
+- [HRSID FIT 固定查询轮廓几何](research_round_20260925_global/HRSID_FIT_FIXED_CONTOUR_GEOMETRY_PROTOCOL_20261109.md)。主层放宽整体恢复 51/234，局部同预算恢复 37/234，密集层分别为 0/59 与 19/59。按预设门槛优先验证整体平移的预测信号。
+
+- [HRSID 同一查询的框掩膜中心偏差](research_round_20260925_global/HRSID_FIT_BOX_SHIFT_PROTOCOL_20261109.md)。实测框差、掩膜差与常量的严格匹配均为 51，原生为 37；拟合组均失守 15/37，框差未过门。原生掩膜重采样有合成像素中心偏移证据，真实增强重放待检验。
+
+- [HRSID FIT 训练标签采样相位](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_REPLAY_PROTOCOL_20261109.md)。114 图、456 个配对视图实测，小目标纵向偏差 +0.876→−0.120 原图像素，参考 IoU 0.795→0.952。保留行变动 3 失 1 增，独立复算通过，进入配对训练资格。
+
+- [HRSID DEV705 等量候选覆盖实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#关闭模型的候选覆盖与图内分配诊断)。逐图非空候选等量后，三种子的 IoU 0.90 最大匹配数分别增加 98、70、113。[5203 独立读回](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#5203-实测及源域与外部域比较)。
+
+- [HRSID DEV705 跨图分数交叉对照](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#等量候选的跨图分数排序对照)。两种供体分数固定后，中心候选 mask AP 仍高 4.526 至 5.062 点。固定候选换分数的最大绝对变动为 0.298 点。
+
+- [HRSID 共同检出船舶的掩膜方向实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#固定-iou-050-实例的掩膜几何与方向核验)。两个种子的 y 质心偏差分别由 +0.696、+0.517 收敛到 −0.079、−0.098 像素。原生掩膜上移的收益在中心臂消失。
+
+- [单次中心的真实 FIT 审计](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#dgx-实测与共同行资格)。DGX 原始 SSDD 741 视图和 HRSID 456 视图闭合并独立复算。直缩 3,571 条共同行掩膜一致。裁剪在 SSDD 改变 639／644 条，HRSID 主层改变 635／638 条。自然 C 在 HRSID 多 3 条非空监督。新的共同行加载器通过 4 个真实 FIT 视图。短训监督入口已通过源码预检并在当前占用下拒绝启动。直缩复用候选经 456 个真实 FIT 视图双臂逐值验收；16 个固定视图的开启审计计时中，主层与压力层直缩耗时中位比减少 59.0% 和 72.0%。
+
+- [HRSID FIT 与 SSDD DEV 图像内容筛查](research_round_20260925_global/HRSID_SSDD_CROSSSET_VISUAL_CONTENT_SCREEN_PROTOCOL_20261111.md)。两个已核对集合的编码与 RGB 精确重复均为零。近似筛查未通过变换正对照，采集独立性待核。
+
+- [独立外部数据核验](research_round_20260925_global/HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md#2026-11-10-独立外部数据入口与标签边界)。实际读回 Schwegmann 的 23 条影像掩膜配对，核对 UEIKAP 来源预留和 AIR-SARShip 标签边界。[OSSDD 训练分片](research_round_20260925_global/HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md#ossdd-训练分片的实际标签读回)的旋转框派生掩膜已完成三个样本核验。
+
+- [HRSID 漏分的面积与触边分层实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#面积加权漏分的失败范围)。两个种子的全体像素错误合计下降，大型贴边小样本组的净错误均增加。
+
+- [HRSID 训练掩膜相位的配对训练](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_PAIRED_TRAIN_PROTOCOL_20261109.md)。同机两臂各通过 32 次访问、8 次 AdamW 和 EMA 的真实资格。图像与框配对一致，29 批掩膜不同。首组两臂各通过 24 轮、17,640 次 AdamW 和 EMA 更新及 E1/E8/E24 档案验收。DEV705 原始 GT 的 mask AP 为 A **50.434**、B **55.551**，相对较强原生参考 **+5.117 点**，独立复算通过。[后续种子 5202、5203 已预锁](research_round_20260925_global/HRSID_FIT_RESIZE_PHASE_REPEAT_SEEDS_PROTOCOL_20261109.md)，四个真实短窗已通过独立验收。5202 两臂均独立验收 E24，访问顺序相同。固定 DEV705 的 A 为 **51.333**、B 为 **56.131**，首个确认种子提升 **+4.799 点**，正式 TEST 未开启。 首组与首个确认组均为正，5203 两臂各独立验收 E24，固定 DEV705 的 A 为 **50.661**、B 为 **55.411**。三组平均提升 **4.888 点**，通过预锁的开发集效用门。三种子汇总规则的 9 项合成测试通过。 [共同行对照、方向合成实测及 SSDD 预案](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md)。 共同行训练、短窗与 E24 验收、DEV705 准入及配对几何入口通过 56 项合成测试。真实共同行短窗已验收。每臂 32 次访问、8 次更新，29 次访问中实际入训掩膜不同。原生臂 E24 已独立验收，共 70,560 次访问、17,640 次 AdamW 和 EMA。原中心臂在第 22 轮中断，已核对 21 个完整轮次，原退出回执缺失。新中心臂从相同 COCO 初值重新运行，第 1 轮已完成，各记录 735 次 AdamW 与 EMA 更新。E24 验收与配对评价待完成。B/C 长训、固定 DEV705 准入、配对几何和关闭计划均已通过各自合成测试。真实 B/C 短窗待资源交接。 [DEV705 组构成敏感性实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#dev705-文件名前缀组敏感性实测)显示，[5201–5203 三个种子](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#第三个种子的来源组敏感性实测)的 AP 和 AP75 在全部 2,048 次抽样与逐一移除 28 组时均为正。 [纵向三臂 FIT 实测](research_round_20260925_global/HRSID_FIT_VERTICAL_DIRECTION_REPLAY_PROTOCOL_20261109.md)通过方向门槛，原生与反射相对纵向中心分别为 +0.988 与 −0.718 原图像素。
+
+- [SSDD FIT 损失采样复验](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-fit-固定匹配后的损失采样)。裁剪 B/C 标签 304／404,352 变化，约为均匀参照 3 倍。固定预测下整体加权损失 −0.011095，小目标 +0.012432。
+
+- [SSDD FIT 匹配点标签复验](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-fit-冻结匹配点的标签变化)。原 30 个非空视图逐值通过。裁剪 B/C 完整掩膜 24／24 改变，原匹配点标签只改变 6／31,104。模型效用待同预算实测。
+
+- [Windows PSeg-SSDD 独立长训](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#windows-pseg-ssdd-短训通过及独立长训)。 两臂 GPU 短训均通过独立验收，正式 E24 两臂已通过独立验收。首个 DEV 导出在前向前触发 CUDA 初始化错误，修复后的独立复跑待评分。[固定 DEV187 阶段入口](research_round_20260925_global/code/SSDD_DEV187_STAGE_WORKER_20261111/ssdd_dev187_stage_worker.py)已通过合成测试，实际评价待两臂关闭及验收。
+
+- [SSDD 相位迁移入口和 Q100 初始化实测](research_round_20260925_global/HRSID_MASK_PHASE_COMMON_SUPPORT_AND_SSDD_TRANSFER_DESIGN_20261109.md#ssdd-迁移入口与-q100-初始化实测)。已核验完整初始张量，FIT741 隔离目录实际完成并独立读回。长训验收、导出和评分候选已联测，DGX 已完成 741 个真实增强视图，两臂保留同一 1,445 条非空监督，裁剪小目标纵向偏移 +0.582→−0.026 原图像素。DGX Q100 差异定位至一项位置编码，独立副本已恢复原完整初值摘要。正式装配的 DGX CPU 初值验收已通过，GPU 短窗等待显存准入。独立纵向三臂通过反转门槛，连续面积下裁剪小目标 IoU 为原生 0.845、逐步中心 0.933、单次中心 0.955。HRSID FIT114 原账本复现，主层裁剪小目标同指标为 0.687→0.814→0.882。 [DGX 实测回执](research_round_20260925_global/results/SSDD_FIT741_DGX_CPU_REPLAY_ACTUAL_SAFE_20261110.json)。Windows CPU 复验正常关闭，21 个共享字段数值一致，未执行模型前向或评分。[Windows 实测回执](research_round_20260925_global/results/SSDD_FIT741_WINDOWS_CPU_REPLAY_ACTUAL_SAFE_20261110.json)
+
+- [SSDD 训练匹配的采样归因](research_round_20260925_global/RFDETR_E24_FIT_MATCHER_COST_ATTRIBUTION_PROTOCOL_20261109.md)。DGX 30 图精确重放，分层降幅 0.321 点，按预设门槛停止；后续诊断高 IoU 候选。
+
+- [SSDD 双相位掩膜几何](research_round_20260925_global/RFDETR_E24_FIT_DUAL_PHASE_MASK_GEOMETRY_PROTOCOL_20261109.md)。首组 42/55 缺严格候选，最优标量阈值双相位恢复 3/42，按门槛停线。
+
+- [SSDD 冻结空间基底的嵌套掩膜拟合](research_round_20260925_global/RFDETR_E24_FIT_NESTED_MASK_BASIS_ORACLE_PROTOCOL_20261109.md)。固定基底的系数拟合双相位恢复 18/42，标量对照 3/42。
+
+- [SSDD 原生 BF16 系数回放](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_COEFFICIENT_REPLAY_PROTOCOL_20261109.md)。保持共享偏置，仅改系数恢复 19/42，系数相对范数偏大，下一项检验有限改动。
+
+- [SSDD 有界系数实测](research_round_20260925_global/RFDETR_FIT_BOUNDED_COEFFICIENT_ORACLE_PROTOCOL_20261109.md)。迭代 20/42、一步 15/42、偏置 3/42，进入冻结原生推理的同预算全候选试验。
+
+- [SSDD 冻结系数读出学习对照](research_round_20260925_global/RFDETR_FIT_FROZEN_COEFFICIENT_SCOUT_PROTOCOL_20261109.md)。各 484 步，内外侧差 mask AP 70.902，原生 72.563。交叉读出显示严格损失来自原匹配行的扩张。
+
+- [SSDD 原图有界系数教师](research_round_20260925_global/RFDETR_FIT_ORIGINAL_GRID_TEACHER_PROTOCOL_20261109.md)。学生 AP 72.495，原生 72.563；真值保护未过门槛。训练点拟合消除 60.52% 教师差距，恒等目标仍有漂移。
+
+- [SSDD 教师修正与严格保持的局部梯度诊断](research_round_20260925_global/RFDETR_FIT_TEACHER_DIRECTION_PROBE_PROTOCOL_20261109.md)。两半方向均冲突。普通投影保留 61.84% 拟合改善并新增 1 个严格失守，未过门。
+
+- [SSDD 固定候选的有界掩膜收益诊断](research_round_20260925_global/RFDETR_FIT_BOUNDED_ACTION_HEADROOM_PROTOCOL_20261109.md)。111 图真值引导拟合将 AP 72.563 提到 80.659，统一偏置为 73.081，保留全部原严格配对。仅用于确定下一条无真值预测机制。
+
+- [SSDD 边界双侧局部证据](research_round_20260925_global/RFDETR_FIT_LOCAL_SIGNED_EVIDENCE_PROTOCOL_20261109.md)。五组各 96 次实际更新。114 张历史校准图上局部 logits 的固定匹配净裕量领先，法线配方按规则停止。
+
+- [SSDD 局部 logits 全候选编辑与弃权](research_round_20260925_global/RFDETR_FIT_SELECTIVE_LOGIT_ACTION_PROTOCOL_20261109.md)。预设风险门未找到合格阈值。全强制次要对照较原生 +1.621 AP 点，[固定归因](research_round_20260925_global/RFDETR_FIT_FORCED_LOGIT_CROSSREAD_PROTOCOL_20261109.md)中仅原匹配 +1.686 点，进入前瞻强对照准备。
+
+- [SSDD DEV187 固定局部 logits 前瞻实测](research_round_20260925_global/RFDETR_DEV187_FIXED_LOGIT_PROSPECTIVE_PROTOCOL_20261109.md)。有序局部 logits 较 E24 +1.127 AP 点，较 E100 +0.405 点，固定配方停线。[严格保护诊断](research_round_20260925_global/RFDETR_DEV187_STRICT_RETENTION_CROSSREAD_PROTOCOL_20261109.md)恢复 AP90，但相对 E100 的 AP 差仍低于 1 点。
+
+- [SSDD 同八像素预算的补删比例](research_round_20260925_global/RFDETR_FIT_ASYMMETRIC_EDIT_PROTOCOL_20261109.md)。真值比例机会门通过，预测分配 AP 低 0.178 点。[固定归因](research_round_20260925_global/RFDETR_FIT_ASYMMETRIC_CROSSREAD_PROTOCOL_20261109.md)显示下降主要出现在原匹配行。
+
+- [SSDD 候选条件的配额结果估计](research_round_20260925_global/RFDETR_FIT_QUOTA_OUTCOME_PROTOCOL_20261109.md)。多阈值头停线。[同预算机会诊断](research_round_20260925_global/RFDETR_FIT_RANK_QUOTA_ORACLE_AP_PROTOCOL_20261109.md)中真值排序较四补四删 +3.016 AP 点，[同预算点前缀实测](research_round_20260925_global/RFDETR_FIT_PREFIX_RANK_LOSS_PROTOCOL_20261109.md) 主组相对普通成对排序 AP +0.366 点，相对 BCE AP90 +1.081 点、AP75 −0.557 点，未通过前瞻扩展门槛。[固定 COCO 匹配归因](research_round_20260925_global/RFDETR_FIT_AP75_MATCH_ATTRIBUTION_PROTOCOL_20261109.md) 已实际完成。主组 AP75 的 −0.557 点来自达标边变化，只换 IoU 优先顺序的差值为零。[失守来源和拟合普查](research_round_20260925_global/RFDETR_FIT_AP75_ANCHOR_CENSUS_PROTOCOL_20261109.md) 的五条直接失守边均仅 BCE 后达标，拟合侧对应可控支持为 7 个配对、4 个内容组。[484 图双头五折对照](research_round_20260925_global/RFDETR_FIT_AP75_BROAD_SUPPORT_PROTOCOL_20261109.md) 中，扩展训练只多救回 1 个固定配对，难例支持筛查未通过。[固定多阈值动作实测](research_round_20260925_global/RFDETR_FIT_COCO_ACTION_UTILITY_OOF_PROTOCOL_20261109.md) 略高于 BCE，低于全样本前四排序，未过保持与推进门槛。[候选分侧秩实测](research_round_20260925_global/RFDETR_FIT_SIDE_CONTEXT_RANK_PROTOCOL_20261109.md) 在 96 步与原输入高阈值总数持平，384 步少 13 次，未推进。[翻转对齐实测](research_round_20260925_global/RFDETR_FIT_ALIGNED_FLIP_EVIDENCE_PROTOCOL_20261109.md) 增加 117 个正确翻转，高阈值通过较原 38 维头少 2 次，未通过推进门。固定配对中新增 38 次、失守 40 次，两动作真值选择的上限较原头多 38 次。[嵌套五折选择实测](research_round_20260925_global/RFDETR_FIT_NESTED_VIEW_SELECTION_PROTOCOL_20261109.md) 中高阈值通过比原头少 4 次，未过安全与收益门。
+
+- [SSDD 原生掩膜网格诊断](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_GRID_CANCELLATION_PROTOCOL_20261109.md)。真实错分抵消下降 2.249 个百分点，低于预设 5 点准入。
+
+- [HRSID 原生 FIT 首轮](research_round_20260925_global/HRSID_NATIVE_FIT_FIRST_EPOCH_PROTOCOL_20261109.md)。已完成并独立验收 735 次更新和完整原生检查点。
+
+- [SSDD 预测轮廓的切向对应](research_round_20260925_global/RFDETR_E24_FIT_CONTOUR_CORRESPONDENCE_PROTOCOL_20261109.md)。对齐未胜出，按预设五项图像配对门槛停线。
+
+- [SSDD 小船的有符号错分诊断](research_round_20260925_global/RFDETR_E24_FIT_SIGNED_BOUNDARY_EVIDENCE_20261109.md)。两种秩候选均未过预设门槛，保留补删分项和实际覆盖。
+
+- [等像素预算的实例间分配](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_EDIT_ALLOCATION_PROTOCOL_20261109.md)。三组各 14,864 次翻转，估计交并比组低于原生与置信度，按规则停止。
+
+- [严格掩膜排名实测与 FIT 预锁检验](research_round_20260925_global/RFDETR_FIXED_MASK_RANK_WITNESS_AND_FIT_PROTOCOL_20261109.md)。学习秩较原生 AP 低 0.217 个百分点，按规则停止。固定前缀的完美 16 像素编辑上限仅覆盖约四成小目标候选。
+
+- [HRSID 真实空目标与稠密 FIT 输入资格](research_round_20260925_global/HRSID_REAL_FIT_NATIVE_MATCH_PROTOCOL_20261109.md)。空目标与稠密目标的反向均通过，164 查询逐组覆盖全部 163 个实例。
+
+- [HRSID 原生 COCO FIT 目录资格](research_round_20260925_global/HRSID_FIT_NATIVE_COCO_LAYOUT_PROTOCOL_20261109.md)。2,937 张 FIT PNG 与 9,260 条派生标注已落盘并独立核验。
+
+- [HRSID E24 的 DEV705 固定评分](research_round_20260925_global/HRSID_COCO_E24_DEV705_NATIVE_EVALUATION_PROTOCOL_20261109.md)。完成 E24 后使用冻结预测和原始 GT 评价。
+
+- [HRSID DEV705 输入审计](research_round_20260925_global/HRSID_OFFICIAL_PNG_DEV705_AUDIT_PROTOCOL_20261109.md)。705 图和 1,782 条原始标注已核验，保留 4 条空栅格记录。
+
+- [HRSID 官方 PNG FIT 审计实测](research_round_20260925_global/HRSID_OFFICIAL_PNG_FIT_PIXEL_LABEL_AUDIT_PROTOCOL_20261109.md)。全量 FIT 固定增强后有 8,505 个非空目标和 99 个无目标视图。
+
+- [AdamW 历史状态对照实测](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_ACTUAL_20261109.md)。F/S 各 372 次更新，首梯度完全一致。S 严格覆盖净增 10，AP 低 0.573 个百分点，按规则停线。
+
+- [严格反向路径的 AdamW 等预算对照](research_round_20260925_global/RFDETR_E24_STRICT_OPTIMIZER_PAIR_PROTOCOL_20261109.md)。固定 F/S 首步门槛、每组 372 次更新和 DEV187 分支规则。
+
+- [严格反向首步实测](research_round_20260925_global/RFDETR_E24_STRICT_BACKWARD_REPLAY_ACTUAL_20261109.md)。两组真实 FIT 复验全梯度逐元素一致，允许推进同反向路径的公平优化器对照。
+
+- [DINO 高效注意力反向实测与确定性控制](research_round_20260925_global/RFDETR_E24_EFFICIENT_ATTENTION_BACKWARD_ACTUAL_20261108.md)。骨干外部反向边界精确一致，内部高效注意力节点局部复现分歧。 首次严格反向复验维持原 cuBLAS 环境。
+
+- [HRSID 跨数据集证据范围](research_round_20260925_global/HRSID_CROSSSET_EVIDENCE_BOUNDARY_20261108.md)。官方 PNG 归档全量字节和成员 CRC 已核验，保留 JPG、空栅格和历史测试接触记录。
+
+- [双算子联合反向控制实测](research_round_20260925_global/RFDETR_E24_COMBINED_SAMPLING_BACKWARD_CONTROL_ACTUAL_20261108.md)。已观测骨干首特征边界逐字节稳定，patch 入梯度仍分叉，完整配对暂缓。
+
+- [同图反向节点及同梯度 AdamW 首步实测](research_round_20260925_global/RFDETR_E24_SAME_GRAPH_NODE_AND_ADAMW_STEP_ACTUAL_20261108.md)。定位 9 个网格采样和 2 个双线性上采样分叉。固定梯度后历史状态改变首步幅度和方向。
+
+- [双线性采样反向控制实测](research_round_20260925_global/RFDETR_E24_GRID_BACKWARD_CONTROL_ACTUAL_20261108.md)。原生 CUDA 前向逐字节一致，全部受控反向交给 CPU 后仍观察到 1.096% 梯度差。
+
+- [四次首窗复放与反向差异](research_round_20260925_global/RFDETR_E24_FIRST_GRADIENT_REPLAY_ACTUAL_20261108.md)。同臂差异落在跨臂范围内，已核验的前向及损失一致。下一项只控制采样反向。
+
+- [AdamW 配对实测及首梯度资格失败](research_round_20260925_global/RFDETR_E24_OPTIMIZER_FIRST_GRADIENT_GATE_ACTUAL_20261108.md)。每臂 372 次真实更新，首梯度差异集中在骨干，停止 DEV 评价并锁定首窗复放。
+
+- [固定 E24 的 AdamW 历史状态对照协议](research_round_20260925_global/RFDETR_E24_OPTIMIZER_PRESERVATION_PROTOCOL_20261108.md)。等在线权重、EMA、学习率和增强序列，预锁首梯度资格及短程停走规则。
+
+- [DGX 四端点保留掩膜几何实测](research_round_20260925_global/RFDETR_DGX_FOUR_ENDPOINTS_GEOMETRY_ACTUAL_20261108.md)。E100 严格覆盖较同运行 E24 净增 17 个，较独立 E24 少 19 个。
+
+- [DGX 连续 E100 四端点实际评分](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_FOUR_ENDPOINTS_ACTUAL_20261108.md)。同运行 E24/E50/E100 的 mask AP 为 67.866/67.729/68.165。E100 相对 E24 的 AP75 +1.648，小目标 AP −0.339。
+
+- [优化器状态分支的原文及源码](research_round_20260925_global/RFDETR_OPTIMIZER_STATE_PRIMARY_PRIOR_20261108.md)。固定检查点保留与重置已有先例，可用于排查短热启动的几何回落。
+
+- [FIT 冻结教师边界诊断实测](research_round_20260925_global/RFDETR_FIT_TEACHER_BOUNDARY_ACTUAL_20261108.md)。3/26 符合可配对几何回落，净改善见于 2 个图组，依预注册规则停止固定软教师分支。
+
+- [DGX 评估资源预检与重新准入](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_ALT_EVAL_RESOURCE_ADMISSION_20261108.md)。首次预检退出 1，未前向。新运行按长期服务共存与更低资源上限准入。
+
+- [连续端点 DGX 同机补充评估协议](research_round_20260925_global/RFDETR_NATIVE_E100_DGX_ALT_EVAL_PROTOCOL_20261108.md)。受限于归档传输速率，四个端点另用同一 DGX 数值路径，端点选择不变。
+
+- [DGX 连续 E100 闭合与三端点评估协议](research_round_20260925_global/RFDETR_NATIVE_E100_REMOTE_CLOSED_EVAL_PROTOCOL_20261108.md)。已完成 18,600 次更新。远端 OS 退出与归档通过独立核对，保留本机原 SSH 回执缺口。
+
+- [FIT 增强图冻结教师边界可行性协议](research_round_20260925_global/RFDETR_FIT_TEACHER_BOUNDARY_PROTOCOL_20261108.md)。预锁真实增强、掩膜配对和继续门槛。
+
+- [DGX 首次 E100 闭合及新 E100 启动](research_round_20260925_global/RFDETR_NATIVE_E100_FAILURE_RECOVERY_ACTUAL_20261108.md)。首次运行最后记录 E32，已独立闭合。修复进程扫描后，从相同初始权重新启动并核对 GPU 进程。
+
+- [数学、物理、雷达与近期分割方法原文源码续查](research_round_20260925_global/PRIMARY_METHODS_SOURCE_AUDIT_CONTINUATION_20261108.md)。包含可微分水岭、复极化和去斑、结构预训练、可复训分割对照，以及可证伪的候选重叠诊断。
+
+- [RF-DETR E24 邻船重叠实测](research_round_20260925_global/RFDETR_E24_FIT_CANDIDATE_OVERLAP_ACTUAL_20261108.md)。516 张 FIT 拟合图上，857 个低 IoU 匹配实例中有 33 个涉及邻船预测重叠，已用独立算法复算。
+
+- [等点数边界采样诊断协议](research_round_20260925_global/RFDETR_E24_FIT_POINT_SAMPLING_RISK_PROTOCOL_20261108.md)。先核查原生覆盖和同一均匀 BCE 目标的估计方差，达到预锁门槛后再进入真实训练式验证。
+
+- [等点数边界采样固定 E24 实测](research_round_20260925_global/RFDETR_E24_FIT_POINT_SAMPLING_RISK_ACTUAL_20261108.md)。96 图、178 个匹配实例。小实例 357/744 次原生采样未命中边界错分，分层方差通过门槛，进入训练式验证。
+
+- [E24 训练式点覆盖复核协议](research_round_20260925_global/RFDETR_E24_TRAIN_STYLE_POINT_SAMPLING_PROTOCOL_20261108.md)。采用真实训练增广、五层匹配和 13 个查询组，单列成本与训练效用。
+
+- [E24 真实训练式点覆盖与方差结果](research_round_20260925_global/RFDETR_E24_TRAIN_STYLE_POINT_SAMPLING_ACTUAL_20261108.md)。2,535 次匹配验证降方差门槛。39 个增强后 GT 在并集上均有错分点命中。
+
+- [等点数采样成本协议与实现](research_round_20260925_global/RFDETR_E24_POINT_SAMPLER_FULL_STEP_COST_PROTOCOL_20261108.md)。测真实前反向并检查 Dice 一致，计入边界准备成本。
+
+- [分层采样 V2 前反向成本实测](research_round_20260925_global/RFDETR_E24_POINT_SAMPLER_COST_V2_ACTUAL_20261108.md)。Dice 完全一致，时延略超预锁上限，V2 停在成本验证。
+
+- [分层采样 V3 批量抽样与复测协议](research_round_20260925_global/RFDETR_E24_POINT_SAMPLER_COST_V3_PROTOCOL_20261108.md)。按真值分组批量抽样，沿用 V2 时延门槛。
+
+- [分层采样 V3 前反向成本实测](research_round_20260925_global/RFDETR_E24_POINT_SAMPLER_COST_V3_ACTUAL_20261108.md)。同会话配对中位数通过成本门槛、Dice 完全一致。整轮训练耗时和 AP 待配对训练。
+
+- [E24 等目标 B/D 热启动配对训练协议](research_round_20260925_global/RFDETR_E24_EQUAL_RISK_WARM_BD_SCOUT_PROTOCOL_20261108.md)。每臂 372 次更新，固定同机 E24 和 DEV187 评价。
+
+- [B/D 首次导入退出与实际启动](research_round_20260925_global/RFDETR_E24_WARM_BD_IMPORT_RECOVERY_ACTUAL_20261108.md)。恢复版通过依赖检查并进入实际更新。
+
+- [E24 等目标 B/D 实训与 DEV187 固定评价](research_round_20260925_global/RFDETR_E24_EQUAL_RISK_WARM_BD_SCOUT_ACTUAL_20261108.md)。D 相对同预算 B 的 AP 增加 1.091 点，相对同机 E24 低 0.188 点，按预锁规则停止此短训配方扩展。
+
+- [E24 原生损失 A 热启动对照协议](research_round_20260925_global/RFDETR_E24_NATIVE_WARM_A_CONTROL_PROTOCOL_20261108.md)。固定原预算与数据，验证高 IoU 覆盖是否也在原生损失下回落。
+
+- [原生 A 实测与固定共同查询交叉](research_round_20260925_global/RFDETR_E24_NATIVE_WARM_A_CONTROL_ACTUAL_20261108.md)。A 的 AP 与 D 接近，严格覆盖也回落，预锁解释落在混合区间。
+
+- [全部 100 个原始查询覆盖协议](research_round_20260925_global/RFDETR_WARM_RAW100_COVERAGE_PROTOCOL_20261108.md)。区分候选筛选遗漏与原始掩膜覆盖缺失。
+
+- [全部 100 个原始查询实测](research_round_20260925_global/RFDETR_WARM_RAW100_COVERAGE_ACTUAL_20261108.md)。A/B/D 严格覆盖丢失分别有 36/37、39/39、41/42 在原始查询中也缺失。
+
+- [FIT 匹配状态交叉读出实测](research_round_20260925_global/RFDETR_E24_FIT_MATCH_CROSSREAD_ACTUAL_20261108.md)。秩的匹配候选独立编辑未改变 AP 或 AP75，停止判定保持。
+
+- [FIT 等结构选择器实测与停止判定](research_round_20260925_global/RFDETR_E24_FIT_EQUAL_HEAD_SCOUT_ACTUAL_STOP_20261108.md)。同预算秩相对排序略好，校准后未达到锁定的 AP/AP75 门槛，停止进入 DEV。
+
+- [完整 FIT741 CUDA 原生采集实测](research_round_20260925_global/RFDETR_E24_FIT741_NATIVE_CUDA_CAPTURE_ACTUAL_20261108.md)。741 图已独立验收，60,881 个船舶候选、19,917,672 个带内 logits；固定匹配与等结构头协议已锁。
+
+- [同图 CUDA 接线验收与 FIT 主采集设备](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_WINDOWS_CUDA_ACTUAL_20261108.md)。本机实际 CUDA 原件通过独立复核，完整 CUDA 采集锁为选择器的主输入。
+
+- [第一张真实 FIT 图的原生捕获已独立验收](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_CPU_PILOT_ACTUAL_20261108.md)。90 个船舶候选、19,363 个原图带内 logits；完整 FIT 采集路径已冻结。
+
+- [FIT 选择器的冻结划分与原生采集协议](research_round_20260925_global/RFDETR_E24_FIT_NATIVE_CAPTURE_AND_SCOPE_20261108.md)。FIT741 分为 516/114/111 张，同字节图像成组；候选采集与等支持灰度特征已通过合成测试。
+
+- [E24 实际预测边界带的限额编辑上限](research_round_20260925_global/RFDETR_E24_PRODUCTION_BOUNDARY_ORACLE_ACTUAL_20261108.md)。K=16 新增 90/377 双达标，超过预设的 20/377 机会门，下一步进入 FIT 选择器试验。
+
+- [E24 双标注限额修边上限实测](research_round_20260925_global/RFDETR_E24_SIGNED_EDIT_ORACLE_ACTUAL_20261107.md)。每实例最多改 16 或 32 像素，GT 边界带联合编辑分别新增 53 或 103 个双达标实例，下一项锁定实际预测支持。
+
+- [DGX 连续 E100 已启动与等预算修边诊断方案](research_round_20260925_global/RFDETR_E100_ORIGINAL_START_AND_SIGNED_EDIT_ORACLE_PLAN_20261107.md)。E100 固定为主要端点，限额编辑上限的整数计算已通过合成穷举对照，实际数据待执行。
+
+- [E24 双标注边界误差定位实测](research_round_20260925_global/RFDETR_E24_BOUNDARY_LOCALIZATION_ACTUAL_20261107.md)。224 个双标注严格阈值未达标实例中，2 像素共同边界带聚集 64.69% 的漏分与 71.96% 的溢出。
+
+- [RF-DETR E24 的真实 DEV187 双标注评价与误差诊断](research_round_20260925_global/RFDETR_E24_DEV187_ACTUAL_EVALUATION_20261107.md)
+
+- [全部原始查询覆盖实测与高 IoU 缺口](research_round_20260925_global/RFDETR_E24_RAW_QUERY_GEOMETRY_ACTUAL_20261107.md)
+
+- [E24 原始查询诊断首次资源失败及后续核验](research_round_20260925_global/RFDETR_E24_RAW_QUERY_FIRST_ORIGINAL_FAILURE_20261107.md)
+
+- [RF-DETR 连续 E24 实测与原生断点](research_round_20260925_global/RFDETR_NATIVE_CONTINUOUS_E24_STATUS_20261107.md)
+
+- [E24 固定 DEV187 的原生导出与 CPU 评价协议](research_round_20260925_global/RFDETR_E24_DEV187_EVALUATION_CHAIN_20261107.md)
+
+- [HRSID 与既有像素核验的输入字节对齐及跨集重复检查](research_round_20260925_global/HRSID_U43_V04_INPUT_IDENTITY_ACTUAL_20261107.md)
+
+- [RF-DETR E2 原生接续，第 187 次更新已验收](research_round_20260925_global/RFDETR_NATIVE_E2_ACTUAL_ACCEPTED_20261107.md)
+
+- [RF-DETR BF16 E1 实测与原生断点验收](research_round_20260925_global/RFDETR_NATIVE_E1_ACTUAL_ACCEPTED_20261107.md)
+
+- [RF-DETR E1 的两次实际退出、根因和完整指纹修正](research_round_20260925_global/RFDETR_NATIVE_E1_FIRST_ATTEMPT_ACTUAL_FAILURE_20261107.md)
+
+
+
+- [完整外部基线的初始化和预算设计：教师上游成本不能省略](research_round_20260925_global/U57_DIFFSAR_FULL_BASELINE_BUDGET_INITIALIZATION_DESIGN_20261107.md)
+
+- [原生完整预测的CPU COCO薄适配器：源码候选，尚未执行AP](research_round_20260925_global/code/DIFFSAR_NATIVE_CPU_COCO_ADAPTER_DRAFT_20261107_01/README.md)
+
+- [CPU COCO适配器有限独立审阅：运行仍待](research_round_20260925_global/U57_DIFFSAR_NATIVE_CPU_COCO_ADAPTER_INDEPENDENT_REVIEW_20261107.md)
+
+- [DEV187候选完整内容覆盖：187逻辑/183原字节对象，仍待Root准入](research_round_20260925_global/DEV187_ORIGINAL_IMAGE_CANDIDATE_COMPOSITION_STATUS_20261107_03.md)
+
+- [DiffSAR端点预测有限独立审阅：未确认具体阻断，运行仍待](research_round_20260925_global/U57_DIFFSAR_ENDPOINT_PREDICTION_INDEPENDENT_REVIEW_20261107.md)
+
+- [DiffSAR完整端点预测代码候选：仅源码与有限测试，未执行](research_round_20260925_global/U57_DIFFSAR_ENDPOINT_PREDICTION_SOURCE_STATUS_20261107.md)
+
+- [GLDet作者复现来源：500轮设置、初始化与可训练代码仍未取得](research_round_20260925_global/U57_GLDET_AUTHOR_REPRODUCTION_PRIMARY_REVIEW_20261107.md)
+
+- [DiffSAR正式512：实际完整状态接续，尚无端点AP](research_round_20260925_global/U57_DIFFSAR_FORMAL_CONTINUATION512_ACTUAL_20261107.md)
+
+- [DiffSAR原始来源：初值未知、500训练／1000测试／maxDets100](research_round_20260925_global/U57_DIFFSAR_PAPER_INITIALIZATION_PRIMARY_REVIEW_20261107.md)
+
+- [HRSID标注版本差异：净差18涉及26张、原划分保留](research_round_20260925_global/HRSID_ANNOTATION_PROTOCOL_DIFF_STATUS_20261107_05.md)
+
+- [外部DiffSAR首256次正式更新：完整状态已保存，尚无AP](research_round_20260925_global/U57_DIFFSAR_FORMAL_FIRST256_ACTUAL_20261107.md)
+
+- [DiffSAR恢复状态与原生数值方差：旧失败保留、同起点重复实证](research_round_20260925_global/U57_DIFFSAR_STATE_AND_NUMERICAL_VARIATION_ACTUAL_20261107.md)
+
+- [完整外部训练的新前向协议及证据边界](research_round_20260925_global/U57_DIFFSAR_FORMAL50_STATE_CONTINUITY_FORWARD_PROTOCOL_20261107.md)
+
+- [HRSID5604图本地原字节、CRC、header与跨划分重复聚合](research_round_20260925_global/HRSID_JPG_INPUT_AUDIT_STATUS_20261107_04.md)
+
+- [DiffSAR真实32步原生训练健康结果：第6步激活掩膜信号](research_round_20260925_global/U57_DIFFSAR_NATIVE_HEALTH32_ACTUAL_20261107.md)
+
+- [完整FIT输入已传DGX的安全聚合](research_round_20260925_global/U57_FIT_DGX_INPUT_TRANSFER_20261107.md)与[作者原优化器/采样/学习率来源核对](research_round_20260925_global/U57_DIFFSAR_NATIVE_RECIPE_SOURCE_REVIEW_20261107.md)
+
+- [原DEV187人口/尺寸/顺序核验：真实读取原GT，仅输入范围](research_round_20260925_global/DEV187_ORIGINAL_GT_POPULATION_BRIDGE_STATUS_20261107_04.md)
+
+- [原DEV187字节已私有暂存DGX：数据准入不等于预测](research_round_20260925_global/DEV187_DGX_RAW_INPUT_STAGE_STATUS_20261107_06.md)
+
+- [质量评分与标注约定直接先例：Mask Scoring R-CNN及边界文献](research_round_20260925_global/MASK_QUALITY_ANNOTATION_CONVENTION_PRIMARY_REVIEW_20261107_01.md)
+
+- [N26冻结排名两GT诊断：预绑定源码，真实评价尚未运行](research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_01/README.md)
+
+- [N26诊断有限独立静态审阅](research_round_20260925_global/N26_FROZEN_RANKING_GT_DIAGNOSTIC_INDEPENDENT_REVIEW_20261107_01.md)
+
+- [N26首次实际诊断失败：可选bbox检查错误，0个COCO案例，无新AP](research_round_20260925_global/N26_FROZEN_DUALGT_ATTEMPT01_FAILURE_STATUS_20261107.md)
+
+- [N26冻结输入已私有暂存DGX：字节阶段没有数值JSON解析](research_round_20260925_global/N26_FROZEN_DUALGT_DGX_INPUT_STAGE_STATUS_20261107_02.md)
+
+- [N26诊断02最小实现修复：原输入/评分/评价门槛保持，实际未执行](research_round_20260925_global/code/N26_FROZEN_RANKING_GT_DIAGNOSTIC_DRAFT_20261107_02/README.md)
+
+- [排序、边界与栅格化三项原始来源短记：单一条件性负对照](research_round_20260925_global/MASK_QUALITY_RASTERIZATION_PRIMARY_RESEARCH_NOTE_20261107_09.md)
+
+- [N26两GT真实8例结果：排序增益整数+1.438、浮点+1.602，非几何创新](research_round_20260925_global/N26_FROZEN_DUALGT02_ACTUAL_RESULT_20261107.md)
+
+- [N26两GT有限独立结果/完整性范围复核：指定Codex审阅待补](research_round_20260925_global/N26_DUALGT02_LIMITED_RESULT_CLAIM_REVIEW_20261107.md)
+
+- [N26结果后研究取舍：先检验排序/ignore解释，不追加尺度模块](research_round_20260925_global/N26_POST_DUALGT_RESEARCH_DECISION_20261107_01.md)
+
+- [质量后校准直接先例：2024 mask-IoU校准与2025折衷记录](research_round_20260925_global/SCALE_CONDITIONED_MASK_QUALITY_PRIMARY_REVIEW_20261107_01.md)
+
+- [官方COCO尺度分组的竞争解释：未执行的新诊断设计](research_round_20260925_global/COCO_SCALE_GROUP_RANKING_ALTERNATIVE_REVIEW_20261107_01.md)
+
+- [RF-DETR首次真实检查：原始strict失败、资源已闭合、主训接回](research_round_20260925_global/RFDETR_RAW_STRICT_PROBE_ACTUAL_RESULT_20261107_01.md)
+
+- [RF-DETR限定schema兼容与真实CPU前向结果](research_round_20260925_global/RFDETR_SCHEMA_COMPAT_CPU_FORWARD_ACTUAL_RESULT_20261107_02.md)
+
+- [形状、拓扑、OT与等变性六项原文及作者源码](research_round_20260925_global/SHAPE_TOPOLOGY_OT_EQUIVARIANCE_PRIMARY_SUPPLEMENT_20261107_01.md)
+
+- [单类迁移的boat分类行、强初始化与公平对照](research_round_20260925_global/RFDETR_SINGLE_CLASS_TRANSFER_INITIALIZATION_REVIEW_20261107_01.md)
+
+- [canonical预测导出候选：原GT、类别与top100顺序](research_round_20260925_global/code/RFDETR_CANONICAL_EXPORT_DRAFT_20261107_01/README.md)
+
+- [完整训练环境实际清单、两次解析失败与离线准备](research_round_20260925_global/RFDETR_FULL_TRAIN_PREPARATION_ACTUAL_STATUS_20261107_01.md)
+
+- [主实验 36,864 传输失败及有界恢复](research_round_20260925_global/U57_36864_SSH_CAPTURE_FAILURE_AND_RECOVERY_20261107.md)
+
+- [RF-DETR 原生 BF16 两步候选](research_round_20260925_global/RFDETR_TWO_UPDATE_BF16_QUALIFICATION_DRAFT_20261107_01/README.md)
+
+- [RF-DETR 真实数据两步 FP32 优化器实测](research_round_20260925_global/RFDETR_NATIVE_FP32_TWO_UPDATE_ACTUAL_20261107_01.md)
+
+- [RF-DETR 真实数据两次 FP32 优化器更新候选](research_round_20260925_global/RFDETR_TWO_UPDATE_FP32_QUALIFICATION_DRAFT_20261107_01/README.md)
+
+- [RF-DETR 原生 SSDD DataModule 两样本实测](research_round_20260925_global/RFDETR_NATIVE_SSDD_DATA_ENTRY_ACTUAL_20261107_01.md)
+
+- [RF-DETR SSDD 原生目录实际字节验收](research_round_20260925_global/RFDETR_SSDD_NATIVE_INPUT_LAYOUT_ACTUAL_20261107_01.md)
+
+- [RF-DETR 原生 CLI 首次实测与修正](research_round_20260925_global/RFDETR_CLI_CODEC_ACTUAL_RESULT_20261107_01.md)
+
+- [RF-DETR 官方 CLI 与编解码检查候选](research_round_20260925_global/RFDETR_CLI_CODEC_QUALIFICATION_DRAFT_20261107_01/README.md)
+
+- [576训练资格接口：原生加载、更新计数、EMA及canonical导出](research_round_20260925_global/RFDETR_TRAINING_QUALIFICATION_INTERFACE_DRAFT_20261107_01/README.md)
+
+- [完整train/CLI依赖候选与实际执行缺口](research_round_20260925_global/RFDETR_FULL_TRAIN_CLI_DEPENDENCY_READINESS_20261107_01.md)
+
+- [RF-DETR v02空schema兼容、离线诊断与待执行真实验证](research_round_20260925_global/RFDETR_V02_CANDIDATE_STATUS_20261107_02.md)
+
+- [RF-DETR实际基础依赖安装、数据接口与待执行CPU探针](research_round_20260925_global/RFDETR_RUNTIME_PREPARATION_STATUS_20261107_02.md)
+
+- [2026-11-07数学、物理与雷达方法溯源、30条原文源码索引和后续实验](research_round_20260925_global/PRIMARY_METHODS_SOURCE_AUDIT_AND_NEXT_TEST_20261107.md)
+
+- [完整双标注复评：FULL相对PLAIN从−0.166点变为+0.786点](research_round_20260925_global/MAIN_E50_DEV187_DUAL_GT_ACTUAL_RESULT_20261107.md)
+
+- [固定 374 个配对的共同区误差诊断预分析](research_round_20260925_global/MAIN_E50_DUAL_GT_FIXED_PAIR_PREANALYSIS_20261107.md)
+
+- [固定50轮整集DEV187实测：PLAIN 68.423，FULL 68.256，停止FULL自动扩训](research_round_20260925_global/MAIN_E50_DEV187_ACTUAL_RESULT_20261107.md)
+
+- [分片恢复和逐步验收记录](research_round_20260925_global/MAIN_E50_FIRST_SHARD_CORRECTED_PREDICTION_20261107.md)
+
+- [主线固定50轮已验收，首片原始失败和根因记录](research_round_20260925_global/MAIN_E50_ENDPOINT_AND_FIRST_SHARD_IMPORT_FAILURE_20261107.md)
+
+- [主线恢复段和 RF-DETR 原生BF16两步历史记录](research_round_20260925_global/U57_RECOVERY36864_AND_RFDETR_BF16_ACTUAL_20261107.md)
+
+- [2026-11-07研究决策：数学/物理/雷达/最新模型原始证据与RF-DETR新基线](research_round_20260925_global/RESEARCH_DECISION_20261107.md)
+
+- [RF-DETR五块公平实验计划：100轮候选、诊断和停止规则（未运行）](research_round_20260925_global/RFDETR_BASELINE_AND_DIAGNOSTIC_PLAN_20261107.md)
+
+- [R101真实加载与CPU模型factory候选：代码冻结，实际执行仍待](research_round_20260925_global/R101_REAL_LOADING_CANDIDATES_STATUS_20261107.md)
+
+- [R101逐键覆盖候选：520项完整规范、14项有限合成测试，未加载模型](research_round_20260925_global/code/R101_EXPLICIT_BACKBONE_COVERAGE_DRAFT_20261107_01/README.md)
+
+- [R101覆盖候选有限独立审阅：metadata通过不授真实加载资格](research_round_20260925_global/R101_BACKBONE_COVERAGE_CANDIDATE_REVIEW_20261107.md)
+
+- [已接收19段的两臂部分成本：5.59小时及限定ETA](research_round_20260925_global/MAIN_E50_PARTIAL_PAIRED_COST_20261107_01.md)
+
+- [外部DiffSAR公开预训练新入口：ImageNet/COCO与迁移边界](research_round_20260925_global/DIFFSAR_INITIALIZATION_GAP_NEW_EVIDENCE_20261107_02.md)
+
+- [R101 V1候选已私有取得：仅字节核验，未加载模型](research_round_20260925_global/PUBLIC_R101_INITIALIZER_BYTE_INTAKE_STATUS_20261107.md)
+
+- [31232严格接收：旧UNKNOWN保留、新同算法观察通过，无重训](research_round_20260925_global/U57_STRICT_CENSUS_UNKNOWN_AND_FRESH_OBSERVATION_20261107.md)
+
+- [主E50评价资源衔接候选：有限验证完成，真实运行待](research_round_20260925_global/MAIN_E50_ENDPOINT_RESOURCE_CLOSURE_SOURCE_STATUS_20261107.md)
+
+- [原参考数据人口/顺序/角色桥：真实I/O通过，无新AP](research_round_20260925_global/MAIN_E50_REFERENCE_ORDER_ROLE_BRIDGE_STATUS_20261107.md)
+
+- [最后186次更新的普通源码静态合同核查](research_round_20260925_global/MAIN_E50_FINAL186_STATIC_CONTRACT_REVIEW_20261107.md)
+
+- [回答“跟其他方法比”：实测表、论文值、尚未完成的对照](research_round_20260925_global/OTHER_METHODS_COMPARISON_USER_BRIEF_20261107.md)
+
+- [当前与其他方法的对比：已测数字、不同预算和外部缺口](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_20261107.md)
+
+- [DiffSAR两次限定梯度观察：原失败保留与解释边界](research_round_20260925_global/U57_DIFFSAR_MASK_GRADIENT_DIAGNOSTICS_20261107.md)
+
+- [完整FIT原图字节恢复](research_round_20260925_global/U57_FIT_RAW_RECOVERY_20261107.md)与[私有输入包组装聚合](research_round_20260925_global/U57_FIT_INPUT_ASSEMBLY_20261107.md)
+
+- [完整DiffSAR首FIT实际执行：梯度覆盖失败与待定位范围](research_round_20260925_global/U57_FULL_DIFFSAR_SINGLE_FIT_FAILURE_ACTUAL_20261106.md)
+
+- [作者运行环境、真实D2算子及完整模型准备的实际结果](research_round_20260925_global/U57_AUTHOR_RUNTIME_AND_D2_OPERATOR_ACTUAL_20261106.md)
+
+- [作者Detectron2 CUDA扩展：实际构建与资格边界](research_round_20260925_global/U57_AUTHOR_D2_BUILD_ACTUAL_20261106.md)
+
+- [11月6日重新连接与一次限定恢复](research_round_20260925_global/U57_RECONNECT_AND_BOUNDED_RECOVERY_20261106.md)
+
+- [CARAFE真实CUDA输出与梯度检查](research_round_20260925_global/CARAFE_ACTUAL_OPERATOR_PROBE_20261106.md)
+
+- [标注版本敏感性的实际结果：R优势反转](research_round_20260925_global/U57_INTEGER_FLOAT_GT_SENSITIVITY_ACTUAL_20261025.md)
+
+- [DiffSAR作者实现的CARAFE依赖与实际mapper](research_round_20260925_global/U57_DIFFSAR_CARAFE_AND_MAPPER_EXECUTION_GAPS_20261025.md)
+
+- [全380实例、all-100 oracle覆盖诊断的实际结果](research_round_20260925_global/U57_ALL100_ORACLE_COVERAGE_ACTUAL_20261025.md)
+
+- [固定native几何诊断：实际FP/FN与解释范围](research_round_20260925_global/U57_FIXED_NATIVE_GEOMETRY_DIAGNOSIS_ACTUAL_20261025.md)
+
+- [最新精修直接先例：基础SAM、++与局部保留](research_round_20260925_global/U57_HIGH_IOU_REFINEMENT_PRIOR_UPDATE_20261025.md)
+
+- [实际DEV187标注来源补核](research_round_20260925_global/U57_DEV187_GT_PROVENANCE_SUPPLEMENT_20261025.md)
+
+- [完整187图SAMRefiner强对照：实际结果与统一评价](research_round_20260925_global/U57_SAMREFINER_FULL187_COMPARISON_EXECUTION_20261025.md)
+
+- [其他方法对比：实测范围、论文值与复现缺口](research_round_20260925_global/U57_COMPARISON_EVIDENCE_SNAPSHOT_20261025.md)
+
+- [20736原会话采集失败与一次限定接续](research_round_20260925_global/U57_20736_CAPTURE_RESET_AND_BOUNDED_RECOVERY_20261025.md)：严格前缀保持20480；失败额外计算不作父产物，新接续尚未接收。
+
+
+
+- [SAMRefiner真实单图功能/资源探针已合格](research_round_20260925_global/U57_SAMREFINER_ONE_IMAGE_FUNCTIONAL_PROBE_ACCEPTED_20261025.md)：原工具/SSH/worker均0，清理后allocated/reserved=0/0；仅首图100候选，无AP或全187图结论，v02原失败保留。
+
+
+
+- [SAMRefiner首次真实模型返回与清理失败](research_round_20260925_global/U57_SAMREFINER_FIRST_REAL_MODEL_FAILURE_AND_CLEANUP_HYPOTHESIS_20261025.md)：100候选的真实FP32精修已返回，原作业清理未通过，失败保留且无AP；[v03清理候选](research_round_20260925_global/code/U57_SAMREFINER_REAL_ONE_IMAGE_CLEANUP_FIX_DRAFT_20261025_03/README.md)尚未执行。
+
+
+
+- [SAM权重已到达DGX及共享GPU单图探针范围](research_round_20260925_global/U57_SAMREFINER_SHARED_GPU_PROBE_SCOPE_20261025.md)：完整字节与独立全摘要已验证；已有推理服务保留，真实SAM精修尚未执行。
+
+
+
+- [RGB400首图真实比较与首端点前输入敏感性补充规则](research_round_20260925_global/U57_PROSPECTIVE_RGB400_INPUT_SENSITIVITY_POLICY_20261025.md)：比较完成但数值与字节不相等；不推定AP影响，不换主输入。
+
+
+
+- [与其他方法的最新对比快照](research_round_20260925_global/U57_COMPARISON_EVIDENCE_SNAPSHOT_20261025.md)：内部实测、PointRend结构适配及外部方法复现缺口分别列明；[19456步独立安全标量](research_round_20260925_global/results/U57_FORMAL19456_ACTUAL_SCALARS_20261021.json)。尚无外部同协议完整AP。
+
+
+
+- [15616→15872单次恢复的严格接收结果](research_round_20260925_global/results/U57_CAPTURE_RECOVERY15616_15872_SAFE_RESOLUTION_20261025.json)：失败原段保留，新恢复从合格父状态执行；通信根因和物理修复仍未证明。
+
+- [FastGeodis固定CPU/CUDA算子检查源码与结果](research_round_20260925_global/code/U57_FASTGEODIS_CPU_CUDA_SMOKE_20261025_01/README.md)：两个9×9样例、四次明确调用实际通过；软件/合成检查独立记账，不计完整训练、重复种子或AP。
+
+- [官方ViT-H权重获取状态](research_round_20260925_global/results/U57_SAM_VITH_OFFICIAL_ASSET_ACQUISITION_SAFE_STATUS_20261025.json)：文件已在本机获取并记录本地摘要，尚未加载模型；权重不上传Git。
+
+- [SAMRefiner真实单图驱动候选](research_round_20260925_global/code/U57_SAMREFINER_REAL_ONE_IMAGE_TRIAL_DRAFT_20261025_01/README.md)：3项纯元数据测试与静态审阅通过，完整模型未执行；[独立资源方案](research_round_20260925_global/U57_SAMREFINER_FP32_MEMORY_AND_PROSPECTIVE_RESOURCE_PLAN_20261025.md)尚未绑定。
+
+- [GLDet原PDF指标核查](research_round_20260925_global/U57_GLDET_ORIGINAL_PDF_METRICS_AUDIT_20261025.md)：确有实例分割，作者mask AP与本项目内部DEV不直接排名。
+
+- [SAMRefiner首张原图与100候选输入核对](research_round_20260925_global/code/U57_SAMREFINER_FIRST_INPUT_CHECK_20261025_01/README.md)：真实CPU单图、像素及候选顺序核验通过；没有SAM推理或AP。
+
+- [SAMRefiner实际运行依赖与未闭合条件](research_round_20260925_global/U57_SAMREFINER_RUNTIME_READINESS_AND_BUILD_GAPS_20261025.md)：作者定制SAM包已隔离安装并通过GPU隐藏的真实入口导入；原生GPU算子仅在两固定样例通过，SAM模型及AP仍待。
+
+- [SAMRefiner作者API桥接候选源码](research_round_20260925_global/code/U57_SAMREFINER_REAL_BRIDGE_DRAFT_20261025_01/README.md)：7项小NumPy边界测试及独立源码审阅通过；按作者图像路径接口批量调用，真实作者函数/模型/图像、内部候选顺序及AP仍未执行或验证。
+
+- [SAMRefiner固定候选适配器候选源码](research_round_20260925_global/code/U57_SAMREFINER_FIXED_CANDIDATE_ADAPTER_DRAFT_20261025_01/README.md)：13项有限标准库测试及独立静态审阅通过；真实SAM桥接、推理与AP尚未完成。
+
+- [SAMRefiner同粗掩膜强对照的实际接口核查](research_round_20260925_global/U57_SAMREFINER_PREDICTED_MASK_INTERFACE_AUDIT_20261025.md)：默认5轮、共享编码、候选/评分及空mask适配边界；未运行。
+
+- [本地候选归档与整数标签转换的实际补证](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md) · [首端点前新增的标签敏感性规则](research_round_20260925_global/U57_PROSPECTIVE_ANNOTATION_SENSITIVITY_POLICY_20261025.md)
+
+- [DiffSARShipInst作者配置的实际执行缺口](research_round_20260925_global/U57_DIFFSAR_AUTHOR_CONFIG_EXECUTION_GAPS_20261025.md) · [单次诊断恢复的合格结果](research_round_20260925_global/results/U57_CAPTURE_RECOVERY13824_14080_SAFE_RESOLUTION_20261025.json)
+
+- [External method comparison: actual results, literature scope and missing fair controls (2026-10-25)](research_round_20260925_global/U57_EXTERNAL_METHOD_COMPARISON_STATUS_20261025.md)
+
+- [Original E24 actual training roster audit](research_round_20260925_global/results/U57_E24_TRAINING_ROSTER_SAFE_AUDIT_20261025.json) · [Latest capture failure and unchanged formal prefix](research_round_20260925_global/results/U57_13824_CAPTURE_FAILURE_SAFE_STATUS_20261025.json)
+
+
+
+- [Current internal dataset lineage and protocol evidence (2026-10-24)](research_round_20260925_global/U57_INTERNAL_DATASET_PROTOCOL_TRACE_20261024.md)
+
+- [Conditional ordinary capacity control: design only, not implemented](research_round_20260925_global/U57_CONDITIONAL_PLAIN_CAPACITY_CONTROL_DESIGN_20261024.md)
+
+- [Trained metrics and comparisons with other models (2026-10-24)](research_round_20260925_global/TRAINED_METRICS_COMPARISON_20261024.md)
+
+- [Current progress and complete method explanation (2026-10-24)](research_round_20260925_global/U57_CURRENT_PROGRESS_AND_METHOD_EXPLANATION_20261024.md)
+
+- [原始终态丢失、ESRCH失败与最小修复](research_round_20260925_global/U57_OWNER_ESRCH_FAILURE_AND_FIX_20261021.md) · [修复候选源码与测试范围](research_round_20260925_global/code/U57_OWNER_ESRCH_FIX_DRAFT_20261021_01/README.md)
+
+- [本轮真实训练、CPU恢复及证据边界](research_round_20260925_global/U57_U60_ACTUAL_TRAINING_AND_CPU_RESTORE_20261021.md) · [实测标量](research_round_20260925_global/results/U57_U60_ACTUAL_SCALARS_20261021.json)
+
+- [研究路线与证据范围核对](research_round_20260925_global/U57_EXPERIMENT_LINEAGE_AND_EVIDENCE_SCOPE_20261021.md)：旧24＋48实验已闭环，当前E50属于独立结构实验，总目标及证据要求保持不变。
+
+- [GCIE-Net直接先例补记](research_round_20260925_global/U57_GCIE_DIRECT_PRIOR_DELTA_LIMITED_20261021.md)：补充SAR跨尺度门控先例，保留全文/代码未核边界。
+
+- [GCIE查询读出与H/4特征窄补证](research_round_20260925_global/GCIE_QUERY_READOUT_EVIDENCE_LIMITED_20261021.md)：出版社索引§3.2式1–2显示同任务已有该组合，不单列首创；全文/代码未核，保留整体差异和效用待证。
+
+- [RSI4EO新预印本协议核查](research_round_20260925_global/U57_RSI4EO_PREPRINT_PROTOCOL_CHECK_20261021.md)：区分作者报告与内部实验，检查几何启示，不直接排名。
+
+- [GB10 CPU offload性能可行性备忘](research_round_20260925_global/U57_GB10_OFFLOAD_PERFORMANCE_FEASIBILITY_20261021.md)：仅未来瓶颈假设，尚未开展性能试验，不改变正式E50配方或训练。
+
+- [CUDA初始化失败与定向缓存观察](research_round_20260925_global/U57_CUDA_INIT_FAILURE_AND_TARGETED_CACHE_OBSERVATION_20261021.md)：22:29:44 UTC的pending为历史观察，后续接续已严格接收4352；原0更新失败、MemFree/MemAvailable差异及因果不确定性保留，未证明速度提升。
+
+- [U60恢复检查源码](research_round_20260925_global/code/U60_DGX_SMOKE_RESTORE_ENTRY_DRAFT_20261020_01/README.md)：7项有限测试及静态审阅后另经上述真实执行。目录UNEXECUTED标签为成稿时状态；E50恢复、完整预测及AP仍待验证。
+
+- [U61完整候选导出入口](research_round_20260925_global/code/U61_DEV_FULL100_SINGLE_EXPORT_DRAFT_20261021_01/README.md)已真实通过单图100候选导出与CPU重载；已与U63拼齐187图；DGX完整CPU读取已另经U65通过，零残差校准仍待完成。[查新与直接先例](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)。
+
+
+
+- [U62剩余186图导出入口](research_round_20260925_global/code/U62_DEV_REMAINING186_EXPORT_DRAFT_20261021_01/README.md)：有限测试和静态审阅通过，尚未绑定或执行；此前资源观察未达到其准入门槛，旧版未执行；后续独立U63已完成剩余导出。
+
+
+
+- [U63独立CPU8G导出配置](research_round_20260925_global/code/U63_DEV_REMAINING186_CPU8G_EXPORT_DRAFT_20261021_01/README.md)：已实际通过剩余186图18600候选的导出、保存后重载及Root验收；与首图拼成完整187图索引。独立U65完整CPU读取已通过，零残差RLE校准仍待验证。
+
+
+
+- 既有读取证据：187/187包最终远端字节inventory已核验，原传输任务真实退出0；[U65完整CPU读取入口](research_round_20260925_global/code/U65_DGX_DEV187_CPU_READER_VALIDATION_DRAFT_20261021_01/README.md)随后独立实际读取并释放187图/18700候选，198项直接来源闭合、失败与残留均0，已由Root严格接收，摘要另行stage成功。它不证明E50恢复、模型forward、RLE或AP，历史Windows原始来源未重验。8192阶段历史原训练与输入验证管线DGX账户38正常/3失败/41总计包含独立CPU验证和更新前失败，不是纯训练计数。旧2048磁盘故障的额外512次更新及未知SSH/owner退出保持未合格；成功重算不按loss/AP选优，也不宣称逐bit复现或独立种子。
+
+- [U65纯metadata接收器](research_round_20260925_global/code/U65_ROOT_ACCEPTANCE_METADATA_DRAFT_20261021_01/README.md)：原5项有限标准库测试及静态审阅之外，本次另有真实退出、187条audit和来源/日志字节核验并完成Root接收；替身测试本身不构成执行证据。
+
+- [U66固定E50薄预测核心](research_round_20260925_global/code/U66_DGX_FIXED50_PREDICTION_CORE_DRAFT_20261021_01/README.md)：4项有限标准库替身测试、AST及独立静态审阅通过，修正两处真实ABI接线；仍未绑定、未执行，不构成GPU/reader/恢复/forward、owner、CPU指标或AP资格。
+
+- [U67固定E50完整人口薄指标核心](research_round_20260925_global/code/U67_DGX_FIXED50_POPULATION_METRICS_CORE_DRAFT_20261021_01/README.md)：7项有限标准库JSON/替身测试、AST及有限静态审阅通过；尚未绑定或实际读取数据/运行COCO/AP，没有owner或运行资格，不替代真实完整人口评价。
+
+- [U68固定E50单shard薄worker](research_round_20260925_global/code/U68_DGX_FIXED50_SINGLE_SHARD_WORKER_DRAFT_20261021_01/README.md)：3源码文件已发布并核验，6项有限标准库/替身接线测试及静态审阅通过；真实GPU/模型路径未执行；成稿时encoder来源待核的本机起源层已另经U69追溯确认，外部GPU监督/终态与运行资格仍待核，不授owner、预测或AP资格。后续补核确认旧U68/U69有限来源并集漏掉恢复所需FIT reader，旧源码的有限审阅不表示完整预测就绪。
+
+- [U69原encoder起源追溯](research_round_20260925_global/U69_ORIGINAL_DEV_ENCODER_PROVENANCE_LIMITED_20261021.md)：仅确认本机原DEV元数据/读出源码身份，不是teacher权重、特征新提取或运行资格。
+
+- [U69监督入口源码](research_round_20260925_global/code/U69_DGX_FIXED50_SINGLE_SHARD_SUPERVISION_DRAFT_20261021_01/README.md) · [未来评价源码就绪边界](research_round_20260925_global/U69_FUTURE_EVALUATION_SOURCE_READINESS_LIMITED_20261021.md)：五份目录文件冻结，6+7项有限替身测试及静态集成审阅通过；五份未来运行源码已独立DGX暂存并核字节，原mask pin通过独立overlay保留、原环境未改。运行spec未绑定，源码/真实库/模型未执行；全部21个科学源码角色闭合、E50、标定、四分片和CPU COCO及外部Root资格仍待完成。
+
+- [U70总体评价I/O追溯](research_round_20260925_global/U70_POPULATION_EVALUATION_IO_TRACE_AND_NEXT_ADAPTER_20261021.md) · [薄CPU worker源码](research_round_20260925_global/code/U70_DGX_FIXED50_POPULATION_METRICS_WORKER_DRAFT_20261021_01/README.md)：3份源码/说明文件已冻结、同步并核验；7项有限标准库/合成JSON及import边界替身测试、AST与Root/独立静态审阅通过，未见具体阻断。7份未来科学源码、6份原JSON（14004851字节输入）及五文件库候选已独立DGX字节暂存；未绑定、未import、未真实运行或取得ABI/AP/Root资格；实际CPU监督资格及四份真实E50分片仍缺，U71另补未执行监督源码。未来AP三态为源码约定，合成结果不是真AP。
+
+- [U71薄CPU监督入口](research_round_20260925_global/code/U71_DGX_FIXED50_CPU_METRICS_SUPERVISION_DRAFT_20261021_01/README.md)：4文件冻结，7项有限标准库/替身测试、AST及作者外独立与Root静态审阅通过，未见具体阻断；未来entry/owner两份源码已DGX字节暂存。未绑定、未导入或真实运行，不授ABI/AP/Root资格，四份真实E50分片及实际外部门禁仍待。
+
+- [U71窄范围直接先例补查](research_round_20260925_global/U71_TARGETED_DIRECT_PRIOR_UPDATE_20261021.md)：补记9月27日UnfoldCRF预印本对容量/计算控制和个体退化解释的约束；不是10月17日后新发表，不更改当前主判据或增训练臂，也不证明本方法创新或外部代码已复现。
+
+- [U72–U74来源闭合缺口与修复](research_round_20260925_global/U72_U73_PREDICTION_SOURCE_CLOSURE_GAP_AND_FIX_20261021.md) · [U73 worker](research_round_20260925_global/code/U73_DGX_FIXED50_PREDICTION_SOURCE_CLOSURE_DRAFT_20261021_01/README.md) · [U74监督入口](research_round_20260925_global/code/U74_DGX_FIXED50_SINGLE_SHARD_SUPERVISION_DRAFT_20261021_01/README.md)：旧U68/U69遗漏的原FIT代码引用现有独立22角色接口，保留原12整ref/14关闭门，投影原21来源及19模块给U66。作者5+6项有限新测试与独立集成静态审阅未见剩余具体阻断；7份旧候选源码及3份新源码已字节暂存，14份原路径候选仍来自非最终6144端点、须E50重核。未绑定、未执行、无真实恢复/预测/AP资格；训练和模型数学不改。
+
+
+
+- [U75/U76外部接收与人口准入边界](research_round_20260925_global/U75_U76_EXTERNAL_ACCEPTANCE_AND_POPULATION_ADMISSION_LIMITED_20261021.md) · [U75单片接收](research_round_20260925_global/code/U75_ROOT_FIXED50_SHARD_ACCEPTANCE_DRAFT_20261021_01/README.md) · [U76修订02完整人口准入](research_round_20260925_global/code/U76_ROOT_FIXED50_POPULATION_ADMISSION_DRAFT_20261021_02/README.md)：源码冻结，作者7+8项有限合成测试及独立集成静态审阅未见剩余具体阻断；01漏共同manifest的源码门已在独立02最小修复，01保留。六份新源码与本备忘已另经远端核验；新helper本轮未DGX字节暂存，未绑定或真实调用；成稿时Root结果保存/CAS及U71 CPU prelaunch语义门尚未接线；后续U78/U79已补源码调用点，真实E50运行仍未接通，不授预测、ABI、Root或AP资格。
+
+- [U77—U79实际调用点与证据范围](research_round_20260925_global/U77_U79_ROOT_INTEGRATION_LIMITED_20261021.md)：保留U77旧01快照缺口及02通用零字段兼容问题，独立03保持原owned身份严格性；新有限测试为U77五项+两次各新增一项、U78六项、U79四项，未重复旧suite。03的进程观察函数已仅用于本次U57终态补强并真实通过；未执行真实E50 COLLECT/ENVELOPE、预测接收/CAS或CPU评价。
+
+- [U80—U81原启动与已保存配置消费](research_round_20260925_global/U80_U81_ORIGINAL_LAUNCH_AND_SAVED_SPEC_LIMITED_20261021.md)：共享真实预检/Popen/wait/二进制日志源码，CPU原样消费U78保存的SPEC；保留01的三处缺口，02最小修复后与U81真共享实现合成联调通过。有限测试为U80六项＋02新增三项、U81五项；未实际启动真实E50预测或CPU评价。Windows与POSIX混合宿主须可信RootAPI的显式字节reader，默认同宿主CLI不能称即用；实际部署和后续post/active回收/接收仍待落实。
+
+- 连接与本机资源（8192阶段历史）：此前7168→7424的连接失败后已恢复并接收；本次8192→8448的连接中断也已恢复，原配置检查通过后仅启动一次，尚未接收。05:59 UTC本机历史空闲32535512KiB低于原门槛，整卡1329MiB，未启动本机训练或新增科学失败。
+
+
+
+<details>
+
+<summary>历史阶段记录（以顶部当前状态为准）</summary>
+
+
+
+<!-- U57_PROGRESS_20261020_01 -->
+
+
+
+### 2026-10-20 阶段记录
+
+
+
+DGX PLAIN/FULL 已各完成并接收 **768/37050 次正式更新**（完整一轮后再27图）；本机各2816次保持独立，不能相加。最新本机成对资源检查未全部达标，未放宽限额。**尚无最终AP、已证实涨点或TGRS就绪结论。**
+
+
+
+- [训练进展、成本、评估缺口与下一步](research_round_20260925_global/U57_TRAINING_PROGRESS_AND_EVALUATION_READINESS_20261020.md) · [实测标量记录](research_round_20260925_global/results/U57_DGX_PROGRESS_ACTUAL_20261020.json)
+
+- [U58模型恢复草稿](research_round_20260925_global/code/U58_DGX_FIXED50_RESTORE_DRAFT_20261018_01/README.md) · [U59全候选输入草稿](research_round_20260925_global/code/U59_DGX_DEV_FULL_QUERY_PACKAGE_DRAFT_20261018_01/README.md)：18项有限合成测试及独立静态审阅通过，真实恢复、序列化、搬运和零残差校准仍未执行。
+
+- [直接先例查新](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md) · [风险与否证设计](research_round_20260925_global/U57_FIXED_QUERY_REFINEMENT_RISK_AND_DIRECT_PRIORS_20261018.md)
+
+
+
+
+
+
+
+<!-- U57_ACTUAL_FORMAL_20261018_01 -->
+
+
+
+### 2026-10-18 首段历史记录
+
+
+
+全741图输入已在DGX实际校验通过；两段接续测试通过；独立正式训练已接收**PLAIN/FULL各256/37050步**。本机保持**各2816/37050步**，当前资源不满足原准入门槛。两条训练记录独立，不能相加。**无新增AP或已证实涨点，尚无TGRS投稿就绪结论。**
+
+
+
+- [本轮真实结果、限制及下一步](research_round_20260925_global/U57_ALL741_DGX_TRAINING_ACTUAL_20261018.md) · [结构化实测摘要](research_round_20260925_global/results/U57_DGX_ORIGINAL_TRAINING_ACTUAL_20261018.json)
+
+- [直接先例查新](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md) · [固定query风险与否证设计](research_round_20260925_global/U57_FIXED_QUERY_REFINEMENT_RISK_AND_DIRECT_PRIORS_20261018.md)
+
+- [训练实现与协议](research_round_20260925_global/code/U57_DGX_ORIGINAL_UPDATE_TRAINING_DRAFT_20261018_01/README.md)：源码成稿时的“未执行”标签保留为历史；当前实际执行状态以上述结果为准。
+
+
+
+
+
+
+
+<!-- U57_NEAREST_PRIOR_20261018_01 -->
+
+
+
+[最近直接先例查新（含2026已发表来源）](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)：保留5项直接相关先例，区分原文/作者代码/仅索引可得；U形网络+实例条件及图像+粗mask精修不能作为宽泛首创。当前整合效用仍待公平训练，容量/计算匹配为优先解释对照；未核线索明确保留。
+
+
+
+<!-- ROOT_U54_U57_ACCEPTANCE_CODE_20261018_01 -->
+
+
+
+[全量输入接收元数据草稿](research_round_20260925_global/code/U54_ROOT_ACCEPTANCE_METADATA_DRAFT_20261018_01/README.md) / [DGX训练接收元数据草稿](research_round_20260925_global/code/U57_ROOT_ACCEPTANCE_METADATA_DRAFT_20261018_01/README.md)：辅助将真实退出、回收与逐项字节核验组织为下一段输入；合计5项微型标准库测试通过，尚未用于真实接收。函数不观察外部进程、不读取数据、不自行推进训练，不替代真实执行证据。
+
+
+
+<!-- U57_ORIGINAL_UPDATE_CODE_20261018_01 -->
+
+
+
+[DGX 独立原更新训练源码草稿](research_round_20260925_global/code/U57_DGX_ORIGINAL_UPDATE_TRAINING_DRAFT_20261018_01/README.md)：保留原数值更新，新增全状态断点接续和配对提交；5项微型标准库测试及独立静态审查通过，修复输入摘要字段不一致。尚未运行模型/训练，必须先真实接收全741图验证，再执行一次独立SMOKE与全新E50；不计入本机2816步，不构成涨点或速度结论。
+
+
+
+<!-- U57_STATIC_TRAINING_PLAN_20261018_01 -->
+
+
+
+[DGX 原更新全量成对训练设计](research_round_20260925_global/U57_DGX_ORIGINAL_UPDATE_FULL_FIT_TRAINING_PLAN_20261018.md)：独立新环境从零计数，沿用已有结构与原数学更新；先验收741图实际读取，再完成一次接续全链检查，随后固定E50。当前仅设计，训练实现与执行尚未完成。
+
+
+
+<!-- U54_ACTUAL_INPUTS_AND_BASELINE_CONTROL_20261018_01 -->
+
+
+
+**2026-10-18 最新状态：** 全741图/1661实例的本机CPU便携导出已通过；DGX全量传输与实际读取尚未完成。本机接续因RAM低于原限额实际停止，正式进度仍为2816/37050步/臂，严格失败资格存在原输出捕获缺口。DGX严格诊断中PLAIN原法自重放通过，候选参数超出预锁容差；FULL遇到不支持的确定性反向，未完成比较。候选未采纳，无新增AP。见[最新真实结果及下一步](research_round_20260925_global/U56_ACTUAL_STRICT_CONTROL_AND_MAIN_RESOURCE_STOP_20261018.md)、[全量导出汇总](research_round_20260925_global/results/U53_ALL741_CPU_EXPORTS_ACTUAL_20261018.json)和[严格诊断摘要](research_round_20260925_global/results/U56_DGX_STRICT_EQUIVALENCE_ACTUAL_FAILURE_20261018.json)。
+
+
+
+
+
+<!-- U53_INPUT_PREPARATION_20261018_01 -->
+
+
+
+**2026-10-18 当前状态：** 主训练已核验2816步，下一段中断且退出未知；已保留原件、不计完成。DGX试跑6次真实更新；便携输入64/741图已核验。U53合并导出及U52数值比较尚未执行；无新增AP。见[中断记录及输入准备](research_round_20260925_global/U40_INTERRUPTION_AND_FULL_INPUT_EXPORT_20261018.md)。新增内容远端待同步。
+
+
+
+
+
+<!-- U51_ACTUAL_AND_U40_RESOURCE_RESUMED_CURRENT_20261018_01 -->
+
+
+
+**2026-10-18 当前进度：** 本机已按原限额接续2816→3072，最后已核验端点仍2816/37050（7.60%预算），新段运行中。DGX已实际完成两臂各3次更新的兼容性试跑；全量输入首批32/741图（43匹配实例，约117.78MB）也已导出核验。[实际记录及后续](research_round_20260925_global/U50_DGX_PAIRED_PILOT_ACTUAL_AND_FULL_INPUT_NEXT_20261018.md)、[首批数值](research_round_20260925_global/results/U51_MATCHED_FIT_0000_0032_EXPORT_ACTUAL_20261018.json)。[保留结构的训练计算候选](research_round_20260925_global/code/U52_SHARED_ENCODER_GRADIENT_ACCUMULATION_DRAFT_20261018_01/README.md)已保存源码，梯度等价和速度尚未实测，当前训练未替换。尚无新增AP或创新成立结论；GitHub传输错误仍待恢复，不能称已同步。
+
+
+
+
+
+<!-- U50_DGX_ACTUAL_ACCEPTED_CURRENT_20261018_01 -->
+
+
+
+**2026-10-18 DGX已实际跑通训练：** FULL/PLAIN各完成3次真实更新，共6次，2图/28不同匹配实例；约45秒，Torch分配峰值2.17GiB、进程组RSS11.43GiB，原任务退出0并核验接收。[实际结果及下一步](research_round_20260925_global/U50_DGX_PAIRED_PILOT_ACTUAL_AND_FULL_INPUT_NEXT_20261018.md)、[标量摘要](research_round_20260925_global/results/U50_DGX_PAIRED_PILOT_ACTUAL_20261018.json)。这只是兼容性与资源试点，无AP或加速结论；主训练仍每臂2816/37050（预算7.60%）。[分批导出入口](research_round_20260925_global/code/U51_MATCHED_CPU_EXPORT_DRAFT_20261018_01/README_ENTRY.md)已完成源码，尚未实际导出；下一步按批准备全部741图输入。普通源码及摘要已本地保存，GitHub仍待传输恢复和远端核验。
+
+
+
+
+
+<!-- U49_ACTUAL_EXPORT_ACCEPTED_CURRENT_20261018_01 -->
+
+
+
+**2026-10-18 DGX输入导出已实测：** 2图/28匹配实例已完成原值、紧凑存储和CPU重载核验；私有输入约43.37 MB，worker4.609秒。仅导出，不是训练或AP；[核验摘要](research_round_20260925_global/results/U49_MATCHED_CPU_EXPORT_ACTUAL_20261018.json)。主训练保持每臂2816/37050（预算7.60%）；资源满足原门限后续训。DGX实际运行尚未完成，GitHub传输错误下新增内容仍待远端同步。
+
+
+
+
+
+<!-- U40_2816_ACTUAL_ACCEPTED_20261018_01 -->
+
+
+
+**2026-10-18 主训练已接收2816：** 原2560→2816任务实际退出0并核验接收，两臂各256次更新、各561次匹配实例训练访问；主训现2816/37050（预算7.60%），无新增AP。原任务1060.828秒，资源未越限、检查点恢复及重载核验通过。FULL/PLAIN平均总训练损失0.03616286/0.03624759，仅为优化监测，不能称精度提升。[本段结果及下一步](research_round_20260925_global/U40_U02560_02816_ACCEPTED_AND_DGX_EXPORT_STATUS_20261018.md)、[正式数值](research_round_20260925_global/results/U40_FORMAL_U02560_02816_ACTUAL_20261018.json)。[U49导出入口](research_round_20260925_global/code/U49_MATCHED_CPU_EXPORT_DRAFT_20261018_01/README.md)与[U50 DGX试点核心](research_round_20260925_global/code/U50_DGX_PAIRED_PILOT_BODY_DRAFT_20261018_01/README.md)已完成普通源码，尚未实际导出/远端运行；新环境试点不计U40。此前“本段运行中/2560”记录是历史状态。新改动已保留本地，GitHub传输故障仍待恢复。
+
+
+
+
+
+<!-- U40_POST_U48_ACTUAL_RESUMED_20261018_01 -->
+
+
+
+2026-10-18 接续实况更新：09:09:57 UTC 与09:11:48 UTC两次资源观察均达标，free RAM分别38350995456/38238998528 B、整卡2065/1963 MiB。Root已实际启动并登记原配对2560→2816接续任务，17份训练来源及原配方/限额不变，恢复原2560检查点。当前为运行中，尚无该段终态或新配对预算；有效端点仍2560/37050。此前资源不足描述保留为当时观察，不能据启动记为已完成。 DGX的[独立配对试点可行性](research_round_20260925_global/DGX_PAIRED_PILOT_PORT_FEASIBILITY_20261018.md)已保存：matched-only导出可避开完整教师环境，仍需实际导出与核验；尚无DGX数值试点或速度结论。本轮本地提交待传，GitHub连接传输故障尚未恢复。
+
+
+
+
+
+<!-- U48_NATIVE_SINGLE_IMAGE_ACTUAL_20261018_01 -->
+
+
+
+**2026-10-18 单图原生推理实测：** 原 E24 教师在预选 HRSID TRAIN 图像的全部 100 查询推理已实际退出 0 并接收；原生掩膜/分数/标签校准通过，26.453 秒，分配器峰值约 2.11GiB，显存已释放。原 2GiB 后处理 OOM 失败单独保留，独立修正版只把分配预算改为 3GiB。无新增训练、AP 或全人口资格；主训仍每臂2560/37050，资源余量未达接续门。[实测与下一步](research_round_20260925_global/U48_SINGLE_HRSID_NATIVE_CAPTURE_ACTUAL_AND_NEXT_STEP_20261018.md)、[成功摘要](research_round_20260925_global/results/U48_HRSID_TRAIN0_NATIVE_CAPTURE_3G_ACTUAL_20261018.json)、[失败摘要](research_round_20260925_global/results/U48_HRSID_TRAIN0_NATIVE_CAPTURE_2G_OOM_ACTUAL_20261018.json)、[资源修正版](research_round_20260925_global/code/U48_EXTERNAL_NATIVE_CAPTURE_GPU3G_DRAFT_20261018_01/README.md)。[完整查询覆盖假设](research_round_20260925_global/U40_FIXED50_QUERY_COVERAGE_ERROR_HYPOTHESIS_20261018.md)仅为E50后检验设计。GitHub 连接传输仍失败，本轮及此前待传改动尚未核验远端同步。
+
+
+
+
+
+**2026-10-18教师恢复实测：** U47原任务退出0并核验接收，原E24教师完整610项状态/451个参数与加载证明一致；worker21.5秒、采样RSS峰值约1.52GiB，CUDA未初始化、模型及anchor已释放。无图像前向或外部AP。[实测及剩余接线](research_round_20260925_global/U47_TEACHER_CPU_RESTORE_ACTUAL_AND_DGX_STATUS_20261018.md)、[恢复代码](research_round_20260925_global/code/U47_EXTERNAL_TEACHER_CPU_RESTORE_DRAFT_20261018_01/README.md)、[数值摘要](research_round_20260925_global/results/U47_EXTERNAL_TEACHER_CPU_RESTORE_ACTUAL_20261018.json)。DGX已实际只读连接；其既有Torch2.10/Python3.12环境不同于原U40锁定环境，不能直接拼接训练，尚无迁移或速度结论。主训有效端点仍2560，下面的历史“teacher未加载”描述以本条更新为准；新图预处理来源、无GT实际前向和E50全人口评价仍待完成。新增本地改动因GitHub连接传输异常标记待同步，未报告远端成功。
+
+
+
+<!-- U40_RESOURCE_RECOVERY_CURRENT_20261018_01 -->
+
+
+
+**2026-10-18最新状态：** [2560,2816)独立接续尝试因整卡显存8398 MiB超过8192 MiB受控退出；可用内存未低于16 GiB，800.078秒未到时限。[中断记录](research_round_20260925_global/results/U40_U02560_02816_WHOLE_GPU_ABORT_ACTUAL_20261018.json)已核验保存。有效配对进度仍为2560/37050。主训需两次相隔30秒观察整卡基线≤3584 MiB、可用RAM≥32 GiB，原运行限额保持，目前未重启。原版CPU实测确认morph0两个端点AD/FD不一致；独立三行候选U46两方向局部VJP/FD均符合完整累计预期，两次actual0均已核验接收。[实际结果与下一步](research_round_20260925_global/U45_U46_DSC_COORDINATE_ACTUAL_FINDING_AND_NEXT_STEP_20261018.md)。均无真实影像、全网训练或新AP，且端点完整累计已有作者先例，不作为新采样方法或创新成立。
+
+
+
+**2026-10-18资源中断补记：** 第11段[2560,2816)原任务因可用RAM低于原16GiB下限受控退出，实际终态与失败记账已接收；整卡峰值8165MiB没有超过8192MiB，775.453秒也未到1800秒期限。正常配对进度仍为每臂2560，失败段不计入已接收预算。原检查点与部分输出保留，未将单臂部分结果当成配对完成。触发低内存的具体进程尚不能归因；并行全人口合成测试亦不能排除干扰，后续训练期间仅做小fixture验证。[实际失败](research_round_20260925_global/results/U40_U02560_02816_RESOURCE_ABORT_ACTUAL_20261018.json)。用户已授权资源充足时按原限额独立接续；总50轮/37050、17科学源、共同顺序和实例读出配方不改。
+
+
+
+**外部推理函数层已补齐，均未科学执行：** [E50严格CPU恢复](research_round_20260925_global/code/U44_EXTERNAL_FIXED50_RESTORE_DRAFT_20261018_01/README.md)、[三模型小窗口轮换](research_round_20260925_global/code/U44_EXTERNAL_STREAM_WINDOW_DRAFT_20261018_01/README.md)、[原TEST全人口合并与逐method COCO](research_round_20260925_global/code/U44_EXTERNAL_SPLIT_METRICS_DRAFT_20261018_01/README.md)。分别2/2/3项标准库元数据行为测试通过，Root静态审与窗口独立互接审未发现确定阻断；真实CP恢复、无GT图像前向、资源稳态及外部AP均未运行。teacher实际构造/加载、外部owner入口、来源准入与原片接收仍未实现；强R缺项仍须显式处理，不因这些函数存在宣称跨集可运行。
+
+
+
+
+
+**2026-10-18实际进展：** 自研完整UNet++与普通对照已接收每臂2560次更新（3轮+337图），[2560,2816)后续原尝试已资源中断，模型进度仍为2560；固定50轮/37050预算不变。第10段每臂614次匹配GT训练访问，训练标量均有限、两臂loss接近，尚无新增实例AP。[第10段实测](research_round_20260925_global/results/U40_FORMAL_U02304_02560_ACTUAL_20261017.json)、[匹配训练监测](research_round_20260925_global/results/U40_U02304_02560_TRAINING_LOSS_MONITOR_20261017.json)。HRSID路径修复后已完整访问5604图/16969实例：全图RGB解码成功，16956实例非空栅格通过、13实例为空（train9/test4），原非空门未满足，actual1失败已保留；未删图或改标注。[实际失败](research_round_20260925_global/results/U43_CANONICAL_POPULATION_EMPTY_RASTER_FAILURE_ACTUAL_20261018.json)、[COCO协议核查](research_round_20260925_global/U43_EMPTY_RASTER_COCO_PROTOCOL_REVIEW_20261018.md)。
+
+
+
+**外部单图接线已保存：** [U44薄桥](research_round_20260925_global/code/U44_NEW_IMAGE_ITEM_BRIDGE_DRAFT_20261017_01/README.md)将U41自然e/M/L、原100查询及S0接到U40逐图残差预测，沿原RGB400与几何；两项标准库元数据测试和独立静态ABI审通过，未运行真实像素、张量、窗口、模型或外部AP。窗口/恢复与全TEST COCO的函数层已在本轮补充，均未科学执行；teacher实际加载、完整owner与来源准入仍待接线，强R缺项须显式处理。旧187图包装不能直接用于外部人口。
+
+
+
+
+
+**完整自主UNet++主线：** 按用户要求以复合编码、H/4语义/双方向融合及完整嵌套解码作为主体，新增每图共享一次的实例读出；[方案与最少对照](refine-logs/UNETPP_FULL_METHOD_20261017_01/EXPERIMENT_PLAN.md)、[执行跟踪](refine-logs/UNETPP_FULL_METHOD_20261017_01/EXPERIMENT_TRACKER.md)、[接口草稿](research_round_20260925_global/code/UNETPP_FULL_INSTANCE_ADAPTER_DRAFT_20261017_01/README.md)。已核历史语义正信号：HRSID单seed F1约+2.40点、SSDD三seed均值约+1.03点；这些不归因给full/new1全部模块或实例AP。共享接口三项tiny真实nn CPU合约已实际通过并经Root接收；[原完整主干feature wrapper](research_round_20260925_global/code/UNETPP_FULL_FEATURE_BACKBONE_DRAFT_20261017_01/README.md)及[真实full CPU64入口](research_round_20260925_global/code/U30_FULL_FEATURE_CPU_DRAFT_20261017_01/README.md)已实际通过原完整卷积主体特征精确等价和eval反向两项；245个有效参数张量梯度均有限，四个旧语义头零调用。真实100查询M/F已实际补采并接收；U36两臂均通过400真实影像两步更新，U38完整FIT读取和共同初始化也已通过；U39跨图资源已通过，正式50轮主训练已启动：前十段两臂各累计2560次已接收（3轮+337图），第11段资源中断已保留，待充足余量独立接续；尚无新增实例AP。[实际结果](research_round_20260925_global/U30_REAL_FULL_FEATURE_CPU64_ACTUAL_RESULT_20261017.md)。[本轮实测与范围](research_round_20260925_global/UNETPP_SHARED_ADAPTER_CPU_RESULT_AND_FULL_FEATURE_STATUS_20261017.md)。
+
+
+
+**真实400主干资源试点已通过：** U36两臂统一使用FP32中间激活CPU暂存，普通与自主FULL均完成真实9实例影像两次AdamW更新；FULL第二步245个有效参数张量梯度均有限且非零，峰值GPU分配约1.97GiB、采样RSS约13.00GiB。小模型另做普通/暂存各两步，梯度与Adam状态精确相同。合计8次一次性试点更新，不计入主训练。此前U33/U35显存失败保留；单图通过不代表741图稳定、AP改善或加速。[实际结果与范围](research_round_20260925_global/U36_REAL400_TRAINING_RESOURCE_ACTUAL_RESULT_20261017.md)、[数值摘要](research_round_20260925_global/results/U36_REAL400_CPU_SAVED_ACTIVATIONS_ACTUAL_20261017.json)。
+
+
+
+**全量输入与共同初始化已通过：** U38原任务退出0且外部接收，完成全部FIT741图/1661匹配实例的原JPEG、EXIF、RGB400/整数几何及原缓存/GT关联检查；实际完成公共104状态与共享实例头同源初始化。CUDA未初始化，无训练或AP。原尺寸572种、G范围1–29，不能以此前9实例单图代替全部负载。[实际结果](research_round_20260925_global/U38_FULL_FIT_RGB_AND_COMMON_INITIALIZATION_ACTUAL_RESULT_20261017.md)、[脱敏摘要](research_round_20260925_global/results/U38_FULL_METHOD_CPU_READER_INIT_ACTUAL_20261017.md)。后续[U39跨图检查](research_round_20260925_global/code/U39_FULL_METHOD_CROSS_IMAGE_RESOURCE_DRAFT_20261017_01/DESIGN.md)已实际完成并接收；正式训练状态见下段，DEV全100候选输入与评价准备并行推进。
+
+
+
+**跨图训练实测与正式实现：** [U39原始试点](research_round_20260925_global/results/U39_CROSS_IMAGE_RESOURCE_ACTUAL_20261017.md)实际退出0并接收：两臂各3次连续更新，覆盖27实例图，状态图间保留；6次丢弃更新不计正式预算。[主方法衔接](research_round_20260925_global/U39_CROSS_IMAGE_RESOURCE_AND_FINAL_METHOD_CONTINUATION_20261017.md)继续沿用已有自定义UNet++卷积骨架。[U40连续训练代码](research_round_20260925_global/code/U40_FULL_METHOD_CONTINUOUS_TRAIN_DRAFT_20261017_01/DESIGN.md)已进入正式训练，当前两臂各累计2560次更新已接收，[2560,2816)原尝试已资源终止并保留；总预算每臂50轮/37,050更新，完整保存恢复模型、Adam、BN、RNG及共同顺序。尚无新增AP。
+
+
+
+**正式训练接线：** 原首三段[0,256)、[256,512)、[512,768)均实际退出0并接收；[首段](research_round_20260925_global/results/U40_FORMAL_U00000_00256_ACTUAL_20261017.json)、[第二段](research_round_20260925_global/results/U40_FORMAL_U00256_00512_ACTUAL_20261017.json)、[第三段](research_round_20260925_global/results/U40_FORMAL_U00512_00768_ACTUAL_20261017.json)。第四段[768,1024)也已正常结束，两臂各累计1024更新（第1轮+283图），worker模型/Adam/BN/RNG恢复与保存回读检查通过；[第四段实测](research_round_20260925_global/results/U40_FORMAL_U00768_01024_ACTUAL_20261017.json)。第五段[1024,1280)已实际退出0并接收，每臂604次匹配GT训练访问、worker恢复和回读检查通过；[第五段实测](research_round_20260925_global/results/U40_FORMAL_U01024_01280_ACTUAL_20261017.json)。第六段[1280,1536)已实际退出0并接收，每臂568次匹配GT训练访问、worker恢复和保存回读检查通过；[第六段实测](research_round_20260925_global/results/U40_FORMAL_U01280_01536_ACTUAL_20261017.json)。第七段[1536,1792)已实际退出0并接收，每臂563次匹配GT训练访问、worker恢复和保存回读检查通过；[第七段实测](research_round_20260925_global/results/U40_FORMAL_U01536_01792_ACTUAL_20261017.json)。第八段[1792,2048)已实际退出0并接收，每臂574次匹配GT训练访问、worker恢复和保存回读检查通过；[第八段实测](research_round_20260925_global/results/U40_FORMAL_U01792_02048_ACTUAL_20261017.json)。第九段[2048,2304)已实际退出0并接收，每臂550次匹配GT训练访问、worker完整恢复和保存回读检查通过；[第九段实测](research_round_20260925_global/results/U40_FORMAL_U02048_02304_ACTUAL_20261017.json)。第十段[2304,2560)也已实际退出0并接收，每臂614次匹配GT训练访问、恢复和保存回读检查通过；[第十段实测](research_round_20260925_global/results/U40_FORMAL_U02304_02560_ACTUAL_20261017.json)。该段原尝试已受控资源终止，完成数仅计2560；下一次须在原限额及充足余量下独立接续。固定每臂50轮/37050更新才完整DEV评价；不以中途AP选型，不额外加pilot。
+
+
+
+**训练拟合监测：** [前1280更新摘要](research_round_20260925_global/results/U40_FIRST1280_TRAINING_LOSS_MONITOR_20261017.json)由第5段实际终止并接收后、下一任务启动前，对五段已接收原JSON trace作标准库标量汇总，未重放tensor/图像/GT/模型。loss/BCE/softDice均有限；第五段同图平均loss普通0.038416、自主0.038289，差异很小。它只反映匹配训练实例的拟合，不能判定AP、全部候选假阳性、收敛或创新，不据此选轮次或改配方。第6段[匹配训练loss监测](research_round_20260925_global/results/U40_U01280_01536_TRAINING_LOSS_MONITOR_20261017.json)同图均值为普通0.035898、自主0.035758，仍非常接近；全部有限，没有开发评价或配方调整。第7段[训练拟合监测](research_round_20260925_global/results/U40_U01536_01792_TRAINING_LOSS_MONITOR_20261017.json)同图均值普通0.037304、自主0.037189，仍接近，未用于改配方或选择端点。第8段[训练拟合监测](research_round_20260925_global/results/U40_U01792_02048_TRAINING_LOSS_MONITOR_20261017.json)同图均值普通0.035317、自主0.035126，全部有限且差距小，没有新增AP或选型。第9段[训练拟合监测](research_round_20260925_global/results/U40_U02048_02304_TRAINING_LOSS_MONITOR_20261017.json)同图均值普通0.037823、自主0.037617，仍只支持匹配训练拟合、没有AP或收敛结论。
+
+
+
+**固定端点评价研发：** [E50完整DEV评价设计](research_round_20260925_global/U40_FIXED50_DEV_EVALUATION_DESIGN_20261017.md)已有[预测核心](research_round_20260925_global/code/U40_FIXED50_DEV_PREDICTION_DRAFT_20261017_01/DESIGN.md)和[完整人口CPU评价核心](research_round_20260925_global/code/U40_FIXED50_DEV_METRICS_DRAFT_20261017_01/README.md)草稿，各3项纯元数据测试通过；[数值外层入口](research_round_20260925_global/code/U40_FIXED50_DEV_ENTRY_DRAFT_20261017_01/README.md)也已实现，另3项纯元数据测试与独立静态接口审阅通过，均未实际数值执行；[RGB读取桥](research_round_20260925_global/code/U40_FIXED50_DEV_RGB_READER_IMPLEMENTATION_DRAFT_20261017_01/README.md)已完成源码、静态与3项纯元数据测试，真实读取和数值路径尚未执行。仅在每臂37,050更新完成并接收后评价187图/18,700查询；保留原查询映射、S0及全部候选。187个原JPEG候选引用已从四份原JSON采集清单精确提取，桥的真实metadata函数已通过；[准备摘要](research_round_20260925_global/results/U40_FIXED50_DEV_METADATA_PREPARATION_ACTUAL_20261017.json)。尚未读取JPEG/tensor/GT/权重或执行NN/COCO，实际文件/数值准入仍待固定端点；不补teacher、不用中途AP选型。
+
+
+
+**直接先例更新：** [O2Former与DACF-net查新](research_round_20260925_global/U40_DIRECT_PRIOR_UPDATE_20261017.md)区分正式发表与arXiv证据、离岸/近岸与整体AP，以及结构/骨干/后处理版本；方向、跨层调制和残差融合已有直接先例，当前结构收益与差异仍待同预算和机制对照。[固定query精修与点提示比较范围](research_round_20260925_global/U40_FIXED_QUERY_REFINEMENT_AND_PROMPT_PROTOCOL_PRIORS_20261017.md)补核ReSAM正式索引/v1/作者代码及CascadePSP先例，不改正在运行的配方。
+
+
+
+**新图采集接口研发：** [U41单图原生采集草稿](research_round_20260925_global/code/U41_UNBOUND_NEW_IMAGE_NATIVE_CAPTURE_DRAFT_20261017_01/README.md)复用原观察、渲染、评分函数，区分最终e与旧pre-hook输入h；纯影像流程沿实际库data_samples=None分支保留原training=True预处理/固定补边，不读取标注或伪造GT。3项标准库接口测试与独立静态审阅通过，尚未执行像素/NN或取得新人口资格；HRSID1962、SSDD232及模型接触来源仍待独立核验，不改当前U40。[U42单图像素/COCO栅格检查](research_round_20260925_global/code/U42_UNBOUND_HRSID_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)也已形成未绑定草稿，3项标准库接口/失败注入测试与独立静态审阅通过；保留原实例分组、连续/栅格面积差异和有限越界坐标，没有真实解码、GT栅格或人口资格。来源/数据边界见[跨集准备度](research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)。
+
+
+
+**HRSID全集输入检查研发：** [固定执行计划](research_round_20260925_global/U43_HRSID_FULL_PIXEL_MASK_INPUT_CHECK_PLAN_20261017.md)、[U43完整人口核心](research_round_20260925_global/code/U43_HRSID_POPULATION_PIXEL_MASK_CHECK_DRAFT_20261017_01/README.md)与[CPU入口/工作体](research_round_20260925_global/code/U43_HRSID_POPULATION_CHECK_ENTRY_DRAFT_20261017_01/README.md)已完成6项标准库元数据/失败路径测试和一次独立静态互接审。固定原train3642/11047、test1962/5922，全5604图/16969原实例调用U42，不合并ID命名空间、不去重或过滤失败项；全程不导入Torch、不执行模型。首次原任务已actual1并完成Root失败保留：在PIL库引用核验处4.844秒提前退出，未像素解码/原split记录解析/COCO栅格，0逐图记录；入口此前已核编码Source字节。[实际失败](research_round_20260925_global/results/U43_HRSID_POPULATION_LIBRARY_PATH_FAILURE_ACTUAL_20261017.json)、[路径原因](research_round_20260925_global/results/U43_LIBRARY_CANONICAL_PATH_DIAGNOSTIC_20261017.json)。十二库的物理路径与入口别名不同、bytes/SHA相同；[独立修复计划](research_round_20260925_global/U43_CANONICAL_LIBRARY_REFERENCE_REPAIR_PLAN_20261017.md)保留原代码与严格门，尚未绑定或重新执行。没有取得完整输入资格、外部AP或盲测证明。
+
+
+
+**外部推理接线设计：** [U44固定HRSID外部路线](research_round_20260925_global/U44_HRSID_FIXED_EXTERNAL_PREDICTION_DESIGN_20261017.md)采用固定小CPU窗口、teacher/普通/自主主干逐臂轮换上卡，仅保存最终RLE及必要身份，避免全1962图dense logit缓存。仍待主E50效用、真实输入检查及新图接口闭合，不改主训练或宣称已运行外部AP；强R缺项不得临时用内部RLE冒充。
+
+
+
+**教师初始化来源核对：** 已在第7段实际终止接收后、下一段启动前，沿当前FIT/N13/N16原JSON加载回执核对，五处native0 E24 teacher引用一致，并追到原COCO initializer。其本地完整SHA与绑定ref相等、官方文件名校验前缀/响应长度/首4MiB SHA一致，MD5字串与ETag相同；[实际多指纹摘要](research_round_20260925_global/results/M2F_COCO_INITIALIZER_ENDPOINT_FINGERPRINT_LINKAGE_20261017.json)。[官方全流读取尝试](research_round_20260925_global/results/M2F_OFFICIAL_COCO_REMOTE_BYTES_WITNESS_20261017_01.json)90秒仅读4MiB，仍保留未完成状态；ETag不被假定为服务端MD5，未完成全量远端SHA256，也不声称独立训练谱系或消除历史TEST暴露。[范围与原始来源](research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)。
+
+
+
+**U38执行源码：** [CPU入口与工作体](research_round_20260925_global/code/U38_FULL_METHOD_CPU_ENTRY_DRAFT_20261017_01/DESIGN.md)和[组合资格函数](research_round_20260925_global/code/U38_FULL_METHOD_CPU_QUALIFIER_DRAFT_20261017_01/DESIGN.md)已实际执行并接收；完整原JPEG引用有序摘要一致、公共初始化已实际构造/核对后释放，Root接收没有重放像素或神经计算。
+
+
+
+**完整主干后续安排：** [U38原最小验证方案](research_round_20260925_global/U38_FULL_METHOD_READER_AND_RESOURCE_GATE_DESIGN_20261017.md)的CPU部分已实际完成；U39保持相同FP32/400/chunk1/CPU暂存与AdamW，验证跨图状态保留及资源。普通和自主完整主干仍拟同50轮/37050更新，不从试点loss选型、不增加训练不需要的全FIT候选补采。
+
+
+
+**完整主干的真实输入（U32已完成）：** 冻结模型在一张9实例FIT影像上真实取得100查询M/F，原L、查询、类别、GT/匹配、分数及输出顺序与既有锚点精确一致。实际退出0并接收；无优化器、DEV、TEST或AP。U36已完成普通/自主400主干每臂两次一次性更新；仅该真实单图范围，见上方最新结果。[结果和具体试点](research_round_20260925_global/U32_NATIVE100_CAPTURE_ACTUAL_AND_U33_REAL400_PLAN_20261017.md)。
+
+
+
+**最新实测（N26，三预锁种子完成）：** 固定R掩膜，仅学习质量乘分；AP为69.423613 / 69.637142 / 69.551345，均值**69.537367 ± 0.107449**（样本SD），相对原R 68.099385平均**+1.437982 AP点**。各624次更新及完整187图/380GT/18700query COCO均实际结束并经Root接收，qhat1原COCO12精确复现。**这是已有质量回归适配的评分效用，掩膜未改善，核心创新尚未成立。** [完整结果](research_round_20260925_global/N26_FIXED_R_QUALITY_THREE_SEED_RESULT_20261017.md)、[全指标与成本](research_round_20260925_global/results/N26_FIXED_R_QUALITY_THREE_SEED_AGGREGATE_20261017.json)、[主张评议](research_round_20260925_global/N26_RESULT_TO_CLAIM_20261017/findings.md)、[执行前计划](refine-logs/N26_QUERY_MASK_QUALITY_BASELINE_20261017_01/EXPERIMENT_PLAN.md)、[训练评价源码](research_round_20260925_global/code/N26_QUALITY_TRAIN_EVAL_SOURCE_ONLY_20261017_01/README.md)。
+
+
+
+**当前结构研发（N28，固定E24完整DEV已完成）：** 两臂各17784更新；187图/380GT/18700查询统一COCO已实际完成并接收。SELECTIVE **67.021271 AP**，WHOLE_NODE **66.655257**、强R **68.099385**；配对+0.366014，预锁强参考门槛Delta−2.516096。Root决定停止本路由配方扩展，不加种子/预算/融合；[结果、几何与主方法接续](research_round_20260925_global/N28_FIXED24_FULLDEV_RESULT_AND_FULL_METHOD_CONTINUATION_20261017.md)、[全部指标](research_round_20260925_global/results/N28_FIXED24_COMPLETE187_COCO_ACTUAL_20261017.json)。该试验不代替完整自研UNet++主干验证；主方法已从每臂1792更新接续，固定50轮预算不变。
+
+
+
+**N28查新与评价研发：** [五项直接先例核查](research_round_20260925_global/N28_DIRECT_PRECEDENT_REVIEW_20261017.md)明确分支门控已有先例；[固定24轮评价设计](research_round_20260925_global/N28_FIXED24_DEV_EVALUATION_DESIGN_20261017.md)及[评价源码](research_round_20260925_global/code/N28_FIXED24_DEV_EVAL_DRAFT_20261017_01/README.md)已用于原固定端点评价。四个GPU分片与完整CPU COCO、几何诊断均已实际完成并接收，范围及停止判断见上段；文件名中的DRAFT保留原源码身份，不表示本次仍未运行。
+
+
+
+**N28恢复预锁与源码：** [恢复预锁](refine-logs/N28_DENSE_ROUTING_20261017_01/RESOURCE_RECOVERY_PLAN.md)、[CPU检查源码](research_round_20260925_global/code/N28_CHECKPOINT_RECOVERY_SOURCE_ONLY_20261017_01/README.md)与[单轮修订训练源码](research_round_20260925_global/code/N28_SINGLE_EPOCH_TRAIN_SOURCE_ONLY_20261017_01/README.md)均在执行前发布。CPU恢复检查及第6至24轮原GPU训练已实际结束并接收；原8轮任务的超时仍保留为失败。训练接续成功不代表方法已经涨点。
+
+
+
+**最新机制诊断（N27，完整FIT741/1661已实际完成）：** R剩余错误73.8521%在固定Ω外。IoU0.90/0.95当前未达标实例中，即使域内用GT完美纠正，仍无法达标的分别为424/581、1101/1304。该结果支持检验具备域外写入能力的结构，不证明门控有效、AP上界或核心创新。对应N28路由两臂保持同输入、同写入权限、同预算，固定第24轮完整DEV已完成；SELECTIVE相对WHOLE_NODE +0.366014AP点，但低于强参考，按规则停止该路由配方。[结果及下一项约束](research_round_20260925_global/N27_MATCHED_SUPPORT_CENSUS_RESULT_20261017.md)、[全部阈值与成本](research_round_20260925_global/results/N27_MATCHED_SUPPORT_CENSUS_AGGREGATE_20261017.json)、[预锁计划](refine-logs/N27_MATCHED_SUPPORT_CENSUS_20261017_01/EXPERIMENT_PLAN.md)、[源码](research_round_20260925_global/code/N27_MATCHED_SUPPORT_CENSUS_SOURCE_ONLY_20261017_01/README.md)。正式TEST、跨集和完整结构验证仍待完成。
+
+
+
+**UNet++ 模块复核（2026-10-17）：** 已重新核对自定义 CBAM_block 内部的卷积、注意力、残差及 SimAM 增强，H/4 方向融合和 up_x 传输路径；补核发现解码块前置 BN/ReLU 结果被 `conv1(x)` 覆盖，已纠正此前的顺序描述并记录独立修复对照方案。这是实际源码确认，尚非完整公平训练证据。当前 N26 未直接训练这套 UNet++。[具体改动与验证边界](research_round_20260925_global/UNETPP_MODULE_MODIFICATIONS_CONFIRMED_20261017.md)。
+
+
+
+**前轮结构训练（N23，当前配方STOP）：** 三臂均完成固定新增24轮、每臂39864次更新；完整187图/380GT/18700query统一COCO已实际完成并经Root接收。B mask AP **67.807324**，A_COMMON **67.788929**、A_ACTIVE **67.603337**，强R **68.099385**；主Delta **−0.292061 AP点**，不追加本配方种子/预算/调参/融合。原native/R的全部预测及COCO12精确复现。[完整结果与范围](research_round_20260925_global/N23_FIXED24_FULLDEV_RESULT_AND_STOP_20261017.md)、[全部指标与成本](research_round_20260925_global/results/N23_FIXED24_FOURHEAD_COCO_AGGREGATE_20261017.json)、[结果到主张](research_round_20260925_global/N23_RESULT_TO_CLAIM_20261017/findings.md)。
+
+
+
+**最新诊断（N24已完成）：** 完整187图/380GT/18700query、五组预测的原COCO12全部精确复现。所有已检阈值/top10/100下均无贪心匹配数量差；强R在IoU0.90/0.95仅112/4个GT有达标候选，确认高精度轮廓空间，但不能排除score排序损失。[完整结果与限制](research_round_20260925_global/N24_FULLDEV_ERROR_CENSUS_RESULT_20261017.md)、[五组聚合](research_round_20260925_global/results/N24_FULLDEV_ERROR_CENSUS_AGGREGATE_20261017.json)、[预锁原文](refine-logs/N24_FULLDEV_ERROR_CENSUS_20261017_01/EXPERIMENT_PLAN.md)、[源码](research_round_20260925_global/code/N24_FULLDEV_ERROR_CENSUS_SOURCE_ONLY_20261017_01/README.md)。
+
+
+
+**最新诊断（N25已完成，GT oracle）：** 五组×三评分完整COCO已actual0并Root接收；R固定mask的S0×GT质量由68.099385到73.396406（+5.297021 AP点），仅GT质量为3.380706。全部几何不变，原5组COCO12精确复现。**这是不可部署诊断，没有新模型涨点。** [完整结果](research_round_20260925_global/N25_FIXEDMASK_SCORE_ORACLE_RESULT_20261017.md)、[15组指标](research_round_20260925_global/results/N25_FIXEDMASK_SCORE_ORACLE_AGGREGATE_20261017.json)、[判断范围](research_round_20260925_global/N25_RESULT_TO_CLAIM_20261017/findings.md)。
+
+
+
+
+
+
+
+**已保存的研发与证据：** [固定训练方案](refine-logs/N23_ANCHORED_DOMAIN_TRAIN_20261017_01/EXPERIMENT_PLAN.md)、[训练源码](research_round_20260925_global/code/N23_ANCHORED_DOMAIN_TRAIN_SOURCE_ONLY_20261017_01/README.md)、[固定评价方案](refine-logs/N23_FIXED_E24_FOURHEAD_DEV_20261017_01/EXPERIMENT_PLAN.md)、[评价源码](research_round_20260925_global/code/N23_FOURHEAD_FIXED_E24_DEV_SOURCE_ONLY_20261017_02/README.md)、[N22实际机会诊断](research_round_20260925_global/N22_FIT_FULLC_QUALIFIED_DIAGNOSTIC_RESULT_20261017.md)、[真实全FIT覆盖](research_round_20260925_global/N23_REAL_FULLFIT_CACHE_COVERAGE_RESULT_20261017.md)、[2026最新直接先例及监督边界](research_round_20260925_global/N23_DIRECT_SUPERVISION_AND_2026_STRUCTURAL_PRIOR_CHECK_20261017.md)。
+
+
+
+论文、方法源码、协议和研究记录的工作快照，更新至 **2026-10-17**。研究仍在进行；当前没有可直接投稿的最终论文，也没有经过正式测试和跨数据集验证的 SOTA 结论。
+
+
+
+
+
+
+
+**自主设计与作者基线归属补充：** 团队自定义UNet++按完整结构评估；历史D目录的单个FPN文件与DiffSARShipInst作者固定版本统一换行后完全一致，SCJE-FPN及其中采用的CARAFE/ACmix须按作者基线引用。两份本地R535配置声明启用SCJE，不能仅改builder构造普通FPN对照；这不认证当前E/N20调用。[归属、实际路由与对照要求](research_round_20260925_global/UNETPP_OWN_DESIGN_AND_DIFFSARSHIPINST_BASELINE_ATTRIBUTION_20261016.md)。
+
+
+
+**自定义 UNet++ 历史训练证据：** full 版本有明确训练入口；SamplingBoundary 的 HRSID、SSDD 配置与各 5 轮、每轮 64 批的历史日志对应。未确认历史模型源码及权重身份，也不据此推断实例 AP 收益。[入口、短训记录与证据边界](research_round_20260925_global/UNETPP_HISTORICAL_TRAINING_ROUTE_EVIDENCE_20261017.md)。
+
+
+
+**当前状态（N20）：** 第二种子全187图统一COCO及独立Root接收均已完成，阶段结果冻结为`STOP_CURRENT_RECIPE`。固定主终点E24-atmost下，seed201 LOCAL/CENTER/强R仍为68.297126/67.978791/68.099385 AP，seed202仍为67.991722/67.697705/68.099385 AP；平均主差值为+0.045039 AP点（精确值+0.04503879895506202），未达到预锁1点门槛，不启动seed203、追加预算或融合。恢复原执行任务实际退出0，exactheld已保存，fresh221 FIRST实际退出0后，Root外部接收实际完成；N20接收时为221正常终态+27保留失败=248、legacy pins229。原post19115实际退出1作为failure27保留，恢复只修复metadata的JSON键比较，没有重训或重算十组COCO。独立N21几何结果见下，不改变本阶段停止结论。旧独立审阅仍为WARN/provisional partial；本阶段不证明总体胜过强R、创新成立或TGRS就绪，总目标未完成。[两seed全部结果与阶段判定](research_round_20260925_global/N20_TWO_SEED_MAIN_RESULTS_20261017.md)。
+
+
+
+**已完成（N21）：** 预锁32张FIT图×64个唯一整数中心、共2048组的理想插值几何诊断已实际0并完成Root外部接收。主分母2002/2048满足50%覆盖要求，同一原生2×2单元为0/2002，按原80%判据为`SHARED_FOUR_PREMISE_REJECTED`；主分母的理想系数矩阵均rank9。撤回“普遍同四角→低秩瓶颈”前提，不据此启动原生邻域训练。当前全局222正常+27失败=249、legacy pins230；不更改N20停止规则，不推实际F/LN rank、训练点分布、AP或总体模型有效性，总目标未完成。[完整结果](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_RESULT_20261017.md)、[结果前预锁原文](research_round_20260925_global/N21_NATIVE_SUPPORT_GEOMETRY_PRELOCK_20261017.md)、[机器可读摘要](research_round_20260925_global/results/N21_NATIVE_SUPPORT_GEOMETRY_SUMMARY_20261017.json)。接收前的失败及恢复时间线保留在两seed主结果说明和Git历史中。
+
+
+
+**复核开销测量：** 第二批外部接收实际完成分段计时，共297.468秒，其中原来源及保存证明核验293.453秒；不能进一步归因于某一具体检查，也不作为模型FPS或加速收益。当前32范围、科学入口与核验规则保持。[实测分项与后续工程候选](research_round_20260925_global/N20_CPU_REVIEW_COST_AND_FUTURE_PROTOCOL_20261016.md)。
+
+
+
+**首种子201的全量汇总状态：** 已按32份固定范围执行全187图统一COCO，并完成独立post与Root实际终态核验；静态审阅仅保留为执行前历史。[静态审阅记录](research_round_20260925_global/N20_FINAL32_ENTRY_STATIC_READINESS_REVIEW_20261016.md)。
+
+
+
+**跨集数据准备：** 本地5604个JPG的train/test实例标注，与已核官方PNG对应split按文件stem、ID及全部标注字段精确相等；完整文本SHA不同。5604文件编码哈希/头部检查实际0，均800×800三分量JPEG，尚未解码像素/mask。发现两组跨train/test相同编码图、一组test内部重复，其标注多重集均不同；原协议保留，未来另预锁去重敏感性补充。合并标注16951实例与split合计16969不等，不能互换。官方JPG归档身份、掩膜空间对齐和母景独立未确认，不恢复盲TEST；不继续等待PNG下载，不改变N20。[本地数据完整补充](research_round_20260925_global/HRSID_LOCAL_JPG_METADATA_AND_VERSION_BOUNDARY_20261015.md)。
+
+
+
+**增量查新：** [O²Former与DACF-net先例核查](research_round_20260925_global/DIRECT_SAR_INSTANCE_SEGMENTATION_INCREMENTAL_PRIOR_CHECK_20261015_01.md)分别标记全文和官方域索引证据，不与当前DEV跨协议排名；方向、多尺度和上下文模块已有直接先例；已补记v1实现需澄清的形状与对齐边界，不将自行适配称作完整作者复现。
+
+
+
+**采样与精修直接先例补查：** LIIF已包含原生3×3、相对坐标及解码后局部集成；I-MedSAM展示先插值到目标网格再作连续精修的另一条路线。条件rank上界不是本项目实测瓶颈；原生邻域本身不能算新原语。七项有限证据区分代码、正文与索引摘录，不宣称穷尽2026研究。[有限补查与设计边界](research_round_20260925_global/N20_NATIVE_GRID_VS_RENDERED_F9_DIRECT_PRIOR_REVIEW_20261016_01.md)。
+
+
+
+**自主UNet++与历史资产扩展审阅：** 按用户说明记录自主设计，已还原13组实际前向结构；重点保留选择性跨尺度传输、H/4语义与方向互补、采样重建协同三条候选。扩展登记1009个源码/配置/示例项；D内260个模型候选中222个关联数值训练记录，另20个pth是评价缓存。Mamba100轮/MSCK160轮等检测成绩与实例mask AP分开；旧full骨架与clean50轮不能混同，来源未接上不等于未训练。[扩展总评与下一步](research_round_20260925_global/UNETPP_EXPANDED_MODEL_ASSET_REVIEW_AND_NEXT_DESIGN_20261015.md)、[自主结构还原](research_round_20260925_global/UNETPP_SELF_DESIGNED_STRUCTURE_RECONSTRUCTION_20261015.md)、[全部源码目录](research_round_20260925_global/UNETPP_COMPLETE_MODEL_SOURCE_CATALOG_20261015.md)、[训练资产目录](research_round_20260925_global/UNETPP_COMPLETE_TRAINED_ASSET_CATALOG_20261015.md)、[有界先例核对](research_round_20260925_global/UNETPP_SELF_STRUCTURE_BOUNDED_PRIOR_CONTEXT_20261015.md)。三条均尚未确认学术新颖性或当前实例效用，不改N20端点。
+
+
+
+**UNet++模块内部改造复核（10月17日）：** 已重新核到编码与解码复合注意力、抗混叠下采样、门控细节上采样四组内部设计及实际forward；full有`trainer_coco.py:5/62`训练入口。full的未使用BlurPool结果、前置BN旁路及DSConv批次索引问题仍为静态证据，尚未张量回归；当前N20不是这套UNet++整网试验。[具体实现、问题与验证范围](research_round_20260925_global/UNETPP_MODULE_INTERNAL_CHANGES_SOURCE_CHECK_20261016.md)。
+
+
+
+**UNet++末端门控机制补充：** 本地SimAM核心公式与作者公式相同，外层 `h + SimAM(h)` 构成带恒等项的空间选择增益；需用固定增益等对照区分选择作用与整体放大，尚未执行验证。[公式、适用条件与候选对照](research_round_20260925_global/UNETPP_SIMAM_RESIDUAL_MECHANISM_STATIC_NOTE_20261016.md)。
+
+
+
+**采样候选直接先例补查（10月16日）：** 已核BlurPool、FADE、DySample、FreqFusion，以及2025遥感双向重采样和2026抗混叠分割先例；模块内部改造已确认，联合机制与实例效用待验。记录聚合/相位、普通残差容量、外部skip及共享BN的替代解释；不改当前N20。[有限查新与可否定假设](research_round_20260925_global/UNETPP_SAMPLING_DIRECT_PRIOR_TARGETED_REVIEW_20261016.md)。
+
+
+
+**自主传输路由的近年先例补查（10月16日）：** 新读ICUnet++（2023）、RPAU-Net++（2025）及两篇遥感分割作者稿，补充直接门控位置对照；不以“UNet+++CBAM”称新。Root确认原model_new1为先门控后上采样，后续需区分运算顺序与被门控支路，所列对照尚未执行。[有界查新与源码顺序校核](research_round_20260925_global/UNETPP_UPSAMPLE_TRANSPORT_RECENT_DIRECT_PRIOR_20261016.md)。
+
+
+
+**旧自主结构的权重来源补查：** 222已定位writer/reader代码声明；111/222/两份ALL_NEW完成只读ZIP与pickle操作码元数据登记，未加载模型或tensor。不同前向、开关与完整训练身份仍需核对；部分旧AP50/AP75实际是整幅掩膜IoU阈值通过指标，不能用于COCO mask AP排名。[来源与结构线索](research_round_20260925_global/UNETPP_LEGACY_PROVENANCE_AND_CONTAINER_EVIDENCE_20261015.md)、[有界只读工具](tools/legacy_weight_metadata_intake.py)、[两项合成回归](tests/test_legacy_weight_metadata_intake.py)。
+
+
+
+**已完成（N16）：** 同24轮配对训练及完整187图/380GT/18700自然query/12策略GPU、独立数值CPU、统一全量COCO与Root资格均完成。主Utility AP **67.666732**，同训Error **67.895932**，强参考 **68.099385**；Delta **−0.432653** AP点，按预锁STOP，不补旧162/163。原生67.071057的局部收益不能替代强参考。原受控截止/接口失败均保留，不改主端点；单首初始化内部DEV，没有跨集、核心创新或TGRS结论。[完整结果和范围](research_round_20260925_global/N16_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[独立质疑](research_round_20260925_global/N16_RESULT_TO_CLAIM_AND_LOCAL_CONTEXT_INDEPENDENT_CHALLENGE_20261015.md)。
+
+
+
+**最近已完成的单模块结果（N14）：** 固定新stage24训练与完整DEV187/all100 GPU、独立CPU及ROOT资格均通过（每臂39,864更新，全18,700 query同GPU输入sign/RLE/COCO12一致）。BASE AP67.686612、MEMORY67.683479；模块−基线−0.003132点、相对原较强E24端点−0.415905点，C1未通过，按预锁规则停止该配方追加seed/预算和融合。训练BCE下降约1.41%没有转为AP收益；不推断方法总体失效或充分收敛。[完整合格结果与停止决定](research_round_20260925_global/N14_FIXED24_FAIR_COMPARISON_QUALIFIED_RESULT_AND_STOP_20261014.md)、[首次AP前规则](research_round_20260925_global/N14_FIXED24_FIRST_SEED_DECISION_CLARIFICATION_20261014.md)。下一轮[固定强E24行动机会诊断](refine-logs/N15_FIXED_ACTION_OPPORTUNITY_20261014_01/EXPERIMENT_PLAN.md)已于UTC04:31:14预登记，[真实GPU、独立CPU与ROOT诊断现已全部合格](research_round_20260925_global/N15_FIXED_E24_ACTION_OPPORTUNITY_QUALIFIED_RESULT_AND_NEXT_STEP_20261014.md)：同K的C行动oracle相对Omega平均+1.461603 IoU点，286/374>=.5点，高IoU实例增加39，预锁机会门通过。当前是GT理想行动选择上界，没有学习选择器的AP结果，[N16唯一公平scout协议现已锁定](research_round_20260925_global/N16_FAIR_UTILITY_SELECTOR_LOCKED_TRAINING_DESIGN_20261014.md)，已核原matcher负query不受mask监督，双方共同扩展背景代理target并纠正分层采样比例；完整缓存已通过GPU、独立CPU和ROOT核验，两scout已完成相同固定24轮训练及E8/E24端点资格；两个实现失败和原641/741受控时限失败均保留。固定无GT候选C、相同K预算和374匹配条件人口，区分实际PR可修补机会、避免伤害及理想GT上界。GO门提前锁定，没有新AP或核心创新结论。原[下一假设](research_round_20260925_global/N15_ACTION_UTILITY_SUPPORT_SELECTION_NEXT_HYPOTHESIS_20261014.md)保留提出时状态。
+
+
+
+**当前研发（N17已完成）：** 同预算24轮LOCAL/CENTER、全187图/380GT/18700query、五GPU与七数值CPU、统一全量官方COCO及post实际退出后Root资格均完成。主E24-atmost LOCAL **67.786531**、CENTER **68.103370**、强R **68.099385**，Δ **−0.316840 AP点**，按预锁STOP当前配方，不补172/173、不融合。正常136/失败21/157终态身份；没有运行中的N17科学任务。N18诊断已实际完成并核验，见下一段；没有创新/TGRS就绪结论。[完整结果](research_round_20260925_global/N17_FULLDEV_QUALIFIED_FIXED24_RESULT_AND_STOP_20261015.md)、[全部10端点原始stats](research_round_20260925_global/results/N17_FIXED24_ALL10_COCO_STATS_20261015.json)、[claim判定](research_round_20260925_global/N17_RESULT_TO_CLAIM_20261015/findings.md)。
+
+
+
+**N18已核诊断：** 原374固定配对，LOCAL可修选中4574/有害3651，强Ω6564/8528；LOCAL同时减少纠正和误改，漏选率58.140%高于Ω39.929%。PR可修11146/65423（17.037%）与N15一致，不能据此认定主要AP瓶颈。原CPU实际0/472.219秒，正常137/失败21/158身份，无科学任务运行。下一项先研究FP/FN的非对称修补取舍，再锁定公平强对照；没有新训练/AP/创新结论。[完整统计和下一假设](research_round_20260925_global/N18_QUALIFIED_ROUTING_CAPABILITY_RESULT_AND_NEXT_HYPOTHESIS_20261015.md)、[像素数与AP边界](research_round_20260925_global/N18_PIXEL_COUNTS_VERSUS_AP_INTERPRETATION_20261015.md)。
+
+
+
+**最新完成（N19）：** 固定1/2方向评分DIR AP **67.726509**，普通偏置67.816800、反向偏置67.789369、强R68.099385；主Δ **−0.372876点**，当前方案STOP，不补评分参数/质量头/种子。全187图/18700query及Root资格完成，正常138/失败21/159身份，无科学任务运行。后续真实feature邻域同容量/同预算检验N20已完成缓存资格并启动原训练任务，见顶部当前状态。[全部结果与范围](research_round_20260925_global/N19_FIXED_HALF_FULLDEV_QUALIFIED_RESULT_AND_STOP_20261015.md)、[原始stats12](research_round_20260925_global/results/N19_FIXED_HALF_ALL6_COCO_STATS_20261015.json)。
+
+
+
+**机会与指标的边界：** [条件IoU机会不能保证全量AP](research_round_20260925_global/N17_CONDITIONAL_IOU_OPPORTUNITY_VERSUS_FULL_AP_20261015.md)给出结果后最小诊断：区分实际选点漏掉可修位置与固定PR本身不可修；N18统计已完成，不改变主端点/停止规则，不把未匹配query当真实背景。
+
+
+
+**新增直接先例（GLDet）：** 用户提供的TGRS2025论文含实例分割，原文SSDD/HRSID mask AP71.3/58.6、整网500轮。已核全文/表格；完整作者代码尚未确认。空间扫描/邻域卷积/方向pool需要新空间载体，当前点头不能原样接入；N14无空间memory首试已按负结果停止，GLDet的完整空间结构迁移仍未执行，不直接比较不同划分AP。[原论文综述](research_round_20260925_global/GLDET_PRIMARY_PAPER_REVIEW_AND_SEGMENTATION_TRANSFER_20261014.md)、[代码现况和单项局部信息检验设计](research_round_20260925_global/GLDET_CODE_RECHECK_AND_MINIMAL_LOCAL_INFORMATION_TEST_20261015.md)。其局部信息检验已演变为N17：完整FIT邻域缓存和固定24轮训练已合格，DEV全量验证完成且主结果负收益停止；这是低成本信息检验，尚非完整GLDet复现或新创新。不能使用DEV捕获训练。
+
+
+
+**局部特征与细化的直接先例：** 新增[五项定向核查](research_round_20260925_global/N20_DIRECT_REFINEMENT_PRECEDENT_FOCUSED_REVIEW_20261015_01.md)，覆盖RefineMask、Mask Transfiner、SegRefiner、SAMRefiner（ICLR 2025）与UnfoldCRF（2026预印本）。普通3×3真实邻域即使涨点，也先支持当前配方的信息效用；稀疏点交互、多阶段细化和通用条件修正均有先例，尚不能宣称结构创新或SOTA。
+
+
+
+**当前已核验结果（N13）：** 三种子固定E48 LOG/GEO均值67.768660/67.579076 AP，配对差−0.189583点，三组均负，已停止该GEO联合配方扩展。全部E24曲线已核验，LOG/GEO均值67.992117/67.781883。真实诊断CPU失败9保留；image113四路探针实际0并ROOT核验，仅支持此例CPU/GPU特征渲染差异，同GPU F的CPU PR满足原容差，全374对尚未qualified。[局部探针结果](research_round_20260925_global/N13_IMAGE113_NUMERICAL_PROBE_RESULT_20261014.md)。无正式TEST、跨集或核心创新/TGRS结论。
+
+
+
+
+
+新[CPU恢复入口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_completed_epoch_artifact_recovery_source_20261013_03/ABI.md)已实际通过独立端点检查；原GPU失败与缺失报告保留。
+
+
+
+后续[冷启动训练源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_qualified_endpoint_training_source_20261013_03/ABI.md)已静态审阅并保存，702/703首段训练及独立CPU核验已通过；当前入口只允许702/703首段。后续[连续48轮接续源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_continuous48_adopted_endpoint_training_source_20261013_04/ABI.md)已通过静态审阅，三个种子第9–16轮、第17–24轮、第25–32轮及第33–40轮均已通过核验，三个固定E48均已通过独立CPU和ROOT核验，原固定DEV评价失败保留，修复版GPU/CPU及ROOT已通过，701 E08曲线及三条E48主端点均已合格；三个E08曲线已完成独立CPU和ROOT核验，全部三条E24已完成独立CPU/ROOT核验，真实固定PR诊断GPU原59604实际0，独立CPU原4404实际1，数值故障定位中。见[训练与接续状态](research_round_20260925_global/N13_SEED702_COLD_TRAINING_AND_CONTINUOUS48_SOURCE_STATUS_20261013.md)及[完整DEV评价接口](research_round_20260925_global/N13_FIXED_DEV_EVALUATION_INTERFACE_CONTRACT_20261013.md)。
+
+
+
+新[原栅格固定PR适配器草案](research_round_20260925_global/code/N13_original_raster_fixed_PR_adapter_draft.py)实现已知F/L算术及独立候选分块；无GT、K或最终选集合输入。已有CPU合成验证；新[非零残差/非连续栅格逐点检查](research_round_20260925_global/code/N13_original_raster_fixed_PR_nonzero_strided_check.py)实际通过，真实权重映射、渲染/导出及固定配对的源码规则已完成[文字核对](research_round_20260925_global/N13_FIXED_PR_ACTUAL_SOURCE_INTERFACE_REVIEW_20261014.md)，真实输入/端点绑定、域定义、科学运行时及大栅格资源资格仍待核验。见[诊断方案和验证范围](research_round_20260925_global/N13_FIXED_PR_COVERAGE_REPAIRABILITY_DIAGNOSTIC_DRAFT_20261014.md)。 已补入条件IoU诊断进入完整AP检验的两个必要条件：自然全部query的GT无关策略，以及明确固定候选/exact-K或拒绝写入的行动范围；当前未执行新方法评价。新增[纯诊断统计](research_round_20260925_global/code/N13_fixed_PR_diagnostic_statistics_draft.py)及[独立手算检查](research_round_20260925_global/code/N13_fixed_PR_diagnostic_statistics_independent_hand_check.py)已通过host合成检查，仅SYNTHETIC_ONLY。 已核对外部作者width2函数的严格邻域计数规则及空/满/孤点静态含义；本地作者函数及N12 v02调用/计数规则已在任务间隙完成ROOT文字核对，真实诊断输入/域重建和运行资格仍待核验。
+
+
+
+新[候选—原LOG重建—统计连接层](research_round_20260925_global/N13_FIXED_PR_PIPELINE_SYNTHETIC_INTEGRATION_CHECK_20261014.md)已保存；72项首次合成检查与独立106项halo/域外补查均实际退出0。新增域真实翻转、非空域外保持和完整C冒充原参考的统计前拒绝已验证，仅SYNTHETIC_ONLY，未取得真实SAR诊断资格。
+
+
+
+新[显式区域装配接口](research_round_20260925_global/N13_FIXED_PR_NATIVE_DOMAIN_ASSEMBLY_SYNTHETIC_CHECK_20261014.md)连接native L、CPU作者回调与互斥旧域/halo；49项字面回调检查及13项拒绝实际通过，尚未验证真实作者数值、来源、CUDA或SAR域。
+
+
+
+新[诊断接口补齐](research_round_20260925_global/N13_FIXED_PR_PRECOMPUTED_POPULATION_AND_DISTANCE_INTERFACE_CHECK_20261014.md)复用同一人口汇总，允许保留逐对JSON后释放栅格，并在原LOG重建后透传显式距离分层。59项/10拒绝和35项有限检查实际通过；不认证预计算数值、距离来源或真实SAR效果。
+
+
+
+</details>
+
+
+
+## 从这里开始
+
+
+
+- [GLDet附件定向复核与loss边界](research_round_20260925_global/GLDET_ATTACHMENT_TARGETED_RECHECK_AND_LOSS_SCOPE_20261015_01.md)：确认实例分割直接先例；式(7)10/3/10属于标签分配cost，不能写成联合训练loss权重。
+
+- [HRSID官方PNG编码文件获取试点](research_round_20260925_global/HRSID_OFFICIAL_PNG_ENCODED_IMAGE_BYTES_PILOT_20261015_01.md)：两文件真实字节/SHA/ZIP及PNG容器CRC/IHDR通过；未解码像素、未取得完整数据集或评价模型，原header解析失败保留。
+
+- [HRSID官方PNG同包TRAIN/TEST实核](research_round_20260925_global/HRSID_PNG_OFFICIAL_ARCHIVE_DIRECTORY_AND_TEST_METADATA_20261015_01.md)：Root独立核TRAIN3642图/11047实例、TEST1962图/5922实例，文件名无交集且覆盖5604 PNG目录；数值ID跨split复用，不能裸ID合并。仅元数据，尚无影像/mask/AP资格。
+
+- [N20渲染F9条件性信息分析](research_round_20260925_global/N20_RENDERED_F9_CONDITIONAL_INFORMATION_AND_CONTROL_SCOPE_20261015_01.md)：明确±1为最终栅格像素；仅在同一有效双线性单元等条件下有四基表示，尚无实际秩/覆盖率或效用结论。
+
+- [HRSID作者固定版本标注实文件核验](research_round_20260925_global/HRSID_OFFICIAL_ANNOTATION_INTAKE_20261015_01.md)：取得3573图/9870实例的Git候选JSON并独立核对，215图无标注关联；该候选的配套TEST及母景独立未认证，与同包PNG的具体差异见上方实核，不能混配。
+
+
+
+- [YOLO11n路口微调实测](docs/edge_traffic/xavier_nx_20261015/training_20261015/TRAINING_REPORT.md)：完成1022/128/128、30轮训练；四类mAP50 17.53%→48.12%，行人AP50仅16.33%；公开视频仍有小车误报公交/广告牌误报卡车，不具备五类高精度部署结论；NX与电动自行车未验证。
+
+
+
+- [N20真实F邻域实验](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_PLAN.md)：固定24轮E8/E24实验方案；首种子（201）GPU清理失败后的保存产物恢复过程见[恢复核验](research_round_20260925_global/N20_SAVED_E8_E24_CPU_RECOVERY_QUALIFIED_STATUS_20261015.md)。各个种子的统一评价与重复实验进展见[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
+
+
+
+- [N20当前32份核验合同](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)与[全187统一评价合同](research_round_20260925_global/code/N20_FIXEDDEV_FULL187_COCO_CPU_FRONT_UNBOUND_CONTRACT_20261015_02.md)：规定分批核验、全量统一评价及独立复核流程；实际进展见[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。旧八份合同保留为历史。主端点与继续规则不变，合成检查不是实际AP或发表依据。
+
+
+
+- [N20真实F邻域结构原型与训练设计](research_round_20260925_global/N20_TRUE_FEATURE_NEIGHBOR_SCOUT_DESIGN_AND_IMPLEMENTATION_STATUS_20261015.md)：18,851参数适配器的结构原型与训练设计，文档保留提出时状态。普通DW结构仅为信息基线，不列为新创新；统一评价与重复实验进展见[执行状态](refine-logs/N20_TRUE_FEATURE_NEIGHBOR_20261015_01/EXPERIMENT_TRACKER.md)。
+
+
+
+- [N20原生网格取点先例与诊断候选](research_round_20260925_global/N20_NATIVE_GRID_SAMPLING_DIRECT_PRIOR_CANDIDATE_20261016.md)：补充LIIF、Deformable DETR、IFA与Implicit PointRend的直接先例，区分单次四角条件与两次插值、LN后的适用范围。仅为尚未预锁或执行的诊断候选，不改变当前实验。
+
+
+
+- [路口五类检测数据集核查（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/DATASET_SHORTLIST.md)：Intersection-Flow-5K、MIO-TCD、BDD100K与电动自行车专项候选；明确类别/视角/许可/获取状态及部分标注问题。
+
+
+
+- [Xavier NX 路口预训练检测选型与公开实测（2026-10-15）](docs/edge_traffic/xavier_nx_20261015/REPORT.md)：三模型各完整719帧；权重来源、可复跑工具、误报失败例与NX待验收条件。尚未满足电动自行车独立识别/五类高准确率/NX30FPS。
+
+
+
+- [N19固定方向代价探针](refine-logs/N19_FIXED_HALF_DIRECTIONAL_READOUT_20261015_01/EXPERIMENT_PLAN.md)：只用已有同头概率、固定1/2评分及普通/反向偏置对照，协议已事前锁定；body手算与outer接口检查通过，源码及一次独立定向审阅完成。原CPU实际0/426.812秒，三份完整AP及Root资格完成，主DIR67.726509，Δ−0.372876点，按预锁STOP；[完整结果](research_round_20260925_global/N19_FIXED_HALF_FULLDEV_QUALIFIED_RESULT_AND_STOP_20261015.md)。[查新](research_round_20260925_global/N19_IOU_DIRECTIONAL_ACTION_RISK_TARGETED_PRIOR_20261015.md)判为低新颖性/效用待检验，保持旧STOP，不称新理论或质量估计效应。
+
+
+
+- [N18最小机制诊断计划](refine-logs/N18_FIXED_PR_ROUTING_CAPABILITY_20261015_01/EXPERIMENT_PLAN.md)：固定374配对复用已存动作，区分路由漏选与PR纠错能力；纯计数手算及单项接口检查已通过；新读取源码完成一次独立静态审查。真实CPU诊断实际退出0并通过Root整数/来源核对；结果见[N18诊断](research_round_20260925_global/N18_QUALIFIED_ROUTING_CAPABILITY_RESULT_AND_NEXT_HYPOTHESIS_20261015.md)。
+
+
+
+- [N17局部粗mask、错误估计和选点直接先例](research_round_20260925_global/N17_LOCAL_NATIVE_L_ERROR_SCOUT_TARGETED_PRIOR_CHECK_20261015.md)：SEED/QuBER/MagNet/PointRend重叠与具体差异，现阶段只做信息探针，不确认创新。
+
+
+
+- [N16预锁主结果解释器](research_round_20260925_global/code/N16_FIRST_SEED_RESULT_INTERPRETER_UNBOUND_DRAFT_20261014_01.md)：仅E24主端点触发复验/停止；6项合成检查通过，真实AP解释待完整独立资格。
+
+
+
+- [N16四CPU证明后的最终完整核验合同](research_round_20260925_global/code/N16_FIXED_E24_ALL100_SCOUT_CPU_NUMERIC_SHARDS_QUALIFIER_CONTRACT_20261014_01.md)：代码/最小合成/静态审阅已准备，尚未实际执行，不替代完整资格。
+
+
+
+- [N15下一单一公平选择器草案](research_round_20260925_global/N15_SINGLE_FAIR_UTILITY_SELECTOR_MINIMAL_UNBOUND_DESIGN_20261014.md)：相同容量/输入的修补效用与错误概率，两者共有真实目标/负query及成本规则；ROOT指出均匀all100采样的稀释风险，尚未正式登记或训练。
+
+
+
+- [N15完整机会诊断合格结果与下一步](research_round_20260925_global/N15_FIXED_E24_ACTION_OPPORTUNITY_QUALIFIED_RESULT_AND_NEXT_STEP_20261014.md)：实际固定头存在扩域修补机会；GT oracle、学习能力和部署AP分开，3个提前门通过。
+
+
+
+- [N15行动效用的五项直接先例查新](research_round_20260925_global/N15_ACTION_UTILITY_TARGETED_PRIMARY_PRIOR_CHECK_20261014.md)：PointRend、MagNet、Mask Transfiner、PromptMoE与SAM-Veteran；已知效用监督与新的工程假设分开，当前N15机会诊断已合格，不能等同AP或选择器效用。
+
+- [N15固定E24行动机会预登记](refine-logs/N15_FIXED_ACTION_OPPORTUNITY_20261014_01/EXPERIMENT_PLAN.md)：同C动作、同K、原强预测核对、实际GPU输入CPU回放及预锁GO门。
+
+
+
+- [真实诊断CPU数值失败与单图定位](research_round_20260925_global/N13_REAL_FIXED_PR_CPU_COMPATIBILITY_FAILURE_AND_SINGLE_IMAGE_PROBE_20261014.md)：第9实际失败保留，不放宽原容差，探针区分特征重渲染与算术，原GPU33452单次执行中。
+
+
+
+- [全部三种子E24曲线与真实固定PR诊断启动](research_round_20260925_global/N13_FIXED24_THREE_SEED_CURVE_RESULT_AND_REAL_DIAGNOSTIC_START_20261014.md)：全部固定曲线核验完成，当前701 LOG E48的374＋6真实诊断GPU原59604实际0，独立CPU原4404实际1，数值故障定位中，尚无核验后新效用。
+
+
+
+- [合格曲线与三种子主结果](refine-logs/N13_SAMEK_PR_20261013_01/findings.md)：三条E48已核验并执行当前联合配方停止决定；三个E08仅作固定学习曲线，全部三条E24已完成独立CPU/ROOT核验，真实固定PR诊断GPU原59604实际0，独立CPU原4404实际1，数值故障定位中。
+
+
+
+- [固定DEV执行错误与独立修复版](research_round_20260925_global/N13_FIXED_DEV_SERIALIZATION_REPAIR_STATUS_20261013.md)：原实际失败及未完成产物保留；修复版已通过GPU、独立CPU和ROOT核验，完整三种子主结果及当前曲线见最新状态。
+
+
+
+- [固定48轮训练资格与稳定性结果](research_round_20260925_global/N13_FIXED48_TRAINING_QUALIFIED_RESULT_20261013.md)：六头各79,728更新，全部端点核验通过；六头43–48轮平均可编辑BCE较37–42轮均下降超过1%，尚不支持充分收敛；训练资格与实际AP评价分别核验。
+
+- [HRSID官方协议与发布范围核查](research_round_20260925_global/HRSID_OFFICIAL_PROTOCOL_AND_RELEASE_SCOPE_CHECK_20261013.md)：原文支持65/35裁片协议；补核固定作者提交与未回应许可issue，场景独立与数据再发布许可仍未确认；未打开数据包。
+
+- [Poly-BRBLE 原论文全文核查](research_round_20260925_global/N13_POLY_BRBLE_FULLTEXT_CHECK_20261013.md)：直接先例已包含边界buffer、不确定选点与点精修；明确当前sameK差异、联合处理限制和后续强对照。
+
+- [SAR提示式基础模型全文核查](research_round_20260925_global/SAR_PROMPTED_FOUNDATION_MODELS_FULLTEXT_REVIEW_20261013.md)：核对监督范围、指标与可复现性，并明确它与当前残差点头实验的可比边界。
+
+- [学习选择器的监督目标与完整模型边界](research_round_20260925_global/N13_LEARNED_SELECTOR_TARGETS_AND_FINE_FEATURE_PRIOR_CHECK_20261014.md)：Mask Transfiner的GT缩放损失目标与固定作者重实现、RefineMask的可训练P2/SFM及Simple版本；明确后续强对照与创新措辞。
+
+- [固定K二值IoU oracle与概率代理边界](research_round_20260925_global/N13_FIXED_K_BINARY_IOU_ORACLE_AND_PROBABILISTIC_PROXY_LIMIT_20261014.md)：更正真实标签与预测概率的适用范围，给出证明、人工反例及固定权重强对照；不是新SAR实验。
+
+- [固定预算行动选择的两项直接先例查漏](research_round_20260925_global/N13_FIXED_BUDGET_ACTION_UTILITY_DIRECT_PRIOR_GAPS_20261014.md)：MagNet候选置信排序、PromptMoE执行质量监督，以及待登记的错误预测/实际翻转、MagNet式排序和固定权重强对照；当前实验不改。
+
+- [预计算人口与距离分层接口补齐](research_round_20260925_global/N13_FIXED_PR_PRECOMPUTED_POPULATION_AND_DISTANCE_INTERFACE_CHECK_20261014.md)：保留原数组路径、避免重复逐对统计；公开有限复现，科学资格仍未认证。
+
+- [固定PR显式区域装配及有限检查](research_round_20260925_global/N13_FIXED_PR_NATIVE_DOMAIN_ASSEMBLY_SYNTHETIC_CHECK_20261014.md)：固定CPU FP32作者回调接口和标签1域，不实现或替换作者width2；只有合成装配证据。
+
+- [固定PR连接层及新增域/域外独立合成补查](research_round_20260925_global/N13_FIXED_PR_PIPELINE_SYNTHETIC_INTEGRATION_CHECK_20261014.md)：必需原预测参考、只写旧域的完整重建和统计前拒绝；公开便携源码及四路径复现命令，尚无真实SAR效用。
+
+- [固定PR候选的覆盖、纠正能力与选择余量诊断草案](research_round_20260925_global/N13_FIXED_PR_COVERAGE_REPAIRABILITY_DIAGNOSTIC_DRAFT_20261014.md)：四项嵌套oracle、原输出重建、独立候选及exact-K强制伤害门；纯布尔代码人工穷举已通过，真实SAR适配/执行尚未登记。
+
+- [固定48轮三种子完整主结果与下一诊断](research_round_20260925_global/N13_FIXED48_THREE_SEED_PRIMARY_RESULT_AND_NEXT_DIAGNOSTIC_20261014.md)：配对均值为负，按原规则停止当前联合配方；保留所有指标、成本、失败与适用范围，下一行动oracle只是草案。
+
+- [实测区域成本的归因边界](research_round_20260925_global/N13_MEASURED_REGION_COST_ATTRIBUTION_PLAN_20261014.md)：聚合计时含两臂选择、排序校验和摘要；列明遗漏的传输/导出成本及主评价后最小补测，未认定子阶段瓶颈或取得加速。
+
+- [共享投影与成本公平性审阅](research_round_20260925_global/N13_SHARED_PROJECTION_COST_FAIRNESS_REVIEW_20261013.md)：稠密强对照应同样共享特征投影；列明计算、内存和数值等价的边界，实际加速与质量收益仍待检验。
+
+- [当前研究目标与执行要求](RESEARCH_GOAL.md)：问题、公平比较、重复实验、机制验证和停止规则。
+
+- [修补行动收益与计算分配的直接先例](research_round_20260925_global/N13_ACTION_UTILITY_AND_ALLOCATION_DIRECT_PRIOR_ADDENDUM_20261013.md)：六项原始工作、近期SAR有限补核、像素收益与IoU的区别，以及待检验的质量与成本方案；出版核验限制明确保留，当前训练不改。
+
+- [论文版本索引](docs/PAPER_INDEX.md)：各代正文、补充材料与历史稿的关系。
+
+- 可阅读历史修订稿：[正文 PDF](paper_tgrs/revision_tgrs_20260905/main.pdf)、[补充 PDF](paper_tgrs/revision_tgrs_20260905/supplement.pdf)、[说明](paper_tgrs/revision_tgrs_20260905/README_CN.md)。它们属于旧融合主线，未重写成 10 月当前研究；PDF 与当前源码的对应关系未重新编译核验。
+
+- [数据获取与版本说明](docs/DATA_ACCESS.md)、[上游数据索引](docs/upstream_data_index.json)：PSeg-SSDD 与 HRSID 的官方入口。
+
+- [掩膜残差读出与校准先例核查](research_round_20260925_global/CALIBRATION_PRECEDENT_REVIEW_20261012.md)：PointRend、Implicit PointRend、质量评分及 SAR 直接先例；机制假设仍待检验。
+
+- [完整实验计划](refine-logs/EXPERIMENT_PLAN.md)、[实验跟踪](refine-logs/EXPERIMENT_TRACKER.md)、[下一研究批次](refine-logs/NEXT_RESEARCH_BATCH.md)。这些记录保留历史合同；有日期的最新状态优先。
+
+
+
+## 当前证据和决定
+
+
+
+所有下表结果均来自历史内部 **DEV187 / 380 GT**，不是官方 TEST。AP 使用百分制；“+1 AP 点”表示 67 到 68。没有把本项目的内部指标与外部论文数值直接排名。
+
+
+
+| 固定比较 | mask AP | 能支持的结论 |
+
+|---|---:|---|
+
+| 预选强 E24 原生参考 | 67.071057 | 同协议固定参考 |
+
+| A：原生模型 + 同样点监督，24 轮再追加 48 轮 | 64.686168 | 当前续训配方的端点 |
+
+| B：联合残差读出，同样预算 | 66.797068 | B 高于 A，但低于强 E24；结束该配方扩展 |
+
+| C：冻结 E24，粗 F/e/L 点头，两个下游种子均值 | 68.166136 | 相对 E24 +1.095079 AP 点的开发集效用 |
+
+| R：相同点头加真实 JPEG 7×7 patch，两个下游种子均值 | 68.153211 | 与 C 几乎持平；未支持新增 patch 的作用 |
+
+
+
+详见 [固定长预算 A/B 结果](docs/fixed_endpoint_joint_native_E24warm48_result_20261012.md)与 [N07 全部种子及固定端点评价](docs/N07_fixed8_fullDEV_point_refinement_result_20261012.md)。N07 每头固定 8 轮、13,288 更新；两个下游种子共享同一个教师初始化，不能替代多教师重复或充分收敛证据。R−C 配对均值为 −0.012924 AP 点，未满足结果前锁定的跟进规则；保留效用，停止当前 patch 配方扩展。
+
+
+
+N09已完成简单全局logit偏移控制：仅在FIT缓存点拟合、只在原生 |L|≤2 内应用、保持query和原生分数。首个DEV评价在原生精确一致性检查处退出1；已保留[历史失败状态](docs/N09_global_offset_runtime_state_20261012.md)，完整修复与合格结果如下。
+
+
+
+2026-10-13 已修复原始 all100 评分路径；完整 DEV 的 GPU 评价和独立 CPU 核验均真实退出 0，原生 18,700 候选输出精确复现。全局偏移 AP 为 **67.1466401**，比原生仅高 **0.0755834** 个百分点、比 C 均值低 **1.0194955**；未达到预登记近似替代规则。这只限定本次全局偏移，不证明新颖性或 F/e 因果作用。[完整核验结果](research_round_20260925_global/N09_FIXED_GLOBAL_OFFSET_RESULT_20261013.md)。已进入 [PointRend 式公平结构对照](research_round_20260925_global/FAIR_POINT_HEAD_CONTROL_DESIGN_20261013.md)，实际执行状态见下文 N10 更新。
+
+
+
+当前核心创新、正式 TEST、跨集收益和 TGRS 投稿依据仍未成立。失败结果和停止原因保留，不将局部提升包装为最终成功。
+
+
+
+## 目录导航
+
+
+
+| 目录 | 内容 |
+
+|---|---|
+
+| `paper/`、`paper_tgrs/` | 多代论文 LaTeX / BibTeX、作者说明、历史正文和补充 PDF |
+
+| `carrier/`、`mne/`、`seeding/`、`losses/` | 历史模型扩展、配置与候选组件 |
+
+| `protocol/`、`benchmark/`、`diagnostics/` | 数据转换、评价和误差诊断源码 |
+
+| `research_round_20260925_global/` | 当前及历史训练、固定评价和独立核验 SOURCE |
+
+| `docs/`、`refine-logs/` | 审阅、先例分析、实验计划和研究范围 |
+
+| `autodl/`、`tools/` | 历史环境准备与辅助工具 |
+
+
+
+最新 SOURCE 位于 `research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/` 下：
+
+
+
+- `N07_frozen_E24_original_detail_point_refinement_source_20261012_01/`：FIT 缓存、点头训练、GPU 评价、独立 CPU 核验。
+
+- `N09_FIT_only_global_logit_offset_control_source_20261012_01/`：全局偏移数学、FIT 求解及独立 CPU 核验；历史首个评价失败保留。
+
+- `N09_FIT_only_global_logit_offset_control_source_20261013_02/`：恢复原始 all100 评分路径的完整 DEV 评价器。
+
+- `N06_fixed_E24_one_to_one_error_audit_source_20261012_01/`、`N01_uniform_point_supervision_gradient_probe_source_20261012_01/`：固定误差和监督诊断。
+
+
+
+## 数据与复现范围
+
+
+
+本仓库包含数据获取说明和转换/审计源码，**不包含原始数据、全量标注、权重及运行缓存**，不能称为完整数据镜像。官方 SSDD 的 PSeg 多边形与 BBox/RBox 检测框版本不同；内部 FIT741/DEV187 不等于官方 TEST232。HRSID 的 JPG/PNG、场景协议和纯背景补充版本也必须分别记录。数据及其许可入口见 [DATA_ACCESS.md](docs/DATA_ACCESS.md)。
+
+
+
+历史环境记录为 PyTorch 2.0.1+cu118、torchvision 0.15.2、MMEngine 0.10.4、MMCV 2.1.0、MMDetection 3.3.0，并依赖 NumPy、SciPy、OpenCV、Pillow、pycocotools。最新本机资格环境与历史环境不可直接混用；没有声称全仓库在新机器完成重跑。
+
+
+
+历史入口示例：`python protocol/pseg_to_coco.py`（需配置数据路径）及 `python protocol/seal_eval.py --preds ... --gt ...`。当前科学入口采用 `--spec ABS --owner-execute`，依赖本地冻结数据、初始化和来源资格链。本次保存源码，不包含全部绑定输入，**尚不能下载后一键复现最新实验**；不得删除检查以冒充已验证的可移植版本。
+
+
+
+
+
+
+
+**2026-10-13 / N10 已闭合：** 四头各固定8轮/13,288次更新，完整DEV GPU评价及独立CPU核验均正常结束并完成ROOT核验。C均值AP **68.166136**，PointRend结构适配PR均值 **67.927378**；C−PR两组均正，平均 **+0.238757 AP点**，未达到预锁+0.30开发优先线，不自动延长此结构。两臂均高于原生67.071057，但不能据此确认创新或充分收敛。原生IoU≥.90固定配对上四臂平均IoU均小幅下降，下一步检验可编辑区域的误差覆盖与修复上限。见 [完整合格结果](docs/N10_fixed8_C_PR_fullDEV_qualified_result_20261013.md)、[全DEV状态](research_round_20260925_global/N10_FULLDEV_STATUS_20261013.md)、[固定协议](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_PLAN.md)、[实际状态](refine-logs/N10_PR_FL91_20261013_01/EXPERIMENT_TRACKER.md)及 [研发代码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N10_PR_FL91_direct_precedent_control_source_20261013_01/)。
+
+
+
+当前C实例条件偏置属于已知原语，不能单独宣称创新；定向先例与最小反证方案见 [查新备忘录](research_round_20260925_global/C_CONDITIONED_POINT_HEAD_NOVELTY_MEMO_20261013.md)。
+
+
+
+下一方向依据 [既有误差证据](docs/N01_N06_N07_N09_ERROR_EVIDENCE_FOR_NEXT_DECISION_20261013.md)与 [固定区域/采样风险定向查新](research_round_20260925_global/FIXED_BAND_SAMPLING_RISK_PRECEDENT_MEMO_20261013.md)。区域监督、MIS和控制变量均有先例；候选全图几何目标尚未执行或确认，不能用新名称替代实证。
+
+
+
+**2026-10-13 / N11：** GPU及独立CPU均已实际退出0并完成ROOT资格。原生.50固定374对中，当前区域只覆盖 **22.53%错分像素**；仅改带内损失/容量无法覆盖多数排除错误。见 [限定范围的完整结果](docs/N11_original_editable_band_qualified_result_20261013.md)，下一方向优先强几何区域对照与可否证的新选择规则；尚未建立新方法效用或创新。见 [当前状态与范围](research_round_20260925_global/N11_EDITABLE_REGION_COVERAGE_STATUS_20261013.md)及 [诊断SOURCE](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N11_native_editable_region_coverage_source_20261013_01/SOURCE_ABI.md)。
+
+
+
+## 持续同步
+
+
+
+本仓库是后续研究的持续记录入口。总结、综述、方法设计、研发源码与配置、论文更新及实质对话研究总结形成后，在当前工作任务内及时提交；实验成功、失败和未完成的验证均按实际状态保留。只有核验远端提交与目标文件后才记为已同步，失败则标为待同步；应用关闭或离线时不承诺自动上传。具体范围与流程见 [持续同步规则](docs/CONTINUOUS_SYNC.md)。
+
+
+
+## 发布范围与许可
+
+
+
+首次发布快照及完整性验证见 [publication_manifest_20261012.json](docs/publication_manifest_20261012.json)（限定于其中记录的提交；后续版本以 Git 提交历史为准），历史工作区盘点见 `docs/workspace_inventory_20261011.csv.gz`（元数据，非原始数据）。[发布范围](PUBLICATION_SCOPE.md)明确哪些内容未随仓库提供。
+
+
+
+作者、单位、日期和其他提交元数据保留占位符。自有项目尚未指定统一开源许可；第三方实现使用原始来源链接与各自许可证，不把第三方代码改授为本项目许可。外部下载的文献全文、第三方参考仓库、凭据、运维配置、无关工程以及整个工作区 Git 历史不随本快照发布。
+
+
+
+**以下为历史形成记录；当前训练进度以顶部和最新状态段为准。**
+
+
+
+当时下一项仅作为待检验假设：同一冻结模型、点头、编辑与训练预算下，先比较几何边界选择与不确定性选择，完整训练采用至少三个配对种子。强先例、反证条件及执行边界见 [区域选择设计备忘录](research_round_20260925_global/N11_REGION_CHOICE_NEXT_HYPOTHESIS_20261013.md)；尚未新增训练或确认创新。
+
+
+
+**N12 实验前登记：** [同预算区域覆盖诊断协议](refine-logs/N12_REGION_COVERAGE_20261013_01/EXPERIMENT_PLAN.md)已锁定主比较与反证规则；[执行跟踪](refine-logs/N12_REGION_COVERAGE_20261013_01/EXPERIMENT_TRACKER.md)记录实际状态：首个GPU运行在依赖文件来源核验处退出1，尚未开始区域计算；修正实际包树绑定后，GPU及独立CPU均真实退出0并完成ROOT核验。失败源码与修正版均保存，见[运行状态](docs/N12_region_diagnostic_runtime_status_20261013.md)。只有真实GPU及独立CPU核验完成后才报告新覆盖/距离结果；并非新方法效用。
+
+
+
+
+
+**N12 已核验诊断：** 相同K下，主固定374配对的错误覆盖22.53%→24.67%，条件oracle IoU仅增加0.000728650；.75固定集合覆盖略降，两臂oracle≥.90/.95主槽位计数未增加。通过预登记的有限跟进条件，将登记匹配FIT缓存与至少三个配对种子的公平训练，尚无新训练提升或创新。见[完整限定结果](docs/N12_sameK_region_qualified_result_20261013.md)。
+
+
+
+
+
+**历史快照（首轮缓存核验失败时，后续进展见顶部当前状态）：** 下一项[N13训练准备](research_round_20260925_global/N13_REGION_TRAINING_PREPARATION_20261013.md)已完成缓存/门控静态盘点：旧FIT采样缓存不足以构造新区域，旧头内部门控必须统一外移。采用相同PR骨架和三个冷初始化配对种子，已在新缓存计算前登记48轮固定预算、评价和停止规则；新缓存和训练源码均通过一次独立静态审阅；GPU缓存已正常退出并完成生成阶段ROOT核验；首个独立CPU核验在第4图原生L重算检查处退出1，正在调查；缓存尚未资格，未开始训练。失败原件保留，不改判据追求通过。缓存源码已经保存，见[执行状态与代码入口](docs/N13_sameK_region_execution_status_20261013.md)。见[固定协议](refine-logs/N13_SAMEK_PR_20261013_01/EXPERIMENT_PLAN.md)和[实际跟踪](refine-logs/N13_SAMEK_PR_20261013_01/EXPERIMENT_TRACKER.md)。
+
+
+
+N13核验失败后，已在新的数值执行前保存[固定单图诊断登记](research_round_20260925_global/N13_NATIVE_L_REPLAY_DIAGNOSTIC_PLAN_20261013.md)及[原生L数值验证审阅](research_round_20260925_global/N13_NATIVE_L_NUMERIC_VALIDATION_REVIEW_20261013.md)；新[诊断源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_cache_L_replay_diagnostic_source_20261013_01/ABI.md)仅用于定位重算差异，不改变容差或放行未资格缓存。
+
+
+
+**N13有限诊断已结束：** 第4图原FP32重算有1/536571个值超过原容差，FP64有3个；该图P与原边界区域未变。原判据仍失败，未产生缓存Q或开始训练。见[限定调试观察](research_round_20260925_global/N13_NATIVE_L_REPLAY_DIAGNOSTIC_OBSERVATION_20261013.md)；不以单图数值差或源码审阅宣称方法效用、创新或全缓存资格。
+
+
+
+- [N13 全样本 GPU 关系与 CPU v2 资格修订](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_AND_CPU_QUALIFICATION_AMENDMENT_20261013.md)：GPU关系与CPU v2资格实际通过，原失败及固定训练配方保留。
+
+
+
+- [N13 CPU v2 与固定48轮训练源码接口](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_sameK_region_qualified_relation_training_source_20261013_02/SOURCE_ABI.md)：CPU v2实际资格通过，种子701配对训练1–8轮已启动。
+
+
+
+- [N13 全体冻结 M→L GPU 关系实际通过](research_round_20260925_global/N13_CANONICAL_GPU_RELATION_OBSERVATION_20261013.md)：741图/1661query逐字节一致，原执行157.109秒；已获CPU v2资格并启动首段配对训练。
+
+
+
+- [N13 直接先例定点更新（六项）](research_round_20260925_global/N13_POINT_REGION_DIRECT_PRECEDENT_UPDATE_20261013.md)：含2026年SeSAM近邻；同K几何区域是待检验差异，已有采样/点头/带外继承不算独立创新。当前训练配方保持不变。
+
+
+
+- [N13 CPU v2实际合格结果与训练准入范围](research_round_20260925_global/N13_CACHE_CPU_V2_ACTUAL_QUALIFIED_RESULT_20261013.md)：全部区域/监督/采样强门通过；原full-L CPU容差在6图失败保留为诊断。种子701首段配对训练运行中。
+
+
+
+
+
+**本轮研发更新：** [完整DEV评价源码](research_round_20260925_global/multimodal_data_pilot_20260928/native_geometry_paired_mask_readout_preparation_20261009/N13_sameK_fixed_DEV_evaluation_source_20261013_01/EVALUATION_SOURCE_ABI.md)已静态审阅，尚未实际评价；[几何与点精修定向查新](research_round_20260925_global/N13_GEOMETRIC_POINT_REFINEMENT_TARGETED_PRIOR_UPDATE_20261013.md)补充五项论文及更接近的Poly-BRBLE技术披露，创新主张需以具体支持分配差异和强对照效用为依据。
+
+
+
+- [后续候选：预测实际修补的正负收益](research_round_20260925_global/N13_LEARNED_EDIT_UTILITY_NEXT_HYPOTHESIS_20261013.md)：与同容量错误概率选择器比较；待登记、未执行，不改变当前三种子48轮实验。像素收益不等于IoU/AP提升。
+
+
+
+- [N13三个首段端点完整核验及连续48轮进度](research_round_20260925_global/N13_ALL_THREE_E08_ENDPOINTS_AND_CONTINUOUS48_STATUS_20261013.md)：701原报告失败保留；三个固定E48均已核验（各79,728更新/臂），首个固定DEV评价执行失败待修复。完整DEV实际载荷约10.95GiB，尚无新AP。
+
+
+
+单图探针元数据原44062实际0（9,975来源、94成功、原8失败及新增1失败、总103身份）；ROOT准入后，原GPU33452已单次启动。比较原容差不变，不生成Q／AP，数值原因尚待实际结束和ROOT读回。
+
+
+
+最新执行状态：[N16全FIT缓存已实际完成、待独立CPU核验](research_round_20260925_global/N16_FULLFIT_CACHE_EXECUTION_STATUS_20261014.md)。正常退出0，741图/3035136点/611.937秒；完整独立CPU核验及ROOT最终准入均已实际通过；固定24轮配对scout训练已原实际退出0，独立端点核验与ROOT最终资格已通过，尚无新增AP。
+
+
+
+[独立机制与结果解释矩阵](research_round_20260925_global/N16_FIXED_PROTOCOL_MECHANISM_RESULT_INTERPRETATION_20261014.md)：净纠错不等于AP；背景代理监督、dense-flip强对照及完整部署成本的主张边界。训练端点与部署选点的独立CPU核验源码已保存为未绑定草稿，合成通过不等于实际资格。
+
+
+
+**N16正式训练准入：** GPU和独立CPU全部741图/3035136点实际通过，combined最大绝对误差1.52587890625e-5、实际修正符号精确；ROOT闭合通过后已启动固定24轮Utility/Error配对训练任务。E24主评价尚未执行。
+
+
+
+**固定24轮已完成：** 两臂各17784更新、72843264点暴露，原GPU任务正常退出0；端点独立CPU核验已启动，完整DEV AP尚未执行。训练完成不等于方法涨点或投稿资格。
+
+
+
+**固定端点完整资格通过：** E8/E24模型、实际AdamW状态与计数、私有图序、完整训练记录和独立CPU前向/固定损失均通过，原GPU/CPU/ROOT均实际0。当前准备完整DEV187/all100的固定E24主评价；尚无新AP、部署选点或SOTA/TGRS结论。
+
+
+
+[固定24轮完整DEV评价协议与状态](research_round_20260925_global/N16_FIXED_E24_FULLDEV_EVALUATION_PROTOCOL_AND_STATUS_20261014.md)
+
+
+
+[完整DEV固定分段执行补充](research_round_20260925_global/N16_FIXED_FULLDEV_EXECUTION_PARTITION_SUPPLEMENT_20261014.md)
+
+
+
+
+
+[正式TEST与跨集证据准备度](research_round_20260925_global/N16_FORMAL_TEST_AND_CROSS_DATASET_EVIDENCE_READINESS_20261014.md)：定位既有测试暴露与HRSID旧TEST选型历史，区分固定配方外部评价与独立确认性证据；实际包、真mask、ID/场景与许可覆盖仍须执行前闭合。本次仅普通历史/元数据审阅，未新增科学验证。
+
+
+
+[补充跨集候选：Instance-RSDD（尚未入场）](research_round_20260925_global/INSTANCE_RSDD_PUBLIC_DATA_CANDIDATE_AND_MASK_SCOPE_20261016.md)：已核对论文的人工逐实例像素标注说明与作者入口，并实际看到 `annotation_coco` 目录及标称1KB的 `readme.txt`；目录名不认证COCO格式，包内编码、实际划分、历史使用、独立性与许可仍待核验。未新增跨集AP，不改变N20。
+
+
+
+[历史TEST用途台账补充（2026-10-16）](research_round_20260925_global/HISTORICAL_TEST_USE_LEDGER_TEXT_EVIDENCE_20261016.md)：从已发布实验稿定位HRSID融合设置/BPR种子与PSeg-SSDD对比checkpoint的测试选型披露，补齐具体已知用途；原始运行、权重与时间链未重新核验，不推及当前N20，不恢复盲测身份。
+
+
+
+
+
+[scout条件重复的初始化编号登记](research_round_20260925_global/N16_SCOUT_INITIALIZATION_REPEAT_PROSPECTIVE_LOCK_20261014.md)：在ROOT查看本轮完整AP前，固定后续202610140162/163；只改变配对scout初始化，原停止门不变，没有开始新增训练，结论限固定载体下初始化稳健性。
+
+
+
+[后续最少必要实验与验证边界](research_round_20260925_global/N17_MINIMAL_SCIENTIFIC_EVIDENCE_NEXT_ACTIONS_20261015.md)：先完成主AP，有收益按锁复验，无收益先分析已有全量错误；只在新改动、失败或具体疑点出现时重复工程检查。
+
+
+
+[统一COCO后的独立后置ROOT入口](research_round_20260925_global/code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_DRAFT_20261015_01.py)：已冻结/接口fixture通过，独立静态审阅READY、真实执行未开始；不重复计算COCO。
+
+
+
+
+
+[保留第21次失败的统一COCO03](research_round_20260925_global/code/N17_FIXEDDEV_FULL187_CPU_COCO_FINAL_ROOT_UNBOUND_DRAFT_20261015_03.py) · [独立后置ROOT02](research_round_20260925_global/code/N17_FIXEDDEV_FULL187_POST_ACTUAL_ROOT_CPU_UNBOUND_DRAFT_20261015_02.py)：均已冻结/接口检查通过，待五段独立CPU实际证据和原终态后执行，不是新AP。
+
+
+
+[独立CPU重复计算的静态观察](research_round_20260925_global/N17_CPU_REDUNDANT_COMPUTATION_STATIC_OBSERVATION_20261015.md)：两个只读缓存候选，未测耗时、未实现，不改变当前核验。
+
+
+
+
+
+N20后续未执行源码：[独立CPU端点核验入口](research_round_20260925_global/code/N20_PAIRED_TRAIN_CPU_ENTRY_UNBOUND_DRAFT_20261015_01.py)、[真实邻域全候选评分](research_round_20260925_global/code/N20_ALL100_LOCAL_CENTER_FEATURE_ERROR_SELECTOR_EVAL_BODY_UNBOUND_DRAFT_20261015_01.py)、[分段DEV入口前门](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_GPU_FRONT_UNBOUND_DRAFT_20261015_01.py)。CPU入口只通过语法检查；评分body通过语法和一次独立静态核对，尚未数值执行；DEV前门尚需接真实legacy/prior carrier hook，不可直接启动。已有common-C精修仅作固定参考，新选中点仍fresh计算并保留原数值/符号门，不把缓存读取当部署计时。
+
+
+
+原正常GPU0路径下的CPU141/23和DEV142前门保留为未执行历史草稿；收尾失败24后当前改用CPU恢复140/24/164，原GPUactual0保持False。后续DEV需消费新恢复资格，不能直接套用旧前门或补写缺失GPU报告。
+
+
+
+已另存[消费恢复资格的DEV前门v02](research_round_20260925_global/code/N20_FIXEDDEV_FEATURE_ERROR_GPU_FRONT_UNBOUND_DRAFT_20261015_02.py)：GPU失败只保留为失败记录，四个模型从原快照取，后续首DEV141/24；仍需真实legacy/priorcarrier hooks和CPU恢复实际资格，未绑定、未执行。
+
+
+
+**完整主线接线更新：** 已选plain64原结构作更贴近的普通对照；新几何/plain包装已实现仅AST，FIT全部查询M100真实补采源已完成但尚未执行。历史clean32/GN、plain64与full64分别注明，不把它们混成同一基线。[当前研发与输入缺口](research_round_20260925_global/U31_MAIN_CONTROL_AND_NATIVE100_INPUT_PROGRESS_20261017.md)。
+
+
+
+- 2026-10-25：新增[U57首次端点AP前效用与复验规则](research_round_20260925_global/U57_PROSPECTIVE_UTILITY_AND_REPEAT_POLICY_20261025.md)；首次训练途中明确，不追溯预锁。对比表补入固定R 68.099 AP和N26质量排序三种子均值69.537 AP，历史参考预算与本轮分列。
+
+
+
+- 2026-10-25：[SegS-YOLO官方原文增量核查](research_round_20260925_global/U57_DIRECT_PRIOR_INCREMENT_20261025.md)：确为SAR实例分割与上下文/多尺度/动态蛇形结构先例；LS-SSDD仅定性，不改变当前训练或已有晋级规则。
+
+
+
+- 2026-10-25：[最近直接先例差异表已补核SegS-YOLO](research_round_20260925_global/U57_NEAREST_PRIOR_NOVELTY_CHECK_20261018.md)，保留原访问日期并另标本轮补核日期；当前未形成外部复现或新AP结论。
+
+
+
+- 2026-10-25：[教师身份与数据接触核查](research_round_20260925_global/U57_TEACHER_IDENTITY_AND_DATA_EXPOSURE_SCOPE_20261025.md)：当前原生教师为项目Mask2Former/R50 E24，纠正与DiffSAR外部先例混称；[官方COCO初始化完整摘要关联](research_round_20260925_global/results/U57_OFFICIAL_COCO_INITIALIZER_FULL_STREAM_AUDIT_20261025.json)已补齐，DEV排除仍需实际历史清单核查。历史D目录FPN归属记录不等于当前载体身份。
+
+
+
+2026-10-25接续更新：原18688→18944的TCP连接失败保持失败、0更新；新的单次30秒连接接续已通过原工具/SSH/worker0、771项字节和严格进程核验，正式前缀18944。下一18944→19200实际运行中。不同预算/预训练与数据划分的外部数字不直接排名，SAM完整模型候选仍未执行。
+
