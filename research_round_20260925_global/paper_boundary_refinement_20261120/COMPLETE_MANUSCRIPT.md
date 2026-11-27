@@ -6,6 +6,8 @@
 
 [修订及证据边界](design/CONTINUATION_AUDIT_20261126_02.md) · [逐图核验](design/FIGURE_LEDGER_20261126_02.md) · [SVG、PDF、绘图源与五页 Draw.io](figures/revision_20261126_02/README.md)。旧 25 页公开补材和旧图源属于交接版本，当前绘图入口以上述 revision_20261126_02 为准。
 
+[GLDet 全文写作精读与 NORA 段落示例](design/GLDET_WRITING_READING_20261127.md)（2026-11-27），逐节对照问题、先例、方法定义和实验证据各自的位置。
+
 以下保留交接基础版本的索引与说明；与续作 02 冲突的页数和绘图入口以上述更新为准。
 
 **NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation**
