@@ -11,3 +11,5 @@ Requires local Python, NumPy, Matplotlib and PyMuPDF. `schematic_selection.json`
 Review the SVG/PDF at final manuscript size. The Draw.io XML structure was checked for five populated pages; desktop export of this companion was not executed. The SVG/PDF pairs are the visually verified rendering authority.
 
 Native SAR figures remain in the local author-review workspace. Public assets contain schematic or aggregate vectors only. See [revision audit](../../design/CONTINUATION_AUDIT_20261126_02.md).
+
+The overall network and ROH pages distinguish the scalar polygon–cell area fraction from the two binary cell labels used to fit the dual head. The first binary mask is the COCO rasterization of the matched PSeg polygon. The second is the matched object in the native SPSD panoptic mask. The dual sigmoid outputs estimate these labels. Use `--figure overview` or `--figure roh` to rebuild either diagram alone.

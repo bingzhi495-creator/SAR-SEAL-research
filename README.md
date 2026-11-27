@@ -1,4 +1,9 @@
 # SEAL：公共 SAR 船舶实例分割研究
+
+## NORA 作者审阅稿（2026-11-27）
+
+[当前正文、补充材料及图件](research_round_20260925_global/paper_boundary_refinement_20261120/COMPLETE_MANUSCRIPT.md) · [全文修订记录](research_round_20260925_global/paper_boundary_refinement_20261120/design/NORA_FULLTEXT_REVISION_20261127.md)。正文 13 页，公开补材 27 页。已区分两个 ROH 的实际监督对象，并按统一分组解释边界增量。独立评分状态见记录。
+
 
 <!-- U57_U60_ACTUAL_20261021_01 -->
 

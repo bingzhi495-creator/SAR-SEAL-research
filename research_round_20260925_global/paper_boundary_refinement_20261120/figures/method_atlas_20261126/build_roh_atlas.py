@@ -80,45 +80,9 @@ def readout(out,case=None):
     save(fig,out,'nora_fractional_readout')
 
 def architecture(out):
-    fig,ax=frame(194)
-    txt(ax,9,12,'Endpoint features',11,bold=True)
-    txt(ax,150,12,'Scalar residual occupancy head',11,bold=True)
-    cols=[GREEN,ORANGE,WINE,'#927653']
-    for i,(name,n) in enumerate([('Mask / response',4),('Box position',2),('Candidate',3),('Appearance',5)]):
-        y=44+i*21
-        txt(ax,8,y,name,7.7)
-        for j in range(n):
-            ax.add_patch(Rectangle((76+j*5,y-3.5),4,7,fc=cols[i],ec='none'))
-    txt(ax,8,132,'14 features',9,bold=True)
-    arr(ax,(100,76),(118,76))
-    stages=[(133,28,'[zᵢ, zᵢ]'),(198,24,'ReLU'),(261,24,'ReLU'),(321,1,'Residual')]
-    for i,(x,n,title) in enumerate(stages):
-        depth=[6,5,5,1][i]
-        for j in range(depth):
-            u=x+j*2.1; v=63-j*1.8
-            poly(ax,[(u,v),(u+15,v-9),(u+15,v+23),(u,v+32)],['#BFD3C6','#E2B398','#DDB3B9','#B98B65'][i],cols[i],.85)
-        txt(ax,x+11,112,str(n),12,cols[i],True,'center')
-        txt(ax,x+11,128,title,8.2,align='center')
-        if i<3: arr(ax,(x+29,77),(stages[i+1][0]-6,77))
-    txt(ax,117,148,'Standardize, duplicate',8,GREEN)
-    arr(ax,(341,77),(365,77))
-    ax.add_patch(Circle((377,77),9,fc=CREAM,ec=ORANGE,lw=1))
-    txt(ax,377,77,'+',12,ORANGE,True,'center')
-    line(ax,318,39,377,39,ORANGE)
-    arr(ax,(377,39),(377,67),ORANGE)
-    txt(ax,318,28,'Clipped decoder logit',8.1,ORANGE)
-    arr(ax,(387,77),(407,77))
-    t=np.linspace(-3,3,90)
-    ax.plot(414+(t+3)*4.7,89-23/(1+np.exp(-t)),color=WINE,lw=2)
-    txt(ax,427,108,'Sigmoid',8,align='center')
-    arr(ax,(445,77),(464,77))
-    txt(ax,478,77,r'$\hat{q}_i$',13,GREEN,True,'center')
-    line(ax,478,92,478,164,GREEN,.8,'--')
-    line(ax,478,164,392,164,GREEN,.8,'--')
-    txt(ax,385,164,'Fractional BCE',8.6,GREEN,True,'right')
-    txt(ax,385,180,'Source polygon coverage',8,align='right')
-    txt(ax,8,180,'Dual-reference ROH     28 → 24 → 24 → 2',8.7,WINE,True)
-    save(fig,out,'nora_roh_architecture')
+    from build_roh_architecture import build
+    build(out)
+
 
 if __name__=='__main__':
     p=argparse.ArgumentParser()

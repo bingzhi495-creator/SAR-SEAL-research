@@ -14,6 +14,7 @@ plt.rcParams.update({'font.family':'DejaVu Sans','font.size':8,'svg.fonttype':'n
 import argparse
 parser=argparse.ArgumentParser(description='Rebuild five NORA explanatory vector figures.')
 parser.add_argument('--output',type=Path,required=True)
+parser.add_argument('--figure', choices=['overview','roh','selection','allocation','phoenix'], help='Rebuild one panel family; default builds all five.')
 args=parser.parse_args()
 OUT=args.output;OUT.mkdir(parents=True,exist_ok=True)
 def canvas(h):
@@ -38,7 +39,7 @@ def save(f,name):
  plt.close(f)
 
 def overview():
- f,a=canvas(218)
+ f,a=canvas(232)
  for x,label in [(8,'Frozen prediction'),(151,'Native boundary'),(297,'Occupancy'),(403,'Mask update')]:t(a,x,13,label,9,b=True)
  line(a,8,26,508,26)
  # A vector schematic is shared by both versions; no observed detector feature maps are implied.
@@ -75,15 +76,20 @@ def overview():
  arrow(a,34,127,34,145);line(a,34,145,292,145);arrow(a,292,145,311,111)
  t(a,118,136,'Image appearance',7.4,GRAY,ha='center')
  line(a,8,178,508,178)
- t(a,8,194,'Fitting only',8,GRAY,True)
- t(a,95,194,r'GT polygon $G_r$',8,GREEN)
- arrow(a,181,194,202,194,GREEN,True)
- t(a,211,194,r'$q_{ir}=|C_i\cap G_r|/|C_i|$',8,GREEN)
- arrow(a,332,194,356,194,GREEN,True);t(a,365,194,'BCE → ROH parameters',8)
+ t(a,8,193,'Scalar fit',8,GREEN,True)
+ t(a,84,193,r'Polygon $G$',8)
+ arrow(a,137,193,161,193,GREEN,True)
+ t(a,173,193,r'$q_i=|C_i\cap G|/|C_i|$',8,GREEN)
+ arrow(a,337,193,359,193,GREEN,True);t(a,370,193,'BCE → scalar ROH',8)
+ t(a,8,215,'Dual fit',8,WINE,True)
+ t(a,84,215,'PSeg COCO raster + SPSD panoptic',8)
+ arrow(a,239,215,252,215,WINE,True)
+ t(a,260,215,r'$(y_{i1},y_{i2})\in\{0,1\}^2$',8,WINE)
+ arrow(a,337,215,359,215,WINE,True);t(a,370,215,'BCE → dual ROH',8)
  save(f,'nora_network_overview')
 
 def roh():
- f,a=canvas(211)
+ f,a=canvas(228)
  t(a,8,13,r'One endpoint $i$',9,b=True)
  groups=[(8,4,'Mask / response',GREEN),(136,2,'Position',ORANGE),(224,3,'Candidate',WINE),(333,5,'Appearance',GRAY)]
  for x,n,label,col in groups:
@@ -106,8 +112,14 @@ def roh():
   arrow(a,372,y,392,y);t(a,402,y,'σ',11,b=True,ha='center');arrow(a,413,y,431,y)
   t(a,438,y,r'$\hat q_i$' if r==1 else r'$\hat q_{i1},\hat q_{i2}$',9,GREEN)
   t(a,365,y-25,r'$\mathrm{logit}(p_i^\epsilon)$',8,ORANGE,ha='center');arrow(a,365,y-18,365,y-6,ORANGE)
- t(a,110,202,r'$h\mapsto Wh+b$; output × input',7.7)
- t(a,329,202,r'BCE against $q_i$ or $(q_{i1},q_{i2})$',8,GREEN)
+ line(a,8,186,508,186)
+ t(a,8,198,'Scalar target',7.9,GREEN,True)
+ t(a,77,198,r'$q_i$: polygon–cell area fraction',8)
+ t(a,8,216,'Dual targets',7.9,WINE,True)
+ t(a,77,216,r'$y_{i1}$: PSeg COCO raster',8)
+ t(a,205,216,r'$y_{i2}$: SPSD panoptic mask',8)
+ t(a,355,216,'Both binary (0 / 1)',8,WINE)
+ t(a,355,198,'Matrices: output × input',7.8,GRAY)
  save(f,'nora_roh_architecture')
 
 def grid(a,x,y,step,mask,adds=(),drops=(),links=False,candidates=()):
@@ -177,4 +189,9 @@ def phoenix():
 
 
 if __name__=="__main__":
- overview();roh();selection();allocation();phoenix()
+ builders = {'overview':overview, 'roh':roh, 'selection':selection, 'allocation':allocation, 'phoenix':phoenix}
+ if args.figure:
+  builders[args.figure]()
+ else:
+  for draw in builders.values():
+   draw()

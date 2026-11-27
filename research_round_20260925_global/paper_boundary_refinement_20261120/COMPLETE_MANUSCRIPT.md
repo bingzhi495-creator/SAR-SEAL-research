@@ -1,5 +1,10 @@
 # NORA 精简正文、补充材料与重绘图件
 
+## 现行全文修订（2026-11-27）
+
+[正文 PDF](boundary_refinement_concise.pdf)（13 页） · [独立补材 PDF](boundary_refinement_supplement.pdf)（27 页） · [本轮修改、统计口径及验证](design/NORA_FULLTEXT_REVISION_20261127.md) · [核心图源](figures/revision_20261126_02/README.md)。标量头与双参考头的训练目标已按公开标签记录核实。以下各轮记录保留为版本历史。
+
+
 ## 续作修订 02（2026-11-26）
 
 现行 [正文 PDF](boundary_refinement_concise.pdf) 为 13 页；[补材 PDF](boundary_refinement_supplement.pdf) 为 26 页。页数以完整内容和可读性为先。已重建整体网络、ROH、F/L/I、固定总量及 Phoenix 五张核心图，复核正文 9 图及补材全部图，明确各图的 GT 对象、预算、池化及示意值。原生正负案例与图件留在本机审阅版，公开稿只含示意/聚合矢量。所有实验表体与公式不变，保留负迁移和未完成评分状态。

@@ -1,5 +1,8 @@
 # NORA 论文与图件续作交接
 
+**现行交接，2026-11-27。** [全文修订及验证](design/NORA_FULLTEXT_REVISION_20261127.md) · [正文、独立补材及图件索引](COMPLETE_MANUSCRIPT.md)。公开稿件为 13 / 27 页。正负案例及冻结迁移证据保留，Umbra 独立评分仍待完成。以下续作 02 及更早信息按当时版本读取。
+
+
 > 续作 02 已完成稿图修订与四份 PDF 编译核验。当前公开正文 13 页、补材 26 页（20 图）；本机原生补材 26 页（21 图）。[现行入口与修订记录](COMPLETE_MANUSCRIPT.md) · [证据及验收记录](design/CONTINUATION_AUDIT_20261126_02.md) · [五页可编辑核心图](figures/revision_20261126_02/README.md)。下文保留本次交接时的历史快照；Umbra 独立评分仍未完成。
 
 2026-11-26，北京时间。公共 SAR 船舶实例分割，目标期刊 IEEE TGRS。现行标题 **NORA: Native-Grid Occupancy Ranking and Allocation for SAR Ship Instance Segmentation**。当前交付是作者审阅稿。以本页定位材料，从正文叙事和全套图件复核开始续作。
